@@ -8,7 +8,7 @@ jobs:
       - name: Checkout the master branch
         uses: actions/checkout@v3
       - name: Get Product Name
-        id: productname
+        id: id
         uses: notiz-dev/github-action-json-property@release
         with:
           path: "system.json"
