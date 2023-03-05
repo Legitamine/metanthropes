@@ -12,9 +12,9 @@ jobs:
         uses: notiz-dev/github-action-json-property@release
         with:
           path: "system.json"
-          prop_path: "productname"
+          prop_path: "id"
       - name: Debug-print Product Name
-        run: echo ${{steps.productname.outputs.prop}}
+        run: echo ${{steps.id.outputs.prop}}
       - name: Get Version Number
         id: version
         uses: notiz-dev/github-action-json-property@release
@@ -28,21 +28,21 @@ jobs:
         with:
           file: "./system.json"
           field: "download"
-          value: "https://github.com/${{github.repository}}/releases/download/${{steps.version.outputs.prop}}/${{steps.productname.outputs.prop}}.zip"
+          value: "https://github.com/${{github.repository}}/releases/download/${{steps.version.outputs.prop}}/${{steps.id.outputs.prop}}.zip"
       - name: Zip the compiled files
         uses: thedoctor0/zip-release@0.7.1
         with:
           type: "zip"
-          filename: "${{steps.productname.outputs.prop}}.zip" # I need to make the name to match the release name / version name of the build --- oooor just name it metanthropes.zip and be done with it
+          filename: "${{steps.id.outputs.prop}}.zip" # I need to make the name to match the release name / version name of the build --- oooor just name it metanthropes.zip and be done with it
           exclusions: "*.git* /*node_modules/* /*.vscode/* .npmignore .nvmrc gulpfile.js package-lock.json package.json /scss/* /sass/*"
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{steps.version.outputs.prop}}
-          name: ${{steps.productname.outputs.prop}} - v${{steps.version.outputs.prop}}
+          name: ${{steps.id.outputs.prop}} - v${{steps.version.outputs.prop}}
           generate_release_notes: true
           draft: false
           prerelease: false
           files: |
-            ${{steps.productname.outputs.prop}}.zip
+            ${{steps.id.outputs.prop}}.zip
             system.json
