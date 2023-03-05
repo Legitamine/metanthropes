@@ -1,0 +1,1035 @@
+{
+	"Actor": {
+		"types": [
+			"Humanoid",
+			"Metanthrope",
+			"Protagonist",
+			"Animal",
+			"MetaTherion",
+			"Artificial",
+			"Animated Object",
+			"Animated Humanoid",
+			"Vehicle"
+		],
+		"templates": {
+			"physical": {
+				"movement": {
+					"type": "number",
+					"label": "Movement",
+					"initial": 0,
+					"buffs": {
+						"fly": {
+							"type": "boolean",
+							"label": "Fly",
+							"value": false
+						},
+						"photokinetic": {
+							"type": "boolean",
+							"label": "Photokinetic",
+							"value": false
+						},
+						"walk-wall": {
+							"type": "boolean",
+							"label": "Wall Walk",
+							"value": false
+						},
+						"walk-wave": {
+							"type": "boolean",
+							"label": "Wave Walk",
+							"value": false
+						},
+						"walk-earth": {
+							"type": "boolean",
+							"label": "Earth Walk",
+							"value": false
+						}
+					},
+					"conditions": {
+						"immobilized": {
+							"type": "boolean",
+							"label": "Immobilized",
+							"value": false
+						},
+						"knockdown": {
+							"type": "boolean",
+							"label": "Knocked Down",
+							"value": false
+						}
+					}
+				},
+				"size": {
+					"type": "number",
+					"label": "Size",
+					"initial": 10,
+					"buffs": {
+						"enlarged": {
+							"type": "number",
+							"label": "Enlarged",
+							"value": 0
+						}
+					},
+					"conditions": {
+						"shrunken": {
+							"type": "number",
+							"label": "Shrunken",
+							"value": 0
+						}
+					}
+				},
+				"weight": {
+					"type": "number",
+					"label": "Weight",
+					"initial": 10,
+					"buffs": {
+						"lightened": {
+							"type": "number",
+							"label": "Lightened",
+							"value": 0
+						}
+					},
+					"conditions": {
+						"encumbered": {
+							"type": "number",
+							"label": "Encumbered",
+							"value": 0
+						}
+					}
+				},
+				"speed": {
+					"type": "number",
+					"label": "Speed",
+					"initial": 10,
+					"buffs": {
+						"accelerated": {
+							"type": "number",
+							"label": "Accelerated",
+							"value": 0
+						}
+					},
+					"conditions": {
+						"slowed": {
+							"type": "number",
+							"label": "Slowed",
+							"value": 0
+						}
+					}
+				},
+				"resistances": {
+					"cosmic": {
+						"type": "number",
+						"label": "Cosmic",
+						"initial": 0
+					},
+					"elemental": {
+						"type": "number",
+						"label": "Elemental",
+						"initial": 0
+					},
+					"material": {
+						"type": "number",
+						"label": "Material",
+						"initial": 0
+					},
+					"psychic": {
+						"type": "number",
+						"label": "Psychic",
+						"initial": 0
+					}
+				},
+				"immunities": {
+					"type": "string",
+					"label": "Immunities",
+					"value": "none"
+				},
+				"detections": {
+					"type": "string",
+					"label": "Detections",
+					"value": "none"
+				},
+				"shifts": {
+					"type": "string",
+					"label": "Shifts",
+					"value": "none"
+				},
+				"cover": {
+					"type": "number",
+					"label": "Cover",
+					"initial": 0,
+					"max": 100
+				},
+				"description-physical": {
+					"type": "string",
+					"label": "Physical Description",
+					"value": "Height, Weight, details about physical appearance, etc."
+				}
+			},
+			"vital": {
+				"Experience": {
+					"type": "number",
+					"label": "Experience",
+					"total": 0,
+					"spent": 0,
+					"stored": 0
+				},
+				"age": {
+					"type": "number",
+					"label": "Age",
+					"value": 25
+				},
+				"arc": {
+					"type": "string",
+					"label": "Arc",
+					"value": "some arc"
+				},
+				"life": {
+					"type": "number",
+					"label": "Life",
+					"value": 100,
+					"max": 0
+				},
+				"destiny": {
+					"type": "number",
+					"label": "Destiny",
+					"value": 20,
+					"max": 0
+				}
+			},
+			"characteristics": {
+				"body": {
+					"type": "number",
+					"label": "Body",
+					"initial": 30,
+					"progressed": 0,
+					"buffs": {
+						"hardened": {
+							"type": "number",
+							"label": "Hardened",
+							"value": 0
+						}
+					},
+					"conditions": {
+						"burned": {
+							"type": "number",
+							"label": "Burned",
+							"value": 0
+						},
+						"bleeding": {
+							"type": "number",
+							"label": "Bleeding",
+							"value": 0
+						},
+						"asphyxiation": {
+							"type": "boolean",
+							"label": "Asphyxiation",
+							"value": false
+						},
+						"diseased": {
+							"type": "boolean",
+							"label": "Diseased",
+							"value": false
+						},
+						"maimed": {
+							"type": "boolean",
+							"label": "Maimed",
+							"value": false
+						}
+					},
+					"stats": {
+						"endurance": {
+							"type": "number",
+							"label": "Endurance",
+							"initial": 20,
+							"progressed": 0,
+							"buffs": {
+								"fortified": {
+									"type": "number",
+									"label": "Fortified",
+									"value": 0
+								}
+							},
+							"conditions": {
+								"bone-injury": {
+									"type": "number",
+									"label": "Bone Injury",
+									"value": 0
+								}
+							}
+						},
+						"power": {
+							"type": "number",
+							"label": "Power",
+							"initial": 30,
+							"progressed": 0,
+							"buffs": {
+								"empowered": {
+									"type": "number",
+									"label": "Empowered",
+									"value": 0
+								}
+							},
+							"conditions": {
+								"muscle-injury": {
+									"type": "number",
+									"label": "Muscle Injury",
+									"value": 0
+								}
+							}
+						},
+						"reflexes": {
+							"type": "number",
+							"label": "Reflexes",
+							"initial": 10,
+							"progressed": 0,
+							"buffs": {
+								"hastened": {
+									"type": "number",
+									"label": "Hastened",
+									"value": 0
+								}
+							},
+							"conditions": {
+								"skin-injury": {
+									"type": "number",
+									"label": "Skin Injury",
+									"value": 0
+								}
+							}
+						}
+					}
+				},
+				"mind": {
+					"type": "number",
+					"label": "Mind",
+					"initial": 20,
+					"progressed": 0,
+					"buffs": {
+						"sharpened": {
+							"type": "number",
+							"label": "Sharpened",
+							"value": 0
+						}
+					},
+					"conditions": {
+						"disconnected": {
+							"type": "number",
+							"label": "Disconnected",
+							"value": 0
+						},
+						"fatigue": {
+							"type": "boolean",
+							"label": "Fatigue",
+							"value": false
+						},
+						"hunger": {
+							"type": "boolean",
+							"label": "Hunger",
+							"value": false
+						},
+						"pain": {
+							"type": "boolean",
+							"label": "Pain",
+							"value": false
+						},
+						"sense lost": {
+							"type": "boolean",
+							"label": "Sense Lost",
+							"value": false
+						}
+					},
+					"stats": {
+						"perception": {
+							"type": "number",
+							"label": "Perception",
+							"initial": 10,
+							"progressed": 0,
+							"buffs": {
+								"alerted": {
+									"type": "number",
+									"label": "Alerted",
+									"value": 0
+								}
+							},
+							"conditions": {
+								"disoriented": {
+									"type": "number",
+									"label": "Disoriented",
+									"value": 0
+								}
+							}
+						},
+						"manipulation": {
+							"type": "number",
+							"label": "Manipulation",
+							"initial": 20,
+							"progressed": 0,
+							"buffs": {
+								"articulated": {
+									"type": "number",
+									"label": "Articulated",
+									"value": 0
+								}
+							},
+							"conditions": {
+								"confused": {
+									"type": "number",
+									"label": "Confused",
+									"value": 0
+								}
+							}
+						},
+						"creativity": {
+							"type": "number",
+							"label": "Creativity",
+							"initial": 30,
+							"progressed": 0,
+							"buffs": {
+								"inspired": {
+									"type": "number",
+									"label": "Inspired",
+									"value": 0
+								}
+							},
+							"conditions": {
+								"wobbly": {
+									"type": "number",
+									"label": "Wobbly",
+									"value": 0
+								}
+							}
+						}
+					}
+				},
+				"soul": {
+					"type": "number",
+					"label": "Soul",
+					"initial": 10,
+					"progressed": 0,
+					"buffs": {
+						"enlightened": {
+							"type": "number",
+							"label": "Enlightened",
+							"value": 0
+						}
+					},
+					"conditions": {
+						"tormented": {
+							"type": "number",
+							"label": "Tormented",
+							"value": 0
+						},
+						"amnesia": {
+							"type": "boolean",
+							"label": "Amnesia",
+							"value": false
+						},
+						"probed": {
+							"type": "boolean",
+							"label": "Probed",
+							"value": false
+						},
+						"infiltrated": {
+							"type": "boolean",
+							"label": "Infiltrated",
+							"value": false
+						},
+						"unconscious": {
+							"type": "boolean",
+							"label": "Unconscious",
+							"value": false
+						}
+					},
+					"stats": {
+						"willpower": {
+							"type": "number",
+							"label": "Willpower",
+							"initial": 30,
+							"progressed": 0,
+							"buffs": {
+								"determined": {
+									"type": "number",
+									"label": "Determined",
+									"value": 0
+								}
+							},
+							"conditions": {
+								"terrorized": {
+									"type": "number",
+									"label": "Terrorized",
+									"value": 0
+								}
+							}
+						},
+						"consciousness": {
+							"type": "number",
+							"label": "Conciousness",
+							"initial": 20,
+							"progressed": 0,
+							"buffs": {
+								"awakened": {
+									"type": "number",
+									"label": "Awakened",
+									"value": 0
+								}
+							},
+							"conditions": {
+								"demented": {
+									"type": "number",
+									"label": "Demented",
+									"value": 0
+								}
+							}
+						},
+						"awareness": {
+							"type": "number",
+							"label": "Awareness",
+							"initial": 10,
+							"progressed": 0,
+							"buffs": {
+								"focused": {
+									"type": "number",
+									"label": "Focused",
+									"value": 0
+								}
+							},
+							"conditions": {
+								"bewildered": {
+									"type": "number",
+									"label": "Bewildered",
+									"value": 0
+								}
+							}
+						}
+					}
+				}
+			},
+			"humanoids": {
+				"hitbox": {
+					"head": {
+						"type": "number",
+						"label": "Head",
+						"weight": 5
+					},
+					"torso-upper": {
+						"type": "number",
+						"label": "Upper Torso",
+						"weight": 15
+					},
+					"torso-lower": {
+						"type": "number",
+						"label": "Lower Torso",
+						"weight": 10
+					},
+					"arm-left": {
+						"type": "number",
+						"label": "Left Arm",
+						"weight": 15
+					},
+					"arm-right": {
+						"type": "number",
+						"label": "Right Arm",
+						"weight": 15
+					},
+					"leg-left": {
+						"type": "number",
+						"label": "Left Leg",
+						"weight": 20
+					},
+					"leg-right": {
+						"type": "number",
+						"label": "Right Leg",
+						"weight": 20
+					}
+				},
+				"origin": {
+					"type": "string",
+					"label": "Origin",
+					"value": "Planet Earth"
+				},
+				"species": {
+					"type": "string",
+					"label": "Species",
+					"value": "Human"
+				},
+				"gender": {
+					"type": "string",
+					"label": "Gender",
+					"value": "Other"
+				},
+				"birthplace": {
+					"type": "string",
+					"label": "Birthplace",
+					"value": "Random City"
+				},
+				"description-humanoid": {
+					"type": "string",
+					"label": "Humanoid Description",
+					"value": "A typical human with brown hair and brown eyes."
+				}
+			},
+			"humanoid-perks": {
+				"perks": {
+					"knowledge": {
+						"academics": {
+							"type": "number",
+							"label": "Academics",
+							"value": 0
+						},
+						"engineering": {
+							"type": "number",
+							"label": "Engineering",
+							"value": 0
+						},
+						"lore": {
+							"type": "number",
+							"label": "Lore",
+							"value": 0
+						},
+						"medicine": {
+							"type": "number",
+							"label": "Medicine",
+							"value": 0
+						},
+						"science": {
+							"type": "number",
+							"label": "Science",
+							"value": 0
+						}
+					},
+					"skills": {
+						"artistry": {
+							"type": "number",
+							"label": "Artistry",
+							"value": 0
+						},
+						"athletics": {
+							"type": "number",
+							"label": "Athletics",
+							"value": 0
+						},
+						"expertise": {
+							"type": "number",
+							"label": "Expertise",
+							"value": 0
+						},
+						"operation": {
+							"type": "number",
+							"label": "Operation",
+							"value": 0
+						},
+						"weapons": {
+							"type": "number",
+							"label": "Weapons",
+							"value": 0
+						}
+					}
+				}
+			},
+			"animals": {
+				"hitbox": {
+					"head": {
+						"type": "number",
+						"label": "Head",
+						"weight": 5
+					},
+					"body-upper": {
+						"type": "number",
+						"label": "Upper Body",
+						"weight": 15
+					},
+					"body-lower": {
+						"type": "number",
+						"label": "Lower Body",
+						"weight": 10
+					},
+					"arm-left": {
+						"type": "number",
+						"label": "Left Arm",
+						"weight": 10
+					},
+					"arm-right": {
+						"type": "number",
+						"label": "Right Arm",
+						"weight": 10
+					},
+					"leg-left": {
+						"type": "number",
+						"label": "Left Leg",
+						"weight": 10
+					},
+					"leg-right": {
+						"type": "number",
+						"label": "Right Leg",
+						"weight": 10
+					},
+					"tail": {
+						"type": "number",
+						"label": "Tail",
+						"weight": 10
+					},
+					"wing-left": {
+						"type": "number",
+						"label": "Left Wing",
+						"weight": 10
+					},
+					"wing-right": {
+						"type": "number",
+						"label": "Right Wing",
+						"weight": 10
+					}
+				},
+				"details-animal": {
+					"type": "string",
+					"label": "Animal Details",
+					"value": "some animal"
+				}
+			},
+			"synthetic": {
+				"hitbox": {
+					"head": {
+						"type": "number",
+						"label": "Head",
+						"weight": 5
+					},
+					"torso-upper": {
+						"type": "number",
+						"label": "Upper Torso",
+						"weight": 15
+					},
+					"torso-lower": {
+						"type": "number",
+						"label": "Lower Torso",
+						"weight": 10
+					},
+					"arm-left": {
+						"type": "number",
+						"label": "Left Arm",
+						"weight": 15
+					},
+					"arm-right": {
+						"type": "number",
+						"label": "Right Arm",
+						"weight": 15
+					},
+					"leg-left": {
+						"type": "number",
+						"label": "Left Leg",
+						"weight": 20
+					},
+					"leg-right": {
+						"type": "number",
+						"label": "Right Leg",
+						"weight": 20
+					}
+				},
+				"life": {
+					"type": "number",
+					"label": "Durability",
+					"value": 200,
+					"max": 0
+				},
+				"description-synthetic": {
+					"type": "string",
+					"label": "Synthetic Description",
+					"value": "some synthetic life form"
+				}
+			},
+			"entermeta": {
+				"metamorphosis": {
+					"type": "string",
+					"label": "Metamorphosis",
+					"value": "some metamorphosis"
+				},
+				"regression": {
+					"type": "string",
+					"label": "Regression",
+					"value": "some regression"
+				},
+				"primemetapower": {
+					"type": "string",
+					"label": "Prime Metapower",
+					"value": "your Prime Metapower"
+				},
+				"sagas": {
+					"type": "string",
+					"label": "Sagas",
+					"value": "Sagas you have participated in"
+				},
+				"coalition": {
+					"type": "string",
+					"label": "Coalition",
+					"value": "Player coalition you are a member of"
+				},
+				"description-entermeta": {
+					"type": "string",
+					"label": "Metamorphosis Details",
+					"value": "some metamorphosis"
+				}
+			}
+		},
+		"Humanoid": {
+			"templates": [
+				"physical",
+				"vital",
+				"characteristics",
+				"humanoids",
+				"humanoid-perks"
+			],
+			"metaowner": {
+				"type": "string",
+				"label": "Metaowner",
+				"value": "NPC"
+			}
+		},
+		"Metanthrope": {
+			"templates": [
+				"physical",
+				"vital",
+				"characteristics",
+				"humanoids",
+				"humanoid-perks",
+				"entermeta"
+			],
+			"metaowner": {
+				"type": "string",
+				"label": "Metaowner",
+				"value": "NPC"
+			}
+		},
+		"Protagonist": {
+			"templates": [
+				"physical",
+				"vital",
+				"characteristics",
+				"humanoids",
+				"humanoid-perks",
+				"entermeta"
+			],
+			"metaowner": {
+				"type": "string",
+				"label": "Metaowner",
+				"value": "Who owns this Protagonist"
+			},
+			"notes-protagonist": {
+				"type": "string",
+				"label": "Protagonist Notes",
+				"value": "My Notes"
+			},
+			"notes-narrator": {
+				"type": "string",
+				"label": "Narrator Notes",
+				"value": "This is my favorite Protagonist"
+			}
+		},
+		"Animal": {
+			"templates": [
+				"physical",
+				"vital",
+				"characteristics",
+				"animals"
+			],
+			"metaowner": {
+				"type": "string",
+				"label": "Metaowner",
+				"value": "NPC"
+			}
+		},
+		"MetaTherion": {
+			"templates": [
+				"physical",
+				"vital",
+				"characteristics",
+				"animals",
+				"entermeta"
+			],
+			"metaowner": {
+				"type": "string",
+				"label": "Metaowner",
+				"value": "NPC"
+			}
+		},
+		"Artificial": {
+			"templates": [
+				"physical",
+				"vital",
+				"characteristics",
+				"synthetic"
+			],
+			"metaowner": {
+				"type": "string",
+				"label": "Metaowner",
+				"value": "NPC"
+			}
+		},
+		"Animated Object": {
+			"templates": [
+				"physical"
+			],
+			"metaowner": {
+				"type": "string",
+				"label": "Metaowner",
+				"value": "NPC"
+			}
+		},
+		"Animated Humanoid": {
+			"templates": [
+				"physical",
+				"vital",
+				"characteristics",
+				"humanoids",
+				"humanoid-perks"
+			],
+			"metaowner": {
+				"type": "string",
+				"label": "Metaowner",
+				"value": "NPC"
+			}
+		},
+		"Vehicle": {
+			"templates": [
+				"physical",
+				"synthetic"
+			],
+			"metaowner": {
+				"type": "string",
+				"label": "Metaowner",
+				"value": "NPC"
+			}
+		}
+	},
+	"Item": {
+		"types": [
+			"Object",
+			"Possession",
+			"Metapower",
+			"Combo"
+		],
+		"templates": {
+			"material": {
+				"mat": {
+					"type": "string",
+					"label": "Material",
+					"value": "some material"
+				},
+				"description-material": {
+					"type": "string",
+					"label": "Material Properties",
+					"value": "some material properties"
+				}
+			},
+			"metabase": {
+				"clasification": {
+					"type": "string",
+					"label": "Clasification",
+					"value": "some clasification"
+				},
+				"level": {
+					"type": "string",
+					"label": "Level",
+					"value": "some level"
+				},
+				"statrolled": {
+					"type": "string",
+					"label": "Stat Rolled",
+					"value": "some stat rolled"
+				},
+				"metapowername": {
+					"type": "string",
+					"label": "Metapower Name",
+					"value": "some metapower name"
+				},
+				"energytype": {
+					"type": "string",
+					"label": "Energy Type",
+					"value": "some energy type"
+				},
+				"activation": {
+					"type": "string",
+					"label": "Activation",
+					"value": "some activation"
+				},
+				"targets": {
+					"type": "string",
+					"label": "Targets",
+					"value": "some targets"
+				},
+				"range": {
+					"type": "string",
+					"label": "Range",
+					"value": "some range"
+				},
+				"duration": {
+					"type": "string",
+					"label": "Duration",
+					"value": "some duration"
+				},
+				"effect": {
+					"type": "string",
+					"label": "Effect",
+					"value": "some effect"
+				},
+				"description-metabase": {
+					"type": "string",
+					"label": "Metabase Notes",
+					"value": "some metabase notes"
+				}
+			}
+		},
+		"Object": {
+			"templates": [
+				"material"
+			],
+			"description-object": {
+				"type": "string",
+				"label": "Object Description",
+				"value": "some object description"
+			}
+		},
+		"Possession": {
+			"templates": [
+				"material"
+			],
+			"category": {
+				"armor": {
+					"type": "string",
+					"label": "Armor",
+					"value": "some armor"
+				},
+				"weapon": {
+					"type": "string",
+					"label": "Weapon",
+					"value": "some weapon"
+				},
+				"gadget": {
+					"type": "string",
+					"label": "Gadget",
+					"value": "some gadget"
+				},
+				"drug": {
+					"type": "string",
+					"label": "Drug",
+					"value": "some drug"
+				}
+			}
+		},
+		"Metapower": {
+			"templates": [
+				"metabase"
+			],
+			"description-metapower": {
+				"type": "string",
+				"label": "Metapower Description",
+				"value": "some metapower description"
+			}
+		},
+		"Combo": {
+			"templates": [
+				"metabase"
+			],
+			"description-combo": {
+				"type": "string",
+				"label": "Combos Description",
+				"value": "Combos are not officially supported yet. This is a placeholder for future capabilities."
+			}
+		}
+	}
+}
