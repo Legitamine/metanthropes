@@ -17,6 +17,9 @@ export class MetanthropesActor extends Actor {
 		// prepareBaseData(), prepareEmbeddedDocuments() (including active effects),
 		// prepareDerivedData().
 		super.prepareData();
+		console.log("========================================================================");
+		console.log("Metanthropes RPG Preparing Data for Actor", this.name);
+		console.log("========================================================================");
 	}
 
 	// initial (rolled or via template)
@@ -27,17 +30,78 @@ export class MetanthropesActor extends Actor {
 
 	/** @override */
 	prepareBaseData() {
-		console.log("Metanthropes RPG starting prepareBaseData");
+		console.log("========================================================================");
+		console.log("Metanthropes RPG starting BASE & CS Characteristic and Stat calculations");
+		console.log("========================================================================");
 		const actorData = this;
+
+		this._prepareBaseHumanoidData(actorData);
+		this._prepareBaseMetanthropeData(actorData);
+		this._prepareBaseProtagonistData(actorData);
+		this._prepareBaseMetaTherionData(actorData);
+		this._prepareBaseAnimalData(actorData);
+		this._prepareBaseArtificialData(actorData);
+		this._prepareBaseAnimatedObjectData(actorData);
+		this._prepareBaseAnimatedHumanoidData(actorData);
+		this._prepareBaseVehicleData(actorData);
+		console.log("========================================================================");
+		console.log("Metanthropes RPG finished BASE & CS Characteristic and Stat calculations");
+		console.log("========================================================================");
+	}
+	_prepareBaseHumanoidData(actorData) {
+		if (actorData.type !== 'Humanoid') return;
 		const systemData = actorData.system;
+		const flags = actorData.flags.metanthropes || {};
 		for (let [key, chars] of Object.entries(systemData.characteristics)) {
-			console.log('Working on', chars.label, 'with key', key, 'and with chars', chars);
+			console.log('Working on', chars.label);
 			console.log(chars.initial.label, chars.initial.value);
 			console.log(chars.progressed.label, chars.progressed.value);
 			chars.base = (chars.initial.value + chars.progressed.value);
 			console.log('New', chars.label, 'BASE', chars.base);
 			for (let [innerkey, statistics] of Object.entries(chars.stats)) {
-				console.log('Working on', statistics.label, 'with innerkey', innerkey, 'and with statistics', statistics);
+				console.log('Working on', chars.label, statistics.label);
+				console.log(statistics.initial.label, statistics.initial.value);
+				console.log(statistics.progressed.label, statistics.progressed.value);
+				statistics.base = (statistics.initial.value + statistics.progressed.value);
+				console.log('New', statistics.label, 'BASE', statistics.base);
+				statistics.cs = (chars.base + statistics.base);
+				console.log('New', statistics.label, 'CS', statistics.cs);
+			}
+		}
+	}
+	_prepareBaseMetanthropeData(actorData) {
+		if (actorData.type !== 'Metanthrope') return;
+		const systemData = actorData.system;
+		const flags = actorData.flags.metanthropes || {};
+		for (let [key, chars] of Object.entries(systemData.characteristics)) {
+			console.log('Working on', chars.label);
+			console.log(chars.initial.label, chars.initial.value);
+			console.log(chars.progressed.label, chars.progressed.value);
+			chars.base = (chars.initial.value + chars.progressed.value);
+			console.log('New', chars.label, 'BASE', chars.base);
+			for (let [innerkey, statistics] of Object.entries(chars.stats)) {
+				console.log('Working on', chars.label, statistics.label);
+				console.log(statistics.initial.label, statistics.initial.value);
+				console.log(statistics.progressed.label, statistics.progressed.value);
+				statistics.base = (statistics.initial.value + statistics.progressed.value);
+				console.log('New', statistics.label, 'BASE', statistics.base);
+				statistics.cs = (chars.base + statistics.base);
+				console.log('New', statistics.label, 'CS', statistics.cs);
+			}
+		}
+	}
+	_prepareBaseProtagonistData(actorData) {
+		if (actorData.type !== 'Protagonist') return;
+		const systemData = actorData.system;
+		const flags = actorData.flags.metanthropes || {};
+		for (let [key, chars] of Object.entries(systemData.characteristics)) {
+			console.log('Working on', chars.label);
+			console.log(chars.initial.label, chars.initial.value);
+			console.log(chars.progressed.label, chars.progressed.value);
+			chars.base = (chars.initial.value + chars.progressed.value);
+			console.log('New', chars.label, 'BASE', chars.base);
+			for (let [innerkey, statistics] of Object.entries(chars.stats)) {
+				console.log('Working on', chars.label, statistics.label);
 				console.log(statistics.initial.label, statistics.initial.value);
 				console.log(statistics.progressed.label, statistics.progressed.value);
 				statistics.base = (statistics.initial.value + statistics.progressed.value);
@@ -48,20 +112,119 @@ export class MetanthropesActor extends Actor {
 		}
 	}
 
-	/**
-	 * @override
-	 * Augment the basic actor data with additional dynamic data. Typically,
-	 * you'll want to handle most of your calculated/derived data in this step.
-	 * Data calculated in this step should generally not exist in template.json
-	 * (such as ability modifiers rather than ability scores) and should be
-	 * available both inside and outside of character sheets (such as if an actor
-	 * is queried and has a roll executed directly from it).
-	 */
-	prepareDerivedData() {
-		const actorData = this;
+	_prepareBaseMetaTherionData(actorData) {
+		if (actorData.type !== 'MetaTherion') return;
 		const systemData = actorData.system;
 		const flags = actorData.flags.metanthropes || {};
+		for (let [key, chars] of Object.entries(systemData.characteristics)) {
+			console.log('Working on', chars.label);
+			console.log(chars.initial.label, chars.initial.value);
+			console.log(chars.progressed.label, chars.progressed.value);
+			chars.base = (chars.initial.value + chars.progressed.value);
+			console.log('New', chars.label, 'BASE', chars.base);
+			for (let [innerkey, statistics] of Object.entries(chars.stats)) {
+				console.log('Working on', chars.label, statistics.label);
+				console.log(statistics.initial.label, statistics.initial.value);
+				console.log(statistics.progressed.label, statistics.progressed.value);
+				statistics.base = (statistics.initial.value + statistics.progressed.value);
+				console.log('New', statistics.label, 'BASE', statistics.base);
+				statistics.cs = (chars.base + statistics.base);
+				console.log('New', statistics.label, 'CS', statistics.cs);
+			}
+		}
+	}
 
+	_prepareBaseAnimalData(actorData) {
+		if (actorData.type !== 'Animal') return;
+		const systemData = actorData.system;
+		const flags = actorData.flags.metanthropes || {};
+		for (let [key, chars] of Object.entries(systemData.characteristics)) {
+			console.log('Working on', chars.label);
+			console.log(chars.initial.label, chars.initial.value);
+			console.log(chars.progressed.label, chars.progressed.value);
+			chars.base = (chars.initial.value + chars.progressed.value);
+			console.log('New', chars.label, 'BASE', chars.base);
+			for (let [innerkey, statistics] of Object.entries(chars.stats)) {
+				console.log('Working on', chars.label, statistics.label);
+				console.log(statistics.initial.label, statistics.initial.value);
+				console.log(statistics.progressed.label, statistics.progressed.value);
+				statistics.base = (statistics.initial.value + statistics.progressed.value);
+				console.log('New', statistics.label, 'BASE', statistics.base);
+				statistics.cs = (chars.base + statistics.base);
+				console.log('New', statistics.label, 'CS', statistics.cs);
+			}
+		}
+	}
+
+	_prepareBaseArtificialData(actorData) {
+		if (actorData.type !== 'Artificial') return;
+		const systemData = actorData.system;
+		const flags = actorData.flags.metanthropes || {};
+		for (let [key, chars] of Object.entries(systemData.characteristics)) {
+			console.log('Working on', chars.label);
+			console.log(chars.initial.label, chars.initial.value);
+			console.log(chars.progressed.label, chars.progressed.value);
+			chars.base = (chars.initial.value + chars.progressed.value);
+			console.log('New', chars.label, 'BASE', chars.base);
+			for (let [innerkey, statistics] of Object.entries(chars.stats)) {
+				console.log('Working on', chars.label, statistics.label);
+				console.log(statistics.initial.label, statistics.initial.value);
+				console.log(statistics.progressed.label, statistics.progressed.value);
+				statistics.base = (statistics.initial.value + statistics.progressed.value);
+				console.log('New', statistics.label, 'BASE', statistics.base);
+				statistics.cs = (chars.base + statistics.base);
+				console.log('New', statistics.label, 'CS', statistics.cs);
+			}
+		}
+	}
+
+	_prepareBaseAnimatedObjectData(actorData) {
+		if (actorData.type !== 'Animated Object') return;
+		const systemData = actorData.system;
+	}
+
+	_prepareBaseAnimatedHumanoidData(actorData) {
+		if (actorData.type !== 'Animated Humanoid') return;
+		const systemData = actorData.system;
+		const flags = actorData.flags.metanthropes || {};
+		for (let [key, chars] of Object.entries(systemData.characteristics)) {
+			console.log('Working on', chars.label);
+			console.log(chars.initial.label, chars.initial.value);
+			console.log(chars.progressed.label, chars.progressed.value);
+			chars.base = (chars.initial.value + chars.progressed.value);
+			console.log('New', chars.label, 'BASE', chars.base);
+			for (let [innerkey, statistics] of Object.entries(chars.stats)) {
+				console.log('Working on', chars.label, statistics.label);
+				console.log(statistics.initial.label, statistics.initial.value);
+				console.log(statistics.progressed.label, statistics.progressed.value);
+				statistics.base = (statistics.initial.value + statistics.progressed.value);
+				console.log('New', statistics.label, 'BASE', statistics.base);
+				statistics.cs = (chars.base + statistics.base);
+				console.log('New', statistics.label, 'CS', statistics.cs);
+			}
+		}
+	}
+
+	_prepareBaseVehicleData(actorData) {
+		if (actorData.type !== 'Vehicle') return;
+		const systemData = actorData.system;
+	}
+
+
+
+
+
+
+
+
+
+	prepareDerivedData() {
+
+		console.log("========================================================================");
+		console.log("Metanthropes RPG starting BUFF and CONDITIONS  calculations");
+		console.log("========================================================================");
+		const actorData = this;
+		
 		// Make separate methods for each Actor type (character, npc, etc.) to keep
 		// things organized.
 
@@ -74,34 +237,41 @@ export class MetanthropesActor extends Actor {
 		this._prepareAnimatedObjectData(actorData);
 		this._prepareAnimatedHumanoidData(actorData);
 		this._prepareVehicleData(actorData);
-
+	
 	}
+
 	_prepareHumanoidData(actorData) {
 		if (actorData.type !== 'Humanoid') return;
 		const systemData = actorData.system;
+		console.log(systemData.characteristics.body.stats.endurance.label, systemData.characteristics.body.stats.endurance.cs);
 	}
 	_prepareMetanthropeData(actorData) {
 		if (actorData.type !== 'Metanthrope') return;
 		const systemData = actorData.system;
+		console.log(systemData.characteristics.body.stats.endurance.label, systemData.characteristics.body.stats.endurance.cs);
 	}
 	_prepareProtagonistData(actorData) {
 		if (actorData.type !== 'Protagonist') return;
 		const systemData = actorData.system;
+		console.log(systemData.characteristics.body.stats.endurance.label, systemData.characteristics.body.stats.endurance.cs);
 	}
 
 	_prepareMetaTherionData(actorData) {
 		if (actorData.type !== 'MetaTherion') return;
 		const systemData = actorData.system;
+		console.log(systemData.characteristics.body.stats.endurance.label, systemData.characteristics.body.stats.endurance.cs);
 	}
 
 	_prepareAnimalData(actorData) {
 		if (actorData.type !== 'Animal') return;
 		const systemData = actorData.system;
+		console.log(systemData.characteristics.body.stats.endurance.label, systemData.characteristics.body.stats.endurance.cs);
 	}
 
 	_prepareArtificialData(actorData) {
 		if (actorData.type !== 'Artificial') return;
 		const systemData = actorData.system;
+		console.log(systemData.characteristics.body.stats.endurance.label, systemData.characteristics.body.stats.endurance.cs);
 	}
 
 	_prepareAnimatedObjectData(actorData) {
@@ -112,6 +282,7 @@ export class MetanthropesActor extends Actor {
 	_prepareAnimatedHumanoidData(actorData) {
 		if (actorData.type !== 'Animated Humanoid') return;
 		const systemData = actorData.system;
+		console.log(systemData.characteristics.body.stats.endurance.label, systemData.characteristics.body.stats.endurance.cs);
 	}
 
 	_prepareVehicleData(actorData) {
