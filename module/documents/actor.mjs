@@ -51,7 +51,7 @@ export class MetanthropesActor extends Actor {
 		const systemData = actorData.system;
 		const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
-		console.log("Metanthropes RPG Preparing Data for Actor", this.name);
+		console.log("Metanthropes RPG Preparing Data for Actor:", this.name);
 		console.log("========================================================================");
 		console.log("========================================================================");
 		console.log("Metanthropes RPG Starting Calculations for", this.type, "Actor");
@@ -233,7 +233,7 @@ export class MetanthropesActor extends Actor {
 		console.log("Metanthropes RPG Finished Calculating Characteristics & Stats");
 		console.log("========================================================================");
 		console.log("========================================================================");
-		console.log("Metanthropes RPG Finished Preparing Data for Actor", this.name);
+		console.log("Metanthropes RPG Finished Preparing Data for Actor:", this.name);
 		console.log("========================================================================");
 	}
 	_prepareDerivedMetanthropeData(actorData) {
