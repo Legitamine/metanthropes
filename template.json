@@ -134,7 +134,7 @@
 						"psychic": {
 							"type": "number",
 							"label": "Psychic",
-						"initial": 0
+							"initial": 0
 						}
 					},
 					"immunities": {
@@ -201,325 +201,394 @@
 			"characteristics": {
 				"characteristics": {
 					"body": {
-					"label": "Body",
-					"initial": {
-						"type": "number",
-						"label": "Initial Body",
-						"value": 30
-						},
-					"progressed": {
-						"type": "number",
-						"label": "Progressed Body",
-						"value": 5
-						},
-					"buffs": {
-						"hardened": {
+						"label": "Body",
+						"initial": {
 							"type": "number",
-							"label": "Hardened",
-							"value": 0
-						}
-					},
-					"conditions": {
-						"burned": {
+							"label": "Initial Body",
+							"value": 30
+						},
+						"progressed": {
 							"type": "number",
-							"label": "Burned",
-							"value": 0
+							"label": "Progressed Body",
+							"value": 5
 						},
-						"bleeding": {
-							"type": "number",
-							"label": "Bleeding",
-							"value": 0
-						},
-						"asphyxiation": {
-							"type": "boolean",
-							"label": "Asphyxiation",
-							"value": false
-						},
-						"diseased": {
-							"type": "boolean",
-							"label": "Diseased",
-							"value": false
-						},
-						"maimed": {
-							"type": "boolean",
-							"label": "Maimed",
-							"value": false
-						}
-					},
-					"stats": {
-						"endurance": {
-							"type": "number",
-							"label": "Endurance",
-							"initial": {
+						"buffs": {
+							"hardened": {
 								"type": "number",
-								"label": "Initial Endurance",
-								"value": 32
-								},
-							"progressed": {
+								"label": "Hardened",
+								"value": 0
+							}
+						},
+						"conditions": {
+							"burned": {
 								"type": "number",
-								"label": "Progressed Endurance",
-								"value": 7
+								"label": "Burned",
+								"value": 0
+							},
+							"bleeding": {
+								"type": "number",
+								"label": "Bleeding",
+								"value": 0
+							},
+							"asphyxiation": {
+								"type": "boolean",
+								"label": "Asphyxiation",
+								"value": false
+							},
+							"diseased": {
+								"type": "boolean",
+								"label": "Diseased",
+								"value": false
+							},
+							"maimed": {
+								"type": "boolean",
+								"label": "Maimed",
+								"value": false
+							}
+						},
+						"stats": {
+							"endurance": {
+								"label": "Endurance",
+								"initial": {
+									"type": "number",
+									"label": "Initial Endurance",
+									"value": 32
 								},
-							"buffs": {
-								"fortified": {
+								"progressed": {
 									"type": "number",
-									"label": "Fortified",
-									"value": 0
+									"label": "Progressed Endurance",
+									"value": 7
+								},
+								"buffs": {
+									"fortified": {
+										"type": "number",
+										"label": "Fortified",
+										"value": 0
+									}
+								},
+								"conditions": {
+									"bone-injury": {
+										"type": "number",
+										"label": "Bone Injury",
+										"value": 0
+									}
 								}
 							},
-							"conditions": {
-								"bone-injury": {
+							"power": {
+								"label": "Power",
+								"initial": {
 									"type": "number",
-									"label": "Bone Injury",
-									"value": 0
-								}
-							}
-						},
-						"power": {
-							"type": "number",
-							"label": "Power",
-							"initial": 20,
-							"progressed": 0,
-							"buffs": {
-								"empowered": {
+									"label": "Initial Power",
+									"value": 28
+								},
+								"progressed": {
 									"type": "number",
-									"label": "Empowered",
-									"value": 0
-								}
-							},
-							"conditions": {
-								"muscle-injury": {
-									"type": "number",
-									"label": "Muscle Injury",
-									"value": 0
-								}
-							}
-						},
-						"reflexes": {
-							"type": "number",
-							"label": "Reflexes",
-							"initial": 10,
-							"progressed": 0,
-							"buffs": {
-								"hastened": {
-									"type": "number",
-									"label": "Hastened",
-									"value": 0
+									"label": "Progressed Power",
+									"value": 3
+								},
+								"buffs": {
+									"empowered": {
+										"type": "number",
+										"label": "Empowered",
+										"value": 0
+									}
+								},
+								"conditions": {
+									"muscle-injury": {
+										"type": "number",
+										"label": "Muscle Injury",
+										"value": 0
+									}
 								}
 							},
-							"conditions": {
-								"skin-injury": {
+							"reflexes": {
+								"label": "Reflexes",
+								"initial": {
 									"type": "number",
-									"label": "Skin Injury",
-									"value": 0
+									"label": "Initial Reflexes",
+									"value": 12
+								},
+								"progressed": {
+									"type": "number",
+									"label": "Progressed Reflexes",
+									"value": 2
+								},
+								"buffs": {
+									"hastened": {
+										"type": "number",
+										"label": "Hastened",
+										"value": 0
+									}
+								},
+								"conditions": {
+									"skin-injury": {
+										"type": "number",
+										"label": "Skin Injury",
+										"value": 0
+									}
 								}
 							}
 						}
-					}
 					},
 					"mind": {
-					"type": "number",
-					"label": "Mind",
-					"initial": 20,
-					"progressed": 0,
-					"buffs": {
-						"sharpened": {
+						"label": "Mind",
+						"initial": {
 							"type": "number",
-							"label": "Sharpened",
-							"value": 0
-						}
-					},
-					"conditions": {
-						"disconnected": {
+							"label": "Initial Mind",
+							"value": 20
+						},
+						"progressed": {
 							"type": "number",
-							"label": "Disconnected",
+							"label": "Progressed Mind",
 							"value": 0
 						},
-						"fatigue": {
-							"type": "boolean",
-							"label": "Fatigue",
-							"value": false
+						"buffs": {
+							"sharpened": {
+								"type": "number",
+								"label": "Sharpened",
+								"value": 0
+							}
 						},
-						"hunger": {
-							"type": "boolean",
-							"label": "Hunger",
-							"value": false
+						"conditions": {
+							"disconnected": {
+								"type": "number",
+								"label": "Disconnected",
+								"value": 0
+							},
+							"fatigue": {
+								"type": "boolean",
+								"label": "Fatigue",
+								"value": false
+							},
+							"hunger": {
+								"type": "boolean",
+								"label": "Hunger",
+								"value": false
+							},
+							"pain": {
+								"type": "boolean",
+								"label": "Pain",
+								"value": false
+							},
+							"sense lost": {
+								"type": "boolean",
+								"label": "Sense Lost",
+								"value": false
+							}
 						},
-						"pain": {
-							"type": "boolean",
-							"label": "Pain",
-							"value": false
-						},
-						"sense lost": {
-							"type": "boolean",
-							"label": "Sense Lost",
-							"value": false
+						"stats": {
+							"perception": {
+								"label": "Perception",
+								"initial": {
+									"type": "number",
+									"label": "Initial Perception",
+									"value": 32
+								},
+								"progressed": {
+									"type": "number",
+									"label": "Progressed Perception",
+									"value": 7
+								},
+								"buffs": {
+									"alerted": {
+										"type": "number",
+										"label": "Alerted",
+										"value": 0
+									}
+								},
+								"conditions": {
+									"disoriented": {
+										"type": "number",
+										"label": "Disoriented",
+										"value": 0
+									}
+								}
+							},
+							"manipulation": {
+								"label": "Manipulation",
+								"initial": {
+									"type": "number",
+									"label": "Initial Manipulation",
+									"value": 28
+								},
+								"progressed": {
+									"type": "number",
+									"label": "Progressed Manipulation",
+									"value": 3
+								},
+								"buffs": {
+									"articulated": {
+										"type": "number",
+										"label": "Articulated",
+										"value": 0
+									}
+								},
+								"conditions": {
+									"confused": {
+										"type": "number",
+										"label": "Confused",
+										"value": 0
+									}
+								}
+							},
+							"creativity": {
+								"label": "Creativity",
+								"initial": {
+									"type": "number",
+									"label": "Initial Creativity",
+									"value": 12
+								},
+								"progressed": {
+									"type": "number",
+									"label": "Progressed Creativity",
+									"value": 2
+								},
+								"buffs": {
+									"inspired": {
+										"type": "number",
+										"label": "Inspired",
+										"value": 0
+									}
+								},
+								"conditions": {
+									"wobbly": {
+										"type": "number",
+										"label": "Wobbly",
+										"value": 0
+									}
+								}
+							}
 						}
-					},
-					"stats": {
-						"perception": {
-							"type": "number",
-							"label": "Perception",
-							"initial": 30,
-							"progressed": 0,
-							"buffs": {
-								"alerted": {
-									"type": "number",
-									"label": "Alerted",
-									"value": 0
-								}
-							},
-							"conditions": {
-								"disoriented": {
-									"type": "number",
-									"label": "Disoriented",
-									"value": 0
-								}
-							}
-						},
-						"manipulation": {
-							"type": "number",
-							"label": "Manipulation",
-							"initial": 20,
-							"progressed": 0,
-							"buffs": {
-								"articulated": {
-									"type": "number",
-									"label": "Articulated",
-									"value": 0
-								}
-							},
-							"conditions": {
-								"confused": {
-									"type": "number",
-									"label": "Confused",
-									"value": 0
-								}
-							}
-						},
-						"creativity": {
-							"type": "number",
-							"label": "Creativity",
-							"initial": 10,
-							"progressed": 0,
-							"buffs": {
-								"inspired": {
-									"type": "number",
-									"label": "Inspired",
-									"value": 0
-								}
-							},
-							"conditions": {
-								"wobbly": {
-									"type": "number",
-									"label": "Wobbly",
-									"value": 0
-								}
-							}
-						}
-					}
 					},
 					"soul": {
-					"type": "number",
-					"label": "Soul",
-					"initial": 10,
-					"progressed": 0,
-					"buffs": {
-						"enlightened": {
+						"label": "Soul",
+						"initial": {
 							"type": "number",
-							"label": "Enlightened",
-							"value": 0
-						}
-					},
-					"conditions": {
-						"tormented": {
+							"label": "Initial Soul",
+							"value": 20
+						},
+						"progressed": {
 							"type": "number",
-							"label": "Tormented",
+							"label": "Progressed Soul",
 							"value": 0
 						},
-						"amnesia": {
-							"type": "boolean",
-							"label": "Amnesia",
-							"value": false
+						"buffs": {
+							"enlightened": {
+								"type": "number",
+								"label": "Enlightened",
+								"value": 0
+							}
 						},
-						"probed": {
-							"type": "boolean",
-							"label": "Probed",
-							"value": false
+						"conditions": {
+							"tormented": {
+								"type": "number",
+								"label": "Tormented",
+								"value": 0
+							},
+							"amnesia": {
+								"type": "boolean",
+								"label": "Amnesia",
+								"value": false
+							},
+							"probed": {
+								"type": "boolean",
+								"label": "Probed",
+								"value": false
+							},
+							"infiltrated": {
+								"type": "boolean",
+								"label": "Infiltrated",
+								"value": false
+							},
+							"unconscious": {
+								"type": "boolean",
+								"label": "Unconscious",
+								"value": false
+							}
 						},
-						"infiltrated": {
-							"type": "boolean",
-							"label": "Infiltrated",
-							"value": false
-						},
-						"unconscious": {
-							"type": "boolean",
-							"label": "Unconscious",
-							"value": false
+						"stats": {
+							"willpower": {
+								"label": "Willpower",
+								"initial": {
+									"type": "number",
+									"label": "Initial Willpower",
+									"value": 20
+								},
+								"progressed": {
+									"type": "number",
+									"label": "Progressed Willpower",
+									"value": 0
+								},
+								"buffs": {
+									"determined": {
+										"type": "number",
+										"label": "Determined",
+										"value": 0
+									}
+								},
+								"conditions": {
+									"terrorized": {
+										"type": "number",
+										"label": "Terrorized",
+										"value": 0
+									}
+								}
+							},
+							"consciousness": {
+								"label": "Conciousness",
+								"initial": {
+									"type": "number",
+									"label": "Initial Conciousness",
+									"value": 20
+								},
+								"progressed": {
+									"type": "number",
+									"label": "Progressed Conciousness",
+									"value": 0
+								},
+								"buffs": {
+									"awakened": {
+										"type": "number",
+										"label": "Awakened",
+										"value": 0
+									}
+								},
+								"conditions": {
+									"demented": {
+										"type": "number",
+										"label": "Demented",
+										"value": 0
+									}
+								}
+							},
+							"awareness": {
+								"label": "Awareness",
+								"initial": {
+									"type": "number",
+									"label": "Initial Awareness",
+									"value": 20
+								},
+								"progressed": {
+									"type": "number",
+									"label": "Progressed Awareness",
+									"value": 0
+								},
+								"buffs": {
+									"focused": {
+										"type": "number",
+										"label": "Focused",
+										"value": 0
+									}
+								},
+								"conditions": {
+									"bewildered": {
+										"type": "number",
+										"label": "Bewildered",
+										"value": 0
+									}
+								}
+							}
 						}
-					},
-					"stats": {
-						"willpower": {
-							"type": "number",
-							"label": "Willpower",
-							"initial": 30,
-							"progressed": 0,
-							"buffs": {
-								"determined": {
-									"type": "number",
-									"label": "Determined",
-									"value": 0
-								}
-							},
-							"conditions": {
-								"terrorized": {
-									"type": "number",
-									"label": "Terrorized",
-									"value": 0
-								}
-							}
-						},
-						"consciousness": {
-							"type": "number",
-							"label": "Conciousness",
-							"initial": 20,
-							"progressed": 0,
-							"buffs": {
-								"awakened": {
-									"type": "number",
-									"label": "Awakened",
-									"value": 0
-								}
-							},
-							"conditions": {
-								"demented": {
-									"type": "number",
-									"label": "Demented",
-									"value": 0
-								}
-							}
-						},
-						"awareness": {
-							"type": "number",
-							"label": "Awareness",
-							"initial": 10,
-							"progressed": 0,
-							"buffs": {
-								"focused": {
-									"type": "number",
-									"label": "Focused",
-									"value": 0
-								}
-							},
-							"conditions": {
-								"bewildered": {
-									"type": "number",
-									"label": "Bewildered",
-									"value": 0
-								}
-							}
-						}
-					}
 					}
 				}
 			},

@@ -30,22 +30,20 @@ export class MetanthropesActor extends Actor {
 		console.log("Metanthropes RPG starting prepareBaseData");
 		const actorData = this;
 		const systemData = actorData.system;
-		for (let [key, ch] of Object.entries(systemData.characteristics)) {
-			console.log(ch.label);
-			console.log(ch.initial.label);
-			console.log(ch.initial.value);
-			console.log(ch.progressed.label);
-			console.log(ch.progressed.value);
-			ch.base = (ch.initial.value + ch.progressed.value);
-			console.log(ch.base);
-			for (let [key, st] of Object.entries(systemData.stats.ch.characteristics)) {
-				st.base = (st.initial + st.progressed);
-				st.charstat = (ch.base + st.base);
-				console.log(st.label);
-				console.log(st.initial);
-				console.log(st.progressed);
-				console.log(st.base);
-				console.log(st.charstat);
+		for (let [key, chars] of Object.entries(systemData.characteristics)) {
+			console.log('Working on', chars.label, 'with key', key, 'and with chars', chars);
+			console.log(chars.initial.label, chars.initial.value);
+			console.log(chars.progressed.label, chars.progressed.value);
+			chars.base = (chars.initial.value + chars.progressed.value);
+			console.log('New', chars.label, 'BASE', chars.base);
+			for (let [innerkey, statistics] of Object.entries(chars.stats)) {
+				console.log('Working on', statistics.label, 'with innerkey', innerkey, 'and with statistics', statistics);
+				console.log(statistics.initial.label, statistics.initial.value);
+				console.log(statistics.progressed.label, statistics.progressed.value);
+				statistics.base = (statistics.initial.value + statistics.progressed.value);
+				console.log('New', statistics.label, 'BASE', statistics.base);
+				statistics.cs = (chars.base + statistics.base);
+				console.log('New', statistics.label, 'CS', statistics.cs);
 			}
 		}
 	}
