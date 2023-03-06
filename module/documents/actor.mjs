@@ -54,7 +54,7 @@ export class MetanthropesActor extends Actor {
 		console.log("Metanthropes RPG Preparing Data for Actor", this.name);
 		console.log("========================================================================");
 		console.log("========================================================================");
-		console.log("Metanthropes RPG Starting Calculations for Humanoid Actors");
+		console.log("Metanthropes RPG Starting Calculations for", this.type, "Actor");
 		console.log("========================================================================");
 		for (let [key, chars] of Object.entries(systemData.characteristics)) {
 			console.log('Working on', chars.label, chars.initial.label, chars.initial.value, chars.progressed.label, chars.progressed.value);
@@ -433,7 +433,7 @@ export class MetanthropesActor extends Actor {
 
 		// Prepare character roll data.
 		//todo: qp preparing for template switch
-		this._prepareHumanoidRollData(data);
+		//this._prepareHumanoidRollData(data);
 		//this._prepareMetanthropeRollData(data);
 		this._prepareProtagonistRollData(data);
 		//this._prepareMetaTherionRollData(data);

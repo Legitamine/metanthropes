@@ -12,7 +12,7 @@
 export class MetanthropesActorSheet extends ActorSheet {
 	get template() {
 		// doesn't work console.log('${this.actor.data.type}');
-		return `systems/metanthropes-system/templates/sheets/${this.actor.data.type}-sheet.hbs`;
+		return `systems/metanthropes-system/templates/sheets/${this.type}-sheet.hbs`;
 	}
 
 	async getData() {
@@ -36,9 +36,9 @@ export class MetanthropesActorSheet extends ActorSheet {
 //			this._prepareHumanoidData(context);
 //		}
 		// Add roll data for TinyMCE editors.
-		context.rollData = context.actor.getRollData();
+		//context.rollData = context.actor.getRollData();
 		// Prepare active effects
-		context.effects = prepareActiveEffectCategories(this.actor.effects);
+		//context.effects = prepareActiveEffectCategories(this.actor.effects);
 		//return
 		return context;
 }
