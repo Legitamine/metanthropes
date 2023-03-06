@@ -7,9 +7,24 @@
 //* 
 ////
 
+////
+//*
+//? Table of Contents
+//*
+//! 1. Extend the base Actor entity
+//? 2. Prepare Actor Characteristics and Stats Data
+//? 3. Prepare Actor Roll Data
+////
 export class MetanthropesActor extends Actor {
 
-
+////
+//*
+//? Table of Contents
+//*
+//? 1. Extend the base Actor entity
+//! 2. Prepare Actor Characteristics and Stats Data
+//? 3. Prepare Actor Roll Data
+////
 	/** @override */
 	prepareData() {
 		// Prepare data for the actor. Calling the super version of this executes
@@ -17,19 +32,10 @@ export class MetanthropesActor extends Actor {
 		// prepareBaseData(), prepareEmbeddedDocuments() (including active effects),
 		// prepareDerivedData().
 		super.prepareData();
-
 	}
-
-	// initial (rolled or via template)
-	// progressed (spent xp to increase)
-	// base (initial + progressed)
-	// charstat (characteristic + stat base totals)
-	// I will need to calculate the charstat in prepareBaseData as it's value will be used for effects calculations
-
 	/** @override */
 	prepareDerivedData() {
 		const actorData = this;
-
 		this._prepareDerivedHumanoidData(actorData);
 		this._prepareDerivedMetanthropeData(actorData);
 		this._prepareDerivedProtagonistData(actorData);
@@ -48,18 +54,14 @@ export class MetanthropesActor extends Actor {
 		console.log("Metanthropes RPG Preparing Data for Actor", this.name);
 		console.log("========================================================================");
 		console.log("========================================================================");
-		console.log("Metanthropes RPG starting BASE calculations for Humanoid Actors");
+		console.log("Metanthropes RPG Starting BASE calculations for Humanoid Actors");
 		console.log("========================================================================");
 		for (let [key, chars] of Object.entries(systemData.characteristics)) {
-			console.log('Working on', chars.label);
-			console.log(chars.initial.label, chars.initial.value);
-			console.log(chars.progressed.label, chars.progressed.value);
+			console.log('Working on', chars.label, chars.initial.label, chars.initial.value, chars.progressed.label, chars.progressed.value);
 			chars.base = (chars.initial.value + chars.progressed.value);
 			console.log('New', chars.label, 'BASE', chars.base);
 			for (let [innerkey, statistics] of Object.entries(chars.stats)) {
-				console.log('Working on', chars.label, statistics.label);
-				console.log(statistics.initial.label, statistics.initial.value);
-				console.log(statistics.progressed.label, statistics.progressed.value);
+				console.log('Working on', chars.label, statistics.label, statistics.initial.label, statistics.initial.value, statistics.progressed.label, statistics.progressed.value);
 				statistics.base = (statistics.initial.value + statistics.progressed.value);
 				console.log('New', statistics.label, 'BASE', statistics.base);
 				statistics.cs = (chars.base + statistics.base);
@@ -67,13 +69,33 @@ export class MetanthropesActor extends Actor {
 			}
 		}
 		console.log("========================================================================");
-		console.log("Metanthropes RPG finished BASE calculations for Humanoid Actors");
+		console.log("Metanthropes RPG Finished BASE calculations for Humanoid Actors");
 		console.log("========================================================================");
 		console.log("========================================================================");
-		console.log("Metanthropes RPG starting BUFFS and CONDITIONS calculations");
+		console.log("Metanthropes RPG Starting BUFFS and CONDITIONS calculations");
 		console.log("========================================================================");
+		//doing it directly instead of a for loop for faster results - cant code shit
+		console.log("Body Base", systemData.characteristics.body.base);
+		systemData.characteristics.body.buffs.total = (systemData.characteristics.body.buffs.hardened.value*5);
+		systemData.characteristics.body.conditions.total = (systemData.characteristics.body.conditions.burned.value*5);
+		systemData.characteristics.body.current = (systemData.characteristics.body.base + systemData.characteristics.body.buffs.total - systemData.characteristics.body.conditions.total);
+		console.log("Body Current", systemData.characteristics.body.current);
+		//mind
+		console.log("Mind Base", systemData.characteristics.mind.base);
+		systemData.characteristics.mind.buffs.total = (systemData.characteristics.mind.buffs.sharpened.value*5);
+		systemData.characteristics.mind.conditions.total = (systemData.characteristics.mind.conditions.disconnected.value*5);
+		systemData.characteristics.mind.current = (systemData.characteristics.mind.base + systemData.characteristics.mind.buffs.total - systemData.characteristics.body.conditions.total);
+		console.log("Mind Current", systemData.characteristics.mind.current);
+		//soul
+		console.log("Soul Base", systemData.characteristics.soul.base);
+		systemData.characteristics.soul.buffs.total = (systemData.characteristics.soul.buffs.enlightened.value*5);
+		systemData.characteristics.soul.conditions.total = (systemData.characteristics.soul.conditions.tormented.value*5);
+		systemData.characteristics.soul.current = (systemData.characteristics.soul.base + systemData.characteristics.soul.buffs.total - systemData.characteristics.body.conditions.total);
+		console.log("Soul Current", systemData.characteristics.soul.current);
+		
+
 		console.log("========================================================================");
-		console.log("Metanthropes RPG finished BUFFS and CONDITIONS calculations");
+		console.log("Metanthropes RPG Finished BUFFS and CONDITIONS calculations");
 		console.log("========================================================================");
 		console.log("========================================================================");
 		console.log("Metanthropes RPG Finished Preparing Data for Actor", this.name);
@@ -84,7 +106,7 @@ export class MetanthropesActor extends Actor {
 		const systemData = actorData.system;
 		const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
-		console.log("Metanthropes RPG starting BASE calculations for Metanthrope Actors");
+		console.log("Metanthropes RPG Starting BASE calculations for Metanthrope Actors");
 		console.log("========================================================================");
 		for (let [key, chars] of Object.entries(systemData.characteristics)) {
 			console.log('Working on', chars.label);
@@ -103,7 +125,7 @@ export class MetanthropesActor extends Actor {
 			}
 		}
 		console.log("========================================================================");
-		console.log("Metanthropes RPG finished BASE calculations for Metanthrope Actors");
+		console.log("Metanthropes RPG Finished BASE calculations for Metanthrope Actors");
 		console.log("========================================================================");
 	}
 	_prepareDerivedProtagonistData(actorData) {
@@ -111,7 +133,7 @@ export class MetanthropesActor extends Actor {
 		const systemData = actorData.system;
 		const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
-		console.log("Metanthropes RPG starting BASE calculations for Protagonist Actors");
+		console.log("Metanthropes RPG Starting BASE calculations for Protagonist Actors");
 		console.log("========================================================================");
 		for (let [key, chars] of Object.entries(systemData.characteristics)) {
 			console.log('Working on', chars.label);
@@ -130,16 +152,15 @@ export class MetanthropesActor extends Actor {
 			}
 		}
 		console.log("========================================================================");
-		console.log("Metanthropes RPG finished BASE calculations for Protagonist Actors");
+		console.log("Metanthropes RPG Finished BASE calculations for Protagonist Actors");
 		console.log("========================================================================");
 	}
-
 	_prepareDerivedMetaTherionData(actorData) {
 		if (actorData.type !== 'MetaTherion') return;
 		const systemData = actorData.system;
 		const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
-		console.log("Metanthropes RPG starting BASE calculations for MetaTherion Actors");
+		console.log("Metanthropes RPG Starting BASE calculations for MetaTherion Actors");
 		console.log("========================================================================");
 		for (let [key, chars] of Object.entries(systemData.characteristics)) {
 			console.log('Working on', chars.label);
@@ -158,16 +179,15 @@ export class MetanthropesActor extends Actor {
 			}
 		}
 		console.log("========================================================================");
-		console.log("Metanthropes RPG finished BASE calculations for MetaTherion Actors");
+		console.log("Metanthropes RPG Finished BASE calculations for MetaTherion Actors");
 		console.log("========================================================================");
 	}
-
 	_prepareDerivedAnimalData(actorData) {
 		if (actorData.type !== 'Animal') return;
 		const systemData = actorData.system;
 		const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
-		console.log("Metanthropes RPG starting BASE calculations for Animal Actors");
+		console.log("Metanthropes RPG Starting BASE calculations for Animal Actors");
 		console.log("========================================================================");
 		for (let [key, chars] of Object.entries(systemData.characteristics)) {
 			console.log('Working on', chars.label);
@@ -186,16 +206,15 @@ export class MetanthropesActor extends Actor {
 			}
 		}
 		console.log("========================================================================");
-		console.log("Metanthropes RPG finished BASE calculations for Animal Actors");
+		console.log("Metanthropes RPG Finished BASE calculations for Animal Actors");
 		console.log("========================================================================");
 	}
-
 	_prepareDerivedArtificialData(actorData) {
 		if (actorData.type !== 'Artificial') return;
 		const systemData = actorData.system;
 		const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
-		console.log("Metanthropes RPG starting BASE calculations for Artificial Actors");
+		console.log("Metanthropes RPG Starting BASE calculations for Artificial Actors");
 		console.log("========================================================================");
 		for (let [key, chars] of Object.entries(systemData.characteristics)) {
 			console.log('Working on', chars.label);
@@ -214,27 +233,25 @@ export class MetanthropesActor extends Actor {
 			}
 		}
 		console.log("========================================================================");
-		console.log("Metanthropes RPG finished BASE calculations for Artificial Actors");
+		console.log("Metanthropes RPG Finished BASE calculations for Artificial Actors");
 		console.log("========================================================================");
 	}
-
 	_prepareDerivedAnimatedObjectData(actorData) {
 		if (actorData.type !== 'Animated Object') return;
 		const systemData = actorData.system;
 		console.log("========================================================================");
-		console.log("Metanthropes RPG starting BASE calculations for Animated Object Actors");
+		console.log("Metanthropes RPG Starting BASE calculations for Animated Object Actors");
 		console.log("========================================================================");
 		console.log("========================================================================");
-		console.log("Metanthropes RPG finished BASE calculations for Animated Object Actors");
+		console.log("Metanthropes RPG Finished BASE calculations for Animated Object Actors");
 		console.log("========================================================================");
 	}
-
 	_prepareDerivedAnimatedHumanoidData(actorData) {
 		if (actorData.type !== 'Animated Humanoid') return;
 		const systemData = actorData.system;
 		const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
-		console.log("Metanthropes RPG starting BASE calculations for Animated Humanoid Actors");
+		console.log("Metanthropes RPG Starting BASE calculations for Animated Humanoid Actors");
 		console.log("========================================================================");
 		for (let [key, chars] of Object.entries(systemData.characteristics)) {
 			console.log('Working on', chars.label);
@@ -253,28 +270,28 @@ export class MetanthropesActor extends Actor {
 			}
 		}
 		console.log("========================================================================");
-		console.log("Metanthropes RPG finished BASE calculations for Animated Humanoid Actors");
+		console.log("Metanthropes RPG Finished BASE calculations for Animated Humanoid Actors");
 		console.log("========================================================================");
 	}
-
 	_prepareDerivedVehicleData(actorData) {
 		if (actorData.type !== 'Vehicle') return;
 		const systemData = actorData.system;
 		console.log("========================================================================");
-		console.log("Metanthropes RPG starting BASE calculations for Vehicle Actors");
+		console.log("Metanthropes RPG Starting BASE calculations for Vehicle Actors");
 		console.log("========================================================================");
 		console.log("========================================================================");
-		console.log("Metanthropes RPG finished BASE calculations for Vehicle Actors");
+		console.log("Metanthropes RPG Finished BASE calculations for Vehicle Actors");
 		console.log("========================================================================");
 	}
 
-
-
-
-
-
-
-
+////
+//*
+//? Table of Contents
+//*
+//? 1. Extend the base Actor entity
+//? 2. Prepare Actor Characteristics and Stats Data
+//! 3. Prepare Actor Roll Data
+////
 
 	getRollData() {
 		const data = super.getRollData();
@@ -294,7 +311,6 @@ export class MetanthropesActor extends Actor {
 
 		return data;
 	}
-
 	_getCharacterRollData(data) {
 		if (this.type !== 'Protagonist') return;
 
@@ -308,7 +324,6 @@ export class MetanthropesActor extends Actor {
 		//		data[k] = foundry.utils.deepClone(v);
 		//	}
 	}
-
 	// Add level for easier access, or fall back to 0.
 	// if (data.attributes.level) {
 	// 	data.lvl = data.attributes.level.value ?? 0;
@@ -318,5 +333,4 @@ export class MetanthropesActor extends Actor {
 
 		// Process additional NPC data here.
 	}
-
 }
