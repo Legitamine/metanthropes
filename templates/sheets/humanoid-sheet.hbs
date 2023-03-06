@@ -8,15 +8,15 @@
 		<h3>Hello Metanthropes!</h3>
 		<p>Here is a sample sheet for a humanoid character.</p>
 		<p>It is a work in progress, so please be patient.</p>
-		<h5> {{characteristics.body.stats.power.rollme}} </h5>
+		<h5> {{system.characteristics.body.stats.power.rollme}} </h5>
 		<input name="system.characteristics.body.conditions.maimed.value" type="checkbox" {{#if system.characteristics.body.conditions.maimed.value}}checked{{/if}}/>
-		<input name="system.characteristics.soul.stat.consciousness.rollme" type="number" value="{{system.characteristics.soul.stat.consciousness.rollme}}"/>
+		<input name="system.characteristics.soul.stats.consciousness.rollme" type="number" value="{{system.characteristics.soul.stats.consciousness.rollme}}"/>
 		<input name="system.characteristics.mind.conditions.disconnected.label" type="text" value="{{system.characteristics.mind.conditions.disconnected.label}}"/>
 	</section>
 	<section>
 		<div class="characteristics">
 			<label for="system.characteristics.body.label" class="charlabel" data-label="system.characteristics.body.label">{{system.characteristics.body.label}}</label>
-			
+
 		</div>
 
 
