@@ -64,6 +64,7 @@ Hooks.once("init", async function() {
 	//preload Handlebars templates
 	//loadTemplates(["systems/metanthropes/templates/partials/charstats.hbs"]);
 	//return preloadTemplates();
+	console.log(`Metanthropes RPG System Initialized`);
 
 
 });

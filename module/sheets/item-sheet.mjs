@@ -16,6 +16,6 @@
 
 ////
 
-export default class MetanthropesItemSheet extends ItemSheet {
+export class MetanthropesItemSheet extends ItemSheet {
 
 }

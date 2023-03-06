@@ -9,6 +9,6 @@
 
 
 
-export default class MetanthropesActorSheet extends ActorSheet {
+export class MetanthropesActorSheet extends ActorSheet {
 
 }
