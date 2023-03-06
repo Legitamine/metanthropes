@@ -1,0 +1,18 @@
+<form class="actor-sheet {{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64"/>
+        <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'Name' }}"/></h1>
+    </header>
+
+	<section>
+		<h3>Hello Metanthropes!</h3>
+		<p>Here is a sample sheet for a humanoid character.</p>
+		<p>It is a work in progress, so please be patient.</p>
+		<h5> {{characteristics.body.stats.power.rollme}} </h5>
+		<input name="characteristics.body.conditions.maimed.value" type="checkbox" {{#if characteristics.body.conditions.maimed.value}}checked{{/if}}/>
+		<input name="characteristics.soul.stat.consciousness.rollme" type="number" value="{{characteristics.soul.stat.consciousness.rollme}}"/>
+		<input name="characteristics.mind.conditions.disconnected.label" type="text" value="{{characteristics.mind.conditions.disconnected.label}}"/>
+	</section>
+
+</form>
+

@@ -47,7 +47,7 @@ Hooks.once("init", async function() {
 	game.metanthropes = {
 		MetanthropesActor,
 		MetanthropesItem
-	}
+	};
 	// add custom constants for configuration ???
 	CONFIG.CHARSTATS = CHARSTATS;
 	//setup initiative system
