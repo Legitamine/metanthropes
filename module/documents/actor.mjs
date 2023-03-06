@@ -54,7 +54,7 @@ export class MetanthropesActor extends Actor {
 		console.log("Metanthropes RPG Preparing Data for Actor", this.name);
 		console.log("========================================================================");
 		console.log("========================================================================");
-		console.log("Metanthropes RPG Starting BASE calculations for Humanoid Actors");
+		console.log("Metanthropes RPG Starting Calculations for Humanoid Actors");
 		console.log("========================================================================");
 		for (let [key, chars] of Object.entries(systemData.characteristics)) {
 			console.log('Working on', chars.label, chars.initial.label, chars.initial.value, chars.progressed.label, chars.progressed.value);
@@ -67,10 +67,7 @@ export class MetanthropesActor extends Actor {
 			}
 		}
 		console.log("========================================================================");
-		console.log("Metanthropes RPG Finished BASE calculations for Humanoid Actors");
-		console.log("========================================================================");
-		console.log("========================================================================");
-		console.log("Metanthropes RPG Starting BUFFS and CONDITIONS calculations");
+		console.log("Metanthropes RPG Adding BUFFS and CONDITIONS to Stats & Characteristics");
 		console.log("========================================================================");
 		//doing it directly instead of a for loop for faster results - cant code shit
 		//body
@@ -90,14 +87,43 @@ export class MetanthropesActor extends Actor {
 		console.log("Endurance Fortified Value", systemData.characteristics.body.stats.endurance.buffs.fortified.value);
 		systemData.characteristics.body.stats.endurance.buffs.total = (systemData.characteristics.body.stats.endurance.buffs.fortified.value*5);
 		console.log("Endurance Buffs Total", systemData.characteristics.body.stats.endurance.buffs.total);
-		console.log("Endurance Bone-Injury Value", systemData.characteristics.body.stats.endurance.conditions.bone-injury.value);
-		systemData.characteristics.body.stats.endurance.conditions.total = (systemData.characteristics.body.stats.endurance.conditions.bone-injury.value*5);
+		console.log("Endurance Bone-Injury Value", systemData.characteristics.body.stats.endurance.conditions.boneinjury.value);
+		systemData.characteristics.body.stats.endurance.conditions.total = (systemData.characteristics.body.stats.endurance.conditions.boneinjury.value*5);
 		console.log("Endurance Conditions Total", systemData.characteristics.body.stats.endurance.conditions.total);
 		systemData.characteristics.body.stats.endurance.current = (systemData.characteristics.body.stats.endurance.base + systemData.characteristics.body.stats.endurance.buffs.total - systemData.characteristics.body.stats.endurance.conditions.total);
 		console.log("Endurance Current", systemData.characteristics.body.stats.endurance.current);
 		systemData.characteristics.body.stats.endurance.rollme = (systemData.characteristics.body.stats.endurance.current + systemData.characteristics.body.current);
+		console.log("------------------------------------------------------------------------------------");
 		console.log("Final Endurance for rolls", systemData.characteristics.body.stats.endurance.rollme);
-
+		console.log("------------------------------------------------------------------------------------");
+		//power
+		console.log("Power Base", systemData.characteristics.body.stats.power.base);
+		console.log("Power Empowered Value", systemData.characteristics.body.stats.power.buffs.empowered.value);
+		systemData.characteristics.body.stats.power.buffs.total = (systemData.characteristics.body.stats.power.buffs.empowered.value*5);
+		console.log("Power Buffs Total", systemData.characteristics.body.stats.power.buffs.total);
+		console.log("Power Muscle Injury Value", systemData.characteristics.body.stats.power.conditions.muscleinjury.value);
+		systemData.characteristics.body.stats.power.conditions.total = (systemData.characteristics.body.stats.power.conditions.muscleinjury.value*5);
+		console.log("Power Conditions Total", systemData.characteristics.body.stats.power.conditions.total);
+		systemData.characteristics.body.stats.power.current = (systemData.characteristics.body.stats.power.base + systemData.characteristics.body.stats.power.buffs.total - systemData.characteristics.body.stats.power.conditions.total);
+		console.log("Power Current", systemData.characteristics.body.stats.power.current);
+		systemData.characteristics.body.stats.power.rollme = (systemData.characteristics.body.stats.power.current + systemData.characteristics.body.current);
+		console.log("------------------------------------------------------------------------------------");
+		console.log("Final Power for rolls", systemData.characteristics.body.stats.power.rollme);
+		console.log("------------------------------------------------------------------------------------");
+		//reflexes
+		console.log("Reflexes Base", systemData.characteristics.body.stats.reflexes.base);
+		console.log("Reflexes Hastened Value", systemData.characteristics.body.stats.reflexes.buffs.hastened.value);
+		systemData.characteristics.body.stats.reflexes.buffs.total = (systemData.characteristics.body.stats.reflexes.buffs.hastened.value*5);
+		console.log("Reflexes Buffs Total", systemData.characteristics.body.stats.reflexes.buffs.total);
+		console.log("Reflexes Skin Injury Value", systemData.characteristics.body.stats.reflexes.conditions.skininjury.value);
+		systemData.characteristics.body.stats.reflexes.conditions.total = (systemData.characteristics.body.stats.reflexes.conditions.skininjury.value*5);
+		console.log("Reflexes Conditions Total", systemData.characteristics.body.stats.reflexes.conditions.total);
+		systemData.characteristics.body.stats.reflexes.current = (systemData.characteristics.body.stats.reflexes.base + systemData.characteristics.body.stats.reflexes.buffs.total - systemData.characteristics.body.stats.reflexes.conditions.total);
+		console.log("Reflexes Current", systemData.characteristics.body.stats.reflexes.current);
+		systemData.characteristics.body.stats.reflexes.rollme = (systemData.characteristics.body.stats.reflexes.current + systemData.characteristics.body.current);
+		console.log("------------------------------------------------------------------------------------");
+		console.log("Final Reflexes for rolls", systemData.characteristics.body.stats.reflexes.rollme);
+		console.log("------------------------------------------------------------------------------------");
 		//mind
 		console.log("Mind Base", systemData.characteristics.mind.base);
 		console.log("Mind Sharpened Value", systemData.characteristics.mind.buffs.sharpened.value);
@@ -108,6 +134,48 @@ export class MetanthropesActor extends Actor {
 		console.log("Mind Conditions Total", systemData.characteristics.mind.conditions.total);
 		systemData.characteristics.mind.current = (systemData.characteristics.mind.base + systemData.characteristics.mind.buffs.total - systemData.characteristics.mind.conditions.total);
 		console.log("Mind Current", systemData.characteristics.mind.current);
+		//perception
+		console.log("Perception Base", systemData.characteristics.mind.stats.perception.base);
+		console.log("Perception Alerted	Value", systemData.characteristics.mind.stats.perception.buffs.alerted.value);
+		systemData.characteristics.mind.stats.perception.buffs.total = (systemData.characteristics.mind.stats.perception.buffs.alerted.value*5);
+		console.log("Perception Buffs Total", systemData.characteristics.mind.stats.perception.buffs.total);
+		console.log("Perception Disoriented Value", systemData.characteristics.mind.stats.perception.conditions.disoriented.value);
+		systemData.characteristics.mind.stats.perception.conditions.total = (systemData.characteristics.mind.stats.perception.conditions.disoriented.value*5);
+		console.log("Perception Conditions Total", systemData.characteristics.mind.stats.perception.conditions.total);
+		systemData.characteristics.mind.stats.perception.current = (systemData.characteristics.mind.stats.perception.base + systemData.characteristics.mind.stats.perception.buffs.total - systemData.characteristics.mind.stats.perception.conditions.total);
+		console.log("Perception Current", systemData.characteristics.mind.stats.perception.current);
+		systemData.characteristics.mind.stats.perception.rollme = (systemData.characteristics.mind.stats.perception.current + systemData.characteristics.mind.current);
+		console.log("------------------------------------------------------------------------------------");
+		console.log("Final Perception for rolls", systemData.characteristics.mind.stats.perception.rollme);
+		console.log("------------------------------------------------------------------------------------");
+		//manipulation
+		console.log("Manipulation Base", systemData.characteristics.mind.stats.manipulation.base);
+		console.log("Manipulation Articulated Value", systemData.characteristics.mind.stats.manipulation.buffs.articulated.value);
+		systemData.characteristics.mind.stats.manipulation.buffs.total = (systemData.characteristics.mind.stats.manipulation.buffs.articulated.value*5);
+		console.log("Manipulation Buffs Total", systemData.characteristics.mind.stats.manipulation.buffs.total);
+		console.log("Manipulation Confused Value", systemData.characteristics.mind.stats.manipulation.conditions.confused.value);
+		systemData.characteristics.mind.stats.manipulation.conditions.total = (systemData.characteristics.mind.stats.manipulation.conditions.confused.value*5);
+		console.log("Manipulation Conditions Total", systemData.characteristics.mind.stats.manipulation.conditions.total);
+		systemData.characteristics.mind.stats.manipulation.current = (systemData.characteristics.mind.stats.manipulation.base + systemData.characteristics.mind.stats.manipulation.buffs.total - systemData.characteristics.mind.stats.manipulation.conditions.total);
+		console.log("Manipulation Current", systemData.characteristics.mind.stats.manipulation.current);
+		systemData.characteristics.mind.stats.manipulation.rollme = (systemData.characteristics.mind.stats.manipulation.current + systemData.characteristics.mind.current);
+		console.log("------------------------------------------------------------------------------------");
+		console.log("Final Manipulation for rolls", systemData.characteristics.mind.stats.manipulation.rollme);
+		console.log("------------------------------------------------------------------------------------");
+		//creativity
+		console.log("Creativity Base", systemData.characteristics.mind.stats.creativity.base);
+		console.log("Creativity Inspired Value", systemData.characteristics.mind.stats.creativity.buffs.inspired.value);
+		systemData.characteristics.mind.stats.creativity.buffs.total = (systemData.characteristics.mind.stats.creativity.buffs.inspired.value*5);
+		console.log("Creativity Buffs Total", systemData.characteristics.mind.stats.creativity.buffs.total);
+		console.log("Creativity Wobbly Value", systemData.characteristics.mind.stats.creativity.conditions.wobbly.value);
+		systemData.characteristics.mind.stats.creativity.conditions.total = (systemData.characteristics.mind.stats.creativity.conditions.wobbly.value*5);
+		console.log("Creativity Conditions Total", systemData.characteristics.mind.stats.creativity.conditions.total);
+		systemData.characteristics.mind.stats.creativity.current = (systemData.characteristics.mind.stats.creativity.base + systemData.characteristics.mind.stats.creativity.buffs.total - systemData.characteristics.mind.stats.creativity.conditions.total);
+		console.log("Creativity Current", systemData.characteristics.mind.stats.creativity.current);
+		systemData.characteristics.mind.stats.creativity.rollme = (systemData.characteristics.mind.stats.creativity.current + systemData.characteristics.mind.current);
+		console.log("------------------------------------------------------------------------------------");
+		console.log("Final Creativity for rolls", systemData.characteristics.mind.stats.creativity.rollme);
+		console.log("------------------------------------------------------------------------------------");
 		//soul
 		console.log("Soul Base", systemData.characteristics.soul.base);
 		console.log("Soul Enlightened Value", systemData.characteristics.soul.buffs.enlightened.value);
@@ -118,10 +186,51 @@ export class MetanthropesActor extends Actor {
 		console.log("Soul Conditions Total", systemData.characteristics.soul.conditions.total);
 		systemData.characteristics.soul.current = (systemData.characteristics.soul.base + systemData.characteristics.soul.buffs.total - systemData.characteristics.soul.conditions.total);
 		console.log("Soul Current", systemData.characteristics.soul.current);
-		
-
+		//willpower
+		console.log("Willpower Base", systemData.characteristics.soul.stats.willpower.base);
+		console.log("Willpower Determined Value", systemData.characteristics.soul.stats.willpower.buffs.determined.value);
+		systemData.characteristics.soul.stats.willpower.buffs.total = (systemData.characteristics.soul.stats.willpower.buffs.determined.value*5);
+		console.log("Willpower Buffs Total", systemData.characteristics.soul.stats.willpower.buffs.total);
+		console.log("Willpower Terrorized Value", systemData.characteristics.soul.stats.willpower.conditions.terrorized.value);
+		systemData.characteristics.soul.stats.willpower.conditions.total = (systemData.characteristics.soul.stats.willpower.conditions.terrorized.value*5);
+		console.log("Willpower Conditions Total", systemData.characteristics.soul.stats.willpower.conditions.total);
+		systemData.characteristics.soul.stats.willpower.current = (systemData.characteristics.soul.stats.willpower.base + systemData.characteristics.soul.stats.willpower.buffs.total - systemData.characteristics.soul.stats.willpower.conditions.total);
+		console.log("Willpower Current", systemData.characteristics.soul.stats.willpower.current);
+		systemData.characteristics.soul.stats.willpower.rollme = (systemData.characteristics.soul.stats.willpower.current + systemData.characteristics.soul.current);
+		console.log("------------------------------------------------------------------------------------");
+		console.log("Final Willpower for rolls", systemData.characteristics.soul.stats.willpower.rollme);
+		console.log("------------------------------------------------------------------------------------");
+		//consciousness
+		console.log("Consciousness Base", systemData.characteristics.soul.stats.consciousness.base);
+		console.log("Consciousness Awakened Value", systemData.characteristics.soul.stats.consciousness.buffs.awakened.value);
+		systemData.characteristics.soul.stats.consciousness.buffs.total = (systemData.characteristics.soul.stats.consciousness.buffs.awakened.value*5);
+		console.log("Consciousness Buffs Total", systemData.characteristics.soul.stats.consciousness.buffs.total);
+		console.log("Consciousness Demented Value", systemData.characteristics.soul.stats.consciousness.conditions.demented.value);
+		systemData.characteristics.soul.stats.consciousness.conditions.total = (systemData.characteristics.soul.stats.consciousness.conditions.demented.value*5);
+		console.log("Consciousness Conditions Total", systemData.characteristics.soul.stats.consciousness.conditions.total);
+		systemData.characteristics.soul.stats.consciousness.current = (systemData.characteristics.soul.stats.consciousness.base + systemData.characteristics.soul.stats.consciousness.buffs.total - systemData.characteristics.soul.stats.consciousness.conditions.total);
+		console.log("Consciousness Current", systemData.characteristics.soul.stats.consciousness.current);
+		systemData.characteristics.soul.stats.consciousness.rollme = (systemData.characteristics.soul.stats.consciousness.current + systemData.characteristics.soul.current);
+		console.log("------------------------------------------------------------------------------------");
+		console.log("Final Consciousness for rolls", systemData.characteristics.soul.stats.consciousness.rollme);
+		console.log("------------------------------------------------------------------------------------");
+		//awareness
+		console.log("Awareness Base", systemData.characteristics.soul.stats.awareness.base);
+		console.log("Awareness Focused Value", systemData.characteristics.soul.stats.awareness.buffs.focused.value);
+		systemData.characteristics.soul.stats.awareness.buffs.total = (systemData.characteristics.soul.stats.awareness.buffs.focused.value*5);
+		console.log("Awareness Buffs Total", systemData.characteristics.soul.stats.awareness.buffs.total);
+		console.log("Awareness Bewildered Value", systemData.characteristics.soul.stats.awareness.conditions.bewildered.value);
+		systemData.characteristics.soul.stats.awareness.conditions.total = (systemData.characteristics.soul.stats.awareness.conditions.bewildered.value*5);
+		console.log("Awareness Conditions Total", systemData.characteristics.soul.stats.awareness.conditions.total);
+		systemData.characteristics.soul.stats.awareness.current = (systemData.characteristics.soul.stats.awareness.base + systemData.characteristics.soul.stats.awareness.buffs.total - systemData.characteristics.soul.stats.awareness.conditions.total);
+		console.log("Awareness Current", systemData.characteristics.soul.stats.awareness.current);
+		systemData.characteristics.soul.stats.awareness.rollme = (systemData.characteristics.soul.stats.awareness.current + systemData.characteristics.soul.current);
+		console.log("------------------------------------------------------------------------------------");
+		console.log("Final Awareness for rolls", systemData.characteristics.soul.stats.awareness.rollme);
+		console.log("------------------------------------------------------------------------------------");
+		//end
 		console.log("========================================================================");
-		console.log("Metanthropes RPG Finished BUFFS and CONDITIONS calculations");
+		console.log("Metanthropes RPG Finished Calculating Characteristics & Stats");
 		console.log("========================================================================");
 		console.log("========================================================================");
 		console.log("Metanthropes RPG Finished Preparing Data for Actor", this.name);
