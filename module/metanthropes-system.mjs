@@ -39,7 +39,9 @@ import { CHARSTATS } from "./helpers/charstats.mjs";
 
 // Log system initialization.
 Hooks.once("init", async function() {
-	console.log(`Initializing Metanthropes RPG System`);
+	console.log("========================================================================");
+	console.log("Initializing Metanthropes RPG System");
+	console.log("========================================================================");
 
 	// add our classes so they are more easily accessible
 	game.metanthropes = {
@@ -64,7 +66,9 @@ Hooks.once("init", async function() {
 	//preload Handlebars templates
 	//loadTemplates(["systems/metanthropes/templates/partials/charstats.hbs"]);
 	//return preloadTemplates();
-	console.log(`Metanthropes RPG System Initialized`);
+	console.log("========================================================================");
+	console.log("Metanthropes RPG System Initialized");
+	console.log("========================================================================");
 
 
 });
