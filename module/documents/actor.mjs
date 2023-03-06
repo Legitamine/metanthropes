@@ -7,7 +7,7 @@
 //* 
 ////
 
-export default class MetanthropesActor extends Actor {
+export class MetanthropesActor extends Actor {
 
 
 	/** @override */

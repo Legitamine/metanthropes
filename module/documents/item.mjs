@@ -7,6 +7,6 @@
 //* 
 ////
 
-export default class MetanthropesItem extends Item {
-	
+export class MetanthropesItem extends Item {
+
 }
