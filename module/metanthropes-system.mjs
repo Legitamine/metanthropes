@@ -8,17 +8,6 @@
 
 ////
 //*
-//! Table of Contents
-//*
-//? 1. Imports
-//? 2. System Initialization Hook
-//? 3. Preload Handlebars Templates
-//? 4. Ready Hook
-//? 5. Hotbar Macros
-////
-
-////
-//*
 //? Table of Contents
 //*
 //! 1. Imports
@@ -42,7 +31,7 @@ import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
 //? Table of Contents
 //*
 //? 1. Imports
-//! 2. System Initialization Hooks
+//! 2. System Initialization Hook
 //? 3. Preload Handlebars Templates
 //? 4. Ready Hook
 //? 5. Hotbar Macros
@@ -51,5 +40,31 @@ import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
 // Log system initialization.
 Hooks.once("init", async function() {
 	console.log(`Initializing Metanthropes RPG System`);
+
+	// add our classes so they are more easily accessible
+	game.metanthropes = {
+		MetanthropesActor,
+		MetanthropesItem
+	}
+	// add custom constants for configuration ???
+	CONFIG.METANTHROPES = METANTHROPES;
+	//setup initiative system
+	CONFIG.Combat.initiative = {
+		formula: "1d100 + @characteristics.body.reflexes.charstat",
+		decimals: 2
+	};
+	// Define custom Entity classes.
+	CONFIG.Actor.documentClass = MetanthropesActor;
+	CONFIG.Item.documentClass = MetanthropesItem;
+	// Register sheet application classes instead of defaults.
+	Actors.unregisterSheet("core", ActorSheet);
+	Actors.registerSheet("metanthropes", MetanthropesActorSheet, { makeDefault: true });
+	Items.unregisterSheet("core", ItemSheet);
+	Items.registerSheet("metanthropes", MetanthropesItemSheet, { makeDefault: true });
+	//preload Handlebars templates
+	//loadTemplates(["systems/metanthropes/templates/partials/charstats.hbs"]);
+	//return preloadTemplates();
+
+
 });
 
