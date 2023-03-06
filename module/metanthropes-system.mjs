@@ -24,8 +24,8 @@ import { MetanthropesItem } from "./documents/item.mjs";
 import { MetanthropesActorSheet } from "./sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
 // Import helpers.
-// import { CharStatsHelper } from "./helpers/charstats.mjs";
-
+//import { CharStatsHelper } from "./helpers/charstats.mjs";
+import { CHARSTATS } from "./helpers/charstats.mjs";
 ////
 //*
 //? Table of Contents
@@ -47,7 +47,7 @@ Hooks.once("init", async function() {
 		MetanthropesItem
 	}
 	// add custom constants for configuration ???
-	CONFIG.METANTHROPES = METANTHROPES;
+	CONFIG.CHARSTATS = CHARSTATS;
 	//setup initiative system
 	CONFIG.Combat.initiative = {
 		formula: "1d100 + @characteristics.body.reflexes.charstat",

@@ -7,6 +7,9 @@
 //* 
 ////
 
+export const CHARSTATS = {};
+
+
 /*
 export class CharStatsHelper {
 
