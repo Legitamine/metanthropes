@@ -201,10 +201,17 @@
 			"characteristics": {
 				"characteristics": {
 					"body": {
-					"type": "number",
 					"label": "Body",
-					"initial": 30,
-					"progressed": 0,
+					"initial": {
+						"type": "number",
+						"label": "Initial Body",
+						"value": 30
+						},
+					"progressed": {
+						"type": "number",
+						"label": "Progressed Body",
+						"value": 5
+						},
 					"buffs": {
 						"hardened": {
 							"type": "number",
@@ -243,8 +250,16 @@
 						"endurance": {
 							"type": "number",
 							"label": "Endurance",
-							"initial": 30,
-							"progressed": 0,
+							"initial": {
+								"type": "number",
+								"label": "Initial Endurance",
+								"value": 32
+								},
+							"progressed": {
+								"type": "number",
+								"label": "Progressed Endurance",
+								"value": 7
+								},
 							"buffs": {
 								"fortified": {
 									"type": "number",
