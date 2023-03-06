@@ -9,6 +9,24 @@
 
 export const CHARSTATS = {};
 
+CHARSTATS.characteristics = {
+	"body": "Body",
+	"mind": "Mind",
+	"soul": "Soul"
+};
+
+CHARSTATS.stats = {
+	"endurance": "Endurance",
+	"power": "Power",
+	"reflexes": "Reflexes",
+	"perception": "Perception",
+	"manipulation": "Manipulation",
+	"creativity": "Creativity",
+	"willpower": "Willpower",
+	"consciousness": "Consciousness",
+	"awareness": "Awareness"
+};
+
 
 /*
 export class CharStatsHelper {

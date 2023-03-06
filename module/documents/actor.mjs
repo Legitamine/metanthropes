@@ -26,6 +26,7 @@ export class MetanthropesActor extends Actor {
 
 	///prepareBaseData() {
 	prepareBaseData() {
+		console.log("Metanthropes RPG starting prepareBaseData");
 		for (let ch of Object.values(this.characteristics)) {
 			ch.base = Math.sum(ch.initial, ch.progressed);
 			console.log(ch.base);
