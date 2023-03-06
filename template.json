@@ -267,7 +267,7 @@
 									}
 								},
 								"conditions": {
-									"bone-injury": {
+									"boneinjury": {
 										"type": "number",
 										"label": "Bone Injury",
 										"value": 1
@@ -294,7 +294,7 @@
 									}
 								},
 								"conditions": {
-									"muscle-injury": {
+									"muscleinjury": {
 										"type": "number",
 										"label": "Muscle Injury",
 										"value": 0
@@ -321,7 +321,7 @@
 									}
 								},
 								"conditions": {
-									"skin-injury": {
+									"skininjury": {
 										"type": "number",
 										"label": "Skin Injury",
 										"value": 3
@@ -370,7 +370,7 @@
 								"label": "Pain",
 								"value": false
 							},
-							"sense lost": {
+							"senselost": {
 								"type": "boolean",
 								"label": "Sense Lost",
 								"value": false

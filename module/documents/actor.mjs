@@ -64,8 +64,6 @@ export class MetanthropesActor extends Actor {
 				console.log('Working on', chars.label, statistics.label, statistics.initial.label, statistics.initial.value, statistics.progressed.label, statistics.progressed.value);
 				statistics.base = (statistics.initial.value + statistics.progressed.value);
 				console.log('New', statistics.label, 'BASE', statistics.base);
-				statistics.cs = (chars.base + statistics.base);
-				console.log('New', statistics.label, 'CS', statistics.cs);
 			}
 		}
 		console.log("========================================================================");
@@ -75,22 +73,50 @@ export class MetanthropesActor extends Actor {
 		console.log("Metanthropes RPG Starting BUFFS and CONDITIONS calculations");
 		console.log("========================================================================");
 		//doing it directly instead of a for loop for faster results - cant code shit
+		//body
 		console.log("Body Base", systemData.characteristics.body.base);
+		console.log("Body Hardened Value", systemData.characteristics.body.buffs.hardened.value);
+		//todo: change the hardcoded 5 to a variable that acts as the buff multiplier - same for all the rest below
 		systemData.characteristics.body.buffs.total = (systemData.characteristics.body.buffs.hardened.value*5);
+		console.log("Body Buffs Total", systemData.characteristics.body.buffs.total);
+		console.log("Body Burned Value", systemData.characteristics.body.conditions.burned.value)
 		systemData.characteristics.body.conditions.total = (systemData.characteristics.body.conditions.burned.value*5);
+		console.log("Body Conditions Total", systemData.characteristics.body.conditions.total);
 		systemData.characteristics.body.current = (systemData.characteristics.body.base + systemData.characteristics.body.buffs.total - systemData.characteristics.body.conditions.total);
 		console.log("Body Current", systemData.characteristics.body.current);
+		//bodystats
+		//endurance
+		console.log("Endurance Base", systemData.characteristics.body.stats.endurance.base);
+		console.log("Endurance Fortified Value", systemData.characteristics.body.stats.endurance.buffs.fortified.value);
+		systemData.characteristics.body.stats.endurance.buffs.total = (systemData.characteristics.body.stats.endurance.buffs.fortified.value*5);
+		console.log("Endurance Buffs Total", systemData.characteristics.body.stats.endurance.buffs.total);
+		console.log("Endurance Bone-Injury Value", systemData.characteristics.body.stats.endurance.conditions.bone-injury.value);
+		systemData.characteristics.body.stats.endurance.conditions.total = (systemData.characteristics.body.stats.endurance.conditions.bone-injury.value*5);
+		console.log("Endurance Conditions Total", systemData.characteristics.body.stats.endurance.conditions.total);
+		systemData.characteristics.body.stats.endurance.current = (systemData.characteristics.body.stats.endurance.base + systemData.characteristics.body.stats.endurance.buffs.total - systemData.characteristics.body.stats.endurance.conditions.total);
+		console.log("Endurance Current", systemData.characteristics.body.stats.endurance.current);
+		systemData.characteristics.body.stats.endurance.rollme = (systemData.characteristics.body.stats.endurance.current + systemData.characteristics.body.current);
+		console.log("Final Endurance for rolls", systemData.characteristics.body.stats.endurance.rollme);
+
 		//mind
 		console.log("Mind Base", systemData.characteristics.mind.base);
+		console.log("Mind Sharpened Value", systemData.characteristics.mind.buffs.sharpened.value);
 		systemData.characteristics.mind.buffs.total = (systemData.characteristics.mind.buffs.sharpened.value*5);
+		console.log("Mind Buffs Total", systemData.characteristics.mind.buffs.total);
+		console.log("Mind Disconnected Value", systemData.characteristics.mind.conditions.disconnected.value)
 		systemData.characteristics.mind.conditions.total = (systemData.characteristics.mind.conditions.disconnected.value*5);
-		systemData.characteristics.mind.current = (systemData.characteristics.mind.base + systemData.characteristics.mind.buffs.total - systemData.characteristics.body.conditions.total);
+		console.log("Mind Conditions Total", systemData.characteristics.mind.conditions.total);
+		systemData.characteristics.mind.current = (systemData.characteristics.mind.base + systemData.characteristics.mind.buffs.total - systemData.characteristics.mind.conditions.total);
 		console.log("Mind Current", systemData.characteristics.mind.current);
 		//soul
 		console.log("Soul Base", systemData.characteristics.soul.base);
+		console.log("Soul Enlightened Value", systemData.characteristics.soul.buffs.enlightened.value);
 		systemData.characteristics.soul.buffs.total = (systemData.characteristics.soul.buffs.enlightened.value*5);
+		console.log("Soul Buffs Total", systemData.characteristics.soul.buffs.total);
+		console.log("Soul Tormented Value", systemData.characteristics.soul.conditions.tormented.value)
 		systemData.characteristics.soul.conditions.total = (systemData.characteristics.soul.conditions.tormented.value*5);
-		systemData.characteristics.soul.current = (systemData.characteristics.soul.base + systemData.characteristics.soul.buffs.total - systemData.characteristics.body.conditions.total);
+		console.log("Soul Conditions Total", systemData.characteristics.soul.conditions.total);
+		systemData.characteristics.soul.current = (systemData.characteristics.soul.base + systemData.characteristics.soul.buffs.total - systemData.characteristics.soul.conditions.total);
 		console.log("Soul Current", systemData.characteristics.soul.current);
 		
 
