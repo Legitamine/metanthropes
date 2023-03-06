@@ -10,5 +10,8 @@
 
 
 export class MetanthropesActorSheet extends ActorSheet {
-
+	get template() {
+		console.log('${this.actor.data.type}');
+		return `systems/metanthropes-system/templates/sheets/${this.actor.data.type}-sheet.hbs`;
+	}
 }
