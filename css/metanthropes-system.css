@@ -217,7 +217,7 @@
 .metanthropes .item-form {
   font-family: "nasalization", sans-serif;
 }
-.metanthropes .bigcontainer {
+.metanthropes .layout-bigcontainer {
   background-image: url("../artwork/bg-sheet.jpg");
   background-size: cover;
   background-attachment: fixed;
@@ -225,12 +225,19 @@
   opacity: 0.2;
   flex: 1;
 }
-.metanthropes .mediumcontainer {
+.metanthropes .layout-mediumcontainer {
   opacity: 1;
   flex: 1;
 }
-.metanthropes .characteristics {
+.metanthropes .style-charstats {
+  opacity: 1;
   font-family: "nasalization", sans-serif;
+  font-size: 1.5em;
+  color: #370239;
+}
+.metanthropes .style-characteristics {
+  font-family: "nasalization", sans-serif;
+  font-size: 1.2em;
   color: #092e00;
 }
 .metanthropes .sheet-header {

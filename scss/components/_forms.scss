@@ -2,7 +2,7 @@
     font-family: $font-primary;
 }
 
-.bigcontainer {
+.layout-bigcontainer {
 	background-image: url("../artwork/bg-sheet.jpg");
     background-size: cover;
     background-attachment: fixed;
@@ -11,12 +11,21 @@
 	flex: 1;
 }
 
-.mediumcontainer {
+.layout-mediumcontainer {
 	opacity: 1;
 	flex: 1;
 }
-.characteristics {
+
+.style-charstats {
+	opacity: 1;
 	font-family: $font-primary;
+	font-size: 1.5em;
+	color: $c-purple;
+}
+
+.style-characteristics {
+	font-family: $font-primary;
+	font-size: 1.2em;
 	color: $c-green;
 }
 
