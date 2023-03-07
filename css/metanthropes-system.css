@@ -231,7 +231,7 @@
   margin: 5px;
   border: 5px;
 }
-.metanthropes .layout-bigcontainer {
+.metanthropes .layout-container-big {
   background-image: url("../artwork/layout-container-big.jpg");
   background-size: cover;
   background-attachment: fixed;
@@ -244,7 +244,7 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-column-end: span 3;
 }
-.metanthropes .layout-mediumcontainer {
+.metanthropes .layout-container-med {
   background-image: url("../artwork/layout-container-med.jpg");
   padding: 10px;
   margin: 10px;
@@ -254,18 +254,28 @@
   flex-shrink: 1;
   flex-basis: 200px;
 }
-.metanthropes .style-charstats {
+.metanthropes .style-primary-title {
   opacity: 1;
   font-family: "nasalization", sans-serif;
   font-size: 1.5em;
   color: #370239;
   text-shadow: 0 0 10px #092e00;
 }
-.metanthropes .style-characteristics {
+.metanthropes .style-primary-body {
   font-family: "nasalization", sans-serif;
   font-size: 1.2em;
   color: #092e00;
   text-shadow: 0 0 10px #370239;
+}
+.metanthropes .style-secondary-title {
+  font-family: "omnium-wide", sans-serif;
+  font-size: 1.5em;
+  color: #370239;
+}
+.metanthropes .style-secondary-body {
+  font-family: "omnium-wide", sans-serif;
+  font-size: 1.2em;
+  color: #092e00;
 }
 .metanthropes .sheet-header {
   flex: 0 auto;

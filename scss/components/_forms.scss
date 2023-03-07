@@ -8,7 +8,7 @@
 	border: $border-sm;
 }
 
-.layout-bigcontainer {
+.layout-container-big {
 	background-image: url("../artwork/layout-container-big.jpg");
 	background-size: cover;
 	background-attachment: fixed;
@@ -23,7 +23,7 @@
 	grid-column-end: span 3;
 }
 
-.layout-mediumcontainer {
+.layout-container-med {
 	background-image: url("../artwork/layout-container-med.jpg");
 	padding: $padding-md;
 	margin: $margin-md;
@@ -34,7 +34,7 @@
 	flex-basis: 200px;
 }
 
-.style-charstats {
+.style-primary-title {
 	opacity: 1;
 	font-family: $font-primary;
 	font-size: 1.5em;
@@ -42,11 +42,23 @@
 	text-shadow: 0 0 10px $c-green;
 }
 
-.style-characteristics {
+.style-primary-body {
 	font-family: $font-primary;
 	font-size: 1.2em;
 	color: $c-green;
 	text-shadow: 0 0 10px $c-purple;
+}
+
+.style-secondary-title {
+	font-family: $font-secondary;
+	font-size: 1.5em;
+	color: $c-purple;
+}
+
+.style-secondary-body {
+	font-family: $font-secondary;
+	font-size: 1.2em;
+	color: $c-green;
 }
 
 .sheet-header {

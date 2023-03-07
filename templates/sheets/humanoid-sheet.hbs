@@ -5,12 +5,15 @@
 				placeholder="A Humanoid" /></h1>
 	</header>
 
-	<section class="metanthropes layout-container-big">
+	<section class="metanthropes layout-container-big style-secondary-title">
 		<h3>Hello Metanthropes!</h3>
 		<p>Here is a sample sheet for a humanoid character.</p>
 		<p>It is a work in progress, so please be patient.</p>
 		<h5> {{system.characteristics.body.stats.power.rollme}} </h5>
-		<h5> {{system.characteristics.soul.stats.consciousness.rollme}} </h5>
+		<div class="metanthropes layout-container-med style-secondary-body">
+			<h5 class="metanthropes style-primary-body">Body</h5>
+			<h5> {{system.characteristics.soul.stats.consciousness.rollme}} </h5>
+		</div>
 		<input name="system.characteristics.body.conditions.maimed.value" type="checkbox"
 			{{#if system.characteristics.body.conditions.maimed.value}}checked{{/if}} />
 		<input name="system.characteristics.soul.stats.consciousness.progressed.value" type="number"
@@ -20,9 +23,9 @@
 	</section>
 	<section>
 		<div class="metanthropes layout-container-big">
-			<h4  class="metanthropes style-charstats">test div big container for charstats</h4>
+			<h4  class="metanthropes style-primary-title">test div big container for charstats</h4>
 			<div class="metanthropes layout-container-med">
-				<h5 class="metanthropes style-characteristics">Body</h5>
+				<h5 class="metanthropes style-primary-body">Body</h5>
 			</div>
 			<div class="metanthropes layout-container-med">
 				<h5 class="metanthropes style-characteristics">Mind</h5>
