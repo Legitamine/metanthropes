@@ -4,33 +4,37 @@
 
 .metanthropes {
 	padding: $padding-sm;
-	border: $border-sm;
 	margin: $margin-sm;
+	border: $border-sm;
 }
 
-.layout-bigcontainer {
-	background-image: url("./artwork/bg-container.png");
+.lbigcontainer {
+	background-image: url("../artwork/bg-container.png");
 	background-size: cover;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	opacity: 0.4;
 	padding: $padding-lg;
 	margin: $margin-lg;
+	border: $border-lg;
 	//same as grid-3col
 	grid-column: span 3 / span 3;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	grid-column-end: span 3;
 }
 
-.layout-mediumcontainer {
-	background-image: url("./artwork/bg-sheet.jpg");
+.lmediumcontainer {
+	background-image: url("../artwork/bg-sheet.jpg");
+	padding: $padding-md;
+	margin: $margin-md;
+	border: $border-md;
 	opacity: 1;
 	flex-grow: 0;
 	flex-shrink: 1;
 	flex-basis: 200px;
 }
 
-.style-charstats {
+.scharstats {
 	opacity: 1;
 	font-family: $font-primary;
 	font-size: 1.5em;
@@ -38,7 +42,7 @@
 	text-shadow: 0 0 10px $c-green;
 }
 
-.style-characteristics {
+.scharacteristics {
 	font-family: $font-primary;
 	font-size: 1.2em;
 	color: $c-green;
