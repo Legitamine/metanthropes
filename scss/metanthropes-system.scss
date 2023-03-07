@@ -8,13 +8,16 @@
 @import "utils/mixins";
 @import "utils/variables";
 
-/* Global styles */
+//* Global styles */
 @import "global/window";
 @import "global/grid";
 @import "global/flex";
 
-/* Styles limited to metanthropes sheets */
+//* Styles limited to metanthropes sheets */
 .metanthropes {
+	padding: $padding-sm;
+	border: $border-sm;
+	margin: $margin-sm;
 	@import "components/forms";
 	@import "components/resource";
 	@import "components/items";

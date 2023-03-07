@@ -1,5 +1,4 @@
 @import url("https://use.typekit.net/gld0tkk.css");
-/* Global styles */
 .window-app {
   font-family: "nasalization", sans-serif;
 }
@@ -216,20 +215,13 @@
   text-align: center;
 }
 
-/* Styles limited to metanthropes sheets */
 .metanthropes {
-  /* ----------------------------------------- */
-  /*  Items Lists                              */
-  /* ----------------------------------------- */
-  /* Example style for Metanthropes (can be removed if not needed) */
-}
-.metanthropes .item-form {
-  font-family: "nasalization", sans-serif;
-}
-.metanthropes .metanthropes {
   padding: 5px;
   border: 5px;
   margin: 5px;
+}
+.metanthropes .item-form {
+  font-family: "nasalization", sans-serif;
 }
 .metanthropes .layout-container-big {
   background-image: url("../artwork/layout-container-big.jpg");
