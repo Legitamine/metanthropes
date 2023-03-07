@@ -15,10 +15,10 @@
 
 /* Styles limited to metanthropes sheets */
 .metanthropes {
-    @import "components/forms";
-    @import "components/resource";
-    @import "components/items";
-    @import "components/effects";
+	@import "components/forms";
+	@import "components/resource";
+	@import "components/items";
+	@import "components/effects";
 }
 
 // when creating classes for use with divs etc, use two types: one for layout and one for content
