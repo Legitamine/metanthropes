@@ -228,8 +228,8 @@
 }
 .metanthropes .metanthropes {
   padding: 5px;
-  margin: 5px;
   border: 5px;
+  margin: 5px;
 }
 .metanthropes .layout-container-big {
   background-image: url("../artwork/layout-container-big.jpg");
@@ -238,8 +238,8 @@
   background-repeat: no-repeat;
   opacity: 0.4;
   padding: 20px;
-  margin: 20px;
   border: 20px;
+  margin: 20px;
 }
 .metanthropes .layout-container-med {
   background-image: url("../artwork/layout-container-med.jpg");
@@ -247,8 +247,8 @@
   background-attachment: local;
   background-repeat: no-repeat;
   padding: 10px;
-  margin: 10px;
   border: 10px;
+  margin: 10px;
   opacity: 1;
 }
 .metanthropes .style-primary-title {
