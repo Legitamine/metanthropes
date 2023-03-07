@@ -2,6 +2,24 @@
     font-family: $font-primary;
 }
 
+.bigcontainer {
+	background-image: url("../artwork/bg-sheet.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+	flex: 1;
+}
+
+.mediumcontainer {
+	opacity: 1;
+	flex: 1;
+}
+.characteristics {
+	font-family: $font-primary;
+	color: $c-green;
+}
+
 .sheet-header {
     flex: 0 auto;
     overflow: hidden;
@@ -38,14 +56,14 @@
     flex: 0;
 } 
 
-.sheet-body {
-//     qp adding background image to the body
-	background-image: url("../artwork/bg-sheet.jpg");
-    background-size: cover;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    opacity: 0.2;
-}
+//.sheet-body {
+////     qp adding background image to the body
+//	background-image: url("../artwork/bg-sheet.jpg");
+//    background-size: cover;
+//    background-attachment: fixed;
+//    background-repeat: no-repeat;
+//    opacity: 0.2;
+//}
 
 .sheet-body,
 .sheet-body .tab,
