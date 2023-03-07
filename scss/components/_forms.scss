@@ -43,6 +43,7 @@
 }
 
 .style-primary-body {
+	opacity: 1;
 	font-family: $font-primary;
 	font-size: 1.2em;
 	color: $c-green;
@@ -50,12 +51,14 @@
 }
 
 .style-secondary-title {
+	opacity: 1;
 	font-family: $font-secondary;
 	font-size: 1.5em;
 	color: $c-purple;
 }
 
 .style-secondary-body {
+	opacity: 1;
 	font-family: $font-secondary;
 	font-size: 1.2em;
 	color: $c-green;

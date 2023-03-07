@@ -10,7 +10,7 @@
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-origin: border-box;
-  opacity: 0.6;
+  opacity: 1;
 }
 
 .rollable:hover, .rollable:focus {
@@ -262,17 +262,20 @@
   text-shadow: 0 0 10px #092e00;
 }
 .metanthropes .style-primary-body {
+  opacity: 1;
   font-family: "nasalization", sans-serif;
   font-size: 1.2em;
   color: #092e00;
   text-shadow: 0 0 10px #370239;
 }
 .metanthropes .style-secondary-title {
+  opacity: 1;
   font-family: "omnium-wide", sans-serif;
   font-size: 1.5em;
   color: #370239;
 }
 .metanthropes .style-secondary-body {
+  opacity: 1;
   font-family: "omnium-wide", sans-serif;
   font-size: 1.2em;
   color: #092e00;
