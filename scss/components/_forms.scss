@@ -17,21 +17,17 @@
 	padding: $padding-lg;
 	margin: $margin-lg;
 	border: $border-lg;
-	//same as grid-3col
-	grid-column: span 3 / span 3;
-	grid-template-columns: repeat(3, minmax(0, 1fr));
-	grid-column-end: span 3;
 }
 
 .layout-container-med {
 	background-image: url("../artwork/layout-container-med.jpg");
+	background-size: contain;
+	background-attachment: local;
+	background-repeat: no-repeat;
 	padding: $padding-md;
 	margin: $margin-md;
 	border: $border-md;
 	opacity: 1;
-	flex-grow: 0;
-	flex-shrink: 1;
-	flex-basis: 200px;
 }
 
 .style-primary-title {
