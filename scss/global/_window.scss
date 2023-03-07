@@ -2,6 +2,14 @@
 	font-family: $font-primary;
 }
 
+.window-content {
+	background-image: url("../artwork/bg-sheet.jpg");
+	background-size: cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	opacity: 0.2;
+}
+
 .rollable {
 	&:hover,
 	&:focus {
