@@ -5,10 +5,11 @@
 }
 
 .window-content {
-  background-image: url("../artwork/bg-canvas.jpg");
+  background-image: url("./artwork/bg-canvas.jpg");
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
+  background-origin: border-box;
   opacity: 0.6;
 }
 
@@ -231,18 +232,19 @@
   margin: 5px;
 }
 .metanthropes .layout-bigcontainer {
-  background-image: url("../artwork/bg-container.png");
+  background-image: url("./artwork/bg-container.png");
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
   opacity: 0.4;
   padding: 20px;
   margin: 20px;
-  display: flex;
-  flex-direction: row;
+  grid-column: span 3/span 3;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-column-end: span 3;
 }
 .metanthropes .layout-mediumcontainer {
-  background-image: url("../artwork/bg-sheet.jpg");
+  background-image: url("./artwork/bg-sheet.jpg");
   opacity: 1;
   flex-grow: 0;
   flex-shrink: 1;
@@ -253,11 +255,13 @@
   font-family: "nasalization", sans-serif;
   font-size: 1.5em;
   color: #370239;
+  text-shadow: 0 0 10px #092e00;
 }
 .metanthropes .style-characteristics {
   font-family: "nasalization", sans-serif;
   font-size: 1.2em;
   color: #092e00;
+  text-shadow: 0 0 10px #370239;
 }
 .metanthropes .sheet-header {
   flex: 0 auto;
@@ -297,7 +301,7 @@
   font-family: "omnium-wide", sans-serif;
 }
 .metanthropes .tox .tox-editor-container {
-  background-image: url("../artwork/bg-sheet.jpg");
+  background-image: url("./artwork/bg-sheet.jpg");
   background-repeat: no-repeat;
   font-family: "omnium-wide", sans-serif;
 }

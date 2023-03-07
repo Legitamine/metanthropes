@@ -9,19 +9,21 @@
 }
 
 .layout-bigcontainer {
-	background-image: url("../artwork/bg-container.png");
+	background-image: url("./artwork/bg-container.png");
 	background-size: cover;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	opacity: 0.4;
 	padding: $padding-lg;
 	margin: $margin-lg;
-	display: flex;
-	flex-direction: row;
+	//same as grid-3col
+	grid-column: span 3 / span 3;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	grid-column-end: span 3;
 }
 
 .layout-mediumcontainer {
-	background-image: url("../artwork/bg-sheet.jpg");
+	background-image: url("./artwork/bg-sheet.jpg");
 	opacity: 1;
 	flex-grow: 0;
 	flex-shrink: 1;
@@ -33,12 +35,14 @@
 	font-family: $font-primary;
 	font-size: 1.5em;
 	color: $c-purple;
+	text-shadow: 0 0 10px $c-green;
 }
 
 .style-characteristics {
 	font-family: $font-primary;
 	font-size: 1.2em;
 	color: $c-green;
+	text-shadow: 0 0 10px $c-purple;
 }
 
 .sheet-header {
@@ -96,7 +100,7 @@
 .tox {
 	.tox-editor-container {
 		// qp playing with background colors background: $c-green;
-		background-image: url("../artwork/bg-sheet.jpg");
+		background-image: url("./artwork/bg-sheet.jpg");
 		background-repeat: no-repeat;
 		font-family: $font-secondary;
 		// background-position: center center;
