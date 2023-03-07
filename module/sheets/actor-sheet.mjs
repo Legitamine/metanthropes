@@ -26,7 +26,9 @@ export class MetanthropesActorSheet extends ActorSheet {
 		const context = await super.getData();
 		// from boilerplate:
 		// Use a safe clone of the actor data for further operations.
-		const actorData = this.actor.toObject(false)
+		// It uses the document data's built in toObject() method and gives it the false parameter, which instructs Foundry to not just convert this to a plain object but to also run a deep clone on nested objects/arrays.
+		// from https://foundryvtt.wiki/en/development/guides/SD-tutorial/SD07-Extending-the-ActorSheet-class
+		const actorData = this.actor.toObject(false);
 		// Add the actor's data to context.data for easier access, as well as flags.
 		context.system = actorData.system;
 		context.flags = actorData.flags;

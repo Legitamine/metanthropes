@@ -11,6 +11,13 @@
 	opacity: 1;
 }
 
+.actor-sheet {
+	//character sheets always open at this size
+	//does this also affect a default actor-sheet class?
+	width: 800;
+	height: 800;
+}
+
 .rollable {
 	&:hover,
 	&:focus {

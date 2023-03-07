@@ -1,0 +1,53 @@
+<form class="metanthropes actor-sheet {{cssClass}}" autocomplete="off">
+	<header>
+		<h1>This is a header 1</h1>
+		<h2>This is a header 2</h2>
+		<h3>This is a header 3</h3>
+		<h4>This is a header 4</h4>
+		<h5>This is a header 5</h5>
+		<h6>This is a header 6</h6>
+		<p>lorem</p>
+		<p><input name="name" type="text" value="{{actor.name}}" placeholder="A Protagonist"></p>
+	</header>
+	<body>
+		<nav class="metanthropes layout-navbar" data-group="csnav">
+			<!-- look into actor-sheet.mjs -->
+			<a class="metanthropes style-nav style-button" data-tab="charstats">Characteristics & Stats</a>
+			<a class="metanthropes style-nav style-button" data-tab="perks">Perks</a>
+			<a class="metanthropes style-nav style-button" data-tab="metapowers">Metapowers</a>
+			<a class="metanthropes style-nav style-button" data-tab="combos">Combos</a>
+			<a class="metanthropes style-nav style-button" data-tab="possessions">Possessions</a>
+			<a class="metanthropes style-nav style-button" data-tab="notes">Notes</a>
+		</nav>
+		<section class="metanthropes layout-container-big style-secondary-title">
+			<div data-tab="charstats">
+				<h3>Characteristics & Stats</h3>
+			</div>
+			<div data-tab="perks">
+				<h4>Perks</h4>
+			</div>
+			<div data-tab="metapowers">
+				<h4>Metapowers</h4>
+			</div>
+			<div data-tab="combos">
+				<h4>Combos</h4>
+			</div>
+			<div data-tab="possessions">
+				<h4>Possessions</h4>
+			</div>
+			<div data-tab="notes">
+				<h5>Notes</h5>
+			</div>
+		</section>
+	</body>
+	<footer>
+		<h1>This is a footer 1</h1>
+		<h2>This is a footer 2</h2>
+		<h3>This is a footer 3</h3>
+		<h4>This is a footer 4</h4>
+		<h5>This is a footer 5</h5>
+		<h6>This is a footer 6</h6>
+		<p>lorem</p>
+		<p><label value="{{actor.name}}"></p>
+	</footer>
+</form>
