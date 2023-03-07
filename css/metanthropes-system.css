@@ -1,0 +1,387 @@
+@import url("https://use.typekit.net/gld0tkk.css");
+/* Global styles */
+.window-app {
+  font-family: "nasalization", sans-serif;
+}
+
+.rollable:hover, .rollable:focus {
+  color: #092e00;
+  text-shadow: 0 0 10px #370239;
+  cursor: pointer;
+  border: 3px dotted #370239;
+  border-radius: 15px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.grid,
+.grid-2col {
+  display: grid;
+  grid-column: span 2/span 2;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 10px 0;
+  padding: 0;
+}
+
+.grid-3col {
+  grid-column: span 3/span 3;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-4col {
+  grid-column: span 4/span 4;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.grid-5col {
+  grid-column: span 5/span 5;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.grid-6col {
+  grid-column: span 6/span 6;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.grid-7col {
+  grid-column: span 7/span 7;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.grid-8col {
+  grid-column: span 8/span 8;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+
+.grid-9col {
+  grid-column: span 9/span 9;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+}
+
+.grid-10col {
+  grid-column: span 10/span 10;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+}
+
+.grid-11col {
+  grid-column: span 11/span 11;
+  grid-template-columns: repeat(11, minmax(0, 1fr));
+}
+
+.grid-12col {
+  grid-column: span 12/span 12;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.grid-start-2 {
+  grid-column-start: 2;
+}
+
+.grid-start-3 {
+  grid-column-start: 3;
+}
+
+.grid-start-4 {
+  grid-column-start: 4;
+}
+
+.grid-start-5 {
+  grid-column-start: 5;
+}
+
+.grid-start-6 {
+  grid-column-start: 6;
+}
+
+.grid-start-7 {
+  grid-column-start: 7;
+}
+
+.grid-start-8 {
+  grid-column-start: 8;
+}
+
+.grid-start-9 {
+  grid-column-start: 9;
+}
+
+.grid-start-10 {
+  grid-column-start: 10;
+}
+
+.grid-start-11 {
+  grid-column-start: 11;
+}
+
+.grid-start-12 {
+  grid-column-start: 12;
+}
+
+.grid-span-2 {
+  grid-column-end: span 2;
+}
+
+.grid-span-3 {
+  grid-column-end: span 3;
+}
+
+.grid-span-4 {
+  grid-column-end: span 4;
+}
+
+.grid-span-5 {
+  grid-column-end: span 5;
+}
+
+.grid-span-6 {
+  grid-column-end: span 6;
+}
+
+.grid-span-7 {
+  grid-column-end: span 7;
+}
+
+.grid-span-8 {
+  grid-column-end: span 8;
+}
+
+.grid-span-9 {
+  grid-column-end: span 9;
+}
+
+.grid-span-10 {
+  grid-column-end: span 10;
+}
+
+.grid-span-11 {
+  grid-column-end: span 11;
+}
+
+.grid-span-12 {
+  grid-column-end: span 12;
+}
+
+.flex-group-center,
+.flex-group-left,
+.flex-group-right {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.flex-group-left {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.flex-group-right {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.flexshrink {
+  flex: 0;
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+.flexlarge {
+  flex: 2;
+}
+
+.align-left {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.align-right {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.align-center {
+  justify-content: center;
+  text-align: center;
+}
+
+/* Styles limited to metanthropes sheets */
+.metanthropes {
+  /* ----------------------------------------- */
+  /*  Items Lists                              */
+  /* ----------------------------------------- */
+  /* Example style for Metanthropes (can be removed if not needed) */
+}
+.metanthropes .item-form {
+  font-family: "nasalization", sans-serif;
+}
+.metanthropes .sheet-header {
+  flex: 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+.metanthropes .sheet-header .profile-img {
+  flex: 0 0 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+.metanthropes .sheet-header .header-fields {
+  flex: 1;
+}
+.metanthropes .sheet-header h1.charname {
+  height: 50px;
+  padding: 0px;
+  margin: 5px 0;
+  border-bottom: 0;
+}
+.metanthropes .sheet-header h1.charname input {
+  width: 80%;
+  height: 80%;
+  margin: 0;
+}
+.metanthropes .sheet-tabs {
+  flex: 0;
+}
+.metanthropes .sheet-body {
+  background-image: url("../artwork/bg-sheet.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  opacity: 0.2;
+}
+.metanthropes .sheet-body,
+.metanthropes .sheet-body .tab,
+.metanthropes .sheet-body .tab .editor {
+  height: 100%;
+  font-family: "omnium-wide", sans-serif;
+}
+.metanthropes .tox .tox-editor-container {
+  background-image: url("../artwork/bg-sheet.jpg");
+  background-repeat: no-repeat;
+  font-family: "omnium-wide", sans-serif;
+}
+.metanthropes .tox .tox-edit-area {
+  padding: 0 8px;
+}
+.metanthropes .resource-label {
+  font-weight: bold;
+}
+.metanthropes .items-header {
+  height: 28px;
+  margin: 2px 0;
+  padding: 0;
+  align-items: center;
+  background: #000;
+  border: 2px groove #092e00;
+  font-weight: bold;
+}
+.metanthropes .items-header > * {
+  font-size: 14px;
+  text-align: center;
+}
+.metanthropes .items-header .item-name {
+  font-weight: bold;
+  padding-left: 5px;
+  text-align: left;
+  display: flex;
+}
+.metanthropes .items-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  color: #444;
+}
+.metanthropes .items-list .item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.metanthropes .items-list .item-name {
+  flex: 2;
+  margin: 0;
+  overflow: hidden;
+  font-size: 13px;
+  text-align: left;
+  align-items: center;
+  display: flex;
+}
+.metanthropes .items-list .item-name h3,
+.metanthropes .items-list .item-name h4 {
+  margin: 0;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+.metanthropes .items-list .item-controls {
+  display: flex;
+  flex: 0 0 100px;
+  justify-content: flex-end;
+}
+.metanthropes .items-list .item-controls a {
+  font-size: 12px;
+  text-align: center;
+  margin: 0 6px;
+}
+.metanthropes .items-list .item {
+  align-items: center;
+  padding: 0 2px;
+  border-bottom: 1px solid #c9c7b8;
+}
+.metanthropes .items-list .item:last-child {
+  border-bottom: none;
+}
+.metanthropes .items-list .item .item-name {
+  color: #191813;
+}
+.metanthropes .items-list .item .item-name .item-image {
+  flex: 0 0 30px;
+  height: 30px;
+  background-size: 30px;
+  border: none;
+  margin-right: 5px;
+}
+.metanthropes .items-list .item-prop {
+  text-align: center;
+  border-left: 1px solid #c9c7b8;
+  border-right: 1px solid #c9c7b8;
+  font-size: 12px;
+}
+.metanthropes .items-list .items-header {
+  height: 28px;
+  margin: 2px 0;
+  padding: 0;
+  align-items: center;
+  background: #092e00;
+  border: 2px groove #092e00;
+  font-weight: bold;
+}
+.metanthropes .items-list .items-header > * {
+  font-size: 12px;
+  text-align: center;
+}
+.metanthropes .items-list .items-header .item-name {
+  padding-left: 5px;
+  text-align: left;
+}
+.metanthropes .item-formula {
+  flex: 0 0 200px;
+  padding: 0 8px;
+}
+.metanthropes .effects .item .effect-source,
+.metanthropes .effects .item .effect-duration,
+.metanthropes .effects .item .effect-controls {
+  text-align: center;
+  border-left: 1px solid #c9c7b8;
+  border-right: 1px solid #c9c7b8;
+  font-size: 12px;
+}
+.metanthropes .effects .item .effect-controls {
+  border: none;
+}/*# sourceMappingURL=metanthropes-system.css.map */
