@@ -8,8 +8,8 @@
 	border: $border-sm;
 }
 
-.lbigcontainer {
-	background-image: url("../artwork/bg-container.png");
+.layout-bigcontainer {
+	background-image: url("../artwork/layout-container-big.jpg");
 	background-size: cover;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
@@ -23,8 +23,8 @@
 	grid-column-end: span 3;
 }
 
-.lmediumcontainer {
-	background-image: url("../artwork/bg-sheet.jpg");
+.layout-mediumcontainer {
+	background-image: url("../artwork/layout-container-med.jpg");
 	padding: $padding-md;
 	margin: $margin-md;
 	border: $border-md;
@@ -34,7 +34,7 @@
 	flex-basis: 200px;
 }
 
-.scharstats {
+.style-charstats {
 	opacity: 1;
 	font-family: $font-primary;
 	font-size: 1.5em;
@@ -42,7 +42,7 @@
 	text-shadow: 0 0 10px $c-green;
 }
 
-.scharacteristics {
+.style-characteristics {
 	font-family: $font-primary;
 	font-size: 1.2em;
 	color: $c-green;

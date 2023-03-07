@@ -231,8 +231,8 @@
   margin: 5px;
   border: 5px;
 }
-.metanthropes .lbigcontainer {
-  background-image: url("../artwork/bg-container.png");
+.metanthropes .layout-bigcontainer {
+  background-image: url("../artwork/layout-container-big.jpg");
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -244,8 +244,8 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-column-end: span 3;
 }
-.metanthropes .lmediumcontainer {
-  background-image: url("../artwork/bg-sheet.jpg");
+.metanthropes .layout-mediumcontainer {
+  background-image: url("../artwork/layout-container-med.jpg");
   padding: 10px;
   margin: 10px;
   border: 10px;
@@ -254,14 +254,14 @@
   flex-shrink: 1;
   flex-basis: 200px;
 }
-.metanthropes .scharstats {
+.metanthropes .style-charstats {
   opacity: 1;
   font-family: "nasalization", sans-serif;
   font-size: 1.5em;
   color: #370239;
   text-shadow: 0 0 10px #092e00;
 }
-.metanthropes .scharacteristics {
+.metanthropes .style-characteristics {
   font-family: "nasalization", sans-serif;
   font-size: 1.2em;
   color: #092e00;
