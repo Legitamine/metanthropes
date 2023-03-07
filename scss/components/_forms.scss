@@ -2,12 +2,18 @@
 	font-family: $font-primary;
 }
 
+.metanthropes {
+	padding: $padding-sm;
+	border: $border-sm;
+	margin: $margin-sm;
+}
+
 .layout-bigcontainer {
-	background-image: url("../artwork/bg-sheet.jpg");
+	background-image: url("../artwork/bg-container.png");
 	background-size: cover;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
-	opacity: 0.6;
+	opacity: 0.4;
 	padding: $padding-lg;
 	margin: $margin-lg;
 	display: flex;
@@ -15,6 +21,7 @@
 }
 
 .layout-mediumcontainer {
+	background-image: url("../artwork/bg-sheet.jpg");
 	opacity: 1;
 	flex-grow: 0;
 	flex-shrink: 1;

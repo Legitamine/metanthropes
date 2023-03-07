@@ -5,11 +5,11 @@
 }
 
 .window-content {
-  background-image: url("../artwork/bg-sheet.jpg");
+  background-image: url("../artwork/bg-canvas.jpg");
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  opacity: 0.2;
+  opacity: 0.6;
 }
 
 .rollable:hover, .rollable:focus {
@@ -225,18 +225,24 @@
 .metanthropes .item-form {
   font-family: "nasalization", sans-serif;
 }
+.metanthropes .metanthropes {
+  padding: 5px;
+  border: 5px;
+  margin: 5px;
+}
 .metanthropes .layout-bigcontainer {
-  background-image: url("../artwork/bg-sheet.jpg");
+  background-image: url("../artwork/bg-container.png");
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  opacity: 0.6;
+  opacity: 0.4;
   padding: 20px;
   margin: 20px;
   display: flex;
   flex-direction: row;
 }
 .metanthropes .layout-mediumcontainer {
+  background-image: url("../artwork/bg-sheet.jpg");
   opacity: 1;
   flex-grow: 0;
   flex-shrink: 1;
