@@ -1,9 +1,11 @@
 @import url("https://use.typekit.net/gld0tkk.css");
 input[type=text], input[type=number] {
-  height: auto;
-  width: auto;
-  min-height: 30px;
-  min-width: 30px;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  min-height: 20px;
+  min-width: 20px;
   margin: 5px;
   padding: 5px;
   color: #370239;
@@ -237,9 +239,10 @@ input[type=text], input[type=number] {
   row-gap: 5px;
   padding: 0px;
   margin: 0px;
-  border: 1px solid #370239;
+  border: 1px dotted #370239;
   border-radius: 15px;
   justify-content: center;
+  justify-self: center;
   opacity: 1;
 }
 .metanthropes .layout-container-big {
@@ -249,12 +252,18 @@ input[type=text], input[type=number] {
   opacity: 1;
   padding: 0px;
   margin: 0px;
+  justify-content: center;
+  justify-self: center;
 }
 .metanthropes .layout-container-med {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  border: 1px solid #092e00;
+  border-radius: 15px;
   padding: 5px;
   margin: 5px;
+  justify-content: center;
+  justify-self: center;
   opacity: 1;
 }
 .metanthropes .style-container-grid3x4-children {

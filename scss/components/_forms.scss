@@ -16,11 +16,11 @@
 	//background-repeat: no-repeat;
 	//background-origin: border-box;
 	//background-clip: border-box;
-	border: 1px solid $c-purple;
+	border: 1px dotted $c-purple;
 	border-radius: 15px;
 	justify-content: center;
+	justify-self: center;
 	opacity: 1;
-	
 }
 
 .layout-container-big {
@@ -36,6 +36,8 @@
 	opacity: 1;
 	padding: $padding-zero;
 	margin: $margin-zero;
+	justify-content: center;
+	justify-self: center;
 }
 
 .layout-container-med {
@@ -47,8 +49,12 @@
 	//background-repeat: round;
 	//background-origin: border-box;
 	//background-clip: border-box;
+	border:1px solid $c-green;
+	border-radius: 15px;
 	padding: $padding-sm;
 	margin: $margin-sm;
+	justify-content: center;
+	justify-self: center;
 	opacity: 1;
 }
 
