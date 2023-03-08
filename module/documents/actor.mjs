@@ -94,7 +94,14 @@ export class MetanthropesActor extends Actor {
 		console.log("Endurance Current", systemData.characteristics.body.stats.endurance.current);
 		systemData.characteristics.body.stats.endurance.rollme = (systemData.characteristics.body.stats.endurance.current + systemData.characteristics.body.current);
 		console.log("------------------------------------------------------------------------------------");
-		console.log("Final Endurance for rolls", systemData.characteristics.body.stats.endurance.rollme);
+		console.log("Final Endurance for Rolls:", systemData.characteristics.body.stats.endurance.rollme);
+		console.log("------------------------------------------------------------------------------------");
+		console.log("------------------------------------------------------------------------------------");
+		console.log("Calculating New Life Maximum based off Life Initial Value:", systemData.vital.life.initial);
+		console.log("------------------------------------------------------------------------------------");
+		systemData.vital.life.max = (systemData.characteristics.body.stats.endurance.current + systemData.vital.life.initial);
+		console.log("------------------------------------------------------------------------------------");
+		console.log("New Life Maximum Value:", systemData.vital.life.max);
 		console.log("------------------------------------------------------------------------------------");
 		//power
 		console.log("Power Base", systemData.characteristics.body.stats.power.base);
@@ -108,7 +115,7 @@ export class MetanthropesActor extends Actor {
 		console.log("Power Current", systemData.characteristics.body.stats.power.current);
 		systemData.characteristics.body.stats.power.rollme = (systemData.characteristics.body.stats.power.current + systemData.characteristics.body.current);
 		console.log("------------------------------------------------------------------------------------");
-		console.log("Final Power for rolls", systemData.characteristics.body.stats.power.rollme);
+		console.log("Final Power for Rolls:", systemData.characteristics.body.stats.power.rollme);
 		console.log("------------------------------------------------------------------------------------");
 		//reflexes
 		console.log("Reflexes Base", systemData.characteristics.body.stats.reflexes.base);
@@ -122,7 +129,7 @@ export class MetanthropesActor extends Actor {
 		console.log("Reflexes Current", systemData.characteristics.body.stats.reflexes.current);
 		systemData.characteristics.body.stats.reflexes.rollme = (systemData.characteristics.body.stats.reflexes.current + systemData.characteristics.body.current);
 		console.log("------------------------------------------------------------------------------------");
-		console.log("Final Reflexes for rolls", systemData.characteristics.body.stats.reflexes.rollme);
+		console.log("Final Reflexes for Rolls:", systemData.characteristics.body.stats.reflexes.rollme);
 		console.log("------------------------------------------------------------------------------------");
 		//mind
 		console.log("Mind Base", systemData.characteristics.mind.base);
@@ -146,7 +153,7 @@ export class MetanthropesActor extends Actor {
 		console.log("Perception Current", systemData.characteristics.mind.stats.perception.current);
 		systemData.characteristics.mind.stats.perception.rollme = (systemData.characteristics.mind.stats.perception.current + systemData.characteristics.mind.current);
 		console.log("------------------------------------------------------------------------------------");
-		console.log("Final Perception for rolls", systemData.characteristics.mind.stats.perception.rollme);
+		console.log("Final Perception for Rolls:", systemData.characteristics.mind.stats.perception.rollme);
 		console.log("------------------------------------------------------------------------------------");
 		//manipulation
 		console.log("Manipulation Base", systemData.characteristics.mind.stats.manipulation.base);
@@ -160,7 +167,7 @@ export class MetanthropesActor extends Actor {
 		console.log("Manipulation Current", systemData.characteristics.mind.stats.manipulation.current);
 		systemData.characteristics.mind.stats.manipulation.rollme = (systemData.characteristics.mind.stats.manipulation.current + systemData.characteristics.mind.current);
 		console.log("------------------------------------------------------------------------------------");
-		console.log("Final Manipulation for rolls", systemData.characteristics.mind.stats.manipulation.rollme);
+		console.log("Final Manipulation for Rolls:", systemData.characteristics.mind.stats.manipulation.rollme);
 		console.log("------------------------------------------------------------------------------------");
 		//creativity
 		console.log("Creativity Base", systemData.characteristics.mind.stats.creativity.base);
@@ -174,7 +181,7 @@ export class MetanthropesActor extends Actor {
 		console.log("Creativity Current", systemData.characteristics.mind.stats.creativity.current);
 		systemData.characteristics.mind.stats.creativity.rollme = (systemData.characteristics.mind.stats.creativity.current + systemData.characteristics.mind.current);
 		console.log("------------------------------------------------------------------------------------");
-		console.log("Final Creativity for rolls", systemData.characteristics.mind.stats.creativity.rollme);
+		console.log("Final Creativity for Rolls:", systemData.characteristics.mind.stats.creativity.rollme);
 		console.log("------------------------------------------------------------------------------------");
 		//soul
 		console.log("Soul Base", systemData.characteristics.soul.base);
@@ -198,7 +205,7 @@ export class MetanthropesActor extends Actor {
 		console.log("Willpower Current", systemData.characteristics.soul.stats.willpower.current);
 		systemData.characteristics.soul.stats.willpower.rollme = (systemData.characteristics.soul.stats.willpower.current + systemData.characteristics.soul.current);
 		console.log("------------------------------------------------------------------------------------");
-		console.log("Final Willpower for rolls", systemData.characteristics.soul.stats.willpower.rollme);
+		console.log("Final Willpower for Rolls:", systemData.characteristics.soul.stats.willpower.rollme);
 		console.log("------------------------------------------------------------------------------------");
 		//consciousness
 		console.log("Consciousness Base", systemData.characteristics.soul.stats.consciousness.base);
@@ -212,7 +219,7 @@ export class MetanthropesActor extends Actor {
 		console.log("Consciousness Current", systemData.characteristics.soul.stats.consciousness.current);
 		systemData.characteristics.soul.stats.consciousness.rollme = (systemData.characteristics.soul.stats.consciousness.current + systemData.characteristics.soul.current);
 		console.log("------------------------------------------------------------------------------------");
-		console.log("Final Consciousness for rolls", systemData.characteristics.soul.stats.consciousness.rollme);
+		console.log("Final Consciousness for Rolls:", systemData.characteristics.soul.stats.consciousness.rollme);
 		console.log("------------------------------------------------------------------------------------");
 		//awareness
 		console.log("Awareness Base", systemData.characteristics.soul.stats.awareness.base);
@@ -226,7 +233,7 @@ export class MetanthropesActor extends Actor {
 		console.log("Awareness Current", systemData.characteristics.soul.stats.awareness.current);
 		systemData.characteristics.soul.stats.awareness.rollme = (systemData.characteristics.soul.stats.awareness.current + systemData.characteristics.soul.current);
 		console.log("------------------------------------------------------------------------------------");
-		console.log("Final Awareness for rolls", systemData.characteristics.soul.stats.awareness.rollme);
+		console.log("Final Awareness for Rolls:", systemData.characteristics.soul.stats.awareness.rollme);
 		console.log("------------------------------------------------------------------------------------");
 		//end
 		console.log("========================================================================");
@@ -449,7 +456,7 @@ export class MetanthropesActor extends Actor {
 	_getCharacterRollData(data) {
 		if (this.type !== 'Protagonist') return;
 
-		// Copy the ability scores to the top level, so that rolls can use
+		// Copy the ability scores to the top level, so that Rolls: can use
 		// formulas like `@str.mod + 4`.
 		//todo: qp preparing for template switch - or not? maybe this section is not needed????
 		//? is this where the numbering bug is coming from?

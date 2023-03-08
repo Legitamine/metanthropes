@@ -9,21 +9,49 @@ input[type=text], input[type=number] {
   border-radius: 15px;
 }
 
+form {
+  font-family: "nasalization", sans-serif;
+  margin: 10px;
+  padding: 10px;
+}
+
+main {
+  font-family: "nasalization", sans-serif;
+  margin: 5px;
+  padding: 5px;
+}
+
 body {
   font-family: "nasalization", sans-serif;
+  margin: 5px;
+  padding: 5px;
+}
+
+header {
+  margin: 5px;
+  padding: 5px;
+}
+
+footer {
+  margin: 5px;
+  padding: 5px;
 }
 
 button {
   font-family: "nasalization", sans-serif;
+  margin: 5px;
+  padding: 5px;
 }
 
 .window-app {
   font-family: "nasalization", sans-serif;
+  margin: 5px;
+  padding: 5px;
 }
 
 .window-content {
   padding: 5px;
-  margin: 0px;
+  margin: 5px;
 }
 
 .grid,

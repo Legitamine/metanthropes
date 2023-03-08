@@ -170,8 +170,8 @@
 					"Experience": {
 						"type": "number",
 						"label": "Experience",
-						"total": 0,
-						"spent": 0,
+						"total": 1000,
+						"spent": 1000,
 						"stored": 0
 					},
 					"age": {
@@ -187,6 +187,7 @@
 					"life": {
 						"type": "number",
 						"label": "Life",
+						"initial": 100,
 						"value": 100,
 						"max": 0
 					},

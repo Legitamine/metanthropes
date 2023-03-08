@@ -15,21 +15,50 @@ input[type="text"], input[type="number"] {
 	border-radius: 15px;
 }
 // this changes the font in body-elements of Foundry UI
+form {
+	font-family: $font-primary;
+	margin: $margin-md;
+	padding: $padding-md;
+}
+
+main {
+	font-family: $font-primary;
+	margin: $margin-sm;
+	padding: $padding-sm;
+}
+
 body {
 	font-family: $font-primary;
+	margin: $margin-sm;
+	padding: $padding-sm;
 }
+
+header {
+	margin: $margin-sm;
+	padding: $padding-sm;
+}
+
+footer {
+	margin: $margin-sm;
+	padding: $padding-sm;
+}
+
 // this changes the font for buttons of Foundry UI
 button {
 	font-family: $font-primary;
+	margin: $margin-sm;
+	padding: $padding-sm;
 }
 // this changes the font in most title-elements of Foundry UI
 .window-app {
 	font-family: $font-primary;
+	margin: $margin-sm;
+	padding: $padding-sm;
 }
 
 .window-content {
 padding: $padding-sm;
-margin: $margin-zero;
+margin: $margin-sm;
 }
 
 //	.actor-sheet {
