@@ -3,12 +3,9 @@
 }
 
 .window-content {
-	background-image: url("../artwork/bg-canvas.jpg");
-	background-size: cover;
-	background-attachment: fixed;
-	background-repeat: no-repeat;
-	background-origin: border-box;
-	opacity: 1;
+padding: $padding-sm;
+border: $border-sm;
+margin: $margin-sm;
 }
 
 .actor-sheet {

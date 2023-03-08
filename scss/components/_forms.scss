@@ -11,10 +11,12 @@
 	margin: $margin-lg;
 	background-image: url("../artwork/bg-canvas.jpg");
 	background-size: cover;
-	background-attachment: fixed;
+	background-attachment: local;
 	background-repeat: no-repeat;
 	background-origin: border-box;
+	background-clip: border-box;
 	opacity: 0.6;
+	
 }
 
 .layout-container-big {
@@ -24,6 +26,8 @@
 	background-size: cover;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
+	background-origin: border-box;
+	background-clip: border-box;
 	opacity: 0.8;
 	padding: $padding-lg;
 	border: $border-lg;
@@ -37,6 +41,8 @@
 	background-size: contain;
 	background-attachment: local;
 	background-repeat: round;
+	background-origin: border-box;
+	background-clip: border-box;
 	padding: $padding-md;
 	border: $border-md;
 	margin: $margin-md;
@@ -47,7 +53,7 @@
 	opacity: 1;
 	//font-family: $font-primary; it's declared in the window and it's inherited
 	justify-content: center;
-	font-size: 2rem;
+	font-size: 1rem;
 	color: $c-purple;
 	text-shadow: $s-outline;
 }
@@ -55,7 +61,7 @@
 .style-container-med-children {
 	opacity: 1;
 	//font-family: $font-primary;
-	font-size: 1.5rem;
+	font-size: .75rem;
 	color: $c-green;
 	text-shadow: 0 0 10px $c-purple;
 }
