@@ -2,10 +2,13 @@
 	font-family: $font-primary;
 }
 
+.dialog-button {
+	font-family: $font-primary;
+}
+
 .window-content {
 padding: $padding-sm;
-border: $border-sm;
-margin: $margin-sm;
+margin: $margin-zero;
 }
 
 .actor-sheet {
