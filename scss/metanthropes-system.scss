@@ -17,6 +17,8 @@
 .metanthropes {
 	padding: $padding-sm;
 	margin: $margin-sm;
+	@import "components/layouts";
+	@import "components/styles";
 	@import "components/forms";
 	@import "components/resource";
 	@import "components/items";

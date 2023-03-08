@@ -1,0 +1,52 @@
+//Styles used in Metanthropes RPG Sheets
+//containers and borders
+//characteristics and stats styling and borders
+.style-container-grid3x4 {
+	border: 1px dotted $c-purple;
+	border-radius: 15px;
+	justify-content: center;
+	justify-self: center;
+	opacity: 1;
+	font-size: 1rem;
+	color: $c-purple;
+	text-shadow: $s-outline;
+}
+//big container
+.style-container-big {
+	opacity: 1;
+	//font-family: $font-primary;
+	font-size: .75rem;
+	color: $c-green;
+	text-shadow: 0 0 10px $c-purple;
+}
+//medium container
+.style-container-medium {
+	opacity: 1;
+	//font-family: $font-primary; it's declared in the window and it's inherited
+	justify-content: center;
+	font-size: 1rem;
+	color: $c-purple;
+	text-shadow: $s-outline;
+}
+//small container
+.style-container-small {
+	border: 1px dotted $c-purple;
+	border-radius: 15px;
+	justify-content: space-between;
+	justify-self: center;
+}
+//fonts and colors
+//unused
+.style-secondary-title {
+	opacity: 1;
+	font-family: $font-secondary;
+	font-size: 1.5em;
+	color: $c-purple;
+}
+//unused
+.style-secondary-body {
+	opacity: 1;
+	font-family: $font-secondary;
+	font-size: 1.2em;
+	color: $c-green;
+}

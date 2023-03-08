@@ -1,0 +1,62 @@
+//layouts used in Metanthropes RPG Sheets
+//container layout
+//characteristics and stats container
+.layout-container-grid3x4 {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr;
+	column-gap: 15px;
+	row-gap: 5px;
+	padding: $padding-zero;
+	margin: $margin-zero;
+	//background-image: url("../artwork/bg-canvas.jpg");
+	//background-size: cover;
+	//background-attachment: local;
+	//background-repeat: no-repeat;
+	//background-origin: border-box;
+	//background-clip: border-box;
+}
+//big container with 3 columns and 2 rows
+.layout-container-big {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	//background-image: url("../artwork/layout-container-big.jpg");
+	//background-size: cover;
+	//background-attachment: fixed;
+	//background-repeat: no-repeat;
+	//background-origin: border-box;
+	//background-clip: border-box;
+	opacity: 1;
+	padding: $padding-zero;
+	margin: $margin-zero;
+	justify-content: center;
+	justify-self: center;
+	grid-auto-rows: minmax(100px, auto);
+	border: 1px dotted $c-purple;
+	border-radius: 15px;
+}
+//medium container with 3 columns and 1 row
+.layout-container-medum {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	//background-image: url("../artwork/layout-container-med.jpg");
+	//background-size: contain;
+	//background-attachment: local;
+	//background-repeat: round;
+	//background-origin: border-box;
+	//background-clip: border-box;
+	border:1px solid $c-green;
+	border-radius: 15px;
+	padding: $padding-sm;
+	margin: $margin-sm;
+	justify-content: center;
+	justify-self: center;
+	opacity: 1;
+}
+//small container with 1 flex row
+.layout-container-small {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
