@@ -1,8 +1,9 @@
+// this changes the input fields in Foundry UI
 input[type="text"], input[type="number"] {
-	height: fit-content;
-	width: 60%;
-	min-height: 20px;
-	min-width: 20px;
+	//height: 2ch;
+	width: 12ch;
+	//min-height: 20px;
+	//min-width: 20px;
 	//max-height: fit-content;
 	//max-width: fit-content;
 	margin: $margin-sm;
@@ -13,11 +14,15 @@ input[type="text"], input[type="number"] {
 	border: 1px dashed $c-purple;
 	border-radius: 15px;
 }
-
+// this changes the font in most title-elements of Foundry UI
 .window-app {
 	font-family: $font-primary;
 }
-
+// this changes the font in body-elements of Foundry UI
+.body {
+	font-family: $font-primary;
+}
+// this changes the font for buttons of Foundry UI
 .dialog-button {
 	font-family: $font-primary;
 }
@@ -30,9 +35,9 @@ margin: $margin-zero;
 .actor-sheet {
 	//character sheets always open at this size
 	//does this also affect a default actor-sheet class?
-	//why it opens with 720p height?
-	width: 800;
-	height: 800;
+	//why it opens with 720p height? missing px setting, just number won't do the trick ;p
+	width: 800px;
+	height: 800px;
 }
 
 //	.rollable {

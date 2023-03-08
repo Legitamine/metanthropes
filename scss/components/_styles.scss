@@ -11,7 +11,7 @@
 	justify-content: center;
 	justify-self: center;
 }
-//big container
+//big container styling
 .style-container-big {
 	opacity: 1;
 	font-size: .75rem;
@@ -22,13 +22,12 @@
 	justify-content: center;
 	justify-self: center;
 }
-//medium container
+//medium container styling
 .style-container-medium {
 	opacity: 1;
 	font-size: 1rem;
 	color: $c-purple;
 	text-shadow: $s-outline;
-	justify-content: center;
 	border:1px solid $c-green;
 	border-radius: 15px;
 	justify-content: center;
@@ -36,16 +35,20 @@
 }
 //small container styling
 .style-container-small {
+	opacity: 1;
+	font-size: 1rem;
+	color: $c-purple;
+	text-shadow: $s-outline;
 	border: 1px solid$c-green;
 	border-radius: 15px;
-	justify-content: space-between;
+	justify-content: center;
 	justify-self: center;
 }
 //nav container styling
 .style-container-nav {
 	border: 1px dotted $c-purple;
 	border-radius: 15px;
-	justify-content: space-between;
+	justify-content: space-evenly;
 	justify-self: center;
 }
 //fonts and colors
@@ -53,13 +56,13 @@
 .style-secondary-title {
 	opacity: 1;
 	font-family: $font-secondary;
-	font-size: 1.5em;
+	font-size: 1.5rem;
 	color: $c-purple;
 }
 //unused
 .style-secondary-body {
 	opacity: 1;
 	font-family: $font-secondary;
-	font-size: 1.2em;
+	font-size: 1.2rem;
 	color: $c-green;
 }
