@@ -8,13 +8,13 @@
 	grid-template-rows: 1fr 1fr 1fr 1fr;
 	padding: $padding-zero;
 	margin: $margin-zero;
-	background-image: url("../artwork/bg-canvas.jpg");
-	background-size: cover;
-	background-attachment: local;
-	background-repeat: no-repeat;
-	background-origin: border-box;
-	background-clip: border-box;
-	opacity: 0.6;
+	//background-image: url("../artwork/bg-canvas.jpg");
+	//background-size: cover;
+	//background-attachment: local;
+	//background-repeat: no-repeat;
+	//background-origin: border-box;
+	//background-clip: border-box;
+	opacity: 1;
 	
 }
 
@@ -22,13 +22,13 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 1fr 1fr;
-	background-image: url("../artwork/layout-container-big.jpg");
-	background-size: cover;
-	background-attachment: fixed;
-	background-repeat: no-repeat;
-	background-origin: border-box;
-	background-clip: border-box;
-	opacity: 0.8;
+	//background-image: url("../artwork/layout-container-big.jpg");
+	//background-size: cover;
+	//background-attachment: fixed;
+	//background-repeat: no-repeat;
+	//background-origin: border-box;
+	//background-clip: border-box;
+	opacity: 1;
 	padding: $padding-zero;
 	margin: $margin-zero;
 }
@@ -36,15 +36,15 @@
 .layout-container-med {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	background-image: url("../artwork/layout-container-med.jpg");
-	background-size: contain;
-	background-attachment: local;
-	background-repeat: round;
-	background-origin: border-box;
-	background-clip: border-box;
+	//background-image: url("../artwork/layout-container-med.jpg");
+	//background-size: contain;
+	//background-attachment: local;
+	//background-repeat: round;
+	//background-origin: border-box;
+	//background-clip: border-box;
 	padding: $padding-md;
 	margin: $margin-md;
-	opacity: 0.4;
+	opacity: 1;
 }
 
 .style-container-grid3x4-children {

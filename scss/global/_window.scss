@@ -1,11 +1,17 @@
-input {
-	width: 80%;
-	height: 80%;
+input[type="text"], input[type="number"] {
+	height: auto;
+	width: auto;
+	min-height: 30px;
+	min-width: 30px;
+	max-height: fit-content;
+	max-width: fit-content;
 	margin: $margin-sm;
 	padding: $padding-sm;
 	color: $c-purple;
 	text-shadow: 0 0 10px $c-purple;
 	font-size: 1rem;
+	border: 1px dashed $c-purple;
+	border-radius: 15px;
 }
 
 .window-app {
