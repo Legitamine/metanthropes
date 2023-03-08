@@ -6,9 +6,8 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr 1fr;
-	padding: $padding-lg;
-	border: $border-lg;
-	margin: $margin-lg;
+	padding: $padding-zero;
+	margin: $margin-zero;
 	background-image: url("../artwork/bg-canvas.jpg");
 	background-size: cover;
 	background-attachment: local;
@@ -20,8 +19,9 @@
 }
 
 .layout-container-big {
-	display: flex;
-	flex-flow: wrap;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
 	background-image: url("../artwork/layout-container-big.jpg");
 	background-size: cover;
 	background-attachment: fixed;
@@ -29,14 +29,14 @@
 	background-origin: border-box;
 	background-clip: border-box;
 	opacity: 0.8;
-	padding: $padding-lg;
-	border: $border-lg;
-	margin: $margin-lg;
+	padding: $padding-zero;
+	margin: $margin-zero;
 }
 
 .layout-container-med {
-	display: flex;
-	flex-flow: column;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr;
 	background-image: url("../artwork/layout-container-med.jpg");
 	background-size: contain;
 	background-attachment: local;
@@ -44,7 +44,6 @@
 	background-origin: border-box;
 	background-clip: border-box;
 	padding: $padding-md;
-	border: $border-md;
 	margin: $margin-md;
 	opacity: 0.4;
 }
