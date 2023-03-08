@@ -2,6 +2,21 @@
 //		font-family: $font-primary;
 //	}
 
+.layout-container-grid3x4 {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr;
+	padding: $padding-lg;
+	border: $border-lg;
+	margin: $margin-lg;
+	background-image: url("../artwork/bg-canvas.jpg");
+	background-size: cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-origin: border-box;
+	opacity: 1;
+}
+
 .layout-container-big {
 	background-image: url("../artwork/layout-container-big.jpg");
 	background-size: cover;

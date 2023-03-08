@@ -215,6 +215,20 @@
   border: 5px;
   margin: 5px;
 }
+.metanthropes .layout-container-grid3x4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  padding: 20px;
+  border: 20px;
+  margin: 20px;
+  background-image: url("../artwork/bg-canvas.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-origin: border-box;
+  opacity: 1;
+}
 .metanthropes .layout-container-big {
   background-image: url("../artwork/layout-container-big.jpg");
   background-size: cover;
@@ -260,4 +274,4 @@
   font-family: "omnium-wide", sans-serif;
   font-size: 1.2em;
   color: #092e00;
-}/*# sourceMappingURL=metanthropes-system.css.map */
+}
