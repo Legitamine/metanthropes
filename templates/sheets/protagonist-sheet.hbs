@@ -1,53 +1,73 @@
 <form class="metanthropes actor-sheet {{cssClass}}" autocomplete="off">
 	<header>
-		<h1>This is a header 1</h1>
-		<h2>This is a header 2</h2>
-		<h3>This is a header 3</h3>
-		<h4>This is a header 4</h4>
-		<h5>This is a header 5</h5>
-		<h6>This is a header 6</h6>
-		<p>lorem</p>
-		<p><input name="name" type="text" value="{{actor.name}}" placeholder="A Protagonist"></p>
+		<div>
+			<h1><input name="name" type="text" value="{{actor.name}}" placeholder="A Protagonist"></h1>
+			<aside>
+				<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64" />
+				<h3><input name="" type="text" value="" placeholder="">Prime</h3>
+				<h3><input name="" type="text" value="" placeholder="">Coalition</h3>
+				<h3><input name="" type="text" value="" placeholder="">Sagas</h3>
+			</aside>
+			<h5><input name="" type="text" value="" placeholder="">Background</h5>
+			<h5><input name="" type="text" value="" placeholder="">Metamorphosis</h5>
+			<h5><input name="" type="text" value="" placeholder="">Arc</h5>
+			<h5><input name="" type="text" value="" placeholder="">Regression</h5>
+		</div>
+		<div>
+			<span>
+				<h3><input name="" type="" value="">Life</h3>
+				<h3><input name="" type="" value="">Destiny</h3>
+				<h3><input name="" type="" value="">Experience</h3>
+			</span>
+		</div>
 	</header>
 	<body>
-		<nav class="metanthropes layout-navbar" data-group="csnav">
+		<nav>
 			<!-- look into actor-sheet.mjs -->
-			<a class="metanthropes style-nav style-button" data-tab="charstats">Characteristics & Stats</a>
-			<a class="metanthropes style-nav style-button" data-tab="perks">Perks</a>
-			<a class="metanthropes style-nav style-button" data-tab="metapowers">Metapowers</a>
-			<a class="metanthropes style-nav style-button" data-tab="combos">Combos</a>
-			<a class="metanthropes style-nav style-button" data-tab="possessions">Possessions</a>
-			<a class="metanthropes style-nav style-button" data-tab="notes">Notes</a>
+			<a>Characteristics & Stats</a>
+			<a>Perks</a>
+			<a>Metapowers</a>
+			<a>Combos</a>
+			<a>Possessions</a>
+			<a>Notes</a>
 		</nav>
-		<section class="metanthropes layout-container-big style-secondary-title">
-			<div data-tab="charstats">
-				<h3>Characteristics & Stats</h3>
+		<main>
+			<div>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ipsa est excepturi incidunt dicta nihil quaerat provident, voluptates iste autem, recusandae necessitatibus ducimus labore tenetur, sit vitae a eligendi quas?</p>
 			</div>
-			<div data-tab="perks">
-				<h4>Perks</h4>
-			</div>
-			<div data-tab="metapowers">
-				<h4>Metapowers</h4>
-			</div>
-			<div data-tab="combos">
-				<h4>Combos</h4>
-			</div>
-			<div data-tab="possessions">
-				<h4>Possessions</h4>
-			</div>
-			<div data-tab="notes">
-				<h5>Notes</h5>
-			</div>
-		</section>
+			<aside>
+				<div>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ipsa est excepturi incidunt dicta nihil quaerat provident, voluptates iste autem, recusandae necessitatibus ducimus labore tenetur, sit vitae a eligendi quas?</p>
+				</div>
+			</aside>
+			<aside>
+				<div>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ipsa est excepturi incidunt dicta nihil quaerat provident, voluptates iste autem, recusandae necessitatibus ducimus labore tenetur, sit vitae a eligendi quas?</p>
+				</div>
+			</aside>
+		</main>
 	</body>
 	<footer>
-		<h1>This is a footer 1</h1>
-		<h2>This is a footer 2</h2>
-		<h3>This is a footer 3</h3>
-		<h4>This is a footer 4</h4>
-		<h5>This is a footer 5</h5>
-		<h6>This is a footer 6</h6>
-		<p>lorem</p>
-		<p><label value="{{actor.name}}"></p>
+		<span>
+			<div>
+				<h4><input name="" type="text" value="" placeholder="">Movement</h4>
+				<h5><input name="" type="text" value="" placeholder="">Speed</h5>
+				<h5><input name="" type="text" value="" placeholder="">Weight</h5>
+				<h5><input name="" type="text" value="" placeholder="">Size</h5>
+			</div>
+			<div>
+				<h4><input name="" type="text" value="" placeholder="">Resistances</h4>
+				<h5><input name="" type="text" value="" placeholder="">Cosmic</h5>
+				<h5><input name="" type="text" value="" placeholder="">Elemental</h5>
+				<h5><input name="" type="text" value="" placeholder="">Material</h5>
+				<h5><input name="" type="text" value="" placeholder="">Psychic</h5>
+			</div>
+			<div>
+				<h4><input name="" type="text" value="" placeholder="">Immunities</h4>
+				<h4><input name="" type="text" value="" placeholder="">Detections</h4>
+				<h4><input name="" type="text" value="" placeholder="">Shifts</h4>
+				<h5><input name="" type="text" value="" placeholder="">Cover</h5>
+			</div>
+		</span>
 	</footer>
 </form>

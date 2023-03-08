@@ -1,13 +1,13 @@
-.item-form {
-	font-family: $font-primary;
-}
+//	.item-form {
+//		font-family: $font-primary;
+//	}
 
 .layout-container-big {
 	background-image: url("../artwork/layout-container-big.jpg");
 	background-size: cover;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
-	opacity: 0.4;
+	opacity: 1;
 	padding: $padding-lg;
 	border: $border-lg;
 	margin: $margin-lg;
@@ -54,42 +54,42 @@
 	color: $c-green;
 }
 
-.sheet-header {
-	flex: 0 auto;
-	overflow: hidden;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: flex-start;
-	margin-bottom: 10px;
-
-	.profile-img {
-		flex: 0 0 100px;
-		height: 100px;
-		margin-right: 10px;
-	}
-
-	.header-fields {
-		flex: 1;
-	}
-
-	h1.charname {
-		height: 50px;
-		padding: 0px;
-		margin: 5px 0;
-		border-bottom: 0;
-		input {
-			width: 80%;
-			height: 80%;
-			margin: 0;
-		}
-	}
-}
-
-.sheet-tabs {
-	flex: 0;
-}
-
+//	.sheet-header {
+//		flex: 0 auto;
+//		overflow: hidden;
+//		display: flex;
+//		flex-direction: row;
+//		flex-wrap: wrap;
+//		justify-content: flex-start;
+//		margin-bottom: 10px;
+//	
+//		.profile-img {
+//			flex: 0 0 100px;
+//			height: 100px;
+//			margin-right: 10px;
+//		}
+//	
+//		.header-fields {
+//			flex: 1;
+//		}
+//	
+//		h1.charname {
+//			height: 50px;
+//			padding: 0px;
+//			margin: 5px 0;
+//			border-bottom: 0;
+//			input {
+//				width: 80%;
+//				height: 80%;
+//				margin: 0;
+//			}
+//		}
+//	}
+//	
+//	.sheet-tabs {
+//		flex: 0;
+//	}
+//	
 //.sheet-body {
 ////     qp adding background image to the body
 //	background-image: url("../artwork/bg-sheet.jpg");
@@ -99,23 +99,23 @@
 //    opacity: 0.2;
 //}
 
-.sheet-body,
-.sheet-body .tab,
-.sheet-body .tab .editor {
-	height: 100%;
-	font-family: $font-secondary;
-}
-
-.tox {
-	.tox-editor-container {
-		// qp playing with background colors background: $c-green;
-		background-image: url("./artwork/bg-sheet.jpg");
-		background-repeat: no-repeat;
-		font-family: $font-secondary;
-		// background-position: center center;
-	}
-
-	.tox-edit-area {
-		padding: 0 8px;
-	}
-}
+//	.sheet-body,
+//	.sheet-body .tab,
+//	.sheet-body .tab .editor {
+//		height: 100%;
+//		font-family: $font-secondary;
+//	}
+//	
+//	.tox {
+//		.tox-editor-container {
+//			// qp playing with background colors background: $c-green;
+//			background-image: url("./artwork/bg-sheet.jpg");
+//			background-repeat: no-repeat;
+//			font-family: $font-secondary;
+//			// background-position: center center;
+//		}
+//	
+//		.tox-edit-area {
+//			padding: 0 8px;
+//		}
+//	}

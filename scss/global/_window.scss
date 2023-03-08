@@ -14,20 +14,21 @@
 .actor-sheet {
 	//character sheets always open at this size
 	//does this also affect a default actor-sheet class?
+	//why it opens with 720p height?
 	width: 800;
 	height: 800;
 }
 
-.rollable {
-	&:hover,
-	&:focus {
-		color: $c-green;
-		text-shadow: 0 0 10px $c-purple;
-		cursor: pointer;
-		// qp testing border on hover
-		border: 3px dotted $c-purple;
-		border-radius: 15px;
-		padding: 5px;
-		margin: 5px;
-	}
-}
+//	.rollable {
+//		&:hover,
+//		&:focus {
+//			color: $c-green;
+//			text-shadow: 0 0 10px $c-purple;
+//			cursor: pointer;
+//			// qp testing border on hover
+//			border: 3px dotted $c-purple;
+//			border-radius: 15px;
+//			padding: 5px;
+//			margin: 5px;
+//		}
+//	}
