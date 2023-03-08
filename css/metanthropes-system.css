@@ -1,6 +1,5 @@
 @import url("https://use.typekit.net/gld0tkk.css");
 input[type=text], input[type=number] {
-  width: 12ch;
   margin: 5px;
   padding: 5px;
   color: #370239;
@@ -25,11 +24,6 @@ button {
 .window-content {
   padding: 5px;
   margin: 0px;
-}
-
-.actor-sheet {
-  width: 800px;
-  height: 800px;
 }
 
 .grid,
@@ -236,8 +230,8 @@ button {
   -moz-column-gap: 6px;
        column-gap: 6px;
   row-gap: 3px;
-  padding: 0px;
-  margin: 0px;
+  padding: 20px;
+  margin: 20px;
 }
 .metanthropes .layout-container-big {
   display: grid;
@@ -246,23 +240,30 @@ button {
   -moz-column-gap: 6px;
        column-gap: 6px;
   row-gap: 3px;
-  padding: 0px;
-  margin: 0px;
+  padding: 10px;
+  margin: 10px;
 }
 .metanthropes .layout-container-medium {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  -moz-column-gap: 6px;
+       column-gap: 6px;
+  row-gap: 3px;
   padding: 5px;
   margin: 5px;
 }
 .metanthropes .layout-container-small {
   display: flex;
   flex-direction: column;
+  padding: 5px;
+  margin: 5px;
 }
 .metanthropes .layout-container-nav {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  padding: 5px;
+  margin: 5px;
 }
 .metanthropes .style-container-grid3x4 {
   opacity: 1;

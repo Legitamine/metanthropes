@@ -13,8 +13,8 @@
 	//background-repeat: no-repeat;
 	//background-origin: border-box;
 	//background-clip: border-box;
-	padding: $padding-zero;
-	margin: $margin-zero;
+	padding: $padding-lg;
+	margin: $margin-lg;
 }
 //big container with 3 columns and 2 rows
 .layout-container-big {
@@ -30,13 +30,15 @@
 	//background-repeat: no-repeat;
 	//background-origin: border-box;
 	//background-clip: border-box;
-	padding: $padding-zero;
-	margin: $margin-zero;
+	padding: $padding-md;
+	margin: $margin-md;
 }
 //medium container with 3 columns and 1 row
 .layout-container-medium {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
+	column-gap: 6px;
+	row-gap: 3px;
 	//background-image: url("../artwork/layout-container-med.jpg");
 	//background-size: contain;
 	//background-attachment: local;
@@ -50,10 +52,14 @@
 .layout-container-small {
 	display: flex;
 	flex-direction: column;
+	padding: $padding-sm;
+	margin: $margin-sm;
 }
 //nav container with 1 flex row
 .layout-container-nav {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
+	padding: $padding-sm;
+	margin: $margin-sm;
 }

@@ -1,7 +1,7 @@
 // this changes the input fields in Foundry UI
 input[type="text"], input[type="number"] {
 	//height: 2ch;
-	width: 12ch;
+	//width: 12ch;
 	//min-height: 20px;
 	//min-width: 20px;
 	//max-height: fit-content;
@@ -32,13 +32,13 @@ padding: $padding-sm;
 margin: $margin-zero;
 }
 
-.actor-sheet {
-	//character sheets always open at this size
-	//does this also affect a default actor-sheet class?
-	//why it opens with 720p height? missing px setting, just number won't do the trick ;p
-	width: 800px;
-	height: 800px;
-}
+//	.actor-sheet {
+//		//character sheets always open at this size
+//		//does this also affect a default actor-sheet class?
+//		//why it opens with 720p height? missing px setting, just number won't do the trick ;p
+//		width: 800px;
+//		height: 800px;
+//	}
 
 //	.rollable {
 //		&:hover,
