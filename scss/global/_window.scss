@@ -1,3 +1,13 @@
+input {
+	width: 80%;
+	height: 80%;
+	margin: $margin-sm;
+	padding: $padding-sm;
+	color: $c-purple;
+	text-shadow: 0 0 10px $c-purple;
+	font-size: 1rem;
+}
+
 .window-app {
 	font-family: $font-primary;
 }

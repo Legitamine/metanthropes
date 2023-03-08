@@ -1,4 +1,14 @@
 @import url("https://use.typekit.net/gld0tkk.css");
+input {
+  width: 80%;
+  height: 80%;
+  margin: 5px;
+  padding: 5px;
+  color: #370239;
+  text-shadow: 0 0 10px #370239;
+  font-size: 1rem;
+}
+
 .window-app {
   font-family: "nasalization", sans-serif;
 }
@@ -245,7 +255,6 @@
 .metanthropes .layout-container-med {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
   background-image: url("../artwork/layout-container-med.jpg");
   background-size: contain;
   background-attachment: local;
