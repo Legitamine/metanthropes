@@ -6,6 +6,8 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr 1fr;
+	column-gap: 15px;
+	row-gap: 5px;
 	padding: $padding-zero;
 	margin: $margin-zero;
 	//background-image: url("../artwork/bg-canvas.jpg");
@@ -14,6 +16,9 @@
 	//background-repeat: no-repeat;
 	//background-origin: border-box;
 	//background-clip: border-box;
+	border: 1px solid $c-purple;
+	border-radius: 15px;
+	justify-content: center;
 	opacity: 1;
 	
 }

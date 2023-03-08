@@ -232,8 +232,14 @@ input[type=text], input[type=number] {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
+  row-gap: 5px;
   padding: 0px;
   margin: 0px;
+  border: 1px solid #370239;
+  border-radius: 15px;
+  justify-content: center;
   opacity: 1;
 }
 .metanthropes .layout-container-big {
