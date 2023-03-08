@@ -14,16 +14,16 @@ input[type="text"], input[type="number"] {
 	border: 1px dashed $c-purple;
 	border-radius: 15px;
 }
-// this changes the font in most title-elements of Foundry UI
-.window-app {
-	font-family: $font-primary;
-}
 // this changes the font in body-elements of Foundry UI
-.body {
+body {
 	font-family: $font-primary;
 }
 // this changes the font for buttons of Foundry UI
-.dialog-button {
+button {
+	font-family: $font-primary;
+}
+// this changes the font in most title-elements of Foundry UI
+.window-app {
 	font-family: $font-primary;
 }
 

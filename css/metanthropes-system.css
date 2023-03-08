@@ -10,15 +10,15 @@ input[type=text], input[type=number] {
   border-radius: 15px;
 }
 
+body {
+  font-family: "nasalization", sans-serif;
+}
+
+button {
+  font-family: "nasalization", sans-serif;
+}
+
 .window-app {
-  font-family: "nasalization", sans-serif;
-}
-
-.body {
-  font-family: "nasalization", sans-serif;
-}
-
-.dialog-button {
   font-family: "nasalization", sans-serif;
 }
 
