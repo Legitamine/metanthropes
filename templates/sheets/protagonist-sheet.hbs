@@ -1,25 +1,26 @@
 <form class="metanthropes actor-sheet {{cssClass}}" autocomplete="off">
 	<header class="layout-container-big">
 		<div class="style-container-grid3x4-children">
-			<h4><input name="name" type="text" value="{{actor.name}}" placeholder="A Protagonist"></h4>
 			<p><input name="" type="text" value="" placeholder="">Background</p>
 			<p><input name="" type="text" value="" placeholder="">Metamorphosis</p>
 			<p><input name="" type="text" value="" placeholder="">Arc</p>
 			<p><input name="" type="text" value="" placeholder="">Regression</p>
 		</div>
+		<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
+		<h4><input name="name" type="text" value="{{actor.name}}" placeholder="A Protagonist"></h4>
 		<div class="style-container-grid3x4-children">
-			<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
 			<p><input name="" type="text" value="" placeholder="">MetaOwner</p>
 			<p><input name="" type="text" value="" placeholder="">Prime Metapower</p>
 			<p><input name="" type="text" value="" placeholder="">Coalition</p>
 			<p><input name="" type="text" value="" placeholder="">Sagas</p>
 		</div>
 		<div class="style-container-grid3x4-children">
-				<p><input name="" type="" value="" placeholder=""> ❤️ Life ❤️ </p>
-				<p><input name="" type="" value=""> 🤞 Destiny 🤞 </p>
-				<p><input name="" type="" value="">Experience</p>
+			<p><input name="" type="" value="" placeholder=""> ❤️ Life ❤️ </p>
+			<p><input name="" type="" value="" placeholder=""> 🤞 Destiny 🤞 </p>
+			<p><input name="" type="" value="" placeholder=""> Experience </p>
 		</div>
 	</header>
+
 	<body>
 		<nav>
 			<!-- look into actor-sheet.mjs -->
@@ -31,17 +32,50 @@
 			<a> 🚧 Notes 🚧 </a>
 		</nav>
 		<main class="layout-container-grid3x4">
-			<div class="style-container-grid3x4-children">
-				<p> BODY </p>
+			<div class="layout-container-med style-container-grid3x4-children">
+				<div>
+					<p> Initial </p>
+					<p> Progressed </p>
+				</div>
+				<div>
+					<p> BODY </p>
+					<p> Current </p>
+				</div>
+				<div>
+					<p> 🛡️ </p>
+					<p> 💀 </p>
+				</div>
 			</div>
 			<aside>
-				<div class="style-container-grid3x4-children">
-					<p> MIND </p>
+				<div class="layout-container-med style-container-grid3x4-children">
+					<div>
+						<p> Initial </p>
+						<p> Progressed </p>
+					</div>
+					<div>
+						<p> MIND </p>
+						<p> Current </p>
+					</div>
+					<div>
+						<p> 🛡️ </p>
+						<p> 💀 </p>
+					</div>
 				</div>
 			</aside>
 			<aside>
-				<div class="style-container-grid3x4-children">
-					<p> SOUL </p>
+				<div class="layout-container-med style-container-grid3x4-children">
+					<div>
+						<p> Initial </p>
+						<p> Progressed </p>
+					</div>
+					<div>
+						<p> SOUL </p>
+						<p> Current </p>
+					</div>
+					<div>
+						<p> 🛡️ </p>
+						<p> 💀 </p>
+					</div>
 				</div>
 			</aside>
 			<div class="style-container-grid3x4-children">
@@ -86,24 +120,24 @@
 		</main>
 	</body>
 	<footer class="layout-container-med style-container-med-children">
-			<div>
-				<h4><input name="" type="text" value="" placeholder="">Movement</h4>
-				<h5><input name="" type="text" value="" placeholder="">Speed</h5>
-				<h5><input name="" type="text" value="" placeholder="">Weight</h5>
-				<h5><input name="" type="text" value="" placeholder="">Size</h5>
-			</div>
-			<div>
-				<h4><input name="" type="text" value="" placeholder="">Resistances</h4>
-				<h5><input name="" type="text" value="" placeholder="">Cosmic</h5>
-				<h5><input name="" type="text" value="" placeholder="">Elemental</h5>
-				<h5><input name="" type="text" value="" placeholder="">Material</h5>
-				<h5><input name="" type="text" value="" placeholder="">Psychic</h5>
-			</div>
-			<div>
-				<h4><input name="" type="text" value="" placeholder="">Immunities</h4>
-				<h4><input name="" type="text" value="" placeholder="">Detections</h4>
-				<h4><input name="" type="text" value="" placeholder="">Shifts</h4>
-				<h4><input name="" type="text" value="" placeholder="">Cover</h4>
-			</div>
+		<div>
+			<h4><input name="" type="text" value="" placeholder="">Movement</h4>
+			<h5><input name="" type="text" value="" placeholder="">Speed</h5>
+			<h5><input name="" type="text" value="" placeholder="">Weight</h5>
+			<h5><input name="" type="text" value="" placeholder="">Size</h5>
+		</div>
+		<div>
+			<h4><input name="" type="text" value="" placeholder="">Resistances</h4>
+			<p><input name="" type="text" value="" placeholder="">Cosmic</p>
+			<p><input name="" type="text" value="" placeholder="">Elemental</p>
+			<h5><input name="" type="text" value="" placeholder="">Material</h5>
+			<h6><input name="" type="text" value="" placeholder="">Psychic</h6>
+		</div>
+		<div>
+			<h4><input name="" type="text" value="" placeholder="">Immunities</h4>
+			<h4><input name="" type="text" value="" placeholder="">Detections</h4>
+			<h4><input name="" type="text" value="" placeholder="">Shifts</h4>
+			<h4><input name="" type="text" value="" placeholder="">Cover</h4>
+		</div>
 	</footer>
 </form>

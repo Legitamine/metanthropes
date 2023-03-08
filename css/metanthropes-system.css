@@ -4,10 +4,6 @@ input[type=text], input[type=number] {
   width: auto;
   min-height: 30px;
   min-width: 30px;
-  max-height: -moz-fit-content;
-  max-height: fit-content;
-  max-width: -moz-fit-content;
-  max-width: fit-content;
   margin: 5px;
   padding: 5px;
   color: #370239;
@@ -242,7 +238,7 @@ input[type=text], input[type=number] {
 }
 .metanthropes .layout-container-big {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   opacity: 1;
   padding: 0px;
@@ -251,8 +247,8 @@ input[type=text], input[type=number] {
 .metanthropes .layout-container-med {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  padding: 10px;
-  margin: 10px;
+  padding: 5px;
+  margin: 5px;
   opacity: 1;
 }
 .metanthropes .style-container-grid3x4-children {
