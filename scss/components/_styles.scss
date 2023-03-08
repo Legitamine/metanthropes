@@ -2,31 +2,37 @@
 //containers and borders
 //characteristics and stats styling and borders
 .style-container-grid3x4 {
+	opacity: 1;
+	font-size: 1rem;
+	color: $c-purple;
+	text-shadow: $s-outline;
 	border: 1px dotted $c-purple;
 	border-radius: 15px;
 	justify-content: center;
 	justify-self: center;
-	opacity: 1;
-	font-size: 1rem;
-	color: $c-purple;
-	text-shadow: $s-outline;
 }
 //big container
 .style-container-big {
 	opacity: 1;
-	//font-family: $font-primary;
 	font-size: .75rem;
 	color: $c-green;
 	text-shadow: 0 0 10px $c-purple;
+	border: 1px dotted $c-purple;
+	border-radius: 15px;
+	justify-content: center;
+	justify-self: center;
 }
 //medium container
 .style-container-medium {
 	opacity: 1;
-	//font-family: $font-primary; it's declared in the window and it's inherited
-	justify-content: center;
 	font-size: 1rem;
 	color: $c-purple;
 	text-shadow: $s-outline;
+	justify-content: center;
+	border:1px solid $c-green;
+	border-radius: 15px;
+	justify-content: center;
+	justify-self: center;
 }
 //small container
 .style-container-small {

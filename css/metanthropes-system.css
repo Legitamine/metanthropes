@@ -233,9 +233,9 @@ input[type=text], input[type=number] {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
-  -moz-column-gap: 15px;
-       column-gap: 15px;
-  row-gap: 5px;
+  -moz-column-gap: 6px;
+       column-gap: 6px;
+  row-gap: 3px;
   padding: 0px;
   margin: 0px;
 }
@@ -243,25 +243,15 @@ input[type=text], input[type=number] {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  opacity: 1;
+  grid-auto-rows: minmax(100px, auto);
   padding: 0px;
   margin: 0px;
-  justify-content: center;
-  justify-self: center;
-  grid-auto-rows: minmax(100px, auto);
-  border: 1px dotted #370239;
-  border-radius: 15px;
 }
-.metanthropes .layout-container-medum {
+.metanthropes .layout-container-medium {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  border: 1px solid #092e00;
-  border-radius: 15px;
   padding: 5px;
   margin: 5px;
-  justify-content: center;
-  justify-self: center;
-  opacity: 1;
 }
 .metanthropes .layout-container-small {
   display: flex;
@@ -269,27 +259,35 @@ input[type=text], input[type=number] {
   flex-wrap: nowrap;
 }
 .metanthropes .style-container-grid3x4 {
-  border: 1px dotted #370239;
-  border-radius: 15px;
-  justify-content: center;
-  justify-self: center;
   opacity: 1;
   font-size: 1rem;
   color: #370239;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+  border: 1px dotted #370239;
+  border-radius: 15px;
+  justify-content: center;
+  justify-self: center;
 }
 .metanthropes .style-container-big {
   opacity: 1;
   font-size: 0.75rem;
   color: #092e00;
   text-shadow: 0 0 10px #370239;
+  border: 1px dotted #370239;
+  border-radius: 15px;
+  justify-content: center;
+  justify-self: center;
 }
 .metanthropes .style-container-medium {
   opacity: 1;
-  justify-content: center;
   font-size: 1rem;
   color: #370239;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+  justify-content: center;
+  border: 1px solid #092e00;
+  border-radius: 15px;
+  justify-content: center;
+  justify-self: center;
 }
 .metanthropes .style-container-small {
   border: 1px dotted #370239;
