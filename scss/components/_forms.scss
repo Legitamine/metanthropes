@@ -14,43 +14,48 @@
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	background-origin: border-box;
-	opacity: 1;
+	opacity: 0.6;
 }
 
 .layout-container-big {
+	display: flex;
+	flex-flow: wrap;
 	background-image: url("../artwork/layout-container-big.jpg");
 	background-size: cover;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
-	opacity: 1;
+	opacity: 0.8;
 	padding: $padding-lg;
 	border: $border-lg;
 	margin: $margin-lg;
 }
 
 .layout-container-med {
+	display: flex;
+	flex-flow: column;
 	background-image: url("../artwork/layout-container-med.jpg");
 	background-size: contain;
 	background-attachment: local;
-	background-repeat: no-repeat;
+	background-repeat: round;
 	padding: $padding-md;
 	border: $border-md;
 	margin: $margin-md;
-	opacity: 1;
+	opacity: 0.4;
 }
 
-.style-primary-title {
+.style-container-grid3x4-children {
 	opacity: 1;
-	font-family: $font-primary;
-	font-size: 1.5em;
+	//font-family: $font-primary; it's declared in the window and it's inherited
+	justify-content: center;
+	font-size: 2rem;
 	color: $c-purple;
-	text-shadow: 0 0 10px $c-green;
+	text-shadow: $s-outline;
 }
 
-.style-primary-body {
+.style-container-med-children {
 	opacity: 1;
-	font-family: $font-primary;
-	font-size: 1.2em;
+	//font-family: $font-primary;
+	font-size: 1.5rem;
 	color: $c-green;
 	text-shadow: 0 0 10px $c-purple;
 }
