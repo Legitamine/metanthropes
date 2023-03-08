@@ -1,7 +1,7 @@
 @import url("https://use.typekit.net/gld0tkk.css");
 input[type=text], input[type=number] {
-  margin: 5px;
-  padding: 5px;
+  margin: 2px;
+  padding: 2px;
   color: #370239;
   text-shadow: 0 0 10px #370239;
   font-size: 1rem;
@@ -11,47 +11,66 @@ input[type=text], input[type=number] {
 
 form {
   font-family: "nasalization", sans-serif;
-  margin: 10px;
-  padding: 10px;
+  margin: 2px;
+  padding: 2px;
+}
+
+section {
+  font-family: "nasalization", sans-serif;
+  margin: 2px;
+  padding: 2px;
 }
 
 main {
   font-family: "nasalization", sans-serif;
-  margin: 5px;
-  padding: 5px;
+  margin: 2px;
+  padding: 2px;
 }
 
 body {
   font-family: "nasalization", sans-serif;
-  margin: 5px;
-  padding: 5px;
+  margin: 2px;
+  padding: 2px;
 }
 
 header {
-  margin: 5px;
-  padding: 5px;
+  margin: 2px;
+  padding: 2px;
+}
+
+aside {
+  display: inherit;
+  box-sizing: inherit;
+}
+
+div {
+  display: inherit;
+  box-sizing: inherit;
+}
+
+nav {
+  margin: 2px;
+  padding: 2px;
 }
 
 footer {
-  margin: 5px;
-  padding: 5px;
+  margin: 2px;
+  padding: 2px;
 }
 
 button {
   font-family: "nasalization", sans-serif;
-  margin: 5px;
-  padding: 5px;
 }
 
 .window-app {
   font-family: "nasalization", sans-serif;
-  margin: 5px;
-  padding: 5px;
+  margin: 2px;
+  padding: 2px;
 }
 
 .window-content {
-  padding: 5px;
-  margin: 5px;
+  padding: 2px;
+  margin: 2px;
 }
 
 .grid,
@@ -248,8 +267,8 @@ button {
 }
 
 .metanthropes {
-  padding: 5px;
-  margin: 5px;
+  padding: 2px;
+  margin: 2px;
 }
 .metanthropes .layout-container-grid3x4 {
   display: grid;
@@ -258,8 +277,8 @@ button {
   -moz-column-gap: 6px;
        column-gap: 6px;
   row-gap: 3px;
-  padding: 20px;
-  margin: 20px;
+  padding: 8px;
+  margin: 8px;
 }
 .metanthropes .layout-container-big {
   display: grid;
@@ -268,8 +287,8 @@ button {
   -moz-column-gap: 6px;
        column-gap: 6px;
   row-gap: 3px;
-  padding: 10px;
-  margin: 10px;
+  padding: 4px;
+  margin: 4px;
 }
 .metanthropes .layout-container-medium {
   display: grid;
@@ -277,21 +296,21 @@ button {
   -moz-column-gap: 6px;
        column-gap: 6px;
   row-gap: 3px;
-  padding: 5px;
-  margin: 5px;
+  padding: 2px;
+  margin: 2px;
 }
 .metanthropes .layout-container-small {
   display: flex;
   flex-direction: column;
-  padding: 5px;
-  margin: 5px;
+  padding: 2px;
+  margin: 2px;
 }
 .metanthropes .layout-container-nav {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  padding: 5px;
-  margin: 5px;
+  padding: 2px;
+  margin: 2px;
 }
 .metanthropes .style-container-grid3x4 {
   opacity: 1;

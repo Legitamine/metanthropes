@@ -17,8 +17,14 @@ input[type="text"], input[type="number"] {
 // this changes the font in body-elements of Foundry UI
 form {
 	font-family: $font-primary;
-	margin: $margin-md;
-	padding: $padding-md;
+	margin: $margin-sm;
+	padding: $padding-sm;
+}
+
+section {
+	font-family: $font-primary;
+	margin: $margin-sm;
+	padding: $padding-sm;
 }
 
 main {
@@ -38,6 +44,21 @@ header {
 	padding: $padding-sm;
 }
 
+aside {
+	display: inherit;
+	box-sizing: inherit;
+}
+
+div {
+	display: inherit;
+	box-sizing: inherit;
+}
+
+nav {
+	margin: $margin-sm;
+	padding: $padding-sm;
+}
+
 footer {
 	margin: $margin-sm;
 	padding: $padding-sm;
@@ -46,13 +67,11 @@ footer {
 // this changes the font for buttons of Foundry UI
 button {
 	font-family: $font-primary;
-	margin: $margin-sm;
-	padding: $padding-sm;
 }
 // this changes the font in most title-elements of Foundry UI
 .window-app {
 	font-family: $font-primary;
-	margin: $margin-sm;
+	margin: $padding-sm;
 	padding: $padding-sm;
 }
 
