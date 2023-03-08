@@ -230,6 +230,15 @@ input[type=text], input[type=number] {
   padding: 5px;
   margin: 5px;
 }
+.metanthropes .layout-navbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  justify-self: center;
+  border: 1px dotted #370239;
+  border-radius: 15px;
+}
 .metanthropes .layout-container-grid3x4 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -254,6 +263,9 @@ input[type=text], input[type=number] {
   margin: 0px;
   justify-content: center;
   justify-self: center;
+  grid-auto-rows: minmax(100px, auto);
+  border: 1px dotted #370239;
+  border-radius: 15px;
 }
 .metanthropes .layout-container-med {
   display: grid;

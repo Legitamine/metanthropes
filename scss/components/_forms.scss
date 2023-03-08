@@ -2,6 +2,16 @@
 //		font-family: $font-primary;
 //	}
 
+.layout-navbar {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	justify-self: center;
+	border: 1px dotted $c-purple;
+	border-radius: 15px;
+}
+
 .layout-container-grid3x4 {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -38,6 +48,9 @@
 	margin: $margin-zero;
 	justify-content: center;
 	justify-self: center;
+	grid-auto-rows: minmax(100px, auto);
+	border: 1px dotted $c-purple;
+	border-radius: 15px;
 }
 
 .layout-container-med {
