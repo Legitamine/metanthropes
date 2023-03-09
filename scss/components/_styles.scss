@@ -9,7 +9,7 @@
 	border: 1px dotted $c-purple;
 	border-radius: 15px;
 	justify-content: center;
-	justify-self: center;
+	justify-self: stretch;
 }
 //big container styling
 .style-container-big {
@@ -20,7 +20,7 @@
 	border: 1px dotted $c-purple;
 	border-radius: 15px;
 	justify-content: center;
-	justify-self: center;
+	justify-self: stretch;
 }
 //medium container styling
 .style-container-medium {
@@ -28,10 +28,10 @@
 	font-size: 1rem;
 	color: $c-purple;
 	text-shadow: $s-outline;
-	border: 1px solid $c-purple;
+	border: 1px dotted $c-purple;
 	border-radius: 15px;
 	justify-content: center;
-	justify-self: center;
+	justify-self: stretch;
 }
 //small container styling
 .style-container-small {
@@ -42,14 +42,14 @@
 	border: 1px solid $c-purple;
 	border-radius: 15px;
 	justify-content: center;
-	justify-self: center;
+	justify-self: stretch;
 }
 //nav container styling
 .style-container-nav {
 	border: 1px dotted $c-purple;
 	border-radius: 15px;
 	justify-content: space-evenly;
-	justify-self: center;
+	justify-self: stretch;
 }
 //fonts and colors
 //unused

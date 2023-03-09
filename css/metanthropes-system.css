@@ -328,7 +328,7 @@ button {
   border: 1px dotted #370239;
   border-radius: 15px;
   justify-content: center;
-  justify-self: center;
+  justify-self: stretch;
 }
 .metanthropes .style-container-big {
   opacity: 1;
@@ -338,17 +338,17 @@ button {
   border: 1px dotted #370239;
   border-radius: 15px;
   justify-content: center;
-  justify-self: center;
+  justify-self: stretch;
 }
 .metanthropes .style-container-medium {
   opacity: 1;
   font-size: 1rem;
   color: #370239;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
-  border: 1px solid #370239;
+  border: 1px dotted #370239;
   border-radius: 15px;
   justify-content: center;
-  justify-self: center;
+  justify-self: stretch;
 }
 .metanthropes .style-container-small {
   opacity: 1;
@@ -358,13 +358,13 @@ button {
   border: 1px solid #370239;
   border-radius: 15px;
   justify-content: center;
-  justify-self: center;
+  justify-self: stretch;
 }
 .metanthropes .style-container-nav {
   border: 1px dotted #370239;
   border-radius: 15px;
   justify-content: space-evenly;
-  justify-self: center;
+  justify-self: stretch;
 }
 .metanthropes .style-labels-number {
   opacity: 1;

@@ -139,13 +139,13 @@ export class MetanthropesActor extends Actor {
 
 	_prepareDerivedCharacteristicsData(actorData) {
 		//	we take all actors that have characteristics and prepare their data for rolling, as well as calculte max life.
-		if (actorData.type !== "Humanoid") return;
-		else if (actorData.type !== "Protagonist") return;
-		else if (actorData.type !== "Metanthrope") return;
-		else if (actorData.type !== "MetaTherion") return;
-		else if (actorData.type !== "Artificial") return;
-		else if (actorData.type !== "Animal") return;
-		else if (actorData.type !== "Animated-Humanoid") return;
+		if (actorData.type !== 'Humanoid') return;
+		else if (actorData.type !== 'Protagonist') return;
+		else if (actorData.type !== 'Metanthrope') return;
+		else if (actorData.type !== 'MetaTherion') return;
+		else if (actorData.type !== 'Artificial') return;
+		else if (actorData.type !== 'Animal') return;
+		else if (actorData.type !== 'Animated-Humanoid') return;
 		const systemData = actorData.system;
 		const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
