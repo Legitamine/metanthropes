@@ -2,8 +2,8 @@
 	<header>
 		<div class="layout-container-big style-container-big">
 			<div class="layout-container-small style-container-small">
-				<div><input name="" type="text" value="" data-dtype="" placeholder="">Birthplace</div>
-				<div><input name="" type="text" value="" data-dtype="" placeholder="">Age</div>
+				<div><input name="" type="text" value="" data-dtype="string" placeholder="">Birthplace</div>
+				<div><input name="" type="number" value="" data-dtype="number" placeholder="">Age</div>
 				<div><input name="" type="text" value="" data-dtype="" placeholder="">Gender</div>
 				<div><input name="" type="text" value="" data-dtype="" placeholder="">Desc Hum</div>
 				<div><input name="" type="text" value="" data-dtype="" placeholder="">Dec Phys</div>
@@ -22,9 +22,11 @@
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>
-					<input name="vital.life.value" type="number" value="{{vital.life.value}}" data-dtype="number"> /
-					Life out of <label for="vital.life.max" data-label="{{vital.life.max}}"
+					<input name="vital.life.value" type="number" value="{{vital.life.value}}" data-dtype="number"> 
+					Life ❤️
+					<label for="vital.life.max" data-label="{{vital.life.max}}"
 						class="style-labels-number">{{vital.life.max}}</label> ❤️
+						<span> Total</span>
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">

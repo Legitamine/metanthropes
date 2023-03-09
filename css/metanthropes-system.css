@@ -1,7 +1,7 @@
 @import url("https://use.typekit.net/gld0tkk.css");
 input[type=text] {
-  width: 12ch;
-  margin: 1px;
+  width: 10ch;
+  margin: 3px;
   padding: 1px;
   color: #370239;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
@@ -12,7 +12,7 @@ input[type=text] {
 
 input[type=number] {
   width: 4ch;
-  margin: 1px;
+  margin: 3px;
   padding: 1px;
   color: #370239;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
@@ -24,7 +24,7 @@ input[type=number] {
 form {
   font-family: "nasalization", sans-serif;
   margin: 0px;
-  padding: 1px;
+  padding: 0px;
 }
 
 section {
@@ -316,7 +316,6 @@ button {
 .metanthropes .layout-container-nav {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
   padding: 1px;
   margin: 1px;
 }

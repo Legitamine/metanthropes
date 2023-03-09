@@ -139,13 +139,9 @@ export class MetanthropesActor extends Actor {
 
 	_prepareDerivedCharacteristicsData(actorData) {
 		//	we take all actors that have characteristics and prepare their data for rolling, as well as calculte max life.
-		if (actorData.type !== 'Humanoid') return;
-		else if (actorData.type !== 'Protagonist') return;
-		else if (actorData.type !== 'Metanthrope') return;
-		else if (actorData.type !== 'MetaTherion') return;
-		else if (actorData.type !== 'Artificial') return;
-		else if (actorData.type !== 'Animal') return;
-		else if (actorData.type !== 'Animated-Humanoid') return;
+		if (actorData.type == 'Human') return;
+		else if (actorData.type == 'Animated-Object') return;
+		else if (actorData.type == 'Vehicle') return;
 		const systemData = actorData.system;
 		const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
@@ -162,7 +158,7 @@ export class MetanthropesActor extends Actor {
 			}
 		}
 		console.log("========================================================================");
-		console.log("Metanthropes RPG Adding BUFFS and CONDITIONS to Stats & Characteristics");
+		console.log("Metanthropes RPG Adding Buffs and Conditions to Characteristics & Stats");
 		console.log("========================================================================");
 		//doing it directly instead of a for loop for faster results - cant code shit
 		//body

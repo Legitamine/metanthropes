@@ -15,7 +15,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		return `systems/metanthropes-system/templates/sheets/${this.actor.type}-sheet.hbs`;
 	}
 
-	async getData() {
+	getData() {
 		// from wfrp4e
 		// using the async functions instead of without async - they use an enrichment process check it out
 		// from boilerplate:
@@ -23,7 +23,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 		// the context variable to see the structure, but some key properties for
 		// sheets are the actor object, the data object, whether or not it's
 		// editable, the items array, and the effects array.
-		const context = await super.getData();
+		// await sup goes with async
+		const context = super.getData();
 		// from boilerplate:
 		// Use a safe clone of the actor data for further operations.
 		// It uses the document data's built in toObject() method and gives it the false parameter, which instructs Foundry to not just convert this to a plain object but to also run a deep clone on nested objects/arrays.

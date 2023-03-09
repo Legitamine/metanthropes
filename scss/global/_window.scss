@@ -1,12 +1,12 @@
 // this changes the input fields in Foundry UI
 input[type="text"] {
 	//height: 2ch;
-	width: 12ch;
+	width: 10ch;
 	//min-height: 20px;
 	//min-width: 20px;
 	//max-height: fit-content;
 	//max-width: fit-content;
-	margin: $margin-sm;
+	margin: $margin-md;
 	padding: $padding-sm;
 	color: $c-purple;
 	text-shadow: $s-outline;
@@ -21,7 +21,7 @@ input[type="number"] {
 	//min-width: 20px;
 	//max-height: fit-content;
 	//max-width: fit-content;
-	margin: $margin-sm;
+	margin: $margin-md;
 	padding: $padding-sm;
 	color: $c-purple;
 	text-shadow: $s-outline;
@@ -34,7 +34,7 @@ input[type="number"] {
 form {
 	font-family: $font-primary;
 	margin: $margin-zero;
-	padding: $padding-sm;
+	padding: $padding-zero;
 }
 
 section {
