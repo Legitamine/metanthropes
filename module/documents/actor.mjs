@@ -145,7 +145,7 @@ export class MetanthropesActor extends Actor {
 		const systemData = actorData.system;
 		const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
-		console.log("Metanthropes RPG Preparing Characteristics & Stats for", this.type, ":", this.name);
+		console.log("Metanthropes RPG Preparing Characteristics & Stats for", this.type,":", this.name);
 		console.log("========================================================================");
 		for (let [key, chars] of Object.entries(systemData.characteristics)) {
 			console.log('Working on', chars.label, chars.initial.label, chars.initial.value, chars.progressed.label, chars.progressed.value);
