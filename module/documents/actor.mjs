@@ -36,6 +36,7 @@ export class MetanthropesActor extends Actor {
 	/** @override */
 	prepareDerivedData() {
 		const actorData = this;
+		this._prepareDerivedHumanData(actorData);
 		this._prepareDerivedHumanoidData(actorData);
 		this._prepareDerivedMetanthropeData(actorData);
 		this._prepareDerivedProtagonistData(actorData);
@@ -47,12 +48,20 @@ export class MetanthropesActor extends Actor {
 		this._prepareDerivedVehicleData(actorData);
 		this._prepareDerivedCharacteristicsData(actorData);
 	}
+	_prepareDerivedHumanData(actorData) {
+		if (actorData.type !== 'Human') return;
+		const systemData = actorData.system;
+		const flags = actorData.flags.metanthropes || {};
+		console.log("========================================================================");
+		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
+		console.log("========================================================================");
+	}
 	_prepareDerivedHumanoidData(actorData) {
 		if (actorData.type !== 'Humanoid') return;
 		//const systemData = actorData.system;
 		//const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
-		console.log("Metanthropes RPG Preparing data for", this.type, "Actor:", this.name);
+		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
 		console.log("========================================================================");
 	}
 	_prepareDerivedMetanthropeData(actorData) {
@@ -60,7 +69,7 @@ export class MetanthropesActor extends Actor {
 		//const systemData = actorData.system;
 		//const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
-		console.log("Metanthropes RPG Preparing data for", this.type, "Actor:", this.name);
+		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
 		console.log("========================================================================");
 	}
 	_prepareDerivedProtagonistData(actorData) {
@@ -68,7 +77,7 @@ export class MetanthropesActor extends Actor {
 		//const systemData = actorData.system;
 		//const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
-		console.log("Metanthropes RPG Preparing data for", this.type, "Actor:", this.name);
+		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
 		console.log("========================================================================");
 	}
 	_prepareDerivedMetaTherionData(actorData) {
@@ -76,7 +85,7 @@ export class MetanthropesActor extends Actor {
 		//const systemData = actorData.system;
 		//const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
-		console.log("Metanthropes RPG Preparing data for", this.type, "Actor:", this.name);
+		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
 		console.log("========================================================================");
 	}
 	_prepareDerivedAnimalData(actorData) {
@@ -84,7 +93,7 @@ export class MetanthropesActor extends Actor {
 		//const systemData = actorData.system;
 		//const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
-		console.log("Metanthropes RPG Preparing data for", this.type, "Actor:", this.name);
+		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
 		console.log("========================================================================");
 	}
 	_prepareDerivedArtificialData(actorData) {
@@ -92,23 +101,23 @@ export class MetanthropesActor extends Actor {
 		//const systemData = actorData.system;
 		//const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
-		console.log("Metanthropes RPG Preparing data for", this.type, "Actor:", this.name);
+		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
 		console.log("========================================================================");
 	}
 	_prepareDerivedAnimatedObjectData(actorData) {
-		if (actorData.type !== 'Animated Object') return;
+		if (actorData.type !== 'Animated-Object') return;
 		const systemData = actorData.system;
 		const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
-		console.log("Metanthropes RPG Preparing data for", this.type, "Actor:", this.name);
+		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
 		console.log("========================================================================");
 	}
 	_prepareDerivedAnimatedHumanoidData(actorData) {
-		if (actorData.type !== 'Animated Humanoid') return;
+		if (actorData.type !== 'Animated-Humanoid') return;
 		//const systemData = actorData.system;
 		//const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
-		console.log("Metanthropes RPG Preparing data for", this.type, "Actor:", this.name);
+		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
 		console.log("========================================================================");
 	}
 	_prepareDerivedVehicleData(actorData) {
@@ -116,11 +125,12 @@ export class MetanthropesActor extends Actor {
 		const systemData = actorData.system;
 		const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
-		console.log("Metanthropes RPG Preparing data for", this.type, "Actor:", this.name);
+		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
 		console.log("========================================================================");
 	}
 	_prepareDerivedCharacteristicsData(actorData) {
-		if (actorData.type !== 'Humanoid' || actorData.type !== 'Protagonist' || actorData.type !== 'Metanthrope' || actorData.type !== 'MetaTherion' || actorData.type !== 'Artificial' || actorData.type !== 'Animal' || actorData.type !== 'Animated Humanoid') return;
+		//	we take all actors that have characteristics and prepare their data for rolling, as well as calculte max life.
+		if (actorData.type == 'Humanoid' || actorData.type == 'Protagonist' || actorData.type == 'Metanthrope' || actorData.type == 'MetaTherion' || actorData.type == 'Artificial' || actorData.type == 'Animal' || actorData.type == 'Animated-Humanoid') return;
 		const systemData = actorData.system;
 		const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");

@@ -1,0 +1,45 @@
+<form class="metanthropes {{cssClass}}" autocomplete="off">
+	<header class="sheet-header">
+		<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64" />
+		<h1 class="charname"><input name="name" type="text" value="{{actor.name}}"
+				placeholder="A Humanoid" /></h1>
+	</header>
+
+	<section class="metanthropes layout-container-big style-secondary-title">
+		<h3>Hello Metanthropes!</h3>
+		<p>Here is a sample sheet for a humanoid character.</p>
+		<p>It is a work in progress, so please be patient.</p>
+		<h5> {{system.characteristics.body.stats.power.rollme}} </h5>
+		<div class="metanthropes layout-container-big style-secondary-body">
+			<h5 class="metanthropes style-primary-body">Body</h5>
+			<h5> {{system.characteristics.soul.stats.consciousness.rollme}} </h5>
+		</div>
+		<input name="system.characteristics.body.conditions.maimed.value" type="checkbox"
+			{{#if system.characteristics.body.conditions.maimed.value}}checked{{/if}} />
+		<input name="system.characteristics.soul.stats.consciousness.progressed.value" type="number"
+			value="{{system.characteristics.soul.stats.consciousness.progressed.value}}" />
+		<input name="system.characteristics.mind.conditions.disconnected.label" type="text"
+			value="{{system.characteristics.mind.conditions.disconnected.label}}" />
+	</section>
+	<section>
+		<div class="metanthropes layout-container-big style-secondary-title">
+			<h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis facere fuga nostrum dolorum, obcaecati explicabo recusandae odit iusto modi ut quidem perspiciatis, mollitia similique neque repudiandae non molestiae autem ad!</h3>
+		</div>
+	</section>
+	<section>
+		<div class="metanthropes layout-container-big grid grid-3col">
+			<div class="metanthropes layout-container-med flex-between">
+				<h5 class="metanthropes style-primary-body">Body</h5>
+			</div>
+			<div class="metanthropes layout-container-med flex-group-center">
+				<h5 class="metanthropes style-primary-body">Mind</h5>
+			</div>
+			<div class="metanthropes layout-container-med">
+				<h5 class="metanthropes style-secondary-body flex-between">Soul</h5>
+			</div>
+		</div>
+<!--			<label for="system.characteristics.body.label" class="charlabel"
+				data-label="system.characteristics.body.label">{{system.characteristics.body.label}}</label>
+-->
+	</section>
+</form>

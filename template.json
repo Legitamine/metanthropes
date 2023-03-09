@@ -1,14 +1,15 @@
 {
 	"Actor": {
 		"types": [
+			"Human",
 			"Humanoid",
 			"Metanthrope",
 			"Protagonist",
 			"Animal",
 			"MetaTherion",
 			"Artificial",
-			"Animated Object",
-			"Animated Humanoid",
+			"Animated-Object",
+			"Animated-Humanoid",
 			"Vehicle"
 		],
 		"templates": {
@@ -17,7 +18,7 @@
 					"movement": {
 						"type": "number",
 						"label": "Movement",
-						"initial": 0,
+						"initial": 10,
 						"buffs": {
 							"fly": {
 								"type": "boolean",
@@ -859,6 +860,18 @@
 				}
 			}
 		},
+		"Human": {
+			"templates": [
+				"physical",
+				"vital",
+				"humanoids"
+			],
+			"metaowner": {
+				"type": "string",
+				"label": "Metaowner",
+				"value": "NPC"
+			}
+		},
 		"Humanoid": {
 			"templates": [
 				"physical",
@@ -953,7 +966,7 @@
 				"value": "NPC"
 			}
 		},
-		"Animated Object": {
+		"Animated-Object": {
 			"templates": [
 				"physical"
 			],
@@ -963,7 +976,7 @@
 				"value": "NPC"
 			}
 		},
-		"Animated Humanoid": {
+		"Animated-Humanoid": {
 			"templates": [
 				"physical",
 				"vital",
