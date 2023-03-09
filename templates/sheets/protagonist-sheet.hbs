@@ -3,7 +3,8 @@
 		<div class="layout-container-big style-container-big">
 			<div class="layout-container-small style-container-small">
 				<div><input name="" type="text" value="" data-dtype="string" placeholder=""> Birthplace</div>
-				<div><input name="vital.age.value" type="number" value="{{vital.age.value}}" data-dtype="number" placeholder=""> Age</div>
+				<div><input name="vital.age.value" type="number" value="{{vital.age.value}}" data-dtype="number"
+						placeholder=""> Age</div>
 				<div><input name="" type="text" value="" data-dtype="" placeholder=""> Gender</div>
 				<div><input name="" type="text" value="" data-dtype="" placeholder=""> Desc Hum</div>
 				<div><input name="" type="text" value="" data-dtype="" placeholder=""> Dec Phys</div>
@@ -22,7 +23,7 @@
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>
-					<input name="vital.life.value" type="number" value="{{vital.life.value}}" data-dtype="number"> 
+					<input name="vital.life.value" type="number" value="{{vital.life.value}}" data-dtype="number">
 					Life ❤️
 					<label for="vital.life.max" data-label="{{vital.life.max}}"
 						class="style-labels-number">{{vital.life.max}}</label> ❤️
@@ -48,9 +49,9 @@
 			<a> 🚧 Notes 🚧 </a>
 		</nav>
 		<div class="layout-container-grid3x4 style-container-grid3x4">
-			<div class="layout-container-small style-container-small">
+			<div class="layout-container-medium style-container-medium">
 				<div>
-					<p> Initial {{characteristics.body.initial.value}} </p>
+					<p> Initial <input name="characteristics.body.initial.value" type="number" value="{{characteristics.body.initial.value}}" data-dtype="number"> </p>
 					<p> Progressed </p>
 				</div>
 				<div>
@@ -63,7 +64,7 @@
 				</div>
 			</div>
 			<aside>
-				<div class="layout-container-small style-container-small">
+				<div class="layout-container-medium style-container-medium">
 					<div>
 						<p> Initial </p>
 						<p> Progressed </p>
@@ -79,7 +80,7 @@
 				</div>
 			</aside>
 			<aside>
-				<div class="layout-container-small style-container-small">
+				<div class="layout-container-medium style-container-medium">
 					<div>
 						<p> Initial </p>
 						<p> Progressed </p>
@@ -94,7 +95,7 @@
 					</div>
 				</div>
 			</aside>
-			<div class="layout-container-small style-container-small">
+			<div class="layout-container-medium style-container-medium">
 				<div>
 					<p> Initial </p>
 					<p> Progressed </p>
@@ -110,7 +111,7 @@
 				</div>
 			</div>
 			<aside>
-				<div class="layout-container-small style-container-small">
+				<div class="layout-container-medium style-container-medium">
 					<div>
 						<p> Initial </p>
 						<p> Progressed </p>
@@ -127,7 +128,7 @@
 				</div>
 			</aside>
 			<aside>
-				<div class="layout-container-small style-container-small">
+				<div class="layout-container-medium style-container-medium">
 					<div>
 						<p> Initial </p>
 						<p> Progressed </p>
@@ -143,7 +144,7 @@
 					</div>
 				</div>
 			</aside>
-			<div class="layout-container-small style-container-small">
+			<div class="layout-container-medium style-container-medium">
 				<div>
 					<p> Initial </p>
 					<p> Progressed </p>
@@ -159,7 +160,7 @@
 				</div>
 			</div>
 			<aside>
-				<div class="layout-container-small style-container-small">
+				<div class="layout-container-medium style-container-medium">
 					<div>
 						<p> Initial </p>
 						<p> Progressed </p>
@@ -176,7 +177,7 @@
 				</div>
 			</aside>
 			<aside>
-				<div class="layout-container-small style-container-small">
+				<div class="layout-container-medium style-container-medium">
 					<div>
 						<p> Initial </p>
 						<p> Progressed </p>
@@ -192,7 +193,7 @@
 					</div>
 				</div>
 			</aside>
-			<div class="layout-container-small style-container-small">
+			<div class="layout-container-medium style-container-medium">
 				<div>
 					<p> Initial </p>
 					<p> Progressed </p>
@@ -208,7 +209,7 @@
 				</div>
 			</div>
 			<aside>
-				<div class="layout-container-small style-container-small">
+				<div class="layout-container-medium style-container-medium">
 					<div>
 						<p> Initial </p>
 						<p> Progressed </p>
@@ -225,7 +226,7 @@
 				</div>
 			</aside>
 			<aside>
-				<div class="layout-container-small style-container-small">
+				<div class="layout-container-medium style-container-medium">
 					<div>
 						<p> Initial </p>
 						<p> Progressed </p>
@@ -245,31 +246,25 @@
 	</main>
 	<footer>
 		<div class="layout-container-medium style-container-medium">
-			<div class="layout-container-small" "style-container-small">
-				<div>
-					<div><input name="" type="number" value="" data-dtype="" placeholder="">Movement</div>
-					<div><input name="" type="number" value="" data-dtype="" placeholder="">Speed</div>
-					<div><input name="" type="number" value="" data-dtype="" placeholder="">Weight</div>
-					<div><input name="" type="number" value="" data-dtype="" placeholder="">Size</div>
-				</div>
+			<div class="layout-container-small style-container-small">
+				<div><input name="" type="number" value="" data-dtype="" placeholder="">Movement</div>
+				<div><input name="" type="number" value="" data-dtype="" placeholder="">Speed</div>
+				<div><input name="" type="number" value="" data-dtype="" placeholder="">Weight</div>
+				<div><input name="" type="number" value="" data-dtype="" placeholder="">Size</div>
 			</div>
-			<div class="layout-container-small" "style-container-small">
-				<div>
-					<div>Resistances</div>
-					<!-- //todo: investigate lists, investigate emojis and verticality -->
-					<div><input name="" type="number" value="" data-dtype="" placeholder="">Cosmic</div>
-					<div><input name="" type="number" value="" data-dtype="" placeholder="">Elemental</div>
-					<div><input name="" type="number" value="" data-dtype="" placeholder="">Material</div>
-					<div><input name="" type="number" value="" data-dtype="" placeholder="">Psychic</div>
-				</div>
+			<div class="layout-container-small style-container-small">
+				<div>Resistances</div>
+				<!-- //todo: investigate lists, investigate emojis and verticality -->
+				<div><input name="" type="number" value="" data-dtype="" placeholder="">Cosmic</div>
+				<div><input name="" type="number" value="" data-dtype="" placeholder="">Elemental</div>
+				<div><input name="" type="number" value="" data-dtype="" placeholder="">Material</div>
+				<div><input name="" type="number" value="" data-dtype="" placeholder="">Psychic</div>
 			</div>
-			<div class="layout-container-small" "style-container-small">
-				<div>
-					<div><input name="" type="number" value="" data-dtype="" placeholder="">Cover</div>
-					<div><input name="" type="text" value="" data-dtype="" placeholder="">Immunities</div>
-					<div><input name="" type="text" value="" data-dtype="" placeholder="">Detections</div>
-					<div><input name="" type="text" value="" data-dtype="" placeholder="">Shifts</div>
-				</div>
+			<div class="layout-container-small style-container-small">
+				<div><input name="" type="number" value="" data-dtype="" placeholder="">Cover</div>
+				<div><input name="" type="text" value="" data-dtype="" placeholder="">Immunities</div>
+				<div><input name="" type="text" value="" data-dtype="" placeholder="">Detections</div>
+				<div><input name="" type="text" value="" data-dtype="" placeholder="">Shifts</div>
 			</div>
 		</div>
 	</footer>
