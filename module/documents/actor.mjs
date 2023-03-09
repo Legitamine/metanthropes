@@ -33,22 +33,22 @@ export class MetanthropesActor extends Actor {
 		// prepareDerivedData().
 		super.prepareData();
 	}
-	/** @override */
-	prepareDerivedData() {
+	// Override base values for each type of actor here.
+	prepareBaseData() {
 		const actorData = this;
-		this._prepareDerivedHumanData(actorData);
-		this._prepareDerivedHumanoidData(actorData);
-		this._prepareDerivedMetanthropeData(actorData);
-		this._prepareDerivedProtagonistData(actorData);
-		this._prepareDerivedMetaTherionData(actorData);
-		this._prepareDerivedAnimalData(actorData);
-		this._prepareDerivedArtificialData(actorData);
-		this._prepareDerivedAnimatedObjectData(actorData);
-		this._prepareDerivedAnimatedHumanoidData(actorData);
-		this._prepareDerivedVehicleData(actorData);
-		this._prepareDerivedCharacteristicsData(actorData);
+		this._prepareBaseHumanData(actorData);
+		this._prepareBaseHumanoidData(actorData);
+		this._prepareBaseMetanthropeData(actorData);
+		this._prepareBaseProtagonistData(actorData);
+		this._prepareBaseMetaTherionData(actorData);
+		this._prepareBaseAnimalData(actorData);
+		this._prepareBaseArtificialData(actorData);
+		this._prepareBaseAnimatedObjectData(actorData);
+		this._prepareBaseAnimatedHumanoidData(actorData);
+		this._prepareBaseVehicleData(actorData);
 	}
-	_prepareDerivedHumanData(actorData) {
+	// Override base values for each type of actor here.
+	_prepareBaseHumanData(actorData) {
 		if (actorData.type !== 'Human') return;
 		const systemData = actorData.system;
 		const flags = actorData.flags.metanthropes || {};
@@ -56,55 +56,55 @@ export class MetanthropesActor extends Actor {
 		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
 		console.log("========================================================================");
 	}
-	_prepareDerivedHumanoidData(actorData) {
+	_prepareBaseHumanoidData(actorData) {
 		if (actorData.type !== 'Humanoid') return;
-		//const systemData = actorData.system;
-		//const flags = actorData.flags.metanthropes || {};
+		const systemData = actorData.system;
+		const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
 		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
 		console.log("========================================================================");
 	}
-	_prepareDerivedMetanthropeData(actorData) {
+	_prepareBaseMetanthropeData(actorData) {
 		if (actorData.type !== 'Metanthrope') return;
-		//const systemData = actorData.system;
-		//const flags = actorData.flags.metanthropes || {};
+		const systemData = actorData.system;
+		const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
 		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
 		console.log("========================================================================");
 	}
-	_prepareDerivedProtagonistData(actorData) {
+	_prepareBaseProtagonistData(actorData) {
 		if (actorData.type !== 'Protagonist') return;
-		//const systemData = actorData.system;
-		//const flags = actorData.flags.metanthropes || {};
+		const systemData = actorData.system;
+		const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
 		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
 		console.log("========================================================================");
 	}
-	_prepareDerivedMetaTherionData(actorData) {
+	_prepareBaseMetaTherionData(actorData) {
 		if (actorData.type !== 'MetaTherion') return;
-		//const systemData = actorData.system;
-		//const flags = actorData.flags.metanthropes || {};
+		const systemData = actorData.system;
+		const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
 		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
 		console.log("========================================================================");
 	}
-	_prepareDerivedAnimalData(actorData) {
+	_prepareBaseAnimalData(actorData) {
 		if (actorData.type !== 'Animal') return;
-		//const systemData = actorData.system;
-		//const flags = actorData.flags.metanthropes || {};
+		const systemData = actorData.system;
+		const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
 		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
 		console.log("========================================================================");
 	}
-	_prepareDerivedArtificialData(actorData) {
+	_prepareBaseArtificialData(actorData) {
 		if (actorData.type !== 'Artificial') return;
-		//const systemData = actorData.system;
-		//const flags = actorData.flags.metanthropes || {};
+		const systemData = actorData.system;
+		const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
 		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
 		console.log("========================================================================");
 	}
-	_prepareDerivedAnimatedObjectData(actorData) {
+	_prepareBaseAnimatedObjectData(actorData) {
 		if (actorData.type !== 'Animated-Object') return;
 		const systemData = actorData.system;
 		const flags = actorData.flags.metanthropes || {};
@@ -112,15 +112,15 @@ export class MetanthropesActor extends Actor {
 		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
 		console.log("========================================================================");
 	}
-	_prepareDerivedAnimatedHumanoidData(actorData) {
+	_prepareBaseAnimatedHumanoidData(actorData) {
 		if (actorData.type !== 'Animated-Humanoid') return;
-		//const systemData = actorData.system;
-		//const flags = actorData.flags.metanthropes || {};
+		const systemData = actorData.system;
+		const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");
 		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
 		console.log("========================================================================");
 	}
-	_prepareDerivedVehicleData(actorData) {
+	_prepareBaseVehicleData(actorData) {
 		if (actorData.type !== 'Vehicle') return;
 		const systemData = actorData.system;
 		const flags = actorData.flags.metanthropes || {};
@@ -128,9 +128,24 @@ export class MetanthropesActor extends Actor {
 		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
 		console.log("========================================================================");
 	}
+	//
+	//todo: TOC
+	// Override Derived values for Characteristic and Stat calculations here.
+	/** @override */
+	prepareDerivedData() {
+		const actorData = this;
+		this._prepareDerivedCharacteristicsData(actorData);
+	}
+
 	_prepareDerivedCharacteristicsData(actorData) {
 		//	we take all actors that have characteristics and prepare their data for rolling, as well as calculte max life.
-		if (actorData.type !== 'Humanoid' || actorData.type !== 'Protagonist' || actorData.type !== 'Metanthrope' || actorData.type !== 'MetaTherion' || actorData.type !== 'Artificial' || actorData.type !== 'Animal' || actorData.type !== 'Animated-Humanoid') return;
+		if (actorData.type !== "Humanoid") return;
+		else if (actorData.type !== "Protagonist") return;
+		else if (actorData.type !== "Metanthrope") return;
+		else if (actorData.type !== "MetaTherion") return;
+		else if (actorData.type !== "Artificial") return;
+		else if (actorData.type !== "Animal") return;
+		else if (actorData.type !== "Animated-Humanoid") return;
 		const systemData = actorData.system;
 		const flags = actorData.flags.metanthropes || {};
 		console.log("========================================================================");

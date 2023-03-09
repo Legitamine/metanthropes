@@ -14,9 +14,9 @@
 //big container styling
 .style-container-big {
 	opacity: 1;
-	font-size: .75rem;
-	color: $c-green;
-	text-shadow: 0 0 10px $c-purple;
+	font-size: 1rem;
+	color: $c-purple;
+	text-shadow: $s-outline;
 	border: 1px dotted $c-purple;
 	border-radius: 15px;
 	justify-content: center;
@@ -28,7 +28,7 @@
 	font-size: 1rem;
 	color: $c-purple;
 	text-shadow: $s-outline;
-	border:1px solid $c-green;
+	border: 1px solid $c-purple;
 	border-radius: 15px;
 	justify-content: center;
 	justify-self: center;
@@ -39,7 +39,7 @@
 	font-size: 1rem;
 	color: $c-purple;
 	text-shadow: $s-outline;
-	border: 1px solid$c-green;
+	border: 1px solid $c-purple;
 	border-radius: 15px;
 	justify-content: center;
 	justify-self: center;

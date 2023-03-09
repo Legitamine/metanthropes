@@ -1,9 +1,21 @@
 @import url("https://use.typekit.net/gld0tkk.css");
-input[type=text], input[type=number] {
-  margin: 2px;
-  padding: 2px;
+input[type=text] {
+  width: 12ch;
+  margin: 1px;
+  padding: 1px;
   color: #370239;
-  text-shadow: 0 0 10px #370239;
+  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+  font-size: 1rem;
+  border: 1px dashed #370239;
+  border-radius: 15px;
+}
+
+input[type=number] {
+  width: 4ch;
+  margin: 1px;
+  padding: 1px;
+  color: #370239;
+  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
   font-size: 1rem;
   border: 1px dashed #370239;
   border-radius: 15px;
@@ -12,30 +24,29 @@ input[type=text], input[type=number] {
 form {
   font-family: "nasalization", sans-serif;
   margin: 0px;
-  padding: 2px;
+  padding: 1px;
 }
 
 section {
   font-family: "nasalization", sans-serif;
-  margin: 2px;
-  padding: 2px;
+  margin: 1px;
+  padding: 1px;
 }
 
 main {
   font-family: "nasalization", sans-serif;
-  margin: 2px;
-  padding: 2px;
+  margin: 1px;
+  padding: 1px;
+  box-sizing: border-box;
 }
 
 body {
   font-family: "nasalization", sans-serif;
-  margin: 2px;
-  padding: 2px;
 }
 
 header {
-  margin: 2px;
-  padding: 2px;
+  margin: 1px;
+  padding: 1px;
 }
 
 aside {
@@ -47,13 +58,13 @@ div {
 }
 
 nav {
-  margin: 2px;
-  padding: 2px;
+  margin: 1px;
+  padding: 1px;
 }
 
 footer {
-  margin: 2px;
-  padding: 2px;
+  margin: 1px;
+  padding: 1px;
 }
 
 button {
@@ -62,13 +73,13 @@ button {
 
 .window-app {
   font-family: "nasalization", sans-serif;
-  margin: 2px;
-  padding: 2px;
+  margin: 1px;
+  padding: 1px;
 }
 
 .window-content {
-  padding: 2px;
-  margin: 2px;
+  padding: 1px;
+  margin: 1px;
 }
 
 .grid,
@@ -265,8 +276,8 @@ button {
 }
 
 .metanthropes {
-  padding: 2px;
-  margin: 2px;
+  padding: 1px;
+  margin: 1px;
 }
 .metanthropes .layout-container-grid3x4 {
   display: grid;
@@ -275,8 +286,8 @@ button {
   -moz-column-gap: 6px;
        column-gap: 6px;
   row-gap: 3px;
-  padding: 8px;
-  margin: 8px;
+  padding: 6px;
+  margin: 6px;
 }
 .metanthropes .layout-container-big {
   display: grid;
@@ -285,30 +296,29 @@ button {
   -moz-column-gap: 6px;
        column-gap: 6px;
   row-gap: 3px;
-  padding: 4px;
-  margin: 4px;
+  padding: 3px;
+  margin: 3px;
 }
 .metanthropes .layout-container-medium {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   -moz-column-gap: 6px;
        column-gap: 6px;
-  row-gap: 3px;
-  padding: 2px;
-  margin: 2px;
+  padding: 3px;
+  margin: 3px;
 }
 .metanthropes .layout-container-small {
   display: flex;
   flex-direction: column;
-  padding: 2px;
-  margin: 2px;
+  padding: 1px;
+  margin: 1px;
 }
 .metanthropes .layout-container-nav {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  padding: 2px;
-  margin: 2px;
+  padding: 1px;
+  margin: 1px;
 }
 .metanthropes .style-container-grid3x4 {
   opacity: 1;
@@ -322,9 +332,9 @@ button {
 }
 .metanthropes .style-container-big {
   opacity: 1;
-  font-size: 0.75rem;
-  color: #092e00;
-  text-shadow: 0 0 10px #370239;
+  font-size: 1rem;
+  color: #370239;
+  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
   border: 1px dotted #370239;
   border-radius: 15px;
   justify-content: center;
@@ -335,7 +345,7 @@ button {
   font-size: 1rem;
   color: #370239;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
-  border: 1px solid #092e00;
+  border: 1px solid #370239;
   border-radius: 15px;
   justify-content: center;
   justify-self: center;
@@ -345,7 +355,7 @@ button {
   font-size: 1rem;
   color: #370239;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
-  border: 1px solid #092e00;
+  border: 1px solid #370239;
   border-radius: 15px;
   justify-content: center;
   justify-self: center;

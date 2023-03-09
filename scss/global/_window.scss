@@ -1,7 +1,7 @@
 // this changes the input fields in Foundry UI
-input[type="text"], input[type="number"] {
+input[type="text"] {
 	//height: 2ch;
-	//width: 12ch;
+	width: 12ch;
 	//min-height: 20px;
 	//min-width: 20px;
 	//max-height: fit-content;
@@ -9,11 +9,27 @@ input[type="text"], input[type="number"] {
 	margin: $margin-sm;
 	padding: $padding-sm;
 	color: $c-purple;
-	text-shadow: 0 0 10px $c-purple;
+	text-shadow: $s-outline;
 	font-size: 1rem;
 	border: 1px dashed $c-purple;
 	border-radius: 15px;
 }
+input[type="number"] {
+	//height: 2ch;
+	width: 4ch;
+	//min-height: 20px;
+	//min-width: 20px;
+	//max-height: fit-content;
+	//max-width: fit-content;
+	margin: $margin-sm;
+	padding: $padding-sm;
+	color: $c-purple;
+	text-shadow: $s-outline;
+	font-size: 1rem;
+	border: 1px dashed $c-purple;
+	border-radius: 15px;
+}
+
 // this changes the font in body-elements of Foundry UI
 form {
 	font-family: $font-primary;
@@ -29,14 +45,14 @@ section {
 
 main {
 	font-family: $font-primary;
+	//main box-sizing: border-box; might be the culprit
 	margin: $margin-sm;
 	padding: $padding-sm;
+	box-sizing: border-box;
 }
 
 body {
 	font-family: $font-primary;
-	margin: $margin-sm;
-	padding: $padding-sm;
 }
 
 header {
