@@ -52,7 +52,7 @@ Hooks.once("init", async function() {
 	CONFIG.CHARSTATS = CHARSTATS;
 	//setup initiative system
 	CONFIG.Combat.initiative = {
-		formula: "1d100 + @characteristics.body.reflexes.charstat",
+		formula: "1d100",
 		decimals: 2
 	};
 	// Define custom Entity classes.

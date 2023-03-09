@@ -53,16 +53,16 @@
 }
 //fonts and colors
 //unused
-.style-secondary-title {
+.style-labels-number {
 	opacity: 1;
-	font-family: $font-secondary;
+	font-family: $font-primary;
 	font-size: 1.5rem;
 	color: $c-purple;
 }
 //unused
-.style-secondary-body {
+.style-labels-text {
 	opacity: 1;
-	font-family: $font-secondary;
-	font-size: 1.2rem;
-	color: $c-green;
+	font-family: $font-primary;
+	font-size: 0.8rem;
+	color: $c-purple;
 }

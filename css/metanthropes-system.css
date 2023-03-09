@@ -39,13 +39,11 @@ header {
 }
 
 aside {
-  display: inherit;
-  box-sizing: inherit;
+  font-family: "nasalization", sans-serif;
 }
 
 div {
-  display: inherit;
-  box-sizing: inherit;
+  font-family: "nasalization", sans-serif;
 }
 
 nav {
@@ -358,15 +356,15 @@ button {
   justify-content: space-evenly;
   justify-self: center;
 }
-.metanthropes .style-secondary-title {
+.metanthropes .style-labels-number {
   opacity: 1;
-  font-family: "omnium-wide", sans-serif;
+  font-family: "nasalization", sans-serif;
   font-size: 1.5rem;
   color: #370239;
 }
-.metanthropes .style-secondary-body {
+.metanthropes .style-labels-text {
   opacity: 1;
-  font-family: "omnium-wide", sans-serif;
-  font-size: 1.2rem;
-  color: #092e00;
+  font-family: "nasalization", sans-serif;
+  font-size: 0.8rem;
+  color: #370239;
 }
