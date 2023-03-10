@@ -719,144 +719,150 @@
 				}
 			},
 			"animals": {
-				"hitbox": {
-					"head": {
-						"type": "number",
-						"label": "Head",
-						"weight": 5
+				"animals": {
+					"hitbox": {
+						"head": {
+							"type": "number",
+							"label": "Head",
+							"weight": 5
+						},
+						"body-upper": {
+							"type": "number",
+							"label": "Upper Body",
+							"weight": 15
+						},
+						"body-lower": {
+							"type": "number",
+							"label": "Lower Body",
+							"weight": 10
+						},
+						"arm-left": {
+							"type": "number",
+							"label": "Left Arm",
+							"weight": 10
+						},
+						"arm-right": {
+							"type": "number",
+							"label": "Right Arm",
+							"weight": 10
+						},
+						"leg-left": {
+							"type": "number",
+							"label": "Left Leg",
+							"weight": 10
+						},
+						"leg-right": {
+							"type": "number",
+							"label": "Right Leg",
+							"weight": 10
+						},
+						"tail": {
+							"type": "number",
+							"label": "Tail",
+							"weight": 10
+						},
+						"wing-left": {
+							"type": "number",
+							"label": "Left Wing",
+							"weight": 10
+						},
+						"wing-right": {
+							"type": "number",
+							"label": "Right Wing",
+							"weight": 10
+						}
 					},
-					"body-upper": {
-						"type": "number",
-						"label": "Upper Body",
-						"weight": 15
-					},
-					"body-lower": {
-						"type": "number",
-						"label": "Lower Body",
-						"weight": 10
-					},
-					"arm-left": {
-						"type": "number",
-						"label": "Left Arm",
-						"weight": 10
-					},
-					"arm-right": {
-						"type": "number",
-						"label": "Right Arm",
-						"weight": 10
-					},
-					"leg-left": {
-						"type": "number",
-						"label": "Left Leg",
-						"weight": 10
-					},
-					"leg-right": {
-						"type": "number",
-						"label": "Right Leg",
-						"weight": 10
-					},
-					"tail": {
-						"type": "number",
-						"label": "Tail",
-						"weight": 10
-					},
-					"wing-left": {
-						"type": "number",
-						"label": "Left Wing",
-						"weight": 10
-					},
-					"wing-right": {
-						"type": "number",
-						"label": "Right Wing",
-						"weight": 10
+					"details-animal": {
+						"type": "string",
+						"label": "Animal Details",
+						"value": "some animal"
 					}
-				},
-				"details-animal": {
-					"type": "string",
-					"label": "Animal Details",
-					"value": "some animal"
 				}
 			},
 			"synthetic": {
-				"hitbox": {
-					"head": {
-						"type": "number",
-						"label": "Head",
-						"weight": 5
+				"synthetic": {
+					"hitbox": {
+						"head": {
+							"type": "number",
+							"label": "Head",
+							"weight": 5
+						},
+						"torso-upper": {
+							"type": "number",
+							"label": "Upper Torso",
+							"weight": 15
+						},
+						"torso-lower": {
+							"type": "number",
+							"label": "Lower Torso",
+							"weight": 10
+						},
+						"arm-left": {
+							"type": "number",
+							"label": "Left Arm",
+							"weight": 15
+						},
+						"arm-right": {
+							"type": "number",
+							"label": "Right Arm",
+							"weight": 15
+						},
+						"leg-left": {
+							"type": "number",
+							"label": "Left Leg",
+							"weight": 20
+						},
+						"leg-right": {
+							"type": "number",
+							"label": "Right Leg",
+							"weight": 20
+						}
 					},
-					"torso-upper": {
+					"life": {
 						"type": "number",
-						"label": "Upper Torso",
-						"weight": 15
+						"label": "Durability",
+						"value": 200,
+						"max": 0
 					},
-					"torso-lower": {
-						"type": "number",
-						"label": "Lower Torso",
-						"weight": 10
-					},
-					"arm-left": {
-						"type": "number",
-						"label": "Left Arm",
-						"weight": 15
-					},
-					"arm-right": {
-						"type": "number",
-						"label": "Right Arm",
-						"weight": 15
-					},
-					"leg-left": {
-						"type": "number",
-						"label": "Left Leg",
-						"weight": 20
-					},
-					"leg-right": {
-						"type": "number",
-						"label": "Right Leg",
-						"weight": 20
+					"description-synthetic": {
+						"type": "string",
+						"label": "Synthetic Description",
+						"value": "some synthetic life form"
 					}
-				},
-				"life": {
-					"type": "number",
-					"label": "Durability",
-					"value": 200,
-					"max": 0
-				},
-				"description-synthetic": {
-					"type": "string",
-					"label": "Synthetic Description",
-					"value": "some synthetic life form"
 				}
 			},
 			"entermeta": {
-				"metamorphosis": {
-					"type": "string",
-					"label": "Metamorphosis",
-					"value": "some metamorphosis"
-				},
-				"regression": {
-					"type": "string",
-					"label": "Regression",
-					"value": "some regression"
-				},
-				"primemetapower": {
-					"type": "string",
-					"label": "Prime Metapower",
-					"value": "your Prime Metapower"
-				},
-				"sagas": {
-					"type": "string",
-					"label": "Sagas",
-					"value": "Sagas you have participated in"
-				},
-				"coalition": {
-					"type": "string",
-					"label": "Coalition",
-					"value": "Player coalition you are a member of"
-				},
-				"description-entermeta": {
-					"type": "string",
-					"label": "Metamorphosis Details",
-					"value": "some metamorphosis"
+				"entermeta": {
+					"metamorphosis": {
+						"type": "string",
+						"label": "Metamorphosis",
+						"value": "some metamorphosis"
+					},
+					"regression": {
+						"type": "string",
+						"label": "Regression",
+						"value": "some regression"
+					},
+					"primemetapower": {
+						"type": "string",
+						"label": "Prime Metapower",
+						"value": "your Prime Metapower"
+					},
+					"sagas": {
+						"type": "string",
+						"label": "Sagas",
+						"value": "Sagas you have participated in"
+					},
+					"coalition": {
+						"type": "string",
+						"label": "Coalition",
+						"value": "Player coalition you are a member of"
+					},
+					"description-entermeta": {
+						"type": "string",
+						"label": "Metamorphosis Details",
+						"value": "some metamorphosis"
+					}
 				}
 			}
 		},

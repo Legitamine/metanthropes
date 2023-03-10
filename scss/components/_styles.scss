@@ -12,7 +12,7 @@
 	justify-self: stretch;
 }
 //big container styling
-.style-container-big {
+.style-container-grid3x2 {
 	opacity: 1;
 	font-size: 1rem;
 	color: $c-purple;
@@ -23,7 +23,7 @@
 	justify-self: stretch;
 }
 //medium container styling
-.style-container-medium {
+.style-container-grid3x1 {
 	opacity: 1;
 	font-size: 1rem;
 	color: $c-purple;
@@ -65,4 +65,38 @@
 	font-family: $font-primary;
 	font-size: 0.8rem;
 	color: $c-purple;
+}
+//styles for character sheet elements: style-cs-*
+.style-cs-labels {
+	opacity: 1;
+	font-family: $font-primary;
+	font-size: 1rem;
+	color: $c-black;
+	//text-transform: capitalize;
+	text-emphasis: bold;
+}
+.style-cs-values {
+	opacity: 1;
+	font-family: $font-primary;
+	font-size: 0.8rem;
+	color: $c-black;
+}
+.style-cs-buffs {
+	opacity: 1;
+	font-family: $font-primary;
+	font-size: 0.8rem;
+	color: $c-green;
+}
+.style-cs-conditions {
+	opacity: 1;
+	font-family: $font-primary;
+	font-size: 0.8rem;
+	color: $c-red;
+}
+.style-cs-rolls {
+	opacity: 1;
+	font-family: $font-primary;
+	font-size: 1rem;
+	color: $c-purple;
+	text-shadow: $s-outline;
 }

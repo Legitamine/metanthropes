@@ -25,7 +25,7 @@ import { MetanthropesActorSheet } from "./sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
 // Import helpers.
 //import { CharStatsHelper } from "./helpers/charstats.mjs";
-import { CHARSTATS } from "./helpers/charstats.mjs";
+// import { CHARSTATS } from "./helpers/charstats.mjs";
 ////
 //*
 //? Table of Contents
@@ -38,7 +38,7 @@ import { CHARSTATS } from "./helpers/charstats.mjs";
 ////
 
 // Log system initialization.
-Hooks.once("init", async function() {
+Hooks.once("init", async function () {
 	console.log("========================================================================");
 	console.log("Initializing Metanthropes RPG System");
 	console.log("========================================================================");
@@ -49,7 +49,8 @@ Hooks.once("init", async function() {
 		MetanthropesItem
 	};
 	// add custom constants for configuration ???
-	CONFIG.CHARSTATS = CHARSTATS;
+	//do I really need this?
+	//CONFIG.CHARSTATS = CHARSTATS;
 	//setup initiative system
 	CONFIG.Combat.initiative = {
 		formula: "1d100",

@@ -1,10 +1,10 @@
 <form class="metanthropes {{cssClass}}" autocomplete="off">
 	<header>
-		<div class="layout-container-big style-container-big">
+		<div class="layout-container-grid3x2 style-container-grid3x2">
 			<div class="layout-container-small style-container-small">
 				<div><input name="" type="text" value="" data-dtype="string" placeholder=""> Birthplace</div>
-				<div><input name="vital.age.value" type="number" value="{{vital.age.value}}" data-dtype="number"
-						placeholder=""> Age</div>
+				<div>Age <input name="system.vital.age.value" type="number" value="{{system.vital.age.value}}" data-dtype="number"
+						placeholder=""></div>
 				<div><input name="" type="text" value="" data-dtype="" placeholder=""> Gender</div>
 				<div><input name="" type="text" value="" data-dtype="" placeholder=""> Desc Hum</div>
 				<div><input name="" type="text" value="" data-dtype="" placeholder=""> Dec Phys</div>
@@ -23,11 +23,11 @@
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>
-					<input name="vital.life.value" type="number" value="{{vital.life.value}}" data-dtype="number">
+					<input name="system.vital.life.value" type="number" value="{{system.vital.life.value}}" data-dtype="number">
 					Life ❤️
-					<label for="vital.life.max" data-label="{{vital.life.max}}"
-						class="style-labels-number">{{vital.life.max}}</label> ❤️
-					<span> Total</span>
+					<label for="system.vital.life.max" data-label="{{system.vital.life.max}}"
+						class="style-labels-number">{{system.vital.life.max}}</label> ❤️
+					<span> Total {{system.vital.life.max}} again </span>
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
@@ -49,22 +49,22 @@
 			<a> 🚧 Notes 🚧 </a>
 		</nav>
 		<div class="layout-container-grid3x4 style-container-grid3x4">
-			<div class="layout-container-medium style-container-medium">
+			<div class="layout-container-grid3x1 style-container-grid3x1">
 				<div>
-					<p> Initial <input name="characteristics.body.initial.value" type="number" value="{{characteristics.body.initial.value}}" data-dtype="number"> </p>
-					<p> Progressed </p>
+					<p>🏁 <input class="style-cs-values" name="system.characteristics.body.initial.value" type="number" value="{{system.characteristics.body.initial.value}}" data-dtype="number"></p>
+					<p>📈 <input class="style-cs-values" name="system.characteristics.body.progressed.value" type="number" value="{{system.characteristics.body.progressed.value}}" data-dtype="number"></p>
 				</div>
 				<div>
-					<p> BODY </p>
-					<p> Current </p>
+					<p class="style-cs-labels">BODY</p>
+					<p class="style-cs-rolls">{{system.characteristics.body.current}}</p>
 				</div>
 				<div>
-					<p> 🛡️ </p>
-					<p> 💀 </p>
+					<p class="style-cs-buffs">🛡️ <input class="style-cs-buffs" name="system.characteristics.body.buffs.hardened.value" type="number" value="{{system.characteristics.body.buffs.hardened.value}}" data-dtype="number"></p>
+					<p class="style-cs-conditions">💀 <input class="style-cs-conditions" name="system.characteristics.body.conditions.burned.value" type="number" value="{{system.characteristics.body.conditions.burned.value}}" data-dtype="number"></p>
 				</div>
 			</div>
 			<aside>
-				<div class="layout-container-medium style-container-medium">
+				<div class="layout-container-grid3x1 style-container-grid3x1">
 					<div>
 						<p> Initial </p>
 						<p> Progressed </p>
@@ -80,7 +80,7 @@
 				</div>
 			</aside>
 			<aside>
-				<div class="layout-container-medium style-container-medium">
+				<div class="layout-container-grid3x1 style-container-grid3x1">
 					<div>
 						<p> Initial </p>
 						<p> Progressed </p>
@@ -95,7 +95,7 @@
 					</div>
 				</div>
 			</aside>
-			<div class="layout-container-medium style-container-medium">
+			<div class="layout-container-grid3x1 style-container-grid3x1">
 				<div>
 					<p> Initial </p>
 					<p> Progressed </p>
@@ -111,7 +111,7 @@
 				</div>
 			</div>
 			<aside>
-				<div class="layout-container-medium style-container-medium">
+				<div class="layout-container-grid3x1 style-container-grid3x1">
 					<div>
 						<p> Initial </p>
 						<p> Progressed </p>
@@ -128,7 +128,7 @@
 				</div>
 			</aside>
 			<aside>
-				<div class="layout-container-medium style-container-medium">
+				<div class="layout-container-grid3x1 style-container-grid3x1">
 					<div>
 						<p> Initial </p>
 						<p> Progressed </p>
@@ -144,7 +144,7 @@
 					</div>
 				</div>
 			</aside>
-			<div class="layout-container-medium style-container-medium">
+			<div class="layout-container-grid3x1 style-container-grid3x1">
 				<div>
 					<p> Initial </p>
 					<p> Progressed </p>
@@ -160,7 +160,7 @@
 				</div>
 			</div>
 			<aside>
-				<div class="layout-container-medium style-container-medium">
+				<div class="layout-container-grid3x1 style-container-grid3x1">
 					<div>
 						<p> Initial </p>
 						<p> Progressed </p>
@@ -177,7 +177,7 @@
 				</div>
 			</aside>
 			<aside>
-				<div class="layout-container-medium style-container-medium">
+				<div class="layout-container-grid3x1 style-container-grid3x1">
 					<div>
 						<p> Initial </p>
 						<p> Progressed </p>
@@ -193,7 +193,7 @@
 					</div>
 				</div>
 			</aside>
-			<div class="layout-container-medium style-container-medium">
+			<div class="layout-container-grid3x1 style-container-grid3x1">
 				<div>
 					<p> Initial </p>
 					<p> Progressed </p>
@@ -209,7 +209,7 @@
 				</div>
 			</div>
 			<aside>
-				<div class="layout-container-medium style-container-medium">
+				<div class="layout-container-grid3x1 style-container-grid3x1">
 					<div>
 						<p> Initial </p>
 						<p> Progressed </p>
@@ -226,7 +226,7 @@
 				</div>
 			</aside>
 			<aside>
-				<div class="layout-container-medium style-container-medium">
+				<div class="layout-container-grid3x1 style-container-grid3x1">
 					<div>
 						<p> Initial </p>
 						<p> Progressed </p>
@@ -245,7 +245,7 @@
 		</div>
 	</main>
 	<footer>
-		<div class="layout-container-medium style-container-medium">
+		<div class="layout-container-grid3x1 style-container-grid3x2">
 			<div class="layout-container-small style-container-small">
 				<div><input name="" type="number" value="" data-dtype="" placeholder="">Movement</div>
 				<div><input name="" type="number" value="" data-dtype="" placeholder="">Speed</div>

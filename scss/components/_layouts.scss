@@ -1,6 +1,6 @@
 //layouts used in Metanthropes RPG Sheets
 //container layout
-//characteristics and stats container
+//XL container with 3 columns and 4 rows
 .layout-container-grid3x4 {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -15,9 +15,10 @@
 	//background-clip: border-box;
 	padding: $padding-lg;
 	margin: $margin-lg;
+	overflow: hidden;
 }
 //big container with 3 columns and 2 rows
-.layout-container-big {
+.layout-container-grid3x2 {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr;
@@ -34,7 +35,7 @@
 	margin: $margin-md;
 }
 //medium container with 3 columns and 1 row
-.layout-container-medium {
+.layout-container-grid3x1 {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	column-gap: 6px;
