@@ -212,20 +212,20 @@
 						"progressed": {
 							"type": "number",
 							"label": "Progressed Body",
-							"value": 5
+							"value": 0
 						},
 						"buffs": {
 							"hardened": {
 								"type": "number",
 								"label": "Hardened",
-								"value": 4
+								"value": 0
 							}
 						},
 						"conditions": {
 							"burned": {
 								"type": "number",
 								"label": "Burned",
-								"value": 3
+								"value": 0
 							},
 							"bleeding": {
 								"type": "boolean",
