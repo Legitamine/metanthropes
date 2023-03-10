@@ -32,7 +32,7 @@ export class MetanthropesActor extends Actor {
 		// prepareBaseData(), prepareEmbeddedDocuments() (including active effects),
 		// prepareDerivedData().
 		super.prepareData();
-	}
+	};
 	// Override base values for each type of actor here.
 	prepareBaseData() {
 		const actorData = this;
@@ -47,9 +47,10 @@ export class MetanthropesActor extends Actor {
 		//this._prepareBaseAnimatedObjectData(actorData);
 		//this._prepareBaseAnimatedHumanoidData(actorData);
 		//this._prepareBaseVehicleData(actorData);
-	}
+	};
 	// Override base values for each type of actor here.
 	_prepareBaseNonCharacteristicsData(actorData) {
+		// the below should only work for non-charstats actors
 		if (actorData.type == 'Humanoid') return;
 		else if (actorData.type == 'Animated-Humanoid') return;
 		else if (actorData.type == 'Artificial') return;
@@ -62,7 +63,7 @@ export class MetanthropesActor extends Actor {
 		console.log("========================================================================");
 		console.log("Metanthropes RPG Preparing Data for", this.type, "Actor:", this.name);
 		console.log("========================================================================");
-	}
+	};
 	//	_prepareBaseHumanoidData(actorData) {
 	//		if (actorData.type !== 'Humanoid') return;
 	//		const systemData = actorData.system;
@@ -143,7 +144,7 @@ export class MetanthropesActor extends Actor {
 	prepareDerivedData() {
 		const actorData = this;
 		this._prepareDerivedCharacteristicsData(actorData);
-	}
+	};
 
 	_prepareDerivedCharacteristicsData(actorData) {
 		//	we take all actors that have characteristics and prepare their data for rolling, as well as calculte max life.
@@ -155,16 +156,16 @@ export class MetanthropesActor extends Actor {
 		console.log("========================================================================");
 		console.log("Metanthropes RPG Preparing Characteristics & Stats for", this.type, ":", this.name);
 		console.log("========================================================================");
-		for (let [key, chars] of Object.entries(systemData.characteristics)) {
+		for (let chars of Object.entries(systemData.characteristics)) {
 			console.log('Working on', chars.label, chars.initial.label, chars.initial.value, chars.progressed.label, chars.progressed.value);
 			chars.base = (chars.initial.value + chars.progressed.value);
 			console.log('New', chars.label, 'BASE', chars.base);
-			for (let [innerkey, statistics] of Object.entries(chars.stats)) {
+			for (let statistics of Object.entries(chars.stats)) {
 				console.log('Working on', chars.label, statistics.label, statistics.initial.label, statistics.initial.value, statistics.progressed.label, statistics.progressed.value);
 				statistics.base = (statistics.initial.value + statistics.progressed.value);
 				console.log('New', statistics.label, 'BASE', statistics.base);
-			}
-		}
+			};
+		};
 		console.log("========================================================================");
 		console.log("Metanthropes RPG Adding Buffs and Conditions to Characteristics & Stats");
 		console.log("========================================================================");
@@ -338,7 +339,7 @@ export class MetanthropesActor extends Actor {
 		console.log("========================================================================");
 		console.log("Metanthropes RPG Finished Calculating Characteristics & Stats for", this.type, ":", this.name);
 		console.log("========================================================================");
-	}
+	};
 	////
 	/*
 	//? Table of Contents
@@ -391,4 +392,4 @@ export class MetanthropesActor extends Actor {
 	fg
 	}
 	*/
-}
+};

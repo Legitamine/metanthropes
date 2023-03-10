@@ -34,10 +34,10 @@ export class MetanthropesActorSheet extends ActorSheet {
 		context.system = actorData.system;
 		context.flags = actorData.flags;
 		// Prepare character data and items.
-//		if (actorData.type == "humanoid") {
-//			this._prepareItems(context);
-//			this._prepareHumanoidData(context);
-//		}
+		//		if (actorData.type == "humanoid") {
+		//			this._prepareItems(context);
+		//			this._prepareHumanoidData(context);
+		//		}
 		// Add roll data for TinyMCE editors.
 		//context.rollData = context.actor.getRollData();
 		// Prepare active effects
@@ -46,7 +46,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		return context;
 	};
 	//prepare humanoid data
-//	_prepareHumanoidData(context) {
-//
-//	}
-}
+	//	_prepareHumanoidData(context) {
+	//
+	//	}
+};

@@ -15,7 +15,7 @@ input[type="text"] {
 }
 input[type="number"] {
 	//height: 2ch;
-	max-width: 3ch;
+	max-width: 4ch;
 	//min-height: 20px;
 	//min-width: 20px;
 	//max-height: fit-content;
@@ -88,8 +88,8 @@ button {
 }
 
 .window-content {
-padding: $padding-sm;
-margin: $margin-sm;
+	padding: $padding-sm;
+	margin: $margin-sm;
 }
 
 //	.actor-sheet {

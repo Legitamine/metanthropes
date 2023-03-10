@@ -7,6 +7,8 @@
 //* 
 ////
 
+//this is used to help localize the values
+
 export const CHARSTATS = {};
 
 CHARSTATS.characteristics = {
