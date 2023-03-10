@@ -1,24 +1,22 @@
 @import url("https://use.typekit.net/gld0tkk.css");
 input[type=text] {
-  width: 10ch;
+  max-width: 16ch;
   margin: 3px;
   padding: 1px;
-  color: #370239;
-  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
-  font-size: 1rem;
   border: 1px dashed #370239;
   border-radius: 15px;
+  justify-content: center;
+  align-items: center;
 }
 
 input[type=number] {
-  width: 4ch;
+  max-width: 5ch;
   margin: 3px;
   padding: 1px;
-  color: #370239;
-  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
-  font-size: 1rem;
   border: 1px dashed #370239;
   border-radius: 15px;
+  justify-content: center;
+  align-items: center;
 }
 
 form {
@@ -299,6 +297,7 @@ button {
   row-gap: 3px;
   padding: 3px;
   margin: 3px;
+  overflow: hidden;
 }
 .metanthropes .layout-container-grid3x1 {
   display: grid;
@@ -307,6 +306,16 @@ button {
        column-gap: 6px;
   padding: 3px;
   margin: 3px;
+  overflow: hidden;
+}
+.metanthropes .layout-container-grid1x3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  -moz-column-gap: 6px;
+       column-gap: 6px;
+  padding: 3px;
+  margin: 3px;
+  overflow: hidden;
 }
 .metanthropes .layout-container-small {
   display: flex;
@@ -322,61 +331,72 @@ button {
 }
 .metanthropes .style-container-grid3x4 {
   opacity: 1;
-  font-size: 1rem;
-  color: #370239;
-  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
   border: 1px dotted #370239;
   border-radius: 15px;
   justify-content: center;
-  justify-self: stretch;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
 }
 .metanthropes .style-container-grid3x2 {
   opacity: 1;
-  font-size: 1rem;
-  color: #370239;
-  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
   border: 1px dotted #370239;
   border-radius: 15px;
   justify-content: center;
-  justify-self: stretch;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
 }
 .metanthropes .style-container-grid3x1 {
   opacity: 1;
-  font-size: 1rem;
-  color: #370239;
-  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
   border: 1px solid #370239;
   border-radius: 15px;
   justify-content: center;
-  justify-self: stretch;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
+}
+.metanthropes .style-container-grid1x3 {
+  opacity: 1;
+  border: 1px solid #370239;
+  border-radius: 15px;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
 }
 .metanthropes .style-container-small {
   opacity: 1;
-  font-size: 1rem;
-  color: #370239;
-  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
   border: 1px solid #370239;
   border-radius: 15px;
-  justify-content: center;
-  justify-self: stretch;
+  justify-content: space-between;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
 }
 .metanthropes .style-container-nav {
   border: 1px dotted #370239;
   border-radius: 15px;
   justify-content: space-evenly;
   justify-self: stretch;
+  align-items: center;
+  align-self: center;
 }
 .metanthropes .style-labels-number {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #370239;
 }
 .metanthropes .style-labels-text {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: #370239;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
 }
 .metanthropes .style-cs-labels {
   opacity: 1;
@@ -385,24 +405,40 @@ button {
   color: #000;
   -webkit-text-emphasis: bold;
           text-emphasis: bold;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
 }
 .metanthropes .style-cs-values {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: #000;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
 }
 .metanthropes .style-cs-buffs {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: #143d0a;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
 }
 .metanthropes .style-cs-conditions {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: #a70f0f;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
 }
 .metanthropes .style-cs-rolls {
   opacity: 1;
@@ -410,4 +446,8 @@ button {
   font-size: 1rem;
   color: #370239;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
 }

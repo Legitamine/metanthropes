@@ -1,33 +1,31 @@
 // this changes the input fields in Foundry UI
 input[type="text"] {
 	//height: 2ch;
-	width: 10ch;
+	max-width: 16ch;
 	//min-height: 20px;
 	//min-width: 20px;
 	//max-height: fit-content;
 	//max-width: fit-content;
 	margin: $margin-md;
 	padding: $padding-sm;
-	color: $c-purple;
-	text-shadow: $s-outline;
-	font-size: 1rem;
 	border: 1px dashed $c-purple;
 	border-radius: 15px;
+	justify-content: center;
+	align-items: center;
 }
 input[type="number"] {
 	//height: 2ch;
-	width: 4ch;
+	max-width: 5ch;
 	//min-height: 20px;
 	//min-width: 20px;
 	//max-height: fit-content;
 	//max-width: fit-content;
 	margin: $margin-md;
 	padding: $padding-sm;
-	color: $c-purple;
-	text-shadow: $s-outline;
-	font-size: 1rem;
 	border: 1px dashed $c-purple;
 	border-radius: 15px;
+	justify-content: center;
+	align-items: center;
 }
 
 // this changes the font in body-elements of Foundry UI

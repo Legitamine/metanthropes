@@ -3,8 +3,8 @@
 		<div class="layout-container-grid3x2 style-container-grid3x2">
 			<div class="layout-container-small style-container-small">
 				<div><input name="" type="text" value="" data-dtype="string" placeholder=""> Birthplace</div>
-				<div>Age <input name="system.vital.age.value" type="number" value="{{system.vital.age.value}}" data-dtype="number"
-						placeholder=""></div>
+				<div>Age <input name="system.vital.age.value" type="number" value="{{system.vital.age.value}}"
+						data-dtype="number" placeholder=""></div>
 				<div><input name="" type="text" value="" data-dtype="" placeholder=""> Gender</div>
 				<div><input name="" type="text" value="" data-dtype="" placeholder=""> Desc Hum</div>
 				<div><input name="" type="text" value="" data-dtype="" placeholder=""> Dec Phys</div>
@@ -21,20 +21,23 @@
 				<div><input name="" type="text" value="" data-dtype="" placeholder=""> Coalition</div>
 				<p><input name="" type="text" value="" data-dtype="" placeholder=""> Sagas</p>
 			</div>
-			<div class="layout-container-small style-container-small">
-				<div>
-					<input name="system.vital.life.value" type="number" value="{{system.vital.life.value}}" data-dtype="number">
-					Life ❤️
-					<label for="system.vital.life.max" data-label="{{system.vital.life.max}}"
-						class="style-labels-number">{{system.vital.life.max}}</label> ❤️
-					<span> Total {{system.vital.life.max}} again </span>
+			<div class="layout-container-grid1x3 style-container-grid1x3">
+				<div class="layout-container-small style-container-small">
+					<div>
+						<input name="system.vital.life.value" type="number" value="{{system.vital.life.value}}"
+							data-dtype="number">
+						Life ❤️
+						<label for="system.vital.life.max" data-label="{{system.vital.life.max}}"
+							class="style-labels-number">{{system.vital.life.max}}</label> ❤️
+						<span> Total {{system.vital.life.max}} again </span>
+					</div>
 				</div>
-			</div>
-			<div class="layout-container-small style-container-small">
-				<div><input name="" type="number" value="" data-dtype="" placeholder=""> Experience </div>
-			</div>
-			<div class="layout-container-small style-container-small">
-				<div><input name="" type="number" value="" data-dtype="" placeholder=""> 🤞 Destiny 🤞 </div>
+				<div class="layout-container-small style-container-small">
+					<div><input name="" type="number" value="" data-dtype="" placeholder=""> Experience </div>
+				</div>
+				<div class="layout-container-small style-container-small">
+					<div><input name="" type="number" value="" data-dtype="" placeholder=""> 🤞 Destiny 🤞 </div>
+				</div>
 			</div>
 		</div>
 	</header>
@@ -51,16 +54,23 @@
 		<div class="layout-container-grid3x4 style-container-grid3x4">
 			<div class="layout-container-grid3x1 style-container-grid3x1">
 				<div>
-					<p>🏁 <input class="style-cs-values" name="system.characteristics.body.initial.value" type="number" value="{{system.characteristics.body.initial.value}}" data-dtype="number"></p>
-					<p>📈 <input class="style-cs-values" name="system.characteristics.body.progressed.value" type="number" value="{{system.characteristics.body.progressed.value}}" data-dtype="number"></p>
+					<p>🏁 <input class="style-cs-values" name="system.characteristics.body.initial.value" type="number"
+							value="{{system.characteristics.body.initial.value}}" data-dtype="number"></p>
+					<p>📈 <input class="style-cs-values" name="system.characteristics.body.progressed.value"
+							type="number" value="{{system.characteristics.body.progressed.value}}" data-dtype="number">
+					</p>
 				</div>
 				<div>
 					<p class="style-cs-labels">BODY</p>
 					<p class="style-cs-rolls">{{system.characteristics.body.current}}</p>
 				</div>
 				<div>
-					<p class="style-cs-buffs">🛡️ <input class="style-cs-buffs" name="system.characteristics.body.buffs.hardened.value" type="number" value="{{system.characteristics.body.buffs.hardened.value}}" data-dtype="number"></p>
-					<p class="style-cs-conditions">💀 <input class="style-cs-conditions" name="system.characteristics.body.conditions.burned.value" type="number" value="{{system.characteristics.body.conditions.burned.value}}" data-dtype="number"></p>
+					<p class="style-cs-buffs">🛡️ <input class="style-cs-buffs"
+							name="system.characteristics.body.buffs.hardened.value" type="number"
+							value="{{system.characteristics.body.buffs.hardened.value}}" data-dtype="number"></p>
+					<p class="style-cs-conditions">💀 <input class="style-cs-conditions"
+							name="system.characteristics.body.conditions.burned.value" type="number"
+							value="{{system.characteristics.body.conditions.burned.value}}" data-dtype="number"></p>
 				</div>
 			</div>
 			<aside>

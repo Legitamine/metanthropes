@@ -33,6 +33,7 @@
 	//background-clip: border-box;
 	padding: $padding-md;
 	margin: $margin-md;
+	overflow: hidden;
 }
 //medium container with 3 columns and 1 row
 .layout-container-grid3x1 {
@@ -48,6 +49,22 @@
 	//background-clip: border-box;
 	padding: $padding-md;
 	margin: $margin-md;
+	overflow: hidden;
+}
+.layout-container-grid1x3 {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	column-gap: 6px;
+	//row-gap: 3px;
+	//background-image: url("../artwork/layout-container-med.jpg");
+	//background-size: contain;
+	//background-attachment: local;
+	//background-repeat: round;
+	//background-origin: border-box;
+	//background-clip: border-box;
+	padding: $padding-md;
+	margin: $margin-md;
+	overflow: hidden;
 }
 //small container with 1 flex row
 .layout-container-small {
