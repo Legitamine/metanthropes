@@ -3,7 +3,7 @@
 //! Metanthropes RPG System for FoundryVTT
 //? This is the core file for running the Metanthropes RPG System for FoundryVTT.
 //todo: Enable basic functionality
-//* 
+//*
 ////
 
 ////
@@ -46,7 +46,7 @@ Hooks.once("init", async function () {
 	// add our classes so they are more easily accessible
 	game.metanthropes = {
 		MetanthropesActor,
-		MetanthropesItem
+		MetanthropesItem,
 	};
 	// add custom constants for configuration ???
 	//do I really need this?
@@ -54,23 +54,24 @@ Hooks.once("init", async function () {
 	//setup initiative system
 	CONFIG.Combat.initiative = {
 		formula: "1d100",
-		decimals: 2
+		decimals: 2,
 	};
 	// Define custom Entity classes.
 	CONFIG.Actor.documentClass = MetanthropesActor;
 	CONFIG.Item.documentClass = MetanthropesItem;
 	// Register sheet application classes instead of defaults.
 	Actors.unregisterSheet("core", ActorSheet);
-	Actors.registerSheet("metanthropes", MetanthropesActorSheet, { makeDefault: true });
+	Actors.registerSheet("metanthropes", MetanthropesActorSheet, {
+		makeDefault: true,
+	});
 	Items.unregisterSheet("core", ItemSheet);
-	Items.registerSheet("metanthropes", MetanthropesItemSheet, { makeDefault: true });
+	Items.registerSheet("metanthropes", MetanthropesItemSheet, {
+		makeDefault: true,
+	});
 	//preload Handlebars templates
 	//loadTemplates(["systems/metanthropes/templates/partials/charstats.hbs"]);
 	//return preloadTemplates();
 	console.log("========================================================================");
 	console.log("Metanthropes RPG System Initialized");
 	console.log("========================================================================");
-
-
 });
-

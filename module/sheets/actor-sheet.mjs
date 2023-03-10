@@ -2,18 +2,16 @@
 //*
 //! Metanthropes RPG System for FoundryVTT
 //? This is the Actor Sheet for the Metanthropes RPG System for FoundryVTT.
-//? This controls how 
+//? This controls how
 //todo: Enable basic functionality
-//* 
+//*
 ////
-
-
 
 export class MetanthropesActorSheet extends ActorSheet {
 	get template() {
 		// doesn't work console.log('${this.actor.data.type}');
 		return `systems/metanthropes-system/templates/sheets/${this.actor.type}-sheet.hbs`;
-	};
+	}
 
 	getData() {
 		// from wfrp4e
@@ -44,9 +42,9 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//context.effects = prepareActiveEffectCategories(this.actor.effects);
 		//return
 		return context;
-	};
+	}
 	//prepare humanoid data
 	//	_prepareHumanoidData(context) {
 	//
 	//	}
-};
+}

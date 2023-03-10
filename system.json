@@ -1,41 +1,37 @@
 {
-    "id": "metanthropes-system",
-    "title": "Metanthropes RPG System",
-    "description": "This is the official Metanthropes RPG system for FoundryVTT",
-    "version": "0.0.72",
-    "compatibility": {
-        "minimum": 10,
-        "verified": "10.291",
-        "maximum": 10
-    },
-    "authors": [
-        {
-            "name": "qp",
-            "email": "qp.wormholes@gmail.com",
-            "reddit": "/u/q---p",
-            "discord": "@qp#8888"
-        },
-        {
-            "name": "bofhgr"
-        }
-    ],
-    "esmodules": [
-        "./module/metanthropes-system.mjs"
-    ],
-    "styles": [
-        "./css/metanthropes-system.css"
-    ],
-    "scripts": [],
-    "packs": [],
-    "languages": [],
+	"id": "metanthropes-system",
+	"title": "Metanthropes RPG System",
+	"description": "This is the official Metanthropes RPG system for FoundryVTT",
+	"version": "0.0.73",
+	"compatibility": {
+		"minimum": 10,
+		"verified": "10.291",
+		"maximum": 10
+	},
+	"authors": [
+		{
+			"name": "qp",
+			"email": "qp.wormholes@gmail.com",
+			"reddit": "/u/q---p",
+			"discord": "@qp#8888"
+		},
+		{
+			"name": "bofhgr"
+		}
+	],
+	"esmodules": ["./module/metanthropes-system.mjs"],
+	"styles": ["./css/metanthropes-system.css"],
+	"scripts": [],
+	"packs": [],
+	"languages": [],
 	"socket": false,
-    "initiative": "1d100",
-    "gridDistance": 2,
-    "gridUnits": "m",
-    "primaryTokenAttribute": "system.vital.life.value",
-    "secondaryTokenAttribute": "system.vital.destiny.value",
-    "url": "https://github.com/legitamine/metanthropes-system/blob/stable/README.md",
-    "manifest": "https://github.com/legitamine/metanthropes-system/releases/latest/download/system.json",
-    "license": "https://github.com/legitamine/metanthropes-system/blob/stable/LICENSE.txt",
-    "changelog": "https://github.com/legitamine/metanthropes-system/blob/stable/README.md"
+	"initiative": "1d100",
+	"gridDistance": 2,
+	"gridUnits": "m",
+	"primaryTokenAttribute": "system.vital.life.value",
+	"secondaryTokenAttribute": "system.vital.destiny.value",
+	"url": "https://github.com/legitamine/metanthropes-system/blob/stable/README.md",
+	"manifest": "https://github.com/legitamine/metanthropes-system/releases/latest/download/system.json",
+	"license": "https://github.com/legitamine/metanthropes-system/blob/stable/LICENSE.txt",
+	"changelog": "https://github.com/legitamine/metanthropes-system/blob/stable/README.md"
 }

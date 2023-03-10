@@ -867,11 +867,7 @@
 			}
 		},
 		"Human": {
-			"templates": [
-				"physical",
-				"vital",
-				"humanoids"
-			],
+			"templates": ["physical", "vital", "humanoids"],
 			"metaowner": {
 				"type": "string",
 				"label": "Metaowner",
@@ -879,13 +875,7 @@
 			}
 		},
 		"Humanoid": {
-			"templates": [
-				"physical",
-				"vital",
-				"characteristics",
-				"humanoids",
-				"humanoid-perks"
-			],
+			"templates": ["physical", "vital", "characteristics", "humanoids", "humanoid-perks"],
 			"metaowner": {
 				"type": "string",
 				"label": "Metaowner",
@@ -893,14 +883,7 @@
 			}
 		},
 		"Metanthrope": {
-			"templates": [
-				"physical",
-				"vital",
-				"characteristics",
-				"humanoids",
-				"humanoid-perks",
-				"entermeta"
-			],
+			"templates": ["physical", "vital", "characteristics", "humanoids", "humanoid-perks", "entermeta"],
 			"metaowner": {
 				"type": "string",
 				"label": "Metaowner",
@@ -908,14 +891,7 @@
 			}
 		},
 		"Protagonist": {
-			"templates": [
-				"physical",
-				"vital",
-				"characteristics",
-				"humanoids",
-				"humanoid-perks",
-				"entermeta"
-			],
+			"templates": ["physical", "vital", "characteristics", "humanoids", "humanoid-perks", "entermeta"],
 			"metaowner": {
 				"type": "string",
 				"label": "Metaowner",
@@ -933,12 +909,7 @@
 			}
 		},
 		"Animal": {
-			"templates": [
-				"physical",
-				"vital",
-				"characteristics",
-				"animals"
-			],
+			"templates": ["physical", "vital", "characteristics", "animals"],
 			"metaowner": {
 				"type": "string",
 				"label": "Metaowner",
@@ -946,13 +917,7 @@
 			}
 		},
 		"MetaTherion": {
-			"templates": [
-				"physical",
-				"vital",
-				"characteristics",
-				"animals",
-				"entermeta"
-			],
+			"templates": ["physical", "vital", "characteristics", "animals", "entermeta"],
 			"metaowner": {
 				"type": "string",
 				"label": "Metaowner",
@@ -960,12 +925,7 @@
 			}
 		},
 		"Artificial": {
-			"templates": [
-				"physical",
-				"vital",
-				"characteristics",
-				"synthetic"
-			],
+			"templates": ["physical", "vital", "characteristics", "synthetic"],
 			"metaowner": {
 				"type": "string",
 				"label": "Metaowner",
@@ -973,9 +933,7 @@
 			}
 		},
 		"Animated-Object": {
-			"templates": [
-				"physical"
-			],
+			"templates": ["physical"],
 			"metaowner": {
 				"type": "string",
 				"label": "Metaowner",
@@ -983,13 +941,7 @@
 			}
 		},
 		"Animated-Humanoid": {
-			"templates": [
-				"physical",
-				"vital",
-				"characteristics",
-				"humanoids",
-				"humanoid-perks"
-			],
+			"templates": ["physical", "vital", "characteristics", "humanoids", "humanoid-perks"],
 			"metaowner": {
 				"type": "string",
 				"label": "Metaowner",
@@ -997,10 +949,7 @@
 			}
 		},
 		"Vehicle": {
-			"templates": [
-				"physical",
-				"synthetic"
-			],
+			"templates": ["physical", "synthetic"],
 			"metaowner": {
 				"type": "string",
 				"label": "Metaowner",
@@ -1009,12 +958,7 @@
 		}
 	},
 	"Item": {
-		"types": [
-			"Object",
-			"Possession",
-			"Metapower",
-			"Combo"
-		],
+		"types": ["Object", "Possession", "Metapower", "Combo"],
 		"templates": {
 			"material": {
 				"mat": {
@@ -1087,9 +1031,7 @@
 			}
 		},
 		"Object": {
-			"templates": [
-				"material"
-			],
+			"templates": ["material"],
 			"description-object": {
 				"type": "string",
 				"label": "Object Description",
@@ -1097,9 +1039,7 @@
 			}
 		},
 		"Possession": {
-			"templates": [
-				"material"
-			],
+			"templates": ["material"],
 			"category": {
 				"armor": {
 					"type": "string",
@@ -1124,9 +1064,7 @@
 			}
 		},
 		"Metapower": {
-			"templates": [
-				"metabase"
-			],
+			"templates": ["metabase"],
 			"description-metapower": {
 				"type": "string",
 				"label": "Metapower Description",
@@ -1134,9 +1072,7 @@
 			}
 		},
 		"Combo": {
-			"templates": [
-				"metabase"
-			],
+			"templates": ["metabase"],
 			"description-combo": {
 				"type": "string",
 				"label": "Combos Description",
