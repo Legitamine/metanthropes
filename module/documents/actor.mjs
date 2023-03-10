@@ -175,7 +175,7 @@ export class MetanthropesActor extends Actor {
 		//todo: change the hardcoded 5 to a variable that acts as the buff multiplier - same for all the rest below
 		systemData.characteristics.body.buffs.total = (systemData.characteristics.body.buffs.hardened.value * 5);
 		console.log("Body Buffs Total", systemData.characteristics.body.buffs.total);
-		console.log("Body Burned Value", systemData.characteristics.body.conditions.burned.value)
+		console.log("Body Burned Value", systemData.characteristics.body.conditions.burned.value);
 		systemData.characteristics.body.conditions.total = (systemData.characteristics.body.conditions.burned.value * 5);
 		console.log("Body Conditions Total", systemData.characteristics.body.conditions.total);
 		systemData.characteristics.body.current = (systemData.characteristics.body.base + systemData.characteristics.body.buffs.total - systemData.characteristics.body.conditions.total);
@@ -235,7 +235,7 @@ export class MetanthropesActor extends Actor {
 		console.log("Mind Sharpened Value", systemData.characteristics.mind.buffs.sharpened.value);
 		systemData.characteristics.mind.buffs.total = (systemData.characteristics.mind.buffs.sharpened.value * 5);
 		console.log("Mind Buffs Total", systemData.characteristics.mind.buffs.total);
-		console.log("Mind Disconnected Value", systemData.characteristics.mind.conditions.disconnected.value)
+		console.log("Mind Disconnected Value", systemData.characteristics.mind.conditions.disconnected.value);
 		systemData.characteristics.mind.conditions.total = (systemData.characteristics.mind.conditions.disconnected.value * 5);
 		console.log("Mind Conditions Total", systemData.characteristics.mind.conditions.total);
 		systemData.characteristics.mind.current = (systemData.characteristics.mind.base + systemData.characteristics.mind.buffs.total - systemData.characteristics.mind.conditions.total);
@@ -287,7 +287,7 @@ export class MetanthropesActor extends Actor {
 		console.log("Soul Enlightened Value", systemData.characteristics.soul.buffs.enlightened.value);
 		systemData.characteristics.soul.buffs.total = (systemData.characteristics.soul.buffs.enlightened.value * 5);
 		console.log("Soul Buffs Total", systemData.characteristics.soul.buffs.total);
-		console.log("Soul Tormented Value", systemData.characteristics.soul.conditions.tormented.value)
+		console.log("Soul Tormented Value", systemData.characteristics.soul.conditions.tormented.value);
 		systemData.characteristics.soul.conditions.total = (systemData.characteristics.soul.conditions.tormented.value * 5);
 		console.log("Soul Conditions Total", systemData.characteristics.soul.conditions.total);
 		systemData.characteristics.soul.current = (systemData.characteristics.soul.base + systemData.characteristics.soul.buffs.total - systemData.characteristics.soul.conditions.total);

@@ -6,8 +6,8 @@ input[type="text"] {
 	//min-width: 20px;
 	//max-height: fit-content;
 	//max-width: fit-content;
-	margin: $margin-md;
-	padding: $padding-sm;
+	margin: $margin-sm;
+	padding: $padding-input-text;
 	border: 1px dashed $c-purple;
 	border-radius: 15px;
 	justify-content: center;
@@ -20,8 +20,8 @@ input[type="number"] {
 	//min-width: 20px;
 	//max-height: fit-content;
 	//max-width: fit-content;
-	margin: $margin-md;
-	padding: $padding-sm;
+	margin: $margin-sm;
+	padding: $padding-input-number;
 	border: 1px dashed $c-purple;
 	border-radius: 15px;
 	justify-content: center;
@@ -67,7 +67,7 @@ div {
 }
 
 nav {
-	margin: $margin-sm;
+	margin: $margin-zero;
 	padding: $padding-sm;
 }
 
