@@ -56,7 +56,7 @@
 		</div>
 	</header>
 	<main>
-		<nav class="csnavselector layout-container-nav style-container-nav" data-group="cs">
+		<nav class="csnavselector tabs layout-container-nav style-container-nav" data-group="cs">
 			<!-- look into actor-sheet.mjs -->
 			<a class="item" data-tab="cs-charstats">🛡️ Characteristics & Stats 💀</a>
 			<a class="item" data-tab="cs-perks">🚧 Perks 🚧</a>
@@ -93,7 +93,7 @@
 					</div>
 					<div>
 						<p class="style-cs-labels">BODY</p>
-						<p class="style-cs-values">{{CHARSTATS.Total.body}}</p>
+						<p class="style-cs-values">{{system.CHARSTATS.Total.bodyTotal}}</p>
 					</div>
 					<div>
 						<p class="style-cs-buffs">🛡️
@@ -259,7 +259,7 @@
 						</div>
 						<div>
 							<p class="style-cs-labels">WILLPOWER</p>
-							<p class="style-cs-rolls">{{CHARSTATS.willpowerRoll}}</p>
+							<p class="style-cs-rolls">{{actor.CHARSTATS.willpowerRoll}}</p>
 						</div>
 						<div>
 							<p> 🛡️ </p>
@@ -290,7 +290,7 @@
 					<div>
 						<p> POWER </p>
 						<p> Current </p>
-						<p class="style-cs-rolls">{{CHARSTATS.roll.powerRoll}}</p>
+						<p class="style-cs-rolls">{{system.CONFIG.CHARSTATS.roll.powerRoll}}</p>
 					</div>
 					<div>
 						<p> 🛡️ </p>

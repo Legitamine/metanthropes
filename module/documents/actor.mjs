@@ -304,7 +304,7 @@ export class MetanthropesActor extends Actor {
 		console.log("Final Consciousness for Rolls:", consciousnessRoll);
 		console.log("Final Awareness for Rolls:", awarenessRoll);
 		console.log("========================================================================");
-		console.log("Metanthropes RPG New Life Maximum: Initial + Current Endurance");
+		console.log("Metanthropes RPG New Life Maximum: Initial Life + Current Endurance");
 		systemData.vital.life.max = systemData.vital.life.initial + enduranceCurrent;
 		console.log("New Life Maximum", systemData.vital.life.max);
 		console.log("========================================================================");
