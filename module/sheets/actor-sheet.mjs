@@ -8,6 +8,33 @@
 ////
 
 export class MetanthropesActorSheet extends ActorSheet {
+/** @override */
+	static get defaultOptions() {
+		return mergeObject(super.defaultOptions, {
+			classes: ["metanthropes", "sheet", "actor"],
+			template: "systems/metanthropes-system/templates/actor/actor-sheet.html",
+			width: 800,
+			height: 800,
+			tabs: [
+				{
+					navSelector: ".sheet-tabs",
+					contentSelector: ".sheet-body",
+					initial: "features",
+				},
+			],
+		});
+	}
+
+
+
+
+
+
+
+
+
+
+
 	get template() {
 		// doesn't work console.log('${this.actor.data.type}');
 		return `systems/metanthropes-system/templates/sheets/${this.actor.type}-sheet.hbs`;
@@ -30,7 +57,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		// Use a safe clone of the actor data for further operations.
 		// It uses the document data's built in toObject() method and gives it the false parameter, which instructs Foundry to not just convert this to a plain object but to also run a deep clone on nested objects/arrays.
 		// from https://foundryvtt.wiki/en/development/guides/SD-tutorial/SD07-Extending-the-ActorSheet-class
-		//const actorData = this.actor.toObject(false);
+		const actorData = this.actor.toObject(false);
 		// removed the above to see if it fixes the bug
 		// Add the actor's data to context.data for easier access, as well as flags.
 		context.system = actorData.system;
@@ -45,6 +72,11 @@ export class MetanthropesActorSheet extends ActorSheet {
 		// Prepare active effects
 		//context.effects = prepareActiveEffectCategories(this.actor.effects);
 		//return
+
+		//initialize the CHARSTATS object
+
+		
+		
 		return context;
 	}
 	//prepare humanoid data
