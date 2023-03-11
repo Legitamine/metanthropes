@@ -1,20 +1,27 @@
 <form class="metanthropes {{cssClass}}" autocomplete="off">
 	<header>
-		<div class="layout-container-grid3x2 style-container-grid3x2">
+		<div class="layout-container-grid3x1 style-container-grid3x1">
 			<div class="layout-container-small style-container-small">
-				<div><input name="" type="text" value="" placeholder="" />MetaOwner</div>
+				<div>Player
+					<input
+						name="system.metaowner"
+						type="text"
+						value="{{system.metaowner.value}}"
+						placeholder="Player Name"
+						data-dtype="string"
+					/></div>
 				<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
 				<div><input name="name" type="text" value="{{actor.name}}" placeholder="A Protagonist" /></div>
 			</div>
 			<div class="layout-container-small style-container-small">
-				<div><input name="" type="text" value="" data-dtype="" placeholder="" /> Background</div>
-				<div><input name="" type="text" value="" data-dtype="" placeholder="" /> Prime Metapower</div>
-				<div><input name="" type="text" value="" data-dtype="" placeholder="" /> Metamorphosis</div>
-				<div><input name="" type="text" value="" data-dtype="" placeholder="" /> Coalition</div>
-				<p><input name="" type="text" value="" data-dtype="" placeholder="" /> Sagas</p>
+				<div>Prime Metapower <input name="" type="text" value="" data-dtype="" placeholder="" /></div>
+				<div>Metamorphosis <input name="" type="text" value="" data-dtype="" placeholder="" /></div>
+				<div>Background <input name="" type="text" value="" data-dtype="" placeholder="" /></div>
+				<div>Arc <input name="" type="text" value="" data-dtype="" placeholder="" /></div>
+				<p>Regression <input name="" type="text" value="" data-dtype="" placeholder="" /></p>
 			</div>
 			<div class="layout-container-small style-container-small">
-				<div><input name="" type="text" value="" data-dtype="string" placeholder="" /> Birthplace</div>
+				<div>Birthplace <input name="" type="text" value="" data-dtype="string" placeholder="" /></div>
 				<div>Age
 					<input
 						name="system.vital.age.value"
@@ -23,35 +30,40 @@
 						data-dtype="number"
 						placeholder=""
 					/></div>
-				<div><input name="" type="text" value="" data-dtype="" placeholder="" /> Gender</div>
-				<div><input name="" type="text" value="" data-dtype="" placeholder="" /> Desc Hum</div>
-				<div><input name="" type="text" value="" data-dtype="" placeholder="" /> Dec Phys</div>
+				<div>Gender <input name="" type="text" value="" data-dtype="" placeholder="" /></div>
+				<div>Height <input name="" type="text" value="" data-dtype="" placeholder="" /></div>
+				<div>Weight <input name="" type="text" value="" data-dtype="" placeholder="" /></div>
 			</div>
-			<div class="layout-container-grid1x3 style-container-grid1x3">
-				<div class="layout-container-small style-container-small">
-					<div>
-						<input
-							name="system.vital.life.value"
-							type="number"
-							value="{{system.vital.life.value}}"
-							data-dtype="number"
-						/>
-						Life ❤️
-						<label
-							for="system.vital.life.max"
-							data-label="{{system.vital.life.max}}"
-							class="style-labels-number"
-						>{{system.vital.life.max}}</label>
-						❤️
-						<span> Total {{system.vital.life.max}} again </span>
-					</div>
+		</div>
+		<div class="layout-container-grid1x3 style-container-grid1x3">
+			<div class="layout-container-small style-container-small">
+				<div>
+					Life ❤️
+					<input
+						name="system.vital.life.value"
+						type="number"
+						value="{{system.vital.life.value}}"
+						data-dtype="number"
+					/>
+					<label
+						for="system.vital.life.max"
+						data-label="{{system.vital.life.max}}"
+						class="style-labels-number"
+					>{{system.vital.life.max}}</label>
 				</div>
-				<div class="layout-container-small style-container-small">
-					<div><input name="" type="number" value="" data-dtype="" placeholder="" /> Experience </div>
-				</div>
-				<div class="layout-container-small style-container-small">
-					<div><input name="" type="number" value="" data-dtype="" placeholder="" /> 🤞 Destiny 🤞 </div>
-				</div>
+			</div>
+			<div class="layout-container-small style-container-small">
+				<div>Experience <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
+			</div>
+			<div class="layout-container-small style-container-small">
+				<div>Destiny 🤞
+					<input
+						name="system.vital.destiny.value"
+						type="number"
+						value="{{system.vital.destiny.value}}"
+						data-dtype="number"
+						placeholder="0"
+					/></div>
 			</div>
 		</div>
 	</header>
@@ -114,68 +126,95 @@
 							/></p>
 					</div>
 				</div>
-				<aside class="style-container-grid3x1">
-					<div class="layout-container-grid3x1 style-container-grid3x1">
-						<div>
-							<p>🏁
-								<input
-									class="style-cs-values"
-									name="system.characteristics.mind.initial.value"
-									type="number"
-									value="{{system.characteristics.mind.initial.value}}"
-									data-dtype="number"
-								/></p>
-							<p>📈
-								<input
-									class="style-cs-values"
-									name="system.characteristics.mind.progressed.value"
-									type="number"
-									value="{{system.characteristics.mind.progressed.value}}"
-									data-dtype="number"
-								/>
-							</p>
-						</div>
-						<div>
-							<p class="style-cs-labels">MIND</p>
-							<p class="style-cs-values">{{system.total.mindTotal}}</p>
-						</div>
-						<div>
-							<p> 🛡️ </p>
-							<p> 💀 </p>
-						</div>
+
+				<div class="layout-container-grid3x1 style-container-grid3x1">
+					<div>
+						<p>🏁
+							<input
+								class="style-cs-values"
+								name="system.characteristics.mind.initial.value"
+								type="number"
+								value="{{system.characteristics.mind.initial.value}}"
+								data-dtype="number"
+							/></p>
+						<p>📈
+							<input
+								class="style-cs-values"
+								name="system.characteristics.mind.progressed.value"
+								type="number"
+								value="{{system.characteristics.mind.progressed.value}}"
+								data-dtype="number"
+							/>
+						</p>
 					</div>
-				</aside>
-				<aside class="style-container-grid3x1">
-					<div class="layout-container-grid3x1 style-container-grid3x1">
-						<div>
-							<p>🏁
-								<input
-									class="style-cs-values"
-									name="system.characteristics.soul.initial.value"
-									type="number"
-									value="{{system.characteristics.soul.initial.value}}"
-									data-dtype="number"
-								/></p>
-							<p>📈
-								<input
-									class="style-cs-values"
-									name="system.characteristics.soul.progressed.value"
-									type="number"
-									value="{{system.characteristics.soul.progressed.value}}"
-									data-dtype="number"
-								/>
-							</p>
-						</div>
-						<div>
-							<p class="style-cs-labels">SOUL</p>
-							<p class="style-cs-values">{{soulTotal}}</p>
-						</div>
-						<div>
-							<p> 🛡️ </p>
-							<p> 💀 </p>
-						</div>
+					<div>
+						<p class="style-cs-labels">MIND</p>
+						<p class="style-cs-values">{{system.total.mindTotal}}</p>
 					</div>
-				</aside>
+					<div>
+						<p class="style-cs-buffs">🛡️
+							<input
+								class="style-cs-buffs"
+								name="system.characteristics.mind.buffs.sharpened.value"
+								type="number"
+								value="{{system.characteristics.mind.buffs.sharpened.value}}"
+								data-dtype="number"
+							/></p>
+						<p class="style-cs-conditions">💀
+							<input
+								class="style-cs-conditions"
+								name="system.characteristics.mind.conditions.disconnected.value"
+								type="number"
+								value="{{system.characteristics.mind.conditions.disconnected.value}}"
+								data-dtype="number"
+							/></p>
+					</div>
+				</div>
+
+				<div class="layout-container-grid3x1 style-container-grid3x1">
+					<div>
+						<p>🏁
+							<input
+								class="style-cs-values"
+								name="system.characteristics.soul.initial.value"
+								type="number"
+								value="{{system.characteristics.soul.initial.value}}"
+								data-dtype="number"
+							/></p>
+						<p>📈
+							<input
+								class="style-cs-values"
+								name="system.characteristics.soul.progressed.value"
+								type="number"
+								value="{{system.characteristics.soul.progressed.value}}"
+								data-dtype="number"
+							/>
+						</p>
+					</div>
+					<div>
+						<p class="style-cs-labels">SOUL</p>
+						<p class="style-cs-values">{{soulTotal}}</p>
+					</div>
+					<div>
+						<p class="style-cs-buffs">🛡️
+							<input
+								class="style-cs-buffs"
+								name="system.characteristics.soul.buffs.enlightened.value"
+								type="number"
+								value="{{system.characteristics.soul.buffs.enlightened.value}}"
+								data-dtype="number"
+							/></p>
+						<p class="style-cs-conditions">💀
+							<input
+								class="style-cs-conditions"
+								name="system.characteristics.soul.conditions.tormented.value"
+								type="number"
+								value="{{system.characteristics.soul.conditions.tormented.value}}"
+								data-dtype="number"
+							/></p>
+					</div>
+				</div>
+
 				<div class="layout-container-grid3x1 style-container-grid3x1">
 					<div>
 						<p>🏁
@@ -201,72 +240,113 @@
 						<p class="style-cs-rolls">{{CHARSTATS.roll.enduranceRoll}}</p>
 					</div>
 					<div>
-						<p> 🛡️ </p>
-						<p> 💀 </p>
+						<p class="style-cs-buffs">🛡️
+							<input
+								class="style-cs-buffs"
+								name="system.characteristics.body.stats.endurance.buffs.fortified.value"
+								type="number"
+								value="{{system.characteristics.body.stats.endurance.buffs.fortified.value}}"
+								data-dtype="number"
+							/></p>
+						<p class="style-cs-conditions">💀
+							<input
+								class="style-cs-conditions"
+								name="system.characteristics.body.stats.endurance.conditions.boneinjury.value"
+								type="number"
+								value="{{system.characteristics.body.stats.endurance.conditions.boneinjury.value}}"
+								data-dtype="number"
+							/></p>
 					</div>
 				</div>
-				<aside class="style-container-grid3x1">
-					<div class="layout-container-grid3x1 style-container-grid3x1">
-						<div>
-							<p>🏁
-								<input
-									class="style-cs-values"
-									name="system.characteristics.mind.stats.perception.initial.value"
-									type="number"
-									value="{{system.characteristics.mind.stats.perception.initial.value}}"
-									data-dtype="number"
-								/></p>
-							<p>📈
-								<input
-									class="style-cs-values"
-									name="system.characteristics.mind.stats.perception.progressed.value"
-									type="number"
-									value="{{system.characteristics.mind.stats.perception.progressed.value}}"
-									data-dtype="number"
-								/>
-							</p>
-						</div>
-						<div>
-							<p class="style-cs-labels">PERCEPTION</p>
-							<p class="style-cs-rolls">{{system.perceptionRoll}}</p>
-						</div>
-						<div>
-							<p> 🛡️ </p>
-							<p> 💀 </p>
-						</div>
+
+				<div class="layout-container-grid3x1 style-container-grid3x1">
+					<div>
+						<p>🏁
+							<input
+								class="style-cs-values"
+								name="system.characteristics.mind.stats.perception.initial.value"
+								type="number"
+								value="{{system.characteristics.mind.stats.perception.initial.value}}"
+								data-dtype="number"
+							/></p>
+						<p>📈
+							<input
+								class="style-cs-values"
+								name="system.characteristics.mind.stats.perception.progressed.value"
+								type="number"
+								value="{{system.characteristics.mind.stats.perception.progressed.value}}"
+								data-dtype="number"
+							/>
+						</p>
 					</div>
-				</aside>
-				<aside class="style-container-grid3x1">
-					<div class="layout-container-grid3x1 style-container-grid3x1">
-						<div>
-							<p>🏁
-								<input
-									class="style-cs-values"
-									name="system.characteristics.soul.stats.willpower.initial.value"
-									type="number"
-									value="{{system.characteristics.soul.stats.willpower.initial.value}}"
-									data-dtype="number"
-								/></p>
-							<p>📈
-								<input
-									class="style-cs-values"
-									name="system.characteristics.soul.stats.willpower.progressed.value"
-									type="number"
-									value="{{system.characteristics.soul.stats.willpower.progressed.value}}"
-									data-dtype="number"
-								/>
-							</p>
-						</div>
-						<div>
-							<p class="style-cs-labels">WILLPOWER</p>
-							<p class="style-cs-rolls">{{actor.CHARSTATS.willpowerRoll}}</p>
-						</div>
-						<div>
-							<p> 🛡️ </p>
-							<p> 💀 </p>
-						</div>
+					<div>
+						<p class="style-cs-labels">PERCEPTION</p>
+						<p class="style-cs-rolls">{{system.perceptionRoll}}</p>
 					</div>
-				</aside>
+					<div>
+						<p class="style-cs-buffs">🛡️
+							<input
+								class="style-cs-buffs"
+								name="system.characteristics.mind.stats.perception.buffs.alerted.value"
+								type="number"
+								value="{{system.characteristics.mind.stats.perception.buffs.alerted.value}}"
+								data-dtype="number"
+							/></p>
+						<p class="style-cs-conditions">💀
+							<input
+								class="style-cs-conditions"
+								name="system.characteristics.mind.stats.perception.conditions.disoriented.value"
+								type="number"
+								value="{{system.characteristics.mind.stats.perception.conditions.disoriented.value}}"
+								data-dtype="number"
+							/></p>
+					</div>
+				</div>
+
+				<div class="layout-container-grid3x1 style-container-grid3x1">
+					<div>
+						<p>🏁
+							<input
+								class="style-cs-values"
+								name="system.characteristics.soul.stats.willpower.initial.value"
+								type="number"
+								value="{{system.characteristics.soul.stats.willpower.initial.value}}"
+								data-dtype="number"
+							/></p>
+						<p>📈
+							<input
+								class="style-cs-values"
+								name="system.characteristics.soul.stats.willpower.progressed.value"
+								type="number"
+								value="{{system.characteristics.soul.stats.willpower.progressed.value}}"
+								data-dtype="number"
+							/>
+						</p>
+					</div>
+					<div>
+						<p class="style-cs-labels">WILLPOWER</p>
+						<p class="style-cs-rolls">{{actor.CHARSTATS.willpowerRoll}}</p>
+					</div>
+					<div>
+						<p class="style-cs-buffs">🛡️
+							<input
+								class="style-cs-buffs"
+								name="system.characteristics.soul.stats.willpower.buffs.determined.value"
+								type="number"
+								value="{{system.characteristics.soul.stats.willpower.buffs.determined.value}}"
+								data-dtype="number"
+							/></p>
+						<p class="style-cs-conditions">💀
+							<input
+								class="style-cs-conditions"
+								name="system.characteristics.soul.stats.willpower.conditions.terrorized.value"
+								type="number"
+								value="{{system.characteristics.soul.stats.willpower.conditions.terrorized.value}}"
+								data-dtype="number"
+							/></p>
+					</div>
+				</div>
+
 				<div class="layout-container-grid3x1 style-container-grid3x1">
 					<div>
 						<p>🏁
@@ -293,74 +373,115 @@
 						<p class="style-cs-rolls">{{system.CONFIG.CHARSTATS.roll.powerRoll}}</p>
 					</div>
 					<div>
-						<p> 🛡️ </p>
-						<p> 💀 </p>
+						<p class="style-cs-buffs">🛡️
+							<input
+								class="style-cs-buffs"
+								name="system.characteristics.body.stats.power.buffs.empowered.value"
+								type="number"
+								value="{{system.characteristics.body.stats.power.buffs.empowered.value}}"
+								data-dtype="number"
+							/></p>
+						<p class="style-cs-conditions">💀
+							<input
+								class="style-cs-conditions"
+								name="system.characteristics.body.stats.power.conditions.muscleinjury.value"
+								type="number"
+								value="{{system.characteristics.body.stats.power.conditions.muscleinjury.value}}"
+								data-dtype="number"
+							/></p>
 					</div>
 				</div>
-				<aside class="style-container-grid3x1">
-					<div class="layout-container-grid3x1 style-container-grid3x1">
-						<div>
-							<p>🏁
-								<input
-									class="style-cs-values"
-									name="system.characteristics.mind.stats.manipulation.initial.value"
-									type="number"
-									value="{{system.characteristics.mind.stats.manipulation.initial.value}}"
-									data-dtype="number"
-								/></p>
-							<p>📈
-								<input
-									class="style-cs-values"
-									name="system.characteristics.mind.stats.manipulation.progressed.value"
-									type="number"
-									value="{{system.characteristics.mind.stats.manipulation.progressed.value}}"
-									data-dtype="number"
-								/>
-							</p>
-						</div>
-						<div>
-							<p> MANIPULATION </p>
-							<p> Current </p>
-							<p> {{system.CHARSTATS.roll.manipulationRoll}} </p>
-						</div>
-						<div>
-							<p> 🛡️ </p>
-							<p> 💀 </p>
-						</div>
+
+				<div class="layout-container-grid3x1 style-container-grid3x1">
+					<div>
+						<p>🏁
+							<input
+								class="style-cs-values"
+								name="system.characteristics.mind.stats.manipulation.initial.value"
+								type="number"
+								value="{{system.characteristics.mind.stats.manipulation.initial.value}}"
+								data-dtype="number"
+							/></p>
+						<p>📈
+							<input
+								class="style-cs-values"
+								name="system.characteristics.mind.stats.manipulation.progressed.value"
+								type="number"
+								value="{{system.characteristics.mind.stats.manipulation.progressed.value}}"
+								data-dtype="number"
+							/>
+						</p>
 					</div>
-				</aside>
-				<aside class="style-container-grid3x1">
-					<div class="layout-container-grid3x1 style-container-grid3x1">
-						<div>
-							<p>🏁
-								<input
-									class="style-cs-values"
-									name="system.characteristics.soul.stats.consciousness.initial.value"
-									type="number"
-									value="{{system.characteristics.soul.stats.consciousness.initial.value}}"
-									data-dtype="number"
-								/></p>
-							<p>📈
-								<input
-									class="style-cs-values"
-									name="system.characteristics.soul.stats.consciousness.progressed.value"
-									type="number"
-									value="{{system.characteristics.soul.stats.consciousness.progressed.value}}"
-									data-dtype="number"
-								/>
-							</p>
-						</div>
-						<div>
-							<p> CONSCIOUSNESS </p>
-							<p> Current </p>
-							<p> {{CONFIG.CHARSTATS.roll.consciousnessRoll}} </p>
-						</div>
-						<div>
-							<p> 🛡️ </p>
-							<p> 💀 </p>
-						</div>
+					<div>
+						<p> MANIPULATION </p>
+						<p> Current </p>
+						<p> {{system.CHARSTATS.roll.manipulationRoll}} </p>
 					</div>
-				</aside>
+					<div>
+						<p class="style-cs-buffs">🛡️
+							<input
+								class="style-cs-buffs"
+								name="system.characteristics.mind.stats.manipulation.buffs.inspired.value"
+								type="number"
+								value="{{system.characteristics.mind.stats.manipulation.buffs.inspired.value}}"
+								data-dtype="number"
+							/></p>
+						<p class="style-cs-conditions">💀
+							<input
+								class="style-cs-conditions"
+								name="system.characteristics.mind.stats.manipulation.conditions.wobbly.value"
+								type="number"
+								value="{{system.characteristics.mind.stats.manipulation.conditions.wobbly.value}}"
+								data-dtype="number"
+							/></p>
+					</div>
+				</div>
+
+				<div class="layout-container-grid3x1 style-container-grid3x1">
+					<div>
+						<p>🏁
+							<input
+								class="style-cs-values"
+								name="system.characteristics.soul.stats.consciousness.initial.value"
+								type="number"
+								value="{{system.characteristics.soul.stats.consciousness.initial.value}}"
+								data-dtype="number"
+							/></p>
+						<p>📈
+							<input
+								class="style-cs-values"
+								name="system.characteristics.soul.stats.consciousness.progressed.value"
+								type="number"
+								value="{{system.characteristics.soul.stats.consciousness.progressed.value}}"
+								data-dtype="number"
+							/>
+						</p>
+					</div>
+					<div>
+						<p> CONSCIOUSNESS </p>
+						<p> Current </p>
+						<p> {{CONFIG.CHARSTATS.roll.consciousnessRoll}} </p>
+					</div>
+					<div>
+						<p class="style-cs-buffs">🛡️
+							<input
+								class="style-cs-buffs"
+								name="system.characteristics.soul.stats.consciousness.buffs.awakened.value"
+								type="number"
+								value="{{system.characteristics.soul.stats.consciousness.buffs.awakened.value}}"
+								data-dtype="number"
+							/></p>
+						<p class="style-cs-conditions">💀
+							<input
+								class="style-cs-conditions"
+								name="system.characteristics.soul.stats.consciousness.conditions.demented.value"
+								type="number"
+								value="{{system.characteristics.soul.stats.consciousness.conditions.demented.value}}"
+								data-dtype="number"
+							/></p>
+					</div>
+				</div>
+
 				<div class="layout-container-grid3x1 style-container-grid3x1">
 					<div>
 						<p>🏁
@@ -387,80 +508,118 @@
 						<p> Roll Me </p>
 					</div>
 					<div>
-						<p> 🛡️ </p>
-						<p> 💀 </p>
+						<p class="style-cs-buffs">🛡️
+							<input
+								class="style-cs-buffs"
+								name="system.characteristics.body.stats.reflexes.buffs.hastened.value"
+								type="number"
+								value="{{system.characteristics.body.stats.reflexes.buffs.hastened.value}}"
+								data-dtype="number"
+							/></p>
+						<p class="style-cs-conditions">💀
+							<input
+								class="style-cs-conditions"
+								name="system.characteristics.body.stats.reflexes.conditions.skininjury.value"
+								type="number"
+								value="{{system.characteristics.body.stats.reflexes.conditions.skininjury.value}}"
+								data-dtype="number"
+							/></p>
 					</div>
 				</div>
-				<aside class="style-container-grid3x1">
-					<div class="layout-container-grid3x1 style-container-grid3x1">
-						<div>
-							<p>🏁
-								<input
-									class="style-cs-values"
-									name="system.characteristics.mind.stats.creativity.initial.value"
-									type="number"
-									value="{{system.characteristics.mind.stats.creativity.initial.value}}"
-									data-dtype="number"
-								/></p>
-							<p>📈
-								<input
-									class="style-cs-values"
-									name="system.characteristics.mind.stats.creativity.progressed.value"
-									type="number"
-									value="{{system.characteristics.mind.stats.creativity.progressed.value}}"
-									data-dtype="number"
-								/>
-							</p>
-						</div>
-						<div>
-							<p> CREATIVITY </p>
-							<p> Current </p>
-							<p> Roll Me </p>
-						</div>
-						<div>
-							<p> 🛡️ </p>
-							<p> 💀 </p>
-						</div>
+
+				<div class="layout-container-grid3x1 style-container-grid3x1">
+					<div>
+						<p>🏁
+							<input
+								class="style-cs-values"
+								name="system.characteristics.mind.stats.creativity.initial.value"
+								type="number"
+								value="{{system.characteristics.mind.stats.creativity.initial.value}}"
+								data-dtype="number"
+							/></p>
+						<p>📈
+							<input
+								class="style-cs-values"
+								name="system.characteristics.mind.stats.creativity.progressed.value"
+								type="number"
+								value="{{system.characteristics.mind.stats.creativity.progressed.value}}"
+								data-dtype="number"
+							/>
+						</p>
 					</div>
-				</aside>
-				<aside class="style-container-grid3x1">
-					<div class="layout-container-grid3x1 style-container-grid3x1">
-						<div>
-							<p>🏁
-								<input
-									class="style-cs-values"
-									name="system.characteristics.soul.stats.awareness.initial.value"
-									type="number"
-									value="{{system.characteristics.soul.stats.awareness.initial.value}}"
-									data-dtype="number"
-								/></p>
-							<p>📈
-								<input
-									class="style-cs-values"
-									name="system.characteristics.soul.stats.awareness.progressed.value"
-									type="number"
-									value="{{system.characteristics.soul.stats.awareness.progressed.value}}"
-									data-dtype="number"
-								/>
-							</p>
-						</div>
-						<div>
-							<p> AWARENESS </p>
-							<p> Current </p>
-							<p> {{CHARSTATS.roll.awarenessRoll}} </p>
-						</div>
-						<div>
-							<p> 🛡️ </p>
-							<p> 💀 </p>
-						</div>
+					<div>
+						<p> CREATIVITY </p>
+						<p> Current </p>
+						<p> Roll Me </p>
 					</div>
-				</aside>
+					<div>
+						<p class="style-cs-buffs">🛡️
+							<input
+								class="style-cs-buffs"
+								name="system.characteristics.mind.stats.creativity.buffs.inspired.value"
+								type="number"
+								value="{{system.characteristics.mind.stats.creativity.buffs.inspired.value}}"
+								data-dtype="number"
+							/></p>
+						<p class="style-cs-conditions">💀
+							<input
+								class="style-cs-conditions"
+								name="system.characteristics.mind.stats.creativity.conditions.wobbly.value"
+								type="number"
+								value="{{system.characteristics.mind.stats.creativity.conditions.wobbly.value}}"
+								data-dtype="number"
+							/></p>
+					</div>
+				</div>
+
+				<div class="layout-container-grid3x1 style-container-grid3x1">
+					<div>
+						<p>🏁
+							<input
+								class="style-cs-values"
+								name="system.characteristics.soul.stats.awareness.initial.value"
+								type="number"
+								value="{{system.characteristics.soul.stats.awareness.initial.value}}"
+								data-dtype="number"
+							/></p>
+						<p>📈
+							<input
+								class="style-cs-values"
+								name="system.characteristics.soul.stats.awareness.progressed.value"
+								type="number"
+								value="{{system.characteristics.soul.stats.awareness.progressed.value}}"
+								data-dtype="number"
+							/>
+						</p>
+					</div>
+					<div>
+						<p> AWARENESS </p>
+						<p> Current </p>
+						<p> {{CHARSTATS.roll.awarenessRoll}} </p>
+					</div>
+					<div>
+						<p class="style-cs-buffs">🛡️
+							<input
+								class="style-cs-buffs"
+								name="system.characteristics.soul.stats.awareness.buffs.focused.value"
+								type="number"
+								value="{{system.characteristics.soul.stats.awareness.buffs.focused.value}}"
+								data-dtype="number"
+							/></p>
+						<p class="style-cs-conditions">💀
+							<input
+								class="style-cs-conditions"
+								name="system.characteristics.soul.stats.awareness.conditions.bewildered.value"
+								type="number"
+								value="{{system.characteristics.soul.stats.awareness.conditions.bewildered.value}}"
+								data-dtype="number"
+							/></p>
+					</div>
+				</div>
+
 			</div>
-			<div
-				class="tab cs-perks layout-container-grid3x4 style-container-grid3x4"
-				data-group="cs"
-				data-tab="cs-perks"
-			>
+			<!--
+			<div class="tab cs-perks layout-container-small style-container-small" data-group="cs" data-tab="cs-perks">
 				PERKS
 				{{baseBody}}
 				{{CHARSTATS.base.baseBody}}
@@ -471,6 +630,7 @@
 				{{actorData.baseBody}}
 
 			</div>
+			-->
 			<!--  hiding extra tabs for now until I figure it out
 			<div
 				class="tab cs-metapowers layout-container-grid3x4 style-container-grid3x4"
@@ -506,24 +666,24 @@
 	<footer>
 		<div class="layout-container-grid3x1 style-container-grid3x2">
 			<div class="layout-container-small style-container-small">
-				<div><input name="" type="number" value="" data-dtype="" placeholder="" />Movement</div>
-				<div><input name="" type="number" value="" data-dtype="" placeholder="" />Speed</div>
-				<div><input name="" type="number" value="" data-dtype="" placeholder="" />Weight</div>
-				<div><input name="" type="number" value="" data-dtype="" placeholder="" />Size</div>
+				<div>Movement <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
+				<div>Speed <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
+				<div>Weight <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
+				<div>Size <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>Resistances</div>
 				<!-- //todo: investigate lists, investigate emojis and verticality -->
-				<div><input name="" type="number" value="" data-dtype="" placeholder="" />Cosmic</div>
-				<div><input name="" type="number" value="" data-dtype="" placeholder="" />Elemental</div>
-				<div><input name="" type="number" value="" data-dtype="" placeholder="" />Material</div>
-				<div><input name="" type="number" value="" data-dtype="" placeholder="" />Psychic</div>
+				<div>Cosmic <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
+				<div>Elemental <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
+				<div>Material <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
+				<div>Psychic <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
 			</div>
 			<div class="layout-container-small style-container-small">
-				<div><input name="" type="number" value="" data-dtype="" placeholder="" />Cover</div>
-				<div><input name="" type="text" value="" data-dtype="" placeholder="" />Immunities</div>
-				<div><input name="" type="text" value="" data-dtype="" placeholder="" />Detections</div>
-				<div><input name="" type="text" value="" data-dtype="" placeholder="" />Shifts</div>
+				<div>Cover <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
+				<div>Immunities <input name="" type="text" value="" data-dtype="" placeholder="" /></div>
+				<div>Detections <input name="" type="text" value="" data-dtype="" placeholder="" /></div>
+				<div>Shifts <input name="" type="text" value="" data-dtype="" placeholder="" /></div>
 			</div>
 		</div>
 	</footer>

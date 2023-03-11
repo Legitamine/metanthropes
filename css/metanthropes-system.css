@@ -307,7 +307,8 @@ button {
   flex-flow: row;
   flex-wrap: nowrap;
   flex-direction: row;
-  row-gap: 3px;
+  -moz-column-gap: 6px;
+       column-gap: 6px;
   padding: 3px;
   margin: 3px;
   overflow: hidden;

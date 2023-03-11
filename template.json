@@ -895,7 +895,7 @@
 			"metaowner": {
 				"type": "string",
 				"label": "Metaowner",
-				"value": "Who owns this Protagonist"
+				"value": "Player Name"
 			},
 			"notes-protagonist": {
 				"type": "string",
