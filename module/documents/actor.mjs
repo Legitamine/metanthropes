@@ -34,9 +34,10 @@ export class MetanthropesActor extends Actor {
 	}
 	// Override base values for each type of actor here.
 	prepareBaseData() {
-		const actorData = this;
+		// removed all processing from prepareBaseData to see if it affects the bug
+		// const actorData = this;
 		// using one function for all types of actors without any characteristics or stats in prepareBaseData
-		this._prepareBaseNonCharacteristicsData(actorData);
+		// this._prepareBaseNonCharacteristicsData(actorData);
 		//this._prepareBaseHumanoidData(actorData);
 		//this._prepareBaseMetanthropeData(actorData);
 		//this._prepareBaseProtagonistData(actorData);
@@ -48,21 +49,21 @@ export class MetanthropesActor extends Actor {
 		//this._prepareBaseVehicleData(actorData);
 	}
 	// Override base values for each type of actor here.
-	_prepareBaseNonCharacteristicsData(actorData) {
-		// the below should only work for non-charstats actors
-		if (actorData.type == "Humanoid") return;
-		else if (actorData.type == "Animated-Humanoid") return;
-		else if (actorData.type == "Artificial") return;
-		else if (actorData.type == "Metanthrope") return;
-		else if (actorData.type == "Protagonist") return;
-		else if (actorData.type == "Animal") return;
-		else if (actorData.type == "MetaTherion") return;
-		const systemData = actorData.system;
-		const flags = actorData.flags.metanthropes || {};
-		console.log("========================================================================");
-		console.log("Metanthropes RPG Preparing Data for", this.type, "Actor:", this.name);
-		console.log("========================================================================");
-	}
+	//	_prepareBaseNonCharacteristicsData(actorData) {
+	//		// the below should only work for non-charstats actors
+	//		if (actorData.type == "Humanoid") return;
+	//		else if (actorData.type == "Animated-Humanoid") return;
+	//		else if (actorData.type == "Artificial") return;
+	//		else if (actorData.type == "Metanthrope") return;
+	//		else if (actorData.type == "Protagonist") return;
+	//		else if (actorData.type == "Animal") return;
+	//		else if (actorData.type == "MetaTherion") return;
+	//		const systemData = actorData.system;
+	//		const flags = actorData.flags.metanthropes || {};
+	//		console.log("========================================================================");
+	//		console.log("Metanthropes RPG Preparing Data for", this.type, "Actor:", this.name);
+	//		console.log("========================================================================");
+	//	}
 	//	_prepareBaseHumanoidData(actorData) {
 	//		if (actorData.type !== 'Humanoid') return;
 	//		const systemData = actorData.system;
@@ -142,6 +143,8 @@ export class MetanthropesActor extends Actor {
 	/** @override */
 	prepareDerivedData() {
 		const actorData = this;
+		const systemData = actorData.system;
+		const flags = actorData.flags.metanthropes || {};
 		this._prepareDerivedCharacteristicsData(actorData);
 	}
 
