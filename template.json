@@ -157,6 +157,7 @@
 						"type": "number",
 						"label": "Cover",
 						"initial": 0,
+						"value": 0,
 						"max": 100
 					},
 					"description-physical": {
@@ -183,7 +184,12 @@
 					"arc": {
 						"type": "string",
 						"label": "Arc",
-						"value": "some arc"
+						"value": "Your Arc"
+					},
+					"background": {
+						"type": "string",
+						"label": "Background",
+						"value": "Your Background"
 					},
 					"life": {
 						"type": "number",
@@ -653,6 +659,16 @@
 						"label": "Birthplace",
 						"value": "Random City"
 					},
+					"weight": {
+						"type": "string",
+						"label": "Weight",
+						"value": "Your Weight"
+					},
+					"height": {
+						"type": "string",
+						"label": "Height",
+						"value": "Your Height"
+					},
 					"description-humanoid": {
 						"type": "string",
 						"label": "Humanoid Description",
@@ -841,7 +857,7 @@
 					"regression": {
 						"type": "string",
 						"label": "Regression",
-						"value": "some regression"
+						"value": "Your Regression"
 					},
 					"primemetapower": {
 						"type": "string",

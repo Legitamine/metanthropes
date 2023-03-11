@@ -14,14 +14,14 @@
 				<div><input name="name" type="text" value="{{actor.name}}" placeholder="A Protagonist" /></div>
 			</div>
 			<div class="layout-container-small style-container-small">
-				<div>Prime Metapower <input name="" type="text" value="" data-dtype="" placeholder="" /></div>
-				<div>Metamorphosis <input name="" type="text" value="" data-dtype="" placeholder="" /></div>
-				<div>Background <input name="" type="text" value="" data-dtype="" placeholder="" /></div>
-				<div>Arc <input name="" type="text" value="" data-dtype="" placeholder="" /></div>
-				<p>Regression <input name="" type="text" value="" data-dtype="" placeholder="" /></p>
+				<div>Prime Metapower <input name="system.entermeta.primemetapower.value" type="text" value="{{system.entermeta.primemetapower.value}}" data-dtype="string" placeholder="Prime Metapower" /></div>
+				<div>Metamorphosis <input name="system.entermeta.metamorphosis.value" type="text" value="{{system.entermeta.metamorphosis.value}}" data-dtype="string" placeholder="Your Metamorphosis" /></div>
+				<div>Background <input name="system.vital.background.value" type="text" value="{{system.vital.background.value}}" data-dtype="string" placeholder="Your Background" /></div>
+				<div>Arc <input name="system.vital.arc.value" type="text" value="{{system.vital.arc.value}}" data-dtype="string" placeholder="Your Arc" /></div>
+				<p>Regression <input name="system.entermeta.regression.value" type="text" value="{{system.entermeta.regression.value}}" data-dtype="string" placeholder="Your Regression" /></p>
 			</div>
 			<div class="layout-container-small style-container-small">
-				<div>Birthplace <input name="" type="text" value="" data-dtype="string" placeholder="" /></div>
+				<div>Birthplace <input name="system.humanoids.birthplace.value" type="text" value="{{system.humanoids.birthplace.value}}" data-dtype="string" placeholder="Birthplace" /></div>
 				<div>Age
 					<input
 						name="system.vital.age.value"
@@ -30,9 +30,9 @@
 						data-dtype="number"
 						placeholder=""
 					/></div>
-				<div>Gender <input name="" type="text" value="" data-dtype="" placeholder="" /></div>
-				<div>Height <input name="" type="text" value="" data-dtype="" placeholder="" /></div>
-				<div>Weight <input name="" type="text" value="" data-dtype="" placeholder="" /></div>
+				<div>Gender <input name="system.humanoids.gender.value" type="text" value="{{system.humanoids.gender.value}}" data-dtype="string" placeholder="Other" /></div>
+				<div>Height <input name="system.humanoids.height.value" type="text" value="{{system.humanoids.height.value}}" data-dtype="string" placeholder="Your Height" /></div>
+				<div>Weight <input name="system.humanoids.weight.value" type="text" value="{{system.humanoids.weight.value}}" data-dtype="string" placeholder="Your Weight" /></div>
 			</div>
 		</div>
 		<div class="layout-container-grid1x3 style-container-grid1x3">
@@ -666,24 +666,24 @@
 	<footer>
 		<div class="layout-container-grid3x1 style-container-grid3x2">
 			<div class="layout-container-small style-container-small">
-				<div>Movement <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
-				<div>Speed <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
-				<div>Weight <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
-				<div>Size <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
+				<div>Movement <input name="system.physical.movement.initial" type="number" value="{{system.physical.movement.initial}}" data-dtype="number" placeholder="10" /></div>
+				<div>Speed <input name="system.physical.speed.initial" type="number" value="{{system.physical.speed.initial}}" data-dtype="number" placeholder="10" /></div>
+				<div>Weight <input name="system.physical.weight.initial" type="number" value="{{system.physical.weight.initial}}" data-dtype="number" placeholder="10" /></div>
+				<div>Size <input name="system.physical.size.initial" type="number" value="{{system.physical.size.initial}}" data-dtype="number" placeholder="10" /></div>
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>Resistances</div>
 				<!-- //todo: investigate lists, investigate emojis and verticality -->
-				<div>Cosmic <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
-				<div>Elemental <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
-				<div>Material <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
-				<div>Psychic <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
+				<div>Cosmic <input name="system.physical.resistances.cosmic.initial" type="number" value="{{system.physical.resistances.cosmic.}}" data-dtype="number" placeholder="0" /></div>
+				<div>Elemental <input name="system.physical.resistances.elemental.initial" type="number" value="{{system.physical.resistances.elemental.initial}}" data-dtype="number" placeholder="0" /></div>
+				<div>Material <input name="system.physical.resistances.material.initial" type="number" value="{{system.physical.resistances.material.initial}}" data-dtype="number" placeholder="0" /></div>
+				<div>Psychic <input name="system.physical.resistances.psychic.initial" type="number" value="{{system.physical.resistances.psychic.initial}}" data-dtype="number" placeholder="0" /></div>
 			</div>
 			<div class="layout-container-small style-container-small">
-				<div>Cover <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
-				<div>Immunities <input name="" type="text" value="" data-dtype="" placeholder="" /></div>
-				<div>Detections <input name="" type="text" value="" data-dtype="" placeholder="" /></div>
-				<div>Shifts <input name="" type="text" value="" data-dtype="" placeholder="" /></div>
+				<div>Cover <input name="system.physical.cover.initial" type="number" value="{{system.physical.cover.initial}}" data-dtype="number" placeholder="0" /></div>
+				<div>Immunities <input name="system.physical.immunities.value" type="text" value="{{system.physical.immunities.value}}" data-dtype="string" placeholder="none" /></div>
+				<div>Detections <input name="system.physical.detections.value" type="text" value="{{system.physical.detections.value}}" data-dtype="string" placeholder="none" /></div>
+				<div>Shifts <input name="system.physical.shifts.value" type="text" value="{{system.physical.shifts.value}}" data-dtype="string" placeholder="none" /></div>
 			</div>
 		</div>
 	</footer>
