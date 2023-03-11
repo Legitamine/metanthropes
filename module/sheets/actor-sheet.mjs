@@ -17,8 +17,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 			height: 800,
 			closeOnSubmit: false,
 			submitOnClose: false,
-			submitOnChange: true,
-			resizable: false,
+			submitOnChange: false,
+			resizable: true,
 			tabs: [
 				{
 					navSelector: "csnavselector",

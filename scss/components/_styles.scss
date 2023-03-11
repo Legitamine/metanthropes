@@ -26,18 +26,18 @@
 	border: 1px solid $c-purple;
 	border-radius: 15px;
 	justify-content: center;
-	justify-self: center;
+	justify-self: stretch;
 	align-items: center;
-	align-self: center;
+	align-self: stretch;
 }
 .style-container-grid1x3 {
 	opacity: 1;
 	border: 1px solid $c-purple;
 	border-radius: 15px;
 	justify-content: center;
-	justify-self: center;
+	justify-self: stretch;
 	align-items: center;
-	align-self: center;
+	align-self: stretch;
 }
 //small container styling
 .style-container-small {
@@ -45,9 +45,9 @@
 	border: 1px solid $c-purple;
 	border-radius: 15px;
 	justify-content: space-between;
-	justify-self: center;
+	justify-self: stretch;
 	align-items: center;
-	align-self: center;
+	align-self: stretch;
 }
 //nav container styling
 .style-container-nav {
@@ -56,7 +56,7 @@
 	justify-content: space-evenly;
 	justify-self: stretch;
 	align-items: center;
-	align-self: center;
+	align-self: stretch;
 }
 //fonts and colors
 //unused
