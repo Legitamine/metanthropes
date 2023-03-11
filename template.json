@@ -230,7 +230,7 @@
 							"bleeding": {
 								"type": "boolean",
 								"label": "Bleeding",
-								"value": true
+								"value": false
 							},
 							"asphyxiation": {
 								"type": "boolean",
@@ -245,7 +245,7 @@
 							"maimed": {
 								"type": "boolean",
 								"label": "Maimed",
-								"value": true
+								"value": false
 							}
 						},
 						"stats": {
@@ -259,20 +259,20 @@
 								"progressed": {
 									"type": "number",
 									"label": "Progressed Endurance",
-									"value": 7
+									"value": 0
 								},
 								"buffs": {
 									"fortified": {
 										"type": "number",
 										"label": "Fortified",
-										"value": 2
+										"value": 0
 									}
 								},
 								"conditions": {
 									"boneinjury": {
 										"type": "number",
 										"label": "Bone Injury",
-										"value": 1
+										"value": 0
 									}
 								}
 							},
@@ -286,13 +286,13 @@
 								"progressed": {
 									"type": "number",
 									"label": "Progressed Power",
-									"value": 3
+									"value": 0
 								},
 								"buffs": {
 									"empowered": {
 										"type": "number",
 										"label": "Empowered",
-										"value": 2
+										"value": 0
 									}
 								},
 								"conditions": {
@@ -313,7 +313,7 @@
 								"progressed": {
 									"type": "number",
 									"label": "Progressed Reflexes",
-									"value": 2
+									"value": 0
 								},
 								"buffs": {
 									"hastened": {
@@ -326,7 +326,7 @@
 									"skininjury": {
 										"type": "number",
 										"label": "Skin Injury",
-										"value": 3
+										"value": 0
 									}
 								}
 							}
@@ -348,7 +348,7 @@
 							"sharpened": {
 								"type": "number",
 								"label": "Sharpened",
-								"value": 5
+								"value": 0
 							}
 						},
 						"conditions": {
@@ -384,12 +384,12 @@
 								"initial": {
 									"type": "number",
 									"label": "Initial Perception",
-									"value": 32
+									"value": 27
 								},
 								"progressed": {
 									"type": "number",
 									"label": "Progressed Perception",
-									"value": 7
+									"value": 0
 								},
 								"buffs": {
 									"alerted": {
@@ -402,7 +402,7 @@
 									"disoriented": {
 										"type": "number",
 										"label": "Disoriented",
-										"value": 3
+										"value": 0
 									}
 								}
 							},
@@ -416,7 +416,7 @@
 								"progressed": {
 									"type": "number",
 									"label": "Progressed Manipulation",
-									"value": 3
+									"value": 0
 								},
 								"buffs": {
 									"articulated": {
@@ -443,7 +443,7 @@
 								"progressed": {
 									"type": "number",
 									"label": "Progressed Creativity",
-									"value": 2
+									"value": 0
 								},
 								"buffs": {
 									"inspired": {
@@ -467,7 +467,7 @@
 						"initial": {
 							"type": "number",
 							"label": "Initial Soul",
-							"value": 20
+							"value": 10
 						},
 						"progressed": {
 							"type": "number",
@@ -485,7 +485,7 @@
 							"tormented": {
 								"type": "number",
 								"label": "Tormented",
-								"value": 4
+								"value": 0
 							},
 							"amnesia": {
 								"type": "boolean",
@@ -519,13 +519,13 @@
 								"progressed": {
 									"type": "number",
 									"label": "Progressed Willpower",
-									"value": 5
+									"value": 0
 								},
 								"buffs": {
 									"determined": {
 										"type": "number",
 										"label": "Determined",
-										"value": 3
+										"value": 0
 									}
 								},
 								"conditions": {
@@ -559,7 +559,7 @@
 									"demented": {
 										"type": "number",
 										"label": "Demented",
-										"value": 2
+										"value": 0
 									}
 								}
 							},
