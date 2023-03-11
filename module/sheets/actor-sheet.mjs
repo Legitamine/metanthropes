@@ -22,6 +22,9 @@ export class MetanthropesActorSheet extends ActorSheet {
 		// sheets are the actor object, the data object, whether or not it's
 		// editable, the items array, and the effects array.
 		// await sup goes with async
+
+		// Instantiate the context object
+		// si
 		const context = super.getData();
 		// from boilerplate:
 		// Use a safe clone of the actor data for further operations.
