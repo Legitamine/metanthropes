@@ -88,7 +88,7 @@
 				</div>
 				<div>
 					<p class="style-cs-labels">BODY</p>
-					<p class="style-cs-values">{{bodyTotal}}</p>
+					<p class="style-cs-values">{{actor.bodyTotal}}</p>
 				</div>
 				<div>
 					<p class="style-cs-buffs">🛡️
@@ -112,12 +112,27 @@
 			<aside>
 				<div class="layout-container-grid3x1 style-container-grid3x1">
 					<div>
-						<p> Initial </p>
-						<p> Progressed </p>
+						<p>🏁
+							<input
+								class="style-cs-values"
+								name="system.characteristics.mind.initial.value"
+								type="number"
+								value="{{system.characteristics.mind.initial.value}}"
+								data-dtype="number"
+							/></p>
+						<p>📈
+							<input
+								class="style-cs-values"
+								name="system.characteristics.mind.progressed.value"
+								type="number"
+								value="{{system.characteristics.mind.progressed.value}}"
+								data-dtype="number"
+							/>
+						</p>
 					</div>
 					<div>
 						<p class="style-cs-labels">MIND</p>
-						<p class="style-cs-values">{{mindTotal}}</p>
+						<p class="style-cs-values">{{system.mindTotal}}</p>
 					</div>
 					<div>
 						<p> 🛡️ </p>
@@ -128,8 +143,23 @@
 			<aside>
 				<div class="layout-container-grid3x1 style-container-grid3x1">
 					<div>
-						<p> Initial </p>
-						<p> Progressed </p>
+						<p>🏁
+							<input
+								class="style-cs-values"
+								name="system.characteristics.soul.initial.value"
+								type="number"
+								value="{{system.characteristics.soul.initial.value}}"
+								data-dtype="number"
+							/></p>
+						<p>📈
+							<input
+								class="style-cs-values"
+								name="system.characteristics.soul.progressed.value"
+								type="number"
+								value="{{system.characteristics.soul.progressed.value}}"
+								data-dtype="number"
+							/>
+						</p>
 					</div>
 					<div>
 						<p class="style-cs-labels">SOUL</p>
@@ -143,12 +173,27 @@
 			</aside>
 			<div class="layout-container-grid3x1 style-container-grid3x1">
 				<div>
-					<p> Initial </p>
-					<p> Progressed </p>
+					<p>🏁
+						<input
+							class="style-cs-values"
+							name="system.characteristics.body.stats.endurance.initial.value"
+							type="number"
+							value="{{system.characteristics.body.stats.endurance.initial.value}}"
+							data-dtype="number"
+						/></p>
+					<p>📈
+						<input
+							class="style-cs-values"
+							name="system.characteristics.body.stats.endurance.progressed.value"
+							type="number"
+							value="{{system.characteristics.body.stats.endurance.progressed.value}}"
+							data-dtype="number"
+						/>
+					</p>
 				</div>
 				<div>
 					<p class="style-cs-labels">ENDURANCE</p>
-					<p class="style-cs-rolls">{{enduranceRoll}}</p>
+					<p class="style-cs-rolls">{{CHARSTATS.roll.enduranceRoll}}</p>
 				</div>
 				<div>
 					<p> 🛡️ </p>
@@ -158,13 +203,27 @@
 			<aside>
 				<div class="layout-container-grid3x1 style-container-grid3x1">
 					<div>
-						<p> Initial </p>
-						<p> Progressed </p>
+						<p>🏁
+							<input
+								class="style-cs-values"
+								name="system.characteristics.mind.stats.perception.initial.value"
+								type="number"
+								value="{{system.characteristics.mind.stats.perception.initial.value}}"
+								data-dtype="number"
+							/></p>
+						<p>📈
+							<input
+								class="style-cs-values"
+								name="system.characteristics.mind.stats.perception.progressed.value"
+								type="number"
+								value="{{system.characteristics.mind.stats.perception.progressed.value}}"
+								data-dtype="number"
+							/>
+						</p>
 					</div>
 					<div>
-						<p> PERCEPTION </p>
-						<p> Current </p>
-						<p> Roll Me </p>
+						<p class="style-cs-labels">PERCEPTION</p>
+						<p class="style-cs-rolls">{{system.perceptionRoll}}</p>
 					</div>
 					<div>
 						<p> 🛡️ </p>
@@ -175,13 +234,27 @@
 			<aside>
 				<div class="layout-container-grid3x1 style-container-grid3x1">
 					<div>
-						<p> Initial </p>
-						<p> Progressed </p>
+						<p>🏁
+							<input
+								class="style-cs-values"
+								name="system.characteristics.soul.stats.willpower.initial.value"
+								type="number"
+								value="{{system.characteristics.soul.stats.willpower.initial.value}}"
+								data-dtype="number"
+							/></p>
+						<p>📈
+							<input
+								class="style-cs-values"
+								name="system.characteristics.soul.stats.willpower.progressed.value"
+								type="number"
+								value="{{system.characteristics.soul.stats.willpower.progressed.value}}"
+								data-dtype="number"
+							/>
+						</p>
 					</div>
 					<div>
-						<p> WILLPOWER </p>
-						<p> Current </p>
-						<p> Roll Me </p>
+						<p class="style-cs-labels">WILLPOWER</p>
+						<p class="style-cs-rolls">{{CHARSTATS.willpowerRoll}}</p>
 					</div>
 					<div>
 						<p> 🛡️ </p>
@@ -191,8 +264,23 @@
 			</aside>
 			<div class="layout-container-grid3x1 style-container-grid3x1">
 				<div>
-					<p> Initial </p>
-					<p> Progressed </p>
+					<p>🏁
+						<input
+							class="style-cs-values"
+							name="system.characteristics.body.stats.power.initial.value"
+							type="number"
+							value="{{system.characteristics.body.stats.power.initial.value}}"
+							data-dtype="number"
+						/></p>
+					<p>📈
+						<input
+							class="style-cs-values"
+							name="system.characteristics.body.stats.power.progressed.value"
+							type="number"
+							value="{{system.characteristics.body.stats.power.progressed.value}}"
+							data-dtype="number"
+						/>
+					</p>
 				</div>
 				<div>
 					<p> POWER </p>
@@ -207,8 +295,23 @@
 			<aside>
 				<div class="layout-container-grid3x1 style-container-grid3x1">
 					<div>
-						<p> Initial </p>
-						<p> Progressed </p>
+						<p>🏁
+							<input
+								class="style-cs-values"
+								name="system.characteristics.mind.stats.manipulation.initial.value"
+								type="number"
+								value="{{system.characteristics.mind.stats.manipulation.initial.value}}"
+								data-dtype="number"
+							/></p>
+						<p>📈
+							<input
+								class="style-cs-values"
+								name="system.characteristics.mind.stats.manipulation.progressed.value"
+								type="number"
+								value="{{system.characteristics.mind.stats.manipulation.progressed.value}}"
+								data-dtype="number"
+							/>
+						</p>
 					</div>
 					<div>
 						<p> MANIPULATION </p>
@@ -224,8 +327,23 @@
 			<aside>
 				<div class="layout-container-grid3x1 style-container-grid3x1">
 					<div>
-						<p> Initial </p>
-						<p> Progressed </p>
+						<p>🏁
+							<input
+								class="style-cs-values"
+								name="system.characteristics.soul.stats.consciousness.initial.value"
+								type="number"
+								value="{{system.characteristics.soul.stats.consciousness.initial.value}}"
+								data-dtype="number"
+							/></p>
+						<p>📈
+							<input
+								class="style-cs-values"
+								name="system.characteristics.soul.stats.consciousness.progressed.value"
+								type="number"
+								value="{{system.characteristics.soul.stats.consciousness.progressed.value}}"
+								data-dtype="number"
+							/>
+						</p>
 					</div>
 					<div>
 						<p> CONSCIOUSNESS </p>
@@ -240,8 +358,23 @@
 			</aside>
 			<div class="layout-container-grid3x1 style-container-grid3x1">
 				<div>
-					<p> Initial </p>
-					<p> Progressed </p>
+					<p>🏁
+						<input
+							class="style-cs-values"
+							name="system.characteristics.body.stats.reflexes.initial.value"
+							type="number"
+							value="{{system.characteristics.body.stats.reflexes.initial.value}}"
+							data-dtype="number"
+						/></p>
+					<p>📈
+						<input
+							class="style-cs-values"
+							name="system.characteristics.body.stats.reflexes.progressed.value"
+							type="number"
+							value="{{system.characteristics.body.stats.reflexes.progressed.value}}"
+							data-dtype="number"
+						/>
+					</p>
 				</div>
 				<div>
 					<p> REFLEXES </p>
@@ -256,8 +389,23 @@
 			<aside>
 				<div class="layout-container-grid3x1 style-container-grid3x1">
 					<div>
-						<p> Initial </p>
-						<p> Progressed </p>
+					<p>🏁
+						<input
+							class="style-cs-values"
+							name="system.characteristics.mind.stats.creativity.initial.value"
+							type="number"
+							value="{{system.characteristics.mind.stats.creativity.initial.value}}"
+							data-dtype="number"
+						/></p>
+					<p>📈
+						<input
+							class="style-cs-values"
+							name="system.characteristics.mind.stats.creativity.progressed.value"
+							type="number"
+							value="{{system.characteristics.mind.stats.creativity.progressed.value}}"
+							data-dtype="number"
+						/>
+					</p>
 					</div>
 					<div>
 						<p> CREATIVITY </p>
@@ -273,8 +421,23 @@
 			<aside>
 				<div class="layout-container-grid3x1 style-container-grid3x1">
 					<div>
-						<p> Initial </p>
-						<p> Progressed </p>
+						<p>🏁
+							<input
+								class="style-cs-values"
+								name="system.characteristics.soul.stats.awareness.initial.value"
+								type="number"
+								value="{{system.characteristics.soul.stats.awareness.initial.value}}"
+								data-dtype="number"
+							/></p>
+						<p>📈
+							<input
+								class="style-cs-values"
+								name="system.characteristics.soul.stats.awareness.progressed.value"
+								type="number"
+								value="{{system.characteristics.soul.stats.awareness.progressed.value}}"
+								data-dtype="number"
+							/>
+						</p>
 					</div>
 					<div>
 						<p> AWARENESS </p>

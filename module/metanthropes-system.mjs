@@ -25,7 +25,7 @@ import { MetanthropesActorSheet } from "./sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
 // Import helpers.
 //import { CharStatsHelper } from "./helpers/charstats.mjs";
-// import { CHARSTATS } from "./helpers/charstats.mjs";
+import { CHARSTATS } from "./helpers/charstats.mjs";
 ////
 //*
 //? Table of Contents
@@ -50,7 +50,8 @@ Hooks.once("init", async function () {
 	};
 	// add custom constants for configuration ???
 	//do I really need this?
-	//CONFIG.CHARSTATS = CHARSTATS;
+	//I am defining the constants in the helper file
+	CONFIG.CHARSTATS = CHARSTATS;
 	//setup initiative system
 	CONFIG.Combat.initiative = {
 		formula: "1d100",
