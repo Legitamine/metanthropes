@@ -17,7 +17,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			height: 800,
 			closeOnSubmit: false,
 			submitOnClose: false,
-			submitOnChange: false,
+			submitOnChange: true,
 			resizable: true,
 			tabs: [
 				{

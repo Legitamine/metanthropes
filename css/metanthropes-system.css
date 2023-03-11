@@ -19,12 +19,6 @@ input[type=number] {
   align-items: center;
 }
 
-form {
-  font-family: "nasalization", sans-serif;
-  margin: 0px;
-  padding: 0px;
-}
-
 section {
   font-family: "nasalization", sans-serif;
   margin: 1px;
@@ -291,7 +285,7 @@ button {
 .metanthropes .layout-container-grid3x2 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 3fr;
+  grid-template-rows: 3fr 1fr;
   -moz-column-gap: 6px;
        column-gap: 6px;
   row-gap: 3px;
@@ -309,10 +303,11 @@ button {
   overflow: hidden;
 }
 .metanthropes .layout-container-grid1x3 {
-  display: grid;
-  grid-template-columns: 3fr;
-  -moz-column-gap: 6px;
-       column-gap: 6px;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  row-gap: 3px;
   padding: 3px;
   margin: 3px;
   overflow: hidden;

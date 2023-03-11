@@ -29,11 +29,12 @@ input[type="number"] {
 }
 
 // this changes the font in body-elements of Foundry UI
-form {
-	font-family: $font-primary;
-	margin: $margin-zero;
-	padding: $padding-zero;
-}
+// removing form in case this solves the bug
+//	form {
+//		font-family: $font-primary;
+//		margin: $margin-zero;
+//		padding: $padding-zero;
+//	}
 
 section {
 	font-family: $font-primary;
