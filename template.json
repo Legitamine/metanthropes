@@ -223,7 +223,7 @@
 						"progressed": {
 							"type": "number",
 							"label": "Progressed Body",
-							"value": 0
+							"value": 5
 						},
 						"buffs": {
 							"hardened": {

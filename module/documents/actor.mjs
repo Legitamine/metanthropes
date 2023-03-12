@@ -158,6 +158,7 @@ export class MetanthropesActor extends Actor {
 		console.log("========================================================================");
 		console.log("Metanthropes RPG Preparing Characteristics & Stats for", this.type, ":", this.name);
 		console.log("========================================================================");
+		console.log(this.system.characteristics.charName.label, this.system.characteristics.charName.base.value);
 		//manual instead of a loop cause I want to ensure the bug doesn't come from the loop itself.
 		// think I figured it out, the below .base is never declared, so it can't store the value long term.
 		// so maybe I'll be naming these in a way that can be easily accessed by the character sheet while I am at it.
