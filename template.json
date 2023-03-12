@@ -209,6 +209,7 @@
 			"characteristics": {
 				"characteristics": {
 					"body": {
+						"base": 0,
 						"label": "Body",
 						"initial": {
 							"type": "number",
