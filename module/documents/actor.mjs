@@ -158,23 +158,24 @@ export class MetanthropesActor extends Actor {
 		console.log("========================================================================");
 		console.log("Metanthropes RPG Preparing Characteristics & Stats for", this.type, ":", this.name);
 		console.log("========================================================================");
-		console.log(this.system.characteristics.charName.label, this.system.characteristics.charName.base.value);
 		//manual instead of a loop cause I want to ensure the bug doesn't come from the loop itself.
 		// think I figured it out, the below .base is never declared, so it can't store the value long term.
 		// so maybe I'll be naming these in a way that can be easily accessed by the character sheet while I am at it.
 		for (const [charName, charData] of Object.entries(systemData.characteristics)) {
+			console.log(systemData.characteristics[charName].label, systemData.characteristics[charName].base.label, systemData.characteristics[charName].base.value);
 			const initialValue = charData.initial.value;
 			const progressedValue = charData.progressed.value;
 			const baseValue = initialValue + progressedValue;
-			this.system.characteristics.charName.base.value = baseValue;
-			console.log(this.system.characteristics.charName.label, this.system.characteristics.charName.base.value);
+			systemData.characteristics[charName].base.value = baseValue;
+			console.log("New", systemData.characteristics[charName].label, systemData.characteristics[charName].base.label, systemData.characteristics[charName].base.value);
 
 			for (const [statName, statData] of Object.entries(charName.stats)) {
+				console.log(charName.stats[statName].label, charName.stats[statName].base.label, charName.stats[statName].base.value);
 				const initialValue = statData.initial.value;
 				const progressedValue = statData.progressed.value;
 				const baseValue = initialValue + progressedValue;
-				this.system.characteristics.charName.stats.statName.base = baseValue;
-				console.log(this.system.characteristics.charName.stats.statName.label, this.system.characteristics.charName.stats.statName.base);
+				charName.stats[statName].base = baseValue;
+				console.log("New", charName.stats[statName].label, charName.stats[statName].base.label, charName.stats[statName].base.value);
 			}
 		}
 		//	const bodyBase = systemData.characteristics.body.initial.value + systemData.characteristics.body.progressed.value;

@@ -262,6 +262,11 @@
 						"stats": {
 							"endurance": {
 								"label": "Endurance",
+								"base": {
+									"type": "number",
+									"label": "Base",
+									"value": 0
+								},
 								"initial": {
 									"type": "number",
 									"label": "Initial Endurance",
@@ -289,6 +294,11 @@
 							},
 							"power": {
 								"label": "Power",
+								"base": {
+									"type": "number",
+									"label": "Base",
+									"value": 0
+								},
 								"initial": {
 									"type": "number",
 									"label": "Initial Power",
@@ -316,6 +326,11 @@
 							},
 							"reflexes": {
 								"label": "Reflexes",
+								"base": {
+									"type": "number",
+									"label": "Base",
+									"value": 0
+								},
 								"initial": {
 									"type": "number",
 									"label": "Initial Reflexes",
@@ -345,6 +360,11 @@
 					},
 					"mind": {
 						"label": "Mind",
+						"base": {
+							"type": "number",
+							"label": "Base",
+							"value": 0
+						},
 						"initial": {
 							"type": "number",
 							"label": "Initial Mind",
@@ -392,6 +412,11 @@
 						"stats": {
 							"perception": {
 								"label": "Perception",
+								"base": {
+									"type": "number",
+									"label": "Base",
+									"value": 0
+								},
 								"initial": {
 									"type": "number",
 									"label": "Initial Perception",
@@ -419,6 +444,11 @@
 							},
 							"manipulation": {
 								"label": "Manipulation",
+								"base": {
+									"type": "number",
+									"label": "Base",
+									"value": 0
+								},
 								"initial": {
 									"type": "number",
 									"label": "Initial Manipulation",
@@ -446,6 +476,11 @@
 							},
 							"creativity": {
 								"label": "Creativity",
+								"base": {
+									"type": "number",
+									"label": "Base",
+									"value": 0
+								},
 								"initial": {
 									"type": "number",
 									"label": "Initial Creativity",
@@ -475,6 +510,11 @@
 					},
 					"soul": {
 						"label": "Soul",
+						"base": {
+							"type": "number",
+							"label": "Base",
+							"value": 0
+						},
 						"initial": {
 							"type": "number",
 							"label": "Initial Soul",
@@ -522,6 +562,11 @@
 						"stats": {
 							"willpower": {
 								"label": "Willpower",
+								"base": {
+									"type": "number",
+									"label": "Base",
+									"value": 0
+								},
 								"initial": {
 									"type": "number",
 									"label": "Initial Willpower",
@@ -549,6 +594,11 @@
 							},
 							"consciousness": {
 								"label": "Conciousness",
+								"base": {
+									"type": "number",
+									"label": "Base",
+									"value": 0
+								},
 								"initial": {
 									"type": "number",
 									"label": "Initial Conciousness",
@@ -576,6 +626,11 @@
 							},
 							"awareness": {
 								"label": "Awareness",
+								"base": {
+									"type": "number",
+									"label": "Base",
+									"value": 0
+								},
 								"initial": {
 									"type": "number",
 									"label": "Initial Awareness",
