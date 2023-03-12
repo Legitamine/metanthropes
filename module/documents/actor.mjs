@@ -161,33 +161,48 @@ export class MetanthropesActor extends Actor {
 		//manual instead of a loop cause I want to ensure the bug doesn't come from the loop itself.
 		// think I figured it out, the below .base is never declared, so it can't store the value long term.
 		// so maybe I'll be naming these in a way that can be easily accessed by the character sheet while I am at it.
-		const bodyBase = systemData.characteristics.body.initial.value + systemData.characteristics.body.progressed.value;
-		const mindBase = systemData.characteristics.mind.initial.value + systemData.characteristics.mind.progressed.value;
-		const soulBase = systemData.characteristics.soul.initial.value + systemData.characteristics.soul.progressed.value;
-		const enduranceBase = systemData.characteristics.body.stats.endurance.initial.value + systemData.characteristics.body.stats.endurance.progressed.value;
-		const powerBase = systemData.characteristics.body.stats.power.initial.value + systemData.characteristics.body.stats.power.progressed.value;
-		const reflexesBase = systemData.characteristics.body.stats.reflexes.initial.value + systemData.characteristics.body.stats.reflexes.progressed.value;
-		const perceptionBase = systemData.characteristics.mind.stats.perception.initial.value + systemData.characteristics.mind.stats.perception.progressed.value;
-		const manipulationBase = systemData.characteristics.mind.stats.manipulation.initial.value + systemData.characteristics.mind.stats.manipulation.progressed.value;
-		const creativityBase = systemData.characteristics.mind.stats.creativity.initial.value + systemData.characteristics.mind.stats.creativity.progressed.value;
-		const willpowerBase = systemData.characteristics.soul.stats.willpower.initial.value + systemData.characteristics.soul.stats.willpower.progressed.value;
-		const consciousnessBase = systemData.characteristics.soul.stats.consciousness.initial.value + systemData.characteristics.soul.stats.consciousness.progressed.value;
-		const awarenessBase = systemData.characteristics.soul.stats.awareness.initial.value + systemData.characteristics.soul.stats.awareness.progressed.value;
-		//
-		console.log("Metanthropes RPG Calculating Base Values: Initial + Progressed");
-		console.log("========================================================================");
-		console.log("Body Base", bodyBase);
-		console.log("Mind Base", mindBase);
-		console.log("Soul Base", soulBase);
-		console.log("Endurance Base", enduranceBase);
-		console.log("Power Base", powerBase);
-		console.log("Reflexes Base", reflexesBase);
-		console.log("Perception Base", perceptionBase);
-		console.log("Manipulation Base", manipulationBase);
-		console.log("Creativity Base", creativityBase);
-		console.log("Willpower Base", willpowerBase);
-		console.log("Consciousness Base", consciousnessBase);
-		console.log("Awareness Base", awarenessBase);
+		for (const [charName, charData] of Object.entries(systemData.characteristics)) {
+			const initialValue = charData.initial.value;
+			const progressedValue = charData.progressed.value;
+			const baseValue = initialValue + progressedValue;
+			this.systemData.characteristics.charName.base = baseValue;
+			console.log("this.systemData.characteristics.charName.base", baseValue);
+
+			for (const [statName, statData] of Object.entries(charName.stats)) {
+				const initialValue = statData.initial.value;
+				const progressedValue = statData.progressed.value;
+				const baseValue = initialValue + progressedValue;
+				this.systemData.characteristics.charName.stats.statName.base = baseValue;
+				console.log("this.systemData.characteristics.charName.stats.statName.base", baseValue);
+			}
+		}
+		//	const bodyBase = systemData.characteristics.body.initial.value + systemData.characteristics.body.progressed.value;
+		//	const mindBase = systemData.characteristics.mind.initial.value + systemData.characteristics.mind.progressed.value;
+		//	const soulBase = systemData.characteristics.soul.initial.value + systemData.characteristics.soul.progressed.value;
+		//	const enduranceBase = systemData.characteristics.body.stats.endurance.initial.value + systemData.characteristics.body.stats.endurance.progressed.value;
+		//	const powerBase = systemData.characteristics.body.stats.power.initial.value + systemData.characteristics.body.stats.power.progressed.value;
+		//	const reflexesBase = systemData.characteristics.body.stats.reflexes.initial.value + systemData.characteristics.body.stats.reflexes.progressed.value;
+		//	const perceptionBase = systemData.characteristics.mind.stats.perception.initial.value + systemData.characteristics.mind.stats.perception.progressed.value;
+		//	const manipulationBase = systemData.characteristics.mind.stats.manipulation.initial.value + systemData.characteristics.mind.stats.manipulation.progressed.value;
+		//	const creativityBase = systemData.characteristics.mind.stats.creativity.initial.value + systemData.characteristics.mind.stats.creativity.progressed.value;
+		//	const willpowerBase = systemData.characteristics.soul.stats.willpower.initial.value + systemData.characteristics.soul.stats.willpower.progressed.value;
+		//	const consciousnessBase = systemData.characteristics.soul.stats.consciousness.initial.value + systemData.characteristics.soul.stats.consciousness.progressed.value;
+		//	const awarenessBase = systemData.characteristics.soul.stats.awareness.initial.value + systemData.characteristics.soul.stats.awareness.progressed.value;
+		//	//
+		//	console.log("Metanthropes RPG Calculating Base Values: Initial + Progressed");
+		//	console.log("========================================================================");
+		//	console.log("Body Base", bodyBase);
+		//	console.log("Mind Base", mindBase);
+		//	console.log("Soul Base", soulBase);
+		//	console.log("Endurance Base", enduranceBase);
+		//	console.log("Power Base", powerBase);
+		//	console.log("Reflexes Base", reflexesBase);
+		//	console.log("Perception Base", perceptionBase);
+		//	console.log("Manipulation Base", manipulationBase);
+		//	console.log("Creativity Base", creativityBase);
+		//	console.log("Willpower Base", willpowerBase);
+		//	console.log("Consciousness Base", consciousnessBase);
+		//	console.log("Awareness Base", awarenessBase);
 		console.log("========================================================================");
 		console.log("Metanthropes RPG Calculating Characteristics: Base + Buffs - Conditions");
 		console.log("========================================================================");
@@ -271,7 +286,8 @@ export class MetanthropesActor extends Actor {
 		console.log("Willpower Current", willpowerCurrent);
 		//consciousness
 		const consciousnessBuffs = systemData.characteristics.soul.stats.consciousness.buffs.awakened.value * 5;
-		const consciousnessConditions = systemData.characteristics.soul.stats.consciousness.conditions.demented.value * 5;
+		const consciousnessConditions =
+			systemData.characteristics.soul.stats.consciousness.conditions.demented.value * 5;
 		const consciousnessCurrent = consciousnessBase + consciousnessBuffs - consciousnessConditions;
 		console.log("Consciousness Buffs", consciousnessBuffs);
 		console.log("Consciousness Conditions", consciousnessConditions);

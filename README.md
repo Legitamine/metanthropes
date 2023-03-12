@@ -1,5 +1,7 @@
 ![image](https://content.invisioncic.com/e290497/monthly_2022_12/01.jpg.10f501a62b5254cef6f04d9f87c8b52d.jpg)
+![Repository License](https://img.shields.io/github/license/legitamine/metanthropes-system)
 ![Foundry v10](https://img.shields.io/badge/foundry-v10-green)
+![Latest Release Download Count](https://img.shields.io/github/downloads/legitamine/metanthropes-system/latest/metanthropes-system.zip)
 
 # Metanthropes RPG System
 This is the official Metanthropes RPG system for Foundry VTT.
