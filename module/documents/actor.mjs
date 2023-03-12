@@ -164,9 +164,9 @@ export class MetanthropesActor extends Actor {
 		for (const [charName, charData] of Object.entries(systemData.characteristics)) {
 			const initialValue = charData.initial.value;
 			const progressedValue = charData.progressed.value;
-			const charNameBase = initialValue + progressedValue;
-			this.system.characteristics.charName.base = charNameBase;
-			console.log(this.system.characteristics.charName.label, this.system.characteristics.charName.base);
+			const baseValue = initialValue + progressedValue;
+			this.system.characteristics.charName.base.value = baseValue;
+			console.log(this.system.characteristics.charName.label, this.system.characteristics.charName.base.value);
 
 			for (const [statName, statData] of Object.entries(charName.stats)) {
 				const initialValue = statData.initial.value;
