@@ -163,19 +163,19 @@ export class MetanthropesActor extends Actor {
 		// so maybe I'll be naming these in a way that can be easily accessed by the character sheet while I am at it.
 		for (const [charName, charData] of Object.entries(systemData.characteristics)) {
 			console.log(systemData.characteristics[charName].label, systemData.characteristics[charName].base.label, systemData.characteristics[charName].base.value);
-			const initialValue = charData.initial.value;
-			const progressedValue = charData.progressed.value;
-			const baseValue = initialValue + progressedValue;
-			systemData.characteristics[charName].base.value = baseValue;
+			//const initialValue = charData.initial.value;
+			//const progressedValue = charData.progressed.value;
+			//const baseValue = initialValue + progressedValue;
+			systemData.characteristics[charName].base.value = Number(charData.initial.value) + Number(charData.progressed.value);
 			console.log("New", systemData.characteristics[charName].label, systemData.characteristics[charName].base.label, systemData.characteristics[charName].base.value);
 
-			for (const [statName, statData] of Object.entries(charName.stats)) {
-				console.log(charName.stats[statName].label, charName.stats[statName].base.label, charName.stats[statName].base.value);
-				const initialValue = statData.initial.value;
-				const progressedValue = statData.progressed.value;
-				const baseValue = initialValue + progressedValue;
-				charName.stats[statName].base = baseValue;
-				console.log("New", charName.stats[statName].label, charName.stats[statName].base.label, charName.stats[statName].base.value);
+			for (const [statName, statData] of Object.entries(systemData.characteristics[charName].stats)) {
+				console.log(systemData.characteristics[charName].stats[statName].label, systemData.characteristics[charName].stats[statName].base.label, systemData.characteristics[charName].stats[statName].base.value);
+				//const initialValue = statData.initial.value;
+				//const progressedValue = statData.progressed.value;
+				//const baseValue = initialValue + progressedValue;
+				systemData.characteristics[charName].stats[statName].base.value = Number(statData.initial.value) + Number(statData.progressed.value);
+				console.log("New", systemData.characteristics[charName].stats[statName].label, systemData.characteristics[charName].stats[statName].base.label, systemData.characteristics[charName].stats[statName].base.value);
 			}
 		}
 		//	const bodyBase = systemData.characteristics.body.initial.value + systemData.characteristics.body.progressed.value;
