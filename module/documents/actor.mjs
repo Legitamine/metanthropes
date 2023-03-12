@@ -162,7 +162,10 @@ export class MetanthropesActor extends Actor {
 		// think I figured it out, the below .base is never declared, so it can't store the value long term.
 		// so maybe I'll be naming these in a way that can be easily accessed by the character sheet while I am at it.
 		for (const [charName, charData] of Object.entries(systemData.characteristics)) {
-			console.log(systemData.characteristics[charName].label, systemData.characteristics[charName].base.label, systemData.characteristics[charName].base.value);
+			console.log(actorData.system);
+			console.log(charName);
+			console.log(charData);
+			console.log(systemData.characteristics[charName].name, systemData.characteristics[charName].base.label, systemData.characteristics[charName].base.value);
 			//const initialValue = charData.initial.value;
 			//const progressedValue = charData.progressed.value;
 			//const baseValue = initialValue + progressedValue;
