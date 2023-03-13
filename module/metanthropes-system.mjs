@@ -70,10 +70,11 @@ Hooks.once("init", async function () {
 		makeDefault: true,
 	});
 	//preload Handlebars templates
-	loadTemplates(["systems/metanthropes-system/templates/helpers/lookupkey.hbs"]);
-	
+	Handlebars.registerHelper("lookupKey", function (object, key) {
+		return object[key];
+	});
 	console.log("========================================================================");
 	console.log("Metanthropes RPG System Initialized");
 	console.log("========================================================================");
-	return preloadTemplates();
+	//return preloadTemplates();
 });
