@@ -214,46 +214,49 @@
 							<p>🏁
 								<input
 									class="style-cs-values"
-									name="system.characteristics.mind.initial.value"
+									name="system.Characteristics.Mind.Initial"
 									type="number"
-									value="{{system.characteristics.mind.initial.value}}"
+									value="{{system.Characteristics.Mind.Initial}}"
 									data-dtype="number"
 								/>
 							</p>
 							<p>📈
 								<input
 									class="style-cs-values"
-									name="system.characteristics.mind.progressed.value"
+									name="system.Characteristics.Mind.Progressed"
 									type="number"
-									value="{{system.characteristics.mind.progressed.value}}"
+									value="{{system.Characteristics.Mind.Progressed}}"
 									data-dtype="number"
 								/>
 							</p>
 						</div>
 						<div>
 							<p class="style-cs-labels">MIND</p>
-							<p class="style-cs-values">{{system.total.mindTotal}}</p>
 							<p></p>
-							<p></p>
+							<p class="style-cs-values">{{system.Characteristics.Mind.Current}}</p>
 						</div>
 						<div>
 							<p class="style-cs-buffs">🛡️
 								<input
 									class="style-cs-buffs"
-									name="system.characteristics.mind.buffs.sharpened.value"
+									name="system.Characteristics.Mind.Buff.Current"
 									type="number"
-									value="{{system.characteristics.mind.buffs.sharpened.value}}"
+									value="{{system.Characteristics.Mind.Buff.Current}}"
 									data-dtype="number"
-								/>
+								/><label
+									for="system.Characteristics.Mind.Buff.Current"
+								>{{system.Characteristics.Mind.Buff.Name}}</label>
 							</p>
 							<p class="style-cs-conditions">💀
 								<input
 									class="style-cs-conditions"
-									name="system.characteristics.mind.conditions.disconnected.value"
+									name="system.Characteristics.Mind.Condition.Current"
 									type="number"
-									value="{{system.characteristics.mind.conditions.disconnected.value}}"
+									value="{{system.Characteristics.Mind.Condition.Current}}"
 									data-dtype="number"
-								/>
+								/><label
+									for="system.Characteristics.Mind.Condition.Current"
+								>{{system.Characteristics.Mind.Condition.Name}}</label>
 							</p>
 						</div>
 					</div>
@@ -263,46 +266,49 @@
 							<p>🏁
 								<input
 									class="style-cs-values"
-									name="system.characteristics.soul.initial.value"
+									name="system.Characteristics.Soul.Initial"
 									type="number"
-									value="{{system.characteristics.soul.initial.value}}"
+									value="{{system.Characteristics.Soul.Initial}}"
 									data-dtype="number"
 								/>
 							</p>
 							<p>📈
 								<input
 									class="style-cs-values"
-									name="system.characteristics.soul.progressed.value"
+									name="system.Characteristics.Soul.Progressed"
 									type="number"
-									value="{{system.characteristics.soul.progressed.value}}"
+									value="{{system.Characteristics.Soul.Progressed}}"
 									data-dtype="number"
 								/>
 							</p>
 						</div>
 						<div>
 							<p class="style-cs-labels">SOUL</p>
-							<p class="style-cs-values">{{soulTotal}}</p>
 							<p></p>
-							<p></p>
+							<p class="style-cs-values">{{system.Characteristics.Soul.Current}}</p>
 						</div>
 						<div>
 							<p class="style-cs-buffs">🛡️
 								<input
 									class="style-cs-buffs"
-									name="system.characteristics.soul.buffs.enlightened.value"
+									name="system.Characteristics.Soul.Buff.Current"
 									type="number"
-									value="{{system.characteristics.soul.buffs.enlightened.value}}"
+									value="{{system.Characteristics.Soul.Buff.Current}}"
 									data-dtype="number"
-								/>
+								/><label
+									for="system.Characteristics.Soul.Buff.Current"
+								>{{system.Characteristics.Soul.Buff.Name}}</label>
 							</p>
 							<p class="style-cs-conditions">💀
 								<input
 									class="style-cs-conditions"
-									name="system.characteristics.soul.conditions.tormented.value"
+									name="system.Characteristics.Soul.Condition.Current"
 									type="number"
-									value="{{system.characteristics.soul.conditions.tormented.value}}"
+									value="{{system.Characteristics.Soul.Condition.Current}}"
 									data-dtype="number"
-								/>
+								/><label
+									for="system.Characteristics.Soul.Condition.Current"
+								>{{system.Characteristics.Soul.Condition.Name}}</label>
 							</p>
 						</div>
 					</div>
@@ -369,44 +375,53 @@
 							<p>🏁
 								<input
 									class="style-cs-values"
-									name="system.characteristics.mind.stats.perception.initial.value"
+									name="system.Characteristics.Mind.Stats.Perception.Initial"
 									type="number"
-									value="{{system.characteristics.mind.stats.perception.initial.value}}"
+									value="{{system.Characteristics.Mind.Stats.Perception.Initial}}"
 									data-dtype="number"
 								/>
 							</p>
 							<p>📈
 								<input
 									class="style-cs-values"
-									name="system.characteristics.mind.stats.perception.progressed.value"
+									name="system.Characteristics.Mind.Stats.Perception.Progressed"
 									type="number"
-									value="{{system.characteristics.mind.stats.perception.progressed.value}}"
+									value="{{system.Characteristics.Mind.Stats.Perception.Progressed}}"
 									data-dtype="number"
 								/>
 							</p>
 						</div>
 						<div>
 							<p class="style-cs-labels">PERCEPTION</p>
-							<p class="style-cs-rolls">{{system.perceptionRoll}}</p>
+							<p></p>
+							<p class="style-cs-rolls">{{system.Characteristics.Mind.Stats.Perception.Roll}}</p>
 						</div>
 						<div>
 							<p class="style-cs-buffs">🛡️
 								<input
 									class="style-cs-buffs"
-									name="system.characteristics.mind.stats.perception.buffs.alerted.value"
+									name="system.Characteristics.Mind.Stats.Perception.Buff.Current"
 									type="number"
-									value="{{system.characteristics.mind.stats.perception.buffs.alerted.value}}"
+									value="{{system.Characteristics.Mind.Stats.Perception.Buff.Current}}"
 									data-dtype="number"
 								/>
+							</p>
+													<p class="style-cs-buffs"><label
+									for="system.Characteristics.Mind.Stats.Perception.Buff.Current"
+								>{{system.Characteristics.Mind.Stats.Perception.Buff.Name}}</label>
 							</p>
 							<p class="style-cs-conditions">💀
 								<input
 									class="style-cs-conditions"
-									name="system.characteristics.mind.stats.perception.conditions.disoriented.value"
+									name="system.Characteristics.Mind.Stats.Perception.Condition.Current"
 									type="number"
-									value="{{system.characteristics.mind.stats.perception.conditions.disoriented.value}}"
+									value="{{system.Characteristics.Mind.Stats.Perception.Condition.Current}}"
 									data-dtype="number"
 								/>
+							</p>
+							<p class="style-cs-conditions"><label
+									for="system.Characteristics.Mind.Stats.Perception.Condition.Name"
+								>{{system.Characteristics.Mind.Stats.Perception.Condition.Name}}</label>
 							</p>
 						</div>
 					</div>
@@ -416,44 +431,53 @@
 							<p>🏁
 								<input
 									class="style-cs-values"
-									name="system.characteristics.soul.stats.willpower.initial.value"
+									name="system.Characteristics.Soul.Stats.Willpower.Initial"
 									type="number"
-									value="{{system.characteristics.soul.stats.willpower.initial.value}}"
+									value="{{system.Characteristics.Soul.Stats.Willpower.Initial}}"
 									data-dtype="number"
 								/>
 							</p>
 							<p>📈
 								<input
 									class="style-cs-values"
-									name="system.characteristics.soul.stats.willpower.progressed.value"
+									name="system.Characteristics.Soul.Stats.Willpower.Progressed"
 									type="number"
-									value="{{system.characteristics.soul.stats.willpower.progressed.value}}"
+									value="{{system.Characteristics.Soul.Stats.Willpower.Progressed}}"
 									data-dtype="number"
 								/>
 							</p>
 						</div>
 						<div>
 							<p class="style-cs-labels">WILLPOWER</p>
-							<p class="style-cs-rolls">{{actor.CHARSTATS.willpowerRoll}}</p>
+							<p></p>
+							<p class="style-cs-rolls">{{system.Characteristics.Soul.Stats.Willpower.Roll}}</p>
 						</div>
 						<div>
 							<p class="style-cs-buffs">🛡️
 								<input
 									class="style-cs-buffs"
-									name="system.characteristics.soul.stats.willpower.buffs.determined.value"
+									name="system.Characteristics.Soul.Stats.Willpower.Buff.Current"
 									type="number"
-									value="{{system.characteristics.soul.stats.willpower.buffs.determined.value}}"
+									value="{{system.Characteristics.Soul.Stats.Willpower.Buff.Current}}"
 									data-dtype="number"
 								/>
+							</p>
+													<p class="style-cs-buffs"><label
+									for="system.Characteristics.Soul.Stats.Willpower.Buff.Current"
+								>{{system.Characteristics.Soul.Stats.Willpower.Buff.Name}}</label>
 							</p>
 							<p class="style-cs-conditions">💀
 								<input
 									class="style-cs-conditions"
-									name="system.characteristics.soul.stats.willpower.conditions.terrorized.value"
+									name="system.Characteristics.Soul.Stats.Willpower.Condition.Current"
 									type="number"
-									value="{{system.characteristics.soul.stats.willpower.conditions.terrorized.value}}"
+									value="{{system.Characteristics.Soul.Stats.Willpower.Condition.Current}}"
 									data-dtype="number"
 								/>
+							</p>
+							<p class="style-cs-conditions"><label
+									for="system.Characteristics.Soul.Stats.Willpower.Condition.Name"
+								>{{system.Characteristics.Soul.Stats.Willpower.Condition.Name}}</label>
 							</p>
 						</div>
 					</div>
@@ -463,45 +487,53 @@
 							<p>🏁
 								<input
 									class="style-cs-values"
-									name="system.characteristics.body.stats.power.initial.value"
+									name="system.Characteristics.Body.Stats.Power.Initial"
 									type="number"
-									value="{{system.characteristics.body.stats.power.initial.value}}"
+									value="{{system.Characteristics.Body.Stats.Power.Initial}}"
 									data-dtype="number"
 								/>
 							</p>
 							<p>📈
 								<input
 									class="style-cs-values"
-									name="system.characteristics.body.stats.power.progressed.value"
+									name="system.Characteristics.Body.Stats.Power.Progressed"
 									type="number"
-									value="{{system.characteristics.body.stats.power.progressed.value}}"
+									value="{{system.Characteristics.Body.Stats.Power.Progressed}}"
 									data-dtype="number"
 								/>
 							</p>
 						</div>
 						<div>
 							<p> POWER </p>
-							<p> Current </p>
-							<p class="style-cs-rolls">{{system.CONFIG.CHARSTATS.roll.powerRoll}}</p>
+							<p></p>
+							<p class="style-cs-rolls">{{system.Characteristics.Body.Stats.Power.Roll}}</p>
 						</div>
 						<div>
 							<p class="style-cs-buffs">🛡️
 								<input
 									class="style-cs-buffs"
-									name="system.characteristics.body.stats.power.buffs.empowered.value"
+									name="system.Characteristics.Body.Stats.Power.Buff.Current"
 									type="number"
-									value="{{system.characteristics.body.stats.power.buffs.empowered.value}}"
+									value="{{system.Characteristics.Body.Stats.Power.Buff.Current}}"
 									data-dtype="number"
 								/>
+							</p>
+													<p class="style-cs-buffs"><label
+									for="system.Characteristics.Body.Stats.Power.Buff.Current"
+								>{{system.Characteristics.Body.Stats.Power.Buff.Name}}</label>
 							</p>
 							<p class="style-cs-conditions">💀
 								<input
 									class="style-cs-conditions"
-									name="system.characteristics.body.stats.power.conditions.muscleinjury.value"
+									name="system.Characteristics.Body.Stats.Power.Condition.Current"
 									type="number"
-									value="{{system.characteristics.body.stats.power.conditions.muscleinjury.value}}"
+									value="{{system.Characteristics.Body.Stats.Power.Condition.Current}}"
 									data-dtype="number"
 								/>
+							</p>
+							<p class="style-cs-conditions"><label
+									for="system.Characteristics.Body.Stats.Power.Condition.Name"
+								>{{system.Characteristics.Body.Stats.Power.Condition.Name}}</label>
 							</p>
 						</div>
 					</div>
@@ -511,45 +543,53 @@
 							<p>🏁
 								<input
 									class="style-cs-values"
-									name="system.characteristics.mind.stats.manipulation.initial.value"
+									name="system.Characteristics.Mind.Stats.Manipulation.Initial"
 									type="number"
-									value="{{system.characteristics.mind.stats.manipulation.initial.value}}"
+									value="{{system.Characteristics.Mind.Stats.Manipulation.Initial}}"
 									data-dtype="number"
 								/>
 							</p>
 							<p>📈
 								<input
 									class="style-cs-values"
-									name="system.characteristics.mind.stats.manipulation.progressed.value"
+									name="system.Characteristics.Mind.Stats.Manipulation.Progressed"
 									type="number"
-									value="{{system.characteristics.mind.stats.manipulation.progressed.value}}"
+									value="{{system.Characteristics.Mind.Stats.Manipulation.Progressed}}"
 									data-dtype="number"
 								/>
 							</p>
 						</div>
 						<div>
 							<p> MANIPULATION </p>
-							<p> Current </p>
-							<p> {{system.CHARSTATS.roll.manipulationRoll}} </p>
+							<p></p>
+							<p class="style-cs-rolls">{{system.Characteristics.Mind.Stats.Manipulation.Roll}}</p>
 						</div>
 						<div>
 							<p class="style-cs-buffs">🛡️
 								<input
 									class="style-cs-buffs"
-									name="system.characteristics.mind.stats.manipulation.buffs.inspired.value"
+									name="system.Characteristics.Mind.Stats.Manipulation.Buff.Current"
 									type="number"
-									value="{{system.characteristics.mind.stats.manipulation.buffs.inspired.value}}"
+									value="{{system.Characteristics.Mind.Stats.Manipulation.Buff.Current}}"
 									data-dtype="number"
 								/>
+							</p>
+													<p class="style-cs-buffs"><label
+									for="system.Characteristics.Mind.Stats.Manipulation.Buff.Current"
+								>{{system.Characteristics.Mind.Stats.Manipulation.Buff.Name}}</label>
 							</p>
 							<p class="style-cs-conditions">💀
 								<input
 									class="style-cs-conditions"
-									name="system.characteristics.mind.stats.manipulation.conditions.wobbly.value"
+									name="system.Characteristics.Mind.Stats.Manipulation.Condition.Current"
 									type="number"
-									value="{{system.characteristics.mind.stats.manipulation.conditions.wobbly.value}}"
+									value="{{system.Characteristics.Mind.Stats.Manipulation.Condition.Current}}"
 									data-dtype="number"
 								/>
+							</p>
+							<p class="style-cs-conditions"><label
+									for="system.Characteristics.Mind.Stats.Manipulation.Condition.Name"
+								>{{system.Characteristics.Mind.Stats.Manipulation.Condition.Name}}</label>
 							</p>
 						</div>
 					</div>
@@ -559,45 +599,53 @@
 							<p>🏁
 								<input
 									class="style-cs-values"
-									name="system.characteristics.soul.stats.consciousness.initial.value"
+									name="system.Characteristics.Soul.Stats.Consciousness.Initial"
 									type="number"
-									value="{{system.characteristics.soul.stats.consciousness.initial.value}}"
+									value="{{system.Characteristics.Soul.Stats.Consciousness.Initial}}"
 									data-dtype="number"
 								/>
 							</p>
 							<p>📈
 								<input
 									class="style-cs-values"
-									name="system.characteristics.soul.stats.consciousness.progressed.value"
+									name="system.Characteristics.Soul.Stats.Consciousness.Progressed"
 									type="number"
-									value="{{system.characteristics.soul.stats.consciousness.progressed.value}}"
+									value="{{system.Characteristics.Soul.Stats.Consciousness.Progressed}}"
 									data-dtype="number"
 								/>
 							</p>
 						</div>
 						<div>
 							<p> CONSCIOUSNESS </p>
-							<p> Current </p>
-							<p> {{CONFIG.CHARSTATS.roll.consciousnessRoll}} </p>
+							<p></p>
+							<p class="style-cs-rolls">{{system.Characteristics.Soul.Stats.Consciousness.Roll}}</p>
 						</div>
 						<div>
 							<p class="style-cs-buffs">🛡️
 								<input
 									class="style-cs-buffs"
-									name="system.characteristics.soul.stats.consciousness.buffs.awakened.value"
+									name="system.Characteristics.Soul.Stats.Consciousness.Buff.Current"
 									type="number"
-									value="{{system.characteristics.soul.stats.consciousness.buffs.awakened.value}}"
+									value="{{system.Characteristics.Soul.Stats.Consciousness.Buff.Current}}"
 									data-dtype="number"
 								/>
+							</p>
+																				<p class="style-cs-buffs"><label
+									for="system.Characteristics.Soul.Stats.Consciousness.Buff.Current"
+								>{{system.Characteristics.Soul.Stats.Consciousness.Buff.Name}}</label>
 							</p>
 							<p class="style-cs-conditions">💀
 								<input
 									class="style-cs-conditions"
-									name="system.characteristics.soul.stats.consciousness.conditions.demented.value"
+									name="system.Characteristics.Soul.Stats.Consciousness.Condition.Current"
 									type="number"
-									value="{{system.characteristics.soul.stats.consciousness.conditions.demented.value}}"
+									value="{{system.Characteristics.Soul.Stats.Consciousness.Condition.Current}}"
 									data-dtype="number"
 								/>
+							</p>
+							<p class="style-cs-conditions"><label
+									for="system.Characteristics.Soul.Stats.Consciousness.Condition.Name"
+								>{{system.Characteristics.Soul.Stats.Consciousness.Condition.Name}}</label>
 							</p>
 						</div>
 					</div>
@@ -607,45 +655,53 @@
 							<p>🏁
 								<input
 									class="style-cs-values"
-									name="system.characteristics.body.stats.reflexes.initial.value"
+									name="system.Characteristics.Body.Stats.Reflexes.Initial"
 									type="number"
-									value="{{system.characteristics.body.stats.reflexes.initial.value}}"
+									value="{{system.Characteristics.Body.Stats.Reflexes.Initial}}"
 									data-dtype="number"
 								/>
 							</p>
 							<p>📈
 								<input
 									class="style-cs-values"
-									name="system.characteristics.body.stats.reflexes.progressed.value"
+									name="system.Characteristics.Body.Stats.Reflexes.Progressed"
 									type="number"
-									value="{{system.characteristics.body.stats.reflexes.progressed.value}}"
+									value="{{system.Characteristics.Body.Stats.Reflexes.Progressed}}"
 									data-dtype="number"
 								/>
 							</p>
 						</div>
 						<div>
 							<p> REFLEXES </p>
-							<p> Current </p>
-							<p> Roll Me </p>
+							<p></p>
+							<p class="style-cs-rolls">{{system.Characteristics.Body.Stats.Reflexes.Roll}}</p>
 						</div>
 						<div>
 							<p class="style-cs-buffs">🛡️
 								<input
 									class="style-cs-buffs"
-									name="system.characteristics.body.stats.reflexes.buffs.hastened.value"
+									name="system.Characteristics.Body.Stats.Reflexes.Buff.Current"
 									type="number"
-									value="{{system.characteristics.body.stats.reflexes.buffs.hastened.value}}"
+									value="{{system.Characteristics.Body.Stats.Reflexes.Buff.Current}}"
 									data-dtype="number"
 								/>
+							</p>
+																						<p class="style-cs-buffs"><label
+									for="system.Characteristics.Body.Stats.Reflexes.Buff.Current"
+								>{{system.Characteristics.Body.Stats.Reflexes.Buff.Name}}</label>
 							</p>
 							<p class="style-cs-conditions">💀
 								<input
 									class="style-cs-conditions"
-									name="system.characteristics.body.stats.reflexes.conditions.skininjury.value"
+									name="system.Characteristics.Body.Stats.Reflexes.Condition.Current"
 									type="number"
-									value="{{system.characteristics.body.stats.reflexes.conditions.skininjury.value}}"
+									value="{{system.Characteristics.Body.Stats.Reflexes.Condition.Current}}"
 									data-dtype="number"
 								/>
+							</p>
+							<p class="style-cs-conditions"><label
+									for="system.Characteristics.Body.Stats.Reflexes.Condition.Name"
+								>{{system.Characteristics.Body.Stats.Reflexes.Condition.Name}}</label>
 							</p>
 						</div>
 					</div>
@@ -655,45 +711,53 @@
 							<p>🏁
 								<input
 									class="style-cs-values"
-									name="system.characteristics.mind.stats.creativity.initial.value"
+									name="system.Characteristics.Mind.Stats.Creativity.Initial"
 									type="number"
-									value="{{system.characteristics.mind.stats.creativity.initial.value}}"
+									value="{{system.Characteristics.Mind.Stats.Creativity.Initial}}"
 									data-dtype="number"
 								/>
 							</p>
 							<p>📈
 								<input
 									class="style-cs-values"
-									name="system.characteristics.mind.stats.creativity.progressed.value"
+									name="system.Characteristics.Mind.Stats.Creativity.Progressed"
 									type="number"
-									value="{{system.characteristics.mind.stats.creativity.progressed.value}}"
+									value="{{system.Characteristics.Mind.Stats.Creativity.Progressed}}"
 									data-dtype="number"
 								/>
 							</p>
 						</div>
 						<div>
 							<p> CREATIVITY </p>
-							<p> Current </p>
-							<p> Roll Me </p>
+							<p></p>
+							<p class="style-cs-rolls">{{system.Characteristics.Mind.Stats.Creativity.Roll}}</p>
 						</div>
 						<div>
 							<p class="style-cs-buffs">🛡️
 								<input
 									class="style-cs-buffs"
-									name="system.characteristics.mind.stats.creativity.buffs.inspired.value"
+									name="system.Characteristics.Mind.Stats.Creativity.Buff.Current"
 									type="number"
-									value="{{system.characteristics.mind.stats.creativity.buffs.inspired.value}}"
+									value="{{system.Characteristics.Mind.Stats.Creativity.Buff.Current}}"
 									data-dtype="number"
 								/>
+							</p>
+																						<p class="style-cs-buffs"><label
+									for="system.Characteristics.Mind.Stats.Creativity.Buff.Current"
+								>{{system.Characteristics.Mind.Stats.Creativity.Buff.Name}}</label>
 							</p>
 							<p class="style-cs-conditions">💀
 								<input
 									class="style-cs-conditions"
-									name="system.characteristics.mind.stats.creativity.conditions.wobbly.value"
+									name="system.Characteristics.Mind.Stats.Creativity.Condition.Current"
 									type="number"
-									value="{{system.characteristics.mind.stats.creativity.conditions.wobbly.value}}"
+									value="{{system.Characteristics.Mind.Stats.Creativity.Condition.Current}}"
 									data-dtype="number"
 								/>
+							</p>
+							<p class="style-cs-conditions"><label
+									for="system.Characteristics.Mind.Stats.Creativity.Condition.Name"
+								>{{system.Characteristics.Mind.Stats.Creativity.Condition.Name}}</label>
 							</p>
 						</div>
 					</div>
@@ -703,45 +767,53 @@
 							<p>🏁
 								<input
 									class="style-cs-values"
-									name="system.characteristics.soul.stats.awareness.initial.value"
+									name="system.Characteristics.Soul.Stats.Awareness.Initial"
 									type="number"
-									value="{{system.characteristics.soul.stats.awareness.initial.value}}"
+									value="{{system.Characteristics.Soul.Stats.Awareness.Initial}}"
 									data-dtype="number"
 								/>
 							</p>
 							<p>📈
 								<input
 									class="style-cs-values"
-									name="system.characteristics.soul.stats.awareness.progressed.value"
+									name="system.Characteristics.Soul.Stats.Awareness.Progressed"
 									type="number"
-									value="{{system.characteristics.soul.stats.awareness.progressed.value}}"
+									value="{{system.Characteristics.Soul.Stats.Awareness.Progressed}}"
 									data-dtype="number"
 								/>
 							</p>
 						</div>
 						<div>
 							<p> AWARENESS </p>
-							<p> Current </p>
-							<p> {{CHARSTATS.roll.awarenessRoll}} </p>
+							<p></p>
+							<p class="style-cs-rolls">{{system.Characteristics.Soul.Stats.Awareness.Roll}}</p>
 						</div>
 						<div>
 							<p class="style-cs-buffs">🛡️
 								<input
 									class="style-cs-buffs"
-									name="system.characteristics.soul.stats.awareness.buffs.focused.value"
+									name="system.Characteristics.Soul.Stats.Awareness.Buff.Current"
 									type="number"
-									value="{{system.characteristics.soul.stats.awareness.buffs.focused.value}}"
+									value="{{system.Characteristics.Soul.Stats.Awareness.Buff.Current}}"
 									data-dtype="number"
 								/>
+							</p>
+																													<p class="style-cs-buffs"><label
+									for="system.Characteristics.Soul.Stats.Awareness.Buff.Current"
+								>{{system.Characteristics.Soul.Stats.Awareness.Buff.Name}}</label>
 							</p>
 							<p class="style-cs-conditions">💀
 								<input
 									class="style-cs-conditions"
-									name="system.characteristics.soul.stats.awareness.conditions.bewildered.value"
+									name="system.Characteristics.Soul.Stats.Awareness.Condition.Current"
 									type="number"
-									value="{{system.characteristics.soul.stats.awareness.conditions.bewildered.value}}"
+									value="{{system.Characteristics.Soul.Stats.Awareness.Condition.Current}}"
 									data-dtype="number"
 								/>
+							</p>
+							<p class="style-cs-conditions"><label
+									for="system.Characteristics.Soul.Stats.Awareness.Condition.Name"
+								>{{system.Characteristics.Soul.Stats.Awareness.Condition.Name}}</label>
 							</p>
 						</div>
 					</div>
@@ -779,36 +851,36 @@
 			<div class="layout-container-small style-container-small">
 				<div>Movement
 					<input
-						name="system.physical.movement.initial"
+						name="system.physical.movement.Initial"
 						type="number"
-						value="{{system.physical.movement.initial}}"
+						value="{{system.physical.movement.Initial}}"
 						data-dtype="number"
 						placeholder="10"
 					/>
 				</div>
 				<div>Speed
 					<input
-						name="system.physical.speed.initial"
+						name="system.physical.speed.Initial"
 						type="number"
-						value="{{system.physical.speed.initial}}"
+						value="{{system.physical.speed.Initial}}"
 						data-dtype="number"
 						placeholder="10"
 					/>
 				</div>
 				<div>Weight
 					<input
-						name="system.physical.weight.initial"
+						name="system.physical.weight.Initial"
 						type="number"
-						value="{{system.physical.weight.initial}}"
+						value="{{system.physical.weight.Initial}}"
 						data-dtype="number"
 						placeholder="10"
 					/>
 				</div>
 				<div>Size
 					<input
-						name="system.physical.size.initial"
+						name="system.physical.size.Initial"
 						type="number"
-						value="{{system.physical.size.initial}}"
+						value="{{system.physical.size.Initial}}"
 						data-dtype="number"
 						placeholder="10"
 					/>
@@ -819,36 +891,36 @@
 				<!-- //todo: investigate lists, investigate emojis and verticality -->
 				<div>Cosmic
 					<input
-						name="system.physical.resistances.cosmic.initial"
+						name="system.physical.resistances.cosmic.Initial"
 						type="number"
-						value="{{system.physical.resistances.cosmic.initial}}"
+						value="{{system.physical.resistances.cosmic.Initial}}"
 						data-dtype="number"
 						placeholder="0"
 					/>
 				</div>
 				<div>Elemental
 					<input
-						name="system.physical.resistances.elemental.initial"
+						name="system.physical.resistances.elemental.Initial"
 						type="number"
-						value="{{system.physical.resistances.elemental.initial}}"
+						value="{{system.physical.resistances.elemental.Initial}}"
 						data-dtype="number"
 						placeholder="0"
 					/>
 				</div>
 				<div>Material
 					<input
-						name="system.physical.resistances.material.initial"
+						name="system.physical.resistances.material.Initial"
 						type="number"
-						value="{{system.physical.resistances.material.initial}}"
+						value="{{system.physical.resistances.material.Initial}}"
 						data-dtype="number"
 						placeholder="0"
 					/>
 				</div>
 				<div>Psychic
 					<input
-						name="system.physical.resistances.psychic.initial"
+						name="system.physical.resistances.psychic.Initial"
 						type="number"
-						value="{{system.physical.resistances.psychic.initial}}"
+						value="{{system.physical.resistances.psychic.Initial}}"
 						data-dtype="number"
 						placeholder="0"
 					/>
