@@ -158,186 +158,189 @@ export class MetanthropesActor extends Actor {
 		console.log("========================================================================");
 		console.log("Metanthropes RPG Preparing Characteristics & Stats for", this.type, ":", this.name);
 		console.log("========================================================================");
-		//manual instead of a loop cause I want to ensure the bug doesn't come from the loop itself.
-		// think I figured it out, the below .base is never declared, so it can't store the value long term.
-		// so maybe I'll be naming these in a way that can be easily accessed by the character sheet while I am at it.
 		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
-			console.log(actorData.system);
+			console.log("------------------------------------------------------------------------");
+			console.log("Metanthropes RPG Calculating", CharKey, "Base: Initial + Progressed");
+			console.log("------------------------------------------------------------------------");
 			console.log(CharKey, "Base:", CharValue.Base);
 			console.log(CharKey, "Initial:", CharValue.Initial);
 			console.log(CharKey, "Progressed:", CharValue.Progressed);
 			CharValue.Base = CharValue.Initial + CharValue.Progressed;
 			console.log("New", CharKey, "Base:", CharValue.Base);
+			for (const [BuffKey, BuffValue] of Object.entries(CharValue.Buff)) {
+				console.log("------------------------------------------------------------------------");
+				console.log("Metanthropes RPG Calculating", CharKey, "Buff: Base +", BuffKey, BuffValue);
+				console.log("------------------------------------------------------------------------");
+				CharValue.Current = CharValue.Base + BuffValue * 5;
+				console.log(CharKey, "Base +", BuffKey, ":", CharValue.Current);
+			}
+			for (const [ConditionKey, ConditionValue] of Object.entries(CharValue.Condition)) {
+				console.log("------------------------------------------------------------------------");
+				console.log("Metanthropes RPG Calculating", CharKey, "Current: -", ConditionKey, ConditionValue);
+				console.log("------------------------------------------------------------------------");
+				CharValue.Current = CharValue.Current - ConditionValue * 5;
+				console.log("New", CharKey, "Current:", CharValue.Current);
+			}
 			for (const [StatKey, StatValue] of Object.entries(CharValue.Stats)) {
+				console.log("------------------------------------------------------------------------");
+				console.log("Metanthropes RPG Calculating", StatKey, "Base: Initial + Progressed");
+				console.log("------------------------------------------------------------------------");
 				console.log(StatKey, "Base:", StatValue.Base);
 				console.log(StatKey, "Initial:", StatValue.Initial);
 				console.log(StatKey, "Progressed:", StatValue.Progressed);
 				StatValue.Base = StatValue.Initial + StatValue.Progressed;
 				console.log("New", StatKey, "Base:", StatValue.Base);
-				//
-				//
-				//
-				//console.log(systemData.characteristics[charName].stats[statName].label, systemData.characteristics[charName].stats[statName].base.label, systemData.characteristics[charName].stats[statName].base.value);
-				////const initialValue = statData.initial.value;
-				////const progressedValue = statData.progressed.value;
-				////const baseValue = initialValue + progressedValue;
-				//systemData.characteristics[charName].stats[statName].base.value = Number(statData.initial.value) + Number(statData.progressed.value);
-				//console.log("New", systemData.characteristics[charName].stats[statName].label, systemData.characteristics[charName].stats[statName].base.label, systemData.characteristics[charName].stats[statName].base.value);
+				for (const [BuffKey, BuffValue] of Object.entries(StatValue.Buff)) {
+					console.log("------------------------------------------------------------------------");
+					console.log("Metanthropes RPG Calculating", StatKey, "Buff: Base +", BuffKey, BuffValue);
+					console.log("------------------------------------------------------------------------");
+					StatValue.Current = StatValue.Base + BuffValue * 5;
+					console.log(StatKey, "Base +", BuffKey, ":", StatValue.Current);
+				}
+				for (const [ConditionKey, ConditionValue] of Object.entries(StatValue.Condition)) {
+					console.log("------------------------------------------------------------------------");
+					console.log("Metanthropes RPG Calculating", StatKey, "Current: -", ConditionKey, ConditionValue);
+					console.log("------------------------------------------------------------------------");
+					StatValue.Current = StatValue.Current - ConditionValue * 5;
+					console.log("New", StatKey, "Current:", StatValue.Current);
+				}
+				console.log("------------------------------------------------------------------------");
+				console.log("Metanthropes RPG Calculating", StatKey, "Roll:", StatKey, "Current +", CharKey, "Current");
+				StatValue.Roll = StatValue.Current + CharValue.Current;
+				console.log("Metanthropes RPG Final", StatKey, "for Rolls:", StatValue.Roll);
+				console.log("------------------------------------------------------------------------");
 			}
 		}
-		//	const bodyBase = systemData.characteristics.body.initial.value + systemData.characteristics.body.progressed.value;
-		//	const mindBase = systemData.characteristics.mind.initial.value + systemData.characteristics.mind.progressed.value;
-		//	const soulBase = systemData.characteristics.soul.initial.value + systemData.characteristics.soul.progressed.value;
-		//	const enduranceBase = systemData.characteristics.body.stats.endurance.initial.value + systemData.characteristics.body.stats.endurance.progressed.value;
-		//	const powerBase = systemData.characteristics.body.stats.power.initial.value + systemData.characteristics.body.stats.power.progressed.value;
-		//	const reflexesBase = systemData.characteristics.body.stats.reflexes.initial.value + systemData.characteristics.body.stats.reflexes.progressed.value;
-		//	const perceptionBase = systemData.characteristics.mind.stats.perception.initial.value + systemData.characteristics.mind.stats.perception.progressed.value;
-		//	const manipulationBase = systemData.characteristics.mind.stats.manipulation.initial.value + systemData.characteristics.mind.stats.manipulation.progressed.value;
-		//	const creativityBase = systemData.characteristics.mind.stats.creativity.initial.value + systemData.characteristics.mind.stats.creativity.progressed.value;
-		//	const willpowerBase = systemData.characteristics.soul.stats.willpower.initial.value + systemData.characteristics.soul.stats.willpower.progressed.value;
-		//	const consciousnessBase = systemData.characteristics.soul.stats.consciousness.initial.value + systemData.characteristics.soul.stats.consciousness.progressed.value;
-		//	const awarenessBase = systemData.characteristics.soul.stats.awareness.initial.value + systemData.characteristics.soul.stats.awareness.progressed.value;
-		//	//
-		//	console.log("Metanthropes RPG Calculating Base Values: Initial + Progressed");
+		console.log("========================================================================");
+		console.log("Metanthropes RPG", this.type, ":", this.name, "is ready for Action!");
+		console.log("========================================================================");
+
 		//	console.log("========================================================================");
-		//	console.log("Body Base", bodyBase);
-		//	console.log("Mind Base", mindBase);
-		//	console.log("Soul Base", soulBase);
-		//	console.log("Endurance Base", enduranceBase);
-		//	console.log("Power Base", powerBase);
-		//	console.log("Reflexes Base", reflexesBase);
-		//	console.log("Perception Base", perceptionBase);
-		//	console.log("Manipulation Base", manipulationBase);
-		//	console.log("Creativity Base", creativityBase);
-		//	console.log("Willpower Base", willpowerBase);
-		//	console.log("Consciousness Base", consciousnessBase);
-		//	console.log("Awareness Base", awarenessBase);
-		console.log("========================================================================");
-		console.log("Metanthropes RPG Calculating Characteristics: Base + Buffs - Conditions");
-		console.log("========================================================================");
-		//body
-		const bodyBuffs = systemData.characteristics.body.buffs.hardened.value * 5;
-		const bodyConditions = systemData.characteristics.body.conditions.burned.value * 5;
-		const bodyTotal = bodyBase + bodyBuffs - bodyConditions;
-		console.log("Body Buffs", bodyBuffs);
-		console.log("Body Conditions", bodyConditions);
-		console.log("Body Total", bodyTotal);
-		//mind
-		const mindBuffs = systemData.characteristics.mind.buffs.sharpened.value * 5;
-		const mindConditions = systemData.characteristics.mind.conditions.disconnected.value * 5;
-		const mindTotal = mindBase + mindBuffs - mindConditions;
-		console.log("Mind Buffs", mindBuffs);
-		console.log("Mind Conditions", mindConditions);
-		console.log("Mind Total", mindTotal);
-		//soul
-		const soulBuffs = systemData.characteristics.soul.buffs.enlightened.value * 5;
-		const soulConditions = systemData.characteristics.soul.conditions.tormented.value * 5;
-		const soulTotal = soulBase + soulBuffs - soulConditions;
-		console.log("Soul Buffs", soulBuffs);
-		console.log("Soul Conditions", soulConditions);
-		console.log("Soul Total", soulTotal);
-		console.log("========================================================================");
-		console.log("Metanthropes RPG Calculating Current Stats: Base + Buffs - Conditions");
-		console.log("========================================================================");
-		//bodystats
+		//	console.log("Metanthropes RPG Calculating Characteristics: Base + Buffs - Conditions");
+		//	console.log("========================================================================");
+		//	//body
+		//	const bodyBuffs = systemData.characteristics.body.buffs.hardened.value * 5;
+		//	const bodyConditions = systemData.characteristics.body.conditions.burned.value * 5;
+		//	const bodyTotal = bodyBase + bodyBuffs - bodyConditions;
+		//	console.log("Body Buffs", bodyBuffs);
+		//	console.log("Body Conditions", bodyConditions);
+		//	console.log("Body Total", bodyTotal);
+		//	//mind
+		//	const mindBuffs = systemData.characteristics.mind.buffs.sharpened.value * 5;
+		//	const mindConditions = systemData.characteristics.mind.conditions.disconnected.value * 5;
+		//	const mindTotal = mindBase + mindBuffs - mindConditions;
+		//	console.log("Mind Buffs", mindBuffs);
+		//	console.log("Mind Conditions", mindConditions);
+		//	console.log("Mind Total", mindTotal);
+		//	//soul
+		//	const soulBuffs = systemData.characteristics.soul.buffs.enlightened.value * 5;
+		//	const soulConditions = systemData.characteristics.soul.conditions.tormented.value * 5;
+		//	const soulTotal = soulBase + soulBuffs - soulConditions;
+		//	console.log("Soul Buffs", soulBuffs);
+		//	console.log("Soul Conditions", soulConditions);
+		//	console.log("Soul Total", soulTotal);
+		//	console.log("========================================================================");
+		//	console.log("Metanthropes RPG Calculating Current Stats: Base + Buffs - Conditions");
+		//	console.log("========================================================================");
+		//	//bodystats
 		//endurance
-		const enduranceBuffs = systemData.characteristics.body.stats.endurance.buffs.fortified.value * 5;
-		const enduranceConditions = systemData.characteristics.body.stats.endurance.conditions.boneinjury.value * 5;
-		const enduranceCurrent = enduranceBase + enduranceBuffs - enduranceConditions;
-		console.log("Endurance Buffs", enduranceBuffs);
-		console.log("Endurance Conditions", enduranceConditions);
-		console.log("Endurance Current", enduranceCurrent);
-		//power
-		const powerBuffs = systemData.characteristics.body.stats.power.buffs.empowered.value * 5;
-		const powerConditions = systemData.characteristics.body.stats.power.conditions.muscleinjury.value * 5;
-		const powerCurrent = powerBase + powerBuffs - powerConditions;
-		console.log("Power Buffs", powerBuffs);
-		console.log("Power Conditions", powerConditions);
-		console.log("Power Current", powerCurrent);
-		//reflexes
-		const reflexesBuffs = systemData.characteristics.body.stats.reflexes.buffs.hastened.value * 5;
-		const reflexesConditions = systemData.characteristics.body.stats.reflexes.conditions.skininjury.value * 5;
-		const reflexesCurrent = reflexesBase + reflexesBuffs - reflexesConditions;
-		console.log("Reflexes Buffs", reflexesBuffs);
-		console.log("Reflexes Conditions", reflexesConditions);
-		console.log("Reflexes Current", reflexesCurrent);
-		console.log("------------------------------------------------------------------------------------");
-		//mindstats
-		//perception
-		const perceptionBuffs = systemData.characteristics.mind.stats.perception.buffs.alerted.value * 5;
-		const perceptionConditions = systemData.characteristics.mind.stats.perception.conditions.disoriented.value * 5;
-		const perceptionCurrent = perceptionBase + perceptionBuffs - perceptionConditions;
-		console.log("Perception Buffs", perceptionBuffs);
-		console.log("Perception Conditions", perceptionConditions);
-		console.log("Perception Current", perceptionCurrent);
-		//manipulation
-		const manipulationBuffs = systemData.characteristics.mind.stats.manipulation.buffs.articulated.value * 5;
-		const manipulationConditions = systemData.characteristics.mind.stats.manipulation.conditions.confused.value * 5;
-		const manipulationCurrent = manipulationBase + manipulationBuffs - manipulationConditions;
-		console.log("Manipulation Buffs", manipulationBuffs);
-		console.log("Manipulation Conditions", manipulationConditions);
-		console.log("Manipulation Current", manipulationCurrent);
-		//creativity
-		const creativityBuffs = systemData.characteristics.mind.stats.creativity.buffs.inspired.value * 5;
-		const creativityConditions = systemData.characteristics.mind.stats.creativity.conditions.wobbly.value * 5;
-		const creativityCurrent = creativityBase + creativityBuffs - creativityConditions;
-		console.log("Creativity Buffs", creativityBuffs);
-		console.log("Creativity Conditions", creativityConditions);
-		console.log("Creativity Current", creativityCurrent);
-		console.log("------------------------------------------------------------------------------------");
-		//soulstats
-		//willpower
-		const willpowerBuffs = systemData.characteristics.soul.stats.willpower.buffs.determined.value * 5;
-		const willpowerConditions = systemData.characteristics.soul.stats.willpower.conditions.terrorized.value * 5;
-		const willpowerCurrent = willpowerBase + willpowerBuffs - willpowerConditions;
-		console.log("Willpower Buffs", willpowerBuffs);
-		console.log("Willpower Conditions", willpowerConditions);
-		console.log("Willpower Current", willpowerCurrent);
-		//consciousness
-		const consciousnessBuffs = systemData.characteristics.soul.stats.consciousness.buffs.awakened.value * 5;
-		const consciousnessConditions =
-			systemData.characteristics.soul.stats.consciousness.conditions.demented.value * 5;
-		const consciousnessCurrent = consciousnessBase + consciousnessBuffs - consciousnessConditions;
-		console.log("Consciousness Buffs", consciousnessBuffs);
-		console.log("Consciousness Conditions", consciousnessConditions);
-		console.log("Consciousness Current", consciousnessCurrent);
-		//awareness
-		const awarenessBuffs = systemData.characteristics.soul.stats.awareness.buffs.focused.value * 5;
-		const awarenessConditions = systemData.characteristics.soul.stats.awareness.conditions.bewildered.value * 5;
-		const awarenessCurrent = awarenessBase + awarenessBuffs - awarenessConditions;
-		console.log("Awareness Buffs", awarenessBuffs);
-		console.log("Awareness Conditions", awarenessConditions);
-		console.log("Awareness Current", awarenessCurrent);
-		console.log("========================================================================");
-		console.log("Metanthropes RPG Finalizing Stats for Rolls: Current + Characteristic");
-		console.log("========================================================================");
-		const enduranceRoll = enduranceCurrent + bodyTotal;
-		const powerRoll = powerCurrent + bodyTotal;
-		const reflexesRoll = reflexesCurrent + bodyTotal;
-		const perceptionRoll = perceptionCurrent + mindTotal;
-		const manipulationRoll = manipulationCurrent + mindTotal;
-		const creativityRoll = creativityCurrent + mindTotal;
-		const willpowerRoll = willpowerCurrent + soulTotal;
-		const consciousnessRoll = consciousnessCurrent + soulTotal;
-		const awarenessRoll = awarenessCurrent + soulTotal;
-		console.log("Final Endurance for Rolls:", enduranceRoll);
-		console.log("Final Power for Rolls:", powerRoll);
-		console.log("Final Reflexes for Rolls:", reflexesRoll);
-		console.log("-----------------------------------------------------");
-		console.log("Final Perception for Rolls:", perceptionRoll);
-		console.log("Final Manipulation for Rolls:", manipulationRoll);
-		console.log("Final Creativity for Rolls:", creativityRoll);
-		console.log("-----------------------------------------------------");
-		console.log("Final Willpower for Rolls:", willpowerRoll);
-		console.log("Final Consciousness for Rolls:", consciousnessRoll);
-		console.log("Final Awareness for Rolls:", awarenessRoll);
-		console.log("========================================================================");
-		console.log("Metanthropes RPG New Life Maximum: Initial Life + Current Endurance");
-		systemData.vital.life.max = systemData.vital.life.initial + enduranceCurrent;
-		console.log("New Life Maximum", systemData.vital.life.max);
-		console.log("========================================================================");
-		console.log("Metanthropes RPG Finished Calculating Characteristics & Stats for", this.type, ":", this.name);
-		console.log("========================================================================");
+		//	const enduranceBuffs = systemData.characteristics.body.stats.endurance.buffs.fortified.value * 5;
+		//	const enduranceConditions = systemData.characteristics.body.stats.endurance.conditions.boneinjury.value * 5;
+		//	const enduranceCurrent = enduranceBase + enduranceBuffs - enduranceConditions;
+		//	console.log("Endurance Buffs", enduranceBuffs);
+		//	console.log("Endurance Conditions", enduranceConditions);
+		//	console.log("Endurance Current", enduranceCurrent);
+		//	//power
+		//	const powerBuffs = systemData.characteristics.body.stats.power.buffs.empowered.value * 5;
+		//	const powerConditions = systemData.characteristics.body.stats.power.conditions.muscleinjury.value * 5;
+		//	const powerCurrent = powerBase + powerBuffs - powerConditions;
+		//	console.log("Power Buffs", powerBuffs);
+		//	console.log("Power Conditions", powerConditions);
+		//	console.log("Power Current", powerCurrent);
+		//	//reflexes
+		//	const reflexesBuffs = systemData.characteristics.body.stats.reflexes.buffs.hastened.value * 5;
+		//	const reflexesConditions = systemData.characteristics.body.stats.reflexes.conditions.skininjury.value * 5;
+		//	const reflexesCurrent = reflexesBase + reflexesBuffs - reflexesConditions;
+		//	console.log("Reflexes Buffs", reflexesBuffs);
+		//	console.log("Reflexes Conditions", reflexesConditions);
+		//	console.log("Reflexes Current", reflexesCurrent);
+		//	console.log("------------------------------------------------------------------------------------");
+		//	//mindstats
+		//	//perception
+		//	const perceptionBuffs = systemData.characteristics.mind.stats.perception.buffs.alerted.value * 5;
+		//	const perceptionConditions = systemData.characteristics.mind.stats.perception.conditions.disoriented.value * 5;
+		//	const perceptionCurrent = perceptionBase + perceptionBuffs - perceptionConditions;
+		//	console.log("Perception Buffs", perceptionBuffs);
+		//	console.log("Perception Conditions", perceptionConditions);
+		//	console.log("Perception Current", perceptionCurrent);
+		//	//manipulation
+		//	const manipulationBuffs = systemData.characteristics.mind.stats.manipulation.buffs.articulated.value * 5;
+		//	const manipulationConditions = systemData.characteristics.mind.stats.manipulation.conditions.confused.value * 5;
+		//	const manipulationCurrent = manipulationBase + manipulationBuffs - manipulationConditions;
+		//	console.log("Manipulation Buffs", manipulationBuffs);
+		//	console.log("Manipulation Conditions", manipulationConditions);
+		//	console.log("Manipulation Current", manipulationCurrent);
+		//	//creativity
+		//	const creativityBuffs = systemData.characteristics.mind.stats.creativity.buffs.inspired.value * 5;
+		//	const creativityConditions = systemData.characteristics.mind.stats.creativity.conditions.wobbly.value * 5;
+		//	const creativityCurrent = creativityBase + creativityBuffs - creativityConditions;
+		//	console.log("Creativity Buffs", creativityBuffs);
+		//	console.log("Creativity Conditions", creativityConditions);
+		//	console.log("Creativity Current", creativityCurrent);
+		//	console.log("------------------------------------------------------------------------------------");
+		//	//soulstats
+		//	//willpower
+		//	//	const willpowerBuffs = systemData.characteristics.soul.stats.willpower.buffs.determined.value * 5;
+		//	const willpowerConditions = systemData.characteristics.soul.stats.willpower.conditions.terrorized.value * 5;
+		//	const willpowerCurrent = willpowerBase + willpowerBuffs - willpowerConditions;
+		//	console.log("Willpower Buffs", willpowerBuffs);
+		//	console.log("Willpower Conditions", willpowerConditions);
+		//	console.log("Willpower Current", willpowerCurrent);
+		//	//consciousness
+		//	const consciousnessBuffs = systemData.characteristics.soul.stats.consciousness.buffs.awakened.value * 5;
+		//	const consciousnessConditions =
+		//		systemData.characteristics.soul.stats.consciousness.conditions.demented.value * 5;
+		//	const consciousnessCurrent = consciousnessBase + consciousnessBuffs - consciousnessConditions;
+		//	console.log("Consciousness Buffs", consciousnessBuffs);
+		//	console.log("Consciousness Conditions", consciousnessConditions);
+		//	console.log("Consciousness Current", consciousnessCurrent);
+		//	//awareness
+		//	const awarenessBuffs = systemData.characteristics.soul.stats.awareness.buffs.focused.value * 5;
+		//	const awarenessConditions = systemData.characteristics.soul.stats.awareness.conditions.bewildered.value * 5;
+		//	const awarenessCurrent = awarenessBase + awarenessBuffs - awarenessConditions;
+		//	console.log("Awareness Buffs", awarenessBuffs);
+		//	console.log("Awareness Conditions", awarenessConditions);
+		//	console.log("Awareness Current", awarenessCurrent);
+		//	console.log("========================================================================");
+		//	console.log("Metanthropes RPG Finalizing Stats for Rolls: Current + Characteristic");
+		//	console.log("========================================================================");
+		//	const enduranceRoll = enduranceCurrent + bodyTotal;
+		//	const powerRoll = powerCurrent + bodyTotal;
+		//	const reflexesRoll = reflexesCurrent + bodyTotal;
+		//	const perceptionRoll = perceptionCurrent + mindTotal;
+		//	const manipulationRoll = manipulationCurrent + mindTotal;
+		//	const creativityRoll = creativityCurrent + mindTotal;
+		//	const willpowerRoll = willpowerCurrent + soulTotal;
+		//	const consciousnessRoll = consciousnessCurrent + soulTotal;
+		//	const awarenessRoll = awarenessCurrent + soulTotal;
+		//	console.log("Final Endurance for Rolls:", enduranceRoll);
+		//	console.log("Final Power for Rolls:", powerRoll);
+		//	console.log("Final Reflexes for Rolls:", reflexesRoll);
+		//	console.log("-----------------------------------------------------");
+		//	console.log("Final Perception for Rolls:", perceptionRoll);
+		//	console.log("Final Manipulation for Rolls:", manipulationRoll);
+		//	console.log("Final Creativity for Rolls:", creativityRoll);
+		//	console.log("-----------------------------------------------------");
+		//	console.log("Final Willpower for Rolls:", willpowerRoll);
+		//	console.log("Final Consciousness for Rolls:", consciousnessRoll);
+		//	console.log("Final Awareness for Rolls:", awarenessRoll);
+		//	console.log("========================================================================");
+		//	console.log("Metanthropes RPG New Life Maximum: Initial Life + Current Endurance");
+		//	systemData.vital.life.max = systemData.vital.life.initial + enduranceCurrent;
+		//	console.log("New Life Maximum", systemData.vital.life.max);
+		//	console.log("========================================================================");
+		//	console.log("Metanthropes RPG Finished Calculating Characteristics & Stats for", this.type, ":", this.name);
+		//	console.log("========================================================================");
 	}
 	////
 	/*
