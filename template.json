@@ -19,7 +19,7 @@
 						"type": "number",
 						"label": "Movement",
 						"initial": 10,
-						"buffs": {
+						"Buffs": {
 							"fly": {
 								"type": "boolean",
 								"label": "Fly",
@@ -46,7 +46,7 @@
 								"value": false
 							}
 						},
-						"conditions": {
+						"Conditions": {
 							"immobilized": {
 								"type": "boolean",
 								"label": "Immobilized",
@@ -63,14 +63,14 @@
 						"type": "number",
 						"label": "Size",
 						"initial": 10,
-						"buffs": {
+						"Buffs": {
 							"enlarged": {
 								"type": "number",
 								"label": "Enlarged",
 								"value": 0
 							}
 						},
-						"conditions": {
+						"Conditions": {
 							"shrunken": {
 								"type": "number",
 								"label": "Shrunken",
@@ -82,14 +82,14 @@
 						"type": "number",
 						"label": "Weight",
 						"initial": 10,
-						"buffs": {
+						"Buffs": {
 							"lightened": {
 								"type": "number",
 								"label": "Lightened",
 								"value": 0
 							}
 						},
-						"conditions": {
+						"Conditions": {
 							"encumbered": {
 								"type": "number",
 								"label": "Encumbered",
@@ -101,14 +101,14 @@
 						"type": "number",
 						"label": "Speed",
 						"initial": 10,
-						"buffs": {
+						"Buffs": {
 							"accelerated": {
 								"type": "number",
 								"label": "Accelerated",
 								"value": 0
 							}
 						},
-						"conditions": {
+						"Conditions": {
 							"slowed": {
 								"type": "number",
 								"label": "Slowed",
@@ -207,24 +207,24 @@
 				}
 			},
 			"characteristics": {
-				"characteristics": {
+				"Characteristics": {
 					"Body": {
 						"Initial": 30,
 						"Progressed": 5,
 						"Base": 0,
 						"Current": 0,
-						"buff": { "Hardened": 0 },
-						"condition": { "Burned": 0 },
-						"coreconditions": { "Bleeding": 0, "Asphyxiation": 0, "Diseased": 0, "Maimed": 0 },
-						"stats": {
+						"Buff": { "Hardened": 0 },
+						"Condition": { "Burned": 0 },
+						"CoreConditions": { "Bleeding": 0, "Asphyxiation": 0, "Diseased": 0, "Maimed": 0 },
+						"Stats": {
 							"Endurance": {
 								"Initial": 30,
 								"Progressed": 5,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"buff": { "Fortified": 0 },
-								"condition": { "Bone Injury": 0 }
+								"Buff": { "Fortified": 0 },
+								"Condition": { "Bone Injury": 0 }
 							},
 							"Power": {
 								"Initial": 30,
@@ -232,8 +232,8 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"buff": { "Empowered": 0 },
-								"condition": { "Muscle Injury": 0 }
+								"Buff": { "Empowered": 0 },
+								"Condition": { "Muscle Injury": 0 }
 							},
 							"Reflexes": {
 								"Initial": 30,
@@ -241,8 +241,8 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"buff": { "Hastened": 0 },
-								"condition": { "Skin Injury": 0 }
+								"Buff": { "Hastened": 0 },
+								"Condition": { "Skin Injury": 0 }
 							}
 						}
 					},
@@ -252,9 +252,9 @@
 						"Progressed": 5,
 						"Base": 0,
 						"Current": 0,
-						"buff": { "Sharpened": 0 },
-						"condition": { "Disconnected": 0 },
-						"coreconditions": {
+						"Buff": { "Sharpened": 0 },
+						"Condition": { "Disconnected": 0 },
+						"CoreConditions": {
 							"Fatigue": 0,
 							"Hunger": 0,
 							"Pain": 0,
@@ -262,15 +262,15 @@
 							"Sense Lost: Hearing": false,
 							"Sense Lost: Touch": false
 						},
-						"stats": {
+						"Stats": {
 							"Perception": {
 								"Initial": 30,
 								"Progressed": 5,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"buff": { "Alerted": 0 },
-								"condition": { "Disoriented": 0 }
+								"Buff": { "Alerted": 0 },
+								"Condition": { "Disoriented": 0 }
 							},
 							"Manipulation": {
 								"Initial": 30,
@@ -278,8 +278,8 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"buff": { "Articulated": 0 },
-								"condition": { "Confused": 0 }
+								"Buff": { "Articulated": 0 },
+								"Condition": { "Confused": 0 }
 							},
 							"Creativity": {
 								"Initial": 30,
@@ -287,8 +287,8 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"buff": { "Inspired": 0 },
-								"condition": { "Wobbly": 0 }
+								"Buff": { "Inspired": 0 },
+								"Condition": { "Wobbly": 0 }
 							}
 						}
 					},
@@ -298,18 +298,18 @@
 						"Progressed": 0,
 						"Base": 0,
 						"Current": 0,
-						"buff": { "Enlightened": 0 },
-						"condition": { "Tormented": 0 },
-						"coreconditions": { "Amnesia": 0, "Probed": 0, "Infiltrated": 0, "Unconscious": 0 },
-						"stats": {
+						"Buff": { "Enlightened": 0 },
+						"Condition": { "Tormented": 0 },
+						"CoreConditions": { "Amnesia": 0, "Probed": 0, "Infiltrated": 0, "Unconscious": 0 },
+						"Stats": {
 							"Willpower": {
 								"Initial": 10,
 								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"buff": { "Determined": 0 },
-								"condition": { "Terrorized": 0 }
+								"Buff": { "Determined": 0 },
+								"Condition": { "Terrorized": 0 }
 							},
 							"Consciousness": {
 								"Initial": 20,
@@ -317,8 +317,8 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"buff": { "Awakened": 0 },
-								"condition": { "Demented": 0 }
+								"Buff": { "Awakened": 0 },
+								"Condition": { "Demented": 0 }
 							},
 							"Awareness": {
 								"Initial": 20,
@@ -326,8 +326,8 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"buff": { "Focused": 0 },
-								"condition": { "Bewildered": 0 }
+								"Buff": { "Focused": 0 },
+								"Condition": { "Bewildered": 0 }
 							}
 						}
 					}

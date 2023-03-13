@@ -161,24 +161,28 @@ export class MetanthropesActor extends Actor {
 		//manual instead of a loop cause I want to ensure the bug doesn't come from the loop itself.
 		// think I figured it out, the below .base is never declared, so it can't store the value long term.
 		// so maybe I'll be naming these in a way that can be easily accessed by the character sheet while I am at it.
-		for (const [charName, charData] of Object.entries(systemData.characteristics)) {
+		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
 			console.log(actorData.system);
-			console.log(charName);
-			console.log(charData);
-			console.log(systemData.characteristics[charName].name, systemData.characteristics[charName].base.label, systemData.characteristics[charName].base.value);
-			//const initialValue = charData.initial.value;
-			//const progressedValue = charData.progressed.value;
-			//const baseValue = initialValue + progressedValue;
-			systemData.characteristics[charName].base.value = Number(charData.initial.value) + Number(charData.progressed.value);
-			console.log("New", systemData.characteristics[charName].label, systemData.characteristics[charName].base.label, systemData.characteristics[charName].base.value);
-
-			for (const [statName, statData] of Object.entries(systemData.characteristics[charName].stats)) {
-				console.log(systemData.characteristics[charName].stats[statName].label, systemData.characteristics[charName].stats[statName].base.label, systemData.characteristics[charName].stats[statName].base.value);
-				//const initialValue = statData.initial.value;
-				//const progressedValue = statData.progressed.value;
-				//const baseValue = initialValue + progressedValue;
-				systemData.characteristics[charName].stats[statName].base.value = Number(statData.initial.value) + Number(statData.progressed.value);
-				console.log("New", systemData.characteristics[charName].stats[statName].label, systemData.characteristics[charName].stats[statName].base.label, systemData.characteristics[charName].stats[statName].base.value);
+			console.log(CharKey, "Base:", CharValue.Base);
+			console.log(CharKey, "Initial:", CharValue.Initial);
+			console.log(CharKey, "Progressed:", CharValue.Progressed);
+			CharValue.Base = CharValue.Initial + CharValue.Progressed;
+			console.log("New", CharKey, "Base:", CharValue.Base);
+			for (const [StatKey, StatValue] of Object.entries(CharValue.Stats)) {
+				console.log(StatKey, "Base:", StatValue.Base);
+				console.log(StatKey, "Initial:", StatValue.Initial);
+				console.log(StatKey, "Progressed:", StatValue.Progressed);
+				StatValue.Base = StatValue.Initial + StatValue.Progressed;
+				console.log("New", StatKey, "Base:", StatValue.Base);
+				//
+				//
+				//
+				//console.log(systemData.characteristics[charName].stats[statName].label, systemData.characteristics[charName].stats[statName].base.label, systemData.characteristics[charName].stats[statName].base.value);
+				////const initialValue = statData.initial.value;
+				////const progressedValue = statData.progressed.value;
+				////const baseValue = initialValue + progressedValue;
+				//systemData.characteristics[charName].stats[statName].base.value = Number(statData.initial.value) + Number(statData.progressed.value);
+				//console.log("New", systemData.characteristics[charName].stats[statName].label, systemData.characteristics[charName].stats[statName].base.label, systemData.characteristics[charName].stats[statName].base.value);
 			}
 		}
 		//	const bodyBase = systemData.characteristics.body.initial.value + systemData.characteristics.body.progressed.value;
