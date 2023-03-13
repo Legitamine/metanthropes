@@ -213,8 +213,8 @@
 						"Progressed": 5,
 						"Base": 0,
 						"Current": 0,
-						"Buff": { "Hardened": 0 },
-						"Condition": { "Burned": 0 },
+						"Buff": { "Name": "Hardened", "Current": 0 },
+						"Condition": { "Name": "Burned", "Current": 0 },
 						"CoreConditions": { "Bleeding": 0, "Asphyxiation": 0, "Diseased": 0, "Maimed": 0 },
 						"Stats": {
 							"Endurance": {
@@ -223,8 +223,8 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Buff": { "Fortified": 0 },
-								"Condition": { "Bone-Injury": 0 }
+								"Buff": { "Name": "Fortified", "Current": 0 },
+								"Condition": { "Name": "Bone-Injury", "Current": 0 }
 							},
 							"Power": {
 								"Initial": 30,
@@ -232,8 +232,8 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Buff": { "Empowered": 0 },
-								"Condition": { "Muscle-Injury": 0 }
+								"Buff": { "Name": "Empowered", "Current": 0 },
+								"Condition": { "Name": "Muscle-Injury", "Current": 0 }
 							},
 							"Reflexes": {
 								"Initial": 30,
@@ -241,8 +241,8 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Buff": { "Hastened": 0 },
-								"Condition": { "Skin-Injury": 0 }
+								"Buff": { "Name": "Hastened", "Current": 0 },
+								"Condition": { "Name": "Skin-Injury", "Current": 0 }
 							}
 						}
 					},
@@ -252,8 +252,8 @@
 						"Progressed": 5,
 						"Base": 0,
 						"Current": 0,
-						"Buff": { "Sharpened": 0 },
-						"Condition": { "Disconnected": 0 },
+						"Buff": { "Name": "Sharpened", "Current": 0 },
+						"Condition": { "Name": "Disconnected", "Current": 0 },
 						"CoreConditions": {
 							"Fatigue": 0,
 							"Hunger": 0,
@@ -269,8 +269,8 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Buff": { "Alerted": 0 },
-								"Condition": { "Disoriented": 0 }
+								"Buff": { "Name": "Alerted", "Current": 0 },
+								"Condition": { "Name": "Disoriented", "Current": 0 }
 							},
 							"Manipulation": {
 								"Initial": 30,
@@ -278,8 +278,8 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Buff": { "Articulated": 0 },
-								"Condition": { "Confused": 0 }
+								"Buff": { "Name": "Articulated", "Current": 0 },
+								"Condition": { "Name": "Confused", "Current": 0 }
 							},
 							"Creativity": {
 								"Initial": 30,
@@ -287,8 +287,8 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Buff": { "Inspired": 0 },
-								"Condition": { "Wobbly": 0 }
+								"Buff": { "Name": "Inspired", "Current": 0 },
+								"Condition": { "Name": "Wobbly", "Current": 0 }
 							}
 						}
 					},
@@ -298,8 +298,8 @@
 						"Progressed": 0,
 						"Base": 0,
 						"Current": 0,
-						"Buff": { "Enlightened": 0 },
-						"Condition": { "Tormented": 0 },
+						"Buff": { "Name": "Enlightened", "Current": 0 },
+						"Condition": { "Name": "Tormented", "Current": 0 },
 						"CoreConditions": { "Amnesia": 0, "Probed": 0, "Infiltrated": 0, "Unconscious": 0 },
 						"Stats": {
 							"Willpower": {
@@ -308,8 +308,8 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Buff": { "Determined": 0 },
-								"Condition": { "Terrorized": 0 }
+								"Buff": { "Name": "Determined", "Current": 0 },
+								"Condition": { "Name": "Terrorized", "Current": 0 }
 							},
 							"Consciousness": {
 								"Initial": 20,
@@ -317,8 +317,8 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Buff": { "Awakened": 0 },
-								"Condition": { "Demented": 0 }
+								"Buff": { "Name": "Awakened", "Current": 0 },
+								"Condition": { "Name": "Demented", "Current": 0 }
 							},
 							"Awareness": {
 								"Initial": 20,
@@ -326,8 +326,8 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Buff": { "Focused": 0 },
-								"Condition": { "Bewildered": 0 }
+								"Buff": { "Name": "Focused", "Current": 0 },
+								"Condition": { "Name": "Bewildered", "Current": 0 }
 							}
 						}
 					}

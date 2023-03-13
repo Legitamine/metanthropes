@@ -167,16 +167,16 @@ export class MetanthropesActor extends Actor {
 			console.log("New", CharKey, "Base:", CharValue.Base);
 			for (const [BuffKey, BuffValue] of Object.entries(CharValue.Buff)) {
 				console.log("------------------------------------------------------------------------");
-				console.log("Metanthropes RPG Calculating", CharKey, "Buff: Base +", BuffKey, BuffValue);
+				console.log("Metanthropes RPG Calculating", CharKey, "Buff: Base +", BuffValue.Name, BuffValue.Current);
 				console.log("------------------------------------------------------------------------");
-				CharValue.Current = Number(CharValue.Base) + Number(Number(BuffValue) * 5);
-				console.log(CharKey, "Base +", BuffKey, ":", CharValue.Current);
+				CharValue.Current = Number(CharValue.Base) + Number(Number(BuffValue.Current) * 5);
+				console.log(CharKey, "Base +", BuffValue.Name, ":", CharValue.Current);
 			}
 			for (const [ConditionKey, ConditionValue] of Object.entries(CharValue.Condition)) {
 				console.log("------------------------------------------------------------------------");
-				console.log("Metanthropes RPG Calculating", CharKey, "Current: -", ConditionKey, ConditionValue);
+				console.log("Metanthropes RPG Calculating", CharKey, "Current: -", ConditionValue.Name, ConditionValue.Current);
 				console.log("------------------------------------------------------------------------");
-				CharValue.Current = Number(CharValue.Current) - Number(Number(ConditionValue) * 5);
+				CharValue.Current = Number(CharValue.Current) - Number(Number(ConditionValue.Current) * 5);
 				console.log("New", CharKey, "Current:", CharValue.Current);
 			}
 			for (const [StatKey, StatValue] of Object.entries(CharValue.Stats)) {
@@ -188,16 +188,16 @@ export class MetanthropesActor extends Actor {
 				console.log("New", StatKey, "Base:", StatValue.Base);
 				for (const [BuffKey, BuffValue] of Object.entries(StatValue.Buff)) {
 					console.log("------------------------------------------------------------------------");
-					console.log("Metanthropes RPG Calculating", StatKey, "Buff: Base +", BuffKey, BuffValue);
+					console.log("Metanthropes RPG Calculating", StatKey, "Buff: Base +", BuffValue.Name, BuffValue.Current);
 					console.log("------------------------------------------------------------------------");
-					StatValue.Current = Number(StatValue.Base) + Number(Number(BuffValue) * 5);
-					console.log(StatKey, "Base +", BuffKey, ":", StatValue.Current);
+					StatValue.Current = Number(StatValue.Base) + Number(Number(BuffValue.Current) * 5);
+					console.log(StatKey, "Base +", BuffValue.Name, ":", StatValue.Current);
 				}
 				for (const [ConditionKey, ConditionValue] of Object.entries(StatValue.Condition)) {
 					console.log("------------------------------------------------------------------------");
-					console.log("Metanthropes RPG Calculating", StatKey, "Current: -", ConditionKey, ConditionValue);
+					console.log("Metanthropes RPG Calculating", StatKey, "Current: -", ConditionValue.Name, ConditionValue.Current);
 					console.log("------------------------------------------------------------------------");
-					StatValue.Current = Number(StatValue.Current) - Number(Number(ConditionValue) * 5);
+					StatValue.Current = Number(StatValue.Current) - Number(Number(ConditionValue.Current) * 5);
 					console.log("New", StatKey, "Current:", StatValue.Current);
 				}
 				console.log("------------------------------------------------------------------------");
