@@ -88,17 +88,17 @@
 						<p>🏁
 							<input
 								class="style-cs-values"
-								name="system.characteristics.body.initial"
+								name="system.Characteristics.Body.Initial"
 								type="number"
-								value="{{system.characteristics.body.initial}}"
+								value="{{system.Characteristics.Body.Initial}}"
 								data-dtype="number"
 							/></p>
 						<p>📈
 							<input
 								class="style-cs-values"
-								name="system.characteristics.body.progressed"
+								name="system.Characteristics.Body.Progressed"
 								type="number"
-								value="{{system.characteristics.body.progressed}}"
+								value="{{system.Characteristics.Body.Progressed}}"
 								data-dtype="number"
 							/>
 						</p>
@@ -107,23 +107,22 @@
 						<p class="style-cs-labels">BODY</p>
 						<p></p>
 						<p class="style-cs-values">{{system.Characteristics.Body.Current}}</p>
-						<p class="style-cs-values">{{system.characteristics.body.current}}</p>
 					</div>
 					<div>
 						<p class="style-cs-buffs">🛡️
 							<input
 								class="style-cs-buffs"
-								name="system.characteristics.body.buffs.hardened.value"
+								name="system.Characteristics.Body.Buff.Hardened"
 								type="number"
-								value="{{system.characteristics.body.buffs.hardened.value}}"
+								value="{{system.Characteristics.Body.Buff.Hardened}}"
 								data-dtype="number"
 							/></p>
 						<p class="style-cs-conditions">💀
 							<input
 								class="style-cs-conditions"
-								name="system.characteristics.body.conditions.burned.value"
+								name="system.Characteristics.Body.Condition.Burned"
 								type="number"
-								value="{{system.characteristics.body.conditions.burned.value}}"
+								value="{{system.Characteristics.Body.Condition.Burned}}"
 								data-dtype="number"
 							/></p>
 					</div>
@@ -226,42 +225,46 @@
 						<p>🏁
 							<input
 								class="style-cs-values"
-								name="system.characteristics.body.stats.endurance.initial.value"
+								name="system.Characteristics.Body.Stats.Endurance.Initial"
 								type="number"
-								value="{{system.characteristics.body.stats.endurance.initial.value}}"
+								value="{{system.Characteristics.Body.Stats.Endurance.Initial}}"
 								data-dtype="number"
 							/></p>
 						<p>📈
 							<input
 								class="style-cs-values"
-								name="system.characteristics.body.stats.endurance.progressed.value"
+								name="system.Characteristics.Body.Stats.Endurance.Progressed"
 								type="number"
-								value="{{system.characteristics.body.stats.endurance.progressed.value}}"
+								value="{{system.Characteristics.Body.Stats.Endurance.Progressed}}"
 								data-dtype="number"
 							/>
 						</p>
 					</div>
 					<div>
 						<p class="style-cs-labels">ENDURANCE</p>
-						<p class="style-cs-rolls">{{CHARSTATS.roll.enduranceRoll}}</p>
+						<p></p>
+						<p class="style-cs-rolls">{{system.Characteristics.Body.Stats.Endurance.Roll}}</p>
 					</div>
 					<div>
 						<p class="style-cs-buffs">🛡️
 							<input
 								class="style-cs-buffs"
-								name="system.characteristics.body.stats.endurance.buffs.fortified.value"
+								name="system.Characteristics.Body.Stats.Endurance.Buff.Fortified"
 								type="number"
-								value="{{system.characteristics.body.stats.endurance.buffs.fortified.value}}"
+								value="{{system.Characteristics.Body.Stats.Endurance.Buff.Fortified}}"
 								data-dtype="number"
 							/></p>
+							<p class="style-cs-buffs"><label for="system.Characteristics.Body.Stats.Endurance.Buff.Fortified">{{lookupkey system.Characteristics.Body.Stats.Endurance.Buff.Fortified this}}</p>
+							
 						<p class="style-cs-conditions">💀
 							<input
 								class="style-cs-conditions"
-								name="system.characteristics.body.stats.endurance.conditions.boneinjury.value"
+								name="system.Characteristics.Body.Stats.Endurance.Condition.Muscle&#32;Injury"
 								type="number"
-								value="{{system.characteristics.body.stats.endurance.conditions.boneinjury.value}}"
+								value="{{system.Characteristics.Body.Stats.Endurance.Condition.[Muscle Injury]}}"
 								data-dtype="number"
 							/></p>
+							<p class="style-cs-conditions"><label for="system.Characteristics.Body.Stats.Endurance.Condition.Muscle&#32;Injury">{{lookupkey system.Characteristics.Body.Stats.Endurance.Condition.[Muscle&#32;Injury] this}}</label></p>
 					</div>
 				</div>
 
