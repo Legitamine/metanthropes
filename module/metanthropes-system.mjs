@@ -70,9 +70,10 @@ Hooks.once("init", async function () {
 		makeDefault: true,
 	});
 	//preload Handlebars templates
-	Handlebars.registerHelper("lookupKey", function (object, key) {
-		return object[key];
-	});
+	//below doen't work
+	//Handlebars.registerHelper("lookupKey", function (object, key) {
+	//	return object[key];
+	//});
 	console.log("========================================================================");
 	console.log("Metanthropes RPG System Initialized");
 	console.log("========================================================================");

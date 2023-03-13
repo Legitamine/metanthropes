@@ -224,7 +224,7 @@
 								"Current": 0,
 								"Roll": 0,
 								"Buff": { "Fortified": 0 },
-								"Condition": { "Bone Injury": 0 }
+								"Condition": { "Bone-Injury": 0 }
 							},
 							"Power": {
 								"Initial": 30,
@@ -233,7 +233,7 @@
 								"Current": 0,
 								"Roll": 0,
 								"Buff": { "Empowered": 0 },
-								"Condition": { "Muscle Injury": 0 }
+								"Condition": { "Muscle-Injury": 0 }
 							},
 							"Reflexes": {
 								"Initial": 30,
@@ -242,7 +242,7 @@
 								"Current": 0,
 								"Roll": 0,
 								"Buff": { "Hastened": 0 },
-								"Condition": { "Skin Injury": 0 }
+								"Condition": { "Skin-Injury": 0 }
 							}
 						}
 					},
