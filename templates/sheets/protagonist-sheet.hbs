@@ -143,21 +143,24 @@
 		</div>
 	</header>
 	<main>
-		<nav class="csnavselector tabs layout-container-nav style-container-nav" data-group="cs">
-			<!-- look into actor-sheet.mjs -->
-			<a class="item" data-tab="cs-charstats">🛡️ Characteristics & Stats 💀</a>
-			<a class="item" data-tab="cs-perks">🚧 Perks 🚧</a>
-			<a class="item" data-tab="cs-metapowers">🚧 Metapowers 🚧</a>
-			<a class="item" data-tab="cs-combos">🚧 Combos 🚧</a>
-			<a class="item" data-tab="cs-possessions">🚧 Possessions 🚧</a>
-			<a class="item" data-tab="cs-notes">🚧 Notes 🚧</a>
-		</nav>
+		<div class="layout-container-nav style-container-nav">
+			<nav class="csnavselector tabs" data-group="cs">
+				<!-- look into actor-sheet.mjs -->
+				<a class="item" data-tab="cs-charstats">🛡️ Characteristics & Stats 💀</a>
+				<a class="item" data-tab="cs-perks">🚧 Perks 🚧</a>
+				<a class="item" data-tab="cs-metapowers">🚧 Metapowers 🚧</a>
+				<a class="item" data-tab="cs-combos">🚧 Combos 🚧</a>
+				<a class="item" data-tab="cs-possessions">🚧 Possessions 🚧</a>
+				<a class="item" data-tab="cs-notes">🚧 Notes 🚧</a>
+			</nav>
+		</div>
 		<section class="csnavtabs">
 			<div
-				class="tab cs-charstats layout-container-grid3x4 style-container-grid3x4"
+				class="tab cs-charstats"
 				data-group="cs"
 				data-tab="cs-charstats"
 			>
+			<div class="layout-container-grid3x4 style-container-grid3x4">
 				<div class="layout-container-grid3x1 style-container-grid3x1">
 					<div>
 						<p>🏁
@@ -746,21 +749,16 @@
 						</p>
 					</div>
 				</div>
-
 			</div>
-			<!--
+			</div>
+			
 			<div class="tab cs-perks layout-container-small style-container-small" data-group="cs" data-tab="cs-perks">
 				PERKS
-				{{baseBody}}
-				{{CHARSTATS.base.baseBody}}
-				{{system.baseBody}}
-				{{actor.baseBody}}
-				{{CHARSTATS.baseBody}}
-				{{CHARSTATS.baseBody}}
-				{{actorData.baseBody}}
+				
+				
 
 			</div>
-			-->
+			
 			<!--  hiding extra tabs for now until I figure it out
 			<div
 				class="tab cs-metapowers layout-container-grid3x4 style-container-grid3x4"

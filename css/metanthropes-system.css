@@ -41,19 +41,6 @@ header {
   padding: 1px;
 }
 
-aside {
-  font-family: "nasalization", sans-serif;
-}
-
-div {
-  font-family: "nasalization", sans-serif;
-}
-
-nav {
-  margin: 0px;
-  padding: 1px;
-}
-
 footer {
   margin: 1px;
   padding: 1px;
@@ -446,4 +433,12 @@ button {
   justify-self: center;
   align-items: center;
   align-self: center;
+}
+.metanthropes .csnavselector {
+  flex: 0;
+}
+.metanthropes .csnavtabs,
+.metanthropes .csnavtabs .tab,
+.metanthropes .csnavtabs .tab .editor {
+  height: 100%;
 }
