@@ -21,8 +21,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 			resizable: true,
 			tabs: [
 				{
-					navSelector: "csnavselector",
-					contentSelector: "csnavtabs",
+					navSelector: ".csnavselector",
+					contentSelector: ".csnavtabs",
 					initial: "cs-charstats",
 				},
 			],
