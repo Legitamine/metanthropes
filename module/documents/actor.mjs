@@ -155,13 +155,11 @@ export class MetanthropesActor extends Actor {
 		else if (actorData.type == "Vehicle") return;
 		const systemData = actorData.system;
 		const flags = actorData.flags.metanthropes || {};
-		console.log("========================================================================");
-		console.log("Metanthropes RPG Preparing Characteristics & Stats for", this.type, ":", this.name);
-		console.log("========================================================================");
+		console.log("=============================================================================================");
+		console.log("Metanthropes RPG Preparing Characteristics & Stats for", this.type, "-", this.name);
+		console.log("=============================================================================================");
 		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
-			console.log("------------------------------------------------------------------------");
 			console.log("Metanthropes RPG Calculating", CharKey, "Base: Initial + Progressed");
-			console.log("------------------------------------------------------------------------");
 			console.log(
 				CharKey,
 				"Base:",
@@ -172,37 +170,26 @@ export class MetanthropesActor extends Actor {
 				CharValue.Progressed
 			);
 			parseInt((CharValue.Base = Number(CharValue.Initial) + Number(CharValue.Progressed)));
-			console.log("New", CharKey, "Base:", CharValue.Base);
-			// for (const [BuffKey, BuffValue] of Object.entries(CharValue.Buff)) {
-			console.log("------------------------------------------------------------------------");
+			console.log("Metanthropes RPG New", CharKey, "Base:", CharValue.Base);
+			console.log("Metanthropes RPG Calculating", CharKey, "Buff:", CharValue.Buff.Name, CharValue.Buff.Current);
 			console.log(
 				"Metanthropes RPG Calculating",
 				CharKey,
-				"Buff: Base +",
-				CharValue.Buff.Name,
-				CharValue.Buff.Current
-			);
-			console.log("------------------------------------------------------------------------");
-			parseInt((CharValue.Current = Number(CharValue.Base) + Number(Number(CharValue.Buff.Current) * 5)));
-			console.log(CharKey, "Base +", CharValue.Buff.Name, ":", CharValue.Current);
-			// }
-			// for (const [ConditionKey, ConditionValue] of Object.entries(CharValue.Condition)) {
-			console.log("------------------------------------------------------------------------");
-			console.log(
-				"Metanthropes RPG Calculating",
-				CharKey,
-				"Current: -",
+				"Condition:",
 				CharValue.Condition.Name,
 				CharValue.Condition.Current
 			);
+			console.log("Metanthropes RPG Calculating", CharKey, "Current: Base + Buff - Condition");
+			parseInt(
+				(CharValue.Current =
+					Number(CharValue.Base) +
+					Number(Number(CharValue.Buff.Current) * 5) -
+					Number(Number(CharValue.Condition.Current) * 5))
+			);
+			console.log("Metanthropes RPG New", CharKey, "Current:", CharValue.Current);
 			console.log("------------------------------------------------------------------------");
-			parseInt((CharValue.Current = Number(CharValue.Current) - Number(Number(CharValue.Condition.Current) * 5)));
-			console.log("New", CharKey, "Current:", CharValue.Current);
-			// }
 			for (const [StatKey, StatValue] of Object.entries(CharValue.Stats)) {
-				console.log("------------------------------------------------------------------------");
 				console.log("Metanthropes RPG Calculating", StatKey, "Base: Initial + Progressed");
-				console.log("------------------------------------------------------------------------");
 				console.log(
 					StatKey,
 					"Base:",
@@ -213,8 +200,7 @@ export class MetanthropesActor extends Actor {
 					StatValue.Progressed
 				);
 				parseInt((StatValue.Base = Number(StatValue.Initial) + Number(StatValue.Progressed)));
-				console.log("New", StatKey, "Base:", StatValue.Base);
-				console.log("------------------------------------------------------------------------");
+				console.log("Metanthropes RPG New", StatKey, "Base:", StatValue.Base);
 				console.log(
 					"Metanthropes RPG Calculating",
 					StatKey,
@@ -229,33 +215,39 @@ export class MetanthropesActor extends Actor {
 					StatValue.Condition.Name,
 					StatValue.Condition.Current
 				);
-				console.log("------------------------------------------------------------------------");
 				console.log("Metanthropes RPG Calculating", StatKey, "Current: Base + Buff - Condition");
-				console.log("------------------------------------------------------------------------");
 				parseInt(
 					(StatValue.Current =
 						Number(StatValue.Base) +
 						Number(Number(StatValue.Buff.Current) * 5) -
 						Number(Number(StatValue.Condition.Current) * 5))
 				);
-				console.log("New", StatKey, "Current:", StatValue.Current);
-				console.log("------------------------------------------------------------------------");
-				console.log("Metanthropes RPG Calculating", StatKey, "Roll:", StatKey, "Current +", CharKey, "Current");
+				console.log("Metanthropes RPG New", StatKey, "Current:", StatValue.Current);
+				console.log(
+					"Metanthropes RPG Calculating",
+					StatKey,
+					"for Rolls:",
+					StatKey,
+					"Current +",
+					CharKey,
+					"Current"
+				);
 				parseInt((StatValue.Roll = Number(StatValue.Current) + Number(CharValue.Current)));
 				console.log("Metanthropes RPG Final", StatKey, "for Rolls:", StatValue.Roll);
-				console.log("========================================================================");
+				console.log(
+					"============================================================================================="
+				);
 			}
 		}
-		console.log("========================================================================");
-		console.log("Metanthropes RPG New Life Maximum: Initial Life + Current Endurance");
+		console.log("Metanthropes RPG New Life Maximum: Initial Life + Endurance for Rolls");
 		parseInt(
 			(systemData.vital.life.max =
-				Number(systemData.vital.life.initial) + Number(systemData.Characteristics.Body.Stats.Endurance.Current))
+				Number(systemData.vital.life.initial) + Number(systemData.Characteristics.Body.Stats.Endurance.Roll))
 		);
-		console.log("New Life Maximum", systemData.vital.life.max);
-		console.log("========================================================================");
-		console.log("Metanthropes RPG", this.type, ":", this.name, "is ready for Action!");
-		console.log("========================================================================");
+		console.log("Metanthropes RPG New Life Maximum:", systemData.vital.life.max);
+		console.log("=============================================================================================");
+		console.log("Metanthropes RPG", this.type, "-", this.name, "is ready for Action!");
+		console.log("=============================================================================================");
 
 		//	console.log("========================================================================");
 		//	console.log("Metanthropes RPG Calculating Characteristics: Base + Buffs - Conditions");
@@ -379,9 +371,9 @@ export class MetanthropesActor extends Actor {
 		//	console.log("========================================================================");
 		//	console.log("Metanthropes RPG New Life Maximum: Initial Life + Current Endurance");
 		//	systemData.vital.life.max = systemData.vital.life.initial + enduranceCurrent;
-		//	console.log("New Life Maximum", systemData.vital.life.max);
+		//	console.log("Metanthropes RPG New Life Maximum", systemData.vital.life.max);
 		//	console.log("========================================================================");
-		//	console.log("Metanthropes RPG Finished Calculating Characteristics & Stats for", this.type, ":", this.name);
+		//	console.log("Metanthropes RPG Finished Calculating Characteristics & Stats for", this.type, "-", this.name);
 		//	console.log("========================================================================");
 	}
 	////
