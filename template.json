@@ -260,7 +260,9 @@
 							"Pain": 0,
 							"Sense Lost: Vision": false,
 							"Sense Lost: Hearing": false,
-							"Sense Lost: Touch": false
+							"Sense Lost: Touch": false,
+							"Sense Lost: Scent": false,
+							"Sense Lost: Taste": false
 						},
 						"Stats": {
 							"Perception": {

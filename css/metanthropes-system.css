@@ -434,11 +434,3 @@ button {
   align-items: center;
   align-self: center;
 }
-.metanthropes .csnavselector {
-  flex: 0;
-}
-.metanthropes .csnavtabs,
-.metanthropes .csnavtabs .tab,
-.metanthropes .csnavtabs .tab .editor {
-  height: 100%;
-}
