@@ -1,45 +1,415 @@
 <form class="metanthropes {{cssClass}}" autocomplete="off">
-	<header class="sheet-header">
-		<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64" />
-		<h1 class="charname"><input name="name" type="text" value="{{actor.name}}"
-				placeholder="A Humanoid" /></h1>
+	<header>
+		<div class="layout-container-grid3x1 style-container-grid3x1">
+			<div class="layout-container-small style-container-small">
+				<div>Player
+					<input
+						name="system.metaowner"
+						type="text"
+						value="{{system.metaowner.value}}"
+						placeholder="Player Name"
+						data-dtype="string"
+					/>
+				</div>
+				<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
+				<div><input name="name" type="text" value="{{actor.name}}" placeholder="A MetaTherion" /></div>
+			</div>
+			<div class="layout-container-small style-container-small">
+				<div>Prime Metapower
+					<input
+						name="system.entermeta.primemetapower.value"
+						type="text"
+						value="{{system.entermeta.primemetapower.value}}"
+						data-dtype="string"
+						placeholder="Prime Metapower"
+					/>
+				</div>
+				<div>Metamorphosis
+					<input
+						name="system.entermeta.metamorphosis.value"
+						type="text"
+						value="{{system.entermeta.metamorphosis.value}}"
+						data-dtype="string"
+						placeholder="Your Metamorphosis"
+					/>
+				</div>
+				<div>Background
+					<input
+						name="system.vital.background.value"
+						type="text"
+						value="{{system.vital.background.value}}"
+						data-dtype="string"
+						placeholder="Your Background"
+					/>
+				</div>
+				<div>Arc
+					<input
+						name="system.vital.arc.value"
+						type="text"
+						value="{{system.vital.arc.value}}"
+						data-dtype="string"
+						placeholder="Your Arc"
+					/>
+				</div>
+				<p>Regression
+					<input
+						name="system.entermeta.regression.value"
+						type="text"
+						value="{{system.entermeta.regression.value}}"
+						data-dtype="string"
+						placeholder="Your Regression"
+					/>
+				</p>
+			</div>
+			<div class="layout-container-small style-container-small">
+				<div>Birthplace
+					<input
+						name="system.humanoids.birthplace.value"
+						type="text"
+						value="{{system.humanoids.birthplace.value}}"
+						data-dtype="string"
+						placeholder="Birthplace"
+					/>
+				</div>
+				<div>Age
+					<input
+						name="system.vital.age.value"
+						type="number"
+						value="{{system.vital.age.value}}"
+						data-dtype="number"
+						placeholder=""
+					/>
+				</div>
+				<div>Gender
+					<input
+						name="system.humanoids.gender.value"
+						type="text"
+						value="{{system.humanoids.gender.value}}"
+						data-dtype="string"
+						placeholder="Other"
+					/>
+				</div>
+				<div>Height
+					<input
+						name="system.humanoids.height.value"
+						type="text"
+						value="{{system.humanoids.height.value}}"
+						data-dtype="string"
+						placeholder="Your Height"
+					/>
+				</div>
+				<div>Weight
+					<input
+						name="system.humanoids.weight.value"
+						type="text"
+						value="{{system.humanoids.weight.value}}"
+						data-dtype="string"
+						placeholder="Your Weight"
+					/>
+				</div>
+			</div>
+		</div>
+		<div class="layout-container-grid1x3 style-container-grid1x3">
+			<div class="layout-container-small style-container-small">
+				<div>
+					Life ❤️
+					<input
+						name="system.vital.life.value"
+						type="number"
+						value="{{system.vital.life.value}}"
+						data-dtype="number"
+					/>
+					<label
+						for="system.vital.life.max"
+						data-label="{{system.vital.life.max}}"
+						class="style-labels-number"
+					>{{system.vital.life.max}}</label>
+				</div>
+			</div>
+			<div class="layout-container-small style-container-small">
+				<div>Experience <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
+			</div>
+			<div class="layout-container-small style-container-small">
+				<div>Destiny 🤞
+					<input
+						name="system.vital.destiny.value"
+						type="number"
+						value="{{system.vital.destiny.value}}"
+						data-dtype="number"
+						placeholder="0"
+					/>
+				</div>
+			</div>
+		</div>
 	</header>
-
-	<section class="metanthropes layout-container-big style-secondary-title">
-		<h3>Hello Metanthropes!</h3>
-		<p>Here is a sample sheet for a humanoid character.</p>
-		<p>It is a work in progress, so please be patient.</p>
-		<h5> {{system.characteristics.body.stats.power.rollme}} </h5>
-		<div class="metanthropes layout-container-big style-secondary-body">
-			<h5 class="metanthropes style-primary-body">Body</h5>
-			<h5> {{system.characteristics.soul.stats.consciousness.rollme}} </h5>
+	<main>
+		<div class="layout-container-nav style-container-nav">
+			<nav class="csnavselector tabs" data-group="cs">
+				<!-- look into actor-sheet.mjs -->
+				<a class="item" data-tab="cs-charstats">🛡️ Characteristics & Stats 💀</a>
+				<a class="item" data-tab="cs-perks">🚧 Perks 🚧</a>
+				<a class="item" data-tab="cs-metapowers">🚧 Metapowers 🚧</a>
+				<a class="item" data-tab="cs-combos">🚧 Combos 🚧</a>
+				<a class="item" data-tab="cs-possessions">🚧 Possessions 🚧</a>
+				<a class="item" data-tab="cs-notes">🚧 Notes 🚧</a>
+			</nav>
 		</div>
-		<input name="system.characteristics.body.conditions.maimed.value" type="checkbox"
-			{{#if system.characteristics.body.conditions.maimed.value}}checked{{/if}} />
-		<input name="system.characteristics.soul.stats.consciousness.progressed.value" type="number"
-			value="{{system.characteristics.soul.stats.consciousness.progressed.value}}" />
-		<input name="system.characteristics.mind.conditions.disconnected.label" type="text"
-			value="{{system.characteristics.mind.conditions.disconnected.label}}" />
-	</section>
-	<section>
-		<div class="metanthropes layout-container-big style-secondary-title">
-			<h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis facere fuga nostrum dolorum, obcaecati explicabo recusandae odit iusto modi ut quidem perspiciatis, mollitia similique neque repudiandae non molestiae autem ad!</h3>
+		<section class="csnavtabs">
+			<div class="tab cs-charstats" data-group="cs" data-tab="cs-charstats">
+				<div class="layout-container-grid3x4 style-container-grid3x4">
+					{{#each system.Characteristics}}
+						<div class="layout-container-grid3x1 style-container-grid3x1">
+							<div>
+								<p>🏁
+									<input
+										class="style-cs-values"
+										name="{{this}}.Initial"
+										type="number"
+										value="{{this.Initial}}"
+										data-dtype="number"
+									/>
+								</p>
+								<p>📈
+									<input
+										class="style-cs-values"
+										name="{{this}}.Progressed"
+										type="number"
+										value="{{this.Progressed}}"
+										data-dtype="number"
+									/>
+								</p>
+							</div>
+							<div>
+								<p class="style-cs-labels">{{@key}}</p>
+								<p></p>
+								<p class="style-cs-values">{{this.Current}}</p>
+							</div>
+							<div>
+								<p class="style-cs-buffs">🛡️
+									<input
+										class="style-cs-buffs"
+										name="{{this}}.Buff.Current"
+										type="number"
+										value="{{this.Buff.Current}}"
+										data-dtype="number"
+									/><label for="{{this}}.Buff.Current">{{this.Buff.Name}}</label>
+								</p>
+								<p class="style-cs-conditions">💀
+									<input
+										class="style-cs-conditions"
+										name="{{this}}.Condition.Current"
+										type="number"
+										value="{{this.Condition.Current}}"
+										data-dtype="number"
+									/><label for="{{this}}.Condition.Current">{{this.Condition.Name}}</label>
+								</p>
+							</div>
+						</div>
+						{{#each Stats}}
+							<div class="layout-container-grid3x1 style-container-grid3x1">
+								<div>
+									<p>🏁
+										<input
+											class="style-cs-values"
+											name="{{this}}.Initial"
+											type="number"
+											value="{{this.Initial}}"
+											data-dtype="number"
+										/>
+									</p>
+									<p>📈
+										<input
+											class="style-cs-values"
+											name="{{this}}.Progressed"
+											type="number"
+											value="{{this.Progressed}}"
+											data-dtype="number"
+										/>
+									</p>
+								</div>
+								<div>
+									<p class="style-cs-labels">{{@key}}</p>
+									<p></p>
+									<p class="style-cs-rolls">{{this.Roll}}</p>
+								</div>
+								<div>
+									<p class="style-cs-buffs">🛡️
+										<input
+											class="style-cs-buffs"
+											name="{{this}}.Buff.Current"
+											type="number"
+											value="{{this.Buff.Current}}"
+											data-dtype="number"
+										/>
+									</p>
+									<p class="style-cs-buffs"><label
+											for="{{this}}.Buff.Current"
+										>{{this.Buff.Name}}</label>
+									</p>
+									<p class="style-cs-conditions">💀
+										<input
+											class="style-cs-conditions"
+											name="{{this}}.Condition.Current"
+											type="number"
+											value="{{this.Condition.Current}}"
+											data-dtype="number"
+										/>
+									</p>
+									<p class="style-cs-conditions"><label
+											for="{{this}}.Condition.Name"
+										>{{this.Condition.Name}}</label>
+									</p>
+								</div>
+							</div>
+						{{/each}}
+					{{/each}}
+				</div>
+			</div>
+			<div class="tab cs-perks" data-group="cs" data-tab="cs-metapowers">
+				<div class="layout-container-small style-container-small">
+					METAPOWERS
+				</div>
+			</div>
+			<div class="tab cs-perks" data-group="cs" data-tab="cs-combos">
+				<div class="layout-container-small style-container-small">
+					COMBOS
+				</div>
+			</div>
+			<div class="tab cs-perks" data-group="cs" data-tab="cs-perks">
+				<div class="layout-container-small style-container-small">
+					PERKS
+				</div>
+			</div>
+			<div class="tab cs-perks" data-group="cs" data-tab="cs-possessions">
+				<div class="layout-container-small style-container-small">
+					POSSESSIONS
+				</div>
+			</div>
+			<div class="tab cs-perks" data-group="cs" data-tab="cs-notes">
+				<div class="layout-container-small style-container-small">
+					NOTES
+				</div>
+			</div>
+		</section>
+	</main>
+	<footer>
+		<div class="layout-container-grid3x1 style-container-grid3x2">
+			<div class="layout-container-small style-container-small">
+				<div>Movement
+					<input
+						name="system.physical.movement.Initial"
+						type="number"
+						value="{{system.physical.movement.Initial}}"
+						data-dtype="number"
+						placeholder="10"
+					/>
+				</div>
+				<div>Speed
+					<input
+						name="system.physical.speed.Initial"
+						type="number"
+						value="{{system.physical.speed.Initial}}"
+						data-dtype="number"
+						placeholder="10"
+					/>
+				</div>
+				<div>Weight
+					<input
+						name="system.physical.weight.Initial"
+						type="number"
+						value="{{system.physical.weight.Initial}}"
+						data-dtype="number"
+						placeholder="10"
+					/>
+				</div>
+				<div>Size
+					<input
+						name="system.physical.size.Initial"
+						type="number"
+						value="{{system.physical.size.Initial}}"
+						data-dtype="number"
+						placeholder="10"
+					/>
+				</div>
+			</div>
+			<div class="layout-container-small style-container-small">
+				<div>Resistances</div>
+				<!-- //todo: investigate lists, investigate emojis and verticality -->
+				<div>Cosmic
+					<input
+						name="system.physical.resistances.cosmic.Initial"
+						type="number"
+						value="{{system.physical.resistances.cosmic.Initial}}"
+						data-dtype="number"
+						placeholder="0"
+					/>
+				</div>
+				<div>Elemental
+					<input
+						name="system.physical.resistances.elemental.Initial"
+						type="number"
+						value="{{system.physical.resistances.elemental.Initial}}"
+						data-dtype="number"
+						placeholder="0"
+					/>
+				</div>
+				<div>Material
+					<input
+						name="system.physical.resistances.material.Initial"
+						type="number"
+						value="{{system.physical.resistances.material.Initial}}"
+						data-dtype="number"
+						placeholder="0"
+					/>
+				</div>
+				<div>Psychic
+					<input
+						name="system.physical.resistances.psychic.Initial"
+						type="number"
+						value="{{system.physical.resistances.psychic.Initial}}"
+						data-dtype="number"
+						placeholder="0"
+					/>
+				</div>
+			</div>
+			<div class="layout-container-small style-container-small">
+				<div>Cover
+					<input
+						name="system.physical.cover.value"
+						type="number"
+						value="{{system.physical.cover.value}}"
+						data-dtype="number"
+						placeholder="0"
+					/>
+				</div>
+				<div>Immunities
+					<input
+						name="system.physical.immunities.value"
+						type="text"
+						value="{{system.physical.immunities.value}}"
+						data-dtype="string"
+						placeholder="none"
+					/>
+				</div>
+				<div>Detections
+					<input
+						name="system.physical.detections.value"
+						type="text"
+						value="{{system.physical.detections.value}}"
+						data-dtype="string"
+						placeholder="none"
+					/>
+				</div>
+				<div>Shifts
+					<input
+						name="system.physical.shifts.value"
+						type="text"
+						value="{{system.physical.shifts.value}}"
+						data-dtype="string"
+						placeholder="none"
+					/>
+				</div>
+			</div>
 		</div>
-	</section>
-	<section>
-		<div class="metanthropes layout-container-big grid grid-3col">
-			<div class="metanthropes layout-container-med flex-between">
-				<h5 class="metanthropes style-primary-body">Body</h5>
-			</div>
-			<div class="metanthropes layout-container-med flex-group-center">
-				<h5 class="metanthropes style-primary-body">Mind</h5>
-			</div>
-			<div class="metanthropes layout-container-med">
-				<h5 class="metanthropes style-secondary-body flex-between">Soul</h5>
-			</div>
-		</div>
-<!--			<label for="system.characteristics.body.label" class="charlabel"
-				data-label="system.characteristics.body.label">{{system.characteristics.body.label}}</label>
--->
-	</section>
+	</footer>
 </form>
