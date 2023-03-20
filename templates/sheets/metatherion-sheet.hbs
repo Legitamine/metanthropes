@@ -148,8 +148,8 @@
 								</div>
 								<div>
 									<p class="style-cs-labels">{{@key}}</p>
-									<img src="/systems/metanthropes-system/artwork/metanthropes-dice-roll.webp"
-										height="40" width="80" alt="Roll This!" />
+									<button class="style-cs-roll-button" data-action="metaRoll"> <img src="/systems/metanthropes-system/artwork/metanthropes-dice-roll.webp"
+										height="40" width="80" alt="Roll This!" /> </button>
 									<p class="style-cs-rolls">{{this.Roll}}</p>
 								</div>
 								<div>
@@ -213,8 +213,8 @@
 		<div class="layout-container-grid3x1 style-container-grid3x2">
 			<div class="layout-container-small style-container-small">
 				<div>Movement
-					<input name="system.physical.movement.Initial" type="number"
-						value="{{system.physical.movement.Initial}}" data-dtype="number" placeholder="10" />
+					<input name="system.physical.movement.initial" type="number"
+						value="{{system.physical.movement.initial}}" data-dtype="number" placeholder="10" />
 				</div>
 				<div>Speed
 					<input name="system.physical.speed.Initial" type="number" value="{{system.physical.speed.Initial}}"

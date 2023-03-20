@@ -79,7 +79,7 @@ Hooks.once("init", async function () {
 	console.log("========================================================================");
 	//return preloadTemplates();
 });
-
+// Drag Ruler Integration
 Hooks.once("dragRuler.ready", (SpeedProvider) => {
 	console.log("========================================================================");
 	console.log("Metanthropes RPG System - Drag Ruler Integration Started");
@@ -87,9 +87,9 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 	class MetanthropesSystemSpeedProvider extends SpeedProvider {
 		get colors() {
 			return [
-				{ id: "movement", default: 0x00ff00, name: "system.physical.movement.initial" },
-				{ id: "additional", default: 0xffff00, name: "system.physical.movement.additional" },
-				{ id: "sprint", default: 0xff8000, name: "system.physical.movement.sprint" },
+				{ id: "movement", default: 0x00ff00, name: "physical.movement.initial" },
+				{ id: "additional", default: 0xffff00, name: "physical.movement.additional" },
+				{ id: "sprint", default: 0xff8000, name: "physical.movement.sprint" },
 			];
 		}
 
@@ -98,9 +98,9 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 
 			// A character can always walk it's base speed and dash twice it's base speed
 			const ranges = [
-				{ range: baseSpeed, color: "movement" },
-				{ range: baseSpeed * 2, color: "additional" },
-				{ range: baseSpeed * 5, color: "sprint" },
+				{ range: baseSpeed * 2, color: "movement" },
+				{ range: baseSpeed * 4, color: "additional" },
+				{ range: baseSpeed * 10, color: "sprint" },
 			];
 			//	I can add special modifiers to speed (like flying, etc)
 			//		// Characters that aren't wearing armor are allowed to run with three times their speed
@@ -117,3 +117,11 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 	console.log("Metanthropes RPG System - Drag Ruler Integration Finished");
 	console.log("========================================================================");
 });
+
+//	//Dice So Nice Integration
+//	Hooks.once('diceSoNiceReady', (dice3d) => {
+//		console.log("========================================================================");
+//		console.log("Metanthropes RPG System - Dice So Nice Integration Started");
+//		console.log("========================================================================");
+//		
+//	});

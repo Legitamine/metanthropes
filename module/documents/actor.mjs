@@ -3,7 +3,7 @@
 //! Metanthropes RPG System for FoundryVTT
 //? This is the Actor document for the Metanthropes RPG System for FoundryVTT.
 //? This controls how Actors are created and what they can do.
-//todo: Enable basic functionality
+//todo: Enable Rolls
 //*
 ////
 
@@ -16,7 +16,7 @@
 //? 3. Prepare Actor Roll Data
 ////
 export class MetanthropesActor extends Actor {
-	// trying to set default actor token stuff
+	// Setting default Token configuration for all actors
 	async _preCreate(data, options, user) {
 		await super._preCreate(data, options, user);
 		let createData = {};
@@ -33,13 +33,13 @@ export class MetanthropesActor extends Actor {
 			});
 		else if (data.prototypeToken) createData.prototypeToken = data.prototypeToken;
 
-		// Set custom default tokens
+		// Set custom default tokens portraits
 		if (!data.img || data.img == "icons/svg/mystery-man.svg") {
 			createData.img = "systems/metanthropes-system/artwork/tokens/token-utilitarian.webp";
 			if (data.type == "Vehicle") createData.img = "systems/metanthropes-system/artwork/tokens/token-aegis.webp";
 		}
 
-		// Default characters to HasVision = true and Link Data = true
+		// Enable Vision and Link Data for all actors
 		if (data.type == "MetaTherion") {
 			if (!createData.prototypeToken) createData.prototypeToken = {}; // Fix for Token Attacher / CF Import
 
@@ -69,7 +69,7 @@ export class MetanthropesActor extends Actor {
 	}
 	// Override base values for each type of actor here.
 	prepareBaseData() {
-		// removed all processing from prepareBaseData to see if it affects the bug
+		// I should enable this section if I need to add modifications for non-Characteristics actors
 		// const actorData = this;
 		// using one function for all types of actors without any characteristics or stats in prepareBaseData
 		// this._prepareBaseNonCharacteristicsData(actorData);
@@ -107,71 +107,7 @@ export class MetanthropesActor extends Actor {
 	//		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
 	//		console.log("========================================================================");
 	//	}
-	//	_prepareBaseMetanthropeData(actorData) {
-	//		if (actorData.type !== 'Metanthrope') return;
-	//		const systemData = actorData.system;
-	//		const flags = actorData.flags.metanthropes || {};
-	//		console.log("========================================================================");
-	//		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
-	//		console.log("========================================================================");
-	//	}
-	//	_prepareBaseProtagonistData(actorData) {
-	//		if (actorData.type !== 'Protagonist') return;
-	//		const systemData = actorData.system;
-	//		const flags = actorData.flags.metanthropes || {};
-	//		console.log("========================================================================");
-	//		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
-	//		console.log("========================================================================");
-	//	}
-	//	_prepareBaseMetaTherionData(actorData) {
-	//		if (actorData.type !== 'MetaTherion') return;
-	//		const systemData = actorData.system;
-	//		const flags = actorData.flags.metanthropes || {};
-	//		console.log("========================================================================");
-	//		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
-	//		console.log("========================================================================");
-	//	}
-	//	_prepareBaseAnimalData(actorData) {
-	//		if (actorData.type !== 'Animal') return;
-	//		const systemData = actorData.system;
-	//		const flags = actorData.flags.metanthropes || {};
-	//		console.log("========================================================================");
-	//		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
-	//		console.log("========================================================================");
-	//	}
-	//	_prepareBaseArtificialData(actorData) {
-	//		if (actorData.type !== 'Artificial') return;
-	//		const systemData = actorData.system;
-	//		const flags = actorData.flags.metanthropes || {};
-	//		console.log("========================================================================");
-	//		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
-	//		console.log("========================================================================");
-	//	}
-	//	_prepareBaseAnimatedObjectData(actorData) {
-	//	if (actorData.type !== 'Animated-Object') return;
-	//	const systemData = actorData.system;
-	//	const flags = actorData.flags.metanthropes || {};
-	//	console.log("========================================================================");
-	//	console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
-	//	console.log("========================================================================");
-	//	}
-	//	_prepareBaseAnimatedHumanoidData(actorData) {
-	//		if (actorData.type !== 'Animated-Humanoid') return;
-	//		const systemData = actorData.system;
-	//		const flags = actorData.flags.metanthropes || {};
-	//		console.log("========================================================================");
-	//		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
-	//		console.log("========================================================================");
-	//	}
-	//_prepareBaseVehicleData(actorData) {
-	//	if (actorData.type !== 'Vehicle') return;
-	//	const systemData = actorData.system;
-	//	const flags = actorData.flags.metanthropes || {};
-	//	console.log("========================================================================");
-	//	console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
-	//	console.log("========================================================================");
-	//}
-	//
+
 	//todo: TOC
 	// Override Derived values for Characteristic and Stat calculations here.
 	// using one function for all types of actors with characteristics and stats in prepareDerivedData
@@ -282,190 +218,78 @@ export class MetanthropesActor extends Actor {
 		console.log("Metanthropes RPG New Life Maximum:", systemData.Vital.Life.max);
 		console.log("=============================================================================================");
 		console.log("Metanthropes RPG Calculating Movement");
-		parseInt (systemData.physical.movement.additional = Number(systemData.physical.movement.initial));
-		parseInt (systemData.physical.movement.sprint = Number(Number(systemData.physical.movement.initial) * 5));
-		console.log("Metanthropes RPG New Movement Value:", systemData.physical.movement.initial, "Additional:", systemData.physical.movement.additional, "Sprint:", systemData.physical.movement.sprint);
+		parseInt((systemData.physical.movement.additional = Number(systemData.physical.movement.initial)));
+		parseInt((systemData.physical.movement.sprint = Number(Number(systemData.physical.movement.initial) * 5)));
+		console.log(
+			"Metanthropes RPG New Movement Value:",
+			systemData.physical.movement.initial,
+			"Additional:",
+			systemData.physical.movement.additional,
+			"Sprint:",
+			systemData.physical.movement.sprint
+		);
 		console.log("=============================================================================================");
 		console.log("Metanthropes RPG", this.type, "-", this.name, "is ready for Action!");
 		console.log("=============================================================================================");
-
-		//	console.log("========================================================================");
-		//	console.log("Metanthropes RPG Calculating Characteristics: Base + Buffs - Conditions");
-		//	console.log("========================================================================");
-		//	//body
-		//	const bodyBuffs = systemData.characteristics.body.buffs.hardened.value * 5;
-		//	const bodyConditions = systemData.characteristics.body.conditions.burned.value * 5;
-		//	const bodyTotal = bodyBase + bodyBuffs - bodyConditions;
-		//	console.log("Body Buffs", bodyBuffs);
-		//	console.log("Body Conditions", bodyConditions);
-		//	console.log("Body Total", bodyTotal);
-		//	//mind
-		//	const mindBuffs = systemData.characteristics.mind.buffs.sharpened.value * 5;
-		//	const mindConditions = systemData.characteristics.mind.conditions.disconnected.value * 5;
-		//	const mindTotal = mindBase + mindBuffs - mindConditions;
-		//	console.log("Mind Buffs", mindBuffs);
-		//	console.log("Mind Conditions", mindConditions);
-		//	console.log("Mind Total", mindTotal);
-		//	//soul
-		//	const soulBuffs = systemData.characteristics.soul.buffs.enlightened.value * 5;
-		//	const soulConditions = systemData.characteristics.soul.conditions.tormented.value * 5;
-		//	const soulTotal = soulBase + soulBuffs - soulConditions;
-		//	console.log("Soul Buffs", soulBuffs);
-		//	console.log("Soul Conditions", soulConditions);
-		//	console.log("Soul Total", soulTotal);
-		//	console.log("========================================================================");
-		//	console.log("Metanthropes RPG Calculating Current Stats: Base + Buffs - Conditions");
-		//	console.log("========================================================================");
-		//	//bodystats
-		//endurance
-		//	const enduranceBuffs = systemData.characteristics.body.stats.endurance.buffs.fortified.value * 5;
-		//	const enduranceConditions = systemData.characteristics.body.stats.endurance.conditions.boneinjury.value * 5;
-		//	const enduranceCurrent = enduranceBase + enduranceBuffs - enduranceConditions;
-		//	console.log("Endurance Buffs", enduranceBuffs);
-		//	console.log("Endurance Conditions", enduranceConditions);
-		//	console.log("Endurance Current", enduranceCurrent);
-		//	//power
-		//	const powerBuffs = systemData.characteristics.body.stats.power.buffs.empowered.value * 5;
-		//	const powerConditions = systemData.characteristics.body.stats.power.conditions.muscleinjury.value * 5;
-		//	const powerCurrent = powerBase + powerBuffs - powerConditions;
-		//	console.log("Power Buffs", powerBuffs);
-		//	console.log("Power Conditions", powerConditions);
-		//	console.log("Power Current", powerCurrent);
-		//	//reflexes
-		//	const reflexesBuffs = systemData.characteristics.body.stats.reflexes.buffs.hastened.value * 5;
-		//	const reflexesConditions = systemData.characteristics.body.stats.reflexes.conditions.skininjury.value * 5;
-		//	const reflexesCurrent = reflexesBase + reflexesBuffs - reflexesConditions;
-		//	console.log("Reflexes Buffs", reflexesBuffs);
-		//	console.log("Reflexes Conditions", reflexesConditions);
-		//	console.log("Reflexes Current", reflexesCurrent);
-		//	console.log("------------------------------------------------------------------------------------");
-		//	//mindstats
-		//	//perception
-		//	const perceptionBuffs = systemData.characteristics.mind.stats.perception.buffs.alerted.value * 5;
-		//	const perceptionConditions = systemData.characteristics.mind.stats.perception.conditions.disoriented.value * 5;
-		//	const perceptionCurrent = perceptionBase + perceptionBuffs - perceptionConditions;
-		//	console.log("Perception Buffs", perceptionBuffs);
-		//	console.log("Perception Conditions", perceptionConditions);
-		//	console.log("Perception Current", perceptionCurrent);
-		//	//manipulation
-		//	const manipulationBuffs = systemData.characteristics.mind.stats.manipulation.buffs.articulated.value * 5;
-		//	const manipulationConditions = systemData.characteristics.mind.stats.manipulation.conditions.confused.value * 5;
-		//	const manipulationCurrent = manipulationBase + manipulationBuffs - manipulationConditions;
-		//	console.log("Manipulation Buffs", manipulationBuffs);
-		//	console.log("Manipulation Conditions", manipulationConditions);
-		//	console.log("Manipulation Current", manipulationCurrent);
-		//	//creativity
-		//	const creativityBuffs = systemData.characteristics.mind.stats.creativity.buffs.inspired.value * 5;
-		//	const creativityConditions = systemData.characteristics.mind.stats.creativity.conditions.wobbly.value * 5;
-		//	const creativityCurrent = creativityBase + creativityBuffs - creativityConditions;
-		//	console.log("Creativity Buffs", creativityBuffs);
-		//	console.log("Creativity Conditions", creativityConditions);
-		//	console.log("Creativity Current", creativityCurrent);
-		//	console.log("------------------------------------------------------------------------------------");
-		//	//soulstats
-		//	//willpower
-		//	//	const willpowerBuffs = systemData.characteristics.soul.stats.willpower.buffs.determined.value * 5;
-		//	const willpowerConditions = systemData.characteristics.soul.stats.willpower.conditions.terrorized.value * 5;
-		//	const willpowerCurrent = willpowerBase + willpowerBuffs - willpowerConditions;
-		//	console.log("Willpower Buffs", willpowerBuffs);
-		//	console.log("Willpower Conditions", willpowerConditions);
-		//	console.log("Willpower Current", willpowerCurrent);
-		//	//consciousness
-		//	const consciousnessBuffs = systemData.characteristics.soul.stats.consciousness.buffs.awakened.value * 5;
-		//	const consciousnessConditions =
-		//		systemData.characteristics.soul.stats.consciousness.conditions.demented.value * 5;
-		//	const consciousnessCurrent = consciousnessBase + consciousnessBuffs - consciousnessConditions;
-		//	console.log("Consciousness Buffs", consciousnessBuffs);
-		//	console.log("Consciousness Conditions", consciousnessConditions);
-		//	console.log("Consciousness Current", consciousnessCurrent);
-		//	//awareness
-		//	const awarenessBuffs = systemData.characteristics.soul.stats.awareness.buffs.focused.value * 5;
-		//	const awarenessConditions = systemData.characteristics.soul.stats.awareness.conditions.bewildered.value * 5;
-		//	const awarenessCurrent = awarenessBase + awarenessBuffs - awarenessConditions;
-		//	console.log("Awareness Buffs", awarenessBuffs);
-		//	console.log("Awareness Conditions", awarenessConditions);
-		//	console.log("Awareness Current", awarenessCurrent);
-		//	console.log("========================================================================");
-		//	console.log("Metanthropes RPG Finalizing Stats for Rolls: Current + Characteristic");
-		//	console.log("========================================================================");
-		//	const enduranceRoll = enduranceCurrent + bodyTotal;
-		//	const powerRoll = powerCurrent + bodyTotal;
-		//	const reflexesRoll = reflexesCurrent + bodyTotal;
-		//	const perceptionRoll = perceptionCurrent + mindTotal;
-		//	const manipulationRoll = manipulationCurrent + mindTotal;
-		//	const creativityRoll = creativityCurrent + mindTotal;
-		//	const willpowerRoll = willpowerCurrent + soulTotal;
-		//	const consciousnessRoll = consciousnessCurrent + soulTotal;
-		//	const awarenessRoll = awarenessCurrent + soulTotal;
-		//	console.log("Final Endurance for Rolls:", enduranceRoll);
-		//	console.log("Final Power for Rolls:", powerRoll);
-		//	console.log("Final Reflexes for Rolls:", reflexesRoll);
-		//	console.log("-----------------------------------------------------");
-		//	console.log("Final Perception for Rolls:", perceptionRoll);
-		//	console.log("Final Manipulation for Rolls:", manipulationRoll);
-		//	console.log("Final Creativity for Rolls:", creativityRoll);
-		//	console.log("-----------------------------------------------------");
-		//	console.log("Final Willpower for Rolls:", willpowerRoll);
-		//	console.log("Final Consciousness for Rolls:", consciousnessRoll);
-		//	console.log("Final Awareness for Rolls:", awarenessRoll);
-		//	console.log("========================================================================");
-		//	console.log("Metanthropes RPG New Life Maximum: Initial Life + Current Endurance");
-		//	systemData.vital.life.max = systemData.vital.life.initial + enduranceCurrent;
-		//	console.log("Metanthropes RPG New Life Maximum", systemData.vital.life.max);
-		//	console.log("========================================================================");
-		//	console.log("Metanthropes RPG Finished Calculating Characteristics & Stats for", this.type, "-", this.name);
-		//	console.log("========================================================================");
 	}
 	////
-	/*
 	//? Table of Contents
 	//*
 	//? 1. Extend the base Actor entity
 	//? 2. Prepare Actor Characteristics and Stats Data
 	//! 3. Prepare Actor Roll Data
 	////
-	
-		getRollData() {
-			const data = super.getRollData();
-	
-			// Prepare character roll data.
-			//todo: qp preparing for template switch
-			//this._prepareHumanoidRollData(data);
-			//this._prepareMetanthropeRollData(data);
-			this._prepareProtagonistRollData(data);
-			//this._prepareMetaTherionRollData(data);
-			//this._prepareAnimalRollData(data);
-			//this._prepareArtificialRollData(data);
-	
-			//todo: I need to do the _getCharacterRollData changes below
-			this._getProtagonistRollData(data);
-			this._getHumanoidRollData(data);
-	
-			return data;
-		}
-		_getCharacterRollData(data) {
-			if (this.type !== 'Protagonist') return;
-	
-			// Copy the ability scores to the top level, so that Rolls: can use
-			// formulas like `@str.mod + 4`.
-			//todo: qp preparing for template switch - or not? maybe this section is not needed????
-			//? is this where the numbering bug is coming from?
-			//! test this
-			//if (data.stats) {
-			//	for (let [k, v] of Object.entries(data.stats)) {
-			//		data[k] = foundry.utils.deepClone(v);
-			//	}
-		}
-		// Add level for easier access, or fall back to 0.
-		// if (data.attributes.level) {
-		// 	data.lvl = data.attributes.level.value ?? 0;
-		// }
-		_getHumanoidRollData(data) {
-			if (this.type !== 'Humanoid') return;
-	
-			// Process additional NPC data here.
-		}
-	fg
+
+	async metaRoll(Stat) {
+		const roll = new Roll("1d100").roll();
+		const statRollValue = Stat;
+		ChatMessage.create({
+			user: game.user._id,
+			speaker: { actor: this, alias: this.name },
+			content: `Rolling 1d100 + ${Stat}: ${roll.total + statRollValue}`,
+			type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+			roll: roll,
+		});
 	}
-	*/
+
+	//	getRollData() {
+	//		const data = super.getRollData();
+	//
+	//		// Prepare character roll data.
+	//		//todo: qp preparing for template switch
+	//		//this._prepareHumanoidRollData(data);
+	//		//this._prepareMetanthropeRollData(data);
+	//		this._prepareProtagonistRollData(data);
+	//		//this._prepareMetaTherionRollData(data);
+	//		//this._prepareAnimalRollData(data);
+	//		//this._prepareArtificialRollData(data);
+	//
+	//		//todo: I need to do the _getCharacterRollData changes below
+	//		this._getProtagonistRollData(data);
+	//		this._getHumanoidRollData(data);
+	//
+	//		return data;
+	//	}
+	//	_getCharacterRollData(data) {
+	//		if (this.type !== "Protagonist") return;
+	//
+	//		// Copy the ability scores to the top level, so that Rolls: can use
+	//		// formulas like `@str.mod + 4`.
+	//		//todo: qp preparing for template switch - or not? maybe this section is not needed????
+	//		//? is this where the numbering bug is coming from?
+	//		//! test this
+	//		//if (data.stats) {
+	//		//	for (let [k, v] of Object.entries(data.stats)) {
+	//		//		data[k] = foundry.utils.deepClone(v);
+	//		//	}
+	//	}
+	//	// Add level for easier access, or fall back to 0.
+	//	// if (data.attributes.level) {
+	//	// 	data.lvl = data.attributes.level.value ?? 0;
+	//	// }
+	//	_getHumanoidRollData(data) {
+	//		if (this.type !== "Humanoid") return;
+	//
+	//		// Process additional NPC data here.
+	//	}
 }

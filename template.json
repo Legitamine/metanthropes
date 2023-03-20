@@ -533,7 +533,7 @@
 				}
 			},
 			"synthetic": {
-				"synthetic": {
+				"Synthetic": {
 					"hitbox": {
 						"head": {
 							"type": "number",
@@ -571,7 +571,7 @@
 							"weight": 20
 						}
 					},
-					"life": {
+					"Life": {
 						"type": "number",
 						"label": "Durability",
 						"value": 200,

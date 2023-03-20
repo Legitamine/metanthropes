@@ -451,7 +451,7 @@ button {
   text-shadow: 0 0 10px red;
   cursor: pointer;
 }
-.metanthropes .style-cs-img {
+.metanthropes .style-cs-roll-button {
   opacity: 1;
   font-family: "nasalization", sans-serif;
   font-size: 1rem;
@@ -462,8 +462,8 @@ button {
   align-items: center;
   align-self: center;
 }
-.metanthropes .style-cs-img:hover, .metanthropes .style-cs-img:focus {
+.metanthropes .style-cs-roll-button:hover, .metanthropes .style-cs-roll-button:focus {
   color: #000;
-  text-shadow: 0 0 10px red;
+  text-shadow: 0 0 10px yellow;
   cursor: pointer;
 }
