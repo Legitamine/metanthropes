@@ -2,11 +2,11 @@
 	"id": "metanthropes-system",
 	"title": "Metanthropes RPG System",
 	"description": "This is the official Metanthropes RPG system for FoundryVTT",
-	"version": "0.1.10",
+	"version": "0.1.11",
 	"compatibility": {
-		"minimum": 10,
+		"minimum": "10",
 		"verified": "10.291",
-		"maximum": 10
+		"maximum": "10"
 	},
 	"authors": [
 		{
@@ -28,8 +28,8 @@
 	"initiative": "1d100",
 	"gridDistance": 2,
 	"gridUnits": "m",
-	"primaryTokenAttribute": "system.vital.life.value",
-	"secondaryTokenAttribute": "system.vital.destiny.value",
+	"primaryTokenAttribute": "system.Vital.Life.Current",
+	"secondaryTokenAttribute": "system.Vital.Destiny.Current",
 	"url": "https://github.com/legitamine/metanthropes-system/blob/stable/README.md",
 	"manifest": "https://github.com/legitamine/metanthropes-system/releases/latest/download/system.json",
 	"license": "https://github.com/legitamine/metanthropes-system/blob/stable/LICENSE.txt",

@@ -61,15 +61,15 @@
 			<div class="layout-container-small style-container-small">
 				<div>
 					Life ❤️
-					<input name="system.Vital.life.value" type="number" value="{{system.Vital.life.value}}"
+					<input name="system.Vital.Life.Current" type="number" value="{{system.Vital.Life.Current}}"
 						data-dtype="number" /> /
-					<label for="system.Vital.life.max" data-label="{{system.Vital.life.max}}"
-						class="style-labels-number">{{system.Vital.life.max}}</label>
+					<label for="system.Vital.Life.Max" data-label="{{system.Vital.Life.Max}}"
+						class="style-labels-number">{{system.Vital.Life.Max}}</label>
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div> <label for="system.Vital.Experience.Total" data-label="{{system.Vital.Experience.Label}}"
-						class="style-labels-text" Total <input name="system.Experience.Total" type="number"
+						class="style-labels-text">{{system.Vital.Experience.Label}}</label> Total <input name="system.Experience.Total" type="number"
 						value="{{system.Vital.Experience.Total}}" data-dtype="number" placeholder="1000" /> Spent <input
 						name="system.Vital.Experience.Spent" type="number" value="{{system.Vital.Experience.Spent}}"
 						data-dtype="number" placeholder="1000" /> Stored <input name="system.Vital.Experience.Stored"
@@ -78,8 +78,8 @@
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>Destiny 🤞
-					<input name="system.Vital.destiny.value" type="number" value="{{system.Vital.destiny.value}}"
-						data-dtype="number" placeholder="0" />
+					<input name="system.Vital.Destiny.Current" type="number" value="{{system.Vital.Destiny.Current}}"
+						data-dtype="number" placeholder="0" /> / <input name="system.Vital.Destiny.Max" type="number" value="{{system.Vital.Destiny.Max}}">
 				</div>
 			</div>
 		</div>
@@ -146,7 +146,7 @@
 								</div>
 								<div>
 									<p class="style-cs-labels">{{@key}}</p>
-									<img class="style-cs-rolls" src="{{./artwork/metanthropes-dice-roll.webp}}" data-edit="img" height="25" width="25"  />
+									<img class="style-cs-rolls" src="./artwork/metanthropes-dice-roll.webp" height="40" width="40" />
 									<p class="style-cs-rolls">{{this.Roll}}</p>
 								</div>
 								<div>
@@ -196,10 +196,10 @@
 				<div class="layout-container-small style-container-small">
 					NOTES <!-- {{editor system.physical.description-physical target="system.physical.description-physical" rollData=rollData button=true owner=owner editable=editable}} -->
 					<div>
-						{{editor system.physical.description-physical target="system.physical.description-physical" button=true owner=owner editable=editable}}
+						{{editor system.physical.description-physical.value target="system.physical.description-physical.value" button=true owner=owner editable=editable}}
 					</div>
 					<div>
-						{{editor system.entermeta.description-entermeta target="system.entermeta.description-entermeta" button=true owner=owner editable=editable}}
+						{{editor system.entermeta.description-entermeta.value target="system.entermeta.description-entermeta.value" button=true owner=owner editable=editable}}
 					</div>
 				</div>
 			</div>

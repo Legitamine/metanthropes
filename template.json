@@ -172,9 +172,9 @@
 					"Experience": {
 						"type": "number",
 						"Label": "Experience",
-						"Total": 1000,
-						"Spent": 1000,
-						"Stored": 0
+						"Total": "1000",
+						"Spent": "1000",
+						"Stored": "0"
 					},
 					"age": {
 						"type": "number",
@@ -191,18 +191,18 @@
 						"label": "Background",
 						"value": "Your Background"
 					},
-					"life": {
+					"Life": {
 						"type": "number",
-						"label": "Life",
-						"initial": 100,
-						"value": 100,
-						"max": 0
+						"Label": "Life",
+						"Initial": 100,
+						"Current": 100,
+						"Max": 0
 					},
-					"destiny": {
+					"Destiny": {
 						"type": "number",
 						"label": "Destiny",
-						"value": 20,
-						"max": 0
+						"Current": 20,
+						"Max": 0
 					}
 				}
 			},

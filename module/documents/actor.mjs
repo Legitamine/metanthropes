@@ -241,10 +241,10 @@ export class MetanthropesActor extends Actor {
 		}
 		console.log("Metanthropes RPG New Life Maximum: Initial Life + Endurance for Rolls");
 		parseInt(
-			(systemData.vital.life.max =
-				Number(systemData.vital.life.initial) + Number(systemData.Characteristics.Body.Stats.Endurance.Roll))
+			(systemData.Vital.Life.Max =
+				Number(systemData.Vital.Life.Initial) + Number(systemData.Characteristics.Body.Stats.Endurance.Roll))
 		);
-		console.log("Metanthropes RPG New Life Maximum:", systemData.vital.life.max);
+		console.log("Metanthropes RPG New Life Maximum:", systemData.Vital.Life.Max);
 		console.log("=============================================================================================");
 		console.log("Metanthropes RPG", this.type, "-", this.name, "is ready for Action!");
 		console.log("=============================================================================================");
