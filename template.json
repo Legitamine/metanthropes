@@ -19,9 +19,8 @@
 						"type": "number",
 						"label": "Movement",
 						"initial": 10,
-						"walk": 10,
-						"dash": 20,
-						"run": 40,
+						"additional": 20,
+						"sprint": 50,
 						"Buffs": {
 							"fly": {
 								"type": "boolean",

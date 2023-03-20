@@ -281,6 +281,11 @@ export class MetanthropesActor extends Actor {
 		);
 		console.log("Metanthropes RPG New Life Maximum:", systemData.Vital.Life.max);
 		console.log("=============================================================================================");
+		console.log("Metanthropes RPG Calculating Movement");
+		parseInt (systemData.physical.movement.additional = Number(systemData.physical.movement.initial));
+		parseInt (systemData.physical.movement.sprint = Number(Number(systemData.physical.movement.initial) * 5));
+		console.log("Metanthropes RPG New Movement Value:", systemData.physical.movement.initial, "Additional:", systemData.physical.movement.additional, "Sprint:", systemData.physical.movement.sprint);
+		console.log("=============================================================================================");
 		console.log("Metanthropes RPG", this.type, "-", this.name, "is ready for Action!");
 		console.log("=============================================================================================");
 

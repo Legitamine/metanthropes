@@ -87,20 +87,20 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 	class MetanthropesSystemSpeedProvider extends SpeedProvider {
 		get colors() {
 			return [
-				{ id: "walk", default: 0x00ff00, name: "system.physical.movement.walk" },
-				{ id: "dash", default: 0xffff00, name: "system.physical.movement.dash" },
-				{ id: "run", default: 0xff8000, name: "system.physical.movement.run" },
+				{ id: "movement", default: 0x00ff00, name: "system.physical.movement.initial" },
+				{ id: "additional", default: 0xffff00, name: "system.physical.movement.additional" },
+				{ id: "sprint", default: 0xff8000, name: "system.physical.movement.sprint" },
 			];
 		}
 
 		getRanges(token) {
-			const baseSpeed = token.system.physical.movement.initial;
+			const baseSpeed = token.actor.system.physical.movement.initial;
 
 			// A character can always walk it's base speed and dash twice it's base speed
 			const ranges = [
-				{ range: baseSpeed, color: "walk" },
-				{ range: baseSpeed * 2, color: "dash" },
-				{ range: baseSpeed * 4, color: "run" },
+				{ range: baseSpeed, color: "movement" },
+				{ range: baseSpeed * 2, color: "additional" },
+				{ range: baseSpeed * 5, color: "sprint" },
 			];
 			//	I can add special modifiers to speed (like flying, etc)
 			//		// Characters that aren't wearing armor are allowed to run with three times their speed
