@@ -193,16 +193,16 @@
 					},
 					"Life": {
 						"type": "number",
-						"Label": "Life",
+						"label": "Life",
 						"Initial": 100,
-						"Value": 100,
-						"Max": 0
+						"value": 100,
+						"max": 0
 					},
 					"Destiny": {
 						"type": "number",
 						"label": "Destiny",
-						"Value": 20,
-						"Max": 100
+						"value": 20,
+						"max": 100
 					}
 				}
 			},

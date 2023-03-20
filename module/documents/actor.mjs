@@ -24,8 +24,8 @@ export class MetanthropesActor extends Actor {
 		// Configure Display Bars & Name Visibility
 		if (!data.prototypeToken)
 			mergeObject(createData, {
-				"prototypeToken.bar1": { attribute: "system.Vital.Life.Value" },
-				"prototypeToken.bar2": { attribute: "system.Vital.Destiny.Value" },
+				"prototypeToken.bar1": { attribute: "system.Vital.Life.value" },
+				"prototypeToken.bar2": { attribute: "system.Vital.Destiny.value" },
 				"prototypeToken.displayName": defaultToken?.displayName || CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER, // Default display name to be on owner hover
 				"prototypeToken.displayBars": defaultToken?.displayBars || CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER, // Default display bars to be on owner hover
 				"prototypeToken.disposition": defaultToken?.disposition || CONST.TOKEN_DISPOSITIONS.NEUTRAL, // Default disposition to neutral
@@ -35,8 +35,8 @@ export class MetanthropesActor extends Actor {
 
 		// Set custom default tokens
 		if (!data.img || data.img == "icons/svg/mystery-man.svg") {
-			createData.img = "systems/metanthrope-system/artwork/tokens/token-utilitarian.webp";
-			if (data.type == "Vehicle") createData.img = "systems/metanthrope-system/artwork/tokens/token-aegis.webp";
+			createData.img = "systems/metanthropes-system/artwork/tokens/token-utilitarian.webp";
+			if (data.type == "Vehicle") createData.img = "systems/metanthropes-system/artwork/tokens/token-aegis.webp";
 		}
 
 		// Default characters to HasVision = true and Link Data = true
@@ -276,10 +276,10 @@ export class MetanthropesActor extends Actor {
 		}
 		console.log("Metanthropes RPG New Life Maximum: Initial Life + Endurance for Rolls");
 		parseInt(
-			(systemData.Vital.Life.Max =
+			(systemData.Vital.Life.max =
 				Number(systemData.Vital.Life.Initial) + Number(systemData.Characteristics.Body.Stats.Endurance.Roll))
 		);
-		console.log("Metanthropes RPG New Life Maximum:", systemData.Vital.Life.Max);
+		console.log("Metanthropes RPG New Life Maximum:", systemData.Vital.Life.max);
 		console.log("=============================================================================================");
 		console.log("Metanthropes RPG", this.type, "-", this.name, "is ready for Action!");
 		console.log("=============================================================================================");
