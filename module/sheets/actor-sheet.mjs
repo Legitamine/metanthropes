@@ -79,10 +79,9 @@ export class MetanthropesActorSheet extends ActorSheet {
 }
 
 //code to handle the custom roll button
-Hooks.on("renderActorSheet", (app, html, data) => {
-	html.find('.style-cs-roll-button').click(ev => {
-		const Stat = "{{this.Roll}}"; // Replace with the name of the stat you want to use for the roll
-	  app.actor.metaRoll(Stat);
-	});
-  });
-  
+//	Hooks.on("renderActorSheet", (app, html, data) => {
+//		html.find('.style-cs-roll-button').click(ev => {
+//			const Stat = "{{this.Roll}}"; // Replace with the name of the stat you want to use for the roll
+//		  app.actor.metaRoll(Stat);
+//		});
+//	  });

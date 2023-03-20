@@ -240,56 +240,51 @@ export class MetanthropesActor extends Actor {
 	//! 3. Prepare Actor Roll Data
 	////
 
-	async metaRoll(Stat) {
-		const roll = new Roll("1d100").roll();
-		const statRollValue = Stat;
-		ChatMessage.create({
-			user: game.user._id,
-			speaker: { actor: this, alias: this.name },
-			content: `Rolling 1d100 + ${Stat}: ${roll.total + statRollValue}`,
-			type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-			roll: roll,
-		});
-	}
+	//	async metaRoll(Stat) {
+	//		const roll = new Roll("1d100").roll();
+	//		const statRollValue = Stat;
+	//		ChatMessage.create({
+	//			user: game.user._id,
+	//			speaker: { actor: this, alias: this.name },
+	//			content: `Rolling 1d100 + ${Stat}: ${roll.total + statRollValue}`,
+	//			type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+	//			roll: roll,
+	//		});
+	//	}
 
-	//	getRollData() {
-	//		const data = super.getRollData();
-	//
-	//		// Prepare character roll data.
-	//		//todo: qp preparing for template switch
-	//		//this._prepareHumanoidRollData(data);
-	//		//this._prepareMetanthropeRollData(data);
-	//		this._prepareProtagonistRollData(data);
-	//		//this._prepareMetaTherionRollData(data);
-	//		//this._prepareAnimalRollData(data);
-	//		//this._prepareArtificialRollData(data);
-	//
-	//		//todo: I need to do the _getCharacterRollData changes below
-	//		this._getProtagonistRollData(data);
-	//		this._getHumanoidRollData(data);
-	//
-	//		return data;
-	//	}
-	//	_getCharacterRollData(data) {
-	//		if (this.type !== "Protagonist") return;
-	//
-	//		// Copy the ability scores to the top level, so that Rolls: can use
-	//		// formulas like `@str.mod + 4`.
-	//		//todo: qp preparing for template switch - or not? maybe this section is not needed????
-	//		//? is this where the numbering bug is coming from?
-	//		//! test this
-	//		//if (data.stats) {
-	//		//	for (let [k, v] of Object.entries(data.stats)) {
-	//		//		data[k] = foundry.utils.deepClone(v);
-	//		//	}
-	//	}
-	//	// Add level for easier access, or fall back to 0.
-	//	// if (data.attributes.level) {
-	//	// 	data.lvl = data.attributes.level.value ?? 0;
-	//	// }
+	getRollData() {
+		const data = super.getRollData();
+		// Prepare character roll data.
+		//this._prepareHumanoidRollData(data);
+		//this._prepareMetanthropeRollData(data);
+		this._prepareCharacteristicsRollData(data);
+		//this._prepareMetaTherionRollData(data);
+		//this._prepareAnimalRollData(data);
+		//this._prepareArtificialRollData(data);
+		//todo: I need to do the _getCharacterRollData changes below
+		//this._getProtagonistRollData(data);
+		//this._getHumanoidRollData(data);
+		return data;
+	}
+	__prepareCharacteristicsRollData(data) {
+		//if (this.type !== "Protagonist") return;
+		// Copy the ability scores to the top level, so that Rolls: can use
+		// formulas like `@str.mod + 4`.
+		//todo: qp preparing for template switch - or not? maybe this section is not needed????
+		//? is this where the numbering bug is coming from?
+		//! test this
+		if (data.Characteristics) {
+			for (let [k, v] of Object.entries(data.Characteristics)) {
+				data[k] = foundry.utils.deepClone(v);
+			}
+		}
+	}
+	// Add level for easier access, or fall back to 0.
+	// if (data.attributes.level) {
+	// 	data.lvl = data.attributes.level.value ?? 0;
+	// }
 	//	_getHumanoidRollData(data) {
 	//		if (this.type !== "Humanoid") return;
-	//
 	//		// Process additional NPC data here.
 	//	}
 }

@@ -364,7 +364,7 @@ button {
   opacity: 1;
   border: 1px solid #370239;
   border-radius: 15px;
-  justify-content: space-between;
+  justify-content: flex-start;
   justify-self: stretch;
   align-items: center;
   align-self: stretch;
@@ -447,23 +447,5 @@ button {
   align-self: center;
 }
 .metanthropes .style-cs-rolls:hover, .metanthropes .style-cs-rolls:focus {
-  color: #000;
-  text-shadow: 0 0 10px red;
-  cursor: pointer;
-}
-.metanthropes .style-cs-roll-button {
-  opacity: 1;
-  font-family: "nasalization", sans-serif;
-  font-size: 1rem;
-  color: #370239;
-  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-}
-.metanthropes .style-cs-roll-button:hover, .metanthropes .style-cs-roll-button:focus {
-  color: #000;
-  text-shadow: 0 0 10px yellow;
-  cursor: pointer;
+  cursor: url(systems/metanthropes-system/artwork/metanthropes-dice-roll.webp) 2, 2, pointer;
 }
