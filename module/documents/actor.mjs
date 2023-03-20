@@ -169,7 +169,7 @@ export class MetanthropesActor extends Actor {
 				"Progressed:",
 				CharValue.Progressed
 			);
-			parseInt((CharValue.Base = Number(CharValue.Initial) + Number(CharValue.Progressed)));
+			parseInt((CharValue.Base = Number(CharValue.Initial) + Number(Number(CharValue.Progressed) * 5)));
 			console.log("Metanthropes RPG New", CharKey, "Base:", CharValue.Base);
 			console.log("Metanthropes RPG Calculating", CharKey, "Buff:", CharValue.Buff.Name, CharValue.Buff.Current);
 			console.log(
@@ -199,7 +199,7 @@ export class MetanthropesActor extends Actor {
 					"Progressed:",
 					StatValue.Progressed
 				);
-				parseInt((StatValue.Base = Number(StatValue.Initial) + Number(StatValue.Progressed)));
+				parseInt((StatValue.Base = Number(StatValue.Initial) + Number(Number(StatValue.Progressed)*5)));
 				console.log("Metanthropes RPG New", StatKey, "Base:", StatValue.Base);
 				console.log(
 					"Metanthropes RPG Calculating",

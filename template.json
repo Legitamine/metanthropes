@@ -168,13 +168,13 @@
 				}
 			},
 			"vital": {
-				"vital": {
+				"Vital": {
 					"Experience": {
 						"type": "number",
-						"label": "Experience",
-						"total": 1000,
-						"spent": 1000,
-						"stored": 0
+						"Label": "Experience",
+						"Total": 1000,
+						"Spent": 1000,
+						"Stored": 0
 					},
 					"age": {
 						"type": "number",

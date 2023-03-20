@@ -3,109 +3,57 @@
 		<div class="layout-container-grid3x1 style-container-grid3x1">
 			<div class="layout-container-small style-container-small">
 				<div>Player
-					<input
-						name="system.metaowner"
-						type="text"
-						value="{{system.metaowner.value}}"
-						placeholder="Player Name"
-						data-dtype="string"
-					/>
+					<input name="system.metaowner" type="text" value="{{system.metaowner.value}}"
+						placeholder="Player Name" data-dtype="string" />
 				</div>
 				<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
 				<div><input name="name" type="text" value="{{actor.name}}" placeholder="A MetaTherion" /></div>
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>Prime Metapower
-					<input
-						name="system.entermeta.primemetapower.value"
-						type="text"
-						value="{{system.entermeta.primemetapower.value}}"
-						data-dtype="string"
-						placeholder="Prime Metapower"
-					/>
+					<input name="system.entermeta.primemetapower.value" type="text"
+						value="{{system.entermeta.primemetapower.value}}" data-dtype="string"
+						placeholder="Prime Metapower" />
 				</div>
 				<div>Metamorphosis
-					<input
-						name="system.entermeta.metamorphosis.value"
-						type="text"
-						value="{{system.entermeta.metamorphosis.value}}"
-						data-dtype="string"
-						placeholder="Your Metamorphosis"
-					/>
+					<input name="system.entermeta.metamorphosis.value" type="text"
+						value="{{system.entermeta.metamorphosis.value}}" data-dtype="string"
+						placeholder="Your Metamorphosis" />
 				</div>
 				<div>Background
-					<input
-						name="system.vital.background.value"
-						type="text"
-						value="{{system.vital.background.value}}"
-						data-dtype="string"
-						placeholder="Your Background"
-					/>
+					<input name="system.Vital.background.value" type="text" value="{{system.Vital.background.value}}"
+						data-dtype="string" placeholder="Your Background" />
 				</div>
 				<div>Arc
-					<input
-						name="system.vital.arc.value"
-						type="text"
-						value="{{system.vital.arc.value}}"
-						data-dtype="string"
-						placeholder="Your Arc"
-					/>
+					<input name="system.Vital.arc.value" type="text" value="{{system.Vital.arc.value}}"
+						data-dtype="string" placeholder="Your Arc" />
 				</div>
 				<p>Regression
-					<input
-						name="system.entermeta.regression.value"
-						type="text"
-						value="{{system.entermeta.regression.value}}"
-						data-dtype="string"
-						placeholder="Your Regression"
-					/>
+					<input name="system.entermeta.regression.value" type="text"
+						value="{{system.entermeta.regression.value}}" data-dtype="string"
+						placeholder="Your Regression" />
 				</p>
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>Birthplace
-					<input
-						name="system.humanoids.birthplace.value"
-						type="text"
-						value="{{system.humanoids.birthplace.value}}"
-						data-dtype="string"
-						placeholder="Birthplace"
-					/>
+					<input name="system.humanoids.birthplace.value" type="text"
+						value="{{system.humanoids.birthplace.value}}" data-dtype="string" placeholder="Birthplace" />
 				</div>
 				<div>Age
-					<input
-						name="system.vital.age.value"
-						type="number"
-						value="{{system.vital.age.value}}"
-						data-dtype="number"
-						placeholder=""
-					/>
+					<input name="system.Vital.age.value" type="number" value="{{system.Vital.age.value}}"
+						data-dtype="number" placeholder="" />
 				</div>
 				<div>Gender
-					<input
-						name="system.humanoids.gender.value"
-						type="text"
-						value="{{system.humanoids.gender.value}}"
-						data-dtype="string"
-						placeholder="Other"
-					/>
+					<input name="system.humanoids.gender.value" type="text" value="{{system.humanoids.gender.value}}"
+						data-dtype="string" placeholder="Other" />
 				</div>
 				<div>Height
-					<input
-						name="system.humanoids.height.value"
-						type="text"
-						value="{{system.humanoids.height.value}}"
-						data-dtype="string"
-						placeholder="Your Height"
-					/>
+					<input name="system.humanoids.height.value" type="text" value="{{system.humanoids.height.value}}"
+						data-dtype="string" placeholder="Your Height" />
 				</div>
 				<div>Weight
-					<input
-						name="system.humanoids.weight.value"
-						type="text"
-						value="{{system.humanoids.weight.value}}"
-						data-dtype="string"
-						placeholder="Your Weight"
-					/>
+					<input name="system.humanoids.weight.value" type="text" value="{{system.humanoids.weight.value}}"
+						data-dtype="string" placeholder="Your Weight" />
 				</div>
 			</div>
 		</div>
@@ -113,31 +61,25 @@
 			<div class="layout-container-small style-container-small">
 				<div>
 					Life ❤️
-					<input
-						name="system.vital.life.value"
-						type="number"
-						value="{{system.vital.life.value}}"
-						data-dtype="number"
-					/>
-					<label
-						for="system.vital.life.max"
-						data-label="{{system.vital.life.max}}"
-						class="style-labels-number"
-					>{{system.vital.life.max}}</label>
+					<input name="system.Vital.life.value" type="number" value="{{system.Vital.life.value}}"
+						data-dtype="number" /> /
+					<label for="system.Vital.life.max" data-label="{{system.Vital.life.max}}"
+						class="style-labels-number">{{system.Vital.life.max}}</label>
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
-				<div>Experience <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
+				<div> <label for="system.Vital.Experience.Total" data-label="{{system.Vital.Experience.Label}}"
+						class="style-labels-text" Total <input name="system.Experience.Total" type="number"
+						value="{{system.Vital.Experience.Total}}" data-dtype="number" placeholder="1000" /> Spent <input
+						name="system.Vital.Experience.Spent" type="number" value="{{system.Vital.Experience.Spent}}"
+						data-dtype="number" placeholder="1000" /> Stored <input name="system.Vital.Experience.Stored"
+						type="number" value="{{system.Vital.Experience.Stored}}" data-dtype="number" placeholder="0" />
+				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>Destiny 🤞
-					<input
-						name="system.vital.destiny.value"
-						type="number"
-						value="{{system.vital.destiny.value}}"
-						data-dtype="number"
-						placeholder="0"
-					/>
+					<input name="system.Vital.destiny.value" type="number" value="{{system.Vital.destiny.value}}"
+						data-dtype="number" placeholder="0" />
 				</div>
 			</div>
 		</div>
@@ -161,22 +103,12 @@
 						<div class="layout-container-grid3x1 style-container-grid3x1">
 							<div>
 								<p>🏁
-									<input
-										class="style-cs-values"
-										name="system.Characteristics.{{@key}}.Initial"
-										type="number"
-										value="{{this.Initial}}"
-										data-dtype="number"
-									/>
+									<input class="style-cs-values" name="system.Characteristics.{{@key}}.Initial"
+										type="number" value="{{this.Initial}}" data-dtype="number" />
 								</p>
-								<p>📈 buff
-									<input
-										class="style-cs-values"
-										name="system.Characteristics.{{@key}}.Progressed"
-										type="number"
-										value="{{this.Progressed}}"
-										data-dtype="number"
-									/>
+								<p>📈
+									<input class="style-cs-values" name="system.Characteristics.{{@key}}.Progressed"
+										type="number" value="{{this.Progressed}}" data-dtype="number" />
 								</p>
 							</div>
 							<div>
@@ -186,22 +118,15 @@
 							</div>
 							<div>
 								<p class="style-cs-buffs">🛡️
-									<input
-										class="style-cs-buffs"
-										name="system.Characteristics.{{@key}}.Buff.Current"
-										type="number"
-										value="{{this.Buff.Current}}"
-										data-dtype="number"
-									/><label for="system.Characteristics.{{@key}}.Buff.Current">{{this.Buff.Name}}</label>
+									<input class="style-cs-buffs" name="system.Characteristics.{{@key}}.Buff.Current"
+										type="number" value="{{this.Buff.Current}}" data-dtype="number" /><label
+										for="system.Characteristics.{{@key}}.Buff.Current">{{this.Buff.Name}}</label>
 								</p>
 								<p class="style-cs-conditions">💀
-									<input
-										class="style-cs-conditions"
-										name="system.Characteristics.{{@key}}.Condition.Current"
-										type="number"
-										value="{{this.Condition.Current}}"
-										data-dtype="number"
-									/><label for="system.Characteristics.{{@key}}.Condition.Current">{{this.Condition.Name}}</label>
+									<input class="style-cs-conditions"
+										name="system.Characteristics.{{@key}}.Condition.Current" type="number"
+										value="{{this.Condition.Current}}" data-dtype="number" /><label
+										for="system.Characteristics.{{@key}}.Condition.Current">{{this.Condition.Name}}</label>
 								</p>
 							</div>
 						</div>
@@ -209,55 +134,37 @@
 							<div class="layout-container-grid3x1 style-container-grid3x1">
 								<div>
 									<p>🏁
-										<input
-											class="style-cs-values"
+										<input class="style-cs-values"
 											name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Initial"
-											type="number"
-											value="{{this.Initial}}"
-											data-dtype="number"
-										/>
+											type="number" value="{{this.Initial}}" data-dtype="number" />
 									</p>
 									<p>📈
-										<input
-											class="style-cs-values"
+										<input class="style-cs-values"
 											name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Progressed"
-											type="number"
-											value="{{this.Progressed}}"
-											data-dtype="number"
-										/>
+											type="number" value="{{this.Progressed}}" data-dtype="number" />
 									</p>
 								</div>
 								<div>
 									<p class="style-cs-labels">{{@key}}</p>
-									<p></p>
+									<img class="style-cs-rolls" src="{{./artwork/metanthropes-dice-roll.webp}}" data-edit="img" height="25" width="25"  />
 									<p class="style-cs-rolls">{{this.Roll}}</p>
 								</div>
 								<div>
 									<p class="style-cs-buffs">🛡️
-										<input
-											class="style-cs-buffs"
+										<input class="style-cs-buffs"
 											name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current"
-											type="number"
-											value="{{this.Buff.Current}}"
-											data-dtype="number"
-										/>
+											type="number" value="{{this.Buff.Current}}" data-dtype="number" />
 									</p>
 									<p class="style-cs-buffs"><label
-											for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current"
-										>{{this.Buff.Name}}</label>
+											for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current">{{this.Buff.Name}}</label>
 									</p>
 									<p class="style-cs-conditions">💀
-										<input
-											class="style-cs-conditions"
+										<input class="style-cs-conditions"
 											name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Current"
-											type="number"
-											value="{{this.Condition.Current}}"
-											data-dtype="number"
-										/>
+											type="number" value="{{this.Condition.Current}}" data-dtype="number" />
 									</p>
 									<p class="style-cs-conditions"><label
-											for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Name"
-										>{{this.Condition.Name}}</label>
+											for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Name">{{this.Condition.Name}}</label>
 									</p>
 								</div>
 							</div>
@@ -287,7 +194,13 @@
 			</div>
 			<div class="tab cs-perks" data-group="cs" data-tab="cs-notes">
 				<div class="layout-container-small style-container-small">
-					NOTES
+					NOTES <!-- {{editor system.physical.description-physical target="system.physical.description-physical" rollData=rollData button=true owner=owner editable=editable}} -->
+					<div>
+						{{editor system.physical.description-physical target="system.physical.description-physical" button=true owner=owner editable=editable}}
+					</div>
+					<div>
+						{{editor system.entermeta.description-entermeta target="system.entermeta.description-entermeta" button=true owner=owner editable=editable}}
+					</div>
 				</div>
 			</div>
 		</section>
@@ -296,118 +209,58 @@
 		<div class="layout-container-grid3x1 style-container-grid3x2">
 			<div class="layout-container-small style-container-small">
 				<div>Movement
-					<input
-						name="system.physical.movement.Initial"
-						type="number"
-						value="{{system.physical.movement.Initial}}"
-						data-dtype="number"
-						placeholder="10"
-					/>
+					<input name="system.physical.movement.Initial" type="number"
+						value="{{system.physical.movement.Initial}}" data-dtype="number" placeholder="10" />
 				</div>
 				<div>Speed
-					<input
-						name="system.physical.speed.Initial"
-						type="number"
-						value="{{system.physical.speed.Initial}}"
-						data-dtype="number"
-						placeholder="10"
-					/>
+					<input name="system.physical.speed.Initial" type="number" value="{{system.physical.speed.Initial}}"
+						data-dtype="number" placeholder="10" />
 				</div>
 				<div>Weight
-					<input
-						name="system.physical.weight.Initial"
-						type="number"
-						value="{{system.physical.weight.Initial}}"
-						data-dtype="number"
-						placeholder="10"
-					/>
+					<input name="system.physical.weight.Initial" type="number"
+						value="{{system.physical.weight.Initial}}" data-dtype="number" placeholder="10" />
 				</div>
 				<div>Size
-					<input
-						name="system.physical.size.Initial"
-						type="number"
-						value="{{system.physical.size.Initial}}"
-						data-dtype="number"
-						placeholder="10"
-					/>
+					<input name="system.physical.size.Initial" type="number" value="{{system.physical.size.Initial}}"
+						data-dtype="number" placeholder="10" />
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>Resistances</div>
 				<!-- //todo: investigate lists, investigate emojis and verticality -->
 				<div>Cosmic
-					<input
-						name="system.physical.resistances.cosmic.Initial"
-						type="number"
-						value="{{system.physical.resistances.cosmic.Initial}}"
-						data-dtype="number"
-						placeholder="0"
-					/>
+					<input name="system.physical.resistances.cosmic.Initial" type="number"
+						value="{{system.physical.resistances.cosmic.Initial}}" data-dtype="number" placeholder="0" />
 				</div>
 				<div>Elemental
-					<input
-						name="system.physical.resistances.elemental.Initial"
-						type="number"
-						value="{{system.physical.resistances.elemental.Initial}}"
-						data-dtype="number"
-						placeholder="0"
-					/>
+					<input name="system.physical.resistances.elemental.Initial" type="number"
+						value="{{system.physical.resistances.elemental.Initial}}" data-dtype="number" placeholder="0" />
 				</div>
 				<div>Material
-					<input
-						name="system.physical.resistances.material.Initial"
-						type="number"
-						value="{{system.physical.resistances.material.Initial}}"
-						data-dtype="number"
-						placeholder="0"
-					/>
+					<input name="system.physical.resistances.material.Initial" type="number"
+						value="{{system.physical.resistances.material.Initial}}" data-dtype="number" placeholder="0" />
 				</div>
 				<div>Psychic
-					<input
-						name="system.physical.resistances.psychic.Initial"
-						type="number"
-						value="{{system.physical.resistances.psychic.Initial}}"
-						data-dtype="number"
-						placeholder="0"
-					/>
+					<input name="system.physical.resistances.psychic.Initial" type="number"
+						value="{{system.physical.resistances.psychic.Initial}}" data-dtype="number" placeholder="0" />
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>Cover
-					<input
-						name="system.physical.cover.value"
-						type="number"
-						value="{{system.physical.cover.value}}"
-						data-dtype="number"
-						placeholder="0"
-					/>
+					<input name="system.physical.cover.value" type="number" value="{{system.physical.cover.value}}"
+						data-dtype="number" placeholder="0" />
 				</div>
 				<div>Immunities
-					<input
-						name="system.physical.immunities.value"
-						type="text"
-						value="{{system.physical.immunities.value}}"
-						data-dtype="string"
-						placeholder="none"
-					/>
+					<input name="system.physical.immunities.value" type="text"
+						value="{{system.physical.immunities.value}}" data-dtype="string" placeholder="none" />
 				</div>
 				<div>Detections
-					<input
-						name="system.physical.detections.value"
-						type="text"
-						value="{{system.physical.detections.value}}"
-						data-dtype="string"
-						placeholder="none"
-					/>
+					<input name="system.physical.detections.value" type="text"
+						value="{{system.physical.detections.value}}" data-dtype="string" placeholder="none" />
 				</div>
 				<div>Shifts
-					<input
-						name="system.physical.shifts.value"
-						type="text"
-						value="{{system.physical.shifts.value}}"
-						data-dtype="string"
-						placeholder="none"
-					/>
+					<input name="system.physical.shifts.value" type="text" value="{{system.physical.shifts.value}}"
+						data-dtype="string" placeholder="none" />
 				</div>
 			</div>
 		</div>
