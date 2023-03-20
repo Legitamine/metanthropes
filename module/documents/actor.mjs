@@ -24,8 +24,8 @@ export class MetanthropesActor extends Actor {
 		// Configure Display Bars & Name Visibility
 		if (!data.prototypeToken)
 			mergeObject(createData, {
-				"prototypeToken.bar1": { attribute: "system.Vital.Life.value" },
-				"prototypeToken.bar2": { attribute: "system.Vital.Destiny.value" },
+				"prototypeToken.bar1": { attribute: "Vital.Life" },
+				"prototypeToken.bar2": { attribute: "Vital.Destiny" },
 				"prototypeToken.displayName": defaultToken?.displayName || CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER, // Default display name to be on owner hover
 				"prototypeToken.displayBars": defaultToken?.displayBars || CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER, // Default display bars to be on owner hover
 				"prototypeToken.disposition": defaultToken?.disposition || CONST.TOKEN_DISPOSITIONS.NEUTRAL, // Default disposition to neutral
