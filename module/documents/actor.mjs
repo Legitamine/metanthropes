@@ -16,6 +16,40 @@
 //? 3. Prepare Actor Roll Data
 ////
 export class MetanthropesActor extends Actor {
+	// trying to set default actor token stuff
+	async _preCreate(data, options, user) {
+		await super._preCreate(data, options, user);
+		let createData = {};
+		let defaultToken = game.settings.get("core", "defaultToken");
+		// Configure Display Bars & Name Visibility
+		if (!data.prototypeToken)
+			mergeObject(createData, {
+				"prototypeToken.bar1": { attribute: "system.Vital.Life.Value" },
+				"prototypeToken.bar2": { attribute: "system.Vital.Destiny.Value" },
+				"prototypeToken.displayName": defaultToken?.displayName || CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER, // Default display name to be on owner hover
+				"prototypeToken.displayBars": defaultToken?.displayBars || CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER, // Default display bars to be on owner hover
+				"prototypeToken.disposition": defaultToken?.disposition || CONST.TOKEN_DISPOSITIONS.NEUTRAL, // Default disposition to neutral
+				"prototypeToken.name": data.name, // Set token name to actor name
+			});
+		else if (data.prototypeToken) createData.prototypeToken = data.prototypeToken;
+
+		// Set custom default tokens
+		if (!data.img || data.img == "icons/svg/mystery-man.svg") {
+			createData.img = "systems/metanthrope-system/artwork/tokens/token-utilitarian.webp";
+			if (data.type == "Vehicle") createData.img = "systems/metanthrope-system/artwork/tokens/token-aegis.webp";
+		}
+
+		// Default characters to HasVision = true and Link Data = true
+		if (data.type == "MetaTherion") {
+			if (!createData.prototypeToken) createData.prototypeToken = {}; // Fix for Token Attacher / CF Import
+
+			createData.prototypeToken.sight = { enabled: true };
+			createData.prototypeToken.actorLink = true;
+		}
+
+		this.updateSource(createData);
+	}
+
 	////
 	//*
 	//? Table of Contents
@@ -24,6 +58,7 @@ export class MetanthropesActor extends Actor {
 	//! 2. Prepare Actor Characteristics and Stats Data
 	//? 3. Prepare Actor Roll Data
 	///
+
 	/** @override */
 	prepareData() {
 		// Prepare data for the actor. Calling the super version of this executes
@@ -199,7 +234,7 @@ export class MetanthropesActor extends Actor {
 					"Progressed:",
 					StatValue.Progressed
 				);
-				parseInt((StatValue.Base = Number(StatValue.Initial) + Number(Number(StatValue.Progressed)*5)));
+				parseInt((StatValue.Base = Number(StatValue.Initial) + Number(Number(StatValue.Progressed) * 5)));
 				console.log("Metanthropes RPG New", StatKey, "Base:", StatValue.Base);
 				console.log(
 					"Metanthropes RPG Calculating",

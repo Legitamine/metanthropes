@@ -195,14 +195,14 @@
 						"type": "number",
 						"Label": "Life",
 						"Initial": 100,
-						"Current": 100,
+						"Value": 100,
 						"Max": 0
 					},
 					"Destiny": {
 						"type": "number",
 						"label": "Destiny",
-						"Current": 20,
-						"Max": 0
+						"Value": 20,
+						"Max": 100
 					}
 				}
 			},
