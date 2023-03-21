@@ -70,8 +70,8 @@
 	align-self: stretch;
 }
 .style-container-border {
-	border-image: url(../artwork/border.png) 30 round;
-	border-radius: 15px;
+	border-image: url(../artwork/border.png) 30 / 19px round;
+	//border-radius: 15px;
 }
 //nav container styling
 .style-container-nav {

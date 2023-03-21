@@ -107,12 +107,12 @@
 							<div class="layout-container-grid3x1">
 								<div class="style-cs-values">
 									<p>🏁
-										<input name="system.Characteristics.{{@key}}.Initial"
-											type="number" value="{{this.Initial}}" data-dtype="number" />
+										<input name="system.Characteristics.{{@key}}.Initial" type="number"
+											value="{{this.Initial}}" data-dtype="number" />
 									</p>
 									<p>📈
-										<input name="system.Characteristics.{{@key}}.Progressed"
-											type="number" value="{{this.Progressed}}" data-dtype="number" />
+										<input name="system.Characteristics.{{@key}}.Progressed" type="number"
+											value="{{this.Progressed}}" data-dtype="number" />
 									</p>
 								</div>
 								<div class="style-cs-chars-value">{{this.Current}}</div>
@@ -147,34 +147,31 @@
 								<div class="layout-container-grid3x1">
 									<div class="style-cs-values">
 										<p>🏁
-											<input
-												name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Initial"
+											<input name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Initial"
 												type="number" value="{{this.Initial}}" data-dtype="number" />
 										</p>
 										<p>📈
-											<input
-												name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Progressed"
+											<input name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Progressed"
 												type="number" value="{{this.Progressed}}" data-dtype="number" />
 										</p>
 									</div>
 									<div class="style-cs-rolls" data-roll="d100">{{this.Roll}}</div>
 									<div>
-										<p class="style-cs-buffs">🛡️
-											<input
-												name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current"
+										<div class="style-cs-buffs">🛡️
+											<input name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current"
 												type="number" value="{{this.Buff.Current}}" data-dtype="number" />
-										</p>
-										<p><label
+										</div>
+										<div class="style-cs-buffs"><label
 												for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current">{{this.Buff.Name}}</label>
-										</p>
-										<p class="style-cs-conditions">💀
+										</div>
+										<div class="style-cs-conditions">💀
 											<input
 												name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Current"
 												type="number" value="{{this.Condition.Current}}" data-dtype="number" />
-										</p>
-										<p><label
+										</div>
+										<div class="style-cs-conditions"><label
 												for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Name">{{this.Condition.Name}}</label>
-										</p>
+										</div>
 									</div>
 								</div>
 							</div>

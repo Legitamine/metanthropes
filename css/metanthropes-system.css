@@ -458,9 +458,8 @@ button {
   align-self: stretch;
 }
 .metanthropes .style-container-border {
-  -o-border-image: url(../artwork/border.png) 30 round;
-     border-image: url(../artwork/border.png) 30 round;
-  border-radius: 15px;
+  -o-border-image: url(../artwork/border.png) 30/19px round;
+     border-image: url(../artwork/border.png) 30/19px round;
 }
 .metanthropes .style-container-nav {
   border: 1px dotted #370239;
