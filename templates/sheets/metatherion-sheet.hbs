@@ -133,7 +133,7 @@
 							</div>
 							<div class="layout-container-grid4x1 style-cs-conditions">
 								{{#each CoreConditions}}
-									<div><input class="style-cs-conditions" name="{{this}}" type="number"
+									<div><input class="style-cs-conditions" name="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}" type="number"
 											value="{{this}}" data-dtype="number" /><label
 											for="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}">{{@key}}</label>
 									</div>

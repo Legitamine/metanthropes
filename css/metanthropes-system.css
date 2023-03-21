@@ -524,8 +524,8 @@ button {
   align-self: center;
 }
 .metanthropes .style-cs-rolls:hover {
-  cursor: url(./systems/metanthropes-system/artwork/metanthropes-dice-roll-small.webp) 2 2, pointer;
+  cursor: url(systems/metanthropes-system/artwork/metanthropes-dice-roll-small.webp) 2 2, pointer;
 }
 .metanthropes .style-cs-rolls:focus {
-  cursor: url(./systems/metanthropes-system/artwork/metanthropes-dice-roll-small.webp) 2 2, pointer;
+  cursor: url(systems/metanthropes-system/artwork/metanthropes-dice-roll-small.webp) 2 2, pointer;
 }
