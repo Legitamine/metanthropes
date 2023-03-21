@@ -413,6 +413,19 @@ button {
   align-items: center;
   align-self: center;
 }
+.metanthropes .style-cs-chars-label {
+  opacity: 1;
+  font-family: "nasalization", sans-serif;
+  font-size: 2rem;
+  color: #000;
+  text-transform: capitalize;
+  -webkit-text-emphasis: bold;
+          text-emphasis: bold;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
+}
 .metanthropes .style-cs-labels {
   opacity: 1;
   font-family: "nasalization", sans-serif;

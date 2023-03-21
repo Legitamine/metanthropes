@@ -104,9 +104,7 @@
 					{{#each system.Characteristics}}
 						<div class="layout-container-chars style-container-chars">
 							<div></div>
-							<div>
-								<p class="style-cs-labels">{{@key}}</p>
-							</div>
+							<div class="style-cs-chars-label">{{@key}}</div>
 							<div></div>
 							<div>
 								<p>🏁
@@ -118,7 +116,9 @@
 										type="number" value="{{this.Progressed}}" data-dtype="number" />
 								</p>
 							</div>
-							<div><p class="style-cs-values">{{this.Current}}</p></div>
+							<div>
+								<p class="style-cs-values">{{this.Current}}</p>
+							</div>
 							<div>
 								<p class="style-cs-buffs">🛡️
 									<input class="style-cs-buffs" name="system.Characteristics.{{@key}}.Buff.Current"
@@ -132,11 +132,9 @@
 										for="system.Characteristics.{{@key}}.Condition.Current">{{this.Condition.Name}}</label>
 								</p>
 							</div>
-							<div>
-								<div> 1 </div>
-								<div> 2 </div>
-								<div> 3 </div>
-							</div>
+							<div> 1 </div>
+							<div> 2 </div>
+							<div> 3 </div>
 						</div>
 						{{#each Stats}}
 							<div class="layout-container-grid3x1 style-container-grid3x1">

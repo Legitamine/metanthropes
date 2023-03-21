@@ -89,6 +89,18 @@
 	align-self: center;
 }
 //styles for character sheet elements: style-cs-*
+.style-cs-chars-label {
+	opacity: 1;
+	font-family: $font-primary;
+	font-size: 2rem;
+	color: $c-black;
+	text-transform: capitalize;
+	text-emphasis: bold;
+	justify-content: center;
+	justify-self: center;
+	align-items: center;
+	align-self: center;
+}
 .style-cs-labels {
 	opacity: 1;
 	font-family: $font-primary;
