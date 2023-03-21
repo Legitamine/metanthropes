@@ -70,6 +70,9 @@
 	align-self: stretch;
 }
 .style-container-border {
+	border: 1px solid $c-purple;
+	border-radius: 15px;
+	border-style: dotted;
 	border-image: url(../artwork/border.png) 30 / 19px round;
 	//border-radius: 15px;
 }

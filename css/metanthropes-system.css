@@ -301,7 +301,7 @@ button {
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 0.4fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 0.5fr 1fr 1fr 1fr;
   -moz-column-gap: 3px;
        column-gap: 3px;
   row-gap: 3px;
@@ -458,6 +458,9 @@ button {
   align-self: stretch;
 }
 .metanthropes .style-container-border {
+  border: 1px solid #370239;
+  border-radius: 15px;
+  border-style: dotted;
   -o-border-image: url(../artwork/border.png) 30/19px round;
      border-image: url(../artwork/border.png) 30/19px round;
 }
