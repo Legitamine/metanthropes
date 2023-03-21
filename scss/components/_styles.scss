@@ -40,6 +40,15 @@
 	align-items: center;
 	align-self: stretch;
 }
+.style-container-stats {
+	opacity: 1;
+	border: 1px solid $c-purple;
+	border-radius: 15px;
+	justify-content: center;
+	justify-self: stretch;
+	align-items: center;
+	align-self: stretch;
+}
 .style-container-grid1x3 {
 	opacity: 1;
 	border: 1px solid $c-purple;
@@ -116,7 +125,7 @@
 .style-cs-chars-value {
 	opacity: 1;
 	font-family: $font-primary;
-	font-size: 3rem;
+	font-size: 2rem;
 	color: $c-black;
 	justify-content: center;
 	justify-self: center;

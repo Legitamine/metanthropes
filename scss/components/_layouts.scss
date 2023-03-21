@@ -56,7 +56,7 @@
 .layout-container-grid3x1 {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	column-gap: 6px;
+	column-gap: 3px;
 	//row-gap: 3px;
 	//background-image: url("../artwork/layout-container-med.jpg");
 	//background-size: contain;
@@ -64,8 +64,8 @@
 	//background-repeat: round;
 	//background-origin: border-box;
 	//background-clip: border-box;
-	padding: $padding-md;
-	margin: $margin-md;
+	padding: $padding-sm;
+	margin: $margin-sm;
 	overflow: hidden;
 }
 .layout-container-chars {
@@ -75,6 +75,20 @@
 	column-gap: 3px;
 	row-gap: 3px;
 	//background-image: url("../artwork/layout-container-med.jpg");
+	//background-size: contain;
+	//background-attachment: local;
+	//background-repeat: round;
+	//background-origin: border-box;
+	//background-clip: border-box;
+	padding: $padding-sm;
+	margin: $margin-sm;
+	overflow: hidden;
+}
+.layout-container-stats {
+	display: flex;
+	flex-flow: row;
+	flex-wrap: nowrap;
+	flex-direction: row;	//background-image: url("../artwork/layout-container-med.jpg");
 	//background-size: contain;
 	//background-attachment: local;
 	//background-repeat: round;
