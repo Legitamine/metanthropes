@@ -132,10 +132,12 @@
 								</div>
 							</div>
 							<div class="layout-container-grid4x1 style-cs-conditions">
-								<div>1</div>
-								<div>2</div>
-								<div>3</div>
-								<div>4</div>
+								{{#each CoreConditions}}
+									<div><input class="style-cs-conditions" name="{{this}}" type="number"
+											value="{{this}}" data-dtype="number" /><label
+											for="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}">{{@key}}</label>
+									</div>
+								{{/each}}
 							</div>
 						</div>
 						{{#each Stats}}
