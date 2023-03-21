@@ -183,9 +183,9 @@
 	align-items: center;
 	align-self: center;
 	&:hover {
-		cursor: url(systems/metanthropes-system/artwork/metanthropes-dice-roll-small.webp) 2 2, pointer;
+		cursor: url(./systems/metanthropes-system/artwork/metanthropes-dice-roll-small.webp) 2 2, pointer;
 	}
 	&:focus {
-		cursor: url(systems/metanthropes-system/artwork/metanthropes-dice-roll-small.webp) 2 2, pointer;
+		cursor: url(./systems/metanthropes-system/artwork/metanthropes-dice-roll-small.webp) 2 2, pointer;
 	}
 }

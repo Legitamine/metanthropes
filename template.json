@@ -217,7 +217,7 @@
 						"Current": 0,
 						"Buff": { "Name": "Hardened", "Current": 0 },
 						"Condition": { "Name": "Burned", "Current": 0 },
-						"CoreConditions": { "Bleeding": 0, "Asphyxiation": 0, "Diseased": 0, "Maimed": 0 },
+						"CoreConditions": { "Bleeding": 1, "Asphyxiation": 0, "Diseased": 0, "Maimed": 0 },
 						"Stats": {
 							"Endurance": {
 								"Initial": 30,
