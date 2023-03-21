@@ -94,7 +94,7 @@
 	font-family: $font-primary;
 	font-size: 2rem;
 	color: $c-black;
-	text-transform: capitalize;
+	text-transform: uppercase;
 	text-emphasis: bold;
 	justify-content: center;
 	justify-self: center;
@@ -106,8 +106,18 @@
 	font-family: $font-primary;
 	font-size: 1rem;
 	color: $c-black;
-	//text-transform: capitalize;
-	text-emphasis: bold;
+	// text-transform: capitalize;
+	// text-emphasis: bold;
+	justify-content: center;
+	justify-self: center;
+	align-items: center;
+	align-self: center;
+}
+.style-cs-chars-value {
+	opacity: 1;
+	font-family: $font-primary;
+	font-size: 3rem;
+	color: $c-black;
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -116,7 +126,7 @@
 .style-cs-values {
 	opacity: 1;
 	font-family: $font-primary;
-	font-size: 4rem;
+	font-size: 1rem;
 	color: $c-black;
 	justify-content: center;
 	justify-self: center;

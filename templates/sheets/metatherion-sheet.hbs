@@ -116,9 +116,7 @@
 										type="number" value="{{this.Progressed}}" data-dtype="number" />
 								</p>
 							</div>
-							<div>
-								<p class="style-cs-values">{{this.Current}}</p>
-							</div>
+							<div class="style-cs-chars-value">{{this.Current}}</div>
 							<div>
 								<p class="style-cs-buffs">🛡️
 									<input class="style-cs-buffs" name="system.Characteristics.{{@key}}.Buff.Current"
@@ -133,8 +131,8 @@
 								</p>
 							</div>
 							<div> 1 </div>
-							<div> 2 </div>
-							<div> 3 </div>
+							<div> <p>2</p> <p>3</p> </div>
+							<div> 4 </div>
 						</div>
 						{{#each Stats}}
 							<div class="layout-container-grid3x1 style-container-grid3x1">

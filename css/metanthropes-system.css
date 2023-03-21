@@ -418,7 +418,7 @@ button {
   font-family: "nasalization", sans-serif;
   font-size: 2rem;
   color: #000;
-  text-transform: capitalize;
+  text-transform: uppercase;
   -webkit-text-emphasis: bold;
           text-emphasis: bold;
   justify-content: center;
@@ -431,8 +431,16 @@ button {
   font-family: "nasalization", sans-serif;
   font-size: 1rem;
   color: #000;
-  -webkit-text-emphasis: bold;
-          text-emphasis: bold;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
+}
+.metanthropes .style-cs-chars-value {
+  opacity: 1;
+  font-family: "nasalization", sans-serif;
+  font-size: 3rem;
+  color: #000;
   justify-content: center;
   justify-self: center;
   align-items: center;
@@ -441,7 +449,7 @@ button {
 .metanthropes .style-cs-values {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 4rem;
+  font-size: 1rem;
   color: #000;
   justify-content: center;
   justify-self: center;
