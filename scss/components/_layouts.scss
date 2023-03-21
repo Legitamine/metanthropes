@@ -68,6 +68,22 @@
 	margin: $margin-md;
 	overflow: hidden;
 }
+.layout-container-chars {
+	display: grid;
+	grid-template-columns: 1fr 2fr 1fr;
+	grid-template-rows: 1fr 2fr 1fr;
+	column-gap: 3px;
+	row-gap: 3px;
+	//background-image: url("../artwork/layout-container-med.jpg");
+	//background-size: contain;
+	//background-attachment: local;
+	//background-repeat: round;
+	//background-origin: border-box;
+	//background-clip: border-box;
+	padding: $padding-sm;
+	margin: $margin-sm;
+	overflow: hidden;
+}
 .layout-container-grid1x3 {
 	display: flex;
 	flex-flow: row;
