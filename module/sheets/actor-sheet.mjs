@@ -78,10 +78,40 @@ export class MetanthropesActorSheet extends ActorSheet {
 	//
 	//	}
 	// activate listeners for clickable stuff
+	//code from boilerplate
 	activateListeners(html) {
 		super.activateListeners(html);
+		// Render the item sheet for viewing/editing prior to the editable check.
+		html.find(".item-edit").click((ev) => {
+			const li = $(ev.currentTarget).parents(".item");
+			const item = this.actor.items.get(li.data("itemId"));
+			item.sheet.render(true);
+		});
+		// -------------------------------------------------------------
+		// Everything below here is only needed if the sheet is editable
+		if (!this.isEditable) return;
+		// Add Inventory Item
+		html.find(".item-create").click(this._onItemCreate.bind(this));
+		// Delete Inventory Item
+		html.find(".item-delete").click((ev) => {
+			const li = $(ev.currentTarget).parents(".item");
+			const item = this.actor.items.get(li.data("itemId"));
+			item.delete();
+			li.slideUp(200, () => this.render(false));
+		});
+		// Active Effect management
+		html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
 		// Rollable abilities.
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
+		// Drag events for macros.
+		if (this.actor.isOwner) {
+			let handler = (ev) => this._onDragStart(ev);
+			html.find("li.item").each((i, li) => {
+				if (li.classList.contains("inventory-header")) return;
+				li.setAttribute("draggable", true);
+				li.addEventListener("dragstart", handler, false);
+			});
+		}
 	}
 	//code from boilerplate on rolls
 	_onRoll(event) {
