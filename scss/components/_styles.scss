@@ -69,6 +69,10 @@
 	align-items: center;
 	align-self: stretch;
 }
+.style-container-border {
+	border-image: url(../artwork/border.png) 30 round;
+	border-radius: 15px;
+}
 //nav container styling
 .style-container-nav {
 	border: 1px dotted $c-purple;
