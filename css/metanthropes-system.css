@@ -316,7 +316,7 @@ button {
   display: flex;
   flex-flow: row;
   flex-wrap: nowrap;
-  flex-direction: row;
+  flex-direction: column;
   padding: 1px;
   margin: 1px;
   overflow: hidden;
