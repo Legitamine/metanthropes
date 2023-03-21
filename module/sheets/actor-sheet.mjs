@@ -90,17 +90,17 @@ export class MetanthropesActorSheet extends ActorSheet {
 		// -------------------------------------------------------------
 		// Everything below here is only needed if the sheet is editable
 		if (!this.isEditable) return;
-		// Add Inventory Item
-		html.find(".item-create").click(this._onItemCreate.bind(this));
-		// Delete Inventory Item
-		html.find(".item-delete").click((ev) => {
-			const li = $(ev.currentTarget).parents(".item");
-			const item = this.actor.items.get(li.data("itemId"));
-			item.delete();
-			li.slideUp(200, () => this.render(false));
-		});
-		// Active Effect management
-		html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
+		//	// Add Inventory Item
+		//	html.find(".item-create").click(this._onItemCreate.bind(this));
+		//	// Delete Inventory Item
+		//	html.find(".item-delete").click((ev) => {
+		//		const li = $(ev.currentTarget).parents(".item");
+		//		const item = this.actor.items.get(li.data("itemId"));
+		//		item.delete();
+		//		li.slideUp(200, () => this.render(false));
+		//	});
+		//	// Active Effect management
+		//	html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
 		// Rollable abilities.
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
 		// Drag events for macros.
