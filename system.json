@@ -2,7 +2,7 @@
 	"id": "metanthropes-system",
 	"title": "Metanthropes RPG",
 	"description": "This is the official Metanthropes RPG system for FoundryVTT",
-	"version": "0.1.35",
+	"version": "0.1.36",
 	"compatibility": {
 		"minimum": "10",
 		"verified": "10.291",
@@ -11,6 +11,7 @@
 	"authors": [
 		{
 			"name": "qp",
+			"url": "https://www.metanthropes.com/profile/2-qp/",
 			"email": "qp.wormholes@gmail.com",
 			"reddit": "/u/q---p",
 			"discord": "@qp#8888"
