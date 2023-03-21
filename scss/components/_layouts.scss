@@ -22,7 +22,7 @@
 	grid-auto-flow: column;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr 1fr;
-	column-gap: 6px;
+	column-gap: 3px;
 	row-gap: 3px;
 	//background-image: url("../artwork/bg-canvas.jpg");
 	//background-size: cover;
@@ -30,8 +30,8 @@
 	//background-repeat: no-repeat;
 	//background-origin: border-box;
 	//background-clip: border-box;
-	padding: $padding-lg;
-	margin: $margin-lg;
+	padding: $padding-md;
+	margin: $margin-md;
 	overflow: hidden;
 }
 //big container with 3 columns and 2 rows
