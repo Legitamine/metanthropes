@@ -34,7 +34,7 @@ main {
 
 body {
   font-family: "nasalization", sans-serif;
-  background-image: url("../artwork/bg-canvas.jpg");
+  background-image: url("../artwork/bg-canvas.webp");
   background-size: auto auto;
   background-attachment: local;
   background-repeat: repeat;
@@ -69,7 +69,7 @@ button {
 }
 
 .window-app .window-content {
-  background-image: url("../artwork/test2.webp");
+  background-image: url("../artwork/background.webp");
   background-size: auto auto;
   background-attachment: local;
   background-repeat: repeat;
@@ -461,8 +461,8 @@ button {
   border: 1px solid #370239;
   border-radius: 15px;
   border-style: dotted;
-  -o-border-image: url(../artwork/border.png) 30/19px round;
-     border-image: url(../artwork/border.png) 30/19px round;
+  -o-border-image: url(../artwork/border.webp) 30/19px round;
+     border-image: url(../artwork/border.webp) 30/19px round;
 }
 .metanthropes .style-container-nav {
   border: 1px dotted #370239;

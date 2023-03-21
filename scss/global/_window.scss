@@ -52,7 +52,7 @@ main {
 
 body {
 	font-family: $font-primary;
-	background-image: url("../artwork/bg-canvas.jpg");
+	background-image: url("../artwork/bg-canvas.webp");
 	background-size: auto auto;
 	background-attachment: local;
 	background-repeat: repeat;
@@ -101,7 +101,7 @@ button {
 }
 
 .window-app .window-content {
-	background-image: url("../artwork/test2.webp");
+	background-image: url("../artwork/background.webp");
 	background-size: auto auto;
 	background-attachment: local;
 	background-repeat: repeat;

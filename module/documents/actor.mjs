@@ -266,7 +266,7 @@ export class MetanthropesActor extends Actor {
 		//this._getHumanoidRollData(data);
 		return data;
 	}
-	__prepareCharacteristicsRollData(data) {
+	_prepareCharacteristicsRollData(data) {
 		//if (this.type !== "Protagonist") return;
 		// Copy the ability scores to the top level, so that Rolls: can use
 		// formulas like `@str.mod + 4`.

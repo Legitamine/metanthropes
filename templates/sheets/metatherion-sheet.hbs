@@ -155,7 +155,7 @@
 												type="number" value="{{this.Progressed}}" data-dtype="number" />
 										</p>
 									</div>
-									<div class="style-cs-rolls" data-roll="1d100">{{this.Roll}}</div>
+									<div class="style-cs-rolls" data-roll="1d100" data-label="{{@key}}" >{{this.Roll}}</div>
 									<div>
 										<div class="style-cs-buffs">🛡️
 											<input class="style-cs-buffs" name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current"
