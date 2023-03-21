@@ -13,8 +13,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 		return mergeObject(super.defaultOptions, {
 			classes: ["metanthropes", "sheet", "actor"], // these are custom css classes that are used in the html file
 			template: "systems/metanthropes-system/templates/actor/actor-sheet.html",
-			width: 800,
-			height: 800,
+			width: 990,
+			height: 900,
 			closeOnSubmit: false,
 			submitOnClose: false,
 			submitOnChange: true,
@@ -63,7 +63,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//			this._prepareHumanoidData(context);
 		//		}
 		// Add roll data for TinyMCE editors.
-		//context.rollData = context.actor.getRollData();
+		//adding this enabled rolls??
+		context.rollData = context.actor.getRollData();
 		// Prepare active effects
 		//context.effects = prepareActiveEffectCategories(this.actor.effects);
 		//return
@@ -76,12 +77,42 @@ export class MetanthropesActorSheet extends ActorSheet {
 	//	_prepareHumanoidData(context) {
 	//
 	//	}
+	// activate listeners for clickable stuff
+	activateListeners(html) {
+		super.activateListeners(html);
+		// Rollable abilities.
+		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
+	}
+	//code from boilerplate on rolls
+	_onRoll(event) {
+		event.preventDefault();
+		const element = event.currentTarget;
+		const dataset = element.dataset;
+		// Handle item rolls.
+		if (dataset.rollType) {
+			if (dataset.rollType == "item") {
+				const itemId = element.closest(".item").dataset.itemId;
+				const item = this.actor.items.get(itemId);
+				if (item) return item.roll();
+			}
+		}
+		// Handle rolls that supply the formula directly.
+		if (dataset.roll) {
+			let label = dataset.label ? `[ability] ${dataset.label}` : "";
+			let roll = new Roll(dataset.roll, this.actor.getRollData());
+			roll.toMessage({
+				speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+				flavor: label,
+				rollMode: game.settings.get("core", "rollMode"),
+			});
+			return roll;
+		}
+	}
+	//code to handle the custom roll button
+	//	Hooks.on("renderActorSheet", (app, html, data) => {
+	//		html.find('.style-cs-roll-button').click(ev => {
+	//			const Stat = "{{this.Roll}}"; // Replace with the name of the stat you want to use for the roll
+	//		  app.actor.metaRoll(Stat);
+	//		});
+	//	  });
 }
-
-//code to handle the custom roll button
-//	Hooks.on("renderActorSheet", (app, html, data) => {
-//		html.find('.style-cs-roll-button').click(ev => {
-//			const Stat = "{{this.Roll}}"; // Replace with the name of the stat you want to use for the roll
-//		  app.actor.metaRoll(Stat);
-//		});
-//	  });
