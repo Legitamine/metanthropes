@@ -105,13 +105,13 @@
 						<div class="layout-container-stats style-container-stats">
 							<div class="style-cs-chars-label">{{@key}}</div>
 							<div class="layout-container-grid3x1">
-								<div>
+								<div class="style-cs-values">
 									<p>🏁
-										<input class="style-cs-values" name="system.Characteristics.{{@key}}.Initial"
+										<input name="system.Characteristics.{{@key}}.Initial"
 											type="number" value="{{this.Initial}}" data-dtype="number" />
 									</p>
 									<p>📈
-										<input class="style-cs-values" name="system.Characteristics.{{@key}}.Progressed"
+										<input name="system.Characteristics.{{@key}}.Progressed"
 											type="number" value="{{this.Progressed}}" data-dtype="number" />
 									</p>
 								</div>
@@ -134,9 +134,9 @@
 						</div>
 						<div class="layout-container-grid2x2 style-container-border">
 							{{#each CoreConditions}}
-								<div>💀<input class="style-cs-conditions"
-										name="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}"
-										type="number" value="{{this}}" data-dtype="number" /><label
+								<div class="style-cs-conditions">💀<input
+										name="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}" type="number"
+										value="{{this}}" data-dtype="number" /><label
 										for="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}">{{@key}}</label>
 								</div>
 							{{/each}}
@@ -145,14 +145,14 @@
 							<div class="layout-container-stats style-container-stats">
 								<div class="style-cs-stats-label">{{@key}}</div>
 								<div class="layout-container-grid3x1">
-									<div>
+									<div class="style-cs-values">
 										<p>🏁
-											<input class="style-cs-values"
+											<input
 												name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Initial"
 												type="number" value="{{this.Initial}}" data-dtype="number" />
 										</p>
 										<p>📈
-											<input class="style-cs-values"
+											<input
 												name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Progressed"
 												type="number" value="{{this.Progressed}}" data-dtype="number" />
 										</p>
@@ -160,19 +160,19 @@
 									<div class="style-cs-rolls" data-roll="d100">{{this.Roll}}</div>
 									<div>
 										<p class="style-cs-buffs">🛡️
-											<input class="style-cs-buffs"
+											<input
 												name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current"
 												type="number" value="{{this.Buff.Current}}" data-dtype="number" />
 										</p>
-										<p class="style-cs-buffs"><label
+										<p><label
 												for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current">{{this.Buff.Name}}</label>
 										</p>
 										<p class="style-cs-conditions">💀
-											<input class="style-cs-conditions"
+											<input
 												name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Current"
 												type="number" value="{{this.Condition.Current}}" data-dtype="number" />
 										</p>
-										<p class="style-cs-conditions"><label
+										<p><label
 												for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Name">{{this.Condition.Name}}</label>
 										</p>
 									</div>

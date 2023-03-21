@@ -339,6 +339,7 @@ button {
   padding: 1px;
   margin: 1px;
   overflow: hidden;
+  overflow-wrap: break-word;
 }
 .metanthropes .layout-container-grid3x1 {
   display: grid;
@@ -368,6 +369,7 @@ button {
   padding: 1px;
   margin: 1px;
   overflow: hidden;
+  overflow-wrap: break-word;
 }
 .metanthropes .layout-container-grid1x3 {
   display: flex;
@@ -529,7 +531,7 @@ button {
 .metanthropes .style-cs-values {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: #000;
   justify-content: center;
   justify-self: center;
