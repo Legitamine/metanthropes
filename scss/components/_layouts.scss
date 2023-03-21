@@ -34,6 +34,23 @@
 	margin: $margin-md;
 	overflow: hidden;
 }
+.layout-container-grid3x5-cs {
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+	column-gap: 3px;
+	row-gap: 3px;
+	//background-image: url("../artwork/bg-canvas.jpg");
+	//background-size: cover;
+	//background-attachment: local;
+	//background-repeat: no-repeat;
+	//background-origin: border-box;
+	//background-clip: border-box;
+	padding: $padding-md;
+	margin: $margin-md;
+	overflow: hidden;
+}
 //big container with 3 columns and 2 rows
 .layout-container-grid3x2 {
 	display: grid;
