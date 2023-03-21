@@ -34,7 +34,7 @@ main {
 
 body {
   font-family: "nasalization", sans-serif;
-  background-image: url("../artwork/test2.webp");
+  background-image: url("../artwork/bg-canvas.jpg");
   background-size: auto auto;
   background-attachment: local;
   background-repeat: repeat;
@@ -65,6 +65,12 @@ button {
 .window-content {
   padding: 1px;
   margin: 1px;
+  background-image: url("../artwork/test2.webpg");
+  background-size: auto auto;
+  background-attachment: local;
+  background-repeat: repeat;
+  background-origin: border-box;
+  background-clip: border-box;
 }
 
 .grid,
