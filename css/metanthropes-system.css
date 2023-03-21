@@ -292,6 +292,15 @@ button {
   margin: 3px;
   overflow: hidden;
 }
+.metanthropes .layout-container-grid4x1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  -moz-column-gap: 1px;
+       column-gap: 1px;
+  padding: 1px;
+  margin: 1px;
+  overflow: hidden;
+}
 .metanthropes .layout-container-grid3x1 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
