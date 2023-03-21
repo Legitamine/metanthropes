@@ -63,9 +63,13 @@ button {
 }
 
 .window-content {
+  font-family: "nasalization", sans-serif;
   padding: 1px;
   margin: 1px;
-  background-image: url("../artwork/test2.webpg");
+}
+
+.window-app .window-content {
+  background-image: url("../artwork/test2.webp");
   background-size: auto auto;
   background-attachment: local;
   background-repeat: repeat;
@@ -321,6 +325,17 @@ button {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   -moz-column-gap: 1px;
        column-gap: 1px;
+  padding: 1px;
+  margin: 1px;
+  overflow: hidden;
+}
+.metanthropes .layout-container-grid2x2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  -moz-column-gap: 3px;
+       column-gap: 3px;
+  row-gap: 3px;
   padding: 1px;
   margin: 1px;
   overflow: hidden;

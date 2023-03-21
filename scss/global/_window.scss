@@ -95,14 +95,18 @@ button {
 }
 
 .window-content {
+	font-family: $font-primary;
 	padding: $padding-sm;
 	margin: $margin-sm;
-	background-image: url("../artwork/test2.webpg");
+}
+
+.window-app .window-content {
+	background-image: url("../artwork/test2.webp");
 	background-size: auto auto;
 	background-attachment: local;
 	background-repeat: repeat;
 	background-origin: border-box;
-	background-clip: border-box;
+	background-clip: border-box;	
 }
 
 //	.actor-sheet {
