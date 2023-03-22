@@ -268,11 +268,11 @@ export class MetanthropesActor extends Actor {
 	}
 	_prepareCharacteristicsRollData(data) {
 		//if (this.type !== "Protagonist") return;
-		// Copy the ability scores to the top level, so that Rolls: can use
-		// formulas like `@str.mod + 4`.
-		//todo: qp preparing for template switch - or not? maybe this section is not needed????
-		//? is this where the numbering bug is coming from?
-		//! test this
+		//! Do I really Need this? Are these used in any type of macros or not?
+		// do the following in order to quickly see the actor's data structure to use in rolls
+		// 	const actor = game.actors.getName("My Character Name");
+		//	console.log(actor.getRollData());
+		// I don't need the below if I am going to call @Characteristics.Body.Stats. etc
 		if (data.Characteristics) {
 			for (let [k, v] of Object.entries(data.Characteristics)) {
 				data[k] = foundry.utils.deepClone(v);

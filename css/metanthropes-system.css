@@ -477,6 +477,8 @@ button {
   font-family: "nasalization", sans-serif;
   font-size: 1rem;
   color: #370239;
+  padding: 1px;
+  margin: 1px;
 }
 .metanthropes .style-labels-text {
   opacity: 1;
@@ -487,6 +489,8 @@ button {
   justify-self: center;
   align-items: center;
   align-self: center;
+  padding: 1px;
+  margin: 1px;
 }
 .metanthropes .style-cs-chars-label {
   opacity: 1;
@@ -499,6 +503,8 @@ button {
   justify-self: center;
   align-items: center;
   align-self: center;
+  padding: 1px;
+  margin: 1px;
 }
 .metanthropes .style-cs-stats-label {
   opacity: 1;
@@ -510,6 +516,8 @@ button {
   justify-self: center;
   align-items: center;
   align-self: center;
+  padding: 1px;
+  margin: 1px;
 }
 .metanthropes .style-cs-labels {
   opacity: 1;
@@ -520,6 +528,8 @@ button {
   justify-self: center;
   align-items: center;
   align-self: center;
+  padding: 1px;
+  margin: 1px;
 }
 .metanthropes .style-cs-chars-value {
   opacity: 1;
@@ -530,6 +540,8 @@ button {
   justify-self: center;
   align-items: center;
   align-self: center;
+  padding: 1px;
+  margin: 1px;
 }
 .metanthropes .style-cs-values {
   opacity: 1;
@@ -540,6 +552,8 @@ button {
   justify-self: center;
   align-items: center;
   align-self: center;
+  padding: 1px;
+  margin: 1px;
 }
 .metanthropes .style-cs-buffs {
   opacity: 1;
@@ -550,6 +564,8 @@ button {
   justify-self: center;
   align-items: center;
   align-self: center;
+  padding: 1px;
+  margin: 1px;
 }
 .metanthropes .style-cs-conditions {
   opacity: 1;
@@ -560,6 +576,8 @@ button {
   justify-self: center;
   align-items: center;
   align-self: center;
+  padding: 1px;
+  margin: 1px;
 }
 .metanthropes .style-cs-rolls {
   opacity: 1;
@@ -571,6 +589,8 @@ button {
   justify-self: center;
   align-items: center;
   align-self: center;
+  padding: 1px;
+  margin: 1px;
 }
 .metanthropes .style-cs-rolls:hover {
   cursor: url(../artwork/metanthropes-dice-roll-small.webp), pointer;

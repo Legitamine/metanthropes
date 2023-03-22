@@ -2,7 +2,7 @@
 	"id": "metanthropes-system",
 	"title": "Metanthropes RPG",
 	"description": "This is the official Metanthropes RPG system for FoundryVTT",
-	"version": "0.1.41",
+	"version": "0.1.42",
 	"compatibility": {
 		"minimum": "10",
 		"verified": "10.291",
@@ -22,6 +22,12 @@
 	],
 	"esmodules": ["./module/metanthropes-system.mjs"],
 	"styles": ["./css/metanthropes-system.css"],
+	"macros": {
+		"MetaRoll": {
+			"name": "MetaRoll",
+			"path": "./macros/metaroll.mjs"
+		}
+	},
 	"scripts": [],
 	"packs": [],
 	"languages": [],
