@@ -1,35 +1,35 @@
 //chat-gpt3.5 reply
-let actor = game.user.character;
+let metaroller = game.user.character;
+console.log(metaroller);
 
-if (!actor) {
+if (!metaroller) {
 	ui.notifications.error("You must have an active character!");
 	return;
 }
 
 let statOptions = "";
-for (let [char, charvalue] of Object.entries(actorData.system.Characteristics)) {
-	for (let [stat, value] of Object.entries(char.Stats)) {
-		if (typeof value === "number" && stat !== "Stat") {
+	for (let [stat, value] of Object.entries(metaroller)) {
+		//if (typeof value === "number" && stat !== "stat") {
 			statOptions += `<option value="${stat}">${stat}</option>`;
-		}
+		//}
 	}
-}
+
 
 let d = new Dialog({
 	title: "MetaRoll",
 	content: `
     <div>
-      <p>Select a Stat:</p>
-      <<select id="stat">${statOptions}</select>
+    	<p>Select a Stat:</p>
+    	<<select id="stat">${statOptions}</select>
     </div>
     <div>
-      <p>Is this part of a Multi-Action?</p>
-      <select id="multiAction">
+    	<p>Is this part of a Multi-Action?</p>
+    	<select id="multiAction">
         <option value="no">No</option>
         <option value="yes">Yes</option>
-      </select>
+    	</select>
     </div>
-  `,
+	`,
 	buttons: {
 		roll: {
 			label: "Roll",
@@ -37,7 +37,7 @@ let d = new Dialog({
 				let selectedStat = html.find("#stat").val();
 				let selectedChar = html.find("#char").val();
 				let multiAction = html.find("#multiAction").val() === "yes";
-				let statRollValue = actorData.system.Characteristics[selectedChar].Stats[selectedStat].Roll;
+				let statRollValue = metaroller[selectedStat].Roll;
 				let modifier = 0;
 				if (multiAction) {
 					let multiActionOptions = "";
@@ -47,10 +47,10 @@ let d = new Dialog({
 					let multiActionDialog = new Dialog({
 						title: "Select Multi-Actions",
 						content: `
-              <div>
+            	<div>
                 <p>Select the number of Multi-Actions:</p>
                 <select id="multiActionCount">${multiActionOptions}</select>
-              </div>
+            	</div>
             `,
 						buttons: {
 							roll: {
@@ -96,12 +96,12 @@ function rollDice(stat, statRollValue, modifier) {
 	} else if (criticalFailure) {
 		result = "Critical Failure";
 	}
-	let message = `${actor.name} rolled ${stat}.${statRollValue} with a modifier of ${modifier} and got ${result} with a roll of ${roll}.`;
+	let message = `${metaroller.name} rolled ${stat}.${statRollValue} with a modifier of ${modifier} and got ${result} with a roll of ${roll}.`;
 	if (levelsOfSuccess > 0) {
-		message += ` ${actor.name} had ${levelsOfSuccess} level(s) of success.`;
+		message += ` ${metaroller.name} had ${levelsOfSuccess} level(s) of success.`;
 	}
 	if (levelsOfFailure > 0) {
-		message += ` ${actor.name} had ${levelsOfFailure} level(s) of failure.`;
+		message += ` ${metaroller.name} had ${levelsOfFailure} level(s) of failure.`;
 	}
 	ChatMessage.create({ content: message });
 }

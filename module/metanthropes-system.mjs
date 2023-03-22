@@ -110,7 +110,7 @@ async function createItemMacro(data, slot) {
 	const item = await Item.fromDropData(data);
 
 	// Create the macro command using the uuid.
-	const command = `game.metanthropes-system.rollItemMacro("${data.uuid}");`;
+	const command = `game.metanthropes.rollItemMacro("${data.uuid}");`;
 	let macro = game.macros.find((m) => m.name === item.name && m.command === command);
 	if (!macro) {
 		macro = await Macro.create({
@@ -118,7 +118,7 @@ async function createItemMacro(data, slot) {
 			type: "script",
 			img: item.img,
 			command: command,
-			flags: { "metanthropes-system.itemMacro": true },
+			flags: { "metanthropes.itemMacro": true },
 		});
 	}
 	game.user.assignHotbarMacro(macro, slot);

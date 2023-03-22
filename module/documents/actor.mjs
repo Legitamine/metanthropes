@@ -274,8 +274,10 @@ export class MetanthropesActor extends Actor {
 		//	console.log(actor.getRollData());
 		// I don't need the below if I am going to call @Characteristics.Body.Stats. etc
 		if (data.Characteristics) {
-			for (let [k, v] of Object.entries(data.Characteristics)) {
-				data[k] = foundry.utils.deepClone(v);
+			for (let [charslot, charslotvalue] of Object.entries(data.Characteristics)) {
+				for (let [k, v] of Object.entries(charslot.Stats)) {
+					data[k] = foundry.utils.deepClone(v);
+				}
 			}
 		}
 	}
