@@ -8,19 +8,18 @@ if (!metaroller) {
 }
 
 let statOptions = "";
-	for (let [stat, value] of Object.entries(metaroller)) {
-		//if (typeof value === "number" && stat !== "stat") {
-			statOptions += `<option value="${stat}">${stat}</option>`;
-		//}
-	}
-
+for (let [stat, value] of Object.entries(metaroller.system)) {
+	//if (typeof value === "number" && stat !== "stat") {
+	statOptions += `<option value="${stat}">${stat}</option>`;
+	//}
+}
 
 let d = new Dialog({
 	title: "MetaRoll",
 	content: `
     <div>
     	<p>Select a Stat:</p>
-    	<<select id="stat">${statOptions}</select>
+    	<select id="stat">${statOptions}</select>
     </div>
     <div>
     	<p>Is this part of a Multi-Action?</p>
@@ -37,7 +36,7 @@ let d = new Dialog({
 				let selectedStat = html.find("#stat").val();
 				let selectedChar = html.find("#char").val();
 				let multiAction = html.find("#multiAction").val() === "yes";
-				let statRollValue = metaroller[selectedStat].Roll;
+				let statRollValue = metaroller.system[selectedStat].Roll;
 				let modifier = 0;
 				if (multiAction) {
 					let multiActionOptions = "";

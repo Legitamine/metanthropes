@@ -275,7 +275,7 @@ export class MetanthropesActor extends Actor {
 		// I don't need the below if I am going to call @Characteristics.Body.Stats. etc
 		if (data.Characteristics) {
 			for (let [charslot, charslotvalue] of Object.entries(data.Characteristics)) {
-				for (let [k, v] of Object.entries(charslot.Stats)) {
+				for (let [k, v] of Object.entries(charslotvalue.Stats)) {
 					data[k] = foundry.utils.deepClone(v);
 				}
 			}
