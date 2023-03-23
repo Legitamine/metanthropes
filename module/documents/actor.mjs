@@ -36,16 +36,26 @@ export class MetanthropesActor extends Actor {
 		// Set custom default tokens portraits
 		if (!data.img || data.img == "icons/svg/mystery-man.svg") {
 			createData.img = "systems/metanthropes-system/artwork/tokens/token-utilitarian.webp";
-			if (data.type == "Vehicle") createData.img = "systems/metanthropes-system/artwork/tokens/token-aegis.webp";
+			if (data.type == "Vehicle") createData.img = "systems/metanthropes-system/artwork/tokens/token-hammer.webp";
+			if (data.type == "MetaTherion") createData.img = "systems/metanthropes-system/artwork/tokens/token-manipulator.webp";
+			if (data.type == "Protagonist") createData.img = "systems/metanthropes-system/artwork/tokens/token-aegis.webp";
+			if (data.type == "Metanthrope") createData.img = "systems/metanthropes-system/artwork/tokens/token-arbiter.webp";
+			if (data.type == "Artificial") createData.img = "systems/metanthropes-system/artwork/tokens/token-controller.webp";
+			if (data.type == "Human") createData.img = "systems/metanthropes-system/artwork/tokens/token-clairvoyant.webp";
+			if (data.type == "Humanoid") createData.img = "systems/metanthropes-system/artwork/tokens/token-cosmonaut.webp";
+			if (data.type == "Animated-Humanoid") createData.img = "systems/metanthropes-system/artwork/tokens/token-animator.webp";
+			if (data.type == "Animal") createData.img = "systems/metanthropes-system/artwork/tokens/token-kineticist.webp";
 		}
 
 		// Enable Vision and Link Data for all actors
-		if (data.type == "MetaTherion") {
-			if (!createData.prototypeToken) createData.prototypeToken = {}; // Fix for Token Attacher / CF Import
-
-			createData.prototypeToken.sight = { enabled: true };
-			createData.prototypeToken.actorLink = true;
+		//if (data.type == "MetaTherion") {
+		if (!createData.prototypeToken) createData.prototypeToken = {}; // Fix for Token Attacher / CF Import
+		createData.prototypeToken.sight = { enabled: true };
+		// Link Actor data only for Protagonists
+		if (data.type == "Protagonist"){
+		createData.prototypeToken.actorLink = true;
 		}
+		//}
 
 		this.updateSource(createData);
 	}

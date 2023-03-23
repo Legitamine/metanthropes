@@ -1,9 +1,11 @@
-//chat-gpt3.5 reply
+//metaroll v2 based off chat-gpt3.5 replies
+//todo: add re-roll button with Destiny deduction
+//chat gpt 4 ftw btw
 let metaroller = game.user.character;
 console.log(metaroller);
 
 if (!metaroller) {
-	ui.notifications.error("You must have an active character!");
+	ui.notifications.error("You must have an active character! Right-click on your Player Name and configure the active characters by making sure you select a character before clicking OK.");
 	return;
 }
 
@@ -81,8 +83,8 @@ let d = new Dialog({
 });
 
 async function rollDice(stat, statRollValue, modifier) {
-	//let roll = await new Roll("1d100").roll({ async: true }).total;
 	let roll = await Roll.create("1d100").evaluate({ async: true });
+	//let roll = await Roll.create("1d100").evaluate({ async: true });
 	let result = roll.total <= statRollValue + modifier ? "Success" : "Failure";
 	let levelsOfSuccess = Math.floor((statRollValue + modifier - roll.total) / 10);
 	let levelsOfFailure = Math.floor((roll.total - statRollValue - modifier) / 10);
@@ -128,7 +130,15 @@ async function rollDice(stat, statRollValue, modifier) {
 		message += ` and the result is a ${roll.total}, therefore it is a ${result}.`;
 	}
 
-	ChatMessage.create({ content: message });
+	roll.toMessage({
+		speaker: ChatMessage.getSpeaker({ actor: metaroller }),
+		flavor: message,
+		rollMode: game.settings.get("core", "rollMode"),
+	});
+	//adding re-roll capability
+	//displayReRollButton(ChatMessage.last, actor, statRollValue, isMultiAction);
+
+		//ChatMessage.create({ content: message });
 	console.log(roll.total);
 }
 
@@ -136,11 +146,11 @@ d.render(true);
 //game.dice3d.showForRoll(roll.total, game.user, true, null, false);
 
 // Register the MetaRoll macro with Foundry VTT
-Macro.create({
-	name: "MetaRoll",
-	actorId: "",
-	scope: "global",
-	img: "icons/svg/d10-grey.svg",
-	command: MetaRoll,
-	hasTarget: false,
-});
+//Macro.create({
+//	name: "MetaRoll",
+//	actorId: "",
+//	scope: "global",
+//	img: "icons/svg/d10-grey.svg",
+//	command: MetaRoll,
+//	hasTarget: false,
+//});
