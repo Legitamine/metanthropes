@@ -9,9 +9,19 @@ if (!metaroller) {
 
 let statOptions = "";
 for (let [stat, value] of Object.entries(metaroller.system)) {
-	//if (typeof value === "number" && stat !== "stat") {
-	statOptions += `<option value="${stat}">${stat}</option>`;
-	//}
+	if (
+		stat == "Endurance" ||
+		stat == "Power" ||
+		stat == "Reflexes" ||
+		stat == "Perception" ||
+		stat == "Manipulation" ||
+		stat == "Creativity" ||
+		stat == "Willpower" ||
+		stat == "Consciousness" ||
+		stat == "Awareness"
+	) {
+		statOptions += `<option value="${stat}">${stat}</option>`;
+	}
 }
 
 let d = new Dialog({
@@ -34,7 +44,6 @@ let d = new Dialog({
 			label: "Roll",
 			callback: async (html) => {
 				let selectedStat = html.find("#stat").val();
-				let selectedChar = html.find("#char").val();
 				let multiAction = html.find("#multiAction").val() === "yes";
 				let statRollValue = metaroller.system[selectedStat].Roll;
 				let modifier = 0;
@@ -71,38 +80,67 @@ let d = new Dialog({
 	},
 });
 
-function rollDice(stat, statRollValue, modifier) {
-	let roll = new Roll("1d100").roll().total;
-	let success = roll <= statRollValue + modifier;
-	let levelsOfSuccess = Math.floor((statRollValue + modifier - roll) / 10);
-	let levelsOfFailure = Math.floor((roll - statRollValue - modifier) / 10);
-	let criticalSuccess = roll === 1;
-	let criticalFailure = roll === 100;
+async function rollDice(stat, statRollValue, modifier) {
+	//let roll = await new Roll("1d100").roll({ async: true }).total;
+	let roll = await Roll.create("1d100").evaluate({ async: true });
+	let result = roll.total <= statRollValue + modifier ? "Success" : "Failure";
+	let levelsOfSuccess = Math.floor((statRollValue + modifier - roll.total) / 10);
+	let levelsOfFailure = Math.floor((roll.total - statRollValue - modifier) / 10);
+	let criticalSuccess = roll.total === 1;
+	let criticalFailure = roll.total === 100;
+	if (roll.total - modifier > statRollValue) {
+		levelsOfSuccess = 0;
+	} else {
+		levelsOfFailure = 0;
+	}
 	if (criticalSuccess) {
 		levelsOfSuccess = 10;
 		if (statRollValue < 100) {
-			levelsOfSuccess += 1;
+			levelsOfSuccess += 0;
 		} else {
-			levelsOfSuccess += Math.floor((statRollValue - 100) / 10) + 1;
+			levelsOfSuccess += Math.floor((statRollValue - 100) / 10);
 		}
 	}
 	if (criticalFailure) {
 		levelsOfFailure = 10;
 	}
-	let result = success ? "Success" : "Failure";
 	if (criticalSuccess) {
 		result = "Critical Success";
 	} else if (criticalFailure) {
 		result = "Critical Failure";
 	}
-	let message = `${metaroller.name} rolled ${stat}.${statRollValue} with a modifier of ${modifier} and got ${result} with a roll of ${roll}.`;
-	if (levelsOfSuccess > 0) {
-		message += ` ${metaroller.name} had ${levelsOfSuccess} level(s) of success.`;
+	let message = `${metaroller.name} attempts a roll with ${stat} score of ${statRollValue}%`;
+	console.log("modifier", modifier);
+	if (modifier < 0) {
+		console.log("yrd modifier", modifier, levelsOfSuccess, levelsOfFailure);
+		if (levelsOfSuccess > 0) {
+			message += ` and with a Multi-Action penalty of ${modifier}% and the result is a ${roll.total}, therefore it is a ${result}, for a total of ${levelsOfSuccess} ✔️.`;
+		} else if (levelsOfFailure > 0) {
+			message += ` and with a Multi-Action penalty of ${modifier}% and the result is a ${roll.total}, therefore it is a ${result}, for a total of ${levelsOfFailure} ❌.`;
+		} else {
+			message += ` and with a Multi-Action penalty of ${modifier}% and the result is a ${roll.total}, therefore it is a ${result}.`;
+		}
+	} else if (levelsOfSuccess > 0) {
+		message += ` and the result is a ${roll.total}, therefore it is a ${result}, for a total of ${levelsOfSuccess} ✔️.`;
+	} else if (levelsOfFailure > 0) {
+		message += ` and the result is a ${roll.total}, therefore it is a ${result}, for a total of ${levelsOfFailure} ❌.`;
+	} else {
+		message += ` and the result is a ${roll.total}, therefore it is a ${result}.`;
 	}
-	if (levelsOfFailure > 0) {
-		message += ` ${metaroller.name} had ${levelsOfFailure} level(s) of failure.`;
-	}
+
 	ChatMessage.create({ content: message });
+	console.log(roll.total);
 }
 
 d.render(true);
+//game.dice3d.showForRoll(roll.total, game.user, true, null, false);
+
+// Register the MetaRoll macro with Foundry VTT
+Macro.create({
+	name: "MetaRoll",
+	actorId: "",
+	scope: "global",
+	img: "icons/svg/d10-grey.svg",
+	command: MetaRoll,
+	hasTarget: false,
+});
