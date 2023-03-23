@@ -108,11 +108,46 @@ export class MetanthropesActorSheet extends ActorSheet {
 		}
 		// Handle rolls that supply the formula directly.
 		if (dataset.roll) {
-			let label = dataset.label ? `[${dataset.label}] ${dataset.statroll}` : "";
-			let roll = new Roll(dataset.roll, this.actor.getRollData());
+			//let label = dataset.label ? `[${dataset.label}] ${dataset.statroll}` : "";
+			let message = `${this.actor.name} attempts a roll with ${dataset.label} score of ${dataset.statroll}%`;
+			let roll = new Roll(dataset.roll, this.actor.getRollData()).evaluate({ async: false });
+			let result = roll.total <= dataset.statroll ? "Success" : "Failure";
+			let levelsOfSuccess = Math.floor((dataset.statroll - roll.total) / 10);
+			let levelsOfFailure = Math.floor((roll.total - dataset.statroll) / 10);
+			let criticalSuccess = roll.total === 1;
+			let criticalFailure = roll.total === 100;
+			if (roll.total > dataset.statroll) {
+				levelsOfSuccess = 0;
+			} else {
+				levelsOfFailure = 0;
+			}
+			if (criticalSuccess) {
+				levelsOfSuccess = 10;
+				if (dataset.statroll < 100) {
+					levelsOfSuccess += 0;
+				} else {
+					levelsOfSuccess += Math.floor((dataset.statroll - 100) / 10);
+				}
+			}
+			if (criticalFailure) {
+				levelsOfFailure = 10;
+			}
+			if (criticalSuccess) {
+				result = "Critical Success";
+			} else if (criticalFailure) {
+				result = "Critical Failure";
+			}
+			if (levelsOfSuccess > 0) {
+				message += ` and the result is a ${roll.total}, therefore it is a ${result}, for a total of ${levelsOfSuccess} ✔️.`;
+			} else if (levelsOfFailure > 0) {
+				message += ` and the result is a ${roll.total}, therefore it is a ${result}, for a total of ${levelsOfFailure} ❌.`;
+			} else {
+				message += ` and the result is a ${roll.total}, therefore it is a ${result}.`;
+			}
+			console.log(roll.total);
 			roll.toMessage({
 				speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-				flavor: label,
+				flavor: message,
 				rollMode: game.settings.get("core", "rollMode"),
 			});
 			return roll;
