@@ -463,8 +463,8 @@ button {
   border: 1px solid #370239;
   border-radius: 15px;
   border-style: dotted;
-  -o-border-image: url(../artwork/border.webp) 30/19px round;
-     border-image: url(../artwork/border.webp) 30/19px round;
+  -o-border-image: url(../artwork/border.webp) 5/10px round;
+     border-image: url(../artwork/border.webp) 5/10px round;
   border-radius: 15px;
 }
 .metanthropes .style-container-nav {
