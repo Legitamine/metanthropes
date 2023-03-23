@@ -84,7 +84,6 @@ let d = new Dialog({
 
 async function rollDice(stat, statRollValue, modifier) {
 	let roll = await Roll.create("1d100").evaluate({ async: true });
-	//let roll = await Roll.create("1d100").evaluate({ async: true });
 	let result = roll.total <= statRollValue + modifier ? "Success" : "Failure";
 	let levelsOfSuccess = Math.floor((statRollValue + modifier - roll.total) / 10);
 	let levelsOfFailure = Math.floor((roll.total - statRollValue - modifier) / 10);
@@ -137,20 +136,7 @@ async function rollDice(stat, statRollValue, modifier) {
 	});
 	//adding re-roll capability
 	//displayReRollButton(ChatMessage.last, actor, statRollValue, isMultiAction);
-
-		//ChatMessage.create({ content: message });
 	console.log(roll.total);
 }
 
 d.render(true);
-//game.dice3d.showForRoll(roll.total, game.user, true, null, false);
-
-// Register the MetaRoll macro with Foundry VTT
-//Macro.create({
-//	name: "MetaRoll",
-//	actorId: "",
-//	scope: "global",
-//	img: "icons/svg/d10-grey.svg",
-//	command: MetaRoll,
-//	hasTarget: false,
-//});

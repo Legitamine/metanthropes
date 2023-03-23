@@ -89,13 +89,12 @@
 	<main>
 		<div class="layout-container-nav style-container-nav">
 			<nav class="csnavselector tabs" data-group="cs">
-				<!-- look into actor-sheet.mjs -->
 				<a class="item" data-tab="cs-charstats">🛡️ Characteristics & Stats 💀</a>
-				<a class="item" data-tab="cs-perks">🚧 Perks 🚧</a>
-				<a class="item" data-tab="cs-metapowers">🚧 Metapowers 🚧</a>
-				<a class="item" data-tab="cs-combos">🚧 Combos 🚧</a>
-				<a class="item" data-tab="cs-possessions">🚧 Possessions 🚧</a>
-				<a class="item" data-tab="cs-notes">🚧 Notes 🚧</a>
+				<a class="item" data-tab="cs-perks">📚 Perks 📚</a>
+				<a class="item" data-tab="cs-metapowers">Ⓜ️ Metapowers Ⓜ️</a>
+				<a class="item" data-tab="cs-combos">🔗 Combos 🔗</a>
+				<a class="item" data-tab="cs-possessions">🛠️ Possessions ⚔️</a>
+				<a class="item" data-tab="cs-notes">📓 Notes 📔</a>
 			</nav>
 		</div>
 		<section class="csnavtabs">
@@ -155,10 +154,12 @@
 												type="number" value="{{this.Progressed}}" data-dtype="number" />
 										</p>
 									</div>
-									<div class="style-cs-rolls" data-roll="1d100" data-statroll="{{this.Roll}}" data-label="{{@key}}" >{{this.Roll}}</div>
+									<div class="style-cs-rolls" data-roll="1d100" data-statroll="{{this.Roll}}"
+										data-label="{{@key}}">{{this.Roll}}</div>
 									<div>
 										<div class="style-cs-buffs">🛡️
-											<input class="style-cs-buffs" name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current"
+											<input class="style-cs-buffs"
+												name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current"
 												type="number" value="{{this.Buff.Current}}" data-dtype="number" />
 										</div>
 										<div class="style-cs-buffs"><label
@@ -202,7 +203,6 @@
 			<div class="tab cs-perks" data-group="cs" data-tab="cs-notes">
 				<div class="layout-container-small style-container-grid3x2">
 					NOTES
-					<!-- {{editor system.physical.description-physical target="system.physical.description-physical" rollData=rollData button=true owner=owner editable=editable}} -->
 					<div class="layout-container-grid1x3 style-container-border style-labels-text">
 						{{editor system.physical.description-physical.value target="system.physical.description-physical.value" button=true owner=owner editable=editable}}
 					</div>
@@ -216,26 +216,25 @@
 	<footer>
 		<div class="layout-container-grid3x1 style-container-grid3x2">
 			<div class="layout-container-small style-container-small">
-				<div>Movement
+				<div>Movement 👣
 					<input name="system.physical.movement.initial" type="number"
 						value="{{system.physical.movement.initial}}" data-dtype="number" placeholder="10" />
 				</div>
-				<div>Speed
+				<div>Speed 💨
 					<input name="system.physical.speed.Initial" type="number" value="{{system.physical.speed.Initial}}"
 						data-dtype="number" placeholder="10" />
 				</div>
-				<div>Weight
+				<div>Weight ⚖️
 					<input name="system.physical.weight.Initial" type="number"
 						value="{{system.physical.weight.Initial}}" data-dtype="number" placeholder="10" />
 				</div>
-				<div>Size
+				<div>Size 📐
 					<input name="system.physical.size.Initial" type="number" value="{{system.physical.size.Initial}}"
 						data-dtype="number" placeholder="10" />
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>Resistances</div>
-				<!-- //todo: investigate lists, investigate emojis and verticality -->
 				<div>Cosmic
 					<input name="system.physical.resistances.cosmic.Initial" type="number"
 						value="{{system.physical.resistances.cosmic.Initial}}" data-dtype="number" placeholder="0" />

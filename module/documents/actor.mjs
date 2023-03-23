@@ -6,7 +6,6 @@
 //todo: Enable Rolls
 //*
 ////
-
 ////
 //*
 //? Table of Contents
@@ -32,34 +31,36 @@ export class MetanthropesActor extends Actor {
 				"prototypeToken.name": data.name, // Set token name to actor name
 			});
 		else if (data.prototypeToken) createData.prototypeToken = data.prototypeToken;
-
 		// Set custom default tokens portraits
 		if (!data.img || data.img == "icons/svg/mystery-man.svg") {
 			createData.img = "systems/metanthropes-system/artwork/tokens/token-utilitarian.webp";
 			if (data.type == "Vehicle") createData.img = "systems/metanthropes-system/artwork/tokens/token-hammer.webp";
-			if (data.type == "MetaTherion") createData.img = "systems/metanthropes-system/artwork/tokens/token-manipulator.webp";
-			if (data.type == "Protagonist") createData.img = "systems/metanthropes-system/artwork/tokens/token-aegis.webp";
-			if (data.type == "Metanthrope") createData.img = "systems/metanthropes-system/artwork/tokens/token-arbiter.webp";
-			if (data.type == "Artificial") createData.img = "systems/metanthropes-system/artwork/tokens/token-controller.webp";
-			if (data.type == "Human") createData.img = "systems/metanthropes-system/artwork/tokens/token-clairvoyant.webp";
-			if (data.type == "Humanoid") createData.img = "systems/metanthropes-system/artwork/tokens/token-cosmonaut.webp";
-			if (data.type == "Animated-Humanoid") createData.img = "systems/metanthropes-system/artwork/tokens/token-animator.webp";
-			if (data.type == "Animal") createData.img = "systems/metanthropes-system/artwork/tokens/token-kineticist.webp";
+			if (data.type == "MetaTherion")
+				createData.img = "systems/metanthropes-system/artwork/tokens/token-manipulator.webp";
+			if (data.type == "Protagonist")
+				createData.img = "systems/metanthropes-system/artwork/tokens/token-aegis.webp";
+			if (data.type == "Metanthrope")
+				createData.img = "systems/metanthropes-system/artwork/tokens/token-arbiter.webp";
+			if (data.type == "Artificial")
+				createData.img = "systems/metanthropes-system/artwork/tokens/token-controller.webp";
+			if (data.type == "Human")
+				createData.img = "systems/metanthropes-system/artwork/tokens/token-clairvoyant.webp";
+			if (data.type == "Humanoid")
+				createData.img = "systems/metanthropes-system/artwork/tokens/token-cosmonaut.webp";
+			if (data.type == "Animated-Humanoid")
+				createData.img = "systems/metanthropes-system/artwork/tokens/token-animator.webp";
+			if (data.type == "Animal")
+				createData.img = "systems/metanthropes-system/artwork/tokens/token-kineticist.webp";
 		}
-
 		// Enable Vision and Link Data for all actors
-		//if (data.type == "MetaTherion") {
 		if (!createData.prototypeToken) createData.prototypeToken = {}; // Fix for Token Attacher / CF Import
 		createData.prototypeToken.sight = { enabled: true };
 		// Link Actor data only for Protagonists
-		if (data.type == "Protagonist"){
-		createData.prototypeToken.actorLink = true;
+		if (data.type == "Protagonist") {
+			createData.prototypeToken.actorLink = true;
 		}
-		//}
-
 		this.updateSource(createData);
 	}
-
 	////
 	//*
 	//? Table of Contents
@@ -68,7 +69,6 @@ export class MetanthropesActor extends Actor {
 	//! 2. Prepare Actor Characteristics and Stats Data
 	//? 3. Prepare Actor Roll Data
 	///
-
 	/** @override */
 	prepareData() {
 		// Prepare data for the actor. Calling the super version of this executes
@@ -80,18 +80,8 @@ export class MetanthropesActor extends Actor {
 	// Override base values for each type of actor here.
 	prepareBaseData() {
 		// I should enable this section if I need to add modifications for non-Characteristics actors
-		// const actorData = this;
-		// using one function for all types of actors without any characteristics or stats in prepareBaseData
+		// Currently we only care about actors with characteristics so we don't use this section
 		// this._prepareBaseNonCharacteristicsData(actorData);
-		//this._prepareBaseHumanoidData(actorData);
-		//this._prepareBaseMetanthropeData(actorData);
-		//this._prepareBaseProtagonistData(actorData);
-		//this._prepareBaseMetaTherionData(actorData);
-		//this._prepareBaseAnimalData(actorData);
-		//this._prepareBaseArtificialData(actorData);
-		//this._prepareBaseAnimatedObjectData(actorData);
-		//this._prepareBaseAnimatedHumanoidData(actorData);
-		//this._prepareBaseVehicleData(actorData);
 	}
 	// Override base values for each type of actor here.
 	//	_prepareBaseNonCharacteristicsData(actorData) {
@@ -109,15 +99,6 @@ export class MetanthropesActor extends Actor {
 	//		console.log("Metanthropes RPG Preparing Data for", this.type, "Actor:", this.name);
 	//		console.log("========================================================================");
 	//	}
-	//	_prepareBaseHumanoidData(actorData) {
-	//		if (actorData.type !== 'Humanoid') return;
-	//		const systemData = actorData.system;
-	//		const flags = actorData.flags.metanthropes || {};
-	//		console.log("========================================================================");
-	//		console.log("Metanthropes RPG Reading Starting Values for", this.type, "Actor:", this.name);
-	//		console.log("========================================================================");
-	//	}
-
 	//todo: TOC
 	// Override Derived values for Characteristic and Stat calculations here.
 	// using one function for all types of actors with characteristics and stats in prepareDerivedData
@@ -128,7 +109,6 @@ export class MetanthropesActor extends Actor {
 		const flags = actorData.flags.metanthropes || {};
 		this._prepareDerivedCharacteristicsData(actorData);
 	}
-
 	_prepareDerivedCharacteristicsData(actorData) {
 		//	we take all actors that have characteristics and prepare their data for rolling, as well as calculte max life.
 		if (actorData.type == "Human") return;
@@ -249,40 +229,19 @@ export class MetanthropesActor extends Actor {
 	//? 2. Prepare Actor Characteristics and Stats Data
 	//! 3. Prepare Actor Roll Data
 	////
-
-	//	async metaRoll(Stat) {
-	//		const roll = new Roll("1d100").roll();
-	//		const statRollValue = Stat;
-	//		ChatMessage.create({
-	//			user: game.user._id,
-	//			speaker: { actor: this, alias: this.name },
-	//			content: `Rolling 1d100 + ${Stat}: ${roll.total + statRollValue}`,
-	//			type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-	//			roll: roll,
-	//		});
-	//	}
-
 	getRollData() {
 		const data = super.getRollData();
 		// Prepare character roll data.
-		//this._prepareHumanoidRollData(data);
-		//this._prepareMetanthropeRollData(data);
 		this._prepareCharacteristicsRollData(data);
-		//this._prepareMetaTherionRollData(data);
-		//this._prepareAnimalRollData(data);
-		//this._prepareArtificialRollData(data);
-		//todo: I need to do the _getCharacterRollData changes below
-		//this._getProtagonistRollData(data);
-		//this._getHumanoidRollData(data);
 		return data;
 	}
 	_prepareCharacteristicsRollData(data) {
-		//if (this.type !== "Protagonist") return;
 		//! Do I really Need this? Are these used in any type of macros or not?
 		// do the following in order to quickly see the actor's data structure to use in rolls
 		// 	const actor = game.actors.getName("My Character Name");
 		//	console.log(actor.getRollData());
 		// I don't need the below if I am going to call @Characteristics.Body.Stats. etc
+		// this will add stats to the top level of the actor so it can be easily accessed for the macros
 		if (data.Characteristics) {
 			for (let [charslot, charslotvalue] of Object.entries(data.Characteristics)) {
 				for (let [k, v] of Object.entries(charslotvalue.Stats)) {
@@ -291,12 +250,4 @@ export class MetanthropesActor extends Actor {
 			}
 		}
 	}
-	// Add level for easier access, or fall back to 0.
-	// if (data.attributes.level) {
-	// 	data.lvl = data.attributes.level.value ?? 0;
-	// }
-	//	_getHumanoidRollData(data) {
-	//		if (this.type !== "Humanoid") return;
-	//		// Process additional NPC data here.
-	//	}
 }

@@ -5,7 +5,7 @@
 # Metanthropes RPG System
 This is the official Metanthropes RPG system for Foundry VTT.
 
-- This project is in no way affiliated with or supported by FoundryVTT.
+- This project is in no way affiliated with or supported by Foundry VTT.
 - For more information about Metanthropes RPG visit https://metanthropes.com
 
 ## Under Development
@@ -14,7 +14,8 @@ This is a work in progress and is not ready for general use. Please do not use t
 
 ### Latest Changes
 
-These are the latest changes for the Official Metanthropes RPG System for FoundryVTT
-#### 0.0.01 - 0.1.01
+These are the latest changes for the Official Metanthropes RPG System for Foundry VTT
+#### 0.0.01 - 0.1.48
 - Initial Commit
 - Metanthropes System Characteristics & Stats
+- Metanthropes Levels of Success/Failure and Roll checks

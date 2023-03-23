@@ -1,11 +1,6 @@
 // this changes the input fields in Foundry UI
 input[type="text"] {
-	//height: 2ch;
 	max-width: 16ch;
-	//min-height: 20px;
-	//min-width: 20px;
-	//max-height: fit-content;
-	//max-width: fit-content;
 	margin: $margin-sm;
 	padding: $padding-input-text;
 	border: 1px dashed $c-purple;
@@ -14,12 +9,7 @@ input[type="text"] {
 	align-items: center;
 }
 input[type="number"] {
-	//height: 2ch;
 	max-width: 4ch;
-	//min-height: 20px;
-	//min-width: 20px;
-	//max-height: fit-content;
-	//max-width: fit-content;
 	margin: $margin-sm;
 	padding: $padding-input-number;
 	border: 1px dashed $c-purple;
@@ -27,29 +17,17 @@ input[type="number"] {
 	justify-content: center;
 	align-items: center;
 }
-
-// this changes the font in body-elements of Foundry UI
-// removing form in case this solves the bug
-//	form {
-//		font-family: $font-primary;
-//		margin: $margin-zero;
-//		padding: $padding-zero;
-//	}
-
 section {
 	font-family: $font-primary;
 	margin: $margin-sm;
 	padding: $padding-sm;
 }
-
 main {
 	font-family: $font-primary;
-	//main box-sizing: border-box; might be the culprit
 	margin: $margin-sm;
 	padding: $padding-sm;
 	box-sizing: border-box;
 }
-
 body {
 	font-family: $font-primary;
 	background-image: url("../artwork/bg-canvas.webp");
@@ -59,30 +37,14 @@ body {
 	background-origin: border-box;
 	background-clip: border-box;
 }
-
 header {
 	margin: $margin-sm;
 	padding: $padding-sm;
 }
-
-//	aside {
-//		font-family: $font-primary;
-//	}
-
-//	div {
-//		font-family: $font-primary;
-//	}
-
-//	nav {
-//		margin: $margin-zero;
-//		padding: $padding-sm;
-//	}
-
 footer {
 	margin: $margin-sm;
 	padding: $padding-sm;
 }
-
 // this changes the font for buttons of Foundry UI
 button {
 	font-family: $font-primary;
@@ -93,40 +55,16 @@ button {
 	margin: $padding-sm;
 	padding: $padding-sm;
 }
-
 .window-content {
 	font-family: $font-primary;
 	padding: $padding-sm;
 	margin: $margin-sm;
 }
-
 .window-app .window-content {
 	background-image: url("../artwork/background.webp");
 	background-size: auto auto;
 	background-attachment: local;
 	background-repeat: repeat;
 	background-origin: border-box;
-	background-clip: border-box;	
+	background-clip: border-box;
 }
-
-//	.actor-sheet {
-//		//character sheets always open at this size
-//		//does this also affect a default actor-sheet class?
-//		//why it opens with 720p height? missing px setting, just number won't do the trick ;p
-//		width: 800px;
-//		height: 800px;
-//	}
-
-//	.rollable {
-//		&:hover,
-//		&:focus {
-//			color: $c-green;
-//			text-shadow: 0 0 10px $c-purple;
-//			cursor: pointer;
-//			// qp testing border on hover
-//			border: 3px dotted $c-purple;
-//			border-radius: 15px;
-//			padding: 5px;
-//			margin: 5px;
-//		}
-//	}

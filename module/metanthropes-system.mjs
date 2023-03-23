@@ -5,7 +5,6 @@
 //todo: Enable basic functionality
 //*
 ////
-
 ////
 //*
 //? Table of Contents
@@ -16,7 +15,6 @@
 //? 4. Ready Hook
 //? 5. Hotbar Macros
 ////
-
 // Import document classes.
 import { MetanthropesActor } from "./documents/actor.mjs";
 import { MetanthropesItem } from "./documents/item.mjs";
@@ -24,8 +22,6 @@ import { MetanthropesItem } from "./documents/item.mjs";
 import { MetanthropesActorSheet } from "./sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
 // Import helpers.
-//import { CharStatsHelper } from "./helpers/charstats.mjs";
-// import { CHARSTATS } from "./helpers/charstats.mjs";
 ////
 //*
 //? Table of Contents
@@ -36,22 +32,16 @@ import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
 //? 4. Ready Hook
 //? 5. Hotbar Macros
 ////
-
 // Log system initialization.
 Hooks.once("init", async function () {
 	console.log("========================================================================");
 	console.log("Initializing Metanthropes RPG System");
 	console.log("========================================================================");
-
 	// add our classes so they are more easily accessible
 	game.metanthropes = {
 		MetanthropesActor,
 		MetanthropesItem,
 	};
-	// add custom constants for configuration ???
-	//do I really need this?
-	//I am defining the constants in the helper file
-	// CONFIG.CHARSTATS = CHARSTATS;
 	//setup initiative system
 	CONFIG.Combat.initiative = {
 		formula: "1d100",
@@ -69,17 +59,10 @@ Hooks.once("init", async function () {
 	Items.registerSheet("metanthropes", MetanthropesItemSheet, {
 		makeDefault: true,
 	});
-	//preload Handlebars templates
-	//below doen't work
-	//Handlebars.registerHelper("lookupKey", function (object, key) {
-	//	return object[key];
-	//});
 	console.log("========================================================================");
 	console.log("Metanthropes RPG System Initialized");
 	console.log("========================================================================");
-	//return preloadTemplates();
 });
-
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
 /* -------------------------------------------- */
@@ -88,11 +71,9 @@ Hooks.once("ready", async function () {
 	// Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
 	Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
 });
-
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
 /* -------------------------------------------- */
-
 /**
  * Create a Macro from an Item drop.
  * Get an existing item macro if one exists, otherwise create a new one.
@@ -100,6 +81,7 @@ Hooks.once("ready", async function () {
  * @param {number} slot     The hotbar slot to use
  * @returns {Promise}
  */
+//do I need this here? Could it instead be inside a helper file that I import here and call from here?
 async function createItemMacro(data, slot) {
 	// First, determine if this is a valid owned item.
 	if (data.type !== "Item") return;
@@ -108,7 +90,6 @@ async function createItemMacro(data, slot) {
 	}
 	// If it is, retrieve it based on the uuid.
 	const item = await Item.fromDropData(data);
-
 	// Create the macro command using the uuid.
 	const command = `game.metanthropes.rollItemMacro("${data.uuid}");`;
 	let macro = game.macros.find((m) => m.name === item.name && m.command === command);
@@ -124,7 +105,6 @@ async function createItemMacro(data, slot) {
 	game.user.assignHotbarMacro(macro, slot);
 	return false;
 }
-
 /**
  * Create a Macro from an Item drop.
  * Get an existing item macro if one exists, otherwise create a new one.
@@ -145,7 +125,6 @@ function rollItemMacro(itemUuid) {
 				`Could not find item ${itemName}. You may need to delete and recreate this macro.`
 			);
 		}
-
 		// Trigger the item roll
 		item.roll();
 	});
@@ -163,10 +142,8 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 				{ id: "sprint", default: 0xff8000, name: "physical.movement.sprint" },
 			];
 		}
-
 		getRanges(token) {
 			const baseSpeed = token.actor.system.physical.movement.initial;
-
 			// A character can always walk it's base speed and dash twice it's base speed
 			const ranges = [
 				{ range: baseSpeed * 2, color: "movement" },
@@ -178,21 +155,11 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 			//		if (!token.actor.data.isWearingArmor) {
 			//			ranges.push({range: baseSpeed * 3, color: "dash"})
 			//		}
-
 			return ranges;
 		}
 	}
-
 	dragRuler.registerSystem("metanthropes-system", MetanthropesSystemSpeedProvider);
 	console.log("========================================================================");
 	console.log("Metanthropes RPG System - Drag Ruler Integration Finished");
 	console.log("========================================================================");
 });
-
-//	//Dice So Nice Integration
-//	Hooks.once('diceSoNiceReady', (dice3d) => {
-//		console.log("========================================================================");
-//		console.log("Metanthropes RPG System - Dice So Nice Integration Started");
-//		console.log("========================================================================");
-//
-//	});

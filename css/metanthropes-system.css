@@ -463,6 +463,7 @@ button {
   border-style: dotted;
   -o-border-image: url(../artwork/border.webp) 30/19px round;
      border-image: url(../artwork/border.webp) 30/19px round;
+  border-radius: 15px;
 }
 .metanthropes .style-container-nav {
   border: 1px dotted #370239;
@@ -494,7 +495,7 @@ button {
 }
 .metanthropes .style-cs-chars-label {
   opacity: 1;
-  font-family: "nasalization", bold, sans-serif;
+  font-family: "nasalization", sans-serif;
   font-size: 1.4rem;
   font-weight: bold;
   color: #000;
