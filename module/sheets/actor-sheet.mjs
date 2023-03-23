@@ -111,7 +111,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			//let label = dataset.label ? `[${dataset.label}] ${dataset.statroll}` : "";
 			let message = `${this.actor.name} attempts a roll with ${dataset.label} score of ${dataset.statroll}%`;
 			let roll = new Roll(dataset.roll, this.actor.getRollData()).evaluate({ async: false });
-			let result = roll.total <= dataset.statroll ? "Success" : "Failure";
+			let result = roll.total <= dataset.statroll ? "Success 🟩" : "Failure 🟥";
 			let levelsOfSuccess = Math.floor((dataset.statroll - roll.total) / 10);
 			let levelsOfFailure = Math.floor((roll.total - dataset.statroll) / 10);
 			let criticalSuccess = roll.total === 1;
@@ -133,16 +133,17 @@ export class MetanthropesActorSheet extends ActorSheet {
 				levelsOfFailure = 10;
 			}
 			if (criticalSuccess) {
+				//todo: add color and bold to crititals
 				result = "Critical Success";
 			} else if (criticalFailure) {
 				result = "Critical Failure";
 			}
 			if (levelsOfSuccess > 0) {
-				message += ` and the result is a ${roll.total}, therefore it is a ${result}, for a total of ${levelsOfSuccess} ✔️.`;
+				message += ` and the result is ${roll.total}, therefore it is ${result}, accumulating: ${levelsOfSuccess} ✔️.`;
 			} else if (levelsOfFailure > 0) {
-				message += ` and the result is a ${roll.total}, therefore it is a ${result}, for a total of ${levelsOfFailure} ❌.`;
+				message += ` and the result is ${roll.total}, therefore it is ${result}, accumulating: ${levelsOfFailure} ❌.`;
 			} else {
-				message += ` and the result is a ${roll.total}, therefore it is a ${result}.`;
+				message += ` and the result is ${roll.total}, therefore it is ${result}.`;
 			}
 			console.log(roll.total);
 			roll.toMessage({

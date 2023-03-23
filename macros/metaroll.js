@@ -5,7 +5,9 @@ let metaroller = game.user.character;
 console.log(metaroller);
 
 if (!metaroller) {
-	ui.notifications.error("You must have an active character! Right-click on your Player Name and configure the active characters by making sure you select a character before clicking OK.");
+	ui.notifications.error(
+		"You must have an active character! Right-click on your Player Name and configure the active characters by making sure you select a character before clicking OK."
+	);
 	return;
 }
 
@@ -51,7 +53,7 @@ let d = new Dialog({
 				let modifier = 0;
 				if (multiAction) {
 					let multiActionOptions = "";
-					for (let i = 2; i <= 10; i++) {
+					for (let i = 2; i <= Math.floor((statRollValue - 1) / 10); i++) {
 						multiActionOptions += `<option value="${i}">${i}</option>`;
 					}
 					let multiActionDialog = new Dialog({
@@ -84,7 +86,7 @@ let d = new Dialog({
 
 async function rollDice(stat, statRollValue, modifier) {
 	let roll = await Roll.create("1d100").evaluate({ async: true });
-	let result = roll.total <= statRollValue + modifier ? "Success" : "Failure";
+	let result = roll.total <= statRollValue + modifier ? "Success 🟩" : "Failure 🟥";
 	let levelsOfSuccess = Math.floor((statRollValue + modifier - roll.total) / 10);
 	let levelsOfFailure = Math.floor((roll.total - statRollValue - modifier) / 10);
 	let criticalSuccess = roll.total === 1;
@@ -106,6 +108,7 @@ async function rollDice(stat, statRollValue, modifier) {
 		levelsOfFailure = 10;
 	}
 	if (criticalSuccess) {
+		//todo: add color and bold to crititals
 		result = "Critical Success";
 	} else if (criticalFailure) {
 		result = "Critical Failure";
@@ -115,18 +118,18 @@ async function rollDice(stat, statRollValue, modifier) {
 	if (modifier < 0) {
 		console.log("yrd modifier", modifier, levelsOfSuccess, levelsOfFailure);
 		if (levelsOfSuccess > 0) {
-			message += ` and with a Multi-Action penalty of ${modifier}% and the result is a ${roll.total}, therefore it is a ${result}, for a total of ${levelsOfSuccess} ✔️.`;
+			message += ` and with a Multi-Action reduction of ${modifier}% and the result is ${roll.total}, therefore it is a ${result}, accumulating: ${levelsOfSuccess}*✔️.`;
 		} else if (levelsOfFailure > 0) {
-			message += ` and with a Multi-Action penalty of ${modifier}% and the result is a ${roll.total}, therefore it is a ${result}, for a total of ${levelsOfFailure} ❌.`;
+			message += ` and with a Multi-Action reduction of ${modifier}% and the result is ${roll.total}, therefore it is a ${result}, accumulating: ${levelsOfFailure}*❌.`;
 		} else {
-			message += ` and with a Multi-Action penalty of ${modifier}% and the result is a ${roll.total}, therefore it is a ${result}.`;
+			message += ` and with a Multi-Action reduction of ${modifier}% and the result is ${roll.total}, therefore it is a ${result}.`;
 		}
 	} else if (levelsOfSuccess > 0) {
-		message += ` and the result is a ${roll.total}, therefore it is a ${result}, for a total of ${levelsOfSuccess} ✔️.`;
+		message += ` and the result is a ${roll.total}, therefore it is ${result}, accumulating: ${levelsOfSuccess}*✔️.`;
 	} else if (levelsOfFailure > 0) {
-		message += ` and the result is a ${roll.total}, therefore it is a ${result}, for a total of ${levelsOfFailure} ❌.`;
+		message += ` and the result is a ${roll.total}, therefore it is ${result}, accumulating: ${levelsOfFailure}*❌.`;
 	} else {
-		message += ` and the result is a ${roll.total}, therefore it is a ${result}.`;
+		message += ` and the result is a ${roll.total}, therefore it is ${result}.`;
 	}
 
 	roll.toMessage({
