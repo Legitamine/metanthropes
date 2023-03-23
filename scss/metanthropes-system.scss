@@ -12,8 +12,8 @@
 @import "global/flex";
 //* Styles limited to metanthropes sheets */
 .metanthropes {
-	padding: $padding-sm;
-	margin: $margin-sm;
+	padding: $padding-lg;
+	margin: $margin-lg;
 	@import "components/layouts";
 	@import "components/styles";
 	@import "components/items";
