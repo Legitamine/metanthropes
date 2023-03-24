@@ -109,9 +109,9 @@ async function rollDice(stat, statRollValue, modifier) {
 	}
 	if (criticalSuccess) {
 		//todo: add color and bold to crititals
-		result = "Critical Success";
+		result = '<span style="color:green"><b>Critical Success</b></span>';
 	} else if (criticalFailure) {
-		result = "Critical Failure";
+		result = '<span style="color:red"><b>Critical Failure</b></span>';
 	}
 	let message = `${metaroller.name} attempts a roll with ${stat} score of ${statRollValue}%`;
 	console.log("modifier", modifier);

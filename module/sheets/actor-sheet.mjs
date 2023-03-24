@@ -134,9 +134,9 @@ export class MetanthropesActorSheet extends ActorSheet {
 			}
 			if (criticalSuccess) {
 				//todo: add color and bold to crititals
-				result = "Critical Success";
+				result = '<span style="color:green"><b>Critical Success</b></span>';
 			} else if (criticalFailure) {
-				result = "Critical Failure";
+				result = '<span style="color:red"><b>Critical Failure</b></span>';
 			}
 			if (levelsOfSuccess > 0) {
 				message += ` and the result is ${roll.total}, therefore it is ${result}, accumulating: ${levelsOfSuccess} ✔️.`;
