@@ -109,9 +109,10 @@ async function rollDice(stat, statRollValue, modifier) {
 	}
 	if (criticalSuccess) {
 		//todo: add color and bold to crititals
-		result = '<span style="color:green"><b>Critical Success</b></span>';
+		//? when trying to add any <> elements to this to style it, the flex parrent breaks and the text splits the box into 3 parts, which I don't want to do
+		result = "🟩 Critical Success 🟩";
 	} else if (criticalFailure) {
-		result = '<span style="color:red"><b>Critical Failure</b></span>';
+		result = "🟥 Critical Failure 🟥";
 	}
 	let message = `${metaroller.name} attempts a roll with ${stat} score of ${statRollValue}%`;
 	console.log("modifier", modifier);
@@ -125,11 +126,11 @@ async function rollDice(stat, statRollValue, modifier) {
 			message += ` and with a Multi-Action reduction of ${modifier}% and the result is ${roll.total}, therefore it is a ${result}.`;
 		}
 	} else if (levelsOfSuccess > 0) {
-		message += ` and the result is a ${roll.total}, therefore it is ${result}, accumulating: ${levelsOfSuccess}*✔️.`;
+		message += ` and the result is ${roll.total}, therefore it is a ${result}, accumulating: ${levelsOfSuccess}*✔️.`;
 	} else if (levelsOfFailure > 0) {
-		message += ` and the result is a ${roll.total}, therefore it is ${result}, accumulating: ${levelsOfFailure}*❌.`;
+		message += ` and the result is ${roll.total}, therefore it is a ${result}, accumulating: ${levelsOfFailure}*❌.`;
 	} else {
-		message += ` and the result is a ${roll.total}, therefore it is ${result}.`;
+		message += ` and the result is ${roll.total}, therefore it is a ${result}.`;
 	}
 
 	roll.toMessage({

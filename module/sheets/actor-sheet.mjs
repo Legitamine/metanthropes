@@ -133,17 +133,16 @@ export class MetanthropesActorSheet extends ActorSheet {
 				levelsOfFailure = 10;
 			}
 			if (criticalSuccess) {
-				//todo: add color and bold to crititals
-				result = '<span style="color:green"><b>Critical Success</b></span>';
+				result = "🟩 Critical Success 🟩";
 			} else if (criticalFailure) {
-				result = '<span style="color:red"><b>Critical Failure</b></span>';
+				result = "🟥 Critical Failure 🟥";
 			}
 			if (levelsOfSuccess > 0) {
-				message += ` and the result is ${roll.total}, therefore it is ${result}, accumulating: ${levelsOfSuccess} ✔️.`;
+				message += ` and the result is ${roll.total}, therefore it is a ${result}, accumulating: ${levelsOfSuccess} ✔️.`;
 			} else if (levelsOfFailure > 0) {
-				message += ` and the result is ${roll.total}, therefore it is ${result}, accumulating: ${levelsOfFailure} ❌.`;
+				message += ` and the result is ${roll.total}, therefore it is a ${result}, accumulating: ${levelsOfFailure} ❌.`;
 			} else {
-				message += ` and the result is ${roll.total}, therefore it is ${result}.`;
+				message += ` and the result is ${roll.total}, therefore it is a ${result}.`;
 			}
 			console.log(roll.total);
 			roll.toMessage({
