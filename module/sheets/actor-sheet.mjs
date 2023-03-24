@@ -138,9 +138,9 @@ export class MetanthropesActorSheet extends ActorSheet {
 				result = "🟥 Critical Failure 🟥";
 			}
 			if (levelsOfSuccess > 0) {
-				message += ` and the result is ${roll.total}, therefore it is a ${result}, accumulating: ${levelsOfSuccess} ✔️.`;
+				message += ` and the result is ${roll.total}, therefore it is a ${result}, accumulating: ${levelsOfSuccess}*✔️.`;
 			} else if (levelsOfFailure > 0) {
-				message += ` and the result is ${roll.total}, therefore it is a ${result}, accumulating: ${levelsOfFailure} ❌.`;
+				message += ` and the result is ${roll.total}, therefore it is a ${result}, accumulating: ${levelsOfFailure}*❌.`;
 			} else {
 				message += ` and the result is ${roll.total}, therefore it is a ${result}.`;
 			}
