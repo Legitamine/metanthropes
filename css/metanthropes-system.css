@@ -607,8 +607,8 @@ button {
   margin: 2px 0;
   padding: 0;
   align-items: center;
-  background: #000;
-  border: 2px groove #143d0a;
+  background: rgba(218, 97, 222, 0.3529411765);
+  border: 2px groove #000;
   font-weight: bold;
 }
 .metanthropes .items-header > * {
@@ -688,8 +688,8 @@ button {
   margin: 2px 0;
   padding: 0;
   align-items: center;
-  background: #143d0a;
-  border: 2px groove #143d0a;
+  background: rgba(218, 97, 222, 0.3529411765);
+  border: 2px groove #000;
   font-weight: bold;
 }
 .metanthropes .items-list .items-header > * {
