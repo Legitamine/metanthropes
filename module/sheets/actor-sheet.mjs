@@ -11,7 +11,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
 			classes: ["metanthropes", "sheet", "actor"], // these are custom css classes that are used in the html file
-			template: "systems/metanthropes-system/templates/actor/actor-sheet.html",
 			width: 990,
 			height: 900,
 			closeOnSubmit: false,
@@ -29,7 +28,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 	}
 	get template() {
 		// doesn't work console.log('${this.actor.data.type}');
-		return `systems/metanthropes-system/templates/sheets/${this.actor.type}-sheet.hbs`;
+		return `systems/metanthropes-system/templates/actor/${this.actor.type}-sheet.hbs`;
 	}
 	getData() {
 		const context = super.getData();

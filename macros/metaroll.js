@@ -12,18 +12,19 @@ if (!metaroller) {
 }
 
 let statOptions = "";
-for (let [stat, value] of Object.entries(metaroller.system)) {
-	if (
-		stat == "Endurance" ||
-		stat == "Power" ||
-		stat == "Reflexes" ||
-		stat == "Perception" ||
-		stat == "Manipulation" ||
-		stat == "Creativity" ||
-		stat == "Willpower" ||
-		stat == "Consciousness" ||
-		stat == "Awareness"
-	) {
+for (let [stat, value] of Object.entries(metaroller.system.RollStats)) {
+	//if (
+	//	stat == "Endurance" ||
+	//	stat == "Power" ||
+	//	stat == "Reflexes" ||
+	//	stat == "Perception" ||
+	//	stat == "Manipulation" ||
+	//	stat == "Creativity" ||
+	//	stat == "Willpower" ||
+	//	stat == "Consciousness" ||
+	//	stat == "Awareness"
+	//) 
+	{
 		statOptions += `<option value="${stat}">${stat}</option>`;
 	}
 }
@@ -49,7 +50,7 @@ let d = new Dialog({
 			callback: async (html) => {
 				let selectedStat = html.find("#stat").val();
 				let multiAction = html.find("#multiAction").val() === "yes";
-				let statRollValue = metaroller.system[selectedStat].Roll;
+				let statRollValue = metaroller.system.RollStats[selectedStat].Roll;
 				let modifier = 0;
 				if (multiAction) {
 					let multiActionOptions = "";

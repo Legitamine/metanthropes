@@ -236,16 +236,17 @@ export class MetanthropesActor extends Actor {
 		return data;
 	}
 	_prepareCharacteristicsRollData(data) {
-		//! Do I really Need this? Are these used in any type of macros or not?
-		// do the following in order to quickly see the actor's data structure to use in rolls
+		//? do the following in order to quickly see the actor's data structure to use in rolls
 		// 	const actor = game.actors.getName("My Character Name");
 		//	console.log(actor.getRollData());
-		// I don't need the below if I am going to call @Characteristics.Body.Stats. etc
-		// this will add stats to the top level of the actor so it can be easily accessed for the macros
+		//! I don't need the below if I am going to call @Characteristics.Body.Stats. etc
+		//* this will add stats to the top level of the actor so it can be easily accessed for the macros
 		if (data.Characteristics) {
+			data.RollStats = {};
 			for (let [charslot, charslotvalue] of Object.entries(data.Characteristics)) {
 				for (let [k, v] of Object.entries(charslotvalue.Stats)) {
-					data[k] = foundry.utils.deepClone(v);
+					data.RollStats[k] = foundry.utils.deepClone(v);
+					console.log("Metanthropes RPG RollStats", k, data.RollStats[k]);
 				}
 			}
 		}
