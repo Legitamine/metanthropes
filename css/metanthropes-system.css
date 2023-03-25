@@ -602,3 +602,105 @@ button {
   cursor: url(../artwork/metanthropes-dice-roll-small.webp), pointer;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
+.metanthropes .items-header {
+  height: 28px;
+  margin: 2px 0;
+  padding: 0;
+  align-items: center;
+  background: #000;
+  border: 2px groove #143d0a;
+  font-weight: bold;
+}
+.metanthropes .items-header > * {
+  font-size: 14px;
+  text-align: center;
+}
+.metanthropes .items-header .item-name {
+  font-weight: bold;
+  padding-left: 5px;
+  text-align: left;
+  display: flex;
+}
+.metanthropes .items-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  color: #444;
+}
+.metanthropes .items-list .item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.metanthropes .items-list .item-name {
+  flex: 2;
+  margin: 0;
+  overflow: hidden;
+  font-size: 13px;
+  text-align: left;
+  align-items: center;
+  display: flex;
+}
+.metanthropes .items-list .item-name h3,
+.metanthropes .items-list .item-name h4 {
+  margin: 0;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+.metanthropes .items-list .item-controls {
+  display: flex;
+  flex: 0 0 100px;
+  justify-content: flex-end;
+}
+.metanthropes .items-list .item-controls a {
+  font-size: 12px;
+  text-align: center;
+  margin: 0 6px;
+}
+.metanthropes .items-list .item {
+  align-items: center;
+  padding: 0 2px;
+  border-bottom: 1px solid #c9c7b8;
+}
+.metanthropes .items-list .item:last-child {
+  border-bottom: none;
+}
+.metanthropes .items-list .item .item-name {
+  color: #191813;
+}
+.metanthropes .items-list .item .item-name .item-image {
+  flex: 0 0 30px;
+  height: 30px;
+  background-size: 30px;
+  border: none;
+  margin-right: 5px;
+}
+.metanthropes .items-list .item-prop {
+  text-align: center;
+  border-left: 1px solid #c9c7b8;
+  border-right: 1px solid #c9c7b8;
+  font-size: 12px;
+}
+.metanthropes .items-list .items-header {
+  height: 28px;
+  margin: 2px 0;
+  padding: 0;
+  align-items: center;
+  background: #143d0a;
+  border: 2px groove #143d0a;
+  font-weight: bold;
+}
+.metanthropes .items-list .items-header > * {
+  font-size: 12px;
+  text-align: center;
+}
+.metanthropes .items-list .items-header .item-name {
+  padding-left: 5px;
+  text-align: left;
+}
+.metanthropes .item-formula {
+  flex: 0 0 200px;
+  padding: 0 8px;
+}

@@ -3,15 +3,13 @@
  * Pre-loaded templates are compiled and cached for fast access when rendering
  * @return {Promise}
  */
-export const preloadHandlebarsTemplates = async function() {
+export const preloadHandlebarsTemplates = async function () {
 	return loadTemplates([
-  
-	  // Actor partials.
-	  "systems/metanthropes-system/templates/helpers/actor-combos.html",
-	  "systems/metanthropes-system/templates/helpers/actor-effects.html",
-	  "systems/metanthropes-system/templates/helpers/actor-metapowers.html",
-	  "systems/metanthropes-system/templates/helpers/actor-perks.html",
-	  "systems/metanthropes-system/templates/helpers/actor-possessions.html",
+		// Actor partials.
+		"systems/metanthropes-system/templates/helpers/actor-combos.html",
+		"systems/metanthropes-system/templates/helpers/actor-effects.html",
+		"systems/metanthropes-system/templates/helpers/actor-metapowers.html",
+		"systems/metanthropes-system/templates/helpers/actor-perks.html",
+		"systems/metanthropes-system/templates/helpers/actor-possessions.html",
 	]);
-  };
-  
+};
