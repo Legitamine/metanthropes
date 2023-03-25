@@ -17,15 +17,15 @@
 
     {{!-- Description Tab --}}
     <div class="tab" data-group="primary" data-tab="description">
-      {{editor system.description-metabase target="system.description-metabase" rollData=rollData button=true owner=owner editable=editable}}
+      {{editor system.description-metabase.value target="system.description-metabase.value" rollData=rollData button=true owner=owner editable=editable}}
     </div>
 
     {{!-- Attributes Tab --}}
     <div class="tab attributes" data-group="primary" data-tab="attributes">
       {{!-- As you add new fields, add them in here! --}}
       <div class="resource">
-        <label class="resource-label">Spell Level</label>
-        <input type="text" name="system.Level" value="{{system.Level}}" data-dtype="Number"/>
+        <label class="resource-label">⏫:</label>
+        <input type="text" name="system.Level.value" value="{{system.Level.value}}" data-dtype="Number"/>
       </div>
     </div>
   </section>

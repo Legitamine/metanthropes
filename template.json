@@ -728,7 +728,7 @@
 					"value": "some clasification"
 				},
 				"Level": {
-					"type": "string",
+					"type": "number",
 					"label": "Level",
 					"value": "2"
 				},
