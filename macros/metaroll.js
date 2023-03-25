@@ -116,9 +116,8 @@ async function rollDice(stat, statRollValue, modifier) {
 		result = "🟥 Critical Failure 🟥";
 	}
 	let message = `${metaroller.name} attempts a roll with ${stat} score of ${statRollValue}%`;
-	console.log("modifier", modifier);
+	console.log("Multi-Action reduction", modifier, "Levels of Success", levelsOfSuccess, "Levels of Failure", levelsOfFailure);
 	if (modifier < 0) {
-		console.log("yrd modifier", modifier, levelsOfSuccess, levelsOfFailure);
 		if (levelsOfSuccess > 0) {
 			message += ` and with a Multi-Action reduction of ${modifier}% and the result is ${roll.total}, therefore it is a ${result}, accumulating: ${levelsOfSuccess}*✔️.`;
 		} else if (levelsOfFailure > 0) {

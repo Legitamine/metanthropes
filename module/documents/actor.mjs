@@ -241,6 +241,7 @@ export class MetanthropesActor extends Actor {
 		//	console.log(actor.getRollData());
 		//! I don't need the below if I am going to call @Characteristics.Body.Stats. etc
 		//* this will add stats to the top level of the actor so it can be easily accessed for the macros
+		//todo: I want to only take the .Roll value for each Stat, not the whole buffs and conditions etc
 		if (data.Characteristics) {
 			data.RollStats = {};
 			for (let [charslot, charslotvalue] of Object.entries(data.Characteristics)) {

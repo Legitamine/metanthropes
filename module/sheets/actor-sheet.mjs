@@ -27,7 +27,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 		});
 	}
 	get template() {
-		// doesn't work console.log('${this.actor.data.type}');
 		return `systems/metanthropes-system/templates/actor/${this.actor.type}-sheet.hbs`;
 	}
 	getData() {
@@ -49,7 +48,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//adding this enabled rolls??
 		context.rollData = context.actor.getRollData();
 		// Prepare active effects
-		//context.effects = prepareActiveEffectCategories(this.actor.effects);
+		context.effects = prepareActiveEffectCategories(this.actor.effects);
 		return context;
 	}
 	//prepare humanoid data
@@ -69,17 +68,17 @@ export class MetanthropesActorSheet extends ActorSheet {
 		// -------------------------------------------------------------
 		// Everything below here is only needed if the sheet is editable
 		if (!this.isEditable) return;
-		//	// Add Inventory Item
-		//	html.find(".item-create").click(this._onItemCreate.bind(this));
-		//	// Delete Inventory Item
-		//	html.find(".item-delete").click((ev) => {
-		//		const li = $(ev.currentTarget).parents(".item");
-		//		const item = this.actor.items.get(li.data("itemId"));
-		//		item.delete();
-		//		li.slideUp(200, () => this.render(false));
-		//	});
-		//	// Active Effect management
-		//	html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
+		// Add Inventory Item
+		html.find(".item-create").click(this._onItemCreate.bind(this));
+		// Delete Inventory Item
+		html.find(".item-delete").click((ev) => {
+			const li = $(ev.currentTarget).parents(".item");
+			const item = this.actor.items.get(li.data("itemId"));
+			item.delete();
+			li.slideUp(200, () => this.render(false));
+		});
+		// Active Effect management
+		html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
 		// Rollable abilities.
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
 		// Drag events for macros.
@@ -107,7 +106,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 		}
 		// Handle rolls that supply the formula directly.
 		if (dataset.roll) {
-			//let label = dataset.label ? `[${dataset.label}] ${dataset.statroll}` : "";
 			let message = `${this.actor.name} attempts a roll with ${dataset.label} score of ${dataset.statroll}%`;
 			let roll = new Roll(dataset.roll, this.actor.getRollData()).evaluate({ async: false });
 			let result = roll.total <= dataset.statroll ? "Success 🟩" : "Failure 🟥";
