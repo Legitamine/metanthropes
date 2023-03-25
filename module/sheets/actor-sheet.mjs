@@ -40,21 +40,70 @@ export class MetanthropesActorSheet extends ActorSheet {
 		context.system = actorData.system;
 		context.flags = actorData.flags;
 		// Prepare character data and items.
-		//		if (actorData.type == "humanoid") {
-		//			this._prepareItems(context);
-		//			this._prepareHumanoidData(context);
-		//		}
+		if (actorData.type == "MetaTherion") {
+			this._prepareItems(context);
+			this._prepareCharacteristicsItemData(context);
+		}
 		// Add roll data for TinyMCE editors.
 		//adding this enabled rolls??
 		context.rollData = context.actor.getRollData();
 		// Prepare active effects
-		context.effects = prepareActiveEffectCategories(this.actor.effects);
+		// context.effects = prepareActiveEffectCategories(this.actor.effects);
 		return context;
 	}
-	//prepare humanoid data
-	//	_prepareHumanoidData(context) {
-	//
-	//	}
+	//prepare localization for characters
+	_prepareCharacteristicsItemData(context) {
+		//here is where I would do the localization
+	}
+	//prepare items
+	_prepareItems(context) {
+		// Initialize containers.
+		const Possessions = [];
+		const Perks = [];
+		const Combos = {
+			1: [],
+			2: [],
+			3: [],
+			4: [],
+			5: [],
+		};
+		const Metapowers = {
+			1: [],
+			2: [],
+			3: [],
+			4: [],
+			5: [],
+		};
+		// Iterate through items, allocating to containers
+		for (let i of context.items) {
+			i.img = i.img || DEFAULT_TOKEN;
+			// Append to Possessions.
+			if (i.type === "Possession") {
+				Possessions.push(i);
+			}
+			// Append to Perks.
+			else if (i.type === "Perk") {
+				Perks.push(i);
+			}
+			// Append to Metapowers.
+			else if (i.type === "Metapower") {
+				if (i.system.metabase.level != undefined) {
+					Metapowers[i.system.metabase.level].push(i);
+				}
+			}
+			else if (i.type === "Combo") {
+				if (i.system.metabase.level != undefined) {
+					Combos[i.system.metabase.level].push(i);
+				}
+			}
+		}
+
+		// Assign and return
+		context.Possessions = Possessions;
+		context.Perks = Perks;
+		context.Metapowers = Metapowers;
+		context.Combos = Combos;
+	}
 	// activate listeners for clickable stuff
 	//code from boilerplate
 	activateListeners(html) {
@@ -78,7 +127,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			li.slideUp(200, () => this.render(false));
 		});
 		// Active Effect management
-		html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
+		// html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
 		// Rollable abilities.
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
 		// Drag events for macros.
@@ -91,6 +140,28 @@ export class MetanthropesActorSheet extends ActorSheet {
 			});
 		}
 	}
+	// code from boilerplate
+	async _onItemCreate(event) {
+		event.preventDefault();
+		const header = event.currentTarget;
+		// Get the type of item to create.
+		const type = header.dataset.type;
+		// Grab any data associated with this control.
+		const data = duplicate(header.dataset);
+		// Initialize a default name.
+		const name = `New ${type.capitalize()}`;
+		// Prepare the item object.
+		const itemData = {
+		  name: name,
+		  type: type,
+		  system: data
+		};
+		// Remove the type from the dataset since it's in the itemData.type prop.
+		delete itemData.system["type"];
+	
+		// Finally, create the item!
+		return await Item.create(itemData, {parent: this.actor});
+	  }
 	//code from boilerplate on rolls
 	_onRoll(event) {
 		event.preventDefault();
