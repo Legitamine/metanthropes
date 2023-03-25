@@ -22,6 +22,7 @@ import { MetanthropesItem } from "./documents/item.mjs";
 import { MetanthropesActorSheet } from "./sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
 // Import helpers.
+import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 ////
 //*
 //? Table of Contents
@@ -59,6 +60,8 @@ Hooks.once("init", async function () {
 	Items.registerSheet("metanthropes", MetanthropesItemSheet, {
 		makeDefault: true,
 	});
+	// Preload Handlebars templates.
+	return preloadHandlebarsTemplates();
 	console.log("========================================================================");
 	console.log("Metanthropes RPG System Initialized");
 	console.log("========================================================================");

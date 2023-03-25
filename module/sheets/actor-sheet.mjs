@@ -87,13 +87,12 @@ export class MetanthropesActorSheet extends ActorSheet {
 			}
 			// Append to Metapowers.
 			else if (i.type === "Metapower") {
-				if (i.system.metabase.level != undefined) {
-					Metapowers[i.system.metabase.level].push(i);
+				if (i.system.level != undefined) {
+					Metapowers[i.system.level].push(i);
 				}
-			}
-			else if (i.type === "Combo") {
-				if (i.system.metabase.level != undefined) {
-					Combos[i.system.metabase.level].push(i);
+			} else if (i.type === "Combo") {
+				if (i.system.level != undefined) {
+					Combos[i.system.level].push(i);
 				}
 			}
 		}
@@ -152,16 +151,16 @@ export class MetanthropesActorSheet extends ActorSheet {
 		const name = `New ${type.capitalize()}`;
 		// Prepare the item object.
 		const itemData = {
-		  name: name,
-		  type: type,
-		  system: data
+			name: name,
+			type: type,
+			system: data,
 		};
 		// Remove the type from the dataset since it's in the itemData.type prop.
 		delete itemData.system["type"];
-	
+
 		// Finally, create the item!
-		return await Item.create(itemData, {parent: this.actor});
-	  }
+		return await Item.create(itemData, { parent: this.actor });
+	}
 	//code from boilerplate on rolls
 	_onRoll(event) {
 		event.preventDefault();

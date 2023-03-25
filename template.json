@@ -730,7 +730,7 @@
 				"level": {
 					"type": "string",
 					"label": "Level",
-					"value": "some level"
+					"value": "2"
 				},
 				"statrolled": {
 					"type": "string",
