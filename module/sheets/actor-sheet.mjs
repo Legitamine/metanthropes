@@ -59,6 +59,12 @@ export class MetanthropesActorSheet extends ActorSheet {
 	_prepareItems(context) {
 		// Initialize containers.
 		const Possessions = [];
+		//todo: add filtering per category for possessions - allowing for an item to have multiple ones like a weapon that is also a gadget etc.
+		//todo: need to create the correct schema on template.json for this
+		//	Armor: [],
+		//	Weapon: [],
+		//	Gadget: [],
+		//	Drug: [],
 		const Perks = [];
 		const Combos = {
 			1: [],
@@ -79,6 +85,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			i.img = i.img || DEFAULT_TOKEN;
 			// Append to Possessions.
 			if (i.type === "Possession") {
+				//todo if (i.system.category)
 				Possessions.push(i);
 			}
 			// Append to Perks.
@@ -175,6 +182,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			}
 		}
 		// Handle rolls that supply the formula directly.
+		//todo: I need to leverage this, bring it outside of actor-sheet and into it's own. Add bonus and penalties and ability to add more in the future. Also include destiny re-rolls as an option in the chat message.
 		if (dataset.roll) {
 			let message = `${this.actor.name} attempts a roll with ${dataset.label} score of ${dataset.statroll}%`;
 			let roll = new Roll(dataset.roll, this.actor.getRollData()).evaluate({ async: false });

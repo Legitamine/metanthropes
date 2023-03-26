@@ -5,23 +5,23 @@
 			<div class="layout-container-grid3x1 style-container-grid3x1">
 				<div class="style-cs-values">
 					<p>🏁
-						<input name="system.Characteristics.{{@key}}.Initial" type="number" value="{{this.Initial}}"
+						<input class="style-container-input-charstat" name="system.Characteristics.{{@key}}.Initial" type="number" value="{{this.Initial}}"
 							data-dtype="number" />
 					</p>
 					<p>📈
-						<input name="system.Characteristics.{{@key}}.Progressed" type="number"
+						<input class="style-container-input-charstat" name="system.Characteristics.{{@key}}.Progressed" type="number"
 							value="{{this.Progressed}}" data-dtype="number" />
 					</p>
 				</div>
 				<div class="style-cs-chars-value">{{this.Current}}</div>
 				<div>
 					<p class="style-cs-buffs">🛡️
-						<input class="style-cs-buffs" name="system.Characteristics.{{@key}}.Buff.Current" type="number"
+						<input class="style-cs-buffs style-container-input-charstat" name="system.Characteristics.{{@key}}.Buff.Current" type="number"
 							value="{{this.Buff.Current}}" data-dtype="number" /><label
 							for="system.Characteristics.{{@key}}.Buff.Current">{{this.Buff.Name}}</label>
 					</p>
 					<p class="style-cs-conditions">💀
-						<input class="style-cs-conditions" name="system.Characteristics.{{@key}}.Condition.Current"
+						<input class="style-cs-conditions style-container-input-charstat" name="system.Characteristics.{{@key}}.Condition.Current"
 							type="number" value="{{this.Condition.Current}}" data-dtype="number" /><label
 							for="system.Characteristics.{{@key}}.Condition.Current">{{this.Condition.Name}}</label>
 					</p>
@@ -30,7 +30,7 @@
 		</div>
 		<div class="layout-container-grid2x2 style-container-stats">
 			{{#each CoreConditions}}
-				<div class="style-cs-conditions">💀<input class="style-cs-conditions"
+				<div class="style-cs-conditions">💀<input class="style-cs-conditions style-container-input-charstat"
 						name="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}" type="number" value="{{this}}"
 						data-dtype="number" /><label
 						for="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}">{{@key}}</label>
@@ -43,11 +43,11 @@
 				<div class="layout-container-grid3x1 style-container-grid3x1">
 					<div class="style-cs-values">
 						<p>🏁
-							<input name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Initial" type="number"
+							<input class="style-container-input-charstat" name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Initial" type="number"
 								value="{{this.Initial}}" data-dtype="number" />
 						</p>
 						<p>📈
-							<input name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Progressed" type="number"
+							<input class="style-container-input-charstat" name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Progressed" type="number"
 								value="{{this.Progressed}}" data-dtype="number" />
 						</p>
 					</div>
@@ -55,13 +55,13 @@
 						{{this.Roll}}</div>
 					<div>
 						<p class="style-cs-buffs">🛡️
-							<input class="style-cs-buffs"
+							<input class="style-cs-buffs style-container-input-charstat"
 								name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current" type="number"
 								value="{{this.Buff.Current}}" data-dtype="number" /> <label
 								for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current">{{this.Buff.Name}}</label>
 						</p>
 						<p class="style-cs-conditions">💀
-							<input class="style-cs-conditions"
+							<input class="style-cs-conditions style-container-input-charstat"
 								name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Current" type="number"
 								value="{{this.Condition.Current}}" data-dtype="number" /> <label
 								for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Name">{{this.Condition.Name}}</label>
