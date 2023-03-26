@@ -25,9 +25,9 @@
 	opacity: 1;
 	border: 1px solid $c-purple;
 	border-radius: 15px;
-	justify-content: center;
+	justify-content: stretch;
 	justify-self: center;
-	align-items: center;
+	align-items: stretch;
 	align-self: center;
 }
 //medium container chars
@@ -65,7 +65,7 @@
 	border-radius: 15px;
 	justify-content: flex-start;
 	justify-self: stretch;
-	align-items: center;
+	align-items: stretch;
 	align-self: stretch;
 }
 .style-container-border {
