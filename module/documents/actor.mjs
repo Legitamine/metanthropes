@@ -240,13 +240,12 @@ export class MetanthropesActor extends Actor {
 		// 	const actor = game.actors.getName("My Character Name");
 		//	console.log(actor.getRollData());
 		//! I don't need the below if I am going to call @Characteristics.Body.Stats. etc
-		//* this will add stats to the top level of the actor so it can be easily accessed for the macros
-		//todo: I want to only take the .Roll value for each Stat, not the whole buffs and conditions etc
+		//* this will add stats used in rolls to the top level of the actor so it can be easily accessed for the macros etc
 		if (data.Characteristics) {
 			data.RollStats = {};
 			for (let [charslot, charslotvalue] of Object.entries(data.Characteristics)) {
 				for (let [k, v] of Object.entries(charslotvalue.Stats)) {
-					data.RollStats[k] = foundry.utils.deepClone(v);
+					data.RollStats[k] = v.Roll // instead of foundry.utils.deepClone(v); that would clone the whole object
 					console.log("Metanthropes RPG RollStats", k, data.RollStats[k]);
 				}
 			}

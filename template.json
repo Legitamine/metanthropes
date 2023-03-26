@@ -722,50 +722,60 @@
 				}
 			},
 			"metabase": {
-				"clasification": {
-					"type": "string",
-					"label": "Clasification",
-					"value": "some clasification"
-				},
-				"Level": {
-					"type": "number",
-					"label": "Level",
-					"value": "2"
-				},
-				"statrolled": {
-					"type": "string",
-					"label": "Stat Rolled",
-					"value": "some stat rolled"
-				},
 				"metapowername": {
 					"type": "string",
 					"label": "Metapower Name",
 					"value": "some metapower name"
 				},
+				"classification": {
+					"type": "string",
+					"label": "Classification",
+					"value": "some classification"
+				},
+				"Level": {
+					"type": "number",
+					"label": "⏫",
+					"value": "1"
+				},
 				"energytype": {
 					"type": "string",
-					"label": "Energy Type",
+					"label": "✨",
 					"value": "some energy type"
+				},
+				"statrolled": {
+					"type": "string",
+					"label": "🎲",
+					"value": "some stat rolled"
+				},
+				"destinyspent" : {
+					"type": "number",
+					"label": "🤞",
+					"value": "0"
 				},
 				"activation": {
 					"type": "string",
-					"label": "Activation",
+					"label": "⏱",
 					"value": "some activation"
 				},
 				"targets": {
 					"type": "string",
-					"label": "Targets",
+					"label": "🎯",
 					"value": "some targets"
-				},
-				"range": {
-					"type": "string",
-					"label": "Range",
-					"value": "some range"
 				},
 				"duration": {
 					"type": "string",
-					"label": "Duration",
+					"label": "⏳",
 					"value": "some duration"
+				},
+				"range": {
+					"type": "string",
+					"label": "📏",
+					"value": "some range"
+				},
+				"areaeffect": {
+					"type": "string",
+					"label": "🗺️",
+					"value": "some area effect"
 				},
 				"effect": {
 					"type": "string",
