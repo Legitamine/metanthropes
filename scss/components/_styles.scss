@@ -87,10 +87,10 @@
 //input containers styling
 .style-container-input-charstat {
 	min-width: 2ch;
-	max-width: 4ch;
+	max-width: 3ch;
 	margin: $margin-sm;
 	padding: $padding-input-number;
-	border: 1px dashed $c-purple;
+	border: 1px dotted $c-purple;
 	border-radius: 15px;
 	justify-content: center;
 	align-items: center;

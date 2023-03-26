@@ -12,12 +12,12 @@ export async function MetaRoll(actor, stat) {
     	<option value="no">No</option>
     	<option value="yes">Yes</option>
     </select>
-    <div id="multiActionSelection" class="layout-metaroll-dialog" style="display: none;">
+    <span id="multiActionSelection" class="layout-metaroll-dialog" style="display: none;">
     <p>Select the number of Multi-Actions:</p>
     <select id="multiActionCount">
     	${multiActionOptions.map((option) => `<option value="${option}">${option}</option>`).join("")}
     </select>
-    </div>
+    </span>
 	</div>
 	`;
 	let dialog = new Dialog({

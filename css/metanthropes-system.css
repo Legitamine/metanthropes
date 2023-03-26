@@ -490,10 +490,10 @@ button {
 }
 .metanthropes .style-container-input-charstat {
   min-width: 2ch;
-  max-width: 4ch;
+  max-width: 3ch;
   margin: 1px;
   padding: 3px 3px 3px 6px;
-  border: 1px dashed #370239;
+  border: 1px dotted #370239;
   border-radius: 15px;
   justify-content: center;
   align-items: center;
