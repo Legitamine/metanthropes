@@ -6,7 +6,7 @@
 //todo: Enable basic functionality
 //*
 ////
-import { MetaRoll } from "./helpers/metaroll.mjs";
+import { MetaRoll } from "../helpers/metaroll.mjs";
 export class MetanthropesActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
@@ -170,7 +170,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		return await Item.create(itemData, { parent: this.actor });
 	}
 	//code from boilerplate on rolls
-	_onRoll(event) {
+	async _onRoll(event) {
 		event.preventDefault();
 		const element = event.currentTarget;
 		const dataset = element.dataset;
@@ -187,7 +187,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		if (dataset.roll) {
 			const actor = this.actor;
 			const stat = dataset.stat;
-			MetaRoll(actor, stat);
+			await MetaRoll(actor, stat);
 			//	let message = `${this.actor.name} attempts a roll with ${dataset.label} score of ${dataset.statroll}%`;
 			//	let roll = new Roll(dataset.roll, this.actor.getRollData()).evaluate({ async: false });
 			//	let result = roll.total <= dataset.statroll ? "Success 🟩" : "Failure 🟥";
