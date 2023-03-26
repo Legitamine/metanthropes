@@ -1,6 +1,5 @@
-//metaroll v2 based off chat-gpt3.5 replies
 //todo: add re-roll button with Destiny deduction
-//chat gpt 4 ftw btw
+//import MetaRoll from "./module/helpers/metaroll.mjs";
 let metaroller = game.user.character;
 console.log(metaroller);
 
@@ -24,9 +23,7 @@ for (let [stat, value] of Object.entries(metaroller.system.RollStats)) {
 	//	stat == "Consciousness" ||
 	//	stat == "Awareness"
 	//) 
-	{
 		statOptions += `<option value="${stat}">${stat}</option>`;
-	}
 }
 
 let d = new Dialog({

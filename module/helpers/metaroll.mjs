@@ -6,7 +6,7 @@ export async function MetaRoll(actor, stat) {
 	const multiActionOptions = Array.from({ length: maxMultiActions - 1 }, (_, i) => i + 2);
 
 	let dialogContent = `
-    <div>
+    <div class="layout-metaroll-dialog">
     <p>Is this part of a Multi-Action?</p>
     <select id="multiAction">
     	<option value="no">No</option>
@@ -21,7 +21,7 @@ export async function MetaRoll(actor, stat) {
     </div>
 	`;
 	let dialog = new Dialog({
-		title: `MetaRoll: ${stat}`,
+		title: `MetaRoll: ${this.actor.name} ${stat}`,
 		content: dialogContent,
 		buttons: {
 			roll: {

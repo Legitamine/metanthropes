@@ -187,7 +187,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		if (dataset.roll) {
 			const actor = this.actor;
 			const stat = dataset.stat;
-			await MetaRoll(actor, stat);
+			MetaRoll(actor, stat);
 			//	let message = `${this.actor.name} attempts a roll with ${dataset.label} score of ${dataset.statroll}%`;
 			//	let roll = new Roll(dataset.roll, this.actor.getRollData()).evaluate({ async: false });
 			//	let result = roll.total <= dataset.statroll ? "Success 🟩" : "Failure 🟥";

@@ -119,3 +119,13 @@
 	padding: $padding-sm;
 	margin: $margin-sm;
 }
+.layout-metaroll-dialog {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: $padding-lg;
+	margin: $margin-lg;
+	//todo: need to test the below
+	//max-height: 80vh;
+	//overflow-y: auto;
+}
