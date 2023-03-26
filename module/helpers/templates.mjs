@@ -11,5 +11,7 @@ export const preloadHandlebarsTemplates = async function () {
 		"systems/metanthropes-system/templates/helpers/actor-metapowers.html",
 		"systems/metanthropes-system/templates/helpers/actor-perks.html",
 		"systems/metanthropes-system/templates/helpers/actor-possessions.html",
+		"systems/metanthropes-system/templates/helpers/actor-charstats.hbs",
+		"systems/metanthropes-system/templates/helpers/actor-notes.hbs",
 	]);
 };

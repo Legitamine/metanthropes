@@ -345,12 +345,13 @@ button {
 }
 .metanthropes .layout-container-grid3x1 {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  -moz-column-gap: 3px;
-       column-gap: 3px;
+  grid-template-columns: 0.75fr 0.5fr 1fr;
+  -moz-column-gap: 1px;
+       column-gap: 1px;
   padding: 1px;
   margin: 1px;
   overflow: hidden;
+  overflow-wrap: break-word;
 }
 .metanthropes .layout-container-chars {
   display: grid;

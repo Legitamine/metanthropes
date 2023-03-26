@@ -65,13 +65,15 @@
 	overflow-wrap: break-word;
 }
 //medium container with 3 columns and 1 row
+// this is used for charstats
 .layout-container-grid3x1 {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	column-gap: 3px;
+	grid-template-columns: 0.75fr 0.5fr 1fr;
+	column-gap: 1px;
 	padding: $padding-sm;
 	margin: $margin-sm;
 	overflow: hidden;
+	overflow-wrap: break-word;
 }
 .layout-container-chars {
 	display: grid;
