@@ -21,7 +21,7 @@ export async function MetaRoll(actor, stat) {
     </div>
 	`;
 	let dialog = new Dialog({
-		title: `MetaRoll: ${this.actor.name} ${stat}`,
+		title: `MetaRoll: ${actor.name} ${stat}`,
 		content: dialogContent,
 		buttons: {
 			roll: {

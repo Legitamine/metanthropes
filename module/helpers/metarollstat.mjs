@@ -2,18 +2,20 @@
 export async function MetaRollStat(actor, stat, statValue, modifier = 0) {
 	const roll = await new Roll("1d100").evaluate({ async: true });
 	const total = roll.total;
-	const isSuccess = total <= statValue + modifier;
-	const result = isSuccess ? "Success 🟩" : "Failure 🟥";
-	const levelsOfSuccess = Math.floor((statValue + modifier - total) / 10);
-	const levelsOfFailure = Math.floor((total - statValue - modifier) / 10);
+	// const isSuccess = total <= statValue + modifier;
+	let result = null // isSuccess ? "Success 🟩" : "Failure 🟥";
+	let levelsOfSuccess = Math.floor((statValue + modifier - total) / 10);
+	let levelsOfFailure = Math.floor((total - statValue - modifier) / 10);
 	const criticalSuccess = total === 1;
 	const criticalFailure = total === 100;
 	// this kicks-off the calculation, assuming that is is a failure
 	if (total - modifier > statValue) {
 		// in which case we don't care about what levels of success we have, so we set to 0 to avoid confusion later
+		result  = "Failure 🟥";
 		levelsOfSuccess = 0;
 	} else {
 		// if the calculation is <= to statValue, it's a success, so we reset the levels of failure to 0
+		result  = "Success 🟩";
 		levelsOfFailure = 0;
 	}
 	//check for critical success or failure
