@@ -7,18 +7,20 @@ export async function MetaRoll(actor, stat) {
 
 	let dialogContent = `
     <div class="layout-metaroll-dialog">
+	<div>
     <p>Is this part of a Multi-Action?</p>
     <select id="multiAction">
     	<option value="no">No</option>
     	<option value="yes">Yes</option>
     </select>
     </div>
-    <div id="multiActionSelection" style="display: none;">
+    <div id="multiActionSelection" class="layout-metaroll-dialog" style="display: none;">
     <p>Select the number of Multi-Actions:</p>
     <select id="multiActionCount">
     	${multiActionOptions.map((option) => `<option value="${option}">${option}</option>`).join("")}
     </select>
     </div>
+	</div>
 	`;
 	let dialog = new Dialog({
 		title: `MetaRoll: ${actor.name} ${stat}`,

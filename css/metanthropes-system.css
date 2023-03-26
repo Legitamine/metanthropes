@@ -403,6 +403,7 @@ button {
   align-items: flex-start;
   padding: 6px;
   margin: 6px;
+  overflow-y: auto;
 }
 .metanthropes .style-container-grid3x4 {
   opacity: 1;
