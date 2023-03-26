@@ -345,7 +345,7 @@ button {
 }
 .metanthropes .layout-container-grid3x1 {
   display: grid;
-  grid-template-columns: 0.75fr 0.5fr 1fr;
+  grid-template-columns: 2fr 1fr 4fr;
   -moz-column-gap: 1px;
        column-gap: 1px;
   padding: 1px;
@@ -475,6 +475,16 @@ button {
   justify-self: stretch;
   align-items: center;
   align-self: stretch;
+}
+.metanthropes .style-container-input-charstat {
+  min-width: 2ch;
+  max-width: 4ch;
+  margin: 1px;
+  padding: 3px 3px 3px 6px;
+  border: 1px dashed #370239;
+  border-radius: 15px;
+  justify-content: center;
+  align-items: center;
 }
 .metanthropes .style-labels-number {
   opacity: 1;

@@ -6,6 +6,7 @@
 //todo: Enable basic functionality
 //*
 ////
+import { MetaRoll } from "./helpers/metaroll.mjs";
 export class MetanthropesActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
@@ -42,7 +43,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		// Prepare character data and items.
 		if (actorData.type == "MetaTherion") {
 			this._prepareItems(context);
-			this._prepareCharacteristicsItemData(context);
+			//this._prepareCharacteristicsItemData(context);
 		}
 		// Add roll data for TinyMCE editors.
 		//adding this enabled rolls??
@@ -52,9 +53,9 @@ export class MetanthropesActorSheet extends ActorSheet {
 		return context;
 	}
 	//prepare localization for characters
-	_prepareCharacteristicsItemData(context) {
-		//here is where I would do the localization
-	}
+	//_prepareCharacteristicsItemData(context) {
+	//here is where I would do the localization
+	//}
 	//prepare items
 	_prepareItems(context) {
 		// Initialize containers.
@@ -184,48 +185,51 @@ export class MetanthropesActorSheet extends ActorSheet {
 		// Handle rolls that supply the formula directly.
 		//todo: I need to leverage this, bring it outside of actor-sheet and into it's own. Add bonus and penalties and ability to add more in the future. Also include destiny re-rolls as an option in the chat message.
 		if (dataset.roll) {
-			let message = `${this.actor.name} attempts a roll with ${dataset.label} score of ${dataset.statroll}%`;
-			let roll = new Roll(dataset.roll, this.actor.getRollData()).evaluate({ async: false });
-			let result = roll.total <= dataset.statroll ? "Success 🟩" : "Failure 🟥";
-			let levelsOfSuccess = Math.floor((dataset.statroll - roll.total) / 10);
-			let levelsOfFailure = Math.floor((roll.total - dataset.statroll) / 10);
-			let criticalSuccess = roll.total === 1;
-			let criticalFailure = roll.total === 100;
-			if (roll.total > dataset.statroll) {
-				levelsOfSuccess = 0;
-			} else {
-				levelsOfFailure = 0;
-			}
-			if (criticalSuccess) {
-				levelsOfSuccess = 10;
-				if (dataset.statroll < 100) {
-					levelsOfSuccess += 0;
-				} else {
-					levelsOfSuccess += Math.floor((dataset.statroll - 100) / 10);
-				}
-			}
-			if (criticalFailure) {
-				levelsOfFailure = 10;
-			}
-			if (criticalSuccess) {
-				result = "🟩 Critical Success 🟩";
-			} else if (criticalFailure) {
-				result = "🟥 Critical Failure 🟥";
-			}
-			if (levelsOfSuccess > 0) {
-				message += ` and the result is ${roll.total}, therefore it is a ${result}, accumulating: ${levelsOfSuccess}*✔️.`;
-			} else if (levelsOfFailure > 0) {
-				message += ` and the result is ${roll.total}, therefore it is a ${result}, accumulating: ${levelsOfFailure}*❌.`;
-			} else {
-				message += ` and the result is ${roll.total}, therefore it is a ${result}.`;
-			}
-			console.log(roll.total);
-			roll.toMessage({
-				speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-				flavor: message,
-				rollMode: game.settings.get("core", "rollMode"),
-			});
-			return roll;
+			const actor = this.actor;
+			const stat = dataset.stat;
+			MetaRoll(actor, stat);
+			//	let message = `${this.actor.name} attempts a roll with ${dataset.label} score of ${dataset.statroll}%`;
+			//	let roll = new Roll(dataset.roll, this.actor.getRollData()).evaluate({ async: false });
+			//	let result = roll.total <= dataset.statroll ? "Success 🟩" : "Failure 🟥";
+			//	let levelsOfSuccess = Math.floor((dataset.statroll - roll.total) / 10);
+			//	let levelsOfFailure = Math.floor((roll.total - dataset.statroll) / 10);
+			//	let criticalSuccess = roll.total === 1;
+			//	let criticalFailure = roll.total === 100;
+			//	if (roll.total > dataset.statroll) {
+			//		levelsOfSuccess = 0;
+			//	} else {
+			//		levelsOfFailure = 0;
+			//	}
+			//	if (criticalSuccess) {
+			//		levelsOfSuccess = 10;
+			//		if (dataset.statroll < 100) {
+			//			levelsOfSuccess += 0;
+			//		} else {
+			//			levelsOfSuccess += Math.floor((dataset.statroll - 100) / 10);
+			//		}
+			//	}
+			//	if (criticalFailure) {
+			//		levelsOfFailure = 10;
+			//	}
+			//	if (criticalSuccess) {
+			//		result = "🟩 Critical Success 🟩";
+			//	} else if (criticalFailure) {
+			//		result = "🟥 Critical Failure 🟥";
+			//	}
+			//	if (levelsOfSuccess > 0) {
+			//		message += ` and the result is ${roll.total}, therefore it is a ${result}, accumulating: ${levelsOfSuccess}*✔️.`;
+			//	} else if (levelsOfFailure > 0) {
+			//		message += ` and the result is ${roll.total}, therefore it is a ${result}, accumulating: ${levelsOfFailure}*❌.`;
+			//	} else {
+			//		message += ` and the result is ${roll.total}, therefore it is a ${result}.`;
+			//	}
+			//	console.log(roll.total);
+			//	roll.toMessage({
+			//		speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+			//		flavor: message,
+			//		rollMode: game.settings.get("core", "rollMode"),
+			//	});
+			//	return roll;
 		}
 	}
 }
