@@ -123,9 +123,12 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+	justify-content: flex-start;
+	justify-self: stretch;
+	align-self: stretch;
 	padding: $padding-lg;
 	margin: $margin-lg;
 	//todo: need to test the below
-	//max-height: 80vh;
+	max-height: 80vh;
 	overflow-y: auto;
 }

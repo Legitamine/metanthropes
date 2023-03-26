@@ -401,8 +401,12 @@ button {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: flex-start;
+  justify-self: stretch;
+  align-self: stretch;
   padding: 6px;
   margin: 6px;
+  max-height: 80vh;
   overflow-y: auto;
 }
 .metanthropes .style-container-grid3x4 {
