@@ -40,7 +40,7 @@ export async function MetaRoll(actor, stat) {
 					}
 					// collect bonus and penalty values
 					let bonus = parseInt(html.find("#bonus").val());
-					let penalty = parseInt(html.find("#penalty").val());
+					let penalty = -parseInt(html.find("#penalty").val());
 					//send the data we collected to the MetaRollStat function
 					MetaRollStat(actor, stat, statValue, modifier, bonus, penalty);
 				},
