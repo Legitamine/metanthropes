@@ -12,7 +12,7 @@ export async function MetaRoll(actor, stat) {
     	<option value="no">No</option>
     	<option value="yes">Yes</option>
     </select>
-    <span id="multiActionSelection" class="layout-metaroll-dialog" style="display: none;">
+    <span id="multiActionSelection" style="display: none;">
     <p>Select the number of Multi-Actions:</p>
     <select id="multiActionCount">
     	${multiActionOptions.map((option) => `<option value="${option}">${option}</option>`).join("")}
@@ -21,11 +21,12 @@ export async function MetaRoll(actor, stat) {
 	</div>
 	`;
 	let dialog = new Dialog({
-		title: `MetaRoll: ${actor.name} ${stat}`,
+		title: `MetaRoll: ${actor.name}'s ${stat}`,
 		content: dialogContent,
 		buttons: {
 			roll: {
-				label: "Roll",
+				label: <img src="../artwork/metanthropes-dice-roll-small.webp" alt="Roll" />,
+				//label: "Roll",
 				callback: async (html) => {
 					let multiAction = html.find("#multiAction").val() === "yes";
 					let modifier = 0;
