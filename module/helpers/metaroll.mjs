@@ -13,7 +13,7 @@ export async function MetaRoll(actor, stat) {
     	<option value="no">No</option>
     	<option value="yes">Yes</option>
     </select>
-    <span id="multiActionSelection" class="hide">
+    <span id="multiActionSelection" class="layout-hide">
     <p>Select the number of Multi-Actions: </p>
     <select id="multiActionCount">
     	${multiActionOptions.map((option) => `<option value="${option}">${option}</option>`).join("")}
@@ -48,7 +48,7 @@ export async function MetaRoll(actor, stat) {
 
 			multiActionSelect.on("change", (event) => {
 				const selectedValue = event.target.value;
-				multiActionSelectionDiv.toggleClass("hide", selectedValue !== "yes");
+				multiActionSelectionDiv.toggleClass("layout-hide", selectedValue !== "yes");
 			});
 		},
 	});

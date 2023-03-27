@@ -130,6 +130,7 @@
 	margin: $margin-lg;
 	overflow-y: auto;
 }
-.hide {
+.layout-hide {
 	@include element-invisible;
+	display: none;
 }

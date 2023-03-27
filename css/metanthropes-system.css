@@ -408,7 +408,7 @@ button {
   margin: 6px;
   overflow-y: auto;
 }
-.metanthropes .hide {
+.metanthropes .layout-hide {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -417,6 +417,7 @@ button {
   padding: 0;
   clip: rect(0 0 0 0);
   overflow: hidden;
+  display: none;
 }
 .metanthropes .style-container-grid3x4 {
   opacity: 1;
