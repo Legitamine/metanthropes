@@ -23,7 +23,7 @@
 			{{#each system.Activation}}
 			<div class="resource">
 				<label class="resource-label">{{this.label}}:</label>
-				<input type="{{this.type}}" name="this.value" value="{{this.value}}" data-dtype="{{this.dtype}}" />
+				<input type="{{this.type}}" name="system.Activation.{{@key}}.value" value="{{this.value}}" data-dtype="{{this.dtype}}" />
 			</div>
 			{{/each}}
 		</div>
