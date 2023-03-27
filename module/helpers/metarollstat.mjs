@@ -4,12 +4,12 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 	const total = roll.total;
 	// const isSuccess = total <= statValue + modifier;
 	let result = null // isSuccess ? "Success 🟩" : "Failure 🟥";
-	let levelsOfSuccess = Math.floor((statValue + modifier - total) / 10);
-	let levelsOfFailure = Math.floor((total - statValue - modifier) / 10);
+	let levelsOfSuccess = Math.floor((statValue + bonus - penalty + modifier - total) / 10);
+	let levelsOfFailure = Math.floor((total - statValue - bonus - modifier + penalty) / 10);
 	const criticalSuccess = total === 1;
 	const criticalFailure = total === 100;
 	// this kicks-off the calculation, assuming that is is a failure
-	if (total - modifier > statValue) {
+	if (total - modifier - penalty > statValue + bonus) {
 		// in which case we don't care about what levels of success we have, so we set to 0 to avoid confusion later
 		result  = "Failure 🟥";
 		levelsOfSuccess = 0;
@@ -19,6 +19,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 		levelsOfFailure = 0;
 	}
 	//check for critical success or failure
+	//todo: review how bonuses and penalties should affect criticals 
 	if (criticalSuccess) {
 		result = "🟩 Critical Success 🟩"; //todo: add color and bold to crititals
 		levelsOfSuccess = 10;
@@ -32,8 +33,17 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 		result = "🟥 Critical Failure 🟥"; //todo: add color and bold to crititals
 		levelsOfFailure = 10;
 	}
+	//console log for debugging
+	console.log("Metaroll Results: Roll:", total, "Multi-Action mod:", modifier, "Bonus:", bonus, "Penalty:", penalty, "levelsOfSuccess:", levelsOfSuccess, "levelsOfFailure:", levelsOfFailure, "Result:", result);
 	//format the message to be printed to chat
 	let message = `${actor.name} attempts a roll with ${stat} score of ${statValue}%`;
+	// if we have a bonus or penalty, add it to the message
+	if (bonus > 0) {
+		message += `, a Bonus of ${bonus}%`;
+	} 
+	if (penalty > 0) {
+		message += `, a Penalty of -${penalty}%`;
+	}
 	// if we have multi-action reduction, add it to the message
 	if (modifier < 0) {
 		message += ` and with a Multi-Action reduction of ${modifier}%`;

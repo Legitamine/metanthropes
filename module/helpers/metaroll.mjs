@@ -19,10 +19,10 @@ export async function MetaRoll(actor, stat) {
 		${multiActionOptions.map((option) => `<option value="${option}">${option}</option>`).join("")}
 	</select>
 	</div>
-	<p>Bonus :</p>
-	<input type="number" id="bonus" min="0" value="0"> (%)
-	<p>Penalty :</p>
-	<input type="number" id="penalty" min="0" value="0"> (%)
+	<p class="style-cs-buffs">Bonus :</p>
+	<input class="style-cs-buffs" type="number" id="bonus" min="0" value="0"> %
+	<p class="style-cs-conditions">Penalty :</p>
+	<input class="style-cs-conditions" type="number" id="penalty" min="0" value="0"> %
 	</div>
 	`;
 	let dialog = new Dialog({
