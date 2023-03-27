@@ -1,5 +1,6 @@
+// import the MetaRollStat function
 import { MetaRollStat } from "./metarollstat.mjs";
-
+// MetaRoll function handles the dialog box for selecting multi-actions and bonuses/penalties when rolling a stat
 export async function MetaRoll(actor, stat) {
 	const statValue = actor.system.RollStats[stat];
 	// calculate the max number of multi-actions possible based on the stat value
@@ -7,7 +8,7 @@ export async function MetaRoll(actor, stat) {
 	const multiActionOptions = Array.from({ length: maxMultiActions - 1 }, (_, i) => i + 2);
 	//create the dialog content
 	let dialogContent = `
-	<div class="layout-metaroll-dialog">
+	<div class="metanthropes layout-metaroll-dialog">
 	<p>Is this part of a Multi-Action?</p>
 	<select id="multiAction">
 		<option value="no">No</option>
@@ -45,16 +46,15 @@ export async function MetaRoll(actor, stat) {
 					// collect bonus and penalty values
 					let bonus = parseInt(html.find("#bonus").val());
 					let penalty = parseInt(html.find("#penalty").val());
-
 					//send the data we collected to the MetaRollStat function
 					MetaRollStat(actor, stat, statValue, modifier, bonus, penalty);
 				},
 			},
 		},
+		// after the dialog is rendered, add an event listener to the multi-action select to unhide the multi-action count select
 		render: (html) => {
 			const multiActionSelect = html.find("#multiAction");
 			const multiActionSelectionDiv = html.find("#multiActionSelection");
-
 			multiActionSelect.on("change", (event) => {
 				const selectedValue = event.target.value;
 				multiActionSelectionDiv.toggleClass("layout-hide", selectedValue !== "yes");
