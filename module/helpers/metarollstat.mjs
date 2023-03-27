@@ -34,7 +34,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 		levelsOfFailure = 10;
 	}
 	//console log for debugging
-	console.log("Metaroll Results: Roll:", total, "Multi-Action mod:", modifier, "Bonus:", bonus, "Penalty:", penalty, "levelsOfSuccess:", levelsOfSuccess, "levelsOfFailure:", levelsOfFailure, "Result:", result);
+	console.log("Metaroll Results: Stat:", statValue, "Roll:", total, "Multi-Action mod:", modifier, "Bonus:", bonus, "Penalty:", penalty, "levelsOfSuccess:", levelsOfSuccess, "levelsOfFailure:", levelsOfFailure, "Result:", result);
 	//format the message to be printed to chat
 	let message = `${actor.name} attempts a roll with ${stat} score of ${statValue}%`;
 	// if we have a bonus or penalty, add it to the message
