@@ -42,15 +42,15 @@ export class MetanthropesItem extends Item {
 		// Initialize chat data.
 		const speaker = ChatMessage.getSpeaker({ actor: this.actor });
 		const rollMode = game.settings.get("core", "rollMode");
-		const label = `[${item.type}] ${item.name}`;
+		const label = `[${item.type}] ${item.name} yay`;
 
 		// If there's no roll data, send a chat message.
-		if (!this.system.formula) {
+		if (!this.system.Activation.statrolled) {
 			ChatMessage.create({
 				speaker: speaker,
 				rollMode: rollMode,
 				flavor: label,
-				content: item.system.description ?? "",
+				content: item.system.effects-metapower.value ?? "shit",
 			});
 		}
 		// Otherwise, create a roll and send a chat message from it.

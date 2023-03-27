@@ -700,7 +700,8 @@
 		"Vehicle": {
 			"templates": ["physical", "synthetic"],
 			"metaowner": {
-				"type": "string",
+				"type": "text",
+				"dtype": "string",
 				"label": "Metaowner",
 				"value": "NPC"
 			}
@@ -724,82 +725,98 @@
 			"metabase": {
 				"Activation" :{
 					"classification": {
-						"type": "string",
+						"type": "text",
+						"dtype": "string",
 						"label": "Classification",
 						"value": "example Utilitarian"
 					},
 					"metapowername": {
-						"type": "string",
+						"type": "text",
+						"dtype": "string",
 						"label": "Metapower",
 						"value": "example 6th Sense"
 					},
 					"Level": {
 						"type": "number",
+						"dtype": "Number",
 						"label": "⏫",
 						"value": "1"
 					},
 					"energytype": {
-						"type": "string",
+						"type": "text",
+						"dtype": "string",
 						"label": "✨",
 						"value": "some energy type"
 					},
 					"destinyspent" : {
 						"type": "number",
+						"dtype": "Number",
 						"label": "🤞",
 						"value": "0"
 					},
 					"statrolled": {
-						"type": "string",
+						"type": "text",
+						"dtype": "string",
 						"label": "🎲",
 						"value": "some stat rolled"
 					},
 					"actionslot": {
-						"type": "string",
+						"type": "text",
+						"dtype": "string",
 						"label": "⏱",
 						"value": "some action slot"
 					},
 					"targets": {
-						"type": "string",
+						"type": "text",
+						"dtype": "string",
 						"label": "🎯",
 						"value": "some targets"
 					},
 					"duration": {
-						"type": "string",
+						"type": "text",
+						"dtype": "string",
 						"label": "⏳",
 						"value": "some duration"
 					},
 					"areaeffect": {
-						"type": "string",
+						"type": "text",
+						"dtype": "string",
 						"label": "🗺️",
 						"value": "some area effect"
 					},
 					"range": {
-						"type": "string",
+						"type": "text",
+						"dtype": "string",
 						"label": "📏",
 						"value": "some range"
 					},
 					"damage": {
-						"type": "string",
+						"type": "text",
+						"dtype": "string",
 						"label": "💥",
 						"value": "some damage"
 					},
 					"healing": {
-						"type": "string",
+						"type": "text",
+						"dtype": "string",
 						"label": "💞",
 						"value": "some healing"
 					},
 					"buffs": {
-						"type": "string",
+						"type": "text",
+						"dtype": "string",
 						"label": "🛡️",
 						"value": "some buffs"
 					},
 					"conditions": {
-						"type": "string",
+						"type": "text",
+						"dtype": "string",
 						"label": "💀",
 						"value": "some conditions"
 					},
 					"notes": {
-						"type": "string",
+						"type": "text",
+						"dtype": "string",
 						"label": "Metabase Notes",
 						"value": "some metabase notes"
 					}
@@ -849,7 +866,7 @@
 			"effects-metapower": {
 				"type": "string",
 				"label": "Metapower Effects",
-				"value": "some metapower effects with [[10d10]] [[test]] [[Endurance]] roll tests"
+				"value": "some metapower effects with [[/roll 10d10]] [/roll 10d10] [10d10] [[10d10]] [[test]] [[Endurance]] roll tests"
 			}
 		},
 		"Combo": {
