@@ -2,9 +2,10 @@ import { MetaRollStat } from "./metarollstat.mjs";
 
 export async function MetaRoll(actor, stat) {
 	const statValue = actor.system.RollStats[stat];
+	// calculate the max number of multi-actions possible based on the stat value
 	const maxMultiActions = Math.floor((statValue - 1) / 10);
 	const multiActionOptions = Array.from({ length: maxMultiActions - 1 }, (_, i) => i + 2);
-
+	//create the dialog content
 	let dialogContent = `
     <div class="layout-metaroll-dialog">
     <p>Is this part of a Multi-Action?</p>
@@ -25,8 +26,10 @@ export async function MetaRoll(actor, stat) {
 		content: dialogContent,
 		buttons: {
 			roll: {
-				label: <img src="../artwork/metanthropes-dice-roll-small.webp" alt="Roll" />,
-				//label: "Roll",
+				//! this looks really ugly
+				//todo: find a way to make this look better
+				//label: "<img src='../systems/metanthropes-system/artwork/metanthropes-dice-roll-small.webp' alt='Roll' />",
+				label: "Roll",
 				callback: async (html) => {
 					let multiAction = html.find("#multiAction").val() === "yes";
 					let modifier = 0;
@@ -34,6 +37,7 @@ export async function MetaRoll(actor, stat) {
 						let selectedMultiActions = parseInt(html.find("#multiActionCount").val());
 						modifier = selectedMultiActions * -10;
 					}
+					//send the data we collected to the MetaRollStat function
 					MetaRollStat(actor, stat, statValue, modifier);
 				},
 			},
@@ -44,10 +48,9 @@ export async function MetaRoll(actor, stat) {
 
 			multiActionSelect.on("change", (event) => {
 				const selectedValue = event.target.value;
-				multiActionSelectionDiv.css("display", selectedValue === "yes" ? "block" : "none");
+				multiActionSelectionDiv.css("display", selectedValue === "yes" ? "flex" : "none");
 			});
 		},
 	});
-
 	dialog.render(true);
 }
