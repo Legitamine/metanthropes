@@ -1,5 +1,5 @@
 //used to roll a stat and get the levels of success and print the message to chat
-export async function MetaRollStat(actor, stat, statValue, modifier = 0) {
+export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus = 0, penalty = 0) {
 	const roll = await new Roll("1d100").evaluate({ async: true });
 	const total = roll.total;
 	// const isSuccess = total <= statValue + modifier;
