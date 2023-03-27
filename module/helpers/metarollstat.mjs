@@ -86,6 +86,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		flavor: message,
 		rollMode: game.settings.get("core", "rollMode"),
+		content: item.system.effects-metapower.value ?? "error no statrolled found",
 		flags: { "metanthropes-system": { actorId: actor.id } },
 	});
 }

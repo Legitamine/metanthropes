@@ -60,7 +60,7 @@ export class MetanthropesItem extends Item {
 			const rollData = this.getRollData();
 			// capture the info for the MetaRoll function
 			const actor = this.actor;
-			const stat = this.system.Activation.statrolled;
+			const stat = this.system.Activation.statrolled.value;
 			MetaRoll (actor, stat);
 			//! leaving this here because I need to understand what it did and what is no longer necessary.
 			//	// Invoke the roll and submit it to chat.
