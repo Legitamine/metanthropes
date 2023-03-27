@@ -408,6 +408,16 @@ button {
   margin: 6px;
   overflow-y: auto;
 }
+.metanthropes .hide {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
 .metanthropes .style-container-grid3x4 {
   opacity: 1;
   border: 1px dotted #370239;
