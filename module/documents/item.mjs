@@ -6,7 +6,7 @@
 //todo: Enable basic functionality
 //*
 ////
-
+import { MetaRoll } from "../helpers/metaroll.mjs";
 export class MetanthropesItem extends Item {
 	/**
 	 * Augment the basic Item data model with additional dynamic data.
@@ -50,24 +50,29 @@ export class MetanthropesItem extends Item {
 				speaker: speaker,
 				rollMode: rollMode,
 				flavor: label,
-				content: item.system.effects-metapower.value ?? "shit",
+				content: item.system.effects-metapower.value ?? "error no statrolled found",
 			});
 		}
 		// Otherwise, create a roll and send a chat message from it.
 		else {
 			// Retrieve roll data.
+			//? I need to better understand what this does exactly and how it works with the bigger picture.
 			const rollData = this.getRollData();
-
-			// Invoke the roll and submit it to chat.
-			const roll = new Roll(rollData.item.formula, rollData);
-			// If you need to store the value first, uncomment the next line.
-			// let result = await roll.roll({async: true});
-			roll.toMessage({
-				speaker: speaker,
-				rollMode: rollMode,
-				flavor: label,
-			});
-			return roll;
+			// capture the info for the MetaRoll function
+			const actor = this.actor;
+			const stat = this.system.Activation.statrolled;
+			MetaRoll (actor, stat);
+			//! leaving this here because I need to understand what it did and what is no longer necessary.
+			//	// Invoke the roll and submit it to chat.
+			//	const roll = new Roll(rollData.item.formula, rollData);
+			//	// If you need to store the value first, uncomment the next line.
+			//	// let result = await roll.roll({async: true});
+			//	roll.toMessage({
+			//		speaker: speaker,
+			//		rollMode: rollMode,
+			//		flavor: label,
+			//	});
+			//	return roll;
 		}
 	}
 }

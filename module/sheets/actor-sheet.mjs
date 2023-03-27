@@ -183,7 +183,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 			}
 		}
 		// Handle rolls that supply the formula directly.
-		//todo: I need to leverage this, bring it outside of actor-sheet and into it's own. Add bonus and penalties and ability to add more in the future. Also include destiny re-rolls as an option in the chat message.
 		if (dataset.roll) {
 			const actor = this.actor;
 			const stat = dataset.stat;
