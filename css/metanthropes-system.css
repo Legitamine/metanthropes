@@ -403,11 +403,10 @@ button {
   align-items: stretch;
   justify-content: flex-start;
   justify-self: stretch;
-  align-self: stretch;
+  align-self: auto;
   padding: 6px;
   margin: 6px;
-  max-height: 80vh;
-  overflow-y: visible;
+  overflow-y: auto;
 }
 .metanthropes .style-container-grid3x4 {
   opacity: 1;

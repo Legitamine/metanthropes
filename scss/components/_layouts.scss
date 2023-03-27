@@ -125,10 +125,8 @@
 	align-items: stretch;
 	justify-content: flex-start;
 	justify-self: stretch;
-	align-self: stretch;
+	align-self: auto;
 	padding: $padding-lg;
 	margin: $margin-lg;
-	//todo: need to test the below
-	max-height: 80vh;
-	overflow-y: visible;
+	overflow-y: auto;
 }
