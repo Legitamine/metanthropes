@@ -24,10 +24,22 @@ To get the best experience while playing Metanthropes RPG, we recommend to insta
 ### Latest Changes
 
 These are the latest changes for the Official Metanthropes RPG System for Foundry VTT
-#### 0.0.01 - 0.1.98
-- Metanthropes System up until the alpha milestone goals
-- System Characteristics & Stats, Buffs and Conditions auto-calculations
+
+#### 0.2.00 - latest builds (currently working on these)
+- GitHub Milestone Integration with the Metanthropes Roadmap
+- XP System Progressed Characteristics and Stats
+- Custom Initiative Ordering and Cycles and Rounds in Combat
+- Actor and Item sheets for Open Beta Introductory sessions requirements
+
+#### 0.0.102 - 0.1.99
 - Levels of Success & Failure and Stat Roll automated checks
-- Multi-Actions, Destiny Re-Rolls, and Bonus & Penalties in Rolls
+- Critical Success & Failure and automatic Destiny awarding
+- Multi-Actions, Automated Destiny Re-Rolls, and Bonus & Penalties in Rolls
+- Life Max value auto calculation
 - Initiative Roll and Combat System basics
+- Improved Foundry UI customization and more functional Actor and Item sheets
+
+#### 0.0.01 - 0.0.102
+- Initial Metanthropes System configuration, settings and Rules integration with Foundry VTT
+- Metanthropes RPG Characteristics & Stats, Buffs and Conditions & auto-calculations
 - Actor and Item sheets and minimal branding

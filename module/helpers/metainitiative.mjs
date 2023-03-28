@@ -3,6 +3,7 @@ import { MetaRollStat } from "./metarollstat.mjs";
 
 // MetaInitiative function handles Initiative rolls
 export async function MetaInitiative(actor) {
+	console.log("MetaInitiative called for actor: ", actor.name);
 	const reflexesStat = "Reflexes";
 	const awarenessStat = "Awareness";
 	const reflexesValue = actor.system.RollStats[reflexesStat];
@@ -20,7 +21,9 @@ export async function MetaInitiative(actor) {
 	}
 
 	// Call MetaRollStat function with the appropriate stat (Reflexes or Awareness)
+	console.log("MetaInitiative calls MetaRollStat for: ", actor, initiativeStat, statValue);
 	await MetaRollStat(actor, initiativeStat, statValue);
+	console.log("MetaInitiative returned from MetaRollStat for: ", actor, initiativeStat, statValue)
 
 	// Retrieve the initiative data from the actor's flags
 	const initiativeData = actor.getFlag("metanthropes-system", "lastrolled");
@@ -30,6 +33,8 @@ export async function MetaInitiative(actor) {
 	const levelsOfFailure = initiativeData.levelsOfFailure;
 	const resultLevel = initiativeData.resultLevel;
 	const result = initiativeData.result;
+	// I should review if this actually has an effect in how initiative is calculated
+	const initiativeValue = Math.max(levelsOfSuccess, levelsOfFailure, resultLevel);
 	// Use these values as needed for your MetaInitiative function
 	// I will take these values and store them inside an initiative flag on the actor
 	await actor.setFlag("metanthropes-system", "initiative", {
@@ -37,5 +42,6 @@ export async function MetaInitiative(actor) {
 		levelsOfFailure: levelsOfFailure,
 		resultLevel: resultLevel,
 		result: result,
+		initiativeValue: initiativeValue,
 	});
 }

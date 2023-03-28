@@ -55,14 +55,6 @@ export class MetanthropesActor extends Actor {
 		}
 		this.updateSource(createData);
 	}
-	////
-	//*
-	//? Table of Contents
-	//*
-	//? 1. Extend the base Actor entity
-	//! 2. Prepare Actor Characteristics and Stats Data
-	//? 3. Prepare Actor Roll Data
-	///
 	/** @override */
 	prepareData() {
 		// Prepare data for the actor. Calling the super version of this executes
@@ -99,8 +91,7 @@ export class MetanthropesActor extends Actor {
 	/** @override */
 	prepareDerivedData() {
 		const actorData = this;
-		const systemData = actorData.system;
-		const flags = actorData.flags.metanthropes || {};
+		//! notice here we use .metanthropes instead of metanthropes-system - I would need to review this later in this code as well
 		this._prepareDerivedCharacteristicsData(actorData);
 	}
 	_prepareDerivedCharacteristicsData(actorData) {
@@ -216,13 +207,6 @@ export class MetanthropesActor extends Actor {
 		console.log("Metanthropes RPG", this.type, "-", this.name, "is ready for Action!");
 		console.log("=============================================================================================");
 	}
-	////
-	//? Table of Contents
-	//*
-	//? 1. Extend the base Actor entity
-	//? 2. Prepare Actor Characteristics and Stats Data
-	//! 3. Prepare Actor Roll Data
-	////
 	getRollData() {
 		const data = super.getRollData();
 		// Prepare character roll data.
@@ -234,7 +218,7 @@ export class MetanthropesActor extends Actor {
 		// 	const actor = game.actors.getName("My Character Name");
 		//	console.log(actor.getRollData());
 		//! I don't need the below if I am going to call @Characteristics.Body.Stats. etc
-		//* this will add stats used in rolls to the top level of the actor so it can be easily accessed for the macros etc
+		//* this will add stats used in rolls to the top level of the system.RollStats so it can be easily accessed for the macros etc
 		if (data.Characteristics) {
 			data.RollStats = {};
 			for (let [charslot, charslotvalue] of Object.entries(data.Characteristics)) {
@@ -250,21 +234,25 @@ export class MetanthropesActor extends Actor {
 		event.preventDefault();
 		// Check if the actor is in a combat
 		const combatant = this.combatant;
+		console.log("inside onRollInitiative", combatant);
 		if (!combatant) return;
 
 		// Call the MetaInitiative function
+		console.log("inside onRollInitiative - calling MetaInitiative", this);
 		await MetaInitiative(this);
 
 		// Retrieve the initiative data from the actor's flags
 		const initiativeData = this.getFlag("metanthropes-system", "initiative");
 
 		// Extract the values you need
+		//! here I want to pass something to the setInititative function - I need to understand how setInitiative works
 		const levelsOfSuccess = initiativeData.levelsOfSuccess;
 		const levelsOfFailure = initiativeData.levelsOfFailure;
 		const resultLevel = initiativeData.resultLevel;
 		const result = initiativeData.result;
+		const initiativeValue = initiativeData.initiativeValue;
 
 		// Set the initiative value for the combatant
-		await combatant.setInitiative(total);
+		await combatant.setInitiative(initiativeValue);
 	}
 }
