@@ -103,6 +103,7 @@ export class MetanthropesActor extends Actor {
 		const flags = actorData.flags.metanthropes || {};
 		let experienceSpent = 0;
 		let characteristicExperienceSpent = 0;
+		let statExperienceSpent = 0;
 		let advancementCount = 0;
 		console.log("=============================================================================================");
 		console.log("Metanthropes RPG Preparing Characteristics & Stats for", this.type, "-", this.name);
@@ -118,17 +119,18 @@ export class MetanthropesActor extends Actor {
 				"Progressed:",
 				CharValue.Progressed
 			);
-			// Calculate the advancement count based on the characteristic's current and base score
-			advancementCount = 0;
-			advancementCount = Math.floor((characteristic.value - characteristic.base) / 5);
+			// Calculate the advancement count based on the characteristic's progressed value
+			advancementCount = Number(CharValue.Progressed);
 			// Calculate the experience spent on this characteristic
 			characteristicExperienceSpent = 0;
 			for (let i = 0; i < advancementCount; i++) {
-				characteristicExperienceSpent += (characteristic.base + i * 5) * 10;
+				characteristicExperienceSpent += Number((Number(CharValue.Initial) + Number(i * 5)) * 10);
 			}
-			console.log("Experience Spent to Progress", CharKey, "Characteristic:", characteristicExperienceSpent);
-			// Add the experience spent on this characteristic to the total experience spent
-			experienceSpent += characteristicExperienceSpent;
+			// Add the experience spent on this characteristic to the total experience spent, only if Progressed is >0
+			if (advancementCount > 0) {
+				experienceSpent += characteristicExperienceSpent;
+				console.log("Experience Spent to Progress", CharKey, "Characteristic:", characteristicExperienceSpent);
+			}
 			parseInt((CharValue.Base = Number(CharValue.Initial) + Number(Number(CharValue.Progressed) * 5)));
 			console.log("Metanthropes RPG New", CharKey, "Base:", CharValue.Base);
 			console.log("Metanthropes RPG Calculating", CharKey, "Buff:", CharValue.Buff.Name, CharValue.Buff.Current);
@@ -159,6 +161,18 @@ export class MetanthropesActor extends Actor {
 					"Progressed:",
 					StatValue.Progressed
 				);
+				// Calculate the advancement count based on the characteristic's progressed value
+				advancementCount = Number(StatValue.Progressed);
+				// Calculate the experience spent on this characteristic
+				statExperienceSpent = 0;
+				for (let i = 0; i < advancementCount; i++) {
+					statExperienceSpent += Number((Number(StatValue.Initial) + Number(CharValue.Base) + Number(i * 5)) * 10);
+				}
+				// Add the experience spent on this characteristic to the total experience spent, only if Progressed is >0
+				if (advancementCount > 0) {
+					experienceSpent += statExperienceSpent;
+					console.log("Experience Spent to Progress", StatKey, "Stat:", statExperienceSpent);
+				}
 				parseInt((StatValue.Base = Number(StatValue.Initial) + Number(Number(StatValue.Progressed) * 5)));
 				console.log("Metanthropes RPG New", StatKey, "Base:", StatValue.Base);
 				console.log(

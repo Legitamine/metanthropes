@@ -175,7 +175,7 @@
 						"type": "number",
 						"Label": "Experience",
 						"Total": "1000",
-						"Spent": "1000",
+						"Spent": "0",
 						"Stored": "0"
 					},
 					"age": {
