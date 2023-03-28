@@ -4,6 +4,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 	const total = roll.total;
 	// const isSuccess = total <= statValue + modifier;
 	let result = null; // isSuccess ? "Success 🟩" : "Failure 🟥";
+	let resultLevel = null;
 	let levelsOfSuccess = Math.floor((statValue + bonus + penalty + modifier - total) / 10);
 	let levelsOfFailure = Math.floor((total - statValue - bonus - modifier - penalty) / 10);
 	const criticalSuccess = total === 1;
@@ -15,13 +16,13 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 		result = "Failure 🟥";
 		levelsOfSuccess = 0;
 		// resultlevel is used to help with ordering combatants in initiative order
-		const resultlevel = 0;
+		resultLevel = 0;
 	} else {
 		// if the calculation is <= to statValue, it's a success, so we reset the levels of failure to 0
 		result = "Success 🟩";
 		levelsOfFailure = 0;
 		// resultlevel is used to help with ordering combatants in initiative order
-		const resultlevel = 1;
+		resultLevel = 1;
 	}
 	//check for critical success or failure
 	//todo: review how bonuses and penalties should affect criticals
@@ -92,7 +93,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 	await actor.setFlag("metanthropes-system", "lastrolled", {
 		levelsOfSuccess: levelsOfSuccess,
 		levelsOfFailure: levelsOfFailure,
-		resultlevel: resultlevel,
+		resultLevel: resultLevel,
 		result: result,
 	});
 	//print message to chat and enable Dice So Nice to roll the dice and display the message

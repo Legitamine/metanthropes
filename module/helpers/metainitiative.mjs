@@ -28,14 +28,14 @@ export async function MetaInitiative(actor) {
 	// Extract the values you need
 	const levelsOfSuccess = initiativeData.levelsOfSuccess;
 	const levelsOfFailure = initiativeData.levelsOfFailure;
-	const resultlevel = initiativeData.resultlevel;
+	const resultLevel = initiativeData.resultLevel;
 	const result = initiativeData.result;
 	// Use these values as needed for your MetaInitiative function
 	// I will take these values and store them inside an initiative flag on the actor
 	await actor.setFlag("metanthropes-system", "initiative", {
 		levelsOfSuccess: levelsOfSuccess,
 		levelsOfFailure: levelsOfFailure,
-		resultlevel: resultlevel,
+		resultLevel: resultLevel,
 		result: result,
 	});
 }

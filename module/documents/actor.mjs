@@ -7,7 +7,7 @@
 //*
 ////
 //import MetaInitiative for combat
-import { MetaInitiative } from "./metainitiative.mjs";
+import { MetaInitiative } from "../helpers/metainitiative.mjs";
 export class MetanthropesActor extends Actor {
 	// Setting default Token configuration for all actors
 	async _preCreate(data, options, user) {
@@ -261,7 +261,7 @@ export class MetanthropesActor extends Actor {
 		// Extract the values you need
 		const levelsOfSuccess = initiativeData.levelsOfSuccess;
 		const levelsOfFailure = initiativeData.levelsOfFailure;
-		const resultlevel = initiativeData.resultlevel;
+		const resultLevel = initiativeData.resultLevel;
 		const result = initiativeData.result;
 
 		// Set the initiative value for the combatant

@@ -16,7 +16,7 @@
 //? 5. Hotbar Macros
 ////
 // Import modules.
-import { MetanthropesCombat } from "./combat.mjs";
+import { MetanthropesCombat } from "./metanthropes/combat.mjs";
 // Import document classes.
 import { MetanthropesActor } from "./documents/actor.mjs";
 import { MetanthropesItem } from "./documents/item.mjs";
