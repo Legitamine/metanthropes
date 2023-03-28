@@ -2,7 +2,7 @@
 	"id": "metanthropes-system",
 	"title": "Metanthropes RPG",
 	"description": "This is the official Metanthropes RPG system for FoundryVTT",
-	"version": "0.1.97",
+	"version": "0.1.98",
 	"compatibility": {
 		"minimum": "10",
 		"verified": "10.291",
@@ -32,7 +32,7 @@
 	"packs": [],
 	"languages": [],
 	"socket": false,
-	"initiative": "1d100",
+	"initiative": "custom",
 	"gridDistance": 2,
 	"gridUnits": "m",
 	"primaryTokenAttribute": "Vital.Life.value",

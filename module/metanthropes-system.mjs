@@ -15,6 +15,8 @@
 //? 4. Ready Hook
 //? 5. Hotbar Macros
 ////
+// Import modules.
+import { MetanthropesCombat } from "./combat.mjs";
 // Import document classes.
 import { MetanthropesActor } from "./documents/actor.mjs";
 import { MetanthropesItem } from "./documents/item.mjs";
@@ -23,6 +25,7 @@ import { MetanthropesActorSheet } from "./sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
 // Import helpers.
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
+import { MetaInitiative } from "./helpers/metainitiative.mjs";
 ////
 //*
 //? Table of Contents
@@ -45,9 +48,12 @@ Hooks.once("init", async function () {
 	};
 	//setup initiative system
 	CONFIG.Combat.initiative = {
-		formula: "1d100",
-		decimals: 2,
+		roll: async function (actor) {
+			await MetaInitiative(actor);
+		},
 	};
+	// setup custom combat
+	CONFIG.Combat.entityClass = MetanthropesCombat;
 	// Define custom Entity classes.
 	CONFIG.Actor.documentClass = MetanthropesActor;
 	CONFIG.Item.documentClass = MetanthropesItem;

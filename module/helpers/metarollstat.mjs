@@ -8,22 +8,27 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 	let levelsOfFailure = Math.floor((total - statValue - bonus - modifier - penalty) / 10);
 	const criticalSuccess = total === 1;
 	const criticalFailure = total === 100;
-	const currentDestiny = actor.system.Vital.Destiny.value;
+	let currentDestiny = actor.system.Vital.Destiny.value;
 	// this kicks-off the calculation, assuming that is is a failure
 	if (total - modifier - penalty > statValue + bonus) {
 		// in which case we don't care about what levels of success we have, so we set to 0 to avoid confusion later
 		result = "Failure 🟥";
 		levelsOfSuccess = 0;
+		// resultlevel is used to help with ordering combatants in initiative order
+		const resultlevel = 0;
 	} else {
 		// if the calculation is <= to statValue, it's a success, so we reset the levels of failure to 0
 		result = "Success 🟩";
 		levelsOfFailure = 0;
+		// resultlevel is used to help with ordering combatants in initiative order
+		const resultlevel = 1;
 	}
 	//check for critical success or failure
 	//todo: review how bonuses and penalties should affect criticals
 	if (criticalSuccess) {
 		result = `🟩 Critical Success 🟩, rewarding ${actor.name} with 1 * 🤞`; //todo: add color and bold to crititals
-		await actor.update({ "system.Vital.Destiny.value": currentDestiny + 1 });
+		currentDestiny += 1;
+		await actor.update({ "system.Vital.Destiny.value": currentDestiny });
 		levelsOfSuccess = 10;
 		if (statValue < 100) {
 			levelsOfSuccess += 0;
@@ -33,7 +38,8 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 	}
 	if (criticalFailure) {
 		result = `🟥 Critical Failure 🟥, rewarding ${actor.name} with 1 * 🤞`; //todo: add color and bold to crititals
-		await actor.update({ "system.Vital.Destiny.value": currentDestiny + 1 });
+		currentDestiny += 1;
+		await actor.update({ "system.Vital.Destiny.value": currentDestiny });
 		levelsOfFailure = 10;
 	}
 	//console log for debugging
@@ -57,7 +63,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 		"Destiny:",
 		currentDestiny
 	);
-	//format the message to be printed to chat
+	//* Beggining of the message to be printed to chat
 	let message = `${actor.name} attempts a roll with ${stat} score of ${statValue}%`;
 	// if we have a bonus or penalty, add it to the message
 	if (bonus > 0) {
@@ -81,6 +87,14 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 	}
 	//add re-roll button to message
 	message += `<div><button class="metanthropes meta-re-roll layout-hide" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}">🤞</button></div>`;
+	//set flags for the actor to be used as the lastrolled values of your most recent roll.
+	// the idea is to use these later in metapowers to spend your levels of success.
+	await actor.setFlag("metanthropes-system", "lastrolled", {
+		levelsOfSuccess: levelsOfSuccess,
+		levelsOfFailure: levelsOfFailure,
+		resultlevel: resultlevel,
+		result: result,
+	});
 	//print message to chat and enable Dice So Nice to roll the dice and display the message
 	roll.toMessage({
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
@@ -88,7 +102,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 		rollMode: game.settings.get("core", "rollMode"),
 		//I've used the optional chaining operator (?.) to check if effects-metapower exists before trying to access its value. If effects-metapower or its value is not defined, it will fall back to the "error no statrolled found" text using the nullish coalescing operator (??).
 		//content: item.system.effects-metapower?.value ?? "error no statrolled found",
-		content: `<button class="custom-button">🤞</button>`,
+		//content: `<button class="custom-button">🤞</button>`,
 		flags: { "metanthropes-system": { actorId: actor.id } },
 	});
 }

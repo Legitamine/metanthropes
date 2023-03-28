@@ -6,14 +6,8 @@
 //todo: Enable Rolls
 //*
 ////
-////
-//*
-//? Table of Contents
-//*
-//! 1. Extend the base Actor entity
-//? 2. Prepare Actor Characteristics and Stats Data
-//? 3. Prepare Actor Roll Data
-////
+//import MetaInitiative for combat
+import { MetaInitiative } from "./metainitiative.mjs";
 export class MetanthropesActor extends Actor {
 	// Setting default Token configuration for all actors
 	async _preCreate(data, options, user) {
@@ -245,10 +239,32 @@ export class MetanthropesActor extends Actor {
 			data.RollStats = {};
 			for (let [charslot, charslotvalue] of Object.entries(data.Characteristics)) {
 				for (let [k, v] of Object.entries(charslotvalue.Stats)) {
-					data.RollStats[k] = v.Roll // instead of foundry.utils.deepClone(v); that would clone the whole object
+					data.RollStats[k] = v.Roll; // instead of foundry.utils.deepClone(v); that would clone the whole object
 					console.log("Metanthropes RPG RollStats", k, data.RollStats[k]);
 				}
 			}
 		}
+	}
+	//change the initiative
+	async _onRollInitiative(event) {
+		event.preventDefault();
+		// Check if the actor is in a combat
+		const combatant = this.combatant;
+		if (!combatant) return;
+
+		// Call the MetaInitiative function
+		await MetaInitiative(this);
+
+		// Retrieve the initiative data from the actor's flags
+		const initiativeData = this.getFlag("metanthropes-system", "initiative");
+
+		// Extract the values you need
+		const levelsOfSuccess = initiativeData.levelsOfSuccess;
+		const levelsOfFailure = initiativeData.levelsOfFailure;
+		const resultlevel = initiativeData.resultlevel;
+		const result = initiativeData.result;
+
+		// Set the initiative value for the combatant
+		await combatant.setInitiative(total);
 	}
 }
