@@ -17,6 +17,7 @@
 ////
 // Import modules.
 import { MetanthropesCombat } from "./metanthropes/combat.mjs";
+import { MetaCombatTracker } from "./metanthropes/combattracker.mjs";
 // Import document classes.
 import { MetanthropesActor } from "./documents/actor.mjs";
 import { MetanthropesItem } from "./documents/item.mjs";
@@ -47,9 +48,13 @@ Hooks.once("init", async function () {
 		MetanthropesItem,
 	};
 	//setup initiative system
-	CONFIG.Combat.initiative = MetaInitiative(combatant);
+	CONFIG.Combat.initiative = MetaInitiative;
 	// setup custom combat
 	CONFIG.Combat.entityClass = MetanthropesCombat;
+	// setup custom combat tracker
+	CONFIG.ui.combat = MetaCombatTracker;
+	// tiime in seconds for Round Duration
+	CONFIG.time.roundTime = 120;
 	// Define custom Entity classes.
 	CONFIG.Actor.documentClass = MetanthropesActor;
 	CONFIG.Item.documentClass = MetanthropesItem;
@@ -63,10 +68,10 @@ Hooks.once("init", async function () {
 		makeDefault: true,
 	});
 	// Preload Handlebars templates.
-	return preloadHandlebarsTemplates();
 	console.log("========================================================================");
 	console.log("Metanthropes RPG System Initialized");
 	console.log("========================================================================");
+	return preloadHandlebarsTemplates();
 });
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
