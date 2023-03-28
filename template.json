@@ -738,7 +738,7 @@
 					},
 					"Level": {
 						"type": "number",
-						"dtype": "Number",
+						"dtype": "number",
 						"label": "⏫",
 						"value": "1"
 					},
@@ -750,7 +750,7 @@
 					},
 					"destinyspent" : {
 						"type": "number",
-						"dtype": "Number",
+						"dtype": "number",
 						"label": "🤞",
 						"value": "0"
 					},

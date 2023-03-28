@@ -101,6 +101,9 @@ export class MetanthropesActor extends Actor {
 		else if (actorData.type == "Vehicle") return;
 		const systemData = actorData.system;
 		const flags = actorData.flags.metanthropes || {};
+		let experienceSpent = 0;
+		let characteristicExperienceSpent = 0;
+		let advancementCount = 0;
 		console.log("=============================================================================================");
 		console.log("Metanthropes RPG Preparing Characteristics & Stats for", this.type, "-", this.name);
 		console.log("=============================================================================================");
@@ -115,6 +118,17 @@ export class MetanthropesActor extends Actor {
 				"Progressed:",
 				CharValue.Progressed
 			);
+			// Calculate the advancement count based on the characteristic's current and base score
+			advancementCount = 0;
+			advancementCount = Math.floor((characteristic.value - characteristic.base) / 5);
+			// Calculate the experience spent on this characteristic
+			characteristicExperienceSpent = 0;
+			for (let i = 0; i < advancementCount; i++) {
+				characteristicExperienceSpent += (characteristic.base + i * 5) * 10;
+			}
+			console.log("Experience Spent to Progress", CharKey, "Characteristic:", characteristicExperienceSpent);
+			// Add the experience spent on this characteristic to the total experience spent
+			experienceSpent += characteristicExperienceSpent;
 			parseInt((CharValue.Base = Number(CharValue.Initial) + Number(Number(CharValue.Progressed) * 5)));
 			console.log("Metanthropes RPG New", CharKey, "Base:", CharValue.Base);
 			console.log("Metanthropes RPG Calculating", CharKey, "Buff:", CharValue.Buff.Name, CharValue.Buff.Current);
@@ -203,6 +217,8 @@ export class MetanthropesActor extends Actor {
 			"Sprint:",
 			systemData.physical.movement.sprint
 		);
+		// Store experienceSpent in systemData.Vital.Experience.Spent
+		parseInt((systemData.Vital.Experience.Spent = Number(experienceSpent)));
 		console.log("=============================================================================================");
 		console.log("Metanthropes RPG", this.type, "-", this.name, "is ready for Action!");
 		console.log("=============================================================================================");

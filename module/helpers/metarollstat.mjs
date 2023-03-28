@@ -29,7 +29,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 	if (criticalSuccess) {
 		result = `🟩 Critical Success 🟩, rewarding ${actor.name} with 1 * 🤞`; //todo: add color and bold to crititals
 		currentDestiny += 1;
-		await actor.update({ "system.Vital.Destiny.value": currentDestiny });
+		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfSuccess = 10;
 		if (statValue < 100) {
 			levelsOfSuccess += 0;
@@ -40,7 +40,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 	if (criticalFailure) {
 		result = `🟥 Critical Failure 🟥, rewarding ${actor.name} with 1 * 🤞`; //todo: add color and bold to crititals
 		currentDestiny += 1;
-		await actor.update({ "system.Vital.Destiny.value": currentDestiny });
+		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfFailure = 10;
 	}
 	//console log for debugging
