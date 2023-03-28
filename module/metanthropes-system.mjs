@@ -47,11 +47,7 @@ Hooks.once("init", async function () {
 		MetanthropesItem,
 	};
 	//setup initiative system
-	CONFIG.Combat.initiative = {
-		roll: async function (actor) {
-			await MetaInitiative(actor);
-		},
-	};
+	CONFIG.Combat.initiative = MetaInitiative(combatant);
 	// setup custom combat
 	CONFIG.Combat.entityClass = MetanthropesCombat;
 	// Define custom Entity classes.

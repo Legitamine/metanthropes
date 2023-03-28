@@ -166,7 +166,7 @@ export class MetanthropesActor extends Actor {
 				// Calculate the experience spent on this characteristic
 				statExperienceSpent = 0;
 				for (let i = 0; i < advancementCount; i++) {
-					statExperienceSpent += Number((Number(StatValue.Initial) + Number(CharValue.Base) + Number(i * 5)) * 10);
+					statExperienceSpent += Number((Number(StatValue.Initial) + Number(CharValue.Base) + Number(i * 5)) * 3);
 				}
 				// Add the experience spent on this characteristic to the total experience spent, only if Progressed is >0
 				if (advancementCount > 0) {
