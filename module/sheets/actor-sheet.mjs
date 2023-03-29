@@ -85,8 +85,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 			i.img = i.img || DEFAULT_TOKEN;
 			// Append to Possessions.
 			if (i.type === "Possession") {
-				if (i.system.category.value != undefined) {
-				Possessions[i.system.category.value].push(i);
+				if (i.system.Category.value != undefined) {
+				Possessions[i.system.Category.value].push(i);
 				}
 			}
 			// Append to Metapowers.

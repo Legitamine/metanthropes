@@ -6,7 +6,7 @@
 			<div class="grid grid-2col">
 				<div class="resource">
 					<label class="resource-label">🎲:</label>
-					<input type="text" name="system.StatRolled.value" value="{{system.StatRolled.value}}" data-dtype="string" />
+					<input type="text" name="system.StatRolled.value" value="{{system.StatRolled.value}}" data-dtype="String" />
 				</div>
 				<div class="resource">
 					<label class="resource-label">Category:</label>
@@ -19,7 +19,7 @@
 	{{!-- Sheet Tab Navigation --}}
 	<nav class="sheet-tabs tabs" data-group="primary">
 		<a class="item" data-tab="description">Description</a>
-		<a class="item" data-tab="attributes">Attributes</a>
+		<a class="item" data-tab="material">Material Properties</a>
 	</nav>
 
 	{{!-- Sheet Body --}}
@@ -31,13 +31,15 @@
 			{{editor system.Description.value target="system.Description.value" rollData=rollData button=true owner=owner editable=editable}}
 		</div>
 
-		{{!-- Attributes Tab --}}
-		<div class="tab attributes" data-group="primary" data-tab="attributes">
+		{{!-- Material Properties Tab --}}
+		<div class="tab material" data-group="primary" data-tab="material">
 			{{!-- As you add new fields, add them in here! --}}
+			{{#each system.Material}}
 			<div class="resource">
-				<label class="resource-label">🎲:</label>
-				<input type="text" name="system.StatRolled.value" value="{{system.StatRolled.value}}" data-dtype="String" />
+				<label class="resource-label">{{this.label}}:</label>
+				<input type="{{this.type}}" name="system.Material.{{@key}}.value" value="{{this.value}}" data-dtype="{{this.dtype}}" />
 			</div>
+			{{/each}}
 		</div>
 	</section>
 </form>
