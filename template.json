@@ -841,7 +841,7 @@
 				"type": "text",
 				"dtype": "string",
 				"label": "🎲",
-				"value": "some stat rolled"
+				"value": "Creativity"
 			},
 			"description": {
 				"type": "string",
