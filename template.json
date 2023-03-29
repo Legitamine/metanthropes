@@ -699,7 +699,7 @@
 			"templates": ["physical", "synthetic"],
 			"metaowner": {
 				"type": "text",
-				"dtype": "string",
+				"dtype": "String",
 				"label": "Metaowner",
 				"value": "NPC"
 			}
@@ -710,54 +710,57 @@
 		"templates": {
 			"material": {
 				"Material": {
-					"Category":{
+					"Category": {
 						"type": "text",
-						"dtype": "string",
+						"dtype": "String",
 						"label": "🧱 Category",
 						"value": "Earthly, Compossed, Metallic or Alien"
 					},
 					"Durability": {
 						"type": "number",
-						"dtype": "number",
+						"dtype": "Number",
 						"label": "🤍",
 						"value": 10
 					},
 					"Size": {
 						"type": "number",
-						"dtype": "number",
+						"dtype": "Number",
 						"label": "📐",
 						"value": 10
 					},
 					"Weight": {
 						"type": "number",
-						"dtype": "number",
+						"dtype": "Number",
 						"label": "⚖️",
 						"value": 10
 					},
-					"Resistances": {
-						"cosmic": {
-							"type": "number",
-							"label": "Cosmic",
-							"initial": 0
-						},
-						"elemental": {
-							"type": "number",
-							"label": "Elemental",
-							"initial": 0
-						},
-						"material": {
-							"type": "number",
-							"label": "Material",
-							"initial": 0
-						},
-						"psychic": {
-							"type": "number",
-							"label": "Psychic",
-							"initial": 0
-						}
+					"Cosmic": {
+						"type": "number",
+						"dtype": "Number",
+						"label": "Cosmic Resistance",
+						"initial": 0
+					},
+					"Elemental": {
+						"type": "number",
+						"dtype": "Number",
+						"label": "Elemental Resistance",
+						"initial": 0
+					},
+					"Material": {
+						"type": "number",
+						"dtype": "Number",
+						"label": "Material Resistance",
+						"initial": 0
+					},
+					"Psychic": {
+						"type": "number",
+						"dtype": "Number",
+						"label": "Psychic Resistance",
+						"initial": 0
 					},
 					"Description": {
 						"type": "string",
+						"dtype": "Number",
 						"label": "Material Properties",
 						"value": "some material properties"
 					}
@@ -767,97 +770,97 @@
 				"Activation": {
 					"Classification": {
 						"type": "text",
-						"dtype": "string",
+						"dtype": "String",
 						"label": "Classification",
 						"value": "example Utilitarian"
 					},
 					"MetapowerName": {
 						"type": "text",
-						"dtype": "string",
+						"dtype": "String",
 						"label": "Metapower",
 						"value": "example 6th Sense"
 					},
 					"Level": {
 						"type": "number",
-						"dtype": "number",
+						"dtype": "Number",
 						"label": "⏫",
 						"value": "1"
 					},
 					"EnergyType": {
 						"type": "text",
-						"dtype": "string",
+						"dtype": "String",
 						"label": "✨",
 						"value": "some energy type"
 					},
 					"DestinySpent": {
 						"type": "number",
-						"dtype": "number",
+						"dtype": "Number",
 						"label": "🤞",
 						"value": "0"
 					},
 					"StatRolled": {
 						"type": "text",
-						"dtype": "string",
+						"dtype": "String",
 						"label": "🎲",
 						"value": "some stat rolled"
 					},
 					"ActionSlot": {
 						"type": "text",
-						"dtype": "string",
+						"dtype": "String",
 						"label": "⏱",
 						"value": "some action slot"
 					},
 					"Targets": {
 						"type": "text",
-						"dtype": "string",
+						"dtype": "String",
 						"label": "🎯",
 						"value": "some targets"
 					},
 					"Duration": {
 						"type": "text",
-						"dtype": "string",
+						"dtype": "String",
 						"label": "⏳",
 						"value": "some duration"
 					},
 					"AreaEffect": {
 						"type": "text",
-						"dtype": "string",
+						"dtype": "String",
 						"label": "🗺️",
 						"value": "some area effect"
 					},
 					"Range": {
 						"type": "text",
-						"dtype": "string",
+						"dtype": "String",
 						"label": "📏",
 						"value": "some range"
 					},
 					"Damage": {
 						"type": "text",
-						"dtype": "string",
+						"dtype": "String",
 						"label": "💥",
 						"value": "some damage"
 					},
 					"Healing": {
 						"type": "text",
-						"dtype": "string",
+						"dtype": "String",
 						"label": "💞",
 						"value": "some healing"
 					},
 					"Buffs": {
 						"type": "text",
-						"dtype": "string",
+						"dtype": "String",
 						"label": "🛡️",
 						"value": "some buffs"
 					},
 					"Conditions": {
 						"type": "text",
-						"dtype": "string",
+						"dtype": "String",
 						"label": "💀",
 						"value": "some conditions"
 					},
 					"Notes": {
 						"type": "text",
-						"dtype": "string",
+						"dtype": "String",
 						"label": "Metabase Notes",
 						"value": "some metabase notes"
 					}
@@ -876,13 +879,13 @@
 			"templates": ["material"],
 			"Category": {
 				"type": "text",
-				"dtype": "string",
+				"dtype": "String",
 				"label": "Category",
 				"value": "Weapon"
 			},
 			"StatRolled": {
 				"type": "text",
-				"dtype": "string",
+				"dtype": "String",
 				"label": "🎲",
 				"value": "Creativity"
 			},

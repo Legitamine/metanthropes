@@ -171,7 +171,11 @@ export class MetanthropesActorSheet extends ActorSheet {
 		const dataset = element.dataset;
 		// Handle item rolls.
 		if (dataset.rollType) {
+			console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+			console.log("We should not be here???");
+			console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 			if (dataset.rollType == "item") {
+				console.log("Even worse???");
 				const itemId = element.closest(".item").dataset.itemId;
 				const item = this.actor.items.get(itemId);
 				if (item) return item.roll();

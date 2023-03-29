@@ -4,7 +4,7 @@
 			<div class="layout-container-small style-container-small">
 				<div>Player
 					<input name="system.metaowner" type="text" value="{{system.metaowner.value}}"
-						placeholder="Player Name" data-dtype="string" />
+						placeholder="Player Name" data-dtype="String" />
 				</div>
 				<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
 				<div><input name="name" type="text" value="{{actor.name}}" placeholder="A MetaTherion" /></div>
@@ -12,48 +12,48 @@
 			<div class="layout-container-small style-container-small">
 				<div>Prime Metapower
 					<input name="system.entermeta.primemetapower.value" type="text"
-						value="{{system.entermeta.primemetapower.value}}" data-dtype="string"
+						value="{{system.entermeta.primemetapower.value}}" data-dtype="String"
 						placeholder="Prime Metapower" />
 				</div>
 				<div>Metamorphosis
 					<input name="system.entermeta.metamorphosis.value" type="text"
-						value="{{system.entermeta.metamorphosis.value}}" data-dtype="string"
+						value="{{system.entermeta.metamorphosis.value}}" data-dtype="String"
 						placeholder="Your Metamorphosis" />
 				</div>
 				<div>Background
 					<input name="system.Vital.background.value" type="text" value="{{system.Vital.background.value}}"
-						data-dtype="string" placeholder="Your Background" />
+						data-dtype="String" placeholder="Your Background" />
 				</div>
 				<div>Arc
 					<input name="system.Vital.arc.value" type="text" value="{{system.Vital.arc.value}}"
-						data-dtype="string" placeholder="Your Arc" />
+						data-dtype="String" placeholder="Your Arc" />
 				</div>
 				<p>Regression
 					<input name="system.entermeta.regression.value" type="text"
-						value="{{system.entermeta.regression.value}}" data-dtype="string"
+						value="{{system.entermeta.regression.value}}" data-dtype="String"
 						placeholder="Your Regression" />
 				</p>
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>Birthplace
 					<input name="system.humanoids.birthplace.value" type="text"
-						value="{{system.humanoids.birthplace.value}}" data-dtype="string" placeholder="Birthplace" />
+						value="{{system.humanoids.birthplace.value}}" data-dtype="String" placeholder="Birthplace" />
 				</div>
 				<div>Age
 					<input name="system.Vital.age.value" type="number" value="{{system.Vital.age.value}}"
-						data-dtype="number" placeholder="" />
+						data-dtype="Number" placeholder="" />
 				</div>
 				<div>Gender
 					<input name="system.humanoids.gender.value" type="text" value="{{system.humanoids.gender.value}}"
-						data-dtype="string" placeholder="Other" />
+						data-dtype="String" placeholder="Other" />
 				</div>
 				<div>Height
 					<input name="system.humanoids.height.value" type="text" value="{{system.humanoids.height.value}}"
-						data-dtype="string" placeholder="Your Height" />
+						data-dtype="String" placeholder="Your Height" />
 				</div>
 				<div>Weight
 					<input name="system.humanoids.weight.value" type="text" value="{{system.humanoids.weight.value}}"
-						data-dtype="string" placeholder="Your Weight" />
+						data-dtype="String" placeholder="Your Weight" />
 				</div>
 			</div>
 		</div>
@@ -62,7 +62,7 @@
 				<div>
 					❤️ Life 
 					<input name="system.Vital.Life.value" type="number" value="{{system.Vital.Life.value}}"
-						data-dtype="number" /> /
+						data-dtype="Number" /> /
 					<label for="system.Vital.Life.max" data-label="{{system.Vital.Life.max}}"
 						class="style-labels-number">{{system.Vital.Life.max}}</label>
 				</div>
@@ -71,7 +71,7 @@
 				<div><label for="system.Vital.Experience.Total" data-label="{{system.Vital.Experience.Label}}"
 						class="style-labels-text">📈 {{system.Vital.Experience.Label}}</label> Total <input
 						name="system.Vital.Experience.Total" type="number" value="{{system.Vital.Experience.Total}}"
-						data-dtype="number" placeholder="1000" /> Spent {{system.Vital.Experience.Spent}} Stored {{#if (gte system.Vital.Experience.Stored 0)}}
+						data-dtype="Number" placeholder="1000" /> Spent {{system.Vital.Experience.Spent}} Stored {{#if (gte system.Vital.Experience.Stored 0)}}
     <span class="style-cs-buffs">{{system.Vital.Experience.Stored}}</span>
 {{else}}
     <span class="style-cs-conditions">{{system.Vital.Experience.Stored}}</span>
@@ -82,7 +82,7 @@
 			<div class="layout-container-small style-container-small">
 				<div>🤞 Destiny 
 					<input name="system.Vital.Destiny.value" type="number" value="{{system.Vital.Destiny.value}}"
-						data-dtype="number" placeholder="0" /> / <input name="system.Vital.Destiny.max" type="number"
+						data-dtype="Number" placeholder="0" /> / <input name="system.Vital.Destiny.max" type="number"
 						value="{{system.Vital.Destiny.max}}">
 				</div>
 			</div>
@@ -147,56 +147,56 @@
 			<div class="layout-container-small style-container-small">
 				<div>Movement 👣
 					<input name="system.physical.movement.initial" type="number"
-						value="{{system.physical.movement.initial}}" data-dtype="number" placeholder="10" />
+						value="{{system.physical.movement.initial}}" data-dtype="Number" placeholder="10" />
 				</div>
 				<div>Speed 💨
 					<input name="system.physical.speed.Initial" type="number" value="{{system.physical.speed.Initial}}"
-						data-dtype="number" placeholder="10" />
+						data-dtype="Number" placeholder="10" />
 				</div>
 				<div>Weight ⚖️
 					<input name="system.physical.weight.Initial" type="number"
-						value="{{system.physical.weight.Initial}}" data-dtype="number" placeholder="10" />
+						value="{{system.physical.weight.Initial}}" data-dtype="Number" placeholder="10" />
 				</div>
 				<div>Size 📐
 					<input name="system.physical.size.Initial" type="number" value="{{system.physical.size.Initial}}"
-						data-dtype="number" placeholder="10" />
+						data-dtype="Number" placeholder="10" />
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>Resistances</div>
 				<div>Cosmic
 					<input name="system.physical.resistances.cosmic.Initial" type="number"
-						value="{{system.physical.resistances.cosmic.Initial}}" data-dtype="number" placeholder="0" />
+						value="{{system.physical.resistances.cosmic.Initial}}" data-dtype="Number" placeholder="0" />
 				</div>
 				<div>Elemental
 					<input name="system.physical.resistances.elemental.Initial" type="number"
-						value="{{system.physical.resistances.elemental.Initial}}" data-dtype="number" placeholder="0" />
+						value="{{system.physical.resistances.elemental.Initial}}" data-dtype="Number" placeholder="0" />
 				</div>
 				<div>Material
 					<input name="system.physical.resistances.material.Initial" type="number"
-						value="{{system.physical.resistances.material.Initial}}" data-dtype="number" placeholder="0" />
+						value="{{system.physical.resistances.material.Initial}}" data-dtype="Number" placeholder="0" />
 				</div>
 				<div>Psychic
 					<input name="system.physical.resistances.psychic.Initial" type="number"
-						value="{{system.physical.resistances.psychic.Initial}}" data-dtype="number" placeholder="0" />
+						value="{{system.physical.resistances.psychic.Initial}}" data-dtype="Number" placeholder="0" />
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>Cover
 					<input name="system.physical.cover.value" type="number" value="{{system.physical.cover.value}}"
-						data-dtype="number" placeholder="0" />
+						data-dtype="Number" placeholder="0" />
 				</div>
 				<div>Immunities
 					<input name="system.physical.immunities.value" type="text"
-						value="{{system.physical.immunities.value}}" data-dtype="string" placeholder="none" />
+						value="{{system.physical.immunities.value}}" data-dtype="String" placeholder="none" />
 				</div>
 				<div>Detections
 					<input name="system.physical.detections.value" type="text"
-						value="{{system.physical.detections.value}}" data-dtype="string" placeholder="none" />
+						value="{{system.physical.detections.value}}" data-dtype="String" placeholder="none" />
 				</div>
 				<div>Shifts
 					<input name="system.physical.shifts.value" type="text" value="{{system.physical.shifts.value}}"
-						data-dtype="string" placeholder="none" />
+						data-dtype="String" placeholder="none" />
 				</div>
 			</div>
 		</div>
