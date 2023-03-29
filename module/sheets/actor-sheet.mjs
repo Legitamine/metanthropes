@@ -61,10 +61,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 		const Possessions = {
 			Weapon: [],
 			Armor: [],
-			Shield: [],
 			Gadget: [],
 			Drug: [],
-			Other: [],
 		};
 		const Combos = {
 			1: [],

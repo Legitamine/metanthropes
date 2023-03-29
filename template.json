@@ -719,49 +719,49 @@
 					"Durability": {
 						"type": "number",
 						"dtype": "Number",
-						"label": "🤍",
+						"label": "🧱 🤍",
 						"value": 10
 					},
 					"Size": {
 						"type": "number",
 						"dtype": "Number",
-						"label": "📐",
+						"label": "🧱 📐",
 						"value": 10
 					},
 					"Weight": {
 						"type": "number",
 						"dtype": "Number",
-						"label": "⚖️",
+						"label": "🧱 ⚖️",
 						"value": 10
 					},
 					"Cosmic": {
 						"type": "number",
 						"dtype": "Number",
-						"label": "Cosmic Resistance",
+						"label": "🧱 Cosmic Resistance",
 						"initial": 0
 					},
 					"Elemental": {
 						"type": "number",
 						"dtype": "Number",
-						"label": "Elemental Resistance",
+						"label": "🧱 Elemental Resistance",
 						"initial": 0
 					},
 					"Material": {
 						"type": "number",
 						"dtype": "Number",
-						"label": "Material Resistance",
+						"label": "🧱 Material Resistance",
 						"initial": 0
 					},
 					"Psychic": {
 						"type": "number",
 						"dtype": "Number",
-						"label": "Psychic Resistance",
+						"label": "🧱 Psychic Resistance",
 						"initial": 0
 					},
 					"Description": {
 						"type": "string",
-						"dtype": "Number",
-						"label": "Material Properties",
+						"dtype": "String",
+						"label": "🧱 Description",
 						"value": "some material properties"
 					}
 				}
