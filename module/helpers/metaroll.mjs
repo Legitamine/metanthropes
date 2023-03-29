@@ -10,7 +10,7 @@ export async function MetaRoll(actor, stat) {
 	//create the dialog content
 	let dialogContent = `
 	<div class="metanthropes layout-metaroll-dialog">
-	<p>Is this part of a Multi-Action? If yes, how many?</p>
+	<p>Is this part of a Multi-Action? If yes, how many total?</p>
 	<select id="multiActionCount">
 		<option value="no">No</option>
 		${multiActionOptions.map((option) => `<option value="${option}">${option}</option>`).join("")}

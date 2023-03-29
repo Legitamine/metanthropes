@@ -22,7 +22,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 		result = "Success 🟩";
 		levelsOfFailure = 0;
 		// resultlevel is used to help with ordering combatants in initiative order
-		resultLevel = 1;
+		resultLevel = 0.5;
 	}
 	//check for critical success or failure
 	//todo: review how bonuses and penalties should affect criticals
@@ -87,7 +87,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 		message += `. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
 	}
 	//add re-roll button to message
-	message += `<div><button class="metanthropes meta-re-roll layout-hide" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}">🤞</button></div>`;
+	message += `<div class="metanthropes hide-button layout-hide"><button class="meta-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}">🤞</button></div>`;
 	//set flags for the actor to be used as the lastrolled values of your most recent roll.
 	// the idea is to use these later in metapowers to spend your levels of success.
 	await actor.setFlag("metanthropes-system", "lastrolled", {
@@ -107,10 +107,9 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 		flags: { "metanthropes-system": { actorId: actor.id } },
 	});
 }
-// Function to handle re-roll button click
+// Function to handle re-roll for destiny
 async function MetaReRoll(event) {
 	event.preventDefault();
-
 	const button = event.target;
 	const actorId = button.dataset.actorId;
 	const stat = button.dataset.stat;
@@ -118,33 +117,36 @@ async function MetaReRoll(event) {
 	const modifier = parseInt(button.dataset.modifier);
 	const bonus = parseInt(button.dataset.bonus);
 	const penalty = parseInt(button.dataset.penalty);
-
 	const actor = game.actors.get(actorId);
-
+	// make this function only available to the owner of the actor
 	if (actor && actor.isOwner) {
 		// Reduce Destiny.value by 1
-		const currentDestiny = actor.system.Vital.Destiny.value;
+		let currentDestiny = actor.system.Vital.Destiny.value;
 		if (currentDestiny > 0) {
-			await actor.update({ "system.Vital.Destiny.value": currentDestiny - 1 });
+			currentDestiny -= 1;
+			await actor.update({ "system.Vital.Destiny.value": currentDestiny });
 			// Update re-roll button visibility
 			const message = game.messages.get(button.dataset.messageId);
 			if (message) {
 				message.render();
 			}
-
 			MetaRollStat(actor, stat, statValue, modifier, bonus, penalty);
 		}
 	}
 }
-// Add event listener for re-roll button click
+// Add event listener for re-roll button click, hiding the button for non-owners
 Hooks.on("renderChatMessage", async (message, html) => {
 	if (message.isAuthor) {
 		const actorId = message.getFlag("metanthropes-system", "actorId");
 		const actor = game.actors.get(actorId);
+		console.log("=============================================================================================");
+		console.log("Metanthropes RPG button for metareroll - should give actorId", actorId);
+		console.log("Metanthropes RPG button for metareroll - should give actor", actor);
+		console.log("=============================================================================================");
 		if (actor && actor.system.Vital.Destiny.value > 0) {
-			html.find(".meta-re-roll").removeClass("layout-hide");
+			html.find(".hide-button").removeClass("layout-hide");
 		} else {
-			html.find(".meta-re-roll").addClass("layout-hide");
+			html.find(".hide-button").addClass("layout-hide");
 		}
 		html.find(".meta-re-roll").on("click", MetaReRoll);
 	}

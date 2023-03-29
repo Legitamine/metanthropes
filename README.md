@@ -2,7 +2,7 @@
 ![Repository License](https://img.shields.io/github/license/legitamine/metanthropes-system)
 ![Foundry v10](https://img.shields.io/badge/foundry-v10-green)
 
-# Metanthropes RPG System
+# Metanthropes RPG System for FoundryVTT
 This is the official Metanthropes RPG system for Foundry VTT.
 
 - This project is in no way affiliated with or supported by Foundry VTT.
@@ -13,7 +13,7 @@ This is a work in progress and is not ready for general use. Installation instru
 
 ## Supported Modules
 
-This System aims to utilize the latest and best in Foundry VTT. Currently offers support for the latest stable Foundry VTT version 0.10.291
+This System aims to utilize the latest and best in Foundry VTT. Currently offers support for the latest stable Foundry VTT version 10.291
 
 To get the best experience while playing Metanthropes RPG, we recommend to install the following supported modules:
 
@@ -25,11 +25,20 @@ To get the best experience while playing Metanthropes RPG, we recommend to insta
 
 These are the latest changes for the Official Metanthropes RPG System for Foundry VTT
 
-#### 0.2.00 - latest builds (currently working on these)
-- GitHub Milestone Integration with the Metanthropes Roadmap
-- XP System Progressed Characteristics and Stats
-- Custom Initiative Ordering and Cycles and Rounds in Combat
-- Actor and Item sheets for Open Beta Introductory sessions requirements
+#### 0.2.00 - current build (status)
+- GitHub Milestone Integration with the Metanthropes Roadmap (pending)
+- Protagonist Sheet (pending)
+- Possessions: Possessions Sheet (pending)
+- Possessions: Possessions Chat Roll (pending)
+- Perks: TBD (pending)
+- XP System: Progressed Characteristics and Stats (issue)
+- XP System: Metapowers (pending)
+- XP System: Perks (pending)
+- Metapowers: Metapower Sheet (done)
+- Metapowers: Metapower Chat Roll (pending)
+- Combat: Initiative Ordering (manual workaround)
+- Combat: Cycles and Rounds (pending)
+- Sheets for Closed Beta Saga (pending)
 
 #### 0.0.102 - 0.1.99
 - Levels of Success & Failure and Stat Roll automated checks
