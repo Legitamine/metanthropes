@@ -831,7 +831,12 @@
 		},
 		"Possession": {
 			"templates": ["material"],
-			"category": ["Weapon", "Armor", "Shield", "Gadget", "Drug", "Other"],
+			"category": {
+				"type": "text",
+				"dtype": "string",
+				"label": "Category",
+				"value": "Weapon"
+			},
 			"statrolled": {
 				"type": "text",
 				"dtype": "string",
