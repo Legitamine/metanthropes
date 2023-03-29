@@ -248,7 +248,6 @@
 							}
 						}
 					},
-
 					"Mind": {
 						"Initial": 30,
 						"Progressed": 5,
@@ -292,7 +291,6 @@
 							}
 						}
 					},
-
 					"Soul": {
 						"Initial": 10,
 						"Progressed": 0,
@@ -723,7 +721,7 @@
 				}
 			},
 			"metabase": {
-				"Activation" :{
+				"Activation": {
 					"classification": {
 						"type": "text",
 						"dtype": "string",
@@ -748,7 +746,7 @@
 						"label": "✨",
 						"value": "some energy type"
 					},
-					"destinyspent" : {
+					"destinyspent": {
 						"type": "number",
 						"dtype": "number",
 						"label": "🤞",
@@ -833,27 +831,17 @@
 		},
 		"Possession": {
 			"templates": ["material"],
-			"category": {
-				"armor": {
-					"type": "string",
-					"label": "Armor",
-					"value": "some armor"
-				},
-				"weapon": {
-					"type": "string",
-					"label": "Weapon",
-					"value": "some weapon"
-				},
-				"gadget": {
-					"type": "string",
-					"label": "Gadget",
-					"value": "some gadget"
-				},
-				"drug": {
-					"type": "string",
-					"label": "Drug",
-					"value": "some drug"
-				}
+			"category": ["Weapon", "Armor", "Shield", "Gadget", "Drug", "Other"],
+			"statrolled": {
+				"type": "text",
+				"dtype": "string",
+				"label": "🎲",
+				"value": "some stat rolled"
+			},
+			"description": {
+				"type": "string",
+				"label": "Possession Description",
+				"value": "some possession description"
 			}
 		},
 		"Metapower": {

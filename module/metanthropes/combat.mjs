@@ -52,6 +52,7 @@ export class MetanthropesCombat extends Combat {
 	}
 	//async previousRound() {}
 	// this should replace the default roll initiative
+	//! edw einai - ayto psanxei formula, enw egw exw allo function to do that
 	async _getInitiativeFormula(combatant) {
 		console.log("got to change the initiative formula === +++ === +++ === ");
 		await MetaInitiative(combatant);

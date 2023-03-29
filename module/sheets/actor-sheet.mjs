@@ -46,7 +46,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 			//this._prepareCharacteristicsItemData(context);
 		}
 		// Add roll data for TinyMCE editors.
-		//adding this enabled rolls??
 		context.rollData = context.actor.getRollData();
 		// Prepare active effects
 		// context.effects = prepareActiveEffectCategories(this.actor.effects);
@@ -59,14 +58,14 @@ export class MetanthropesActorSheet extends ActorSheet {
 	//prepare items
 	_prepareItems(context) {
 		// Initialize containers.
-		const Possessions = [];
-		//todo: add filtering per category for possessions - allowing for an item to have multiple ones like a weapon that is also a gadget etc.
-		//todo: need to create the correct schema on template.json for this
-		//	Armor: [],
-		//	Weapon: [],
-		//	Gadget: [],
-		//	Drug: [],
-		const Perks = [];
+		const Possessions = {
+			Weapon: [],
+			Armor: [],
+			Shield: [],
+			Gadget: [],
+			Drug: [],
+			Other: [],
+		};
 		const Combos = {
 			1: [],
 			2: [],
@@ -87,11 +86,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			// Append to Possessions.
 			if (i.type === "Possession") {
 				//todo if (i.system.category)
-				Possessions.push(i);
-			}
-			// Append to Perks.
-			else if (i.type === "Perk") {
-				Perks.push(i);
+				Possessions[i.system.category].push(i);
 			}
 			// Append to Metapowers.
 			else if (i.type === "Metapower") {
@@ -107,7 +102,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 
 		// Assign and return
 		context.Possessions = Possessions;
-		context.Perks = Perks;
 		context.Metapowers = Metapowers;
 		context.Combos = Combos;
 	}
