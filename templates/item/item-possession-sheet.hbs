@@ -6,11 +6,11 @@
 			<div class="grid grid-2col">
 				<div class="resource">
 					<label class="resource-label">🎲:</label>
-					<input type="text" name="system.statrolled.value" value="{{system.statrolled.value}}" data-dtype="string" />
+					<input type="text" name="system.StatRolled.value" value="{{system.StatRolled.value}}" data-dtype="string" />
 				</div>
 				<div class="resource">
 					<label class="resource-label">Category:</label>
-					<input type="text" name="system.category.value" value="{{system.category.value}}" data-dtype="String" />
+					<input type="text" name="system.Category.value" value="{{system.Category.value}}" data-dtype="String" />
 				</div>
 			</div>
 		</div>
@@ -28,7 +28,7 @@
 		{{!-- Description Tab --}}
 		<div class="tab" data-group="primary" data-tab="description">
 			{{!-- To render inline rolls in a TinyMCE editor, you need to pass the parent actor's (if any) roll data to the rollData prop. --}}
-			{{editor system.description.value target="system.description.value" rollData=rollData button=true owner=owner editable=editable}}
+			{{editor system.Description.value target="system.Description.value" rollData=rollData button=true owner=owner editable=editable}}
 		</div>
 
 		{{!-- Attributes Tab --}}
@@ -36,7 +36,7 @@
 			{{!-- As you add new fields, add them in here! --}}
 			<div class="resource">
 				<label class="resource-label">🎲:</label>
-				<input type="text" name="system.statrolled.value" value="{{system.statrolled.value}}" data-dtype="String" />
+				<input type="text" name="system.StatRolled.value" value="{{system.StatRolled.value}}" data-dtype="String" />
 			</div>
 		</div>
 	</section>

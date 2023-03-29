@@ -166,7 +166,9 @@ export class MetanthropesActor extends Actor {
 				// Calculate the experience spent on this characteristic
 				statExperienceSpent = 0;
 				for (let i = 0; i < advancementCount; i++) {
-					statExperienceSpent += Number((Number(StatValue.Initial) + Number(CharValue.Base) + Number(i * 5)) * 3);
+					statExperienceSpent += Number(
+						(Number(StatValue.Initial) + Number(CharValue.Base) + Number(i * 5)) * 3
+					);
 				}
 				// Add the experience spent on this characteristic to the total experience spent, only if Progressed is >0
 				if (advancementCount > 0) {
@@ -233,6 +235,18 @@ export class MetanthropesActor extends Actor {
 		);
 		// Store experienceSpent in systemData.Vital.Experience.Spent
 		parseInt((systemData.Vital.Experience.Spent = Number(experienceSpent)));
+		console.log("Total Experience Spent for", this.name, "Progressions:", experienceSpent);
+		parseInt(
+			(systemData.Vital.Experience.Stored = Number(
+				Number(systemData.Vital.Experience.Total) - Number(experienceSpent)
+			))
+		);
+		if (systemData.Vital.Experience.Stored < 0) {
+			console.log("=============================================================================================");
+			console.log("Metanthropes RPG WARNING: Stored Experience is Negative!");
+			console.log("=============================================================================================");
+		}
+		console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
 		console.log("=============================================================================================");
 		console.log("Metanthropes RPG", this.type, "-", this.name, "is ready for Action!");
 		console.log("=============================================================================================");

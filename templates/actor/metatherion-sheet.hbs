@@ -71,8 +71,12 @@
 				<div><label for="system.Vital.Experience.Total" data-label="{{system.Vital.Experience.Label}}"
 						class="style-labels-text">📈 {{system.Vital.Experience.Label}}</label> Total <input
 						name="system.Experience.Total" type="number" value="{{system.Vital.Experience.Total}}"
-						data-dtype="number" placeholder="1000" /> Spent {{system.Vital.Experience.Spent}} Stored <input name="system.Vital.Experience.Stored" type="number"
-						value="{{system.Vital.Experience.Stored}}" data-dtype="number" placeholder="0" />
+						data-dtype="number" placeholder="1000" /> Spent {{system.Vital.Experience.Spent}} Stored {{#if (gte system.Vital.Experience.Stored 0)}}
+    <span class="style-cs-buffs">{{system.Vital.Experience.Stored}}</span>
+{{else}}
+    <span class="style-cs-conditions">{{system.Vital.Experience.Stored}}</span>
+{{/if}}
+
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
@@ -129,10 +133,10 @@
 					Notes are currently partially implemented
 					{{> "systems/metanthropes-system/templates/helpers/actor-notes.hbs"}}
 					<div class="layout-container-grid1x3 style-container-border style-labels-text">
-						{{editor system.physical.description-physical.value target="system.physical.description-physical.value" button=true owner=owner editable=editable}}
+						{{editor system.physical.Description.value target="system.physical.Description.value" button=true owner=owner editable=editable}}
 					</div>
 					<div class="layout-container-grid1x3 style-container-border style-labels-text">
-						{{editor system.entermeta.description-entermeta.value target="system.entermeta.description-entermeta.value" button=true owner=owner editable=editable}}
+						{{editor system.entermeta.Description.value target="system.entermeta.Description.value" button=true owner=owner editable=editable}}
 					</div>
 				</div>
 			</div>

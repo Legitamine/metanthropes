@@ -162,7 +162,7 @@
 						"value": 0,
 						"max": 100
 					},
-					"description-physical": {
+					"Description": {
 						"type": "string",
 						"label": "Physical Description",
 						"value": "Height, Weight, details about physical appearance, etc."
@@ -400,7 +400,7 @@
 						"label": "Height",
 						"value": "Your Height"
 					},
-					"description-humanoid": {
+					"Description": {
 						"type": "string",
 						"label": "Humanoid Description",
 						"value": "A typical human with brown hair and brown eyes."
@@ -571,7 +571,7 @@
 						"value": 200,
 						"max": 0
 					},
-					"description-synthetic": {
+					"Description": {
 						"type": "string",
 						"label": "Synthetic Description",
 						"value": "some synthetic life form"
@@ -605,7 +605,7 @@
 						"label": "Coalition",
 						"value": "Player coalition you are a member of"
 					},
-					"description-entermeta": {
+					"Description": {
 						"type": "string",
 						"label": "Metamorphosis Details",
 						"value": "some metamorphosis"
@@ -709,26 +709,69 @@
 		"types": ["Object", "Possession", "Metapower", "Combo"],
 		"templates": {
 			"material": {
-				"mat": {
-					"type": "string",
-					"label": "Material",
-					"value": "some material"
-				},
-				"description-material": {
-					"type": "string",
-					"label": "Material Properties",
-					"value": "some material properties"
+				"Material": {
+					"Category":{
+						"type": "text",
+						"dtype": "string",
+						"label": "🧱 Category",
+						"value": "Earthly, Compossed, Metallic or Alien"
+					},
+					"Durability": {
+						"type": "number",
+						"dtype": "number",
+						"label": "🤍",
+						"value": 10
+					},
+					"Size": {
+						"type": "number",
+						"dtype": "number",
+						"label": "📐",
+						"value": 10
+					},
+					"Weight": {
+						"type": "number",
+						"dtype": "number",
+						"label": "⚖️",
+						"value": 10
+					},
+					"Resistances": {
+						"cosmic": {
+							"type": "number",
+							"label": "Cosmic",
+							"initial": 0
+						},
+						"elemental": {
+							"type": "number",
+							"label": "Elemental",
+							"initial": 0
+						},
+						"material": {
+							"type": "number",
+							"label": "Material",
+							"initial": 0
+						},
+						"psychic": {
+							"type": "number",
+							"label": "Psychic",
+							"initial": 0
+						}
+					},
+					"Description": {
+						"type": "string",
+						"label": "Material Properties",
+						"value": "some material properties"
+					}
 				}
 			},
 			"metabase": {
 				"Activation": {
-					"classification": {
+					"Classification": {
 						"type": "text",
 						"dtype": "string",
 						"label": "Classification",
 						"value": "example Utilitarian"
 					},
-					"metapowername": {
+					"MetapowerName": {
 						"type": "text",
 						"dtype": "string",
 						"label": "Metapower",
@@ -740,79 +783,79 @@
 						"label": "⏫",
 						"value": "1"
 					},
-					"energytype": {
+					"EnergyType": {
 						"type": "text",
 						"dtype": "string",
 						"label": "✨",
 						"value": "some energy type"
 					},
-					"destinyspent": {
+					"DestinySpent": {
 						"type": "number",
 						"dtype": "number",
 						"label": "🤞",
 						"value": "0"
 					},
-					"statrolled": {
+					"StatRolled": {
 						"type": "text",
 						"dtype": "string",
 						"label": "🎲",
 						"value": "some stat rolled"
 					},
-					"actionslot": {
+					"ActionSlot": {
 						"type": "text",
 						"dtype": "string",
 						"label": "⏱",
 						"value": "some action slot"
 					},
-					"targets": {
+					"Targets": {
 						"type": "text",
 						"dtype": "string",
 						"label": "🎯",
 						"value": "some targets"
 					},
-					"duration": {
+					"Duration": {
 						"type": "text",
 						"dtype": "string",
 						"label": "⏳",
 						"value": "some duration"
 					},
-					"areaeffect": {
+					"AreaEffect": {
 						"type": "text",
 						"dtype": "string",
 						"label": "🗺️",
 						"value": "some area effect"
 					},
-					"range": {
+					"Range": {
 						"type": "text",
 						"dtype": "string",
 						"label": "📏",
 						"value": "some range"
 					},
-					"damage": {
+					"Damage": {
 						"type": "text",
 						"dtype": "string",
 						"label": "💥",
 						"value": "some damage"
 					},
-					"healing": {
+					"Healing": {
 						"type": "text",
 						"dtype": "string",
 						"label": "💞",
 						"value": "some healing"
 					},
-					"buffs": {
+					"Buffs": {
 						"type": "text",
 						"dtype": "string",
 						"label": "🛡️",
 						"value": "some buffs"
 					},
-					"conditions": {
+					"Conditions": {
 						"type": "text",
 						"dtype": "string",
 						"label": "💀",
 						"value": "some conditions"
 					},
-					"notes": {
+					"Notes": {
 						"type": "text",
 						"dtype": "string",
 						"label": "Metabase Notes",
@@ -823,7 +866,7 @@
 		},
 		"Object": {
 			"templates": ["material"],
-			"description-object": {
+			"Description": {
 				"type": "string",
 				"label": "Object Description",
 				"value": "some object description"
@@ -831,19 +874,19 @@
 		},
 		"Possession": {
 			"templates": ["material"],
-			"category": {
+			"Category": {
 				"type": "text",
 				"dtype": "string",
 				"label": "Category",
 				"value": "Weapon"
 			},
-			"statrolled": {
+			"StatRolled": {
 				"type": "text",
 				"dtype": "string",
 				"label": "🎲",
 				"value": "Creativity"
 			},
-			"description": {
+			"Description": {
 				"type": "string",
 				"label": "Possession Description",
 				"value": "some possession description"
@@ -851,22 +894,22 @@
 		},
 		"Metapower": {
 			"templates": ["metabase"],
-			"description-metapower": {
+			"Description": {
 				"type": "string",
 				"label": "Metapower Description",
 				"value": "some metapower description"
 			},
-			"effects-metapower": {
+			"Effects": {
 				"type": "string",
 				"label": "Metapower Effects",
-				"value": "some metapower effects with [[/roll 10d10]] [/roll 10d10] [10d10] [[10d10]] [[test]] [[Endurance]] roll tests"
+				"value": "some metapower effects with [[/roll 10d10x10]] roll tests"
 			}
 		},
 		"Combo": {
 			"templates": ["metabase"],
-			"description-combo": {
+			"Description": {
 				"type": "string",
-				"label": "Combos Description",
+				"label": "Combo Description",
 				"value": "Combos are not officially supported yet. This is a placeholder for future capabilities."
 			}
 		}
