@@ -45,6 +45,7 @@ export class MetanthropesItem extends Item {
 		const label = `[${item.type}] ${item.name} yay`;
 
 		// If there's no roll data, send a chat message.
+		//! should this be .value at the end?
 		if (!this.system.Activation.statrolled) {
 			ChatMessage.create({
 				speaker: speaker,

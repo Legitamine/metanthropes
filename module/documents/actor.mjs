@@ -268,7 +268,9 @@ export class MetanthropesActor extends Actor {
 		if (!combatant) return;
 
 		// Call the MetaInitiative function
-		console.log("inside onRollInitiative - calling MetaInitiative", this);
+		console.log("=============================================================================================");
+		console.log("Metanthropes RPG we are inside actor _onRollInitiative - calling MetaInitiative", this);
+		console.log("=============================================================================================");
 		await MetaInitiative(this);
 
 		// Retrieve the initiative data from the actor's flags
