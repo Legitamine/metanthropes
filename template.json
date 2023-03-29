@@ -802,7 +802,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "🎲",
-						"value": "some stat rolled"
+						"value": "Willpower"
 					},
 					"ActionSlot": {
 						"type": "text",
