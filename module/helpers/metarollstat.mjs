@@ -16,7 +16,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 		result = "Failure 🟥";
 		levelsOfSuccess = 0;
 		// resultlevel is used to help with ordering combatants in initiative order
-		resultLevel = 0;
+		resultLevel = 0.25;
 	} else {
 		// if the calculation is <= to statValue, it's a success, so we reset the levels of failure to 0
 		result = "Success 🟩";
@@ -28,6 +28,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 	//todo: review how bonuses and penalties should affect criticals
 	if (criticalSuccess) {
 		result = `🟩 Critical Success 🟩, rewarding ${actor.name} with +1 * 🤞`; //todo: add color and bold to crititals
+		resultLevel = 0.75;
 		currentDestiny += 1;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfSuccess = 10;
@@ -39,6 +40,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 	}
 	if (criticalFailure) {
 		result = `🟥 Critical Failure 🟥, rewarding ${actor.name} with +1 * 🤞`; //todo: add color and bold to crititals
+		resultLevel = 0;
 		currentDestiny += 1;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfFailure = 10;
@@ -94,7 +96,6 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 		levelsOfSuccess: levelsOfSuccess,
 		levelsOfFailure: levelsOfFailure,
 		resultLevel: resultLevel,
-		result: result,
 	});
 	//print message to chat and enable Dice So Nice to roll the dice and display the message
 	roll.toMessage({
