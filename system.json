@@ -2,7 +2,7 @@
 	"id": "metanthropes-system",
 	"title": "Metanthropes RPG",
 	"description": "Metanthropes RPG System for FoundryVTT",
-	"version": "0.2.14",
+	"version": "0.2.15",
 	"compatibility": {
 		"minimum": "10",
 		"verified": "10.291",
@@ -15,24 +15,14 @@
 			"email": "qp.wormholes@gmail.com",
 			"reddit": "/u/q---p",
 			"discord": "@qp#8888"
-		},
-		{
-			"name": "bofhgr"
 		}
 	],
 	"esmodules": ["./module/metanthropes-system.mjs"],
 	"styles": ["./css/metanthropes-system.css"],
-	"macros": {
-		"MetaRoll": {
-			"name": "MetaRoll",
-			"path": "./macros/metaroll.js"
-		}
-	},
 	"scripts": [],
 	"packs": [],
 	"languages": [],
 	"socket": false,
-	"initiative": "custom",
 	"gridDistance": 2,
 	"gridUnits": "m",
 	"primaryTokenAttribute": "Vital.Life.value",

@@ -16,7 +16,7 @@ export async function MetaRoll(actor, stat) {
 		${multiActionOptions.map((option) => `<option value="${option}">${option}</option>`).join("")}
 	</select>
 	<div>
-	<span class="style-cs-buffs ">Bonus :<input class="style-cs-buffs style-container-input-charstat" type="number" id="bonus" min="0" value="0"> %		</span><span class="style-cs-conditions">Penalty :<input class="style-cs-conditions style-container-input-charstat" type="number" id="penalty" min="0" value="0"> %</span>
+	<span class="style-cs-buffs ">Bonus: <input class="style-cs-buffs style-container-input-charstat" type="number" id="bonus" min="0" value="0">%		</span><span class="style-cs-conditions">Penalty: <input class="style-cs-conditions style-container-input-charstat" type="number" id="penalty" min="0" value="0">%</span>
 	</div>
 	</div>
 	`;
@@ -33,7 +33,7 @@ export async function MetaRoll(actor, stat) {
 					//collect multi-action value
 					let multiAction = html.find("#multiActionCount").val();
 					if (multiAction === "no") {
-					modifier = 0;
+						modifier = 0;
 					} else {
 						let selectedMultiActions = parseInt(html.find("#multiActionCount").val());
 						modifier = selectedMultiActions * -10;

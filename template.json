@@ -24,26 +24,31 @@
 						"Buffs": {
 							"fly": {
 								"type": "boolean",
+								"dtype": "Boolean",
 								"label": "Fly",
 								"value": false
 							},
 							"photokinetic": {
 								"type": "boolean",
+								"dtype": "Boolean",
 								"label": "Photokinetic",
 								"value": false
 							},
 							"walk-wall": {
 								"type": "boolean",
+								"dtype": "Boolean",
 								"label": "Wall Walk",
 								"value": false
 							},
 							"walk-wave": {
 								"type": "boolean",
+								"dtype": "Boolean",
 								"label": "Wave Walk",
 								"value": false
 							},
 							"walk-earth": {
 								"type": "boolean",
+								"dtype": "Boolean",
 								"label": "Earth Walk",
 								"value": false
 							}
@@ -51,11 +56,13 @@
 						"Conditions": {
 							"immobilized": {
 								"type": "boolean",
+								"dtype": "Boolean",
 								"label": "Immobilized",
 								"value": false
 							},
 							"knockdown": {
 								"type": "boolean",
+								"dtype": "Boolean",
 								"label": "Knocked Down",
 								"value": false
 							}
@@ -141,17 +148,20 @@
 						}
 					},
 					"immunities": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Immunities",
 						"value": "none"
 					},
 					"detections": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Detections",
 						"value": "none"
 					},
 					"shifts": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Shifts",
 						"value": "none"
 					},
@@ -163,7 +173,8 @@
 						"max": 100
 					},
 					"Description": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Physical Description",
 						"value": "Height, Weight, details about physical appearance, etc."
 					}
@@ -173,23 +184,28 @@
 				"Vital": {
 					"Experience": {
 						"type": "number",
+						"dtype": "Number",
 						"Label": "Experience",
 						"Total": "1000",
-						"Spent": "0",
-						"Stored": "0"
+						"Spent": 0,
+						"Manual": 0,
+						"Stored": 0
 					},
 					"age": {
 						"type": "number",
+						"dtype": "Number",
 						"label": "Age",
 						"value": 25
 					},
 					"arc": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Arc",
 						"value": "Your Arc"
 					},
 					"background": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Background",
 						"value": "Your Background"
 					},
@@ -371,67 +387,79 @@
 						}
 					},
 					"origin": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Origin",
 						"value": "Planet Earth"
 					},
 					"species": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Species",
 						"value": "Human"
 					},
 					"gender": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Gender",
 						"value": "Other"
 					},
 					"birthplace": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Birthplace",
 						"value": "Random City"
 					},
 					"weight": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Weight",
 						"value": "Your Weight"
 					},
 					"height": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Height",
 						"value": "Your Height"
 					},
 					"Description": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Humanoid Description",
 						"value": "A typical human with brown hair and brown eyes."
 					}
 				}
 			},
-			"humanoid-perks": {
-				"humanoid-perks": {
+			"perks": {
+				"Perks": {
 					"knowledge": {
 						"academics": {
 							"type": "number",
+							"dtype": "Number",
 							"label": "Academics",
 							"value": 0
 						},
 						"engineering": {
 							"type": "number",
+							"dtype": "Number",
 							"label": "Engineering",
 							"value": 0
 						},
 						"lore": {
 							"type": "number",
+							"dtype": "Number",
 							"label": "Lore",
 							"value": 0
 						},
 						"medicine": {
 							"type": "number",
+							"dtype": "Number",
 							"label": "Medicine",
 							"value": 0
 						},
 						"science": {
 							"type": "number",
+							"dtype": "Number",
 							"label": "Science",
 							"value": 0
 						}
@@ -439,26 +467,31 @@
 					"skills": {
 						"artistry": {
 							"type": "number",
+							"dtype": "Number",
 							"label": "Artistry",
 							"value": 0
 						},
 						"athletics": {
 							"type": "number",
+							"dtype": "Number",
 							"label": "Athletics",
 							"value": 0
 						},
 						"expertise": {
 							"type": "number",
+							"dtype": "Number",
 							"label": "Expertise",
 							"value": 0
 						},
 						"operation": {
 							"type": "number",
+							"dtype": "Number",
 							"label": "Operation",
 							"value": 0
 						},
 						"weapons": {
 							"type": "number",
+							"dtype": "Number",
 							"label": "Weapons",
 							"value": 0
 						}
@@ -520,7 +553,8 @@
 						}
 					},
 					"details-animal": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Animal Details",
 						"value": "some animal"
 					}
@@ -572,7 +606,8 @@
 						"max": 0
 					},
 					"Description": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Synthetic Description",
 						"value": "some synthetic life form"
 					}
@@ -581,32 +616,38 @@
 			"entermeta": {
 				"entermeta": {
 					"metamorphosis": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Metamorphosis",
 						"value": "some metamorphosis"
 					},
 					"regression": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Regression",
 						"value": "Your Regression"
 					},
 					"primemetapower": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Prime Metapower",
 						"value": "your Prime Metapower"
 					},
 					"sagas": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Sagas",
 						"value": "Sagas you have participated in"
 					},
 					"coalition": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Coalition",
 						"value": "Player coalition you are a member of"
 					},
 					"Description": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Metamorphosis Details",
 						"value": "some metamorphosis"
 					}
@@ -616,41 +657,47 @@
 		"Human": {
 			"templates": ["physical", "vital", "humanoids"],
 			"metaowner": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Metaowner",
 				"value": "NPC"
 			}
 		},
 		"Humanoid": {
-			"templates": ["physical", "vital", "characteristics", "humanoids", "humanoid-perks"],
+			"templates": ["physical", "vital", "characteristics", "humanoids", "perks"],
 			"metaowner": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Metaowner",
 				"value": "NPC"
 			}
 		},
 		"Metanthrope": {
-			"templates": ["physical", "vital", "characteristics", "humanoids", "humanoid-perks", "entermeta"],
+			"templates": ["physical", "vital", "characteristics", "humanoids", "perks", "entermeta"],
 			"metaowner": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Metaowner",
 				"value": "NPC"
 			}
 		},
 		"Protagonist": {
-			"templates": ["physical", "vital", "characteristics", "humanoids", "humanoid-perks", "entermeta"],
+			"templates": ["physical", "vital", "characteristics", "humanoids", "perks", "entermeta"],
 			"metaowner": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Metaowner",
-				"value": "Player Name"
+				"value": "Player"
 			},
 			"notes-protagonist": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Protagonist Notes",
 				"value": "My Notes"
 			},
 			"notes-narrator": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Narrator Notes",
 				"value": "This is my favorite Protagonist"
 			}
@@ -658,7 +705,8 @@
 		"Animal": {
 			"templates": ["physical", "vital", "characteristics", "animals"],
 			"metaowner": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Metaowner",
 				"value": "NPC"
 			}
@@ -666,7 +714,8 @@
 		"MetaTherion": {
 			"templates": ["physical", "vital", "characteristics", "animals", "entermeta"],
 			"metaowner": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Metaowner",
 				"value": "NPC"
 			}
@@ -674,7 +723,8 @@
 		"Artificial": {
 			"templates": ["physical", "vital", "characteristics", "synthetic"],
 			"metaowner": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Metaowner",
 				"value": "NPC"
 			}
@@ -682,15 +732,17 @@
 		"Animated-Object": {
 			"templates": ["physical"],
 			"metaowner": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Metaowner",
 				"value": "NPC"
 			}
 		},
 		"Animated-Humanoid": {
-			"templates": ["physical", "vital", "characteristics", "humanoids", "humanoid-perks"],
+			"templates": ["physical", "vital", "characteristics", "humanoids", "perks"],
 			"metaowner": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Metaowner",
 				"value": "NPC"
 			}
@@ -720,19 +772,19 @@
 						"type": "number",
 						"dtype": "Number",
 						"label": "🧱 🤍",
-						"value": 10
+						"value": "10"
 					},
 					"Size": {
 						"type": "number",
 						"dtype": "Number",
 						"label": "🧱 📐",
-						"value": 10
+						"value": "10"
 					},
 					"Weight": {
 						"type": "number",
 						"dtype": "Number",
 						"label": "🧱 ⚖️",
-						"value": 10
+						"value": "10"
 					},
 					"Cosmic": {
 						"type": "number",
@@ -759,7 +811,7 @@
 						"initial": 0
 					},
 					"Description": {
-						"type": "string",
+						"type": "text",
 						"dtype": "String",
 						"label": "🧱 Description",
 						"value": "some material properties"
@@ -792,11 +844,11 @@
 						"label": "✨",
 						"value": "some energy type"
 					},
-					"DestinySpent": {
+					"DestinyCost": {
 						"type": "number",
 						"dtype": "Number",
 						"label": "🤞",
-						"value": "0"
+						"value": 0
 					},
 					"StatRolled": {
 						"type": "text",
@@ -808,7 +860,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "⏱",
-						"value": "some action slot"
+						"value": "Main Action"
 					},
 					"Targets": {
 						"type": "text",
@@ -870,7 +922,8 @@
 		"Object": {
 			"templates": ["material"],
 			"Description": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Object Description",
 				"value": "some object description"
 			}
@@ -890,7 +943,8 @@
 				"value": "Creativity"
 			},
 			"Description": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Possession Description",
 				"value": "some possession description https://content.invisioncic.com/e290497/monthly_2021_02/1243943215_RULESC3.png.28493c483d72ebeb1eec27a7b7951e7b.png"
 			}
@@ -898,12 +952,14 @@
 		"Metapower": {
 			"templates": ["metabase"],
 			"Description": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Metapower Description",
 				"value": "some metapower description"
 			},
 			"Effects": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Metapower Effects",
 				"value": "some metapower effects with [[/roll 10d10x10]] roll tests"
 			}
@@ -911,7 +967,8 @@
 		"Combo": {
 			"templates": ["metabase"],
 			"Description": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Combo Description",
 				"value": "Combos are not officially supported yet. This is a placeholder for future capabilities."
 			}

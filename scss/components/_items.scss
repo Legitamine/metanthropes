@@ -27,17 +27,17 @@
 
 .items-list {
 	list-style: none;
-	margin: 0;
-	padding: 0;
+	margin: $margin-sm;
+	padding: $padding-sm;
 	overflow-y: auto;
 	scrollbar-width: thin;
-	color: $c-tan;
+	color: $c-purple;
 
 	// Child lists
 	.item-list {
 		list-style: none;
-		margin: 0;
-		padding: 0;
+		margin: $margin-sm;
+		padding: $padding-sm;
 	}
 
 	// Item Name

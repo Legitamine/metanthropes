@@ -27,7 +27,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 	//check for critical success or failure
 	//todo: review how bonuses and penalties should affect criticals
 	if (criticalSuccess) {
-		result = `🟩 Critical Success 🟩, rewarding ${actor.name} with 1 * 🤞`; //todo: add color and bold to crititals
+		result = `🟩 Critical Success 🟩, rewarding ${actor.name} with +1 * 🤞`; //todo: add color and bold to crititals
 		currentDestiny += 1;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfSuccess = 10;
@@ -38,7 +38,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 		}
 	}
 	if (criticalFailure) {
-		result = `🟥 Critical Failure 🟥, rewarding ${actor.name} with 1 * 🤞`; //todo: add color and bold to crititals
+		result = `🟥 Critical Failure 🟥, rewarding ${actor.name} with +1 * 🤞`; //todo: add color and bold to crititals
 		currentDestiny += 1;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfFailure = 10;
@@ -118,13 +118,13 @@ async function MetaReRoll(event) {
 	const bonus = parseInt(button.dataset.bonus);
 	const penalty = parseInt(button.dataset.penalty);
 	const actor = game.actors.get(actorId);
+	let currentDestiny = actor.system.Vital.Destiny.value;
 	// make this function only available to the owner of the actor
 	if (actor && actor.isOwner) {
 		// Reduce Destiny.value by 1
-		let currentDestiny = actor.system.Vital.Destiny.value;
 		if (currentDestiny > 0) {
 			currentDestiny -= 1;
-			await actor.update({ "system.Vital.Destiny.value": currentDestiny });
+			await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 			// Update re-roll button visibility
 			const message = game.messages.get(button.dataset.messageId);
 			if (message) {
@@ -140,8 +140,8 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		const actorId = message.getFlag("metanthropes-system", "actorId");
 		const actor = game.actors.get(actorId);
 		console.log("=============================================================================================");
-		console.log("Metanthropes RPG button for metareroll - should give actorId", actorId);
-		console.log("Metanthropes RPG button for metareroll - should give actor", actor);
+		console.log("Metanthropes RPG Hook for MetaReRoll Button - should give actorId", actorId);
+		console.log("Metanthropes RPG Hook for MetaReRoll Button - should give actor", actor);
 		console.log("=============================================================================================");
 		if (actor && actor.system.Vital.Destiny.value > 0) {
 			html.find(".hide-button").removeClass("layout-hide");

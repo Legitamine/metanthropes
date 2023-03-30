@@ -6,7 +6,7 @@ export default class MetaCombatTracker extends CombatTracker {
 		// Add a new option to the context menu
 		options.push({
 			name: "Roll Initiative",
-			icon: '<i class="fas fa-dice-d20"></i>',
+			icon: '<i class="fa-solid fa-dice-d10"></i><i class="fa-light fa-dice-d10"></i>',
 			condition: game.user.isGM,
 			callback: li => {
 				// Get the actor from the combatant

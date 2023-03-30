@@ -655,16 +655,16 @@ button {
 }
 .metanthropes .items-list {
   list-style: none;
-  margin: 0;
-  padding: 0;
+  margin: 1px;
+  padding: 1px;
   overflow-y: auto;
   scrollbar-width: thin;
-  color: #444;
+  color: #370239;
 }
 .metanthropes .items-list .item-list {
   list-style: none;
-  margin: 0;
-  padding: 0;
+  margin: 1px;
+  padding: 1px;
 }
 .metanthropes .items-list .item-name {
   flex: 2;
