@@ -235,10 +235,10 @@ export class MetanthropesActor extends Actor {
 		);
 		// Store experienceSpent in systemData.Vital.Experience.Spent
 		parseInt((systemData.Vital.Experience.Spent = Number(experienceSpent)));
-		console.log("Total Experience Spent for", this.name, "Progressions:", experienceSpent);
+		console.log("Total Experience Spent automagically for", this.name, "Progressions:", experienceSpent);
 		parseInt(
 			(systemData.Vital.Experience.Stored = Number(
-				Number(systemData.Vital.Experience.Total) - Number(experienceSpent)
+				Number(systemData.Vital.Experience.Total) - Number(experienceSpent) - Number(systemData.Vital.Experience.Manual)
 			))
 		);
 		if (systemData.Vital.Experience.Stored < 0) {
