@@ -303,7 +303,7 @@ button {
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 0.9fr 1fr 1fr 1fr 0.8fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 0.8fr;
   -moz-column-gap: 3px;
        column-gap: 3px;
   row-gap: 3px;

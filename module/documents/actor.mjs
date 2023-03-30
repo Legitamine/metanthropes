@@ -69,29 +69,11 @@ export class MetanthropesActor extends Actor {
 		// Currently we only care about actors with characteristics so we don't use this section
 		// this._prepareBaseNonCharacteristicsData(actorData);
 	}
-	// Override base values for each type of actor here.
-	//	_prepareBaseNonCharacteristicsData(actorData) {
-	//		// the below should only work for non-charstats actors
-	//		if (actorData.type == "Humanoid") return;
-	//		else if (actorData.type == "Animated-Humanoid") return;
-	//		else if (actorData.type == "Artificial") return;
-	//		else if (actorData.type == "Metanthrope") return;
-	//		else if (actorData.type == "Protagonist") return;
-	//		else if (actorData.type == "Animal") return;
-	//		else if (actorData.type == "MetaTherion") return;
-	//		const systemData = actorData.system;
-	//		const flags = actorData.flags.metanthropes || {};
-	//		console.log("========================================================================");
-	//		console.log("Metanthropes RPG Preparing Data for", this.type, "Actor:", this.name);
-	//		console.log("========================================================================");
-	//	}
-	//todo: TOC
 	// Override Derived values for Characteristic and Stat calculations here.
 	// using one function for all types of actors with characteristics and stats in prepareDerivedData
 	/** @override */
 	prepareDerivedData() {
-		const actorData = this;
-		//! notice here we use .metanthropes instead of metanthropes-system - I would need to review this later in this code as well
+		const actorData = this;		
 		this._prepareDerivedCharacteristicsData(actorData);
 	}
 	_prepareDerivedCharacteristicsData(actorData) {
@@ -100,6 +82,7 @@ export class MetanthropesActor extends Actor {
 		else if (actorData.type == "Animated-Object") return;
 		else if (actorData.type == "Vehicle") return;
 		const systemData = actorData.system;
+		//! notice here we use .metanthropes instead of metanthropes-system - I would need to review this later in this code as well
 		const flags = actorData.flags.metanthropes || {};
 		let experienceSpent = 0;
 		let characteristicExperienceSpent = 0;
@@ -295,7 +278,6 @@ export class MetanthropesActor extends Actor {
 		const levelsOfSuccess = initiativeData.levelsOfSuccess;
 		const levelsOfFailure = initiativeData.levelsOfFailure;
 		const resultLevel = initiativeData.resultLevel;
-		const result = initiativeData.result;
 		const initiativeValue = initiativeData.initiativeValue;
 
 		// Set the initiative value for the combatant

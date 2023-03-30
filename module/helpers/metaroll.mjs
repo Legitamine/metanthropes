@@ -25,9 +25,6 @@ export async function MetaRoll(actor, stat) {
 		content: dialogContent,
 		buttons: {
 			roll: {
-				//! this looks really ugly
-				//todo: find a way to make this look better
-				//label: "<img src='../systems/metanthropes-system/artwork/metanthropes-dice-roll-small.webp' alt='Roll' />",
 				label: "Roll",
 				callback: async (html) => {
 					//collect multi-action value

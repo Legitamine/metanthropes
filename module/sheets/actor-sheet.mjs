@@ -41,9 +41,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 		context.system = actorData.system;
 		context.flags = actorData.flags;
 		// Prepare character data and items.
-		if (actorData.type == "MetaTherion") {
+		if (actorData.type == "MetaTherion" || actorData.type == "Protagonist") {
 			this._prepareItems(context);
-			//this._prepareCharacteristicsItemData(context);
 		}
 		// Add roll data for TinyMCE editors.
 		context.rollData = context.actor.getRollData();
@@ -51,10 +50,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 		// context.effects = prepareActiveEffectCategories(this.actor.effects);
 		return context;
 	}
-	//prepare localization for characters
-	//_prepareCharacteristicsItemData(context) {
-	//here is where I would do the localization
-	//}
 	//prepare items
 	_prepareItems(context) {
 		// Initialize containers.
