@@ -492,7 +492,7 @@ button {
 .metanthropes .style-container-nav {
   border: 1px dotted #370239;
   border-radius: 15px;
-  justify-content: space-evenly;
+  justify-content: space-around;
   justify-self: stretch;
   align-items: center;
   align-self: stretch;
