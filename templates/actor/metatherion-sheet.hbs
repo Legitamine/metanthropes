@@ -66,11 +66,11 @@
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
-				<div class="style-labels-text">📈 Total<input name="system.Vital.Experience.Total"
+				<div>📈 Total<input name="system.Vital.Experience.Total"
 						type="number" value="{{system.Vital.Experience.Total}}" data-dtype="Number"
-						placeholder="1000" /> Manual<input name="system.Vital.Experience.Manual" type="number"
+						placeholder="1000" /> Spent: {{system.Vital.Experience.Spent}} Manual<input name="system.Vital.Experience.Manual" type="number"
 						value="{{system.Vital.Experience.Manual}}" data-dtype="Number"
-						placeholder="0" /> Spent: {{system.Vital.Experience.Spent}} Stored:{{#if (gte system.Vital.Experience.Stored 0)}}
+						placeholder="0" /> Stored:{{#if (gte system.Vital.Experience.Stored 0)}}
 						<span class="style-cs-buffs">{{system.Vital.Experience.Stored}}</span>
 					{{else}}
 						<span class="style-cs-conditions">{{system.Vital.Experience.Stored}}</span>
