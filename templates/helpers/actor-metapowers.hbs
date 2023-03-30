@@ -2,10 +2,11 @@
 	{{#each Metapowers as |Metapowers metapowerLevel|}}
 		<li class="item flexrow items-header">
 			<div class="item-name">⏫: {{metapowerLevel}}</div>
-			<div class="item-mpname">{{item.system.Activation.MetapowerName.label}}</div>
-			<div class="item-destinycost">{{item.system.Activation.DestinyCost.label}}</div>
-			<div class="item-statroll">{{item.system.Activation.StatRolled.label}}</div>
-			<div class="item-actionslot">{{item.system.Activation.ActionSlot.label}}</div>
+			<div class="item-mpname">Metapower</div>
+			<div class="item-destinycost">🤞</div>
+			<div class="item-statroll">🎲</div>
+			<div class="item-actionslot">⏱</div>
+			<div class="item-controls"><i class="fa-duotone fa-gears"></i></div>
 		</li>
 		{{#each Metapowers as |item id|}}
 			<li class="item flexrow" data-item-id="{{item._id}}">

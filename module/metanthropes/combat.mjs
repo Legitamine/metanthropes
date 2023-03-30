@@ -2,6 +2,7 @@
 
 export class MetanthropesCombat extends Combat {
 	_sortCombatants(a, b) {
+		console.log("from within sortCombatants  === +++ === +++ === ");
 		const aActor = game.actors.get(a.actorId);
 		const bActor = game.actors.get(b.actorId);
 
@@ -25,6 +26,7 @@ export class MetanthropesCombat extends Combat {
 	}
 	// this gets called multiple times throughout the combat
 	_prepareCombatant(c, scene, players, settings = {}) {
+		console.log("from within prepareCombatant  === +++ === +++ === ");
 		const combatant = super._prepareCombatant(c, scene, players, settings);
 		const actor = game.actors.get(c.actorId);
 		const initiativeData = actor.getFlag("metanthropes-system", "initiative");
@@ -33,6 +35,7 @@ export class MetanthropesCombat extends Combat {
 	}
 	// this decides who's turn it is?
 	async rollInitiative(ids, formulaopt, updateTurnopt, messageOptionopt) {
+		console.log("from within async rollInitiative  === +++ === +++ === ");
 		await super.rollInitiative(ids, formulaopt, updateTurnopt, messageOptionopt);
 		return this.update({turn: 0});
 	}

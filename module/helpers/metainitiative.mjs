@@ -3,7 +3,7 @@ import { MetaRollStat } from "./metarollstat.mjs";
 
 // MetaInitiative function handles Initiative rolls
 export async function MetaInitiative(actor) {
-	console.log("MetaInitiative called for actor: ", actor.name);
+	console.log("Metanthropes RPG MetaInitiative called for actor: ", actor.name);
 	const reflexesStat = "Reflexes";
 	const awarenessStat = "Awareness";
 	const reflexesValue = actor.system.RollStats[reflexesStat];
