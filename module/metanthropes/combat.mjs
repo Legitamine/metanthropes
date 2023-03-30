@@ -1,4 +1,4 @@
-// import { Combat } from "../../../../systems/foundryvtt/src/module/combat.mjs";
+import { MetaInitiative } from "../helpers/metainitiative.mjs";
 
 export class MetanthropesCombat extends Combat {
 	_sortCombatants(a, b) {

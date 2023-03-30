@@ -18,6 +18,7 @@
 // Import modules.
 import { MetanthropesCombat } from "./metanthropes/combat.mjs";
 import { MetaCombatTracker } from "./metanthropes/combattracker.mjs";
+import { MetaCombatant } from "./metanthropes/combatant.mjs";
 // Import document classes.
 import { MetanthropesActor } from "./documents/actor.mjs";
 import { MetanthropesItem } from "./documents/item.mjs";
@@ -51,6 +52,8 @@ Hooks.once("init", async function () {
 	CONFIG.Combat.initiative = MetaInitiative;
 	// setup custom combat
 	CONFIG.Combat.entityClass = MetanthropesCombat;
+	//setup custom combatant
+	CONFIG.Actor.entityClass = MetaCombatant;
 	// setup custom combat tracker
 	CONFIG.ui.combat = MetaCombatTracker;
 	// tiime in seconds for Round Duration

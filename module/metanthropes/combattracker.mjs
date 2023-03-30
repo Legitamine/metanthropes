@@ -1,3 +1,4 @@
+import { MetaInitiative } from "../helpers/metainitiative.mjs";
 export class MetaCombatTracker extends CombatTracker {
 	//purely ai generated code the below from copilot
 	// Override the _getEntryContextOptions function
