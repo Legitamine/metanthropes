@@ -432,68 +432,94 @@
 			},
 			"perks": {
 				"Perks": {
-					"knowledge": {
-						"academics": {
+					"Knowledge": {
+						"Academics": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Academics",
 							"value": 0
 						},
-						"engineering": {
+						"Engineering": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Engineering",
 							"value": 0
 						},
-						"lore": {
-							"type": "number",
-							"dtype": "Number",
-							"label": "Lore",
-							"value": 0
-						},
-						"medicine": {
+						"Medicine": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Medicine",
 							"value": 0
 						},
-						"science": {
+						"Science": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Science",
 							"value": 0
+						},
+						"Lore": {
+							"type": "number",
+							"dtype": "Number",
+							"label": "Lore",
+							"value": 0
 						}
 					},
-					"skills": {
-						"artistry": {
+					"Skills": {
+						"Artistry": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Artistry",
 							"value": 0
 						},
-						"athletics": {
+						"Athletics": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Athletics",
 							"value": 0
 						},
-						"expertise": {
+						"Expertise": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Expertise",
 							"value": 0
 						},
-						"operation": {
+						"Operation": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Operation",
 							"value": 0
 						},
-						"weapons": {
+						"Weapons": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Weapons",
 							"value": 0
+						}
+					},
+					"Extra":{
+						"Fields": {
+							"type": "text",
+							"dtype": "String",
+							"label": "Fields of Study",
+							"value": "Field 1, Field 2 etc."
+						},
+						"Expertise": {
+							"type": "text",
+							"dtype": "String",
+							"label": "Expertise",
+							"value": "Field 1, Field 2 etc."
+						},
+						"Languages": {
+							"type": "text",
+							"dtype": "String",
+							"label": "Languages",
+							"value": "Language 1, Language 2 etc."
+						},
+						"Life": {
+							"type": "text",
+							"dtype": "String",
+							"label": "Life Restoration",
+							"value": "4 + 4d10"
 						}
 					}
 				}

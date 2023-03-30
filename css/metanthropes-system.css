@@ -303,7 +303,7 @@ button {
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 0.5fr 1fr 1fr 1fr;
+  grid-template-rows: 0.9fr 1fr 1fr 1fr 0.8fr;
   -moz-column-gap: 3px;
        column-gap: 3px;
   row-gap: 3px;
@@ -345,11 +345,11 @@ button {
 }
 .metanthropes .layout-container-grid3x1 {
   display: grid;
-  grid-template-columns: 2fr 1fr 4fr;
+  grid-template-columns: 1.8fr 1fr 4.2fr;
   -moz-column-gap: 1px;
        column-gap: 1px;
-  padding: 1px;
-  margin: 1px;
+  padding: 0px;
+  margin: 0px;
   overflow: hidden;
   overflow-wrap: break-word;
 }
@@ -493,10 +493,11 @@ button {
   border: 1px dotted #370239;
   border-radius: 15px;
   justify-content: space-around;
-  justify-self: stretch;
+  justify-self: space-around;
   justify-items: space-around;
   align-items: center;
   align-self: center;
+  align-content: center;
 }
 .metanthropes .style-container-input-charstat {
   min-width: 2ch;

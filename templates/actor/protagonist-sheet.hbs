@@ -3,141 +3,85 @@
 		<div class="layout-container-grid3x1 style-container-grid3x1">
 			<div class="layout-container-small style-container-small">
 				<div>Player
-					<input
-						name="system.metaowner"
-						type="text"
-						value="{{system.metaowner.value}}"
-						placeholder="Player Name"
-						data-dtype="string"
-					/>
+					<input name="system.metaowner" type="text" value="{{system.metaowner.value}}"
+						placeholder="Player Name" data-dtype="String" />
 				</div>
 				<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
-				<div><input name="name" type="text" value="{{actor.name}}" placeholder="A Protagonist" /></div>
+				<div><input name="name" type="text" value="{{actor.name}}" placeholder="My Protagonist" /></div>
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>Prime Metapower
-					<input
-						name="system.entermeta.primemetapower.value"
-						type="text"
-						value="{{system.entermeta.primemetapower.value}}"
-						data-dtype="string"
-						placeholder="Prime Metapower"
-					/>
+					<input name="system.entermeta.primemetapower.value" type="text"
+						value="{{system.entermeta.primemetapower.value}}" data-dtype="String"
+						placeholder="Prime Metapower" />
 				</div>
 				<div>Metamorphosis
-					<input
-						name="system.entermeta.metamorphosis.value"
-						type="text"
-						value="{{system.entermeta.metamorphosis.value}}"
-						data-dtype="string"
-						placeholder="Your Metamorphosis"
-					/>
+					<input name="system.entermeta.metamorphosis.value" type="text"
+						value="{{system.entermeta.metamorphosis.value}}" data-dtype="String"
+						placeholder="Your Metamorphosis" />
 				</div>
 				<div>Background
-					<input
-						name="system.vital.background.value"
-						type="text"
-						value="{{system.vital.background.value}}"
-						data-dtype="string"
-						placeholder="Your Background"
-					/>
+					<input name="system.Vital.background.value" type="text" value="{{system.Vital.background.value}}"
+						data-dtype="String" placeholder="Your Background" />
 				</div>
 				<div>Arc
-					<input
-						name="system.vital.arc.value"
-						type="text"
-						value="{{system.vital.arc.value}}"
-						data-dtype="string"
-						placeholder="Your Arc"
-					/>
+					<input name="system.Vital.arc.value" type="text" value="{{system.Vital.arc.value}}"
+						data-dtype="String" placeholder="Your Arc" />
 				</div>
 				<p>Regression
-					<input
-						name="system.entermeta.regression.value"
-						type="text"
-						value="{{system.entermeta.regression.value}}"
-						data-dtype="string"
-						placeholder="Your Regression"
-					/>
+					<input name="system.entermeta.regression.value" type="text"
+						value="{{system.entermeta.regression.value}}" data-dtype="String"
+						placeholder="Your Regression" />
 				</p>
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>Birthplace
-					<input
-						name="system.humanoids.birthplace.value"
-						type="text"
-						value="{{system.humanoids.birthplace.value}}"
-						data-dtype="string"
-						placeholder="Birthplace"
-					/>
+					<input name="system.humanoids.birthplace.value" type="text"
+						value="{{system.humanoids.birthplace.value}}" data-dtype="String" placeholder="Birthplace" />
 				</div>
 				<div>Age
-					<input
-						name="system.vital.age.value"
-						type="number"
-						value="{{system.vital.age.value}}"
-						data-dtype="number"
-						placeholder=""
-					/>
+					<input name="system.Vital.age.value" type="number" value="{{system.Vital.age.value}}"
+						data-dtype="Number" placeholder="" />
 				</div>
 				<div>Gender
-					<input
-						name="system.humanoids.gender.value"
-						type="text"
-						value="{{system.humanoids.gender.value}}"
-						data-dtype="string"
-						placeholder="Other"
-					/>
+					<input name="system.humanoids.gender.value" type="text" value="{{system.humanoids.gender.value}}"
+						data-dtype="String" placeholder="Other" />
 				</div>
 				<div>Height
-					<input
-						name="system.humanoids.height.value"
-						type="text"
-						value="{{system.humanoids.height.value}}"
-						data-dtype="string"
-						placeholder="Your Height"
-					/>
+					<input name="system.humanoids.height.value" type="text" value="{{system.humanoids.height.value}}"
+						data-dtype="String" placeholder="Your Height" />
 				</div>
 				<div>Weight
-					<input
-						name="system.humanoids.weight.value"
-						type="text"
-						value="{{system.humanoids.weight.value}}"
-						data-dtype="string"
-						placeholder="Your Weight"
-					/>
+					<input name="system.humanoids.weight.value" type="text" value="{{system.humanoids.weight.value}}"
+						data-dtype="String" placeholder="Your Weight" />
 				</div>
 			</div>
 		</div>
 		<div class="layout-container-grid1x3 style-container-grid1x3">
 			<div class="layout-container-small style-container-small">
 				<div>
-					Life ❤️
-					<input
-						name="system.vital.life.value"
-						type="number"
-						value="{{system.vital.life.value}}"
-						data-dtype="number"
-					/>
-					<label
-						for="system.vital.life.max"
-						data-label="{{system.vital.life.max}}"
-						class="style-labels-number"
-					>{{system.vital.life.max}}</label>
+					❤️ Life
+					<input name="system.Vital.Life.value" type="number" value="{{system.Vital.Life.value}}"
+						data-dtype="Number" />/{{system.Vital.Life.max}}</label>
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
-				<div>Experience <input name="" type="number" value="" data-dtype="" placeholder="" /></div>
+				<div>📈 Total: <input name="system.Vital.Experience.Total"
+						type="number" value="{{system.Vital.Experience.Total}}" data-dtype="Number"
+						placeholder="1000" /> Spent: {{system.Vital.Experience.Spent}} + <input name="system.Vital.Experience.Manual" type="number"
+						value="{{system.Vital.Experience.Manual}}" data-dtype="Number"
+						placeholder="0" /> Stored:{{#if (gte system.Vital.Experience.Stored 0)}}
+						<span class="style-cs-buffs">{{system.Vital.Experience.Stored}}</span>
+					{{else}}
+						<span class="style-cs-conditions">{{system.Vital.Experience.Stored}}</span>
+					{{/if}}
+				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
-				<div>Destiny 🤞
-					<input
-						name="system.vital.destiny.value"
-						type="number"
-						value="{{system.vital.destiny.value}}"
-						data-dtype="number"
-						placeholder="0"
-					/>
+				<div>🤞 Destiny
+					<input name="system.Vital.Destiny.value" type="number" value="{{system.Vital.Destiny.value}}"
+						data-dtype="Number" placeholder="0" />/<input name="system.Vital.Destiny.max" type="number"
+						value="{{system.Vital.Destiny.max}}">
 				</div>
 			</div>
 		</div>
@@ -145,703 +89,53 @@
 	<main>
 		<div class="layout-container-nav style-container-nav">
 			<nav class="csnavselector tabs" data-group="cs">
-				<!-- look into actor-sheet.mjs -->
-				<a class="item" data-tab="cs-charstats">🛡️ Characteristics & Stats 💀</a>
-				<a class="item" data-tab="cs-perks">🚧 Perks 🚧</a>
-				<a class="item" data-tab="cs-metapowers">🚧 Metapowers 🚧</a>
-				<a class="item" data-tab="cs-combos">🚧 Combos 🚧</a>
-				<a class="item" data-tab="cs-possessions">🚧 Possessions 🚧</a>
-				<a class="item" data-tab="cs-notes">🚧 Notes 🚧</a>
+				<a class="item" data-tab="cs-charstats">📊 Characteristics & Stats</a>
+				<a class="item" data-tab="cs-perks">📚 Perks</a>
+				<a class="item" data-tab="cs-metapowers">Ⓜ️ Metapowers</a>
+				<a class="item" data-tab="cs-combos">🔗 Combos</a>
+				<a class="item" data-tab="cs-possessions">🛠️ Possessions</a>
+				<a class="item" data-tab="cs-notes">📓 Notes</a>
 			</nav>
 		</div>
 		<section class="csnavtabs">
 			<div class="tab cs-charstats" data-group="cs" data-tab="cs-charstats">
-				<div class="layout-container-grid3x4 style-container-grid3x4">
-					<div class="layout-container-grid3x1 style-container-grid3x1">
-						<div>
-							<p>🏁
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Body.Initial"
-									type="number"
-									value="{{system.Characteristics.Body.Initial}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p>📈
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Body.Progressed"
-									type="number"
-									value="{{system.Characteristics.Body.Progressed}}"
-									data-dtype="number"
-								/>
-							</p>
-						</div>
-						<div>
-							<p class="style-cs-labels">BODY</p>
-							<p></p>
-							<p class="style-cs-values">{{system.Characteristics.Body.Current}}</p>
-						</div>
-						<div>
-							<p class="style-cs-buffs">🛡️
-								<input
-									class="style-cs-buffs"
-									name="system.Characteristics.Body.Buff.Current"
-									type="number"
-									value="{{system.Characteristics.Body.Buff.Current}}"
-									data-dtype="number"
-								/><label
-									for="system.Characteristics.Body.Buff.Current"
-								>{{system.Characteristics.Body.Buff.Name}}</label>
-							</p>
-							<p class="style-cs-conditions">💀
-								<input
-									class="style-cs-conditions"
-									name="system.Characteristics.Body.Condition.Current"
-									type="number"
-									value="{{system.Characteristics.Body.Condition.Current}}"
-									data-dtype="number"
-								/><label
-									for="system.Characteristics.Body.Condition.Current"
-								>{{system.Characteristics.Body.Condition.Name}}</label>
-							</p>
-						</div>
-					</div>
-
-					<div class="layout-container-grid3x1 style-container-grid3x1">
-						<div>
-							<p>🏁
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Mind.Initial"
-									type="number"
-									value="{{system.Characteristics.Mind.Initial}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p>📈
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Mind.Progressed"
-									type="number"
-									value="{{system.Characteristics.Mind.Progressed}}"
-									data-dtype="number"
-								/>
-							</p>
-						</div>
-						<div>
-							<p class="style-cs-labels">MIND</p>
-							<p></p>
-							<p class="style-cs-values">{{system.Characteristics.Mind.Current}}</p>
-						</div>
-						<div>
-							<p class="style-cs-buffs">🛡️
-								<input
-									class="style-cs-buffs"
-									name="system.Characteristics.Mind.Buff.Current"
-									type="number"
-									value="{{system.Characteristics.Mind.Buff.Current}}"
-									data-dtype="number"
-								/><label
-									for="system.Characteristics.Mind.Buff.Current"
-								>{{system.Characteristics.Mind.Buff.Name}}</label>
-							</p>
-							<p class="style-cs-conditions">💀
-								<input
-									class="style-cs-conditions"
-									name="system.Characteristics.Mind.Condition.Current"
-									type="number"
-									value="{{system.Characteristics.Mind.Condition.Current}}"
-									data-dtype="number"
-								/><label
-									for="system.Characteristics.Mind.Condition.Current"
-								>{{system.Characteristics.Mind.Condition.Name}}</label>
-							</p>
-						</div>
-					</div>
-
-					<div class="layout-container-grid3x1 style-container-grid3x1">
-						<div>
-							<p>🏁
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Soul.Initial"
-									type="number"
-									value="{{system.Characteristics.Soul.Initial}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p>📈
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Soul.Progressed"
-									type="number"
-									value="{{system.Characteristics.Soul.Progressed}}"
-									data-dtype="number"
-								/>
-							</p>
-						</div>
-						<div>
-							<p class="style-cs-labels">SOUL</p>
-							<p></p>
-							<p class="style-cs-values">{{system.Characteristics.Soul.Current}}</p>
-						</div>
-						<div>
-							<p class="style-cs-buffs">🛡️
-								<input
-									class="style-cs-buffs"
-									name="system.Characteristics.Soul.Buff.Current"
-									type="number"
-									value="{{system.Characteristics.Soul.Buff.Current}}"
-									data-dtype="number"
-								/><label
-									for="system.Characteristics.Soul.Buff.Current"
-								>{{system.Characteristics.Soul.Buff.Name}}</label>
-							</p>
-							<p class="style-cs-conditions">💀
-								<input
-									class="style-cs-conditions"
-									name="system.Characteristics.Soul.Condition.Current"
-									type="number"
-									value="{{system.Characteristics.Soul.Condition.Current}}"
-									data-dtype="number"
-								/><label
-									for="system.Characteristics.Soul.Condition.Current"
-								>{{system.Characteristics.Soul.Condition.Name}}</label>
-							</p>
-						</div>
-					</div>
-
-					<div class="layout-container-grid3x1 style-container-grid3x1">
-						<div>
-							<p>🏁
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Body.Stats.Endurance.Initial"
-									type="number"
-									value="{{system.Characteristics.Body.Stats.Endurance.Initial}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p>📈
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Body.Stats.Endurance.Progressed"
-									type="number"
-									value="{{system.Characteristics.Body.Stats.Endurance.Progressed}}"
-									data-dtype="number"
-								/>
-							</p>
-						</div>
-						<div>
-							<p class="style-cs-labels">ENDURANCE</p>
-							<p></p>
-							<p class="style-cs-rolls">{{system.Characteristics.Body.Stats.Endurance.Roll}}</p>
-						</div>
-						<div>
-							<p class="style-cs-buffs">🛡️
-								<input
-									class="style-cs-buffs"
-									name="system.Characteristics.Body.Stats.Endurance.Buff.Current"
-									type="number"
-									value="{{system.Characteristics.Body.Stats.Endurance.Buff.Current}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p class="style-cs-buffs"><label
-									for="system.Characteristics.Body.Stats.Endurance.Buff.Current"
-								>{{system.Characteristics.Body.Stats.Endurance.Buff.Name}}</label>
-							</p>
-
-							<p class="style-cs-conditions">💀
-								<input
-									class="style-cs-conditions"
-									name="system.Characteristics.Body.Stats.Endurance.Condition.Current"
-									type="number"
-									value="{{system.Characteristics.Body.Stats.Endurance.Condition.Current}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p class="style-cs-conditions"><label
-									for="system.Characteristics.Body.Stats.Endurance.Condition.Name"
-								>{{system.Characteristics.Body.Stats.Endurance.Condition.Name}}</label>
-							</p>
-						</div>
-					</div>
-
-					<div class="layout-container-grid3x1 style-container-grid3x1">
-						<div>
-							<p>🏁
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Mind.Stats.Perception.Initial"
-									type="number"
-									value="{{system.Characteristics.Mind.Stats.Perception.Initial}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p>📈
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Mind.Stats.Perception.Progressed"
-									type="number"
-									value="{{system.Characteristics.Mind.Stats.Perception.Progressed}}"
-									data-dtype="number"
-								/>
-							</p>
-						</div>
-						<div>
-							<p class="style-cs-labels">PERCEPTION</p>
-							<p></p>
-							<p class="style-cs-rolls">{{system.Characteristics.Mind.Stats.Perception.Roll}}</p>
-						</div>
-						<div>
-							<p class="style-cs-buffs">🛡️
-								<input
-									class="style-cs-buffs"
-									name="system.Characteristics.Mind.Stats.Perception.Buff.Current"
-									type="number"
-									value="{{system.Characteristics.Mind.Stats.Perception.Buff.Current}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p class="style-cs-buffs"><label
-									for="system.Characteristics.Mind.Stats.Perception.Buff.Current"
-								>{{system.Characteristics.Mind.Stats.Perception.Buff.Name}}</label>
-							</p>
-							<p class="style-cs-conditions">💀
-								<input
-									class="style-cs-conditions"
-									name="system.Characteristics.Mind.Stats.Perception.Condition.Current"
-									type="number"
-									value="{{system.Characteristics.Mind.Stats.Perception.Condition.Current}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p class="style-cs-conditions"><label
-									for="system.Characteristics.Mind.Stats.Perception.Condition.Name"
-								>{{system.Characteristics.Mind.Stats.Perception.Condition.Name}}</label>
-							</p>
-						</div>
-					</div>
-
-					<div class="layout-container-grid3x1 style-container-grid3x1">
-						<div>
-							<p>🏁
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Soul.Stats.Willpower.Initial"
-									type="number"
-									value="{{system.Characteristics.Soul.Stats.Willpower.Initial}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p>📈
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Soul.Stats.Willpower.Progressed"
-									type="number"
-									value="{{system.Characteristics.Soul.Stats.Willpower.Progressed}}"
-									data-dtype="number"
-								/>
-							</p>
-						</div>
-						<div>
-							<p class="style-cs-labels">WILLPOWER</p>
-							<p></p>
-							<p class="style-cs-rolls">{{system.Characteristics.Soul.Stats.Willpower.Roll}}</p>
-						</div>
-						<div>
-							<p class="style-cs-buffs">🛡️
-								<input
-									class="style-cs-buffs"
-									name="system.Characteristics.Soul.Stats.Willpower.Buff.Current"
-									type="number"
-									value="{{system.Characteristics.Soul.Stats.Willpower.Buff.Current}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p class="style-cs-buffs"><label
-									for="system.Characteristics.Soul.Stats.Willpower.Buff.Current"
-								>{{system.Characteristics.Soul.Stats.Willpower.Buff.Name}}</label>
-							</p>
-							<p class="style-cs-conditions">💀
-								<input
-									class="style-cs-conditions"
-									name="system.Characteristics.Soul.Stats.Willpower.Condition.Current"
-									type="number"
-									value="{{system.Characteristics.Soul.Stats.Willpower.Condition.Current}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p class="style-cs-conditions"><label
-									for="system.Characteristics.Soul.Stats.Willpower.Condition.Name"
-								>{{system.Characteristics.Soul.Stats.Willpower.Condition.Name}}</label>
-							</p>
-						</div>
-					</div>
-
-					<div class="layout-container-grid3x1 style-container-grid3x1">
-						<div>
-							<p>🏁
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Body.Stats.Power.Initial"
-									type="number"
-									value="{{system.Characteristics.Body.Stats.Power.Initial}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p>📈
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Body.Stats.Power.Progressed"
-									type="number"
-									value="{{system.Characteristics.Body.Stats.Power.Progressed}}"
-									data-dtype="number"
-								/>
-							</p>
-						</div>
-						<div>
-							<p> POWER </p>
-							<p></p>
-							<p class="style-cs-rolls">{{system.Characteristics.Body.Stats.Power.Roll}}</p>
-						</div>
-						<div>
-							<p class="style-cs-buffs">🛡️
-								<input
-									class="style-cs-buffs"
-									name="system.Characteristics.Body.Stats.Power.Buff.Current"
-									type="number"
-									value="{{system.Characteristics.Body.Stats.Power.Buff.Current}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p class="style-cs-buffs"><label
-									for="system.Characteristics.Body.Stats.Power.Buff.Current"
-								>{{system.Characteristics.Body.Stats.Power.Buff.Name}}</label>
-							</p>
-							<p class="style-cs-conditions">💀
-								<input
-									class="style-cs-conditions"
-									name="system.Characteristics.Body.Stats.Power.Condition.Current"
-									type="number"
-									value="{{system.Characteristics.Body.Stats.Power.Condition.Current}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p class="style-cs-conditions"><label
-									for="system.Characteristics.Body.Stats.Power.Condition.Name"
-								>{{system.Characteristics.Body.Stats.Power.Condition.Name}}</label>
-							</p>
-						</div>
-					</div>
-
-					<div class="layout-container-grid3x1 style-container-grid3x1">
-						<div>
-							<p>🏁
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Mind.Stats.Manipulation.Initial"
-									type="number"
-									value="{{system.Characteristics.Mind.Stats.Manipulation.Initial}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p>📈
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Mind.Stats.Manipulation.Progressed"
-									type="number"
-									value="{{system.Characteristics.Mind.Stats.Manipulation.Progressed}}"
-									data-dtype="number"
-								/>
-							</p>
-						</div>
-						<div>
-							<p> MANIPULATION </p>
-							<p></p>
-							<p class="style-cs-rolls">{{system.Characteristics.Mind.Stats.Manipulation.Roll}}</p>
-						</div>
-						<div>
-							<p class="style-cs-buffs">🛡️
-								<input
-									class="style-cs-buffs"
-									name="system.Characteristics.Mind.Stats.Manipulation.Buff.Current"
-									type="number"
-									value="{{system.Characteristics.Mind.Stats.Manipulation.Buff.Current}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p class="style-cs-buffs"><label
-									for="system.Characteristics.Mind.Stats.Manipulation.Buff.Current"
-								>{{system.Characteristics.Mind.Stats.Manipulation.Buff.Name}}</label>
-							</p>
-							<p class="style-cs-conditions">💀
-								<input
-									class="style-cs-conditions"
-									name="system.Characteristics.Mind.Stats.Manipulation.Condition.Current"
-									type="number"
-									value="{{system.Characteristics.Mind.Stats.Manipulation.Condition.Current}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p class="style-cs-conditions"><label
-									for="system.Characteristics.Mind.Stats.Manipulation.Condition.Name"
-								>{{system.Characteristics.Mind.Stats.Manipulation.Condition.Name}}</label>
-							</p>
-						</div>
-					</div>
-
-					<div class="layout-container-grid3x1 style-container-grid3x1">
-						<div>
-							<p>🏁
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Soul.Stats.Consciousness.Initial"
-									type="number"
-									value="{{system.Characteristics.Soul.Stats.Consciousness.Initial}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p>📈
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Soul.Stats.Consciousness.Progressed"
-									type="number"
-									value="{{system.Characteristics.Soul.Stats.Consciousness.Progressed}}"
-									data-dtype="number"
-								/>
-							</p>
-						</div>
-						<div>
-							<p> CONSCIOUSNESS </p>
-							<p></p>
-							<p class="style-cs-rolls">{{system.Characteristics.Soul.Stats.Consciousness.Roll}}</p>
-						</div>
-						<div>
-							<p class="style-cs-buffs">🛡️
-								<input
-									class="style-cs-buffs"
-									name="system.Characteristics.Soul.Stats.Consciousness.Buff.Current"
-									type="number"
-									value="{{system.Characteristics.Soul.Stats.Consciousness.Buff.Current}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p class="style-cs-buffs"><label
-									for="system.Characteristics.Soul.Stats.Consciousness.Buff.Current"
-								>{{system.Characteristics.Soul.Stats.Consciousness.Buff.Name}}</label>
-							</p>
-							<p class="style-cs-conditions">💀
-								<input
-									class="style-cs-conditions"
-									name="system.Characteristics.Soul.Stats.Consciousness.Condition.Current"
-									type="number"
-									value="{{system.Characteristics.Soul.Stats.Consciousness.Condition.Current}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p class="style-cs-conditions"><label
-									for="system.Characteristics.Soul.Stats.Consciousness.Condition.Name"
-								>{{system.Characteristics.Soul.Stats.Consciousness.Condition.Name}}</label>
-							</p>
-						</div>
-					</div>
-
-					<div class="layout-container-grid3x1 style-container-grid3x1">
-						<div>
-							<p>🏁
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Body.Stats.Reflexes.Initial"
-									type="number"
-									value="{{system.Characteristics.Body.Stats.Reflexes.Initial}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p>📈
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Body.Stats.Reflexes.Progressed"
-									type="number"
-									value="{{system.Characteristics.Body.Stats.Reflexes.Progressed}}"
-									data-dtype="number"
-								/>
-							</p>
-						</div>
-						<div>
-							<p> REFLEXES </p>
-							<p></p>
-							<p class="style-cs-rolls">{{system.Characteristics.Body.Stats.Reflexes.Roll}}</p>
-						</div>
-						<div>
-							<p class="style-cs-buffs">🛡️
-								<input
-									class="style-cs-buffs"
-									name="system.Characteristics.Body.Stats.Reflexes.Buff.Current"
-									type="number"
-									value="{{system.Characteristics.Body.Stats.Reflexes.Buff.Current}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p class="style-cs-buffs"><label
-									for="system.Characteristics.Body.Stats.Reflexes.Buff.Current"
-								>{{system.Characteristics.Body.Stats.Reflexes.Buff.Name}}</label>
-							</p>
-							<p class="style-cs-conditions">💀
-								<input
-									class="style-cs-conditions"
-									name="system.Characteristics.Body.Stats.Reflexes.Condition.Current"
-									type="number"
-									value="{{system.Characteristics.Body.Stats.Reflexes.Condition.Current}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p class="style-cs-conditions"><label
-									for="system.Characteristics.Body.Stats.Reflexes.Condition.Name"
-								>{{system.Characteristics.Body.Stats.Reflexes.Condition.Name}}</label>
-							</p>
-						</div>
-					</div>
-
-					<div class="layout-container-grid3x1 style-container-grid3x1">
-						<div>
-							<p>🏁
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Mind.Stats.Creativity.Initial"
-									type="number"
-									value="{{system.Characteristics.Mind.Stats.Creativity.Initial}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p>📈
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Mind.Stats.Creativity.Progressed"
-									type="number"
-									value="{{system.Characteristics.Mind.Stats.Creativity.Progressed}}"
-									data-dtype="number"
-								/>
-							</p>
-						</div>
-						<div>
-							<p> CREATIVITY </p>
-							<p></p>
-							<p class="style-cs-rolls">{{system.Characteristics.Mind.Stats.Creativity.Roll}}</p>
-						</div>
-						<div>
-							<p class="style-cs-buffs">🛡️
-								<input
-									class="style-cs-buffs"
-									name="system.Characteristics.Mind.Stats.Creativity.Buff.Current"
-									type="number"
-									value="{{system.Characteristics.Mind.Stats.Creativity.Buff.Current}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p class="style-cs-buffs"><label
-									for="system.Characteristics.Mind.Stats.Creativity.Buff.Current"
-								>{{system.Characteristics.Mind.Stats.Creativity.Buff.Name}}</label>
-							</p>
-							<p class="style-cs-conditions">💀
-								<input
-									class="style-cs-conditions"
-									name="system.Characteristics.Mind.Stats.Creativity.Condition.Current"
-									type="number"
-									value="{{system.Characteristics.Mind.Stats.Creativity.Condition.Current}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p class="style-cs-conditions"><label
-									for="system.Characteristics.Mind.Stats.Creativity.Condition.Name"
-								>{{system.Characteristics.Mind.Stats.Creativity.Condition.Name}}</label>
-							</p>
-						</div>
-					</div>
-
-					<div class="layout-container-grid3x1 style-container-grid3x1">
-						<div>
-							<p>🏁
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Soul.Stats.Awareness.Initial"
-									type="number"
-									value="{{system.Characteristics.Soul.Stats.Awareness.Initial}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p>📈
-								<input
-									class="style-cs-values"
-									name="system.Characteristics.Soul.Stats.Awareness.Progressed"
-									type="number"
-									value="{{system.Characteristics.Soul.Stats.Awareness.Progressed}}"
-									data-dtype="number"
-								/>
-							</p>
-						</div>
-						<div>
-							<p> AWARENESS </p>
-							<p></p>
-							<p class="style-cs-rolls">{{system.Characteristics.Soul.Stats.Awareness.Roll}}</p>
-						</div>
-						<div>
-							<p class="style-cs-buffs">🛡️
-								<input
-									class="style-cs-buffs"
-									name="system.Characteristics.Soul.Stats.Awareness.Buff.Current"
-									type="number"
-									value="{{system.Characteristics.Soul.Stats.Awareness.Buff.Current}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p class="style-cs-buffs"><label
-									for="system.Characteristics.Soul.Stats.Awareness.Buff.Current"
-								>{{system.Characteristics.Soul.Stats.Awareness.Buff.Name}}</label>
-							</p>
-							<p class="style-cs-conditions">💀
-								<input
-									class="style-cs-conditions"
-									name="system.Characteristics.Soul.Stats.Awareness.Condition.Current"
-									type="number"
-									value="{{system.Characteristics.Soul.Stats.Awareness.Condition.Current}}"
-									data-dtype="number"
-								/>
-							</p>
-							<p class="style-cs-conditions"><label
-									for="system.Characteristics.Soul.Stats.Awareness.Condition.Name"
-								>{{system.Characteristics.Soul.Stats.Awareness.Condition.Name}}</label>
-							</p>
-						</div>
-					</div>
-				</div>
+				{{> "systems/metanthropes-system/templates/helpers/actor-charstats.hbs"}}
 			</div>
 			<div class="tab cs-perks" data-group="cs" data-tab="cs-metapowers">
 				<div class="layout-container-small style-container-small">
-					METAPOWERS
+					{{> "systems/metanthropes-system/templates/helpers/actor-metapowers.hbs"}}
 				</div>
 			</div>
 			<div class="tab cs-perks" data-group="cs" data-tab="cs-combos">
-				<div class="layout-container-small style-container-small">
-					COMBOS
-				</div>
+				COMBOS
+				are not implemented.
+				{{> "systems/metanthropes-system/templates/helpers/actor-combos.hbs"}}
 			</div>
 			<div class="tab cs-perks" data-group="cs" data-tab="cs-perks">
 				<div class="layout-container-small style-container-small">
 					PERKS
+					are currently not implemented.
+					{{> "systems/metanthropes-system/templates/helpers/actor-perks.hbs"}}
 				</div>
 			</div>
 			<div class="tab cs-perks" data-group="cs" data-tab="cs-possessions">
 				<div class="layout-container-small style-container-small">
 					POSSESSIONS
+					are partially implemented
+					{{> "systems/metanthropes-system/templates/helpers/actor-possessions.hbs"}}
 				</div>
 			</div>
 			<div class="tab cs-perks" data-group="cs" data-tab="cs-notes">
 				<div class="layout-container-small style-container-small">
 					NOTES
+					are partially implemented
+					{{> "systems/metanthropes-system/templates/helpers/actor-notes.hbs"}}
+					<div class="layout-container-grid1x3 style-container-border style-labels-text">
+						{{editor system.physical.Description.value target="system.physical.Description.value" button=true owner=owner editable=editable}}
+					</div>
+					<div class="layout-container-grid1x3 style-container-border style-labels-text">
+						{{editor system.entermeta.Description.value target="system.entermeta.Description.value" button=true owner=owner editable=editable}}
+					</div>
 				</div>
 			</div>
 		</section>
@@ -849,119 +143,58 @@
 	<footer>
 		<div class="layout-container-grid3x1 style-container-grid3x2">
 			<div class="layout-container-small style-container-small">
-				<div>Movement
-					<input
-						name="system.physical.movement.Initial"
-						type="number"
-						value="{{system.physical.movement.Initial}}"
-						data-dtype="number"
-						placeholder="10"
-					/>
+				<div>Movement 👣
+					<input name="system.physical.movement.initial" type="number"
+						value="{{system.physical.movement.initial}}" data-dtype="Number" placeholder="10" />
 				</div>
-				<div>Speed
-					<input
-						name="system.physical.speed.Initial"
-						type="number"
-						value="{{system.physical.speed.Initial}}"
-						data-dtype="number"
-						placeholder="10"
-					/>
+				<div>Speed 💨
+					<input name="system.physical.speed.Initial" type="number" value="{{system.physical.speed.Initial}}"
+						data-dtype="Number" placeholder="10" />
 				</div>
-				<div>Weight
-					<input
-						name="system.physical.weight.Initial"
-						type="number"
-						value="{{system.physical.weight.Initial}}"
-						data-dtype="number"
-						placeholder="10"
-					/>
+				<div>Weight ⚖️
+					<input name="system.physical.weight.Initial" type="number"
+						value="{{system.physical.weight.Initial}}" data-dtype="Number" placeholder="10" />
 				</div>
-				<div>Size
-					<input
-						name="system.physical.size.Initial"
-						type="number"
-						value="{{system.physical.size.Initial}}"
-						data-dtype="number"
-						placeholder="10"
-					/>
+				<div>Size 📐
+					<input name="system.physical.size.Initial" type="number" value="{{system.physical.size.Initial}}"
+						data-dtype="Number" placeholder="10" />
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>Resistances</div>
-				<!-- //todo: investigate lists, investigate emojis and verticality -->
 				<div>Cosmic
-					<input
-						name="system.physical.resistances.cosmic.Initial"
-						type="number"
-						value="{{system.physical.resistances.cosmic.Initial}}"
-						data-dtype="number"
-						placeholder="0"
-					/>
+					<input name="system.physical.resistances.cosmic.Initial" type="number"
+						value="{{system.physical.resistances.cosmic.Initial}}" data-dtype="Number" placeholder="0" />
 				</div>
 				<div>Elemental
-					<input
-						name="system.physical.resistances.elemental.Initial"
-						type="number"
-						value="{{system.physical.resistances.elemental.Initial}}"
-						data-dtype="number"
-						placeholder="0"
-					/>
+					<input name="system.physical.resistances.elemental.Initial" type="number"
+						value="{{system.physical.resistances.elemental.Initial}}" data-dtype="Number" placeholder="0" />
 				</div>
 				<div>Material
-					<input
-						name="system.physical.resistances.material.Initial"
-						type="number"
-						value="{{system.physical.resistances.material.Initial}}"
-						data-dtype="number"
-						placeholder="0"
-					/>
+					<input name="system.physical.resistances.material.Initial" type="number"
+						value="{{system.physical.resistances.material.Initial}}" data-dtype="Number" placeholder="0" />
 				</div>
 				<div>Psychic
-					<input
-						name="system.physical.resistances.psychic.Initial"
-						type="number"
-						value="{{system.physical.resistances.psychic.Initial}}"
-						data-dtype="number"
-						placeholder="0"
-					/>
+					<input name="system.physical.resistances.psychic.Initial" type="number"
+						value="{{system.physical.resistances.psychic.Initial}}" data-dtype="Number" placeholder="0" />
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>Cover
-					<input
-						name="system.physical.cover.value"
-						type="number"
-						value="{{system.physical.cover.value}}"
-						data-dtype="number"
-						placeholder="0"
-					/>
+					<input name="system.physical.cover.value" type="number" value="{{system.physical.cover.value}}"
+						data-dtype="Number" placeholder="0" />
 				</div>
 				<div>Immunities
-					<input
-						name="system.physical.immunities.value"
-						type="text"
-						value="{{system.physical.immunities.value}}"
-						data-dtype="string"
-						placeholder="none"
-					/>
+					<input name="system.physical.immunities.value" type="text"
+						value="{{system.physical.immunities.value}}" data-dtype="String" placeholder="none" />
 				</div>
 				<div>Detections
-					<input
-						name="system.physical.detections.value"
-						type="text"
-						value="{{system.physical.detections.value}}"
-						data-dtype="string"
-						placeholder="none"
-					/>
+					<input name="system.physical.detections.value" type="text"
+						value="{{system.physical.detections.value}}" data-dtype="String" placeholder="none" />
 				</div>
 				<div>Shifts
-					<input
-						name="system.physical.shifts.value"
-						type="text"
-						value="{{system.physical.shifts.value}}"
-						data-dtype="string"
-						placeholder="none"
-					/>
+					<input name="system.physical.shifts.value" type="text" value="{{system.physical.shifts.value}}"
+						data-dtype="String" placeholder="none" />
 				</div>
 			</div>
 		</div>

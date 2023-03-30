@@ -80,10 +80,11 @@
 	border: 1px dotted $c-purple;
 	border-radius: 15px;
 	justify-content: space-around;
-	justify-self: stretch;
+	justify-self: space-around;
 	justify-items: space-around;
 	align-items: center;
 	align-self: center;
+	align-content: center;
 }
 //input containers styling
 .style-container-input-charstat {
