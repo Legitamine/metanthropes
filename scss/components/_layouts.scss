@@ -66,9 +66,18 @@
 }
 //medium container with 3 columns and 1 row
 // this is used for charstats
-.layout-container-grid3x1 {
+.layout-container-grid3x1-cs {
 	display: grid;
 	grid-template-columns: 1.8fr 1fr 4.2fr;
+	column-gap: 1px;
+	padding: $padding-zero;
+	margin: $margin-zero;
+	overflow: hidden;
+	overflow-wrap: break-word;
+}
+.layout-container-grid3x1 {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
 	column-gap: 1px;
 	padding: $padding-zero;
 	margin: $margin-zero;

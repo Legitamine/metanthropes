@@ -1,12 +1,14 @@
 <div>
 	{{#each system.Perks}}
 	<div>
-		<ol> ol
-			<li> li
+		<ol class="items-list"> {{@key}}
+			{{#each this}}
+			<li class="item flexrow items-header"> {{this.label}}
 				<div>
-					{{@key}}
+					{{@key}} or {{this.value}}
 				</div>
 			</li>
+			{{/each}}
 		</ol>
 	</div>
 	{{/each}}
