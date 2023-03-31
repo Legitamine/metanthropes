@@ -61,7 +61,7 @@
 	.item-controls {
 		display: flex;
 		flex: 0 0 100px;
-		justify-content: flex-end;
+		justify-content: center;
 		a {
 			font-size: 12px;
 			text-align: center;
@@ -73,7 +73,7 @@
 	.item {
 		align-items: center;
 		padding: 0 2px; // to align with the header border
-		border-bottom: 1px solid $c-faint;
+		border-bottom: 1px solid $c-green;
 		&:last-child {
 			border-bottom: none;
 		}
@@ -91,8 +91,8 @@
 
 	.item-prop {
 		text-align: center;
-		border-left: 1px solid $c-faint;
-		border-right: 1px solid $c-faint;
+		border-left: 1px solid $c-green;
+		border-right: 1px solid $c-green;
 		font-size: 12px;
 	}
 

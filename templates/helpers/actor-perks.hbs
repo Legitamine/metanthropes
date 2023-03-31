@@ -1,9 +1,9 @@
 <div>
 	{{#each system.Perks}}
 	<div>
-		<ol class="items-list"> {{@key}}
+		<ol class="items-list items-header"> {{@key}}
 			{{#each this}}
-			<li class="item flexrow items-header"> {{this.label}}
+			<li class="item flexrow"> {{this.label}}
 				<div>
 					{{@key}} or {{this.value}}
 				</div>
