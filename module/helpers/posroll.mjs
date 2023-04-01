@@ -25,7 +25,7 @@ export async function PossessionRoll(actor, stat) {
 		content: dialogContent,
 		buttons: {
 			roll: {
-				label: "Roll",
+				label: "Use Possession",
 				callback: async (html) => {
 					//collect multi-action value
 					let multiAction = html.find("#multiActionCount").val();

@@ -89,7 +89,7 @@ export async function PossessionRollStat(actor, stat, statValue, modifier = 0, b
 		message += `. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
 	}
 	//add re-roll button to message
-	message += `<div class="metanthropes hide-button layout-hide"><button class="meta-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}">🤞</button></div>`;
+	message += `<div class="metanthropes hide-button layout-hide"><button class="possession-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}">🤞</button></div>`;
 	//set flags for the actor to be used as the lastrolled values of your most recent roll.
 	// the idea is to use these later in metapowers to spend your levels of success.
 	await actor.setFlag("metanthropes-system", "lastrolled", {
@@ -150,6 +150,6 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		} else {
 			html.find(".hide-button").addClass("layout-hide");
 		}
-		html.find(".meta-re-roll").on("click", PossessionReRoll);
+		html.find(".possession-re-roll").on("click", PossessionReRoll);
 	}
 });

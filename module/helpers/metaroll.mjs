@@ -25,7 +25,7 @@ export async function MetaRoll(actor, stat) {
 		content: dialogContent,
 		buttons: {
 			roll: {
-				label: "Roll",
+				label: "Stat Roll",
 				callback: async (html) => {
 					//collect multi-action value
 					let multiAction = html.find("#multiActionCount").val();
