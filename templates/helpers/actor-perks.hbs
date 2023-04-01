@@ -6,15 +6,15 @@
 			{{#each system.Perks.Knowledge}}
 				<div class="perk-item">
 					<label for="system.Perks.Knowledge.{{@key}}.value">{{this.label}}:</label>
-					<select name="system.Perks.Knowledge.{{@key}}.value" id="system.Perks.Knowledge.{{@key}}.value" data-dtype="{{this.dtype}}">
-						<option value="0" selected>0</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
+					<select name="system.Perks.Knowledge.{{@key}}.value" id="system.Perks.Knowledge.{{@key}}.value"
+						data-dtype="{{this.dtype}}">
+						<option value="0" {{selected this.value 0}}>0</option>
+						<option value="1" {{selected this.value 1}}>1</option>
+						<option value="2" {{selected this.value 2}}>2</option>
+						<option value="3" {{selected this.value 3}}>3</option>
+						<option value="4" {{selected this.value 4}}>4</option>
+						<option value="5" {{selected this.value 5}}>5</option>
 					</select>
-					Value: {{this.value}}
 				</div>
 			{{/each}}
 		</div>
@@ -25,12 +25,12 @@
 					<label for="system.Perks.Skills.{{@key}}.value">{{this.label}}:</label>
 					<select name="system.Perks.Skills.{{@key}}.value" id="system.Perks.Skills.{{@key}}.value"
 						data-dtype="{{this.dtype}}">
-						<option value="0" selected>0</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
+						<option value="0" {{selected this.value 0}}>0</option>
+						<option value="1" {{selected this.value 1}}>1</option>
+						<option value="2" {{selected this.value 2}}>2</option>
+						<option value="3" {{selected this.value 3}}>3</option>
+						<option value="4" {{selected this.value 4}}>4</option>
+						<option value="5" {{selected this.value 5}}>5</option>
 					</select>
 				</div>
 			{{/each}}
@@ -41,8 +41,8 @@
 		{{#each system.Perks.Extra}}
 			<div class="perk-item">
 				<label for="system.Perks.Extra.{{@key}}.value">{{this.label}}:</label>
-				<input class="style-container-input-longtext" type="{{this.type}}" name="system.Perks.Extra.{{@key}}.value" value="{{this.value}}"
-					data-dtype="{{this.dtype}}">
+				<input class="style-container-input-longtext" type="{{this.type}}"
+					name="system.Perks.Extra.{{@key}}.value" value="{{this.value}}" data-dtype="{{this.dtype}}">
 			</div>
 		{{/each}}
 	</div>

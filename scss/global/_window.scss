@@ -51,6 +51,11 @@ footer {
 button {
 	font-family: $font-primary;
 }
+select {
+	font-family: $font-primary;
+	border-radius: 15px;
+	border: 1px dotted $c-purple;
+}
 // this changes the font in most title-elements of Foundry UI
 .window-app {
 	font-family: $font-primary;

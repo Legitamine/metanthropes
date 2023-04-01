@@ -58,6 +58,12 @@ button {
   font-family: "nasalization", sans-serif;
 }
 
+select {
+  font-family: "nasalization", sans-serif;
+  border-radius: 15px;
+  border: 1px dotted #370239;
+}
+
 .window-app {
   font-family: "nasalization", sans-serif;
   margin: 1px;
