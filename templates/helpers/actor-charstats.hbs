@@ -8,9 +8,15 @@
 						<input class="style-container-input-charstat" name="system.Characteristics.{{@key}}.Initial"
 							type="number" value="{{this.Initial}}" data-dtype="Number" />
 					</p>
-					<p>📈
-						<input class="style-container-input-charstat" name="system.Characteristics.{{@key}}.Progressed"
-							type="number" value="{{this.Progressed}}" data-dtype="Number" />
+					<p>📈 <select name="system.Characteristics.{{@key}}.Progressed"
+							id="system.Characteristics.{{@key}}.Progressed" data-dtype="Number">
+							<option value="0" {{selected this.Progressed 0}}>0</option>
+							<option value="1" {{selected this.Progressed 1}}>1</option>
+							<option value="2" {{selected this.Progressed 2}}>2</option>
+							<option value="3" {{selected this.Progressed 3}}>3</option>
+							<option value="4" {{selected this.Progressed 4}}>4</option>
+							<option value="5" {{selected this.Progressed 5}}>5</option>
+						</select>
 					</p>
 				</div>
 				<div class="style-cs-chars-value">{{this.Current}}</div>

@@ -105,6 +105,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 		//I've used the optional chaining operator (?.) to check if effects-metapower exists before trying to access its value. If effects-metapower or its value is not defined, it will fall back to the "error no statrolled found" text using the nullish coalescing operator (??).
 		//content: item.system.effects-metapower?.value ?? "error no statrolled found",
 		//content: `<button class="custom-button">🤞</button>`,
+		//content seems to be overwriten by Dice So Nice, so maybe I can add my button here?
 		flags: { "metanthropes-system": { actorId: actor.id } },
 	});
 }
