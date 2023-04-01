@@ -20,9 +20,7 @@
 				</div>
 				<div class="item-mpname item-prop">{{item.system.Activation.MetapowerName.value}}</div>
 				<div class="item-destinycost item-prop">{{item.system.Activation.DestinyCost.value}}</div>
-				<div class="item-statroll item-prop">{{item.system.Activation.StatRolled.value}}</div>
-				<div class="item-statroll item-prop">
-					{{actor.system.StatRolls.`{{item.system.Activation.StatRolled.value}}`}}</div>
+				<div class="item-statroll item-prop">{{item.system.Activation.StatRolled.value}}-{{item.parent.system.RollStats.[item.system.Activation.StatRolled.value]}}-{{item.parent.system.RollStats.Endurance}}-{{parent.name}}</div>
 				<div class="item-actionslot item-prop">{{item.system.Activation.ActionSlot.value}}</div>
 				<div class="item-controls">
 					<a class="item-control item-edit" title="Open Metapower"><i class="fa-thin fa-message-pen"></i></a>

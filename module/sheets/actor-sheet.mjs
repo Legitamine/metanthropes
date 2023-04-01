@@ -7,6 +7,8 @@
 //*
 ////
 import { MetaRoll } from "../helpers/metaroll.mjs";
+import { MetapowerRoll} from "../helpers/mproll.mjs";
+import { PossessionRoll } from "../helpers/posroll.mjs";
 export class MetanthropesActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
