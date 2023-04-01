@@ -89,7 +89,7 @@
 //input containers styling
 .style-container-input-charstat {
 	min-width: 2ch;
-	max-width: 3ch;
+	max-width: 4ch;
 	margin: $margin-sm;
 	padding: $padding-input-number;
 	border: 1px dotted $c-purple;
@@ -192,8 +192,8 @@
 	justify-self: center;
 	align-items: center;
 	align-self: center;
-	padding: $padding-sm;
-	margin: $margin-sm;
+	padding: $padding-md;
+	margin: $margin-md;
 }
 .style-cs-buffs {
 	opacity: 1;

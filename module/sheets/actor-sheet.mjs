@@ -180,14 +180,14 @@ export class MetanthropesActorSheet extends ActorSheet {
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 				console.log("Metanthropes RPG Rolling a Metapower for:", actor,"'s", stat);
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-				MetaRoll(actor, stat);
+				MetapowerRoll(actor, stat);
 			} else if (dataset.rollType == "Possession") {
 				const actor = this.actor;
 				const stat = dataset.stat;
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 				console.log("Metanthropes RPG Rolling a Possession for:", actor,"'s", stat);
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-				MetaRoll(actor, stat);
+				PossessionRoll(actor, stat);
 			} else if (dataset.rollType == "Combo") {
 				const actor = this.actor;
 				const stat = dataset.stat;
