@@ -77,7 +77,7 @@ export async function PossessionRollStat(actor, stat, statValue, modifier = 0, b
 	}
 	// if we have multi-action reduction, add it to the message
 	if (modifier < 0) {
-		message += ` and with a Multi-Action reduction of ${modifier}%`;
+		message += ` & Multi-Action reduction of ${modifier}%`;
 	}
 	message += ` and the result is ${total}, therefore it is a ${result}`;
 	// if we have levels of success or failure, add them to the message
