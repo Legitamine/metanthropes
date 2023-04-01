@@ -1,7 +1,7 @@
 @import url("https://use.typekit.net/gld0tkk.css");
 input[type=text] {
   min-width: 8ch;
-  max-width: 20ch;
+  max-width: 17ch;
   margin: 1px;
   padding: 3px 3px 3px 6px;
   border: 1px dashed #370239;
@@ -12,7 +12,7 @@ input[type=text] {
 
 input[type=number] {
   min-width: 3ch;
-  max-width: 6ch;
+  max-width: 5ch;
   margin: 1px;
   padding: 3px 3px 3px 6px;
   border: 1px dashed #370239;
@@ -512,6 +512,16 @@ button {
 .metanthropes .style-container-input-charstat {
   min-width: 2ch;
   max-width: 3ch;
+  margin: 1px;
+  padding: 3px 3px 3px 6px;
+  border: 1px dotted #370239;
+  border-radius: 15px;
+  justify-content: center;
+  align-items: center;
+}
+.metanthropes .style-container-input-longtext {
+  min-width: 8ch;
+  max-width: 24ch;
   margin: 1px;
   padding: 3px 3px 3px 6px;
   border: 1px dotted #370239;

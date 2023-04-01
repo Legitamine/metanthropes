@@ -97,6 +97,17 @@
 	justify-content: center;
 	align-items: center;
 }
+// longer text input fields
+.style-container-input-longtext {
+	min-width: 8ch;
+	max-width: 24ch;
+	margin: $margin-sm;
+	padding: $padding-input-number;
+	border: 1px dotted $c-purple;
+	border-radius: 15px;
+	justify-content: center;
+	align-items: center;
+}
 //fonts and colors
 //unused
 .style-labels-number {

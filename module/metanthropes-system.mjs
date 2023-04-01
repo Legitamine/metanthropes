@@ -28,16 +28,11 @@ import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
 // Import helpers.
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 import { MetaInitiative } from "./helpers/metainitiative.mjs";
-////
-//*
-//? Table of Contents
-//*
-//? 1. Imports
-//! 2. System Initialization Hook
-//? 3. Preload Handlebars Templates
-//? 4. Ready Hook
-//? 5. Hotbar Macros
-////
+// Handlebars helper for drop-down menus.
+Handlebars.registerHelper("selected", function (option, value) {
+	return option === value ? "selected" : "";
+});
+
 // Log system initialization.
 Hooks.once("init", async function () {
 	console.log("========================================================================");

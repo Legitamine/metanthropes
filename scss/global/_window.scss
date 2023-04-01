@@ -1,7 +1,7 @@
 // this changes the input fields in Foundry UI
 input[type="text"] {
 	min-width: 8ch;
-	max-width: 20ch;
+	max-width: 17ch;
 	margin: $margin-sm;
 	padding: $padding-input-text;
 	border: 1px dashed $c-purple;
@@ -11,7 +11,7 @@ input[type="text"] {
 }
 input[type="number"] {
 	min-width: 3ch;
-	max-width: 6ch;
+	max-width: 5ch;
 	margin: $margin-sm;
 	padding: $padding-input-number;
 	border: 1px dashed $c-purple;
