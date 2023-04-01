@@ -39,7 +39,7 @@ export async function PossessionRoll(actor, stat) {
 					let bonus = parseInt(html.find("#bonus").val());
 					let penalty = -parseInt(html.find("#penalty").val());
 					//send the data we collected to the MetaRollStat function
-					MetaRollStat(actor, stat, statValue, modifier, bonus, penalty);
+					PossessionRollStat(actor, stat, statValue, modifier, bonus, penalty);
 				},
 			},
 		},

@@ -110,7 +110,7 @@ export async function MetapowerRollStat(actor, stat, statValue, modifier = 0, bo
 	});
 }
 // Function to handle re-roll for destiny
-async function MetaReRoll(event) {
+async function MetapowerReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
 	const actorId = button.dataset.actorId;
@@ -132,7 +132,7 @@ async function MetaReRoll(event) {
 			if (message) {
 				message.render();
 			}
-			MetaRollStat(actor, stat, statValue, modifier, bonus, penalty);
+			MetapowerRollStat(actor, stat, statValue, modifier, bonus, penalty);
 		}
 	}
 }
@@ -150,6 +150,6 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		} else {
 			html.find(".hide-button").addClass("layout-hide");
 		}
-		html.find(".meta-re-roll").on("click", MetaReRoll);
+		html.find(".meta-re-roll").on("click", MetapowerReRoll);
 	}
 });
