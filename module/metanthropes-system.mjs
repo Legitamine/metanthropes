@@ -32,7 +32,7 @@ import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 import { MetaReRoll } from "./helpers/metarollstat.mjs";
 import { MetapowerReRoll } from "./helpers/mprollstat.mjs";
 import { PossessionReRoll } from "./helpers/posrollstat.mjs";
-import { MetapowerActivate} from "./helpers/mpactivate.mjs";
+import { MetapowerActivate } from "./helpers/mpactivate.mjs";
 // Handlebars helper for drop-down menus.
 Handlebars.registerHelper("selected", function (option, value) {
 	return option === value ? "selected" : "";
@@ -204,5 +204,18 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		html.find(".metapower-re-roll").on("click", MetapowerReRoll);
 		html.find(".possession-re-roll").on("click", PossessionReRoll);
 		html.find(".metapower-activate").on("click", MetapowerActivate);
+	}
+});
+//listen for stat changes, this should enable metapower sheet to update correctly when a stat changes
+Hooks.on("updateActor", (actor, data, options, userId) => {
+	if (data.hasOwnProperty("system")) {
+		// Get the actor's sheet
+		const sheet = actor.sheet;
+
+		// Check if the sheet is an instance of MetanthropesActorSheet
+		if (sheet instanceof MetanthropesActorSheet) {
+			// Re-render the sheet to update the lookup value
+			sheet.render();
+		}
 	}
 });

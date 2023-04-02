@@ -127,12 +127,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 		// html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
 		// Rollable abilities.
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
-		//listen for stat changes, this should enable metapower sheet to update correctly when a stat changes
-		this.actor.on("render", () => {
-			Hooks.on("updateOwnedItem", () => {
-				this.render(false); // Update the sheet when stats are updated
-			});
-		});
 		// Drag events for macros.
 		if (this.actor.isOwner) {
 			let handler = (ev) => this._onDragStart(ev);
