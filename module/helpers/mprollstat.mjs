@@ -1,5 +1,5 @@
 // MetaRollStat function is used to roll a stat and get the levels of success/failure and print the message to chat
-export async function MetapowerRollStat(actor, stat, statValue, modifier = 0, bonus = 0, penalty = 0) {
+export async function MetapowerRollStat(actor, stat, statValue, modifier = 0, bonus = 0, penalty = 0, mpname, destcost, effect) {
 	const roll = await new Roll("1d100").evaluate({ async: true });
 	const total = roll.total;
 	// const isSuccess = total <= statValue + modifier;
@@ -10,6 +10,11 @@ export async function MetapowerRollStat(actor, stat, statValue, modifier = 0, bo
 	const criticalSuccess = total === 1;
 	const criticalFailure = total === 100;
 	let currentDestiny = actor.system.Vital.Destiny.value;
+	// check if actor has enough destiny to deduct the cost of the meta power activation
+	if (currentDestiny < destcost) {
+		ui.notifications.error("You don't have enough Destiny to use this Meta Power!");
+		return;
+	} else { currentDestiny -= destcost; }
 	// this kicks-off the calculation, assuming that is is a failure
 	if (total - modifier - penalty > statValue + bonus) {
 		// in which case we don't care about what levels of success we have, so we set to 0 to avoid confusion later
@@ -67,7 +72,7 @@ export async function MetapowerRollStat(actor, stat, statValue, modifier = 0, bo
 		currentDestiny
 	);
 	//* Beggining of the message to be printed to chat
-	let message = `${actor.name} activates Metapower with ${stat} score of ${statValue}%`;
+	let message = `${actor.name} activates Metapower ${mpname} with ${stat} score of ${statValue}%`;
 	// if we have a bonus or penalty, add it to the message
 	if (bonus > 0) {
 		message += `, a Bonus of +${bonus}%`;
@@ -78,6 +83,9 @@ export async function MetapowerRollStat(actor, stat, statValue, modifier = 0, bo
 	// if we have multi-action reduction, add it to the message
 	if (modifier < 0) {
 		message += ` & Multi-Action reduction of ${modifier}%`;
+	}
+	if (destcost > 0) {
+		message += `, while spending ${destcost} * 🤞 to activate`;
 	}
 	message += ` and the result is ${total}, therefore it is a ${result}`;
 	// if we have levels of success or failure, add them to the message
@@ -90,8 +98,10 @@ export async function MetapowerRollStat(actor, stat, statValue, modifier = 0, bo
 	} else {
 		message += `. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
 	}
+	// add metapower effect to message
+	message += `The effect of the Metapower is: ${effect}.`
 	//add re-roll button to message
-	message += `<div class="metanthropes hide-button layout-hide"><button class="metapower-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}">🤞</button></div>`;
+	message += `<div class="metanthropes hide-button layout-hide"><button class="metapower-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-mpname="${mpname}" data-destcost="${destcost}" data-effect="${effect}" >🤞</button></div>`;
 	//set flags for the actor to be used as the lastrolled values of your most recent roll.
 	// the idea is to use these later in metapowers to spend your levels of success.
 	await actor.setFlag("metanthropes-system", "lastrolled", {
@@ -119,6 +129,9 @@ export async function MetapowerReRoll(event) {
 	const modifier = parseInt(button.dataset.modifier);
 	const bonus = parseInt(button.dataset.bonus);
 	const penalty = parseInt(button.dataset.penalty);
+	const mpname = button.dataset.mpname;
+	const destcost = parseInt(button.dataset.destcost);
+	const effect = button.dataset.effect;
 	const actor = game.actors.get(actorId);
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	// make this function only available to the owner of the actor
@@ -132,7 +145,7 @@ export async function MetapowerReRoll(event) {
 			if (message) {
 				message.render();
 			}
-			MetapowerRollStat(actor, stat, statValue, modifier, bonus, penalty);
+			MetapowerRollStat(actor, stat, statValue, modifier, bonus, penalty, mpname, destcost, effect);
 		}
 	}
 }

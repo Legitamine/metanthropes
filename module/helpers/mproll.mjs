@@ -1,7 +1,7 @@
 // import the MetaRollStat function
 import { MetapowerRollStat } from "./mprollstat.mjs";
 // MetaRoll function handles the dialog box for selecting multi-actions and bonuses/penalties when rolling a stat
-export async function MetapowerRoll(actor, stat) {
+export async function MetapowerRoll(actor, stat, mpname, destcost, effect) {
 	const statValue = actor.system.RollStats[stat];
 	// calculate the max number of multi-actions possible based on the stat value
 	const maxMultiActions = Math.floor((statValue - 1) / 10);
@@ -21,7 +21,7 @@ export async function MetapowerRoll(actor, stat) {
 	</div>
 	`;
 	let dialog = new Dialog({
-		title: `MpRoll: ${actor.name}'s ${stat}`,
+		title: `MpRoll: ${actor.name}'s ${mpname}`,
 		content: dialogContent,
 		buttons: {
 			roll: {
@@ -39,7 +39,7 @@ export async function MetapowerRoll(actor, stat) {
 					let bonus = parseInt(html.find("#bonus").val());
 					let penalty = -parseInt(html.find("#penalty").val());
 					//send the data we collected to the MetaRollStat function
-					MetapowerRollStat(actor, stat, statValue, modifier, bonus, penalty);
+					MetapowerRollStat(actor, stat, statValue, modifier, bonus, penalty, mpname, destcost, effect);
 				},
 			},
 		},
