@@ -110,7 +110,7 @@ export async function PossessionRollStat(actor, stat, statValue, modifier = 0, b
 	});
 }
 // Function to handle re-roll for destiny
-async function PossessionReRoll(event) {
+export async function PossessionReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
 	const actorId = button.dataset.actorId;

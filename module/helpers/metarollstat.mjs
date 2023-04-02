@@ -110,7 +110,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 	});
 }
 // Function to handle re-roll for destiny
-async function MetaReRoll(event) {
+export async function MetaReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
 	const actorId = button.dataset.actorId;
