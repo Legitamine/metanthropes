@@ -37,9 +37,9 @@ Handlebars.registerHelper("selected", function (option, value) {
 	return option === value ? "selected" : "";
 });
 // Handlebars helper for displaying actor values on the item sheets.
-Handlebars.registerHelper("withParent", function (options) {
-	return options.fn(this.parent);
-});
+Handlebars.registerHelper("parent", function(context, key) {
+	return context[key];
+  });
 // Log system initialization.
 Hooks.once("init", async function () {
 	console.log("========================================================================");

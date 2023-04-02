@@ -21,10 +21,7 @@
 				<div class="item-mpname item-prop">{{item.system.Activation.MetapowerName.value}}</div>
 				<div class="item-destinycost item-prop">{{item.system.Activation.DestinyCost.value}}</div>
 				<div class="item-statroll item-prop">
-					{{item.system.Activation.StatRolled.value}}-{{item.parent.system.RollStats.Endurance}}-{{parent.parent.system.RollStats.Awareness}}-{{item.parent.name}}-
-					{{#withParent}}
-					{{this.parent.system.StatRolls.[item.system.Activation.StatRolled.value]}}
-					{{/withParent}}
+					{{item.system.Activation.StatRolled.value}}: {{lookup (parent ../../actor.system.RollStats) item.system.Activation.StatRolled.value}}
 				</div>
 				<div class="item-actionslot item-prop">{{item.system.Activation.ActionSlot.value}}</div>
 				<div class="item-controls">
