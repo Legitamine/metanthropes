@@ -46,6 +46,9 @@ export class MetanthropesCombat extends Combat {
 	 * @returns {Promise<Combat>}       A promise which resolves to the updated Combat document once updates are complete.
 	 */
 	async rollInitiative(ids, { formula = null, updateTurn = true, messageOptions = {} } = {}) {
+		console.log("=======++++++++++++++============");
+		console.log("Metanthropes RPG inside rollInitiative");
+		console.log("=======++++++++++++++============");
 		// Structure input data
 		ids = typeof ids === "string" ? [ids] : ids;
 		const currentId = this.combatant?.id;
@@ -117,6 +120,9 @@ export class MetanthropesCombat extends Combat {
 	async setInitiative(id, value) {
 		const combatant = this.combatants.get(id, { strict: true });
 		await combatant.update({ initiative: value });
+		console.log("=======++++++++++++++============");
+		console.log("Metanthropes RPG inside setInitiative");
+		console.log("=======++++++++++++++============");
 	}
 
 	//	// start combat button - here i should initialize what I need
@@ -129,15 +135,15 @@ export class MetanthropesCombat extends Combat {
 	// this should also be used to advance time (see https://youtu.be/OlagJzZsEew?list=PLFV9z59nkHDccUbRXVt623UdloPTclIrz&t=592)
 	//async nextTurn() {}
 	//async previousTurn() {}
-	async nextRound() {
+	//async nextRound() {
 		//this should re-enable rolling for initiative
-		await this.resetAll();
-	}
+	//	await this.resetAll();
+	//}
 	//async previousRound() {}
 	// this should replace the default roll initiative
 	//! edw einai - ayto psanxei formula, enw egw exw allo function to do that
 	async _getInitiativeFormula(combatant) {
-		console.log("got to change the initiative formula === +++ === +++ === ");
+		console.log("Metanthropes RPG inside _getInitiativeFormula  === +++ === +++ === ");
 		await MetaInitiative(combatant);
 	}
 }

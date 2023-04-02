@@ -55,7 +55,7 @@ Hooks.once("init", async function () {
 	//setup initiative system
 	//CONFIG.Combat.initiative = MetaInitiative;
 	CONFIG.Combat.initiative = {
-		formula: "1d100",
+		formula: "1d100 + @RollStats.Reflexes",
 		decimals: 2,
 	};
 	// setup custom combat
