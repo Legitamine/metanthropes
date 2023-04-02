@@ -1,4 +1,6 @@
 // MetaRollStat function is used to roll a stat and get the levels of success/failure and print the message to chat
+// import metapower activation function
+import { MetapowerActivate } from "./mpactivate.mjs";
 export async function MetapowerRollStat(
 	actor,
 	stat,
@@ -94,7 +96,12 @@ export async function MetapowerRollStat(
 	//message += effect;
 	//message += `${effect}`;
 	//add re-roll button to message
-	message += `<div class="metanthropes hide-button layout-hide"><button class="metapower-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-mpname="${mpname}" data-destcost="${destcost}" data-effect="${effect}" >🤞</button></div>`;
+	message += `<div class="metanthropes hide-button layout-hide">
+	<button class="metapower-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-mpname="${mpname}" data-destcost="${destcost}" data-effect="${effect}" >
+	🤞</button>
+	<button class="metapower-activate" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-mpname="${mpname}" data-destcost="${destcost}" data-effect="${effect}" >
+	Ⓜ️</button>
+	</div>`;
 	//set flags for the actor to be used as the lastrolled values of your most recent roll.
 	//console log for debugging
 	console.log(

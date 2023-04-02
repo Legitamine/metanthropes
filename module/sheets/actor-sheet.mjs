@@ -48,11 +48,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 		}
 		// Add roll data for TinyMCE editors.
 		context.rollData = context.actor.getRollData();
-		// Set up an event listener for stat changes, this should enable metapower sheet to update correctly when a stat changes
-		//! this.actor.on is not a function error
-		//	this.actor.on("update", () => {
-		//		this.render(false); // Update the sheet when stats are updated
-		//	});
 		// Prepare active effects
 		// context.effects = prepareActiveEffectCategories(this.actor.effects);
 		return context;
@@ -132,6 +127,12 @@ export class MetanthropesActorSheet extends ActorSheet {
 		// html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
 		// Rollable abilities.
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
+		//listen for stat changes, this should enable metapower sheet to update correctly when a stat changes
+		this.actor.on("render", () => {
+			Hooks.on("updateOwnedItem", () => {
+				this.render(false); // Update the sheet when stats are updated
+			});
+		});
 		// Drag events for macros.
 		if (this.actor.isOwner) {
 			let handler = (ev) => this._onDragStart(ev);
@@ -188,7 +189,16 @@ export class MetanthropesActorSheet extends ActorSheet {
 				const destcost = dataset.destcost;
 				const effect = dataset.effect;
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-				console.log("Metanthropes RPG Rolling a Metapower for:", actor, "Metapower:", mpname, "Destiny Cost:", destcost, "with:", stat);
+				console.log(
+					"Metanthropes RPG Rolling a Metapower for:",
+					actor,
+					"Metapower:",
+					mpname,
+					"Destiny Cost:",
+					destcost,
+					"with:",
+					stat
+				);
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 				MetapowerRoll(actor, stat, mpname, destcost, effect);
 			} else if (dataset.rollType == "Possession") {
