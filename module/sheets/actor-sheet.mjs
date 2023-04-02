@@ -7,7 +7,7 @@
 //*
 ////
 import { MetaRoll } from "../helpers/metaroll.mjs";
-import { MetapowerRoll} from "../helpers/mproll.mjs";
+import { MetapowerRoll } from "../helpers/mproll.mjs";
 import { PossessionRoll } from "../helpers/posroll.mjs";
 export class MetanthropesActorSheet extends ActorSheet {
 	/** @override */
@@ -48,6 +48,10 @@ export class MetanthropesActorSheet extends ActorSheet {
 		}
 		// Add roll data for TinyMCE editors.
 		context.rollData = context.actor.getRollData();
+		// Set up an event listener for stat changes, this should enable metapower sheet to update correctly when a stat changes
+		this.actor.on("update", () => {
+			this.render(false); // Update the sheet when stats are updated
+		});
 		// Prepare active effects
 		// context.effects = prepareActiveEffectCategories(this.actor.effects);
 		return context;
@@ -173,28 +177,28 @@ export class MetanthropesActorSheet extends ActorSheet {
 				const actor = this.actor;
 				const stat = dataset.stat;
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-				console.log("Metanthropes RPG Rolling a Stat for:", actor,"'s", stat);
+				console.log("Metanthropes RPG Rolling a Stat for:", actor, "'s", stat);
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 				MetaRoll(actor, stat);
 			} else if (dataset.rollType == "Metapower") {
 				const actor = this.actor;
 				const stat = dataset.stat;
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-				console.log("Metanthropes RPG Rolling a Metapower for:", actor,"'s", stat);
+				console.log("Metanthropes RPG Rolling a Metapower for:", actor, "'s", stat);
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 				MetapowerRoll(actor, stat);
 			} else if (dataset.rollType == "Possession") {
 				const actor = this.actor;
 				const stat = dataset.stat;
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-				console.log("Metanthropes RPG Rolling a Possession for:", actor,"'s", stat);
+				console.log("Metanthropes RPG Rolling a Possession for:", actor, "'s", stat);
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 				PossessionRoll(actor, stat);
 			} else if (dataset.rollType == "Combo") {
 				const actor = this.actor;
 				const stat = dataset.stat;
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-				console.log("Metanthropes RPG Rolling a Combo for:", actor,"'s", stat);
+				console.log("Metanthropes RPG Rolling a Combo for:", actor, "'s", stat);
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 				MetaRoll(actor, stat);
 			} else {

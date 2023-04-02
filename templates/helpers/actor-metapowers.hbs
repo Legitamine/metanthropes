@@ -6,7 +6,7 @@
 			<div class="item-destinycost">🤞</div>
 			<div class="item-statroll">🎲</div>
 			<div class="item-actionslot">⏱</div>
-			<div class="item-controls"><i class="fa-thin fa-gears"></i> </div>
+			<div class="item-controls"><i class="fa-thin fa-gears"></i></div>
 		</li>
 		{{#each Metapowers as |item id|}}
 			<li class="item flexrow" data-item-id="{{item._id}}">
@@ -21,7 +21,7 @@
 				<div class="item-mpname item-prop">{{item.system.Activation.MetapowerName.value}}</div>
 				<div class="item-destinycost item-prop">{{item.system.Activation.DestinyCost.value}}</div>
 				<div class="item-statroll item-prop">
-					{{item.system.Activation.StatRolled.value}} {{item.parent}}
+					{{item.system.Activation.StatRolled.value}}: {{lookup ../../system.RollStats item.system.Activation.StatRolled.value}}
 				</div>
 				<div class="item-actionslot item-prop">{{item.system.Activation.ActionSlot.value}}</div>
 				<div class="item-controls">

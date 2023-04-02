@@ -3,7 +3,7 @@
 		<li class="item flexrow items-header">
 			<div class="item-name">{{Category}}</div>
 			<div class="item-statroll">🎲</div>
-			<div class="item-controls"><i class="fa-thin fa-gears"></i> </div>
+			<div class="item-controls"><i class="fa-duotone fa-gears"></i></div>
 		</li>
 		{{#each Possessions as |item id|}}
 			<li class="item flexrow" data-item-id="{{item._id}}">
@@ -14,7 +14,9 @@
 					</div>
 					<h4>{{item.name}}</h4>
 				</div>
-				<div class="item-statroll item-prop">{{item.system.StatRolled.value}}</div>
+				<div class="item-statroll item-prop">
+					{{item.system.StatRolled.value}}: {{lookup ../../system.RollStats item.system.StatRolled.value}}
+				</div>
 				<div class="item-controls">
 					<a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
 					<a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
