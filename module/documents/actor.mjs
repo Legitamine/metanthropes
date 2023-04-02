@@ -275,8 +275,6 @@ export class MetanthropesActor extends Actor {
 
 		// Extract the values you need
 		//! here I want to pass something to the setInititative function - I need to understand how setInitiative works
-		const levelsOfSuccess = initiativeData.levelsOfSuccess;
-		const levelsOfFailure = initiativeData.levelsOfFailure;
 		const resultLevel = initiativeData.resultLevel;
 		const initiativeValue = initiativeData.initiativeValue;
 

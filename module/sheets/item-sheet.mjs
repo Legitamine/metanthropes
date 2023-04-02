@@ -20,8 +20,12 @@ export class MetanthropesItemSheet extends ItemSheet {
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
 			classes: ["metanthropes", "sheet", "item"],
-			width: 520,
-			height: 480,
+			width: 580,
+			height: 520,
+			closeOnSubmit: false,
+			submitOnClose: true,
+			submitOnChange: true,
+			resizable: true,
 			tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
 		});
 	}
@@ -64,12 +68,12 @@ export class MetanthropesItemSheet extends ItemSheet {
 	/* -------------------------------------------- */
 
 	/** @override */
-	activateListeners(html) {
-		super.activateListeners(html);
-
-		// Everything below here is only needed if the sheet is editable
-		if (!this.isEditable) return;
-
-		// Roll handlers, click handlers, etc. would go here.
-	}
+	//	activateListeners(html) {
+	//		super.activateListeners(html);
+//	
+	//		// Everything below here is only needed if the sheet is editable
+	//		if (!this.isEditable) return;
+//	
+	//		// Roll handlers, click handlers, etc. would go here.
+	//	}
 }

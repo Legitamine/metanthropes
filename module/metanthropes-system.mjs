@@ -28,6 +28,10 @@ import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
 // Import helpers.
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 import { MetaInitiative } from "./helpers/metainitiative.mjs";
+// Import Meta-Dice rolling functions.
+import { MetaReRoll } from "./helpers/metarollstat.mjs";
+import { MetapowerReRoll } from "./helpers/mprollstat.mjs";
+import { PossessionReRoll } from "./helpers/posrollstat.mjs";
 // Handlebars helper for drop-down menus.
 Handlebars.registerHelper("selected", function (option, value) {
 	return option === value ? "selected" : "";
@@ -35,6 +39,10 @@ Handlebars.registerHelper("selected", function (option, value) {
 // Handlebars helper for displaying actor values on the item sheets.
 Handlebars.registerHelper("withParent", function (options) {
 	return options.fn(this.parent);
+});
+// Handlebars helper for displaying actor values on the item sheets.
+Handlebars.registerHelper("withGrandParent", function (options) {
+	return options.fn(this.parent.parent);
 });
 // Log system initialization.
 Hooks.once("init", async function () {
@@ -173,4 +181,24 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 	console.log("========================================================================");
 	console.log("Metanthropes RPG System - Drag Ruler Integration Finished");
 	console.log("========================================================================");
+});
+// Hook to look for re-rolls of meta dice in chat
+// Add event listener for re-roll button click, hiding the button for non-owners
+Hooks.on("renderChatMessage", async (message, html) => {
+	if (message.isAuthor) {
+		const actorId = message.getFlag("metanthropes-system", "actorId");
+		const actor = game.actors.get(actorId);
+		console.log("=============================================================================================");
+		console.log("Metanthropes RPG Hook for MetaReRoll Button - should give actorId", actorId);
+		console.log("Metanthropes RPG Hook for MetaReRoll Button - should give actor", actor);
+		console.log("=============================================================================================");
+		if (actor && actor.system.Vital.Destiny.value > 0) {
+			html.find(".hide-button").removeClass("layout-hide");
+		} else {
+			html.find(".hide-button").addClass("layout-hide");
+		}
+		html.find(".meta-re-roll").on("click", MetaReRoll);
+		html.find(".metapower-re-roll").on("click", MetapowerReRoll);
+		html.find(".possession-re-roll").on("click", PossessionReRoll);
+	}
 });

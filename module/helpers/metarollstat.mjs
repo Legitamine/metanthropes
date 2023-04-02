@@ -16,7 +16,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 		result = "Failure 🟥";
 		levelsOfSuccess = 0;
 		// resultlevel is used to help with ordering combatants in initiative order
-		resultLevel = 0.25;
+		resultLevel = 0;
 	} else {
 		// if the calculation is <= to statValue, it's a success, so we reset the levels of failure to 0
 		result = "Success 🟩";
@@ -28,7 +28,6 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 	//todo: review how bonuses and penalties should affect criticals
 	if (criticalSuccess) {
 		result = `🟩 Critical Success 🟩, rewarding ${actor.name} with +1 * 🤞`; //todo: add color and bold to crititals
-		resultLevel = 0.75;
 		currentDestiny += 1;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfSuccess = 10;
@@ -40,7 +39,6 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 	}
 	if (criticalFailure) {
 		result = `🟥 Critical Failure 🟥, rewarding ${actor.name} with +1 * 🤞`; //todo: add color and bold to crititals
-		resultLevel = 0;
 		currentDestiny += 1;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfFailure = 10;
@@ -63,6 +61,8 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 		levelsOfFailure,
 		"Result:",
 		result,
+		"Result Level:",
+		resultLevel,
 		"Destiny:",
 		currentDestiny
 	);
@@ -83,8 +83,10 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 	// if we have levels of success or failure, add them to the message
 	if (levelsOfSuccess > 0) {
 		message += `, accumulating: ${levelsOfSuccess} * ✔️. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
+		resultLevel = levelsOfSuccess;
 	} else if (levelsOfFailure > 0) {
 		message += `, accumulating: ${levelsOfFailure} * ❌. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
+		resultLevel = -levelsOfFailure;
 	} else {
 		message += `. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
 	}
@@ -93,8 +95,6 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 	//set flags for the actor to be used as the lastrolled values of your most recent roll.
 	// the idea is to use these later in metapowers to spend your levels of success.
 	await actor.setFlag("metanthropes-system", "lastrolled", {
-		levelsOfSuccess: levelsOfSuccess,
-		levelsOfFailure: levelsOfFailure,
 		resultLevel: resultLevel,
 	});
 	//print message to chat and enable Dice So Nice to roll the dice and display the message
@@ -136,20 +136,3 @@ async function MetaReRoll(event) {
 		}
 	}
 }
-// Add event listener for re-roll button click, hiding the button for non-owners
-Hooks.on("renderChatMessage", async (message, html) => {
-	if (message.isAuthor) {
-		const actorId = message.getFlag("metanthropes-system", "actorId");
-		const actor = game.actors.get(actorId);
-		console.log("=============================================================================================");
-		console.log("Metanthropes RPG Hook for MetaReRoll Button - should give actorId", actorId);
-		console.log("Metanthropes RPG Hook for MetaReRoll Button - should give actor", actor);
-		console.log("=============================================================================================");
-		if (actor && actor.system.Vital.Destiny.value > 0) {
-			html.find(".hide-button").removeClass("layout-hide");
-		} else {
-			html.find(".hide-button").addClass("layout-hide");
-		}
-		html.find(".meta-re-roll").on("click", MetaReRoll);
-	}
-});

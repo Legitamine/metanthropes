@@ -32,17 +32,9 @@ export async function MetaInitiative(combatant) {
 	// Retrieve the last rolled data from the actor's flags
 	const initiativeData = actor.getFlag("metanthropes-system", "lastrolled");
 	// Extract the values you need
-	const levelsOfSuccess = initiativeData.levelsOfSuccess;
-	const levelsOfFailure = initiativeData.levelsOfFailure;
 	const resultLevel = initiativeData.resultLevel;
-	if (resultLevel > 0.4) {
-		initiativeValue = Math.max(levelsOfSuccess, resultLevel);
-	} else {
-		initiativeValue = -Math.max(levelsOfFailure, resultLevel);
-	}
-	// Use these values as needed for your MetaInitiative function
 	// I will take these values and store them inside an initiative flag on the actor
 	await actor.setFlag("metanthropes-system", "initiative", {
-		initiativeValue: initiativeValue,
+		initiativeValue: resultLevel,
 	});
 }

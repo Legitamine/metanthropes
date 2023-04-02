@@ -22,9 +22,9 @@
 				<div class="item-destinycost item-prop">{{item.system.Activation.DestinyCost.value}}</div>
 				<div class="item-statroll item-prop">
 					{{item.system.Activation.StatRolled.value}}-{{item.parent.system.RollStats.Endurance}}-{{parent.parent.system.RollStats.Awareness}}-{{item.parent.name}}-
-					{{#withParent}}
+					{{#withGrandParent}}
 						{{this.system.StatRolls.[item.system.Activation.StatRolled.value]}}
-					{{/withParent}}
+					{{/withGrandParent}}
 				</div>
 				<div class="item-actionslot item-prop">{{item.system.Activation.ActionSlot.value}}</div>
 				<div class="item-controls">
