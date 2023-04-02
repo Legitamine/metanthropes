@@ -27,7 +27,7 @@ import { MetanthropesActorSheet } from "./sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
 // Import helpers.
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
-import { MetaInitiative } from "./helpers/metainitiative.mjs";
+// import { MetaInitiative } from "./helpers/metainitiative.mjs";
 // Import Meta-Dice rolling functions.
 import { MetaReRoll } from "./helpers/metarollstat.mjs";
 import { MetapowerReRoll } from "./helpers/mprollstat.mjs";
