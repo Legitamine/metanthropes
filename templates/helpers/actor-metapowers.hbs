@@ -14,14 +14,14 @@
 					<div class="item-image">
 						<a class="style-cs-rolls" data-roll-type="Metapower"
 							data-stat="{{item.system.Activation.StatRolled.value}}"><img src="{{item.img}}"
-								title="{{item.name}}" width="24" height="24" /></a>
+								title="{{item.name}}" width="30" height="30" /></a>
 					</div>
 					<h4>{{item.name}}</h4>
 				</div>
 				<div class="item-mpname item-prop">{{item.system.Activation.MetapowerName.value}}</div>
 				<div class="item-destinycost item-prop">{{item.system.Activation.DestinyCost.value}}</div>
 				<div class="item-statroll item-prop">
-					{{item.system.Activation.StatRolled.value}}: {{lookup (parent ../../actor.system.RollStats) item.system.Activation.StatRolled.value}}
+					{{item.system.StatRolled}}: {{getStatValue ../actor item.system.StatRolled}}
 				</div>
 				<div class="item-actionslot item-prop">{{item.system.Activation.ActionSlot.value}}</div>
 				<div class="item-controls">

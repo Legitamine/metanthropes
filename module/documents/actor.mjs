@@ -1,11 +1,3 @@
-////
-//*
-//! Metanthropes RPG System for FoundryVTT
-//? This is the Actor document for the Metanthropes RPG System for FoundryVTT.
-//? This controls how Actors are created and what they can do.
-//todo: Enable Rolls
-//*
-////
 //import MetaInitiative for combat
 import { MetaInitiative } from "../helpers/metainitiative.mjs";
 export class MetanthropesActor extends Actor {
@@ -77,7 +69,7 @@ export class MetanthropesActor extends Actor {
 		this._prepareDerivedCharacteristicsData(actorData);
 	}
 	_prepareDerivedCharacteristicsData(actorData) {
-		//	we take all actors that have characteristics and prepare their data for rolling, as well as calculte max life.
+		//	we take all actors that have characteristics and prepare their data for rolling, as well as calculte max life, movement and XP spent.
 		if (actorData.type == "Human") return;
 		else if (actorData.type == "Animated-Object") return;
 		else if (actorData.type == "Vehicle") return;
