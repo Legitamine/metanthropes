@@ -2,6 +2,7 @@
 export async function MetapowerRollStat(actor, stat, statValue, modifier = 0, bonus = 0, penalty = 0, mpname, destcost, effect) {
 	const roll = await new Roll("1d100").evaluate({ async: true });
 	const total = roll.total;
+	console.log("Inside MetapowerRollStat - do we have? ", mpname, destcost, effect);
 	// const isSuccess = total <= statValue + modifier;
 	let result = null; // isSuccess ? "Success 🟩" : "Failure 🟥";
 	let resultLevel = null;
@@ -99,7 +100,7 @@ export async function MetapowerRollStat(actor, stat, statValue, modifier = 0, bo
 		message += `. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
 	}
 	// add metapower effect to message
-	message += `The effect of the Metapower is: ${effect}.`
+	message += ` The effect of the Metapower is: ${effect}.`
 	//add re-roll button to message
 	message += `<div class="metanthropes hide-button layout-hide"><button class="metapower-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-mpname="${mpname}" data-destcost="${destcost}" data-effect="${effect}" >🤞</button></div>`;
 	//set flags for the actor to be used as the lastrolled values of your most recent roll.

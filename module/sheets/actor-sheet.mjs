@@ -184,10 +184,13 @@ export class MetanthropesActorSheet extends ActorSheet {
 			} else if (dataset.rollType == "Metapower") {
 				const actor = this.actor;
 				const stat = dataset.stat;
+				const mpname = dataset.mpname;
+				const destcost = dataset.destcost;
+				const effect = dataset.effect;
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-				console.log("Metanthropes RPG Rolling a Metapower for:", actor, "'s", stat);
+				console.log("Metanthropes RPG Rolling a Metapower for:", actor, "Metapower:", mpname, "Destiny Cost:", destcost, "with:", stat);
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-				MetapowerRoll(actor, stat);
+				MetapowerRoll(actor, stat, mpname, destcost, effect);
 			} else if (dataset.rollType == "Possession") {
 				const actor = this.actor;
 				const stat = dataset.stat;
