@@ -40,10 +40,6 @@ Handlebars.registerHelper("selected", function (option, value) {
 Handlebars.registerHelper("withParent", function (options) {
 	return options.fn(this.parent);
 });
-Handlebars.registerHelper("withGrandParent", function (context, options) {
-	const parentContext = Handlebars.helpers.withParent(context, options);
-	return Handlebars.helpers.withParent(parentContext, options);
-});
 // Log system initialization.
 Hooks.once("init", async function () {
 	console.log("========================================================================");
