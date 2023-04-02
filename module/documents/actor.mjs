@@ -211,7 +211,7 @@ export class MetanthropesActor extends Actor {
 		);
 		console.log("=============================================================================================");
 		console.log("Metanthropes RPG Calculating Perk Progressions Experience");
-		// Calculate the experience spent on perks
+		// Calculate the experience spent on Knowledge Perks
 		for (const [KnowPerkKey, KnowPerkValue] of Object.entries(systemData.Perks.Knowledge)) {
 			// Calculate the advancement count based on the perk's progressed value
 			advancementCount = Number(KnowPerkValue.value);
@@ -221,20 +221,15 @@ export class MetanthropesActor extends Actor {
 				experienceSpent += perkExperienceSpent;
 				console.log("Experience Spent to Progress", KnowPerkKey, "Perk:", perkExperienceSpent);
 		}
-		// Calculate the experience spent on perks
+		// Calculate the experience spent on Skills Perks
 		for (const [SkillPerkKey, SkillPerkValue] of Object.entries(systemData.Perks.Skills)) {
 			// Calculate the advancement count based on the perk's progressed value
 			advancementCount = Number(SkillPerkValue.value);
-			// Calculate the advancement count based on the characteristic's progressed value
-			perkExperienceSpent = 0;
-			for (let i = 1; i < advancementCount; i++) {
-				perkExperienceSpent += Number(i * 100);
-			}
-			// Add the experience spent on this characteristic to the total experience spent, only if Progressed is >0
-			if (advancementCount > 0) {
+			// Calculate the experience spent based on the perks's progressed value
+			perkExperienceSpent = advancementCount * 100;
+			// Add the experience spent on this perk to the total experience spent
 				experienceSpent += perkExperienceSpent;
 				console.log("Experience Spent to Progress", SkillPerkKey, "Perk:", perkExperienceSpent);
-			}
 		}
 		// Calculate total Experience Spent Progressing Perks & Characteristics & Stats
 		// Store experienceSpent in systemData.Vital.Experience.Spent
