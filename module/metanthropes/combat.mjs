@@ -61,6 +61,9 @@ export class MetanthropesCombat extends Combat {
 
 			// Produce an initiative roll for the Combatant
 			const roll = combatant.getInitiativeRoll(formula);
+			console.log("=======++++++++++++++============");
+			console.log("Metanthropes RPG inside combatant.getInitiativeRoll(formula)roll:", roll, "formula:", formula);
+			console.log("=======++++++++++++++============");
 			await roll.evaluate({ async: true });
 			updates.push({ _id: id, initiative: roll.total });
 

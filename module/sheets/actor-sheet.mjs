@@ -49,9 +49,10 @@ export class MetanthropesActorSheet extends ActorSheet {
 		// Add roll data for TinyMCE editors.
 		context.rollData = context.actor.getRollData();
 		// Set up an event listener for stat changes, this should enable metapower sheet to update correctly when a stat changes
-		this.actor.on("update", () => {
-			this.render(false); // Update the sheet when stats are updated
-		});
+		//! this.actor.on is not a function error
+		//	this.actor.on("update", () => {
+		//		this.render(false); // Update the sheet when stats are updated
+		//	});
 		// Prepare active effects
 		// context.effects = prepareActiveEffectCategories(this.actor.effects);
 		return context;
