@@ -65,7 +65,7 @@ export class MetanthropesActor extends Actor {
 	// using one function for all types of actors with characteristics and stats in prepareDerivedData
 	/** @override */
 	prepareDerivedData() {
-		const actorData = this;		
+		const actorData = this;
 		this._prepareDerivedCharacteristicsData(actorData);
 	}
 	_prepareDerivedCharacteristicsData(actorData) {
@@ -80,6 +80,7 @@ export class MetanthropesActor extends Actor {
 		let characteristicExperienceSpent = 0;
 		let statExperienceSpent = 0;
 		let advancementCount = 0;
+		let perkExperienceSpent = 0;
 		console.log("=============================================================================================");
 		console.log("Metanthropes RPG Preparing Characteristics & Stats for", this.type, "-", this.name);
 		console.log("=============================================================================================");
@@ -210,16 +211,60 @@ export class MetanthropesActor extends Actor {
 		);
 		// Store experienceSpent in systemData.Vital.Experience.Spent
 		parseInt((systemData.Vital.Experience.Spent = Number(experienceSpent)));
-		console.log("Total Experience Spent automagically for", this.name, "Progressions:", experienceSpent);
+		console.log(
+			"Total Experience Spent automagically for",
+			this.name,
+			"Characteristics & Stats Progressions:",
+			experienceSpent
+		);
+		console.log("=============================================================================================");
+		console.log("Metanthropes RPG Calculating Perk Progressions Experience");
+		// Calculate the experience spent on perks
+		for (const [KnowPerkKey, KnowPerkValue] of Object.entries(systemData.Perks.Knowledge)) {
+			// Calculate the advancement count based on the perk's progressed value
+			advancementCount = Number(KnowPerkValue.value);
+			// Calculate the advancement count based on the characteristic's progressed value
+			perkExperienceSpent = 0;
+			for (let i = 0; i < advancementCount; i++) {
+				perkExperienceSpent += Number(Number(KnowPerkValue.value) * i * 100);
+			}
+			// Add the experience spent on this characteristic to the total experience spent, only if Progressed is >0
+			if (advancementCount > 0) {
+				experienceSpent += perkExperienceSpent;
+				console.log("Experience Spent to Progress", KnowPerkKey, "Perk:", perkExperienceSpent);
+			}
+		}
+		// Calculate the experience spent on perks
+		for (const [SkillPerkKey, SkillPerkValue] of Object.entries(systemData.Perks.Skills)) {
+			// Calculate the advancement count based on the perk's progressed value
+			advancementCount = Number(SkillPerkValue.value);
+			// Calculate the advancement count based on the characteristic's progressed value
+			perkExperienceSpent = 0;
+			for (let i = 0; i < advancementCount; i++) {
+				perkExperienceSpent += Number(Number(SkillPerkValue.value) * i * 100);
+			}
+			// Add the experience spent on this characteristic to the total experience spent, only if Progressed is >0
+			if (advancementCount > 0) {
+				experienceSpent += perkExperienceSpent;
+				console.log("Experience Spent to Progress", SkillPerkKey, "Perk:", perkExperienceSpent);
+			}
+		}
+		// Calculate total Experience Spent Progressing Perks & Characteristics & Stats
 		parseInt(
 			(systemData.Vital.Experience.Stored = Number(
-				Number(systemData.Vital.Experience.Total) - Number(experienceSpent) - Number(systemData.Vital.Experience.Manual)
+				Number(systemData.Vital.Experience.Total) -
+					Number(experienceSpent) -
+					Number(systemData.Vital.Experience.Manual)
 			))
 		);
 		if (systemData.Vital.Experience.Stored < 0) {
-			console.log("=============================================================================================");
+			console.log(
+				"============================================================================================="
+			);
 			console.log("Metanthropes RPG WARNING: Stored Experience is Negative!");
-			console.log("=============================================================================================");
+			console.log(
+				"============================================================================================="
+			);
 		}
 		console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
 		console.log("=============================================================================================");

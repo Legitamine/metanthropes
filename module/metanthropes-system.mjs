@@ -53,7 +53,11 @@ Hooks.once("init", async function () {
 		MetanthropesItem,
 	};
 	//setup initiative system
-	CONFIG.Combat.initiative = MetaInitiative;
+	//CONFIG.Combat.initiative = MetaInitiative;
+	CONFIG.Combat.initiative = {
+		formula: "1d100",
+		decimals: 2,
+	};
 	// setup custom combat
 	CONFIG.Combat.entityClass = MetanthropesCombat;
 	//setup custom combatant
