@@ -1,5 +1,15 @@
 // MetaRollStat function is used to roll a stat and get the levels of success/failure and print the message to chat
-export async function MetapowerRollStat(actor, stat, statValue, modifier = 0, bonus = 0, penalty = 0, mpname, destcost, effect) {
+export async function MetapowerRollStat(
+	actor,
+	stat,
+	statValue,
+	modifier = 0,
+	bonus = 0,
+	penalty = 0,
+	mpname,
+	destcost,
+	effect
+) {
 	const roll = await new Roll("1d100").evaluate({ async: true });
 	const total = roll.total;
 	console.log("Inside MetapowerRollStat - do we have? ", mpname, destcost, effect);
@@ -15,7 +25,10 @@ export async function MetapowerRollStat(actor, stat, statValue, modifier = 0, bo
 	if (currentDestiny < destcost) {
 		ui.notifications.error("You don't have enough Destiny to use this Meta Power!");
 		return;
-	} else { currentDestiny -= destcost; }
+	} else {
+		currentDestiny -= destcost;
+		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
+	}
 	// this kicks-off the calculation, assuming that is is a failure
 	if (total - modifier - penalty > statValue + bonus) {
 		// in which case we don't care about what levels of success we have, so we set to 0 to avoid confusion later
@@ -49,29 +62,6 @@ export async function MetapowerRollStat(actor, stat, statValue, modifier = 0, bo
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfFailure = 10;
 	}
-	//console log for debugging
-	console.log(
-		"Metaroll Results: Stat:",
-		statValue,
-		"Roll:",
-		total,
-		"Multi-Action mod:",
-		modifier,
-		"Bonus:",
-		bonus,
-		"Penalty:",
-		penalty,
-		"levelsOfSuccess:",
-		levelsOfSuccess,
-		"levelsOfFailure:",
-		levelsOfFailure,
-		"Result:",
-		result,
-		"Result Level:",
-		resultLevel,
-		"Destiny:",
-		currentDestiny
-	);
 	//* Beggining of the message to be printed to chat
 	let message = `${actor.name} activates Metapower ${mpname} with ${stat} score of ${statValue}%`;
 	// if we have a bonus or penalty, add it to the message
@@ -100,10 +90,35 @@ export async function MetapowerRollStat(actor, stat, statValue, modifier = 0, bo
 		message += `. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
 	}
 	// add metapower effect to message
-	message += ` The effect of the Metapower is: ${effect}.`
+	message += ` The effect of the Metapower is: ${effect}`;
+	//message += effect;
+	//message += `${effect}`;
 	//add re-roll button to message
 	message += `<div class="metanthropes hide-button layout-hide"><button class="metapower-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-mpname="${mpname}" data-destcost="${destcost}" data-effect="${effect}" >🤞</button></div>`;
 	//set flags for the actor to be used as the lastrolled values of your most recent roll.
+	//console log for debugging
+	console.log(
+		"Metaroll Results: Stat:",
+		statValue,
+		"Roll:",
+		total,
+		"Multi-Action mod:",
+		modifier,
+		"Bonus:",
+		bonus,
+		"Penalty:",
+		penalty,
+		"levelsOfSuccess:",
+		levelsOfSuccess,
+		"levelsOfFailure:",
+		levelsOfFailure,
+		"Result:",
+		result,
+		"Result Level:",
+		resultLevel,
+		"Destiny:",
+		currentDestiny
+	);
 	// the idea is to use these later in metapowers to spend your levels of success.
 	await actor.setFlag("metanthropes-system", "lastrolled", {
 		resultLevel: resultLevel,
