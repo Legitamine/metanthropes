@@ -572,7 +572,7 @@ select {
 .metanthropes .style-cs-stats-label {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: #000;
   text-transform: uppercase;
   justify-content: center;
@@ -621,7 +621,7 @@ select {
 .metanthropes .style-cs-buffs {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   color: #143d0a;
   justify-content: center;
   justify-self: center;
@@ -633,7 +633,7 @@ select {
 .metanthropes .style-cs-conditions {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   color: #a70f0f;
   justify-content: center;
   justify-self: center;
@@ -645,8 +645,9 @@ select {
 .metanthropes .style-cs-rolls {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   color: #370239;
+  font-weight: bold;
   justify-content: center;
   justify-self: center;
   align-items: center;

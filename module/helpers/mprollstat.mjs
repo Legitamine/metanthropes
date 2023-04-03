@@ -65,8 +65,13 @@ export async function MetapowerRollStat(
 		levelsOfFailure = 10;
 	}
 	//* Beggining of the message to be printed to chat
-	let message = `${actor.name} activates Metapower ${mpname} with ${stat} score of ${statValue}%`;
+	let message = `${actor.name}`;
 	// if we have a bonus or penalty, add it to the message
+	if (destcost > 0) {
+		message += ` spends ${destcost} * 🤞 to activate Metapower: ${mpname} with ${stat} score of ${statValue}%`;
+	} else {
+		message += ` activates Metapower: ${mpname} with ${stat} score of ${statValue}%`;
+	}
 	if (bonus > 0) {
 		message += `, a Bonus of +${bonus}%`;
 	}
@@ -75,12 +80,9 @@ export async function MetapowerRollStat(
 	}
 	// if we have multi-action reduction, add it to the message
 	if (modifier < 0) {
-		message += ` & Multi-Action reduction of ${modifier}%`;
+		message += `, a Multi-Action reduction of ${modifier}%`;
 	}
-	if (destcost > 0) {
-		message += `, while spending ${destcost} * 🤞 to activate`;
-	}
-	message += ` and the result is ${total}, therefore it is a ${result}`;
+	message += ` and the result is ${total}. Therefore it is a ${result}`;
 	// if we have levels of success or failure, add them to the message
 	if (levelsOfSuccess > 0) {
 		message += `, accumulating: ${levelsOfSuccess} * ✔️. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
@@ -92,7 +94,7 @@ export async function MetapowerRollStat(
 		message += `. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
 	}
 	// add metapower effect to message
-	message += ` The effect of the Metapower is: ${effect}`;
+	// message += ` The effect of the Metapower is: ${effect}`;
 	//message += effect;
 	//message += `${effect}`;
 	//add re-roll button to message

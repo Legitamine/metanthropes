@@ -149,7 +149,7 @@
 .style-cs-stats-label {
 	opacity: 1;
 	font-family: $font-primary;
-	font-size: 1.4rem;
+	font-size: 1.6rem;
 	color: $c-black;
 	text-transform: uppercase;
 	justify-content: center;
@@ -198,7 +198,7 @@
 .style-cs-buffs {
 	opacity: 1;
 	font-family: $font-primary;
-	font-size: 0.8rem;
+	font-size: 0.6rem;
 	color: $c-green;
 	justify-content: center;
 	justify-self: center;
@@ -210,7 +210,7 @@
 .style-cs-conditions {
 	opacity: 1;
 	font-family: $font-primary;
-	font-size: 0.8rem;
+	font-size: 0.6rem;
 	color: $c-red;
 	justify-content: center;
 	justify-self: center;
@@ -222,8 +222,9 @@
 .style-cs-rolls {
 	opacity: 1;
 	font-family: $font-primary;
-	font-size: 1.4rem;
+	font-size: 1.8rem;
 	color: $c-purple;
+	font-weight: bold;
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
