@@ -4,7 +4,7 @@ input[type=text] {
   max-width: 17ch;
   margin: 1px;
   padding: 3px 3px 3px 6px;
-  border: 1px dashed #370239;
+  border: 1px dashed #7d0f81;
   border-radius: 15px;
   justify-content: center;
   align-items: center;
@@ -15,7 +15,7 @@ input[type=number] {
   max-width: 5ch;
   margin: 1px;
   padding: 3px 3px 3px 6px;
-  border: 1px dashed #370239;
+  border: 1px dashed #7d0f81;
   border-radius: 15px;
   justify-content: center;
   align-items: center;
@@ -61,7 +61,7 @@ button {
 select {
   font-family: "nasalization", sans-serif;
   border-radius: 15px;
-  border: 1px dotted #370239;
+  border: 1px dotted #7d0f81;
 }
 
 .window-app {
@@ -317,7 +317,7 @@ select {
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 0.6fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 0.8fr;
   -moz-column-gap: 3px;
        column-gap: 3px;
   row-gap: 3px;
@@ -359,7 +359,7 @@ select {
 }
 .metanthropes .layout-container-grid3x1-cs {
   display: grid;
-  grid-template-columns: 1.8fr 1.8fr 3.2fr;
+  grid-template-columns: 2.4fr 1.6fr 2.8fr;
   -moz-column-gap: 1px;
        column-gap: 1px;
   padding: 0px;
@@ -456,7 +456,7 @@ select {
 }
 .metanthropes .style-container-grid3x4 {
   opacity: 1;
-  border: 1px solid #370239;
+  border: 1px solid #7d0f81;
   border-radius: 15px;
   justify-content: center;
   justify-self: center;
@@ -465,7 +465,7 @@ select {
 }
 .metanthropes .style-container-grid3x2 {
   opacity: 1;
-  border: 1px dotted #370239;
+  border: 1px dotted #7d0f81;
   border-radius: 15px;
   justify-content: center;
   justify-self: center;
@@ -474,7 +474,7 @@ select {
 }
 .metanthropes .style-container-grid3x1 {
   opacity: 1;
-  border: 1px solid #370239;
+  border: 1px solid #7d0f81;
   border-radius: 15px;
   justify-content: stretch;
   justify-self: center;
@@ -483,7 +483,7 @@ select {
 }
 .metanthropes .style-container-grid4x1 {
   opacity: 1;
-  border: 1px solid #370239;
+  border: 1px solid #7d0f81;
   border-radius: 15px;
   justify-content: stretch;
   justify-self: center;
@@ -492,7 +492,7 @@ select {
 }
 .metanthropes .style-container-chars {
   opacity: 1;
-  border: 1px solid #370239;
+  border: 1px solid #7d0f81;
   border-radius: 15px;
   justify-content: center;
   justify-self: stretch;
@@ -501,7 +501,7 @@ select {
 }
 .metanthropes .style-container-stats {
   opacity: 1;
-  border: 1px solid #370239;
+  border: 1px solid #7d0f81;
   border-radius: 15px;
   justify-content: center;
   justify-self: stretch;
@@ -510,7 +510,7 @@ select {
 }
 .metanthropes .style-container-grid1x3 {
   opacity: 1;
-  border: 1px solid #370239;
+  border: 1px solid #7d0f81;
   border-radius: 15px;
   justify-content: center;
   justify-self: stretch;
@@ -519,7 +519,7 @@ select {
 }
 .metanthropes .style-container-grid1x4 {
   opacity: 1;
-  border: 1px solid #370239;
+  border: 1px solid #7d0f81;
   border-radius: 15px;
   justify-content: space-evenly;
   justify-self: space-around;
@@ -529,7 +529,7 @@ select {
 }
 .metanthropes .style-container-small {
   opacity: 1;
-  border: 1px solid #370239;
+  border: 1px solid #7d0f81;
   border-radius: 15px;
   justify-content: flex-start;
   justify-self: stretch;
@@ -537,7 +537,7 @@ select {
   align-self: stretch;
 }
 .metanthropes .style-container-border {
-  border: 1px solid #370239;
+  border: 1px solid #7d0f81;
   border-radius: 15px;
   border-style: dotted;
   -o-border-image: url(../artwork/border.webp) 5/10px round;
@@ -545,7 +545,7 @@ select {
   border-radius: 15px;
 }
 .metanthropes .style-container-nav {
-  border: 1px solid #370239;
+  border: 1px solid #7d0f81;
   border-radius: 15px;
   padding: 1px;
   margin: 1px;
@@ -557,7 +557,7 @@ select {
   align-self: center;
   align-content: center;
   font-size: 1rem;
-  color: #370239;
+  color: #7d0f81;
   padding: 3px;
   margin: 3px;
 }
@@ -566,7 +566,7 @@ select {
   max-width: 4ch;
   margin: 1px;
   padding: 3px 3px 3px 6px;
-  border: 1px dashed #370239;
+  border: 1px dashed #7d0f81;
   border-radius: 15px;
   justify-content: center;
   align-items: center;
@@ -576,7 +576,7 @@ select {
   max-width: 90ch;
   margin: 1px;
   padding: 3px 3px 3px 6px;
-  border: 1px dashed #370239;
+  border: 1px dashed #7d0f81;
   border-radius: 15px;
   justify-content: center;
   align-items: center;
@@ -585,7 +585,7 @@ select {
   opacity: 1;
   font-family: "nasalization", sans-serif;
   font-size: 1rem;
-  color: #370239;
+  color: #7d0f81;
   padding: 3px;
   margin: 3px;
 }
@@ -593,7 +593,7 @@ select {
   opacity: 1;
   font-family: "nasalization", sans-serif;
   font-size: 1rem;
-  color: #370239;
+  color: #7d0f81;
   justify-content: center;
   justify-self: center;
   align-items: center;
@@ -668,7 +668,7 @@ select {
   opacity: 1;
   font-family: "nasalization", sans-serif;
   font-size: 0.8rem;
-  color: #143d0a;
+  color: #267114;
   justify-content: center;
   justify-self: center;
   align-items: center;
@@ -680,7 +680,7 @@ select {
   opacity: 1;
   font-family: "nasalization", sans-serif;
   font-size: 0.8rem;
-  color: #a70f0f;
+  color: #ab1616;
   justify-content: center;
   justify-self: center;
   align-items: center;
@@ -691,7 +691,7 @@ select {
 .metanthropes .style-cs-positive {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  color: #143d0a;
+  color: #267114;
   justify-content: center;
   justify-self: center;
   align-items: center;
@@ -702,7 +702,7 @@ select {
 .metanthropes .style-cs-negative {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  color: #a70f0f;
+  color: #ab1616;
   justify-content: center;
   justify-self: center;
   align-items: center;
@@ -713,8 +713,8 @@ select {
 .metanthropes .style-cs-rolls {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 2.2rem;
-  color: #370239;
+  font-size: 2.4rem;
+  color: #7d0f81;
   font-weight: bold;
   justify-content: center;
   justify-self: center;
@@ -756,7 +756,7 @@ select {
   padding: 1px;
   overflow-y: auto;
   scrollbar-width: thin;
-  color: #370239;
+  color: #7d0f81;
 }
 .metanthropes .items-list .item-list {
   list-style: none;
@@ -791,7 +791,7 @@ select {
 .metanthropes .items-list .item {
   align-items: center;
   padding: 0 2px;
-  border-bottom: 1px solid #143d0a;
+  border-bottom: 1px solid #267114;
 }
 .metanthropes .items-list .item:last-child {
   border-bottom: none;
@@ -808,8 +808,8 @@ select {
 }
 .metanthropes .items-list .item-prop {
   text-align: center;
-  border-left: 1px solid #143d0a;
-  border-right: 1px solid #143d0a;
+  border-left: 1px solid #267114;
+  border-right: 1px solid #267114;
   font-size: 12px;
 }
 .metanthropes .items-list .items-header {

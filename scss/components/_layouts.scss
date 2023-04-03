@@ -26,7 +26,7 @@
 	display: grid;
 	grid-auto-flow: column;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr 1fr 1fr 0.6fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr 0.8fr;
 	column-gap: 3px;
 	row-gap: 3px;
 	padding: $padding-md;
@@ -68,7 +68,7 @@
 // this is used for charstats
 .layout-container-grid3x1-cs {
 	display: grid;
-	grid-template-columns: 1.8fr 1.8fr 3.2fr;
+	grid-template-columns: 2.4fr 1.6fr 2.8fr;
 	column-gap: 1px;
 	padding: $padding-zero;
 	margin: $margin-zero;
