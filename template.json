@@ -725,7 +725,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Metaowner",
-				"value": "Player"
+				"value": null
 			},
 			"notes-protagonist": {
 				"type": "text",
