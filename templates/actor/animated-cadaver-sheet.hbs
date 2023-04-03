@@ -2,7 +2,7 @@
 	<header>
 		<div class="layout-container-grid4x1 style-container-grid4x1">
 			<div class="layout-container-small style-container-small">
-				<div>Name<input name="name" type="text" value="{{actor.name}}" placeholder="Artificial Name"
+				<div>Name<input name="name" type="text" value="{{actor.name}}" placeholder="Cadaver Name"
 						data-dtype="String" />
 				</div>
 				<div>Player
@@ -13,16 +13,6 @@
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
-				<div>Prime Metapower
-					<input name="system.entermeta.primemetapower.value" type="text"
-						value="{{system.entermeta.primemetapower.value}}" data-dtype="String"
-						placeholder="Prime Metapower" />
-				</div>
-				<div>Metamorphosis
-					<input name="system.entermeta.metamorphosis.value" type="text"
-						value="{{system.entermeta.metamorphosis.value}}" data-dtype="String"
-						placeholder="Metamorphosis" />
-				</div>
 				<div>Background
 					<input name="system.Vital.background.value" type="text" value="{{system.Vital.background.value}}"
 						data-dtype="String" placeholder="Background" />
@@ -30,11 +20,6 @@
 				<div>Arc
 					<input name="system.Vital.arc.value" type="text" value="{{system.Vital.arc.value}}"
 						data-dtype="String" placeholder="Arc" />
-				</div>
-				<div>Regression
-					<input name="system.entermeta.regression.value" type="text"
-						value="{{system.entermeta.regression.value}}" data-dtype="String"
-						placeholder="Regression" />
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
@@ -60,32 +45,12 @@
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
-				<div>Narrator
-					<input name="system.entermeta.narrator.value" type="text"
-						value="{{system.entermeta.narrator.value}}" data-dtype="String" placeholder="Narrator Name" />
-				</div>
-				<div>Saga
-					<input name="system.entermeta.sagas.value" type="text" value="{{system.entermeta.sagas.value}}"
-						data-dtype="String" placeholder="Saga Name" />
-				</div>
-				<div>Sessions Played
-					<input name="system.entermeta.sessions.value" type="number" value="{{system.entermeta.sessions.value}}"
-						data-dtype="Number" placeholder="0" />
-				</div>
-				<div>Coalition
-					<input name="system.entermeta.coalition.value" type="text"
-						value="{{system.entermeta.coalition.value}}" data-dtype="String" placeholder="Coalition Name" />
-				</div>
-				<div>Faction
-					<input name="system.entermeta.faction.value" type="text" value="{{system.entermeta.faction.value}}"
-						data-dtype="String" placeholder="Faction Name" />
-				</div>
 			</div>
 		</div>
 		<div class="layout-container-grid1x4 style-container-grid1x4">
 			<div class="layout-container-small style-container-small">
 				<div class="style-labels-text">
-					❤️ Durability
+					❤️ Life
 					<input name="system.Vital.Life.value" type="number" value="{{system.Vital.Life.value}}"
 						data-dtype="Number" />/{{system.Vital.Life.max}}
 				</div>
@@ -122,8 +87,6 @@
 			<nav class="style-container-nav-children csnavselector tabs" data-group="cs">
 				<a class="item" data-tab="cs-charstats">📊 Overview</a>
 				<a class="item" data-tab="cs-perks">📚 Perks</a>
-				<a class="item" data-tab="cs-metapowers">Ⓜ️ Metapowers</a>
-				<a class="item" data-tab="cs-combos">🔗 Combos</a>
 				<a class="item" data-tab="cs-possessions">🛠️ Possessions</a>
 				<a class="item" data-tab="cs-notes">📓 Notes</a>
 			</nav>
@@ -131,16 +94,6 @@
 		<section class="csnavtabs">
 			<div class="tab cs-charstats" data-group="cs" data-tab="cs-charstats">
 				{{> "systems/metanthropes-system/templates/helpers/actor-charstats.hbs"}}
-			</div>
-			<div class="tab cs-metapowers" data-group="cs" data-tab="cs-metapowers">
-				<div class="layout-container-small style-container-small">
-					{{> "systems/metanthropes-system/templates/helpers/actor-metapowers.hbs"}}
-				</div>
-			</div>
-			<div class="tab cs-combos" data-group="cs" data-tab="cs-combos">
-				COMBOS
-				are not implemented.
-				{{> "systems/metanthropes-system/templates/helpers/actor-combos.hbs"}}
 			</div>
 			<div class="tab cs-perks" data-group="cs" data-tab="cs-perks">
 				<div class="layout-container-small style-container-small">
@@ -161,9 +114,6 @@
 					{{> "systems/metanthropes-system/templates/helpers/actor-notes.hbs"}}
 					<div class="layout-container-grid1x3 style-container-border style-labels-text">
 						{{editor system.physical.Description.value target="system.physical.Description.value" button=true owner=owner editable=editable}}
-					</div>
-					<div class="layout-container-grid1x3 style-container-border style-labels-text">
-						{{editor system.entermeta.Description.value target="system.entermeta.Description.value" button=true owner=owner editable=editable}}
 					</div>
 				</div>
 			</div>

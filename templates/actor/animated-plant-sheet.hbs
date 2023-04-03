@@ -2,7 +2,7 @@
 	<header>
 		<div class="layout-container-grid4x1 style-container-grid4x1">
 			<div class="layout-container-small style-container-small">
-				<div>Name<input name="name" type="text" value="{{actor.name}}" placeholder="Artificial Name"
+				<div>Name<input name="name" type="text" value="{{actor.name}}" placeholder="Plant Name"
 						data-dtype="String" />
 				</div>
 				<div>Player
@@ -38,25 +38,9 @@
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
-				<div>Birthplace
-					<input name="system.humanoids.birthplace.value" type="text"
-						value="{{system.humanoids.birthplace.value}}" data-dtype="String" placeholder="City Name" />
-				</div>
 				<div>Age
 					<input name="system.Vital.age.value" type="number" value="{{system.Vital.age.value}}"
 						data-dtype="Number" placeholder="" />
-				</div>
-				<div>Gender
-					<input name="system.humanoids.gender.value" type="text" value="{{system.humanoids.gender.value}}"
-						data-dtype="String" placeholder="Gender" />
-				</div>
-				<div>Height
-					<input name="system.humanoids.height.value" type="text" value="{{system.humanoids.height.value}}"
-						data-dtype="String" placeholder="Height" />
-				</div>
-				<div>Weight
-					<input name="system.humanoids.weight.value" type="text" value="{{system.humanoids.weight.value}}"
-						data-dtype="String" placeholder="Weight" />
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
@@ -85,7 +69,7 @@
 		<div class="layout-container-grid1x4 style-container-grid1x4">
 			<div class="layout-container-small style-container-small">
 				<div class="style-labels-text">
-					❤️ Durability
+					❤️ Life
 					<input name="system.Vital.Life.value" type="number" value="{{system.Vital.Life.value}}"
 						data-dtype="Number" />/{{system.Vital.Life.max}}
 				</div>
@@ -121,10 +105,8 @@
 		<div class="layout-container-nav style-container-nav">
 			<nav class="style-container-nav-children csnavselector tabs" data-group="cs">
 				<a class="item" data-tab="cs-charstats">📊 Overview</a>
-				<a class="item" data-tab="cs-perks">📚 Perks</a>
 				<a class="item" data-tab="cs-metapowers">Ⓜ️ Metapowers</a>
 				<a class="item" data-tab="cs-combos">🔗 Combos</a>
-				<a class="item" data-tab="cs-possessions">🛠️ Possessions</a>
 				<a class="item" data-tab="cs-notes">📓 Notes</a>
 			</nav>
 		</div>
@@ -141,18 +123,6 @@
 				COMBOS
 				are not implemented.
 				{{> "systems/metanthropes-system/templates/helpers/actor-combos.hbs"}}
-			</div>
-			<div class="tab cs-perks" data-group="cs" data-tab="cs-perks">
-				<div class="layout-container-small style-container-small">
-					{{> "systems/metanthropes-system/templates/helpers/actor-perks.hbs"}}
-				</div>
-			</div>
-			<div class="tab cs-possessions" data-group="cs" data-tab="cs-possessions">
-				<div class="layout-container-small style-container-small">
-					POSSESSIONS
-					are partially implemented
-					{{> "systems/metanthropes-system/templates/helpers/actor-possessions.hbs"}}
-				</div>
 			</div>
 			<div class="tab cs-notes" data-group="cs" data-tab="cs-notes">
 				<div class="layout-container-small style-container-small">
