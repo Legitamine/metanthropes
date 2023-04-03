@@ -238,6 +238,28 @@
 	padding: $padding-md;
 	margin: $margin-md;
 }
+.style-cs-positive {
+	opacity: 1;
+	font-family: $font-primary;
+	color: $c-green;
+	justify-content: center;
+	justify-self: center;
+	align-items: center;
+	align-self: center;
+	padding: $padding-md;
+	margin: $margin-md;
+}
+.style-cs-negative {
+	opacity: 1;
+	font-family: $font-primary;
+	color: $c-red;
+	justify-content: center;
+	justify-self: center;
+	align-items: center;
+	align-self: center;
+	padding: $padding-md;
+	margin: $margin-md;
+}
 .style-cs-rolls {
 	opacity: 1;
 	font-family: $font-primary;

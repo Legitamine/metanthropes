@@ -671,6 +671,28 @@ select {
   padding: 3px;
   margin: 3px;
 }
+.metanthropes .style-cs-positive {
+  opacity: 1;
+  font-family: "nasalization", sans-serif;
+  color: #143d0a;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
+  padding: 3px;
+  margin: 3px;
+}
+.metanthropes .style-cs-negative {
+  opacity: 1;
+  font-family: "nasalization", sans-serif;
+  color: #a70f0f;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
+  padding: 3px;
+  margin: 3px;
+}
 .metanthropes .style-cs-rolls {
   opacity: 1;
   font-family: "nasalization", sans-serif;

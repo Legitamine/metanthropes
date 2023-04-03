@@ -6,8 +6,10 @@
 					<input name="system.metaowner.value" type="text" value="{{system.metaowner.value}}"
 						placeholder="Player Name" data-dtype="String" />
 				</div>
-				<div>Protagonist<input name="name" type="text" value="{{actor.name}}" placeholder="My Protagonist" />
+				<div>Protagonist<input name="name" type="text" value="{{actor.name}}" placeholder="My Protagonist"
+						data-dtype="String" />
 				</div>
+				<div></div>
 				<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
 			</div>
 			<div class="layout-container-small style-container-small">
@@ -63,8 +65,12 @@
 						value="{{system.entermeta.narrator.value}}" data-dtype="String" placeholder="Narrator Name" />
 				</div>
 				<div>Saga
-					<input name="system.entermeta.saga.value" type="text" value="{{system.entermeta.saga.value}}"
+					<input name="system.entermeta.sagas.value" type="text" value="{{system.entermeta.sagas.value}}"
 						data-dtype="String" placeholder="Saga Name" />
+				</div>
+				<div>Sessions Played
+					<input name="system.entermeta.sessions.value" type="number" value="{{system.entermeta.sessions.value}}"
+						data-dtype="Number" placeholder="0" />
 				</div>
 				<div>Coalition
 					<input name="system.entermeta.coalition.value" type="text"
@@ -90,9 +96,9 @@
 					{{system.Vital.Experience.Spent}} + <input name="system.Vital.Experience.Manual" type="number"
 						value="{{system.Vital.Experience.Manual}}" data-dtype="Number" placeholder="0" />
 					Stored:{{#if (gte system.Vital.Experience.Stored 0)}}
-						<span class="style-cs-buffs">{{system.Vital.Experience.Stored}}</span>
+						<span class="style-cs-positive">{{system.Vital.Experience.Stored}}</span>
 					{{else}}
-						<span class="style-cs-conditions">{{system.Vital.Experience.Stored}}</span>
+						<span class="style-cs-negative">{{system.Vital.Experience.Stored}}</span>
 					{{/if}}
 				</div>
 			</div>
@@ -103,7 +109,7 @@
 						value="{{system.Vital.Destiny.max}}">
 				</div>
 			</div>
-			<div>
+			<div class="layout-container-small style-container-small">
 				<div class="style-labels-text">👣 Movement
 					<input name="system.physical.movement.initial" type="number"
 						value="{{system.physical.movement.initial}}" data-dtype="Number" placeholder="10" />

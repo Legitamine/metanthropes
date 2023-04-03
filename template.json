@@ -659,6 +659,12 @@
 						"label": "Sagas",
 						"value": "Sagas you have participated in"
 					},
+					"sessions": {
+						"type": "number",
+						"dtype": "Number",
+						"label": "Sessions Played",
+						"value": 0
+					},
 					"coalition": {
 						"type": "text",
 						"dtype": "String",
