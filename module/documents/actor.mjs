@@ -247,7 +247,7 @@ export class MetanthropesActor extends Actor {
 		if (actorData.type == "Vehicle") return;
 		else if (actorData.type == "Animal") return;
 		else if (actorData.type == "Animated-Plant") return;
-		else if (actorData.type == "Metatherion") return;
+		else if (actorData.type == "MetaTherion") return;
 		const systemData = actorData.system;
 		//! notice here we use .metanthropes instead of metanthropes-system - I would need to review this later in this code as well
 		const flags = actorData.flags.metanthropes || {};
