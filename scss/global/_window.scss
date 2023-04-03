@@ -75,3 +75,9 @@ select {
 	background-origin: border-box;
 	background-clip: border-box;
 }
+.chat-message {
+	background-image: url("../artwork/background.webp");
+}
+#chat-form textarea {
+	background-image: url("../artwork/background.webp");
+}

@@ -99,6 +99,10 @@
 .style-container-nav {
 	border: 1px solid $c-purple;
 	border-radius: 15px;
+	padding: $padding-sm;
+	margin: $margin-sm;
+}
+.style-container-nav-children {
 	justify-content: space-evenly;
 	//justify-self: space-around;
 	justify-items: stretch;

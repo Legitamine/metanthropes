@@ -85,6 +85,14 @@ select {
   background-clip: border-box;
 }
 
+.chat-message {
+  background-image: url("../artwork/background.webp");
+}
+
+#chat-form textarea {
+  background-image: url("../artwork/background.webp");
+}
+
 .grid,
 .grid-2col {
   display: grid;
@@ -538,6 +546,10 @@ select {
 .metanthropes .style-container-nav {
   border: 1px solid #370239;
   border-radius: 15px;
+  padding: 1px;
+  margin: 1px;
+}
+.metanthropes .style-container-nav-children {
   justify-content: space-evenly;
   justify-items: stretch;
   align-items: center;
