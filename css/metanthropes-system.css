@@ -447,7 +447,7 @@ select {
 }
 .metanthropes .style-container-grid3x4 {
   opacity: 1;
-  border: 1px dotted #370239;
+  border: 1px solid #370239;
   border-radius: 15px;
   justify-content: center;
   justify-self: center;
@@ -535,11 +535,10 @@ select {
   border-radius: 15px;
 }
 .metanthropes .style-container-nav {
-  border: 1px dotted #370239;
+  border: 1px solid #370239;
   border-radius: 15px;
-  justify-content: space-around;
+  justify-content: space-between;
   justify-self: space-around;
-  justify-items: space-around;
   align-items: center;
   align-self: center;
   align-content: center;
@@ -549,7 +548,7 @@ select {
   max-width: 4ch;
   margin: 1px;
   padding: 3px 3px 3px 6px;
-  border: 1px dotted #370239;
+  border: 1px dashed #370239;
   border-radius: 15px;
   justify-content: center;
   align-items: center;
@@ -559,7 +558,7 @@ select {
   max-width: 90ch;
   margin: 1px;
   padding: 3px 3px 3px 6px;
-  border: 1px dotted #370239;
+  border: 1px dashed #370239;
   border-radius: 15px;
   justify-content: center;
   align-items: center;

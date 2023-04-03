@@ -6,11 +6,11 @@
 					<input name="system.metaowner.value" type="text" value="{{system.metaowner.value}}"
 						placeholder="Player Name" data-dtype="String" />
 				</div>
-				<div>Protagonist<input name="name" type="text" value="{{actor.name}}" placeholder="My Protagonist"
+				<span>Protagonist<input name="name" type="text" value="{{actor.name}}" placeholder="My Protagonist"
 						data-dtype="String" />
-				</div>
+				</span>
 				<div></div>
-				<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
+				<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="85" width="85" />
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>Prime Metapower
@@ -31,11 +31,11 @@
 					<input name="system.Vital.arc.value" type="text" value="{{system.Vital.arc.value}}"
 						data-dtype="String" placeholder="Your Arc" />
 				</div>
-				<p>Regression
+				<div>Regression
 					<input name="system.entermeta.regression.value" type="text"
 						value="{{system.entermeta.regression.value}}" data-dtype="String"
 						placeholder="Your Regression" />
-				</p>
+				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>Birthplace
@@ -91,7 +91,7 @@
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
-				<div class="style-labels-text">📈 Total: <input name="system.Vital.Experience.Total" type="number"
+				<div class="style-labels-text">📈 Experience Total: <input name="system.Vital.Experience.Total" type="number"
 						value="{{system.Vital.Experience.Total}}" data-dtype="Number" placeholder="1000" /> Spent:
 					{{system.Vital.Experience.Spent}} + <input name="system.Vital.Experience.Manual" type="number"
 						value="{{system.Vital.Experience.Manual}}" data-dtype="Number" placeholder="0" />
@@ -119,7 +119,7 @@
 	</header>
 	<main>
 		<div class="layout-container-nav style-container-nav">
-			<nav class="csnavselector tabs" data-group="cs">
+			<nav class="style-labels-text csnavselector tabs" data-group="cs">
 				<a class="item" data-tab="cs-charstats">📊 Overview</a>
 				<a class="item" data-tab="cs-perks">📚 Perks</a>
 				<a class="item" data-tab="cs-metapowers">Ⓜ️ Metapowers</a>
