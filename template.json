@@ -496,7 +496,7 @@
 							"value": 0
 						}
 					},
-					"Extra":{
+					"Details":{
 						"Fields": {
 							"type": "text",
 							"dtype": "String",
@@ -514,12 +514,6 @@
 							"dtype": "String",
 							"label": "Languages",
 							"value": "Language 1, Language 2 etc."
-						},
-						"Life": {
-							"type": "text",
-							"dtype": "String",
-							"label": "Life Restoration",
-							"value": "4 + 4d10"
 						}
 					}
 				}

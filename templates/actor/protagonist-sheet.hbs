@@ -1,6 +1,6 @@
 <form class="metanthropes {{cssClass}}" autocomplete="off">
 	<header>
-		<div class="layout-container-grid3x1 style-container-grid3x1">
+		<div class="layout-container-grid4x1 style-container-grid4x1">
 			<div class="layout-container-small style-container-small">
 				<div>Player
 					<input name="system.metaowner" type="text" value="{{system.metaowner.value}}"
@@ -66,11 +66,11 @@
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
-				<div>📈 Total: <input name="system.Vital.Experience.Total"
-						type="number" value="{{system.Vital.Experience.Total}}" data-dtype="Number"
-						placeholder="1000" /> Spent: {{system.Vital.Experience.Spent}} + <input name="system.Vital.Experience.Manual" type="number"
-						value="{{system.Vital.Experience.Manual}}" data-dtype="Number"
-						placeholder="0" /> Stored:{{#if (gte system.Vital.Experience.Stored 0)}}
+				<div class="style-labels-text">📈 Total: <input name="system.Vital.Experience.Total" type="number"
+						value="{{system.Vital.Experience.Total}}" data-dtype="Number" placeholder="1000" /> Spent:
+					{{system.Vital.Experience.Spent}} + <input name="system.Vital.Experience.Manual" type="number"
+						value="{{system.Vital.Experience.Manual}}" data-dtype="Number" placeholder="0" />
+					Stored:{{#if (gte system.Vital.Experience.Stored 0)}}
 						<span class="style-cs-buffs">{{system.Vital.Experience.Stored}}</span>
 					{{else}}
 						<span class="style-cs-conditions">{{system.Vital.Experience.Stored}}</span>
@@ -84,12 +84,18 @@
 						value="{{system.Vital.Destiny.max}}">
 				</div>
 			</div>
+			<div>
+				<div class="style-labels-text">👣 Movement
+					<input name="system.physical.movement.initial" type="number"
+						value="{{system.physical.movement.initial}}" data-dtype="Number" placeholder="10" />
+				</div>
+			</div>
 		</div>
 	</header>
 	<main>
 		<div class="layout-container-nav style-container-nav">
 			<nav class="csnavselector tabs" data-group="cs">
-				<a class="item" data-tab="cs-charstats">📊 Characteristics & Stats</a>
+				<a class="item" data-tab="cs-charstats">📊 Overview</a>
 				<a class="item" data-tab="cs-perks">📚 Perks</a>
 				<a class="item" data-tab="cs-metapowers">Ⓜ️ Metapowers</a>
 				<a class="item" data-tab="cs-combos">🔗 Combos</a>
@@ -138,63 +144,4 @@
 			</div>
 		</section>
 	</main>
-	<footer>
-		<div class="layout-container-grid3x1 style-container-grid3x2">
-			<div class="layout-container-small style-container-small">
-				<div>Movement 👣
-					<input name="system.physical.movement.initial" type="number"
-						value="{{system.physical.movement.initial}}" data-dtype="Number" placeholder="10" />
-				</div>
-				<div>Speed 💨
-					<input name="system.physical.speed.initial" type="number" value="{{system.physical.speed.initial}}"
-						data-dtype="Number" placeholder="10" />
-				</div>
-				<div>Weight ⚖️
-					<input name="system.physical.weight.initial" type="number"
-						value="{{system.physical.weight.initial}}" data-dtype="Number" placeholder="10" />
-				</div>
-				<div>Size 📐
-					<input name="system.physical.size.initial" type="number" value="{{system.physical.size.initial}}"
-						data-dtype="Number" placeholder="10" />
-				</div>
-			</div>
-			<div class="layout-container-small style-container-small">
-				<div>Resistances</div>
-				<div>Cosmic
-					<input name="system.physical.resistances.cosmic.initial" type="number"
-						value="{{system.physical.resistances.cosmic.initial}}" data-dtype="Number" placeholder="0" />
-				</div>
-				<div>Elemental
-					<input name="system.physical.resistances.elemental.initial" type="number"
-						value="{{system.physical.resistances.elemental.initial}}" data-dtype="Number" placeholder="0" />
-				</div>
-				<div>Material
-					<input name="system.physical.resistances.material.initial" type="number"
-						value="{{system.physical.resistances.material.initial}}" data-dtype="Number" placeholder="0" />
-				</div>
-				<div>Psychic
-					<input name="system.physical.resistances.psychic.initial" type="number"
-						value="{{system.physical.resistances.psychic.initial}}" data-dtype="Number" placeholder="0" />
-				</div>
-			</div>
-			<div class="layout-container-small style-container-small">
-				<div>Cover
-					<input name="system.physical.cover.value" type="number" value="{{system.physical.cover.value}}"
-						data-dtype="Number" placeholder="0" />
-				</div>
-				<div>Immunities
-					<input name="system.physical.immunities.value" type="text"
-						value="{{system.physical.immunities.value}}" data-dtype="String" placeholder="none" />
-				</div>
-				<div>Detections
-					<input name="system.physical.detections.value" type="text"
-						value="{{system.physical.detections.value}}" data-dtype="String" placeholder="none" />
-				</div>
-				<div>Shifts
-					<input name="system.physical.shifts.value" type="text" value="{{system.physical.shifts.value}}"
-						data-dtype="String" placeholder="none" />
-				</div>
-			</div>
-		</div>
-	</footer>
 </form>

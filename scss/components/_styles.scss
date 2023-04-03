@@ -30,6 +30,16 @@
 	align-items: stretch;
 	align-self: center;
 }
+//medium container styling
+.style-container-grid4x1 {
+	opacity: 1;
+	border: 1px solid $c-purple;
+	border-radius: 15px;
+	justify-content: stretch;
+	justify-self: center;
+	align-items: stretch;
+	align-self: center;
+}
 //medium container chars
 .style-container-chars {
 	opacity: 1;
@@ -99,8 +109,8 @@
 }
 // longer text input fields
 .style-container-input-longtext {
-	min-width: 8ch;
-	max-width: 24ch;
+	min-width: 16ch;
+	max-width: 90ch;
 	margin: $margin-sm;
 	padding: $padding-input-number;
 	border: 1px dotted $c-purple;
@@ -135,7 +145,7 @@
 .style-cs-chars-label {
 	opacity: 1;
 	font-family: $font-title;
-	font-size: 1.4rem;
+	font-size: 1.6rem;
 	font-weight: bold;
 	color: $c-black;
 	text-transform: uppercase;
@@ -174,7 +184,7 @@
 .style-cs-chars-value {
 	opacity: 1;
 	font-family: $font-primary;
-	font-size: 1.2rem;
+	font-size: 1.6rem;
 	color: $c-black;
 	justify-content: center;
 	justify-self: center;
@@ -198,7 +208,7 @@
 .style-cs-buffs {
 	opacity: 1;
 	font-family: $font-primary;
-	font-size: 0.6rem;
+	font-size: 0.8rem;
 	color: $c-green;
 	justify-content: center;
 	justify-self: center;
@@ -210,7 +220,7 @@
 .style-cs-conditions {
 	opacity: 1;
 	font-family: $font-primary;
-	font-size: 0.6rem;
+	font-size: 0.8rem;
 	color: $c-red;
 	justify-content: center;
 	justify-self: center;
@@ -222,7 +232,7 @@
 .style-cs-rolls {
 	opacity: 1;
 	font-family: $font-primary;
-	font-size: 1.8rem;
+	font-size: 2rem;
 	color: $c-purple;
 	font-weight: bold;
 	justify-content: center;

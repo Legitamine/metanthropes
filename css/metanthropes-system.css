@@ -351,7 +351,7 @@ select {
 }
 .metanthropes .layout-container-grid3x1-cs {
   display: grid;
-  grid-template-columns: 1.8fr 1fr 4.2fr;
+  grid-template-columns: 2fr 1.4fr 3.6fr;
   -moz-column-gap: 1px;
        column-gap: 1px;
   padding: 0px;
@@ -461,6 +461,15 @@ select {
   align-items: stretch;
   align-self: center;
 }
+.metanthropes .style-container-grid4x1 {
+  opacity: 1;
+  border: 1px solid #370239;
+  border-radius: 15px;
+  justify-content: stretch;
+  justify-self: center;
+  align-items: stretch;
+  align-self: center;
+}
 .metanthropes .style-container-chars {
   opacity: 1;
   border: 1px solid #370239;
@@ -526,8 +535,8 @@ select {
   align-items: center;
 }
 .metanthropes .style-container-input-longtext {
-  min-width: 8ch;
-  max-width: 24ch;
+  min-width: 16ch;
+  max-width: 90ch;
   margin: 1px;
   padding: 3px 3px 3px 6px;
   border: 1px dotted #370239;
@@ -558,7 +567,7 @@ select {
 .metanthropes .style-cs-chars-label {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: bold;
   color: #000;
   text-transform: uppercase;
@@ -597,7 +606,7 @@ select {
 .metanthropes .style-cs-chars-value {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   color: #000;
   justify-content: center;
   justify-self: center;
@@ -621,7 +630,7 @@ select {
 .metanthropes .style-cs-buffs {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   color: #143d0a;
   justify-content: center;
   justify-self: center;
@@ -633,7 +642,7 @@ select {
 .metanthropes .style-cs-conditions {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   color: #a70f0f;
   justify-content: center;
   justify-self: center;
@@ -645,7 +654,7 @@ select {
 .metanthropes .style-cs-rolls {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: #370239;
   font-weight: bold;
   justify-content: center;
