@@ -512,8 +512,9 @@ select {
   opacity: 1;
   border: 1px solid #370239;
   border-radius: 15px;
-  justify-content: center;
-  justify-self: stretch;
+  justify-content: space-evenly;
+  justify-self: space-around;
+  justify-items: stretch;
   align-items: center;
   align-self: stretch;
 }
@@ -537,8 +538,9 @@ select {
 .metanthropes .style-container-nav {
   border: 1px solid #370239;
   border-radius: 15px;
-  justify-content: space-between;
+  justify-content: space-evenly;
   justify-self: space-around;
+  justify-items: stretch;
   align-items: center;
   align-self: center;
   align-content: center;

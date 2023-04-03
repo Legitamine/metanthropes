@@ -19,7 +19,7 @@
 						"type": "number",
 						"label": "Movement",
 						"initial": 10,
-						"additional": 20,
+						"additional": 10,
 						"sprint": 50,
 						"Buffs": {
 							"fly": {
@@ -151,19 +151,19 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Immunities",
-						"value": "none"
+						"value": null
 					},
 					"detections": {
 						"type": "text",
 						"dtype": "String",
 						"label": "Detections",
-						"value": "none"
+						"value": null
 					},
 					"shifts": {
 						"type": "text",
 						"dtype": "String",
 						"label": "Shifts",
-						"value": "none"
+						"value": null
 					},
 					"cover": {
 						"type": "number",
@@ -195,49 +195,49 @@
 						"type": "number",
 						"dtype": "Number",
 						"label": "Age",
-						"value": 25
+						"value": null
 					},
 					"arc": {
 						"type": "text",
 						"dtype": "String",
 						"label": "Arc",
-						"value": "Your Arc"
+						"value": null
 					},
 					"background": {
 						"type": "text",
 						"dtype": "String",
 						"label": "Background",
-						"value": "Your Background"
+						"value": null
 					},
 					"Life": {
 						"type": "number",
 						"label": "Life",
 						"Initial": 100,
-						"value": 100,
+						"value": 111,
 						"max": 0
 					},
 					"Destiny": {
 						"type": "number",
 						"label": "Destiny",
-						"value": 20,
-						"max": 100
+						"value": 3,
+						"max": 50
 					}
 				}
 			},
 			"characteristics": {
 				"Characteristics": {
 					"Body": {
-						"Initial": 30,
-						"Progressed": 5,
+						"Initial": 10,
+						"Progressed": 0,
 						"Base": 0,
 						"Current": 0,
 						"Buff": { "Name": "Hardened", "Current": 0 },
 						"Condition": { "Name": "Burned", "Current": 0 },
-						"CoreConditions": { "Bleeding": 1, "Asphyxiation": 0, "Diseased": 0, "Maimed": 0 },
+						"CoreConditions": { "Bleeding": 0, "Asphyxiation": 0, "Diseased": 0, "Maimed": 0 },
 						"Stats": {
 							"Endurance": {
-								"Initial": 30,
-								"Progressed": 5,
+								"Initial": 1,
+								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
@@ -245,8 +245,8 @@
 								"Condition": { "Name": "Bone Injury", "Current": 0 }
 							},
 							"Power": {
-								"Initial": 30,
-								"Progressed": 5,
+								"Initial": 2,
+								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
@@ -254,8 +254,8 @@
 								"Condition": { "Name": "Muscle Injury", "Current": 0 }
 							},
 							"Reflexes": {
-								"Initial": 30,
-								"Progressed": 5,
+								"Initial": 3,
+								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
@@ -265,8 +265,8 @@
 						}
 					},
 					"Mind": {
-						"Initial": 30,
-						"Progressed": 5,
+						"Initial": 20,
+						"Progressed": 0,
 						"Base": 0,
 						"Current": 0,
 						"Buff": { "Name": "Sharpened", "Current": 0 },
@@ -279,8 +279,8 @@
 						},
 						"Stats": {
 							"Perception": {
-								"Initial": 30,
-								"Progressed": 5,
+								"Initial": 1,
+								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
@@ -288,8 +288,8 @@
 								"Condition": { "Name": "Disoriented", "Current": 0 }
 							},
 							"Manipulation": {
-								"Initial": 30,
-								"Progressed": 5,
+								"Initial": 2,
+								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
@@ -297,8 +297,8 @@
 								"Condition": { "Name": "Confused", "Current": 0 }
 							},
 							"Creativity": {
-								"Initial": 30,
-								"Progressed": 5,
+								"Initial": 3,
+								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
@@ -308,7 +308,7 @@
 						}
 					},
 					"Soul": {
-						"Initial": 10,
+						"Initial": 30,
 						"Progressed": 0,
 						"Base": 0,
 						"Current": 0,
@@ -317,7 +317,7 @@
 						"CoreConditions": { "Amnesia": 0, "Probed": 0, "Infiltrated": 0, "Unconscious": 0 },
 						"Stats": {
 							"Willpower": {
-								"Initial": 10,
+								"Initial": 1,
 								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
@@ -326,7 +326,7 @@
 								"Condition": { "Name": "Terrorized", "Current": 0 }
 							},
 							"Consciousness": {
-								"Initial": 20,
+								"Initial": 2,
 								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
@@ -335,7 +335,7 @@
 								"Condition": { "Name": "Demented", "Current": 0 }
 							},
 							"Awareness": {
-								"Initial": 20,
+								"Initial": 3,
 								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
@@ -390,37 +390,37 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Origin",
-						"value": "Planet Earth"
+						"value": null
 					},
 					"species": {
 						"type": "text",
 						"dtype": "String",
 						"label": "Species",
-						"value": "Human"
+						"value": null
 					},
 					"gender": {
 						"type": "text",
 						"dtype": "String",
 						"label": "Gender",
-						"value": "Other"
+						"value": null
 					},
 					"birthplace": {
 						"type": "text",
 						"dtype": "String",
 						"label": "Birthplace",
-						"value": "Random City"
+						"value": null
 					},
 					"weight": {
 						"type": "text",
 						"dtype": "String",
 						"label": "Weight",
-						"value": "Your Weight"
+						"value": null
 					},
 					"height": {
 						"type": "text",
 						"dtype": "String",
 						"label": "Height",
-						"value": "Your Height"
+						"value": null
 					},
 					"Description": {
 						"type": "text",
@@ -501,19 +501,19 @@
 							"type": "text",
 							"dtype": "String",
 							"label": "Fields of Study",
-							"value": "Field 1, Field 2 etc."
+							"value": null
 						},
 						"Expertise": {
 							"type": "text",
 							"dtype": "String",
 							"label": "Expertise",
-							"value": "Expertise 1, Expertise 2 etc."
+							"value": null
 						},
 						"Languages": {
 							"type": "text",
 							"dtype": "String",
 							"label": "Languages",
-							"value": "Language 1, Language 2 etc."
+							"value": null
 						}
 					}
 				}
@@ -639,25 +639,25 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Metamorphosis",
-						"value": "some metamorphosis"
+						"value": null
 					},
 					"regression": {
 						"type": "text",
 						"dtype": "String",
 						"label": "Regression",
-						"value": "Your Regression"
+						"value": null
 					},
 					"primemetapower": {
 						"type": "text",
 						"dtype": "String",
 						"label": "Prime Metapower",
-						"value": "your Prime Metapower"
+						"value": null
 					},
 					"sagas": {
 						"type": "text",
 						"dtype": "String",
 						"label": "Sagas",
-						"value": "Sagas you have participated in"
+						"value": null
 					},
 					"sessions": {
 						"type": "number",
@@ -669,19 +669,19 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Coalition",
-						"value": "Player coalition you are a member of"
+						"value": null
 					},
 					"faction": {
 						"type": "text",
 						"dtype": "String",
 						"label": "Faction",
-						"value": "Faction Name"
+						"value": null
 					},
 					"narrator": {
 						"type": "text",
 						"dtype": "String",
 						"label": "Narrator",
-						"value": "Narrator Name"
+						"value": null
 					},
 					"Description": {
 						"type": "text",

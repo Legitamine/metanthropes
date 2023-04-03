@@ -201,6 +201,7 @@ export class MetanthropesActor extends Actor {
 		console.log("Metanthropes RPG Calculating Movement");
 		parseInt((systemData.physical.movement.additional = Number(systemData.physical.movement.initial)));
 		parseInt((systemData.physical.movement.sprint = Number(Number(systemData.physical.movement.initial) * 5)));
+		//todo: do the update await thing
 		console.log(
 			"Metanthropes RPG New Movement Value:",
 			systemData.physical.movement.initial,
