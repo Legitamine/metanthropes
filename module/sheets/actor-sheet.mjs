@@ -43,7 +43,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		context.system = actorData.system;
 		context.flags = actorData.flags;
 		// Prepare character data and items.
-		if (actorData.type == "MetaTherion" || actorData.type == "Protagonist") {
+		if (actorData.type !== "Animal") {
 			this._prepareItems(context);
 		}
 		// Add roll data for TinyMCE editors.
@@ -127,6 +127,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 		// html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
 		// Rollable abilities.
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
+		html.find(".style-mp-rolls").click(this._onRoll.bind(this));
+		html.find(".style-pos-rolls").click(this._onRoll.bind(this));
 		// Drag events for macros.
 		if (this.actor.isOwner) {
 			let handler = (ev) => this._onDragStart(ev);

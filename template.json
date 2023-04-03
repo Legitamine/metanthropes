@@ -1,16 +1,17 @@
 {
 	"Actor": {
 		"types": [
-			"Human",
-			"Humanoid",
-			"Metanthrope",
 			"Protagonist",
+			"Metanthrope",
+			"Human",
+			"Vehicle",
 			"Animal",
-			"MetaTherion",
 			"Artificial",
-			"Animated-Object",
-			"Animated-Humanoid",
-			"Vehicle"
+			"Extradimensional",
+			"Extraterrestrial",
+			"Animated-Cadaver",
+			"Animated-Plant",
+			"MetaTherion"
 		],
 		"templates": {
 			"physical": {
@@ -693,7 +694,7 @@
 			}
 		},
 		"Human": {
-			"templates": ["physical", "vital", "humanoids"],
+			"templates": ["physical", "vital", "characteristics", "humanoids", "perks"],
 			"metaowner": {
 				"type": "text",
 				"dtype": "String",
@@ -701,8 +702,17 @@
 				"value": "NPC"
 			}
 		},
-		"Humanoid": {
-			"templates": ["physical", "vital", "characteristics", "humanoids", "perks"],
+		"Extradimensional": {
+			"templates": ["physical", "vital", "characteristics", "humanoids", "perks", "entermeta"],
+			"metaowner": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Metaowner",
+				"value": "NPC"
+			}
+		},
+		"Extraterrestrial": {
+			"templates": ["physical", "vital", "characteristics", "humanoids", "perks", "entermeta"],
 			"metaowner": {
 				"type": "text",
 				"dtype": "String",
@@ -759,7 +769,7 @@
 			}
 		},
 		"Artificial": {
-			"templates": ["physical", "vital", "characteristics", "synthetic"],
+			"templates": ["physical", "vital", "characteristics", "synthetic", "perks", "entermeta"],
 			"metaowner": {
 				"type": "text",
 				"dtype": "String",
@@ -767,8 +777,8 @@
 				"value": "NPC"
 			}
 		},
-		"Animated-Object": {
-			"templates": ["physical"],
+		"Animated-Plant": {
+			"templates": ["physical", "vital", "characteristics", "entermeta"],
 			"metaowner": {
 				"type": "text",
 				"dtype": "String",
@@ -776,7 +786,7 @@
 				"value": "NPC"
 			}
 		},
-		"Animated-Humanoid": {
+		"Animated-Cadaver": {
 			"templates": ["physical", "vital", "characteristics", "humanoids", "perks"],
 			"metaowner": {
 				"type": "text",

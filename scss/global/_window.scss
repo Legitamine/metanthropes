@@ -4,7 +4,7 @@ input[type="text"] {
 	max-width: 17ch;
 	margin: $margin-sm;
 	padding: $padding-input-text;
-	border: 1px dashed $c-purple;
+	border: 1px dashed $c-black;
 	border-radius: 15px;
 	justify-content: center;
 	align-items: center;
@@ -14,7 +14,7 @@ input[type="number"] {
 	max-width: 5ch;
 	margin: $margin-sm;
 	padding: $padding-input-number;
-	border: 1px dashed $c-purple;
+	border: 1px dashed $c-black;
 	border-radius: 15px;
 	justify-content: center;
 	align-items: center;
@@ -54,7 +54,7 @@ button {
 select {
 	font-family: $font-primary;
 	border-radius: 15px;
-	border: 1px dotted $c-purple;
+	border: 1px dotted $c-black;
 }
 // this changes the font in most title-elements of Foundry UI
 .window-app {
@@ -76,8 +76,8 @@ select {
 	background-clip: border-box;
 }
 .chat-message {
-	background-image: url("../artwork/background.webp");
+	background-image: url("../artwork/chat-results.webp");
 }
 #chat-form textarea {
-	background-image: url("../artwork/background.webp");
+	background-image: url("../artwork/chat-box.webp");
 }

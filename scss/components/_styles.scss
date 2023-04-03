@@ -3,7 +3,7 @@
 //characteristics and stats styling and borders
 .style-container-grid3x4 {
 	opacity: 1;
-	border: 1px solid $c-purple;
+	border: 1px solid $c-black;
 	border-radius: 15px;
 	justify-content: center;
 	justify-self: center;
@@ -13,7 +13,7 @@
 //big container styling
 .style-container-grid3x2 {
 	opacity: 1;
-	border: 1px dotted $c-purple;
+	border: 1px dotted $c-black;
 	border-radius: 15px;
 	justify-content: center;
 	justify-self: center;
@@ -23,7 +23,7 @@
 //medium container styling
 .style-container-grid3x1 {
 	opacity: 1;
-	border: 1px solid $c-purple;
+	border: 1px solid $c-black;
 	border-radius: 15px;
 	justify-content: stretch;
 	justify-self: center;
@@ -33,7 +33,7 @@
 //medium container styling
 .style-container-grid4x1 {
 	opacity: 1;
-	border: 1px solid $c-purple;
+	border: 1px solid $c-black;
 	border-radius: 15px;
 	justify-content: stretch;
 	justify-self: center;
@@ -43,7 +43,7 @@
 //medium container chars
 .style-container-chars {
 	opacity: 1;
-	border: 1px solid $c-purple;
+	border: 1px solid $c-black;
 	border-radius: 15px;
 	justify-content: center;
 	justify-self: stretch;
@@ -52,7 +52,7 @@
 }
 .style-container-stats {
 	opacity: 1;
-	border: 1px solid $c-purple;
+	border: 1px solid $c-black;
 	border-radius: 15px;
 	justify-content: center;
 	justify-self: stretch;
@@ -61,7 +61,7 @@
 }
 .style-container-grid1x3 {
 	opacity: 1;
-	border: 1px solid $c-purple;
+	border: 1px solid $c-black;
 	border-radius: 15px;
 	justify-content: center;
 	justify-self: stretch;
@@ -70,7 +70,7 @@
 }
 .style-container-grid1x4 {
 	opacity: 1;
-	border: 1px solid $c-purple;
+	border: 1px solid $c-black;
 	border-radius: 15px;
 	justify-content: space-evenly;
 	justify-self: space-around;
@@ -81,7 +81,7 @@
 //small container styling
 .style-container-small {
 	opacity: 1;
-	border: 1px solid $c-purple;
+	border: 1px solid $c-black;
 	border-radius: 15px;
 	justify-content: flex-start;
 	justify-self: stretch;
@@ -89,7 +89,7 @@
 	align-self: stretch;
 }
 .style-container-border {
-	border: 1px solid $c-purple;
+	border: 1px solid $c-black;
 	border-radius: 15px;
 	border-style: dotted;
 	border-image: url(../artwork/border.webp) 5 / 10px round;
@@ -97,7 +97,7 @@
 }
 //nav container styling
 .style-container-nav {
-	border: 1px solid $c-purple;
+	border: 1px solid $c-black;
 	border-radius: 15px;
 	padding: $padding-sm;
 	margin: $margin-sm;
@@ -110,7 +110,7 @@
 	align-self: center;
 	align-content: center;
 	font-size: 1rem;
-	color: $c-purple;
+	color: $c-black;
 	padding: $padding-md;
 	margin: $margin-md;
 }
@@ -120,7 +120,7 @@
 	max-width: 4ch;
 	margin: $margin-sm;
 	padding: $padding-input-number;
-	border: 1px dashed $c-purple;
+	border: 1px dashed $c-black;
 	border-radius: 15px;
 	justify-content: center;
 	align-items: center;
@@ -131,7 +131,7 @@
 	max-width: 90ch;
 	margin: $margin-sm;
 	padding: $padding-input-number;
-	border: 1px dashed $c-purple;
+	border: 1px dashed $c-black;
 	border-radius: 15px;
 	justify-content: center;
 	align-items: center;
@@ -142,7 +142,7 @@
 	opacity: 1;
 	font-family: $font-primary;
 	font-size: 1rem;
-	color: $c-purple;
+	color: $c-black;
 	padding: $padding-md;
 	margin: $margin-md;
 }
@@ -151,7 +151,7 @@
 	opacity: 1;
 	font-family: $font-primary;
 	font-size: 1rem;
-	color: $c-purple;
+	color: $c-black;
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -273,7 +273,7 @@
 	opacity: 1;
 	font-family: $font-primary;
 	font-size: 2.4rem;
-	color: $c-purple;
+	color: $c-black;
 	font-weight: bold;
 	justify-content: center;
 	justify-self: center;
@@ -283,10 +283,56 @@
 	margin: $margin-md;
 	&:hover {
 		cursor: url(../artwork/metanthropes-dice-roll-small.webp), pointer;
+		color: $c-purple;
 		text-shadow: $s-outline;
 	}
 	&:focus {
 		cursor: url(../artwork/metanthropes-dice-roll-small.webp), pointer;
+		color: $c-purple;
+		text-shadow: $s-outline;
+	}
+}
+.style-mp-rolls {
+	opacity: 1;
+	font-family: $font-primary;
+	font-size: 1rem;
+	color: $c-black;
+	justify-content: center;
+	justify-self: center;
+	align-items: center;
+	align-self: center;
+	padding: $padding-md;
+	margin: $margin-md;
+	&:hover {
+		cursor: url(../artwork/metanthropes-dice-roll-small.webp), pointer;
+		color: $c-purple;
+		text-shadow: $s-outline;
+	}
+	&:focus {
+		cursor: url(../artwork/metanthropes-dice-roll-small.webp), pointer;
+		color: $c-purple;
+		text-shadow: $s-outline;
+	}
+}
+.style-pos-rolls {
+	opacity: 1;
+	font-family: $font-primary;
+	font-size: 1rem;
+	color: $c-black;
+	justify-content: center;
+	justify-self: center;
+	align-items: center;
+	align-self: center;
+	padding: $padding-md;
+	margin: $margin-md;
+	&:hover {
+		cursor: url(../artwork/metanthropes-dice-roll-small.webp), pointer;
+		color: $c-purple;
+		text-shadow: $s-outline;
+	}
+	&:focus {
+		cursor: url(../artwork/metanthropes-dice-roll-small.webp), pointer;
+		color: $c-purple;
 		text-shadow: $s-outline;
 	}
 }

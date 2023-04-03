@@ -9,8 +9,8 @@ export class MetanthropesActor extends Actor {
 		// Configure Display Bars & Name Visibility
 		if (!data.prototypeToken)
 			mergeObject(createData, {
-				"prototypeToken.bar1": { attribute: "Vital.Life" },
-				"prototypeToken.bar2": { attribute: "Vital.Destiny" },
+				"prototypeToken.bar1": { attribute: "Vital.Destiny" },
+				"prototypeToken.bar2": { attribute: "Vital.Life" },
 				"prototypeToken.displayName": defaultToken?.displayName || CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER, // Default display name to be on owner hover
 				"prototypeToken.displayBars": defaultToken?.displayBars || CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER, // Default display bars to be on owner hover
 				"prototypeToken.disposition": defaultToken?.disposition || CONST.TOKEN_DISPOSITIONS.NEUTRAL, // Default disposition to neutral
@@ -31,14 +31,18 @@ export class MetanthropesActor extends Actor {
 				createData.img = "systems/metanthropes-system/artwork/tokens/token-controller.webp";
 			if (data.type == "Human")
 				createData.img = "systems/metanthropes-system/artwork/tokens/token-clairvoyant.webp";
-			if (data.type == "Humanoid")
-				createData.img = "systems/metanthropes-system/artwork/tokens/token-cosmonaut.webp";
-			if (data.type == "Animated-Humanoid")
+			if (data.type == "Animated-Plant")
+				createData.img = "systems/metanthropes-system/artwork/tokens/token-pink.webp";
+			if (data.type == "Animated-Cadaver")
 				createData.img = "systems/metanthropes-system/artwork/tokens/token-animator.webp";
 			if (data.type == "Animal")
 				createData.img = "systems/metanthropes-system/artwork/tokens/token-kineticist.webp";
+			if (data.type == "Extraterrestrial")
+			createData.img = "systems/metanthropes-system/artwork/tokens/token-cosmonaut.webp";
+			if (data.type == "Extradimensional")
+			createData.img = "systems/metanthropes-system/artwork/tokens/token-cosmonaut.webp";
 		}
-		// Enable Vision and Link Data for all actors
+		// Enable Vision for all actors
 		if (!createData.prototypeToken) createData.prototypeToken = {}; // Fix for Token Attacher / CF Import
 		createData.prototypeToken.sight = { enabled: true };
 		// Link Actor data only for Protagonists
@@ -67,12 +71,11 @@ export class MetanthropesActor extends Actor {
 	prepareDerivedData() {
 		const actorData = this;
 		this._prepareDerivedCharacteristicsData(actorData);
+		this._prepareDerivedPerksData(actorData);
 	}
 	_prepareDerivedCharacteristicsData(actorData) {
 		//	we take all actors that have characteristics and prepare their data for rolling, as well as calculte max life, movement and XP spent.
-		if (actorData.type == "Human") return;
-		else if (actorData.type == "Animated-Object") return;
-		else if (actorData.type == "Vehicle") return;
+		if (actorData.type == "Vehicle") return;
 		const systemData = actorData.system;
 		//! notice here we use .metanthropes instead of metanthropes-system - I would need to review this later in this code as well
 		const flags = actorData.flags.metanthropes || {};
@@ -80,7 +83,6 @@ export class MetanthropesActor extends Actor {
 		let characteristicExperienceSpent = 0;
 		let statExperienceSpent = 0;
 		let advancementCount = 0;
-		let perkExperienceSpent = 0;
 		console.log("=============================================================================================");
 		console.log("Metanthropes RPG Preparing Characteristics & Stats for", this.type, "-", this.name);
 		console.log("=============================================================================================");
@@ -210,8 +212,53 @@ export class MetanthropesActor extends Actor {
 			"Sprint:",
 			systemData.physical.movement.sprint
 		);
+		// Calculate total Experience Spent Progressing Perks & Characteristics & Stats
+				
+				console.log(
+					"Total Experience Spent automagically for",
+					this.name,
+					"Progressing Characteristics & Stats:",
+					experienceSpent
+				);
+					// Store experienceSpent in systemData.Vital.Experience.Spent
+				parseInt((systemData.Vital.Experience.Spent = Number(experienceSpent)));
+				parseInt(
+					(systemData.Vital.Experience.Stored = Number(
+						Number(systemData.Vital.Experience.Total) -
+							Number(experienceSpent) -
+							Number(systemData.Vital.Experience.Manual)
+					))
+				);
+				if (systemData.Vital.Experience.Stored < 0) {
+					console.log(
+						"============================================================================================="
+					);
+					console.log("Metanthropes RPG WARNING: Stored Experience is Negative!");
+					console.log(
+						"============================================================================================="
+					);
+				}
+				console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
 		console.log("=============================================================================================");
-		console.log("Metanthropes RPG Calculating Perk Progressions Experience");
+		console.log("Metanthropes RPG", this.type, "-", this.name, "is Ready to Roll!");
+		console.log("=============================================================================================");
+	}
+	_prepareDerivedPerksData(actorData) {
+		if (actorData.type == "Vehicle") return;
+		else if (actorData.type == "Animal") return;
+		else if (actorData.type == "Animated-Plant") return;
+		else if (actorData.type == "Metatherion") return;
+		const systemData = actorData.system;
+		//! notice here we use .metanthropes instead of metanthropes-system - I would need to review this later in this code as well
+		const flags = actorData.flags.metanthropes || {};
+		let experienceAlreadySpent = Number(systemData.Vital.Experience.Spent);
+		let experienceSpent = 0;
+		let advancementCount = 0;
+		let perkExperienceSpent = 0;
+		console.log("=============================================================================================");
+		console.log("Metanthropes RPG Preparing Perks for", this.type, "-", this.name);
+		console.log("=============================================================================================");
+		console.log("Experience Spent before Perks:", experienceAlreadySpent);
 		// Calculate the experience spent on Knowledge Perks
 		for (const [KnowPerkKey, KnowPerkValue] of Object.entries(systemData.Perks.Knowledge)) {
 			// Calculate the advancement count based on the perk's progressed value
@@ -233,18 +280,18 @@ export class MetanthropesActor extends Actor {
 				console.log("Experience Spent to Progress", SkillPerkKey, "Perk:", perkExperienceSpent);
 		}
 		// Calculate total Experience Spent Progressing Perks & Characteristics & Stats
-		// Store experienceSpent in systemData.Vital.Experience.Spent
-		parseInt((systemData.Vital.Experience.Spent = Number(experienceSpent)));
 		console.log(
 			"Total Experience Spent automagically for",
 			this.name,
-			"Characteristics & Stats Progressions:",
+			"Perks:",
 			experienceSpent
 		);
+		// Update Experience Spent for Perks with exiting in systemData.Vital.Experience.Spent
+		parseInt((systemData.Vital.Experience.Spent = Number(experienceSpent) + Number(experienceAlreadySpent)));
 		parseInt(
 			(systemData.Vital.Experience.Stored = Number(
 				Number(systemData.Vital.Experience.Total) -
-					Number(experienceSpent) -
+					Number(experienceSpent) - Number(experienceAlreadySpent) -
 					Number(systemData.Vital.Experience.Manual)
 			))
 		);
