@@ -317,7 +317,7 @@ select {
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 0.8fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 0.6fr;
   -moz-column-gap: 3px;
        column-gap: 3px;
   row-gap: 3px;
@@ -359,7 +359,7 @@ select {
 }
 .metanthropes .layout-container-grid3x1-cs {
   display: grid;
-  grid-template-columns: 2fr 1.4fr 3.6fr;
+  grid-template-columns: 1.8fr 1.8fr 3.2fr;
   -moz-column-gap: 1px;
        column-gap: 1px;
   padding: 0px;
@@ -452,6 +452,7 @@ select {
   padding: 0;
   clip: rect(0 0 0 0);
   overflow: hidden;
+  display: none;
 }
 .metanthropes .style-container-grid3x4 {
   opacity: 1;
@@ -712,7 +713,7 @@ select {
 .metanthropes .style-cs-rolls {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: #370239;
   font-weight: bold;
   justify-content: center;
