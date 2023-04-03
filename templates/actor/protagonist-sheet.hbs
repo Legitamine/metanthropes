@@ -3,11 +3,12 @@
 		<div class="layout-container-grid4x1 style-container-grid4x1">
 			<div class="layout-container-small style-container-small">
 				<div>Player
-					<input name="system.metaowner" type="text" value="{{system.metaowner.value}}"
+					<input name="system.metaowner.value" type="text" value="{{system.metaowner.value}}"
 						placeholder="Player Name" data-dtype="String" />
 				</div>
+				<div>Protagonist<input name="name" type="text" value="{{actor.name}}" placeholder="My Protagonist" />
+				</div>
 				<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
-				<div><input name="name" type="text" value="{{actor.name}}" placeholder="My Protagonist" /></div>
 			</div>
 			<div class="layout-container-small style-container-small">
 				<div>Prime Metapower
@@ -56,8 +57,26 @@
 						data-dtype="String" placeholder="Your Weight" />
 				</div>
 			</div>
+			<div class="layout-container-small style-container-small">
+				<div>Narrator
+					<input name="system.entermeta.narrator.value" type="text"
+						value="{{system.entermeta.narrator.value}}" data-dtype="String" placeholder="Narrator Name" />
+				</div>
+				<div>Saga
+					<input name="system.entermeta.saga.value" type="text" value="{{system.entermeta.saga.value}}"
+						data-dtype="String" placeholder="Saga Name" />
+				</div>
+				<div>Coalition
+					<input name="system.entermeta.coalition.value" type="text"
+						value="{{system.entermeta.coalition.value}}" data-dtype="String" placeholder="Coalition Name" />
+				</div>
+				<div>Faction
+					<input name="system.entermeta.faction.value" type="text" value="{{system.entermeta.faction.value}}"
+						data-dtype="String" placeholder="Faction Name" />
+				</div>
+			</div>
 		</div>
-		<div class="layout-container-grid1x3 style-container-grid1x3">
+		<div class="layout-container-grid1x4 style-container-grid1x4">
 			<div class="layout-container-small style-container-small">
 				<div class="style-labels-text">
 					❤️ Life

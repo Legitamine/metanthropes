@@ -114,6 +114,16 @@
 	margin: $margin-md;
 	overflow: hidden;
 }
+.layout-container-grid1x4 {
+	display: flex;
+	flex-flow: row;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	column-gap: 6px;
+	padding: $padding-md;
+	margin: $margin-md;
+	overflow: hidden;
+}
 //small container with 1 flex row
 .layout-container-small {
 	display: flex;

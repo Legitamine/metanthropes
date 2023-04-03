@@ -507,7 +507,7 @@
 							"type": "text",
 							"dtype": "String",
 							"label": "Expertise",
-							"value": "Field 1, Field 2 etc."
+							"value": "Expertise 1, Expertise 2 etc."
 						},
 						"Languages": {
 							"type": "text",
@@ -664,6 +664,18 @@
 						"dtype": "String",
 						"label": "Coalition",
 						"value": "Player coalition you are a member of"
+					},
+					"faction": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Faction",
+						"value": "Faction Name"
+					},
+					"narrator": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Narrator",
+						"value": "Narrator Name"
 					},
 					"Description": {
 						"type": "text",
