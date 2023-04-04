@@ -1,4 +1,4 @@
-// import the MetaRollStat function
+// import the PossessionRollStat function
 import { PossessionRollStat } from "./posrollstat.mjs";
 // MetaRoll function handles the dialog box for selecting multi-actions and bonuses/penalties when rolling a stat
 export async function PossessionRoll(actor, stat) {

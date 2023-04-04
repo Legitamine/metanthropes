@@ -1,4 +1,4 @@
-// import the MetaRollStat function
+// import the MetapowerRollStat function
 import { MetapowerRollStat } from "./mprollstat.mjs";
 // MetaRoll function handles the dialog box for selecting multi-actions and bonuses/penalties when rolling a stat
 export async function MetapowerRoll(actor, stat, mpname, destcost, effect) {
