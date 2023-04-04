@@ -190,6 +190,7 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 Hooks.on("renderChatMessage", async (message, html) => {
 	console.log("=============================================================================================");
 	console.log("Metanthropes RPG Inside Hook for Buttons");
+	console.log("Metanthropes RPG Will go deeper if (message.isAuthor) is true:", message.isAuthor);
 	console.log("=============================================================================================");
 	if (message.isAuthor) {
 		console.log("=============================================================================================");
@@ -197,23 +198,13 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		console.log("=============================================================================================");
 		const actorId = message.getFlag("metanthropes-system", "actorId");
 		const actor = game.actors.get(actorId);
-		const myactorid = actor.id;
 		const currentDestiny = actor.system.Vital.Destiny.value;
 		console.log("=============================================================================================");
 		console.log("Metanthropes RPG Hook for Button - should give actorId", actorId);
 		console.log("Metanthropes RPG Hook for Button - should give actor", actor);
-		console.log("Metanthropes RPG Hook for Button - should give my actor id", myactorid);
 		console.log("Metanthropes RPG Hook for Button - should give currentDestiny", currentDestiny);
 		console.log("=============================================================================================");
-		if (actorId === myactorid) {
-			console.log("=============================================================================================");
-			console.log("Metanthropes RPG Hook for Button - should give actorId", actorId);
-			console.log("Metanthropes RPG Hook for Button - should give my actor id", myactorid);
-			console.log("=============================================================================================");
-			html.find(".hide-button").removeClass("layout-hide");
-		} else {
-			html.find(".hide-button").addClass("layout-hide");
-		}
+		html.find(".hide-button").removeClass("layout-hide");
 		html.find(".meta-re-roll").on("click", MetaReRoll);
 		html.find(".metapower-re-roll").on("click", MetapowerReRoll);
 		html.find(".possession-re-roll").on("click", PossessionReRoll);

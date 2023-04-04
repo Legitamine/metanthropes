@@ -150,6 +150,6 @@
 	overflow-y: auto;
 }
 .layout-hide {
-	@include element-invisible;
+	//@include element-invisible;
 	display: none;
 }
