@@ -56,9 +56,20 @@ footer {
 
 button {
   font-family: "nasalization", sans-serif;
+  background-image: url("../artwork/background.webp");
+  border: 2px groove #7d0f81;
+  border-radius: 15px;
 }
 
 select {
+  font-family: "nasalization", sans-serif;
+  border-radius: 15px;
+  border: 1px dotted #000;
+}
+
+option {
+  background-image: url("../artwork/background.webp");
+  background-color: rgba(78, 78, 78, 0.462745098);
   font-family: "nasalization", sans-serif;
   border-radius: 15px;
   border: 1px dotted #000;
@@ -91,6 +102,10 @@ select {
 
 #chat-form textarea {
   background-image: url("../artwork/chat-box.webp");
+}
+
+.directory .directory-header .header-search input {
+  background-color: rgba(78, 78, 78, 0.462745098);
 }
 
 .grid,
@@ -782,7 +797,7 @@ select {
   padding: 1px;
   align-items: center;
   background: rgba(78, 78, 78, 0.462745098);
-  border: 2px groove #000;
+  border: 2px groove #7d0f81;
   border-radius: 15px;
   font-weight: bold;
 }
@@ -864,7 +879,7 @@ select {
   padding: 0;
   align-items: center;
   background: rgba(78, 78, 78, 0.462745098);
-  border: 2px groove #000;
+  border: 2px groove #7d0f81;
   font-weight: bold;
 }
 .metanthropes .items-list .items-header > * {

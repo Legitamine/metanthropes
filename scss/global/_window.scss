@@ -50,8 +50,18 @@ footer {
 // this changes the font for buttons of Foundry UI
 button {
 	font-family: $font-primary;
+	background-image: url("../artwork/background.webp");
+	border: $border-groove;
+	border-radius: 15px;
 }
 select {
+	font-family: $font-primary;
+	border-radius: 15px;
+	border: 1px dotted $c-black;
+}
+option {
+	background-image: url("../artwork/background.webp");
+	background-color: $c-background;
 	font-family: $font-primary;
 	border-radius: 15px;
 	border: 1px dotted $c-black;
@@ -80,4 +90,7 @@ select {
 }
 #chat-form textarea {
 	background-image: url("../artwork/chat-box.webp");
+}
+.directory .directory-header .header-search input {
+	background-color: $c-background;
 }
