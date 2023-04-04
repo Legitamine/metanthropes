@@ -14,7 +14,7 @@ export async function MetapowerRoll(actor, stat, mpname, destcost, effect) {
 	//create the dialog content
 	let dialogContent = `
 	<div class="metanthropes layout-metaroll-dialog">
-	<p>Select total number of Multi-Actions</p>
+	<p>Select total number of Multi-Actions:</p>
 	<select id="multiActionCount">
 		<option value="no">None</option>
 		${multiActionOptions.map((option) => `<option value="${option}">${option}</option>`).join("")}
@@ -24,12 +24,16 @@ export async function MetapowerRoll(actor, stat, mpname, destcost, effect) {
 	</div>
 	</div>
 	`;
+	let mprolllabel = "Activate Metapower";
+	if (destcost > 0) {
+		mprolllabel = "Activate Metapower with "+destcost+" 🤞";
+	}
 	let dialog = new Dialog({
 		title: `${actor.name}'s ${mpname}`,
 		content: dialogContent,
 		buttons: {
 			roll: {
-				label: "Activate Metapower",
+				label: mprolllabel,
 				callback: async (html) => {
 					//collect multi-action value
 					let multiAction = html.find("#multiActionCount").val();

@@ -70,7 +70,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 		message += `. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
 	}
 	//add re-roll button to message
-	message += `<button class="metanthropes hide-button layout-hide meta-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}">🤞</button>`;
+	message += `<button class="hide-button layout-hide meta-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}">🤞</button>`;
 	//console log for debugging
 	console.log(
 		"Metaroll Results: Stat:",
