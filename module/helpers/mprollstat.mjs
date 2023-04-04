@@ -11,14 +11,12 @@ export async function MetapowerRollStat(
 	effect
 ) {
 	if (statValue <= 0) {
-		ui.notifications.error("Your ${stat} is 0 and thus you cannot activate this Metapower!");
+		ui.notifications.error("Your Current ${stat} is 0 and thus you cannot activate this Metapower!");
 		return;
 	}
 	const roll = await new Roll("1d100").evaluate({ async: true });
 	const total = roll.total;
-	console.log("Inside MetapowerRollStat - do we have? ", mpname, destcost, effect);
-	// const isSuccess = total <= statValue + modifier;
-	let result = null; // isSuccess ? "Success 🟩" : "Failure 🟥";
+	let result = null;
 	let resultLevel = null;
 	let levelsOfSuccess = Math.floor((statValue + bonus + penalty + modifier - total) / 10);
 	let levelsOfFailure = Math.floor((total - statValue - bonus - modifier - penalty) / 10);
@@ -27,7 +25,7 @@ export async function MetapowerRollStat(
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	// check if actor has enough destiny to deduct the cost of the meta power activation
 	if (currentDestiny < destcost) {
-		ui.notifications.error("You don't have enough Destiny to use this Meta Power!");
+		ui.notifications.error("You don't have enough Destiny to Activate this Metapower!");
 		return;
 	} else {
 		currentDestiny -= destcost;
@@ -48,7 +46,6 @@ export async function MetapowerRollStat(
 		resultLevel = 0.5;
 	}
 	//check for critical success or failure
-	//todo: review how bonuses and penalties should affect criticals
 	if (criticalSuccess) {
 		result = `🟩 Critical Success 🟩, rewarding ${actor.name} with +1 * 🤞`; //todo: add color to crititals
 		currentDestiny += 1;
@@ -95,18 +92,15 @@ export async function MetapowerRollStat(
 	} else {
 		message += `. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
 	}
-	// add metapower effect to message
-	// message += ` The effect of the Metapower is: ${effect}`;
-	//message += effect;
-	//message += `${effect}`;
-	//add re-roll button to message
+	//add buttons to message for re-roll and activation
+	//! the idea is to collect all the needed for the activation and pass it along in this button.
+	//! the data needs to be collected from the rolling of the metapower, so check out the actor-metapowers.hbs in sheets for that
 	message += `<div class="metanthropes layout-hide hide-button">
 	<button class="metapower-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-mpname="${mpname}" data-destcost="${destcost}" data-effect="${effect}" >
 	🤞</button>
 	<button class="metapower-activate" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-mpname="${mpname}" data-destcost="${destcost}" data-effect="${effect}" >
 	Ⓜ️</button>
 	</div>`;
-	//set flags for the actor to be used as the lastrolled values of your most recent roll.
 	//console log for debugging
 	console.log(
 		"Metaroll Results: Stat:",
@@ -128,8 +122,13 @@ export async function MetapowerRollStat(
 		"Result Level:",
 		resultLevel,
 		"Destiny:",
-		currentDestiny
+		currentDestiny,
+		"Destiny Cost:",
+		destcost,
+		"Metapower Name:",
+		mpname
 	);
+	//set flags for the actor to be used as the lastrolled values of your most recent roll.
 	// the idea is to use these later in metapowers to spend your levels of success.
 	await actor.setFlag("metanthropes-system", "lastrolled", {
 		resultLevel: resultLevel,

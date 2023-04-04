@@ -1,9 +1,12 @@
 // MetaRollStat function is used to roll a stat and get the levels of success/failure and print the message to chat
 export async function PossessionRollStat(actor, stat, statValue, modifier = 0, bonus = 0, penalty = 0) {
+	if (statValue <= 0) {
+		ui.notifications.error("Your Current ${stat} is 0 and thus you cannot us this Possession!");
+		return;
+	}
 	const roll = await new Roll("1d100").evaluate({ async: true });
 	const total = roll.total;
-	// const isSuccess = total <= statValue + modifier;
-	let result = null; // isSuccess ? "Success 🟩" : "Failure 🟥";
+	let result = null;
 	let resultLevel = null;
 	let levelsOfSuccess = Math.floor((statValue + bonus + penalty + modifier - total) / 10);
 	let levelsOfFailure = Math.floor((total - statValue - bonus - modifier - penalty) / 10);
@@ -25,7 +28,6 @@ export async function PossessionRollStat(actor, stat, statValue, modifier = 0, b
 		resultLevel = 0.5;
 	}
 	//check for critical success or failure
-	//todo: review how bonuses and penalties should affect criticals
 	if (criticalSuccess) {
 		result = `🟩 Critical Success 🟩, rewarding ${actor.name} with +1 * 🤞`; //todo: add color and bold to crititals
 		currentDestiny += 1;
@@ -43,6 +45,32 @@ export async function PossessionRollStat(actor, stat, statValue, modifier = 0, b
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfFailure = 10;
 	}
+	//* Beggining of the message to be printed to chat
+	let message = `${actor.name} uses their Possession with ${stat} score of ${statValue}%`;
+	// if we have a bonus or penalty, add it to the message
+	if (bonus > 0) {
+		message += `, a Bonus of +${bonus}%`;
+	}
+	if (penalty < 0) {
+		message += `, a Penalty of ${penalty}%`;
+	}
+	// if we have multi-action reduction, add it to the message
+	if (modifier < 0) {
+		message += `, a Multi-Action reduction of ${modifier}%`;
+	}
+	message += ` and the result is ${total}. Therefore it is a ${result}`;
+	// if we have levels of success or failure, add them to the message
+	if (levelsOfSuccess > 0) {
+		message += `, accumulating: ${levelsOfSuccess} * ✔️. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
+		resultLevel = levelsOfSuccess;
+	} else if (levelsOfFailure > 0) {
+		message += `, accumulating: ${levelsOfFailure} * ❌. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
+		resultLevel = -levelsOfFailure;
+	} else {
+		message += `. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
+	}
+	//add re-roll button to message
+	message += `<div class="metanthropes hide-button layout-hide"><button class="possession-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}">🤞</button></div>`;
 	//console log for debugging
 	console.log(
 		"Metaroll Results: Stat:",
@@ -66,32 +94,6 @@ export async function PossessionRollStat(actor, stat, statValue, modifier = 0, b
 		"Destiny:",
 		currentDestiny
 	);
-	//* Beggining of the message to be printed to chat
-	let message = `${actor.name} uses their Possession with ${stat} score of ${statValue}%`;
-	// if we have a bonus or penalty, add it to the message
-	if (bonus > 0) {
-		message += `, a Bonus of +${bonus}%`;
-	}
-	if (penalty < 0) {
-		message += `, a Penalty of ${penalty}%`;
-	}
-	// if we have multi-action reduction, add it to the message
-	if (modifier < 0) {
-		message += ` & Multi-Action reduction of ${modifier}%`;
-	}
-	message += ` and the result is ${total}, therefore it is a ${result}`;
-	// if we have levels of success or failure, add them to the message
-	if (levelsOfSuccess > 0) {
-		message += `, accumulating: ${levelsOfSuccess} * ✔️. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
-		resultLevel = levelsOfSuccess;
-	} else if (levelsOfFailure > 0) {
-		message += `, accumulating: ${levelsOfFailure} * ❌. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
-		resultLevel = -levelsOfFailure;
-	} else {
-		message += `. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
-	}
-	//add re-roll button to message
-	message += `<div class="metanthropes hide-button layout-hide"><button class="possession-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}">🤞</button></div>`;
 	//set flags for the actor to be used as the lastrolled values of your most recent roll.
 	// the idea is to use these later in metapowers to spend your levels of success.
 	await actor.setFlag("metanthropes-system", "lastrolled", {
