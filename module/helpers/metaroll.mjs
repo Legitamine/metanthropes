@@ -3,6 +3,10 @@ import { MetaRollStat } from "./metarollstat.mjs";
 // MetaRoll function handles the dialog box for selecting multi-actions and bonuses/penalties when rolling a stat
 export async function MetaRoll(actor, stat) {
 	const statValue = actor.system.RollStats[stat];
+	if (statValue <= 0) {
+		ui.notifications.error(actor.name, "can't Roll", stat, "with a Current value of 0!");
+		return;
+	}
 	// calculate the max number of multi-actions possible based on the stat value
 	const maxMultiActions = Math.floor((statValue - 1) / 10);
 	const multiActionOptions = Array.from({ length: maxMultiActions - 1 }, (_, i) => i + 2);

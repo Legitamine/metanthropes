@@ -128,7 +128,7 @@ export class MetanthropesActor extends Actor {
 			);
 			if (CharValue.Current <=0 ) {
 				CharValue.Current = 0;
-				ui.notifications.error("Your ${CharKey} has dropped to 0!");
+				ui.notifications.error(this.name, CharKey, "has dropped to 0!");
 				console.log("Metanthropes RPG", CharKey, "has dropped to 0!");	
 			}
 			console.log("Metanthropes RPG New", CharKey, "Current:", CharValue.Current);
@@ -194,7 +194,7 @@ export class MetanthropesActor extends Actor {
 				parseInt((StatValue.Roll = Number(StatValue.Current) + Number(CharValue.Current)));
 				if (StatValue.Roll <=0 ) {
 					StatValue.Roll = 0;
-					ui.notifications.error("Your ${StatKey} has dropped to 0!");
+					ui.notifications.error(this.name, StatKey, "has dropped to 0!");
 					console.log("Metanthropes RPG", StatKey, "has dropped to 0!");	
 				}
 				console.log("Metanthropes RPG Final", StatKey, "for Rolls:", StatValue.Roll);
