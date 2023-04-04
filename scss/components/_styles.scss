@@ -280,6 +280,7 @@
 	justify-self: center;
 	align-items: center;
 	align-self: center;
+	align-content: center;
 	padding: $padding-md;
 	margin: $margin-md;
 	&:hover {
@@ -302,8 +303,9 @@
 	justify-self: center;
 	align-items: center;
 	align-self: center;
-	padding: $padding-md;
-	margin: $margin-md;
+	align-content: center;
+	padding: $padding-sm;
+	margin: $margin-sm;
 	&:hover {
 		cursor: url(../artwork/metanthropes-dice-roll-small.webp), pointer;
 		color: $c-purple;
@@ -324,8 +326,9 @@
 	justify-self: center;
 	align-items: center;
 	align-self: center;
-	padding: $padding-md;
-	margin: $margin-md;
+	align-content: center;
+	padding: $padding-sm;
+	margin: $margin-sm;
 	&:hover {
 		cursor: url(../artwork/metanthropes-dice-roll-small.webp), pointer;
 		color: $c-purple;

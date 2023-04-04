@@ -199,7 +199,7 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		console.log("Metanthropes RPG Hook for MetaReRoll Button - should give my actor id", myactorid);
 		console.log("Metanthropes RPG Hook for MetaReRoll Button - should give currentDestiny", currentDestiny);
 		console.log("=============================================================================================");
-		if (actorId===myactorid && currentDestiny > 0) {
+		if (actorId===myactorid) {
 			html.find(".hide-button").removeClass("layout-hide");
 		} else {
 			html.find(".hide-button").addClass("layout-hide");
