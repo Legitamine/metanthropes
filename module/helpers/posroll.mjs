@@ -4,7 +4,7 @@ import { PossessionRollStat } from "./posrollstat.mjs";
 export async function PossessionRoll(actor, stat) {
 	const statValue = actor.system.RollStats[stat];
 	if (statValue <= 0) {
-		ui.notifications.error(actor.name, "can't Roll", stat, "with a Current value of 0!");
+		ui.notifications.error(actor.name+" can't use a Possession with "+stat+" Current value of 0!");
 		return;
 	}
 	// calculate the max number of multi-actions possible based on the stat value
