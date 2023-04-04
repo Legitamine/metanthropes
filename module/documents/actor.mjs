@@ -129,7 +129,7 @@ export class MetanthropesActor extends Actor {
 					Number(Number(CharValue.Buff.Current) * 5) -
 					Number(Number(CharValue.Condition.Current) * 5))
 			);
-			if (CharValue.Current < 0 ) {
+			if (CharValue.Current <= 0 ) {
 				charzerofullpenalty = CharValue.Current;
 				CharValue.Current = 0;
 				ui.notifications.error(this.name+"'s "+CharKey+" has dropped to 0!");
@@ -196,7 +196,7 @@ export class MetanthropesActor extends Actor {
 					"Current"
 				);
 				parseInt((StatValue.Roll = Number(StatValue.Current) + Number(CharValue.Current) + Number(charzerofullpenalty)));
-				if (StatValue.Roll < 0 ) {
+				if (StatValue.Roll <= 0 ) {
 					StatValue.Roll = 0;
 					ui.notifications.error(this.name+"'s "+StatKey+" has dropped to 0!");
 					console.log("Metanthropes RPG", StatKey, "has dropped to 0!");	
