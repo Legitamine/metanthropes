@@ -126,6 +126,11 @@ export class MetanthropesActor extends Actor {
 					Number(Number(CharValue.Buff.Current) * 5) -
 					Number(Number(CharValue.Condition.Current) * 5))
 			);
+			if (CharValue.Current <=0 ) {
+				CharValue.Current = 0;
+				ui.notifications.error("Your ${CharKey} has dropped to 0!");
+				console.log("Metanthropes RPG", CharKey, "has dropped to 0!");	
+			}
 			console.log("Metanthropes RPG New", CharKey, "Current:", CharValue.Current);
 			console.log("------------------------------------------------------------------------");
 			for (const [StatKey, StatValue] of Object.entries(CharValue.Stats)) {
@@ -187,6 +192,11 @@ export class MetanthropesActor extends Actor {
 					"Current"
 				);
 				parseInt((StatValue.Roll = Number(StatValue.Current) + Number(CharValue.Current)));
+				if (StatValue.Roll <=0 ) {
+					StatValue.Roll = 0;
+					ui.notifications.error("Your ${StatKey} has dropped to 0!");
+					console.log("Metanthropes RPG", StatKey, "has dropped to 0!");	
+				}
 				console.log("Metanthropes RPG Final", StatKey, "for Rolls:", StatValue.Roll);
 				console.log(
 					"============================================================================================="
@@ -230,6 +240,7 @@ export class MetanthropesActor extends Actor {
 					))
 				);
 				if (systemData.Vital.Experience.Stored < 0) {
+					ui.notifications.error("Your Stored Experience is Negative!");
 					console.log(
 						"============================================================================================="
 					);
@@ -296,6 +307,7 @@ export class MetanthropesActor extends Actor {
 			))
 		);
 		if (systemData.Vital.Experience.Stored < 0) {
+			ui.notifications.error("Your Stored Experience is Negative!");
 			console.log(
 				"============================================================================================="
 			);

@@ -302,8 +302,8 @@ option {
 }
 
 .metanthropes {
-  padding: 6px;
-  margin: 6px;
+  padding: 3px;
+  margin: 3px;
 }
 .metanthropes .layout-container-grid3x4 {
   display: grid;

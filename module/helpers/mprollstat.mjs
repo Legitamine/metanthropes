@@ -1,6 +1,4 @@
-// MetaRollStat function is used to roll a stat and get the levels of success/failure and print the message to chat
-// import metapower activation function
-import { MetapowerActivate } from "./mpactivate.mjs";
+// MetapowerRollStat function is used to roll a metapower based on a stat and get the levels of success/failure and print the message to chat
 export async function MetapowerRollStat(
 	actor,
 	stat,
@@ -12,6 +10,10 @@ export async function MetapowerRollStat(
 	destcost,
 	effect
 ) {
+	if (statValue <= 0) {
+		ui.notifications.error("Your ${stat} is 0 and thus you cannot activate this Metapower!");
+		return;
+	}
 	const roll = await new Roll("1d100").evaluate({ async: true });
 	const total = roll.total;
 	console.log("Inside MetapowerRollStat - do we have? ", mpname, destcost, effect);
@@ -48,7 +50,7 @@ export async function MetapowerRollStat(
 	//check for critical success or failure
 	//todo: review how bonuses and penalties should affect criticals
 	if (criticalSuccess) {
-		result = `🟩 Critical Success 🟩, rewarding ${actor.name} with +1 * 🤞`; //todo: add color and bold to crititals
+		result = `<strong>🟩 Critical Success 🟩</strong>, rewarding ${actor.name} with +1 * 🤞`; //todo: add color to crititals
 		currentDestiny += 1;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfSuccess = 10;
@@ -59,7 +61,7 @@ export async function MetapowerRollStat(
 		}
 	}
 	if (criticalFailure) {
-		result = `🟥 Critical Failure 🟥, rewarding ${actor.name} with +1 * 🤞`; //todo: add color and bold to crititals
+		result = `<strong>🟥 Critical Failure 🟥</strong>, rewarding ${actor.name} with +1 * 🤞`; //todo: add color to crititals
 		currentDestiny += 1;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfFailure = 10;
@@ -98,7 +100,7 @@ export async function MetapowerRollStat(
 	//message += effect;
 	//message += `${effect}`;
 	//add re-roll button to message
-	message += `<div class="metanthropes hide-button layout-hide">
+	message += `<div class="metanthropes layout-hide hide-button">
 	<button class="metapower-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-mpname="${mpname}" data-destcost="${destcost}" data-effect="${effect}" >
 	🤞</button>
 	<button class="metapower-activate" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-mpname="${mpname}" data-destcost="${destcost}" data-effect="${effect}" >

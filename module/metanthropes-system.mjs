@@ -199,9 +199,10 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		console.log("=============================================================================================");
 		if (actor && currentDestiny > 0) {
 			html.find(".hide-button").removeClass("layout-hide");
-		} else {
-			html.find(".hide-button").addClass("layout-hide");
 		}
+		//	else {
+		//		html.find(".hide-button").addClass("layout-hide");
+		//	}
 		html.find(".meta-re-roll").on("click", MetaReRoll);
 		html.find(".metapower-re-roll").on("click", MetapowerReRoll);
 		html.find(".possession-re-roll").on("click", PossessionReRoll);
