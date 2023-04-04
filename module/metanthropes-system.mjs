@@ -191,11 +191,12 @@ Hooks.on("renderChatMessage", async (message, html) => {
 	if (message.isAuthor) {
 		const actorId = message.getFlag("metanthropes-system", "actorId");
 		const actor = game.actors.get(actorId);
-		const myactorid = actor._id;
+		const myactorid = actor.id;
 		const currentDestiny = actor.system.Vital.Destiny.value;
 		console.log("=============================================================================================");
 		console.log("Metanthropes RPG Hook for MetaReRoll Button - should give actorId", actorId);
 		console.log("Metanthropes RPG Hook for MetaReRoll Button - should give actor", actor);
+		console.log("Metanthropes RPG Hook for MetaReRoll Button - should give my actor id", myactorid);
 		console.log("Metanthropes RPG Hook for MetaReRoll Button - should give currentDestiny", currentDestiny);
 		console.log("=============================================================================================");
 		if (actorId===myactorid && currentDestiny > 0) {

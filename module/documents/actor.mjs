@@ -83,6 +83,7 @@ export class MetanthropesActor extends Actor {
 		let characteristicExperienceSpent = 0;
 		let statExperienceSpent = 0;
 		let advancementCount = 0;
+		let charzerofullpenalty = 0;
 		console.log("=============================================================================================");
 		console.log("Metanthropes RPG Preparing Characteristics & Stats for", this.type, "-", this.name);
 		console.log("=============================================================================================");
@@ -97,6 +98,8 @@ export class MetanthropesActor extends Actor {
 				"Progressed:",
 				CharValue.Progressed
 			);
+			// reset charzerofullpenalty to 0
+			charzerofullpenalty = 0;
 			// Calculate the advancement count based on the characteristic's progressed value
 			advancementCount = Number(CharValue.Progressed);
 			// Calculate the experience spent on this characteristic
@@ -127,6 +130,7 @@ export class MetanthropesActor extends Actor {
 					Number(Number(CharValue.Condition.Current) * 5))
 			);
 			if (CharValue.Current < 0 ) {
+				charzerofullpenalty = CharValue.Current;
 				CharValue.Current = 0;
 				ui.notifications.error(this.name+"'s "+CharKey+" has dropped to 0!");
 				console.log("Metanthropes RPG", CharKey, "has dropped to 0!");	
@@ -191,7 +195,7 @@ export class MetanthropesActor extends Actor {
 					CharKey,
 					"Current"
 				);
-				parseInt((StatValue.Roll = Number(StatValue.Current) + Number(CharValue.Current)));
+				parseInt((StatValue.Roll = Number(StatValue.Current) + Number(CharValue.Current) + Number(charzerofullpenalty)));
 				if (StatValue.Roll < 0 ) {
 					StatValue.Roll = 0;
 					ui.notifications.error(this.name+"'s "+StatKey+" has dropped to 0!");

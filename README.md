@@ -26,7 +26,8 @@ To get the best experience while playing Metanthropes RPG, we recommend to insta
 	- Workaround: Use the Spent XP manual input field to adjust the XP spent for the Stat.
 - Combat: Roll for Initiative is not working properly. 
 	- Workaround: Roll a Stat Roll manually instead and The Narrator will adjust the combat order manually.
-
+- Metapowers tab in your Character Sheet displays the Current value of the Stat for that Metapower's Activation. If any Stat is changed (due to a Buff/Condition/Progression) the values in the Metapowers Tab become null.
+	- Workaround: Close your Character Sheet and re-open, the correct values will be displayed.
 ### Latest Changes
 
 These are the latest changes for the Official Metanthropes RPG System for Foundry VTT
@@ -36,7 +37,7 @@ These are the latest changes for the Official Metanthropes RPG System for Foundr
 - Possessions: Possessions Sheet (pending)
 - Possessions: Possessions Chat Roll (pending)
 - XP System: Metapowers (pending)
-- Metapowers: Metapower Sheet (done-effects)
+- Metapowers: Metapower Sheet (Known Issue)
 - Metapowers: Activation Effects (pending)
 - Combat: Cycles and Rounds (pending)
 - Characteristics & Stats: Dropping to 0 or lower triggers a Notification in the UI (done)

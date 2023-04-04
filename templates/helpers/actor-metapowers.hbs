@@ -6,6 +6,7 @@
 			<div class="item-destinycost">🤞</div>
 			<div class="item-statroll">🎲</div>
 			<div class="item-actionslot">⏱</div>
+			<div class="item-range">📏</div>
 			<div class="item-controls"><i class="fa-thin fa-gears"></i></div>
 		</li>
 		{{#each Metapowers as |item id|}}
@@ -24,6 +25,7 @@
 					{{item.system.Activation.StatRolled.value}}: {{lookup ../../system.RollStats item.system.Activation.StatRolled.value}}
 				</div>
 				<div class="item-actionslot item-prop">{{item.system.Activation.ActionSlot.value}}</div>
+				<div class="item-range item-prop">{{item.system.Activation.Range.value}}</div>
 				<div class="item-controls">
 					<a class="item-control item-edit" title="Open Metapower"><i class="fa-thin fa-message-pen"></i></a>
 					<a class="item-control item-delete" title="Delete Metapower"><i class="fa-thin fa-trash"></i></a>
