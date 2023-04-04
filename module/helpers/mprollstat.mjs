@@ -50,7 +50,7 @@ export async function MetapowerRollStat(
 	//check for critical success or failure
 	//todo: review how bonuses and penalties should affect criticals
 	if (criticalSuccess) {
-		result = `<strong>🟩 Critical Success 🟩</strong>, rewarding ${actor.name} with +1 * 🤞`; //todo: add color to crititals
+		result = `🟩 Critical Success 🟩, rewarding ${actor.name} with +1 * 🤞`; //todo: add color to crititals
 		currentDestiny += 1;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfSuccess = 10;
@@ -61,7 +61,7 @@ export async function MetapowerRollStat(
 		}
 	}
 	if (criticalFailure) {
-		result = `<strong>🟥 Critical Failure 🟥</strong>, rewarding ${actor.name} with +1 * 🤞`; //todo: add color to crititals
+		result = `🟥 Critical Failure 🟥, rewarding ${actor.name} with +1 * 🤞`; //todo: add color to crititals
 		currentDestiny += 1;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfFailure = 10;

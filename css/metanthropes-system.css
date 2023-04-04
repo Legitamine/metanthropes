@@ -753,7 +753,7 @@ option {
 .metanthropes .style-mp-rolls {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: #000;
   justify-content: center;
   justify-self: center;
@@ -776,7 +776,7 @@ option {
 .metanthropes .style-pos-rolls {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 1rem;
+  font-size: 0.6rem;
   color: #000;
   justify-content: center;
   justify-self: center;

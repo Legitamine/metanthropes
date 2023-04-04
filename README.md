@@ -26,7 +26,7 @@ To get the best experience while playing Metanthropes RPG, we recommend to insta
 	- Workaround: Use the Spent XP manual input field to adjust the XP spent for the Stat.
 - Combat: Roll for Initiative is not working properly. 
 	- Workaround: Roll a Stat Roll manually instead and The Narrator will adjust the combat order manually.
-- Metapowers tab in your Character Sheet displays the Current value of the Stat for that Metapower's Activation. If any Stat is changed (due to a Buff/Condition/Progression) the values in the Metapowers Tab become null.
+- Metapowers tab in your Character Sheet displays the Current value of the Stat for that Metapower's Activation. If any Stat is changed, or a Roll is made, the values in the Metapowers Tab become null.
 	- Workaround: Close your Character Sheet and re-open, the correct values will be displayed.
 ### Latest Changes
 
