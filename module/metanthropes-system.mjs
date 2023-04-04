@@ -191,13 +191,14 @@ Hooks.on("renderChatMessage", async (message, html) => {
 	if (message.isAuthor) {
 		const actorId = message.getFlag("metanthropes-system", "actorId");
 		const actor = game.actors.get(actorId);
+		const myactorid = actor._id;
 		const currentDestiny = actor.system.Vital.Destiny.value;
 		console.log("=============================================================================================");
 		console.log("Metanthropes RPG Hook for MetaReRoll Button - should give actorId", actorId);
 		console.log("Metanthropes RPG Hook for MetaReRoll Button - should give actor", actor);
 		console.log("Metanthropes RPG Hook for MetaReRoll Button - should give currentDestiny", currentDestiny);
 		console.log("=============================================================================================");
-		if (actor && currentDestiny > 0) {
+		if (actorId===myactorid && currentDestiny > 0) {
 			html.find(".hide-button").removeClass("layout-hide");
 		} else {
 			html.find(".hide-button").addClass("layout-hide");
