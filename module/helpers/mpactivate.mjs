@@ -66,6 +66,9 @@ export async function MetapowerActivate(event) {
 	ChatMessage.create(chatData);
 }
 export async function ReRollTargets(event) {
+	console.log("=====+++++++======+++++++");
+	console.log("INSIDE RE ROLL TARGETS");
+	console.log("=====+++++++======+++++++");
 	event.preventDefault();
 	const button = event.target;
 	const actorId = button.dataset.actorId;
@@ -90,6 +93,9 @@ export async function ReRollTargets(event) {
 	}
 }
 export async function RollTargets(actor, mpname, targetsdice, targets) {
+	console.log("=====+++++++======+++++++");
+	console.log("INSIDE ROLL TARGETS");
+	console.log("=====+++++++======+++++++");
 	// Roll the targets
 	const targetsroll = new Roll(targetsdice).roll();
 	// Create a chat message with the provided content

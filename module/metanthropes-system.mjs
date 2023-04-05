@@ -5,16 +5,6 @@
 //todo: Enable basic functionality
 //*
 ////
-////
-//*
-//? Table of Contents
-//*
-//! 1. Imports
-//? 2. System Initialization Hook
-//? 3. Preload Handlebars Templates
-//? 4. Ready Hook
-//? 5. Hotbar Macros
-////
 // Import modules.
 import { MetanthropesCombat } from "./metanthropes/combat.mjs";
 import { MetaCombatTracker } from "./metanthropes/combattracker.mjs";
@@ -34,7 +24,7 @@ import { MetapowerReRoll } from "./helpers/mprollstat.mjs";
 import { PossessionReRoll } from "./helpers/posrollstat.mjs";
 import { MetapowerActivate } from "./helpers/mpactivate.mjs";
 import { ReRollTargets } from "./helpers/mpactivate.mjs";
-import { RollTargets } from "./helpers/extrashelpers.mjs";
+import { RollTargets } from "./helpers/mpactivate.mjs";
 // Handlebars helper for drop-down menus.
 Handlebars.registerHelper("selected", function (option, value) {
 	return option === value ? "selected" : "";
