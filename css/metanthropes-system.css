@@ -1,7 +1,7 @@
 @import url("https://use.typekit.net/gld0tkk.css");
 input[type=text] {
   min-width: 8ch;
-  max-width: 25ch;
+  max-width: 22ch;
   margin: 1px;
   padding: 3px 3px 3px 6px;
   border: 1px dashed #000;

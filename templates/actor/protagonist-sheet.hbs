@@ -9,7 +9,7 @@
 					<input name="system.metaowner.value" type="text" value="{{system.metaowner.value}}"
 						placeholder="Player Name" data-dtype="String" />
 				</div>
-				<div>                                                                  <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="85" width="85" />
+				<div><img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="85" width="85" />
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
@@ -33,8 +33,7 @@
 				</div>
 				<div>Regression
 					<input name="system.entermeta.regression.value" type="text"
-						value="{{system.entermeta.regression.value}}" data-dtype="String"
-						placeholder="Regression" />
+						value="{{system.entermeta.regression.value}}" data-dtype="String" placeholder="Regression" />
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
@@ -69,8 +68,8 @@
 						data-dtype="String" placeholder="Saga Name" />
 				</div>
 				<div>Sessions Played
-					<input name="system.entermeta.sessions.value" type="number" value="{{system.entermeta.sessions.value}}"
-						data-dtype="Number" placeholder="0" />
+					<input name="system.entermeta.sessions.value" type="number"
+						value="{{system.entermeta.sessions.value}}" data-dtype="Number" placeholder="0" />
 				</div>
 				<div>Coalition
 					<input name="system.entermeta.coalition.value" type="text"
@@ -91,8 +90,9 @@
 				</div>
 			</div>
 			<div class="layout-container-small style-container-small">
-				<div class="style-labels-text">📈 Experience Total: <input name="system.Vital.Experience.Total" type="number"
-						value="{{system.Vital.Experience.Total}}" data-dtype="Number" placeholder="1000" /> Spent:
+				<div class="style-labels-text">📈 Experience Total: <input name="system.Vital.Experience.Total"
+						type="number" value="{{system.Vital.Experience.Total}}" data-dtype="Number"
+						placeholder="1000" /> Spent:
 					{{system.Vital.Experience.Spent}} + <input name="system.Vital.Experience.Manual" type="number"
 						value="{{system.Vital.Experience.Manual}}" data-dtype="Number" placeholder="0" />
 					Stored:{{#if (gte system.Vital.Experience.Stored 0)}}
