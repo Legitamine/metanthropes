@@ -26,34 +26,34 @@ export async function MetapowerActivate(event) {
 	}
 	if (conditions) {
 		contentdata += `<div>${conditions}</div>`;
-	} 
+	}
 	if (targetsdice) {
-		contentdata += `<div>
+		contentdata += `<div class="metanthropes hide-button layout-hide">
 		<button class="re-roll-targets" data-actor-id="${actor.id}" data-mpname="${mpname}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
 		🎯 [[${targetsdice}]] ${targets} 🤞</button>
-		</div>`
+		</div>`;
 	} else {
-		contentdata += `<div>🎯 ${targets}</div>`
+		contentdata += `<div>🎯 ${targets}</div>`;
 	}
 	if (durationdice) {
-		contentdata += `<div>
+		contentdata += `<div class="metanthropes hide-button layout-hide">
 		<button class="metapower-duration-re-roll" data-actor-id="${actor.id}" data-mpname="${mpname}" data-durationdice="${durationdice}" data-duration="${duration}" >
 		⏳ [[${durationdice}]] ${duration} 🤞</button>
-		</div>`
+		</div>`;
 	} else {
-		contentdata += `<div>⏳ ${duration}</div>`
+		contentdata += `<div>⏳ ${duration}</div>`;
 	}
 	if (damage) {
-		contentdata += `<div>
+		contentdata += `<div class="metanthropes hide-button layout-hide">
 		<button class="metapower-damage-re-roll" data-actor-id="${actor.id}" data-mpname="${mpname}" data-damage="${damage}" >
 		💥 [[${damage}]] 🤞</button>
-		</div>`
+		</div>`;
 	}
 	if (healing) {
-		contentdata += `<div>
+		contentdata += `<div class="metanthropes hide-button layout-hide">
 		<button class="metapower-healing-re-roll" data-actor-id="${actor.id}" data-mpname="${mpname}" data-healing="${healing}" >
 		💞 [[${healing}]] 🤞</button>
-		</div>`
+		</div>`;
 	}
 	//send the activation message to chat
 	let chatData = {
@@ -99,7 +99,7 @@ export async function RollTargets(actor, mpname, targetsdice, targets) {
 	// Roll the targets
 	const targetsroll = new Roll(targetsdice).roll();
 	// Create a chat message with the provided content
-	let contentdata = `<div>
+	let contentdata = `<div class="metanthropes hide-button layout-hide">
 	<button class="re-roll-targets" data-actor-id="${actor.id}" data-mpname="${mpname}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
 	🎯 [[${targetsdice}]] ${targets} 🤞</button>
 	</div>`;

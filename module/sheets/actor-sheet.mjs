@@ -163,6 +163,9 @@ export class MetanthropesActorSheet extends ActorSheet {
 	}
 	//code from boilerplate on rolls
 	async _onRoll(event) {
+		console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+		console.log("Metanthropes RPG evaluating a new _onRoll(event)");
+		console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 		event.preventDefault();
 		const element = event.currentTarget;
 		const dataset = element.dataset;
