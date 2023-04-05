@@ -31,25 +31,26 @@ To get the best experience while playing Metanthropes RPG, we recommend to insta
 ### Latest Changes
 
 These are the latest changes for the Official Metanthropes RPG System for Foundry VTT
-#### 0.3.00 - current build (status)
+
+#### 0.4.00 - current build (status)
 - GitHub Milestone Integration with the Metanthropes Roadmap (pending)
-- Bars for Destiny & Life (pending custom color)
 - Possessions: Possessions Sheet (pending)
 - Possessions: Possessions Chat Roll (pending)
 - XP System: Metapowers (pending)
-- Metapowers: Metapower Sheet (Known Issue)
-- Metapowers: Activation Effects (pending)
+- Metapowers: Activation & Effects on Chat & ReRolls(done)
 - Combat: Cycles and Rounds (pending)
-- Characteristics & Stats: Dropping to 0 or lower triggers a Notification in the UI (done)
+#### 0.3.00 - 0.3.16
+- Custom Bars for Destiny & Life
+- Metapowers: Metapower Sheet (Known Issue)
+- Characteristics & Stats: Dropping to 0 or lower triggers a Notification in the UI and disables any kind of rolls with that Stat
+- UI Customization
 #### 0.2.00 - 0.2.64
-
 - Protagonist Sheet
 - Perks: Sheet
 - XP System: Progressed Characteristics and Stats (Known Issue)
 - XP System: Perk Progression Automated XP Spending
 - Metapowers: Metapower Activation
 - Combat: Initiative Ordering (Known Issue)
-
 #### 0.0.102 - 0.1.99
 - Levels of Success & Failure and Stat Roll automated checks
 - Critical Success & Failure and automatic Destiny awarding
@@ -58,7 +59,6 @@ These are the latest changes for the Official Metanthropes RPG System for Foundr
 - Movement value now determines the additional & sprint movement automatically and updates Drag Ruler mod to correctly display movement distances in the canvas
 - Initiative Roll and Combat System basics
 - Improved Foundry UI customization and more functional Actor and Item sheets
-
 #### 0.0.01 - 0.0.102
 - Initial Metanthropes System configuration, settings and Rules integration with Foundry VTT
 - Metanthropes RPG Characteristics & Stats, Buffs and Conditions & auto-calculations

@@ -1,7 +1,7 @@
 // this changes the input fields in Foundry UI
 input[type="text"] {
 	min-width: 8ch;
-	max-width: 17ch;
+	max-width: 25ch;
 	margin: $margin-sm;
 	padding: $padding-input-text;
 	border: 1px dashed $c-black;
@@ -50,7 +50,7 @@ footer {
 // this changes the font for buttons of Foundry UI
 button {
 	font-family: $font-primary;
-	background-image: url("../artwork/background.webp");
+	background-image: url("../artwork/button.webp");
 	border: $border-groove;
 	border-radius: 15px;
 }

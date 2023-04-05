@@ -497,7 +497,7 @@
 							"value": 0
 						}
 					},
-					"Details":{
+					"Details": {
 						"Fields": {
 							"type": "text",
 							"dtype": "String",
@@ -872,13 +872,13 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Classification",
-						"value": "example Utilitarian"
+						"value": "Classification"
 					},
 					"MetapowerName": {
 						"type": "text",
 						"dtype": "String",
 						"label": "Metapower",
-						"value": "example 6th Sense"
+						"value": "Metapower"
 					},
 					"Level": {
 						"type": "number",
@@ -890,7 +890,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "✨",
-						"value": "some energy type"
+						"value": "EnergyType"
 					},
 					"DestinyCost": {
 						"type": "number",
@@ -914,55 +914,75 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "🎯",
-						"value": "some targets"
+						"value": "Targets"
+					},
+					"TargetsDice": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🎯🎲",
+						"value": null
 					},
 					"Duration": {
 						"type": "text",
 						"dtype": "String",
 						"label": "⏳",
-						"value": "some duration"
+						"value": "Duration"
+					},
+					"DurationDice": {
+						"type": "text",
+						"dtype": "String",
+						"label": "⏳🎲",
+						"value": null
 					},
 					"AreaEffect": {
 						"type": "text",
 						"dtype": "String",
 						"label": "🗺️",
-						"value": "some area effect"
+						"value": null
 					},
 					"Range": {
 						"type": "text",
 						"dtype": "String",
 						"label": "📏",
-						"value": "some range"
-					},
-					"Damage": {
-						"type": "text",
-						"dtype": "String",
-						"label": "💥",
-						"value": "some damage"
-					},
-					"Healing": {
-						"type": "text",
-						"dtype": "String",
-						"label": "💞",
-						"value": "some healing"
-					},
-					"Buffs": {
-						"type": "text",
-						"dtype": "String",
-						"label": "🛡️",
-						"value": "some buffs"
-					},
-					"Conditions": {
-						"type": "text",
-						"dtype": "String",
-						"label": "💀",
-						"value": "some conditions"
+						"value": "Range"
 					},
 					"Notes": {
 						"type": "text",
 						"dtype": "String",
 						"label": "Metabase Notes",
-						"value": "some metabase notes"
+						"value": "Notes on how to use this Metapower"
+					}
+				},
+				"Effects": {
+					"Damage": {
+						"type": "text",
+						"dtype": "String",
+						"label": "💥",
+						"value": null
+					},
+					"Healing": {
+						"type": "text",
+						"dtype": "String",
+						"label": "💞",
+						"value": null
+					},
+					"Buffs": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🛡️",
+						"value": null
+					},
+					"Conditions": {
+						"type": "text",
+						"dtype": "String",
+						"label": "💀",
+						"value": null
+					},
+					"Notes": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Metabase Notes",
+						"value": "Notes on how to use this Metapower"
 					}
 				}
 			}
@@ -1005,11 +1025,11 @@
 				"label": "Metapower Description",
 				"value": "some metapower description"
 			},
-			"Effects": {
+			"EffectDescription": {
 				"type": "text",
 				"dtype": "String",
-				"label": "Metapower Effects",
-				"value": "some metapower effects with [[/roll 10d10x10]] roll tests"
+				"label": "Effect Description",
+				"value": "Metapower Effects"
 			}
 		},
 		"Combo": {

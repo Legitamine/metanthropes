@@ -8,7 +8,15 @@ export async function MetapowerRollStat(
 	penalty = 0,
 	mpname,
 	destcost,
-	effect
+	effect,
+	targets,
+	targetsdice,
+	duration,
+	durationdice,
+	damage,
+	healing,
+	buffs,
+	conditions
 ) {
 	if (statValue <= 0) {
 		ui.notifications.error("Your Current ${stat} is 0 and thus you cannot activate this Metapower!");
@@ -96,9 +104,9 @@ export async function MetapowerRollStat(
 	//! the idea is to collect all the needed for the activation and pass it along in this button.
 	//! the data needs to be collected from the rolling of the metapower, so check out the actor-metapowers.hbs in sheets for that
 	message += `<div class="metanthropes layout-hide hide-button">
-	<button class="metapower-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-mpname="${mpname}" data-destcost="${destcost}" data-effect="${effect}" >
+	<button class="metapower-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-mpname="${mpname}" data-destcost="${destcost}" data-effect="${effect}" data-targets="${targets}" data-targetsdice="${targetsdice}" data-duration="${duration}" data-durationdice="${durationdice}" data-damage="${damage}" data-healing="${healing}" data-buffs="${buffs}" data-conditions="${conditions}" >
 	🤞</button>
-	<button class="metapower-activate" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-mpname="${mpname}" data-destcost="${destcost}" data-effect="${effect}" >
+	<button class="metapower-activate" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-resultlevel="${resultLevel}" data-targets="${targets}" data-targetsdice="${targetsdice}" data-mpname="${mpname}" data-destcost="${destcost}" data-effect="${effect}" data-duration="${duration}" data-durationdice="${durationdice}" data-damage="${damage}" data-healing="${healing}" data-buffs="${buffs}" data-conditions="${conditions}" >
 	Ⓜ️</button>
 	</div>`;
 	//console log for debugging
@@ -127,6 +135,24 @@ export async function MetapowerRollStat(
 		destcost,
 		"Metapower Name:",
 		mpname
+	);
+	console.log(
+		"Targets:",
+		targets,
+		"Targets Dice:",
+		targetsdice,
+		"Duration:",
+		duration,
+		"Duration Dice:",
+		durationdice,
+		"Damage:",
+		damage,
+		"Healing:",
+		healing,
+		"Buffs:",
+		buffs,
+		"Conditions:",
+		conditions
 	);
 	//set flags for the actor to be used as the lastrolled values of your most recent roll.
 	// the idea is to use these later in metapowers to spend your levels of success.
@@ -159,6 +185,14 @@ export async function MetapowerReRoll(event) {
 	const destcost = parseInt(button.dataset.destcost);
 	const effect = button.dataset.effect;
 	const actor = game.actors.get(actorId);
+	const targets = button.dataset.targets;
+	const targetsdice = button.dataset.targetsdice;
+	const duration = button.dataset.duration;
+	const durationdice = button.dataset.durationdice;
+	const damage = button.dataset.damage;
+	const healing = button.dataset.healing;
+	const buffs = button.dataset.buffs;
+	const conditions = button.dataset.conditions;
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	// make this function only available to the owner of the actor
 	if (actor && actor.isOwner) {
@@ -171,7 +205,7 @@ export async function MetapowerReRoll(event) {
 			if (message) {
 				message.render();
 			}
-			MetapowerRollStat(actor, stat, statValue, modifier, bonus, penalty, mpname, destcost, effect);
+			MetapowerRollStat(actor, stat, statValue, modifier, bonus, penalty, mpname, destcost, effect, targets, targetsdice, duration, durationdice, damage, healing, buffs, conditions);
 		}
 	}
 }

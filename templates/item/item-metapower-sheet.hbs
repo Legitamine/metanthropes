@@ -21,15 +21,23 @@
 		<div class="tab activation" data-group="primary" data-tab="activation">
 			{{!-- As you add new fields, add them in here! --}}
 			{{#each system.Activation}}
-			<div class="resource">
-				<label class="resource-label">{{this.label}}:</label>
-				<input type="{{this.type}}" name="system.Activation.{{@key}}.value" value="{{this.value}}" data-dtype="{{this.dtype}}" />
-			</div>
+				<div class="resource">
+					<label class="resource-label">{{this.label}}:</label>
+					<input type="{{this.type}}" name="system.Activation.{{@key}}.value" value="{{this.value}}"
+						data-dtype="{{this.dtype}}" />
+				</div>
 			{{/each}}
 		</div>
 		{{!-- Effects Tab --}}
 		<div class="tab effects" data-group="primary" data-tab="effects">
-			{{editor system.Effects.value target="system.Effects.value" rollData=rollData button=true owner=owner editable=editable}}
+			{{editor system.EffectDescription.value target="system.EffectDescription.value" rollData=rollData button=true owner=owner editable=editable}}
 		</div>
+		{{#each system.Effects}}
+			<div class="resource">
+				<label class="resource-label">{{this.label}}:</label>
+				<input type="{{this.type}}" name="system.Effects.{{@key}}.value" value="{{this.value}}"
+					data-dtype="{{this.dtype}}" />
+			</div>
+		{{/each}}
 	</section>
 </form>
