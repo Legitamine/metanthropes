@@ -934,17 +934,17 @@
 						"label": "⏳🎲",
 						"value": null
 					},
-					"AreaEffect": {
-						"type": "text",
-						"dtype": "String",
-						"label": "🗺️",
-						"value": null
-					},
 					"Range": {
 						"type": "text",
 						"dtype": "String",
 						"label": "📏",
 						"value": "Range"
+					},
+					"AreaEffect": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🗺️",
+						"value": null
 					},
 					"Notes": {
 						"type": "text",

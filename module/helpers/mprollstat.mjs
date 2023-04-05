@@ -205,7 +205,25 @@ export async function MetapowerReRoll(event) {
 			if (message) {
 				message.render();
 			}
-			MetapowerRollStat(actor, stat, statValue, modifier, bonus, penalty, mpname, destcost, effect, targets, targetsdice, duration, durationdice, damage, healing, buffs, conditions);
+			MetapowerRollStat(
+				actor,
+				stat,
+				statValue,
+				modifier,
+				bonus,
+				penalty,
+				mpname,
+				destcost,
+				effect,
+				targets,
+				targetsdice,
+				duration,
+				durationdice,
+				damage,
+				healing,
+				buffs,
+				conditions
+			);
 		}
 	}
 }

@@ -1,7 +1,7 @@
 // import the MetapowerRollStat function
 import { MetapowerRollStat } from "./mprollstat.mjs";
 // MetaRoll function handles the dialog box for selecting multi-actions and bonuses/penalties when rolling a stat
-export async function MetapowerRoll(actor, stat, mpname, destcost, effect) {
+export async function MetapowerRoll(actor, stat, mpname, destcost, effect, targets, targetsdice, duration, durationdice, damage, healing, buffs, conditions) {
 	const statValue = actor.system.RollStats[stat];
 	if (statValue <= 0) {
 		ui.notifications.error(actor.name+" can't Activate Metapowers with "+stat+" Current value of 0!");
@@ -47,7 +47,7 @@ export async function MetapowerRoll(actor, stat, mpname, destcost, effect) {
 					let bonus = parseInt(html.find("#bonus").val());
 					let penalty = -parseInt(html.find("#penalty").val());
 					//send the data we collected to the MetaRollStat function
-					MetapowerRollStat(actor, stat, statValue, modifier, bonus, penalty, mpname, destcost, effect);
+					MetapowerRollStat(actor, stat, statValue, modifier, bonus, penalty, mpname, destcost, effect, targets, targetsdice, duration, durationdice, damage, healing, buffs, conditions);
 				},
 			},
 		},
