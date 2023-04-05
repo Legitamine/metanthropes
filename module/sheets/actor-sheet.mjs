@@ -184,6 +184,14 @@ export class MetanthropesActorSheet extends ActorSheet {
 				const mpname = dataset.mpname;
 				const destcost = dataset.destcost;
 				const effect = dataset.effect;
+				const targets = dataset.targets;
+				const targetsdice = dataset.targetsdice;
+				const duration = dataset.duration;
+				const durationdice = dataset.durationdice;
+				const damage = dataset.damage;
+				const healing = dataset.healing;
+				const buffs = dataset.buffs;
+				const conditions = dataset.conditions;
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 				console.log(
 					"Metanthropes RPG Rolling a Metapower for:",
@@ -196,7 +204,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 					stat
 				);
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-				MetapowerRoll(actor, stat, mpname, destcost, effect);
+				MetapowerRoll(actor, stat, mpname, destcost, effect, targets, targetsdice, duration, durationdice, damage, healing, buffs, conditions);
 			} else if (dataset.rollType == "Possession") {
 				const actor = this.actor;
 				const stat = dataset.stat;
