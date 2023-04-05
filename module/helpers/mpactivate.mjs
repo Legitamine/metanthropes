@@ -26,9 +26,9 @@ export async function MetapowerActivate(event) {
 	}
 	if (conditions) {
 		contentdata += `<div>${conditions}</div>`;
-	}
+	} 
 	if (targetsdice) {
-		contententdata += `<div>
+		contentdata += `<div>
 		<button class="re-roll-targets" data-actor-id="${actor.id}" data-mpname="${mpname}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
 		🎯 [[${targetsdice}]] ${targets} 🤞</button>
 		</div>`

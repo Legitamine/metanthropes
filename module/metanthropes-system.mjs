@@ -34,6 +34,7 @@ import { MetapowerReRoll } from "./helpers/mprollstat.mjs";
 import { PossessionReRoll } from "./helpers/posrollstat.mjs";
 import { MetapowerActivate } from "./helpers/mpactivate.mjs";
 import { ReRollTargets } from "./helpers/mpactivate.mjs";
+import { RollTargets } from "./helpers/extrashelpers.mjs";
 // Handlebars helper for drop-down menus.
 Handlebars.registerHelper("selected", function (option, value) {
 	return option === value ? "selected" : "";
