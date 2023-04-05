@@ -33,6 +33,7 @@ import { MetaReRoll } from "./helpers/metarollstat.mjs";
 import { MetapowerReRoll } from "./helpers/mprollstat.mjs";
 import { PossessionReRoll } from "./helpers/posrollstat.mjs";
 import { MetapowerActivate } from "./helpers/mpactivate.mjs";
+import { ReRollTargets } from "./helpers/mpactivate.mjs";
 // Handlebars helper for drop-down menus.
 Handlebars.registerHelper("selected", function (option, value) {
 	return option === value ? "selected" : "";
@@ -209,6 +210,7 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		html.find(".metapower-re-roll").on("click", MetapowerReRoll);
 		html.find(".possession-re-roll").on("click", PossessionReRoll);
 		html.find(".metapower-activate").on("click", MetapowerActivate);
+		html.find(".re-roll-targets").on("click", ReRollTargets);
 	}
 });
 //listen for stat changes, this should enable metapower sheet to update correctly when a stat changes

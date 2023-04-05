@@ -56,10 +56,12 @@ footer {
 
 button {
   font-family: "nasalization", sans-serif;
-  background-image: url("../artwork/button.webp");
+  background-image: url("../artwork/button-3dhex.webp");
   background-size: contain;
+  text-shadow: 1px 1px 1px blue, 0 0 0.2em red, 0 0 0.2em red;
   border: 2px groove #7d0f81;
   border-radius: 15px;
+  color: #fff;
 }
 
 select {

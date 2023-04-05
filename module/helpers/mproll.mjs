@@ -47,6 +47,26 @@ export async function MetapowerRoll(actor, stat, mpname, destcost, effect, targe
 					let bonus = parseInt(html.find("#bonus").val());
 					let penalty = -parseInt(html.find("#penalty").val());
 					//send the data we collected to the MetaRollStat function
+					console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+					console.log(
+						"Targets:",
+						targets,
+						"Targets Dice:",
+						targetsdice,
+						"Duration:",
+						duration,
+						"Duration Dice:",
+						durationdice,
+						"Damage:",
+						damage,
+						"Healing:",
+						healing,
+						"Buffs:",
+						buffs,
+						"Conditions:",
+						conditions
+					);
+					console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 					MetapowerRollStat(actor, stat, statValue, modifier, bonus, penalty, mpname, destcost, effect, targets, targetsdice, duration, durationdice, damage, healing, buffs, conditions);
 				},
 			},

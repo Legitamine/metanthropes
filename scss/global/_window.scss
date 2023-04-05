@@ -50,10 +50,12 @@ footer {
 // this changes the font for buttons of Foundry UI
 button {
 	font-family: $font-primary;
-	background-image: url("../artwork/button.webp");
+	background-image: url("../artwork/button-3dhex.webp");
 	background-size: contain;
+	text-shadow: $s-button;
 	border: $border-groove;
 	border-radius: 15px;
+	color: $c-white;
 }
 select {
 	font-family: $font-primary;

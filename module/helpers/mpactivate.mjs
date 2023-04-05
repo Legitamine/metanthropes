@@ -20,37 +20,89 @@ export async function MetapowerActivate(event) {
 	//todo: utilize existing levels of success
 	//todo: hide unecessary buttons and content
 	//todo: create listener for buttons and functions to re-roll them - perhaps keep the same functions for the possessions later
+	let contentdata = `<div>${effect}</div>`;
+	if (buffs) {
+		contentdata += `<div>${buffs}</div>`;
+	}
+	if (conditions) {
+		contentdata += `<div>${conditions}</div>`;
+	}
+	if (targetsdice) {
+		contententdata += `<div>
+		<button class="re-roll-targets" data-actor-id="${actor.id}" data-mpname="${mpname}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
+		🎯 [[${targetsdice}]] ${targets} 🤞</button>
+		</div>`
+	} else {
+		contentdata += `<div>🎯 ${targets}</div>`
+	}
+	if (durationdice) {
+		contentdata += `<div>
+		<button class="metapower-duration-re-roll" data-actor-id="${actor.id}" data-mpname="${mpname}" data-durationdice="${durationdice}" data-duration="${duration}" >
+		⏳ [[${durationdice}]] ${duration} 🤞</button>
+		</div>`
+	} else {
+		contentdata += `<div>⏳ ${duration}</div>`
+	}
+	if (damage) {
+		contentdata += `<div>
+		<button class="metapower-damage-re-roll" data-actor-id="${actor.id}" data-mpname="${mpname}" data-damage="${damage}" >
+		💥 [[${damage}]] 🤞</button>
+		</div>`
+	}
+	if (healing) {
+		contentdata += `<div>
+		<button class="metapower-healing-re-roll" data-actor-id="${actor.id}" data-mpname="${mpname}" data-healing="${healing}" >
+		💞 [[${healing}]] 🤞</button>
+		</div>`
+	}
+	//send the activation message to chat
 	let chatData = {
 		user: game.user.id,
 		flavor: `<h3>${actor.name} Activates ${mpname}</h3>`,
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
-		content: `
-		<div>
-		${effect}
-		</div>
-		<div>
-		${buffs}
-		</div>
-		<div>
-		${conditions}
-		</div>
-		<div>
-		<button class="metapower-targets-re-roll" data-actor-id="${actor.id}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
-		🎯 [[${targetsdice}]] ${targets} 🤞</button>
-		</div>
-		<div>
-		<button class="metapower-duration-re-roll" data-actor-id="${actor.id}" data-durationdice="${durationdice}" data-duration="${duration}" >
-		⏳ [[${durationdice}]] ${duration} 🤞</button>
-		</div>
-		<div>
-		<button class="metapower-damage-re-roll" data-actor-id="${actor.id}" data-damage="${damage}" >
-		💥 [[${damage}]] 🤞</button>
-		</div>
-		<div>
-		<button class="metapower-healing-re-roll" data-actor-id="${actor.id}" data-healing="${healing}" >
-		💞 [[${healing}]] 🤞</button>
-		</div>
-		`,
+		content: contentdata,
+	};
+	// Send the message to chat
+	ChatMessage.create(chatData);
+}
+export async function ReRollTargets(event) {
+	event.preventDefault();
+	const button = event.target;
+	const actorId = button.dataset.actorId;
+	const mpname = button.dataset.mpname;
+	const targetsdice = button.dataset.targetsdice;
+	const targets = button.dataset.targets;
+	const actor = game.actors.get(actorId);
+	let currentDestiny = actor.system.Vital.Destiny.value;
+	// make this function only available to the owner of the actor
+	if (actor && actor.isOwner) {
+		// Reduce Destiny.value by 1
+		if (currentDestiny > 0) {
+			currentDestiny -= 1;
+			await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
+			// Update re-roll button visibility
+			const message = game.messages.get(button.dataset.messageId);
+			if (message) {
+				message.render();
+			}
+			RollTargets(actor, mpname, targetsdice, targets);
+		}
+	}
+}
+export async function RollTargets(actor, mpname, targetsdice, targets) {
+	// Roll the targets
+	const targetsroll = new Roll(targetsdice).roll();
+	// Create a chat message with the provided content
+	let contentdata = `<div>
+	<button class="re-roll-targets" data-actor-id="${actor.id}" data-mpname="${mpname}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
+	🎯 [[${targetsdice}]] ${targets} 🤞</button>
+	</div>`;
+	//send the activation message to chat
+	let chatData = {
+		user: game.user.id,
+		flavor: `<h3>${actor.name} Rolls Targets for ${mpname}</h3>`,
+		speaker: ChatMessage.getSpeaker({ actor: actor }),
+		content: contentdata,
 	};
 	// Send the message to chat
 	ChatMessage.create(chatData);

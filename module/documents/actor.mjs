@@ -44,10 +44,10 @@ export class MetanthropesActor extends Actor {
 		}
 		// Enable Vision for all actors
 		if (!createData.prototypeToken) createData.prototypeToken = {}; // Fix for Token Attacher / CF Import
-		createData.prototypeToken.sight = { enabled: true };
 		// Link Actor data only for Protagonists
 		if (data.type == "Protagonist") {
 			createData.prototypeToken.actorLink = true;
+			createData.prototypeToken.sight = { enabled: true };
 		}
 		this.updateSource(createData);
 	}
