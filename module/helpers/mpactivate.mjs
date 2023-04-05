@@ -4,9 +4,7 @@ export async function MetapowerActivate(event) {
 	const actorId = button.dataset.actorId;
 	const stat = button.dataset.stat;
 	const statValue = parseInt(button.dataset.statValue);
-	const resultLevel = button.dataset.resultLevel;
 	const mpname = button.dataset.mpname;
-	const destcost = parseInt(button.dataset.destcost);
 	const effect = button.dataset.effect;
 	const actor = game.actors.get(actorId);
 	const targets = button.dataset.targets;

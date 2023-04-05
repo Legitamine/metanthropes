@@ -57,6 +57,7 @@ footer {
 button {
   font-family: "nasalization", sans-serif;
   background-image: url("../artwork/button.webp");
+  background-size: contain;
   border: 2px groove #7d0f81;
   border-radius: 15px;
 }
@@ -68,7 +69,6 @@ select {
 }
 
 option {
-  background-image: url("../artwork/background.webp");
   background-color: rgba(129, 129, 129, 0.3725490196);
   font-family: "nasalization", sans-serif;
   border-radius: 15px;

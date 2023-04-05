@@ -104,9 +104,15 @@ export async function MetapowerRollStat(
 	//! the idea is to collect all the needed for the activation and pass it along in this button.
 	//! the data needs to be collected from the rolling of the metapower, so check out the actor-metapowers.hbs in sheets for that
 	message += `<div class="metanthropes layout-hide hide-button">
-	<button class="metapower-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-mpname="${mpname}" data-destcost="${destcost}" data-effect="${effect}" data-targets="${targets}" data-targetsdice="${targetsdice}" data-duration="${duration}" data-durationdice="${durationdice}" data-damage="${damage}" data-healing="${healing}" data-buffs="${buffs}" data-conditions="${conditions}" >
+	<button class="metapower-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}"
+	data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-mpname="${mpname}" data-destcost="${destcost}"
+	data-effect="${effect}" data-targets="${targets}" data-targetsdice="${targetsdice}" data-duration="${duration}" 
+	data-durationdice="${durationdice}" data-damage="${damage}" data-healing="${healing}" data-buffs="${buffs}" data-conditions="${conditions}" >
 	🤞</button>
-	<button class="metapower-activate" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-resultlevel="${resultLevel}" data-targets="${targets}" data-targetsdice="${targetsdice}" data-mpname="${mpname}" data-destcost="${destcost}" data-effect="${effect}" data-duration="${duration}" data-durationdice="${durationdice}" data-damage="${damage}" data-healing="${healing}" data-buffs="${buffs}" data-conditions="${conditions}" >
+	<button class="metapower-activate" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}"
+	data-targets="${targets}" data-targetsdice="${targetsdice}" data-mpname="${mpname}" data-destcost="${destcost}"
+	data-effect="${effect}" data-duration="${duration}" data-durationdice="${durationdice}" data-damage="${damage}"
+	data-healing="${healing}" data-buffs="${buffs}" data-conditions="${conditions}" >
 	Ⓜ️</button>
 	</div>`;
 	//console log for debugging

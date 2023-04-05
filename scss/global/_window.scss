@@ -51,6 +51,7 @@ footer {
 button {
 	font-family: $font-primary;
 	background-image: url("../artwork/button.webp");
+	background-size: contain;
 	border: $border-groove;
 	border-radius: 15px;
 }
@@ -60,7 +61,6 @@ select {
 	border: 1px dotted $c-black;
 }
 option {
-	background-image: url("../artwork/background.webp");
 	background-color: $c-background;
 	font-family: $font-primary;
 	border-radius: 15px;

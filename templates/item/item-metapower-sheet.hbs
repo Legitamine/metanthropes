@@ -30,14 +30,16 @@
 		</div>
 		{{!-- Effects Tab --}}
 		<div class="tab effects" data-group="primary" data-tab="effects">
-			{{editor system.EffectDescription.value target="system.EffectDescription.value" rollData=rollData button=true owner=owner editable=editable}}
-		</div>
-		{{#each system.Effects}}
-			<div class="resource">
-				<label class="resource-label">{{this.label}}:</label>
-				<input type="{{this.type}}" name="system.Effects.{{@key}}.value" value="{{this.value}}"
-					data-dtype="{{this.dtype}}" />
+			<div>
+				{{editor system.EffectDescription.value target="system.EffectDescription.value" rollData=rollData button=true owner=owner editable=editable}}
 			</div>
-		{{/each}}
+			{{#each system.Effects}}
+				<div class="resource">
+					<label class="resource-label">{{this.label}}:</label>
+					<input type="{{this.type}}" name="system.Effects.{{@key}}.value" value="{{this.value}}"
+						data-dtype="{{this.dtype}}" />
+				</div>
+			{{/each}}
+		</div>
 	</section>
 </form>
