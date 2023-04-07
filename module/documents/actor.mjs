@@ -42,9 +42,9 @@ export class MetanthropesActor extends Actor {
 			if (data.type == "Extradimensional")
 			createData.img = "systems/metanthropes-system/artwork/tokens/token-cosmonaut.webp";
 		}
-		// Enable Vision for all actors
-		if (!createData.prototypeToken) createData.prototypeToken = {}; // Fix for Token Attacher / CF Import
-		// Link Actor data only for Protagonists
+		// Fix for Token Attacher / CF Import - from wh4e
+		if (!createData.prototypeToken) createData.prototypeToken = {};
+		// Link Actor data and enable vision only for Protagonists
 		if (data.type == "Protagonist") {
 			createData.prototypeToken.actorLink = true;
 			createData.prototypeToken.sight = { enabled: true };
@@ -244,7 +244,7 @@ export class MetanthropesActor extends Actor {
 					))
 				);
 				if (systemData.Vital.Experience.Stored < 0) {
-					ui.notifications.error("Your Stored Experience is Negative!");
+					ui.notifications.error(this.name+"'s Stored Experience is Negative!");
 					console.log(
 						"============================================================================================="
 					);
@@ -311,7 +311,7 @@ export class MetanthropesActor extends Actor {
 			))
 		);
 		if (systemData.Vital.Experience.Stored < 0) {
-			ui.notifications.error("Your Stored Experience is Negative!");
+			ui.notifications.error(this.name+"'s Stored Experience is Negative!");
 			console.log(
 				"============================================================================================="
 			);

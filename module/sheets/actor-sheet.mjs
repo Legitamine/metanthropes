@@ -2,8 +2,7 @@
 //*
 //! Metanthropes RPG System for FoundryVTT
 //? This is the Actor Sheet for the Metanthropes RPG System for FoundryVTT.
-//? This controls how
-//todo: Enable basic functionality
+//? This controls how the sheet functions
 //*
 ////
 import { MetaRoll } from "../helpers/metaroll.mjs";
@@ -61,14 +60,14 @@ export class MetanthropesActorSheet extends ActorSheet {
 			Gadget: [],
 			Drug: [],
 		};
-		const Combos = {
+		const Metapowers = {
 			1: [],
 			2: [],
 			3: [],
 			4: [],
 			5: [],
 		};
-		const Metapowers = {
+		const Combos = {
 			1: [],
 			2: [],
 			3: [],
@@ -125,7 +124,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		});
 		// Active Effect management
 		// html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
-		// Rollable abilities.
+		// Find the different type of rolls and add the event listeners
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
 		html.find(".style-mp-rolls").click(this._onRoll.bind(this));
 		html.find(".style-pos-rolls").click(this._onRoll.bind(this));
@@ -227,12 +226,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 				console.log("Metanthropes RPG ERROR: not defined rollType", dataset.rollType);
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 				return;
-				//	const itemId = element.closest(".item").dataset.itemId;
-				//	const item = this.actor.items.get(itemId);
-				//	if (item) return item.roll();
-				//	console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-				//	console.log("Even worse???", item.roll);
-				//	console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 			}
 		}
 		// Handle rolls that supply the formula directly.
