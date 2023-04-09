@@ -25,7 +25,7 @@ export async function MetapowerActivate(event) {
 	if (result.resultLevel <= 0) {
 		flavordata = `<h3>Fails to Activate ${mpname}!</h3>`;
 	} else {
-		flavordata = `<h3>Activates ${mpname}</h3>`;
+		flavordata = `<h3>Activates ${mpname} with the following:</h3>`;
 		contentdata = `<div><h3>Effect:</h3><br>${effect}</div>`;
 		if (buffs) {
 			contentdata += `<div><h3>🛡️ Buffs:</h3><br>${buffs}</div>`;
@@ -34,29 +34,29 @@ export async function MetapowerActivate(event) {
 			contentdata += `<div><h3>💀 Conditions:</h3><br>${conditions}</div>`;
 		}
 		if (targetsdice) {
-			contentdata += `<div class="hide-button layout-hide">
+			contentdata += `<div class="hide-button layout-hide"><h3>🎯 Targets:</h3><br>
 		<button class="re-roll-targets" data-actor-id="${actor.id}" data-mpname="${mpname}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
 		🎯 [[${targetsdice}]] ${targets} 🤞</button>
 		</div>`;
 		} else {
-			contentdata += `<div>🎯 ${targets}</div>`;
+			contentdata += `<div><h3>🎯 Targets:</h3><br>🎯 ${targets}</div>`;
 		}
 		if (durationdice) {
-			contentdata += `<div class="hide-button layout-hide">
+			contentdata += `<div class="hide-button layout-hide"><h3>⏳ Duration:</h3><br>
 		<button class="re-roll-duration" data-actor-id="${actor.id}" data-mpname="${mpname}" data-durationdice="${durationdice}" data-duration="${duration}" >
 		⏳ [[${durationdice}]] ${duration} 🤞</button>
 		</div>`;
 		} else {
-			contentdata += `<div>⏳ ${duration}</div>`;
+			contentdata += `<div><h3>⏳ Duration:</h3><br>⏳ ${duration}</div>`;
 		}
 		if (damage) {
-			contentdata += `<div class="hide-button layout-hide">
+			contentdata += `<div class="hide-button layout-hide"><h3>💥 Damage:</h3><br>
 		<button class="re-roll-damage" data-actor-id="${actor.id}" data-mpname="${mpname}" data-damage="${damage}" >
 		💥 [[${damage}]] 🤞</button>
 		</div>`;
 		}
 		if (healing) {
-			contentdata += `<div class="hide-button layout-hide">
+			contentdata += `<div class="hide-button layout-hide"><h3>💞 Healing:</h3><br>
 		<button class="re-roll-healing" data-actor-id="${actor.id}" data-mpname="${mpname}" data-healing="${healing}" >
 		💞 [[${healing}]] 🤞</button>
 		</div>`;

@@ -46,6 +46,7 @@ Hooks.once("init", async function () {
 	game.metanthropes = {
 		MetanthropesActor,
 		MetanthropesItem,
+		rollItemMacro,
 	};
 	//setup initiative system
 	//CONFIG.Combat.initiative = MetaInitiative;
