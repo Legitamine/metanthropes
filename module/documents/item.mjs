@@ -16,11 +16,11 @@ export class MetanthropesItem extends Item {
 		// preparation methods overridden (such as prepareBaseData()).
 		super.prepareData();
 		// Check if the item type is "Metapower" and the image is not set or is the default image
-		if (this.data.type === "Metapower" && (!this.data.img || this.data.img === "icons/svg/item-bag.svg")) {
+		if (this.type === "Metapower") {
 			const mpname = this.system.Activation.MetapowerName.value; // Replace this with the correct path to mpname property in your system
 			const imgPath = `systems/metanthropes-system/artwork/metapowers/${mpname}.png`; // Replace this with the correct path to your images folder
 			this.img = imgPath;
-		  }
+		}
 	}
 
 	/**
@@ -57,7 +57,7 @@ export class MetanthropesItem extends Item {
 				speaker: speaker,
 				rollMode: rollMode,
 				flavor: label,
-				content: item.system.effects-metapower.value ?? "error no statrolled found",
+				content: item.system.effects - metapower.value ?? "error no statrolled found",
 			});
 		}
 		// Otherwise, create a roll and send a chat message from it.
@@ -71,7 +71,7 @@ export class MetanthropesItem extends Item {
 			console.log("=======-----======---=====------=--------=======");
 			console.log("Metanthropes RPG we are inside item roll else - is this working?");
 			console.log("=======-----======---=====------=--------=======");
-			MetaRoll (actor, stat);
+			MetaRoll(actor, stat);
 			//! leaving this here because I need to understand what it did and what is no longer necessary.
 			//	// Invoke the roll and submit it to chat.
 			//	const roll = new Roll(rollData.item.formula, rollData);
