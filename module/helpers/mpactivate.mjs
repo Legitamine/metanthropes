@@ -15,43 +15,49 @@ export async function MetapowerActivate(event) {
 	const healing = button.dataset.healing;
 	const buffs = button.dataset.buffs;
 	const conditions = button.dataset.conditions;
-	// Create a chat message with the provided content
-	//todo: check if activation was successfull
 	//todo: utilize existing levels of success
-	let contentdata = `<div>With the following Effect:<br>${effect}</div>`;
-	if (buffs) {
-		contentdata += `<div>With the following 🛡️ Buffs:<br>${buffs}</div>`;
-	}
-	if (conditions) {
-		contentdata += `<div>With the following 💀 Conditions:<br>${conditions}</div>`;
-	}
-	if (targetsdice) {
-		contentdata += `<div class="metanthropes hide-button layout-hide">
+	// Create a chat message with the provided content
+	let contentdata = null;
+	// Check if activation was successfull
+	const result = message.getFlag("metanthropes-system", "lastrolled");
+	if (result.resultLevel <= 0) {
+		contentdata = `<div><h3>and Fails!</h3></div>`;
+	} else {
+		contentdata = `<div><h3>With the following Effect:</h3><br>${effect}</div>`;
+		if (buffs) {
+			contentdata += `<div><h3>With the following 🛡️ Buffs:</h3><br>${buffs}</div>`;
+		}
+		if (conditions) {
+			contentdata += `<div><h3>With the following 💀 Conditions:</h3><br>${conditions}</div>`;
+		}
+		if (targetsdice) {
+			contentdata += `<div class="hide-button layout-hide">
 		<button class="re-roll-targets" data-actor-id="${actor.id}" data-mpname="${mpname}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
 		🎯 [[${targetsdice}]] ${targets} 🤞</button>
 		</div>`;
-	} else {
-		contentdata += `<div>🎯 ${targets}</div>`;
-	}
-	if (durationdice) {
-		contentdata += `<div class="metanthropes hide-button layout-hide">
+		} else {
+			contentdata += `<div>🎯 ${targets}</div>`;
+		}
+		if (durationdice) {
+			contentdata += `<div class="hide-button layout-hide">
 		<button class="re-roll-duration" data-actor-id="${actor.id}" data-mpname="${mpname}" data-durationdice="${durationdice}" data-duration="${duration}" >
 		⏳ [[${durationdice}]] ${duration} 🤞</button>
 		</div>`;
-	} else {
-		contentdata += `<div>⏳ ${duration}</div>`;
-	}
-	if (damage) {
-		contentdata += `<div class="metanthropes hide-button layout-hide">
+		} else {
+			contentdata += `<div>⏳ ${duration}</div>`;
+		}
+		if (damage) {
+			contentdata += `<div class="hide-button layout-hide">
 		<button class="re-roll-damage" data-actor-id="${actor.id}" data-mpname="${mpname}" data-damage="${damage}" >
 		💥 [[${damage}]] 🤞</button>
 		</div>`;
-	}
-	if (healing) {
-		contentdata += `<div class="metanthropes hide-button layout-hide">
+		}
+		if (healing) {
+			contentdata += `<div class="hide-button layout-hide">
 		<button class="re-roll-healing" data-actor-id="${actor.id}" data-mpname="${mpname}" data-healing="${healing}" >
 		💞 [[${healing}]] 🤞</button>
 		</div>`;
+		}
 	}
 	//send the activation message to chat
 	let chatData = {
