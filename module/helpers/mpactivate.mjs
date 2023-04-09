@@ -15,20 +15,23 @@ export async function MetapowerActivate(event) {
 	const healing = button.dataset.healing;
 	const buffs = button.dataset.buffs;
 	const conditions = button.dataset.conditions;
-	//todo: utilize existing levels of success
+	//todo: utilize existing levels of success and spent levels of success
 	// Create a chat message with the provided content
 	let contentdata = null;
+	let flavordata = null;
 	// Check if activation was successfull
-	const result = message.getFlag("metanthropes-system", "lastrolled");
+	const result = actor.getFlag("metanthropes-system", "lastrolled");
+	console.log("MetapowerActivate - result:", result);
 	if (result.resultLevel <= 0) {
-		contentdata = `<div><h3>and Fails!</h3></div>`;
+		flavordata = `<h3>Fails to Activate ${mpname}!</h3>`;
 	} else {
-		contentdata = `<div><h3>With the following Effect:</h3><br>${effect}</div>`;
+		flavordata = `<h3>Activates ${mpname}</h3>`;
+		contentdata = `<div><h3>Effect:</h3><br>${effect}</div>`;
 		if (buffs) {
-			contentdata += `<div><h3>With the following 🛡️ Buffs:</h3><br>${buffs}</div>`;
+			contentdata += `<div><h3>🛡️ Buffs:</h3><br>${buffs}</div>`;
 		}
 		if (conditions) {
-			contentdata += `<div><h3>With the following 💀 Conditions:</h3><br>${conditions}</div>`;
+			contentdata += `<div><h3>💀 Conditions:</h3><br>${conditions}</div>`;
 		}
 		if (targetsdice) {
 			contentdata += `<div class="hide-button layout-hide">
@@ -62,7 +65,7 @@ export async function MetapowerActivate(event) {
 	//send the activation message to chat
 	let chatData = {
 		user: game.user.id,
-		flavor: `Activates ${mpname}</h3>`,
+		flavor: flavordata,
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		content: contentdata,
 		flags: { "metanthropes-system": { actorId: actor.id } },

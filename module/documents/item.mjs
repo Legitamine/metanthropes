@@ -15,6 +15,12 @@ export class MetanthropesItem extends Item {
 		// As with the actor class, items are documents that can have their data
 		// preparation methods overridden (such as prepareBaseData()).
 		super.prepareData();
+		// Check if the item type is "Metapower" and the image is not set or is the default image
+		if (this.data.type === "Metapower" && (!this.data.img || this.data.img === "icons/svg/item-bag.svg")) {
+			const mpname = this.system.Activation.MetapowerName.value; // Replace this with the correct path to mpname property in your system
+			const imgPath = `systems/metanthropes-system/artwork/metapowers/${mpname}.png`; // Replace this with the correct path to your images folder
+			this.img = imgPath;
+		  }
 	}
 
 	/**
