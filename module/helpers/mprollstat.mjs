@@ -19,7 +19,7 @@ export async function MetapowerRollStat(
 	conditions
 ) {
 	if (statValue <= 0) {
-		ui.notifications.error("Your Current ${stat} is 0 and thus you cannot activate this Metapower!");
+		ui.notifications.error("${actor.name}'s current ${stat} is 0 and thus they cannot activate this Metapower!");
 		return;
 	}
 	const roll = await new Roll("1d100").evaluate({ async: true });
@@ -33,7 +33,7 @@ export async function MetapowerRollStat(
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	// check if actor has enough destiny to deduct the cost of the meta power activation
 	if (currentDestiny < destcost) {
-		ui.notifications.error("You don't have enough Destiny to Activate this Metapower!");
+		ui.notifications.error("${actor.name} doesn't have enough Destiny to Activate this Metapower!");
 		return;
 	} else {
 		currentDestiny -= destcost;
@@ -72,12 +72,12 @@ export async function MetapowerRollStat(
 		levelsOfFailure = 10;
 	}
 	//* Beggining of the message to be printed to chat
-	let message = `${actor.name}`;
+	let message = ``;
 	// if we have a bonus or penalty, add it to the message
 	if (destcost > 0) {
-		message += ` spends ${destcost} * 🤞 to activate Metapower: ${mpname} with ${stat} score of ${statValue}%`;
+		message += `Spends ${destcost} * 🤞 to activate Metapower: ${mpname} with ${stat} score of ${statValue}%`;
 	} else {
-		message += ` activates Metapower: ${mpname} with ${stat} score of ${statValue}%`;
+		message += `Activates Metapower: ${mpname} with ${stat} score of ${statValue}%`;
 	}
 	if (bonus > 0) {
 		message += `, a Bonus of +${bonus}%`;
@@ -103,7 +103,7 @@ export async function MetapowerRollStat(
 	//add buttons to message for re-roll and activation
 	//! the idea is to collect all the needed for the activation and pass it along in this button.
 	//! the data needs to be collected from the rolling of the metapower, so check out the actor-metapowers.hbs in sheets for that
-	message += `<div class="metanthropes layout-hide hide-button">
+	message += `<div class="metanthropes chat-message layout-hide hide-button">
 	<button class="metapower-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}"
 	data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-mpname="${mpname}" data-destcost="${destcost}"
 	data-effect="${effect}" data-targets="${targets}" data-targetsdice="${targetsdice}" data-duration="${duration}" 

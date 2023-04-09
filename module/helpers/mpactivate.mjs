@@ -18,14 +18,12 @@ export async function MetapowerActivate(event) {
 	// Create a chat message with the provided content
 	//todo: check if activation was successfull
 	//todo: utilize existing levels of success
-	//todo: hide unecessary buttons and content
-	//todo: create listener for buttons and functions to re-roll them - perhaps keep the same functions for the possessions later
-	let contentdata = `<div>${effect}</div>`;
+	let contentdata = `<div>With the following Effect:<br>${effect}</div>`;
 	if (buffs) {
-		contentdata += `<div>${buffs}</div>`;
+		contentdata += `<div>With the following 🛡️ Buffs:<br>${buffs}</div>`;
 	}
 	if (conditions) {
-		contentdata += `<div>${conditions}</div>`;
+		contentdata += `<div>With the following 💀 Conditions:<br>${conditions}</div>`;
 	}
 	if (targetsdice) {
 		contentdata += `<div class="metanthropes hide-button layout-hide">
@@ -58,7 +56,7 @@ export async function MetapowerActivate(event) {
 	//send the activation message to chat
 	let chatData = {
 		user: game.user.id,
-		flavor: `<h3>${actor.name} Activates ${mpname}</h3>`,
+		flavor: `Activates ${mpname}</h3>`,
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		content: contentdata,
 		flags: { "metanthropes-system": { actorId: actor.id } },

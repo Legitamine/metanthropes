@@ -192,6 +192,7 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		console.log("=============================================================================================");
 		const actorId = message.getFlag("metanthropes-system", "actorId");
 		const actor = game.actors.get(actorId);
+		console.log("inside RPG button hook, actor is", actor);
 		const currentDestiny = actor.system.Vital.Destiny.value;
 		console.log("=============================================================================================");
 		console.log("Metanthropes RPG Hook for Button - should give actorId", actorId);
