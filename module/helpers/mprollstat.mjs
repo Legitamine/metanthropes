@@ -18,14 +18,14 @@ export async function MetapowerRollStat(
 	buffs,
 	conditions
 ) {
+	let result = null;
+	let resultLevel = null;
 	if (statValue <= 0) {
 		ui.notifications.error(actor.name+" can't Roll "+stat+" with a Current value of 0!");
 		return;
 	}
 	const roll = await new Roll("1d100").evaluate({ async: true });
 	const total = roll.total;
-	let result = null;
-	let resultLevel = null;
 	let levelsOfSuccess = Math.floor((statValue + bonus + penalty + modifier - total) / 10);
 	let levelsOfFailure = Math.floor((total - statValue - bonus - modifier - penalty) / 10);
 	const criticalSuccess = total === 1;

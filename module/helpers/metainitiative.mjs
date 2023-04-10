@@ -1,5 +1,5 @@
 // MetaInitiative function handles Initiative rolls
-export async function MetaInitiative(combatant, modifier = 0, bonus = 0, penalty = 0) {
+export async function MetaInitiative(combatant) {
 	console.log("Metanthropes RPG MetaInitiative for combatant:", combatant);
 	const actor = combatant.actor;
 	console.log("Metanthropes RPG MetaInitiative called for actor: ", actor.name);
@@ -15,32 +15,28 @@ export async function MetaInitiative(combatant, modifier = 0, bonus = 0, penalty
 	// Check if the actor has the metapower "Danger Sense" equipped
 	const metapowers = actor.items.filter((item) => item.type === "Metapower");
 	const hasDangerSense = metapowers.some((metapower) => metapower.name === "Danger Sense");
-
 	// If the actor has "Danger Sense", use Awareness for Initiative
 	if (hasDangerSense) {
 		initiativeStat = awarenessStat;
 		statValue = awarenessValue;
 	}
-
 	//	// Call MetaRollStat function with the appropriate stat (Reflexes or Awareness)
 	console.log("Metanthropes RPG MetaInitiative passed the Danger Sense for", actor, initiativeStat, statValue);
-	//	await MetaInitiativeRollStat(actor, initiativeStat, statValue);
-	//	console.log("Metanthropes RPG MetaInitiative returned from MetaRollStat for: ", actor, initiativeStat, statValue);
+	let result = null;
+	let resultLevel = null;
 	if (statValue <= 0) {
 		ui.notifications.error(actor.name + " can't Roll for Initiative with " + initiativeStat + " Current value of 0!");
 		return;
 	}
 	const roll = await new Roll("1d100").evaluate({ async: true });
 	const total = roll.total;
-	let result = null;
-	let resultLevel = null;
-	let levelsOfSuccess = Math.floor((statValue + bonus + penalty + modifier - total) / 10);
-	let levelsOfFailure = Math.floor((total - statValue - bonus - modifier - penalty) / 10);
+	let levelsOfSuccess = Math.floor((statValue - total) / 10);
+	let levelsOfFailure = Math.floor((total - statValue) / 10);
 	const criticalSuccess = total === 1;
 	const criticalFailure = total === 100;
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	// this kicks-off the calculation, assuming that is is a failure
-	if (total - modifier - penalty > statValue + bonus) {
+	if (total > statValue) {
 		// in which case we don't care about what levels of success we have, so we set to 0 to avoid confusion later
 		result = "Failure 🟥";
 		levelsOfSuccess = 0;
@@ -73,17 +69,6 @@ export async function MetaInitiative(combatant, modifier = 0, bonus = 0, penalty
 	}
 	//* Beggining of the message to be printed to chat
 	let message = `Rolls for Initiative with ${initiativeStat} score of ${statValue}%`;
-	// if we have a bonus or penalty, add it to the message
-	if (bonus > 0) {
-		message += `, a Bonus of +${bonus}%`;
-	}
-	if (penalty < 0) {
-		message += `, a Penalty of ${penalty}%`;
-	}
-	// if we have multi-action reduction, add it to the message
-	if (modifier < 0) {
-		message += `, a Multi-Action reduction of ${modifier}%`;
-	}
 	message += ` and the result is ${total}. Therefore it is a ${result}`;
 	// if we have levels of success or failure, add them to the message
 	if (levelsOfSuccess > 0) {
@@ -96,7 +81,7 @@ export async function MetaInitiative(combatant, modifier = 0, bonus = 0, penalty
 		message += `. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
 	}
 	//add re-roll button to message
-	message += `<div><button class="hide-button layout-hide metainitiative-re-roll" data-actor-id="${actor.id}" data-stat="${initiativeStat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}">🤞</button></div>`;
+	message += `<div><button class="hide-button layout-hide metainitiative-re-roll" data-actor-id="${actor.id}">🤞</button></div>`;
 	//console log for debugging
 	console.log(
 		"Metainitiative Results:",
@@ -106,12 +91,6 @@ export async function MetaInitiative(combatant, modifier = 0, bonus = 0, penalty
 		statValue,
 		"Roll:",
 		total,
-		"Multi-Action mod:",
-		modifier,
-		"Bonus:",
-		bonus,
-		"Penalty:",
-		penalty,
 		"levelsOfSuccess:",
 		levelsOfSuccess,
 		"levelsOfFailure:",
@@ -127,6 +106,8 @@ export async function MetaInitiative(combatant, modifier = 0, bonus = 0, penalty
 	await actor.setFlag("metanthropes-system", "initiative", {
 		initiativeValue: resultLevel,
 	});
+	// Update the combatant with the new initiative value
+	await combatant.update({ initiative: resultLevel });
 	//print message to chat and enable Dice So Nice to roll the dice and display the message
 	roll.toMessage({
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
@@ -149,11 +130,6 @@ export async function MetaInitiativeReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
 	const actorId = button.dataset.actorId;
-	const stat = button.dataset.initiativeStat;
-	const statValue = parseInt(button.dataset.statValue);
-	const modifier = parseInt(button.dataset.modifier);
-	const bonus = parseInt(button.dataset.bonus);
-	const penalty = parseInt(button.dataset.penalty);
 	const actor = game.actors.get(actorId);
 	const combatant = game.combat.getCombatantByActor(actorId);
 	console.log("Metanthropes RPG do we get the correct combatant data?", combatant);
@@ -169,7 +145,7 @@ export async function MetaInitiativeReRoll(event) {
 			if (message) {
 				message.render();
 			}
-			MetaInitiative(combatant, stat, statValue, modifier, bonus, penalty);
+			MetaInitiative(combatant);
 		}
 	}
 }
