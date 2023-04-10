@@ -1,7 +1,7 @@
 // MetaRollStat function is used to roll a stat and get the levels of success/failure and print the message to chat
 export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus = 0, penalty = 0) {
 	if (statValue <= 0) {
-		ui.notifications.error("Your Current ${stat} is 0 and thus you cannot roll this Stat!");
+		ui.notifications.error(actor.name+" can't Roll "+stat+" with a Current value of 0!");
 		return;
 	}
 	const roll = await new Roll("1d100").evaluate({ async: true });

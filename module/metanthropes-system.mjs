@@ -27,6 +27,7 @@ import { ReRollTargets } from "./helpers/extrasroll.mjs";
 import { ReRollDuration } from "./helpers/extrasroll.mjs";
 import { ReRollDamage } from "./helpers/extrasroll.mjs";
 import { ReRollHealing } from "./helpers/extrasroll.mjs";
+import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
 // Handlebars helper for drop-down menus.
 Handlebars.registerHelper("selected", function (option, value) {
 	return option === value ? "selected" : "";
@@ -211,6 +212,7 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		html.find(".re-roll-duration").on("click", ReRollDuration);
 		html.find(".re-roll-damage").on("click", ReRollDamage);
 		html.find(".re-roll-healing").on("click", ReRollHealing);
+		html.find(".metainitiative-re-roll").on("click", MetaInitiativeReRoll);
 	}
 });
 //listen for stat changes, this should enable metapower sheet to update correctly when a stat changes

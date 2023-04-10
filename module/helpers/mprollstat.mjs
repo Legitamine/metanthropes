@@ -19,7 +19,7 @@ export async function MetapowerRollStat(
 	conditions
 ) {
 	if (statValue <= 0) {
-		ui.notifications.error("${actor.name}'s current ${stat} is 0 and thus they cannot activate this Metapower!");
+		ui.notifications.error(actor.name+" can't Roll "+stat+" with a Current value of 0!");
 		return;
 	}
 	const roll = await new Roll("1d100").evaluate({ async: true });
