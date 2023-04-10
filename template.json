@@ -921,8 +921,76 @@
 					"Notes": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Possession Notes",
-						"value": "Notes on how to use this Possession"
+						"label": "Effects Notes",
+						"value": "Notes on this Possession's Effects"
+					}
+				},
+				"Results": {
+					"level00": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Result 00",
+						"value": null
+					},
+					"level01": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Result 01",
+						"value": null
+					},
+					"level02": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Result 02",
+						"value": null
+					},
+					"level03": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Result 03",
+						"value": null
+					},
+					"level04": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Result 04",
+						"value": null
+					},
+					"level05": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Result 05",
+						"value": null
+					},
+					"level06": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Result 06",
+						"value": null
+					},
+					"level07": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Result 07",
+						"value": null
+					},
+					"level08": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Result 08",
+						"value": null
+					},
+					"level09": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Result 09",
+						"value": null
+					},
+					"level10": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Result 10",
+						"value": null
 					}
 				}
 			},
@@ -1087,6 +1155,12 @@
 				"dtype": "String",
 				"label": "Effect Description",
 				"value": "Possession Effect"
+			},
+			"ResultDescription": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Results Description",
+				"value": "Possession Results"
 			}
 		},
 		"Metapower": {

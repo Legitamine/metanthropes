@@ -29,6 +29,7 @@
 		<a class="item" data-tab="material">🧱 Properties</a>
 		<a class="item" data-tab="usage">Usage</a>
 		<a class="item" data-tab="effects">Effects</a>
+		<a class="item" data-tab="results">Results</a>
 	</nav>
 	{{!-- Sheet Body --}}
 	<section class="sheet-body">
@@ -72,6 +73,21 @@
 				<div class="resource">
 					<label class="resource-label">{{this.label}}:</label>
 					<input type="{{this.type}}" name="system.Effects.{{@key}}.value" value="{{this.value}}"
+						data-dtype="{{this.dtype}}" />
+				</div>
+			{{/each}}
+		</div>
+		{{!-- Results Tab --}}
+		<div class="tab results" data-group="primary" data-tab="results">
+			<div>
+				<div class="layout-editor">{{system.ResultDescription.label}}:<br>
+					{{editor system.ResultDescription.value target="system.ResultDescription.value" rollData=rollData button=true owner=owner editable=editable}}
+				</div>
+			</div>
+			{{#each system.Results}}
+				<div class="resource">
+					<label class="resource-label">{{this.label}}:</label>
+					<input type="{{this.type}}" name="system.Results.{{@key}}.value" value="{{this.value}}"
 						data-dtype="{{this.dtype}}" />
 				</div>
 			{{/each}}

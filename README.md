@@ -36,6 +36,8 @@ These are the latest changes for the Official Metanthropes RPG System for Foundr
 - Possessions: Possessions Sheet (pending)
 - Possessions: Possessions Chat Roll (pending)
 - XP System: Metapowers (pending)
+- Combat: Meta-Initiative Re-Rolls for Destiny, Roll-all-NPCs with a single click (done)
+- Combat: Meta-Initiative with 0 Stats and Danger Sense rolls with Awareness (done)
 - Combat: Cycles and Rounds (pending)
 #### 0.4.00 - 0.4.20
 - Metapowers: Activation & Effects on Chat & Re-Roll Extras

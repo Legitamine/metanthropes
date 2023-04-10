@@ -210,10 +210,16 @@ export class MetanthropesActorSheet extends ActorSheet {
 			} else if (dataset.rollType == "Possession") {
 				const actor = this.actor;
 				const stat = dataset.stat;
+				const posname = dataset.posname;
+				const attacktype = dataset.attacktype;
+				const effect = dataset.effect;
+				const targets = dataset.targets;
+				const damage = dataset.damage;
+				const conditions = dataset.conditions;
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 				console.log("Metanthropes RPG Rolling a Possession for:", actor, "'s", stat);
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-				PossessionRoll(actor, stat);
+				PossessionRoll(actor, stat, posname, attacktype, effect, targets, damage, conditions);
 			} else if (dataset.rollType == "Combo") {
 				const actor = this.actor;
 				const stat = dataset.stat;

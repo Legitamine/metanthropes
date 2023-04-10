@@ -1,7 +1,7 @@
 // import the PossessionRollStat function
 import { PossessionRollStat } from "./posrollstat.mjs";
 // MetaRoll function handles the dialog box for selecting multi-actions and bonuses/penalties when rolling a stat
-export async function PossessionRoll(actor, stat) {
+export async function PossessionRoll(actor, stat, posname, attacktype, effect, targets, damage, conditions) {
 	const statValue = actor.system.RollStats[stat];
 	if (statValue <= 0) {
 		ui.notifications.error(actor.name+" can't use Possessions with "+stat+" Current value of 0!");
@@ -25,7 +25,7 @@ export async function PossessionRoll(actor, stat) {
 	</div>
 	`;
 	let dialog = new Dialog({
-		title: `PosRoll: ${actor.name}'s ${stat}`,
+		title: `${actor.name}'s ${posname}`,
 		content: dialogContent,
 		buttons: {
 			roll: {
@@ -43,7 +43,7 @@ export async function PossessionRoll(actor, stat) {
 					let bonus = parseInt(html.find("#bonus").val());
 					let penalty = -parseInt(html.find("#penalty").val());
 					//send the data we collected to the MetaRollStat function
-					PossessionRollStat(actor, stat, statValue, modifier, bonus, penalty);
+					PossessionRollStat(actor, stat, statValue, modifier, bonus, penalty, attacktype, effect, targets, damage, conditions);
 				},
 			},
 		},
