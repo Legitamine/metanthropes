@@ -24,7 +24,7 @@ export async function MetapowerRoll(actor, stat, mpname, destcost, effect, targe
 	</div>
 	</div>
 	`;
-	let mprolllabel = "Activate Metapower";
+	let mprolllabel = "Activate Ⓜ️ Metapower";
 	if (destcost > 0) {
 		mprolllabel = "Activate Metapower with "+destcost+" 🤞";
 	}

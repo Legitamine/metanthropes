@@ -29,7 +29,7 @@ export async function PossessionRoll(actor, stat, posname, attacktype, effect, t
 		content: dialogContent,
 		buttons: {
 			roll: {
-				label: "Use Possession",
+				label: "Use 🛠️ Possession",
 				callback: async (html) => {
 					//collect multi-action value
 					let multiAction = html.find("#multiActionCount").val();
@@ -43,7 +43,7 @@ export async function PossessionRoll(actor, stat, posname, attacktype, effect, t
 					let bonus = parseInt(html.find("#bonus").val());
 					let penalty = -parseInt(html.find("#penalty").val());
 					//send the data we collected to the MetaRollStat function
-					PossessionRollStat(actor, stat, statValue, modifier, bonus, penalty, attacktype, effect, targets, damage, conditions);
+					PossessionRollStat(actor, stat, statValue, modifier, bonus, penalty, posname, attacktype, effect, targets, damage, conditions);
 				},
 			},
 		},

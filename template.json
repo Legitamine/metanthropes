@@ -929,68 +929,80 @@
 					"level00": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Result 00",
+						"label": "🟩",
 						"value": null
 					},
 					"level01": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Result 01",
+						"label": "1 * ✔️",
 						"value": null
 					},
 					"level02": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Result 02",
+						"label": "2 * ✔️",
 						"value": null
 					},
 					"level03": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Result 03",
+						"label": "3 * ✔️",
 						"value": null
 					},
 					"level04": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Result 04",
+						"label": "4 * ✔️",
 						"value": null
 					},
 					"level05": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Result 05",
+						"label": "5 * ✔️",
 						"value": null
 					},
 					"level06": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Result 06",
+						"label": "6 * ✔️",
 						"value": null
 					},
 					"level07": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Result 07",
+						"label": "7 * ✔️",
 						"value": null
 					},
 					"level08": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Result 08",
+						"label": "8 * ✔️",
 						"value": null
 					},
 					"level09": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Result 09",
+						"label": "9 * ✔️",
 						"value": null
 					},
 					"level10": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Result 10",
+						"label": "10 * ✔️",
 						"value": null
+					},
+					"level11": {
+						"type": "text",
+						"dtype": "String",
+						"label": "11+ * ✔️",
+						"value": null
+					},
+					"Notes": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Results Notes",
+						"value": "Notes on how to use these Results"
 					}
 				}
 			},
