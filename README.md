@@ -31,14 +31,15 @@ To get the best experience while playing Metanthropes RPG, we recommend to insta
 ### Latest Changes
 
 These are the latest changes for the Official Metanthropes RPG System for Foundry VTT
-
-#### 0.4.00 - current build (status)
+#### 0.5.00 - current build (status)
 - GitHub Milestone Integration with the Metanthropes Roadmap (pending)
 - Possessions: Possessions Sheet (pending)
 - Possessions: Possessions Chat Roll (pending)
 - XP System: Metapowers (pending)
-- Metapowers: Activation & Effects on Chat & ReRolls (done)
 - Combat: Cycles and Rounds (pending)
+#### 0.4.00 - 0.4.20
+- Metapowers: Activation & Effects on Chat & Re-Roll Extras
+- Combat: Meta-Initiative
 #### 0.3.00 - 0.3.16
 - Custom Bars for Destiny & Life
 - Metapowers: Metapower Sheet (Known Issue)

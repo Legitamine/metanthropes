@@ -15,7 +15,7 @@
 	<section class="sheet-body">
 		{{!-- Description Tab --}}
 		<div class="tab description" data-group="primary" data-tab="description">
-			<div class="layout-editor">{{system.Description.label}}<br>
+			<div class="layout-editor">{{system.Description.label}}:<br>
 			{{editor system.Description.value target="system.Description.value" rollData=rollData button=true owner=owner editable=editable}}
 			</div>
 		</div>
@@ -33,7 +33,7 @@
 		{{!-- Effects Tab --}}
 		<div class="tab effects" data-group="primary" data-tab="effects">
 			<div>
-				<div class="layout-editor">{{system.EffectDescription.label}}<br>
+				<div class="layout-editor">{{system.EffectDescription.label}}:<br>
 				{{editor system.EffectDescription.value target="system.EffectDescription.value" rollData=rollData button=true owner=owner editable=editable}}
 				</div>
 			</div>

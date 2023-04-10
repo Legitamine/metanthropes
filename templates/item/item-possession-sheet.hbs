@@ -28,14 +28,14 @@
 		<a class="item" data-tab="description">Description</a>
 		<a class="item" data-tab="material">🧱 Properties</a>
 		<a class="item" data-tab="usage">Usage</a>
-		<a class="item" data-tab="effect">Effect</a>
+		<a class="item" data-tab="effects">Effects</a>
 	</nav>
 	{{!-- Sheet Body --}}
 	<section class="sheet-body">
 		{{!-- Description Tab --}}
-		<div class="tab" data-group="primary" data-tab="description">
+		<div class="tab description" data-group="primary" data-tab="description">
 			{{!-- To render inline rolls in a TinyMCE editor, you need to pass the parent actor's (if any) roll data to the rollData prop. --}}
-			<div class="layout-editor">{{system.Description.label}}<br>
+			<div class="layout-editor">{{system.Description.label}}:<br>
 				{{editor system.Description.value target="system.Description.value" rollData=rollData button=true owner=owner editable=editable}}
 			</div>
 		</div>
@@ -64,7 +64,7 @@
 		{{!-- Effects Tab --}}
 		<div class="tab effects" data-group="primary" data-tab="effects">
 			<div>
-				<div class="layout-editor">{{system.EffectDescription.label}}<br>
+				<div class="layout-editor">{{system.EffectDescription.label}}:<br>
 					{{editor system.EffectDescription.value target="system.EffectDescription.value" rollData=rollData button=true owner=owner editable=editable}}
 				</div>
 			</div>
