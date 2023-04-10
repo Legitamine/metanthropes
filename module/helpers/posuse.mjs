@@ -30,7 +30,7 @@ export async function PossessionUse(event) {
 			if (modifier < 0) {
 				damagedata = powerroll + modifier;
 			} else {
-			damagedata = powerroll;
+				damagedata = powerroll;
 			}
 		} else if (attacktype === "Projectile") {
 			flavordata = `<h3>Throws their ${itemname} with the following:</h3>`;
@@ -46,10 +46,17 @@ export async function PossessionUse(event) {
 		}
 		contentdata += `<div><h3>🎯 Targets:</h3><br>${targets}</div>`;
 		if (damage) {
-			contentdata += `<div class="hide-button layout-hide"><h3>💥 Damage:</h3><br>
+			if (damagedata > 0) {
+				contentdata += `<div class="hide-button layout-hide"><h3>💥 Damage:</h3><br>
 			<button class="re-roll-damage" data-actor-id="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" >
 			💥 [[${damagedata}+${damage}]] 🤞</button>
 			</div>`;
+			} else {
+				contentdata += `<div class="hide-button layout-hide"><h3>💥 Damage:</h3><br>
+			<button class="re-roll-damage" data-actor-id="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" >
+			💥 [[${damage}]] 🤞</button>
+			</div>`;
+			}
 		}
 		if (conditions) {
 			contentdata += `<div><h3>💀 Conditions:</h3><br>${conditions}</div>`;

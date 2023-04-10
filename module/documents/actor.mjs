@@ -62,7 +62,12 @@ export class MetanthropesActor extends Actor {
 	// Override base values for each type of actor here.
 	async prepareBaseData() {
 		if (this.type == "Human") {
-			await actor.update({ "system.Vital.Life.Initial": Number(50) });
+			console.log("=============================================================================================");
+			console.log("Metanthropes RPG Preparing Base Data for", this.type, "-", this.name);
+			console.log("Metanthropes RPG current Initial Life:", this.system.Vital.Life.Initial);
+			this.system.Vital.Life.Initial = 50;
+			console.log("Metanthropes RPG New Initial Life:", this.system.Vital.Life.Initial);
+			console.log("=============================================================================================");
 		}
 		// I should enable this section if I need to add modifications for non-Characteristics actors
 		// Currently we only care about actors with characteristics so we don't use this section
