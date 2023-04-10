@@ -55,7 +55,9 @@ Hooks.once("init", async function () {
 		decimals: 2,
 	};
 	// setup custom combat
-	CONFIG.Combat.entityClass = MetanthropesCombat;
+	// CONFIG.Combat.entityClass = MetanthropesCombat;
+	// is entityClass above working? perhaps this will work instead:
+	CONFIG.Combat.documentClass = MetanthropesCombat;
 	//setup custom combatant
 	CONFIG.Actor.entityClass = MetaCombatant;
 	// setup custom combat tracker

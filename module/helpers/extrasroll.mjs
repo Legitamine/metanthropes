@@ -37,7 +37,7 @@ export async function RollTargets(actor, mpname, targetsdice, targets) {
 	//send the activation message to chat
 	let chatData = {
 		user: game.user.id,
-		flavor: `<h3>Rolls Targets for ${mpname}</h3>`,
+		flavor: `<h3>Re-Rolls Targets for ${mpname}</h3>`,
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		content: contentdata,
 		flags: { "metanthropes-system": { actorId: actor.id } },
@@ -84,7 +84,7 @@ export async function RollDuration(actor, mpname, durationdice, duration) {
 	//send the activation message to chat
 	let chatData = {
 		user: game.user.id,
-		flavor: `<h3>Rolls Duration for ${mpname}</h3>`,
+		flavor: `<h3>Re-Rolls Duration for ${mpname}</h3>`,
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		content: contentdata,
 		flags: { "metanthropes-system": { actorId: actor.id } },
@@ -130,7 +130,7 @@ export async function RollDamage(actor, mpname, damage) {
 	//send the activation message to chat
 	let chatData = {
 		user: game.user.id,
-		flavor: `<h3>Rolls Damage for ${mpname}</h3>`,
+		flavor: `<h3>Re-Rolls Damage for ${mpname}</h3>`,
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		content: contentdata,
 		flags: { "metanthropes-system": { actorId: actor.id } },
@@ -176,7 +176,7 @@ export async function RollHealing(actor, mpname, healing) {
 	//send the activation message to chat
 	let chatData = {
 		user: game.user.id,
-		flavor: `<h3>Rolls Healing for ${mpname}</h3>`,
+		flavor: `<h3>Re-Rolls Healing for ${mpname}</h3>`,
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		content: contentdata,
 		flags: { "metanthropes-system": { actorId: actor.id } },
