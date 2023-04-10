@@ -9,13 +9,16 @@ export async function MetaInitiative(combatant) {
 	const reflexesStat = "Reflexes";
 	const awarenessStat = "Awareness";
 	const reflexesValue = actor.system.RollStats[reflexesStat];
+	console.log("MetaInitiative - reflexesValue:", reflexesValue, "for actor:", actor.name);
 	const awarenessValue = actor.system.RollStats[awarenessStat];
+	console.log("MetaInitiative - awarenessValue:", awarenessValue, "for actor:", actor.name);
 	let initiativeStat = reflexesStat;
 	let statValue = reflexesValue;
 	let initiativeValue = null;
 
-	// Check if the actor has the metapower "Danger Sense"
-	const hasDangerSense = actor.itemTypes.metapower.some((metapower) => metapower.name === "Danger Sense");
+	// Check if the actor has the metapower "Danger Sense" equipped
+	const metapowers = actor.items.filter((item) => item.type === "Metapower");
+	const hasDangerSense = metapowers.some((metapower) => metapower.name === "Danger Sense");
 
 	// If the actor has "Danger Sense", use Awareness for Initiative
 	if (hasDangerSense) {

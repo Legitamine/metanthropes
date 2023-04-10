@@ -33,7 +33,9 @@
 		{{!-- Effects Tab --}}
 		<div class="tab effects" data-group="primary" data-tab="effects">
 			<div>
+				<div class="layout-editor">
 				{{editor system.EffectDescription.value target="system.EffectDescription.value" rollData=rollData button=true owner=owner editable=editable}}
+				</div>
 			</div>
 			{{#each system.Effects}}
 				<div class="resource">

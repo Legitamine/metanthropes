@@ -480,6 +480,7 @@ option {
   align-self: auto;
   align-items: stretch;
   align-content: space-between;
+  height: 200px;
   padding: 6px;
   margin: 6px;
   overflow-y: auto;

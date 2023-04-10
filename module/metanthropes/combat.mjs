@@ -1,4 +1,5 @@
 import { MetaInitiative } from "../helpers/metainitiative.mjs";
+import { MetaRollStat } from "../helpers/metarollstat.mjs";
 
 export class MetanthropesCombat extends Combat {
 	//	_sortCombatants(a, b) {
@@ -76,8 +77,8 @@ export class MetanthropesCombat extends Combat {
 			console.log("Metanthropes RPG using metainitiative:", roll, "combatant:", combatant);
 			console.log("=======++++++++++++++============");
 			//await roll.evaluate({ async: true });
-			const initiativeData = actor.getFlag("metanthropes-system", "initiative");
-			//const initiativeData = this.actor.getFlag("metanthropes-system", "initiative");
+			//const initiativeData = actor.getFlag("metanthropes-system", "initiative");
+			const initiativeData = combatant.actor.getFlag("metanthropes-system", "initiative");
             const initiativeResult= initiativeData.initiativeValue;
             //return initiativeValue.toString();
 			updates.push({ _id: id, initiative: initiativeResult });
@@ -96,19 +97,21 @@ export class MetanthropesCombat extends Combat {
 				},
 				messageOptions
 			);
-			const chatData = await roll.toMessage(messageData, { create: false });
-
-			// If the combatant is hidden, use a private roll unless an alternative rollMode was explicitly requested
-			chatData.rollMode =
-				"rollMode" in messageOptions
-					? messageOptions.rollMode
-					: combatant.hidden
-					? CONST.DICE_ROLL_MODES.PRIVATE
-					: chatRollMode;
-
-			// Play 1 sound for the whole rolled set
-			if (i > 0) chatData.sound = null;
-			messages.push(chatData);
+			//! warning: I am not taking into account hidding combatants
+			//todo: need to figure out a way to pass this into the metainitiative
+			//	const chatData = await MetaRollStat.toMessage(messageData, { create: false });
+//	
+			//	// If the combatant is hidden, use a private roll unless an alternative rollMode was explicitly requested
+			//	chatData.rollMode =
+			//		"rollMode" in messageOptions
+			//			? messageOptions.rollMode
+			//			: combatant.hidden
+			//			? CONST.DICE_ROLL_MODES.PRIVATE
+			//			: chatRollMode;
+//	
+			//	// Play 1 sound for the whole rolled set
+			//	if (i > 0) chatData.sound = null;
+			//	messages.push(chatData);
 		}
 		if (!updates.length) return this;
 
