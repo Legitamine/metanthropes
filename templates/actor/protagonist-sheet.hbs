@@ -139,7 +139,8 @@
 			</div>
 			<div class="tab cs-combos" data-group="cs" data-tab="cs-combos">
 				COMBOS
-				are not implemented.
+				are not officially supported yet.
+				This is a placeholder for future capabilities.
 				{{> "systems/metanthropes-system/templates/helpers/actor-combos.hbs"}}
 			</div>
 			<div class="tab cs-perks" data-group="cs" data-tab="cs-perks">
@@ -159,12 +160,6 @@
 					NOTES
 					are partially implemented
 					{{> "systems/metanthropes-system/templates/helpers/actor-notes.hbs"}}
-					<div class="layout-container-grid1x3 style-container-border style-labels-text">
-						{{editor system.physical.Description.value target="system.physical.Description.value" button=true owner=owner editable=editable}}
-					</div>
-					<div class="layout-container-grid1x3 style-container-border style-labels-text">
-						{{editor system.entermeta.Description.value target="system.entermeta.Description.value" button=true owner=owner editable=editable}}
-					</div>
 				</div>
 			</div>
 		</section>

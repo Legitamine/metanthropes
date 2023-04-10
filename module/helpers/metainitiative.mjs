@@ -8,9 +8,9 @@ export async function MetaInitiative(combatant) {
 	console.log("Metanthropes RPG MetaInitiative called for actor: ", actor.name);
 	const reflexesStat = "Reflexes";
 	const awarenessStat = "Awareness";
-	const reflexesValue = actor.system.RollStats[reflexesStat];
+	const reflexesValue = actor.system.Characteristics.Body.Stats.Reflexes.Roll;
 	console.log("MetaInitiative - reflexesValue:", reflexesValue, "for actor:", actor.name);
-	const awarenessValue = actor.system.RollStats[awarenessStat];
+	const awarenessValue = actor.system.Characteristics.Soul.Stats.Awareness.Roll;
 	console.log("MetaInitiative - awarenessValue:", awarenessValue, "for actor:", actor.name);
 	let initiativeStat = reflexesStat;
 	let statValue = reflexesValue;

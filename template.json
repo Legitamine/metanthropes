@@ -866,6 +866,66 @@
 					}
 				}
 			},
+			"metapos": {
+				"Usage": {
+					"EnergyType": {
+						"type": "text",
+						"dtype": "String",
+						"label": "✨",
+						"value": "EnergyType"
+					},
+					"ActionSlot": {
+						"type": "text",
+						"dtype": "String",
+						"label": "⏱",
+						"value": "Main Action"
+					},
+					"Targets": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🎯",
+						"value": "Targets"
+					},
+					"Range": {
+						"type": "text",
+						"dtype": "String",
+						"label": "📏",
+						"value": "Range"
+					},
+					"AreaEffect": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🗺️",
+						"value": null
+					},
+					"Notes": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Possession Notes",
+						"value": "Notes on how to use this Possession"
+					}
+				},
+				"Effects": {
+					"Damage": {
+						"type": "text",
+						"dtype": "String",
+						"label": "💥",
+						"value": null
+					},
+					"Conditions": {
+						"type": "text",
+						"dtype": "String",
+						"label": "💀",
+						"value": null
+					},
+					"Notes": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Possession Notes",
+						"value": "Notes on how to use this Possession"
+					}
+				}
+			},
 			"metabase": {
 				"Activation": {
 					"Classification": {
@@ -997,24 +1057,36 @@
 			}
 		},
 		"Possession": {
-			"templates": ["material"],
+			"templates": ["material", "metapos"],
 			"Category": {
 				"type": "text",
 				"dtype": "String",
 				"label": "Category",
 				"value": "Weapon"
 			},
+			"AttackType": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Attack Type",
+				"value": "Melee"
+			},
 			"StatRolled": {
 				"type": "text",
 				"dtype": "String",
 				"label": "🎲",
-				"value": "Creativity"
+				"value": "Power"
 			},
 			"Description": {
 				"type": "text",
 				"dtype": "String",
 				"label": "Possession Description",
-				"value": "some possession description https://content.invisioncic.com/e290497/monthly_2021_02/1243943215_RULESC3.png.28493c483d72ebeb1eec27a7b7951e7b.png"
+				"value": "Possession Description"
+			},
+			"EffectDescription": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Effect Description",
+				"value": "Possession Effect"
 			}
 		},
 		"Metapower": {
@@ -1023,7 +1095,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Metapower Description",
-				"value": "some metapower description"
+				"value": "Metapower Description"
 			},
 			"EffectDescription": {
 				"type": "text",
