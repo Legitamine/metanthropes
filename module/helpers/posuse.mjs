@@ -10,11 +10,15 @@ export async function PossessionUse(event) {
 	const actor = game.actors.get(actorId);
 	const targets = button.dataset.targets;
 	const damage = button.dataset.damage;
+	const modifier = parseInt(button.dataset.modifier);
 	const conditions = button.dataset.conditions;
 	//todo: utilize existing levels of success and spent levels of success
 	// Create a chat message with the provided content
+	const powerroll = actor.system.Characteristics.Body.Stats.Power.Roll;
+	//todo: need to add modifier from multiaction and size here to input in the damage calc
 	let contentdata = null;
 	let flavordata = null;
+	let damagedata = null;
 	// Check if activation was successfull
 	const result = actor.getFlag("metanthropes-system", "posused");
 	console.log("PossessionUse - result:", result);
@@ -23,8 +27,14 @@ export async function PossessionUse(event) {
 	} else {
 		if (attacktype === "Melee") {
 			flavordata = `<h3>Attacks with their ${itemname} with the following:</h3>`;
+			if (modifier < 0) {
+				damagedata = powerroll + modifier;
+			} else {
+			damagedata = powerroll;
+			}
 		} else if (attacktype === "Projectile") {
 			flavordata = `<h3>Throws their ${itemname} with the following:</h3>`;
+			damagedata = Math.ceil(powerroll / 2);
 		} else if (attacktype === "Firearm") {
 			flavordata = `<h3>Fires their ${itemname} with the following:</h3>`;
 		} else {
@@ -38,7 +48,7 @@ export async function PossessionUse(event) {
 		if (damage) {
 			contentdata += `<div class="hide-button layout-hide"><h3>💥 Damage:</h3><br>
 			<button class="re-roll-damage" data-actor-id="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" >
-			💥 [[${damage}]] 🤞</button>
+			💥 [[${damagedata}+${damage}]] 🤞</button>
 			</div>`;
 		}
 		if (conditions) {

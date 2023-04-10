@@ -77,7 +77,7 @@ export async function PossessionRollStat(actor, stat, statValue, modifier = 0, b
 	🤞</button>
 	<button class="possession-use" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}"
 	data-itemname="${itemname}" data-attacktype="${attacktype}" data-targets="${targets}" data-effect="${effect}"
-	data-damage="${damage}" data-conditions="${conditions}" >
+	data-damage="${damage}" data-conditions="${conditions}" data-modifier="${modifier}" >
 	🛠️</button>
 	</div>
 	`;
