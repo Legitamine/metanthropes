@@ -27,19 +27,13 @@ export async function MetapowerActivate(event) {
 	} else {
 		flavordata = `<h3>Activates ${mpname} with the following:</h3>`;
 		contentdata = `<div><h3>Effect:</h3><br>${effect}</div>`;
-		if (buffs) {
-			contentdata += `<div><h3>🛡️ Buffs:</h3><br>${buffs}</div>`;
-		}
-		if (conditions) {
-			contentdata += `<div><h3>💀 Conditions:</h3><br>${conditions}</div>`;
-		}
 		if (targetsdice) {
 			contentdata += `<div class="hide-button layout-hide"><h3>🎯 Targets:</h3><br>
 		<button class="re-roll-targets" data-actor-id="${actor.id}" data-mpname="${mpname}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
 		🎯 [[${targetsdice}]] ${targets} 🤞</button>
 		</div>`;
 		} else {
-			contentdata += `<div><h3>🎯 Targets:</h3><br>🎯 ${targets}</div>`;
+			contentdata += `<div><h3>🎯 Targets:</h3><br>${targets}</div>`;
 		}
 		if (durationdice) {
 			contentdata += `<div class="hide-button layout-hide"><h3>⏳ Duration:</h3><br>
@@ -47,7 +41,7 @@ export async function MetapowerActivate(event) {
 		⏳ [[${durationdice}]] ${duration} 🤞</button>
 		</div>`;
 		} else {
-			contentdata += `<div><h3>⏳ Duration:</h3><br>⏳ ${duration}</div>`;
+			contentdata += `<div><h3>⏳ Duration:</h3><br>${duration}</div>`;
 		}
 		if (damage) {
 			contentdata += `<div class="hide-button layout-hide"><h3>💥 Damage:</h3><br>
@@ -60,6 +54,12 @@ export async function MetapowerActivate(event) {
 		<button class="re-roll-healing" data-actor-id="${actor.id}" data-mpname="${mpname}" data-healing="${healing}" >
 		💞 [[${healing}]] 🤞</button>
 		</div>`;
+		}
+		if (buffs) {
+			contentdata += `<div><h3>🛡️ Buffs:</h3><br>${buffs}</div>`;
+		}
+		if (conditions) {
+			contentdata += `<div><h3>💀 Conditions:</h3><br>${conditions}</div>`;
 		}
 	}
 	//send the activation message to chat

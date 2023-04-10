@@ -33,7 +33,10 @@ export async function RollTargets(actor, mpname, targetsdice, targets) {
 	let contentdata = `<div class="metanthropes hide-button layout-hide">
 	<button class="re-roll-targets" data-actor-id="${actor.id}" data-mpname="${mpname}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
 	🎯 [[${targetsdice}]] ${targets} 🤞</button>
-	</div>`;
+	</div>
+	<div>${actor.name} has ${currentDestiny} * 🤞 remaining.
+	</div>
+	`;
 	//send the activation message to chat
 	let chatData = {
 		user: game.user.id,
@@ -80,7 +83,10 @@ export async function RollDuration(actor, mpname, durationdice, duration) {
 	let contentdata = `<div class="metanthropes hide-button layout-hide">
 	<button class="re-roll-duration" data-actor-id="${actor.id}" data-mpname="${mpname}" data-durationdice="${durationdice}" data-duration="${duration}" >
 	⏳ [[${durationdice}]] ${duration} 🤞</button>
-	</div>`;
+	</div>
+	<div>${actor.name} has ${currentDestiny} * 🤞 remaining.
+	</div>
+	`;
 	//send the activation message to chat
 	let chatData = {
 		user: game.user.id,
@@ -126,7 +132,10 @@ export async function RollDamage(actor, mpname, damage) {
 	let contentdata = `<div class="metanthropes hide-button layout-hide">
 	<button class="re-roll-damage" data-actor-id="${actor.id}" data-mpname="${mpname}" data-damage="${damage}" >
 	💥 [[${damage}]] 🤞</button>
-	</div>`;
+	</div>
+	<div>${actor.name} has ${currentDestiny} * 🤞 remaining.
+	</div>
+	`;
 	//send the activation message to chat
 	let chatData = {
 		user: game.user.id,
@@ -172,7 +181,10 @@ export async function RollHealing(actor, mpname, healing) {
 	let contentdata = `<div class="metanthropes hide-button layout-hide">
 	<button class="re-roll-healing" data-actor-id="${actor.id}" data-mpname="${mpname}" data-healing="${healing}" >
 	💞 [[${healing}]] 🤞</button>
-	</div>`;
+	</div>
+	<div>${actor.name} has ${currentDestiny} * 🤞 remaining.
+	</div>
+	`;
 	//send the activation message to chat
 	let chatData = {
 		user: game.user.id,
