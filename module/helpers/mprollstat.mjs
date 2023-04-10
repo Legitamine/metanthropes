@@ -6,7 +6,7 @@ export async function MetapowerRollStat(
 	modifier = 0,
 	bonus = 0,
 	penalty = 0,
-	mpname,
+	itemname,
 	destcost,
 	effect,
 	targets,
@@ -33,7 +33,7 @@ export async function MetapowerRollStat(
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	// check if actor has enough destiny to deduct the cost of the meta power activation
 	if (currentDestiny < destcost) {
-		ui.notifications.error("${actor.name} doesn't have enough Destiny to Activate this Metapower!");
+		ui.notifications.error(actor.name+" doesn't have enough Destiny to Activate this Metapower!");
 		return;
 	} else {
 		currentDestiny -= destcost;
@@ -75,9 +75,9 @@ export async function MetapowerRollStat(
 	let message = ``;
 	// if we have a bonus or penalty, add it to the message
 	if (destcost > 0) {
-		message += `Spends ${destcost} * 🤞 to activate Metapower: ${mpname} with ${stat} score of ${statValue}%`;
+		message += `Spends ${destcost} * 🤞 to activate Metapower: ${itemname} with ${stat} score of ${statValue}%`;
 	} else {
-		message += `Activates Metapower: ${mpname} with ${stat} score of ${statValue}%`;
+		message += `Activates Metapower: ${itemname} with ${stat} score of ${statValue}%`;
 	}
 	if (bonus > 0) {
 		message += `, a Bonus of +${bonus}%`;
@@ -105,12 +105,12 @@ export async function MetapowerRollStat(
 	//! the data needs to be collected from the rolling of the metapower, so check out the actor-metapowers.hbs in sheets for that
 	message += `<div class="layout-hide hide-button">
 	<button class="metapower-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}"
-	data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-mpname="${mpname}" data-destcost="${destcost}"
+	data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-itemname="${itemname}" data-destcost="${destcost}"
 	data-effect="${effect}" data-targets="${targets}" data-targetsdice="${targetsdice}" data-duration="${duration}" 
 	data-durationdice="${durationdice}" data-damage="${damage}" data-healing="${healing}" data-buffs="${buffs}" data-conditions="${conditions}" >
 	🤞</button>
 	<button class="metapower-activate" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}"
-	data-targets="${targets}" data-targetsdice="${targetsdice}" data-mpname="${mpname}" data-destcost="${destcost}"
+	data-targets="${targets}" data-targetsdice="${targetsdice}" data-itemname="${itemname}" data-destcost="${destcost}"
 	data-effect="${effect}" data-duration="${duration}" data-durationdice="${durationdice}" data-damage="${damage}"
 	data-healing="${healing}" data-buffs="${buffs}" data-conditions="${conditions}" >
 	Ⓜ️</button>
@@ -140,7 +140,7 @@ export async function MetapowerRollStat(
 		"Destiny Cost:",
 		destcost,
 		"Metapower Name:",
-		mpname
+		itemname
 	);
 	console.log(
 		"Targets:",
@@ -187,7 +187,7 @@ export async function MetapowerReRoll(event) {
 	const modifier = parseInt(button.dataset.modifier);
 	const bonus = parseInt(button.dataset.bonus);
 	const penalty = parseInt(button.dataset.penalty);
-	const mpname = button.dataset.mpname;
+	const itemname = button.dataset.itemname;
 	const destcost = parseInt(button.dataset.destcost);
 	const effect = button.dataset.effect;
 	const actor = game.actors.get(actorId);
@@ -218,7 +218,7 @@ export async function MetapowerReRoll(event) {
 				modifier,
 				bonus,
 				penalty,
-				mpname,
+				itemname,
 				destcost,
 				effect,
 				targets,

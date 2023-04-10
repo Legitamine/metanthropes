@@ -4,7 +4,7 @@ export async function MetapowerActivate(event) {
 	const actorId = button.dataset.actorId;
 	const stat = button.dataset.stat;
 	const statValue = parseInt(button.dataset.statValue);
-	const mpname = button.dataset.mpname;
+	const itemname = button.dataset.itemname;
 	const effect = button.dataset.effect;
 	const actor = game.actors.get(actorId);
 	const targets = button.dataset.targets;
@@ -23,13 +23,13 @@ export async function MetapowerActivate(event) {
 	const result = actor.getFlag("metanthropes-system", "lastrolled");
 	console.log("MetapowerActivate - result:", result);
 	if (result.resultLevel <= 0) {
-		flavordata = `<h3>Fails to Activate ${mpname}!</h3>`;
+		flavordata = `<h3>Fails to Activate ${itemname}!</h3>`;
 	} else {
-		flavordata = `<h3>Activates ${mpname} with the following:</h3>`;
+		flavordata = `<h3>Activates ${itemname} with the following:</h3>`;
 		contentdata = `<div><h3>Effect:</h3><br>${effect}</div>`;
 		if (targetsdice) {
 			contentdata += `<div class="hide-button layout-hide"><h3>🎯 Targets:</h3><br>
-		<button class="re-roll-targets" data-actor-id="${actor.id}" data-mpname="${mpname}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
+		<button class="re-roll-targets" data-actor-id="${actor.id}" data-itemname="${itemname}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
 		🎯 [[${targetsdice}]] ${targets} 🤞</button>
 		</div>`;
 		} else {
@@ -37,7 +37,7 @@ export async function MetapowerActivate(event) {
 		}
 		if (durationdice) {
 			contentdata += `<div class="hide-button layout-hide"><h3>⏳ Duration:</h3><br>
-		<button class="re-roll-duration" data-actor-id="${actor.id}" data-mpname="${mpname}" data-durationdice="${durationdice}" data-duration="${duration}" >
+		<button class="re-roll-duration" data-actor-id="${actor.id}" data-itemname="${itemname}" data-durationdice="${durationdice}" data-duration="${duration}" >
 		⏳ [[${durationdice}]] ${duration} 🤞</button>
 		</div>`;
 		} else {
@@ -45,13 +45,13 @@ export async function MetapowerActivate(event) {
 		}
 		if (damage) {
 			contentdata += `<div class="hide-button layout-hide"><h3>💥 Damage:</h3><br>
-		<button class="re-roll-damage" data-actor-id="${actor.id}" data-mpname="${mpname}" data-damage="${damage}" >
+		<button class="re-roll-damage" data-actor-id="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" >
 		💥 [[${damage}]] 🤞</button>
 		</div>`;
 		}
 		if (healing) {
 			contentdata += `<div class="hide-button layout-hide"><h3>💞 Healing:</h3><br>
-		<button class="re-roll-healing" data-actor-id="${actor.id}" data-mpname="${mpname}" data-healing="${healing}" >
+		<button class="re-roll-healing" data-actor-id="${actor.id}" data-itemname="${itemname}" data-healing="${healing}" >
 		💞 [[${healing}]] 🤞</button>
 		</div>`;
 		}

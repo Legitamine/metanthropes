@@ -2,7 +2,7 @@
 	{{#each Metapowers as |Metapowers metapowerLevel|}}
 		<li class="item flexrow items-header">
 			<div class="item-name">⏫: {{metapowerLevel}}</div>
-			<div class="item-mpname">Metapower</div>
+			<div class="item-itemname">Metapower</div>
 			<div class="item-destinycost">🤞</div>
 			<div class="item-statroll">🎲</div>
 			<div class="item-actionslot">⏱</div>
@@ -18,7 +18,7 @@
 					</div>
 					<h4>
 						<div class="style-mp-rolls" data-roll-type="Metapower"
-							data-stat="{{item.system.Activation.StatRolled.value}}" data-mpname="{{item.name}}"
+							data-stat="{{item.system.Activation.StatRolled.value}}" data-itemname="{{item.name}}"
 							data-destcost="{{item.system.Activation.DestinyCost.value}}"
 							data-effect="{{item.system.EffectDescription.value}}"
 							data-targets="{{item.system.Activation.Targets.value}}"
@@ -31,7 +31,7 @@
 							data-conditions="{{item.system.Effects.Conditions.value}}">{{item.name}}</div>
 					</h4>
 				</div>
-				<div class="item-mpname item-prop">{{item.system.Activation.MetapowerName.value}}</div>
+				<div class="item-itemname item-prop">{{item.system.Activation.MetapowerName.value}}</div>
 				<div class="item-destinycost item-prop">{{item.system.Activation.DestinyCost.value}}</div>
 				<div class="item-statroll item-prop">
 					{{item.system.Activation.StatRolled.value}}:

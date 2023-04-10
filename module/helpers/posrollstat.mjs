@@ -1,9 +1,9 @@
 // MetaRollStat function is used to roll a stat and get the levels of success/failure and print the message to chat
-export async function PossessionRollStat(actor, stat, statValue, modifier = 0, bonus = 0, penalty = 0, posname, attacktype = null, effect = null, targets = null, damage=null, conditions=null) {
+export async function PossessionRollStat(actor, stat, statValue, modifier = 0, bonus = 0, penalty = 0, itemname, attacktype = null, effect = null, targets = null, damage=null, conditions=null) {
 	let result = null;
 	let resultLevel = null;
 	if (statValue <= 0) {
-		ui.notifications.error(actor.name+" can't use" +posname+"with "+stat+" Current value of 0!");
+		ui.notifications.error(actor.name+" can't use" +itemname+"with "+stat+" Current value of 0!");
 		return;
 	}
 	const roll = await new Roll("1d100").evaluate({ async: true });
@@ -46,7 +46,7 @@ export async function PossessionRollStat(actor, stat, statValue, modifier = 0, b
 		levelsOfFailure = 10;
 	}
 	//* Beggining of the message to be printed to chat
-	let message = `Uses their ${posname} with ${stat} score of ${statValue}%`;
+	let message = `Uses their ${itemname} with ${stat} score of ${statValue}%`;
 	// if we have a bonus or penalty, add it to the message
 	if (bonus > 0) {
 		message += `, a Bonus of +${bonus}%`;
@@ -70,7 +70,17 @@ export async function PossessionRollStat(actor, stat, statValue, modifier = 0, b
 		message += `. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
 	}
 	//add re-roll button to message
-	message += `<div class="metanthropes hide-button layout-hide"><button class="possession-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-posname="${posname}" data-attacktype="${attacktype}" data-effect="${effect}" data-targets="${targets}" data-damage="${damage}" data-conditions="${conditions}">🤞</button></div>`;
+	message += `<div class="metanthropes hide-button layout-hide">
+	<button class="possession-re-roll" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}"
+	data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-itemname="${itemname}" data-attacktype="${attacktype}"
+	data-effect="${effect}" data-targets="${targets}" data-damage="${damage}" data-conditions="${conditions}">
+	🤞</button>
+	<button class="possession-use" data-actor-id="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}"
+	data-itemname="${itemname}" data-attacktype="${attacktype}" data-targets="${targets}" data-effect="${effect}"
+	data-damage="${damage}" data-conditions="${conditions}" >
+	🛠️</button>
+	</div>
+	`;
 	//console log for debugging
 	console.log(
 		"PosRoll Results:",
@@ -100,7 +110,7 @@ export async function PossessionRollStat(actor, stat, statValue, modifier = 0, b
 	console.log(
 		"Posroll Results cont:",
 		"Possession:",
-		posname,
+		itemname,
 		"Attack Type:",
 		attacktype,
 		"Targets:",
@@ -138,7 +148,7 @@ export async function PossessionReRoll(event) {
 	const bonus = parseInt(button.dataset.bonus);
 	const penalty = parseInt(button.dataset.penalty);
 	const actor = game.actors.get(actorId);
-	const posname = button.dataset.posname;
+	const itemname = button.dataset.itemname;
 	const attacktype = button.dataset.attacktype;
 	const effect = button.dataset.effect;
 	const targets = button.dataset.targets;
@@ -157,7 +167,7 @@ export async function PossessionReRoll(event) {
 			if (message) {
 				message.render();
 			}
-			PossessionRollStat(actor, stat, statValue, modifier, bonus, penalty, posname, attacktype, effect, targets, damage, conditions);
+			PossessionRollStat(actor, stat, statValue, modifier, bonus, penalty, itemname, attacktype, effect, targets, damage, conditions);
 		}
 	}
 }

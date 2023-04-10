@@ -5,7 +5,7 @@ export async function ReRollTargets(event) {
 	event.preventDefault();
 	const button = event.target;
 	const actorId = button.dataset.actorId;
-	const mpname = button.dataset.mpname;
+	const itemname = button.dataset.itemname;
 	const targetsdice = button.dataset.targetsdice;
 	const targets = button.dataset.targets;
 	const actor = game.actors.get(actorId);
@@ -21,18 +21,18 @@ export async function ReRollTargets(event) {
 			if (message) {
 				message.render();
 			}
-			RollTargets(actor, mpname, targetsdice, targets);
+			RollTargets(actor, itemname, targetsdice, targets);
 		}
 	}
 }
-export async function RollTargets(actor, mpname, targetsdice, targets) {
+export async function RollTargets(actor, itemname, targetsdice, targets) {
 	console.log("=====+++++++======+++++++");
 	console.log("INSIDE ROLL TARGETS");
 	console.log("=====+++++++======+++++++");
 	// Create a chat message with the provided content
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	let contentdata = `<div class="metanthropes hide-button layout-hide">
-	<button class="re-roll-targets" data-actor-id="${actor.id}" data-mpname="${mpname}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
+	<button class="re-roll-targets" data-actor-id="${actor.id}" data-itemname="${itemname}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
 	🎯 [[${targetsdice}]] ${targets} 🤞</button>
 	</div>
 	<div>${actor.name} has ${currentDestiny} * 🤞 remaining.
@@ -41,7 +41,7 @@ export async function RollTargets(actor, mpname, targetsdice, targets) {
 	//send the activation message to chat
 	let chatData = {
 		user: game.user.id,
-		flavor: `<h3>Re-Rolls Targets for ${mpname}</h3>`,
+		flavor: `<h3>Re-Rolls Targets for ${itemname}</h3>`,
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		content: contentdata,
 		flags: { "metanthropes-system": { actorId: actor.id } },
@@ -56,7 +56,7 @@ export async function ReRollDuration(event) {
 	event.preventDefault();
 	const button = event.target;
 	const actorId = button.dataset.actorId;
-	const mpname = button.dataset.mpname;
+	const itemname = button.dataset.itemname;
 	const durationdice = button.dataset.durationdice;
 	const duration = button.dataset.duration;
 	const actor = game.actors.get(actorId);
@@ -72,18 +72,18 @@ export async function ReRollDuration(event) {
 			if (message) {
 				message.render();
 			}
-			RollDuration(actor, mpname, durationdice, duration);
+			RollDuration(actor, itemname, durationdice, duration);
 		}
 	}
 }
-export async function RollDuration(actor, mpname, durationdice, duration) {
+export async function RollDuration(actor, itemname, durationdice, duration) {
 	console.log("=====+++++++======+++++++");
 	console.log("INSIDE ROLL DURATION");
 	console.log("=====+++++++======+++++++");
 	// Create a chat message with the provided content
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	let contentdata = `<div class="metanthropes hide-button layout-hide">
-	<button class="re-roll-duration" data-actor-id="${actor.id}" data-mpname="${mpname}" data-durationdice="${durationdice}" data-duration="${duration}" >
+	<button class="re-roll-duration" data-actor-id="${actor.id}" data-itemname="${itemname}" data-durationdice="${durationdice}" data-duration="${duration}" >
 	⏳ [[${durationdice}]] ${duration} 🤞</button>
 	</div>
 	<div>${actor.name} has ${currentDestiny} * 🤞 remaining.
@@ -92,7 +92,7 @@ export async function RollDuration(actor, mpname, durationdice, duration) {
 	//send the activation message to chat
 	let chatData = {
 		user: game.user.id,
-		flavor: `<h3>Re-Rolls Duration for ${mpname}</h3>`,
+		flavor: `<h3>Re-Rolls Duration for ${itemname}</h3>`,
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		content: contentdata,
 		flags: { "metanthropes-system": { actorId: actor.id } },
@@ -107,7 +107,7 @@ export async function ReRollDamage(event) {
 	event.preventDefault();
 	const button = event.target;
 	const actorId = button.dataset.actorId;
-	const mpname = button.dataset.mpname;
+	const itemname = button.dataset.itemname;
 	const damage = button.dataset.damage;
 	const actor = game.actors.get(actorId);
 	let currentDestiny = actor.system.Vital.Destiny.value;
@@ -122,18 +122,18 @@ export async function ReRollDamage(event) {
 			if (message) {
 				message.render();
 			}
-			RollDamage(actor, mpname, damage);
+			RollDamage(actor, itemname, damage);
 		}
 	}
 }
-export async function RollDamage(actor, mpname, damage) {
+export async function RollDamage(actor, itemname, damage) {
 	console.log("=====+++++++======+++++++");
 	console.log("INSIDE ROLL DAMAGE");
 	console.log("=====+++++++======+++++++");
 	// Create a chat message with the provided content
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	let contentdata = `<div class="metanthropes hide-button layout-hide">
-	<button class="re-roll-damage" data-actor-id="${actor.id}" data-mpname="${mpname}" data-damage="${damage}" >
+	<button class="re-roll-damage" data-actor-id="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" >
 	💥 [[${damage}]] 🤞</button>
 	</div>
 	<div>${actor.name} has ${currentDestiny} * 🤞 remaining.
@@ -142,7 +142,7 @@ export async function RollDamage(actor, mpname, damage) {
 	//send the activation message to chat
 	let chatData = {
 		user: game.user.id,
-		flavor: `<h3>Re-Rolls Damage for ${mpname}</h3>`,
+		flavor: `<h3>Re-Rolls Damage for ${itemname}</h3>`,
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		content: contentdata,
 		flags: { "metanthropes-system": { actorId: actor.id } },
@@ -157,7 +157,7 @@ export async function ReRollHealing(event) {
 	event.preventDefault();
 	const button = event.target;
 	const actorId = button.dataset.actorId;
-	const mpname = button.dataset.mpname;
+	const itemname = button.dataset.itemname;
 	const healing = button.dataset.healing;
 	const actor = game.actors.get(actorId);
 	let currentDestiny = actor.system.Vital.Destiny.value;
@@ -172,18 +172,18 @@ export async function ReRollHealing(event) {
 			if (message) {
 				message.render();
 			}
-			RollHealing(actor, mpname, healing);
+			RollHealing(actor, itemname, healing);
 		}
 	}
 }
-export async function RollHealing(actor, mpname, healing) {
+export async function RollHealing(actor, itemname, healing) {
 	console.log("=====+++++++======+++++++");
 	console.log("INSIDE ROLL HEALING");
 	console.log("=====+++++++======+++++++");
 	// Create a chat message with the provided content
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	let contentdata = `<div class="metanthropes hide-button layout-hide">
-	<button class="re-roll-healing" data-actor-id="${actor.id}" data-mpname="${mpname}" data-healing="${healing}" >
+	<button class="re-roll-healing" data-actor-id="${actor.id}" data-itemname="${itemname}" data-healing="${healing}" >
 	💞 [[${healing}]] 🤞</button>
 	</div>
 	<div>${actor.name} has ${currentDestiny} * 🤞 remaining.
@@ -192,7 +192,7 @@ export async function RollHealing(actor, mpname, healing) {
 	//send the activation message to chat
 	let chatData = {
 		user: game.user.id,
-		flavor: `<h3>Re-Rolls Healing for ${mpname}</h3>`,
+		flavor: `<h3>Re-Rolls Healing for ${itemname}</h3>`,
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		content: contentdata,
 		flags: { "metanthropes-system": { actorId: actor.id } },

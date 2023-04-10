@@ -183,7 +183,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			} else if (dataset.rollType == "Metapower") {
 				const actor = this.actor;
 				const stat = dataset.stat;
-				const mpname = dataset.mpname;
+				const itemname = dataset.itemname;
 				const destcost = dataset.destcost;
 				const effect = dataset.effect;
 				const targets = dataset.targets;
@@ -199,18 +199,18 @@ export class MetanthropesActorSheet extends ActorSheet {
 					"Metanthropes RPG Rolling a Metapower for:",
 					actor,
 					"Metapower:",
-					mpname,
+					itemname,
 					"Destiny Cost:",
 					destcost,
 					"with:",
 					stat
 				);
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-				MetapowerRoll(actor, stat, mpname, destcost, effect, targets, targetsdice, duration, durationdice, damage, healing, buffs, conditions);
+				MetapowerRoll(actor, stat, itemname, destcost, effect, targets, targetsdice, duration, durationdice, damage, healing, buffs, conditions);
 			} else if (dataset.rollType == "Possession") {
 				const actor = this.actor;
 				const stat = dataset.stat;
-				const posname = dataset.posname;
+				const itemname = dataset.itemname;
 				const attacktype = dataset.attacktype;
 				const effect = dataset.effect;
 				const targets = dataset.targets;
@@ -219,7 +219,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 				console.log("Metanthropes RPG Rolling a Possession for:", actor, "'s", stat);
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-				PossessionRoll(actor, stat, posname, attacktype, effect, targets, damage, conditions);
+				PossessionRoll(actor, stat, itemname, attacktype, effect, targets, damage, conditions);
 			} else if (dataset.rollType == "Combo") {
 				const actor = this.actor;
 				const stat = dataset.stat;
