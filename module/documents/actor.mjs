@@ -38,9 +38,9 @@ export class MetanthropesActor extends Actor {
 			if (data.type == "Animal")
 				createData.img = "systems/metanthropes-system/artwork/tokens/token-kineticist.webp";
 			if (data.type == "Extraterrestrial")
-			createData.img = "systems/metanthropes-system/artwork/tokens/token-cosmonaut.webp";
+				createData.img = "systems/metanthropes-system/artwork/tokens/token-cosmonaut.webp";
 			if (data.type == "Extradimensional")
-			createData.img = "systems/metanthropes-system/artwork/tokens/token-cosmonaut.webp";
+				createData.img = "systems/metanthropes-system/artwork/tokens/token-cosmonaut.webp";
 		}
 		// Fix for Token Attacher / CF Import - from wh4e
 		if (!createData.prototypeToken) createData.prototypeToken = {};
@@ -60,7 +60,10 @@ export class MetanthropesActor extends Actor {
 		super.prepareData();
 	}
 	// Override base values for each type of actor here.
-	prepareBaseData() {
+	async prepareBaseData() {
+		if (this.type == "Human") {
+			await actor.update({ "system.Vital.Life.Initial": Number(50) });
+		}
 		// I should enable this section if I need to add modifications for non-Characteristics actors
 		// Currently we only care about actors with characteristics so we don't use this section
 		// this._prepareBaseNonCharacteristicsData(actorData);
@@ -129,11 +132,11 @@ export class MetanthropesActor extends Actor {
 					Number(Number(CharValue.Buff.Current) * 5) -
 					Number(Number(CharValue.Condition.Current) * 5))
 			);
-			if (CharValue.Current <= 0 ) {
+			if (CharValue.Current <= 0) {
 				charzerofullpenalty = CharValue.Current;
 				CharValue.Current = 0;
-				ui.notifications.error(this.name+"'s "+CharKey+" has dropped to 0!");
-				console.log("Metanthropes RPG", CharKey, "has dropped to 0!");	
+				ui.notifications.error(this.name + "'s " + CharKey + " has dropped to 0!");
+				console.log("Metanthropes RPG", CharKey, "has dropped to 0!");
 			}
 			console.log("Metanthropes RPG New", CharKey, "Current:", CharValue.Current);
 			console.log("------------------------------------------------------------------------");
@@ -195,11 +198,14 @@ export class MetanthropesActor extends Actor {
 					CharKey,
 					"Current"
 				);
-				parseInt((StatValue.Roll = Number(StatValue.Current) + Number(CharValue.Current) + Number(charzerofullpenalty)));
-				if (StatValue.Roll <= 0 ) {
+				parseInt(
+					(StatValue.Roll =
+						Number(StatValue.Current) + Number(CharValue.Current) + Number(charzerofullpenalty))
+				);
+				if (StatValue.Roll <= 0) {
 					StatValue.Roll = 0;
-					ui.notifications.error(this.name+"'s "+StatKey+" has dropped to 0!");
-					console.log("Metanthropes RPG", StatKey, "has dropped to 0!");	
+					ui.notifications.error(this.name + "'s " + StatKey + " has dropped to 0!");
+					console.log("Metanthropes RPG", StatKey, "has dropped to 0!");
 				}
 				console.log("Metanthropes RPG Final", StatKey, "for Rolls:", StatValue.Roll);
 				console.log(
@@ -227,33 +233,33 @@ export class MetanthropesActor extends Actor {
 			systemData.physical.movement.sprint
 		);
 		// Calculate total Experience Spent Progressing Perks & Characteristics & Stats
-				
-				console.log(
-					"Total Experience Spent automagically for",
-					this.name,
-					"Progressing Characteristics & Stats:",
-					experienceSpent
-				);
-					// Store experienceSpent in systemData.Vital.Experience.Spent
-				parseInt((systemData.Vital.Experience.Spent = Number(experienceSpent)));
-				parseInt(
-					(systemData.Vital.Experience.Stored = Number(
-						Number(systemData.Vital.Experience.Total) -
-							Number(experienceSpent) -
-							Number(systemData.Vital.Experience.Manual)
-					))
-				);
-				if (systemData.Vital.Experience.Stored < 0) {
-					ui.notifications.error(this.name+"'s Stored Experience is Negative!");
-					console.log(
-						"============================================================================================="
-					);
-					console.log("Metanthropes RPG WARNING: Stored Experience is Negative!");
-					console.log(
-						"============================================================================================="
-					);
-				}
-				console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
+
+		console.log(
+			"Total Experience Spent automagically for",
+			this.name,
+			"Progressing Characteristics & Stats:",
+			experienceSpent
+		);
+		// Store experienceSpent in systemData.Vital.Experience.Spent
+		parseInt((systemData.Vital.Experience.Spent = Number(experienceSpent)));
+		parseInt(
+			(systemData.Vital.Experience.Stored = Number(
+				Number(systemData.Vital.Experience.Total) -
+					Number(experienceSpent) -
+					Number(systemData.Vital.Experience.Manual)
+			))
+		);
+		if (systemData.Vital.Experience.Stored < 0) {
+			ui.notifications.error(this.name + "'s Stored Experience is Negative!");
+			console.log(
+				"============================================================================================="
+			);
+			console.log("Metanthropes RPG WARNING: Stored Experience is Negative!");
+			console.log(
+				"============================================================================================="
+			);
+		}
+		console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
 		console.log("=============================================================================================");
 		console.log("Metanthropes RPG", this.type, "-", this.name, "is Ready to Roll!");
 		console.log("=============================================================================================");
@@ -281,8 +287,8 @@ export class MetanthropesActor extends Actor {
 			// Calculate the experience spent based on the perks's progressed value
 			perkExperienceSpent = advancementCount * 100;
 			// Add the experience spent on this perk to the total experience spent
-				experienceSpent += perkExperienceSpent;
-				console.log("Experience Spent to Progress", KnowPerkKey, "Perk:", perkExperienceSpent);
+			experienceSpent += perkExperienceSpent;
+			console.log("Experience Spent to Progress", KnowPerkKey, "Perk:", perkExperienceSpent);
 		}
 		// Calculate the experience spent on Skills Perks
 		for (const [SkillPerkKey, SkillPerkValue] of Object.entries(systemData.Perks.Skills)) {
@@ -291,27 +297,23 @@ export class MetanthropesActor extends Actor {
 			// Calculate the experience spent based on the perks's progressed value
 			perkExperienceSpent = advancementCount * 100;
 			// Add the experience spent on this perk to the total experience spent
-				experienceSpent += perkExperienceSpent;
-				console.log("Experience Spent to Progress", SkillPerkKey, "Perk:", perkExperienceSpent);
+			experienceSpent += perkExperienceSpent;
+			console.log("Experience Spent to Progress", SkillPerkKey, "Perk:", perkExperienceSpent);
 		}
 		// Calculate total Experience Spent Progressing Perks & Characteristics & Stats
-		console.log(
-			"Total Experience Spent automagically for",
-			this.name,
-			"Perks:",
-			experienceSpent
-		);
+		console.log("Total Experience Spent automagically for", this.name, "Perks:", experienceSpent);
 		// Update Experience Spent for Perks with exiting in systemData.Vital.Experience.Spent
 		parseInt((systemData.Vital.Experience.Spent = Number(experienceSpent) + Number(experienceAlreadySpent)));
 		parseInt(
 			(systemData.Vital.Experience.Stored = Number(
 				Number(systemData.Vital.Experience.Total) -
-					Number(experienceSpent) - Number(experienceAlreadySpent) -
+					Number(experienceSpent) -
+					Number(experienceAlreadySpent) -
 					Number(systemData.Vital.Experience.Manual)
 			))
 		);
 		if (systemData.Vital.Experience.Stored < 0) {
-			ui.notifications.error(this.name+"'s Stored Experience is Negative!");
+			ui.notifications.error(this.name + "'s Stored Experience is Negative!");
 			console.log(
 				"============================================================================================="
 			);
