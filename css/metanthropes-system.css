@@ -461,7 +461,28 @@ option {
   overflow-y: auto;
 }
 .metanthropes .layout-hide {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
   display: none;
+}
+.metanthropes .layout-editor {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  justify-self: stretch;
+  justify-items: center;
+  align-self: auto;
+  align-items: stretch;
+  align-content: space-between;
+  padding: 6px;
+  margin: 6px;
+  overflow-y: auto;
 }
 .metanthropes .style-container-grid3x4 {
   opacity: 1;

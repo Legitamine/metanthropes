@@ -30,6 +30,7 @@ export async function RollTargets(actor, mpname, targetsdice, targets) {
 	console.log("INSIDE ROLL TARGETS");
 	console.log("=====+++++++======+++++++");
 	// Create a chat message with the provided content
+	let currentDestiny = actor.system.Vital.Destiny.value;
 	let contentdata = `<div class="metanthropes hide-button layout-hide">
 	<button class="re-roll-targets" data-actor-id="${actor.id}" data-mpname="${mpname}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
 	🎯 [[${targetsdice}]] ${targets} 🤞</button>
@@ -80,6 +81,7 @@ export async function RollDuration(actor, mpname, durationdice, duration) {
 	console.log("INSIDE ROLL DURATION");
 	console.log("=====+++++++======+++++++");
 	// Create a chat message with the provided content
+	let currentDestiny = actor.system.Vital.Destiny.value;
 	let contentdata = `<div class="metanthropes hide-button layout-hide">
 	<button class="re-roll-duration" data-actor-id="${actor.id}" data-mpname="${mpname}" data-durationdice="${durationdice}" data-duration="${duration}" >
 	⏳ [[${durationdice}]] ${duration} 🤞</button>
@@ -129,6 +131,7 @@ export async function RollDamage(actor, mpname, damage) {
 	console.log("INSIDE ROLL DAMAGE");
 	console.log("=====+++++++======+++++++");
 	// Create a chat message with the provided content
+	let currentDestiny = actor.system.Vital.Destiny.value;
 	let contentdata = `<div class="metanthropes hide-button layout-hide">
 	<button class="re-roll-damage" data-actor-id="${actor.id}" data-mpname="${mpname}" data-damage="${damage}" >
 	💥 [[${damage}]] 🤞</button>
@@ -178,6 +181,7 @@ export async function RollHealing(actor, mpname, healing) {
 	console.log("INSIDE ROLL HEALING");
 	console.log("=====+++++++======+++++++");
 	// Create a chat message with the provided content
+	let currentDestiny = actor.system.Vital.Destiny.value;
 	let contentdata = `<div class="metanthropes hide-button layout-hide">
 	<button class="re-roll-healing" data-actor-id="${actor.id}" data-mpname="${mpname}" data-healing="${healing}" >
 	💞 [[${healing}]] 🤞</button>

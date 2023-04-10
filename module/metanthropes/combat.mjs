@@ -62,13 +62,26 @@ export class MetanthropesCombat extends Combat {
 			const combatant = this.combatants.get(id);
 			if (!combatant?.isOwner) continue;
 
+			//	// Produce an initiative roll for the Combatant
+			//	const roll = combatant.getInitiativeRoll(formula);
+			//	console.log("=======++++++++++++++============");
+			//	console.log("Metanthropes RPG inside combatant.getInitiativeRoll(formula)roll:", roll, "formula:", formula);
+			//	console.log("=======++++++++++++++============");
+			//	await roll.evaluate({ async: true });
+			//	updates.push({ _id: id, initiative: roll.total });
+
 			// Produce an initiative roll for the Combatant
-			const roll = combatant.getInitiativeRoll(formula);
+			const roll = await MetaInitiative(combatant);
 			console.log("=======++++++++++++++============");
-			console.log("Metanthropes RPG inside combatant.getInitiativeRoll(formula)roll:", roll, "formula:", formula);
+			console.log("Metanthropes RPG using metainitiative:", roll, "combatant:", combatant);
 			console.log("=======++++++++++++++============");
-			await roll.evaluate({ async: true });
-			updates.push({ _id: id, initiative: roll.total });
+			//await roll.evaluate({ async: true });
+			const initiativeData = actor.getFlag("metanthropes-system", "initiative");
+			//const initiativeData = this.actor.getFlag("metanthropes-system", "initiative");
+            const initiativeResult= initiativeData.initiativeValue;
+            //return initiativeValue.toString();
+			updates.push({ _id: id, initiative: initiativeResult });
+			//updates.push({ _id: id, initiative: roll.total });
 
 			// Construct chat message data
 			let messageData = foundry.utils.mergeObject(

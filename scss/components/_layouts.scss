@@ -150,6 +150,19 @@
 	overflow-y: auto;
 }
 .layout-hide {
-	//@include element-invisible;
+	@include element-invisible;
 	display: none;
+}
+.layout-editor {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	justify-self: stretch;
+	justify-items: center;
+	align-self: auto;
+	align-items: stretch;
+	align-content: space-between;
+	padding: $padding-lg;
+	margin: $margin-lg;
+	overflow-y: auto;
 }
