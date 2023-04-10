@@ -11,7 +11,6 @@ export async function MetaInitiative(combatant) {
 	console.log("Metanthropes RPG MetaInitiative - awarenessValue:", awarenessValue, "for actor:", actor.name);
 	let initiativeStat = reflexesStat;
 	let statValue = reflexesValue;
-
 	// Check if the actor has the metapower "Danger Sense" equipped
 	const metapowers = actor.items.filter((item) => item.type === "Metapower");
 	const hasDangerSense = metapowers.some((metapower) => metapower.name === "Danger Sense");
@@ -20,12 +19,18 @@ export async function MetaInitiative(combatant) {
 		initiativeStat = awarenessStat;
 		statValue = awarenessValue;
 	}
-	//	// Call MetaRollStat function with the appropriate stat (Reflexes or Awareness)
 	console.log("Metanthropes RPG MetaInitiative passed the Danger Sense for", actor, initiativeStat, statValue);
 	let result = null;
 	let resultLevel = null;
+	await actor.setFlag("metanthropes-system", "initiative", {
+		initiativeValue: resultLevel,
+	});
 	if (statValue <= 0) {
-		ui.notifications.error(actor.name + " can't Roll for Initiative with " + initiativeStat + " Current value of 0!");
+		ui.notifications.error(
+			actor.name + " can't Roll for Initiative with " + initiativeStat + " Current value of 0!"
+		);
+		// Update the combatant with the new initiative value
+		await combatant.update({ initiative: resultLevel });
 		return;
 	}
 	const roll = await new Roll("1d100").evaluate({ async: true });
@@ -102,12 +107,6 @@ export async function MetaInitiative(combatant) {
 		"Destiny:",
 		currentDestiny
 	);
-	// I will take these values and store them inside an initiative flag on the actor
-	await actor.setFlag("metanthropes-system", "initiative", {
-		initiativeValue: resultLevel,
-	});
-	// Update the combatant with the new initiative value
-	await combatant.update({ initiative: resultLevel });
 	//print message to chat and enable Dice So Nice to roll the dice and display the message
 	roll.toMessage({
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
@@ -119,6 +118,12 @@ export async function MetaInitiative(combatant) {
 		//content seems to be overwriten by Dice So Nice, so maybe I can add my button here?
 		flags: { "metanthropes-system": { actorId: actor.id } },
 	});
+	// I will take these values and store them inside an initiative flag on the actor
+	await actor.setFlag("metanthropes-system", "initiative", {
+		initiativeValue: resultLevel,
+	});
+	// Update the combatant with the new initiative value
+	await combatant.update({ initiative: resultLevel });
 }
 //! remove excess bonus / penalty / modifier if not needed at all for initiative
 // MetaInitiativeRollStat function is used to roll a stat and get the levels of success/failure and print the message to chat
