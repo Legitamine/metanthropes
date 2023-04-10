@@ -46,7 +46,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 		levelsOfFailure = 10;
 	}
 	//* Beggining of the message to be printed to chat
-	let message = `${actor.name} attempts a roll with ${stat} score of ${statValue}%`;
+	let message = `Attempts a roll with ${stat} score of ${statValue}%`;
 	// if we have a bonus or penalty, add it to the message
 	if (bonus > 0) {
 		message += `, a Bonus of +${bonus}%`;

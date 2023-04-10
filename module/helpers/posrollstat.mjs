@@ -46,7 +46,7 @@ export async function PossessionRollStat(actor, stat, statValue, modifier = 0, b
 		levelsOfFailure = 10;
 	}
 	//* Beggining of the message to be printed to chat
-	let message = `${actor.name} uses their Possession with ${stat} score of ${statValue}%`;
+	let message = `Uses their Possession with ${stat} score of ${statValue}%`;
 	// if we have a bonus or penalty, add it to the message
 	if (bonus > 0) {
 		message += `, a Bonus of +${bonus}%`;

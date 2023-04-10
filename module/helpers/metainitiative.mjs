@@ -72,7 +72,7 @@ export async function MetaInitiative(combatant, modifier = 0, bonus = 0, penalty
 		levelsOfFailure = 10;
 	}
 	//* Beggining of the message to be printed to chat
-	let message = `${actor.name} rolls for Initiative with ${initiativeStat} score of ${statValue}%`;
+	let message = `Rolls for Initiative with ${initiativeStat} score of ${statValue}%`;
 	// if we have a bonus or penalty, add it to the message
 	if (bonus > 0) {
 		message += `, a Bonus of +${bonus}%`;
@@ -155,7 +155,7 @@ export async function MetaInitiativeReRoll(event) {
 	const bonus = parseInt(button.dataset.bonus);
 	const penalty = parseInt(button.dataset.penalty);
 	const actor = game.actors.get(actorId);
-	const combatant = game.combatants.get(actorId);
+	const combatant = game.combat.getCombatantByActor(actorId);
 	console.log("Metanthropes RPG do we get the correct combatant data?", combatant);
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	// make this function only available to the owner of the actor
