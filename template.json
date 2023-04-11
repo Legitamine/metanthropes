@@ -1160,19 +1160,19 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Possession Description",
-				"value": "Possession Description"
+				"value": null
 			},
 			"EffectDescription": {
 				"type": "text",
 				"dtype": "String",
 				"label": "Effect Description",
-				"value": "Possession Effect"
+				"value": null
 			},
 			"ResultDescription": {
 				"type": "text",
 				"dtype": "String",
 				"label": "Results Description",
-				"value": "Possession Results"
+				"value": null
 			}
 		},
 		"Metapower": {

@@ -11,8 +11,9 @@ export class MetanthropesActor extends Actor {
 			mergeObject(createData, {
 				"prototypeToken.bar1": { attribute: "Vital.Destiny" },
 				"prototypeToken.bar2": { attribute: "Vital.Life" },
-				"prototypeToken.displayName": defaultToken?.displayName || CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER, // Default display name to be on owner hover
-				"prototypeToken.displayBars": defaultToken?.displayBars || CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER, // Default display bars to be on owner hover
+				// values from https://foundryvtt.com/api/enums/foundry.CONST.TOKEN_DISPLAY_MODES.html
+				"prototypeToken.displayName": defaultToken?.displayName || CONST.TOKEN_DISPLAY_MODES.NONE, // Default display name to be on anyone hover
+				"prototypeToken.displayBars": defaultToken?.displayBars || CONST.TOKEN_DISPLAY_MODES.HOVER, // Default display bars to be on owner hover
 				"prototypeToken.disposition": defaultToken?.disposition || CONST.TOKEN_DISPOSITIONS.NEUTRAL, // Default disposition to neutral
 				"prototypeToken.name": data.name, // Set token name to actor name
 			});
@@ -60,7 +61,7 @@ export class MetanthropesActor extends Actor {
 		super.prepareData();
 	}
 	// Override base values for each type of actor here.
-	async prepareBaseData() {
+	prepareBaseData() {
 		if (this.type == "Human") {
 			console.log("=============================================================================================");
 			console.log("Metanthropes RPG Preparing Base Data for", this.type, "-", this.name);
@@ -354,7 +355,7 @@ export class MetanthropesActor extends Actor {
 			}
 		}
 	}
-	//change the initiative
+	//!this is not really used ever - is it?
 	async _onRollInitiative(event) {
 		event.preventDefault();
 		// Check if the actor is in a combat
