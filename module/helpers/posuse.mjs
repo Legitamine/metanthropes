@@ -42,24 +42,24 @@ export async function PossessionUse(event) {
 			flavordata = `<h3>Uses ${itemname} with the following:</h3>`;
 		}
 		if (effect) {
-			contentdata = `<div><h3>Effect:</h3><br>${effect}</div>`;
-		}
-		contentdata += `<div><h3>🎯 Targets:</h3><br>${targets}</div>`;
+			contentdata = `<div><h4>Effect:</h4><br>${effect}</div><br>`;
+		} else { contentdata = "";}
+		contentdata += `<div><h4>🎯 Targets:</h4>${targets}</div><br>`;
 		if (damage) {
 			if (damagedata > 0) {
-				contentdata += `<div class="hide-button layout-hide"><h3>💥 Damage:</h3><br>
+				contentdata += `<div class="hide-button layout-hide"><h4>💥 Damage:</h4><br>
 			<button class="re-roll-damage" data-actor-id="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" >
 			💥 [[${damagedata}+${damage}]] 🤞</button>
-			</div>`;
+			</div><br>`;
 			} else {
-				contentdata += `<div class="hide-button layout-hide"><h3>💥 Damage:</h3><br>
+				contentdata += `<div class="hide-button layout-hide"><h4>💥 Damage:</h4><br>
 			<button class="re-roll-damage" data-actor-id="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" >
 			💥 [[${damage}]] 🤞</button>
-			</div>`;
+			</div><br>`;
 			}
 		}
 		if (conditions) {
-			contentdata += `<div><h3>💀 Conditions:</h3><br>${conditions}</div>`;
+			contentdata += `<div><h4>💀 Conditions:</h4><br>${conditions}</div><br>`;
 		}
 	}
 	//send the activation message to chat
