@@ -59,7 +59,7 @@ export async function PossessionUse(event) {
 			}
 		}
 		if (conditions) {
-			contentdata += `<div><h4>💀 Conditions:</h4><br>${conditions}</div><br>`;
+			contentdata += `<div><h4>💀 Conditions:</h4>${conditions}</div><br>`;
 		}
 	}
 	//send the activation message to chat

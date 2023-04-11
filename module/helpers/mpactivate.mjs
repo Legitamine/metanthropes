@@ -56,10 +56,10 @@ export async function MetapowerActivate(event) {
 		</div><br>`;
 		}
 		if (buffs) {
-			contentdata += `<div><h4>🛡️ Buffs:</h4><br>${buffs}</div><br>`;
+			contentdata += `<div><h4>🛡️ Buffs:</h4>${buffs}</div><br>`;
 		}
 		if (conditions) {
-			contentdata += `<div><h4>💀 Conditions:</h4><br>${conditions}</div><br>`;
+			contentdata += `<div><h4>💀 Conditions:</h4>${conditions}</div><br>`;
 		}
 	}
 	//send the activation message to chat
