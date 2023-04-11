@@ -26,31 +26,31 @@ export async function MetapowerActivate(event) {
 		flavordata = `<h3>Fails to Activate ${itemname}!</h3>`;
 	} else {
 		flavordata = `<h3>Activates ${itemname} with the following:</h3>`;
-		contentdata = `<div><h4>Effect:</h4><br>${effect}</div><br>`;
+		contentdata = `<div><h4>Effect:</h4>${effect}</div><br>`;
 		if (targetsdice) {
-			contentdata += `<div class="hide-button layout-hide"><h4>🎯 Targets:</h4><br>
+			contentdata += `<div class="hide-button layout-hide"><h4>🎯 Targets:</h4>
 		<button class="re-roll-targets" data-actor-id="${actor.id}" data-itemname="${itemname}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
 		🎯 [[${targetsdice}]] ${targets} 🤞</button>
 		</div><br>`;
 		} else {
-			contentdata += `<div><h4>🎯 Targets:</h4><br>${targets}</div><br>`;
+			contentdata += `<div><h4>🎯 Targets:</h4>${targets}</div><br>`;
 		}
 		if (durationdice) {
-			contentdata += `<div class="hide-button layout-hide"><h4>⏳ Duration:</h4><br>
+			contentdata += `<div class="hide-button layout-hide"><h4>⏳ Duration:</h4>
 		<button class="re-roll-duration" data-actor-id="${actor.id}" data-itemname="${itemname}" data-durationdice="${durationdice}" data-duration="${duration}" >
 		⏳ [[${durationdice}]] ${duration} 🤞</button>
 		</div><br>`;
 		} else {
-			contentdata += `<div><h4>⏳ Duration:</h4><br>${duration}</div><br>`;
+			contentdata += `<div><h4>⏳ Duration:</h4>${duration}</div><br>`;
 		}
 		if (damage) {
-			contentdata += `<div class="hide-button layout-hide"><h4>💥 Damage:</h4><br>
+			contentdata += `<div class="hide-button layout-hide"><h4>💥 Damage:</h4>
 		<button class="re-roll-damage" data-actor-id="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" >
 		💥 [[${damage}]] 🤞</button>
 		</div><br>`;
 		}
 		if (healing) {
-			contentdata += `<div class="hide-button layout-hide"><h4>💞 Healing:</h4><br>
+			contentdata += `<div class="hide-button layout-hide"><h4>💞 Healing:</h4>
 		<button class="re-roll-healing" data-actor-id="${actor.id}" data-itemname="${itemname}" data-healing="${healing}" >
 		💞 [[${healing}]] 🤞</button>
 		</div><br>`;
