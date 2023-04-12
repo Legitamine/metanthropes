@@ -19,11 +19,12 @@ export class MetanthropesCombat extends Combat {
 			return ib - ia || (a.id > b.id ? 1 : -1);
 		} else {
 			// If initiative result level is the same, sort by statValue
-			const astatValue = a.actor.getFlag("metanthropes-system", "initiative").statValue;
-			const bstatValue = b.actor.getFlag("metanthropes-system", "initiative").statValue;
-			console.log("astatValue:", astatValue);
-			console.log("bstatValue:", bstatValue);
-			return bstatValue - astatValue || (a.id > b.id ? 1 : -1);
+			//! error for missing statValue.
+			//const astatValue = a.actor.getFlag("metanthropes-system", "initiative").statValue;
+			//const bstatValue = b.actor.getFlag("metanthropes-system", "initiative").statValue;
+			//console.log("astatValue:", astatValue);
+			//console.log("bstatValue:", bstatValue);
+			//return bstatValue - astatValue || (a.id > b.id ? 1 : -1);
 		}
 	}
 	/**
