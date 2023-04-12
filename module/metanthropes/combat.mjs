@@ -2,39 +2,26 @@ import { MetaInitiative } from "../helpers/metainitiative.mjs";
 import { MetaRollStat } from "../helpers/metarollstat.mjs";
 
 export class MetanthropesCombat extends Combat {
-	//	_sortCombatants(a, b) {
-	//		console.log("from within sortCombatants  === +++ === +++ === ");
-	//		const aActor = game.actors.get(a.actorId);
-	//		const bActor = game.actors.get(b.actorId);
-//	
-	//		const aInitiativeData = aActor.getFlag("metanthropes-system", "initiative");
-	//		const bInitiativeData = bActor.getFlag("metanthropes-system", "initiative");
-//	
-	//		// First, sort by levelsOfSuccess (descending)
-	//		if (aInitiativeData.levelsOfSuccess > bInitiativeData.levelsOfSuccess) return -1;
-	//		if (aInitiativeData.levelsOfSuccess < bInitiativeData.levelsOfSuccess) return 1;
-//	
-	//		// Next, sort by resultLevel (ascending)
-	//		if (aInitiativeData.resultLevel < bInitiativeData.resultLevel) return -1;
-	//		if (aInitiativeData.resultLevel > bInitiativeData.resultLevel) return 1;
-//	
-	//		// Finally, sort by levelsOfFailure (ascending)
-	//		if (aInitiativeData.levelsOfFailure < bInitiativeData.levelsOfFailure) return -1;
-	//		if (aInitiativeData.levelsOfFailure > bInitiativeData.levelsOfFailure) return 1;
-//	
-	//		// If everything is equal, use the default sorting method
-	//		return super._sortCombatants(a, b);
-	//	}
-	// this gets called multiple times throughout the combat
-	//	_prepareCombatant(c, scene, players, settings = {}) {
-	//		console.log("from within prepareCombatant  === +++ === +++ === ");
-	//		const combatant = super._prepareCombatant(c, scene, players, settings);
-	//		const actor = game.actors.get(c.actorId);
-	//		const initiativeData = actor.getFlag("metanthropes-system", "initiative");
-	//		combatant.initiative = initiativeData.initiativeValue;
-	//		return combatant;
-	//	}
-
+	_sortCombatants(a, b) {
+		// Sort by initiative first
+		console.log("Metanthropes RPG - from within sortCombatants  === +++ === +++ ===");
+		console.log("a:", a);
+		console.log("b:", b);
+		console.log("a.initiative:", a.initiative);
+		console.log("b.initiative:", b.initiative);
+		if (a.initiative !== b.initiative) {
+			const ia = Number.isNumeric(a.initiative) ? a.initiative : -Infinity;
+			const ib = Number.isNumeric(b.initiative) ? b.initiative : -Infinity;
+			return ib - ia || (a.id > b.id ? 1 : -1);
+		} else {
+			// If initiative result level is the same, sort by statValue
+			const astatValue = a.actor.getFlag("metanthropes-system", "initiative").statValue;
+			const bstatValue = b.actor.getFlag("metanthropes-system", "initiative").statValue;
+			console.log("astatValue:", astatValue);
+			console.log("bstatValue:", bstatValue);
+			return bstatValue - astatValue || (a.id > b.id ? 1 : -1);
+		}
+	}
 	/**
 	 * Roll initiative for one or multiple Combatants within the Combat document
 	 * @param {string|string[]} ids     A Combatant id or Array of ids for which to roll
@@ -53,8 +40,6 @@ export class MetanthropesCombat extends Combat {
 		// Structure input data
 		ids = typeof ids === "string" ? [ids] : ids;
 		const currentId = this.combatant?.id;
-		const chatRollMode = game.settings.get("core", "rollMode");
-
 		// Iterate over Combatants, performing an initiative roll for each
 		const updates = [];
 		const messages = [];
@@ -62,28 +47,14 @@ export class MetanthropesCombat extends Combat {
 			// Get Combatant data (non-strictly)
 			const combatant = this.combatants.get(id);
 			if (!combatant?.isOwner) continue;
-
-			//	// Produce an initiative roll for the Combatant
-			//	const roll = combatant.getInitiativeRoll(formula);
-			//	console.log("=======++++++++++++++============");
-			//	console.log("Metanthropes RPG inside combatant.getInitiativeRoll(formula)roll:", roll, "formula:", formula);
-			//	console.log("=======++++++++++++++============");
-			//	await roll.evaluate({ async: true });
-			//	updates.push({ _id: id, initiative: roll.total });
-
 			// Produce an initiative roll for the Combatant
 			const roll = await MetaInitiative(combatant);
 			console.log("=======++++++++++++++============");
 			console.log("Metanthropes RPG using metainitiative:", roll, "combatant:", combatant);
 			console.log("=======++++++++++++++============");
-			//await roll.evaluate({ async: true });
-			//const initiativeData = actor.getFlag("metanthropes-system", "initiative");
 			const initiativeData = combatant.actor.getFlag("metanthropes-system", "initiative");
-            const initiativeResult= initiativeData.initiativeValue;
-            //return initiativeValue.toString();
+			const initiativeResult = initiativeData.initiativeValue;
 			updates.push({ _id: id, initiative: initiativeResult });
-			//updates.push({ _id: id, initiative: roll.total });
-
 			// Construct chat message data
 			let messageData = foundry.utils.mergeObject(
 				{
@@ -100,7 +71,7 @@ export class MetanthropesCombat extends Combat {
 			//! warning: I am not taking into account hidding combatants
 			//todo: need to figure out a way to pass this into the metainitiative
 			//	const chatData = await MetaRollStat.toMessage(messageData, { create: false });
-//	
+			//
 			//	// If the combatant is hidden, use a private roll unless an alternative rollMode was explicitly requested
 			//	chatData.rollMode =
 			//		"rollMode" in messageOptions
@@ -108,21 +79,18 @@ export class MetanthropesCombat extends Combat {
 			//			: combatant.hidden
 			//			? CONST.DICE_ROLL_MODES.PRIVATE
 			//			: chatRollMode;
-//	
+			//
 			//	// Play 1 sound for the whole rolled set
 			//	if (i > 0) chatData.sound = null;
 			//	messages.push(chatData);
 		}
 		if (!updates.length) return this;
-
 		// Update multiple combatants
 		await this.updateEmbeddedDocuments("Combatant", updates);
-
 		// Ensure the turn order remains with the same combatant
 		if (updateTurn && currentId) {
 			await this.update({ turn: this.turns.findIndex((t) => t.id === currentId) });
 		}
-
 		// Create multiple chat messages
 		await ChatMessage.implementation.create(messages);
 		return this;
@@ -140,24 +108,7 @@ export class MetanthropesCombat extends Combat {
 		console.log("Metanthropes RPG inside setInitiative");
 		console.log("=======++++++++++++++============");
 	}
-
-	//	// start combat button - here i should initialize what I need
-	//	async startCombat() {
-	//		await this.setupTurns();
-	//		return super.startCombat();
-	//	}
-	//	// Next turn button when moving from one combatant to the next
-	// this should include some logic on what happens when this is the last combatant and the Round is about to end?
-	// this should also be used to advance time (see https://youtu.be/OlagJzZsEew?list=PLFV9z59nkHDccUbRXVt623UdloPTclIrz&t=592)
-	//async nextTurn() {}
-	//async previousTurn() {}
-	//async nextRound() {
-		//this should re-enable rolling for initiative
-	//	await this.resetAll();
-	//}
-	//async previousRound() {}
-	// this should replace the default roll initiative
-	//! edw einai - ayto psanxei formula, enw egw exw allo function to do that
+	//! edw einai ?? - ayto psanxei formula, enw egw exw allo function to do that
 	async _getInitiativeFormula(combatant) {
 		console.log("Metanthropes RPG inside _getInitiativeFormula  === +++ === +++ === ");
 		await MetaInitiative(combatant);

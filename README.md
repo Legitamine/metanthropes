@@ -9,37 +9,40 @@ This is the official Metanthropes RPG system for Foundry VTT.
 - For more information about Metanthropes RPG visit https://metanthropes.com
 
 ## Installation
-This is a work in progress and is not ready for general use. Installation instructions will be placed here when the system is ready. Please do not use this system for your games, unless you want to help playtest and know what you're doing.
+This is a work in progress and is not ready for general use. Installation instructions will be placed here when the system is ready. Please do not use this system for your games, unless you want to help playtest and know what you're doing. If so, please join us on our Discord server: https://metanthropes.com/discord
 
 ## Supported Modules
-
 This System aims to utilize the latest and best in Foundry VTT. Currently offers support for the latest stable Foundry VTT version 10.291
 
 To get the best experience while playing Metanthropes RPG, we recommend to install the following fully supported modules:
 
 - Dice So Nice: https://foundryvtt.com/packages/dice-so-nice
 - Drag Ruler: https://foundryvtt.com/packages/drag-ruler 
-
 ### Known Issues
-
 - Automatic XP Calculation for Characteristics and Stats assumes that you progressed your Characteristic first, otherwise it will spent more XP than what it should. 
 	- Workaround: Use the Spent XP manual input field to adjust the XP spent for the Stat.
-- Combat: Roll for Initiative is not working properly. 
-	- Workaround: Roll a Stat Roll manually instead and The Narrator will adjust the combat order manually.
 - Metapowers tab in your Character Sheet displays the Current value of the Stat for that Metapower's Activation. If any Stat is changed, or a Roll is made, the values in the Metapowers Tab become null.
 	- Workaround: Close your Character Sheet and re-open, the correct values will be displayed.
+- Combat: Hidden Combatants are not rolling Initiative correctly.
+	- Workaround: The Narrator should update their Initiative value manually.
+### Planned Features
+- Officially Support the full Ruleset for Metanthropes RPG
+- Synchronize your Protagonist details with the website for off-line viewing and editing
+- GitHub Issues Integration with the Metanthropes Roadmap
+- Integration with Automatic-Animations module to automate the Metapower Activation and Possession Usage with visual and audio effects.
 ### Latest Changes
-
 These are the latest changes for the Official Metanthropes RPG System for Foundry VTT
 #### 0.5.00 - current build (status)
-- GitHub Milestone Integration with the Metanthropes Roadmap (pending)
+- GitHub Issues Integration with the Metanthropes Roadmap (pending)
 - Possessions: Possessions Sheet (pending)
-- Possessions: Chat Roll Message Results & Destiny Re-Roll(done)
-- Possessions: Use Chat message depends on the Possession Category & Attack Type & Destiny Re-Rolls for Extras (done)
+- Possessions: Chat Roll Message Results & Destiny Re-Roll
+- Possessions: Use Chat message depends on the Possession Category & Attack Type & Destiny Re-Rolls for Extras
 - XP System: Metapowers (pending)
-- Combat: Meta-Initiative Re-Rolls for Destiny, Roll-all-NPCs with a single click (done)
-- Combat: Meta-Initiative with 0 Stats and Danger Sense rolls with Awareness (done)
+- Combat: Meta-Initiative Re-Rolls for Destiny, Roll-all-NPCs with a single click
+- Combat: Meta-Ininitiative with Danger Sense (6th Sense) Metapower equipped rolls with Awareness instead of Reflexes
+- Combat: Meta-Initiative with 0 Stat doesn't allow you to roll and put you on the bottom of the list
 - Combat: Cycles and Rounds (pending)
+- Combat: Initiative Ordering (done)
 #### 0.4.00 - 0.4.20
 - Metapowers: Activation & Effects on Chat & Re-Roll Extras
 - Combat: Meta-Initiative
@@ -54,7 +57,6 @@ These are the latest changes for the Official Metanthropes RPG System for Foundr
 - XP System: Progressed Characteristics and Stats (Known Issue)
 - XP System: Perk Progression Automated XP Spending
 - Metapowers: Metapower Activation
-- Combat: Initiative Ordering (Known Issue)
 #### 0.0.102 - 0.1.99
 - Levels of Success & Failure and Stat Roll automated checks
 - Critical Success & Failure and automatic Destiny awarding
@@ -67,3 +69,6 @@ These are the latest changes for the Official Metanthropes RPG System for Foundr
 - Initial Metanthropes System configuration, settings and Rules integration with Foundry VTT
 - Metanthropes RPG Characteristics & Stats, Buffs and Conditions & auto-calculations
 - Actor and Item sheets and minimal branding
+- Based off the Boilerplate System for Foundry VTT v.10 from Asacolips 
+
+Our eternal gratitude goes to the amazing community of Foundry Developers <3

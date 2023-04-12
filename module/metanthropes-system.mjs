@@ -1,10 +1,3 @@
-////
-//*
-//! Metanthropes RPG System for FoundryVTT
-//? This is the core file for running the Metanthropes RPG System for FoundryVTT.
-//todo: Enable basic functionality
-//*
-////
 // Import modules.
 import { MetanthropesCombat } from "./metanthropes/combat.mjs";
 import { MetaCombatTracker } from "./metanthropes/combattracker.mjs";
@@ -30,7 +23,7 @@ import { ReRollHealing } from "./helpers/extrasroll.mjs";
 import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
 import { PossessionUse } from "./helpers/posuse.mjs";
 // Handlebars helper for drop-down menus.
-// Supposedly Foundry includes its own select helper, but I couldn't get it to work.
+//! Supposedly Foundry includes its own select helper, but I couldn't get it to work.
 Handlebars.registerHelper("selected", function (option, value) {
 	return option === value ? "selected" : "";
 });
@@ -50,22 +43,21 @@ Hooks.once("init", async function () {
 		MetanthropesActor,
 		MetanthropesItem,
 		rollItemMacro,
+		createItemMacro,
 	};
-	//setup initiative system
-	//CONFIG.Combat.initiative = MetaInitiative;
+	// Metanthropes Initiative System
+	//! should I remove this?
 	CONFIG.Combat.initiative = {
 		formula: "1d100 + @RollStats.Reflexes",
 		decimals: 2,
 	};
-	// setup custom combat
-	// CONFIG.Combat.entityClass = MetanthropesCombat;
-	// is entityClass above working? perhaps this will work instead:
+	// Metanthropes Combat System
 	CONFIG.Combat.documentClass = MetanthropesCombat;
 	//setup custom combatant
 	CONFIG.Actor.entityClass = MetaCombatant;
 	// setup custom combat tracker
 	CONFIG.ui.combat = MetaCombatTracker;
-	// tiime in seconds for Round Duration
+	// time in seconds for Round Duration
 	// CONFIG.time.roundTime = 120;
 	// Define custom Entity classes.
 	CONFIG.Actor.documentClass = MetanthropesActor;
@@ -84,14 +76,6 @@ Hooks.once("init", async function () {
 	console.log("Metanthropes RPG System Initialized");
 	console.log("========================================================================");
 	return preloadHandlebarsTemplates();
-});
-/* -------------------------------------------- */
-/*  Ready Hook                                  */
-/* -------------------------------------------- */
-// dragable macros
-Hooks.once("ready", async function () {
-	// Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-	Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
 });
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
@@ -151,6 +135,17 @@ function rollItemMacro(itemUuid) {
 		item.roll();
 	});
 }
+/* -------------------------------------------- */
+//*Hooks
+/* -------------------------------------------- */
+/* -------------------------------------------- */
+/*  Ready Hook                                  */
+/* -------------------------------------------- */
+// dragable macros
+Hooks.once("ready", async function () {
+	// Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
+	Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
+});
 // Drag Ruler Integration
 Hooks.once("dragRuler.ready", (SpeedProvider) => {
 	console.log("========================================================================");
@@ -223,9 +218,8 @@ Hooks.on("updateActor", (actor, data, options, userId) => {
 	if (data.hasOwnProperty("system")) {
 		// Get the actor's sheet
 		const sheet = actor.sheet;
-
 		// Check if the sheet is an instance of MetanthropesActorSheet
-		if (sheet instanceof MetanthropesActorSheet) {
+		if (sheet instanceof MetanthropesActorSheet || sheet instanceof MetanthropesItemSheet) {
 			// Re-render the sheet to update the lookup value
 			sheet.render();
 		}

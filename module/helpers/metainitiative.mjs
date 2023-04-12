@@ -121,6 +121,7 @@ export async function MetaInitiative(combatant) {
 	// I will take these values and store them inside an initiative flag on the actor
 	await actor.setFlag("metanthropes-system", "initiative", {
 		initiativeValue: resultLevel,
+		statValue: statValue,
 	});
 	// Update the combatant with the new initiative value
 	await combatant.update({ initiative: resultLevel });
