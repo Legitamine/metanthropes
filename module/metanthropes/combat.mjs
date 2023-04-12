@@ -1,7 +1,11 @@
 import { MetaInitiative } from "../helpers/metainitiative.mjs";
-import { MetaRollStat } from "../helpers/metarollstat.mjs";
-
 export class MetanthropesCombat extends Combat {
+	//adding the concept of Cycles to the combat system
+	constructor(data, context) {
+		super(data, context);
+		this.cycle = 1;
+		this.cycleRound = 1;
+	}
 	_sortCombatants(a, b) {
 		// Sort by initiative first
 		console.log("Metanthropes RPG - from within sortCombatants  === +++ === +++ ===");
@@ -113,4 +117,49 @@ export class MetanthropesCombat extends Combat {
 		console.log("Metanthropes RPG inside _getInitiativeFormula  === +++ === +++ === ");
 		await MetaInitiative(combatant);
 	}
+	// The below should help define what a Cycle is and when to start a new Cycle (every 2 Rounds)
+	/* -------------------------------------------- */
+
+	/**
+	 * Advance the combat to the next round
+	 * @returns {Promise<Combat>}
+	 */
+	async nextRound() {
+		await super.nextRound();
+
+		// Calculate the new cycle and cycleRound values
+		if (this.round === 1) {
+			this.cycle = 1;
+			this.cycleRound = 1;
+		} else if (this.round === 2) {
+			this.cycle = 1;
+			this.cycleRound = 2;
+		} else if (this.round === 3) {
+			this.cycle = 2;
+			this.cycleRound = 1;
+		} else if (this.round > 2 && (this.round - 1) % 2 === 0) {
+			this.cycle++;
+			this.cycleRound = 1;
+		} else {
+			this.cycleRound = 2;
+		}
+
+		// Update the cycle and cycleRound values in the combat data
+		await this.setFlag("metanthropes-system", "cycle", this.cycle);
+		await this.setFlag("metanthropes-system", "cycleRound", this.cycleRound);
+
+		// Reroll initiative for all combatants at the start of a new cycle (every odd cycleRound)
+		if (this.cycle > 1 && this.cycleRound === 1) {
+			console.log("Metanthropes RPG re-rolling initiative for nextRound === +++ === +++ === ");
+			console.log("this.round:", this.round, "this.cycle:", this.cycle, "this.cycleRound:", this.cycleRound);
+			console.log("this is this", this);
+			console.log("this.combatants", this.combatants);
+			const combatantIds = this.combatants.map((combatant) => combatant.id);
+			await this.rollInitiative(combatantIds);
+		}
+
+		return this;
+	}
+
+	/* -------------------------------------------- */
 }

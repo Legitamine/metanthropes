@@ -33,7 +33,6 @@ To get the best experience while playing Metanthropes RPG, we recommend to insta
 ### Latest Changes
 These are the latest changes for the Official Metanthropes RPG System for Foundry VTT
 #### 0.5.00 - current build (status)
-- GitHub Issues Integration with the Metanthropes Roadmap (pending)
 - Possessions: Possessions Sheet (pending)
 - Possessions: Chat Roll Message Results & Destiny Re-Roll
 - Possessions: Use Chat message depends on the Possession Category & Attack Type & Destiny Re-Rolls for Extras
@@ -41,8 +40,8 @@ These are the latest changes for the Official Metanthropes RPG System for Foundr
 - Combat: Meta-Initiative Re-Rolls for Destiny, Roll-all-NPCs with a single click
 - Combat: Meta-Ininitiative with Danger Sense (6th Sense) Metapower equipped rolls with Awareness instead of Reflexes
 - Combat: Meta-Initiative with 0 Stat doesn't allow you to roll and put you on the bottom of the list
-- Combat: Cycles and Rounds (pending)
-- Combat: Initiative Ordering (done)
+- Combat: Cycles and Rounds and Initiative Re-Rolls as needed
+- Combat: Initiative Ordering
 #### 0.4.00 - 0.4.20
 - Metapowers: Activation & Effects on Chat & Re-Roll Extras
 - Combat: Meta-Initiative

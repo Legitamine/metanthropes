@@ -13,5 +13,6 @@ export const preloadHandlebarsTemplates = async function () {
 		"systems/metanthropes-system/templates/helpers/actor-possessions.hbs",
 		"systems/metanthropes-system/templates/helpers/actor-charstats.hbs",
 		"systems/metanthropes-system/templates/helpers/actor-notes.hbs",
+		"systems/metanthropes-system/templates/metanthropes/combat-tracker.hbs",
 	]);
 };
