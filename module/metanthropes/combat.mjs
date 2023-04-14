@@ -19,9 +19,9 @@ export class MetanthropesCombat extends Combat {
 			return ib - ia || (a.id > b.id ? 1 : -1);
 		} else {
 			// If initiative result level is the same, sort by statValue
-			// this particular line is checking first to see if we have already started the initiative and if not set it to -Infinity so the combatant can be added to the combat tracker.
-			const astatValue = Number.isNumeric(a.actor.getFlag("metanthropes-system", "initiative").statValue) ? a.actor.getFlag("metanthropes-system", "initiative").statValue : -Infinity;
-			const bstatValue = Number.isNumeric(b.actor.getFlag("metanthropes-system", "initiative").statValue) ? b.actor.getFlag("metanthropes-system", "initiative").statValue : -Infinity;
+			// this particular line is checking first to see if we have already started the initiative (the flags would exist and would be set, otherwise undefined) and if not set it to -Infinity so the combatant can be added to the combat tracker.
+			const astatValue = a.actor.getFlag("metanthropes-system", "initiative")?.statValue ?? -Infinity;
+			const bstatValue = b.actor.getFlag("metanthropes-system", "initiative")?.statValue ?? -Infinity;
 			console.log("astatValue:", astatValue);
 			console.log("bstatValue:", bstatValue);
 			return bstatValue - astatValue || (a.id > b.id ? 1 : -1);
