@@ -1,3 +1,15 @@
+//the below two will change the default D20 in the initiative tracker icon to our custom dice
+.combat-sidebar li.combatant .roll {
+	display: block;
+	width: 40px;
+	height: var(--sidebar-item-height);
+	background: url(../artwork/metanthropes-dice-roll-small.webp) no-repeat 50% 50%;
+	background-size: 32px;
+	margin: 0 0.5em;
+}
+.combat-sidebar li.combatant .roll:hover {
+	background-image: url(../artwork/metanthropes-dice-roll-small-activated.webp);
+}
 // this changes the input fields in Foundry UI
 input[type="text"] {
 	min-width: 8ch;
