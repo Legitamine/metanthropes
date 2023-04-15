@@ -4,7 +4,7 @@
   width: 40px;
   height: var(--sidebar-item-height);
   background: url("../artwork/metanthropes-dice-roll-small.webp") no-repeat 50% 50%;
-  background-size: 32px;
+  background-size: 42px;
   margin: 0 0.5em;
 }
 
