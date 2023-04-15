@@ -12,8 +12,8 @@ export class MetanthropesActor extends Actor {
 				"prototypeToken.bar1": { attribute: "Vital.Destiny" },
 				"prototypeToken.bar2": { attribute: "Vital.Life" },
 				// values from https://foundryvtt.com/api/enums/foundry.CONST.TOKEN_DISPLAY_MODES.html
-				"prototypeToken.displayName": defaultToken?.displayName || CONST.TOKEN_DISPLAY_MODES.NONE, // Default display name to be on anyone hover
-				"prototypeToken.displayBars": defaultToken?.displayBars || CONST.TOKEN_DISPLAY_MODES.HOVER, // Default display bars to be on owner hover
+				"prototypeToken.displayName": defaultToken?.displayName || CONST.TOKEN_DISPLAY_MODES.NONE, // Default display name to be off
+				"prototypeToken.displayBars": defaultToken?.displayBars || CONST.TOKEN_DISPLAY_MODES.HOVER, // Default display bars to be on hover
 				"prototypeToken.disposition": defaultToken?.disposition || CONST.TOKEN_DISPOSITIONS.NEUTRAL, // Default disposition to neutral
 				"prototypeToken.name": data.name, // Set token name to actor name
 			});
@@ -46,9 +46,11 @@ export class MetanthropesActor extends Actor {
 		// Fix for Token Attacher / CF Import - from wh4e
 		if (!createData.prototypeToken) createData.prototypeToken = {};
 		// Link Actor data and enable vision only for Protagonists
+		if (data.type !== "Vehicle") {
+			createData.prototypeToken.sight = { enabled: true };
+		}
 		if (data.type == "Protagonist") {
 			createData.prototypeToken.actorLink = true;
-			createData.prototypeToken.sight = { enabled: true };
 		}
 		this.updateSource(createData);
 	}
@@ -87,7 +89,8 @@ export class MetanthropesActor extends Actor {
 		if (actorData.type == "Vehicle") return;
 		const systemData = actorData.system;
 		//! notice here we use .metanthropes instead of metanthropes-system - I would need to review this later in this code as well
-		const flags = actorData.flags.metanthropes || {};
+		//it should probably be metanthropes-system
+		const flags = actorData.flags.metanthropes-system || {};
 		let experienceSpent = 0;
 		let characteristicExperienceSpent = 0;
 		let statExperienceSpent = 0;
@@ -277,7 +280,8 @@ export class MetanthropesActor extends Actor {
 		else if (actorData.type == "MetaTherion") return;
 		const systemData = actorData.system;
 		//! notice here we use .metanthropes instead of metanthropes-system - I would need to review this later in this code as well
-		const flags = actorData.flags.metanthropes || {};
+		//see similar above
+		const flags = actorData.flags.metanthropes-system || {};
 		let experienceAlreadySpent = Number(systemData.Vital.Experience.Spent);
 		let experienceSpent = 0;
 		let advancementCount = 0;
