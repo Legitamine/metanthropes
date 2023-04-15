@@ -24,6 +24,11 @@ export class MetanthropesCombat extends Combat {
 			const bstatValue = b.actor.getFlag("metanthropes-system", "initiative")?.statValue ?? -Infinity;
 			console.log("astatValue:", astatValue);
 			console.log("bstatValue:", bstatValue);
+			if ((astatValue = bstatValue)) {
+				let aDestiny = a.actor.system.Vital.Destiny.value;
+				let bDestiny = b.actor.system.Vital.Destiny.value;
+				console.log("aDestiny:", aDestiny, "bDestiny:", bDestiny);
+			}
 			return bstatValue - astatValue || (a.id > b.id ? 1 : -1);
 		}
 	}
@@ -75,19 +80,19 @@ export class MetanthropesCombat extends Combat {
 			);
 			//! warning: I am not taking into account hidding combatants
 			//todo: need to figure out a way to pass this into the metainitiative
-			//	const chatData = await MetaRollStat.toMessage(messageData, { create: false });
-			//
-			//	// If the combatant is hidden, use a private roll unless an alternative rollMode was explicitly requested
-			//	chatData.rollMode =
-			//		"rollMode" in messageOptions
-			//			? messageOptions.rollMode
-			//			: combatant.hidden
-			//			? CONST.DICE_ROLL_MODES.PRIVATE
-			//			: chatRollMode;
-			//
-			//	// Play 1 sound for the whole rolled set
-			//	if (i > 0) chatData.sound = null;
-			//	messages.push(chatData);
+			const chatData = await MetaInitiative.toMessage(messageData, { create: false });
+
+			// If the combatant is hidden, use a private roll unless an alternative rollMode was explicitly requested
+			chatData.rollMode =
+				"rollMode" in messageOptions
+					? messageOptions.rollMode
+					: combatant.hidden
+					? CONST.DICE_ROLL_MODES.PRIVATE
+					: chatRollMode;
+
+			// Play 1 sound for the whole rolled set
+			if (i > 0) chatData.sound = null;
+			messages.push(chatData);
 		}
 		if (!updates.length) return this;
 		// Update multiple combatants

@@ -186,7 +186,7 @@
 					"Experience": {
 						"type": "number",
 						"dtype": "Number",
-						"Label": "Experience",
+						"Label": "📈 Experience",
 						"Total": "1000",
 						"Spent": 0,
 						"Manual": 0,
@@ -212,14 +212,14 @@
 					},
 					"Life": {
 						"type": "number",
-						"label": "Life",
+						"label": "❤️ Life",
 						"Initial": 100,
 						"value": 111,
 						"max": 0
 					},
 					"Destiny": {
 						"type": "number",
-						"label": "Destiny",
+						"label": "🤞 Destiny",
 						"value": 3,
 						"max": 50
 					}
