@@ -188,18 +188,15 @@ Hooks.on("renderChatMessage", async (message, html) => {
 	console.log("Metanthropes RPG Will go deeper if (message.isAuthor) is true:", message.isAuthor);
 	console.log("=============================================================================================");
 	if (message.isAuthor) {
-		console.log("=============================================================================================");
-		console.log("Metanthropes RPG Inside the If (message.isAuthor) Hook for Buttons", message.isAuthor);
-		console.log("=============================================================================================");
-		const actorId = message.getFlag("metanthropes-system", "actorId");
-		const actor = game.actors.get(actorId);
-		console.log("inside RPG button hook, actor is", actor);
-		const currentDestiny = actor.system.Vital.Destiny.value;
-		console.log("=============================================================================================");
-		console.log("Metanthropes RPG Hook for Button - should give actorId", actorId);
-		console.log("Metanthropes RPG Hook for Button - should give actor", actor);
-		console.log("Metanthropes RPG Hook for Button - should give currentDestiny", currentDestiny);
-		console.log("=============================================================================================");
+		//	const actorId = message.getFlag("metanthropes-system", "actorId");
+		//	const actor = game.actors.get(actorId);
+		//	console.log("inside RPG button hook, actor is", actor);
+		//	const currentDestiny = actor.system.Vital.Destiny.value;
+		//	console.log("=============================================================================================");
+		//	console.log("Metanthropes RPG Hook for Button - should give actorId", actorId);
+		//	console.log("Metanthropes RPG Hook for Button - should give actor", actor);
+		//	console.log("Metanthropes RPG Hook for Button - should give currentDestiny", currentDestiny);
+		//	console.log("=============================================================================================");
 		html.find(".hide-button").removeClass("layout-hide");
 		html.find(".meta-re-roll").on("click", MetaReRoll);
 		html.find(".metapower-re-roll").on("click", MetapowerReRoll);
@@ -214,6 +211,7 @@ Hooks.on("renderChatMessage", async (message, html) => {
 	}
 });
 //listen for stat changes, this should enable metapower sheet to update correctly when a stat changes
+//!this issue also occurs when rolling something
 Hooks.on("updateActor", (actor, data, options, userId) => {
 	if (data.hasOwnProperty("system")) {
 		// Get the actor's sheet

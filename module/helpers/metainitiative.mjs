@@ -86,7 +86,7 @@ export async function MetaInitiative(combatant) {
 		message += `. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
 	}
 	//add re-roll button to message
-	message += `<div><button class="hide-button layout-hide metainitiative-re-roll" data-actor-id="${actor.id}">🤞</button></div>`;
+	message += `<div class="hide-button layout-hide"><button class="metainitiative-re-roll" data-actor-id="${actor.id}">🤞</button></div>`;
 	//console log for debugging
 	console.log(
 		"Metainitiative Results:",
@@ -109,7 +109,11 @@ export async function MetaInitiative(combatant) {
 	);
 	//print message to chat and enable Dice So Nice to roll the dice and display the message
 	roll.toMessage({
-		speaker: ChatMessage.getSpeaker({ actor: actor }),
+		speaker: ChatMessage.getSpeaker({ 
+			actor: actor,
+			token: combatant.token,
+			alias: combatant.name,
+		}),
 		flavor: message,
 		rollMode: game.settings.get("core", "rollMode"),
 		//I've used the optional chaining operator (?.) to check if effects-metapower exists before trying to access its value. If effects-metapower or its value is not defined, it will fall back to the "error no statrolled found" text using the nullish coalescing operator (??).
@@ -118,6 +122,29 @@ export async function MetaInitiative(combatant) {
 		//content seems to be overwriten by Dice So Nice, so maybe I can add my button here?
 		flags: { "metanthropes-system": { actorId: actor.id } },
 	});
+	// This is to check for hidden combatants and display a different message for them in chat
+	// Construct chat message data
+	//	let messageData = foundry.utils.mergeObject(
+	//		{
+	//			speaker: ChatMessage.getSpeaker({
+	//				actor: combatant.actor,
+	//				token: combatant.token,
+	//				alias: combatant.name,
+	//			}),
+	//			flavor: game.i18n.format("COMBAT.RollsInitiative", { name: combatant.name }),
+	//			flags: { "core.initiativeRoll": true },
+	//		},
+	//		messageOptions
+	//	);
+	//	const chatData = await roll.toMessage(messageData, { create: false });
+	//	// If the combatant is hidden, use a private roll unless an alternative rollMode was explicitly requested
+	//	chatData.rollMode =
+	//		"rollMode" in messageOptions
+	//			? messageOptions.rollMode
+	//			: combatant.hidden
+	//			? CONST.DICE_ROLL_MODES.PRIVATE
+	//			: chatRollMode;
+	//!figure out how to play 1 sound for all initiative rolls?
 	// I will take these values and store them inside an initiative flag on the actor
 	await actor.setFlag("metanthropes-system", "initiative", {
 		initiativeValue: resultLevel,

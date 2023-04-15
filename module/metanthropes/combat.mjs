@@ -6,7 +6,7 @@ export class MetanthropesCombat extends Combat {
 		this.cycle = 1;
 		this.cycleRound = 1;
 	}
-	_sortCombatants(a, b) {
+	async _sortCombatants(a, b) {
 		// Sort by initiative first
 		console.log("Metanthropes RPG - from within sortCombatants  === +++ === +++ ===");
 		console.log("a:", a);
@@ -24,12 +24,36 @@ export class MetanthropesCombat extends Combat {
 			const bstatValue = b.actor.getFlag("metanthropes-system", "initiative")?.statValue ?? -Infinity;
 			console.log("astatValue:", astatValue);
 			console.log("bstatValue:", bstatValue);
-			if ((astatValue = bstatValue)) {
-				let aDestiny = a.actor.system.Vital.Destiny.value;
-				let bDestiny = b.actor.system.Vital.Destiny.value;
-				console.log("aDestiny:", aDestiny, "bDestiny:", bDestiny);
-			}
 			return bstatValue - astatValue || (a.id > b.id ? 1 : -1);
+			//todo: award Destiny and re-roll initiative if tied both in Initiative and statValue
+			//	if (astatValue !== undefined && bstatValue !== undefined) {
+			//		if (astatValue == bstatValue) {
+			//			let aDestiny = a.actor.system.Vital.Destiny.value;
+			//			let bDestiny = b.actor.system.Vital.Destiny.value;
+			//			//a.initiative = 0;
+			//			//b.initiative = 0;
+			//			console.log(
+			//				"Metanthropes RPG - Actors tied in initiative",
+			//				a.actor.name,
+			//				a.initiative,
+			//				astatValue,
+			//				"aDestiny:",
+			//				aDestiny,
+			//				"&",
+			//				b.actor.name,
+			//				b.initiative,
+			//				bstatValue,
+			//				"bDestiny:",
+			//				bDestiny
+			//			);
+			//			//todo: give them a destiny point and roll again
+			//			//await MetaInitiative(a);
+			//			//await MetaInitiative(b);
+			//			return bstatValue - astatValue || (a.id > b.id ? 1 : -1);
+			//		} else {
+			//			return bstatValue - astatValue || (a.id > b.id ? 1 : -1);
+			//		}
+			//	}
 		}
 	}
 	/**
@@ -65,34 +89,34 @@ export class MetanthropesCombat extends Combat {
 			const initiativeData = combatant.actor.getFlag("metanthropes-system", "initiative");
 			const initiativeResult = initiativeData.initiativeValue;
 			updates.push({ _id: id, initiative: initiativeResult });
-			// Construct chat message data
-			let messageData = foundry.utils.mergeObject(
-				{
-					speaker: ChatMessage.getSpeaker({
-						actor: combatant.actor,
-						token: combatant.token,
-						alias: combatant.name,
-					}),
-					flavor: game.i18n.format("COMBAT.RollsInitiative", { name: combatant.name }),
-					flags: { "core.initiativeRoll": true },
-				},
-				messageOptions
-			);
+			//	// Construct chat message data
+			//	let messageData = foundry.utils.mergeObject(
+			//		{
+			//			speaker: ChatMessage.getSpeaker({
+			//				actor: combatant.actor,
+			//				token: combatant.token,
+			//				alias: combatant.name,
+			//			}),
+			//			flavor: game.i18n.format("COMBAT.RollsInitiative", { name: combatant.name }),
+			//			flags: { "core.initiativeRoll": true },
+			//		},
+			//		messageOptions
+			//	);
 			//! warning: I am not taking into account hidding combatants
 			//todo: need to figure out a way to pass this into the metainitiative
-			const chatData = await MetaInitiative.toMessage(messageData, { create: false });
-
-			// If the combatant is hidden, use a private roll unless an alternative rollMode was explicitly requested
-			chatData.rollMode =
-				"rollMode" in messageOptions
-					? messageOptions.rollMode
-					: combatant.hidden
-					? CONST.DICE_ROLL_MODES.PRIVATE
-					: chatRollMode;
-
-			// Play 1 sound for the whole rolled set
-			if (i > 0) chatData.sound = null;
-			messages.push(chatData);
+			//	const chatData = await roll.toMessage(messageData, { create: false });
+			//
+			//	// If the combatant is hidden, use a private roll unless an alternative rollMode was explicitly requested
+			//	chatData.rollMode =
+			//		"rollMode" in messageOptions
+			//			? messageOptions.rollMode
+			//			: combatant.hidden
+			//			? CONST.DICE_ROLL_MODES.PRIVATE
+			//			: chatRollMode;
+			//	figure out how to play 1 sound for all initiative rolls?
+			//	// Play 1 sound for the whole rolled set
+			//	if (i > 0) chatData.sound = null;
+			//	messages.push(chatData);
 		}
 		if (!updates.length) return this;
 		// Update multiple combatants
@@ -123,7 +147,7 @@ export class MetanthropesCombat extends Combat {
 		console.log("Metanthropes RPG inside _getInitiativeFormula  === +++ === +++ === ");
 		await MetaInitiative(combatant);
 	}
-	// The below should help define what a Cycle is and when to start a new Cycle (every 2 Rounds)
+	// The below should help define what a this.cycle is and when to start a new this.cycle (every 2 Rounds)
 	/* -------------------------------------------- */
 
 	/**
@@ -133,7 +157,7 @@ export class MetanthropesCombat extends Combat {
 	async nextRound() {
 		await super.nextRound();
 
-		// Calculate the new cycle and cycleRound values
+		// Calculate the new this.cycle and this.cycleRound values
 		if (this.round === 1) {
 			this.cycle = 1;
 			this.cycleRound = 1;
@@ -150,18 +174,20 @@ export class MetanthropesCombat extends Combat {
 			this.cycleRound = 2;
 		}
 
-		// Update the cycle and cycleRound values in the combat data
-		await this.setFlag("metanthropes-system", "cycle", this.cycle);
-		await this.setFlag("metanthropes-system", "cycleRound", this.cycleRound);
+		// Update the this.cycle and this.cycleRound values in the combat data
+		await this.setFlag("metanthropes-system", "this.cycle", this.cycle);
+		await this.setFlag("metanthropes-system", "this.cycleRound", this.cycleRound);
 
-		// Reroll initiative for all combatants at the start of a new cycle (every odd cycleRound)
+		// Reroll initiative for all combatants at the start of a new this.cycle (every odd this.cycleRound)
 		if (this.cycle > 1 && this.cycleRound === 1) {
 			console.log("Metanthropes RPG re-rolling initiative for nextRound === +++ === +++ === ");
 			console.log("this.round:", this.round, "this.cycle:", this.cycle, "this.cycleRound:", this.cycleRound);
 			console.log("this is this", this);
 			console.log("this.combatants", this.combatants);
 			const combatantIds = this.combatants.map((combatant) => combatant.id);
-			await this.rollInitiative(combatantIds);
+			// this will have the GM auto-roll all subsequent initiative rolls
+			// await this.rollInitiative(combatantIds);
+			await this.resetAll();
 		}
 
 		return this;
