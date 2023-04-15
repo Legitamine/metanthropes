@@ -7,55 +7,60 @@ export class MetanthropesCombat extends Combat {
 		this.cycleRound = 1;
 	}
 	async _sortCombatants(a, b) {
-		// Sort by initiative first
+		const ia = Number.isNumeric(a.initiative) ? a.initiative : -Infinity;
+		const ib = Number.isNumeric(b.initiative) ? b.initiative : -Infinity;
+		const astatValue = a.actor.getFlag("metanthropes-system", "initiative")?.statValue ?? -Infinity;
+		const bstatValue = b.actor.getFlag("metanthropes-system", "initiative")?.statValue ?? -Infinity;
 		console.log("Metanthropes RPG - from within sortCombatants  === +++ === +++ ===");
 		console.log("a:", a);
 		console.log("b:", b);
 		console.log("a.initiative:", a.initiative);
 		console.log("b.initiative:", b.initiative);
-		if (a.initiative !== b.initiative) {
-			const ia = Number.isNumeric(a.initiative) ? a.initiative : -Infinity;
-			const ib = Number.isNumeric(b.initiative) ? b.initiative : -Infinity;
-			return ib - ia || (a.id > b.id ? 1 : -1);
-		} else {
-			// If initiative result level is the same, sort by statValue
-			// this particular line is checking first to see if we have already started the initiative (the flags would exist and would be set, otherwise undefined) and if not set it to -Infinity so the combatant can be added to the combat tracker.
-			const astatValue = a.actor.getFlag("metanthropes-system", "initiative")?.statValue ?? -Infinity;
-			const bstatValue = b.actor.getFlag("metanthropes-system", "initiative")?.statValue ?? -Infinity;
-			console.log("astatValue:", astatValue);
-			console.log("bstatValue:", bstatValue);
-			return bstatValue - astatValue || (a.id > b.id ? 1 : -1);
-			//todo: award Destiny and re-roll initiative if tied both in Initiative and statValue
-			//	if (astatValue !== undefined && bstatValue !== undefined) {
-			//		if (astatValue == bstatValue) {
-			//			let aDestiny = a.actor.system.Vital.Destiny.value;
-			//			let bDestiny = b.actor.system.Vital.Destiny.value;
-			//			//a.initiative = 0;
-			//			//b.initiative = 0;
-			//			console.log(
-			//				"Metanthropes RPG - Actors tied in initiative",
-			//				a.actor.name,
-			//				a.initiative,
-			//				astatValue,
-			//				"aDestiny:",
-			//				aDestiny,
-			//				"&",
-			//				b.actor.name,
-			//				b.initiative,
-			//				bstatValue,
-			//				"bDestiny:",
-			//				bDestiny
-			//			);
-			//			//todo: give them a destiny point and roll again
-			//			//await MetaInitiative(a);
-			//			//await MetaInitiative(b);
-			//			return bstatValue - astatValue || (a.id > b.id ? 1 : -1);
-			//		} else {
-			//			return bstatValue - astatValue || (a.id > b.id ? 1 : -1);
-			//		}
-			//	}
-		}
+		console.log("astatValue:", astatValue);
+		console.log("bstatValue:", bstatValue);
+		console.log("ia:", ia);
+		console.log("ib:", ib);
+		console.log("ib - ia:", ib - ia);
+		console.log("astatValue > bstatValue:", astatValue > bstatValue);
+		// sort by initiative first, then sort by statValue if the initiative is the same
+		return ib - ia || (astatValue > bstatValue ? -1 : 1);
 	}
+		// If initiative result level is the same, sort by statValue
+		// this particular line is checking first to see if we have already started the initiative (the flags would exist and would be set, otherwise undefined) and if not set it to -Infinity so the combatant can be added to the combat tracker.
+		//	const astatValue = a.actor.getFlag("metanthropes-system", "initiative")?.statValue ?? -Infinity;
+		//	const bstatValue = b.actor.getFlag("metanthropes-system", "initiative")?.statValue ?? -Infinity;
+		//
+		//	return bstatValue - astatValue || (a.id > b.id ? 1 : -1);
+	
+	//todo: award Destiny and re-roll initiative if tied both in Initiative and statValue
+	//	if (astatValue !== undefined && bstatValue !== undefined) {
+	//		if (astatValue == bstatValue) {
+	//			let aDestiny = a.actor.system.Vital.Destiny.value;
+	//			let bDestiny = b.actor.system.Vital.Destiny.value;
+	//			//a.initiative = 0;
+	//			//b.initiative = 0;
+	//			console.log(
+	//				"Metanthropes RPG - Actors tied in initiative",
+	//				a.actor.name,
+	//				a.initiative,
+	//				astatValue,
+	//				"aDestiny:",
+	//				aDestiny,
+	//				"&",
+	//				b.actor.name,
+	//				b.initiative,
+	//				bstatValue,
+	//				"bDestiny:",
+	//				bDestiny
+	//			);
+	//			//todo: give them a destiny point and roll again
+	//			//await MetaInitiative(a);
+	//			//await MetaInitiative(b);
+	//			return bstatValue - astatValue || (a.id > b.id ? 1 : -1);
+	//		} else {
+	//			return bstatValue - astatValue || (a.id > b.id ? 1 : -1);
+	//		}
+	//	}
 	/**
 	 * Roll initiative for one or multiple Combatants within the Combat document
 	 * @param {string|string[]} ids     A Combatant id or Array of ids for which to roll
