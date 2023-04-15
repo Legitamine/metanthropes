@@ -23,7 +23,16 @@ export async function PossessionUse(event) {
 	const result = actor.getFlag("metanthropes-system", "posused");
 	console.log("PossessionUse - result:", result);
 	if (result.resultLevel <= 0) {
-		flavordata = `<h3>Fails to use ${itemname}!</h3>`;
+		if (attacktype === "Melee") {
+			flavordata = `<h3>Fails to attack with their ${itemname}!</h3>`;
+		} else if (attacktype === "Projectile") {
+			flavordata = `<h3>Throws their ${itemname} at the sky!</h3>`;
+		} else if (attacktype === "Firearm") {
+			flavordata = `<h3>Fires their ${itemname} and hits air!</h3>`;
+		} else {
+			console.log("Metanthropes RPG - PossessionUse - Unknown attacktype: ", attacktype);
+			flavordata = `<h3>Fails to use ${itemname}!</h3>`;
+		}
 	} else {
 		if (attacktype === "Melee") {
 			flavordata = `<h3>Attacks with their ${itemname} with the following:</h3>`;
@@ -43,7 +52,9 @@ export async function PossessionUse(event) {
 		}
 		if (effect) {
 			contentdata = `<div><h4>Effect:</h4>${effect}</div><br>`;
-		} else { contentdata = "";}
+		} else {
+			contentdata = "";
+		}
 		contentdata += `<div><h4>🎯 Targets:</h4>${targets}</div><br>`;
 		if (damage) {
 			if (damagedata > 0) {

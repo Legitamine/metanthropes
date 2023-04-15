@@ -6,7 +6,7 @@ export class MetanthropesCombat extends Combat {
 		this.cycle = 1;
 		this.cycleRound = 1;
 	}
-	async _sortCombatants(a, b) {
+	_sortCombatants(a, b) {
 		const ia = Number.isNumeric(a.initiative) ? a.initiative : -Infinity;
 		const ib = Number.isNumeric(b.initiative) ? b.initiative : -Infinity;
 		const astatValue = a.actor.getFlag("metanthropes-system", "initiative")?.statValue ?? -Infinity;
