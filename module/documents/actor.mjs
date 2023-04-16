@@ -90,7 +90,7 @@ export class MetanthropesActor extends Actor {
 		const systemData = actorData.system;
 		//! notice here we use .metanthropes instead of metanthropes-system - I would need to review this later in this code as well
 		//it should probably be metanthropes-system
-		const flags = actorData.flags.metanthropes-system || {};
+		const flags = actorData.flags.metanthropes || {};
 		let experienceSpent = 0;
 		let characteristicExperienceSpent = 0;
 		let statExperienceSpent = 0;
@@ -281,7 +281,7 @@ export class MetanthropesActor extends Actor {
 		const systemData = actorData.system;
 		//! notice here we use .metanthropes instead of metanthropes-system - I would need to review this later in this code as well
 		//see similar above
-		const flags = actorData.flags.metanthropes-system || {};
+		const flags = actorData.flags.metanthropes || {};
 		let experienceAlreadySpent = Number(systemData.Vital.Experience.Spent);
 		let experienceSpent = 0;
 		let advancementCount = 0;
