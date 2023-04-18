@@ -280,6 +280,7 @@ export class MetanthropesActor extends Actor {
 		else if (actorData.type == "MetaTherion") return;
 		const systemData = actorData.system;
 		//! notice here we use .metanthropes instead of metanthropes-system - I would need to review this later in this code as well
+		//! doing ^this caused an issue with all charstats for all actors to 0!
 		//see similar above
 		const flags = actorData.flags.metanthropes || {};
 		let experienceAlreadySpent = Number(systemData.Vital.Experience.Spent);

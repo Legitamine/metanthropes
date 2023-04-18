@@ -187,7 +187,7 @@ Hooks.on("renderChatMessage", async (message, html) => {
 	console.log("Metanthropes RPG Inside Hook for Buttons");
 	console.log("Metanthropes RPG Will go deeper if (message.isAuthor) is true:", message.isAuthor);
 	console.log("=============================================================================================");
-	if (message.isAuthor) {
+	if (message.isAuthor || game.user.isGM) {
 		const actorId = message.getFlag("metanthropes-system", "actorId");
 		const actor = game.actors.get(actorId);
 		console.log("inside RPG button hook, actor is", actor);
