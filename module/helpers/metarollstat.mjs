@@ -70,7 +70,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 		message += `. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
 	}
 	//add re-roll button to message
-	message += `<div><button class="hide-button layout-hide meta-re-roll" data-actorId="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}">🤞</button></div>`;
+	message += `<div><button class="hide-button layout-hide meta-re-roll" data-idactor="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}">🤞</button></div>`;
 	//console log for debugging
 	console.log(
 		"Metaroll Results: Stat:",
@@ -115,7 +115,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 export async function MetaReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
-	const actorId = button.dataset.actorId;
+	const actorId = button.dataset.idactor;
 	const stat = button.dataset.stat;
 	const statValue = parseInt(button.dataset.statValue);
 	const modifier = parseInt(button.dataset.modifier);

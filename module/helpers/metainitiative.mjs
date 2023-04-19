@@ -86,7 +86,7 @@ export async function MetaInitiative(combatant) {
 		message += `. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
 	}
 	//add re-roll button to message
-	message += `<div class="hide-button layout-hide"><button class="metainitiative-re-roll" data-actorId="${actor.id}">🤞</button></div>`;
+	message += `<div class="hide-button layout-hide"><button class="metainitiative-re-roll" data-idactor="${actor.id}">🤞</button></div>`;
 	//console log for debugging
 	console.log(
 		"Metainitiative Results:",
@@ -162,7 +162,7 @@ export async function MetaInitiative(combatant) {
 export async function MetaInitiativeReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
-	const actorId = button.dataset.actorId;
+	const actorId = button.dataset.idactor;
 	const actor = game.actors.get(actorId);
 	const combatant = game.combat.getCombatantByActor(actorId);
 	console.log("Metanthropes RPG do we get the correct combatant data?", combatant);

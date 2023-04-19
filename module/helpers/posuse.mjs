@@ -1,7 +1,7 @@
 export async function PossessionUse(event) {
 	event.preventDefault();
 	const button = event.target;
-	const actorId = button.dataset.actorId;
+	const actorId = button.dataset.idactor;
 	const stat = button.dataset.stat;
 	const statValue = parseInt(button.dataset.statValue);
 	const itemname = button.dataset.itemname;
@@ -59,12 +59,12 @@ export async function PossessionUse(event) {
 		if (damage) {
 			if (damagedata > 0) {
 				contentdata += `<div class="hide-button layout-hide"><h4>💥 Damage:</h4>
-			<button class="re-roll-damage" data-actorId="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" >
+			<button class="re-roll-damage" data-idactor="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" >
 			💥 [[${damagedata}+${damage}]] 🤞</button>
 			</div><br>`;
 			} else {
 				contentdata += `<div class="hide-button layout-hide"><h4>💥 Damage:</h4>
-			<button class="re-roll-damage" data-actorId="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" >
+			<button class="re-roll-damage" data-idactor="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" >
 			💥 [[${damage}]] 🤞</button>
 			</div><br>`;
 			}

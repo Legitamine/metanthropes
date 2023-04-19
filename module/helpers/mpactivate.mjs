@@ -1,7 +1,7 @@
 export async function MetapowerActivate(event) {
 	event.preventDefault();
 	const button = event.target;
-	const actorId = button.dataset.actorId;
+	const actorId = button.dataset.idactor;
 	const stat = button.dataset.stat;
 	const statValue = parseInt(button.dataset.statValue);
 	const itemname = button.dataset.itemname;
@@ -29,7 +29,7 @@ export async function MetapowerActivate(event) {
 		contentdata = `<div><h4>Effect:</h4>${effect}</div><br>`;
 		if (targetsdice) {
 			contentdata += `<div class="hide-button layout-hide"><h4>🎯 Targets:</h4>
-		<button class="re-roll-targets" data-actorId="${actor.id}" data-itemname="${itemname}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
+		<button class="re-roll-targets" data-idactor="${actor.id}" data-itemname="${itemname}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
 		🎯 [[${targetsdice}]] ${targets} 🤞</button>
 		</div><br>`;
 		} else {
@@ -37,7 +37,7 @@ export async function MetapowerActivate(event) {
 		}
 		if (durationdice) {
 			contentdata += `<div class="hide-button layout-hide"><h4>⏳ Duration:</h4>
-		<button class="re-roll-duration" data-actorId="${actor.id}" data-itemname="${itemname}" data-durationdice="${durationdice}" data-duration="${duration}" >
+		<button class="re-roll-duration" data-idactor="${actor.id}" data-itemname="${itemname}" data-durationdice="${durationdice}" data-duration="${duration}" >
 		⏳ [[${durationdice}]] ${duration} 🤞</button>
 		</div><br>`;
 		} else {
@@ -45,13 +45,13 @@ export async function MetapowerActivate(event) {
 		}
 		if (damage) {
 			contentdata += `<div class="hide-button layout-hide"><h4>💥 Damage:</h4>
-		<button class="re-roll-damage" data-actorId="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" >
+		<button class="re-roll-damage" data-idactor="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" >
 		💥 [[${damage}]] 🤞</button>
 		</div><br>`;
 		}
 		if (healing) {
 			contentdata += `<div class="hide-button layout-hide"><h4>💞 Healing:</h4>
-		<button class="re-roll-healing" data-actorId="${actor.id}" data-itemname="${itemname}" data-healing="${healing}" >
+		<button class="re-roll-healing" data-idactor="${actor.id}" data-itemname="${itemname}" data-healing="${healing}" >
 		💞 [[${healing}]] 🤞</button>
 		</div><br>`;
 		}

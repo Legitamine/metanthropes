@@ -71,11 +71,11 @@ export async function PossessionRollStat(actor, stat, statValue, modifier = 0, b
 	}
 	//add re-roll button to message
 	message += `<div class="metanthropes hide-button layout-hide">
-	<button class="possession-re-roll" data-actorId="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}"
+	<button class="possession-re-roll" data-idactor="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}"
 	data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-itemname="${itemname}" data-attacktype="${attacktype}"
 	data-effect="${effect}" data-targets="${targets}" data-damage="${damage}" data-conditions="${conditions}">
 	🤞</button>
-	<button class="possession-use" data-actorId="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}"
+	<button class="possession-use" data-idactor="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}"
 	data-itemname="${itemname}" data-attacktype="${attacktype}" data-targets="${targets}" data-effect="${effect}"
 	data-damage="${damage}" data-conditions="${conditions}" data-modifier="${modifier}" >
 	🛠️</button>
@@ -141,7 +141,7 @@ export async function PossessionRollStat(actor, stat, statValue, modifier = 0, b
 export async function PossessionReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
-	const actorId = button.dataset.actorId;
+	const actorId = button.dataset.idactor;
 	const stat = button.dataset.stat;
 	const statValue = parseInt(button.dataset.statValue);
 	const modifier = parseInt(button.dataset.modifier);
