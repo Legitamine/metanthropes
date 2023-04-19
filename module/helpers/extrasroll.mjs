@@ -11,7 +11,7 @@ export async function ReRollTargets(event) {
 	const actor = game.actors.get(actorId);
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	// make this function only available to the owner of the actor
-	if (actor && actor.isOwner) {
+	if ((actor && actor.isOwner) || game.user.isGM) {
 		// Reduce Destiny.value by 1
 		if (currentDestiny > 0) {
 			currentDestiny -= 1;
@@ -62,7 +62,7 @@ export async function ReRollDuration(event) {
 	const actor = game.actors.get(actorId);
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	// make this function only available to the owner of the actor
-	if (actor && actor.isOwner) {
+	if ((actor && actor.isOwner) || game.user.isGM) {
 		// Reduce Destiny.value by 1
 		if (currentDestiny > 0) {
 			currentDestiny -= 1;
@@ -112,7 +112,7 @@ export async function ReRollDamage(event) {
 	const actor = game.actors.get(actorId);
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	// make this function only available to the owner of the actor
-	if (actor && actor.isOwner) {
+	if ((actor && actor.isOwner) || game.user.isGM) {
 		// Reduce Destiny.value by 1
 		if (currentDestiny > 0) {
 			currentDestiny -= 1;
@@ -162,7 +162,7 @@ export async function ReRollHealing(event) {
 	const actor = game.actors.get(actorId);
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	// make this function only available to the owner of the actor
-	if (actor && actor.isOwner) {
+	if ((actor && actor.isOwner) || game.user.isGM) {
 		// Reduce Destiny.value by 1
 		if (currentDestiny > 0) {
 			currentDestiny -= 1;

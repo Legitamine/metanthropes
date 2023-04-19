@@ -15,7 +15,6 @@ export async function PossessionUse(event) {
 	//todo: utilize existing levels of success and spent levels of success
 	// Create a chat message with the provided content
 	const powerroll = actor.system.Characteristics.Body.Stats.Power.Roll;
-	//todo: need to add modifier from multiaction and size here to input in the damage calc
 	let contentdata = null;
 	let flavordata = null;
 	let damagedata = null;
@@ -37,6 +36,7 @@ export async function PossessionUse(event) {
 		if (attacktype === "Melee") {
 			flavordata = `<h3>Attacks with their ${itemname} with the following:</h3>`;
 			if (modifier < 0) {
+				//todo: need to add modifier size here to input in the damage calc
 				damagedata = powerroll + modifier;
 			} else {
 				damagedata = powerroll;
