@@ -32,7 +32,7 @@ export async function RollTargets(actor, itemname, targetsdice, targets) {
 	// Create a chat message with the provided content
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	let contentdata = `<div class="metanthropes hide-button layout-hide">
-	<button class="re-roll-targets" data-actor-id="${actor.id}" data-itemname="${itemname}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
+	<button class="re-roll-targets" data-actorId="${actor.id}" data-itemname="${itemname}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
 	🎯 [[${targetsdice}]] ${targets} 🤞</button>
 	</div>
 	<div>${actor.name} has ${currentDestiny} * 🤞 remaining.
@@ -83,7 +83,7 @@ export async function RollDuration(actor, itemname, durationdice, duration) {
 	// Create a chat message with the provided content
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	let contentdata = `<div class="metanthropes hide-button layout-hide">
-	<button class="re-roll-duration" data-actor-id="${actor.id}" data-itemname="${itemname}" data-durationdice="${durationdice}" data-duration="${duration}" >
+	<button class="re-roll-duration" data-actorId="${actor.id}" data-itemname="${itemname}" data-durationdice="${durationdice}" data-duration="${duration}" >
 	⏳ [[${durationdice}]] ${duration} 🤞</button>
 	</div>
 	<div>${actor.name} has ${currentDestiny} * 🤞 remaining.
@@ -133,7 +133,7 @@ export async function RollDamage(actor, itemname, damage) {
 	// Create a chat message with the provided content
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	let contentdata = `<div class="metanthropes hide-button layout-hide">
-	<button class="re-roll-damage" data-actor-id="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" >
+	<button class="re-roll-damage" data-actorId="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" >
 	💥 [[${damage}]] 🤞</button>
 	</div>
 	<div>${actor.name} has ${currentDestiny} * 🤞 remaining.
@@ -183,7 +183,7 @@ export async function RollHealing(actor, itemname, healing) {
 	// Create a chat message with the provided content
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	let contentdata = `<div class="metanthropes hide-button layout-hide">
-	<button class="re-roll-healing" data-actor-id="${actor.id}" data-itemname="${itemname}" data-healing="${healing}" >
+	<button class="re-roll-healing" data-actorId="${actor.id}" data-itemname="${itemname}" data-healing="${healing}" >
 	💞 [[${healing}]] 🤞</button>
 	</div>
 	<div>${actor.name} has ${currentDestiny} * 🤞 remaining.

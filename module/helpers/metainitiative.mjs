@@ -86,7 +86,7 @@ export async function MetaInitiative(combatant) {
 		message += `. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
 	}
 	//add re-roll button to message
-	message += `<div class="hide-button layout-hide"><button class="metainitiative-re-roll" data-actor-id="${actor.id}">🤞</button></div>`;
+	message += `<div class="hide-button layout-hide"><button class="metainitiative-re-roll" data-actorId="${actor.id}">🤞</button></div>`;
 	//console log for debugging
 	console.log(
 		"Metainitiative Results:",
@@ -109,7 +109,7 @@ export async function MetaInitiative(combatant) {
 	);
 	//print message to chat and enable Dice So Nice to roll the dice and display the message
 	roll.toMessage({
-		speaker: ChatMessage.getSpeaker({ 
+		speaker: ChatMessage.getSpeaker({
 			actor: actor,
 			token: combatant.token,
 			alias: combatant.name,
@@ -168,7 +168,7 @@ export async function MetaInitiativeReRoll(event) {
 	console.log("Metanthropes RPG do we get the correct combatant data?", combatant);
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	// make this function only available to the owner of the actor
-	if (actor && actor.isOwner) {
+	if ((actor && actor.isOwner) || game.user.isGM) {
 		// Reduce Destiny.value by 1
 		if (currentDestiny > 0) {
 			currentDestiny -= 1;
