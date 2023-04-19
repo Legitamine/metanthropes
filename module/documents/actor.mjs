@@ -48,10 +48,12 @@ export class MetanthropesActor extends Actor {
 		// Link Actor data and enable vision only for Protagonists
 		if (data.type !== "Vehicle") {
 			createData.prototypeToken.sight = { enabled: true };
-		}
-		if (data.type == "Protagonist") {
+			//! Adding this here so all actors have prototypeToken.actorLink = true until I figure out how to do it for tokens and not actors
 			createData.prototypeToken.actorLink = true;
 		}
+		//	if (data.type == "Protagonist") {
+		//		createData.prototypeToken.actorLink = true;
+		//	}
 		this.updateSource(createData);
 	}
 	/** @override */
