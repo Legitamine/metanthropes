@@ -145,6 +145,18 @@ function rollItemMacro(itemUuid) {
 Hooks.once("ready", async function () {
 	// Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
 	Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
+	// Add support for Moulinette: custom artwork is showing up for indexing by Moulinette
+	if(game.moulinette) {
+		game.moulinette.sources.push({ type: "images", publisher: "Metanthropes RPG", pack: "Metapowers", source: "data", path: "systems/metanthropes-system/artwork/metapowers" })
+		game.moulinette.sources.push({ type: "images", publisher: "Metanthropes RPG", pack: "Masculine Tokens", source: "data", path: "systems/metanthropes-system/artwork/tokens/portraits/masculine" })
+		game.moulinette.sources.push({ type: "images", publisher: "Metanthropes RPG", pack: "Feminine Tokens", source: "data", path: "systems/metanthropes-system/artwork/tokens/portraits/feminine" })
+		game.moulinette.sources.push({ type: "sounds", publisher: "Dark Raven", pack: "Free Soundscapes Module", source: "data", path: "modules/darkraven-games-soundscapes-free/audio" })
+		game.moulinette.sources.push({ type: "images", publisher: "Fragmaps", pack: "Fragmaps Free Module", source: "data", path: "modules/fragmaps-free/images" })
+		game.moulinette.sources.push({ type: "tiles", publisher: "Fragmaps", pack: "Fragmaps Free Module", source: "data", path: "modules/fragmaps-free/tiles" })
+		game.moulinette.sources.push({ type: "sounds", publisher: "Ivan Duch", pack: "Free Music Packs", source: "data", path: "modules/ivan-duch-music-packs/audio" })
+		game.moulinette.sources.push({ type: "sounds", publisher: "Michael Ghelfi", pack: "Free Ambience", source: "data", path: "modules/michaelghelfi/ambience" })
+		game.moulinette.sources.push({ type: "sounds", publisher: "Michael Ghelfi", pack: "Free Music", source: "data", path: "modules/michaelghelfi/music" })
+	}
 });
 // Drag Ruler Integration
 Hooks.once("dragRuler.ready", (SpeedProvider) => {

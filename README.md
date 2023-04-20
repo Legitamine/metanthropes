@@ -17,7 +17,8 @@ This System aims to utilize the latest and best in Foundry VTT. Currently offers
 To get the best experience while playing Metanthropes RPG, we recommend to install the following fully supported modules:
 
 - Dice So Nice: https://foundryvtt.com/packages/dice-so-nice
-- Drag Ruler: https://foundryvtt.com/packages/drag-ruler 
+- Drag Ruler: https://foundryvtt.com/packages/drag-ruler
+- Moulinette: https://foundryvtt.com/packages/moulinette-core (you have to manually run the Index command for Sound and Image assets in your world)
 ### Known Issues
 - Automatic XP Calculation for Characteristics and Stats assumes that you progressed your Characteristic first, otherwise it will spent more XP than what it should. 
 	- Workaround: Use the Spent XP manual input field to adjust the XP spent for the Stat.
