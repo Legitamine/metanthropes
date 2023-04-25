@@ -145,7 +145,7 @@ function rollItemMacro(itemUuid) {
 Hooks.once("ready", async function () {
 	// Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
 	Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
-	// Add support for Moulinette: custom artwork is showing up for indexing by Moulinette
+	// Add support for Moulinette: Free modules with artwork & sounds is available for indexing by Moulinette
 	if(game.moulinette) {
 		game.moulinette.sources.push({ type: "images", publisher: "Metanthropes RPG", pack: "Metapowers", source: "data", path: "systems/metanthropes-system/artwork/metapowers" })
 		game.moulinette.sources.push({ type: "images", publisher: "Metanthropes RPG", pack: "Masculine Tokens", source: "data", path: "systems/metanthropes-system/artwork/tokens/portraits/masculine" })
@@ -165,6 +165,8 @@ Hooks.once("ready", async function () {
 		game.moulinette.sources.push({ type: "sounds", publisher: "MAD Free", pack: "Audio", source: "data", path: "modules/mad-freecontent/audio" })
 		game.moulinette.sources.push({ type: "images", publisher: "Coriolis", pack: "AI Portraits", source: "data", path: "modules/coriolis-kbender-ai-art-pack/portraits" })
 		game.moulinette.sources.push({ type: "images", publisher: "Coriolis", pack: "AI Tokens", source: "data", path: "modules/coriolis-kbender-ai-art-pack/tokens" })
+		game.moulinette.sources.push({ type: "sounds", publisher: "Metanthropes RPG", pack: "Music", source: "data", path: "systems/metanthropes-system/audio/music" })
+		game.moulinette.sources.push({ type: "sounds", publisher: "Metanthropes RPG", pack: "Sound Effects", source: "data", path: "systems/metanthropes-system/audio/sound-effects" })
 	}
 });
 // Drag Ruler Integration
