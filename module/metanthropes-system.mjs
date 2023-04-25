@@ -151,11 +151,20 @@ Hooks.once("ready", async function () {
 		game.moulinette.sources.push({ type: "images", publisher: "Metanthropes RPG", pack: "Masculine Tokens", source: "data", path: "systems/metanthropes-system/artwork/tokens/portraits/masculine" })
 		game.moulinette.sources.push({ type: "images", publisher: "Metanthropes RPG", pack: "Feminine Tokens", source: "data", path: "systems/metanthropes-system/artwork/tokens/portraits/feminine" })
 		game.moulinette.sources.push({ type: "sounds", publisher: "Dark Raven", pack: "Free Soundscapes Module", source: "data", path: "modules/darkraven-games-soundscapes-free/audio" })
-		game.moulinette.sources.push({ type: "images", publisher: "Fragmaps", pack: "Fragmaps Free Module", source: "data", path: "modules/fragmaps-free/images" })
-		game.moulinette.sources.push({ type: "tiles", publisher: "Fragmaps", pack: "Fragmaps Free Module", source: "data", path: "modules/fragmaps-free/tiles" })
+		game.moulinette.sources.push({ type: "images", publisher: "Fragmaps", pack: "Fragmaps Free Images", source: "data", path: "modules/fragmaps-free/images" })
+		game.moulinette.sources.push({ type: "images", publisher: "Fragmaps", pack: "Fragmaps Free Tiles", source: "data", path: "modules/fragmaps-free/images/tiles" })
 		game.moulinette.sources.push({ type: "sounds", publisher: "Ivan Duch", pack: "Free Music Packs", source: "data", path: "modules/ivan-duch-music-packs/audio" })
 		game.moulinette.sources.push({ type: "sounds", publisher: "Michael Ghelfi", pack: "Free Ambience", source: "data", path: "modules/michaelghelfi/ambience" })
 		game.moulinette.sources.push({ type: "sounds", publisher: "Michael Ghelfi", pack: "Free Music", source: "data", path: "modules/michaelghelfi/music" })
+		game.moulinette.sources.push({ type: "sounds", publisher: "Hologrounds Free", pack: "Audio", source: "data", path: "modules/hologrounds-free-module/audio" })
+		game.moulinette.sources.push({ type: "images", publisher: "Hologrounds Free", pack: "Maps", source: "data", path: "modules/hologrounds-free-module/maps" })
+		game.moulinette.sources.push({ type: "images", publisher: "Miska Free", pack: "Maps", source: "data", path: "modules/miskasmaps/maps" })
+		game.moulinette.sources.push({ type: "images", publisher: "MAD Free", pack: "Journal", source: "data", path: "modules/mad-freecontent/images/journal" })
+		game.moulinette.sources.push({ type: "images", publisher: "MAD Free", pack: "Maps", source: "data", path: "modules/mad-freecontent/images/maps" })
+		game.moulinette.sources.push({ type: "images", publisher: "MAD Free", pack: "Tiles", source: "data", path: "modules/mad-freecontent/images/tiles" })
+		game.moulinette.sources.push({ type: "sounds", publisher: "MAD Free", pack: "Audio", source: "data", path: "modules/mad-freecontent/audio" })
+		game.moulinette.sources.push({ type: "images", publisher: "Coriolis", pack: "AI Portraits", source: "data", path: "modules/coriolis-kbender-ai-art-pack/portraits" })
+		game.moulinette.sources.push({ type: "images", publisher: "Coriolis", pack: "AI Tokens", source: "data", path: "modules/coriolis-kbender-ai-art-pack/tokens" })
 	}
 });
 // Drag Ruler Integration
@@ -173,7 +182,7 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 		}
 		getRanges(token) {
 			const baseSpeed = token.actor.system.physical.movement.initial;
-			// A character can always walk it's base speed and dash twice it's base speed
+			// A character can choose to move an additional lenght equal to their base movement, and sprint up to 5 times their base movement
 			const ranges = [
 				{ range: baseSpeed * 2, color: "movement" },
 				{ range: baseSpeed * 4, color: "additional" },
@@ -205,8 +214,12 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		console.log("inside RPG button hook, actor is", actor);
 		const currentDestiny = actor.system.Vital.Destiny.value;
 		console.log("=============================================================================================");
+		console.log("Metanthropes RPG Hook for Button - message.isAuthor is", message.isAuthor);
+		console.log("Metanthropes RPG Hook for Button - game.user.isGM is", game.user.isGM);
+		console.log("Metanthropes RPG Hook for Button - this", this);
 		console.log("Metanthropes RPG Hook for Button - should give actorId", actorId);
 		console.log("Metanthropes RPG Hook for Button - should give actor", actor);
+		console.log("Metanthropes RPG Hook for Button - should give actor Name", actor.name);
 		console.log("Metanthropes RPG Hook for Button - should give currentDestiny", currentDestiny);
 		console.log("=============================================================================================");
 		html.find(".hide-button").removeClass("layout-hide");
