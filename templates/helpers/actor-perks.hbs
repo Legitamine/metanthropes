@@ -1,0 +1,49 @@
+<div class="perks">
+	<!-- <h2 class="style-cs-stats-label"></h2> -->
+	<div class="flexrow">
+		<div class="knowledge">
+			<h3 class="style-labels-text">Knowledge</h3>
+			{{#each system.Perks.Knowledge}}
+				<div class="perk-item">
+					<label for="system.Perks.Knowledge.{{@key}}.value">{{this.label}}:</label>
+					<select name="system.Perks.Knowledge.{{@key}}.value" id="system.Perks.Knowledge.{{@key}}.value"
+						data-dtype="{{this.dtype}}">
+						<option value="0" {{selected this.value 0}}>0</option>
+						<option value="1" {{selected this.value 1}}>1</option>
+						<option value="2" {{selected this.value 2}}>2</option>
+						<option value="3" {{selected this.value 3}}>3</option>
+						<option value="4" {{selected this.value 4}}>4</option>
+						<option value="5" {{selected this.value 5}}>5</option>
+					</select>
+				</div>
+			{{/each}}
+		</div>
+		<div class="perks-skills flex">
+			<h3 class="style-labels-text">Skills</h3>
+			{{#each system.Perks.Skills}}
+				<div class="perk-item">
+					<label for="system.Perks.Skills.{{@key}}.value">{{this.label}}:</label>
+					<select name="system.Perks.Skills.{{@key}}.value" id="system.Perks.Skills.{{@key}}.value"
+						data-dtype="{{this.dtype}}">
+						<option value="0" {{selected this.value 0}}>0</option>
+						<option value="1" {{selected this.value 1}}>1</option>
+						<option value="2" {{selected this.value 2}}>2</option>
+						<option value="3" {{selected this.value 3}}>3</option>
+						<option value="4" {{selected this.value 4}}>4</option>
+						<option value="5" {{selected this.value 5}}>5</option>
+					</select>
+				</div>
+			{{/each}}
+		</div>
+	</div>
+	<div class="perks-extra">
+		<h3 class="style-labels-text">Details</h3>
+		{{#each system.Perks.Details}}
+			<div class="perk-item">
+				<label for="system.Perks.Details.{{@key}}.value">{{this.label}}:</label>
+				<input class="style-container-input-longtext" type="{{this.type}}"
+					name="system.Perks.Details.{{@key}}.value" value="{{this.value}}" data-dtype="{{this.dtype}}" placeholder="{{this.value}}">
+			</div>
+		{{/each}}
+	</div>
+</div>

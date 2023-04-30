@@ -1,0 +1,50 @@
+<ol class="items-list">
+	{{#each Metapowers as |Metapowers metapowerLevel|}}
+		<li class="item flexrow items-header">
+			<div class="item-name">⏫: {{metapowerLevel}}</div>
+			<div class="item-itemname">Metapower</div>
+			<div class="item-destinycost">🤞</div>
+			<div class="item-statroll">🎲</div>
+			<div class="item-actionslot">⏱</div>
+			<div class="item-range">📏</div>
+			<div class="item-areaeffect">🗺️</div>
+			<div class="item-controls"><i class="fa-duotone fa-gears"></i></div>
+		</li>
+		{{#each Metapowers as |item id|}}
+			<li class="item flexrow" data-item-id="{{item._id}}">
+				<div class="item-name flexrow">
+					<div class="item-image">
+						<img src="{{item.img}}" title="{{item.name}}" width="30" height="30" />
+					</div>
+					<h4>
+						<div class="style-mp-rolls" data-roll-type="Metapower"
+							data-stat="{{item.system.Activation.StatRolled.value}}" data-itemname="{{item.name}}"
+							data-destcost="{{item.system.Activation.DestinyCost.value}}"
+							data-effect="{{item.system.EffectDescription.value}}"
+							data-targets="{{item.system.Activation.Targets.value}}"
+							data-targetsdice="{{item.system.Activation.TargetsDice.value}}"
+							data-duration="{{item.system.Activation.Duration.value}}"
+							data-durationdice="{{item.system.Activation.DurationDice.value}}"
+							data-damage="{{item.system.Effects.Damage.value}}"
+							data-healing="{{item.system.Effects.Healing.value}}"
+							data-buffs="{{item.system.Effects.Buffs.value}}"
+							data-conditions="{{item.system.Effects.Conditions.value}}">{{item.name}}</div>
+					</h4>
+				</div>
+				<div class="item-itemname item-prop">{{item.system.Activation.MetapowerName.value}}</div>
+				<div class="item-destinycost item-prop">{{item.system.Activation.DestinyCost.value}}</div>
+				<div class="item-statroll item-prop">
+					{{item.system.Activation.StatRolled.value}}:
+					{{lookup ../../system.RollStats item.system.Activation.StatRolled.value}}
+				</div>
+				<div class="item-actionslot item-prop">{{item.system.Activation.ActionSlot.value}}</div>
+				<div class="item-range item-prop">{{item.system.Activation.Range.value}}</div>
+				<div class="item-areaeffect item-prop">{{item.system.Activation.AreaEffect.value}}</div>
+				<div class="item-controls">
+					<a class="item-control item-edit" title="Metapower Details"><i class="fa-duotone fa-message-pen"></i></a>
+					<a class="item-control item-delete" title="Delete Metapower"><i class="fa-duotone fa-trash"></i></a>
+				</div>
+			</li>
+		{{/each}}
+	{{/each}}
+</ol>

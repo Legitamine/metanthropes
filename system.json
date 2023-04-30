@@ -1,12 +1,12 @@
 {
 	"id": "metanthropes-system",
 	"title": "Metanthropes RPG",
-	"description": "This is the official Metanthropes RPG system for FoundryVTT",
-	"version": "0.1.89",
+	"description": "Metanthropes RPG System for FoundryVTT",
+	"version": "0.5.37",
 	"compatibility": {
 		"minimum": "10",
 		"verified": "10.291",
-		"maximum": "10"
+		"maximum": "11"
 	},
 	"authors": [
 		{
@@ -14,29 +14,19 @@
 			"url": "https://www.metanthropes.com/profile/2-qp/",
 			"email": "qp.wormholes@gmail.com",
 			"reddit": "/u/q---p",
-			"discord": "@qp#8888"
-		},
-		{
-			"name": "bofhgr"
+			"discord": "qp#8888"
 		}
 	],
 	"esmodules": ["./module/metanthropes-system.mjs"],
 	"styles": ["./css/metanthropes-system.css"],
-	"macros": {
-		"MetaRoll": {
-			"name": "MetaRoll",
-			"path": "./macros/metaroll.js"
-		}
-	},
 	"scripts": [],
 	"packs": [],
 	"languages": [],
 	"socket": false,
-	"initiative": "1d100",
 	"gridDistance": 2,
 	"gridUnits": "m",
-	"primaryTokenAttribute": "Vital.Life.value",
-	"secondaryTokenAttribute": "Vital.Destiny.value",
+	"primaryTokenAttribute": "Vital.Destiny.value",
+	"secondaryTokenAttribute": "Vital.Life.value",
 	"url": "https://github.com/legitamine/metanthropes-system/blob/stable/README.md",
 	"manifest": "https://github.com/legitamine/metanthropes-system/releases/latest/download/system.json",
 	"license": "https://github.com/legitamine/metanthropes-system/blob/stable/LICENSE.txt",

@@ -1,45 +1,94 @@
 <form class="metanthropes {{cssClass}}" autocomplete="off">
-	<header class="sheet-header">
-		<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64" />
-		<h1 class="charname"><input name="name" type="text" value="{{actor.name}}"
-				placeholder="A Humanoid" /></h1>
+	<header>
+		<div class="layout-container-grid4x1 style-container-grid4x1">
+			<div class="layout-container-small style-container-small">
+				<div>Vehicle<input name="name" type="text" value="{{actor.name}}" placeholder="Vehicle Name"
+						data-dtype="String" />
+				</div>
+				<div>Player
+					<input name="system.metaowner.value" type="text" value="{{system.metaowner.value}}"
+						placeholder="Player Name" data-dtype="String" />
+				</div>
+				<div>                                                                  <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="85" width="85" />
+				</div>
+			</div>
+			<div class="layout-container-small style-container-small">
+				<div>Background
+					<input name="system.Vital.background.value" type="text" value="{{system.Vital.background.value}}"
+						data-dtype="String" placeholder="Background" />
+				</div>
+				<div>Arc
+					<input name="system.Vital.arc.value" type="text" value="{{system.Vital.arc.value}}"
+						data-dtype="String" placeholder="Arc" />
+				</div>
+			</div>
+			<div class="layout-container-small style-container-small">
+			</div>
+			<div class="layout-container-small style-container-small">
+			</div>
+		</div>
+		<div class="layout-container-grid1x4 style-container-grid1x4">
+			<div class="layout-container-small style-container-small">
+				<div class="style-labels-text">
+					❤️ Durability
+					<input name="system.Vital.Life.value" type="number" value="{{system.Vital.Life.value}}"
+						data-dtype="Number" />/{{system.Vital.Life.max}}
+				</div>
+			</div>
+			<div class="layout-container-small style-container-small">
+				<div class="style-labels-text">📈 Experience Total: <input name="system.Vital.Experience.Total" type="number"
+						value="{{system.Vital.Experience.Total}}" data-dtype="Number" placeholder="1000" /> Spent:
+					{{system.Vital.Experience.Spent}} + <input name="system.Vital.Experience.Manual" type="number"
+						value="{{system.Vital.Experience.Manual}}" data-dtype="Number" placeholder="0" />
+					Stored:{{#if (gte system.Vital.Experience.Stored 0)}}
+						<span class="style-cs-positive">{{system.Vital.Experience.Stored}}</span>
+					{{else}}
+						<span class="style-cs-negative">{{system.Vital.Experience.Stored}}</span>
+					{{/if}}
+				</div>
+			</div>
+			<div class="layout-container-small style-container-small">
+				<div class="style-labels-text">🤞 Destiny
+					<input name="system.Vital.Destiny.value" type="number" value="{{system.Vital.Destiny.value}}"
+						data-dtype="Number" placeholder="0" />/<input name="system.Vital.Destiny.max" type="number"
+						value="{{system.Vital.Destiny.max}}">
+				</div>
+			</div>
+			<div class="layout-container-small style-container-small">
+				<div class="style-labels-text">👣 Movement
+					<input name="system.physical.movement.initial" type="number"
+						value="{{system.physical.movement.initial}}" data-dtype="Number" placeholder="10" />
+				</div>
+			</div>
+		</div>
 	</header>
-
-	<section class="metanthropes layout-container-big style-secondary-title">
-		<h3>Hello Metanthropes!</h3>
-		<p>Here is a sample sheet for a humanoid character.</p>
-		<p>It is a work in progress, so please be patient.</p>
-		<h5> {{system.characteristics.body.stats.power.rollme}} </h5>
-		<div class="metanthropes layout-container-big style-secondary-body">
-			<h5 class="metanthropes style-primary-body">Body</h5>
-			<h5> {{system.characteristics.soul.stats.consciousness.rollme}} </h5>
+	<main>
+		<div class="layout-container-nav style-container-nav">
+			<nav class="style-container-nav-children csnavselector tabs" data-group="cs">
+				<a class="item" data-tab="cs-charstats">📊 Overview</a>
+				<a class="item" data-tab="cs-possessions">🛠️ Possessions</a>
+				<a class="item" data-tab="cs-notes">📓 Notes</a>
+			</nav>
 		</div>
-		<input name="system.characteristics.body.conditions.maimed.value" type="checkbox"
-			{{#if system.characteristics.body.conditions.maimed.value}}checked{{/if}} />
-		<input name="system.characteristics.soul.stats.consciousness.progressed.value" type="number"
-			value="{{system.characteristics.soul.stats.consciousness.progressed.value}}" />
-		<input name="system.characteristics.mind.conditions.disconnected.label" type="text"
-			value="{{system.characteristics.mind.conditions.disconnected.label}}" />
-	</section>
-	<section>
-		<div class="metanthropes layout-container-big style-secondary-title">
-			<h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis facere fuga nostrum dolorum, obcaecati explicabo recusandae odit iusto modi ut quidem perspiciatis, mollitia similique neque repudiandae non molestiae autem ad!</h3>
-		</div>
-	</section>
-	<section>
-		<div class="metanthropes layout-container-big grid grid-3col">
-			<div class="metanthropes layout-container-med flex-between">
-				<h5 class="metanthropes style-primary-body">Body</h5>
+		<section class="csnavtabs">
+			<div class="tab cs-charstats" data-group="cs" data-tab="cs-charstats">
+				{{> "systems/metanthropes-system/templates/helpers/actor-charstats.hbs"}}
 			</div>
-			<div class="metanthropes layout-container-med flex-group-center">
-				<h5 class="metanthropes style-primary-body">Mind</h5>
+			<div class="tab cs-possessions" data-group="cs" data-tab="cs-possessions">
+				<div class="layout-container-small style-container-small">
+					{{> "systems/metanthropes-system/templates/helpers/actor-possessions.hbs"}}
+				</div>
 			</div>
-			<div class="metanthropes layout-container-med">
-				<h5 class="metanthropes style-secondary-body flex-between">Soul</h5>
+			<div class="tab cs-notes" data-group="cs" data-tab="cs-notes">
+				<div class="layout-container-small style-container-small">
+					NOTES
+					are partially implemented
+					{{> "systems/metanthropes-system/templates/helpers/actor-notes.hbs"}}
+					<div class="layout-container-grid1x3 style-container-border style-labels-text">
+						{{editor system.physical.Description.value target="system.physical.Description.value" button=true owner=owner editable=editable}}
+					</div>
+				</div>
 			</div>
-		</div>
-<!--			<label for="system.characteristics.body.label" class="charlabel"
-				data-label="system.characteristics.body.label">{{system.characteristics.body.label}}</label>
--->
-	</section>
+		</section>
+	</main>
 </form>

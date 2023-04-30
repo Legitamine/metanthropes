@@ -1,0 +1,96 @@
+<form class="metanthropes {{cssClass}}" autocomplete="off">
+	<header class="sheet-header">
+		<img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+		<div class="header-fields">
+			<h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Possession Name" />
+			</h1>
+			<div class="grid grid-2col">
+				<div class="resource">
+					<label class="resource-label">🎲:</label>
+					<input type="text" name="system.StatRolled.value" value="{{system.StatRolled.value}}"
+						data-dtype="String" />
+				</div>
+				<div class="resource">
+					<label class="resource-label">Category:</label>
+					<input type="text" name="system.Category.value" value="{{system.Category.value}}"
+						data-dtype="String" />
+				</div>
+				<div class="resource">
+					<label class="resource-label">Attack Type:</label>
+					<input type="text" name="system.AttackType.value" value="{{system.AttackType.value}}"
+						data-dtype="String" />
+				</div>
+			</div>
+		</div>
+	</header>
+	{{!-- Sheet Tab Navigation --}}
+	<nav class="sheet-tabs tabs" data-group="primary">
+		<a class="item" data-tab="description">Description</a>
+		<a class="item" data-tab="material">🧱 Properties</a>
+		<a class="item" data-tab="usage">Usage</a>
+		<a class="item" data-tab="effects">Effects</a>
+		<a class="item" data-tab="results">Results</a>
+	</nav>
+	{{!-- Sheet Body --}}
+	<section class="sheet-body">
+		{{!-- Description Tab --}}
+		<div class="tab description" data-group="primary" data-tab="description">
+			{{!-- To render inline rolls in a TinyMCE editor, you need to pass the parent actor's (if any) roll data to the rollData prop. --}}
+			<div class="layout-editor">{{system.Description.label}}:<br>
+				{{editor system.Description.value target="system.Description.value" rollData=rollData button=true owner=owner editable=editable}}
+			</div>
+		</div>
+		{{!-- Usage Tab --}}
+		<div class="tab usage" data-group="primary" data-tab="usage">
+			{{!-- As you add new fields, add them in here! --}}
+			{{#each system.Usage}}
+				<div class="resource">
+					<label class="resource-label">{{this.label}}:</label>
+					<input type="{{this.type}}" name="system.Usage.{{@key}}.value" value="{{this.value}}"
+						data-dtype="{{this.dtype}}" />
+				</div>
+			{{/each}}
+		</div>
+		{{!-- Material Properties Tab --}}
+		<div class="tab material" data-group="primary" data-tab="material">
+			{{!-- As you add new fields, add them in here! --}}
+			{{#each system.Material}}
+				<div class="resource">
+					<label class="resource-label">{{this.label}}:</label>
+					<input type="{{this.type}}" name="system.Material.{{@key}}.value" value="{{this.value}}"
+						data-dtype="{{this.dtype}}" />
+				</div>
+			{{/each}}
+		</div>
+		{{!-- Effects Tab --}}
+		<div class="tab effects" data-group="primary" data-tab="effects">
+			<div>
+				<div class="layout-editor">{{system.EffectDescription.label}}:<br>
+					{{editor system.EffectDescription.value target="system.EffectDescription.value" rollData=rollData button=true owner=owner editable=editable}}
+				</div>
+			</div>
+			{{#each system.Effects}}
+				<div class="resource">
+					<label class="resource-label">{{this.label}}:</label>
+					<input type="{{this.type}}" name="system.Effects.{{@key}}.value" value="{{this.value}}"
+						data-dtype="{{this.dtype}}" />
+				</div>
+			{{/each}}
+		</div>
+		{{!-- Results Tab --}}
+		<div class="tab results" data-group="primary" data-tab="results">
+			<div>
+				<div class="layout-editor">{{system.ResultDescription.label}}:<br>
+					{{editor system.ResultDescription.value target="system.ResultDescription.value" rollData=rollData button=true owner=owner editable=editable}}
+				</div>
+			</div>
+			{{#each system.Results}}
+				<div class="resource">
+					<label class="resource-label">{{this.label}}:</label>
+					<input type="{{this.type}}" name="system.Results.{{@key}}.value" value="{{this.value}}"
+						data-dtype="{{this.dtype}}" />
+				</div>
+			{{/each}}
+		</div>
+	</section>
+</form>

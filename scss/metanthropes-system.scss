@@ -12,10 +12,11 @@
 @import "global/flex";
 //* Styles limited to metanthropes sheets */
 .metanthropes {
-	padding: $padding-lg;
-	margin: $margin-lg;
+	padding: $padding-md;
+	margin: $margin-md;
 	@import "components/layouts";
 	@import "components/styles";
 	@import "components/items";
 	@import "components/effects";
+	@import "components/forms";
 }

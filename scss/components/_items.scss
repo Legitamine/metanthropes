@@ -27,17 +27,17 @@
 
 .items-list {
 	list-style: none;
-	margin: 0;
-	padding: 0;
+	margin: $margin-sm;
+	padding: $padding-sm;
 	overflow-y: auto;
 	scrollbar-width: thin;
-	color: $c-tan;
+	color: $c-black;
 
 	// Child lists
 	.item-list {
 		list-style: none;
-		margin: 0;
-		padding: 0;
+		margin: $margin-sm;
+		padding: $padding-sm;
 	}
 
 	// Item Name
@@ -61,7 +61,7 @@
 	.item-controls {
 		display: flex;
 		flex: 0 0 100px;
-		justify-content: flex-end;
+		justify-content: center;
 		a {
 			font-size: 12px;
 			text-align: center;
@@ -73,12 +73,12 @@
 	.item {
 		align-items: center;
 		padding: 0 2px; // to align with the header border
-		border-bottom: 1px solid $c-faint;
+		border-bottom: 1px solid $c-black;
 		&:last-child {
 			border-bottom: none;
 		}
 		.item-name {
-			color: $c-dark;
+			color: $c-black;
 			.item-image {
 				flex: 0 0 30px;
 				height: 30px;
@@ -91,8 +91,8 @@
 
 	.item-prop {
 		text-align: center;
-		border-left: 1px solid $c-faint;
-		border-right: 1px solid $c-faint;
+		border-left: 1px solid $c-black;
+		border-right: 1px solid $c-black;
 		font-size: 12px;
 	}
 

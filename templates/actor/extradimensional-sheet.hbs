@@ -1,0 +1,170 @@
+<form class="metanthropes {{cssClass}}" autocomplete="off">
+	<header>
+		<div class="layout-container-grid4x1 style-container-grid4x1">
+			<div class="layout-container-small style-container-small">
+				<div>Extradimensional<input name="name" type="text" value="{{actor.name}}" placeholder="Extradimensional Name"
+						data-dtype="String" />
+				</div>
+				<div>Player
+					<input name="system.metaowner.value" type="text" value="{{system.metaowner.value}}"
+						placeholder="Player Name" data-dtype="String" />
+				</div>
+				<div>                                                                  <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="85" width="85" />
+				</div>
+			</div>
+			<div class="layout-container-small style-container-small">
+				<div>Prime Metapower
+					<input name="system.entermeta.primemetapower.value" type="text"
+						value="{{system.entermeta.primemetapower.value}}" data-dtype="String"
+						placeholder="Prime Metapower" />
+				</div>
+				<div>Metamorphosis
+					<input name="system.entermeta.metamorphosis.value" type="text"
+						value="{{system.entermeta.metamorphosis.value}}" data-dtype="String"
+						placeholder="Metamorphosis" />
+				</div>
+				<div>Background
+					<input name="system.Vital.background.value" type="text" value="{{system.Vital.background.value}}"
+						data-dtype="String" placeholder="Background" />
+				</div>
+				<div>Arc
+					<input name="system.Vital.arc.value" type="text" value="{{system.Vital.arc.value}}"
+						data-dtype="String" placeholder="Arc" />
+				</div>
+				<div>Regression
+					<input name="system.entermeta.regression.value" type="text"
+						value="{{system.entermeta.regression.value}}" data-dtype="String"
+						placeholder="Regression" />
+				</div>
+			</div>
+			<div class="layout-container-small style-container-small">
+				<div>Birthplace
+					<input name="system.humanoids.birthplace.value" type="text"
+						value="{{system.humanoids.birthplace.value}}" data-dtype="String" placeholder="City Name" />
+				</div>
+				<div>Age
+					<input name="system.Vital.age.value" type="number" value="{{system.Vital.age.value}}"
+						data-dtype="Number" placeholder="" />
+				</div>
+				<div>Gender
+					<input name="system.humanoids.gender.value" type="text" value="{{system.humanoids.gender.value}}"
+						data-dtype="String" placeholder="Gender" />
+				</div>
+				<div>Height
+					<input name="system.humanoids.height.value" type="text" value="{{system.humanoids.height.value}}"
+						data-dtype="String" placeholder="Height" />
+				</div>
+				<div>Weight
+					<input name="system.humanoids.weight.value" type="text" value="{{system.humanoids.weight.value}}"
+						data-dtype="String" placeholder="Weight" />
+				</div>
+			</div>
+			<div class="layout-container-small style-container-small">
+				<div>Narrator
+					<input name="system.entermeta.narrator.value" type="text"
+						value="{{system.entermeta.narrator.value}}" data-dtype="String" placeholder="Narrator Name" />
+				</div>
+				<div>Saga
+					<input name="system.entermeta.sagas.value" type="text" value="{{system.entermeta.sagas.value}}"
+						data-dtype="String" placeholder="Saga Name" />
+				</div>
+				<div>Sessions Played
+					<input name="system.entermeta.sessions.value" type="number" value="{{system.entermeta.sessions.value}}"
+						data-dtype="Number" placeholder="0" />
+				</div>
+				<div>Coalition
+					<input name="system.entermeta.coalition.value" type="text"
+						value="{{system.entermeta.coalition.value}}" data-dtype="String" placeholder="Coalition Name" />
+				</div>
+				<div>Faction
+					<input name="system.entermeta.faction.value" type="text" value="{{system.entermeta.faction.value}}"
+						data-dtype="String" placeholder="Faction Name" />
+				</div>
+			</div>
+		</div>
+		<div class="layout-container-grid1x4 style-container-grid1x4">
+			<div class="layout-container-small style-container-small">
+				<div class="style-labels-text">
+					❤️ Life
+					<input name="system.Vital.Life.value" type="number" value="{{system.Vital.Life.value}}"
+						data-dtype="Number" />/{{system.Vital.Life.max}}
+				</div>
+			</div>
+			<div class="layout-container-small style-container-small">
+				<div class="style-labels-text">📈 Experience Total: <input name="system.Vital.Experience.Total" type="number"
+						value="{{system.Vital.Experience.Total}}" data-dtype="Number" placeholder="1000" /> Spent:
+					{{system.Vital.Experience.Spent}} + <input name="system.Vital.Experience.Manual" type="number"
+						value="{{system.Vital.Experience.Manual}}" data-dtype="Number" placeholder="0" />
+					Stored:{{#if (gte system.Vital.Experience.Stored 0)}}
+						<span class="style-cs-positive">{{system.Vital.Experience.Stored}}</span>
+					{{else}}
+						<span class="style-cs-negative">{{system.Vital.Experience.Stored}}</span>
+					{{/if}}
+				</div>
+			</div>
+			<div class="layout-container-small style-container-small">
+				<div class="style-labels-text">🤞 Destiny
+					<input name="system.Vital.Destiny.value" type="number" value="{{system.Vital.Destiny.value}}"
+						data-dtype="Number" placeholder="0" />/<input name="system.Vital.Destiny.max" type="number"
+						value="{{system.Vital.Destiny.max}}">
+				</div>
+			</div>
+			<div class="layout-container-small style-container-small">
+				<div class="style-labels-text">👣 Movement
+					<input name="system.physical.movement.initial" type="number"
+						value="{{system.physical.movement.initial}}" data-dtype="Number" placeholder="10" />
+				</div>
+			</div>
+		</div>
+	</header>
+	<main>
+		<div class="layout-container-nav style-container-nav">
+			<nav class="style-container-nav-children csnavselector tabs" data-group="cs">
+				<a class="item" data-tab="cs-charstats">📊 Overview</a>
+				<a class="item" data-tab="cs-perks">📚 Perks</a>
+				<a class="item" data-tab="cs-metapowers">Ⓜ️ Metapowers</a>
+				<a class="item" data-tab="cs-combos">🔗 Combos</a>
+				<a class="item" data-tab="cs-possessions">🛠️ Possessions</a>
+				<a class="item" data-tab="cs-notes">📓 Notes</a>
+			</nav>
+		</div>
+		<section class="csnavtabs">
+			<div class="tab cs-charstats" data-group="cs" data-tab="cs-charstats">
+				{{> "systems/metanthropes-system/templates/helpers/actor-charstats.hbs"}}
+			</div>
+			<div class="tab cs-metapowers" data-group="cs" data-tab="cs-metapowers">
+				<div class="layout-container-small style-container-small">
+					{{> "systems/metanthropes-system/templates/helpers/actor-metapowers.hbs"}}
+				</div>
+			</div>
+			<div class="tab cs-combos" data-group="cs" data-tab="cs-combos">
+				COMBOS
+				are not implemented.
+				{{> "systems/metanthropes-system/templates/helpers/actor-combos.hbs"}}
+			</div>
+			<div class="tab cs-perks" data-group="cs" data-tab="cs-perks">
+				<div class="layout-container-small style-container-small">
+					{{> "systems/metanthropes-system/templates/helpers/actor-perks.hbs"}}
+				</div>
+			</div>
+			<div class="tab cs-possessions" data-group="cs" data-tab="cs-possessions">
+				<div class="layout-container-small style-container-small">
+					{{> "systems/metanthropes-system/templates/helpers/actor-possessions.hbs"}}
+				</div>
+			</div>
+			<div class="tab cs-notes" data-group="cs" data-tab="cs-notes">
+				<div class="layout-container-small style-container-small">
+					NOTES
+					are partially implemented
+					{{> "systems/metanthropes-system/templates/helpers/actor-notes.hbs"}}
+					<div class="layout-container-grid1x3 style-container-border style-labels-text">
+						{{editor system.physical.Description.value target="system.physical.Description.value" button=true owner=owner editable=editable}}
+					</div>
+					<div class="layout-container-grid1x3 style-container-border style-labels-text">
+						{{editor system.entermeta.Description.value target="system.entermeta.Description.value" button=true owner=owner editable=editable}}
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+</form>

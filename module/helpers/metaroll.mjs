@@ -3,6 +3,10 @@ import { MetaRollStat } from "./metarollstat.mjs";
 // MetaRoll function handles the dialog box for selecting multi-actions and bonuses/penalties when rolling a stat
 export async function MetaRoll(actor, stat) {
 	const statValue = actor.system.RollStats[stat];
+	if (statValue <= 0) {
+		ui.notifications.error(actor.name+" can't Roll "+stat+" with a Current value of 0!");
+		return;
+	}
 	// calculate the max number of multi-actions possible based on the stat value
 	const maxMultiActions = Math.floor((statValue - 1) / 10);
 	const multiActionOptions = Array.from({ length: maxMultiActions - 1 }, (_, i) => i + 2);
@@ -10,30 +14,27 @@ export async function MetaRoll(actor, stat) {
 	//create the dialog content
 	let dialogContent = `
 	<div class="metanthropes layout-metaroll-dialog">
-	<p>Is this part of a Multi-Action? If yes, how many?</p>
+	<p>Select total number of Multi-Actions:</p>
 	<select id="multiActionCount">
-		<option value="no">No</option>
+		<option value="no">None</option>
 		${multiActionOptions.map((option) => `<option value="${option}">${option}</option>`).join("")}
 	</select>
 	<div>
-	<span class="style-cs-buffs ">Bonus :<input class="style-cs-buffs style-container-input-charstat" type="number" id="bonus" min="0" value="0"> %		</span><span class="style-cs-conditions">Penalty :<input class="style-cs-conditions style-container-input-charstat" type="number" id="penalty" min="0" value="0"> %</span>
+	<span class="style-cs-buffs ">Bonus: <input class="style-cs-buffs style-container-input-charstat" type="number" id="bonus" min="0" value="0">%		</span><span class="style-cs-conditions">Penalty: <input class="style-cs-conditions style-container-input-charstat" type="number" id="penalty" min="0" value="0">%</span>
 	</div>
 	</div>
 	`;
 	let dialog = new Dialog({
-		title: `MetaRoll: ${actor.name}'s ${stat}`,
+		title: `${actor.name}'s ${stat}`,
 		content: dialogContent,
 		buttons: {
 			roll: {
-				//! this looks really ugly
-				//todo: find a way to make this look better
-				//label: "<img src='../systems/metanthropes-system/artwork/metanthropes-dice-roll-small.webp' alt='Roll' />",
-				label: "Roll",
+				label: "Roll 📊 Stat",
 				callback: async (html) => {
 					//collect multi-action value
 					let multiAction = html.find("#multiActionCount").val();
 					if (multiAction === "no") {
-					modifier = 0;
+						modifier = 0;
 					} else {
 						let selectedMultiActions = parseInt(html.find("#multiActionCount").val());
 						modifier = selectedMultiActions * -10;
@@ -46,15 +47,6 @@ export async function MetaRoll(actor, stat) {
 				},
 			},
 		},
-		// after the dialog is rendered, add an event listener to the multi-action select to unhide the multi-action count select
-		//	render: (html) => {
-		//		const multiActionSelect = html.find("#multiAction");
-		//		const multiActionSelectionDiv = html.find("#multiActionSelection");
-		//		multiActionSelect.on("change", (event) => {
-		//			const selectedValue = event.target.value;
-		//			multiActionSelectionDiv.toggleClass("layout-hide", selectedValue !== "yes");
-		//		});
-		//},
 	});
 	dialog.render(true);
 }

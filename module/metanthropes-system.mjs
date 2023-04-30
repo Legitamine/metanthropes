@@ -1,20 +1,7 @@
-////
-//*
-//! Metanthropes RPG System for FoundryVTT
-//? This is the core file for running the Metanthropes RPG System for FoundryVTT.
-//todo: Enable basic functionality
-//*
-////
-////
-//*
-//? Table of Contents
-//*
-//! 1. Imports
-//? 2. System Initialization Hook
-//? 3. Preload Handlebars Templates
-//? 4. Ready Hook
-//? 5. Hotbar Macros
-////
+// Import modules.
+import { MetanthropesCombat } from "./metanthropes/combat.mjs";
+import { MetaCombatTracker } from "./metanthropes/combattracker.mjs";
+import { MetaCombatant } from "./metanthropes/combatant.mjs";
 // Import document classes.
 import { MetanthropesActor } from "./documents/actor.mjs";
 import { MetanthropesItem } from "./documents/item.mjs";
@@ -23,16 +10,29 @@ import { MetanthropesActorSheet } from "./sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
 // Import helpers.
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
-////
-//*
-//? Table of Contents
-//*
-//? 1. Imports
-//! 2. System Initialization Hook
-//? 3. Preload Handlebars Templates
-//? 4. Ready Hook
-//? 5. Hotbar Macros
-////
+// import { MetaInitiative } from "./helpers/metainitiative.mjs";
+// Import Meta-Dice rolling functions.
+import { MetaReRoll } from "./helpers/metarollstat.mjs";
+import { MetapowerReRoll } from "./helpers/mprollstat.mjs";
+import { PossessionReRoll } from "./helpers/posrollstat.mjs";
+import { MetapowerActivate } from "./helpers/mpactivate.mjs";
+import { ReRollTargets } from "./helpers/extrasroll.mjs";
+import { ReRollDuration } from "./helpers/extrasroll.mjs";
+import { ReRollDamage } from "./helpers/extrasroll.mjs";
+import { ReRollHealing } from "./helpers/extrasroll.mjs";
+import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
+import { PossessionUse } from "./helpers/posuse.mjs";
+// Handlebars helper for drop-down menus.
+//! Supposedly Foundry includes its own select helper, but I couldn't get it to work.
+Handlebars.registerHelper("selected", function (option, value) {
+	return option === value ? "selected" : "";
+});
+// Handlebars helper for displaying actor values on the item sheets.
+Handlebars.registerHelper("getStatValue", function (statName) {
+	//handlebars helper console log
+	console.log("Handlebars helper statName:", statName);
+	return actor.system.RollStats[statName];
+});
 // Log system initialization.
 Hooks.once("init", async function () {
 	console.log("========================================================================");
@@ -42,12 +42,23 @@ Hooks.once("init", async function () {
 	game.metanthropes = {
 		MetanthropesActor,
 		MetanthropesItem,
+		rollItemMacro,
+		createItemMacro,
 	};
-	//setup initiative system
+	// Metanthropes Initiative System
+	//! should I remove this?
 	CONFIG.Combat.initiative = {
-		formula: "1d100",
+		formula: "1d100 + @RollStats.Reflexes",
 		decimals: 2,
 	};
+	// Metanthropes Combat System
+	CONFIG.Combat.documentClass = MetanthropesCombat;
+	//setup custom combatant
+	CONFIG.Actor.entityClass = MetaCombatant;
+	// setup custom combat tracker
+	CONFIG.ui.combat = MetaCombatTracker;
+	// time in seconds for Round Duration
+	// CONFIG.time.roundTime = 120;
 	// Define custom Entity classes.
 	CONFIG.Actor.documentClass = MetanthropesActor;
 	CONFIG.Item.documentClass = MetanthropesItem;
@@ -61,18 +72,10 @@ Hooks.once("init", async function () {
 		makeDefault: true,
 	});
 	// Preload Handlebars templates.
-	return preloadHandlebarsTemplates();
 	console.log("========================================================================");
 	console.log("Metanthropes RPG System Initialized");
 	console.log("========================================================================");
-});
-/* -------------------------------------------- */
-/*  Ready Hook                                  */
-/* -------------------------------------------- */
-// dragable macros
-Hooks.once("ready", async function () {
-	// Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-	Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
+	return preloadHandlebarsTemplates();
 });
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
@@ -132,6 +135,40 @@ function rollItemMacro(itemUuid) {
 		item.roll();
 	});
 }
+/* -------------------------------------------- */
+//*Hooks
+/* -------------------------------------------- */
+/* -------------------------------------------- */
+/*  Ready Hook                                  */
+/* -------------------------------------------- */
+// dragable macros
+Hooks.once("ready", async function () {
+	// Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
+	Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
+	// Add support for Moulinette: Free modules with artwork & sounds is available for indexing by Moulinette
+	if(game.moulinette) {
+		game.moulinette.sources.push({ type: "images", publisher: "Metanthropes RPG", pack: "Metapowers", source: "data", path: "systems/metanthropes-system/artwork/metapowers" })
+		game.moulinette.sources.push({ type: "images", publisher: "Metanthropes RPG", pack: "Masculine Tokens", source: "data", path: "systems/metanthropes-system/artwork/tokens/portraits/masculine" })
+		game.moulinette.sources.push({ type: "images", publisher: "Metanthropes RPG", pack: "Feminine Tokens", source: "data", path: "systems/metanthropes-system/artwork/tokens/portraits/feminine" })
+		game.moulinette.sources.push({ type: "sounds", publisher: "Dark Raven", pack: "Free Soundscapes Module", source: "data", path: "modules/darkraven-games-soundscapes-free/audio" })
+		game.moulinette.sources.push({ type: "images", publisher: "Fragmaps", pack: "Fragmaps Free Images", source: "data", path: "modules/fragmaps-free/images" })
+		game.moulinette.sources.push({ type: "images", publisher: "Fragmaps", pack: "Fragmaps Free Tiles", source: "data", path: "modules/fragmaps-free/images/tiles" })
+		game.moulinette.sources.push({ type: "sounds", publisher: "Ivan Duch", pack: "Free Music Packs", source: "data", path: "modules/ivan-duch-music-packs/audio" })
+		game.moulinette.sources.push({ type: "sounds", publisher: "Michael Ghelfi", pack: "Free Ambience", source: "data", path: "modules/michaelghelfi/ambience" })
+		game.moulinette.sources.push({ type: "sounds", publisher: "Michael Ghelfi", pack: "Free Music", source: "data", path: "modules/michaelghelfi/music" })
+		game.moulinette.sources.push({ type: "sounds", publisher: "Hologrounds Free", pack: "Audio", source: "data", path: "modules/hologrounds-free-module/audio" })
+		game.moulinette.sources.push({ type: "images", publisher: "Hologrounds Free", pack: "Maps", source: "data", path: "modules/hologrounds-free-module/maps" })
+		game.moulinette.sources.push({ type: "images", publisher: "Miska Free", pack: "Maps", source: "data", path: "modules/miskasmaps/maps" })
+		game.moulinette.sources.push({ type: "images", publisher: "MAD Free", pack: "Journal", source: "data", path: "modules/mad-freecontent/images/journal" })
+		game.moulinette.sources.push({ type: "images", publisher: "MAD Free", pack: "Maps", source: "data", path: "modules/mad-freecontent/images/maps" })
+		game.moulinette.sources.push({ type: "images", publisher: "MAD Free", pack: "Tiles", source: "data", path: "modules/mad-freecontent/images/tiles" })
+		game.moulinette.sources.push({ type: "sounds", publisher: "MAD Free", pack: "Audio", source: "data", path: "modules/mad-freecontent/audio" })
+		game.moulinette.sources.push({ type: "images", publisher: "Coriolis", pack: "AI Portraits", source: "data", path: "modules/coriolis-kbender-ai-art-pack/portraits" })
+		game.moulinette.sources.push({ type: "images", publisher: "Coriolis", pack: "AI Tokens", source: "data", path: "modules/coriolis-kbender-ai-art-pack/tokens" })
+		game.moulinette.sources.push({ type: "sounds", publisher: "Metanthropes RPG", pack: "Music", source: "data", path: "systems/metanthropes-system/audio/music" })
+		game.moulinette.sources.push({ type: "sounds", publisher: "Metanthropes RPG", pack: "Sound Effects", source: "data", path: "systems/metanthropes-system/audio/sound-effects" })
+	}
+});
 // Drag Ruler Integration
 Hooks.once("dragRuler.ready", (SpeedProvider) => {
 	console.log("========================================================================");
@@ -147,7 +184,7 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 		}
 		getRanges(token) {
 			const baseSpeed = token.actor.system.physical.movement.initial;
-			// A character can always walk it's base speed and dash twice it's base speed
+			// A character can choose to move an additional lenght equal to their base movement, and sprint up to 5 times their base movement
 			const ranges = [
 				{ range: baseSpeed * 2, color: "movement" },
 				{ range: baseSpeed * 4, color: "additional" },
@@ -165,4 +202,51 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 	console.log("========================================================================");
 	console.log("Metanthropes RPG System - Drag Ruler Integration Finished");
 	console.log("========================================================================");
+});
+// Hook to look for re-rolls of meta dice in chat
+// Add event listener for re-roll button click, hiding the button for non-owners
+Hooks.on("renderChatMessage", async (message, html) => {
+	console.log("=============================================================================================");
+	console.log("Metanthropes RPG Inside Hook for Buttons");
+	console.log("Metanthropes RPG Will go deeper if (message.isAuthor) is true:", message.isAuthor);
+	console.log("=============================================================================================");
+	if (message.isAuthor || game.user.isGM) {
+		const actorId = message.getFlag("metanthropes-system", "actorId");
+		const actor = game.actors.get(actorId);
+		console.log("inside RPG button hook, actor is", actor);
+		const currentDestiny = actor.system.Vital.Destiny.value;
+		console.log("=============================================================================================");
+		console.log("Metanthropes RPG Hook for Button - message.isAuthor is", message.isAuthor);
+		console.log("Metanthropes RPG Hook for Button - game.user.isGM is", game.user.isGM);
+		console.log("Metanthropes RPG Hook for Button - this", this);
+		console.log("Metanthropes RPG Hook for Button - should give actorId", actorId);
+		console.log("Metanthropes RPG Hook for Button - should give actor", actor);
+		console.log("Metanthropes RPG Hook for Button - should give actor Name", actor.name);
+		console.log("Metanthropes RPG Hook for Button - should give currentDestiny", currentDestiny);
+		console.log("=============================================================================================");
+		html.find(".hide-button").removeClass("layout-hide");
+		html.find(".meta-re-roll").on("click", MetaReRoll);
+		html.find(".metapower-re-roll").on("click", MetapowerReRoll);
+		html.find(".possession-re-roll").on("click", PossessionReRoll);
+		html.find(".metapower-activate").on("click", MetapowerActivate);
+		html.find(".re-roll-targets").on("click", ReRollTargets);
+		html.find(".re-roll-duration").on("click", ReRollDuration);
+		html.find(".re-roll-damage").on("click", ReRollDamage);
+		html.find(".re-roll-healing").on("click", ReRollHealing);
+		html.find(".metainitiative-re-roll").on("click", MetaInitiativeReRoll);
+		html.find(".possession-use").on("click", PossessionUse);
+	}
+});
+//listen for stat changes, this should enable metapower sheet to update correctly when a stat changes
+//!this issue also occurs when rolling something
+Hooks.on("updateActor", (actor, data, options, userId) => {
+	if (data.hasOwnProperty("system")) {
+		// Get the actor's sheet
+		const sheet = actor.sheet;
+		// Check if the sheet is an instance of MetanthropesActorSheet
+		if (sheet instanceof MetanthropesActorSheet || sheet instanceof MetanthropesItemSheet) {
+			// Re-render the sheet to update the lookup value
+			sheet.render();
+		}
+	}
 });

@@ -1,16 +1,17 @@
 {
 	"Actor": {
 		"types": [
-			"Human",
-			"Humanoid",
-			"Metanthrope",
 			"Protagonist",
+			"Metanthrope",
+			"Human",
+			"Vehicle",
 			"Animal",
-			"MetaTherion",
 			"Artificial",
-			"Animated-Object",
-			"Animated-Humanoid",
-			"Vehicle"
+			"Extradimensional",
+			"Extraterrestrial",
+			"Animated-Cadaver",
+			"Animated-Plant",
+			"MetaTherion"
 		],
 		"templates": {
 			"physical": {
@@ -19,31 +20,36 @@
 						"type": "number",
 						"label": "Movement",
 						"initial": 10,
-						"additional": 20,
+						"additional": 10,
 						"sprint": 50,
 						"Buffs": {
 							"fly": {
 								"type": "boolean",
+								"dtype": "Boolean",
 								"label": "Fly",
 								"value": false
 							},
 							"photokinetic": {
 								"type": "boolean",
+								"dtype": "Boolean",
 								"label": "Photokinetic",
 								"value": false
 							},
 							"walk-wall": {
 								"type": "boolean",
+								"dtype": "Boolean",
 								"label": "Wall Walk",
 								"value": false
 							},
 							"walk-wave": {
 								"type": "boolean",
+								"dtype": "Boolean",
 								"label": "Wave Walk",
 								"value": false
 							},
 							"walk-earth": {
 								"type": "boolean",
+								"dtype": "Boolean",
 								"label": "Earth Walk",
 								"value": false
 							}
@@ -51,11 +57,13 @@
 						"Conditions": {
 							"immobilized": {
 								"type": "boolean",
+								"dtype": "Boolean",
 								"label": "Immobilized",
 								"value": false
 							},
 							"knockdown": {
 								"type": "boolean",
+								"dtype": "Boolean",
 								"label": "Knocked Down",
 								"value": false
 							}
@@ -141,19 +149,22 @@
 						}
 					},
 					"immunities": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Immunities",
-						"value": "none"
+						"value": null
 					},
 					"detections": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Detections",
-						"value": "none"
+						"value": null
 					},
 					"shifts": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Shifts",
-						"value": "none"
+						"value": null
 					},
 					"cover": {
 						"type": "number",
@@ -162,8 +173,9 @@
 						"value": 0,
 						"max": 100
 					},
-					"description-physical": {
-						"type": "string",
+					"Description": {
+						"type": "text",
+						"dtype": "String",
 						"label": "Physical Description",
 						"value": "Height, Weight, details about physical appearance, etc."
 					}
@@ -173,55 +185,60 @@
 				"Vital": {
 					"Experience": {
 						"type": "number",
-						"Label": "Experience",
+						"dtype": "Number",
+						"Label": "📈 Experience",
 						"Total": "1000",
-						"Spent": "1000",
-						"Stored": "0"
+						"Spent": 0,
+						"Manual": 0,
+						"Stored": 0
 					},
 					"age": {
 						"type": "number",
+						"dtype": "Number",
 						"label": "Age",
-						"value": 25
+						"value": null
 					},
 					"arc": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Arc",
-						"value": "Your Arc"
+						"value": null
 					},
 					"background": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Background",
-						"value": "Your Background"
+						"value": null
 					},
 					"Life": {
 						"type": "number",
-						"label": "Life",
+						"label": "❤️ Life",
 						"Initial": 100,
-						"value": 100,
+						"value": 111,
 						"max": 0
 					},
 					"Destiny": {
 						"type": "number",
-						"label": "Destiny",
-						"value": 20,
-						"max": 100
+						"label": "🤞 Destiny",
+						"value": 3,
+						"max": 50
 					}
 				}
 			},
 			"characteristics": {
 				"Characteristics": {
 					"Body": {
-						"Initial": 30,
-						"Progressed": 5,
+						"Initial": 10,
+						"Progressed": 0,
 						"Base": 0,
 						"Current": 0,
 						"Buff": { "Name": "Hardened", "Current": 0 },
 						"Condition": { "Name": "Burned", "Current": 0 },
-						"CoreConditions": { "Bleeding": 1, "Asphyxiation": 0, "Diseased": 0, "Maimed": 0 },
+						"CoreConditions": { "Bleeding": 0, "Asphyxiation": 0, "Diseased": 0, "Maimed": 0 },
 						"Stats": {
 							"Endurance": {
-								"Initial": 30,
-								"Progressed": 5,
+								"Initial": 1,
+								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
@@ -229,8 +246,8 @@
 								"Condition": { "Name": "Bone Injury", "Current": 0 }
 							},
 							"Power": {
-								"Initial": 30,
-								"Progressed": 5,
+								"Initial": 2,
+								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
@@ -238,8 +255,8 @@
 								"Condition": { "Name": "Muscle Injury", "Current": 0 }
 							},
 							"Reflexes": {
-								"Initial": 30,
-								"Progressed": 5,
+								"Initial": 3,
+								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
@@ -248,10 +265,9 @@
 							}
 						}
 					},
-
 					"Mind": {
-						"Initial": 30,
-						"Progressed": 5,
+						"Initial": 20,
+						"Progressed": 0,
 						"Base": 0,
 						"Current": 0,
 						"Buff": { "Name": "Sharpened", "Current": 0 },
@@ -264,8 +280,8 @@
 						},
 						"Stats": {
 							"Perception": {
-								"Initial": 30,
-								"Progressed": 5,
+								"Initial": 1,
+								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
@@ -273,8 +289,8 @@
 								"Condition": { "Name": "Disoriented", "Current": 0 }
 							},
 							"Manipulation": {
-								"Initial": 30,
-								"Progressed": 5,
+								"Initial": 2,
+								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
@@ -282,8 +298,8 @@
 								"Condition": { "Name": "Confused", "Current": 0 }
 							},
 							"Creativity": {
-								"Initial": 30,
-								"Progressed": 5,
+								"Initial": 3,
+								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
@@ -292,9 +308,8 @@
 							}
 						}
 					},
-
 					"Soul": {
-						"Initial": 10,
+						"Initial": 30,
 						"Progressed": 0,
 						"Base": 0,
 						"Current": 0,
@@ -303,7 +318,7 @@
 						"CoreConditions": { "Amnesia": 0, "Probed": 0, "Infiltrated": 0, "Unconscious": 0 },
 						"Stats": {
 							"Willpower": {
-								"Initial": 10,
+								"Initial": 1,
 								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
@@ -312,7 +327,7 @@
 								"Condition": { "Name": "Terrorized", "Current": 0 }
 							},
 							"Consciousness": {
-								"Initial": 20,
+								"Initial": 2,
 								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
@@ -321,7 +336,7 @@
 								"Condition": { "Name": "Demented", "Current": 0 }
 							},
 							"Awareness": {
-								"Initial": 20,
+								"Initial": 3,
 								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
@@ -373,96 +388,133 @@
 						}
 					},
 					"origin": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Origin",
-						"value": "Planet Earth"
+						"value": null
 					},
 					"species": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Species",
-						"value": "Human"
+						"value": null
 					},
 					"gender": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Gender",
-						"value": "Other"
+						"value": null
 					},
 					"birthplace": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Birthplace",
-						"value": "Random City"
+						"value": null
 					},
 					"weight": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Weight",
-						"value": "Your Weight"
+						"value": null
 					},
 					"height": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Height",
-						"value": "Your Height"
+						"value": null
 					},
-					"description-humanoid": {
-						"type": "string",
+					"Description": {
+						"type": "text",
+						"dtype": "String",
 						"label": "Humanoid Description",
 						"value": "A typical human with brown hair and brown eyes."
 					}
 				}
 			},
-			"humanoid-perks": {
-				"humanoid-perks": {
-					"knowledge": {
-						"academics": {
+			"perks": {
+				"Perks": {
+					"Knowledge": {
+						"Academics": {
 							"type": "number",
+							"dtype": "Number",
 							"label": "Academics",
 							"value": 0
 						},
-						"engineering": {
+						"Engineering": {
 							"type": "number",
+							"dtype": "Number",
 							"label": "Engineering",
 							"value": 0
 						},
-						"lore": {
+						"Medicine": {
 							"type": "number",
-							"label": "Lore",
-							"value": 0
-						},
-						"medicine": {
-							"type": "number",
+							"dtype": "Number",
 							"label": "Medicine",
 							"value": 0
 						},
-						"science": {
+						"Science": {
 							"type": "number",
+							"dtype": "Number",
 							"label": "Science",
+							"value": 0
+						},
+						"Lore": {
+							"type": "number",
+							"dtype": "Number",
+							"label": "Lore",
 							"value": 0
 						}
 					},
-					"skills": {
-						"artistry": {
+					"Skills": {
+						"Artistry": {
 							"type": "number",
+							"dtype": "Number",
 							"label": "Artistry",
 							"value": 0
 						},
-						"athletics": {
+						"Athletics": {
 							"type": "number",
+							"dtype": "Number",
 							"label": "Athletics",
 							"value": 0
 						},
-						"expertise": {
+						"Expertise": {
 							"type": "number",
+							"dtype": "Number",
 							"label": "Expertise",
 							"value": 0
 						},
-						"operation": {
+						"Operation": {
 							"type": "number",
+							"dtype": "Number",
 							"label": "Operation",
 							"value": 0
 						},
-						"weapons": {
+						"Weapons": {
 							"type": "number",
+							"dtype": "Number",
 							"label": "Weapons",
 							"value": 0
+						}
+					},
+					"Details": {
+						"Fields": {
+							"type": "text",
+							"dtype": "String",
+							"label": "Fields of Study",
+							"value": null
+						},
+						"Expertise": {
+							"type": "text",
+							"dtype": "String",
+							"label": "Expertise",
+							"value": null
+						},
+						"Languages": {
+							"type": "text",
+							"dtype": "String",
+							"label": "Languages",
+							"value": null
 						}
 					}
 				}
@@ -522,7 +574,8 @@
 						}
 					},
 					"details-animal": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Animal Details",
 						"value": "some animal"
 					}
@@ -573,8 +626,9 @@
 						"value": 200,
 						"max": 0
 					},
-					"description-synthetic": {
-						"type": "string",
+					"Description": {
+						"type": "text",
+						"dtype": "String",
 						"label": "Synthetic Description",
 						"value": "some synthetic life form"
 					}
@@ -583,32 +637,56 @@
 			"entermeta": {
 				"entermeta": {
 					"metamorphosis": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Metamorphosis",
-						"value": "some metamorphosis"
+						"value": null
 					},
 					"regression": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Regression",
-						"value": "Your Regression"
+						"value": null
 					},
 					"primemetapower": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Prime Metapower",
-						"value": "your Prime Metapower"
+						"value": null
 					},
 					"sagas": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Sagas",
-						"value": "Sagas you have participated in"
+						"value": null
+					},
+					"sessions": {
+						"type": "number",
+						"dtype": "Number",
+						"label": "Sessions Played",
+						"value": 0
 					},
 					"coalition": {
-						"type": "string",
+						"type": "text",
+						"dtype": "String",
 						"label": "Coalition",
-						"value": "Player coalition you are a member of"
+						"value": null
 					},
-					"description-entermeta": {
-						"type": "string",
+					"faction": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Faction",
+						"value": null
+					},
+					"narrator": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Narrator",
+						"value": null
+					},
+					"Description": {
+						"type": "text",
+						"dtype": "String",
 						"label": "Metamorphosis Details",
 						"value": "some metamorphosis"
 					}
@@ -616,43 +694,58 @@
 			}
 		},
 		"Human": {
-			"templates": ["physical", "vital", "humanoids"],
+			"templates": ["physical", "vital", "characteristics", "humanoids", "perks"],
 			"metaowner": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Metaowner",
 				"value": "NPC"
 			}
 		},
-		"Humanoid": {
-			"templates": ["physical", "vital", "characteristics", "humanoids", "humanoid-perks"],
+		"Extradimensional": {
+			"templates": ["physical", "vital", "characteristics", "humanoids", "perks", "entermeta"],
 			"metaowner": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
+				"label": "Metaowner",
+				"value": "NPC"
+			}
+		},
+		"Extraterrestrial": {
+			"templates": ["physical", "vital", "characteristics", "humanoids", "perks", "entermeta"],
+			"metaowner": {
+				"type": "text",
+				"dtype": "String",
 				"label": "Metaowner",
 				"value": "NPC"
 			}
 		},
 		"Metanthrope": {
-			"templates": ["physical", "vital", "characteristics", "humanoids", "humanoid-perks", "entermeta"],
+			"templates": ["physical", "vital", "characteristics", "humanoids", "perks", "entermeta"],
 			"metaowner": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Metaowner",
 				"value": "NPC"
 			}
 		},
 		"Protagonist": {
-			"templates": ["physical", "vital", "characteristics", "humanoids", "humanoid-perks", "entermeta"],
+			"templates": ["physical", "vital", "characteristics", "humanoids", "perks", "entermeta"],
 			"metaowner": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Metaowner",
-				"value": "Player Name"
+				"value": null
 			},
 			"notes-protagonist": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Protagonist Notes",
 				"value": "My Notes"
 			},
 			"notes-narrator": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Narrator Notes",
 				"value": "This is my favorite Protagonist"
 			}
@@ -660,7 +753,8 @@
 		"Animal": {
 			"templates": ["physical", "vital", "characteristics", "animals"],
 			"metaowner": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Metaowner",
 				"value": "NPC"
 			}
@@ -668,31 +762,35 @@
 		"MetaTherion": {
 			"templates": ["physical", "vital", "characteristics", "animals", "entermeta"],
 			"metaowner": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Metaowner",
 				"value": "NPC"
 			}
 		},
 		"Artificial": {
-			"templates": ["physical", "vital", "characteristics", "synthetic"],
+			"templates": ["physical", "vital", "characteristics", "synthetic", "perks", "entermeta"],
 			"metaowner": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Metaowner",
 				"value": "NPC"
 			}
 		},
-		"Animated-Object": {
-			"templates": ["physical"],
+		"Animated-Plant": {
+			"templates": ["physical", "vital", "characteristics", "entermeta"],
 			"metaowner": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Metaowner",
 				"value": "NPC"
 			}
 		},
-		"Animated-Humanoid": {
-			"templates": ["physical", "vital", "characteristics", "humanoids", "humanoid-perks"],
+		"Animated-Cadaver": {
+			"templates": ["physical", "vital", "characteristics", "humanoids", "perks"],
 			"metaowner": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Metaowner",
 				"value": "NPC"
 			}
@@ -700,7 +798,8 @@
 		"Vehicle": {
 			"templates": ["physical", "synthetic"],
 			"metaowner": {
-				"type": "string",
+				"type": "text",
+				"dtype": "String",
 				"label": "Metaowner",
 				"value": "NPC"
 			}
@@ -710,131 +809,393 @@
 		"types": ["Object", "Possession", "Metapower", "Combo"],
 		"templates": {
 			"material": {
-				"mat": {
-					"type": "string",
-					"label": "Material",
-					"value": "some material"
+				"Material": {
+					"Category": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🧱 Category",
+						"value": "Earthly, Compossed, Metallic or Alien"
+					},
+					"Durability": {
+						"type": "number",
+						"dtype": "Number",
+						"label": "🧱 🤍",
+						"value": "10"
+					},
+					"Size": {
+						"type": "number",
+						"dtype": "Number",
+						"label": "🧱 📐",
+						"value": "10"
+					},
+					"Weight": {
+						"type": "number",
+						"dtype": "Number",
+						"label": "🧱 ⚖️",
+						"value": "10"
+					},
+					"Cosmic": {
+						"type": "number",
+						"dtype": "Number",
+						"label": "🧱 Cosmic Resistance",
+						"initial": 0
+					},
+					"Elemental": {
+						"type": "number",
+						"dtype": "Number",
+						"label": "🧱 Elemental Resistance",
+						"initial": 0
+					},
+					"Material": {
+						"type": "number",
+						"dtype": "Number",
+						"label": "🧱 Material Resistance",
+						"initial": 0
+					},
+					"Psychic": {
+						"type": "number",
+						"dtype": "Number",
+						"label": "🧱 Psychic Resistance",
+						"initial": 0
+					},
+					"Description": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🧱 Description",
+						"value": "some material properties"
+					}
+				}
+			},
+			"metapos": {
+				"Usage": {
+					"EnergyType": {
+						"type": "text",
+						"dtype": "String",
+						"label": "✨",
+						"value": "EnergyType"
+					},
+					"ActionSlot": {
+						"type": "text",
+						"dtype": "String",
+						"label": "⏱",
+						"value": "Main Action"
+					},
+					"Targets": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🎯",
+						"value": "Targets"
+					},
+					"Range": {
+						"type": "text",
+						"dtype": "String",
+						"label": "📏",
+						"value": "Range"
+					},
+					"AreaEffect": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🗺️",
+						"value": null
+					},
+					"Notes": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Possession Notes",
+						"value": "Notes on how to use this Possession"
+					}
 				},
-				"description-material": {
-					"type": "string",
-					"label": "Material Properties",
-					"value": "some material properties"
+				"Effects": {
+					"Damage": {
+						"type": "text",
+						"dtype": "String",
+						"label": "💥",
+						"value": null
+					},
+					"Conditions": {
+						"type": "text",
+						"dtype": "String",
+						"label": "💀",
+						"value": null
+					},
+					"Notes": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Effects Notes",
+						"value": "Notes on this Possession's Effects"
+					}
+				},
+				"Results": {
+					"level00": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🟩",
+						"value": null
+					},
+					"level01": {
+						"type": "text",
+						"dtype": "String",
+						"label": "1 * ✔️",
+						"value": null
+					},
+					"level02": {
+						"type": "text",
+						"dtype": "String",
+						"label": "2 * ✔️",
+						"value": null
+					},
+					"level03": {
+						"type": "text",
+						"dtype": "String",
+						"label": "3 * ✔️",
+						"value": null
+					},
+					"level04": {
+						"type": "text",
+						"dtype": "String",
+						"label": "4 * ✔️",
+						"value": null
+					},
+					"level05": {
+						"type": "text",
+						"dtype": "String",
+						"label": "5 * ✔️",
+						"value": null
+					},
+					"level06": {
+						"type": "text",
+						"dtype": "String",
+						"label": "6 * ✔️",
+						"value": null
+					},
+					"level07": {
+						"type": "text",
+						"dtype": "String",
+						"label": "7 * ✔️",
+						"value": null
+					},
+					"level08": {
+						"type": "text",
+						"dtype": "String",
+						"label": "8 * ✔️",
+						"value": null
+					},
+					"level09": {
+						"type": "text",
+						"dtype": "String",
+						"label": "9 * ✔️",
+						"value": null
+					},
+					"level10": {
+						"type": "text",
+						"dtype": "String",
+						"label": "10 * ✔️",
+						"value": null
+					},
+					"level11": {
+						"type": "text",
+						"dtype": "String",
+						"label": "11+ * ✔️",
+						"value": null
+					},
+					"Notes": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Results Notes",
+						"value": "Notes on how to use these Results"
+					}
 				}
 			},
 			"metabase": {
-				"metapowername": {
-					"type": "string",
-					"label": "Metapower Name",
-					"value": "some metapower name"
+				"Activation": {
+					"Classification": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Classification",
+						"value": "Classification"
+					},
+					"MetapowerName": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Metapower",
+						"value": "Metapower"
+					},
+					"Level": {
+						"type": "number",
+						"dtype": "Number",
+						"label": "⏫",
+						"value": "1"
+					},
+					"EnergyType": {
+						"type": "text",
+						"dtype": "String",
+						"label": "✨",
+						"value": "EnergyType"
+					},
+					"DestinyCost": {
+						"type": "number",
+						"dtype": "Number",
+						"label": "🤞",
+						"value": 0
+					},
+					"StatRolled": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🎲",
+						"value": "Willpower"
+					},
+					"ActionSlot": {
+						"type": "text",
+						"dtype": "String",
+						"label": "⏱",
+						"value": "Main Action"
+					},
+					"Targets": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🎯",
+						"value": "Targets"
+					},
+					"TargetsDice": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🎯🎲",
+						"value": null
+					},
+					"Duration": {
+						"type": "text",
+						"dtype": "String",
+						"label": "⏳",
+						"value": "Duration"
+					},
+					"DurationDice": {
+						"type": "text",
+						"dtype": "String",
+						"label": "⏳🎲",
+						"value": null
+					},
+					"Range": {
+						"type": "text",
+						"dtype": "String",
+						"label": "📏",
+						"value": "Range"
+					},
+					"AreaEffect": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🗺️",
+						"value": null
+					},
+					"Notes": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Metabase Notes",
+						"value": "Notes on how to use this Metapower"
+					}
 				},
-				"classification": {
-					"type": "string",
-					"label": "Classification",
-					"value": "some classification"
-				},
-				"Level": {
-					"type": "number",
-					"label": "⏫",
-					"value": "1"
-				},
-				"energytype": {
-					"type": "string",
-					"label": "✨",
-					"value": "some energy type"
-				},
-				"statrolled": {
-					"type": "string",
-					"label": "🎲",
-					"value": "some stat rolled"
-				},
-				"destinyspent" : {
-					"type": "number",
-					"label": "🤞",
-					"value": "0"
-				},
-				"activation": {
-					"type": "string",
-					"label": "⏱",
-					"value": "some activation"
-				},
-				"targets": {
-					"type": "string",
-					"label": "🎯",
-					"value": "some targets"
-				},
-				"duration": {
-					"type": "string",
-					"label": "⏳",
-					"value": "some duration"
-				},
-				"range": {
-					"type": "string",
-					"label": "📏",
-					"value": "some range"
-				},
-				"areaeffect": {
-					"type": "string",
-					"label": "🗺️",
-					"value": "some area effect"
-				},
-				"effect": {
-					"type": "string",
-					"label": "Effect",
-					"value": "some effect"
-				},
-				"description-metabase": {
-					"type": "string",
-					"label": "Metabase Notes",
-					"value": "some metabase notes"
+				"Effects": {
+					"Damage": {
+						"type": "text",
+						"dtype": "String",
+						"label": "💥",
+						"value": null
+					},
+					"Healing": {
+						"type": "text",
+						"dtype": "String",
+						"label": "💞",
+						"value": null
+					},
+					"Buffs": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🛡️",
+						"value": null
+					},
+					"Conditions": {
+						"type": "text",
+						"dtype": "String",
+						"label": "💀",
+						"value": null
+					},
+					"Notes": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Metabase Notes",
+						"value": "Notes on how to use this Metapower"
+					}
 				}
 			}
 		},
 		"Object": {
 			"templates": ["material"],
-			"description-object": {
-				"type": "string",
+			"Description": {
+				"type": "text",
+				"dtype": "String",
 				"label": "Object Description",
 				"value": "some object description"
 			}
 		},
 		"Possession": {
-			"templates": ["material"],
-			"category": {
-				"armor": {
-					"type": "string",
-					"label": "Armor",
-					"value": "some armor"
-				},
-				"weapon": {
-					"type": "string",
-					"label": "Weapon",
-					"value": "some weapon"
-				},
-				"gadget": {
-					"type": "string",
-					"label": "Gadget",
-					"value": "some gadget"
-				},
-				"drug": {
-					"type": "string",
-					"label": "Drug",
-					"value": "some drug"
-				}
+			"templates": ["material", "metapos"],
+			"Category": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Category",
+				"value": "Weapon"
+			},
+			"AttackType": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Attack Type",
+				"value": "Melee"
+			},
+			"StatRolled": {
+				"type": "text",
+				"dtype": "String",
+				"label": "🎲",
+				"value": "Power"
+			},
+			"Description": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Possession Description",
+				"value": null
+			},
+			"EffectDescription": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Effect Description",
+				"value": null
+			},
+			"ResultDescription": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Results Description",
+				"value": null
 			}
 		},
 		"Metapower": {
 			"templates": ["metabase"],
-			"description-metapower": {
-				"type": "string",
+			"Description": {
+				"type": "text",
+				"dtype": "String",
 				"label": "Metapower Description",
-				"value": "some metapower description"
+				"value": "Metapower Description"
+			},
+			"EffectDescription": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Effect Description",
+				"value": "Metapower Effects"
 			}
 		},
 		"Combo": {
 			"templates": ["metabase"],
-			"description-combo": {
-				"type": "string",
-				"label": "Combos Description",
+			"Description": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Combo Description",
 				"value": "Combos are not officially supported yet. This is a placeholder for future capabilities."
 			}
 		}

@@ -1,20 +1,32 @@
+//the below two will change the default D20 in the initiative tracker icon to our custom dice
+.combat-sidebar li.combatant .roll {
+	display: block;
+	width: 40px;
+	height: var(--sidebar-item-height);
+	background: url("../artwork/metanthropes-dice-roll-small.webp") no-repeat 50% 50%;
+	background-size: 42px;
+	margin: 0 0.5em;
+}
+.combat-sidebar li.combatant .roll:hover {
+	background-image: url("../artwork/metanthropes-dice-roll-small-activated.webp");
+}
 // this changes the input fields in Foundry UI
 input[type="text"] {
 	min-width: 8ch;
-	max-width: 20ch;
+	max-width: 22ch;
 	margin: $margin-sm;
 	padding: $padding-input-text;
-	border: 1px dashed $c-purple;
+	border: 1px dashed $c-black;
 	border-radius: 15px;
 	justify-content: center;
 	align-items: center;
 }
 input[type="number"] {
 	min-width: 3ch;
-	max-width: 6ch;
+	max-width: 5ch;
 	margin: $margin-sm;
 	padding: $padding-input-number;
-	border: 1px dashed $c-purple;
+	border: 1px dashed $c-black;
 	border-radius: 15px;
 	justify-content: center;
 	align-items: center;
@@ -50,6 +62,23 @@ footer {
 // this changes the font for buttons of Foundry UI
 button {
 	font-family: $font-primary;
+	background-image: url("../artwork/button-3dhex.webp");
+	background-size: contain;
+	text-shadow: $s-button;
+	border: $border-groove;
+	border-radius: 15px;
+	color: $c-white;
+}
+select {
+	font-family: $font-primary;
+	border-radius: 15px;
+	border: 1px dotted $c-black;
+}
+option {
+	background-color: $c-background;
+	font-family: $font-primary;
+	border-radius: 15px;
+	border: 1px dotted $c-black;
 }
 // this changes the font in most title-elements of Foundry UI
 .window-app {
@@ -69,4 +98,13 @@ button {
 	background-repeat: repeat;
 	background-origin: border-box;
 	background-clip: border-box;
+}
+.chat-message {
+	background-image: url("../artwork/chat-results.webp");
+}
+#chat-form textarea {
+	background-image: url("../artwork/chat-box.webp");
+}
+.directory .directory-header .header-search input {
+	background-color: $c-background;
 }

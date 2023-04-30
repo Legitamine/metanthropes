@@ -1,0 +1,49 @@
+<form class="metanthropes {{cssClass}}" autocomplete="off">
+	<header class="sheet-header">
+		<img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+		<div class="header-fields">
+			<h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
+		</div>
+	</header>
+	{{!-- Sheet Tab Navigation --}}
+	<nav class="sheet-tabs tabs" data-group="primary">
+		<a class="item" data-tab="description">Description</a>
+		<a class="item" data-tab="activation">Activation</a>
+		<a class="item" data-tab="effects">Effects</a>
+	</nav>
+	{{!-- Sheet Body --}}
+	<section class="sheet-body">
+		{{!-- Description Tab --}}
+		<div class="tab description" data-group="primary" data-tab="description">
+			<div class="layout-editor">{{system.Description.label}}:<br>
+			{{editor system.Description.value target="system.Description.value" rollData=rollData button=true owner=owner editable=editable}}
+			</div>
+		</div>
+		{{!-- Activation Tab --}}
+		<div class="tab activation" data-group="primary" data-tab="activation">
+			{{!-- As you add new fields, add them in here! --}}
+			{{#each system.Activation}}
+				<div class="resource">
+					<label class="resource-label">{{this.label}}:</label>
+					<input type="{{this.type}}" name="system.Activation.{{@key}}.value" value="{{this.value}}"
+						data-dtype="{{this.dtype}}" />
+				</div>
+			{{/each}}
+		</div>
+		{{!-- Effects Tab --}}
+		<div class="tab effects" data-group="primary" data-tab="effects">
+			<div>
+				<div class="layout-editor">{{system.EffectDescription.label}}:<br>
+				{{editor system.EffectDescription.value target="system.EffectDescription.value" rollData=rollData button=true owner=owner editable=editable}}
+				</div>
+			</div>
+			{{#each system.Effects}}
+				<div class="resource">
+					<label class="resource-label">{{this.label}}:</label>
+					<input type="{{this.type}}" name="system.Effects.{{@key}}.value" value="{{this.value}}"
+						data-dtype="{{this.dtype}}" />
+				</div>
+			{{/each}}
+		</div>
+	</section>
+</form>

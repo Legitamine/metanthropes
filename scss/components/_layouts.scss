@@ -26,7 +26,7 @@
 	display: grid;
 	grid-auto-flow: column;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 1fr 0.5fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr 0.8fr;
 	column-gap: 3px;
 	row-gap: 3px;
 	padding: $padding-md;
@@ -66,12 +66,21 @@
 }
 //medium container with 3 columns and 1 row
 // this is used for charstats
+.layout-container-grid3x1-cs {
+	display: grid;
+	grid-template-columns: 2.4fr 1.6fr 2.8fr;
+	column-gap: 1px;
+	padding: $padding-zero;
+	margin: $margin-zero;
+	overflow: hidden;
+	overflow-wrap: break-word;
+}
 .layout-container-grid3x1 {
 	display: grid;
-	grid-template-columns: 2fr 1fr 4fr;
+	grid-template-columns: 1fr 1fr 1fr;
 	column-gap: 1px;
-	padding: $padding-sm;
-	margin: $margin-sm;
+	padding: $padding-zero;
+	margin: $margin-zero;
 	overflow: hidden;
 	overflow-wrap: break-word;
 }
@@ -105,6 +114,16 @@
 	margin: $margin-md;
 	overflow: hidden;
 }
+.layout-container-grid1x4 {
+	display: flex;
+	flex-flow: row;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	column-gap: 6px;
+	padding: $padding-md;
+	margin: $margin-md;
+	overflow: hidden;
+}
 //small container with 1 flex row
 .layout-container-small {
 	display: flex;
@@ -116,8 +135,8 @@
 .layout-container-nav {
 	display: flex;
 	flex-direction: row;
-	padding: $padding-sm;
-	margin: $margin-sm;
+	padding: $padding-md;
+	margin: $margin-md;
 }
 .layout-metaroll-dialog {
 	display: flex;
@@ -132,5 +151,19 @@
 }
 .layout-hide {
 	@include element-invisible;
-	//display: none;
+	display: none;
+}
+.layout-editor {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	justify-self: stretch;
+	justify-items: center;
+	align-self: auto;
+	align-items: stretch;
+	align-content: space-between;
+	height: 200px;
+	padding: $padding-lg;
+	margin: $margin-lg;
+	overflow-y: auto;
 }

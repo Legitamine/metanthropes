@@ -2,18 +2,19 @@
 //*
 //! Metanthropes RPG System for FoundryVTT
 //? This is the Actor Sheet for the Metanthropes RPG System for FoundryVTT.
-//? This controls how
-//todo: Enable basic functionality
+//? This controls how the sheet functions
 //*
 ////
 import { MetaRoll } from "../helpers/metaroll.mjs";
+import { MetapowerRoll } from "../helpers/mproll.mjs";
+import { PossessionRoll } from "../helpers/posroll.mjs";
 export class MetanthropesActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
 			classes: ["metanthropes", "sheet", "actor"], // these are custom css classes that are used in the html file
-			width: 990,
-			height: 900,
+			width: 1390,
+			height: 920,
 			closeOnSubmit: false,
 			submitOnClose: true,
 			submitOnChange: true,
@@ -41,40 +42,32 @@ export class MetanthropesActorSheet extends ActorSheet {
 		context.system = actorData.system;
 		context.flags = actorData.flags;
 		// Prepare character data and items.
-		if (actorData.type == "MetaTherion") {
+		if (actorData.type !== "Animal") {
 			this._prepareItems(context);
-			//this._prepareCharacteristicsItemData(context);
 		}
 		// Add roll data for TinyMCE editors.
-		//adding this enabled rolls??
 		context.rollData = context.actor.getRollData();
 		// Prepare active effects
 		// context.effects = prepareActiveEffectCategories(this.actor.effects);
 		return context;
 	}
-	//prepare localization for characters
-	//_prepareCharacteristicsItemData(context) {
-	//here is where I would do the localization
-	//}
 	//prepare items
 	_prepareItems(context) {
 		// Initialize containers.
-		const Possessions = [];
-		//todo: add filtering per category for possessions - allowing for an item to have multiple ones like a weapon that is also a gadget etc.
-		//todo: need to create the correct schema on template.json for this
-		//	Armor: [],
-		//	Weapon: [],
-		//	Gadget: [],
-		//	Drug: [],
-		const Perks = [];
-		const Combos = {
+		const Possessions = {
+			Weapon: [],
+			Armor: [],
+			Gadget: [],
+			Drug: [],
+		};
+		const Metapowers = {
 			1: [],
 			2: [],
 			3: [],
 			4: [],
 			5: [],
 		};
-		const Metapowers = {
+		const Combos = {
 			1: [],
 			2: [],
 			3: [],
@@ -86,17 +79,14 @@ export class MetanthropesActorSheet extends ActorSheet {
 			i.img = i.img || DEFAULT_TOKEN;
 			// Append to Possessions.
 			if (i.type === "Possession") {
-				//todo if (i.system.category)
-				Possessions.push(i);
-			}
-			// Append to Perks.
-			else if (i.type === "Perk") {
-				Perks.push(i);
+				if (i.system.Category.value != undefined) {
+					Possessions[i.system.Category.value].push(i);
+				}
 			}
 			// Append to Metapowers.
 			else if (i.type === "Metapower") {
-				if (i.system.Level.value != undefined) {
-					Metapowers[i.system.Level.value].push(i);
+				if (i.system.Activation.Level.value != undefined) {
+					Metapowers[i.system.Activation.Level.value].push(i);
 				}
 			} else if (i.type === "Combo") {
 				if (i.system.level != undefined) {
@@ -107,7 +97,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 
 		// Assign and return
 		context.Possessions = Possessions;
-		context.Perks = Perks;
 		context.Metapowers = Metapowers;
 		context.Combos = Combos;
 	}
@@ -135,8 +124,10 @@ export class MetanthropesActorSheet extends ActorSheet {
 		});
 		// Active Effect management
 		// html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
-		// Rollable abilities.
+		// Find the different type of rolls and add the event listeners
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
+		html.find(".style-mp-rolls").click(this._onRoll.bind(this));
+		html.find(".style-pos-rolls").click(this._onRoll.bind(this));
 		// Drag events for macros.
 		if (this.actor.isOwner) {
 			let handler = (ev) => this._onDragStart(ev);
@@ -171,20 +162,86 @@ export class MetanthropesActorSheet extends ActorSheet {
 	}
 	//code from boilerplate on rolls
 	async _onRoll(event) {
+		console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+		console.log("Metanthropes RPG evaluating a new _onRoll(event)");
+		console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 		event.preventDefault();
 		const element = event.currentTarget;
 		const dataset = element.dataset;
 		// Handle item rolls.
 		if (dataset.rollType) {
-			if (dataset.rollType == "item") {
-				const itemId = element.closest(".item").dataset.itemId;
-				const item = this.actor.items.get(itemId);
-				if (item) return item.roll();
+			console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+			console.log("Metanthropes RPG We are about to make a new Roll for a", dataset.rollType);
+			console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+			if (dataset.rollType == "Stat") {
+				const actor = this.actor;
+				const stat = dataset.stat;
+				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("Metanthropes RPG Rolling a Stat for:", actor, "'s", stat);
+				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				MetaRoll(actor, stat);
+			} else if (dataset.rollType == "Metapower") {
+				const actor = this.actor;
+				const stat = dataset.stat;
+				const itemname = dataset.itemname;
+				const destcost = dataset.destcost;
+				const effect = dataset.effect;
+				const targets = dataset.targets;
+				const targetsdice = dataset.targetsdice;
+				const duration = dataset.duration;
+				const durationdice = dataset.durationdice;
+				const damage = dataset.damage;
+				const healing = dataset.healing;
+				const buffs = dataset.buffs;
+				const conditions = dataset.conditions;
+				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log(
+					"Metanthropes RPG Rolling a Metapower for:",
+					actor,
+					"Metapower:",
+					itemname,
+					"Destiny Cost:",
+					destcost,
+					"with:",
+					stat
+				);
+				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				MetapowerRoll(actor, stat, itemname, destcost, effect, targets, targetsdice, duration, durationdice, damage, healing, buffs, conditions);
+			} else if (dataset.rollType == "Possession") {
+				const actor = this.actor;
+				const stat = dataset.stat;
+				const itemname = dataset.itemname;
+				const attacktype = dataset.attacktype;
+				const effect = dataset.effect;
+				const targets = dataset.targets;
+				const damage = dataset.damage;
+				const conditions = dataset.conditions;
+				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("Metanthropes RPG Rolling a Possession for:", actor, "'s", stat);
+				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				PossessionRoll(actor, stat, itemname, attacktype, effect, targets, damage, conditions);
+			} else if (dataset.rollType == "Combo") {
+				const actor = this.actor;
+				const stat = dataset.stat;
+				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("Metanthropes RPG Rolling a Combo for:", actor, "'s", stat);
+				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				MetaRoll(actor, stat);
+			} else {
+				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("Metanthropes RPG ERROR: not defined rollType", dataset.rollType);
+				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				return;
 			}
 		}
 		// Handle rolls that supply the formula directly.
-		//todo: I need to leverage this, bring it outside of actor-sheet and into it's own. Add bonus and penalties and ability to add more in the future. Also include destiny re-rolls as an option in the chat message.
 		if (dataset.roll) {
+			console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+			console.log(
+				"Metanthropes RPG ERROR: You supplied the type of roll, this should not happen, using MetaRoll instead",
+				dataset.roll
+			);
+			console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 			const actor = this.actor;
 			const stat = dataset.stat;
 			MetaRoll(actor, stat);
