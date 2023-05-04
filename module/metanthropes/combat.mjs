@@ -161,7 +161,9 @@ export class MetanthropesCombat extends Combat {
 	 */
 	async nextRound() {
 		await super.nextRound();
-
+		console.log("Metanthropes RPG Calculating Next Round Values === +++ === +++ === ");
+		console.log("this.round:", this.round, "this.cycle:", this.cycle, "this.cycleRound:", this.cycleRound);
+		console.log("this is this", this);
 		// Calculate the new this.cycle and this.cycleRound values
 		if (this.round === 1) {
 			this.cycle = 1;
