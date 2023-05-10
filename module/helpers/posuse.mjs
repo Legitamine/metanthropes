@@ -59,7 +59,7 @@ export async function PossessionUse(event) {
 		if (damage) {
 			if (damagedata > 0) {
 				contentdata += `<div class="hide-button layout-hide"><h4>💥 Damage:</h4>
-			<button class="re-roll-damage" data-idactor="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" >
+			<button class="re-roll-damage" data-idactor="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" data-damagedata="${damagedata}">
 			💥 [[${damagedata}+${damage}]] 🤞</button>
 			</div><br>`;
 			} else {

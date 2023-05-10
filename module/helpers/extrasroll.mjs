@@ -109,6 +109,7 @@ export async function ReRollDamage(event) {
 	const actorId = button.dataset.idactor;
 	const itemname = button.dataset.itemname;
 	const damage = button.dataset.damage;
+	const damagedata = button.dataset.damagedata;
 	const actor = game.actors.get(actorId);
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	// make this function only available to the owner of the actor
@@ -122,23 +123,34 @@ export async function ReRollDamage(event) {
 			if (message) {
 				message.render();
 			}
-			RollDamage(actor, itemname, damage);
+			RollDamage(actor, itemname, damage, damagedata);
 		}
 	}
 }
-export async function RollDamage(actor, itemname, damage) {
+export async function RollDamage(actor, itemname, damage, damagedata) {
 	console.log("=====+++++++======+++++++");
 	console.log("INSIDE ROLL DAMAGE");
 	console.log("=====+++++++======+++++++");
 	// Create a chat message with the provided content
 	let currentDestiny = actor.system.Vital.Destiny.value;
-	let contentdata = `<div class="metanthropes hide-button layout-hide">
-	<button class="re-roll-damage" data-idactor="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" >
-	💥 [[${damage}]] 🤞</button>
+	let contentdata = null;
+	if (damagedata > 0) {
+		contentdata = `<div class="metanthropes hide-button layout-hide">
+	<button class="re-roll-damage" data-idactor="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" data-damagedata="${damagedata}" >
+	💥 [[${damagedata}+${damage}]] 🤞</button>
 	</div>
 	<div>${actor.name} has ${currentDestiny} * 🤞 remaining.
 	</div>
 	`;
+	} else {
+		contentdata = `<div class="metanthropes hide-button layout-hide">
+		<button class="re-roll-damage" data-idactor="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" >
+		💥 [[${damage}]] 🤞</button>
+		</div>
+		<div>${actor.name} has ${currentDestiny} * 🤞 remaining.
+		</div>
+		`;
+	}
 	//send the activation message to chat
 	let chatData = {
 		user: game.user.id,
