@@ -1173,6 +1173,12 @@
 				"dtype": "String",
 				"label": "Results Description",
 				"value": null
+			},
+			"Quantity": {
+				"type": "number",
+				"dtype": "Number",
+				"label": "Quantity",
+				"value": 1
 			}
 		},
 		"Metapower": {
