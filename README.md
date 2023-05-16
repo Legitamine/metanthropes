@@ -24,28 +24,32 @@ To get the best experience while playing Metanthropes RPG, we recommend to insta
 	- Workaround: Use the Spent XP manual input field to adjust the XP spent for the Stat.
 - Metapowers tab in your Character Sheet displays the Current value of the Stat for that Metapower's Activation. If any Stat is changed, or a Roll is made, the values in the Metapowers Tab become null.
 	- Workaround: Close your Character Sheet and re-open, the correct values will be displayed.
-- Combat: Hidden Combatants are not rolling Initiative correctly.
-	- Workaround: The Narrator should update their Initiative value manually.
+- Combat: Hidden Combatants are not rolling hidden Initiative correctly.
+	- Workaround: The Narrator should manually ensure their rolls are hidden before rolling for Initiative.
 ### Planned Features
+You may read about our planned features and milestones over at https://github.com/Legitamine/metanthropes-system/milestones
+Briefly, we are working on the following features:
 - Officially Support the full Ruleset for Metanthropes RPG
 - Synchronize your Protagonist details with the website for off-line viewing and editing
 - GitHub Issues Integration with the Metanthropes Roadmap
-- Integration with Automatic-Animations module to automate the Metapower Activation and Possession Usage with visual and audio effects.
+- Integration with 3rd party modules to automate the Metapower Activation and Possession Usage with visual and audio effects.
 ### Latest Changes
 These are the latest changes for the Official Metanthropes RPG System for Foundry VTT
-#### 0.5.00 - current build (status)
-- Possessions: Possessions Sheet (pending)
+#### 0.6.00 - current build (status)
+- XP System: Metapowers (pending)
+- New Player Experience
+#### 0.5.00 - 0.5.37
+- Possessions: Possessions Sheet
 - Possessions: Chat Roll Message Results & Destiny Re-Roll
 - Possessions: Use Chat message depends on the Possession Category & Attack Type & Destiny Re-Rolls for Extras
-- XP System: Metapowers (pending)
 - Combat: Initiative Re-Rolls for Destiny, Roll-all-NPCs with a single click
 - Combat: Rolling Initiative with Danger Sense (6th Sense) Metapower equipped rolls with Awareness instead of Reflexes
 - Combat: Rolling for Initiative with 0 Stat correctly now doesn't allow you to roll and puts you on the bottom of the initiative list
 - Combat: Cycles and Rounds and Initiative Re-Rolls as needed
-- Combat: Initiative Ordering (todo: single sound effect if roll all/npcs & award destiny for double ties and reset initiative & hidden chat messages for hidden-combatants)
+- Combat: Initiative Ordering (Issue: single sound effect if roll all/npcs & award destiny for double ties and reset initiative & hidden chat messages for hidden-combatants)
 #### 0.4.00 - 0.4.20
 - Metapowers: Activation & Effects on Chat & Re-Roll Extras
-- Combat: Metanthropes RPG Initiative Rules
+- Combat: Metanthropes RPG Basic Initiative Rules
 #### 0.3.00 - 0.3.16
 - Custom Bars for Destiny & Life
 - Metapowers: Metapower Sheet (Known Issue)
