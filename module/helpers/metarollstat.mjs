@@ -33,6 +33,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 		currentDestiny += 1;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfSuccess = 10;
+		levelsOfFailure = 0;
 		if (statValue < 100) {
 			levelsOfSuccess += 0;
 		} else {
@@ -44,6 +45,7 @@ export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus =
 		currentDestiny += 1;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfFailure = 10;
+		levelsOfSuccess = 0;
 	}
 	//* Beggining of the message to be printed to chat
 	let message = `Attempts a roll with ${stat} score of ${statValue}%`;

@@ -2,13 +2,14 @@
 import { MetaRollStat } from "./metarollstat.mjs";
 // MetaRoll function handles the dialog box for selecting multi-actions and bonuses/penalties when rolling a stat
 export async function MetaRoll(actor, stat) {
-	// const statValue = actor.system.RollStats[stat];
-	let statValue;
-	if (token.data.actorLink) { //check if the token is linked to an actor
-		statValue = actor.system.RollStats[stat];
-	} else { // if not, use the token's data
-		statValue = token.system.RollStats[stat];
-	}
+	const statValue = actor.system.RollStats[stat];
+	// placeholder for new Actor/Token logic
+	//	let statValue;
+	//	if (token.data.actorLink) { //check if the token is linked to an actor
+	//		statValue = actor.system.RollStats[stat];
+	//	} else { // if not, use the token's data
+	//		statValue = token.system.RollStats[stat];
+	//	}
 	if (statValue <= 0) {
 		ui.notifications.error(actor.name+" can't Roll "+stat+" with a Current value of 0!");
 		return;

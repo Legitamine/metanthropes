@@ -1,6 +1,7 @@
 ![image](https://content.invisioncic.com/e290497/monthly_2022_12/01.jpg.10f501a62b5254cef6f04d9f87c8b52d.jpg)
 ![Repository License](https://img.shields.io/github/license/legitamine/metanthropes-system)
 ![Foundry v10](https://img.shields.io/badge/foundry-v10-green)
+![Foundry v11](https://img.shields.io/badge/foundry-v11-green)
 
 # Metanthropes RPG System for FoundryVTT
 This is the official Metanthropes RPG system for Foundry VTT.
@@ -12,13 +13,13 @@ This is the official Metanthropes RPG system for Foundry VTT.
 This is a work in progress and is not ready for general use. Installation instructions will be placed here when the system is ready. Please do not use this system for your games, unless you want to help playtest and know what you're doing. If so, please join us on our Discord server: https://metanthropes.com/discord
 
 ## Supported Modules
-This System aims to utilize the latest and best in Foundry VTT. Currently offers support for the latest stable Foundry VTT version 10.291
+This System aims to utilize the latest and best in Foundry VTT. Currently offers support for the latest stable Foundry VTT version 10.291. Support for Foundry VTT version 11 is currently in development.
 
 To get the best experience while playing Metanthropes RPG, we recommend to install the following fully supported modules:
 
 - Dice So Nice: https://foundryvtt.com/packages/dice-so-nice
 - Drag Ruler: https://foundryvtt.com/packages/drag-ruler
-- Moulinette: https://foundryvtt.com/packages/moulinette-core (you have to manually run the Index command for Sound and Image assets in your world)
+- Moulinette: https://foundryvtt.com/packages/moulinette-core
 ### Known Issues
 - Automatic XP Calculation for Characteristics and Stats assumes that you progressed your Characteristic first, otherwise it will spent more XP than what it should. 
 	- Workaround: Use the Spent XP manual input field to adjust the XP spent for the Stat.
@@ -36,8 +37,11 @@ Briefly, we are working on the following features:
 ### Latest Changes
 These are the latest changes for the Official Metanthropes RPG System for Foundry VTT
 #### 0.6.00 - current build (status)
+- Foundry core version 11 support (pending)
 - XP System: Metapowers (pending)
-- New Player Experience
+- New Player Experience (pending)
+- New Actor / Token logic to support non-linked Actors (pending)
+- Fixed bug with rolling 100 (Critical Failure) while having a Stat that is over 100 would not display levels of failure correctly - should be 10 levels of failure (done)
 #### 0.5.00 - 0.5.37
 - Possessions: Possessions Sheet
 - Possessions: Chat Roll Message Results & Destiny Re-Roll
