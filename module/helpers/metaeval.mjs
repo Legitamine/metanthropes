@@ -1,33 +1,23 @@
-// MetaRollStat function is used to roll a stat and get the levels of success/failure and print the message to chat
-export async function PossessionRollStat(
+export async function MetaEvaluate(
 	actor,
 	stat,
 	statValue,
-	modifier = 0,
+	multiAction = 0,
 	bonus = 0,
-	penalty = 0,
-	itemname,
-	attacktype = null,
-	effect = null,
-	targets = null,
-	damage=null,
-	conditions=null
-	) {
+	penalty = 0
+) {
 	let result = null;
 	let resultLevel = null;
-	if (statValue <= 0) {
-		ui.notifications.error(actor.name+" can't use" +itemname+"with "+stat+" Current value of 0!");
-		return;
-	}
 	const roll = await new Roll("1d100").evaluate({ async: true });
 	const total = roll.total;
-	let levelsOfSuccess = Math.floor((statValue + bonus + penalty + modifier - total) / 10);
-	let levelsOfFailure = Math.floor((total - statValue - bonus - modifier - penalty) / 10);
+	//* bonus is expected to be a positive number and multiAction and penalty are expected to be negative numbers
+	let levelsOfSuccess = Math.floor((statValue + bonus + penalty + multiAction - total) / 10);
+	let levelsOfFailure = Math.floor((total - statValue - bonus - multiAction - penalty) / 10);
 	const criticalSuccess = total === 1;
 	const criticalFailure = total === 100;
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	// this kicks-off the calculation, assuming that is is a failure
-	if (total - modifier - penalty > statValue + bonus) {
+	if (total - multiAction - penalty > statValue + bonus) {
 		// in which case we don't care about what levels of success we have, so we set to 0 to avoid confusion later
 		result = "Failure 🟥";
 		levelsOfSuccess = 0;
@@ -61,20 +51,21 @@ export async function PossessionRollStat(
 		levelsOfSuccess = 0;
 	}
 	//* Beggining of the message to be printed to chat
-	let message = `Uses their ${itemname} with ${stat} score of ${statValue}%`;
-	// if we have a bonus or penalty, add it to the message
+	let message = `Attempts a roll with ${stat} score of ${statValue}%`;
+	//? if we have a bonus or penalty, add it to the message
 	if (bonus > 0) {
 		message += `, a Bonus of +${bonus}%`;
 	}
 	if (penalty < 0) {
 		message += `, a Penalty of ${penalty}%`;
 	}
-	// if we have multi-action reduction, add it to the message
-	if (modifier < 0) {
-		message += `, a Multi-Action reduction of ${modifier}%`;
+	//? if we have multi-action reduction, add it to the message
+	if (multiAction < 0) {
+		message += `, a Multi-Action reduction of ${multiAction}%`;
 	}
 	message += ` and the result is ${total}. Therefore it is a ${result}`;
-	// if we have levels of success or failure, add them to the message
+	//! Here is the typical calculation for the final results
+	//? if we have levels of success or failure, add them to the message
 	if (levelsOfSuccess > 0) {
 		message += `, accumulating: ${levelsOfSuccess} * ✔️. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
 		resultLevel = levelsOfSuccess;
@@ -85,28 +76,18 @@ export async function PossessionRollStat(
 		message += `. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
 	}
 	//add re-roll button to message
-	message += `<div class="metanthropes hide-button layout-hide">
-	<button class="possession-re-roll" data-idactor="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}"
-	data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}" data-itemname="${itemname}" data-attacktype="${attacktype}"
-	data-effect="${effect}" data-targets="${targets}" data-damage="${damage}" data-conditions="${conditions}">
-	🤞</button>
-	<button class="possession-use" data-idactor="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}"
-	data-itemname="${itemname}" data-attacktype="${attacktype}" data-targets="${targets}" data-effect="${effect}"
-	data-damage="${damage}" data-conditions="${conditions}" data-modifier="${modifier}" >
-	🛠️</button>
-	</div>
-	`;
+	message += `<div><button class="hide-button layout-hide meta-re-roll" data-idactor="${actor.id}"
+data-stat="${stat}" data-stat-value="${statValue}" data-multiAction="${multiAction}"
+data-bonus="${bonus}" data-penalty="${penalty}"
+>🤞</button></div>`;
 	//console log for debugging
 	console.log(
-		"PosRoll Results:",
-		"Stat:",
-		stat,
-		"Stat Value:",
+		"Metaroll Results: Stat:",
 		statValue,
 		"Roll:",
 		total,
 		"Multi-Action mod:",
-		modifier,
+		multiAction,
 		"Bonus:",
 		bonus,
 		"Penalty:",
@@ -122,22 +103,9 @@ export async function PossessionRollStat(
 		"Destiny:",
 		currentDestiny
 	);
-	console.log(
-		"Posroll Results cont:",
-		"Possession:",
-		itemname,
-		"Attack Type:",
-		attacktype,
-		"Targets:",
-		targets,
-		"Damage:",
-		damage,
-		"Conditions:",
-		conditions
-	);
 	//set flags for the actor to be used as the lastrolled values of your most recent roll.
 	// the idea is to use these later in metapowers to spend your levels of success.
-	await actor.setFlag("metanthropes-system", "posused", {
+	await actor.setFlag("metanthropes-system", "lastrolled", {
 		resultLevel: resultLevel,
 	});
 	//print message to chat and enable Dice So Nice to roll the dice and display the message
@@ -151,38 +119,4 @@ export async function PossessionRollStat(
 		//content seems to be overwriten by Dice So Nice, so maybe I can add my button here?
 		flags: { "metanthropes-system": { actorId: actor.id } },
 	});
-}
-// Function to handle re-roll for destiny
-export async function PossessionReRoll(event) {
-	event.preventDefault();
-	const button = event.target;
-	const actorId = button.dataset.idactor;
-	const stat = button.dataset.stat;
-	const statValue = parseInt(button.dataset.statValue);
-	const modifier = parseInt(button.dataset.modifier);
-	const bonus = parseInt(button.dataset.bonus);
-	const penalty = parseInt(button.dataset.penalty);
-	const actor = game.actors.get(actorId);
-	const itemname = button.dataset.itemname;
-	const attacktype = button.dataset.attacktype;
-	const effect = button.dataset.effect;
-	const targets = button.dataset.targets;
-	const damage = button.dataset.damage;
-	const conditions = button.dataset.conditions;
-	// get current destiny value
-	let currentDestiny = actor.system.Vital.Destiny.value;
-	// make this function only available to the owner of the actor
-	if ((actor && actor.isOwner) || game.user.isGM) {
-		// Reduce Destiny.value by 1
-		if (currentDestiny > 0) {
-			currentDestiny -= 1;
-			await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-			// Update re-roll button visibility
-			const message = game.messages.get(button.dataset.messageId);
-			if (message) {
-				message.render();
-			}
-			PossessionRollStat(actor, stat, statValue, modifier, bonus, penalty, itemname, attacktype, effect, targets, damage, conditions);
-		}
-	}
 }

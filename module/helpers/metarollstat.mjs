@@ -1,5 +1,12 @@
 // MetaRollStat function is used to roll a stat and get the levels of success/failure and print the message to chat
-export async function MetaRollStat(actor, stat, statValue, modifier = 0, bonus = 0, penalty = 0) {
+export async function MetaRollStat(
+	actor,
+	stat,
+	statValue,
+	modifier = 0,
+	bonus = 0,
+	penalty = 0
+	) {
 	let result = null;
 	let resultLevel = null;
 	if (statValue <= 0) {

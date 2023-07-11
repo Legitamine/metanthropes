@@ -22,6 +22,8 @@ import { ReRollDamage } from "./helpers/extrasroll.mjs";
 import { ReRollHealing } from "./helpers/extrasroll.mjs";
 import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
 import { PossessionUse } from "./helpers/posuse.mjs";
+// New Player Experience
+import { NewActor } from "./helpers/newactor.mjs";
 // Handlebars helper for drop-down menus.
 //! Supposedly Foundry includes its own select helper, but I couldn't get it to work.
 Handlebars.registerHelper("selected", function (option, value) {
@@ -214,6 +216,7 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		const actorId = message.getFlag("metanthropes-system", "actorId");
 		const actor = game.actors.get(actorId);
 		console.log("inside RPG button hook, actor is", actor);
+		//! do I really need this?
 		const currentDestiny = actor.system.Vital.Destiny.value;
 		console.log("=============================================================================================");
 		console.log("Metanthropes RPG Hook for Button - message.isAuthor is", message.isAuthor);
@@ -237,8 +240,9 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		html.find(".possession-use").on("click", PossessionUse);
 	}
 });
-//listen for stat changes, this should enable metapower sheet to update correctly when a stat changes
+//*listen for stat changes, this should enable metapower sheet to update correctly when a stat changes
 //!this issue also occurs when rolling something
+//! not working properly atm
 Hooks.on("updateActor", (actor, data, options, userId) => {
 	if (data.hasOwnProperty("system")) {
 		// Get the actor's sheet

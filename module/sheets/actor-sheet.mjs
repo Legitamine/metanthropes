@@ -6,6 +6,7 @@
 //*
 ////
 import { MetaRoll } from "../helpers/metaroll.mjs";
+import { MetaRollCustom } from "../helpers/metaroll.mjs";
 import { MetapowerRoll } from "../helpers/mproll.mjs";
 import { PossessionRoll } from "../helpers/posroll.mjs";
 export class MetanthropesActorSheet extends ActorSheet {
@@ -125,7 +126,9 @@ export class MetanthropesActorSheet extends ActorSheet {
 		// Active Effect management
 		// html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
 		// Find the different type of rolls and add the event listeners
+		//! should rename _onRoll to _onLeftClick and add a _onRightClick to handle right clicks differently.
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
+		html.find(".style-cs-rolls").on("contextmenu", this._onCustomRoll.bind(this));
 		html.find(".style-mp-rolls").click(this._onRoll.bind(this));
 		html.find(".style-pos-rolls").click(this._onRoll.bind(this));
 		// Drag events for macros.
@@ -206,7 +209,119 @@ export class MetanthropesActorSheet extends ActorSheet {
 					stat
 				);
 				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-				MetapowerRoll(actor, stat, itemname, destcost, effect, targets, targetsdice, duration, durationdice, damage, healing, buffs, conditions);
+				MetapowerRoll(
+					actor,
+					stat,
+					itemname,
+					destcost,
+					effect,
+					targets,
+					targetsdice,
+					duration,
+					durationdice,
+					damage,
+					healing,
+					buffs,
+					conditions
+				);
+			} else if (dataset.rollType == "Possession") {
+				const actor = this.actor;
+				const stat = dataset.stat;
+				const itemname = dataset.itemname;
+				const attacktype = dataset.attacktype;
+				const effect = dataset.effect;
+				const targets = dataset.targets;
+				const damage = dataset.damage;
+				const conditions = dataset.conditions;
+				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("Metanthropes RPG Rolling a Possession for:", actor, "'s", stat);
+				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				PossessionRoll(actor, stat, itemname, attacktype, effect, targets, damage, conditions);
+			} else if (dataset.rollType == "Combo") {
+				const actor = this.actor;
+				const stat = dataset.stat;
+				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("Metanthropes RPG Rolling a Combo for:", actor, "'s", stat);
+				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				MetaRoll(actor, stat);
+			} else {
+				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("Metanthropes RPG ERROR: not defined rollType", dataset.rollType);
+				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				return;
+			}
+		}
+		// Handle rolls that supply the formula directly.
+		if (dataset.roll) {
+			console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+			console.log(
+				"Metanthropes RPG ERROR: You supplied the type of roll, this should not happen, using MetaRoll instead",
+				dataset.roll
+			);
+			console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+			const actor = this.actor;
+			const stat = dataset.stat;
+			MetaRoll(actor, stat);
+		}
+	}
+	//first try to make a custom roll for right-clicking
+	async _onCustomRoll(event) {
+		event.preventDefault();
+		const element = event.currentTarget;
+		const dataset = element.dataset;
+		// Handle item rolls.
+		if (dataset.rollType) {
+			console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+			console.log("Metanthropes RPG We are about to make a new Roll for a", dataset.rollType);
+			console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+			if (dataset.rollType == "Stat") {
+				const actor = this.actor;
+				const stat = dataset.stat;
+				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("Metanthropes RPG Rolling a Stat for:", actor, "'s", stat);
+				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				MetaRollCustom(actor, stat);
+			} else if (dataset.rollType == "Metapower") {
+				const actor = this.actor;
+				const stat = dataset.stat;
+				const itemname = dataset.itemname;
+				const destcost = dataset.destcost;
+				const effect = dataset.effect;
+				const targets = dataset.targets;
+				const targetsdice = dataset.targetsdice;
+				const duration = dataset.duration;
+				const durationdice = dataset.durationdice;
+				const damage = dataset.damage;
+				const healing = dataset.healing;
+				const buffs = dataset.buffs;
+				const conditions = dataset.conditions;
+				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log(
+					"Metanthropes RPG Rolling a Metapower for:",
+					actor,
+					"Metapower:",
+					itemname,
+					"Destiny Cost:",
+					destcost,
+					"with:",
+					stat
+				);
+				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				MetapowerRoll(
+					actor,
+					stat,
+					itemname,
+					destcost,
+					effect,
+					targets,
+					targetsdice,
+					duration,
+					durationdice,
+					damage,
+					healing,
+					buffs,
+					conditions
+				);
 			} else if (dataset.rollType == "Possession") {
 				const actor = this.actor;
 				const stat = dataset.stat;
