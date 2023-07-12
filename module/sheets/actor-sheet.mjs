@@ -9,6 +9,8 @@ import { MetaRoll } from "../helpers/metaroll.mjs";
 import { MetaRollCustom } from "../helpers/metaroll.mjs";
 import { MetapowerRoll } from "../helpers/mproll.mjs";
 import { PossessionRoll } from "../helpers/posroll.mjs";
+//? Import New Actor
+import { NewActor } from "../helpers/newactor.mjs";
 export class MetanthropesActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
@@ -101,7 +103,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		context.Metapowers = Metapowers;
 		context.Combos = Combos;
 	}
-	// activate listeners for clickable stuff
+	//* activate listeners for clickable stuff on the actor sheet!
 	//code from boilerplate
 	activateListeners(html) {
 		super.activateListeners(html);
@@ -131,6 +133,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 		html.find(".style-cs-rolls").on("contextmenu", this._onCustomRoll.bind(this));
 		html.find(".style-mp-rolls").click(this._onRoll.bind(this));
 		html.find(".style-pos-rolls").click(this._onRoll.bind(this));
+		//? New Actor Logic
+		html.find(".new-actor").click(this._onNewActor.bind(this));
 		// Drag events for macros.
 		if (this.actor.isOwner) {
 			let handler = (ev) => this._onDragStart(ev);
@@ -350,6 +354,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			}
 		}
 		// Handle rolls that supply the formula directly.
+		//! am I still using this?
 		if (dataset.roll) {
 			console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 			console.log(
@@ -361,5 +366,15 @@ export class MetanthropesActorSheet extends ActorSheet {
 			const stat = dataset.stat;
 			MetaRoll(actor, stat);
 		}
+	}
+	//? New Actor Logic
+	
+	async _onNewActor(event) {
+		event.preventDefault();
+		//const element = event.currentTarget;
+		//const dataset = element.dataset;
+		const actor = this.actor;
+		console.log (this.actor);
+		NewActor(actor);
 	}
 }

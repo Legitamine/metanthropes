@@ -145,6 +145,7 @@ export async function PossessionRollStat(
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		flavor: message,
 		rollMode: game.settings.get("core", "rollMode"),
+		//!review this!
 		//I've used the optional chaining operator (?.) to check if effects-metapower exists before trying to access its value. If effects-metapower or its value is not defined, it will fall back to the "error no statrolled found" text using the nullish coalescing operator (??).
 		//content: item.system.effects-metapower?.value ?? "error no statrolled found",
 		//content: `<button class="custom-button">🤞</button>`,
