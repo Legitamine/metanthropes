@@ -48,7 +48,7 @@ main {
 }
 
 body {
-  font-family: "nasalization", sans-serif;
+  font-family: "gill-sans-nova", sans-serif;
   background-image: url("../artwork/bg-canvas.webp");
   background-size: auto auto;
   background-attachment: local;
@@ -105,8 +105,8 @@ option {
 .window-app .window-content {
   background-image: url("../artwork/background.webp");
   background-size: auto auto;
-  background-attachment: local;
-  background-repeat: repeat;
+  background-attachment: scroll, local;
+  background-repeat: no-repeat;
   background-origin: border-box;
   background-clip: border-box;
 }
@@ -121,6 +121,13 @@ option {
 
 .directory .directory-header .header-search input {
   background-color: rgba(129, 129, 129, 0.3725490196);
+}
+
+.chat-message .message-header .flavor-text, .chat-message .message-header .whisper-to {
+  font-family: "gill-sans-nova", sans-serif;
+  font-size: var(--font-size-14);
+  font-weight: 500;
+  color: #000;
 }
 
 .grid,

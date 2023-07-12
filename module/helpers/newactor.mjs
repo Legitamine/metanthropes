@@ -1,13 +1,24 @@
 //* newactor.mjs will be used to help in generating a new actor's stats and characteristics, along with other information.
 export async function NewActor(actor) {
 	//! Needs new CSS Classes
+	//! here is the layout for the forms
+	// step 1: destiny roll 3d10x10 default but input to change
+	// step 2: drop down for 100 alphabetically / random rolltable - icon of prime metapower in CS
+	// step 3: characteristics -  https://www.metanthropes.com/myprotagonist/
+	//	stats same as characteristics that will roll in chat x3 for pri/sec/ter and offer re-rolls - need to confirm rerolling all 3 works properly
+	// step 4: roleplay: Background: input field or random button - from 2x rolltables
+	// 	and Metamorphosis, Arc, Regression - drop down x 10 {{and/or input field}}
+	//step 5: {{ input (default 2): number of free perks / option to add more free perks later? }}
+	// step 6: protagonist Name, Gender, Age, DoB, PoB - prompt for Note taking?
+	//SUmmary step 6 - add new Nav named Summary, moving all header properties to that tab
+	//resize CS to logo background. cleanup old artwork files.
 	let dialogContent = `
 	<div class="metanthropes layout-metaroll-dialog">
 		<h2>Welcome to creating a new ${actor.type}</h2>
 		<p>Choose your ${actor.type}'s Characteristics:</p>
 		<form>
 			<div class="form-group">
-				<label for="primary">Primary:</label>
+				<label for="primary">First Pick:</label>
 				<select id="primary" name="primary">
 					<option value="Body" selected>Body</option>
 					<option value="Mind">Mind</option>
@@ -15,7 +26,7 @@ export async function NewActor(actor) {
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="secondary">Secondary:</label>
+				<label for="secondary">Second Pick:</label>
 				<select id="secondary" name="secondary">
 					<option value="Mind" selected>Mind</option>
 					<option value="Body">Body</option>
@@ -23,7 +34,7 @@ export async function NewActor(actor) {
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="tertiary">Tertiary:</label>
+				<label for="tertiary">Third Pick:</label>
 				<select id="tertiary" name="tertiary">
 					<option value="Soul" selected>Soul</option>
 					<option value="Body">Body</option>
@@ -49,6 +60,7 @@ export async function NewActor(actor) {
 					console.log(`New primary: ${primary}`, actor.system.Characteristics[primary].Initial);
 					console.log(`New secondary: ${secondary}`, actor.system.Characteristics[secondary].Initial);
 					console.log(`New tertiary: ${tertiary}`, actor.system.Characteristics[tertiary].Initial);
+					//! reminder to set initial=max life after doing the statistics
 				},
 			},
 			cancel: {

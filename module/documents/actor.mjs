@@ -45,9 +45,9 @@ export class MetanthropesActor extends Actor {
 			if (data.type == "Extradimensional")
 				createData.img = "systems/metanthropes-system/artwork/tokens/token-cosmonaut.webp";
 		}
-		// Fix for Token Attacher / CF Import - from wh4e
+		//? Fix for Token Attacher / CF Import - from wh4e
 		if (!createData.prototypeToken) createData.prototypeToken = {};
-		// Link Actor data and enable vision only for Protagonists
+		//? Link Actor data and enable vision only for Protagonists
 		if (data.type !== "Vehicle") {
 			createData.prototypeToken.sight = { enabled: true };
 			//! Adding this here so all actors have prototypeToken.actorLink = true until I figure out how to do it for tokens and not actors

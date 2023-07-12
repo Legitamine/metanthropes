@@ -63,23 +63,23 @@ export async function MetaEvaluate(
 	if (multiAction < 0) {
 		message += `, a Multi-Action reduction of ${multiAction}%`;
 	}
-	message += ` and the result is ${total}. Therefore it is a ${result}`;
+	message += ` and the result is ${total}.<br><br>It is a ${result}`;
 	//! Here is the typical calculation for the final results
 	//? if we have levels of success or failure, add them to the message
 	if (levelsOfSuccess > 0) {
-		message += `, accumulating: ${levelsOfSuccess} * ✔️. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
+		message += `, accumulating: ${levelsOfSuccess} * ✔️.<br><br>${actor.name} has ${currentDestiny} * 🤞 remaining.<br>`;
 		resultLevel = levelsOfSuccess;
 	} else if (levelsOfFailure > 0) {
-		message += `, accumulating: ${levelsOfFailure} * ❌. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
+		message += `, accumulating: ${levelsOfFailure} * ❌.<br><br>${actor.name} has ${currentDestiny} * 🤞 remaining.<br>`;
 		resultLevel = -levelsOfFailure;
 	} else {
-		message += `. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
+		message += `.<br><br>${actor.name} has ${currentDestiny} * 🤞 remaining.<br>`;
 	}
 	//add re-roll button to message
-	message += `<div><button class="hide-button layout-hide meta-re-roll" data-idactor="${actor.id}"
+	message += `<br><div><button class="hide-button layout-hide meta-re-roll" data-idactor="${actor.id}"
 data-stat="${stat}" data-stat-value="${statValue}" data-multiAction="${multiAction}"
 data-bonus="${bonus}" data-penalty="${penalty}"
->🤞</button></div>`;
+>Spend 🤞 Destiny to reroll</button></div><br>`;
 	//console log for debugging
 	console.log(
 		"Metaroll Results: Stat:",
