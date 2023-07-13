@@ -43,60 +43,64 @@ export async function NewActorCharacteristics(actor) {
 		</form>
 	</div>
 	`;
-	let dialog = new Dialog({
-		title: `${actor.name}'s Characteristics`,
-		content: dialogContent,
-		buttons: {
-			ok: {
-				label: "Confirm 📊 Characteristics",
-				callback: async (html) => {
-					let primary = html.find('[name="primary"]').val();
-					let secondary = html.find('[name="secondary"]').val();
-					let tertiary = html.find('[name="tertiary"]').val();
-					await actor.update({ [`system.Characteristics.${primary}.Initial`]: Number(30)});
-					await actor.update({ [`system.Characteristics.${secondary}.Initial`]: Number(20)});
-					await actor.update({ [`system.Characteristics.${tertiary}.Initial`]: Number(10)});
-					console.log(`New primary: ${primary}`, actor.system.Characteristics[primary].Initial);
-					console.log(`New secondary: ${secondary}`, actor.system.Characteristics[secondary].Initial);
-					console.log(`New tertiary: ${tertiary}`, actor.system.Characteristics[tertiary].Initial);
-					//! reminder to set initial=max life after doing the statistics
+	return new Promise((resolve, reject) => {
+		let dialog = new Dialog({
+			title: `${actor.name}'s Characteristics`,
+			content: dialogContent,
+			buttons: {
+				ok: {
+					label: "Confirm 📊 Characteristics",
+					callback: async (html) => {
+						let primary = html.find('[name="primary"]').val();
+						let secondary = html.find('[name="secondary"]').val();
+						let tertiary = html.find('[name="tertiary"]').val();
+						await actor.update({ [`system.Characteristics.${primary}.Initial`]: Number(30) });
+						await actor.update({ [`system.Characteristics.${secondary}.Initial`]: Number(20) });
+						await actor.update({ [`system.Characteristics.${tertiary}.Initial`]: Number(10) });
+						console.log(`New primary: ${primary}`, actor.system.Characteristics[primary].Initial);
+						console.log(`New secondary: ${secondary}`, actor.system.Characteristics[secondary].Initial);
+						console.log(`New tertiary: ${tertiary}`, actor.system.Characteristics[tertiary].Initial);
+						resolve();
+						//! reminder to set initial=max life after doing the statistics
+					},
+				},
+				cancel: {
+					label: "Cancel",
+					callback: () => reject(),
 				},
 			},
-			cancel: {
-				label: "Cancel",
+			default: "ok",
+			render: (html) => {
+				// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
+				html.find('[name="primary"]').change((event) => {
+					// Update the options in the Secondary dropdown based on the Primary selection
+					let primary = event.target.value;
+					let secondaryOptions = ["Body", "Mind", "Soul"].filter((option) => option !== primary);
+					let secondaryDropdown = html.find('[name="secondary"]');
+					secondaryDropdown.empty();
+					secondaryOptions.forEach((option) => {
+						secondaryDropdown.append(new Option(option, option));
+					});
+					// Trigger a change event to update the Tertiary dropdown
+					secondaryDropdown.trigger("change");
+				});
+				html.find('[name="secondary"]').change((event) => {
+					// Update the options in the Tertiary dropdown based on the Secondary selection
+					let primary = html.find('[name="primary"]').val();
+					let secondary = event.target.value;
+					let tertiaryOptions = ["Body", "Mind", "Soul"].filter(
+						(option) => option !== primary && option !== secondary
+					);
+					let tertiaryDropdown = html.find('[name="tertiary"]');
+					tertiaryDropdown.empty();
+					tertiaryOptions.forEach((option) => {
+						tertiaryDropdown.append(new Option(option, option));
+					});
+				});
 			},
-		},
-		default: "ok",
-		render: (html) => {
-			// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
-			html.find('[name="primary"]').change((event) => {
-				// Update the options in the Secondary dropdown based on the Primary selection
-				let primary = event.target.value;
-				let secondaryOptions = ["Body", "Mind", "Soul"].filter((option) => option !== primary);
-				let secondaryDropdown = html.find('[name="secondary"]');
-				secondaryDropdown.empty();
-				secondaryOptions.forEach((option) => {
-					secondaryDropdown.append(new Option(option, option));
-				});
-				// Trigger a change event to update the Tertiary dropdown
-				secondaryDropdown.trigger("change");
-			});
-			html.find('[name="secondary"]').change((event) => {
-				// Update the options in the Tertiary dropdown based on the Secondary selection
-				let primary = html.find('[name="primary"]').val();
-				let secondary = event.target.value;
-				let tertiaryOptions = ["Body", "Mind", "Soul"].filter(
-					(option) => option !== primary && option !== secondary
-				);
-				let tertiaryDropdown = html.find('[name="tertiary"]');
-				tertiaryDropdown.empty();
-				tertiaryOptions.forEach((option) => {
-					tertiaryDropdown.append(new Option(option, option));
-				});
-			});
-		},
+		});
+		dialog.render(true);
 	});
-	dialog.render(true);
 }
 export async function NewActorBodyStats(actor) {
 	let dialogContent = `
@@ -130,60 +134,73 @@ export async function NewActorBodyStats(actor) {
 		</form>
 	</div>
 	`;
-	let dialog = new Dialog({
-		title: `${actor.name}'s Body Stats`,
-		content: dialogContent,
-		buttons: {
-			ok: {
-				label: "Confirm & Roll 📊 Body Stats",
-				callback: async (html) => {
-					let primary = html.find('[name="primary"]').val();
-					let secondary = html.find('[name="secondary"]').val();
-					let tertiary = html.find('[name="tertiary"]').val();
-					await actor.update({ [`system.Characteristics.Body.Stats.${primary}.Initial`]: Number(30)});
-					await actor.update({ [`system.Characteristics.Body.Stats.${secondary}.Initial`]: Number(20)});
-					await actor.update({ [`system.Characteristics.Body.Stats.${tertiary}.Initial`]: Number(10)});
-					console.log(`New Body Stat primary: ${primary}`, actor.system.Characteristics.Body.Stats[primary].Initial);
-					console.log(`New Body Stat secondary: ${secondary}`, actor.system.Characteristics.Body.Stats[secondary].Initial);
-					console.log(`New Body Stat tertiary: ${tertiary}`, actor.system.Characteristics.Body.Stats[tertiary].Initial);
-					//! reminder to set initial=max life after doing the statistics
+	return new Promise((resolve, reject) => {
+		let dialog = new Dialog({
+			title: `${actor.name}'s Body Stats`,
+			content: dialogContent,
+			buttons: {
+				ok: {
+					label: "Confirm & Roll 📊 Body Stats",
+					callback: async (html) => {
+						let primary = html.find('[name="primary"]').val();
+						let secondary = html.find('[name="secondary"]').val();
+						let tertiary = html.find('[name="tertiary"]').val();
+						await actor.update({ [`system.Characteristics.Body.Stats.${primary}.Initial`]: Number(30) });
+						await actor.update({ [`system.Characteristics.Body.Stats.${secondary}.Initial`]: Number(20) });
+						await actor.update({ [`system.Characteristics.Body.Stats.${tertiary}.Initial`]: Number(10) });
+						console.log(
+							`New Body Stat primary: ${primary}`,
+							actor.system.Characteristics.Body.Stats[primary].Initial
+						);
+						console.log(
+							`New Body Stat secondary: ${secondary}`,
+							actor.system.Characteristics.Body.Stats[secondary].Initial
+						);
+						console.log(
+							`New Body Stat tertiary: ${tertiary}`,
+							actor.system.Characteristics.Body.Stats[tertiary].Initial
+						);
+						resolve();
+						//! reminder to set initial=max life after doing the statistics
+					},
+				},
+				cancel: {
+					label: "Cancel",
+					callback: () => reject(),
 				},
 			},
-			cancel: {
-				label: "Cancel",
+			default: "ok",
+			render: (html) => {
+				// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
+				html.find('[name="primary"]').change((event) => {
+					// Update the options in the Secondary dropdown based on the Primary selection
+					let primary = event.target.value;
+					let secondaryOptions = ["Endurance", "Power", "Reflexes"].filter((option) => option !== primary);
+					let secondaryDropdown = html.find('[name="secondary"]');
+					secondaryDropdown.empty();
+					secondaryOptions.forEach((option) => {
+						secondaryDropdown.append(new Option(option, option));
+					});
+					// Trigger a change event to update the Tertiary dropdown
+					secondaryDropdown.trigger("change");
+				});
+				html.find('[name="secondary"]').change((event) => {
+					// Update the options in the Tertiary dropdown based on the Secondary selection
+					let primary = html.find('[name="primary"]').val();
+					let secondary = event.target.value;
+					let tertiaryOptions = ["Endurance", "Power", "Reflexes"].filter(
+						(option) => option !== primary && option !== secondary
+					);
+					let tertiaryDropdown = html.find('[name="tertiary"]');
+					tertiaryDropdown.empty();
+					tertiaryOptions.forEach((option) => {
+						tertiaryDropdown.append(new Option(option, option));
+					});
+				});
 			},
-		},
-		default: "ok",
-		render: (html) => {
-			// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
-			html.find('[name="primary"]').change((event) => {
-				// Update the options in the Secondary dropdown based on the Primary selection
-				let primary = event.target.value;
-				let secondaryOptions = ["Endurance", "Power", "Reflexes"].filter((option) => option !== primary);
-				let secondaryDropdown = html.find('[name="secondary"]');
-				secondaryDropdown.empty();
-				secondaryOptions.forEach((option) => {
-					secondaryDropdown.append(new Option(option, option));
-				});
-				// Trigger a change event to update the Tertiary dropdown
-				secondaryDropdown.trigger("change");
-			});
-			html.find('[name="secondary"]').change((event) => {
-				// Update the options in the Tertiary dropdown based on the Secondary selection
-				let primary = html.find('[name="primary"]').val();
-				let secondary = event.target.value;
-				let tertiaryOptions = ["Endurance", "Power", "Reflexes"].filter(
-					(option) => option !== primary && option !== secondary
-				);
-				let tertiaryDropdown = html.find('[name="tertiary"]');
-				tertiaryDropdown.empty();
-				tertiaryOptions.forEach((option) => {
-					tertiaryDropdown.append(new Option(option, option));
-				});
-			});
-		},
+		});
+		dialog.render(true);
 	});
-	dialog.render(true);
 }
 export async function NewActorMindStats(actor) {
 	let dialogContent = `
@@ -217,60 +234,75 @@ export async function NewActorMindStats(actor) {
 		</form>
 	</div>
 	`;
-	let dialog = new Dialog({
-		title: `${actor.name}'s Mind Stats`,
-		content: dialogContent,
-		buttons: {
-			ok: {
-				label: "Confirm & Roll 📊 Mind Stats",
-				callback: async (html) => {
-					let primary = html.find('[name="primary"]').val();
-					let secondary = html.find('[name="secondary"]').val();
-					let tertiary = html.find('[name="tertiary"]').val();
-					await actor.update({ [`system.Characteristics.Mind.Stats.${primary}.Initial`]: Number(30)});
-					await actor.update({ [`system.Characteristics.Mind.Stats.${secondary}.Initial`]: Number(20)});
-					await actor.update({ [`system.Characteristics.Mind.Stats.${tertiary}.Initial`]: Number(10)});
-					console.log(`New Mind Stat primary: ${primary}`, actor.system.Characteristics.Mind.Stats[primary].Initial);
-					console.log(`New Mind Stat secondary: ${secondary}`, actor.system.Characteristics.Mind.Stats[secondary].Initial);
-					console.log(`New Mind Stat tertiary: ${tertiary}`, actor.system.Characteristics.Mind.Stats[tertiary].Initial);
-					//! reminder to set initial=max life after doing the statistics
+	return new Promise((resolve, reject) => {
+		let dialog = new Dialog({
+			title: `${actor.name}'s Mind Stats`,
+			content: dialogContent,
+			buttons: {
+				ok: {
+					label: "Confirm & Roll 📊 Mind Stats",
+					callback: async (html) => {
+						let primary = html.find('[name="primary"]').val();
+						let secondary = html.find('[name="secondary"]').val();
+						let tertiary = html.find('[name="tertiary"]').val();
+						await actor.update({ [`system.Characteristics.Mind.Stats.${primary}.Initial`]: Number(30) });
+						await actor.update({ [`system.Characteristics.Mind.Stats.${secondary}.Initial`]: Number(20) });
+						await actor.update({ [`system.Characteristics.Mind.Stats.${tertiary}.Initial`]: Number(10) });
+						console.log(
+							`New Mind Stat primary: ${primary}`,
+							actor.system.Characteristics.Mind.Stats[primary].Initial
+						);
+						console.log(
+							`New Mind Stat secondary: ${secondary}`,
+							actor.system.Characteristics.Mind.Stats[secondary].Initial
+						);
+						console.log(
+							`New Mind Stat tertiary: ${tertiary}`,
+							actor.system.Characteristics.Mind.Stats[tertiary].Initial
+						);
+						resolve();
+						//! reminder to set initial=max life after doing the statistics
+					},
+				},
+				cancel: {
+					label: "Cancel",
+					callback: () => reject(),
 				},
 			},
-			cancel: {
-				label: "Cancel",
+			default: "ok",
+			render: (html) => {
+				// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
+				html.find('[name="primary"]').change((event) => {
+					// Update the options in the Secondary dropdown based on the Primary selection
+					let primary = event.target.value;
+					let secondaryOptions = ["Perception", "Manipulation", "Creativity"].filter(
+						(option) => option !== primary
+					);
+					let secondaryDropdown = html.find('[name="secondary"]');
+					secondaryDropdown.empty();
+					secondaryOptions.forEach((option) => {
+						secondaryDropdown.append(new Option(option, option));
+					});
+					// Trigger a change event to update the Tertiary dropdown
+					secondaryDropdown.trigger("change");
+				});
+				html.find('[name="secondary"]').change((event) => {
+					// Update the options in the Tertiary dropdown based on the Secondary selection
+					let primary = html.find('[name="primary"]').val();
+					let secondary = event.target.value;
+					let tertiaryOptions = ["Perception", "Manipulation", "Creativity"].filter(
+						(option) => option !== primary && option !== secondary
+					);
+					let tertiaryDropdown = html.find('[name="tertiary"]');
+					tertiaryDropdown.empty();
+					tertiaryOptions.forEach((option) => {
+						tertiaryDropdown.append(new Option(option, option));
+					});
+				});
 			},
-		},
-		default: "ok",
-		render: (html) => {
-			// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
-			html.find('[name="primary"]').change((event) => {
-				// Update the options in the Secondary dropdown based on the Primary selection
-				let primary = event.target.value;
-				let secondaryOptions = ["Perception", "Manipulation", "Creativity"].filter((option) => option !== primary);
-				let secondaryDropdown = html.find('[name="secondary"]');
-				secondaryDropdown.empty();
-				secondaryOptions.forEach((option) => {
-					secondaryDropdown.append(new Option(option, option));
-				});
-				// Trigger a change event to update the Tertiary dropdown
-				secondaryDropdown.trigger("change");
-			});
-			html.find('[name="secondary"]').change((event) => {
-				// Update the options in the Tertiary dropdown based on the Secondary selection
-				let primary = html.find('[name="primary"]').val();
-				let secondary = event.target.value;
-				let tertiaryOptions = ["Perception", "Manipulation", "Creativity"].filter(
-					(option) => option !== primary && option !== secondary
-				);
-				let tertiaryDropdown = html.find('[name="tertiary"]');
-				tertiaryDropdown.empty();
-				tertiaryOptions.forEach((option) => {
-					tertiaryDropdown.append(new Option(option, option));
-				});
-			});
-		},
+		});
+		dialog.render(true);
 	});
-	dialog.render(true);
 }
 export async function NewActorSoulStats(actor) {
 	let dialogContent = `
@@ -304,58 +336,73 @@ export async function NewActorSoulStats(actor) {
 		</form>
 	</div>
 	`;
-	let dialog = new Dialog({
-		title: `${actor.name}'s Soul Stats`,
-		content: dialogContent,
-		buttons: {
-			ok: {
-				label: "Confirm & Roll 📊 Soul Stats",
-				callback: async (html) => {
-					let primary = html.find('[name="primary"]').val();
-					let secondary = html.find('[name="secondary"]').val();
-					let tertiary = html.find('[name="tertiary"]').val();
-					await actor.update({ [`system.Characteristics.Soul.Stats.${primary}.Initial`]: Number(30)});
-					await actor.update({ [`system.Characteristics.Soul.Stats.${secondary}.Initial`]: Number(20)});
-					await actor.update({ [`system.Characteristics.Soul.Stats.${tertiary}.Initial`]: Number(10)});
-					console.log(`New Soul Stat primary: ${primary}`, actor.system.Characteristics.Soul.Stats[primary].Initial);
-					console.log(`New Soul Stat secondary: ${secondary}`, actor.system.Characteristics.Soul.Stats[secondary].Initial);
-					console.log(`New Soul Stat tertiary: ${tertiary}`, actor.system.Characteristics.Soul.Stats[tertiary].Initial);
-					//! reminder to set initial=max life after doing the statistics
+	return new Promise((resolve, reject) => {
+		let dialog = new Dialog({
+			title: `${actor.name}'s Soul Stats`,
+			content: dialogContent,
+			buttons: {
+				ok: {
+					label: "Confirm & Roll 📊 Soul Stats",
+					callback: async (html) => {
+						let primary = html.find('[name="primary"]').val();
+						let secondary = html.find('[name="secondary"]').val();
+						let tertiary = html.find('[name="tertiary"]').val();
+						await actor.update({ [`system.Characteristics.Soul.Stats.${primary}.Initial`]: Number(30) });
+						await actor.update({ [`system.Characteristics.Soul.Stats.${secondary}.Initial`]: Number(20) });
+						await actor.update({ [`system.Characteristics.Soul.Stats.${tertiary}.Initial`]: Number(10) });
+						console.log(
+							`New Soul Stat primary: ${primary}`,
+							actor.system.Characteristics.Soul.Stats[primary].Initial
+						);
+						console.log(
+							`New Soul Stat secondary: ${secondary}`,
+							actor.system.Characteristics.Soul.Stats[secondary].Initial
+						);
+						console.log(
+							`New Soul Stat tertiary: ${tertiary}`,
+							actor.system.Characteristics.Soul.Stats[tertiary].Initial
+						);
+						//! reminder to set initial=max life after doing the statistics
+						resolve();
+					},
+				},
+				cancel: {
+					label: "Cancel",
+					callback: () => reject(),
 				},
 			},
-			cancel: {
-				label: "Cancel",
+			default: "ok",
+			render: (html) => {
+				// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
+				html.find('[name="primary"]').change((event) => {
+					// Update the options in the Secondary dropdown based on the Primary selection
+					let primary = event.target.value;
+					let secondaryOptions = ["Willpower", "Consciousness", "Awareness"].filter(
+						(option) => option !== primary
+					);
+					let secondaryDropdown = html.find('[name="secondary"]');
+					secondaryDropdown.empty();
+					secondaryOptions.forEach((option) => {
+						secondaryDropdown.append(new Option(option, option));
+					});
+					// Trigger a change event to update the Tertiary dropdown
+					secondaryDropdown.trigger("change");
+				});
+				html.find('[name="secondary"]').change((event) => {
+					// Update the options in the Tertiary dropdown based on the Secondary selection
+					let primary = html.find('[name="primary"]').val();
+					let secondary = event.target.value;
+					let tertiaryOptions = ["Willpower", "Consciousness", "Awareness"].filter(
+						(option) => option !== primary && option !== secondary
+					);
+					let tertiaryDropdown = html.find('[name="tertiary"]');
+					tertiaryDropdown.empty();
+					tertiaryOptions.forEach((option) => {
+						tertiaryDropdown.append(new Option(option, option));
+					});
+				});
 			},
-		},
-		default: "ok",
-		render: (html) => {
-			// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
-			html.find('[name="primary"]').change((event) => {
-				// Update the options in the Secondary dropdown based on the Primary selection
-				let primary = event.target.value;
-				let secondaryOptions = ["Willpower", "Consciousness", "Awareness"].filter((option) => option !== primary);
-				let secondaryDropdown = html.find('[name="secondary"]');
-				secondaryDropdown.empty();
-				secondaryOptions.forEach((option) => {
-					secondaryDropdown.append(new Option(option, option));
-				});
-				// Trigger a change event to update the Tertiary dropdown
-				secondaryDropdown.trigger("change");
-			});
-			html.find('[name="secondary"]').change((event) => {
-				// Update the options in the Tertiary dropdown based on the Secondary selection
-				let primary = html.find('[name="primary"]').val();
-				let secondary = event.target.value;
-				let tertiaryOptions = ["Willpower", "Consciousness", "Awareness"].filter(
-					(option) => option !== primary && option !== secondary
-				);
-				let tertiaryDropdown = html.find('[name="tertiary"]');
-				tertiaryDropdown.empty();
-				tertiaryOptions.forEach((option) => {
-					tertiaryDropdown.append(new Option(option, option));
-				});
-			});
-		},
+		});
+		dialog.render(true);
 	});
-	dialog.render(true);
 }

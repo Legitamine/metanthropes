@@ -1,11 +1,4 @@
-export async function MetaEvaluate(
-	actor,
-	stat,
-	statValue,
-	multiAction = 0,
-	bonus = 0,
-	penalty = 0
-) {
+export async function MetaEvaluate(actor, stat, statValue, multiAction = 0, bonus = 0, penalty = 0) {
 	let result = null;
 	let resultLevel = null;
 	const roll = await new Roll("1d100").evaluate({ async: true });
@@ -77,7 +70,7 @@ export async function MetaEvaluate(
 	}
 	//add re-roll button to message
 	message += `<br><div><button class="hide-button layout-hide metaeval-reroll" data-idactor="${actor.id}"
-data-stat="${stat}" data-stat-value="${statValue}" data-multiAction="${multiAction}"
+data-stat="${stat}" data-statvalue="${statValue}" data-multiaction="${multiAction}"
 data-bonus="${bonus}" data-penalty="${penalty}"
 >Spend 🤞 Destiny to reroll</button></div><br>`;
 	//console log for debugging
@@ -129,8 +122,8 @@ export async function MetaEvaluateReRoll(event) {
 	const button = event.target;
 	const actorId = button.dataset.idactor;
 	const stat = button.dataset.stat;
-	const statValue = parseInt(button.dataset.statValue);
-	const modifier = parseInt(button.dataset.modifier);
+	const statValue = parseInt(button.dataset.statvalue);
+	const multiAction = parseInt(button.dataset.multiaction);
 	const bonus = parseInt(button.dataset.bonus);
 	const penalty = parseInt(button.dataset.penalty);
 	const actor = game.actors.get(actorId);
@@ -146,7 +139,7 @@ export async function MetaEvaluateReRoll(event) {
 			if (message) {
 				message.render();
 			}
-			MetaEval(actor, stat, statValue, modifier, bonus, penalty);
+			MetaEvaluate(actor, stat, statValue, multiAction, bonus, penalty);
 		}
 	}
 }

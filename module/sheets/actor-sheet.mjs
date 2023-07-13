@@ -10,7 +10,10 @@ import { MetaRollCustom } from "../helpers/metaroll.mjs";
 import { MetapowerRoll } from "../helpers/mproll.mjs";
 import { PossessionRoll } from "../helpers/posroll.mjs";
 //? Import New Actor
-import { NewActor } from "../helpers/newactor.mjs";
+import { NewActorCharacteristics } from "../helpers/newactor.mjs";
+import { NewActorBodyStats } from "../helpers/newactor.mjs";
+import { NewActorMindStats } from "../helpers/newactor.mjs";
+import { NewActorSoulStats } from "../helpers/newactor.mjs";
 export class MetanthropesActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
@@ -368,13 +371,15 @@ export class MetanthropesActorSheet extends ActorSheet {
 		}
 	}
 	//? New Actor Logic
-	
 	async _onNewActor(event) {
 		event.preventDefault();
 		//const element = event.currentTarget;
 		//const dataset = element.dataset;
 		const actor = this.actor;
-		console.log (this.actor);
-		NewActor(actor);
+		console.log(this.actor);
+		await NewActorCharacteristics(actor);
+		await NewActorBodyStats(actor);
+		await NewActorMindStats(actor);
+		await NewActorSoulStats(actor);
 	}
 }
