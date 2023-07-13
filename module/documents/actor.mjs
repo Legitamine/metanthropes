@@ -69,12 +69,12 @@ export class MetanthropesActor extends Actor {
 	// Override base values for each type of actor here.
 	prepareBaseData() {
 		if (this.type == "Human") {
-			//console.log("=============================================================================================");
+			//console.log("====================");
 			//console.log("Metanthropes RPG Preparing Base Data for", this.type, "-", this.name);
 			//console.log("Metanthropes RPG current Initial Life:", this.system.Vital.Life.Initial);
 			this.system.Vital.Life.Initial = 50;
 			//console.log("Metanthropes RPG New Initial Life:", this.system.Vital.Life.Initial);
-			//console.log("=============================================================================================");
+			//console.log("====================");
 		}
 		// I should enable this section if I need to add modifications for non-Characteristics actors
 		// Currently we only care about actors with characteristics so we don't use this section
@@ -100,9 +100,9 @@ export class MetanthropesActor extends Actor {
 		let statExperienceSpent = 0;
 		let advancementCount = 0;
 		let charzerofullpenalty = 0;
-		console.log("=============================================================================================");
+		console.log("====================");
 		console.log("Metanthropes RPG Preparing Characteristics & Stats for", this.type, "-", this.name);
-		console.log("=============================================================================================");
+		console.log("====================");
 		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
 			//	console.log("Metanthropes RPG Calculating", CharKey, "Base: Initial + Progressed");
 			//	console.log(
@@ -232,7 +232,7 @@ export class MetanthropesActor extends Actor {
 				Number(systemData.Vital.Life.Initial) + Number(systemData.Characteristics.Body.Stats.Endurance.Roll))
 		);
 		//	console.log("Metanthropes RPG New Life Maximum:", systemData.Vital.Life.max);
-		//	console.log("=============================================================================================");
+		//	console.log("====================");
 		//	console.log("Metanthropes RPG Calculating Movement");
 		parseInt((systemData.physical.movement.additional = Number(systemData.physical.movement.initial)));
 		parseInt((systemData.physical.movement.sprint = Number(Number(systemData.physical.movement.initial) * 5)));
@@ -272,9 +272,9 @@ export class MetanthropesActor extends Actor {
 			//	);
 		}
 		//	console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
-		console.log("=============================================================================================");
+		console.log("====================");
 		console.log("Metanthropes RPG", this.type, "-", this.name, "is Ready to Roll!");
-		console.log("=============================================================================================");
+		console.log("====================");
 	}
 	_prepareDerivedPerksData(actorData) {
 		if (actorData.type == "Vehicle") return;
@@ -290,9 +290,9 @@ export class MetanthropesActor extends Actor {
 		let experienceSpent = 0;
 		let advancementCount = 0;
 		let perkExperienceSpent = 0;
-		console.log("=============================================================================================");
+		console.log("====================");
 		console.log("Metanthropes RPG Preparing Perks for", this.type, "-", this.name);
-		console.log("=============================================================================================");
+		console.log("====================");
 		//	console.log("Experience Spent before Perks:", experienceAlreadySpent);
 		//? Calculate the experience spent on Knowledge Perks
 		for (const [KnowPerkKey, KnowPerkValue] of Object.entries(systemData.Perks.Knowledge)) {
@@ -337,9 +337,9 @@ export class MetanthropesActor extends Actor {
 			);
 		}
 		//	console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
-		console.log("=============================================================================================");
+		console.log("====================");
 		console.log("Metanthropes RPG", this.type, "-", this.name, "is ready for Action!");
-		console.log("=============================================================================================");
+		console.log("====================");
 	}
 	getRollData() {
 		const data = super.getRollData();
@@ -373,9 +373,9 @@ export class MetanthropesActor extends Actor {
 
 		//? Call the MetaInitiative function
 		//! do I need this right? hm
-		//	console.log("=============================================================================================");
+		//	console.log("====================");
 		//	console.log("Metanthropes RPG we are inside actor _onRollInitiative - calling MetaInitiative", this);
-		//	console.log("=============================================================================================");
+		//	console.log("====================");
 		await MetaInitiative(this);
 
 		// Retrieve the initiative data from the actor's flags
