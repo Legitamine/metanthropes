@@ -40,8 +40,8 @@ These are the latest changes for the Official Metanthropes RPG System for Foundr
 - Foundry core version 11 support (pending)
 - XP System: Metapowers (pending)
 - New Player Experience (pending)
-- New Actor / Token logic to support non-linked Actors (pending)
-- Fixed bug with rolling 100 (Critical Failure) while having a Stat that is over 100 would not display levels of failure correctly - should be 10 levels of failure (done)
+- New Actor / Token logic to support non-linked Actors (testing)
+- Fixed bug with rolling 100 (Critical Failure) while having a Stat that is over 100 would not display levels of failure correctly and should be 10 levels of failure (done)
 #### 0.5.00 - 0.5.37
 - Possessions: Possessions Sheet
 - Possessions: Chat Roll Message Results & Destiny Re-Roll
