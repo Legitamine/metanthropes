@@ -1,4 +1,6 @@
-//import MetaInitiative for combat
+//* This is the base class for all Actors which represent the protagonists, metanthropes, vehicles, and other entities within the world.
+//! To Do: New Debug logging method
+//?import MetaInitiative for combat
 import { MetaInitiative } from "../helpers/metainitiative.mjs";
 export class MetanthropesActor extends Actor {
 	// Setting default Token configuration for all actors
@@ -43,9 +45,9 @@ export class MetanthropesActor extends Actor {
 			if (data.type == "Extradimensional")
 				createData.img = "systems/metanthropes-system/artwork/tokens/token-cosmonaut.webp";
 		}
-		// Fix for Token Attacher / CF Import - from wh4e
+		//? Fix for Token Attacher / CF Import - from wh4e
 		if (!createData.prototypeToken) createData.prototypeToken = {};
-		// Link Actor data and enable vision only for Protagonists
+		//? Link Actor data and enable vision only for Protagonists
 		if (data.type !== "Vehicle") {
 			createData.prototypeToken.sight = { enabled: true };
 			//! Adding this here so all actors have prototypeToken.actorLink = true until I figure out how to do it for tokens and not actors
@@ -67,12 +69,12 @@ export class MetanthropesActor extends Actor {
 	// Override base values for each type of actor here.
 	prepareBaseData() {
 		if (this.type == "Human") {
-			console.log("=============================================================================================");
-			console.log("Metanthropes RPG Preparing Base Data for", this.type, "-", this.name);
-			console.log("Metanthropes RPG current Initial Life:", this.system.Vital.Life.Initial);
+			//console.log("=============================================================================================");
+			//console.log("Metanthropes RPG Preparing Base Data for", this.type, "-", this.name);
+			//console.log("Metanthropes RPG current Initial Life:", this.system.Vital.Life.Initial);
 			this.system.Vital.Life.Initial = 50;
-			console.log("Metanthropes RPG New Initial Life:", this.system.Vital.Life.Initial);
-			console.log("=============================================================================================");
+			//console.log("Metanthropes RPG New Initial Life:", this.system.Vital.Life.Initial);
+			//console.log("=============================================================================================");
 		}
 		// I should enable this section if I need to add modifications for non-Characteristics actors
 		// Currently we only care about actors with characteristics so we don't use this section
@@ -102,41 +104,41 @@ export class MetanthropesActor extends Actor {
 		console.log("Metanthropes RPG Preparing Characteristics & Stats for", this.type, "-", this.name);
 		console.log("=============================================================================================");
 		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
-			console.log("Metanthropes RPG Calculating", CharKey, "Base: Initial + Progressed");
-			console.log(
-				CharKey,
-				"Base:",
-				CharValue.Base,
-				"Initial:",
-				CharValue.Initial,
-				"Progressed:",
-				CharValue.Progressed
-			);
-			// reset charzerofullpenalty to 0
+			//	console.log("Metanthropes RPG Calculating", CharKey, "Base: Initial + Progressed");
+			//	console.log(
+			//		CharKey,
+			//		"Base:",
+			//		CharValue.Base,
+			//		"Initial:",
+			//		CharValue.Initial,
+			//		"Progressed:",
+			//		CharValue.Progressed
+			//	);
+			//? reset charzerofullpenalty to 0
 			charzerofullpenalty = 0;
-			// Calculate the advancement count based on the characteristic's progressed value
+			//? Calculate the advancement count based on the characteristic's progressed value
 			advancementCount = Number(CharValue.Progressed);
-			// Calculate the experience spent on this characteristic
+			//? Calculate the experience spent on this characteristic
 			characteristicExperienceSpent = 0;
 			for (let i = 0; i < advancementCount; i++) {
 				characteristicExperienceSpent += Number((Number(CharValue.Initial) + Number(i * 5)) * 10);
 			}
-			// Add the experience spent on this characteristic to the total experience spent, only if Progressed is >0
+			//? Add the experience spent on this characteristic to the total experience spent, only if Progressed is >0
 			if (advancementCount > 0) {
 				experienceSpent += characteristicExperienceSpent;
 				console.log("Experience Spent to Progress", CharKey, "Characteristic:", characteristicExperienceSpent);
 			}
 			parseInt((CharValue.Base = Number(CharValue.Initial) + Number(Number(CharValue.Progressed) * 5)));
-			console.log("Metanthropes RPG New", CharKey, "Base:", CharValue.Base);
-			console.log("Metanthropes RPG Calculating", CharKey, "Buff:", CharValue.Buff.Name, CharValue.Buff.Current);
-			console.log(
-				"Metanthropes RPG Calculating",
-				CharKey,
-				"Condition:",
-				CharValue.Condition.Name,
-				CharValue.Condition.Current
-			);
-			console.log("Metanthropes RPG Calculating", CharKey, "Current: Base + Buff - Condition");
+			//	console.log("Metanthropes RPG New", CharKey, "Base:", CharValue.Base);
+			//	console.log("Metanthropes RPG Calculating", CharKey, "Buff:", CharValue.Buff.Name, CharValue.Buff.Current);
+			//	console.log(
+			//		"Metanthropes RPG Calculating",
+			//		CharKey,
+			//		"Condition:",
+			//		CharValue.Condition.Name,
+			//		CharValue.Condition.Current
+			//	);
+			//	console.log("Metanthropes RPG Calculating", CharKey, "Current: Base + Buff - Condition");
 			parseInt(
 				(CharValue.Current =
 					Number(CharValue.Base) +
@@ -149,66 +151,66 @@ export class MetanthropesActor extends Actor {
 				ui.notifications.error(this.name + "'s " + CharKey + " has dropped to 0!");
 				console.log("Metanthropes RPG", CharKey, "has dropped to 0!");
 			}
-			console.log("Metanthropes RPG New", CharKey, "Current:", CharValue.Current);
-			console.log("------------------------------------------------------------------------");
+			//	console.log("Metanthropes RPG New", CharKey, "Current:", CharValue.Current);
+			//	console.log("------------------------------------------------------------------------");
 			for (const [StatKey, StatValue] of Object.entries(CharValue.Stats)) {
-				console.log("Metanthropes RPG Calculating", StatKey, "Base: Initial + Progressed");
-				console.log(
-					StatKey,
-					"Base:",
-					StatValue.Base,
-					"Initial:",
-					StatValue.Initial,
-					"Progressed:",
-					StatValue.Progressed
-				);
-				// Calculate the advancement count based on the characteristic's progressed value
+				//	console.log("Metanthropes RPG Calculating", StatKey, "Base: Initial + Progressed");
+				//	console.log(
+				//		StatKey,
+				//		"Base:",
+				//		StatValue.Base,
+				//		"Initial:",
+				//		StatValue.Initial,
+				//		"Progressed:",
+				//		StatValue.Progressed
+				//	);
+				//? Calculate the advancement count based on the characteristic's progressed value
 				advancementCount = Number(StatValue.Progressed);
-				// Calculate the experience spent on this characteristic
+				//? Calculate the experience spent on this characteristic
 				statExperienceSpent = 0;
 				for (let i = 0; i < advancementCount; i++) {
 					statExperienceSpent += Number(
 						(Number(StatValue.Initial) + Number(CharValue.Base) + Number(i * 5)) * 3
 					);
 				}
-				// Add the experience spent on this characteristic to the total experience spent, only if Progressed is >0
+				//? Add the experience spent on this characteristic to the total experience spent, only if Progressed is >0
 				if (advancementCount > 0) {
 					experienceSpent += statExperienceSpent;
-					console.log("Experience Spent to Progress", StatKey, "Stat:", statExperienceSpent);
+					//console.log("Experience Spent to Progress", StatKey, "Stat:", statExperienceSpent);
 				}
 				parseInt((StatValue.Base = Number(StatValue.Initial) + Number(Number(StatValue.Progressed) * 5)));
-				console.log("Metanthropes RPG New", StatKey, "Base:", StatValue.Base);
-				console.log(
-					"Metanthropes RPG Calculating",
-					StatKey,
-					"Buff:",
-					StatValue.Buff.Name,
-					StatValue.Buff.Current
-				);
-				console.log(
-					"Metanthropes RPG Calculating",
-					StatKey,
-					"Condition:",
-					StatValue.Condition.Name,
-					StatValue.Condition.Current
-				);
-				console.log("Metanthropes RPG Calculating", StatKey, "Current: Base + Buff - Condition");
+				//console.log("Metanthropes RPG New", StatKey, "Base:", StatValue.Base);
+				//	console.log(
+				//		"Metanthropes RPG Calculating",
+				//		StatKey,
+				//		"Buff:",
+				//		StatValue.Buff.Name,
+				//		StatValue.Buff.Current
+				//	);
+				//	console.log(
+				//		"Metanthropes RPG Calculating",
+				//		StatKey,
+				//		"Condition:",
+				//		StatValue.Condition.Name,
+				//		StatValue.Condition.Current
+				//	);
+				// console.log("Metanthropes RPG Calculating", StatKey, "Current: Base + Buff - Condition");
 				parseInt(
 					(StatValue.Current =
 						Number(StatValue.Base) +
 						Number(Number(StatValue.Buff.Current) * 5) -
 						Number(Number(StatValue.Condition.Current) * 5))
 				);
-				console.log("Metanthropes RPG New", StatKey, "Current:", StatValue.Current);
-				console.log(
-					"Metanthropes RPG Calculating",
-					StatKey,
-					"for Rolls:",
-					StatKey,
-					"Current +",
-					CharKey,
-					"Current"
-				);
+				// console.log("Metanthropes RPG New", StatKey, "Current:", StatValue.Current);
+				//	console.log(
+				//		"Metanthropes RPG Calculating",
+				//		StatKey,
+				//		"for Rolls:",
+				//		StatKey,
+				//		"Current +",
+				//		CharKey,
+				//		"Current"
+				//	);
 				parseInt(
 					(StatValue.Roll =
 						Number(StatValue.Current) + Number(CharValue.Current) + Number(charzerofullpenalty))
@@ -216,42 +218,41 @@ export class MetanthropesActor extends Actor {
 				if (StatValue.Roll <= 0) {
 					StatValue.Roll = 0;
 					ui.notifications.error(this.name + "'s " + StatKey + " has dropped to 0!");
-					console.log("Metanthropes RPG", StatKey, "has dropped to 0!");
+					// console.log("Metanthropes RPG", StatKey, "has dropped to 0!");
 				}
-				console.log("Metanthropes RPG Final", StatKey, "for Rolls:", StatValue.Roll);
-				console.log(
-					"============================================================================================="
-				);
+				// console.log("Metanthropes RPG Final", StatKey, "for Rolls:", StatValue.Roll);
+				//	console.log(
+				//		"============================================================================================="
+				//	);
 			}
 		}
-		console.log("Metanthropes RPG New Life Maximum: Initial Life + Endurance for Rolls");
+		//	console.log("Metanthropes RPG New Life Maximum: Initial Life + Endurance for Rolls");
 		parseInt(
 			(systemData.Vital.Life.max =
 				Number(systemData.Vital.Life.Initial) + Number(systemData.Characteristics.Body.Stats.Endurance.Roll))
 		);
-		console.log("Metanthropes RPG New Life Maximum:", systemData.Vital.Life.max);
-		console.log("=============================================================================================");
-		console.log("Metanthropes RPG Calculating Movement");
+		//	console.log("Metanthropes RPG New Life Maximum:", systemData.Vital.Life.max);
+		//	console.log("=============================================================================================");
+		//	console.log("Metanthropes RPG Calculating Movement");
 		parseInt((systemData.physical.movement.additional = Number(systemData.physical.movement.initial)));
 		parseInt((systemData.physical.movement.sprint = Number(Number(systemData.physical.movement.initial) * 5)));
-		//todo: do the update await thing
-		console.log(
-			"Metanthropes RPG New Movement Value:",
-			systemData.physical.movement.initial,
-			"Additional:",
-			systemData.physical.movement.additional,
-			"Sprint:",
-			systemData.physical.movement.sprint
-		);
-		// Calculate total Experience Spent Progressing Perks & Characteristics & Stats
-
-		console.log(
-			"Total Experience Spent automagically for",
-			this.name,
-			"Progressing Characteristics & Stats:",
-			experienceSpent
-		);
-		// Store experienceSpent in systemData.Vital.Experience.Spent
+		//! do the update await thing!!!!FFS
+		//	console.log(
+		//		"Metanthropes RPG New Movement Value:",
+		//		systemData.physical.movement.initial,
+		//		"Additional:",
+		//		systemData.physical.movement.additional,
+		//		"Sprint:",
+		//		systemData.physical.movement.sprint
+		//	);
+		//? Calculate total Experience Spent Progressing Perks & Characteristics & Stats
+		//	console.log(
+		//		"Total Experience Spent automagically for",
+		//		this.name,
+		//		"Progressing Characteristics & Stats:",
+		//		experienceSpent
+		//	);
+		//? Store experienceSpent in systemData.Vital.Experience.Spent
 		parseInt((systemData.Vital.Experience.Spent = Number(experienceSpent)));
 		parseInt(
 			(systemData.Vital.Experience.Stored = Number(
@@ -262,15 +263,15 @@ export class MetanthropesActor extends Actor {
 		);
 		if (systemData.Vital.Experience.Stored < 0) {
 			ui.notifications.error(this.name + "'s Stored Experience is Negative!");
-			console.log(
-				"============================================================================================="
-			);
-			console.log("Metanthropes RPG WARNING: Stored Experience is Negative!");
-			console.log(
-				"============================================================================================="
-			);
+			//	console.log(
+			//		"============================================================================================="
+			//	);
+			//	console.log("Metanthropes RPG WARNING: Stored Experience is Negative!");
+			//	console.log(
+			//		"============================================================================================="
+			//	);
 		}
-		console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
+		//	console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
 		console.log("=============================================================================================");
 		console.log("Metanthropes RPG", this.type, "-", this.name, "is Ready to Roll!");
 		console.log("=============================================================================================");
@@ -292,8 +293,8 @@ export class MetanthropesActor extends Actor {
 		console.log("=============================================================================================");
 		console.log("Metanthropes RPG Preparing Perks for", this.type, "-", this.name);
 		console.log("=============================================================================================");
-		console.log("Experience Spent before Perks:", experienceAlreadySpent);
-		// Calculate the experience spent on Knowledge Perks
+		//	console.log("Experience Spent before Perks:", experienceAlreadySpent);
+		//? Calculate the experience spent on Knowledge Perks
 		for (const [KnowPerkKey, KnowPerkValue] of Object.entries(systemData.Perks.Knowledge)) {
 			// Calculate the advancement count based on the perk's progressed value
 			advancementCount = Number(KnowPerkValue.value);
@@ -301,21 +302,21 @@ export class MetanthropesActor extends Actor {
 			perkExperienceSpent = advancementCount * 100;
 			// Add the experience spent on this perk to the total experience spent
 			experienceSpent += perkExperienceSpent;
-			console.log("Experience Spent to Progress", KnowPerkKey, "Perk:", perkExperienceSpent);
+			//	console.log("Experience Spent to Progress", KnowPerkKey, "Perk:", perkExperienceSpent);
 		}
-		// Calculate the experience spent on Skills Perks
+		//? Calculate the experience spent on Skills Perks
 		for (const [SkillPerkKey, SkillPerkValue] of Object.entries(systemData.Perks.Skills)) {
-			// Calculate the advancement count based on the perk's progressed value
+			//? Calculate the advancement count based on the perk's progressed value
 			advancementCount = Number(SkillPerkValue.value);
-			// Calculate the experience spent based on the perks's progressed value
+			//? Calculate the experience spent based on the perks's progressed value
 			perkExperienceSpent = advancementCount * 100;
-			// Add the experience spent on this perk to the total experience spent
+			//? Add the experience spent on this perk to the total experience spent
 			experienceSpent += perkExperienceSpent;
-			console.log("Experience Spent to Progress", SkillPerkKey, "Perk:", perkExperienceSpent);
+			//	console.log("Experience Spent to Progress", SkillPerkKey, "Perk:", perkExperienceSpent);
 		}
-		// Calculate total Experience Spent Progressing Perks & Characteristics & Stats
-		console.log("Total Experience Spent automagically for", this.name, "Perks:", experienceSpent);
-		// Update Experience Spent for Perks with exiting in systemData.Vital.Experience.Spent
+		//? Calculate total Experience Spent Progressing Perks & Characteristics & Stats
+		//	console.log("Total Experience Spent automagically for", this.name, "Perks:", experienceSpent);
+		//? Update Experience Spent for Perks with exiting in systemData.Vital.Experience.Spent
 		parseInt((systemData.Vital.Experience.Spent = Number(experienceSpent) + Number(experienceAlreadySpent)));
 		parseInt(
 			(systemData.Vital.Experience.Stored = Number(
@@ -335,7 +336,7 @@ export class MetanthropesActor extends Actor {
 				"============================================================================================="
 			);
 		}
-		console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
+		//	console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
 		console.log("=============================================================================================");
 		console.log("Metanthropes RPG", this.type, "-", this.name, "is ready for Action!");
 		console.log("=============================================================================================");
@@ -357,7 +358,7 @@ export class MetanthropesActor extends Actor {
 			for (let [charslot, charslotvalue] of Object.entries(data.Characteristics)) {
 				for (let [k, v] of Object.entries(charslotvalue.Stats)) {
 					data.RollStats[k] = v.Roll; // instead of foundry.utils.deepClone(v); that would clone the whole object
-					console.log("Metanthropes RPG RollStats", k, data.RollStats[k]);
+					//	console.log("Metanthropes RPG RollStats", k, data.RollStats[k]);
 				}
 			}
 		}
@@ -370,10 +371,11 @@ export class MetanthropesActor extends Actor {
 		console.log("inside onRollInitiative", combatant);
 		if (!combatant) return;
 
-		// Call the MetaInitiative function
-		console.log("=============================================================================================");
-		console.log("Metanthropes RPG we are inside actor _onRollInitiative - calling MetaInitiative", this);
-		console.log("=============================================================================================");
+		//? Call the MetaInitiative function
+		//! do I need this right? hm
+		//	console.log("=============================================================================================");
+		//	console.log("Metanthropes RPG we are inside actor _onRollInitiative - calling MetaInitiative", this);
+		//	console.log("=============================================================================================");
 		await MetaInitiative(this);
 
 		// Retrieve the initiative data from the actor's flags

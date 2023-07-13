@@ -1,27 +1,23 @@
-// MetaRollStat function is used to roll a stat and get the levels of success/failure and print the message to chat
-export async function MetaRollStat(
+export async function MetaEvaluate(
 	actor,
 	stat,
 	statValue,
-	modifier = 0,
+	multiAction = 0,
 	bonus = 0,
 	penalty = 0
-	) {
+) {
 	let result = null;
 	let resultLevel = null;
-	if (statValue <= 0) {
-		ui.notifications.error(actor.name+" can't Roll "+stat+" with a Current value of 0!");
-		return;
-	}
 	const roll = await new Roll("1d100").evaluate({ async: true });
 	const total = roll.total;
-	let levelsOfSuccess = Math.floor((statValue + bonus + penalty + modifier - total) / 10);
-	let levelsOfFailure = Math.floor((total - statValue - bonus - modifier - penalty) / 10);
+	//* bonus is expected to be a positive number and multiAction and penalty are expected to be negative numbers
+	let levelsOfSuccess = Math.floor((statValue + bonus + penalty + multiAction - total) / 10);
+	let levelsOfFailure = Math.floor((total - statValue - bonus - multiAction - penalty) / 10);
 	const criticalSuccess = total === 1;
 	const criticalFailure = total === 100;
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	// this kicks-off the calculation, assuming that is is a failure
-	if (total - modifier - penalty > statValue + bonus) {
+	if (total - multiAction - penalty > statValue + bonus) {
 		// in which case we don't care about what levels of success we have, so we set to 0 to avoid confusion later
 		result = "Failure 🟥";
 		levelsOfSuccess = 0;
@@ -56,30 +52,34 @@ export async function MetaRollStat(
 	}
 	//* Beggining of the message to be printed to chat
 	let message = `Attempts a roll with ${stat} score of ${statValue}%`;
-	// if we have a bonus or penalty, add it to the message
+	//? if we have a bonus or penalty, add it to the message
 	if (bonus > 0) {
 		message += `, a Bonus of +${bonus}%`;
 	}
 	if (penalty < 0) {
 		message += `, a Penalty of ${penalty}%`;
 	}
-	// if we have multi-action reduction, add it to the message
-	if (modifier < 0) {
-		message += `, a Multi-Action reduction of ${modifier}%`;
+	//? if we have multi-action reduction, add it to the message
+	if (multiAction < 0) {
+		message += `, a Multi-Action reduction of ${multiAction}%`;
 	}
-	message += ` and the result is ${total}. Therefore it is a ${result}`;
-	// if we have levels of success or failure, add them to the message
+	message += ` and the result is ${total}.<br><br>It is a ${result}`;
+	//! Here is the typical calculation for the final results
+	//? if we have levels of success or failure, add them to the message
 	if (levelsOfSuccess > 0) {
-		message += `, accumulating: ${levelsOfSuccess} * ✔️. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
+		message += `, accumulating: ${levelsOfSuccess} * ✔️.<br><br>${actor.name} has ${currentDestiny} * 🤞 remaining.<br>`;
 		resultLevel = levelsOfSuccess;
 	} else if (levelsOfFailure > 0) {
-		message += `, accumulating: ${levelsOfFailure} * ❌. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
+		message += `, accumulating: ${levelsOfFailure} * ❌.<br><br>${actor.name} has ${currentDestiny} * 🤞 remaining.<br>`;
 		resultLevel = -levelsOfFailure;
 	} else {
-		message += `. ${actor.name} has ${currentDestiny} * 🤞 remaining.`;
+		message += `.<br><br>${actor.name} has ${currentDestiny} * 🤞 remaining.<br>`;
 	}
 	//add re-roll button to message
-	message += `<div><button class="hide-button layout-hide meta-re-roll" data-idactor="${actor.id}" data-stat="${stat}" data-stat-value="${statValue}" data-modifier="${modifier}" data-bonus="${bonus}" data-penalty="${penalty}">🤞</button></div>`;
+	message += `<br><div><button class="hide-button layout-hide meta-re-roll" data-idactor="${actor.id}"
+data-stat="${stat}" data-stat-value="${statValue}" data-multiAction="${multiAction}"
+data-bonus="${bonus}" data-penalty="${penalty}"
+>Spend 🤞 Destiny to reroll</button></div><br>`;
 	//console log for debugging
 	console.log(
 		"Metaroll Results: Stat:",
@@ -87,7 +87,7 @@ export async function MetaRollStat(
 		"Roll:",
 		total,
 		"Multi-Action mod:",
-		modifier,
+		multiAction,
 		"Bonus:",
 		bonus,
 		"Penalty:",
@@ -119,31 +119,4 @@ export async function MetaRollStat(
 		//content seems to be overwriten by Dice So Nice, so maybe I can add my button here?
 		flags: { "metanthropes-system": { actorId: actor.id } },
 	});
-}
-// Function to handle re-roll for destiny
-export async function MetaReRoll(event) {
-	event.preventDefault();
-	const button = event.target;
-	const actorId = button.dataset.idactor;
-	const stat = button.dataset.stat;
-	const statValue = parseInt(button.dataset.statValue);
-	const modifier = parseInt(button.dataset.modifier);
-	const bonus = parseInt(button.dataset.bonus);
-	const penalty = parseInt(button.dataset.penalty);
-	const actor = game.actors.get(actorId);
-	let currentDestiny = actor.system.Vital.Destiny.value;
-	// make this function only available to the owner of the actor
-	if ((actor && actor.isOwner) || game.user.isGM) {
-		// Reduce Destiny.value by 1
-		if (currentDestiny > 0) {
-			currentDestiny -= 1;
-			await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-			// Update re-roll button visibility
-			const message = game.messages.get(button.dataset.messageId);
-			if (message) {
-				message.render();
-			}
-			MetaRollStat(actor, stat, statValue, modifier, bonus, penalty);
-		}
-	}
 }

@@ -16,8 +16,8 @@ input[type="text"] {
 	max-width: 22ch;
 	margin: $margin-sm;
 	padding: $padding-input-text;
-	border: 1px dashed $c-black;
-	border-radius: 15px;
+	border: $border-style-dashed;
+	border-radius: $border-radius;
 	justify-content: center;
 	align-items: center;
 }
@@ -26,8 +26,8 @@ input[type="number"] {
 	max-width: 5ch;
 	margin: $margin-sm;
 	padding: $padding-input-number;
-	border: 1px dashed $c-black;
-	border-radius: 15px;
+	border: $border-style-dashed;
+	border-radius: $border-radius;
 	justify-content: center;
 	align-items: center;
 }
@@ -43,7 +43,7 @@ main {
 	box-sizing: border-box;
 }
 body {
-	font-family: $font-primary;
+	font-family: $font-secondary;
 	background-image: url("../artwork/bg-canvas.webp");
 	background-size: auto auto;
 	background-attachment: local;
@@ -66,19 +66,19 @@ button {
 	background-size: contain;
 	text-shadow: $s-button;
 	border: $border-groove;
-	border-radius: 15px;
+	border-radius: $border-radius;
 	color: $c-white;
 }
 select {
 	font-family: $font-primary;
-	border-radius: 15px;
-	border: 1px dotted $c-black;
+	border: $border-style-dotted;
+	border-radius: $border-radius;
 }
 option {
 	background-color: $c-background;
 	font-family: $font-primary;
-	border-radius: 15px;
-	border: 1px dotted $c-black;
+	border: $border-style-dotted;
+	border-radius: $border-radius;
 }
 // this changes the font in most title-elements of Foundry UI
 .window-app {
@@ -94,8 +94,8 @@ option {
 .window-app .window-content {
 	background-image: url("../artwork/background.webp");
 	background-size: auto auto;
-	background-attachment: local;
-	background-repeat: repeat;
+	background-attachment: scroll, local;
+	background-repeat: no-repeat;
 	background-origin: border-box;
 	background-clip: border-box;
 }
@@ -107,4 +107,11 @@ option {
 }
 .directory .directory-header .header-search input {
 	background-color: $c-background;
+}
+
+.chat-message .message-header .flavor-text, .chat-message .message-header .whisper-to {
+	font-family: $font-secondary;
+	font-size: var(--font-size-14);
+	font-weight: 500;
+	color: $c-black;
 }

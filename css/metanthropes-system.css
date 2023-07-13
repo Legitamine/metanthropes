@@ -48,7 +48,7 @@ main {
 }
 
 body {
-  font-family: "nasalization", sans-serif;
+  font-family: "gill-sans-nova", sans-serif;
   background-image: url("../artwork/bg-canvas.webp");
   background-size: auto auto;
   background-attachment: local;
@@ -79,15 +79,15 @@ button {
 
 select {
   font-family: "nasalization", sans-serif;
-  border-radius: 15px;
   border: 1px dotted #000;
+  border-radius: 15px;
 }
 
 option {
   background-color: rgba(129, 129, 129, 0.3725490196);
   font-family: "nasalization", sans-serif;
-  border-radius: 15px;
   border: 1px dotted #000;
+  border-radius: 15px;
 }
 
 .window-app {
@@ -105,8 +105,8 @@ option {
 .window-app .window-content {
   background-image: url("../artwork/background.webp");
   background-size: auto auto;
-  background-attachment: local;
-  background-repeat: repeat;
+  background-attachment: scroll, local;
+  background-repeat: no-repeat;
   background-origin: border-box;
   background-clip: border-box;
 }
@@ -121,6 +121,13 @@ option {
 
 .directory .directory-header .header-search input {
   background-color: rgba(129, 129, 129, 0.3725490196);
+}
+
+.chat-message .message-header .flavor-text, .chat-message .message-header .whisper-to {
+  font-family: "gill-sans-nova", sans-serif;
+  font-size: var(--font-size-14);
+  font-weight: 500;
+  color: #000;
 }
 
 .grid,
@@ -770,12 +777,7 @@ option {
   margin: 3px;
 }
 .metanthropes .style-cs-rolls:hover {
-  cursor: url(../artwork/metanthropes-dice-roll-small.webp), pointer;
-  color: #7d0f81;
-  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
-}
-.metanthropes .style-cs-rolls:focus {
-  cursor: url(../artwork/metanthropes-dice-roll-small.webp), pointer;
+  cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
   color: #7d0f81;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
@@ -794,12 +796,7 @@ option {
   margin: 1px;
 }
 .metanthropes .style-mp-rolls:hover {
-  cursor: url(../artwork/metanthropes-dice-roll-small.webp), pointer;
-  color: #7d0f81;
-  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
-}
-.metanthropes .style-mp-rolls:focus {
-  cursor: url(../artwork/metanthropes-dice-roll-small.webp), pointer;
+  cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
   color: #7d0f81;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
@@ -818,12 +815,7 @@ option {
   margin: 1px;
 }
 .metanthropes .style-pos-rolls:hover {
-  cursor: url(../artwork/metanthropes-dice-roll-small.webp), pointer;
-  color: #7d0f81;
-  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
-}
-.metanthropes .style-pos-rolls:focus {
-  cursor: url(../artwork/metanthropes-dice-roll-small.webp), pointer;
+  cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
   color: #7d0f81;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
