@@ -76,17 +76,20 @@ export async function MetaEvaluate(
 		message += `.<br><br>${actor.name} has ${currentDestiny} * 🤞 remaining.<br>`;
 	}
 	//add re-roll button to message
-	message += `<br><div><button class="hide-button layout-hide meta-re-roll" data-idactor="${actor.id}"
+	message += `<br><div><button class="hide-button layout-hide metaeval-reroll" data-idactor="${actor.id}"
 data-stat="${stat}" data-stat-value="${statValue}" data-multiAction="${multiAction}"
 data-bonus="${bonus}" data-penalty="${penalty}"
 >Spend 🤞 Destiny to reroll</button></div><br>`;
 	//console log for debugging
 	console.log(
-		"Metaroll Results: Stat:",
+		"MetaEval Results for:",
+		actor.name,
+		stat,
+		":",
 		statValue,
 		"Roll:",
 		total,
-		"Multi-Action mod:",
+		"Multi-Action:",
 		multiAction,
 		"Bonus:",
 		bonus,
@@ -100,7 +103,7 @@ data-bonus="${bonus}" data-penalty="${penalty}"
 		result,
 		"Result Level:",
 		resultLevel,
-		"Destiny:",
+		"Current Destiny:",
 		currentDestiny
 	);
 	//set flags for the actor to be used as the lastrolled values of your most recent roll.
@@ -119,4 +122,31 @@ data-bonus="${bonus}" data-penalty="${penalty}"
 		//content seems to be overwriten by Dice So Nice, so maybe I can add my button here?
 		flags: { "metanthropes-system": { actorId: actor.id } },
 	});
+}
+//* This is the function that is called when the destiny re-roll button is clicked
+export async function MetaEvaluateReRoll(event) {
+	event.preventDefault();
+	const button = event.target;
+	const actorId = button.dataset.idactor;
+	const stat = button.dataset.stat;
+	const statValue = parseInt(button.dataset.statValue);
+	const modifier = parseInt(button.dataset.modifier);
+	const bonus = parseInt(button.dataset.bonus);
+	const penalty = parseInt(button.dataset.penalty);
+	const actor = game.actors.get(actorId);
+	let currentDestiny = actor.system.Vital.Destiny.value;
+	// make this function only available to the owner of the actor
+	if ((actor && actor.isOwner) || game.user.isGM) {
+		// Reduce Destiny.value by 1
+		if (currentDestiny > 0) {
+			currentDestiny -= 1;
+			await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
+			// Update re-roll button visibility
+			const message = game.messages.get(button.dataset.messageId);
+			if (message) {
+				message.render();
+			}
+			MetaEval(actor, stat, statValue, modifier, bonus, penalty);
+		}
+	}
 }
