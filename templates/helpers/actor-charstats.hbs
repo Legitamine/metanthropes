@@ -5,8 +5,7 @@
 			<div class="layout-container-grid3x1-cs">
 				<div class="style-cs-values">
 					<p class="style-cs-values">🏁
-						<input class="style-container-input-charstat" name="system.Characteristics.{{@key}}.Initial"
-							type="number" value="{{this.Initial}}" data-dtype="Number" />
+						{{this.Initial}}
 					</p>
 					<p class="style-cs-values">📈 <select name="system.Characteristics.{{@key}}.Progressed"
 							id="system.Characteristics.{{@key}}.Progressed" data-dtype="Number">
@@ -53,9 +52,7 @@
 				<div class="layout-container-grid3x1-cs">
 					<div class="style-cs-values">
 						<p class="style-cs-values">🏁
-							<input class="style-container-input-charstat"
-								name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Initial" type="number"
-								value="{{this.Initial}}" data-dtype="Number" />
+							{{this.Initial}}
 						</p>
 						<p class="style-cs-values">📈 <select
 								name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Progressed"

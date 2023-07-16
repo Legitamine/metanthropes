@@ -27,17 +27,25 @@ import { ReRollDamage } from "./helpers/extrasroll.mjs";
 import { ReRollHealing } from "./helpers/extrasroll.mjs";
 import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
 import { PossessionUse } from "./helpers/posuse.mjs";
-// Handlebars helper for drop-down menus.
+//* Handlebars helpers
 //! Supposedly Foundry includes its own select helper, but I couldn't get it to work.
 Handlebars.registerHelper("selected", function (option, value) {
 	return option === value ? "selected" : "";
 });
-// Handlebars helper for displaying actor values on the item sheets.
+//? Handlebars helper for displaying actor values on the item sheets.
+//! I don't recall where this is being used exactly
 Handlebars.registerHelper("getStatValue", function (statName) {
 	//handlebars helper console log
 	console.log("Handlebars helper statName:", statName);
 	return actor.system.RollStats[statName];
 });
+//? this allows me to use an each loop to list stuff unless the key is...
+Handlebars.registerHelper("unless_key_is", function (key, value, options) {
+	if (key !== value) {
+		return options.fn(this);
+	}
+});
+
 // Log system initialization.
 Hooks.once("init", async function () {
 	console.log("====================================");

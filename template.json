@@ -515,6 +515,12 @@
 							"dtype": "String",
 							"label": "Languages",
 							"value": null
+						},
+						"Starting": {
+							"type": "number",
+							"dtype": "Number",
+							"label": "Starting Perks",
+							"value": 2
 						}
 					}
 				}

@@ -261,8 +261,8 @@ export class MetanthropesActor extends Actor {
 					Number(systemData.Vital.Experience.Manual)
 			))
 		);
-		if (systemData.Vital.Experience.Stored < 0) {
-			ui.notifications.error(this.name + "'s Stored Experience is Negative!");
+		//if (systemData.Vital.Experience.Stored < 0) {
+		//	ui.notifications.warn(this.name + "'s Stored Experience is Negative!");
 			//	console.log(
 			//		"============================================================================================="
 			//	);
@@ -270,7 +270,7 @@ export class MetanthropesActor extends Actor {
 			//	console.log(
 			//		"============================================================================================="
 			//	);
-		}
+		//}
 		//	console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
 		console.log("====================");
 		console.log("Metanthropes RPG", this.type, "-", this.name, "is Ready to Roll!");
@@ -286,6 +286,7 @@ export class MetanthropesActor extends Actor {
 		//! doing ^this caused an issue with all charstats for all actors to 0!
 		//see similar above
 		const flags = actorData.flags.metanthropes || {};
+		let startingPerks = Number(systemData.Perks.Details.Starting.value);
 		let experienceAlreadySpent = Number(systemData.Vital.Experience.Spent);
 		let experienceSpent = 0;
 		let advancementCount = 0;
@@ -315,19 +316,28 @@ export class MetanthropesActor extends Actor {
 			//	console.log("Experience Spent to Progress", SkillPerkKey, "Perk:", perkExperienceSpent);
 		}
 		//? Calculate total Experience Spent Progressing Perks & Characteristics & Stats
+		//? test if we have spent enough xp on the starting perks
+		if (experienceSpent < startingPerks * 100) {
+			console.log("Metanthropes RPG", this.name, "has not spent enough XP on starting perks!");
+			console.log("Metanthropes RPG", this.name, "has spent", experienceSpent, "XP on perks");
+			console.log("Metanthropes RPG", this.name, "needs to spend", startingPerks * 100, "XP on perks");
+		}
 		//	console.log("Total Experience Spent automagically for", this.name, "Perks:", experienceSpent);
 		//? Update Experience Spent for Perks with exiting in systemData.Vital.Experience.Spent
-		parseInt((systemData.Vital.Experience.Spent = Number(experienceSpent) + Number(experienceAlreadySpent)));
+		//? adding this to remove the xp calculated for spent xp on the starting perks
+		parseInt((systemData.Vital.Experience.Spent = Number(experienceSpent) + Number(experienceAlreadySpent) - Number((startingPerks) * 100)));
 		parseInt(
 			(systemData.Vital.Experience.Stored = Number(
 				Number(systemData.Vital.Experience.Total) -
 					Number(experienceSpent) -
 					Number(experienceAlreadySpent) -
-					Number(systemData.Vital.Experience.Manual)
+					Number(systemData.Vital.Experience.Manual) +
+					//? here we are adding the cost of free starting perks to the stored xp
+					Number((startingPerks) * 100)
 			))
 		);
 		if (systemData.Vital.Experience.Stored < 0) {
-			ui.notifications.error(this.name + "'s Stored Experience is Negative!");
+			ui.notifications.warn(this.name + "'s Stored Experience is Negative!");
 			console.log(
 				"============================================================================================="
 			);

@@ -1,5 +1,4 @@
 <div class="perks">
-	<!-- <h2 class="style-cs-stats-label"></h2> -->
 	<div class="flexrow">
 		<div class="knowledge">
 			<h3 class="style-labels-text">Knowledge</h3>
@@ -38,12 +37,15 @@
 	</div>
 	<div class="perks-extra">
 		<h3 class="style-labels-text">Details</h3>
-		{{#each system.Perks.Details}}
-			<div class="perk-item">
-				<label for="system.Perks.Details.{{@key}}.value">{{this.label}}:</label>
-				<input class="style-container-input-longtext" type="{{this.type}}"
-					name="system.Perks.Details.{{@key}}.value" value="{{this.value}}" data-dtype="{{this.dtype}}" placeholder="{{this.value}}">
-			</div>
+			{{#each system.Perks.Details}}
+				{{#unless_key_is @key "Starting"}}
+				<div class="perk-item">
+					<label for="system.Perks.Details.{{@key}}.value">{{this.label}}:</label>
+					<input class="style-container-input-longtext" type="{{this.type}}"
+						name="system.Perks.Details.{{@key}}.value" value="{{this.value}}" data-dtype="{{this.dtype}}"
+						placeholder="{{this.value}}">
+				</div>
+			{{/unless_key_is}}
 		{{/each}}
 	</div>
 </div>

@@ -24,7 +24,7 @@ export async function NewActor(actor) {
 	await NewActorMindStats(actor);
 	await NewActorSoulStats(actor);
 	await NewActorRoleplay(actor);
-	//await NewActorPerks(actor);
+	await NewActorProgression(actor);
 	//await NewActorSummary(actor);
 }
 
@@ -213,7 +213,6 @@ export async function NewActorCharacteristics(actor) {
 						console.log(`New secondary: ${secondary}`, actor.system.Characteristics[secondary].Initial);
 						console.log(`New tertiary: ${tertiary}`, actor.system.Characteristics[tertiary].Initial);
 						resolve();
-						//! reminder to set initial=max life after doing the statistics
 					},
 				},
 				cancel: {
@@ -314,6 +313,7 @@ export async function NewActorBodyStats(actor) {
 							`New Body Stat tertiary: ${tertiary}`,
 							actor.system.Characteristics.Body.Stats[tertiary].Initial
 						);
+						//? max life is already set after changing the initial endurance & body values, so we are setting the current life to the new max
 						let maxlife = actor.system.Vital.Life.max;
 						await actor.update({ [`system.Vital.Life.value`]: Number(maxlife) });
 						resolve();
@@ -416,7 +416,6 @@ export async function NewActorMindStats(actor) {
 							actor.system.Characteristics.Mind.Stats[tertiary].Initial
 						);
 						resolve();
-						//! reminder to set initial=max life after doing the statistics
 					},
 				},
 				cancel: {
@@ -517,7 +516,6 @@ export async function NewActorSoulStats(actor) {
 							`New Soul Stat tertiary: ${tertiary}`,
 							actor.system.Characteristics.Soul.Stats[tertiary].Initial
 						);
-						//! reminder to set initial=max life after doing the statistics
 						resolve();
 					},
 				},
@@ -563,7 +561,7 @@ export async function NewActorSoulStats(actor) {
 }
 
 export async function NewActorRoleplay(actor) {
-		let dialogContent = `
+	let dialogContent = `
 		<div class="metanthropes layout-metaroll-dialog">
 			<h2>Choose your Roleplay</h2>
 			<form>
@@ -594,49 +592,87 @@ export async function NewActorRoleplay(actor) {
 			<option value="yes" selected>Yes</option>
 			<option value="no">No</option>
 		</select>
-	</div>
+		</div>
+		</form>
+		</div>
+		`;
+	return new Promise((resolve, reject) => {
+		let dialog = new Dialog({
+			title: `${actor.name}'s Roleplay`,
+			content: dialogContent,
+			buttons: {
+				ok: {
+					label: "Confirm Roleplay",
+					callback: async (html) => {
+						let RPbackgroundpick = html.find('[name="RPbackground"]').val();
+						await actor.update({ "system.Vital.background.value": RPbackgroundpick });
+						console.log(`New Background: ${RPbackgroundpick}`);
+						let RPmetamorphosispick = html.find('[name="RPmetamorphosis"]').val();
+						await actor.update({ "system.entermeta.metamorphosis.value": RPmetamorphosispick });
+						console.log(`New Metamorphosis: ${RPmetamorphosispick}`);
+						let RParcpick = html.find('[name="RParc"]').val();
+						await actor.update({ "system.Vital.arc.value": RParcpick });
+						console.log(`New Arc: ${RParcpick}`);
+						let RPregressionpick = html.find('[name="RPregression"]').val();
+						await actor.update({ "system.entermeta.regression.value": RPregressionpick });
+						console.log(`New Regression: ${RPregressionpick}`);
+						resolve();
+					},
+				},
+				cancel: {
+					label: "Cancel",
+					callback: () => reject(),
+				},
+			},
+			default: "ok",
+		});
+		dialog.render(true);
+	});
+}
+export async function NewActorProgression(actor) {
+	let dialogContent = `
+		<div class="metanthropes layout-metaroll-dialog">
+			<h2>Choose your Progression</h2>
+			<form>
+				<div class="form-group">
+					<label for="startingxp">Starting 📈 Experience:</label>
+					<input type="number" id="startingxp" name="startingxp" value="1000">
+				</div>
+				<div class="form-group">
+					<label for="startingperks">Starting 📚 Perks:</label>
+					<input type="number" id="startingperks" name="startingperks" value="2">
+				</div>
 			</form>
 		</div>
 		`;
-		return new Promise((resolve, reject) => {
-			let dialog = new Dialog({
-				title: `${actor.name}'s Roleplay`,
-				content: dialogContent,
-				buttons: {
-					ok: {
-						label: "Confirm Roleplay",
-						callback: async (html) => {
-							let RPbackgroundpick = html.find('[name="RPbackground"]').val();
-							await actor.update({ "system.Vital.background.value": RPbackgroundpick });
-							console.log(`New Background: ${RPbackgroundpick}`);
-							let RPmetamorphosispick = html.find('[name="RPmetamorphosis"]').val();
-							await actor.update({ "system.entermeta.metamorphosis.value": RPmetamorphosispick });
-							console.log(`New Metamorphosis: ${RPmetamorphosispick}`);
-							let RParcpick = html.find('[name="RParc"]').val();
-							await actor.update({ "system.Vital.arc.value": RParcpick });
-							console.log(`New Arc: ${RParcpick}`);
-							let RPregressionpick = html.find('[name="RPregression"]').val();
-							await actor.update({ "system.entermeta.regression.value": RPregressionpick });
-							console.log(`New Regression: ${RPregressionpick}`);
-							resolve();
-						},
-					},
-					cancel: {
-						label: "Cancel",
-						callback: () => reject(),
+	return new Promise((resolve, reject) => {
+		let dialog = new Dialog({
+			title: `${actor.name}'s Progression`,
+			content: dialogContent,
+			buttons: {
+				ok: {
+					label: "Confirm Progression",
+					callback: async (html) => {
+						let startingxp = html.find('[name="startingxp"]').val();
+						await actor.update({ "system.Vital.Experience.Total": Number(startingxp) });
+						console.log(`${actor.name}'s Starting Experience: ${startingxp}`);
+						let startingperks = html.find('[name="startingperks"]').val();
+						//? setting the starting perks count to the database to be used later in determining XP costs
+						await actor.update({ "system.Perks.Details.Starting.value": startingperks });
+						console.log(`${actor.name}'s Starting Perks: ${startingperks}`);
+						resolve();
 					},
 				},
-				default: "ok",
-			});
-			dialog.render(true);
+				cancel: {
+					label: "Cancel",
+					callback: () => reject(),
+				},
+			},
+			default: "ok",
 		});
-	}
-
-//	export async function NewActorPerks {
-//		let dialogContent = `
-//		`;
-//	}
-//		
+		dialog.render(true);
+	});
+}
 //	export async function NewActorSummary {
 //		let dialogContent = `
 //		`;
