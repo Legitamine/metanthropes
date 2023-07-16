@@ -10,16 +10,13 @@ import { MetaRollCustom } from "../helpers/metaroll.mjs";
 import { MetapowerRoll } from "../helpers/mproll.mjs";
 import { PossessionRoll } from "../helpers/posroll.mjs";
 //? Import New Actor
-import { NewActorCharacteristics } from "../helpers/newactor.mjs";
-import { NewActorBodyStats } from "../helpers/newactor.mjs";
-import { NewActorMindStats } from "../helpers/newactor.mjs";
-import { NewActorSoulStats } from "../helpers/newactor.mjs";
+import { NewActor } from "../helpers/newactor.mjs";
 export class MetanthropesActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
 			classes: ["metanthropes", "sheet", "actor"], // these are custom css classes that are used in the html file
-			width: 1390,
+			width: 1000,
 			height: 920,
 			closeOnSubmit: false,
 			submitOnClose: true,
@@ -172,23 +169,23 @@ export class MetanthropesActorSheet extends ActorSheet {
 	}
 	//code from boilerplate on rolls
 	async _onRoll(event) {
-		console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+		console.log("=+=+=+=+=+=+=+=+=+=+");
 		console.log("Metanthropes RPG evaluating a new _onRoll(event)");
-		console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+		console.log("=+=+=+=+=+=+=+=+=+=+");
 		event.preventDefault();
 		const element = event.currentTarget;
 		const dataset = element.dataset;
 		// Handle item rolls.
 		if (dataset.rollType) {
-			console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+			console.log("=+=+=+=+=+=+=+=+=+=+");
 			console.log("Metanthropes RPG We are about to make a new Roll for a", dataset.rollType);
-			console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+			console.log("=+=+=+=+=+=+=+=+=+=+");
 			if (dataset.rollType == "Stat") {
 				const actor = this.actor;
 				const stat = dataset.stat;
-				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-				console.log("Metanthropes RPG Rolling a Stat for:", actor, "'s", stat);
-				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("=+=+=+=+=+=+=+=+=+=+");
+				console.log("Metanthropes RPG Rolling a Stat for:", actor.name, "'s", stat);
+				console.log("=+=+=+=+=+=+=+=+=+=+");
 				MetaRoll(actor, stat);
 			} else if (dataset.rollType == "Metapower") {
 				const actor = this.actor;
@@ -204,7 +201,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 				const healing = dataset.healing;
 				const buffs = dataset.buffs;
 				const conditions = dataset.conditions;
-				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("=+=+=+=+=+=+=+=+=+=+");
 				console.log(
 					"Metanthropes RPG Rolling a Metapower for:",
 					actor,
@@ -215,7 +212,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 					"with:",
 					stat
 				);
-				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("=+=+=+=+=+=+=+=+=+=+");
 				MetapowerRoll(
 					actor,
 					stat,
@@ -240,32 +237,32 @@ export class MetanthropesActorSheet extends ActorSheet {
 				const targets = dataset.targets;
 				const damage = dataset.damage;
 				const conditions = dataset.conditions;
-				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-				console.log("Metanthropes RPG Rolling a Possession for:", actor, "'s", stat);
-				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("=+=+=+=+=+=+=+=+=+=+");
+				console.log("Metanthropes RPG Rolling a Possession for:", actor.name, "'s", stat);
+				console.log("=+=+=+=+=+=+=+=+=+=+");
 				PossessionRoll(actor, stat, itemname, attacktype, effect, targets, damage, conditions);
 			} else if (dataset.rollType == "Combo") {
 				const actor = this.actor;
 				const stat = dataset.stat;
-				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-				console.log("Metanthropes RPG Rolling a Combo for:", actor, "'s", stat);
-				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("=+=+=+=+=+=+=+=+=+=+");
+				console.log("Metanthropes RPG Rolling a Combo for:", actor.name, "'s", stat);
+				console.log("=+=+=+=+=+=+=+=+=+=+");
 				MetaRoll(actor, stat);
 			} else {
-				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("=+=+=+=+=+=+=+=+=+=+");
 				console.log("Metanthropes RPG ERROR: not defined rollType", dataset.rollType);
-				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("=+=+=+=+=+=+=+=+=+=+");
 				return;
 			}
 		}
 		// Handle rolls that supply the formula directly.
 		if (dataset.roll) {
-			console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+			console.log("=+=+=+=+=+=+=+=+=+=+");
 			console.log(
 				"Metanthropes RPG ERROR: You supplied the type of roll, this should not happen, using MetaRoll instead",
 				dataset.roll
 			);
-			console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+			console.log("=+=+=+=+=+=+=+=+=+=+");
 			const actor = this.actor;
 			const stat = dataset.stat;
 			MetaRoll(actor, stat);
@@ -278,15 +275,15 @@ export class MetanthropesActorSheet extends ActorSheet {
 		const dataset = element.dataset;
 		// Handle item rolls.
 		if (dataset.rollType) {
-			console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+			console.log("=+=+=+=+=+=+=+=+=+=+");
 			console.log("Metanthropes RPG We are about to make a new Roll for a", dataset.rollType);
-			console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+			console.log("=+=+=+=+=+=+=+=+=+=+");
 			if (dataset.rollType == "Stat") {
 				const actor = this.actor;
 				const stat = dataset.stat;
-				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-				console.log("Metanthropes RPG Rolling a Stat for:", actor, "'s", stat);
-				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("=+=+=+=+=+=+=+=+=+=+");
+				console.log("Metanthropes RPG Rolling a Stat for:", actor.name, "'s", stat);
+				console.log("=+=+=+=+=+=+=+=+=+=+");
 				MetaRollCustom(actor, stat);
 			} else if (dataset.rollType == "Metapower") {
 				const actor = this.actor;
@@ -302,7 +299,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 				const healing = dataset.healing;
 				const buffs = dataset.buffs;
 				const conditions = dataset.conditions;
-				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("=+=+=+=+=+=+=+=+=+=+");
 				console.log(
 					"Metanthropes RPG Rolling a Metapower for:",
 					actor,
@@ -313,7 +310,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 					"with:",
 					stat
 				);
-				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("=+=+=+=+=+=+=+=+=+=+");
 				MetapowerRoll(
 					actor,
 					stat,
@@ -338,33 +335,33 @@ export class MetanthropesActorSheet extends ActorSheet {
 				const targets = dataset.targets;
 				const damage = dataset.damage;
 				const conditions = dataset.conditions;
-				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-				console.log("Metanthropes RPG Rolling a Possession for:", actor, "'s", stat);
-				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("=+=+=+=+=+=+=+=+=+=+");
+				console.log("Metanthropes RPG Rolling a Possession for:", actor.name, "'s", stat);
+				console.log("=+=+=+=+=+=+=+=+=+=+");
 				PossessionRoll(actor, stat, itemname, attacktype, effect, targets, damage, conditions);
 			} else if (dataset.rollType == "Combo") {
 				const actor = this.actor;
 				const stat = dataset.stat;
-				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-				console.log("Metanthropes RPG Rolling a Combo for:", actor, "'s", stat);
-				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("=+=+=+=+=+=+=+=+=+=+");
+				console.log("Metanthropes RPG Rolling a Combo for:", actor.name, "'s", stat);
+				console.log("=+=+=+=+=+=+=+=+=+=+");
 				MetaRoll(actor, stat);
 			} else {
-				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("=+=+=+=+=+=+=+=+=+=+");
 				console.log("Metanthropes RPG ERROR: not defined rollType", dataset.rollType);
-				console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+				console.log("=+=+=+=+=+=+=+=+=+=+");
 				return;
 			}
 		}
 		// Handle rolls that supply the formula directly.
 		//! am I still using this?
 		if (dataset.roll) {
-			console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+			console.log("=+=+=+=+=+=+=+=+=+=+");
 			console.log(
 				"Metanthropes RPG ERROR: You supplied the type of roll, this should not happen, using MetaRoll instead",
 				dataset.roll
 			);
-			console.log("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+			console.log("=+=+=+=+=+=+=+=+=+=+");
 			const actor = this.actor;
 			const stat = dataset.stat;
 			MetaRoll(actor, stat);
@@ -377,9 +374,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//const dataset = element.dataset;
 		const actor = this.actor;
 		console.log(this.actor);
-		await NewActorCharacteristics(actor);
-		await NewActorBodyStats(actor);
-		await NewActorMindStats(actor);
-		await NewActorSoulStats(actor);
+		await NewActor(actor);
 	}
 }

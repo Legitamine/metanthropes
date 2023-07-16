@@ -11,6 +11,158 @@
 // step 6: protagonist Name, Gender, Age, DoB, PoB - prompt for Note taking?
 //SUmmary step 6 - add new Nav named Summary, moving all header properties to that tab
 //resize CS to logo background. cleanup old artwork files.
+//me promises mporw na kanw ena step-by-step dialog poy na kanei guide new player experience
+// narrator's right click na kanei show ena dialog me ola ta steps k dipla check box (default yes) gia ta poia steps thelei na ginoune random
+// if anything is checked na kanei randomize ta reults aytou tou step.
+// gia narrators episis prepei na kanw separate setup gia ta diafora alla types peran tou protagonist
+
+export async function NewActor(actor) {
+	await NewActorDestiny(actor);
+	await NewActorPrimeMetapower(actor);
+	await NewActorCharacteristics(actor);
+	await NewActorBodyStats(actor);
+	await NewActorMindStats(actor);
+	await NewActorSoulStats(actor);
+	await NewActorRoleplay(actor);
+	//await NewActorPerks(actor);
+	//await NewActorSummary(actor);
+}
+
+export async function Rolld10(actor, what, destinyreroll, dice) {
+	//? This functions rolls a number of d10 and allow rerolls if destiny is set to 1
+	//? destiny allows for rerolling the result by spending 1 Destiny Point
+	//! thelw info apo bro gia to poia metapowers allazoune ta dice poy kaneis reroll gia na ta kanw include edw
+	//! review CSS classes
+	//? dice is the number of d10 to roll
+	const rolld10 = await new Roll(`${dice}d10x10`).evaluate({ async: true });
+	const total = rolld10.total;
+	//* Message to be printed to chat
+	let message = `${actor.name} rolls for ${what} with ${dice} * d10 and gets a total of ${total}. <br>`;
+	//? if destiny is set to 1, allow rerolling the result by spending 1 Destiny Point
+	if (destinyreroll === 1) {
+		let currentDestiny = actor.system.Vital.Destiny.value;
+		message += `<br><br> ${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>
+		<div><button class="hide-button layout-hide rolld10x10" data-actor-id="${actor.id}"
+		data-what="${what}" data-destinyreroll="${destinyreroll}" data-dice="${dice}">Spend 🤞 Destiny to reroll
+		</button></div> <br>`;
+	}
+	await actor.setFlag("metanthropes-system", "lastrolled", {
+		rolld10: total,
+	});
+	//print message to chat and enable Dice So Nice to roll the dice and display the message
+	rolld10.toMessage({
+		speaker: ChatMessage.getSpeaker({ actor: actor }),
+		flavor: message,
+		rollMode: game.settings.get("core", "rollMode"),
+		flags: { "metanthropes-system": { actorId: actor.id } },
+	});
+}
+//* This is the function that is called when the destiny re-roll button is clicked
+export async function Rolld10ReRoll(event) {
+	event.preventDefault();
+	const button = event.target;
+	const actorId = button.dataset.idactor;
+	const what = button.dataset.what;
+	const destinyreroll = parseInt(button.dataset.destinyreroll);
+	const dice = parseInt(button.dataset.dice);
+	const actor = game.actors.get(actorId);
+	let currentDestiny = actor.system.Vital.Destiny.value;
+	// make this function only available to the owner of the actor
+	if ((actor && actor.isOwner) || game.user.isGM) {
+		// Reduce Destiny.value by 1
+		if (currentDestiny > 0) {
+			currentDestiny -= 1;
+			await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
+			// Update re-roll button visibility
+			const message = game.messages.get(button.dataset.messageId);
+			if (message) {
+				message.render();
+			}
+			Rolld10(actor, what, destinyreroll, dice);
+		}
+	}
+}
+
+export async function NewActorDestiny(actor) {
+	let dialogContent = `
+	<div class="metanthropes layout-metaroll-dialog">
+		<h2>Roll your starting Destiny</h2>
+		<form>
+			<div class="form-group">
+				<label for="destiny">🤞 Destiny Dice:</label>
+				<input type="number" id="startdestiny" name="startdestiny" value="3">
+			</div>
+		</form>
+	</div>
+	`;
+	return new Promise((resolve, reject) => {
+		let dialog = new Dialog({
+			title: `${actor.name}'s Starting Destiny`,
+			content: dialogContent,
+			buttons: {
+				ok: {
+					label: "Confirm 📊 Destiny",
+					callback: async (html) => {
+						let destinydice = html.find('[name="startdestiny"]').val();
+						await Rolld10(actor, "Destiny", 0, destinydice);
+						const total = actor.getFlag("metanthropes-system", "lastrolled").rolld10;
+						await actor.update({ "system.Vital.Destiny.value": Number(total) });
+						await actor.update({ "system.Vital.Destiny.max": Number(total) });
+						console.log(`New Destiny: ${total}`);
+						resolve();
+					},
+				},
+				cancel: {
+					label: "Cancel",
+					callback: () => reject(),
+				},
+			},
+			default: "ok",
+		});
+		dialog.render(true);
+	});
+}
+
+export async function NewActorPrimeMetapower(actor) {
+	let dialogContent = `
+	<div class="metanthropes layout-metaroll-dialog">
+		<h2>Choose your Prime Metapower</h2>
+		<form>
+			<div class="form-group">
+				<label for="primemetapower">Prime Metapower:</label>
+				<select id="primemetapower" name="primemetapower">
+					<option value="yes" selected>Yes</option>
+					<option value="no">No</option>
+				</select>
+			</div>
+		</form>
+	</div>
+	`;
+	return new Promise((resolve, reject) => {
+		let dialog = new Dialog({
+			title: `${actor.name}'s Prime Metapower`,
+			content: dialogContent,
+			buttons: {
+				ok: {
+					label: "Confirm Prime Ⓜ️ Metapower",
+					callback: async (html) => {
+						let primemetapower = html.find('[name="primemetapower"]').val();
+						await actor.update({ "system.entermeta.primemetapower.value": primemetapower });
+						console.log(`New Prime Metapower: ${primemetapower}`);
+						resolve();
+					},
+				},
+				cancel: {
+					label: "Cancel",
+					callback: () => reject(),
+				},
+			},
+			default: "ok",
+		});
+		dialog.render(true);
+	});
+}
+
 export async function NewActorCharacteristics(actor) {
 	let dialogContent = `
 	<div class="metanthropes layout-metaroll-dialog">
@@ -112,7 +264,7 @@ export async function NewActorBodyStats(actor) {
 				<select id="primary" name="primary">
 					<option value="Endurance" selected>Endurance</option>
 					<option value="Power">Power</option>
-					<option value="Reflexes">Creativity</option>
+					<option value="Reflexes">Reflexes</option>
 				</select>
 			</div>
 			<div class="form-group">
@@ -142,6 +294,8 @@ export async function NewActorBodyStats(actor) {
 				ok: {
 					label: "Confirm & Roll 📊 Body Stats",
 					callback: async (html) => {
+						//! maybe it's better to do them one at a time, this way I can use the lastrolled flag to set the values
+						//! that would require to kick off multiple promises ?
 						let primary = html.find('[name="primary"]').val();
 						let secondary = html.find('[name="secondary"]').val();
 						let tertiary = html.find('[name="tertiary"]').val();
@@ -160,8 +314,9 @@ export async function NewActorBodyStats(actor) {
 							`New Body Stat tertiary: ${tertiary}`,
 							actor.system.Characteristics.Body.Stats[tertiary].Initial
 						);
+						let maxlife = actor.system.Vital.Life.max;
+						await actor.update({ [`system.Vital.Life.value`]: Number(maxlife) });
 						resolve();
-						//! reminder to set initial=max life after doing the statistics
 					},
 				},
 				cancel: {
@@ -406,3 +561,83 @@ export async function NewActorSoulStats(actor) {
 		dialog.render(true);
 	});
 }
+
+export async function NewActorRoleplay(actor) {
+		let dialogContent = `
+		<div class="metanthropes layout-metaroll-dialog">
+			<h2>Choose your Roleplay</h2>
+			<form>
+				<div class="form-group">
+					<label for="RPbackground">Background:</label>
+					<select id="RPbackground" name="RPbackground">
+						<option value="yes" selected>Yes</option>
+						<option value="no">No</option>
+					</select>
+				</div>
+				<div class="form-group">
+				<label for="RPmetamorphosis">Metamorphosis:</label>
+				<select id="RPmetamorphosis" name="RPmetamorphosis">
+					<option value="yes" selected>Yes</option>
+					<option value="no">No</option>
+				</select>
+			</div>
+			<div class="form-group">
+			<label for="RParc">Arc:</label>
+			<select id="RParc" name="RParc">
+				<option value="yes" selected>Yes</option>
+				<option value="no">No</option>
+			</select>
+		</div>
+		<div class="form-group">
+		<label for="RPregression">Regression:</label>
+		<select id="RPregression" name="RPregression">
+			<option value="yes" selected>Yes</option>
+			<option value="no">No</option>
+		</select>
+	</div>
+			</form>
+		</div>
+		`;
+		return new Promise((resolve, reject) => {
+			let dialog = new Dialog({
+				title: `${actor.name}'s Roleplay`,
+				content: dialogContent,
+				buttons: {
+					ok: {
+						label: "Confirm Roleplay",
+						callback: async (html) => {
+							let RPbackgroundpick = html.find('[name="RPbackground"]').val();
+							await actor.update({ "system.Vital.background.value": RPbackgroundpick });
+							console.log(`New Background: ${RPbackgroundpick}`);
+							let RPmetamorphosispick = html.find('[name="RPmetamorphosis"]').val();
+							await actor.update({ "system.entermeta.metamorphosis.value": RPmetamorphosispick });
+							console.log(`New Metamorphosis: ${RPmetamorphosispick}`);
+							let RParcpick = html.find('[name="RParc"]').val();
+							await actor.update({ "system.Vital.arc.value": RParcpick });
+							console.log(`New Arc: ${RParcpick}`);
+							let RPregressionpick = html.find('[name="RPregression"]').val();
+							await actor.update({ "system.entermeta.regression.value": RPregressionpick });
+							console.log(`New Regression: ${RPregressionpick}`);
+							resolve();
+						},
+					},
+					cancel: {
+						label: "Cancel",
+						callback: () => reject(),
+					},
+				},
+				default: "ok",
+			});
+			dialog.render(true);
+		});
+	}
+
+//	export async function NewActorPerks {
+//		let dialogContent = `
+//		`;
+//	}
+//		
+//	export async function NewActorSummary {
+//		let dialogContent = `
+//		`;
+//	}
