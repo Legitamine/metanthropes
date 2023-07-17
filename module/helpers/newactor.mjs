@@ -1,17 +1,7 @@
 //* newactor.mjs will be used to help in generating a new actor's stats and characteristics, along with other information.
 //! Needs new CSS Classes
-//! here is the layout for the forms
-// step 1: destiny roll 3d10x10 default but input to change
-// step 2: drop down for 100 alphabetically / random rolltable - icon of prime metapower in CS
-// step 3: characteristics -  https://www.metanthropes.com/myprotagonist/
-//	stats same as characteristics that will roll in chat x3 for pri/sec/ter and offer re-rolls - need to confirm rerolling all 3 works properly
-// step 4: roleplay: Background: input field or random button - from 2x rolltables
-// 	and Metamorphosis, Arc, Regression - drop down x 10 {{and/or input field}}
-//step 5: {{ input (default 2): number of free perks / option to add more free perks later? }}
-// step 6: protagonist Name, Gender, Age, DoB, PoB - prompt for Note taking?
-//SUmmary step 6 - add new Nav named Summary, moving all header properties to that tab
-//resize CS to logo background. cleanup old artwork files.
-//me promises mporw na kanw ena step-by-step dialog poy na kanei guide new player experience
+//! issues: filepicker opening in correct folder each time
+//! issues: char picks should drive which stat rolls are made first
 // narrator's right click na kanei show ena dialog me ola ta steps k dipla check box (default yes) gia ta poia steps thelei na ginoune random
 // if anything is checked na kanei randomize ta reults aytou tou step.
 // gia narrators episis prepei na kanw separate setup gia ta diafora alla types peran tou protagonist

@@ -79,7 +79,7 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	column-gap: 1px;
-	padding: $padding-zero;
+	padding: $padding-md;
 	margin: $margin-zero;
 	overflow: hidden;
 	overflow-wrap: break-word;
@@ -135,9 +135,6 @@
 .layout-container-nav {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
-	padding: $padding-md;
-	margin: $margin-md;
 }
 .layout-metaroll-dialog {
 	display: flex;

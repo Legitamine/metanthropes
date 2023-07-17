@@ -27,7 +27,7 @@
 	border-radius: $border-radius;
 	justify-content: stretch;
 	justify-self: center;
-	align-items: stretch;
+	align-items: center;
 	align-self: center;
 }
 //medium container styling
@@ -99,20 +99,20 @@
 .style-container-nav {
 	border: $border-style-solid;
 	border-radius: $border-radius;
-	padding: $padding-md;
-	margin: $margin-md;
+	padding: $padding-sm;
+	margin: $margin-sm;
+	justify-content: space-evenly;
 }
 .style-container-nav-children {
 	justify-content: space-between;
-	//justify-self: space-around;
 	justify-items: stretch;
 	align-items: center;
 	align-self: center;
 	align-content: center;
 	font-size: 1rem;
 	color: $c-black;
-	padding: $padding-md;
-	margin: $margin-md;
+	padding: $padding-zero;
+	margin: $margin-zero;
 }
 //input containers styling
 .style-container-input-charstat {

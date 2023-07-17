@@ -1,10 +1,10 @@
 <form class="metanthropes {{cssClass}}" autocomplete="off">
 	<header>
 		<div class="layout-container-grid3x1 style-container-grid3x1">
+			{{#if system.metaowner.value}}
 			<div>Protagonist
 				<input name="name" type="text" value="{{actor.name}}" placeholder="Protagonist Name"data-dtype="String" />
 			</div>
-			{{#if system.metaowner.value}}
 			<div>
 				<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="85" width="85" style="cursor:pointer; border: none;" />
 				<img src="systems/metanthropes-system/artwork/Meta-Avatar-Rotating.gif"
@@ -14,7 +14,11 @@
 					alt="{{system.entermeta.primemetapower.value}}" title="Prime Ⓜ️ Metapower: {{system.entermeta.primemetapower.value}}"
 					height="85" width="85" style="border: none;" />
 			</div>
+			<div>Player
+				<input name="system.metaowner.value" type="text" value="{{system.metaowner.value}}" placeholder="" data-dtype="String" />
+			</div>
 			{{else}}
+				<div></div>
 				<div>
 					<button class="new-actor"
 						title="Create Your Protagonist">
@@ -23,10 +27,8 @@
 							height="65" width="65" style="cursor:pointer; border: none;" />
 					</button>
 				</div>
+				<div></div>
 			{{/if}}
-			<div>Player
-				<input name="system.metaowner.value" type="text" value="{{system.metaowner.value}}" placeholder="" data-dtype="String" />
-			</div>
 		</div>
 		<div class="layout-container-grid1x4 style-container-grid1x4">
 			<div class="layout-container-small style-container-small">
