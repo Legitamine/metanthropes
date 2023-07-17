@@ -17,6 +17,7 @@ import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 import { MetaEvaluateReRoll } from "./helpers/metaeval.mjs";
 // import { MetaInitiative } from "./helpers/metainitiative.mjs";
 // Import Meta-Dice rolling functions.
+import { Rolld10ReRoll } from "./helpers/newactor.mjs";
 import { MetaReRoll } from "./helpers/metarollstat.mjs";
 import { MetapowerReRoll } from "./helpers/mprollstat.mjs";
 import { PossessionReRoll } from "./helpers/posrollstat.mjs";
@@ -361,7 +362,8 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		//	console.log("=============================================================================================");
 		//! is this working now?
 		html.find(".hide-button").removeClass("layout-hide");
-		//! organize this
+		//! organize this - rerolls from chat
+		html.find(".rolld10-reroll").on("click", Rolld10ReRoll);
 		html.find(".metaeval-reroll").on("click", MetaEvaluateReRoll);
 		html.find(".meta-re-roll").on("click", MetaReRoll);
 		html.find(".metapower-re-roll").on("click", MetapowerReRoll);

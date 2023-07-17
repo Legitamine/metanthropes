@@ -15,7 +15,7 @@
 // narrator's right click na kanei show ena dialog me ola ta steps k dipla check box (default yes) gia ta poia steps thelei na ginoune random
 // if anything is checked na kanei randomize ta reults aytou tou step.
 // gia narrators episis prepei na kanw separate setup gia ta diafora alla types peran tou protagonist
-
+// kai episis na kanw expand to new actor function gia na kanei pick mono ta relative fields analoga me to type tou actor
 export async function NewActor(actor) {
 	await NewActorDestiny(actor);
 	await NewActorPrimeMetapower(actor);
@@ -25,9 +25,39 @@ export async function NewActor(actor) {
 	await NewActorSoulStats(actor);
 	await NewActorRoleplay(actor);
 	await NewActorProgression(actor);
-	//await NewActorSummary(actor);
+	await NewActorSummary(actor);
+	await NewActorFinish(actor);
 }
 
+export async function NewStatRoll(actor, char, stat, number) {
+	return new Promise((resolve, reject) => {
+		Rolld10(actor, stat, 1, number);
+		let statcontent = `
+			<div class="metanthropes layout-metaroll-dialog">
+				<h2>Confirm your ${actor.type}'s ${stat} 📊 Stat</h2>
+			</div>
+			`;
+		let dialogstat = new Dialog({
+			title: `${actor.type}'s ${char} 📊 Stats`,
+			content: statcontent,
+			buttons: {
+				ok: {
+					label: `Confirm ${stat} 📊 Stat`,
+					callback: async () => {
+						let statvalue = actor.getFlag("metanthropes-system", "lastrolled").rolld10;
+						await actor.update({
+							[`system.Characteristics.${char}.Stats.${stat}.Initial`]: Number(statvalue),
+						});
+						console.log(`New ${stat} Stat:`, actor.system.Characteristics[char].Stats[stat].Initial);
+						resolve();
+					},
+				},
+			},
+			default: "ok",
+		});
+		dialogstat.render(true);
+	});
+}
 export async function Rolld10(actor, what, destinyreroll, dice) {
 	//? This functions rolls a number of d10 and allow rerolls if destiny is set to 1
 	//? destiny allows for rerolling the result by spending 1 Destiny Point
@@ -41,10 +71,10 @@ export async function Rolld10(actor, what, destinyreroll, dice) {
 	//? if destiny is set to 1, allow rerolling the result by spending 1 Destiny Point
 	if (destinyreroll === 1) {
 		let currentDestiny = actor.system.Vital.Destiny.value;
-		message += `<br><br> ${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>
-		<div><button class="hide-button layout-hide rolld10x10" data-actor-id="${actor.id}"
+		message += `<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>
+		<div><button class="hide-button layout-hide rolld10-reroll" data-idactor="${actor.id}"
 		data-what="${what}" data-destinyreroll="${destinyreroll}" data-dice="${dice}">Spend 🤞 Destiny to reroll
-		</button></div> <br>`;
+		</button></div><br>`;
 	}
 	await actor.setFlag("metanthropes-system", "lastrolled", {
 		rolld10: total,
@@ -82,11 +112,10 @@ export async function Rolld10ReRoll(event) {
 		}
 	}
 }
-
 export async function NewActorDestiny(actor) {
 	let dialogContent = `
 	<div class="metanthropes layout-metaroll-dialog">
-		<h2>Roll your starting Destiny</h2>
+		<h2>Choose your ${actor.type}'s 🤞 Destiny</h2>
 		<form>
 			<div class="form-group">
 				<label for="destiny">🤞 Destiny Dice:</label>
@@ -95,78 +124,104 @@ export async function NewActorDestiny(actor) {
 		</form>
 	</div>
 	`;
+	let dialogOptions = {
+		width: 500,
+		height: 178,
+		z: 1000,
+	};
 	return new Promise((resolve, reject) => {
-		let dialog = new Dialog({
-			title: `${actor.name}'s Starting Destiny`,
-			content: dialogContent,
-			buttons: {
-				ok: {
-					label: "Confirm 📊 Destiny",
-					callback: async (html) => {
-						let destinydice = html.find('[name="startdestiny"]').val();
-						await Rolld10(actor, "Destiny", 0, destinydice);
-						const total = actor.getFlag("metanthropes-system", "lastrolled").rolld10;
-						await actor.update({ "system.Vital.Destiny.value": Number(total) });
-						await actor.update({ "system.Vital.Destiny.max": Number(total) });
-						console.log(`New Destiny: ${total}`);
-						resolve();
+		let dialog = new Dialog(
+			{
+				title: `Step 1 of 10: ${actor.type}'s 🤞 Destiny`,
+				content: dialogContent,
+				buttons: {
+					ok: {
+						label: "Confirm 🤞 Destiny",
+						callback: async (html) => {
+							let destinydice = html.find('[name="startdestiny"]').val();
+							await Rolld10(actor, "Destiny", 0, destinydice);
+							const total = actor.getFlag("metanthropes-system", "lastrolled").rolld10;
+							await actor.update({ "system.Vital.Destiny.value": Number(total) });
+							await actor.update({ "system.Vital.Destiny.max": Number(total) });
+							console.log(`New Destiny: ${total}`);
+							resolve();
+						},
+					},
+					cancel: {
+						label: "Cancel",
+						callback: () => reject(),
 					},
 				},
-				cancel: {
-					label: "Cancel",
-					callback: () => reject(),
-				},
+				default: "ok",
 			},
-			default: "ok",
-		});
+			dialogOptions
+		);
 		dialog.render(true);
 	});
 }
-
 export async function NewActorPrimeMetapower(actor) {
-	let dialogContent = `
-	<div class="metanthropes layout-metaroll-dialog">
-		<h2>Choose your Prime Metapower</h2>
-		<form>
-			<div class="form-group">
-				<label for="primemetapower">Prime Metapower:</label>
-				<select id="primemetapower" name="primemetapower">
-					<option value="yes" selected>Yes</option>
-					<option value="no">No</option>
-				</select>
-			</div>
-		</form>
-	</div>
-	`;
-	return new Promise((resolve, reject) => {
-		let dialog = new Dialog({
-			title: `${actor.name}'s Prime Metapower`,
-			content: dialogContent,
-			buttons: {
-				ok: {
-					label: "Confirm Prime Ⓜ️ Metapower",
-					callback: async (html) => {
-						let primemetapower = html.find('[name="primemetapower"]').val();
-						await actor.update({ "system.entermeta.primemetapower.value": primemetapower });
-						console.log(`New Prime Metapower: ${primemetapower}`);
-						resolve();
-					},
-				},
-				cancel: {
-					label: "Cancel",
-					callback: () => reject(),
-				},
-			},
-			default: "ok",
-		});
-		dialog.render(true);
-	});
+    let dialogContent = `
+    <div class="metanthropes layout-metaroll-dialog">
+        <h2>Choose your ${actor.type}'s Prime Ⓜ️ Metapower</h2>
+        <form>
+            <div class="form-group">
+                <label for="primeimg">Prime Ⓜ️ Metapower:</label>
+                <img id="primeimg" src="${actor.primeimg}" title="Choose your Prime Ⓜ️ Metapower" height="128" width="128" style="cursor:pointer;"/>
+                <span id="primemetapower">${actor.primeimg.split('/').pop().replace('.png', '')}</span>
+            </div>
+        </form>
+    </div>
+    `;
+    let dialogOptions = {
+        width: 600,
+        height: 280,
+        index: 1000,
+    };
+    return new Promise((resolve, reject) => {
+        let dialog = new Dialog(
+            {
+                title: `Step 2 of 10: ${actor.type}'s Prime Ⓜ️ Metapower`,
+                content: dialogContent,
+                buttons: {
+                    ok: {
+                        label: "Confirm Prime Ⓜ️ Metapower",
+						callback: async (html) => {
+							let primeimg = html.find('#primeimg').attr('src');
+							let primemetapower = decodeURIComponent(primeimg.split('/').pop().replace('.png', ''));
+							await actor.update({ "primeimg": primeimg, "system.entermeta.primemetapower.value": primemetapower });
+							console.log(`New Prime Metapower: ${primemetapower}`);
+							resolve();
+						}
+                    },
+                    cancel: {
+                        label: "Cancel",
+                        callback: () => reject(),
+                    },
+                },
+                default: "ok",
+                render: html => {
+                    html.find('#primeimg').click(ev => {
+                        new FilePicker({
+                            type: 'image',
+                            target: 'systems/metanthropes-system/artwork/metapowers',
+							callback: path => {
+								html.find('#primeimg').attr('src', path);
+								let primemetapower = decodeURIComponent(path.split('/').pop().replace('.png', ''));
+								html.find('#primemetapower').text(primemetapower);
+							}							
+                        }).browse();
+                    });
+                }
+            },
+            dialogOptions
+        );
+        dialog.render(true);
+    });
 }
-
 export async function NewActorCharacteristics(actor) {
 	let dialogContent = `
 	<div class="metanthropes layout-metaroll-dialog">
-		<h2>Choose your ${actor.type}'s Characteristics</h2>
+		<h2>Choose your ${actor.type}'s 📊 Characteristics</h2>
 		<form>
 			<div class="form-group">
 				<label for="primary">First Pick:</label>
@@ -195,68 +250,76 @@ export async function NewActorCharacteristics(actor) {
 		</form>
 	</div>
 	`;
+	let dialogOptions = {
+		width: 600,
+		height: 240,
+		index: 1000,
+	};
 	return new Promise((resolve, reject) => {
-		let dialog = new Dialog({
-			title: `${actor.name}'s Characteristics`,
-			content: dialogContent,
-			buttons: {
-				ok: {
-					label: "Confirm 📊 Characteristics",
-					callback: async (html) => {
-						let primary = html.find('[name="primary"]').val();
-						let secondary = html.find('[name="secondary"]').val();
-						let tertiary = html.find('[name="tertiary"]').val();
-						await actor.update({ [`system.Characteristics.${primary}.Initial`]: Number(30) });
-						await actor.update({ [`system.Characteristics.${secondary}.Initial`]: Number(20) });
-						await actor.update({ [`system.Characteristics.${tertiary}.Initial`]: Number(10) });
-						console.log(`New primary: ${primary}`, actor.system.Characteristics[primary].Initial);
-						console.log(`New secondary: ${secondary}`, actor.system.Characteristics[secondary].Initial);
-						console.log(`New tertiary: ${tertiary}`, actor.system.Characteristics[tertiary].Initial);
-						resolve();
+		let dialog = new Dialog(
+			{
+				title: `Step 3 of 10: ${actor.type}'s 📊 Characteristics`,
+				content: dialogContent,
+				buttons: {
+					ok: {
+						label: "Confirm 📊 Characteristics",
+						callback: async (html) => {
+							let primary = html.find('[name="primary"]').val();
+							let secondary = html.find('[name="secondary"]').val();
+							let tertiary = html.find('[name="tertiary"]').val();
+							await actor.update({ [`system.Characteristics.${primary}.Initial`]: Number(30) });
+							await actor.update({ [`system.Characteristics.${secondary}.Initial`]: Number(20) });
+							await actor.update({ [`system.Characteristics.${tertiary}.Initial`]: Number(10) });
+							console.log(`New primary: ${primary}`, actor.system.Characteristics[primary].Initial);
+							console.log(`New secondary: ${secondary}`, actor.system.Characteristics[secondary].Initial);
+							console.log(`New tertiary: ${tertiary}`, actor.system.Characteristics[tertiary].Initial);
+							resolve();
+						},
+					},
+					cancel: {
+						label: "Cancel",
+						callback: () => reject(),
 					},
 				},
-				cancel: {
-					label: "Cancel",
-					callback: () => reject(),
+				default: "ok",
+				render: (html) => {
+					// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
+					html.find('[name="primary"]').change((event) => {
+						// Update the options in the Secondary dropdown based on the Primary selection
+						let primary = event.target.value;
+						let secondaryOptions = ["Body", "Mind", "Soul"].filter((option) => option !== primary);
+						let secondaryDropdown = html.find('[name="secondary"]');
+						secondaryDropdown.empty();
+						secondaryOptions.forEach((option) => {
+							secondaryDropdown.append(new Option(option, option));
+						});
+						// Trigger a change event to update the Tertiary dropdown
+						secondaryDropdown.trigger("change");
+					});
+					html.find('[name="secondary"]').change((event) => {
+						// Update the options in the Tertiary dropdown based on the Secondary selection
+						let primary = html.find('[name="primary"]').val();
+						let secondary = event.target.value;
+						let tertiaryOptions = ["Body", "Mind", "Soul"].filter(
+							(option) => option !== primary && option !== secondary
+						);
+						let tertiaryDropdown = html.find('[name="tertiary"]');
+						tertiaryDropdown.empty();
+						tertiaryOptions.forEach((option) => {
+							tertiaryDropdown.append(new Option(option, option));
+						});
+					});
 				},
 			},
-			default: "ok",
-			render: (html) => {
-				// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
-				html.find('[name="primary"]').change((event) => {
-					// Update the options in the Secondary dropdown based on the Primary selection
-					let primary = event.target.value;
-					let secondaryOptions = ["Body", "Mind", "Soul"].filter((option) => option !== primary);
-					let secondaryDropdown = html.find('[name="secondary"]');
-					secondaryDropdown.empty();
-					secondaryOptions.forEach((option) => {
-						secondaryDropdown.append(new Option(option, option));
-					});
-					// Trigger a change event to update the Tertiary dropdown
-					secondaryDropdown.trigger("change");
-				});
-				html.find('[name="secondary"]').change((event) => {
-					// Update the options in the Tertiary dropdown based on the Secondary selection
-					let primary = html.find('[name="primary"]').val();
-					let secondary = event.target.value;
-					let tertiaryOptions = ["Body", "Mind", "Soul"].filter(
-						(option) => option !== primary && option !== secondary
-					);
-					let tertiaryDropdown = html.find('[name="tertiary"]');
-					tertiaryDropdown.empty();
-					tertiaryOptions.forEach((option) => {
-						tertiaryDropdown.append(new Option(option, option));
-					});
-				});
-			},
-		});
+			dialogOptions
+		);
 		dialog.render(true);
 	});
 }
 export async function NewActorBodyStats(actor) {
 	let dialogContent = `
 	<div class="metanthropes layout-metaroll-dialog">
-		<h2>Choose your ${actor.type}'s Body Stats</h2>
+		<h2>Choose your ${actor.type}'s Body 📊 Stats</h2>
 		<form>
 			<div class="form-group">
 				<label for="primary">First Pick:</label>
@@ -285,82 +348,83 @@ export async function NewActorBodyStats(actor) {
 		</form>
 	</div>
 	`;
+	let dialogOptions = {
+		width: 600,
+		height: 240,
+		index: 1000,
+	};
 	return new Promise((resolve, reject) => {
-		let dialog = new Dialog({
-			title: `${actor.name}'s Body Stats`,
-			content: dialogContent,
-			buttons: {
-				ok: {
-					label: "Confirm & Roll 📊 Body Stats",
-					callback: async (html) => {
-						//! maybe it's better to do them one at a time, this way I can use the lastrolled flag to set the values
-						//! that would require to kick off multiple promises ?
-						let primary = html.find('[name="primary"]').val();
-						let secondary = html.find('[name="secondary"]').val();
-						let tertiary = html.find('[name="tertiary"]').val();
-						await actor.update({ [`system.Characteristics.Body.Stats.${primary}.Initial`]: Number(30) });
-						await actor.update({ [`system.Characteristics.Body.Stats.${secondary}.Initial`]: Number(20) });
-						await actor.update({ [`system.Characteristics.Body.Stats.${tertiary}.Initial`]: Number(10) });
-						console.log(
-							`New Body Stat primary: ${primary}`,
-							actor.system.Characteristics.Body.Stats[primary].Initial
-						);
-						console.log(
-							`New Body Stat secondary: ${secondary}`,
-							actor.system.Characteristics.Body.Stats[secondary].Initial
-						);
-						console.log(
-							`New Body Stat tertiary: ${tertiary}`,
-							actor.system.Characteristics.Body.Stats[tertiary].Initial
-						);
-						//? max life is already set after changing the initial endurance & body values, so we are setting the current life to the new max
-						let maxlife = actor.system.Vital.Life.max;
-						await actor.update({ [`system.Vital.Life.value`]: Number(maxlife) });
-						resolve();
+		let dialog = new Dialog(
+			{
+				title: `Step 4 of 10: ${actor.type}'s Body 📊 Stats`,
+				content: dialogContent,
+				buttons: {
+					ok: {
+						label: "Confirm & Roll Body 📊 Stats",
+						callback: async (html) => {
+							let char = "Body";
+							let primary = html.find('[name="primary"]').val();
+							let secondary = html.find('[name="secondary"]').val();
+							let tertiary = html.find('[name="tertiary"]').val();
+							try {
+								await NewStatRoll(actor, char, primary, 3);
+								await NewStatRoll(actor, char, secondary, 2);
+								await NewStatRoll(actor, char, tertiary, 1);
+								//? max life is already set after changing the initial endurance & body values, so we are setting the current life to the new max
+								let maxlife = actor.system.Vital.Life.max;
+								await actor.update({ [`system.Vital.Life.value`]: Number(maxlife) });
+								resolve();
+							} catch (error) {
+								reject();
+							}
+						},
+					},
+					cancel: {
+						label: "Cancel",
+						callback: () => reject(),
 					},
 				},
-				cancel: {
-					label: "Cancel",
-					callback: () => reject(),
+				default: "ok",
+				render: (html) => {
+					// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
+					html.find('[name="primary"]').change((event) => {
+						// Update the options in the Secondary dropdown based on the Primary selection
+						let primary = event.target.value;
+						let secondaryOptions = ["Endurance", "Power", "Reflexes"].filter(
+							(option) => option !== primary
+						);
+						let secondaryDropdown = html.find('[name="secondary"]');
+						secondaryDropdown.empty();
+						secondaryOptions.forEach((option) => {
+							secondaryDropdown.append(new Option(option, option));
+						});
+						// Trigger a change event to update the Tertiary dropdown
+						secondaryDropdown.trigger("change");
+					});
+					html.find('[name="secondary"]').change((event) => {
+						// Update the options in the Tertiary dropdown based on the Secondary selection
+						let primary = html.find('[name="primary"]').val();
+						let secondary = event.target.value;
+						let tertiaryOptions = ["Endurance", "Power", "Reflexes"].filter(
+							(option) => option !== primary && option !== secondary
+						);
+						let tertiaryDropdown = html.find('[name="tertiary"]');
+						tertiaryDropdown.empty();
+						tertiaryOptions.forEach((option) => {
+							tertiaryDropdown.append(new Option(option, option));
+						});
+					});
 				},
 			},
-			default: "ok",
-			render: (html) => {
-				// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
-				html.find('[name="primary"]').change((event) => {
-					// Update the options in the Secondary dropdown based on the Primary selection
-					let primary = event.target.value;
-					let secondaryOptions = ["Endurance", "Power", "Reflexes"].filter((option) => option !== primary);
-					let secondaryDropdown = html.find('[name="secondary"]');
-					secondaryDropdown.empty();
-					secondaryOptions.forEach((option) => {
-						secondaryDropdown.append(new Option(option, option));
-					});
-					// Trigger a change event to update the Tertiary dropdown
-					secondaryDropdown.trigger("change");
-				});
-				html.find('[name="secondary"]').change((event) => {
-					// Update the options in the Tertiary dropdown based on the Secondary selection
-					let primary = html.find('[name="primary"]').val();
-					let secondary = event.target.value;
-					let tertiaryOptions = ["Endurance", "Power", "Reflexes"].filter(
-						(option) => option !== primary && option !== secondary
-					);
-					let tertiaryDropdown = html.find('[name="tertiary"]');
-					tertiaryDropdown.empty();
-					tertiaryOptions.forEach((option) => {
-						tertiaryDropdown.append(new Option(option, option));
-					});
-				});
-			},
-		});
+			dialogOptions
+		);
 		dialog.render(true);
 	});
 }
 export async function NewActorMindStats(actor) {
 	let dialogContent = `
 	<div class="metanthropes layout-metaroll-dialog">
-		<h2>Choose your ${actor.type}'s Mind Stats</h2>
+		<h2>Choose your ${actor.type}'s Mind 📊 Stats</h2>
 		<form>
 			<div class="form-group">
 				<label for="primary">First Pick:</label>
@@ -389,34 +453,32 @@ export async function NewActorMindStats(actor) {
 		</form>
 	</div>
 	`;
+	let dialogOptions = {
+		width: 600,
+		height: 240,
+		index: 1000,
+	};
 	return new Promise((resolve, reject) => {
 		let dialog = new Dialog({
-			title: `${actor.name}'s Mind Stats`,
+			title: `Step 5 of 10: ${actor.type}'s Mind 📊 Stats`,
 			content: dialogContent,
 			buttons: {
 				ok: {
-					label: "Confirm & Roll 📊 Mind Stats",
+					label: "Confirm & Roll Mind 📊 Stats",
 					callback: async (html) => {
-						let primary = html.find('[name="primary"]').val();
-						let secondary = html.find('[name="secondary"]').val();
-						let tertiary = html.find('[name="tertiary"]').val();
-						await actor.update({ [`system.Characteristics.Mind.Stats.${primary}.Initial`]: Number(30) });
-						await actor.update({ [`system.Characteristics.Mind.Stats.${secondary}.Initial`]: Number(20) });
-						await actor.update({ [`system.Characteristics.Mind.Stats.${tertiary}.Initial`]: Number(10) });
-						console.log(
-							`New Mind Stat primary: ${primary}`,
-							actor.system.Characteristics.Mind.Stats[primary].Initial
-						);
-						console.log(
-							`New Mind Stat secondary: ${secondary}`,
-							actor.system.Characteristics.Mind.Stats[secondary].Initial
-						);
-						console.log(
-							`New Mind Stat tertiary: ${tertiary}`,
-							actor.system.Characteristics.Mind.Stats[tertiary].Initial
-						);
-						resolve();
-					},
+						let char = "Mind";
+							let primary = html.find('[name="primary"]').val();
+							let secondary = html.find('[name="secondary"]').val();
+							let tertiary = html.find('[name="tertiary"]').val();
+							try {
+								await NewStatRoll(actor, char, primary, 3);
+								await NewStatRoll(actor, char, secondary, 2);
+								await NewStatRoll(actor, char, tertiary, 1);
+								resolve();
+							} catch (error) {
+								reject();
+							}
+						},
 				},
 				cancel: {
 					label: "Cancel",
@@ -454,14 +516,16 @@ export async function NewActorMindStats(actor) {
 					});
 				});
 			},
-		});
-		dialog.render(true);
-	});
+		},
+		dialogOptions
+	);
+	dialog.render(true);
+});
 }
 export async function NewActorSoulStats(actor) {
 	let dialogContent = `
 	<div class="metanthropes layout-metaroll-dialog">
-		<h2>Choose your ${actor.type}'s Soul Stats</h2>
+		<h2>Choose your ${actor.type}'s Soul 📊 Stats</h2>
 		<form>
 			<div class="form-group">
 				<label for="primary">First Pick:</label>
@@ -490,34 +554,32 @@ export async function NewActorSoulStats(actor) {
 		</form>
 	</div>
 	`;
+	let dialogOptions = {
+		width: 600,
+		height: 240,
+		index: 1000,
+	};
 	return new Promise((resolve, reject) => {
 		let dialog = new Dialog({
-			title: `${actor.name}'s Soul Stats`,
+			title: `Step 6 of 10: ${actor.type}'s Soul 📊 Stats`,
 			content: dialogContent,
 			buttons: {
 				ok: {
-					label: "Confirm & Roll 📊 Soul Stats",
+					label: "Confirm & Roll Soul 📊 Stats",
 					callback: async (html) => {
-						let primary = html.find('[name="primary"]').val();
-						let secondary = html.find('[name="secondary"]').val();
-						let tertiary = html.find('[name="tertiary"]').val();
-						await actor.update({ [`system.Characteristics.Soul.Stats.${primary}.Initial`]: Number(30) });
-						await actor.update({ [`system.Characteristics.Soul.Stats.${secondary}.Initial`]: Number(20) });
-						await actor.update({ [`system.Characteristics.Soul.Stats.${tertiary}.Initial`]: Number(10) });
-						console.log(
-							`New Soul Stat primary: ${primary}`,
-							actor.system.Characteristics.Soul.Stats[primary].Initial
-						);
-						console.log(
-							`New Soul Stat secondary: ${secondary}`,
-							actor.system.Characteristics.Soul.Stats[secondary].Initial
-						);
-						console.log(
-							`New Soul Stat tertiary: ${tertiary}`,
-							actor.system.Characteristics.Soul.Stats[tertiary].Initial
-						);
-						resolve();
-					},
+						let char = "Soul";
+							let primary = html.find('[name="primary"]').val();
+							let secondary = html.find('[name="secondary"]').val();
+							let tertiary = html.find('[name="tertiary"]').val();
+							try {
+								await NewStatRoll(actor, char, primary, 3);
+								await NewStatRoll(actor, char, secondary, 2);
+								await NewStatRoll(actor, char, tertiary, 1);
+								resolve();
+							} catch (error) {
+								reject();
+							}
+						},
 				},
 				cancel: {
 					label: "Cancel",
@@ -555,15 +617,16 @@ export async function NewActorSoulStats(actor) {
 					});
 				});
 			},
-		});
-		dialog.render(true);
-	});
+		},
+		dialogOptions
+	);
+	dialog.render(true);
+});
 }
-
 export async function NewActorRoleplay(actor) {
 	let dialogContent = `
 		<div class="metanthropes layout-metaroll-dialog">
-			<h2>Choose your Roleplay</h2>
+			<h2>Choose your ${actor.type}'s 🎭 Roleplay</h2>
 			<form>
 				<div class="form-group">
 					<label for="RPbackground">Background:</label>
@@ -575,8 +638,16 @@ export async function NewActorRoleplay(actor) {
 				<div class="form-group">
 				<label for="RPmetamorphosis">Metamorphosis:</label>
 				<select id="RPmetamorphosis" name="RPmetamorphosis">
-					<option value="yes" selected>Yes</option>
-					<option value="no">No</option>
+					<option value="Cosmic Connection" selected>Cosmic Connection</option>
+					<option value="Dark Pact">Dark Pact</option>
+					<option value="Elemental Connection">Elemental Connection</option>
+					<option value="Freak Accident">Freak Accident</option>
+					<option value="Material Connection">Material Connection</option>
+					<option value="Meta Bloodline">Meta Bloodline</option>
+					<option value="Psychic Connection">Psychic Connection</option>
+					<option value="Scientific Experiment">Scientific Experiment</option>
+					<option value="Selective Evolution">Selective Evolution</option>
+					<option value="Self-Made">Self-Made</option>
 				</select>
 			</div>
 			<div class="form-group">
@@ -598,11 +669,11 @@ export async function NewActorRoleplay(actor) {
 		`;
 	return new Promise((resolve, reject) => {
 		let dialog = new Dialog({
-			title: `${actor.name}'s Roleplay`,
+			title: `Step 7 of 10: ${actor.type}'s 🎭 Roleplay`,
 			content: dialogContent,
 			buttons: {
 				ok: {
-					label: "Confirm Roleplay",
+					label: "Confirm 🎭 Roleplay",
 					callback: async (html) => {
 						let RPbackgroundpick = html.find('[name="RPbackground"]').val();
 						await actor.update({ "system.Vital.background.value": RPbackgroundpick });
@@ -632,7 +703,7 @@ export async function NewActorRoleplay(actor) {
 export async function NewActorProgression(actor) {
 	let dialogContent = `
 		<div class="metanthropes layout-metaroll-dialog">
-			<h2>Choose your Progression</h2>
+			<h2>Choose your ${actor.type}'s 📈 Progression</h2>
 			<form>
 				<div class="form-group">
 					<label for="startingxp">Starting 📈 Experience:</label>
@@ -647,19 +718,19 @@ export async function NewActorProgression(actor) {
 		`;
 	return new Promise((resolve, reject) => {
 		let dialog = new Dialog({
-			title: `${actor.name}'s Progression`,
+			title: `Step 8 of 10: ${actor.type}'s 📈 Progression`,
 			content: dialogContent,
 			buttons: {
 				ok: {
-					label: "Confirm Progression",
+					label: "Confirm 📈 Progression",
 					callback: async (html) => {
 						let startingxp = html.find('[name="startingxp"]').val();
 						await actor.update({ "system.Vital.Experience.Total": Number(startingxp) });
-						console.log(`${actor.name}'s Starting Experience: ${startingxp}`);
+						console.log(`${actor.type}'s Starting Experience: ${startingxp}`);
 						let startingperks = html.find('[name="startingperks"]').val();
 						//? setting the starting perks count to the database to be used later in determining XP costs
 						await actor.update({ "system.Perks.Details.Starting.value": startingperks });
-						console.log(`${actor.name}'s Starting Perks: ${startingperks}`);
+						console.log(`${actor.type}'s Starting Perks: ${startingperks}`);
 						resolve();
 					},
 				},
@@ -673,7 +744,105 @@ export async function NewActorProgression(actor) {
 		dialog.render(true);
 	});
 }
-//	export async function NewActorSummary {
-//		let dialogContent = `
-//		`;
-//	}
+export async function NewActorSummary(actor) {
+	let dialogContent = `
+		<div class="metanthropes layout-metaroll-dialog">
+			<h2>Choose your ${actor.type}'s ✍️ Summary</h2>
+			<form>
+				<div class="form-group">
+					<label for="actorname">Name:</label>
+					<input type="text" id="actorname" name="actorname" value="${actor.type}'s Name">
+				</div>
+				<div class="form-group">
+					<label for="actorgender">Gender:</label>
+					<input type="text" id="actorgender" name="actorgender" value="">
+				</div>
+				<div class="form-group">
+					<label for="actorage">Age:</label>
+					<input type="number" id="actorage" name="actorage" value="">yr
+				</div>
+				<div class="form-group">
+					<label for="actorheight">Height:</label>
+					<input type="number" id="actorheight" name="actorheight" value="">m
+				</div>
+				<div class="form-group">
+					<label for="actorweight">Weight:</label>
+					<input type="number" id="actorweight" name="actorweight" value="">kg
+				</div>
+				<div class="form-group">
+					<label for="actorpob">Place of Birth:</label>
+					<input type="text" id="actorpob" name="actorpob" value="">
+				</div>
+				<div class="form-group">
+					<label for="playername">Player Name:</label>
+					<input type="text" id="playername" name="playername" value="Your Name">
+				</div>
+			</form>
+		</div>
+	`;
+	return new Promise((resolve, reject) => {
+		let dialog = new Dialog({
+			title: `Step 9 of 10: ${actor.type}'s ✍️ Summary`,
+			content: dialogContent,
+			buttons: {
+				ok: {
+					label: "Confirm ✍️ Summary",
+					callback: async (html) => {
+						let actorname = html.find('[name="actorname"]').val();
+						await actor.update({ name: actorname });
+						console.log(`${actor.type}'s Name: ${actorname}`);
+						let actorage = html.find('[name="actorage"]').val();
+						await actor.update({ "system.Vital.age.value": Number(actorage) });
+						console.log(`${actor.type}'s Age: ${actorage}`);
+						let actorgender = html.find('[name="actorgender"]').val();
+						await actor.update({ "system.humanoids.gender.value": actorgender });
+						console.log(`${actor.type}'s Gender: ${actorgender}`);
+						let actorheight = html.find('[name="actorheight"]').val();
+						await actor.update({ "system.humanoids.height.value": Number(actorheight) });
+						console.log(`${actor.type}'s Height: ${actorheight}`);
+						let actorweight = html.find('[name="actorweight"]').val();
+						await actor.update({ "system.humanoids.weight.value": Number(actorweight) });
+						console.log(`${actor.type}'s Weight: ${actorweight}`);
+						let actorpob = html.find('[name="actorpob"]').val();
+						await actor.update({ "system.humanoids.birthplace.value": actorpob });
+						console.log(`${actor.type}'s Place of Birth: ${actorpob}`);
+						let playername = html.find('[name="playername"]').val();
+						await actor.update({ "system.metaowner.value": playername });
+						console.log(`${actor.type}'s Player Name: ${playername}`);
+						resolve();
+					},
+				},
+				cancel: {
+					label: "Cancel",
+					callback: () => reject(),
+				},
+			},
+			default: "ok",
+		});
+		dialog.render(true);
+	});
+}
+export async function NewActorFinish(actor) {
+	let dialogContent = `
+		<div class="metanthropes layout-metaroll-dialog">
+			<h2>${actor.type}: ${actor.name} has entered the Multiverse!</h2>
+		</div>
+	`;
+	return new Promise((resolve, reject) => {
+		let dialog = new Dialog({
+			title: `Step 10 of 10: Enter Meta`,
+			content: dialogContent,
+			buttons: {
+				ok: {
+					label: "and so it begins...",
+					callback: async () => {
+						ui.notifications.info(actor.name + " has entered the Multiverse!");
+						resolve();
+					},
+				},
+			},
+			default: "ok",
+		});
+		dialog.render(true);
+	});
+}

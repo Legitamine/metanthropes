@@ -8,16 +8,24 @@
 			</div>
 			<div>Player
 				<input name="system.metaowner.value" type="text" value="{{system.metaowner.value}}"
-					placeholder="Player Name" data-dtype="String" />
+					placeholder="" data-dtype="String" />
 			</div>
 			{{#if system.metaowner.value}}
+			<div>
+				<img src="systems/metanthropes-system/artwork/metanthropes-logo.webp"
+					alt="Metanthropes"
+					height="85" width="85" />
+				<img src="systems/metanthropes-system/artwork/metapowers/{{system.entermeta.primemetapower.value}}.png"
+					alt="{{system.entermeta.primemetapower.value}}"
+					height="85" width="85" />
+			</div>
 			{{else}}
 				<div>
 					<button class="new-actor"
-						title="Greetings Brokolisk - Ayto to button einai ta 4 steps gia edit twn stats. Try it out. Skepsoy oti anti na vazei karfwta sta Stats numbers opws twra tha kanei roll kai tha perimenei na teleiwseis to kathe char prin pas sto epomeno set. pws sou fainetai?">
-						<img src="systems/metanthropes-system/artwork/metanthropes-logo.png"
-							alt="Check this out as a wall of text informing players of various useful stuff - does it work this way?"
-							height="45" width="45" />
+						title="Create Your Protagonist">
+						<img src="systems/metanthropes-system/artwork/metanthropes-logo.webp"
+							alt="New Protagonist"
+							height="65" width="65" />
 					</button>
 				</div>
 			{{/if}}

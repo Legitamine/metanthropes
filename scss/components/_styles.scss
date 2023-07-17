@@ -99,12 +99,12 @@
 .style-container-nav {
 	border: $border-style-solid;
 	border-radius: $border-radius;
-	padding: $padding-sm;
-	margin: $margin-sm;
+	padding: $padding-lg;
+	margin: $margin-lg;
 	justify-content: space-evenly;
 }
 .style-container-nav-children {
-	justify-content: space-evenly;
+	justify-content: space-between;
 	//justify-self: space-around;
 	justify-items: stretch;
 	align-items: center;

@@ -27,7 +27,7 @@ export class MetanthropesActor extends Actor {
 			if (data.type == "MetaTherion")
 				createData.img = "systems/metanthropes-system/artwork/tokens/token-manipulator.webp";
 			if (data.type == "Protagonist")
-				createData.img = "systems/metanthropes-system/artwork/tokens/token-aegis.webp";
+				createData.img = "systems/metanthropes-system/artwork/metanthropes-logo.webp";
 			if (data.type == "Metanthrope")
 				createData.img = "systems/metanthropes-system/artwork/tokens/token-arbiter.webp";
 			if (data.type == "Artificial")
@@ -41,7 +41,7 @@ export class MetanthropesActor extends Actor {
 			if (data.type == "Animal")
 				createData.img = "systems/metanthropes-system/artwork/tokens/token-kineticist.webp";
 			if (data.type == "Extraterrestrial")
-				createData.img = "systems/metanthropes-system/artwork/tokens/token-cosmonaut.webp";
+				createData.img = "systems/metanthropes-system/artwork/tokens/token-aegis.webp";
 			if (data.type == "Extradimensional")
 				createData.img = "systems/metanthropes-system/artwork/tokens/token-cosmonaut.webp";
 		}
@@ -75,6 +75,13 @@ export class MetanthropesActor extends Actor {
 			this.system.Vital.Life.Initial = 50;
 			//console.log("Metanthropes RPG New Initial Life:", this.system.Vital.Life.Initial);
 			//console.log("====================");
+		}
+		//? trying to replicate this code to set the primeimg for protagonists
+		if (this.type == "Protagonist") {
+			if (!this.primeimg || this.primeimg == "systems/metanthropes-system/artwork/metanthropes-logo.webp") {
+				let primemetapowerimage = this.system.entermeta.primemetapower.value;
+				this.primeimg = `systems/metanthropes-system/artwork/metapowers/${primemetapowerimage}.webp`;
+			}
 		}
 		// I should enable this section if I need to add modifications for non-Characteristics actors
 		// Currently we only care about actors with characteristics so we don't use this section
@@ -263,13 +270,13 @@ export class MetanthropesActor extends Actor {
 		);
 		//if (systemData.Vital.Experience.Stored < 0) {
 		//	ui.notifications.warn(this.name + "'s Stored Experience is Negative!");
-			//	console.log(
-			//		"============================================================================================="
-			//	);
-			//	console.log("Metanthropes RPG WARNING: Stored Experience is Negative!");
-			//	console.log(
-			//		"============================================================================================="
-			//	);
+		//	console.log(
+		//		"============================================================================================="
+		//	);
+		//	console.log("Metanthropes RPG WARNING: Stored Experience is Negative!");
+		//	console.log(
+		//		"============================================================================================="
+		//	);
 		//}
 		//	console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
 		console.log("====================");
@@ -325,7 +332,10 @@ export class MetanthropesActor extends Actor {
 		//	console.log("Total Experience Spent automagically for", this.name, "Perks:", experienceSpent);
 		//? Update Experience Spent for Perks with exiting in systemData.Vital.Experience.Spent
 		//? adding this to remove the xp calculated for spent xp on the starting perks
-		parseInt((systemData.Vital.Experience.Spent = Number(experienceSpent) + Number(experienceAlreadySpent) - Number((startingPerks) * 100)));
+		parseInt(
+			(systemData.Vital.Experience.Spent =
+				Number(experienceSpent) + Number(experienceAlreadySpent) - Number(startingPerks * 100))
+		);
 		parseInt(
 			(systemData.Vital.Experience.Stored = Number(
 				Number(systemData.Vital.Experience.Total) -
@@ -333,7 +343,7 @@ export class MetanthropesActor extends Actor {
 					Number(experienceAlreadySpent) -
 					Number(systemData.Vital.Experience.Manual) +
 					//? here we are adding the cost of free starting perks to the stored xp
-					Number((startingPerks) * 100)
+					Number(startingPerks * 100)
 			))
 		);
 		if (systemData.Vital.Experience.Stored < 0) {

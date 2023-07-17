@@ -598,12 +598,12 @@ option {
 .metanthropes .style-container-nav {
   border: 1px solid #000;
   border-radius: 15px;
-  padding: 1px;
-  margin: 1px;
+  padding: 6px;
+  margin: 6px;
   justify-content: space-evenly;
 }
 .metanthropes .style-container-nav-children {
-  justify-content: space-evenly;
+  justify-content: space-between;
   justify-items: stretch;
   align-items: center;
   align-self: center;
