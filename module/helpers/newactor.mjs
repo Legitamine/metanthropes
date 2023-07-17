@@ -166,7 +166,7 @@ export async function NewActorPrimeMetapower(actor) {
         <form>
             <div class="form-group">
                 <label for="primeimg">Prime Ⓜ️ Metapower:</label>
-                <img id="primeimg" src="${actor.primeimg}" title="Choose your Prime Ⓜ️ Metapower" height="128" width="128" style="cursor:pointer;"/>
+                <img id="primeimg" src="${actor.primeimg}" title="Choose your Prime Ⓜ️ Metapower" height="64" width="64" style="cursor:pointer;"/>
                 <span id="primemetapower">${actor.primeimg.split('/').pop().replace('.png', '')}</span>
             </div>
         </form>
@@ -174,7 +174,7 @@ export async function NewActorPrimeMetapower(actor) {
     `;
     let dialogOptions = {
         width: 600,
-        height: 280,
+        height: 250,
         index: 1000,
     };
     return new Promise((resolve, reject) => {
@@ -201,7 +201,8 @@ export async function NewActorPrimeMetapower(actor) {
                 default: "ok",
                 render: html => {
                     html.find('#primeimg').click(ev => {
-                        new FilePicker({
+                        //! evaluate proper behaviour and set accordingly: https://foundryvtt.com/api/v10/classes/client.FilePicker.html
+						new FilePicker({
                             type: 'image',
                             target: 'systems/metanthropes-system/artwork/metapowers',
 							callback: path => {

@@ -99,9 +99,8 @@
 .style-container-nav {
 	border: $border-style-solid;
 	border-radius: $border-radius;
-	padding: $padding-lg;
-	margin: $margin-lg;
-	justify-content: space-evenly;
+	padding: $padding-md;
+	margin: $margin-md;
 }
 .style-container-nav-children {
 	justify-content: space-between;
@@ -144,8 +143,8 @@
 	font-family: $font-primary;
 	font-size: 1rem;
 	color: $c-black;
-	padding: $padding-md;
-	margin: $margin-md;
+	padding: $padding-sm;
+	margin: $margin-sm;
 }
 //unused
 .style-labels-text {
@@ -157,8 +156,8 @@
 	justify-self: center;
 	align-items: center;
 	align-self: center;
-	padding: $padding-md;
-	margin: $margin-md;
+	padding: $padding-sm;
+	margin: $margin-sm;
 }
 //styles for character sheet elements: style-cs-*
 .style-cs-chars-label {
@@ -221,8 +220,8 @@
 	justify-self: center;
 	align-items: center;
 	align-self: center;
-	padding: $padding-md;
-	margin: $margin-md;
+	padding: $padding-sm;
+	margin: $margin-sm;
 }
 .style-cs-buffs {
 	opacity: 1;
@@ -233,8 +232,8 @@
 	justify-self: center;
 	align-items: center;
 	align-self: center;
-	padding: $padding-md;
-	margin: $margin-md;
+	padding: $padding-sm;
+	margin: $margin-sm;
 }
 .style-cs-conditions {
 	opacity: 1;
@@ -245,8 +244,8 @@
 	justify-self: center;
 	align-items: center;
 	align-self: center;
-	padding: $padding-md;
-	margin: $margin-md;
+	padding: $padding-sm;
+	margin: $margin-sm;
 }
 .style-cs-positive {
 	opacity: 1;
@@ -256,8 +255,8 @@
 	justify-self: center;
 	align-items: center;
 	align-self: center;
-	padding: $padding-md;
-	margin: $margin-md;
+	padding: $padding-sm;
+	margin: $margin-sm;
 }
 .style-cs-negative {
 	opacity: 1;
@@ -267,8 +266,8 @@
 	justify-self: center;
 	align-items: center;
 	align-self: center;
-	padding: $padding-md;
-	margin: $margin-md;
+	padding: $padding-sm;
+	margin: $margin-sm;
 }
 .style-cs-rolls {
 	opacity: 1;
@@ -305,8 +304,8 @@
 	align-items: center;
 	align-self: center;
 	align-content: center;
-	padding: $padding-sm;
-	margin: $margin-sm;
+	padding: $padding-md;
+	margin: $margin-md;
 	&:hover {
 		cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
 		color: $c-purple;
@@ -329,8 +328,8 @@
 	align-items: center;
 	align-self: center;
 	align-content: center;
-	padding: $padding-sm;
-	margin: $margin-sm;
+	padding: $padding-md;
+	margin: $margin-md;
 	&:hover {
 		cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
 		color: $c-purple;

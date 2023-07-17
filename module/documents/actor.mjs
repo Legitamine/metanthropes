@@ -76,13 +76,18 @@ export class MetanthropesActor extends Actor {
 			//console.log("Metanthropes RPG New Initial Life:", this.system.Vital.Life.Initial);
 			//console.log("====================");
 		}
-		//? trying to replicate this code to set the primeimg for protagonists
+		//? for Protagonists set the metanthropes-logo as default icon for metapower, if no metapower is selected
 		if (this.type == "Protagonist") {
-			if (!this.primeimg || this.primeimg == "systems/metanthropes-system/artwork/metanthropes-logo.webp") {
+			if (!this.primeimg || this.primeimg == "systems/metanthropes-system/artwork/.webp") {
+				if (!this.system.entermeta.primemetapower.value) {
+				this.primeimg = `systems/metanthropes-system/artwork/metanthropes-logo.webp`;
+				} else {
+				//? for Protagonists with a prime metapower defined, make it their respective metapower icon
 				let primemetapowerimage = this.system.entermeta.primemetapower.value;
-				this.primeimg = `systems/metanthropes-system/artwork/metapowers/${primemetapowerimage}.webp`;
+				this.primeimg = `systems/metanthropes-system/artwork/metapowers/${primemetapowerimage}.png`;
 			}
 		}
+	}
 		// I should enable this section if I need to add modifications for non-Characteristics actors
 		// Currently we only care about actors with characteristics so we don't use this section
 		// this._prepareBaseNonCharacteristicsData(actorData);
