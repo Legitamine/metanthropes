@@ -66,7 +66,7 @@ export async function MetaEvaluate(actor, stat, statValue, multiAction = 0, bonu
 		message += `, accumulating: ${levelsOfFailure} * ❌.<br><br>${actor.name} has ${currentDestiny} * 🤞 remaining.<br>`;
 		resultLevel = -levelsOfFailure;
 	} else {
-		message += `.<br><br>${actor.name} has ${currentDestiny} * 🤞 remaining.<br>`;
+		message += `.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 	}
 	//add re-roll button to message
 	message += `<br><div><button class="hide-button layout-hide metaeval-reroll" data-idactor="${actor.id}"

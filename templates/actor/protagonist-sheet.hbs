@@ -1,90 +1,34 @@
 <form class="metanthropes {{cssClass}}" autocomplete="off">
 	<header>
-		<div class="layout-container-grid4x1 style-container-grid4x1">
-			<div class="layout-container-small style-container-small">
-				<div>Protagonist<input name="name" type="text" value="{{actor.name}}" placeholder="Protagonist Name"
-						data-dtype="String" />
-				</div>
-				<div>Player
-					<input name="system.metaowner.value" type="text" value="{{system.metaowner.value}}"
-						placeholder="Player Name" data-dtype="String" />
-				</div>
-				<div><img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="85" width="85" />
-				</div>
+		<div class="layout-container-grid3x1 style-container-grid3x1">
+			{{#if system.metaowner.value}}
+			<div>Protagonist
+				<input name="name" type="text" value="{{actor.name}}" placeholder="Protagonist Name"data-dtype="String" />
+			</div>
+			<div>
+				<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="85" width="85" style="cursor:pointer; border: none;" />
+				<img src="systems/metanthropes-system/artwork/Meta-Avatar-Rotating.gif"
+					alt="Metanthropes" title="Metanthropes RPG {{actor.type}}"
+					height="85" width="85" style="border: none; border-radius: 50%" />
+				<img src="systems/metanthropes-system/artwork/metapowers/{{system.entermeta.primemetapower.value}}.png"
+					alt="{{system.entermeta.primemetapower.value}}" title="Prime Ⓜ️ Metapower: {{system.entermeta.primemetapower.value}}"
+					height="85" width="85" style="border: none;" />
+			</div>
+			<div>Player
+				<input name="system.metaowner.value" type="text" value="{{system.metaowner.value}}" placeholder="" data-dtype="String" />
+			</div>
+			{{else}}
+				<div></div>
 				<div>
-					<button class="new-actor" title="Greetings Brokolisk - Ayto to button einai ta 4 steps gia edit twn stats. Try it out. Skepsoy oti anti na vazei karfwta sta Stats numbers opws twra tha kanei roll kai tha perimenei na teleiwseis to kathe char prin pas sto epomeno set. pws sou fainetai?">
-						<img src="systems/metanthropes-system/artwork/metanthropes-logo.png" alt="Check this out as a wall of text informing players of various useful stuff - does it work this way?" height="45" width="45" />
+					<button class="new-actor"
+						title="Create Your Protagonist">
+						<img src="systems/metanthropes-system/artwork/metanthropes-logo.webp"
+							alt="New Protagonist"
+							height="65" width="65" style="cursor:pointer; border: none;" />
 					</button>
 				</div>
-			</div>
-			<div class="layout-container-small style-container-small">
-				<div>Prime Metapower
-					<input name="system.entermeta.primemetapower.value" type="text"
-						value="{{system.entermeta.primemetapower.value}}" data-dtype="String"
-						placeholder="Prime Metapower" />
-				</div>
-				<div>Metamorphosis
-					<input name="system.entermeta.metamorphosis.value" type="text"
-						value="{{system.entermeta.metamorphosis.value}}" data-dtype="String"
-						placeholder="Metamorphosis" />
-				</div>
-				<div>Background
-					<input name="system.Vital.background.value" type="text" value="{{system.Vital.background.value}}"
-						data-dtype="String" placeholder="Background" />
-				</div>
-				<div>Arc
-					<input name="system.Vital.arc.value" type="text" value="{{system.Vital.arc.value}}"
-						data-dtype="String" placeholder="Arc" />
-				</div>
-				<div>Regression
-					<input name="system.entermeta.regression.value" type="text"
-						value="{{system.entermeta.regression.value}}" data-dtype="String" placeholder="Regression" />
-				</div>
-			</div>
-			<div class="layout-container-small style-container-small">
-				<div>Birthplace
-					<input name="system.humanoids.birthplace.value" type="text"
-						value="{{system.humanoids.birthplace.value}}" data-dtype="String" placeholder="City Name" />
-				</div>
-				<div>Age
-					<input name="system.Vital.age.value" type="number" value="{{system.Vital.age.value}}"
-						data-dtype="Number" placeholder="" />
-				</div>
-				<div>Gender
-					<input name="system.humanoids.gender.value" type="text" value="{{system.humanoids.gender.value}}"
-						data-dtype="String" placeholder="Gender" />
-				</div>
-				<div>Height
-					<input name="system.humanoids.height.value" type="text" value="{{system.humanoids.height.value}}"
-						data-dtype="String" placeholder="Height" />
-				</div>
-				<div>Weight
-					<input name="system.humanoids.weight.value" type="text" value="{{system.humanoids.weight.value}}"
-						data-dtype="String" placeholder="Weight" />
-				</div>
-			</div>
-			<div class="layout-container-small style-container-small">
-				<div>Narrator
-					<input name="system.entermeta.narrator.value" type="text"
-						value="{{system.entermeta.narrator.value}}" data-dtype="String" placeholder="Narrator Name" />
-				</div>
-				<div>Saga
-					<input name="system.entermeta.sagas.value" type="text" value="{{system.entermeta.sagas.value}}"
-						data-dtype="String" placeholder="Saga Name" />
-				</div>
-				<div>Sessions Played
-					<input name="system.entermeta.sessions.value" type="number"
-						value="{{system.entermeta.sessions.value}}" data-dtype="Number" placeholder="0" />
-				</div>
-				<div>Coalition
-					<input name="system.entermeta.coalition.value" type="text"
-						value="{{system.entermeta.coalition.value}}" data-dtype="String" placeholder="Coalition Name" />
-				</div>
-				<div>Faction
-					<input name="system.entermeta.faction.value" type="text" value="{{system.entermeta.faction.value}}"
-						data-dtype="String" placeholder="Faction Name" />
-				</div>
-			</div>
+				<div></div>
+			{{/if}}
 		</div>
 		<div class="layout-container-grid1x4 style-container-grid1x4">
 			<div class="layout-container-small style-container-small">
@@ -126,6 +70,7 @@
 		<div class="layout-container-nav style-container-nav">
 			<nav class="style-container-nav-children csnavselector tabs" data-group="cs">
 				<a class="item" data-tab="cs-charstats">📊 Overview</a>
+				<a class="item" data-tab="cs-summary">✍️ Summary</a>
 				<a class="item" data-tab="cs-perks">📚 Perks</a>
 				<a class="item" data-tab="cs-metapowers">Ⓜ️ Metapowers</a>
 				<a class="item" data-tab="cs-combos">🔗 Combos</a>
@@ -136,6 +81,9 @@
 		<section class="csnavtabs">
 			<div class="tab cs-charstats" data-group="cs" data-tab="cs-charstats">
 				{{> "systems/metanthropes-system/templates/helpers/actor-charstats.hbs"}}
+			</div>
+			<div class="tab cs-summary" data-group="cs" data-tab="cs-summary">
+				{{> "systems/metanthropes-system/templates/helpers/actor-summary.hbs"}}
 			</div>
 			<div class="tab cs-metapowers" data-group="cs" data-tab="cs-metapowers">
 				<div class="layout-container-small style-container-small">

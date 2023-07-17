@@ -17,6 +17,7 @@ import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 import { MetaEvaluateReRoll } from "./helpers/metaeval.mjs";
 // import { MetaInitiative } from "./helpers/metainitiative.mjs";
 // Import Meta-Dice rolling functions.
+import { Rolld10ReRoll } from "./helpers/newactor.mjs";
 import { MetaReRoll } from "./helpers/metarollstat.mjs";
 import { MetapowerReRoll } from "./helpers/mprollstat.mjs";
 import { PossessionReRoll } from "./helpers/posrollstat.mjs";
@@ -27,17 +28,25 @@ import { ReRollDamage } from "./helpers/extrasroll.mjs";
 import { ReRollHealing } from "./helpers/extrasroll.mjs";
 import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
 import { PossessionUse } from "./helpers/posuse.mjs";
-// Handlebars helper for drop-down menus.
+//* Handlebars helpers
 //! Supposedly Foundry includes its own select helper, but I couldn't get it to work.
 Handlebars.registerHelper("selected", function (option, value) {
 	return option === value ? "selected" : "";
 });
-// Handlebars helper for displaying actor values on the item sheets.
+//? Handlebars helper for displaying actor values on the item sheets.
+//! I don't recall where this is being used exactly
 Handlebars.registerHelper("getStatValue", function (statName) {
 	//handlebars helper console log
 	console.log("Handlebars helper statName:", statName);
 	return actor.system.RollStats[statName];
 });
+//? this allows me to use an each loop to list stuff unless the key is...
+Handlebars.registerHelper("unless_key_is", function (key, value, options) {
+	if (key !== value) {
+		return options.fn(this);
+	}
+});
+
 // Log system initialization.
 Hooks.once("init", async function () {
 	console.log("====================================");
@@ -353,7 +362,8 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		//	console.log("=============================================================================================");
 		//! is this working now?
 		html.find(".hide-button").removeClass("layout-hide");
-		//! organize this
+		//! organize this - rerolls from chat
+		html.find(".rolld10-reroll").on("click", Rolld10ReRoll);
 		html.find(".metaeval-reroll").on("click", MetaEvaluateReRoll);
 		html.find(".meta-re-roll").on("click", MetaReRoll);
 		html.find(".metapower-re-roll").on("click", MetapowerReRoll);

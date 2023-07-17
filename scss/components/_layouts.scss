@@ -7,8 +7,8 @@
 	grid-template-rows: 1fr 1fr 1fr 1fr;
 	column-gap: 6px;
 	row-gap: 3px;
-	padding: $padding-lg;
-	margin: $margin-lg;
+	padding: $padding-sm;
+	margin: $margin-sm;
 	overflow: hidden;
 }
 .layout-container-grid3x4-cs {
@@ -18,8 +18,8 @@
 	grid-template-rows: 1fr 1fr 1fr 1fr;
 	column-gap: 3px;
 	row-gap: 3px;
-	padding: $padding-md;
-	margin: $margin-md;
+	padding: $padding-sm;
+	margin: $margin-sm;
 	overflow: hidden;
 }
 .layout-container-grid3x5-cs {
@@ -29,8 +29,8 @@
 	grid-template-rows: 1fr 1fr 1fr 1fr 0.8fr;
 	column-gap: 3px;
 	row-gap: 3px;
-	padding: $padding-md;
-	margin: $margin-md;
+	padding: $padding-sm;
+	margin: $margin-sm;
 	overflow: hidden;
 }
 //big container with 3 columns and 2 rows
@@ -40,8 +40,8 @@
 	grid-template-rows: 3fr 1fr;
 	column-gap: 6px;
 	row-gap: 3px;
-	padding: $padding-md;
-	margin: $margin-md;
+	padding: $padding-sm;
+	margin: $margin-sm;
 	overflow: hidden;
 }
 // container for chars conditions
@@ -79,7 +79,7 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	column-gap: 1px;
-	padding: $padding-zero;
+	padding: $padding-md;
 	margin: $margin-zero;
 	overflow: hidden;
 	overflow-wrap: break-word;
@@ -110,8 +110,8 @@
 	flex-wrap: nowrap;
 	flex-direction: row;
 	column-gap: 6px;
-	padding: $padding-md;
-	margin: $margin-md;
+	padding: $padding-sm;
+	margin: $margin-sm;
 	overflow: hidden;
 }
 .layout-container-grid1x4 {
@@ -120,8 +120,8 @@
 	flex-wrap: nowrap;
 	flex-direction: row;
 	column-gap: 6px;
-	padding: $padding-md;
-	margin: $margin-md;
+	padding: $padding-sm;
+	margin: $margin-sm;
 	overflow: hidden;
 }
 //small container with 1 flex row
@@ -135,8 +135,6 @@
 .layout-container-nav {
 	display: flex;
 	flex-direction: row;
-	padding: $padding-md;
-	margin: $margin-md;
 }
 .layout-metaroll-dialog {
 	display: flex;
