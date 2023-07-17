@@ -160,64 +160,69 @@ export async function NewActorDestiny(actor) {
 	});
 }
 export async function NewActorPrimeMetapower(actor) {
-    let dialogContent = `
+	let dialogContent = `
     <div class="metanthropes layout-metaroll-dialog">
         <h2>Choose your ${actor.type}'s Prime Ⓜ️ Metapower</h2>
         <form>
             <div class="form-group">
                 <label for="primeimg">Prime Ⓜ️ Metapower:</label>
-                <img id="primeimg" src="${actor.primeimg}" title="Choose your Prime Ⓜ️ Metapower" height="64" width="64" style="cursor:pointer;"/>
-                <span id="primemetapower">${actor.primeimg.split('/').pop().replace('.png', '')}</span>
+                <img id="primeimg" src="${
+					actor.primeimg
+				}" title="Choose your Prime Ⓜ️ Metapower" height="215" width="215" style="cursor:pointer;"/>
+                <span id="primemetapower">${actor.primeimg.split("/").pop().replace(".png", "")}</span>
             </div>
         </form>
     </div>
     `;
-    let dialogOptions = {
-        width: 600,
-        height: 250,
-        index: 1000,
-    };
-    return new Promise((resolve, reject) => {
-        let dialog = new Dialog(
-            {
-                title: `Step 2 of 10: ${actor.type}'s Prime Ⓜ️ Metapower`,
-                content: dialogContent,
-                buttons: {
-                    ok: {
-                        label: "Confirm Prime Ⓜ️ Metapower",
+	let dialogOptions = {
+		width: 600,
+		height: 360,
+		index: 1000,
+	};
+	return new Promise((resolve, reject) => {
+		let dialog = new Dialog(
+			{
+				title: `Step 2 of 10: ${actor.type}'s Prime Ⓜ️ Metapower`,
+				content: dialogContent,
+				buttons: {
+					ok: {
+						label: "Confirm Prime Ⓜ️ Metapower",
 						callback: async (html) => {
-							let primeimg = html.find('#primeimg').attr('src');
-							let primemetapower = decodeURIComponent(primeimg.split('/').pop().replace('.png', ''));
-							await actor.update({ "primeimg": primeimg, "system.entermeta.primemetapower.value": primemetapower });
+							let primeimg = html.find("#primeimg").attr("src");
+							let primemetapower = decodeURIComponent(primeimg.split("/").pop().replace(".png", ""));
+							await actor.update({
+								primeimg: primeimg,
+								"system.entermeta.primemetapower.value": primemetapower,
+							});
 							console.log(`New Prime Metapower: ${primemetapower}`);
 							resolve();
-						}
-                    },
-                    cancel: {
-                        label: "Cancel",
-                        callback: () => reject(),
-                    },
-                },
-                default: "ok",
-                render: html => {
-                    html.find('#primeimg').click(ev => {
-                        //! evaluate proper behaviour and set accordingly: https://foundryvtt.com/api/v10/classes/client.FilePicker.html
+						},
+					},
+					cancel: {
+						label: "Cancel",
+						callback: () => reject(),
+					},
+				},
+				default: "ok",
+				render: (html) => {
+					html.find("#primeimg").click((ev) => {
+						//! evaluate proper behaviour and set accordingly: https://foundryvtt.com/api/v10/classes/client.FilePicker.html
 						new FilePicker({
-                            type: 'image',
-                            target: 'systems/metanthropes-system/artwork/metapowers',
-							callback: path => {
-								html.find('#primeimg').attr('src', path);
-								let primemetapower = decodeURIComponent(path.split('/').pop().replace('.png', ''));
-								html.find('#primemetapower').text(primemetapower);
-							}							
-                        }).browse();
-                    });
-                }
-            },
-            dialogOptions
-        );
-        dialog.render(true);
-    });
+							type: "image",
+							target: "systems/metanthropes-system/artwork/metapowers",
+							callback: (path) => {
+								html.find("#primeimg").attr("src", path);
+								let primemetapower = decodeURIComponent(path.split("/").pop().replace(".png", ""));
+								html.find("#primemetapower").text(primemetapower);
+							},
+						}).browse();
+					});
+				},
+			},
+			dialogOptions
+		);
+		dialog.render(true);
+	});
 }
 export async function NewActorCharacteristics(actor) {
 	let dialogContent = `
@@ -460,14 +465,15 @@ export async function NewActorMindStats(actor) {
 		index: 1000,
 	};
 	return new Promise((resolve, reject) => {
-		let dialog = new Dialog({
-			title: `Step 5 of 10: ${actor.type}'s Mind 📊 Stats`,
-			content: dialogContent,
-			buttons: {
-				ok: {
-					label: "Confirm & Roll Mind 📊 Stats",
-					callback: async (html) => {
-						let char = "Mind";
+		let dialog = new Dialog(
+			{
+				title: `Step 5 of 10: ${actor.type}'s Mind 📊 Stats`,
+				content: dialogContent,
+				buttons: {
+					ok: {
+						label: "Confirm & Roll Mind 📊 Stats",
+						callback: async (html) => {
+							let char = "Mind";
 							let primary = html.find('[name="primary"]').val();
 							let secondary = html.find('[name="secondary"]').val();
 							let tertiary = html.find('[name="tertiary"]').val();
@@ -480,48 +486,48 @@ export async function NewActorMindStats(actor) {
 								reject();
 							}
 						},
+					},
+					cancel: {
+						label: "Cancel",
+						callback: () => reject(),
+					},
 				},
-				cancel: {
-					label: "Cancel",
-					callback: () => reject(),
+				default: "ok",
+				render: (html) => {
+					// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
+					html.find('[name="primary"]').change((event) => {
+						// Update the options in the Secondary dropdown based on the Primary selection
+						let primary = event.target.value;
+						let secondaryOptions = ["Perception", "Manipulation", "Creativity"].filter(
+							(option) => option !== primary
+						);
+						let secondaryDropdown = html.find('[name="secondary"]');
+						secondaryDropdown.empty();
+						secondaryOptions.forEach((option) => {
+							secondaryDropdown.append(new Option(option, option));
+						});
+						// Trigger a change event to update the Tertiary dropdown
+						secondaryDropdown.trigger("change");
+					});
+					html.find('[name="secondary"]').change((event) => {
+						// Update the options in the Tertiary dropdown based on the Secondary selection
+						let primary = html.find('[name="primary"]').val();
+						let secondary = event.target.value;
+						let tertiaryOptions = ["Perception", "Manipulation", "Creativity"].filter(
+							(option) => option !== primary && option !== secondary
+						);
+						let tertiaryDropdown = html.find('[name="tertiary"]');
+						tertiaryDropdown.empty();
+						tertiaryOptions.forEach((option) => {
+							tertiaryDropdown.append(new Option(option, option));
+						});
+					});
 				},
 			},
-			default: "ok",
-			render: (html) => {
-				// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
-				html.find('[name="primary"]').change((event) => {
-					// Update the options in the Secondary dropdown based on the Primary selection
-					let primary = event.target.value;
-					let secondaryOptions = ["Perception", "Manipulation", "Creativity"].filter(
-						(option) => option !== primary
-					);
-					let secondaryDropdown = html.find('[name="secondary"]');
-					secondaryDropdown.empty();
-					secondaryOptions.forEach((option) => {
-						secondaryDropdown.append(new Option(option, option));
-					});
-					// Trigger a change event to update the Tertiary dropdown
-					secondaryDropdown.trigger("change");
-				});
-				html.find('[name="secondary"]').change((event) => {
-					// Update the options in the Tertiary dropdown based on the Secondary selection
-					let primary = html.find('[name="primary"]').val();
-					let secondary = event.target.value;
-					let tertiaryOptions = ["Perception", "Manipulation", "Creativity"].filter(
-						(option) => option !== primary && option !== secondary
-					);
-					let tertiaryDropdown = html.find('[name="tertiary"]');
-					tertiaryDropdown.empty();
-					tertiaryOptions.forEach((option) => {
-						tertiaryDropdown.append(new Option(option, option));
-					});
-				});
-			},
-		},
-		dialogOptions
-	);
-	dialog.render(true);
-});
+			dialogOptions
+		);
+		dialog.render(true);
+	});
 }
 export async function NewActorSoulStats(actor) {
 	let dialogContent = `
@@ -561,14 +567,15 @@ export async function NewActorSoulStats(actor) {
 		index: 1000,
 	};
 	return new Promise((resolve, reject) => {
-		let dialog = new Dialog({
-			title: `Step 6 of 10: ${actor.type}'s Soul 📊 Stats`,
-			content: dialogContent,
-			buttons: {
-				ok: {
-					label: "Confirm & Roll Soul 📊 Stats",
-					callback: async (html) => {
-						let char = "Soul";
+		let dialog = new Dialog(
+			{
+				title: `Step 6 of 10: ${actor.type}'s Soul 📊 Stats`,
+				content: dialogContent,
+				buttons: {
+					ok: {
+						label: "Confirm & Roll Soul 📊 Stats",
+						callback: async (html) => {
+							let char = "Soul";
 							let primary = html.find('[name="primary"]').val();
 							let secondary = html.find('[name="secondary"]').val();
 							let tertiary = html.find('[name="tertiary"]').val();
@@ -581,48 +588,48 @@ export async function NewActorSoulStats(actor) {
 								reject();
 							}
 						},
+					},
+					cancel: {
+						label: "Cancel",
+						callback: () => reject(),
+					},
 				},
-				cancel: {
-					label: "Cancel",
-					callback: () => reject(),
+				default: "ok",
+				render: (html) => {
+					// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
+					html.find('[name="primary"]').change((event) => {
+						// Update the options in the Secondary dropdown based on the Primary selection
+						let primary = event.target.value;
+						let secondaryOptions = ["Willpower", "Consciousness", "Awareness"].filter(
+							(option) => option !== primary
+						);
+						let secondaryDropdown = html.find('[name="secondary"]');
+						secondaryDropdown.empty();
+						secondaryOptions.forEach((option) => {
+							secondaryDropdown.append(new Option(option, option));
+						});
+						// Trigger a change event to update the Tertiary dropdown
+						secondaryDropdown.trigger("change");
+					});
+					html.find('[name="secondary"]').change((event) => {
+						// Update the options in the Tertiary dropdown based on the Secondary selection
+						let primary = html.find('[name="primary"]').val();
+						let secondary = event.target.value;
+						let tertiaryOptions = ["Willpower", "Consciousness", "Awareness"].filter(
+							(option) => option !== primary && option !== secondary
+						);
+						let tertiaryDropdown = html.find('[name="tertiary"]');
+						tertiaryDropdown.empty();
+						tertiaryOptions.forEach((option) => {
+							tertiaryDropdown.append(new Option(option, option));
+						});
+					});
 				},
 			},
-			default: "ok",
-			render: (html) => {
-				// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
-				html.find('[name="primary"]').change((event) => {
-					// Update the options in the Secondary dropdown based on the Primary selection
-					let primary = event.target.value;
-					let secondaryOptions = ["Willpower", "Consciousness", "Awareness"].filter(
-						(option) => option !== primary
-					);
-					let secondaryDropdown = html.find('[name="secondary"]');
-					secondaryDropdown.empty();
-					secondaryOptions.forEach((option) => {
-						secondaryDropdown.append(new Option(option, option));
-					});
-					// Trigger a change event to update the Tertiary dropdown
-					secondaryDropdown.trigger("change");
-				});
-				html.find('[name="secondary"]').change((event) => {
-					// Update the options in the Tertiary dropdown based on the Secondary selection
-					let primary = html.find('[name="primary"]').val();
-					let secondary = event.target.value;
-					let tertiaryOptions = ["Willpower", "Consciousness", "Awareness"].filter(
-						(option) => option !== primary && option !== secondary
-					);
-					let tertiaryDropdown = html.find('[name="tertiary"]');
-					tertiaryDropdown.empty();
-					tertiaryOptions.forEach((option) => {
-						tertiaryDropdown.append(new Option(option, option));
-					});
-				});
-			},
-		},
-		dialogOptions
-	);
-	dialog.render(true);
-});
+			dialogOptions
+		);
+		dialog.render(true);
+	});
 }
 export async function NewActorRoleplay(actor) {
 	let dialogContent = `
@@ -631,10 +638,7 @@ export async function NewActorRoleplay(actor) {
 			<form>
 				<div class="form-group">
 					<label for="RPbackground">Background:</label>
-					<select id="RPbackground" name="RPbackground">
-						<option value="yes" selected>Yes</option>
-						<option value="no">No</option>
-					</select>
+					<input type="text" id="RPbackground" name="RPbackground" value="${actor.type}'s Background">
 				</div>
 				<div class="form-group">
 				<label for="RPmetamorphosis">Metamorphosis:</label>
@@ -654,15 +658,31 @@ export async function NewActorRoleplay(actor) {
 			<div class="form-group">
 			<label for="RParc">Arc:</label>
 			<select id="RParc" name="RParc">
-				<option value="yes" selected>Yes</option>
-				<option value="no">No</option>
+				<option value="Architect" selected>Architect</option>
+				<option value="Autocrat">Autocrat</option>
+				<option value="Catalyst">Catalyst</option>
+				<option value="Harmonizer">Harmonizer</option>
+				<option value="Herald">Herald</option>
+				<option value="Investigator">Investigator</option>
+				<option value="Naturalist">Naturalist</option>
+				<option value="Predator">Predator</option>
+				<option value="Protector">Protector</option>
+				<option value="Wayfarer">Wayfarer</option>
 			</select>
 		</div>
 		<div class="form-group">
 		<label for="RPregression">Regression:</label>
 		<select id="RPregression" name="RPregression">
-			<option value="yes" selected>Yes</option>
-			<option value="no">No</option>
+			<option value="Anachronism" selected>Anachronism</option>
+			<option value="Artisan">Artisan</option>
+			<option value="Beloveds">Beloveds</option>
+			<option value="Consensus">Consensus</option>
+			<option value="Disbelief">Disbelief</option>
+			<option value="Heritage">Heritage</option>
+			<option value="Materialism">Materialism</option>
+			<option value="Overenthusiasm">Overenthusiasm</option>
+			<option value="Persona">Persona</option>
+			<option value="Suppressed">Suppressed </option>
 		</select>
 		</div>
 		</form>
@@ -717,31 +737,39 @@ export async function NewActorProgression(actor) {
 			</form>
 		</div>
 		`;
+	let dialogOptions = {
+		width: 550,
+		height: 210,
+		index: 1000,
+	};
 	return new Promise((resolve, reject) => {
-		let dialog = new Dialog({
-			title: `Step 8 of 10: ${actor.type}'s 📈 Progression`,
-			content: dialogContent,
-			buttons: {
-				ok: {
-					label: "Confirm 📈 Progression",
-					callback: async (html) => {
-						let startingxp = html.find('[name="startingxp"]').val();
-						await actor.update({ "system.Vital.Experience.Total": Number(startingxp) });
-						console.log(`${actor.type}'s Starting Experience: ${startingxp}`);
-						let startingperks = html.find('[name="startingperks"]').val();
-						//? setting the starting perks count to the database to be used later in determining XP costs
-						await actor.update({ "system.Perks.Details.Starting.value": startingperks });
-						console.log(`${actor.type}'s Starting Perks: ${startingperks}`);
-						resolve();
+		let dialog = new Dialog(
+			{
+				title: `Step 8 of 10: ${actor.type}'s 📈 Progression`,
+				content: dialogContent,
+				buttons: {
+					ok: {
+						label: "Confirm 📈 Progression",
+						callback: async (html) => {
+							let startingxp = html.find('[name="startingxp"]').val();
+							await actor.update({ "system.Vital.Experience.Total": Number(startingxp) });
+							console.log(`${actor.type}'s Starting Experience: ${startingxp}`);
+							let startingperks = html.find('[name="startingperks"]').val();
+							//? setting the starting perks count to the database to be used later in determining XP costs
+							await actor.update({ "system.Perks.Details.Starting.value": startingperks });
+							console.log(`${actor.type}'s Starting Perks: ${startingperks}`);
+							resolve();
+						},
+					},
+					cancel: {
+						label: "Cancel",
+						callback: () => reject(),
 					},
 				},
-				cancel: {
-					label: "Cancel",
-					callback: () => reject(),
-				},
+				default: "ok",
 			},
-			default: "ok",
-		});
+			dialogOptions
+		);
 		dialog.render(true);
 	});
 }
@@ -826,24 +854,54 @@ export async function NewActorSummary(actor) {
 export async function NewActorFinish(actor) {
 	let dialogContent = `
 		<div class="metanthropes layout-metaroll-dialog">
-			<h2>${actor.type}: ${actor.name} has entered the Multiverse!</h2>
+			<h2>${actor.type}: ${actor.name} is ready to enter the Multiverse!</h2>
+			<form>
+            <div class="form-group">
+                <label for="actorimg">${actor.type}'s Image:</label>
+                <img id="actorimg" src="${actor.img}" title="Choose your ${actor.type}'s Image" height="320" width="320" style="cursor:pointer;"/>
+            </div>
+        </form>
 		</div>
 	`;
+	let dialogOptions = {
+		width: 520,
+		height: 520,
+		index: 1000,
+	};
 	return new Promise((resolve, reject) => {
-		let dialog = new Dialog({
-			title: `Step 10 of 10: Enter Meta`,
-			content: dialogContent,
-			buttons: {
-				ok: {
-					label: "and so it begins...",
-					callback: async () => {
-						ui.notifications.info(actor.name + " has entered the Multiverse!");
-						resolve();
+		let dialog = new Dialog(
+			{
+				title: `Step 10 of 10: Enter Meta`,
+				content: dialogContent,
+				buttons: {
+					ok: {
+						label: "and so it begins...",
+						callback: async (html) => {
+							let actorimg = html.find("#actorimg").attr("src");
+							await actor.update({
+								img: actorimg,
+							});
+							ui.notifications.info(actor.name + " has entered the Multiverse!");
+							resolve();
+						},
 					},
 				},
+				default: "ok",
+				render: (html) => {
+					html.find("#actorimg").click((ev) => {
+						//! evaluate proper behaviour and set accordingly: https://foundryvtt.com/api/v10/classes/client.FilePicker.html
+						new FilePicker({
+							type: "image",
+							target: "systems/metanthropes-system/artwork/tokens/portraits/",
+							callback: (path) => {
+								html.find("#actorimg").attr("src", path);
+							},
+						}).browse();
+					});
+				},
 			},
-			default: "ok",
-		});
+			dialogOptions
+		);
 		dialog.render(true);
 	});
 }

@@ -1,23 +1,18 @@
 <form class="metanthropes {{cssClass}}" autocomplete="off">
 	<header>
-		<div class="layout-container-grid4x1 style-container-grid4x1">
-			<div><img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="85" width="85" />
-			</div>
-			<div>Protagonist<input name="name" type="text" value="{{actor.name}}" placeholder="Protagonist Name"
-					data-dtype="String" />
-			</div>
-			<div>Player
-				<input name="system.metaowner.value" type="text" value="{{system.metaowner.value}}"
-					placeholder="" data-dtype="String" />
+		<div class="layout-container-grid3x1 style-container-grid3x1">
+			<div>Protagonist
+				<input name="name" type="text" value="{{actor.name}}" placeholder="Protagonist Name"data-dtype="String" />
 			</div>
 			{{#if system.metaowner.value}}
 			<div>
-				<img src="systems/metanthropes-system/artwork/metanthropes-logo.webp"
-					alt="Metanthropes"
-					height="85" width="85" />
+				<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="85" width="85" style="cursor:pointer; border: none;" />
+				<img src="systems/metanthropes-system/artwork/Meta-Avatar-Rotating.gif"
+					alt="Metanthropes" title="Metanthropes RPG {{actor.type}}"
+					height="85" width="85" style="border: none; border-radius: 50%" />
 				<img src="systems/metanthropes-system/artwork/metapowers/{{system.entermeta.primemetapower.value}}.png"
-					alt="{{system.entermeta.primemetapower.value}}"
-					height="85" width="85" />
+					alt="{{system.entermeta.primemetapower.value}}" title="Prime Ⓜ️ Metapower: {{system.entermeta.primemetapower.value}}"
+					height="85" width="85" style="border: none;" />
 			</div>
 			{{else}}
 				<div>
@@ -25,10 +20,13 @@
 						title="Create Your Protagonist">
 						<img src="systems/metanthropes-system/artwork/metanthropes-logo.webp"
 							alt="New Protagonist"
-							height="65" width="65" />
+							height="65" width="65" style="cursor:pointer; border: none;" />
 					</button>
 				</div>
 			{{/if}}
+			<div>Player
+				<input name="system.metaowner.value" type="text" value="{{system.metaowner.value}}" placeholder="" data-dtype="String" />
+			</div>
 		</div>
 		<div class="layout-container-grid1x4 style-container-grid1x4">
 			<div class="layout-container-small style-container-small">
