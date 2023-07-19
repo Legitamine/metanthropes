@@ -196,10 +196,10 @@ export async function NewActorPrimeMetapower(actor) {
 				default: "ok",
 				render: (html) => {
 					html.find("#primeimg").click((ev) => {
-						//! evaluate proper behaviour and set accordingly: https://foundryvtt.com/api/v10/classes/client.FilePicker.html
 						new FilePicker({
-							type: "image",
-							target: "systems/metanthropes-system/artwork/metapowers",
+							resource: "data",
+							current: "systems/metanthropes-system/artwork/metapowers",
+							displayMode: "thumbs",
 							callback: (path) => {
 								html.find("#primeimg").attr("src", path);
 								let primemetapower = decodeURIComponent(path.split("/").pop().replace(".png", ""));
@@ -425,7 +425,7 @@ export async function NewActorMindStats(actor) {
 			<div class="form-group">
 				<label for="primary">First Pick:</label>
 				<select id="primary" name="primary">
-					<option value="Perception" selected>Perception</option>
+					<option value="Perception">Perception</option>
 					<option value="Manipulation">Manipulation</option>
 					<option value="Creativity">Creativity</option>
 				</select>
@@ -433,7 +433,7 @@ export async function NewActorMindStats(actor) {
 			<div class="form-group">
 				<label for="secondary">Second Pick:</label>
 				<select id="secondary" name="secondary">
-					<option value="Manipulation" selected>Manipulation</option>
+					<option value="Manipulation">Manipulation</option>
 					<option value="Perception">Perception</option>
 					<option value="Creativity">Creativity</option>
 				</select>
@@ -441,7 +441,7 @@ export async function NewActorMindStats(actor) {
 			<div class="form-group">
 				<label for="tertiary">Third Pick:</label>
 				<select id="tertiary" name="tertiary">
-					<option value="Creativity" selected>Creativity</option>
+					<option value="Creativity">Creativity</option>
 					<option value="Perception">Perception</option>
 					<option value="Manipulation">Manipulation</option>
 				</select>
@@ -879,10 +879,10 @@ export async function NewActorFinish(actor) {
 				default: "ok",
 				render: (html) => {
 					html.find("#actorimg").click((ev) => {
-						//! evaluate proper behaviour and set accordingly: https://foundryvtt.com/api/v10/classes/client.FilePicker.html
 						new FilePicker({
-							type: "image",
-							target: "systems/metanthropes-system/artwork/tokens/portraits/",
+							resource: "data",
+							current: "systems/metanthropes-system/artwork/tokens/portraits/",
+							displayMode: "tiles",
 							callback: (path) => {
 								html.find("#actorimg").attr("src", path);
 							},

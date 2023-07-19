@@ -27,7 +27,7 @@ export class MetanthropesActor extends Actor {
 			if (data.type == "MetaTherion")
 				createData.img = "systems/metanthropes-system/artwork/tokens/token-manipulator.webp";
 			if (data.type == "Protagonist")
-				createData.img = "systems/metanthropes-system/artwork/metanthropes-logo.webp";
+				createData.img = "systems/metanthropes-system/artwork/tokens/portraits/Select Portrait.webp";
 			if (data.type == "Metanthrope")
 				createData.img = "systems/metanthropes-system/artwork/tokens/token-arbiter.webp";
 			if (data.type == "Artificial")
@@ -78,9 +78,10 @@ export class MetanthropesActor extends Actor {
 		}
 		//? for Protagonists set the metanthropes-logo as default icon for metapower, if no metapower is selected
 		if (this.type == "Protagonist") {
-			if (!this.primeimg || this.primeimg == "systems/metanthropes-system/artwork/.webp") {
+			if (!this.primeimg || this.primeimg == "systems/metanthropes-system/artwork/.png") {
+				//? for Protagonists without a prime metapower defined, make it the metanthropes-logo
 				if (!this.system.entermeta.primemetapower.value) {
-				this.primeimg = `systems/metanthropes-system/artwork/metanthropes-logo.webp`;
+				this.primeimg = `systems/metanthropes-system/artwork/metapowers/Choose Prime Metapower.png`;
 				} else {
 				//? for Protagonists with a prime metapower defined, make it their respective metapower icon
 				let primemetapowerimage = this.system.entermeta.primemetapower.value;
