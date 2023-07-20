@@ -13,7 +13,7 @@ This is the official Metanthropes RPG system for Foundry VTT.
 This is a work in progress and is not ready for general use. Installation instructions will be placed here when the system is ready. Please do not use this system for your games, unless you want to help playtest and know what you're doing. If so, please join us on our Discord server: https://metanthropes.com/discord
 
 ## Supported Modules
-This System aims to utilize the latest and best in Foundry VTT. Currently offers support for the latest stable Foundry VTT version 10.291. Support for Foundry VTT version 11 is currently in development.
+This System aims to utilize the latest and best in Foundry VTT. Currently offers support for Foundry VTT versions 10 and 11. Latest supported version is v11.305.
 
 To get the best experience while playing Metanthropes RPG, we recommend to install the following fully supported modules:
 
@@ -36,12 +36,17 @@ Briefly, we are working on the following features:
 - Integration with 3rd party modules to automate the Metapower Activation and Possession Usage with visual and audio effects.
 ### Latest Changes
 These are the latest changes for the Official Metanthropes RPG System for Foundry VTT
-#### 0.6.00 - current build (status)
-- Foundry core version 11 support (pending)
+#### 0.6.00 - 0.6.10 (status)
+- New Player Experience: New Character sheet for protagonists with better UI and UX (done)
+- New Player Experience: New Actor Creation workflow with automations and drop-down menus (done)
+- New Player Experience: Left Clicking on a rollable Stat now will automatically roll and apply proper conditions (eg. Penalty from Disease) (done)
+- New Player Experience: Right Clicking on a rollable Stat now will open a dialog with options to add a bonus and a penalty, and a Multi-Action reduction. (done)
+- New Player Experience: (2 minor issues pending)
+- Foundry core version 11 support (done for up to v11.305)
 - XP System: Metapowers (pending)
-- New Player Experience (pending)
+- XP System: Starting Perks now are free and don't cost XP (done)
 - New Actor / Token logic to support non-linked Actors (testing)
-- Fixed bug with rolling 100 (Critical Failure) while having a Stat that is over 100 would not display levels of failure correctly and should be 10 levels of failure (done)
+- Bug Fixing (Critical Failure Roll with Stat>100 had wrong total Levels of Fail calculation) & File Naming fixes (done)
 #### 0.5.00 - 0.5.37
 - Possessions: Possessions Sheet
 - Possessions: Chat Roll Message Results & Destiny Re-Roll
