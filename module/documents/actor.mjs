@@ -460,7 +460,7 @@ export class MetanthropesActor extends Actor {
 		}
 		//? in addition to the modifiers, Wobbly also affects final movemement value
 		let wobblyModifier = Number(systemData.Characteristics.Mind.Stats.Creativity.Condition.Current);
-		let movementvalue = (speedModifiers[speedcurrent] * weightModifiers[weightcurrent] * sizeModifiers[sizecurrent]) - wobblyModifier;
+		let movementvalue = Math.ceil((speedModifiers[speedcurrent] * weightModifiers[weightcurrent] * sizeModifiers[sizecurrent]) - wobblyModifier);
 		this.update ({ "system.physical.movement.value": movementvalue });
 		this.update ({ "system.physical.movement.additional": movementvalue });
 		this.update ({ "system.physical.movement.sprint": movementvalue * 5 });
