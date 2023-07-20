@@ -38,7 +38,7 @@ Briefly, we are working on the following features:
 These are the latest changes for the Official Metanthropes RPG System for Foundry VTT
 #### 0.7.00 - Current (status)
 - Foundry core version 11 support (done for up to v11.305)
-- New Player Experience: Movement Implementation (done)
+- New Player Experience: Movement Automations (done)
 - XP System: Metapowers (pending)
 - New Actor / Token logic to support non-linked Actors (testing)
 #### 0.6.00 - 0.6.10

@@ -458,7 +458,9 @@ export class MetanthropesActor extends Actor {
 			"19": 6561,
 			"20": 19683,
 		}
-		let movementvalue = speedModifiers[speedcurrent] * weightModifiers[weightcurrent] * sizeModifiers[sizecurrent];
+		//? in addition to the modifiers, Wobbly also affects final movemement value
+		let wobblyModifier = Number(systemData.Characteristics.Mind.Stats.Creativity.Condition.Current);
+		let movementvalue = (speedModifiers[speedcurrent] * weightModifiers[weightcurrent] * sizeModifiers[sizecurrent]) - wobblyModifier;
 		this.update ({ "system.physical.movement.value": movementvalue });
 		this.update ({ "system.physical.movement.additional": movementvalue });
 		this.update ({ "system.physical.movement.sprint": movementvalue * 5 });
