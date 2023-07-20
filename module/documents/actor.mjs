@@ -100,6 +100,7 @@ export class MetanthropesActor extends Actor {
 		const actorData = this;
 		this._prepareDerivedCharacteristicsData(actorData);
 		this._prepareDerivedPerksData(actorData);
+		this._prepareDerivedMovementData(actorData);
 	}
 	_prepareDerivedCharacteristicsData(actorData) {
 		//	we take all actors that have characteristics and prepare their data for rolling, as well as calculte max life, movement and XP spent.
@@ -365,6 +366,105 @@ export class MetanthropesActor extends Actor {
 		//	console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
 		console.log("====================");
 		console.log("Metanthropes RPG", this.type, "-", this.name, "is ready for Action!");
+		console.log("====================");
+	}
+	_prepareDerivedMovementData(actorData) {
+		const systemData = actorData.system;
+		console.log("====================");
+		console.log("Metanthropes RPG Preparing Movement for", this.type, "-", this.name);
+		console.log("====================");
+		//*first we will calculate the current values from buffs and conditions, then we take their modifiers and calculate the movement value
+		let speedinitial = Number(systemData.physical.speed.initial);
+		let weightinitial = Number(systemData.physical.weight.initial);
+		let sizeinitial = Number(systemData.physical.size.initial);
+		let speedbuff = Number(systemData.physical.speed.Buffs.accelerated.value);
+		let speedcondition = Number(systemData.physical.speed.Conditions.slowed.value);
+		let weightbuff = Number(systemData.physical.weight.Buffs.lightened.value);
+		let weightcondition = Number(systemData.physical.weight.Conditions.encumbered.value);
+		let sizebuff = Number(systemData.physical.size.Buffs.enlarged.value);
+		let sizecondition = Number(systemData.physical.size.Conditions.shrunken.value);
+		let sizecurrent = sizeinitial + sizebuff - sizecondition;
+		let weightcurrent = weightinitial - weightbuff + weightcondition;
+		let speedcurrent = speedinitial + speedbuff - speedcondition;
+		this.update({ "system.physical.size.value": sizecurrent });
+		this.update({ "system.physical.weight.value": weightcurrent });
+		this.update({ "system.physical.speed.value": speedcurrent });
+		let speedModifiers = {
+			"0": 0,
+			"1": 0,
+			"2": 0,
+			"3": 0,
+			"4": 0,
+			"5": 1,
+			"6": 2,
+			"7": 4,
+			"8": 6,
+			"9": 8,
+			"10": 10,
+			"11": 20,
+			"12": 50,
+			"13": 100,
+			"14": 250,
+			"15": 500,
+			"16": 1000,
+			"17": 2000,
+			"18": 5000,
+			"19": 10000,
+			"20": 20000,
+		}
+		let weightModifiers = {
+			"0": 200,
+			"1": 100,
+			"2": 50,
+			"3": 20,
+			"4": 10,
+			"5": 5,
+			"6": 4,	
+			"7": 3,
+			"8": 2,
+			"9": 1.5,
+			"10": 1,
+			"11": 0.8,
+			"12": 0.6,
+			"13": 0.4,
+			"14": 0.2,
+			"15": 0.1,
+			"16": 0.02,
+			"17": 0.01,
+			"18": 0.002,
+			"19": 0.001,
+			"20": 0.0002,
+		}
+		let sizeModifiers = {
+			"0": 0.0002,
+			"1": 0.001,
+			"2": 0.002,
+			"3": 0.01,
+			"4": 0.02,
+			"5": 0.1,
+			"6": 0.2,
+			"7": 0.4,
+			"8": 0.6,
+			"9": 0.8,
+			"10": 1,
+			"11": 2,
+			"12": 3,
+			"13": 9,
+			"14": 27,
+			"15": 81,
+			"16": 243,
+			"17": 729,
+			"18": 2187,
+			"19": 6561,
+			"20": 19683,
+		}
+		let movementvalue = speedModifiers[speedcurrent] * weightModifiers[weightcurrent] * sizeModifiers[sizecurrent];
+		this.update ({ "system.physical.movement.value": movementvalue });
+		this.update ({ "system.physical.movement.additional": movementvalue });
+		this.update ({ "system.physical.movement.sprint": movementvalue * 5 });
+		console.log ("Metanthropes RPG Movement Value:", movementvalue, "Additional:", movementvalue, "Sprint:", movementvalue * 5);
+		console.log("====================");
+		console.log("Metanthropes RPG", this.name, "is ready to Move!");
 		console.log("====================");
 	}
 	getRollData() {

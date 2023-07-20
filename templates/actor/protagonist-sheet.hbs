@@ -1,11 +1,9 @@
 <form class="metanthropes {{cssClass}}" autocomplete="off">
 	<header>
-		<div class="layout-container-grid3x1 style-container-grid3x1">
+		<div class="layout-container-actorinfo style-container-actorinfo">
 			{{#if system.metaowner.value}}
-			<div>Protagonist
-				<input name="name" type="text" value="{{actor.name}}" placeholder="Protagonist Name"data-dtype="String" />
-			</div>
-			<div>
+			<div class="style-cs-chars-label">{{actor.name}}</div>
+			<div class="style-cs-stats-label">
 				<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="85" width="85" style="cursor:pointer; border: none;" />
 				<img src="systems/metanthropes-system/artwork/Meta-Avatar-Rotating.gif"
 					alt="Metanthropes" title="Metanthropes RPG {{actor.type}}"
@@ -14,23 +12,21 @@
 					alt="{{system.entermeta.primemetapower.value}}" title="Prime Ⓜ️ Metapower: {{system.entermeta.primemetapower.value}}"
 					height="85" width="85" style="border: none;" />
 			</div>
-			<div>Player
-				<input name="system.metaowner.value" type="text" value="{{system.metaowner.value}}" placeholder="" data-dtype="String" />
-			</div>
+			<div class="style-cs-stats-label">{{system.metaowner.value}}</div>
 			{{else}}
 				<div></div>
 				<div>
 					<button class="new-actor"
 						title="Create Your Protagonist">
 						<img src="systems/metanthropes-system/artwork/metanthropes-logo.webp"
-							alt="New Protagonist"
+							alt="Create Your Protagonist"
 							height="65" width="65" style="cursor:pointer; border: none;" />
 					</button>
 				</div>
 				<div></div>
 			{{/if}}
 		</div>
-		<div class="layout-container-grid1x4 style-container-grid1x4">
+		<div class="layout-container-vitals style-container-vitals">
 			<div class="layout-container-small style-container-small">
 				<div class="style-labels-text">
 					❤️ Life
@@ -56,12 +52,6 @@
 					<input name="system.Vital.Destiny.value" type="number" value="{{system.Vital.Destiny.value}}"
 						data-dtype="Number" placeholder="0" />/<input name="system.Vital.Destiny.max" type="number"
 						value="{{system.Vital.Destiny.max}}">
-				</div>
-			</div>
-			<div class="layout-container-small style-container-small">
-				<div class="style-labels-text">👣 Movement
-					<input name="system.physical.movement.initial" type="number"
-						value="{{system.physical.movement.initial}}" data-dtype="Number" placeholder="10" />
 				</div>
 			</div>
 		</div>
