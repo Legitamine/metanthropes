@@ -16,7 +16,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
 			classes: ["metanthropes", "sheet", "actor"], // these are custom css classes that are used in the html file
-			width: 1000,
+			width: 1012,
 			height: 920,
 			closeOnSubmit: false,
 			submitOnClose: true,

@@ -36,17 +36,19 @@ Briefly, we are working on the following features:
 - Integration with 3rd party modules to automate the Metapower Activation and Possession Usage with visual and audio effects.
 ### Latest Changes
 These are the latest changes for the Official Metanthropes RPG System for Foundry VTT
-#### 0.6.00 - 0.6.10 (status)
-- New Player Experience: New Character sheet for protagonists with better UI and UX (done)
-- New Player Experience: New Actor Creation workflow with automations and drop-down menus (done)
-- New Player Experience: Left Clicking on a rollable Stat now will automatically roll and apply proper conditions (eg. Penalty from Disease) (done)
-- New Player Experience: Right Clicking on a rollable Stat now will open a dialog with options to add a bonus and a penalty, and a Multi-Action reduction. (done)
-- New Player Experience: (2 minor issues pending)
+#### 0.7.00 - Current (status)
 - Foundry core version 11 support (done for up to v11.305)
+- New Player Experience: Movement Automations (done)
 - XP System: Metapowers (pending)
-- XP System: Starting Perks now are free and don't cost XP (done)
 - New Actor / Token logic to support non-linked Actors (testing)
-- Bug Fixing (Critical Failure Roll with Stat>100 had wrong total Levels of Fail calculation) & File Naming fixes (done)
+#### 0.6.00 - 0.6.10
+- New Player Experience: New Character sheet for protagonists with better UI and UX
+- New Player Experience: New Actor Creation workflow with automations and drop-down menus
+- New Player Experience: Left Clicking on a rollable Stat now will automatically roll and apply proper conditions (eg. Penalty from Disease)
+- New Player Experience: Right Clicking on a rollable Stat now will open a dialog with options to add a bonus and a penalty, and a Multi-Action reduction
+- XP System: Starting Perks now are free and don't cost XP
+- Bug Fixing (Critical Failure Roll with Stat>100 had wrong total Levels of Fail calculation)
+- File Naming fixes
 #### 0.5.00 - 0.5.37
 - Possessions: Possessions Sheet
 - Possessions: Chat Roll Message Results & Destiny Re-Roll

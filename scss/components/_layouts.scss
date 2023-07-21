@@ -75,7 +75,16 @@
 	overflow: hidden;
 	overflow-wrap: break-word;
 }
-.layout-container-grid3x1 {
+.layout-container-physical {
+	display: grid;
+	grid-template-columns: 2fr 0.8fr 1.8fr;
+	column-gap: 1px;
+	padding: $padding-md;
+	margin: $margin-zero;
+	overflow: hidden;
+	overflow-wrap: break-word;
+}
+.layout-container-actorinfo {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	column-gap: 1px;
@@ -114,7 +123,7 @@
 	margin: $margin-sm;
 	overflow: hidden;
 }
-.layout-container-grid1x4 {
+.layout-container-vitals {
 	display: flex;
 	flex-flow: row;
 	flex-wrap: nowrap;

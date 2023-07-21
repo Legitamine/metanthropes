@@ -20,6 +20,7 @@
 						"type": "number",
 						"label": "Movement",
 						"initial": 10,
+						"value": 10,
 						"additional": 10,
 						"sprint": 50,
 						"Buffs": {
@@ -73,6 +74,8 @@
 						"type": "number",
 						"label": "Size",
 						"initial": 10,
+						"value": 10,
+						"modifier": 1,
 						"Buffs": {
 							"enlarged": {
 								"type": "number",
@@ -92,6 +95,8 @@
 						"type": "number",
 						"label": "Weight",
 						"initial": 10,
+						"value": 10,
+						"modifier": 1,
 						"Buffs": {
 							"lightened": {
 								"type": "number",
@@ -111,6 +116,8 @@
 						"type": "number",
 						"label": "Speed",
 						"initial": 10,
+						"value": 10,
+						"modifier": 10,
 						"Buffs": {
 							"accelerated": {
 								"type": "number",
@@ -177,7 +184,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Physical Description",
-						"value": "Height, Weight, details about physical appearance, etc."
+						"value": "Details about physical appearance..."
 					}
 				}
 			},

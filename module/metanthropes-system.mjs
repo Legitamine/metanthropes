@@ -311,13 +311,13 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 	class MetanthropesSystemSpeedProvider extends SpeedProvider {
 		get colors() {
 			return [
-				{ id: "movement", default: 0x00ff00, name: "physical.movement.initial" },
+				{ id: "movement", default: 0x00ff00, name: "physical.movement.value" },
 				{ id: "additional", default: 0xffff00, name: "physical.movement.additional" },
 				{ id: "sprint", default: 0xff8000, name: "physical.movement.sprint" },
 			];
 		}
 		getRanges(token) {
-			const baseSpeed = token.actor.system.physical.movement.initial;
+			const baseSpeed = token.actor.system.physical.movement.value;
 			// A character can choose to move an additional lenght equal to their base movement, and sprint up to 5 times their base movement
 			const ranges = [
 				{ range: baseSpeed * 2, color: "movement" },
