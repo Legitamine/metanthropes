@@ -462,6 +462,7 @@ export class MetanthropesActor extends Actor {
 		let wobblyModifier = Number(systemData.Characteristics.Mind.Stats.Creativity.Condition.Current);
 		let movementvalue = Math.ceil((speedModifiers[speedcurrent] * weightModifiers[weightcurrent] * sizeModifiers[sizecurrent]) - wobblyModifier);
 		this.update ({ "system.physical.movement.value": movementvalue });
+		//! for some reason these updates didn't work as intented, why is that?
 		this.update ({ "system.physical.movement.additional": movementvalue });
 		this.update ({ "system.physical.movement.sprint": movementvalue * 5 });
 		console.log ("Metanthropes RPG Movement Value:", movementvalue, "Additional:", movementvalue, "Sprint:", movementvalue * 5);

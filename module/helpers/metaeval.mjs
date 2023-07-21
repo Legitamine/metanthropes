@@ -68,11 +68,13 @@ export async function MetaEvaluate(actor, stat, statValue, multiAction = 0, bonu
 	} else {
 		message += `.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 	}
-	//add re-roll button to message
-	message += `<br><div><button class="hide-button layout-hide metaeval-reroll" data-idactor="${actor.id}"
-data-stat="${stat}" data-statvalue="${statValue}" data-multiaction="${multiAction}"
-data-bonus="${bonus}" data-penalty="${penalty}"
->Spend 🤞 Destiny to reroll</button></div><br>`;
+	//?add re-roll button to message, only if it's not a Critical
+	if (!criticalSuccess && !criticalFailure && currentDestiny > 0) {
+		message += `<br><div><button class="hide-button layout-hide metaeval-reroll" data-idactor="${actor.id}"
+			data-stat="${stat}" data-statvalue="${statValue}" data-multiaction="${multiAction}"
+			data-bonus="${bonus}" data-penalty="${penalty}"
+			>Spend 🤞 Destiny to reroll</button></div><br>`;
+	}
 	//console log for debugging
 	console.log(
 		"MetaEval Results for:",
