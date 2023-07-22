@@ -68,7 +68,7 @@ export async function MetaEvaluate(actor, stat, statValue, multiAction = 0, bonu
 	} else {
 		message += `.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 	}
-	//?add re-roll button to message, only if it's not a Critical
+	//?add re-roll button to message, only if it's not a Critical and only if they have at least 1 destiny or more
 	if (!criticalSuccess && !criticalFailure && currentDestiny > 0) {
 		message += `<br><div><button class="hide-button layout-hide metaeval-reroll" data-idactor="${actor.id}"
 			data-stat="${stat}" data-statvalue="${statValue}" data-multiaction="${multiAction}"

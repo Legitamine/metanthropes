@@ -116,7 +116,6 @@ export class MetanthropesActor extends Actor {
 		let charzerofullpenalty = 0;
 		console.log("====================");
 		console.log("Metanthropes RPG Preparing Characteristics & Stats for", this.type, "-", this.name);
-		console.log("====================");
 		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
 			//	console.log("Metanthropes RPG Calculating", CharKey, "Base: Initial + Progressed");
 			//	console.log(
@@ -286,7 +285,6 @@ export class MetanthropesActor extends Actor {
 		//	);
 		//}
 		//	console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
-		console.log("====================");
 		console.log("Metanthropes RPG", this.type, "-", this.name, "is Ready to Roll!");
 		console.log("====================");
 	}
@@ -307,7 +305,6 @@ export class MetanthropesActor extends Actor {
 		let perkExperienceSpent = 0;
 		console.log("====================");
 		console.log("Metanthropes RPG Preparing Perks for", this.type, "-", this.name);
-		console.log("====================");
 		//	console.log("Experience Spent before Perks:", experienceAlreadySpent);
 		//? Calculate the experience spent on Knowledge Perks
 		for (const [KnowPerkKey, KnowPerkValue] of Object.entries(systemData.Perks.Knowledge)) {
@@ -334,7 +331,7 @@ export class MetanthropesActor extends Actor {
 		if (experienceSpent < startingPerks * 100) {
 			console.log("Metanthropes RPG", this.name, "has not spent enough XP on starting perks!");
 			console.log("Metanthropes RPG", this.name, "has spent", experienceSpent, "XP on perks");
-			console.log("Metanthropes RPG", this.name, "needs to spend", startingPerks * 100, "XP on perks");
+			console.log("Metanthropes RPG", this.name, "needs to spend", startingPerks * 100, "total XP on perks");
 		}
 		//	console.log("Total Experience Spent automagically for", this.name, "Perks:", experienceSpent);
 		//? Update Experience Spent for Perks with exiting in systemData.Vital.Experience.Spent
@@ -364,7 +361,6 @@ export class MetanthropesActor extends Actor {
 			);
 		}
 		//	console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
-		console.log("====================");
 		console.log("Metanthropes RPG", this.type, "-", this.name, "is ready for Action!");
 		console.log("====================");
 	}
@@ -372,7 +368,6 @@ export class MetanthropesActor extends Actor {
 		const systemData = actorData.system;
 		console.log("====================");
 		console.log("Metanthropes RPG Preparing Movement for", this.type, "-", this.name);
-		console.log("====================");
 		//*first we will calculate the current values from buffs and conditions, then we take their modifiers and calculate the movement value
 		let speedinitial = Number(systemData.physical.speed.initial);
 		let weightinitial = Number(systemData.physical.weight.initial);
@@ -460,13 +455,13 @@ export class MetanthropesActor extends Actor {
 		}
 		//? in addition to the modifiers, Wobbly also affects final movemement value
 		let wobblyModifier = Number(systemData.Characteristics.Mind.Stats.Creativity.Condition.Current);
+		//? movement value is always rounded up
 		let movementvalue = Math.ceil((speedModifiers[speedcurrent] * weightModifiers[weightcurrent] * sizeModifiers[sizecurrent]) - wobblyModifier);
 		this.update ({ "system.physical.movement.value": movementvalue });
 		//! for some reason these updates didn't work as intented, why is that?
 		this.update ({ "system.physical.movement.additional": movementvalue });
 		this.update ({ "system.physical.movement.sprint": movementvalue * 5 });
 		console.log ("Metanthropes RPG Movement Value:", movementvalue, "Additional:", movementvalue, "Sprint:", movementvalue * 5);
-		console.log("====================");
 		console.log("Metanthropes RPG", this.name, "is ready to Move!");
 		console.log("====================");
 	}
