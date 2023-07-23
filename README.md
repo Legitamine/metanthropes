@@ -20,6 +20,7 @@ To get the best experience while playing Metanthropes RPG, we recommend to insta
 - Dice So Nice: https://foundryvtt.com/packages/dice-so-nice
 - Drag Ruler: https://foundryvtt.com/packages/drag-ruler
 - Moulinette: https://foundryvtt.com/packages/moulinette-core
+- DF Chat Enhancements: https://foundryvtt.com/packages/df-chat-enhance
 
 ### Known Issues
 - Automatic XP Calculation for Characteristics and Stats assumes that you progressed your Characteristic first, otherwise it will spent more XP than what it should. 
