@@ -5,8 +5,8 @@
 //? This controls how the sheet functions
 //*
 ////
-import { MetaRoll } from "../helpers/metaroll.mjs";
-import { MetaRollCustom } from "../helpers/metaroll.mjs";
+import { MetaRoll } from "../metanthropes/metaroll.mjs";
+import { MetaRollCustom } from "../metanthropes/metaroll.mjs";
 import { MetapowerRoll } from "../helpers/mproll.mjs";
 import { PossessionRoll } from "../helpers/posroll.mjs";
 //? Import New Actor

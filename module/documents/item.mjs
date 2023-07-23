@@ -6,7 +6,7 @@
 //todo: Enable basic functionality
 //*
 ////
-import { MetaRoll } from "../helpers/metaroll.mjs";
+import { MetaRoll } from "../metanthropes/metaroll.mjs";
 export class MetanthropesItem extends Item {
 	/**
 	 * Augment the basic Item data model with additional dynamic data.

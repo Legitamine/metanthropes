@@ -8,16 +8,16 @@
 // kai episis na kanw expand to new actor function gia na kanei pick mono ta relative fields analoga me to type tou actor
 export async function NewActor(actor) {
 	try {
-	await NewActorDestiny(actor);
-	await NewActorPrimeMetapower(actor);
-	await NewActorCharacteristics(actor);
-	await NewActorBodyStats(actor);
-	await NewActorMindStats(actor);
-	await NewActorSoulStats(actor);
-	await NewActorRoleplay(actor);
-	await NewActorProgression(actor);
-	await NewActorSummary(actor);
-	await NewActorFinish(actor);
+		await NewActorDestiny(actor);
+		await NewActorPrimeMetapower(actor);
+		await NewActorCharacteristics(actor);
+		await NewActorBodyStats(actor);
+		await NewActorMindStats(actor);
+		await NewActorSoulStats(actor);
+		await NewActorRoleplay(actor);
+		await NewActorProgression(actor);
+		await NewActorSummary(actor);
+		await NewActorFinish(actor);
 	} catch (error) {
 		console.log("Metanthropes RPG New Actor Error:", error);
 	}
@@ -777,36 +777,54 @@ export async function NewActorProgression(actor) {
 }
 export async function NewActorSummary(actor) {
 	let playername = game.user.name;
+	let narratorname = game.users.activeGM.name;
 	let dialogContent = `
 		<div class="metanthropes layout-metaroll-dialog">
 			<h2>Choose your ${actor.type}'s ✍️ Summary</h2>
 			<form>
+			<p>Protagonist Details:</p>
 				<div class="form-group">
-					<label for="actorname">Name:</label>
+					<label for="actorname">Name: </label>
 					<input type="text" id="actorname" name="actorname" value="${actor.type}'s Name">
 				</div>
 				<div class="form-group">
-					<label for="actorgender">Gender:</label>
+					<label for="actorgender">Gender: </label>
 					<input type="text" id="actorgender" name="actorgender" value="">
 				</div>
 				<div class="form-group">
-					<label for="actorage">Age:</label>
+					<label for="actorage">Age: </label>
 					<input class="style-container-input-charstat" type="number" id="actorage" name="actorage" value="">yr
 				</div>
 				<div class="form-group">
-					<label for="actorheight">Height:</label>
+					<label for="actorheight">Height: </label>
 					<input class="style-container-input-charstat" type="number" id="actorheight" name="actorheight" value="">m
 				</div>
 				<div class="form-group">
-					<label for="actorweight">Weight:</label>
+					<label for="actorweight">Weight: </label>
 					<input class="style-container-input-charstat" type="number" id="actorweight" name="actorweight" value="">kg
 				</div>
 				<div class="form-group">
-					<label for="actorpob">Place of Birth:</label>
+					<label for="actorpob">Place of Birth: </label>
 					<input type="text" id="actorpob" name="actorpob" value="">
 				</div>
+				<p>Session Details:</p>
 				<div class="form-group">
-					<label for="playername">Player Name:</label>${playername}
+					<label for="narratorname">Narrator Name: </label>${narratorname}
+				</div>
+				<div class="form-group">
+					<label for="playername">Player Name: </label>${playername}
+				</div>
+				<div class="form-group">
+					<label for="saganame">Saga Name: </label>
+					<input type="text" id="saganame" name="saganame" value="">
+				</div>
+				<div class="form-group">
+					<label for="coalitionname">Coalition Name: </label>
+					<input type="text" id="coalitionname" name="coalitionname" value="">
+				</div>
+				<div class="form-group">
+					<label for="factionname">Faction Name: </label>
+					<input type="text" id="factionname" name="factionname" value="">
 				</div>
 			</form>
 		</div>
@@ -840,11 +858,20 @@ export async function NewActorSummary(actor) {
 						let actorpob = html.find('[name="actorpob"]').val();
 						await actor.update({ "system.humanoids.birthplace.value": actorpob });
 						console.log(`${actor.type}'s Place of Birth: ${actorpob}`);
-						// let playername = html.find('[name="playername"]').val();
-						// await actor.update({ "system.metaowner.value": playername });
-						//let playername = game.user.name;
 						await actor.update({ "system.metaowner.value": playername });
 						console.log(`${actor.type}'s Player Name: ${playername}`);
+						await actor.update({ "system.entermeta.narrator.value": narratorname });
+						console.log(`${actor.type}'s Narrator Name: ${narratorname}`);
+						let saganame = html.find('[name="saganame"]').val();
+						await actor.update({ "system.entermeta.sagas.value": saganame });
+						console.log(`${actor.type}'s Saga Name: ${saganame}`);
+						let coalitionname = html.find('[name="coalitionname"]').val();
+						await actor.update({ "system.entermeta.coalition.value": coalitionname });
+						console.log(`${actor.type}'s Coalition Name: ${coalitionname}`);
+						let factionname = html.find('[name="factionname"]').val();
+						await actor.update({ "system.entermeta.faction.value": factionname });
+						console.log(`${actor.type}'s Faction Name: ${factionname}`);
+
 						resolve();
 					},
 				},

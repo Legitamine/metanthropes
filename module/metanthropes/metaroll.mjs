@@ -1,7 +1,5 @@
 //? MetaRoll function handles the dialog box for selecting multi-actions and bonuses/penalties when rolling a stat
-// import the MetaRollStat function
-// import { MetaRollStat } from "./metarollstat.mjs";
-import { MetaEvaluate } from "./metaeval.mjs";
+import { MetaEvaluate } from "../helpers/metaeval.mjs";
 /*
  * we want to roll against a stat - always
  * we dermine if it's a simple roll, a detailed roll or a re-roll of existing results

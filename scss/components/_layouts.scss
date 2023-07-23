@@ -22,15 +22,15 @@
 	margin: $margin-sm;
 	overflow: hidden;
 }
-.layout-container-grid3x5-cs {
+.layout-container-outer-charstats {
 	display: grid;
 	grid-auto-flow: column;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr 1fr 0.8fr;
 	column-gap: 3px;
 	row-gap: 3px;
-	padding: $padding-sm;
-	margin: $margin-sm;
+	padding: $padding-zero;
+	margin: $margin-zero;
 	overflow: hidden;
 }
 //big container with 3 columns and 2 rows
@@ -79,7 +79,7 @@
 	display: grid;
 	grid-template-columns: 2fr 0.8fr 1.8fr;
 	column-gap: 1px;
-	padding: $padding-md;
+	padding: $padding-zero;
 	margin: $margin-zero;
 	overflow: hidden;
 	overflow-wrap: break-word;
@@ -88,7 +88,7 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	column-gap: 1px;
-	padding: $padding-md;
+	padding: $padding-sm;
 	margin: $margin-zero;
 	overflow: hidden;
 	overflow-wrap: break-word;
@@ -140,10 +140,23 @@
 	padding: $padding-sm;
 	margin: $margin-sm;
 }
+.layout-container-outer-tabs {
+	display: flex;
+	flex-direction: column;
+	padding: $padding-zero;
+	margin: $margin-zero;
+}
+.layout-container-summary {
+	display: flex;
+	flex-direction: column;
+	padding: $padding-lg;
+	margin: $margin-sm;
+}
 //nav container with 1 flex row
 .layout-container-nav {
 	display: flex;
 	flex-direction: row;
+	row-gap: 6px;
 }
 .layout-metaroll-dialog {
 	display: flex;

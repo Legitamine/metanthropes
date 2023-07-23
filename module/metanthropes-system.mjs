@@ -13,21 +13,18 @@ import { MetanthropesActorSheet } from "./sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
 // Import helpers.
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
-//! organize this
+//? Import Re-Roll helpers
 import { MetaEvaluateReRoll } from "./helpers/metaeval.mjs";
-// import { MetaInitiative } from "./helpers/metainitiative.mjs";
-// Import Meta-Dice rolling functions.
 import { Rolld10ReRoll } from "./helpers/newactor.mjs";
-import { MetaReRoll } from "./helpers/metarollstat.mjs";
 import { MetapowerReRoll } from "./helpers/mprollstat.mjs";
 import { PossessionReRoll } from "./helpers/posrollstat.mjs";
-import { MetapowerActivate } from "./helpers/mpactivate.mjs";
 import { ReRollTargets } from "./helpers/extrasroll.mjs";
 import { ReRollDuration } from "./helpers/extrasroll.mjs";
 import { ReRollDamage } from "./helpers/extrasroll.mjs";
 import { ReRollHealing } from "./helpers/extrasroll.mjs";
 import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
 import { PossessionUse } from "./helpers/posuse.mjs";
+import { MetapowerActivate } from "./helpers/mpactivate.mjs";
 //* Handlebars helpers
 //! Supposedly Foundry includes its own select helper, but I couldn't get it to work.
 Handlebars.registerHelper("selected", function (option, value) {
@@ -157,9 +154,9 @@ function rollItemMacro(itemUuid) {
 /* -------------------------------------------- */
 // dragable macros
 Hooks.once("ready", async function () {
-	// Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
+	//? Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
 	Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
-	// Add support for Moulinette: Free modules with artwork & sounds is available for indexing by Moulinette
+	//? Add support for Moulinette: Free modules with artwork & sounds is available for indexing by Moulinette
 	if (game.moulinette) {
 		game.moulinette.sources.push({
 			type: "images",
@@ -343,22 +340,24 @@ Hooks.on("renderChatMessage", async (message, html) => {
 	//? Get the actor from the message
     const actorId = message.getFlag("metanthropes-system", "actorId");
     const actor = game.actors.get(actorId);
-	// Check if the current user is the owner of the actor
+	//? Check if the current user is the owner of the actor
     if (game.user.name === actor.system.metaowner.value || game.user.isGM) {
-        // Unhide the buttons
+        //? Unhide the buttons
         html.find(".hide-button").removeClass("hidden");
-        // Add event listeners to the buttons
+        //? Listen for Re-Roll button clicks
 		html.find(".rolld10-reroll").on("click", Rolld10ReRoll);
 		html.find(".metaeval-reroll").on("click", MetaEvaluateReRoll);
-		html.find(".meta-re-roll").on("click", MetaReRoll);
 		html.find(".metapower-re-roll").on("click", MetapowerReRoll);
 		html.find(".possession-re-roll").on("click", PossessionReRoll);
-		html.find(".metapower-activate").on("click", MetapowerActivate);
+		//? Listen for extras re-roll button clicks
 		html.find(".re-roll-targets").on("click", ReRollTargets);
 		html.find(".re-roll-duration").on("click", ReRollDuration);
 		html.find(".re-roll-damage").on("click", ReRollDamage);
 		html.find(".re-roll-healing").on("click", ReRollHealing);
+		//? Listen for metainitiative re-roll
 		html.find(".metainitiative-re-roll").on("click", MetaInitiativeReRoll);
+		//? Listen for activations
+		html.find(".metapower-activate").on("click", MetapowerActivate);
 		html.find(".possession-use").on("click", PossessionUse);
 	}
 });

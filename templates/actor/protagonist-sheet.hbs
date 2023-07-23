@@ -42,17 +42,15 @@
 			{{/if}}
 		</div>
 		<div class="layout-container-vitals style-container-vitals">
-			<div class="layout-container-small style-container-small">
+			<div>
 				<div class="style-labels-text">
 					❤️ Life
 					<input name="system.Vital.Life.value" type="number" value="{{system.Vital.Life.value}}"
 						data-dtype="Number" />/{{system.Vital.Life.max}}
 				</div>
 			</div>
-			<div class="layout-container-small style-container-small">
-				<div class="style-labels-text">📈 Experience Total: <input name="system.Vital.Experience.Total"
-						type="number" value="{{system.Vital.Experience.Total}}" data-dtype="Number"
-						placeholder="1000" /> Spent:
+			<div>
+				<div class="style-labels-text">📈 Experience: {{system.Vital.Experience.Total}} Spent:
 					{{system.Vital.Experience.Spent}} + <input name="system.Vital.Experience.Manual" type="number"
 						value="{{system.Vital.Experience.Manual}}" data-dtype="Number" placeholder="0" />
 					Stored:{{#if (gte system.Vital.Experience.Stored 0)}}
@@ -62,11 +60,8 @@
 					{{/if}}
 				</div>
 			</div>
-			<div class="layout-container-small style-container-small">
-				<div class="style-labels-text">🤞 Destiny
-					<input name="system.Vital.Destiny.value" type="number" value="{{system.Vital.Destiny.value}}"
-						data-dtype="Number" placeholder="0" />/<input name="system.Vital.Destiny.max" type="number"
-						value="{{system.Vital.Destiny.max}}">
+			<div>
+				<div class="style-labels-text">🤞 Destiny {{system.Vital.Destiny.value}}/{{system.Vital.Destiny.max}}
 				</div>
 			</div>
 		</div>
@@ -91,7 +86,7 @@
 				{{> "systems/metanthropes-system/templates/helpers/actor-summary.hbs"}}
 			</div>
 			<div class="tab cs-metapowers" data-group="cs" data-tab="cs-metapowers">
-				<div class="layout-container-small style-container-small">
+				<div class="layout-container-outer-tabs style-container-outer-tabs">
 					{{> "systems/metanthropes-system/templates/helpers/actor-metapowers.hbs"}}
 				</div>
 			</div>
@@ -102,17 +97,17 @@
 				{{> "systems/metanthropes-system/templates/helpers/actor-combos.hbs"}}
 			</div>
 			<div class="tab cs-perks" data-group="cs" data-tab="cs-perks">
-				<div class="layout-container-small style-container-small">
+				<div class="layout-container-outer-tabs style-container-outer-tabs">
 					{{> "systems/metanthropes-system/templates/helpers/actor-perks.hbs"}}
 				</div>
 			</div>
 			<div class="tab cs-possessions" data-group="cs" data-tab="cs-possessions">
-				<div class="layout-container-small style-container-small">
+				<div class="layout-container-outer-tabs style-container-outer-tabs">
 					{{> "systems/metanthropes-system/templates/helpers/actor-possessions.hbs"}}
 				</div>
 			</div>
 			<div class="tab cs-notes" data-group="cs" data-tab="cs-notes">
-				<div class="layout-container-small style-container-small">
+				<div class="layout-container-outer-tabs style-container-outer-tabs">
 					NOTES
 					are partially implemented
 					{{> "systems/metanthropes-system/templates/helpers/actor-notes.hbs"}}
