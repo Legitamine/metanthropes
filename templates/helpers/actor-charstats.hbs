@@ -20,7 +20,7 @@
 				</div>
 				<div class="style-cs-chars-value">{{this.Current}}</div>
 				<div>
-					<p class="style-cs-buffs">🛡️ <select class="style-cs-buffs"
+					<p class="style-cs-buffs">🛡️<label for="system.Characteristics.{{@key}}.Buff.Current">{{this.Buff.Name}}</label><select class="style-cs-buffs"
 							name="system.Characteristics.{{@key}}.Buff.Current"
 							id="system.Characteristics.{{@key}}.Buff.Current" data-dtype="Number">
 							<option value="0" {{selected Buff.Current 0}}>0</option>
@@ -29,7 +29,7 @@
 							<option value="3" {{selected Buff.Current 3}}>3</option>
 							<option value="4" {{selected Buff.Current 4}}>4</option>
 							<option value="5" {{selected Buff.Current 5}}>5</option>
-						</select><label for="system.Characteristics.{{@key}}.Buff.Current">{{this.Buff.Name}}</label>
+						</select>
 					</p>
 					<p class="style-cs-conditions">💀 <select class="style-cs-conditions"
 							name="system.Characteristics.{{@key}}.Condition.Current"

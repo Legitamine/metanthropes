@@ -75,8 +75,7 @@ export async function MetaEvaluate(actor, stat, statValue, multiAction = 0, bonu
 			data-bonus="${bonus}" data-penalty="${penalty}"
 			>Spend 🤞 Destiny to reroll</button><br><br></div>`;
 	}
-	//console log for debugging
-	console.log(
+	console.log("Metanthropes RPG System |",
 		"MetaEval Results for:",
 		actor.name,
 		stat,

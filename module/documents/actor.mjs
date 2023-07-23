@@ -69,26 +69,26 @@ export class MetanthropesActor extends Actor {
 	// Override base values for each type of actor here.
 	prepareBaseData() {
 		if (this.type == "Human") {
-			//console.log("====================");
+			//console.log("Metanthropes RPG System | ====================================");
 			//console.log("Metanthropes RPG Preparing Base Data for", this.type, "-", this.name);
 			//console.log("Metanthropes RPG current Initial Life:", this.system.Vital.Life.Initial);
 			this.system.Vital.Life.Initial = 50;
 			//console.log("Metanthropes RPG New Initial Life:", this.system.Vital.Life.Initial);
-			//console.log("====================");
+			//console.log("Metanthropes RPG System | ====================================");
 		}
 		//? for Protagonists set the metanthropes-logo as default icon for metapower, if no metapower is selected
 		if (this.type == "Protagonist") {
 			if (!this.primeimg || this.primeimg == "systems/metanthropes-system/artwork/.png") {
 				//? for Protagonists without a prime metapower defined, make it the metanthropes-logo
 				if (!this.system.entermeta.primemetapower.value) {
-				this.primeimg = `systems/metanthropes-system/artwork/metapowers/Choose Prime Metapower.png`;
+					this.primeimg = `systems/metanthropes-system/artwork/metapowers/Choose Prime Metapower.png`;
 				} else {
-				//? for Protagonists with a prime metapower defined, make it their respective metapower icon
-				let primemetapowerimage = this.system.entermeta.primemetapower.value;
-				this.primeimg = `systems/metanthropes-system/artwork/metapowers/${primemetapowerimage}.png`;
+					//? for Protagonists with a prime metapower defined, make it their respective metapower icon
+					let primemetapowerimage = this.system.entermeta.primemetapower.value;
+					this.primeimg = `systems/metanthropes-system/artwork/metapowers/${primemetapowerimage}.png`;
+				}
 			}
 		}
-	}
 		// I should enable this section if I need to add modifications for non-Characteristics actors
 		// Currently we only care about actors with characteristics so we don't use this section
 		// this._prepareBaseNonCharacteristicsData(actorData);
@@ -114,8 +114,8 @@ export class MetanthropesActor extends Actor {
 		let statExperienceSpent = 0;
 		let advancementCount = 0;
 		let charzerofullpenalty = 0;
-		console.log("====================");
-console.log("Metanthropes RPG System | Preparing Characteristics & Stats for", this.type, "-", this.name);
+		console.log("Metanthropes RPG System | ====================================");
+		console.log("Metanthropes RPG System | Preparing Characteristics & Stats for", this.type, "-", this.name);
 		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
 			//	console.log("Metanthropes RPG Calculating", CharKey, "Base: Initial + Progressed");
 			//	console.log(
@@ -139,7 +139,7 @@ console.log("Metanthropes RPG System | Preparing Characteristics & Stats for", t
 			//? Add the experience spent on this characteristic to the total experience spent, only if Progressed is >0
 			if (advancementCount > 0) {
 				experienceSpent += characteristicExperienceSpent;
-				console.log("Experience Spent to Progress", CharKey, "Characteristic:", characteristicExperienceSpent);
+				console.log("Metanthropes RPG System | Experience Spent to Progress", CharKey, "Characteristic:", characteristicExperienceSpent);
 			}
 			parseInt((CharValue.Base = Number(CharValue.Initial) + Number(Number(CharValue.Progressed) * 5)));
 			//	console.log("Metanthropes RPG New", CharKey, "Base:", CharValue.Base);
@@ -162,7 +162,7 @@ console.log("Metanthropes RPG System | Preparing Characteristics & Stats for", t
 				charzerofullpenalty = CharValue.Current;
 				CharValue.Current = 0;
 				ui.notifications.error(this.name + "'s " + CharKey + " has dropped to 0!");
-		console.log("Metanthropes RPG System | ", CharKey, "has dropped to 0!");
+				console.log("Metanthropes RPG System |", CharKey, "has dropped to 0!");
 			}
 			//	console.log("Metanthropes RPG New", CharKey, "Current:", CharValue.Current);
 			//	console.log("------------------------------------------------------------------------");
@@ -245,7 +245,7 @@ console.log("Metanthropes RPG System | Preparing Characteristics & Stats for", t
 				Number(systemData.Vital.Life.Initial) + Number(systemData.Characteristics.Body.Stats.Endurance.Roll))
 		);
 		//	console.log("Metanthropes RPG New Life Maximum:", systemData.Vital.Life.max);
-		//	console.log("====================");
+		//	console.log("Metanthropes RPG System | ====================================");
 		//	console.log("Metanthropes RPG Calculating Movement");
 		parseInt((systemData.physical.movement.additional = Number(systemData.physical.movement.initial)));
 		parseInt((systemData.physical.movement.sprint = Number(Number(systemData.physical.movement.initial) * 5)));
@@ -285,8 +285,8 @@ console.log("Metanthropes RPG System | Preparing Characteristics & Stats for", t
 		//	);
 		//}
 		//	console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
-console.log("Metanthropes RPG System | ", this.type, "-", this.name, "is Ready to Roll!");
-		console.log("====================");
+		console.log("Metanthropes RPG System |", this.type, "-", this.name, "is Ready to Roll!");
+		console.log("Metanthropes RPG System | ====================================");
 	}
 	_prepareDerivedPerksData(actorData) {
 		if (actorData.type == "Vehicle") return;
@@ -303,8 +303,8 @@ console.log("Metanthropes RPG System | ", this.type, "-", this.name, "is Ready t
 		let experienceSpent = 0;
 		let advancementCount = 0;
 		let perkExperienceSpent = 0;
-		console.log("====================");
-console.log("Metanthropes RPG System | Preparing Perks for", this.type, "-", this.name);
+		console.log("Metanthropes RPG System | ====================================");
+		console.log("Metanthropes RPG System | Preparing Perks for", this.type, "-", this.name);
 		//	console.log("Experience Spent before Perks:", experienceAlreadySpent);
 		//? Calculate the experience spent on Knowledge Perks
 		for (const [KnowPerkKey, KnowPerkValue] of Object.entries(systemData.Perks.Knowledge)) {
@@ -329,9 +329,15 @@ console.log("Metanthropes RPG System | Preparing Perks for", this.type, "-", thi
 		//? Calculate total Experience Spent Progressing Perks & Characteristics & Stats
 		//? test if we have spent enough xp on the starting perks
 		if (experienceSpent < startingPerks * 100) {
-	console.log("Metanthropes RPG System | ", this.name, "has not spent enough XP on starting perks!");
-	console.log("Metanthropes RPG System | ", this.name, "has spent", experienceSpent, "XP on perks");
-	console.log("Metanthropes RPG System | ", this.name, "needs to spend", startingPerks * 100, "total XP on perks");
+			console.log("Metanthropes RPG System |", this.name, "has not spent enough XP on starting perks!");
+			console.log("Metanthropes RPG System |", this.name, "has spent", experienceSpent, "XP on perks");
+			console.log(
+				"Metanthropes RPG System | ",
+				this.name,
+				"needs to spend",
+				startingPerks * 100,
+				"total XP on perks"
+			);
 		}
 		//	console.log("Total Experience Spent automagically for", this.name, "Perks:", experienceSpent);
 		//? Update Experience Spent for Perks with exiting in systemData.Vital.Experience.Spent
@@ -352,22 +358,18 @@ console.log("Metanthropes RPG System | Preparing Perks for", this.type, "-", thi
 		);
 		if (systemData.Vital.Experience.Stored < 0) {
 			ui.notifications.warn(this.name + "'s Stored Experience is Negative!");
-			console.log(
-				"============================================================================================="
-			);
-	console.log("Metanthropes RPG System | WARNING: Stored Experience is Negative!");
-			console.log(
-				"============================================================================================="
-			);
+			console.log("Metanthropes RPG System | ====================================");
+			console.log("Metanthropes RPG System | WARNING: Stored Experience is Negative!");
+			console.log("Metanthropes RPG System | ====================================");
 		}
 		//	console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
-console.log("Metanthropes RPG System | ", this.type, "-", this.name, "is ready for Action!");
-		console.log("====================");
+		console.log("Metanthropes RPG System |", this.type, "-", this.name, "is ready for Action!");
+		console.log("Metanthropes RPG System | ====================================");
 	}
-	_prepareDerivedMovementData(actorData) {
+	async _prepareDerivedMovementData(actorData) {
 		const systemData = actorData.system;
-		console.log("====================");
-console.log("Metanthropes RPG System | Preparing Movement for", this.type, "-", this.name);
+		console.log("Metanthropes RPG System | ====================================");
+		console.log("Metanthropes RPG System | Preparing Movement for", this.type, "-", this.name);
 		//*first we will calculate the current values from buffs and conditions, then we take their modifiers and calculate the movement value
 		let speedinitial = Number(systemData.physical.speed.initial);
 		let weightinitial = Number(systemData.physical.weight.initial);
@@ -381,89 +383,98 @@ console.log("Metanthropes RPG System | Preparing Movement for", this.type, "-", 
 		let sizecurrent = sizeinitial + sizebuff - sizecondition;
 		let weightcurrent = weightinitial - weightbuff + weightcondition;
 		let speedcurrent = speedinitial + speedbuff - speedcondition;
-		this.update({ "system.physical.size.value": sizecurrent });
-		this.update({ "system.physical.weight.value": weightcurrent });
-		this.update({ "system.physical.speed.value": speedcurrent });
+		await this.update({ "system.physical.size.value": sizecurrent });
+		await this.update({ "system.physical.weight.value": weightcurrent });
+		await this.update({ "system.physical.speed.value": speedcurrent });
 		let speedModifiers = {
-			"0": 0,
-			"1": 0,
-			"2": 0,
-			"3": 0,
-			"4": 0,
-			"5": 1,
-			"6": 2,
-			"7": 4,
-			"8": 6,
-			"9": 8,
-			"10": 10,
-			"11": 20,
-			"12": 50,
-			"13": 100,
-			"14": 250,
-			"15": 500,
-			"16": 1000,
-			"17": 2000,
-			"18": 5000,
-			"19": 10000,
-			"20": 20000,
-		}
+			0: 0,
+			1: 0,
+			2: 0,
+			3: 0,
+			4: 0,
+			5: 1,
+			6: 2,
+			7: 4,
+			8: 6,
+			9: 8,
+			10: 10,
+			11: 20,
+			12: 50,
+			13: 100,
+			14: 250,
+			15: 500,
+			16: 1000,
+			17: 2000,
+			18: 5000,
+			19: 10000,
+			20: 20000,
+		};
 		let weightModifiers = {
-			"0": 200,
-			"1": 100,
-			"2": 50,
-			"3": 20,
-			"4": 10,
-			"5": 5,
-			"6": 4,	
-			"7": 3,
-			"8": 2,
-			"9": 1.5,
-			"10": 1,
-			"11": 0.8,
-			"12": 0.6,
-			"13": 0.4,
-			"14": 0.2,
-			"15": 0.1,
-			"16": 0.02,
-			"17": 0.01,
-			"18": 0.002,
-			"19": 0.001,
-			"20": 0.0002,
-		}
+			0: 200,
+			1: 100,
+			2: 50,
+			3: 20,
+			4: 10,
+			5: 5,
+			6: 4,
+			7: 3,
+			8: 2,
+			9: 1.5,
+			10: 1,
+			11: 0.8,
+			12: 0.6,
+			13: 0.4,
+			14: 0.2,
+			15: 0.1,
+			16: 0.02,
+			17: 0.01,
+			18: 0.002,
+			19: 0.001,
+			20: 0.0002,
+		};
 		let sizeModifiers = {
-			"0": 0.0002,
-			"1": 0.001,
-			"2": 0.002,
-			"3": 0.01,
-			"4": 0.02,
-			"5": 0.1,
-			"6": 0.2,
-			"7": 0.4,
-			"8": 0.6,
-			"9": 0.8,
-			"10": 1,
-			"11": 2,
-			"12": 3,
-			"13": 9,
-			"14": 27,
-			"15": 81,
-			"16": 243,
-			"17": 729,
-			"18": 2187,
-			"19": 6561,
-			"20": 19683,
-		}
+			0: 0.0002,
+			1: 0.001,
+			2: 0.002,
+			3: 0.01,
+			4: 0.02,
+			5: 0.1,
+			6: 0.2,
+			7: 0.4,
+			8: 0.6,
+			9: 0.8,
+			10: 1,
+			11: 2,
+			12: 3,
+			13: 9,
+			14: 27,
+			15: 81,
+			16: 243,
+			17: 729,
+			18: 2187,
+			19: 6561,
+			20: 19683,
+		};
 		//? in addition to the modifiers, Wobbly also affects final movemement value
 		let wobblyModifier = Number(systemData.Characteristics.Mind.Stats.Creativity.Condition.Current);
 		//? movement value is always rounded up
-		let movementvalue = Math.ceil((speedModifiers[speedcurrent] * weightModifiers[weightcurrent] * sizeModifiers[sizecurrent]) - wobblyModifier);
-		this.update ({ "system.physical.movement.value": movementvalue });
+		let movementvalue = Math.ceil(
+			speedModifiers[speedcurrent] * weightModifiers[weightcurrent] * sizeModifiers[sizecurrent] - wobblyModifier
+		);
+		await this.update({ "system.physical.movement.value": movementvalue });
 		//! for some reason these updates didn't work as intented, why is that?
-		this.update ({ "system.physical.movement.additional": movementvalue });
-		this.update ({ "system.physical.movement.sprint": movementvalue * 5 });
-		console.log ("Metanthropes RPG Movement Value:", movementvalue, "Additional:", movementvalue, "Sprint:", movementvalue * 5);
-console.log("Metanthropes RPG System | ", this.name, "is ready to Move!");
-		console.log("====================");
+		await this.update({ "system.physical.movement.additional": movementvalue });
+		await this.update({ "system.physical.movement.sprint": movementvalue * 5 });
+		console.log(
+			"Metanthropes RPG System | Movement Value:",
+			movementvalue,
+			"Additional:",
+			movementvalue,
+			"Sprint:",
+			movementvalue * 5
+		);
+		console.log("Metanthropes RPG System |", this.name, "is ready to Move!");
+		console.log("Metanthropes RPG System | ====================================");
 	}
 	getRollData() {
 		const data = super.getRollData();
@@ -492,14 +503,14 @@ console.log("Metanthropes RPG System | ", this.name, "is ready to Move!");
 		event.preventDefault();
 		// Check if the actor is in a combat
 		const combatant = this.combatant;
-		console.log("inside onRollInitiative", combatant);
+		console.log("Metanthropes RPG System | inside onRollInitiative", combatant);
 		if (!combatant) return;
 
 		//? Call the MetaInitiative function
 		//! do I need this right? hm
-		//	console.log("====================");
+		//	console.log("Metanthropes RPG System | ====================================");
 		//	console.log("Metanthropes RPG we are inside actor _onRollInitiative - calling MetaInitiative", this);
-		//	console.log("====================");
+		//	console.log("Metanthropes RPG System | ====================================");
 		await MetaInitiative(this);
 
 		// Retrieve the initiative data from the actor's flags

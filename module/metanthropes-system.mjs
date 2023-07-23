@@ -1,6 +1,6 @@
-console.log("====================================");
+console.log("Metanthropes RPG System | ====================================");
 console.log("Metanthropes RPG System | Awakened");
-console.log("====================================");
+console.log("Metanthropes RPG System | ====================================");
 // Import modules.
 import { MetanthropesCombat } from "./metanthropes/combat.mjs";
 import { MetaCombatTracker } from "./metanthropes/combattracker.mjs";
@@ -15,7 +15,7 @@ import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 //? Import Re-Roll helpers
 import { MetaEvaluateReRoll } from "./helpers/metaeval.mjs";
-import { Rolld10ReRoll } from "./helpers/newactor.mjs";
+import { Rolld10ReRoll } from "./helpers/extrasroll.mjs";
 import { MetapowerReRoll } from "./helpers/mprollstat.mjs";
 import { PossessionReRoll } from "./helpers/posrollstat.mjs";
 import { ReRollTargets } from "./helpers/extrasroll.mjs";
@@ -46,7 +46,7 @@ Handlebars.registerHelper("unless_key_is", function (key, value, options) {
 
 // Log system initialization.
 Hooks.once("init", async function () {
-	console.log("====================================");
+	console.log("Metanthropes RPG System | ====================================");
 	console.log("Metanthropes RPG System | Initializing");
 	// add our classes so they are more easily accessible
 	game.metanthropes = {
@@ -83,7 +83,7 @@ Hooks.once("init", async function () {
 	});
 	// Preload Handlebars templates.
 	console.log("Metanthropes RPG System | Initialized");
-	console.log("====================================");
+	console.log("Metanthropes RPG System | ====================================");
 	return preloadHandlebarsTemplates();
 });
 /* -------------------------------------------- */
@@ -300,7 +300,7 @@ Hooks.once("ready", async function () {
 });
 // Drag Ruler Integration
 Hooks.once("dragRuler.ready", (SpeedProvider) => {
-	console.log("====================================");
+	console.log("Metanthropes RPG System | ====================================");
 	console.log("Metanthropes RPG System | Drag Ruler Integration Started");
 	class MetanthropesSystemSpeedProvider extends SpeedProvider {
 		get colors() {
@@ -328,7 +328,7 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 	}
 	dragRuler.registerSystem("metanthropes-system", MetanthropesSystemSpeedProvider);
 	console.log("Metanthropes RPG System | Drag Ruler Integration Finished");
-	console.log("====================================");
+	console.log("Metanthropes RPG System | ====================================");
 });
 // Hook to look for re-rolls of meta dice in chat
 // Add event listener for re-roll button click, hiding the button for non-owners

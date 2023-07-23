@@ -68,9 +68,9 @@ export class MetanthropesItem extends Item {
 			// capture the info for the MetaRoll function
 			const actor = this.actor;
 			const stat = this.system.Activation.statrolled.value;
-			console.log("=======-----======---=====------=--------=======");
-	console.log("Metanthropes RPG System | we are inside item roll else - is this working?");
-			console.log("=======-----======---=====------=--------=======");
+			console.log("Metanthropes RPG System | ====================================");
+			console.log("Metanthropes RPG System | we are inside item roll else - is this working?");
+			console.log("Metanthropes RPG System | ====================================");
 			MetaRoll(actor, stat);
 			//! leaving this here because I need to understand what it did and what is no longer necessary.
 			//	// Invoke the roll and submit it to chat.
