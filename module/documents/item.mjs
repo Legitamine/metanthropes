@@ -69,7 +69,7 @@ export class MetanthropesItem extends Item {
 			const actor = this.actor;
 			const stat = this.system.Activation.statrolled.value;
 			console.log("=======-----======---=====------=--------=======");
-			console.log("Metanthropes RPG we are inside item roll else - is this working?");
+	console.log("Metanthropes RPG System | we are inside item roll else - is this working?");
 			console.log("=======-----======---=====------=--------=======");
 			MetaRoll(actor, stat);
 			//! leaving this here because I need to understand what it did and what is no longer necessary.

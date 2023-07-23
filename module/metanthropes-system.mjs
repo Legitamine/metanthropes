@@ -1,5 +1,5 @@
 console.log("====================================");
-console.log("Metanthropes RPG System - Awakened");
+console.log("Metanthropes RPG System | Awakened");
 console.log("====================================");
 // Import modules.
 import { MetanthropesCombat } from "./metanthropes/combat.mjs";
@@ -47,8 +47,7 @@ Handlebars.registerHelper("unless_key_is", function (key, value, options) {
 // Log system initialization.
 Hooks.once("init", async function () {
 	console.log("====================================");
-	console.log("Initializing Metanthropes RPG System");
-	console.log("====================================");
+	console.log("Metanthropes RPG System | Initializing");
 	// add our classes so they are more easily accessible
 	game.metanthropes = {
 		MetanthropesActor,
@@ -83,8 +82,7 @@ Hooks.once("init", async function () {
 		makeDefault: true,
 	});
 	// Preload Handlebars templates.
-	console.log("====================================");
-	console.log("Metanthropes RPG System Initialized");
+	console.log("Metanthropes RPG System | Initialized");
 	console.log("====================================");
 	return preloadHandlebarsTemplates();
 });
@@ -303,8 +301,7 @@ Hooks.once("ready", async function () {
 // Drag Ruler Integration
 Hooks.once("dragRuler.ready", (SpeedProvider) => {
 	console.log("====================================");
-	console.log("Metanthropes RPG System - Drag Ruler Integration Started");
-	console.log("====================================");
+	console.log("Metanthropes RPG System | Drag Ruler Integration Started");
 	class MetanthropesSystemSpeedProvider extends SpeedProvider {
 		get colors() {
 			return [
@@ -330,26 +327,26 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 		}
 	}
 	dragRuler.registerSystem("metanthropes-system", MetanthropesSystemSpeedProvider);
-	console.log("====================================");
-	console.log("Metanthropes RPG System - Drag Ruler Integration Finished");
+	console.log("Metanthropes RPG System | Drag Ruler Integration Finished");
 	console.log("====================================");
 });
 // Hook to look for re-rolls of meta dice in chat
 // Add event listener for re-roll button click, hiding the button for non-owners
 Hooks.on("renderChatMessage", async (message, html) => {
 	//? Get the actor from the message
-    const actorId = message.getFlag("metanthropes-system", "actorId");
-    const actor = game.actors.get(actorId);
+	const actorId = message.getFlag("metanthropes-system", "actorId");
+	//? all our messages have the actorId flag set, so if it's not our message, return.
+	if (!actorId) return;
+	const actor = game.actors.get(actorId);
 	//? Check if the current user is the owner of the actor
-    if (game.user.name === actor.system.metaowner.value || game.user.isGM) {
-        //? Unhide the buttons
-        html.find(".hide-button").removeClass("hidden");
-        //? Listen for Re-Roll button clicks
+	if (game.user.name === actor.system.metaowner.value || game.user.isGM) {
+		//? Unhide the buttons - assumes DF Chat Enhancements module is installed (provides hidden class)
+		html.find(".hide-button").removeClass("hidden");
+		//? Listen for Re-Roll button clicks
 		html.find(".rolld10-reroll").on("click", Rolld10ReRoll);
 		html.find(".metaeval-reroll").on("click", MetaEvaluateReRoll);
 		html.find(".metapower-re-roll").on("click", MetapowerReRoll);
 		html.find(".possession-re-roll").on("click", PossessionReRoll);
-		//? Listen for extras re-roll button clicks
 		html.find(".re-roll-targets").on("click", ReRollTargets);
 		html.find(".re-roll-duration").on("click", ReRollDuration);
 		html.find(".re-roll-damage").on("click", ReRollDamage);
