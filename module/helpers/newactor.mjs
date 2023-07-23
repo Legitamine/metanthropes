@@ -7,6 +7,7 @@
 // gia narrators episis prepei na kanw separate setup gia ta diafora alla types peran tou protagonist
 // kai episis na kanw expand to new actor function gia na kanei pick mono ta relative fields analoga me to type tou actor
 export async function NewActor(actor) {
+	try {
 	await NewActorDestiny(actor);
 	await NewActorPrimeMetapower(actor);
 	await NewActorCharacteristics(actor);
@@ -17,6 +18,9 @@ export async function NewActor(actor) {
 	await NewActorProgression(actor);
 	await NewActorSummary(actor);
 	await NewActorFinish(actor);
+	} catch (error) {
+		console.log("Metanthropes RPG New Actor Error:", error);
+	}
 }
 
 export async function NewStatRoll(actor, char, stat, number) {
@@ -61,10 +65,10 @@ export async function Rolld10(actor, what, destinyreroll, dice) {
 	//? if destiny is set to 1, allow rerolling the result by spending 1 Destiny Point
 	if (destinyreroll === 1) {
 		let currentDestiny = actor.system.Vital.Destiny.value;
-		message += `<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>
-		<div><button class="hide-button layout-hide rolld10-reroll" data-idactor="${actor.id}"
+		message += `<br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>
+		<div class="hide-button hidden"><br><button class="rolld10-reroll" data-idactor="${actor.id}"
 		data-what="${what}" data-destinyreroll="${destinyreroll}" data-dice="${dice}">Spend 🤞 Destiny to reroll
-		</button></div><br>`;
+		</button><br></div>`;
 	}
 	await actor.setFlag("metanthropes-system", "lastrolled", {
 		rolld10: total,
@@ -93,7 +97,8 @@ export async function Rolld10ReRoll(event) {
 		if (currentDestiny > 0) {
 			currentDestiny -= 1;
 			await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-			// Update re-roll button visibility
+			//! Currently unused
+			//? Update re-roll button visibility
 			const message = game.messages.get(button.dataset.messageId);
 			if (message) {
 				message.render();
@@ -103,6 +108,8 @@ export async function Rolld10ReRoll(event) {
 	}
 }
 export async function NewActorDestiny(actor) {
+	//? we will store the player's name as declared by the Gamemaster in the World User Settings
+	let playername = game.user.name;
 	let dialogContent = `
 	<div class="metanthropes layout-metaroll-dialog">
 		<h2>Choose your ${actor.type}'s 🤞 Destiny</h2>
@@ -133,13 +140,18 @@ export async function NewActorDestiny(actor) {
 							const total = actor.getFlag("metanthropes-system", "lastrolled").rolld10;
 							await actor.update({ "system.Vital.Destiny.value": Number(total) });
 							await actor.update({ "system.Vital.Destiny.max": Number(total) });
+							await actor.update({ "system.metaowner.value": playername });
 							console.log(`New Destiny: ${total}`);
+							console.log(`New Actor Owner: ${playername}`);
 							resolve();
 						},
 					},
 					cancel: {
 						label: "Cancel",
-						callback: () => reject(),
+						callback: async () => {
+							await actor.update({ "system.metaowner.value": null });
+							reject();
+						},
 					},
 				},
 				default: "ok",
@@ -764,6 +776,7 @@ export async function NewActorProgression(actor) {
 	});
 }
 export async function NewActorSummary(actor) {
+	let playername = game.user.name;
 	let dialogContent = `
 		<div class="metanthropes layout-metaroll-dialog">
 			<h2>Choose your ${actor.type}'s ✍️ Summary</h2>
@@ -778,23 +791,22 @@ export async function NewActorSummary(actor) {
 				</div>
 				<div class="form-group">
 					<label for="actorage">Age:</label>
-					<input type="number" id="actorage" name="actorage" value="">yr
+					<input class="style-container-input-charstat" type="number" id="actorage" name="actorage" value="">yr
 				</div>
 				<div class="form-group">
 					<label for="actorheight">Height:</label>
-					<input type="number" id="actorheight" name="actorheight" value="">m
+					<input class="style-container-input-charstat" type="number" id="actorheight" name="actorheight" value="">m
 				</div>
 				<div class="form-group">
 					<label for="actorweight">Weight:</label>
-					<input type="number" id="actorweight" name="actorweight" value="">kg
+					<input class="style-container-input-charstat" type="number" id="actorweight" name="actorweight" value="">kg
 				</div>
 				<div class="form-group">
 					<label for="actorpob">Place of Birth:</label>
 					<input type="text" id="actorpob" name="actorpob" value="">
 				</div>
 				<div class="form-group">
-					<label for="playername">Player Name:</label>
-					<input type="text" id="playername" name="playername" value="Your Name">
+					<label for="playername">Player Name:</label>${playername}
 				</div>
 			</form>
 		</div>
@@ -809,6 +821,9 @@ export async function NewActorSummary(actor) {
 					callback: async (html) => {
 						let actorname = html.find('[name="actorname"]').val();
 						await actor.update({ name: actorname });
+						if (actor.type == "Protagonist") {
+							await actor.update({ "prototypeToken.name": actorname });
+						}
 						console.log(`${actor.type}'s Name: ${actorname}`);
 						let actorage = html.find('[name="actorage"]').val();
 						await actor.update({ "system.Vital.age.value": Number(actorage) });
@@ -825,7 +840,9 @@ export async function NewActorSummary(actor) {
 						let actorpob = html.find('[name="actorpob"]').val();
 						await actor.update({ "system.humanoids.birthplace.value": actorpob });
 						console.log(`${actor.type}'s Place of Birth: ${actorpob}`);
-						let playername = html.find('[name="playername"]').val();
+						// let playername = html.find('[name="playername"]').val();
+						// await actor.update({ "system.metaowner.value": playername });
+						//let playername = game.user.name;
 						await actor.update({ "system.metaowner.value": playername });
 						console.log(`${actor.type}'s Player Name: ${playername}`);
 						resolve();
@@ -833,7 +850,10 @@ export async function NewActorSummary(actor) {
 				},
 				cancel: {
 					label: "Cancel",
-					callback: () => reject(),
+					callback: async () => {
+						await actor.update({ "system.metaowner.value": null });
+						reject();
+					},
 				},
 			},
 			default: "ok",
@@ -847,7 +867,7 @@ export async function NewActorFinish(actor) {
 			<h2>${actor.type}: ${actor.name} is ready to enter the Multiverse!</h2>
 			<form>
             <div class="form-group">
-                <label for="actorimg">${actor.type}'s Image:</label>
+                <label for="actorimg">${actor.type} Image:</label>
                 <img id="actorimg" src="${actor.img}" title="Choose your ${actor.type}'s Image" height="320" width="320" style="cursor:pointer;"/>
             </div>
         </form>

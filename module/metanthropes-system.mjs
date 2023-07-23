@@ -340,29 +340,14 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 // Hook to look for re-rolls of meta dice in chat
 // Add event listener for re-roll button click, hiding the button for non-owners
 Hooks.on("renderChatMessage", async (message, html) => {
-	//! do I really need this?
-	//	console.log("=============================================================================================");
-	//	console.log("Metanthropes RPG Inside Hook for Buttons");
-	//	console.log("Metanthropes RPG Will go deeper if (message.isAuthor) is true:", message.isAuthor);
-	//	console.log("=============================================================================================");
-	if (message.isAuthor || game.user.isGM) {
-		//! do I really need this?
-		//const actorId = message.getFlag("metanthropes-system", "actorId");
-		//const actor = game.actors.get(actorId);
-		//	console.log("inside RPG button hook, actor is", actor);
-		//	const currentDestiny = actor.system.Vital.Destiny.value;
-		//	console.log("=============================================================================================");
-		//	console.log("Metanthropes RPG Hook for Button - message.isAuthor is", message.isAuthor);
-		//	console.log("Metanthropes RPG Hook for Button - game.user.isGM is", game.user.isGM);
-		//	console.log("Metanthropes RPG Hook for Button - this", this);
-		//	console.log("Metanthropes RPG Hook for Button - should give actorId", actorId);
-		//	console.log("Metanthropes RPG Hook for Button - should give actor", actor);
-		//	console.log("Metanthropes RPG Hook for Button - should give actor Name", actor.name);
-		//	console.log("Metanthropes RPG Hook for Button - should give currentDestiny", currentDestiny);
-		//	console.log("=============================================================================================");
-		//! is this working now?
-		html.find(".hide-button").removeClass("layout-hide");
-		//! organize this - rerolls from chat
+	//? Get the actor from the message
+    const actorId = message.getFlag("metanthropes-system", "actorId");
+    const actor = game.actors.get(actorId);
+	// Check if the current user is the owner of the actor
+    if (game.user.name === actor.system.metaowner.value || game.user.isGM) {
+        // Unhide the buttons
+        html.find(".hide-button").removeClass("hidden");
+        // Add event listeners to the buttons
 		html.find(".rolld10-reroll").on("click", Rolld10ReRoll);
 		html.find(".metaeval-reroll").on("click", MetaEvaluateReRoll);
 		html.find(".meta-re-roll").on("click", MetaReRoll);

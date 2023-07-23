@@ -2,25 +2,40 @@
 	<header>
 		<div class="layout-container-actorinfo style-container-actorinfo">
 			{{#if system.metaowner.value}}
-			<div class="style-cs-chars-label">{{actor.name}}</div>
-			<div class="style-cs-stats-label">
-				<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="85" width="85" style="cursor:pointer; border: none;" />
-				<img src="systems/metanthropes-system/artwork/Meta-Avatar-Rotating.gif"
-					alt="Metanthropes" title="Metanthropes RPG {{actor.type}}"
-					height="85" width="85" style="border: none; border-radius: 50%" />
-				<img src="systems/metanthropes-system/artwork/metapowers/{{system.entermeta.primemetapower.value}}.png"
-					alt="{{system.entermeta.primemetapower.value}}" title="Prime Ⓜ️ Metapower: {{system.entermeta.primemetapower.value}}"
-					height="85" width="85" style="border: none;" />
-			</div>
-			<div class="style-cs-stats-label">{{system.metaowner.value}}</div>
+				<div class="layout-container-actorinfo-details">
+					<div class="style-actorinfo-tier2">
+						{{actor.type}}
+					</div>
+					<div class="style-actorinfo-tier1">
+						{{actor.name}}
+					</div>
+				</div>
+				<div class="style-cs-stats-label">
+					<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="85" width="85"
+						style="cursor:pointer; border: none;" />
+					<img src="systems/metanthropes-system/artwork/Meta-Avatar-Rotating.gif" alt="Metanthropes"
+						title="Metanthropes RPG {{actor.type}}" height="85" width="85"
+						style="border: none; border-radius: 50%" />
+					<img src="systems/metanthropes-system/artwork/metapowers/{{system.entermeta.primemetapower.value}}.png"
+						alt="{{system.entermeta.primemetapower.value}}"
+						title="Prime Ⓜ️ Metapower: {{system.entermeta.primemetapower.value}}" height="85" width="85"
+						style="border: none;" />
+				</div>
+				<div class="layout-container-actorinfo-details">
+					<div class="style-actorinfo-tier2">
+						Player
+					</div>
+					<div class="style-actorinfo-tier1">
+						{{system.metaowner.value}}
+					</div>
+				</div>
 			{{else}}
 				<div></div>
 				<div>
-					<button class="new-actor"
-						title="Create Your Protagonist">
+					<button class="new-actor" title="Create Your Protagonist">
 						<img src="systems/metanthropes-system/artwork/metanthropes-logo.webp"
-							alt="Create Your Protagonist"
-							height="65" width="65" style="cursor:pointer; border: none;" />
+							alt="Create Your Protagonist" height="65" width="65"
+							style="cursor:pointer; border: none;" />
 					</button>
 				</div>
 				<div></div>

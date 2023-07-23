@@ -156,9 +156,17 @@
 	margin: $margin-lg;
 	overflow-y: auto;
 }
+.layout-container-actorinfo-details {
+	justify-content: center;
+	justify-self: center;
+	align-items: center;
+	align-self: center;
+	padding: $padding-zero;
+	margin: $margin-zero;
+}
 .layout-hide {
-	@include element-invisible;
 	display: none;
+	//@include element-invisible;
 }
 .layout-editor {
 	display: flex;
