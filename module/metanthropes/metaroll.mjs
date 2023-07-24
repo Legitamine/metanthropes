@@ -1,7 +1,5 @@
 //? MetaRoll function handles the dialog box for selecting multi-actions and bonuses/penalties when rolling a stat
-// import the MetaRollStat function
-// import { MetaRollStat } from "./metarollstat.mjs";
-import { MetaEvaluate } from "./metaeval.mjs";
+import { MetaEvaluate } from "../helpers/metaeval.mjs";
 /*
  * we want to roll against a stat - always
  * we dermine if it's a simple roll, a detailed roll or a re-roll of existing results
@@ -67,10 +65,11 @@ export async function MetaRollCustom(actor, stat) {
 			${multiActionOptions.map((option) => `<option value="${option}">${option}</option>`).join("")}
 		</select>
 			<div>
+			<br>
 				<span class="style-cs-buffs ">Bonus: <input class="style-cs-buffs style-container-input-charstat"
 				type="number" id="bonus" min="0" value="0">%		</span>
 				<span class="style-cs-conditions">Penalty: <input class="style-cs-conditions style-container-input-charstat"
-				type="number" id="penalty" min="0" value="0">%</span>
+				type="number" id="penalty" min="0" value="0">%</span><br><br>
 			</div>
 	</div>
 	`;
@@ -79,7 +78,7 @@ export async function MetaRollCustom(actor, stat) {
 		content: dialogContent,
 		buttons: {
 			roll: {
-				label: "Roll 📊 Stat",
+				label: `Roll ${stat}`,
 				callback: async (html) => {
 					//collect multi-action value
 					let multiAction = html.find("#multiActionCount").val();

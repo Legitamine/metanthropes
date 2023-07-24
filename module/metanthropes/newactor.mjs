@@ -6,19 +6,46 @@
 // if anything is checked na kanei randomize ta reults aytou tou step.
 // gia narrators episis prepei na kanw separate setup gia ta diafora alla types peran tou protagonist
 // kai episis na kanw expand to new actor function gia na kanei pick mono ta relative fields analoga me to type tou actor
+//? Import d10 roll function
+import { Rolld10 } from "../helpers/extrasroll.mjs";
+//? Import list of 100 Metapowers
+import { MetapowersList } from "./metapowerlist.mjs";
+//* New Actor Function
 export async function NewActor(actor) {
-	await NewActorDestiny(actor);
-	await NewActorPrimeMetapower(actor);
-	await NewActorCharacteristics(actor);
-	await NewActorBodyStats(actor);
-	await NewActorMindStats(actor);
-	await NewActorSoulStats(actor);
-	await NewActorRoleplay(actor);
-	await NewActorProgression(actor);
-	await NewActorSummary(actor);
-	await NewActorFinish(actor);
+	try {
+		await NewActorDestiny(actor);
+		await NewActorPrimeMetapower(actor);
+		await NewActorCharacteristics(actor);
+		await NewActorBodyStats(actor);
+		await NewActorMindStats(actor);
+		await NewActorSoulStats(actor);
+		await NewActorRoleplay(actor);
+		await NewActorProgression(actor);
+		await NewActorSummary(actor);
+		await NewActorFinish(actor);
+	} catch (error) {
+		console.log("Metanthropes RPG System | New Actor Error:", error);
+	}
 }
+//* Filter function for Prime Metapower Selection
+function createFilterDropdown(id, options) {
+	let dropdown = document.createElement("select");
+	dropdown.id = id;
 
+	let anyOption = document.createElement("option");
+	anyOption.value = "Any";
+	anyOption.text = "Any";
+	dropdown.appendChild(anyOption);
+
+	options.forEach((optionValue) => {
+		let option = document.createElement("option");
+		option.value = optionValue;
+		option.text = optionValue;
+		dropdown.appendChild(option);
+	});
+
+	return dropdown;
+}
 export async function NewStatRoll(actor, char, stat, number) {
 	return new Promise((resolve, reject) => {
 		Rolld10(actor, stat, 1, number);
@@ -38,7 +65,10 @@ export async function NewStatRoll(actor, char, stat, number) {
 						await actor.update({
 							[`system.Characteristics.${char}.Stats.${stat}.Initial`]: Number(statvalue),
 						});
-						console.log(`New ${stat} Stat:`, actor.system.Characteristics[char].Stats[stat].Initial);
+						console.log(
+							`Metanthropes RPG System | New ${stat} Stat:`,
+							actor.system.Characteristics[char].Stats[stat].Initial
+						);
 						resolve();
 					},
 				},
@@ -48,61 +78,9 @@ export async function NewStatRoll(actor, char, stat, number) {
 		dialogstat.render(true);
 	});
 }
-export async function Rolld10(actor, what, destinyreroll, dice) {
-	//? This functions rolls a number of d10 and allow rerolls if destiny is set to 1
-	//? destiny allows for rerolling the result by spending 1 Destiny Point
-	//! thelw info apo bro gia to poia metapowers allazoune ta dice poy kaneis reroll gia na ta kanw include edw
-	//! review CSS classes
-	//? dice is the number of d10 to roll
-	const rolld10 = await new Roll(`${dice}d10x10`).evaluate({ async: true });
-	const total = rolld10.total;
-	//* Message to be printed to chat
-	let message = `${actor.name} rolls for ${what} with ${dice} * d10 and gets a total of ${total}. <br>`;
-	//? if destiny is set to 1, allow rerolling the result by spending 1 Destiny Point
-	if (destinyreroll === 1) {
-		let currentDestiny = actor.system.Vital.Destiny.value;
-		message += `<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>
-		<div><button class="hide-button layout-hide rolld10-reroll" data-idactor="${actor.id}"
-		data-what="${what}" data-destinyreroll="${destinyreroll}" data-dice="${dice}">Spend 🤞 Destiny to reroll
-		</button></div><br>`;
-	}
-	await actor.setFlag("metanthropes-system", "lastrolled", {
-		rolld10: total,
-	});
-	//print message to chat and enable Dice So Nice to roll the dice and display the message
-	rolld10.toMessage({
-		speaker: ChatMessage.getSpeaker({ actor: actor }),
-		flavor: message,
-		rollMode: game.settings.get("core", "rollMode"),
-		flags: { "metanthropes-system": { actorId: actor.id } },
-	});
-}
-//* This is the function that is called when the destiny re-roll button is clicked
-export async function Rolld10ReRoll(event) {
-	event.preventDefault();
-	const button = event.target;
-	const actorId = button.dataset.idactor;
-	const what = button.dataset.what;
-	const destinyreroll = parseInt(button.dataset.destinyreroll);
-	const dice = parseInt(button.dataset.dice);
-	const actor = game.actors.get(actorId);
-	let currentDestiny = actor.system.Vital.Destiny.value;
-	// make this function only available to the owner of the actor
-	if ((actor && actor.isOwner) || game.user.isGM) {
-		// Reduce Destiny.value by 1
-		if (currentDestiny > 0) {
-			currentDestiny -= 1;
-			await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-			// Update re-roll button visibility
-			const message = game.messages.get(button.dataset.messageId);
-			if (message) {
-				message.render();
-			}
-			Rolld10(actor, what, destinyreroll, dice);
-		}
-	}
-}
 export async function NewActorDestiny(actor) {
+	//? we will store the player's name as declared by the Gamemaster in the World User Settings
+	let playername = game.user.name;
 	let dialogContent = `
 	<div class="metanthropes layout-metaroll-dialog">
 		<h2>Choose your ${actor.type}'s 🤞 Destiny</h2>
@@ -133,13 +111,18 @@ export async function NewActorDestiny(actor) {
 							const total = actor.getFlag("metanthropes-system", "lastrolled").rolld10;
 							await actor.update({ "system.Vital.Destiny.value": Number(total) });
 							await actor.update({ "system.Vital.Destiny.max": Number(total) });
-							console.log(`New Destiny: ${total}`);
+							await actor.update({ "system.metaowner.value": playername });
+							console.log(`Metanthropes RPG System | New Actor Owner: ${playername}`);
+							console.log(`Metanthropes RPG System | ${playername}'s ${actor.type} Destiny: ${total}`);
 							resolve();
 						},
 					},
 					cancel: {
 						label: "Cancel",
-						callback: () => reject(),
+						callback: async () => {
+							await actor.update({ "system.metaowner.value": null });
+							reject();
+						},
 					},
 				},
 				default: "ok",
@@ -155,18 +138,48 @@ export async function NewActorPrimeMetapower(actor) {
         <h2>Choose your ${actor.type}'s Prime Ⓜ️ Metapower</h2>
         <form>
             <div class="form-group">
-                <label for="primeimg">Prime Ⓜ️ Metapower:</label>
-                <img id="primeimg" src="${
-					actor.primeimg
-				}" title="Choose your Prime Ⓜ️ Metapower" height="215" width="215" style="cursor:pointer;"/>
-                <span id="primemetapower">${actor.primeimg.split("/").pop().replace(".png", "")}</span>
+                <label for="classification">🔣 Classification:</label>
+                <select id="classification">
+                    <option value="">All</option>
+                    ${[...new Set(MetapowersList.map((m) => m.classification))]
+						.map((c) => `<option value="${c}">${c}</option>`)
+						.join("")}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="energyType">⚡ Energy Type:</label>
+                <select id="energyType">
+                    <option value="">All</option>
+                    ${[...new Set(MetapowersList.map((m) => m.energyType))]
+						.map((e) => `<option value="${e}">${e}</option>`)
+						.join("")}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="statRolled">🎲 Stat Rolled:</label>
+                <select id="statRolled">
+                    <option value="">All</option>
+                    ${[...new Set(MetapowersList.map((m) => m.statRolled))]
+						.map((s) => `<option value="${s}">${s}</option>`)
+						.join("")}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="primeMetapower">Prime Ⓜ️ Metapower:</label>
+                <select id="primeMetapower">
+                    ${MetapowersList.map((m) => `<option value="${m.name}">${m.name}</option>`).join("")}
+                </select>
+			</div>
+			<div class="form-group">
+				<label for="primeMetapowerImg"></label>
+				<img id="primeMetapowerImg" src="systems/metanthropes-system/artwork/metapowers/6th Sense.png" alt="Prime Metapower Image" style="border: none;" height="270" width="270" />
             </div>
         </form>
     </div>
     `;
 	let dialogOptions = {
-		width: 600,
-		height: 360,
+		width: 485,
+		height: 600,
 		index: 1000,
 	};
 	return new Promise((resolve, reject) => {
@@ -178,36 +191,63 @@ export async function NewActorPrimeMetapower(actor) {
 					ok: {
 						label: "Confirm Prime Ⓜ️ Metapower",
 						callback: async (html) => {
-							let primeimg = html.find("#primeimg").attr("src");
-							let primemetapower = decodeURIComponent(primeimg.split("/").pop().replace(".png", ""));
+							let primeMetapowerName = html.find("#primeMetapower").val();
+							let primeMetapower = MetapowersList.find((m) => m.name === primeMetapowerName);
 							await actor.update({
-								primeimg: primeimg,
-								"system.entermeta.primemetapower.value": primemetapower,
+								"system.entermeta.primemetapower.value": primeMetapowerName,
+								primeimg: `systems/metanthropes-system/artwork/metapowers/${primeMetapowerName}.png`,
 							});
-							console.log(`New Prime Metapower: ${primemetapower}`);
+							console.log(`Metanthropes RPG System | New Prime Metapower: ${primeMetapowerName}`);
 							resolve();
 						},
 					},
 					cancel: {
 						label: "Cancel",
-						callback: () => reject(),
+						callback: async () => {
+							await actor.update({ "system.metaowner.value": null });
+							reject();
+						},
 					},
 				},
 				default: "ok",
 				render: (html) => {
-					html.find("#primeimg").click((ev) => {
-						new FilePicker({
-							resource: "data",
-							current: "systems/metanthropes-system/artwork/metapowers",
-							displayMode: "thumbs",
-							callback: (path) => {
-								html.find("#primeimg").attr("src", path);
-								let primemetapower = decodeURIComponent(path.split("/").pop().replace(".png", ""));
-								html.find("#primemetapower").text(primemetapower);
-							},
-						}).browse();
+					// Get dropdown for Prime Metapower selection
+					let primeMetapowerDropdown = html.find("#primeMetapower")[0];
+					// Get dropdowns for filters
+					let classificationDropdown = html.find("#classification")[0];
+					let energyTypeDropdown = html.find("#energyType")[0];
+					let statRolledDropdown = html.find("#statRolled")[0];
+					// Filter function
+					html.find("#classification, #energyType, #statRolled").change(() => {
+						let selectedClassification = classificationDropdown.value;
+						let selectedEnergyType = energyTypeDropdown.value;
+						let selectedStatRolled = statRolledDropdown.value;
+						let filteredMetapowers = MetapowersList.filter(
+							(metapower) =>
+								(!selectedClassification || metapower.classification === selectedClassification) &&
+								(!selectedEnergyType || metapower.energyType === selectedEnergyType) &&
+								(!selectedStatRolled || metapower.statRolled === selectedStatRolled)
+						);
+						// Update Prime Metapower dropdown options
+						primeMetapowerDropdown.innerHTML = "";
+						filteredMetapowers.forEach((metapower, index) => {
+							let option = document.createElement("option");
+							option.value = index;
+							option.text = metapower.name;
+							primeMetapowerDropdown.appendChild(option);
+						});
+					});
+					// Update Prime Metapower image
+					html.find("#primeMetapower").change(() => {
+						let primeMetapowerName = primeMetapowerDropdown.value;
+						let primeMetapowerImg = html.find("#primeMetapowerImg")[0];
+						primeMetapowerImg.src = `systems/metanthropes-system/artwork/metapowers/${primeMetapowerName}.png`;
 					});
 				},
+				//	close: async () => {
+				//		await actor.update({ "system.metaowner.value": null });
+				//		reject();
+				//	},
 			},
 			dialogOptions
 		);
@@ -266,15 +306,27 @@ export async function NewActorCharacteristics(actor) {
 							await actor.update({ [`system.Characteristics.${primary}.Initial`]: Number(30) });
 							await actor.update({ [`system.Characteristics.${secondary}.Initial`]: Number(20) });
 							await actor.update({ [`system.Characteristics.${tertiary}.Initial`]: Number(10) });
-							console.log(`New primary: ${primary}`, actor.system.Characteristics[primary].Initial);
-							console.log(`New secondary: ${secondary}`, actor.system.Characteristics[secondary].Initial);
-							console.log(`New tertiary: ${tertiary}`, actor.system.Characteristics[tertiary].Initial);
+							console.log(
+								`Metanthropes RPG System | New primary: ${primary}`,
+								actor.system.Characteristics[primary].Initial
+							);
+							console.log(
+								`Metanthropes RPG System | New secondary: ${secondary}`,
+								actor.system.Characteristics[secondary].Initial
+							);
+							console.log(
+								`Metanthropes RPG System | New tertiary: ${tertiary}`,
+								actor.system.Characteristics[tertiary].Initial
+							);
 							resolve();
 						},
 					},
 					cancel: {
 						label: "Cancel",
-						callback: () => reject(),
+						callback: async () => {
+							await actor.update({ "system.metaowner.value": null });
+							reject();
+						},
 					},
 				},
 				default: "ok",
@@ -306,6 +358,10 @@ export async function NewActorCharacteristics(actor) {
 						});
 					});
 				},
+				//	close: async () => {
+				//		await actor.update({ "system.metaowner.value": null });
+				//		reject();
+				//	},
 			},
 			dialogOptions
 		);
@@ -377,7 +433,10 @@ export async function NewActorBodyStats(actor) {
 					},
 					cancel: {
 						label: "Cancel",
-						callback: () => reject(),
+						callback: async () => {
+							await actor.update({ "system.metaowner.value": null });
+							reject();
+						},
 					},
 				},
 				default: "ok",
@@ -411,6 +470,10 @@ export async function NewActorBodyStats(actor) {
 						});
 					});
 				},
+				//	close: async () => {
+				//		await actor.update({ "system.metaowner.value": null });
+				//		reject();
+				//	},
 			},
 			dialogOptions
 		);
@@ -479,7 +542,10 @@ export async function NewActorMindStats(actor) {
 					},
 					cancel: {
 						label: "Cancel",
-						callback: () => reject(),
+						callback: async () => {
+							await actor.update({ "system.metaowner.value": null });
+							reject();
+						},
 					},
 				},
 				default: "ok",
@@ -513,6 +579,10 @@ export async function NewActorMindStats(actor) {
 						});
 					});
 				},
+				//	close: async () => {
+				//		await actor.update({ "system.metaowner.value": null });
+				//		reject();
+				//	},
 			},
 			dialogOptions
 		);
@@ -581,7 +651,10 @@ export async function NewActorSoulStats(actor) {
 					},
 					cancel: {
 						label: "Cancel",
-						callback: () => reject(),
+						callback: async () => {
+							await actor.update({ "system.metaowner.value": null });
+							reject();
+						},
 					},
 				},
 				default: "ok",
@@ -615,6 +688,10 @@ export async function NewActorSoulStats(actor) {
 						});
 					});
 				},
+				//	close: async () => {
+				//		await actor.update({ "system.metaowner.value": null });
+				//		reject();
+				//	},
 			},
 			dialogOptions
 		);
@@ -688,25 +765,32 @@ export async function NewActorRoleplay(actor) {
 					callback: async (html) => {
 						let RPbackgroundpick = html.find('[name="RPbackground"]').val();
 						await actor.update({ "system.Vital.background.value": RPbackgroundpick });
-						console.log(`New Background: ${RPbackgroundpick}`);
+						console.log(`Metanthropes RPG System | New Background: ${RPbackgroundpick}`);
 						let RPmetamorphosispick = html.find('[name="RPmetamorphosis"]').val();
 						await actor.update({ "system.entermeta.metamorphosis.value": RPmetamorphosispick });
-						console.log(`New Metamorphosis: ${RPmetamorphosispick}`);
+						console.log(`Metanthropes RPG System | New Metamorphosis: ${RPmetamorphosispick}`);
 						let RParcpick = html.find('[name="RParc"]').val();
 						await actor.update({ "system.Vital.arc.value": RParcpick });
-						console.log(`New Arc: ${RParcpick}`);
+						console.log(`Metanthropes RPG System | New Arc: ${RParcpick}`);
 						let RPregressionpick = html.find('[name="RPregression"]').val();
 						await actor.update({ "system.entermeta.regression.value": RPregressionpick });
-						console.log(`New Regression: ${RPregressionpick}`);
+						console.log(`Metanthropes RPG System | New Regression: ${RPregressionpick}`);
 						resolve();
 					},
 				},
 				cancel: {
 					label: "Cancel",
-					callback: () => reject(),
+					callback: async () => {
+						await actor.update({ "system.metaowner.value": null });
+						reject();
+					},
 				},
 			},
 			default: "ok",
+			//	close: async () => {
+			//		await actor.update({ "system.metaowner.value": null });
+			//		reject();
+			//	},
 		});
 		dialog.render(true);
 	});
@@ -743,20 +827,27 @@ export async function NewActorProgression(actor) {
 						callback: async (html) => {
 							let startingxp = html.find('[name="startingxp"]').val();
 							await actor.update({ "system.Vital.Experience.Total": Number(startingxp) });
-							console.log(`${actor.type}'s Starting Experience: ${startingxp}`);
+							console.log(`Metanthropes RPG System | ${actor.type}'s Starting Experience: ${startingxp}`);
 							let startingperks = html.find('[name="startingperks"]').val();
 							//? setting the starting perks count to the database to be used later in determining XP costs
 							await actor.update({ "system.Perks.Details.Starting.value": startingperks });
-							console.log(`${actor.type}'s Starting Perks: ${startingperks}`);
+							console.log(`Metanthropes RPG System | ${actor.type}'s Starting Perks: ${startingperks}`);
 							resolve();
 						},
 					},
 					cancel: {
 						label: "Cancel",
-						callback: () => reject(),
+						callback: async () => {
+							await actor.update({ "system.metaowner.value": null });
+							reject();
+						},
 					},
 				},
 				default: "ok",
+				//	close: async () => {
+				//		await actor.update({ "system.metaowner.value": null });
+				//		reject();
+				//	},
 			},
 			dialogOptions
 		);
@@ -764,37 +855,55 @@ export async function NewActorProgression(actor) {
 	});
 }
 export async function NewActorSummary(actor) {
+	let playername = game.user.name;
+	let narratorname = game.users.activeGM.name;
 	let dialogContent = `
 		<div class="metanthropes layout-metaroll-dialog">
 			<h2>Choose your ${actor.type}'s ✍️ Summary</h2>
 			<form>
+			<p>Protagonist Details:</p>
 				<div class="form-group">
-					<label for="actorname">Name:</label>
+					<label for="actorname">Name: </label>
 					<input type="text" id="actorname" name="actorname" value="${actor.type}'s Name">
 				</div>
 				<div class="form-group">
-					<label for="actorgender">Gender:</label>
+					<label for="actorgender">Gender: </label>
 					<input type="text" id="actorgender" name="actorgender" value="">
 				</div>
 				<div class="form-group">
-					<label for="actorage">Age:</label>
-					<input type="number" id="actorage" name="actorage" value="">yr
+					<label for="actorage">Age: </label>
+					<input class="style-container-input-charstat" type="number" id="actorage" name="actorage" value="">yr
 				</div>
 				<div class="form-group">
-					<label for="actorheight">Height:</label>
-					<input type="number" id="actorheight" name="actorheight" value="">m
+					<label for="actorheight">Height: </label>
+					<input class="style-container-input-charstat" type="number" id="actorheight" name="actorheight" value="">m
 				</div>
 				<div class="form-group">
-					<label for="actorweight">Weight:</label>
-					<input type="number" id="actorweight" name="actorweight" value="">kg
+					<label for="actorweight">Weight: </label>
+					<input class="style-container-input-charstat" type="number" id="actorweight" name="actorweight" value="">kg
 				</div>
 				<div class="form-group">
-					<label for="actorpob">Place of Birth:</label>
+					<label for="actorpob">Place of Birth: </label>
 					<input type="text" id="actorpob" name="actorpob" value="">
 				</div>
+				<p>Session Details:</p>
 				<div class="form-group">
-					<label for="playername">Player Name:</label>
-					<input type="text" id="playername" name="playername" value="Your Name">
+					<label for="narratorname">Narrator Name: </label>${narratorname}
+				</div>
+				<div class="form-group">
+					<label for="playername">Player Name: </label>${playername}
+				</div>
+				<div class="form-group">
+					<label for="saganame">Saga Name: </label>
+					<input type="text" id="saganame" name="saganame" value="">
+				</div>
+				<div class="form-group">
+					<label for="coalitionname">Coalition Name: </label>
+					<input type="text" id="coalitionname" name="coalitionname" value="">
+				</div>
+				<div class="form-group">
+					<label for="factionname">Faction Name: </label>
+					<input type="text" id="factionname" name="factionname" value="">
 				</div>
 			</form>
 		</div>
@@ -809,34 +918,54 @@ export async function NewActorSummary(actor) {
 					callback: async (html) => {
 						let actorname = html.find('[name="actorname"]').val();
 						await actor.update({ name: actorname });
-						console.log(`${actor.type}'s Name: ${actorname}`);
+						if (actor.type == "Protagonist") {
+							await actor.update({ "prototypeToken.name": actorname });
+						}
+						console.log(`Metanthropes RPG System | ${actor.type}'s Name: ${actorname}`);
 						let actorage = html.find('[name="actorage"]').val();
 						await actor.update({ "system.Vital.age.value": Number(actorage) });
-						console.log(`${actor.type}'s Age: ${actorage}`);
+						console.log(`Metanthropes RPG System | ${actor.type}'s Age: ${actorage}`);
 						let actorgender = html.find('[name="actorgender"]').val();
 						await actor.update({ "system.humanoids.gender.value": actorgender });
-						console.log(`${actor.type}'s Gender: ${actorgender}`);
+						console.log(`Metanthropes RPG System | ${actor.type}'s Gender: ${actorgender}`);
 						let actorheight = html.find('[name="actorheight"]').val();
 						await actor.update({ "system.humanoids.height.value": Number(actorheight) });
-						console.log(`${actor.type}'s Height: ${actorheight}`);
+						console.log(`Metanthropes RPG System | ${actor.type}'s Height: ${actorheight}`);
 						let actorweight = html.find('[name="actorweight"]').val();
 						await actor.update({ "system.humanoids.weight.value": Number(actorweight) });
-						console.log(`${actor.type}'s Weight: ${actorweight}`);
+						console.log(`Metanthropes RPG System | ${actor.type}'s Weight: ${actorweight}`);
 						let actorpob = html.find('[name="actorpob"]').val();
 						await actor.update({ "system.humanoids.birthplace.value": actorpob });
-						console.log(`${actor.type}'s Place of Birth: ${actorpob}`);
-						let playername = html.find('[name="playername"]').val();
+						console.log(`Metanthropes RPG System | ${actor.type}'s Place of Birth: ${actorpob}`);
 						await actor.update({ "system.metaowner.value": playername });
-						console.log(`${actor.type}'s Player Name: ${playername}`);
+						console.log(`Metanthropes RPG System | ${actor.type}'s Player Name: ${playername}`);
+						await actor.update({ "system.entermeta.narrator.value": narratorname });
+						console.log(`Metanthropes RPG System | ${actor.type}'s Narrator Name: ${narratorname}`);
+						let saganame = html.find('[name="saganame"]').val();
+						await actor.update({ "system.entermeta.sagas.value": saganame });
+						console.log(`Metanthropes RPG System | ${actor.type}'s Saga Name: ${saganame}`);
+						let coalitionname = html.find('[name="coalitionname"]').val();
+						await actor.update({ "system.entermeta.coalition.value": coalitionname });
+						console.log(`Metanthropes RPG System | ${actor.type}'s Coalition Name: ${coalitionname}`);
+						let factionname = html.find('[name="factionname"]').val();
+						await actor.update({ "system.entermeta.faction.value": factionname });
+						console.log(`Metanthropes RPG System | ${actor.type}'s Faction Name: ${factionname}`);
 						resolve();
 					},
 				},
 				cancel: {
 					label: "Cancel",
-					callback: () => reject(),
+					callback: async () => {
+						await actor.update({ "system.metaowner.value": null });
+						reject();
+					},
 				},
 			},
 			default: "ok",
+			//	close: async () => {
+			//		await actor.update({ "system.metaowner.value": null });
+			//		reject();
+			//	},
 		});
 		dialog.render(true);
 	});
@@ -847,7 +976,7 @@ export async function NewActorFinish(actor) {
 			<h2>${actor.type}: ${actor.name} is ready to enter the Multiverse!</h2>
 			<form>
             <div class="form-group">
-                <label for="actorimg">${actor.type}'s Image:</label>
+                <label for="actorimg">${actor.type} Image:</label>
                 <img id="actorimg" src="${actor.img}" title="Choose your ${actor.type}'s Image" height="320" width="320" style="cursor:pointer;"/>
             </div>
         </form>

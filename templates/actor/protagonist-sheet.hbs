@@ -2,42 +2,55 @@
 	<header>
 		<div class="layout-container-actorinfo style-container-actorinfo">
 			{{#if system.metaowner.value}}
-			<div class="style-cs-chars-label">{{actor.name}}</div>
-			<div class="style-cs-stats-label">
-				<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="85" width="85" style="cursor:pointer; border: none;" />
-				<img src="systems/metanthropes-system/artwork/Meta-Avatar-Rotating.gif"
-					alt="Metanthropes" title="Metanthropes RPG {{actor.type}}"
-					height="85" width="85" style="border: none; border-radius: 50%" />
-				<img src="systems/metanthropes-system/artwork/metapowers/{{system.entermeta.primemetapower.value}}.png"
-					alt="{{system.entermeta.primemetapower.value}}" title="Prime Ⓜ️ Metapower: {{system.entermeta.primemetapower.value}}"
-					height="85" width="85" style="border: none;" />
-			</div>
-			<div class="style-cs-stats-label">{{system.metaowner.value}}</div>
+				<div class="layout-container-actorinfo-details">
+					<img src="systems/metanthropes-system/artwork/Meta-Avatar-Rotating.gif" alt="Metanthropes"
+						title="Metanthropes RPG {{actor.type}}" height="85" width="85"
+						style="border: none; border-radius: 80%" />
+				</div>
+				<div class="layout-container-actorinfo-details">
+					<div class="style-actorinfo-tier3">
+						Player
+					</div>
+					<div class="style-actorinfo-tier4">
+						{{system.metaowner.value}}
+					</div>
+				</div>
+				<div class="layout-container-actorinfo-details">
+					<div class="style-actorinfo-tier2">
+						{{actor.type}}
+					</div>
+					<div class="style-actorinfo-tier1">
+						{{actor.name}}
+					</div>
+				</div>
+				<div class="layout-container-actorinfo-details">
+						<img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="85" width="85"
+							style="cursor:pointer; border: none;" />
+						<img src="systems/metanthropes-system/artwork/metapowers/{{system.entermeta.primemetapower.value}}.png"
+							alt="{{system.entermeta.primemetapower.value}}"
+							title="Prime Ⓜ️ Metapower: {{system.entermeta.primemetapower.value}}" height="85" width="85"
+							style="border: none;" />
+				</div>
+				<div>
+				</div>
 			{{else}}
 				<div></div>
-				<div>
-					<button class="new-actor"
-						title="Create Your Protagonist">
-						<img src="systems/metanthropes-system/artwork/metanthropes-logo.webp"
-							alt="Create Your Protagonist"
-							height="65" width="65" style="cursor:pointer; border: none;" />
-					</button>
-				</div>
 				<div></div>
+				<div>
+					<button class="new-actor" title=`Roll New {{actor.type}}`>Roll New {{actor.type}}</button>
+				</div>
 			{{/if}}
 		</div>
 		<div class="layout-container-vitals style-container-vitals">
-			<div class="layout-container-small style-container-small">
+			<div>
 				<div class="style-labels-text">
 					❤️ Life
 					<input name="system.Vital.Life.value" type="number" value="{{system.Vital.Life.value}}"
 						data-dtype="Number" />/{{system.Vital.Life.max}}
 				</div>
 			</div>
-			<div class="layout-container-small style-container-small">
-				<div class="style-labels-text">📈 Experience Total: <input name="system.Vital.Experience.Total"
-						type="number" value="{{system.Vital.Experience.Total}}" data-dtype="Number"
-						placeholder="1000" /> Spent:
+			<div>
+				<div class="style-labels-text">📈 Experience: {{system.Vital.Experience.Total}} Spent:
 					{{system.Vital.Experience.Spent}} + <input name="system.Vital.Experience.Manual" type="number"
 						value="{{system.Vital.Experience.Manual}}" data-dtype="Number" placeholder="0" />
 					Stored:{{#if (gte system.Vital.Experience.Stored 0)}}
@@ -47,11 +60,8 @@
 					{{/if}}
 				</div>
 			</div>
-			<div class="layout-container-small style-container-small">
-				<div class="style-labels-text">🤞 Destiny
-					<input name="system.Vital.Destiny.value" type="number" value="{{system.Vital.Destiny.value}}"
-						data-dtype="Number" placeholder="0" />/<input name="system.Vital.Destiny.max" type="number"
-						value="{{system.Vital.Destiny.max}}">
+			<div>
+				<div class="style-labels-text">🤞 Destiny {{system.Vital.Destiny.value}}/{{system.Vital.Destiny.max}}
 				</div>
 			</div>
 		</div>
@@ -76,7 +86,7 @@
 				{{> "systems/metanthropes-system/templates/helpers/actor-summary.hbs"}}
 			</div>
 			<div class="tab cs-metapowers" data-group="cs" data-tab="cs-metapowers">
-				<div class="layout-container-small style-container-small">
+				<div class="layout-container-outer-tabs style-container-outer-tabs">
 					{{> "systems/metanthropes-system/templates/helpers/actor-metapowers.hbs"}}
 				</div>
 			</div>
@@ -87,17 +97,17 @@
 				{{> "systems/metanthropes-system/templates/helpers/actor-combos.hbs"}}
 			</div>
 			<div class="tab cs-perks" data-group="cs" data-tab="cs-perks">
-				<div class="layout-container-small style-container-small">
+				<div class="layout-container-outer-tabs style-container-outer-tabs">
 					{{> "systems/metanthropes-system/templates/helpers/actor-perks.hbs"}}
 				</div>
 			</div>
 			<div class="tab cs-possessions" data-group="cs" data-tab="cs-possessions">
-				<div class="layout-container-small style-container-small">
+				<div class="layout-container-outer-tabs style-container-outer-tabs">
 					{{> "systems/metanthropes-system/templates/helpers/actor-possessions.hbs"}}
 				</div>
 			</div>
 			<div class="tab cs-notes" data-group="cs" data-tab="cs-notes">
-				<div class="layout-container-small style-container-small">
+				<div class="layout-container-outer-tabs style-container-outer-tabs">
 					NOTES
 					are partially implemented
 					{{> "systems/metanthropes-system/templates/helpers/actor-notes.hbs"}}

@@ -1,6 +1,6 @@
-console.log("====================================");
-console.log("Metanthropes RPG System - Awakened");
-console.log("====================================");
+console.log("Metanthropes RPG System | ====================================");
+console.log("Metanthropes RPG System | Awakened");
+console.log("Metanthropes RPG System | ====================================");
 // Import modules.
 import { MetanthropesCombat } from "./metanthropes/combat.mjs";
 import { MetaCombatTracker } from "./metanthropes/combattracker.mjs";
@@ -13,21 +13,18 @@ import { MetanthropesActorSheet } from "./sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
 // Import helpers.
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
-//! organize this
+//? Import Re-Roll helpers
 import { MetaEvaluateReRoll } from "./helpers/metaeval.mjs";
-// import { MetaInitiative } from "./helpers/metainitiative.mjs";
-// Import Meta-Dice rolling functions.
-import { Rolld10ReRoll } from "./helpers/newactor.mjs";
-import { MetaReRoll } from "./helpers/metarollstat.mjs";
+import { Rolld10ReRoll } from "./helpers/extrasroll.mjs";
 import { MetapowerReRoll } from "./helpers/mprollstat.mjs";
 import { PossessionReRoll } from "./helpers/posrollstat.mjs";
-import { MetapowerActivate } from "./helpers/mpactivate.mjs";
 import { ReRollTargets } from "./helpers/extrasroll.mjs";
 import { ReRollDuration } from "./helpers/extrasroll.mjs";
 import { ReRollDamage } from "./helpers/extrasroll.mjs";
 import { ReRollHealing } from "./helpers/extrasroll.mjs";
 import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
 import { PossessionUse } from "./helpers/posuse.mjs";
+import { MetapowerActivate } from "./helpers/mpactivate.mjs";
 //* Handlebars helpers
 //! Supposedly Foundry includes its own select helper, but I couldn't get it to work.
 Handlebars.registerHelper("selected", function (option, value) {
@@ -46,12 +43,10 @@ Handlebars.registerHelper("unless_key_is", function (key, value, options) {
 		return options.fn(this);
 	}
 });
-
 // Log system initialization.
 Hooks.once("init", async function () {
-	console.log("====================================");
-	console.log("Initializing Metanthropes RPG System");
-	console.log("====================================");
+	console.log("Metanthropes RPG System | ====================================");
+	console.log("Metanthropes RPG System | Initializing");
 	// add our classes so they are more easily accessible
 	game.metanthropes = {
 		MetanthropesActor,
@@ -86,9 +81,8 @@ Hooks.once("init", async function () {
 		makeDefault: true,
 	});
 	// Preload Handlebars templates.
-	console.log("====================================");
-	console.log("Metanthropes RPG System Initialized");
-	console.log("====================================");
+	console.log("Metanthropes RPG System | Initialized");
+	console.log("Metanthropes RPG System | ====================================");
 	return preloadHandlebarsTemplates();
 });
 /* -------------------------------------------- */
@@ -157,9 +151,9 @@ function rollItemMacro(itemUuid) {
 /* -------------------------------------------- */
 // dragable macros
 Hooks.once("ready", async function () {
-	// Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
+	//? Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
 	Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
-	// Add support for Moulinette: Free modules with artwork & sounds is available for indexing by Moulinette
+	//? Add support for Moulinette: Free modules with artwork & sounds is available for indexing by Moulinette
 	if (game.moulinette) {
 		game.moulinette.sources.push({
 			type: "images",
@@ -303,11 +297,25 @@ Hooks.once("ready", async function () {
 		});
 	}
 });
-// Drag Ruler Integration
+//? Enhanced Terrain Layer Integration
+Hooks.once("enhancedTerrainLayer.ready", (RuleProvider) => {
+	console.log("Metanthropes RPG System | ====================================");
+	console.log("Metanthropes RPG System | Enhanced Terrain Layer Integration Started");
+	class MetanthropesRuleProvider extends RuleProvider {
+		calculateCombinedCost(terrain, options) {
+			let cost;
+			// Calculate the cost for this terrain
+			return cost;
+		}
+	}
+	enhancedTerrainLayer.registerSystem("metanthropes-system", MetanthropesRuleProvider);
+	console.log("Metanthropes RPG System | Enhanced Terrain Layer Integration Finished");
+	console.log("Metanthropes RPG System | ====================================");
+});
+//? Drag Ruler Integration
 Hooks.once("dragRuler.ready", (SpeedProvider) => {
-	console.log("====================================");
-	console.log("Metanthropes RPG System - Drag Ruler Integration Started");
-	console.log("====================================");
+	console.log("Metanthropes RPG System | ====================================");
+	console.log("Metanthropes RPG System | Drag Ruler Integration Started");
 	class MetanthropesSystemSpeedProvider extends SpeedProvider {
 		get colors() {
 			return [
@@ -333,47 +341,34 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 		}
 	}
 	dragRuler.registerSystem("metanthropes-system", MetanthropesSystemSpeedProvider);
-	console.log("====================================");
-	console.log("Metanthropes RPG System - Drag Ruler Integration Finished");
-	console.log("====================================");
+	console.log("Metanthropes RPG System | Drag Ruler Integration Finished");
+	console.log("Metanthropes RPG System | ====================================");
 });
 // Hook to look for re-rolls of meta dice in chat
 // Add event listener for re-roll button click, hiding the button for non-owners
 Hooks.on("renderChatMessage", async (message, html) => {
-	//! do I really need this?
-	//	console.log("=============================================================================================");
-	//	console.log("Metanthropes RPG Inside Hook for Buttons");
-	//	console.log("Metanthropes RPG Will go deeper if (message.isAuthor) is true:", message.isAuthor);
-	//	console.log("=============================================================================================");
-	if (message.isAuthor || game.user.isGM) {
-		//! do I really need this?
-		//const actorId = message.getFlag("metanthropes-system", "actorId");
-		//const actor = game.actors.get(actorId);
-		//	console.log("inside RPG button hook, actor is", actor);
-		//	const currentDestiny = actor.system.Vital.Destiny.value;
-		//	console.log("=============================================================================================");
-		//	console.log("Metanthropes RPG Hook for Button - message.isAuthor is", message.isAuthor);
-		//	console.log("Metanthropes RPG Hook for Button - game.user.isGM is", game.user.isGM);
-		//	console.log("Metanthropes RPG Hook for Button - this", this);
-		//	console.log("Metanthropes RPG Hook for Button - should give actorId", actorId);
-		//	console.log("Metanthropes RPG Hook for Button - should give actor", actor);
-		//	console.log("Metanthropes RPG Hook for Button - should give actor Name", actor.name);
-		//	console.log("Metanthropes RPG Hook for Button - should give currentDestiny", currentDestiny);
-		//	console.log("=============================================================================================");
-		//! is this working now?
-		html.find(".hide-button").removeClass("layout-hide");
-		//! organize this - rerolls from chat
+	//? Get the actor from the message
+	const actorId = message.getFlag("metanthropes-system", "actorId");
+	//? all our messages have the actorId flag set, so if it's not our message, return.
+	if (!actorId) return;
+	const actor = game.actors.get(actorId);
+	//? Check if the current user is the owner of the actor
+	if (game.user.name === actor.system.metaowner.value || game.user.isGM) {
+		//? Unhide the buttons - assumes DF Chat Enhancements module is installed (provides hidden class)
+		html.find(".hide-button").removeClass("hidden");
+		//? Listen for Re-Roll button clicks
 		html.find(".rolld10-reroll").on("click", Rolld10ReRoll);
 		html.find(".metaeval-reroll").on("click", MetaEvaluateReRoll);
-		html.find(".meta-re-roll").on("click", MetaReRoll);
 		html.find(".metapower-re-roll").on("click", MetapowerReRoll);
 		html.find(".possession-re-roll").on("click", PossessionReRoll);
-		html.find(".metapower-activate").on("click", MetapowerActivate);
 		html.find(".re-roll-targets").on("click", ReRollTargets);
 		html.find(".re-roll-duration").on("click", ReRollDuration);
 		html.find(".re-roll-damage").on("click", ReRollDamage);
 		html.find(".re-roll-healing").on("click", ReRollHealing);
+		//? Listen for metainitiative re-roll
 		html.find(".metainitiative-re-roll").on("click", MetaInitiativeReRoll);
+		//? Listen for activations
+		html.find(".metapower-activate").on("click", MetapowerActivate);
 		html.find(".possession-use").on("click", PossessionUse);
 	}
 });

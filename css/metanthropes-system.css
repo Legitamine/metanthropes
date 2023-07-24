@@ -350,16 +350,16 @@ option {
   margin: 1px;
   overflow: hidden;
 }
-.metanthropes .layout-container-grid3x5-cs {
+.metanthropes .layout-container-outer-charstats {
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 0.8fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   -moz-column-gap: 3px;
        column-gap: 3px;
   row-gap: 3px;
-  padding: 1px;
-  margin: 1px;
+  padding: 0px;
+  margin: 0px;
   overflow: hidden;
 }
 .metanthropes .layout-container-grid3x2 {
@@ -409,18 +409,18 @@ option {
   grid-template-columns: 2fr 0.8fr 1.8fr;
   -moz-column-gap: 1px;
        column-gap: 1px;
-  padding: 3px;
+  padding: 0px;
   margin: 0px;
   overflow: hidden;
   overflow-wrap: break-word;
 }
 .metanthropes .layout-container-actorinfo {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 0.4fr 0.7fr 1.6fr 1fr 0.4fr;
   -moz-column-gap: 1px;
        column-gap: 1px;
-  padding: 3px;
-  margin: 0px;
+  padding: 1px;
+  margin: 3px;
   overflow: hidden;
   overflow-wrap: break-word;
 }
@@ -464,7 +464,7 @@ option {
   -moz-column-gap: 6px;
        column-gap: 6px;
   padding: 1px;
-  margin: 1px;
+  margin: 3px;
   overflow: hidden;
 }
 .metanthropes .layout-container-small {
@@ -473,9 +473,22 @@ option {
   padding: 1px;
   margin: 1px;
 }
+.metanthropes .layout-container-outer-tabs {
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  margin: 0px;
+}
+.metanthropes .layout-container-summary {
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  margin: 1px;
+}
 .metanthropes .layout-container-nav {
   display: flex;
   flex-direction: row;
+  row-gap: 6px;
 }
 .metanthropes .layout-metaroll-dialog {
   display: flex;
@@ -488,15 +501,15 @@ option {
   margin: 6px;
   overflow-y: auto;
 }
+.metanthropes .layout-container-actorinfo-details {
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
+  padding: 1px;
+  margin: 3px;
+}
 .metanthropes .layout-hide {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  clip: rect(0 0 0 0);
-  overflow: hidden;
   display: none;
 }
 .metanthropes .layout-editor {
@@ -513,10 +526,8 @@ option {
   margin: 6px;
   overflow-y: auto;
 }
-.metanthropes .style-container-grid3x4 {
+.metanthropes .style-container-outer-charstats {
   opacity: 1;
-  border: 1px solid #000;
-  border-radius: 15px;
   justify-content: center;
   justify-self: center;
   align-items: center;
@@ -604,6 +615,22 @@ option {
   align-items: stretch;
   align-self: stretch;
 }
+.metanthropes .style-container-outer-tabs {
+  opacity: 1;
+  justify-content: center;
+  justify-self: stretch;
+  align-items: stretch;
+  align-self: stretch;
+}
+.metanthropes .style-container-summary {
+  opacity: 1;
+  border: 1px solid #000;
+  border-radius: 15px;
+  justify-content: center;
+  justify-self: stretch;
+  align-items: stretch;
+  align-self: stretch;
+}
 .metanthropes .style-container-border {
   border: 1px solid #000;
   border-radius: 15px;
@@ -615,8 +642,8 @@ option {
 .metanthropes .style-container-nav {
   border: 1px solid #000;
   border-radius: 15px;
-  padding: 1px;
-  margin: 1px;
+  padding: 3px;
+  margin: 3px;
   justify-content: space-evenly;
 }
 .metanthropes .style-container-nav-children {
@@ -627,8 +654,8 @@ option {
   align-content: center;
   font-size: 1rem;
   color: #000;
-  padding: 0px;
-  margin: 0px;
+  padding: 1px;
+  margin: 1px;
 }
 .metanthropes .style-container-input-charstat {
   min-width: 2ch;
@@ -669,6 +696,42 @@ option {
   align-self: center;
   padding: 1px;
   margin: 1px;
+}
+.metanthropes .style-actorinfo-tier1 {
+  opacity: 1;
+  font-family: "nasalization", sans-serif;
+  font-size: 1.6rem;
+  color: #000;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
+  padding: 1px;
+  margin: 0px;
+}
+.metanthropes .style-actorinfo-tier2 {
+  opacity: 0.8;
+  font-family: "nasalization", sans-serif;
+  font-size: 1rem;
+  color: #000;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
+  padding: 0px;
+  margin: 0px;
+}
+.metanthropes .style-actorinfo-tier3 {
+  opacity: 0.5;
+  font-family: "gill-sans-nova", sans-serif;
+  font-size: 0.6rem;
+  color: #000;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
+  padding: 0px;
+  margin: 0px;
 }
 .metanthropes .style-labels-secondary {
   opacity: 1;
@@ -754,8 +817,8 @@ option {
   justify-self: center;
   align-items: center;
   align-self: center;
-  padding: 1px;
-  margin: 1px;
+  padding: 3px;
+  margin: 0px;
 }
 .metanthropes .style-cs-conditions {
   opacity: 1;
@@ -766,8 +829,8 @@ option {
   justify-self: center;
   align-items: center;
   align-self: center;
-  padding: 1px;
-  margin: 1px;
+  padding: 3px;
+  margin: 0px;
 }
 .metanthropes .style-cs-positive {
   opacity: 1;
@@ -910,9 +973,6 @@ option {
   padding: 0 2px;
   border-bottom: 1px solid #000;
 }
-.metanthropes .items-list .item:last-child {
-  border-bottom: none;
-}
 .metanthropes .items-list .item .item-name {
   color: #000;
 }
@@ -927,19 +987,19 @@ option {
   text-align: center;
   border-left: 1px solid #000;
   border-right: 1px solid #000;
-  font-size: 12px;
+  font-size: 14px;
 }
 .metanthropes .items-list .items-header {
-  height: 28px;
-  margin: 2px 0;
-  padding: 0;
+  height: 36px;
+  margin: 1px;
+  padding: 1px;
   align-items: center;
   background: rgba(129, 129, 129, 0.3725490196);
   border: 2px groove #7d0f81;
   font-weight: bold;
 }
 .metanthropes .items-list .items-header > * {
-  font-size: 12px;
+  font-size: 16px;
   text-align: center;
 }
 .metanthropes .items-list .items-header .item-name {

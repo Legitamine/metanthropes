@@ -60,21 +60,22 @@ export async function MetaEvaluate(actor, stat, statValue, multiAction = 0, bonu
 	//! Here is the typical calculation for the final results
 	//? if we have levels of success or failure, add them to the message
 	if (levelsOfSuccess > 0) {
-		message += `, accumulating: ${levelsOfSuccess} * ✔️.<br><br>${actor.name} has ${currentDestiny} * 🤞 remaining.<br>`;
+		message += `, accumulating: ${levelsOfSuccess} * ✔️.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 		resultLevel = levelsOfSuccess;
 	} else if (levelsOfFailure > 0) {
-		message += `, accumulating: ${levelsOfFailure} * ❌.<br><br>${actor.name} has ${currentDestiny} * 🤞 remaining.<br>`;
+		message += `, accumulating: ${levelsOfFailure} * ❌.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 		resultLevel = -levelsOfFailure;
 	} else {
 		message += `.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 	}
-	//add re-roll button to message
-	message += `<br><div><button class="hide-button layout-hide metaeval-reroll" data-idactor="${actor.id}"
-data-stat="${stat}" data-statvalue="${statValue}" data-multiaction="${multiAction}"
-data-bonus="${bonus}" data-penalty="${penalty}"
->Spend 🤞 Destiny to reroll</button></div><br>`;
-	//console log for debugging
-	console.log(
+	//?add re-roll button to message, only if it's not a Critical and only if they have at least 1 destiny or more
+	if (!criticalSuccess && !criticalFailure && currentDestiny > 0) {
+		message += `<div class="hide-button hidden"><br><button class="metaeval-reroll" data-idactor="${actor.id}"
+			data-stat="${stat}" data-statvalue="${statValue}" data-multiaction="${multiAction}"
+			data-bonus="${bonus}" data-penalty="${penalty}"
+			>Spend 🤞 Destiny to reroll</button><br><br></div>`;
+	}
+	console.log("Metanthropes RPG System |",
 		"MetaEval Results for:",
 		actor.name,
 		stat,
