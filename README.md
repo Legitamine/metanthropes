@@ -41,6 +41,6 @@ Briefly, we are working on the following features:
 - Integration with 3rd party modules to automate the Metapower Activation and Possession Usage with visual and audio effects.
 
 ### Latest Changes
-For the latest changes you may check out https://github.com/Legitamine/metanthropes-system/blob/main/CHANGELOG.md
+For the latest changes you may check out https://github.com/Legitamine/metanthropes-system/blob/stable/CHANGELOG.md
 
 Our eternal gratitude goes to the amazing community of Foundry Developers <3
