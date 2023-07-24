@@ -7,7 +7,9 @@
 // gia narrators episis prepei na kanw separate setup gia ta diafora alla types peran tou protagonist
 // kai episis na kanw expand to new actor function gia na kanei pick mono ta relative fields analoga me to type tou actor
 //? Import d10 roll function
-import { Rolld10 } from "./extrasroll.mjs";
+import { Rolld10 } from "../helpers/extrasroll.mjs";
+//? Import list of 100 Metapowers
+import { MetapowersList } from "./metapowerlist.mjs";
 //* New Actor Function
 export async function NewActor(actor) {
 	try {
@@ -25,7 +27,25 @@ export async function NewActor(actor) {
 		console.log("Metanthropes RPG System | New Actor Error:", error);
 	}
 }
+//* Filter function for Prime Metapower Selection
+function createFilterDropdown(id, options) {
+	let dropdown = document.createElement("select");
+	dropdown.id = id;
 
+	let anyOption = document.createElement("option");
+	anyOption.value = "Any";
+	anyOption.text = "Any";
+	dropdown.appendChild(anyOption);
+
+	options.forEach((optionValue) => {
+		let option = document.createElement("option");
+		option.value = optionValue;
+		option.text = optionValue;
+		dropdown.appendChild(option);
+	});
+
+	return dropdown;
+}
 export async function NewStatRoll(actor, char, stat, number) {
 	return new Promise((resolve, reject) => {
 		Rolld10(actor, stat, 1, number);
@@ -45,7 +65,10 @@ export async function NewStatRoll(actor, char, stat, number) {
 						await actor.update({
 							[`system.Characteristics.${char}.Stats.${stat}.Initial`]: Number(statvalue),
 						});
-						console.log(`Metanthropes RPG System | New ${stat} Stat:`, actor.system.Characteristics[char].Stats[stat].Initial);
+						console.log(
+							`Metanthropes RPG System | New ${stat} Stat:`,
+							actor.system.Characteristics[char].Stats[stat].Initial
+						);
 						resolve();
 					},
 				},
@@ -115,18 +138,48 @@ export async function NewActorPrimeMetapower(actor) {
         <h2>Choose your ${actor.type}'s Prime Ⓜ️ Metapower</h2>
         <form>
             <div class="form-group">
-                <label for="primeimg">Prime Ⓜ️ Metapower:</label>
-                <img id="primeimg" src="${
-					actor.primeimg
-				}" title="Choose your Prime Ⓜ️ Metapower" height="215" width="215" style="cursor:pointer;"/>
-                <span id="primemetapower">${actor.primeimg.split("/").pop().replace(".png", "")}</span>
+                <label for="classification">🔣 Classification:</label>
+                <select id="classification">
+                    <option value="">All</option>
+                    ${[...new Set(MetapowersList.map((m) => m.classification))]
+						.map((c) => `<option value="${c}">${c}</option>`)
+						.join("")}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="energyType">⚡ Energy Type:</label>
+                <select id="energyType">
+                    <option value="">All</option>
+                    ${[...new Set(MetapowersList.map((m) => m.energyType))]
+						.map((e) => `<option value="${e}">${e}</option>`)
+						.join("")}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="statRolled">🎲 Stat Rolled:</label>
+                <select id="statRolled">
+                    <option value="">All</option>
+                    ${[...new Set(MetapowersList.map((m) => m.statRolled))]
+						.map((s) => `<option value="${s}">${s}</option>`)
+						.join("")}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="primeMetapower">Prime Ⓜ️ Metapower:</label>
+                <select id="primeMetapower">
+                    ${MetapowersList.map((m) => `<option value="${m.name}">${m.name}</option>`).join("")}
+                </select>
+			</div>
+			<div class="form-group">
+				<label for="primeMetapowerImg"></label>
+				<img id="primeMetapowerImg" src="" alt="Prime Metapower Image" style="border: none;" height="270" width="270" />
             </div>
         </form>
     </div>
     `;
 	let dialogOptions = {
-		width: 600,
-		height: 360,
+		width: 485,
+		height: 600,
 		index: 1000,
 	};
 	return new Promise((resolve, reject) => {
@@ -138,13 +191,13 @@ export async function NewActorPrimeMetapower(actor) {
 					ok: {
 						label: "Confirm Prime Ⓜ️ Metapower",
 						callback: async (html) => {
-							let primeimg = html.find("#primeimg").attr("src");
-							let primemetapower = decodeURIComponent(primeimg.split("/").pop().replace(".png", ""));
+							let primeMetapowerName = html.find("#primeMetapower").val();
+							let primeMetapower = MetapowersList.find((m) => m.name === primeMetapowerName);
 							await actor.update({
-								primeimg: primeimg,
-								"system.entermeta.primemetapower.value": primemetapower,
+								"system.entermeta.primemetapower.value": primeMetapowerName,
+								primeimg: `systems/metanthropes-system/artwork/metapowers/${primeMetapowerName}.png`,
 							});
-							console.log(`Metanthropes RPG System | New Prime Metapower: ${primemetapower}`);
+							console.log(`Metanthropes RPG System | New Prime Metapower: ${primeMetapowerName}`);
 							resolve();
 						},
 					},
@@ -158,19 +211,43 @@ export async function NewActorPrimeMetapower(actor) {
 				},
 				default: "ok",
 				render: (html) => {
-					html.find("#primeimg").click((ev) => {
-						new FilePicker({
-							resource: "data",
-							current: "systems/metanthropes-system/artwork/metapowers",
-							displayMode: "thumbs",
-							callback: (path) => {
-								html.find("#primeimg").attr("src", path);
-								let primemetapower = decodeURIComponent(path.split("/").pop().replace(".png", ""));
-								html.find("#primemetapower").text(primemetapower);
-							},
-						}).browse();
+					// Get dropdown for Prime Metapower selection
+					let primeMetapowerDropdown = html.find("#primeMetapower")[0];
+					// Get dropdowns for filters
+					let classificationDropdown = html.find("#classification")[0];
+					let energyTypeDropdown = html.find("#energyType")[0];
+					let statRolledDropdown = html.find("#statRolled")[0];
+					// Filter function
+					html.find("#classification, #energyType, #statRolled").change(() => {
+						let selectedClassification = classificationDropdown.value;
+						let selectedEnergyType = energyTypeDropdown.value;
+						let selectedStatRolled = statRolledDropdown.value;
+						let filteredMetapowers = MetapowersList.filter(
+							(metapower) =>
+								(!selectedClassification || metapower.classification === selectedClassification) &&
+								(!selectedEnergyType || metapower.energyType === selectedEnergyType) &&
+								(!selectedStatRolled || metapower.statRolled === selectedStatRolled)
+						);
+						// Update Prime Metapower dropdown options
+						primeMetapowerDropdown.innerHTML = "";
+						filteredMetapowers.forEach((metapower, index) => {
+							let option = document.createElement("option");
+							option.value = index;
+							option.text = metapower.name;
+							primeMetapowerDropdown.appendChild(option);
+						});
+					});
+					// Update Prime Metapower image
+					html.find("#primeMetapower").change(() => {
+						let primeMetapowerName = primeMetapowerDropdown.value;
+						let primeMetapowerImg = html.find("#primeMetapowerImg")[0];
+						primeMetapowerImg.src = `systems/metanthropes-system/artwork/metapowers/${primeMetapowerName}.png`;
 					});
 				},
+				//	close: async () => {
+				//		await actor.update({ "system.metaowner.value": null });
+				//		reject();
+				//	},
 			},
 			dialogOptions
 		);
@@ -229,9 +306,18 @@ export async function NewActorCharacteristics(actor) {
 							await actor.update({ [`system.Characteristics.${primary}.Initial`]: Number(30) });
 							await actor.update({ [`system.Characteristics.${secondary}.Initial`]: Number(20) });
 							await actor.update({ [`system.Characteristics.${tertiary}.Initial`]: Number(10) });
-							console.log(`Metanthropes RPG System | New primary: ${primary}`, actor.system.Characteristics[primary].Initial);
-							console.log(`Metanthropes RPG System | New secondary: ${secondary}`, actor.system.Characteristics[secondary].Initial);
-							console.log(`Metanthropes RPG System | New tertiary: ${tertiary}`, actor.system.Characteristics[tertiary].Initial);
+							console.log(
+								`Metanthropes RPG System | New primary: ${primary}`,
+								actor.system.Characteristics[primary].Initial
+							);
+							console.log(
+								`Metanthropes RPG System | New secondary: ${secondary}`,
+								actor.system.Characteristics[secondary].Initial
+							);
+							console.log(
+								`Metanthropes RPG System | New tertiary: ${tertiary}`,
+								actor.system.Characteristics[tertiary].Initial
+							);
 							resolve();
 						},
 					},
@@ -272,6 +358,10 @@ export async function NewActorCharacteristics(actor) {
 						});
 					});
 				},
+				//	close: async () => {
+				//		await actor.update({ "system.metaowner.value": null });
+				//		reject();
+				//	},
 			},
 			dialogOptions
 		);
@@ -380,6 +470,10 @@ export async function NewActorBodyStats(actor) {
 						});
 					});
 				},
+				//	close: async () => {
+				//		await actor.update({ "system.metaowner.value": null });
+				//		reject();
+				//	},
 			},
 			dialogOptions
 		);
@@ -485,6 +579,10 @@ export async function NewActorMindStats(actor) {
 						});
 					});
 				},
+				//	close: async () => {
+				//		await actor.update({ "system.metaowner.value": null });
+				//		reject();
+				//	},
 			},
 			dialogOptions
 		);
@@ -590,6 +688,10 @@ export async function NewActorSoulStats(actor) {
 						});
 					});
 				},
+				//	close: async () => {
+				//		await actor.update({ "system.metaowner.value": null });
+				//		reject();
+				//	},
 			},
 			dialogOptions
 		);
@@ -685,6 +787,10 @@ export async function NewActorRoleplay(actor) {
 				},
 			},
 			default: "ok",
+			//	close: async () => {
+			//		await actor.update({ "system.metaowner.value": null });
+			//		reject();
+			//	},
 		});
 		dialog.render(true);
 	});
@@ -738,6 +844,10 @@ export async function NewActorProgression(actor) {
 					},
 				},
 				default: "ok",
+				//	close: async () => {
+				//		await actor.update({ "system.metaowner.value": null });
+				//		reject();
+				//	},
 			},
 			dialogOptions
 		);
@@ -852,6 +962,10 @@ export async function NewActorSummary(actor) {
 				},
 			},
 			default: "ok",
+			//	close: async () => {
+			//		await actor.update({ "system.metaowner.value": null });
+			//		reject();
+			//	},
 		});
 		dialog.render(true);
 	});

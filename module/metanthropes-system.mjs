@@ -43,7 +43,6 @@ Handlebars.registerHelper("unless_key_is", function (key, value, options) {
 		return options.fn(this);
 	}
 });
-
 // Log system initialization.
 Hooks.once("init", async function () {
 	console.log("Metanthropes RPG System | ====================================");
