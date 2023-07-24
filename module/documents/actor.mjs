@@ -332,7 +332,7 @@ export class MetanthropesActor extends Actor {
 			console.log("Metanthropes RPG System |", this.name, "has not spent enough XP on starting perks!");
 			console.log("Metanthropes RPG System |", this.name, "has spent", experienceSpent, "XP on perks");
 			console.log(
-				"Metanthropes RPG System | ",
+				"Metanthropes RPG System |",
 				this.name,
 				"needs to spend",
 				startingPerks * 100,

@@ -20,8 +20,10 @@
 				</div>
 				<div class="style-cs-chars-value">{{this.Current}}</div>
 				<div>
-					<p class="style-cs-buffs">🛡️<label for="system.Characteristics.{{@key}}.Buff.Current">{{this.Buff.Name}}</label><select class="style-cs-buffs"
-							name="system.Characteristics.{{@key}}.Buff.Current"
+					<p class="style-cs-buffs">🛡️ <label
+							for="system.Characteristics.{{@key}}.Buff.Current">{{this.Buff.Name}}</label></p>
+							<p class="style-cs-buffs"><select
+							class="style-cs-buffs" name="system.Characteristics.{{@key}}.Buff.Current"
 							id="system.Characteristics.{{@key}}.Buff.Current" data-dtype="Number">
 							<option value="0" {{selected Buff.Current 0}}>0</option>
 							<option value="1" {{selected Buff.Current 1}}>1</option>
@@ -31,8 +33,10 @@
 							<option value="5" {{selected Buff.Current 5}}>5</option>
 						</select>
 					</p>
-					<p class="style-cs-conditions">💀 <select class="style-cs-conditions"
-							name="system.Characteristics.{{@key}}.Condition.Current"
+					<p class="style-cs-conditions">💀 <label
+							for="system.Characteristics.{{@key}}.Condition.Current">{{this.Condition.Name}}</label></p>
+							<p class="style-cs-conditions">
+						<select class="style-cs-conditions" name="system.Characteristics.{{@key}}.Condition.Current"
 							id="system.Characteristics.{{@key}}.Condition.Current" data-dtype="Number">
 							<option value="0" {{selected this.Condition.Current 0}}>0</option>
 							<option value="1" {{selected this.Condition.Current 1}}>1</option>
@@ -40,8 +44,7 @@
 							<option value="3" {{selected this.Condition.Current 3}}>3</option>
 							<option value="4" {{selected this.Condition.Current 4}}>4</option>
 							<option value="5" {{selected this.Condition.Current 5}}>5</option>
-						</select><label
-							for="system.Characteristics.{{@key}}.Condition.Current">{{this.Condition.Name}}</label>
+						</select>
 					</p>
 				</div>
 			</div>
@@ -70,7 +73,10 @@
 						{{this.Roll}}
 					</div>
 					<div>
-						<p class="style-cs-buffs">🛡️ <select class="style-cs-buffs"
+						<p class="style-cs-buffs">🛡️ <label
+								for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current">{{this.Buff.Name}}</label>
+								</p><p class="style-cs-buffs">
+							<select class="style-cs-buffs"
 								name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current"
 								id="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current" data-dtype="Number">
 								<option value="0" {{selected this.Buff.Current 0}}>0</option>
@@ -84,10 +90,11 @@
 								<option value="8" {{selected this.Buff.Current 8}}>8</option>
 								<option value="9" {{selected this.Buff.Current 9}}>9</option>
 								<option value="10" {{selected this.Buff.Current 10}}>10</option>
-							</select><label
-								for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current">{{this.Buff.Name}}</label>
+							</select>
 						</p>
-						<p class="style-cs-conditions">💀 <select class="style-cs-conditions"
+						<p class="style-cs-conditions">💀 <label
+								for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Name">{{this.Condition.Name}}</label>
+						</p><p class="style-cs-conditions"><select class="style-cs-conditions"
 								name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Current"
 								id="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Current"
 								data-dtype="Number">
@@ -97,8 +104,7 @@
 								<option value="3" {{selected this.Condition.Current 3}}>3</option>
 								<option value="4" {{selected this.Condition.Current 4}}>4</option>
 								<option value="5" {{selected this.Condition.Current 5}}>5</option>
-							</select><label
-								for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Name">{{this.Condition.Name}}</label>
+							</select>
 						</p>
 					</div>
 				</div>
@@ -106,16 +112,19 @@
 		{{/each}}
 		<div class="layout-container-grid2x2 style-container-stats">
 			{{#each CoreConditions}}
-				<div class="style-cs-conditions">💀 <select class="style-cs-conditions"
-						name="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}"
-						id="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}" data-dtype="Number">
-						<option value="0" {{selected this 0}}>0</option>
-						<option value="1" {{selected this 1}}>1</option>
-						<option value="2" {{selected this 2}}>2</option>
-						<option value="3" {{selected this 3}}>3</option>
-						<option value="4" {{selected this 4}}>4</option>
-						<option value="5" {{selected this 5}}>5</option>
-					</select><label for="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}">{{@key}}</label>
+				<div class="style-cs-conditions"><p class="style-cs-conditions">💀 <label
+						for="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}">{{@key}}</label></p>
+					<p class="style-cs-conditions"><select class="style-cs-conditions"
+							name="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}"
+							id="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}" data-dtype="Number">
+							<option value="0" {{selected this 0}}>0</option>
+							<option value="1" {{selected this 1}}>1</option>
+							<option value="2" {{selected this 2}}>2</option>
+							<option value="3" {{selected this 3}}>3</option>
+							<option value="4" {{selected this 4}}>4</option>
+							<option value="5" {{selected this 5}}>5</option>
+						</select>
+					</p>
 				</div>
 			{{/each}}
 		</div>
@@ -128,8 +137,9 @@
 				<span>👣 Movement {{system.physical.movement.value}} </span>
 			</div>
 			<div class="style-labels-secondary">
-				<span class="style-cs-conditions">💀 <select class="style-cs-conditions"
-						name="system.physical.speed.Conditions.slowed.value"
+				<span class="style-cs-conditions">💀 <label
+						for="system.physical.speed.Conditions.slowed.value">Slowed</label> <select
+						class="style-cs-conditions" name="system.physical.speed.Conditions.slowed.value"
 						id="system.physical.speed.Conditions.slowed.value" data-dtype="Number">
 						<option value="0" {{selected system.physical.speed.Conditions.slowed.value 0}}>0
 						</option>
@@ -153,12 +163,13 @@
 						</option>
 						<option value="10" {{selected system.physical.speed.Conditions.slowed.value 10}}>10
 						</option>
-					</select><label for="system.physical.speed.Conditions.slowed.value">Slowed</label>
+					</select>
 				</span>
 				<span class="style-cs-values">💨 Speed {{system.physical.speed.value}}
 				</span>
-				<span class="style-cs-buffs">🛡️ <select class="style-cs-buffs"
-						name="system.physical.speed.Buffs.accelerated.value"
+				<span class="style-cs-buffs">🛡️ <label
+						for="system.physical.speed.Buffs.accelerated.value">Accelerated</label> <select
+						class="style-cs-buffs" name="system.physical.speed.Buffs.accelerated.value"
 						id="system.physical.speed.Buffs.accelerated.value" data-dtype="Number">
 						<option value="0" {{selected system.physical.speed.Buffs.accelerated.value 0}}>0</option>
 						<option value="1" {{selected system.physical.speed.Buffs.accelerated.value 1}}>1</option>
@@ -171,12 +182,13 @@
 						<option value="8" {{selected system.physical.speed.Buffs.accelerated.value 8}}>8</option>
 						<option value="9" {{selected system.physical.speed.Buffs.accelerated.value 9}}>9</option>
 						<option value="10" {{selected system.physical.speed.Buffs.accelerated.value 10}}>10</option>
-					</select><label for="system.physical.speed.Buffs.accelerated.value">Accelerated</label>
+					</select>
 				</span>
 			</div>
 			<div class="style-labels-secondary">
-				<span class="style-cs-conditions">💀 <select class="style-cs-conditions"
-						name="system.physical.weight.Conditions.encumbered.value"
+				<span class="style-cs-conditions">💀 <label
+						for="system.physical.weight.Conditions.encumbered.value">Encumbered</label> <select
+						class="style-cs-conditions" name="system.physical.weight.Conditions.encumbered.value"
 						id="system.physical.weight.Conditions.encumbered.value" data-dtype="Number">
 						<option value="0" {{selected system.physical.weight.Conditions.encumbered.value 0}}>0
 						</option>
@@ -200,12 +212,13 @@
 						</option>
 						<option value="10" {{selected system.physical.weight.Conditions.encumbered.value 10}}>10
 						</option>
-					</select><label for="system.physical.weight.Conditions.encumbered.value">Encumbered</label>
+					</select>
 				</span>
 				<span class="style-cs-values">⚖️ Weight {{system.physical.weight.value}}
 				</span>
-				<span class="style-cs-buffs">🛡️ <select class="style-cs-buffs"
-						name="system.physical.weight.Buffs.lightened.value"
+				<span class="style-cs-buffs">🛡️ <label
+						for="system.physical.weight.Buffs.lightened.value">Lightened</label> <select
+						class="style-cs-buffs" name="system.physical.weight.Buffs.lightened.value"
 						id="system.physical.weight.Buffs.lightened.value" data-dtype="Number">
 						<option value="0" {{selected system.physical.weight.Buffs.lightened.value 0}}>0</option>
 						<option value="1" {{selected system.physical.weight.Buffs.lightened.value 1}}>1</option>
@@ -218,12 +231,13 @@
 						<option value="8" {{selected system.physical.weight.Buffs.lightened.value 8}}>8</option>
 						<option value="9" {{selected system.physical.weight.Buffs.lightened.value 9}}>9</option>
 						<option value="10" {{selected system.physical.weight.Buffs.lightened.value 10}}>10</option>
-					</select><label for="system.physical.weight.Buffs.lightened.value">Lightened</label>
+					</select>
 				</span>
 			</div>
 			<div class="style-labels-secondary">
-				<span class="style-cs-conditions">💀 <select class="style-cs-conditions"
-						name="system.physical.size.Conditions.shrunken.value"
+				<span class="style-cs-conditions">💀 <label
+						for="system.physical.size.Conditions.shrunken.value">Shrunken</label> <select
+						class="style-cs-conditions" name="system.physical.size.Conditions.shrunken.value"
 						id="system.physical.size.Conditions.shrunken.value" data-dtype="Number">
 						<option value="0" {{selected system.physical.size.Conditions.shrunken.value 0}}>0
 						</option>
@@ -247,12 +261,12 @@
 						</option>
 						<option value="10" {{selected system.physical.size.Conditions.shrunken.value 10}}>10
 						</option>
-					</select><label for="system.physical.size.Conditions.shrunken.value">Shrunken</label>
+					</select>
 				</span>
 				<span class="style-cs-values">📐 Size {{system.physical.size.value}}
 				</span>
-				<span class="style-cs-buffs">🛡️ <select class="style-cs-buffs"
-						name="system.physical.size.Buffs.enlarged.value"
+				<span class="style-cs-buffs">🛡️ <label for="system.physical.size.Buff.enlarged.value">Enlarged</label>
+					<select class="style-cs-buffs" name="system.physical.size.Buffs.enlarged.value"
 						id="system.physical.size.Buffs.enlarged.value" data-dtype="Number">
 						<option value="0" {{selected system.physical.size.Buffs.enlarged.value 0}}>0</option>
 						<option value="1" {{selected system.physical.size.Buffs.enlarged.value 1}}>1</option>
@@ -265,7 +279,7 @@
 						<option value="8" {{selected system.physical.size.Buffs.enlarged.value 8}}>8</option>
 						<option value="9" {{selected system.physical.size.Buffs.enlarged.value 9}}>9</option>
 						<option value="10" {{selected system.physical.size.Buffs.enlarged.value 10}}>10</option>
-					</select><label for="system.physical.size.Buff.enlarged.value">Enlarged</label>
+					</select>
 				</span>
 			</div>
 		</div>

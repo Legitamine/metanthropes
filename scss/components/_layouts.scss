@@ -26,7 +26,7 @@
 	display: grid;
 	grid-auto-flow: column;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr 1fr 1fr 0.8fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 	column-gap: 3px;
 	row-gap: 3px;
 	padding: $padding-zero;
@@ -89,7 +89,7 @@
 	grid-template-columns: 1fr 1fr 1fr;
 	column-gap: 1px;
 	padding: $padding-sm;
-	margin: $margin-zero;
+	margin: $margin-md;
 	overflow: hidden;
 	overflow-wrap: break-word;
 }

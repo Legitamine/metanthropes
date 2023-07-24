@@ -354,7 +354,7 @@ option {
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 0.8fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   -moz-column-gap: 3px;
        column-gap: 3px;
   row-gap: 3px;
@@ -420,7 +420,7 @@ option {
   -moz-column-gap: 1px;
        column-gap: 1px;
   padding: 1px;
-  margin: 0px;
+  margin: 3px;
   overflow: hidden;
   overflow-wrap: break-word;
 }
