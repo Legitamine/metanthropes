@@ -464,7 +464,7 @@ option {
   -moz-column-gap: 6px;
        column-gap: 6px;
   padding: 1px;
-  margin: 1px;
+  margin: 3px;
   overflow: hidden;
 }
 .metanthropes .layout-container-small {
@@ -506,8 +506,8 @@ option {
   justify-self: center;
   align-items: center;
   align-self: center;
-  padding: 0px;
-  margin: 0px;
+  padding: 1px;
+  margin: 3px;
 }
 .metanthropes .layout-hide {
   display: none;
@@ -642,8 +642,8 @@ option {
 .metanthropes .style-container-nav {
   border: 1px solid #000;
   border-radius: 15px;
-  padding: 1px;
-  margin: 0px;
+  padding: 3px;
+  margin: 3px;
   justify-content: space-evenly;
 }
 .metanthropes .style-container-nav-children {

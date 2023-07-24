@@ -15,7 +15,7 @@ export async function Rolld10(actor, what, destinyreroll, dice) {
 		message += `<br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>
 		<div class="hide-button hidden"><br><button class="rolld10-reroll" data-idactor="${actor.id}"
 		data-what="${what}" data-destinyreroll="${destinyreroll}" data-dice="${dice}">Spend 🤞 Destiny to reroll
-		</button><br></div>`;
+		</button><br><br></div>`;
 	}
 	await actor.setFlag("metanthropes-system", "lastrolled", {
 		rolld10: total,

@@ -130,7 +130,7 @@
 	flex-direction: row;
 	column-gap: 6px;
 	padding: $padding-sm;
-	margin: $margin-sm;
+	margin: $margin-md;
 	overflow: hidden;
 }
 //small container with 1 flex row
@@ -174,8 +174,8 @@
 	justify-self: center;
 	align-items: center;
 	align-self: center;
-	padding: $padding-zero;
-	margin: $margin-zero;
+	padding: $padding-sm;
+	margin: $margin-md;
 }
 .layout-hide {
 	display: none;
