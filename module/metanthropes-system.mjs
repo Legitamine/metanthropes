@@ -297,7 +297,22 @@ Hooks.once("ready", async function () {
 		});
 	}
 });
-// Drag Ruler Integration
+//? Enhanced Terrain Layer Integration
+Hooks.once("enhancedTerrainLayer.ready", (RuleProvider) => {
+	console.log("Metanthropes RPG System | ====================================");
+	console.log("Metanthropes RPG System | Enhanced Terrain Layer Integration Started");
+	class MetanthropesRuleProvider extends RuleProvider {
+		calculateCombinedCost(terrain, options) {
+			let cost;
+			// Calculate the cost for this terrain
+			return cost;
+		}
+	}
+	enhancedTerrainLayer.registerSystem("metanthropes-system", MetanthropesRuleProvider);
+	console.log("Metanthropes RPG System | Enhanced Terrain Layer Integration Finished");
+	console.log("Metanthropes RPG System | ====================================");
+});
+//? Drag Ruler Integration
 Hooks.once("dragRuler.ready", (SpeedProvider) => {
 	console.log("Metanthropes RPG System | ====================================");
 	console.log("Metanthropes RPG System | Drag Ruler Integration Started");
