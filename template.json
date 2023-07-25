@@ -239,6 +239,7 @@
 						"Progressed": 0,
 						"Base": 0,
 						"Current": 0,
+						"Title": "Body is the Characteristic which defines a Character's constitution, physical prowess, and physique.",
 						"Buff": { "Name": "Hardened", "Current": 0 },
 						"Condition": { "Name": "Burned", "Current": 0 },
 						"CoreConditions": { "Bleeding": 0, "Asphyxiation": 0, "Diseased": 0, "Maimed": 0 },
@@ -249,6 +250,7 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
+								"Title": "Endurance determines a Character's stamina, health, and vigor.",
 								"Buff": { "Name": "Fortified", "Current": 0 },
 								"Condition": { "Name": "Bone Injury", "Current": 0 }
 							},
@@ -258,6 +260,7 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
+								"Title": "Power determines a Character's strength, striking effectiveness, and physical explosiveness.",
 								"Buff": { "Name": "Empowered", "Current": 0 },
 								"Condition": { "Name": "Muscle Injury", "Current": 0 }
 							},
@@ -267,6 +270,7 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
+								"Title": "Reflexes determines a Character's agility, motor skills and balance.",
 								"Buff": { "Name": "Hastened", "Current": 0 },
 								"Condition": { "Name": "Skin Injury", "Current": 0 }
 							}
@@ -277,6 +281,7 @@
 						"Progressed": 0,
 						"Base": 0,
 						"Current": 0,
+						"Title": "Mind is the Characteristic which defines a Character's brainpower, problem solving and innovative thoughts.",
 						"Buff": { "Name": "Sharpened", "Current": 0 },
 						"Condition": { "Name": "Disconnected", "Current": 0 },
 						"CoreConditions": {
@@ -292,6 +297,7 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
+								"Title": "Perception determines a Character's observatory, evaluative and calculative capabilities.",
 								"Buff": { "Name": "Alerted", "Current": 0 },
 								"Condition": { "Name": "Disoriented", "Current": 0 }
 							},
@@ -301,6 +307,7 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
+								"Title": "Manipulation determines a Character's persuasiveness, charisma, and social engineering skills.",
 								"Buff": { "Name": "Articulated", "Current": 0 },
 								"Condition": { "Name": "Confused", "Current": 0 }
 							},
@@ -310,6 +317,7 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
+								"Title": "Creativity determines a Character's imagination, expression, and handiwork.",
 								"Buff": { "Name": "Inspired", "Current": 0 },
 								"Condition": { "Name": "Wobbly", "Current": 0 }
 							}
@@ -320,6 +328,7 @@
 						"Progressed": 0,
 						"Base": 0,
 						"Current": 0,
+						"Title": "Soul is the Characteristic which defines a Character's conviction, spiritual prowess, and mettle.",
 						"Buff": { "Name": "Enlightened", "Current": 0 },
 						"Condition": { "Name": "Tormented", "Current": 0 },
 						"CoreConditions": { "Amnesia": 0, "Probed": 0, "Infiltrated": 0, "Unconscious": 0 },
@@ -330,6 +339,7 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
+								"Title": "Willpower determines a Character's courage, discipline, and confidence.",
 								"Buff": { "Name": "Determined", "Current": 0 },
 								"Condition": { "Name": "Terrorized", "Current": 0 }
 							},
@@ -339,6 +349,7 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
+								"Title": "Consciousness determines a Character's recollection, subconscious processing, and sanity.",
 								"Buff": { "Name": "Awakened", "Current": 0 },
 								"Condition": { "Name": "Demented", "Current": 0 }
 							},
@@ -348,6 +359,7 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
+								"Title": "Awareness determines a Character's empathy, intuition, and instinctual responses.",
 								"Buff": { "Name": "Focused", "Current": 0 },
 								"Condition": { "Name": "Bewildered", "Current": 0 }
 							}
