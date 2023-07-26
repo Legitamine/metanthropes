@@ -142,6 +142,7 @@ export async function NewActorPrimeMetapower(actor) {
                 <select id="classification">
                     <option value="">All</option>
                     ${[...new Set(MetapowersList.map((m) => m.classification))]
+						.sort()
 						.map((c) => `<option value="${c}">${c}</option>`)
 						.join("")}
                 </select>
@@ -151,6 +152,7 @@ export async function NewActorPrimeMetapower(actor) {
                 <select id="energyType">
                     <option value="">All</option>
                     ${[...new Set(MetapowersList.map((m) => m.energyType))]
+						.sort()
 						.map((e) => `<option value="${e}">${e}</option>`)
 						.join("")}
                 </select>
@@ -160,6 +162,7 @@ export async function NewActorPrimeMetapower(actor) {
                 <select id="statRolled">
                     <option value="">All</option>
                     ${[...new Set(MetapowersList.map((m) => m.statRolled))]
+						.sort()
 						.map((s) => `<option value="${s}">${s}</option>`)
 						.join("")}
                 </select>
@@ -167,7 +170,10 @@ export async function NewActorPrimeMetapower(actor) {
             <div class="form-group">
                 <label for="primeMetapower">Prime Ⓜ️ Metapower:</label>
                 <select id="primeMetapower">
-                    ${MetapowersList.map((m) => `<option value="${m.name}">${m.name}</option>`).join("")}
+                    ${MetapowersList.map((m) => m.name)
+						.sort()
+						.map((name) => `<option value="${name}">${name}</option>`)
+						.join("")}
                 </select>
 			</div>
 			<div class="form-group">
@@ -232,7 +238,7 @@ export async function NewActorPrimeMetapower(actor) {
 						primeMetapowerDropdown.innerHTML = "";
 						filteredMetapowers.forEach((metapower, index) => {
 							let option = document.createElement("option");
-							option.value = index;
+							option.value = metapower.name;
 							option.text = metapower.name;
 							primeMetapowerDropdown.appendChild(option);
 						});
@@ -240,8 +246,11 @@ export async function NewActorPrimeMetapower(actor) {
 					// Update Prime Metapower image
 					html.find("#primeMetapower").change(() => {
 						let primeMetapowerName = primeMetapowerDropdown.value;
-						let primeMetapowerImg = html.find("#primeMetapowerImg")[0];
-						primeMetapowerImg.src = `systems/metanthropes-system/artwork/metapowers/${primeMetapowerName}.png`;
+						//? making sure the value is not empty before proceeding
+						if (primeMetapowerName) {
+							let primeMetapowerImg = html.find("#primeMetapowerImg")[0];
+							primeMetapowerImg.src = `systems/metanthropes-system/artwork/metapowers/${primeMetapowerName}.png`;
+						}
 					});
 				},
 				//	close: async () => {

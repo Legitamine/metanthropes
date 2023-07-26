@@ -104,6 +104,7 @@ export async function MetaEvaluate(actor, stat, statValue, multiAction = 0, bonu
 	// the idea is to use these later in metapowers to spend your levels of success.
 	await actor.setFlag("metanthropes-system", "lastrolled", {
 		resultLevel: resultLevel,
+		metaEvaluate: resultLevel,
 	});
 	//print message to chat and enable Dice So Nice to roll the dice and display the message
 	roll.toMessage({

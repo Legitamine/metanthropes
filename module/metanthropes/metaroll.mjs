@@ -45,7 +45,9 @@ export async function MetaRoll(actor, stat) {
 	let multiAction = 0;
 	let bonus = 0;
 	let penalty = diseasePenalty;
-	MetaEvaluate(actor, stat, statValue, multiAction, bonus, penalty);
+	await MetaEvaluate(actor, stat, statValue, multiAction, bonus, penalty);
+	let checkresult = await actor.getFlag("metanthropes-system", "lastrolled").metaEvaluate;
+	console.log("Metanthropes RPG System |", "MetaRoll Results for:", actor.name, stat, ":", statValue, "Result:", checkresult);
 }
 
 //! different function if called via right-click, allowing to set options
