@@ -271,25 +271,25 @@ export async function NewActorCharacteristics(actor) {
 			<div class="form-group">
 				<label for="primary">First Pick:</label>
 				<select id="primary" name="primary">
-					<option value="Body" selected>Body</option>
-					<option value="Mind">Mind</option>
-					<option value="Soul">Soul</option>
+					<option value="Body" title="${actor.system.Characteristics.Body.Title}" selected>Body</option>
+					<option value="Mind" title="${actor.system.Characteristics.Mind.Title}" >Mind</option>
+					<option value="Soul" title="${actor.system.Characteristics.Soul.Title}">Soul</option>
 				</select>
 			</div>
 			<div class="form-group">
 				<label for="secondary">Second Pick:</label>
 				<select id="secondary" name="secondary">
-					<option value="Mind" selected>Mind</option>
-					<option value="Body">Body</option>
-					<option value="Soul">Soul</option>
+					<option value="Mind" title="${actor.system.Characteristics.Mind.Title}" selected>Mind</option>
+					<option value="Body" title="${actor.system.Characteristics.Body.Title}">Body</option>
+					<option value="Soul" title="${actor.system.Characteristics.Soul.Title}">Soul</option>
 				</select>
 			</div>
 			<div class="form-group">
 				<label for="tertiary">Third Pick:</label>
 				<select id="tertiary" name="tertiary">
-					<option value="Soul" selected>Soul</option>
-					<option value="Body">Body</option>
-					<option value="Mind">Mind</option>
+					<option value="Soul" title="${actor.system.Characteristics.Soul.Title}" selected>Soul</option>
+					<option value="Body" title="${actor.system.Characteristics.Body.Title}">Body</option>
+					<option value="Mind" title="${actor.system.Characteristics.Mind.Title}>Mind</option>
 				</select>
 			</div>
 		</form>
@@ -385,25 +385,25 @@ export async function NewActorBodyStats(actor) {
 			<div class="form-group">
 				<label for="primary">First Pick:</label>
 				<select id="primary" name="primary">
-					<option value="Endurance" selected>Endurance</option>
-					<option value="Power">Power</option>
-					<option value="Reflexes">Reflexes</option>
+					<option value="Endurance" title="${actor.system.Characteristics.Body.Stats.Endurance.Title}" selected>Endurance</option>
+					<option value="Power" title="${actor.system.Characteristics.Body.Stats.Power.Title}">Power</option>
+					<option value="Reflexes" title="${actor.system.Characteristics.Body.Stats.Reflexes.Title}">Reflexes</option>
 				</select>
 			</div>
 			<div class="form-group">
 				<label for="secondary">Second Pick:</label>
 				<select id="secondary" name="secondary">
-					<option value="Power" selected>Power</option>
-					<option value="Endurance">Endurance</option>
-					<option value="Reflexes">Reflexes</option>
+					<option value="Power" title="${actor.system.Characteristics.Body.Stats.Power.Title}" selected>Power</option>
+					<option value="Endurance" title="${actor.system.Characteristics.Body.Stats.Endurance.Title}">Endurance</option>
+					<option value="Reflexes" title="${actor.system.Characteristics.Body.Stats.Reflexes.Title}">Reflexes</option>
 				</select>
 			</div>
 			<div class="form-group">
 				<label for="tertiary">Third Pick:</label>
 				<select id="tertiary" name="tertiary">
-					<option value="Reflexes" selected>Reflexes</option>
-					<option value="Endurance">Endurance</option>
-					<option value="Power">Power</option>
+					<option value="Reflexes" title="${actor.system.Characteristics.Body.Stats.Reflexes.Title}"selected>Reflexes</option>
+					<option value="Endurance" title="${actor.system.Characteristics.Body.Stats.Endurance.Title}">Endurance</option>
+					<option value="Power" title="${actor.system.Characteristics.Body.Stats.Power.Title}">Power</option>
 				</select>
 			</div>
 		</form>
@@ -497,25 +497,25 @@ export async function NewActorMindStats(actor) {
 			<div class="form-group">
 				<label for="primary">First Pick:</label>
 				<select id="primary" name="primary">
-					<option value="Perception">Perception</option>
-					<option value="Manipulation">Manipulation</option>
-					<option value="Creativity">Creativity</option>
+					<option value="Perception" title="${actor.system.Characteristics.Mind.Stats.Perception.Title}">Perception</option>
+					<option value="Manipulation" title="${actor.system.Characteristics.Mind.Stats.Manipulation.Title}">Manipulation</option>
+					<option value="Creativity" title="${actor.system.Characteristics.Mind.Stats.Creativity.Title}">Creativity</option>
 				</select>
 			</div>
 			<div class="form-group">
 				<label for="secondary">Second Pick:</label>
 				<select id="secondary" name="secondary">
-					<option value="Manipulation">Manipulation</option>
-					<option value="Perception">Perception</option>
-					<option value="Creativity">Creativity</option>
+					<option value="Manipulation" title="${actor.system.Characteristics.Mind.Stats.Manipulation.Title}">Manipulation</option>
+					<option value="Perception" title="${actor.system.Characteristics.Mind.Stats.Perception.Title}">Perception</option>
+					<option value="Creativity" title="${actor.system.Characteristics.Mind.Stats.Creativity.Title}">Creativity</option>
 				</select>
 			</div>
 			<div class="form-group">
 				<label for="tertiary">Third Pick:</label>
 				<select id="tertiary" name="tertiary">
-					<option value="Creativity">Creativity</option>
-					<option value="Perception">Perception</option>
-					<option value="Manipulation">Manipulation</option>
+					<option value="Creativity" title="${actor.system.Characteristics.Mind.Stats.Creativity.Title}">Creativity</option>
+					<option value="Perception" title="${actor.system.Characteristics.Mind.Stats.Perception.Title}">Perception</option>
+					<option value="Manipulation" title="${actor.system.Characteristics.Mind.Stats.Manipulation.Title}">Manipulation</option>
 				</select>
 			</div>
 		</form>
@@ -606,25 +606,25 @@ export async function NewActorSoulStats(actor) {
 			<div class="form-group">
 				<label for="primary">First Pick:</label>
 				<select id="primary" name="primary">
-					<option value="Willpower" selected>Willpower</option>
-					<option value="Consciousness">Consciousness</option>
-					<option value="Awareness">Awareness</option>
+					<option value="Willpower" title="${actor.system.Characteristics.Soul.Stats.Willpower.Title}" selected>Willpower</option>
+					<option value="Consciousness" title="${actor.system.Characteristics.Soul.Stats.Conciousness.Title}">Consciousness</option>
+					<option value="Awareness" title="${actor.system.Characteristics.Soul.Stats.Awareness.Title}">Awareness</option>
 				</select>
 			</div>
 			<div class="form-group">
 				<label for="secondary">Second Pick:</label>
 				<select id="secondary" name="secondary">
-					<option value="Consciousness" selected>Consciousness</option>
-					<option value="Willpower">Willpower</option>
-					<option value="Awareness">Awareness</option>
+					<option value="Consciousness" title="${actor.system.Characteristics.Soul.Stats.Conciousness.Title}" selected>Consciousness</option>
+					<option value="Willpower" title="${actor.system.Characteristics.Soul.Stats.Willpower.Title}">Willpower</option>
+					<option value="Awareness" title="${actor.system.Characteristics.Soul.Stats.Awareness.Title}">Awareness</option>
 				</select>
 			</div>
 			<div class="form-group">
 				<label for="tertiary">Third Pick:</label>
 				<select id="tertiary" name="tertiary">
-					<option value="Awareness" selected>Awareness</option>
-					<option value="Willpower">Willpower</option>
-					<option value="Consciousness">Consciousness</option>
+					<option value="Awareness" title="${actor.system.Characteristics.Soul.Stats.Awareness.Title}" selected>Awareness</option>
+					<option value="Willpower" title="${actor.system.Characteristics.Soul.Stats.Willpower.Title}">Willpower</option>
+					<option value="Consciousness" title="${actor.system.Characteristics.Soul.Stats.Conciousness.Title}">Consciousness</option>
 				</select>
 			</div>
 		</form>
@@ -810,11 +810,11 @@ export async function NewActorProgression(actor) {
 			<h2>Choose your ${actor.type}'s 📈 Progression</h2>
 			<form>
 				<div class="form-group">
-					<label for="startingxp">Starting 📈 Experience:</label>
+					<label for="startingxp" title="Your Narrator will tell you what to enter here">Starting 📈 Experience:</label>
 					<input type="number" id="startingxp" name="startingxp" value="1000">
 				</div>
 				<div class="form-group">
-					<label for="startingperks">Starting 📚 Perks:</label>
+					<label for="startingperks" title="Your Narrator will tell you what to enter here">Starting 📚 Perks:</label>
 					<input type="number" id="startingperks" name="startingperks" value="2">
 				</div>
 			</form>
@@ -872,46 +872,46 @@ export async function NewActorSummary(actor) {
 			<form>
 			<p>Protagonist Details:</p>
 				<div class="form-group">
-					<label for="actorname">Name: </label>
+					<label for="actorname" title="Your ${actor.type}'s Name for the Saga">Name: </label>
 					<input type="text" id="actorname" name="actorname" value="${actor.type}'s Name">
 				</div>
 				<div class="form-group">
-					<label for="actorgender">Gender: </label>
+					<label for="actorgender" title="Your ${actor.type}'s Gender for the Saga">Gender: </label>
 					<input type="text" id="actorgender" name="actorgender" value="">
 				</div>
 				<div class="form-group">
-					<label for="actorage">Age: </label>
+					<label for="actorage" title="Your ${actor.type}'s Age for the Saga">Age: </label>
 					<input class="style-container-input-charstat" type="number" id="actorage" name="actorage" value="">yr
 				</div>
 				<div class="form-group">
-					<label for="actorheight">Height: </label>
+					<label for="actorheight" title="Your ${actor.type}'s Height for the Saga">Height: </label>
 					<input class="style-container-input-charstat" type="number" id="actorheight" name="actorheight" value="">m
 				</div>
 				<div class="form-group">
-					<label for="actorweight">Weight: </label>
+					<label for="actorweight" title="Your ${actor.type}'s Weight for the Saga">Weight: </label>
 					<input class="style-container-input-charstat" type="number" id="actorweight" name="actorweight" value="">kg
 				</div>
 				<div class="form-group">
-					<label for="actorpob">Place of Birth: </label>
+					<label for="actorpob" title="Your ${actor.type}'s Place of Birth for the Saga">Place of Birth: </label>
 					<input type="text" id="actorpob" name="actorpob" value="">
 				</div>
 				<p>Session Details:</p>
 				<div class="form-group">
-					<label for="narratorname">Narrator Name: </label>${narratorname}
+					<label for="narratorname" title="This should be filled out automatically">Narrator Name: </label>${narratorname}
 				</div>
 				<div class="form-group">
-					<label for="playername">Player Name: </label>${playername}
+					<label for="playername" title="This should be filled out automatically">Player Name: </label>${playername}
 				</div>
 				<div class="form-group">
-					<label for="saganame">Saga Name: </label>
+					<label for="saganame" title="The name for this Saga">Saga Name: </label>
 					<input type="text" id="saganame" name="saganame" value="">
 				</div>
 				<div class="form-group">
-					<label for="coalitionname">Coalition Name: </label>
+					<label for="coalitionname" title="The name of your Coalition of Metanthropes">Coalition Name: </label>
 					<input type="text" id="coalitionname" name="coalitionname" value="">
 				</div>
 				<div class="form-group">
-					<label for="factionname">Faction Name: </label>
+					<label for="factionname" title="The name of the Faction your Coalition is a part of">Faction Name: </label>
 					<input type="text" id="factionname" name="factionname" value="">
 				</div>
 			</form>
