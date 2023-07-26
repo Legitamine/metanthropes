@@ -86,7 +86,7 @@ export async function NewActorDestiny(actor) {
 		<h2>Choose your ${actor.type}'s 🤞 Destiny</h2>
 		<form>
 			<div class="form-group">
-				<label for="destiny">🤞 Destiny Dice:</label>
+				<label for="destiny" title="Destiny (🤞) is a resource which Players can spend to reroll any roll with an undesirable outcome, activate powerful Metapowered effects, and even save their Protagonists from dying. Your Narrator will inform you what to enter here">🤞 Destiny Dice:</label>
 				<input type="number" id="startdestiny" name="startdestiny" value="3">
 			</div>
 		</form>
@@ -138,7 +138,7 @@ export async function NewActorPrimeMetapower(actor) {
         <h2>Choose your ${actor.type}'s Prime Ⓜ️ Metapower</h2>
         <form>
             <div class="form-group">
-                <label for="classification">🔣 Classification:</label>
+                <label for="classification" title="Each Classification includes Metapowers which have a similar role and utilize capabilities and functions in a similar manner.">🔣 Classification:</label>
                 <select id="classification">
                     <option value="">All</option>
                     ${[...new Set(MetapowersList.map((m) => m.classification))]
@@ -148,7 +148,7 @@ export async function NewActorPrimeMetapower(actor) {
                 </select>
             </div>
             <div class="form-group">
-                <label for="energyType">⚡ Energy Type:</label>
+                <label for="energyType" title="Energy Type dictates the Damage and other properties of an effect. Energy Types additionally influence the spending of Experience for unlocking and advancing new Metapowers.">⚡ Energy Type:</label>
                 <select id="energyType">
                     <option value="">All</option>
                     ${[...new Set(MetapowersList.map((m) => m.energyType))]
@@ -158,7 +158,7 @@ export async function NewActorPrimeMetapower(actor) {
                 </select>
             </div>
             <div class="form-group">
-                <label for="statRolled">🎲 Stat Rolled:</label>
+                <label for="statRolled" title="Which Stat is rolled when Activating this Metapower.">🎲 Stat Rolled:</label>
                 <select id="statRolled">
                     <option value="">All</option>
                     ${[...new Set(MetapowersList.map((m) => m.statRolled))]
@@ -168,7 +168,7 @@ export async function NewActorPrimeMetapower(actor) {
                 </select>
             </div>
             <div class="form-group">
-                <label for="primeMetapower">Prime Ⓜ️ Metapower:</label>
+                <label for="primeMetapower" title="Each Metanthrope Character begins the game with one level in their first Metapower, called Prime Metapower. No other additional Metapower unlocked can be higher-level than the level of the Prime Metapower. The Classification and the Energy type of the Protagonist's Prime Metapower will influence the Experience cost of unlocking and advancing other Metapowers.">Prime Ⓜ️ Metapower:</label>
                 <select id="primeMetapower">
                     ${MetapowersList.map((m) => m.name)
 						.sort()
@@ -289,7 +289,7 @@ export async function NewActorCharacteristics(actor) {
 				<select id="tertiary" name="tertiary">
 					<option value="Soul" title="${actor.system.Characteristics.Soul.Title}" selected>Soul</option>
 					<option value="Body" title="${actor.system.Characteristics.Body.Title}">Body</option>
-					<option value="Mind" title="${actor.system.Characteristics.Mind.Title}>Mind</option>
+					<option value="Mind" title="${actor.system.Characteristics.Mind.Title}">Mind</option>
 				</select>
 			</div>
 		</form>
@@ -607,14 +607,14 @@ export async function NewActorSoulStats(actor) {
 				<label for="primary">First Pick:</label>
 				<select id="primary" name="primary">
 					<option value="Willpower" title="${actor.system.Characteristics.Soul.Stats.Willpower.Title}" selected>Willpower</option>
-					<option value="Consciousness" title="${actor.system.Characteristics.Soul.Stats.Conciousness.Title}">Consciousness</option>
+					<option value="Consciousness" title="${actor.system.Characteristics.Soul.Stats.Consciousness.Title}">Consciousness</option>
 					<option value="Awareness" title="${actor.system.Characteristics.Soul.Stats.Awareness.Title}">Awareness</option>
 				</select>
 			</div>
 			<div class="form-group">
 				<label for="secondary">Second Pick:</label>
 				<select id="secondary" name="secondary">
-					<option value="Consciousness" title="${actor.system.Characteristics.Soul.Stats.Conciousness.Title}" selected>Consciousness</option>
+					<option value="Consciousness" title="${actor.system.Characteristics.Soul.Stats.Consciousness.Title}" selected>Consciousness</option>
 					<option value="Willpower" title="${actor.system.Characteristics.Soul.Stats.Willpower.Title}">Willpower</option>
 					<option value="Awareness" title="${actor.system.Characteristics.Soul.Stats.Awareness.Title}">Awareness</option>
 				</select>
@@ -624,7 +624,7 @@ export async function NewActorSoulStats(actor) {
 				<select id="tertiary" name="tertiary">
 					<option value="Awareness" title="${actor.system.Characteristics.Soul.Stats.Awareness.Title}" selected>Awareness</option>
 					<option value="Willpower" title="${actor.system.Characteristics.Soul.Stats.Willpower.Title}">Willpower</option>
-					<option value="Consciousness" title="${actor.system.Characteristics.Soul.Stats.Conciousness.Title}">Consciousness</option>
+					<option value="Consciousness" title="${actor.system.Characteristics.Soul.Stats.Consciousness.Title}">Consciousness</option>
 				</select>
 			</div>
 		</form>
