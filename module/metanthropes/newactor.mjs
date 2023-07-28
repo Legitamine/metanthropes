@@ -871,7 +871,7 @@ export async function NewActorSummary(actor) {
 	if (gameversion>11) {
 		let narratorname = game.users.activeGM.name;
 	} else {
-		let narratorname = "The Narrator"
+		let narratorname = "The Composer"
 	}
 	let dialogContent = `
 		<div class="metanthropes layout-metaroll-dialog">
