@@ -6,6 +6,7 @@ These are the latest changes for the Official Metanthropes RPG System for Foundr
 - XP System: Metapowers (pending)
 - New Actor / Token logic to support non-linked Actors (testing)
 - Added official system support for Terrain Ruler, Enhanced Terrain Layer and DF Chat Enhancements (done)
+- New MetaEvaluate Function (done)
 #### 0.6.00 - 0.6.10
 - New Player Experience: New Character sheet for protagonists with better UI and UX
 - New Player Experience: New Actor Creation workflow with automations and drop-down menus
