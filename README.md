@@ -33,10 +33,12 @@ To get the best experience while playing Metanthropes RPG, we recommend to insta
 	- Workaround: The Narrator should manually ensure their rolls are hidden before rolling for Initiative.
 
 ### Planned Features
-You may read about our planned features and milestones over at https://github.com/Legitamine/metanthropes-system/milestones
+You may read about our planned features and milestones over at https://github.com/Legitamine/metanthropes-system/projects?query=is%3Aopen
+
 Briefly, we are working on the following features:
 - Officially Support the full Ruleset for Metanthropes RPG
 - Synchronize your Protagonist details with the website for off-line viewing and editing
+- Further automate the Combat System
 - GitHub Issues Integration with the Metanthropes Roadmap
 - Integration with 3rd party modules to automate the Metapower Activation and Possession Usage with visual and audio effects.
 

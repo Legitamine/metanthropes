@@ -133,7 +133,7 @@ export const MetapowersList = [
 	},
 	{
 		number: 31,
-		name: "Duplicate Object",
+		name: "Duplicate Objects",
 		classification: "Animator",
 		energyType: "Material",
 		statRolled: "Creativity",

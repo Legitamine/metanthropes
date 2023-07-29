@@ -865,7 +865,14 @@ export async function NewActorProgression(actor) {
 }
 export async function NewActorSummary(actor) {
 	let playername = game.user.name;
-	let narratorname = game.users.activeGM.name;
+	//! game.users.activeGM does not exist in v10
+	//? adding logic to check and provide input for Narrator Name
+	let gameversion = game.version;
+	if (gameversion>11) {
+		let narratorname = game.users.activeGM.name;
+	} else {
+		let narratorname = "The Composer"
+	}
 	let dialogContent = `
 		<div class="metanthropes layout-metaroll-dialog">
 			<h2>Choose your ${actor.type}'s ✍️ Summary</h2>
