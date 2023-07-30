@@ -267,7 +267,7 @@ export const MetapowersList = [
 		energyType: "Material",
 		statRolled: "Perception",
 	},
-	{ number: 65, name: "Meta Will", classification: "Aegis", energyType: "Psychic", statRolled: "Willpower" },
+	{ number: 65, name: "Meta Willpower", classification: "Aegis", energyType: "Psychic", statRolled: "Willpower" },
 	{
 		number: 66,
 		name: "Mind Control",
