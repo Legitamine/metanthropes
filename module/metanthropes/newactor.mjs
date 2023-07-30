@@ -868,10 +868,10 @@ export async function NewActorSummary(actor) {
 	//! game.users.activeGM does not exist in v10
 	//? adding logic to check and provide input for Narrator Name
 	let gameversion = game.version;
+	let narratorname = "The Composer";
+	console.log(`Metanthropes RPG System | Game Version: ${gameversion}`);
 	if (gameversion>11) {
-		let narratorname = game.users.activeGM.name;
-	} else {
-		let narratorname = "The Composer"
+		narratorname = game.users.activeGM.name;
 	}
 	let dialogContent = `
 		<div class="metanthropes layout-metaroll-dialog">
