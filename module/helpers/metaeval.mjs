@@ -80,12 +80,12 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 			data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}"
 			>Spend 🤞 Destiny to reroll</button><br><br></div>`;
 	}
-	if (action === "Initiative") {
-		message += `<div class="hide-button hidden"><button class="keep-initiative" data-idactor="${actor.id}"
-			data-stat="${stat}" data-statvalue="${statValue}" data-multiaction="${multiAction}"
-			data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}"
-			>Keep Initiative of: ${resultLevel}</button><br><br></div>`;
-	}
+	//	if (action === "Initiative") {
+	//		message += `<div class="hide-button hidden"><button class="keep-initiative" data-idactor="${actor.id}"
+	//			data-stat="${stat}" data-statvalue="${statValue}" data-multiaction="${multiAction}"
+	//			data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}"
+	//			>Keep Initiative of: ${resultLevel}</button><br><br></div>`;
+	//	}
 	console.log(
 		"Metanthropes RPG System |",
 		"MetaEval Results for:",
@@ -118,14 +118,15 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 	// the idea is to use these later in metapowers to spend your levels of success.
 	//? Setting Flags with results
 	await actor.setFlag("metanthropes-system", "lastrolled", {
-		resultLevel: resultLevel,
+		action: action,
 		//!I should change to follow this format:
 		metaEvaluate: resultLevel,
-		metaInitiative: resultLevel,
 	});
+	if (action === "Initiative") {
 	await actor.setFlag("metanthropes-system", "initiative", {
 		initiativeValue: resultLevel,
 	});
+}
 	//print message to chat and enable Dice So Nice to roll the dice and display the message
 	//? Printing the results to chat
 	//if (action === "StatRoll") {

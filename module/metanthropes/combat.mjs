@@ -11,7 +11,7 @@ export class MetanthropesCombat extends Combat {
 		const ib = Number.isNumeric(b.initiative) ? b.initiative : -Infinity;
 		const astatValue = a.actor.getFlag("metanthropes-system", "initiative")?.statValue ?? -Infinity;
 		const bstatValue = b.actor.getFlag("metanthropes-system", "initiative")?.statValue ?? -Infinity;
-		console.log("Metanthropes RPG - from within sortCombatants  === +++ === +++ ===");
+		// console.log("Metanthropes RPG - from within sortCombatants  === +++ === +++ ===");
 		//	console.log("a:", a);
 		//	console.log("b:", b);
 		//	console.log("a.initiative:", a.initiative);
@@ -73,7 +73,7 @@ export class MetanthropesCombat extends Combat {
 	 * @returns {Promise<Combat>}       A promise which resolves to the updated Combat document once updates are complete.
 	 */
 	async rollInitiative(ids, { formula = null, updateTurn = true, messageOptions = {} } = {}) {
-		console.log("Metanthropes RPG System | inside rollInitiative");
+		console.log("Metanthropes RPG System | Combat: rollInitiative Activated");
 		// Structure input data
 		ids = typeof ids === "string" ? [ids] : ids;
 		const currentId = this.combatant?.id;
@@ -85,12 +85,10 @@ export class MetanthropesCombat extends Combat {
 			const combatant = this.combatants.get(id);
 			if (!combatant?.isOwner) continue;
 			// Produce an initiative roll for the Combatant
-			const roll = await MetaInitiative(combatant);
-			console.log("=======++++++++++++++============");
-			console.log("Metanthropes RPG using metainitiative:", roll, "combatant:", combatant);
-			console.log("=======++++++++++++++============");
-			const initiativeData = combatant.actor.getFlag("metanthropes-system", "initiative");
-			const initiativeResult = initiativeData.initiativeValue;
+			console.log("Metanthropes RPG System | Combat: calls MetaInitiative for combatant:", combatant);
+			await MetaInitiative(combatant);
+			let initiativeResult = combatant.actor.getFlag("metanthropes-system", "initiative").initiativeValue;
+			console.log("Metanthropes RPG System | Combat: MetaInitiative finished, updating combatant with new initiative:", initiativeResult);
 			updates.push({ _id: id, initiative: initiativeResult });
 			//	// Construct chat message data
 			//	let messageData = foundry.utils.mergeObject(

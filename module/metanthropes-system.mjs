@@ -303,8 +303,8 @@ Hooks.once("enhancedTerrainLayer.ready", (RuleProvider) => {
 	console.log("Metanthropes RPG System | Enhanced Terrain Layer Integration Started");
 	class MetanthropesRuleProvider extends RuleProvider {
 		calculateCombinedCost(terrain, options) {
-			let cost;
-			// Calculate the cost for this terrain
+			//? I want to reduce movement by 1 for every 2 points of terrain (?)
+			let cost = terrain - 1;
 			return cost;
 		}
 	}

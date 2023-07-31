@@ -2,11 +2,10 @@
 /*
 //* Used primarly for determing if special effects apply to the initiative roll
 */
-import { MetaEvaluate } from "./metaeval.mjs";
 import { MetaRoll } from "../metanthropes/metaroll.mjs";
 export async function MetaInitiative(combatant) {
 	const actor = combatant.actor;
-	console.log("Metanthropes RPG System | MetaInitiative called for", actor.type, ":", actor.name);
+	console.log("Metanthropes RPG System | MetaInitiative starts for", actor.type, ":", actor.name);
 	//? Check for alternate Stat to use for Initiative
 	const reflexesStat = 'Reflexes';
 	const awarenessStat = 'Awareness';
@@ -17,8 +16,8 @@ export async function MetaInitiative(combatant) {
 	//? Check if the actor has the metapower "Danger Sense" equipped
 	const metapowers = actor.items.filter((item) => item.type === "Metapower");
 	const hasDangerSense = metapowers.some((metapower) => metapower.name === "Danger Sense");
-	//? Apply the alternate stat if the actor has Danger Sense
 	if (hasDangerSense) {
+		//? Apply the alternate stat values if the actor has Danger Sense
 		initiativeStat = awarenessStat;
 		initiativeStatValue = awarenessValue;
 	}
@@ -32,9 +31,9 @@ export async function MetaInitiative(combatant) {
 	//not this await MetaEvaluate (actor, action, initiativeStat, initiativeStatValue, 0, 0, 0);
 	await MetaRoll (actor, action, initiativeStat);
 	// Update the combatant with the new initiative value
-	let checkresult = await actor.getFlag("metanthropes-system", "lastrolled").metaInitiative;
+	let checkresult = await actor.getFlag("metanthropes-system", "initiative").initiativeValue;
+	console.log("Metanthropes RPG System |", actor.name, "rolled for Initiative with:", initiativeStat, initiativeStatValue, "and got:", checkresult);
 	await combatant.update({ initiative: checkresult });
-
 	// This is to check for hidden combatants and display a different message for them in chat
 	// Construct chat message data
 	//	let messageData = foundry.utils.mergeObject(
@@ -72,7 +71,7 @@ export async function MetaInitiativeReRoll(event) {
 	const actorId = button.dataset.idactor;
 	const actor = game.actors.get(actorId);
 	const combatant = game.combat.getCombatantByActor(actorId);
-	console.log("Metanthropes RPG  System | Do we get the correct combatant data?", combatant);
+	console.log("Metanthropes RPG  System | Rerolling MetaInitiative - do we get the correct combatant data?", combatant);
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	// make this function only available to the owner of the actor
 	if ((actor && actor.isOwner) || game.user.isGM) {
