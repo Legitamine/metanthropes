@@ -1,31 +1,33 @@
+//* MetaEvaluate is the function that calculates the results of a roll and prints it to chat
+//* inputs like bonus is expected to be a positive number and multiAction and penalty are expected to be negative numbers
 export async function MetaEvaluate(actor, action, stat, statValue, multiAction = 0, bonus = 0, penalty = 0) {
+	console.log("Metanthropes RPG System | MetaEvaluate | Engaged for:", actor.name, action, stat, statValue, "Multi-Action:", multiAction, "Bonus:", bonus, "Penalty:", penalty)
+	//? evaluate the result of the roll
 	let result = null;
 	let resultLevel = null;
 	const roll = await new Roll("1d100").evaluate({ async: true });
 	const total = roll.total;
-	//* bonus is expected to be a positive number and multiAction and penalty are expected to be negative numbers
 	let levelsOfSuccess = Math.floor((statValue + bonus + penalty + multiAction - total) / 10);
 	let levelsOfFailure = Math.floor((total - statValue - bonus - multiAction - penalty) / 10);
 	const criticalSuccess = total === 1;
 	const criticalFailure = total === 100;
 	let currentDestiny = actor.system.Vital.Destiny.value;
-	// this kicks-off the calculation, assuming that is is a failure
+	//? this kicks-off the calculation, assuming that is is a failure
 	if (total - multiAction - penalty > statValue + bonus) {
-		// in which case we don't care about what levels of success we have, so we set to 0 to avoid confusion later
+		//? in which case we don't care about what levels of success we have, so we set to 0 to avoid confusion later
 		result = "Failure 🟥";
 		levelsOfSuccess = 0;
-		// resultlevel is used to help with ordering combatants in initiative order
+		//? resultlevel is a numerical value to facilitate other functions to use the result of the roll
 		resultLevel = 0;
 	} else {
-		// if the calculation is <= to statValue, it's a success, so we reset the levels of failure to 0
+		//? if it's a success, similarly as above, we don't care about levels of failure
 		result = "Success 🟩";
 		levelsOfFailure = 0;
-		// resultlevel is used to help with ordering combatants in initiative order
 		resultLevel = 0.5;
 	}
-	//check for critical success or failure
+	//? check for critical success or failure
 	if (criticalSuccess) {
-		result = `🟩 Critical Success 🟩, rewarding ${actor.name} with +1 * 🤞`; //todo: add color and bold to crititals
+		result = `🟩 Critical Success 🟩, rewarding ${actor.name} with +1 * 🤞`;
 		currentDestiny += 1;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfSuccess = 10;
@@ -37,13 +39,13 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 		}
 	}
 	if (criticalFailure) {
-		result = `🟥 Critical Failure 🟥, rewarding ${actor.name} with +1 * 🤞`; //todo: add color and bold to crititals
+		result = `🟥 Critical Failure 🟥, rewarding ${actor.name} with +1 * 🤞`;
 		currentDestiny += 1;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfFailure = 10;
 		levelsOfSuccess = 0;
 	}
-	//* Beggining of the message to be printed to chat
+	//? Create the message to be printed to chat
 	let message = null;
 	if (action === "StatRoll") {
 		message = `Attempts a roll with ${stat} score of ${statValue}%`;
@@ -62,7 +64,6 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 		message += `, a Multi-Action reduction of ${multiAction}%`;
 	}
 	message += ` and the result is ${total}.<br><br>It is a ${result}`;
-	//! Here is the typical calculation for the final results
 	//? if we have levels of success or failure, add them to the message
 	if (levelsOfSuccess > 0) {
 		message += `, accumulating: ${levelsOfSuccess} * ✔️.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
@@ -87,8 +88,7 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 	//			>Keep Initiative of: ${resultLevel}</button><br><br></div>`;
 	//	}
 	console.log(
-		"Metanthropes RPG System |",
-		"MetaEval Results for:",
+		"Metanthropes RPG System | MetaEvaluate | Finished for:",
 		actor.name,
 		"Action:",
 		action,
@@ -116,6 +116,7 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 	);
 	//set flags for the actor to be used as the lastrolled values of your most recent roll.
 	// the idea is to use these later in metapowers to spend your levels of success.
+	//! do I need to set flags here or maybe it's better to set them in MetaRoll?
 	//? Setting Flags with results
 	await actor.setFlag("metanthropes-system", "lastrolled", {
 		action: action,
@@ -140,7 +141,7 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 			//content seems to be overwriten by Dice So Nice, so maybe I can add my button here?
 			flags: { "metanthropes-system": { actorId: actor.id } },
 		});
-		//! I will need to figure out if I want to pass the combatant from metainitiative if I need to do that
+		//! I will need to figure out if(how?) I want to pass the combatant from metainitiative if I need to do that
 	//	} else if (action === "Initiative") {
 	//		//! not sure what's really different here, I should test some more
 	//		roll.toMessage({
@@ -156,6 +157,9 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 	//	}
 }
 //* This is the function that is called when the destiny re-roll button is clicked
+
+//! mipws tha itan kalytero na analavei to MetaRoll ta reroll???
+
 export async function MetaEvaluateReRoll(event) {
 	event.preventDefault();
 	const button = event.target;

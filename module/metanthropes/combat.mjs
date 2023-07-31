@@ -73,7 +73,7 @@ export class MetanthropesCombat extends Combat {
 	 * @returns {Promise<Combat>}       A promise which resolves to the updated Combat document once updates are complete.
 	 */
 	async rollInitiative(ids, { formula = null, updateTurn = true, messageOptions = {} } = {}) {
-		console.log("Metanthropes RPG System | Combat: rollInitiative Activated");
+		console.log("Metanthropes RPG System | Combat | rollInitiative Engaged");
 		// Structure input data
 		ids = typeof ids === "string" ? [ids] : ids;
 		const currentId = this.combatant?.id;
@@ -85,10 +85,10 @@ export class MetanthropesCombat extends Combat {
 			const combatant = this.combatants.get(id);
 			if (!combatant?.isOwner) continue;
 			// Produce an initiative roll for the Combatant
-			console.log("Metanthropes RPG System | Combat: calls MetaInitiative for combatant:", combatant);
+			console.log("Metanthropes RPG System | Combat | Engaging MetaInitiative for combatant:", combatant);
 			await MetaInitiative(combatant);
 			let initiativeResult = combatant.actor.getFlag("metanthropes-system", "initiative").initiativeValue;
-			console.log("Metanthropes RPG System | Combat: MetaInitiative finished, updating combatant with new initiative:", initiativeResult);
+			console.log("Metanthropes RPG System | Combat | MetaInitiative finished, updating combatant with new initiative:", initiativeResult);
 			updates.push({ _id: id, initiative: initiativeResult });
 			//	// Construct chat message data
 			//	let messageData = foundry.utils.mergeObject(

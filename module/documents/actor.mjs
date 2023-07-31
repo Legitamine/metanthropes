@@ -114,8 +114,7 @@ export class MetanthropesActor extends Actor {
 		let statExperienceSpent = 0;
 		let advancementCount = 0;
 		let charzerofullpenalty = 0;
-		console.log("Metanthropes RPG System | ====================================");
-		console.log("Metanthropes RPG System | Preparing Characteristics & Stats for", this.type, "-", this.name);
+		console.log("Metanthropes RPG System | Actor Prep | Updating Characteristics & Stats for", this.type, "-", this.name);
 		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
 			//	console.log("Metanthropes RPG Calculating", CharKey, "Base: Initial + Progressed");
 			//	console.log(
@@ -139,7 +138,7 @@ export class MetanthropesActor extends Actor {
 			//? Add the experience spent on this characteristic to the total experience spent, only if Progressed is >0
 			if (advancementCount > 0) {
 				experienceSpent += characteristicExperienceSpent;
-				console.log("Metanthropes RPG System | Experience Spent to Progress", CharKey, "Characteristic:", characteristicExperienceSpent);
+				console.log("Metanthropes RPG System | Actor Prep | Experience Spent to Progress", CharKey, "Characteristic:", characteristicExperienceSpent);
 			}
 			parseInt((CharValue.Base = Number(CharValue.Initial) + Number(Number(CharValue.Progressed) * 5)));
 			//	console.log("Metanthropes RPG New", CharKey, "Base:", CharValue.Base);
@@ -161,8 +160,9 @@ export class MetanthropesActor extends Actor {
 			if (CharValue.Current <= 0) {
 				charzerofullpenalty = CharValue.Current;
 				CharValue.Current = 0;
-				ui.notifications.error(this.name + "'s " + CharKey + " has dropped to 0!");
-				console.log("Metanthropes RPG System |", CharKey, "has dropped to 0!");
+				//! decided not to spam everyone about this, however logging it to console
+				//ui.notifications.error(this.name + "'s " + CharKey + " has dropped to 0!");
+				console.log("Metanthropes RPG System | Actor Prep |", this.name+"'s", CharKey, "has dropped to 0!");
 			}
 			//	console.log("Metanthropes RPG New", CharKey, "Current:", CharValue.Current);
 			//	console.log("------------------------------------------------------------------------");
@@ -230,7 +230,9 @@ export class MetanthropesActor extends Actor {
 				);
 				if (StatValue.Roll <= 0) {
 					StatValue.Roll = 0;
-					ui.notifications.error(this.name + "'s " + StatKey + " has dropped to 0!");
+					//ui.notifications.error(this.name + "'s " + StatKey + " has dropped to 0!");
+					//! decided not to spam everyone about this, however logging it to console
+					console.log("Metanthropes RPG System | Actor Prep |", this.name+"'s", StatKey, "has dropped to 0!");
 					// console.log("Metanthropes RPG", StatKey, "has dropped to 0!");
 				}
 				// console.log("Metanthropes RPG Final", StatKey, "for Rolls:", StatValue.Roll);
@@ -285,8 +287,8 @@ export class MetanthropesActor extends Actor {
 		//	);
 		//}
 		//	console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
-		console.log("Metanthropes RPG System |", this.type, "-", this.name, "is Ready to Roll!");
-		console.log("Metanthropes RPG System | ====================================");
+		// console.log("Metanthropes RPG System |", this.type, "-", this.name, "is Ready to Roll!");
+		// console.log("Metanthropes RPG System | ====================================");
 	}
 	_prepareDerivedPerksData(actorData) {
 		if (actorData.type == "Vehicle") return;
@@ -303,8 +305,8 @@ export class MetanthropesActor extends Actor {
 		let experienceSpent = 0;
 		let advancementCount = 0;
 		let perkExperienceSpent = 0;
-		console.log("Metanthropes RPG System | ====================================");
-		console.log("Metanthropes RPG System | Preparing Perks for", this.type, "-", this.name);
+		// console.log("Metanthropes RPG System | ====================================");
+		console.log("Metanthropes RPG System | Actor Prep | Updating Perks for", this.type, "-", this.name);
 		//	console.log("Experience Spent before Perks:", experienceAlreadySpent);
 		//? Calculate the experience spent on Knowledge Perks
 		for (const [KnowPerkKey, KnowPerkValue] of Object.entries(systemData.Perks.Knowledge)) {
@@ -329,10 +331,10 @@ export class MetanthropesActor extends Actor {
 		//? Calculate total Experience Spent Progressing Perks & Characteristics & Stats
 		//? test if we have spent enough xp on the starting perks
 		if (experienceSpent < startingPerks * 100) {
-			console.log("Metanthropes RPG System |", this.name, "has not spent enough XP on starting perks!");
-			console.log("Metanthropes RPG System |", this.name, "has spent", experienceSpent, "XP on perks");
+			console.log("Metanthropes RPG System | Actor Prep |", this.name, "has not spent enough XP on starting perks!");
+			console.log("Metanthropes RPG System | Actor Prep |", this.name, "has spent", experienceSpent, "XP on perks");
 			console.log(
-				"Metanthropes RPG System |",
+				"Metanthropes RPG System | Actor Prep |",
 				this.name,
 				"needs to spend",
 				startingPerks * 100,
@@ -358,18 +360,18 @@ export class MetanthropesActor extends Actor {
 		);
 		if (systemData.Vital.Experience.Stored < 0) {
 			ui.notifications.warn(this.name + "'s Stored Experience is Negative!");
-			console.log("Metanthropes RPG System | ====================================");
-			console.log("Metanthropes RPG System | WARNING: Stored Experience is Negative!");
-			console.log("Metanthropes RPG System | ====================================");
+			
+			console.log("Metanthropes RPG System | Actor Prep | WARNING: Stored Experience is Negative!");
+			
 		}
 		//	console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
-		console.log("Metanthropes RPG System |", this.type, "-", this.name, "is ready for Action!");
-		console.log("Metanthropes RPG System | ====================================");
+		//console.log("Metanthropes RPG System |", this.type, "-", this.name, "is ready for Action!");
+		//console.log("Metanthropes RPG System | ====================================");
 	}
 	async _prepareDerivedMovementData(actorData) {
 		const systemData = actorData.system;
-		console.log("Metanthropes RPG System | ====================================");
-		console.log("Metanthropes RPG System | Preparing Movement for", this.type, "-", this.name);
+		//console.log("Metanthropes RPG System | ====================================");
+		console.log("Metanthropes RPG System | Actor Prep | Updating Movement for", this.type, "-", this.name);
 		//*first we will calculate the current values from buffs and conditions, then we take their modifiers and calculate the movement value
 		let speedinitial = Number(systemData.physical.speed.initial);
 		let weightinitial = Number(systemData.physical.weight.initial);
@@ -466,15 +468,15 @@ export class MetanthropesActor extends Actor {
 		await this.update({ "system.physical.movement.additional": movementvalue });
 		await this.update({ "system.physical.movement.sprint": movementvalue * 5 });
 		console.log(
-			"Metanthropes RPG System | Movement Value:",
+			"Metanthropes RPG System | Actor Prep | New Movement:",
 			movementvalue,
 			"Additional:",
 			movementvalue,
 			"Sprint:",
 			movementvalue * 5
 		);
-		console.log("Metanthropes RPG System |", this.name, "is ready to Move!");
-		console.log("Metanthropes RPG System | ====================================");
+		//console.log("Metanthropes RPG System |", this.name, "is ready to Move!");
+		//console.log("Metanthropes RPG System | ====================================");
 	}
 	getRollData() {
 		const data = super.getRollData();
@@ -503,7 +505,7 @@ export class MetanthropesActor extends Actor {
 		event.preventDefault();
 		// Check if the actor is in a combat
 		const combatant = this.combatant;
-		console.log("Metanthropes RPG System | inside onRollInitiative", combatant);
+		console.log("Metanthropes RPG System | inside onRollInitiative | do we ever use this?????", combatant);
 		if (!combatant) return;
 
 		//? Call the MetaInitiative function

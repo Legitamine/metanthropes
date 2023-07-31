@@ -5,7 +5,7 @@
 import { MetaRoll } from "../metanthropes/metaroll.mjs";
 export async function MetaInitiative(combatant) {
 	const actor = combatant.actor;
-	console.log("Metanthropes RPG System | MetaInitiative starts for", actor.type, ":", actor.name);
+	console.log("Metanthropes RPG System | MetaInitiative | Engaged for", actor.type, ":", actor.name);
 	//? Check for alternate Stat to use for Initiative
 	const reflexesStat = 'Reflexes';
 	const awarenessStat = 'Awareness';
@@ -27,12 +27,12 @@ export async function MetaInitiative(combatant) {
 	//	await actor.setFlag("metanthropes-system", "initiative", {
 	//		initiativeValue: resultLevel,
 	//	});
-	console.log("Metanthropes RPG System |", actor.name, "is rolling for Initiative with:", initiativeStat, initiativeStatValue);
+	console.log("Metanthropes RPG System | MetaInitiative | Engaging MetaRoll for", actor.name, "'s Initiative with:", initiativeStat, initiativeStatValue);
 	//not this await MetaEvaluate (actor, action, initiativeStat, initiativeStatValue, 0, 0, 0);
 	await MetaRoll (actor, action, initiativeStat);
 	// Update the combatant with the new initiative value
 	let checkresult = await actor.getFlag("metanthropes-system", "initiative").initiativeValue;
-	console.log("Metanthropes RPG System |", actor.name, "rolled for Initiative with:", initiativeStat, initiativeStatValue, "and got:", checkresult);
+	console.log("Metanthropes RPG System | MetaInitiative | MetaRoll finished for", actor.name, "'s Initiative with:", initiativeStat, initiativeStatValue, "and the result was:", checkresult);
 	await combatant.update({ initiative: checkresult });
 	// This is to check for hidden combatants and display a different message for them in chat
 	// Construct chat message data
