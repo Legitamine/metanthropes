@@ -5,7 +5,8 @@ import { MetaEvaluate } from "../helpers/metaeval.mjs";
  * we dermine if it's a simple roll, a detailed roll or a re-roll of existing results
  * we determine if we need additional info if it is more than a stat roll
  */
-export async function MetaRoll(actor, stat) {
+export async function MetaRoll(actor, action, stat) {
+	console.log("Metanthropes RPG System | MetaRoll called for", actor.type, ":", actor.name, "Action:", action, "Stat:", stat);
 	const statValue = actor.system.RollStats[stat];
 	const disease = actor.system.Characteristics.Body.CoreConditions.Diseased;
 	const pain = actor.system.Characteristics.Mind.CoreConditions.Pain;
@@ -34,7 +35,8 @@ export async function MetaRoll(actor, stat) {
 	//? Check for disease
 	//* disease is expected to be a positive number, where as penalty is expected to be negative
 	let diseasePenalty = 0;
-	if (disease > 0) { //! not correct placement, need to figure out how to progress thru the logic for this
+	if (disease > 0) {
+		//! not correct placement, need to figure out how to progress thru the logic for this
 		//? check if penalty is worse than the disease level and set it accordingly
 		if (diseasePenalty > -(disease * 10)) {
 			diseasePenalty = -(disease * 10);
@@ -45,20 +47,41 @@ export async function MetaRoll(actor, stat) {
 	let multiAction = 0;
 	let bonus = 0;
 	let penalty = diseasePenalty;
-	await MetaEvaluate(actor, stat, statValue, multiAction, bonus, penalty);
+	await MetaEvaluate(actor, action, stat, statValue, multiAction, bonus, penalty);
 	let checkresult = await actor.getFlag("metanthropes-system", "lastrolled").metaEvaluate;
-	console.log("Metanthropes RPG System |", "MetaRoll Results for:", actor.name, stat, ":", statValue, "Result:", checkresult);
+	console.log(
+		"Metanthropes RPG System |",
+		"MetaRoll Results for:",
+		actor.name,
+		"Action:",
+		action,
+		stat,
+		":",
+		statValue,
+		"Result:",
+		checkresult
+	);
 }
 
 //! different function if called via right-click, allowing to set options
-export async function MetaRollCustom(actor, stat) {
+export async function MetaRollCustom(actor, action, stat) {
 	const statValue = actor.system.RollStats[stat];
 	const disease = actor.system.Characteristics.Body.CoreConditions.Diseased;
-	//! add the similar checks as above 
+	//! add the similar checks as above
 	//? calculate the max number of multi-actions possible based on the stat value
 	const maxMultiActions = Math.floor((statValue - 1) / 10);
 	const multiActionOptions = Array.from({ length: maxMultiActions - 1 }, (_, i) => i + 2);
-	//create the dialog content
+	//? Title and Buttons for the Dialog
+	let dialogtitle = null;
+	let dialogbuttonlabel = null;
+	if (action === "StatRoll") {
+		dialogtitle = `${actor.name}'s ${stat}`;
+		dialogbuttonlabel = `Roll ${stat}`;
+	} else if (action === "Initiative") {
+		dialogtitle = `${actor.name}'s Initiative`;
+		dialogbuttonlabel = `Roll Initiative`;
+	}
+	//? Create the Dialog content
 	let dialogContent = `
 	<div class="metanthropes layout-metaroll-dialog">
 		<p>Select total number of Multi-Actions:</p>
@@ -75,12 +98,13 @@ export async function MetaRollCustom(actor, stat) {
 			</div>
 	</div>
 	`;
+	//? Create the Dialog
 	let dialog = new Dialog({
-		title: `${actor.name}'s ${stat}`,
+		title: dialogtitle,
 		content: dialogContent,
 		buttons: {
 			roll: {
-				label: `Roll ${stat}`,
+				label: dialogbuttonlabel,
 				callback: async (html) => {
 					//collect multi-action value
 					let multiAction = html.find("#multiActionCount").val();
@@ -102,7 +126,7 @@ export async function MetaRollCustom(actor, stat) {
 						}
 					}
 					//send the data we collected to the MetaEvaluate function
-					MetaEvaluate(actor, stat, statValue, multiAction, bonus, penalty);
+					MetaEvaluate(actor, action, stat, statValue, multiAction, bonus, penalty);
 				},
 			},
 		},

@@ -186,12 +186,13 @@ export class MetanthropesActorSheet extends ActorSheet {
 		if (dataset.rollType) {
 			console.log("Metanthropes RPG System | We are about to make a new Roll for a", dataset.rollType);
 			console.log("Metanthropes RPG System | Dataset:", dataset);
-			if (dataset.rollType == "Stat") {
+			if (dataset.rollType == "StatRoll") {
 				const actor = this.actor;
+				const action = dataset.rollType;
 				const stat = dataset.stat;
 				console.log("Metanthropes RPG System | Rolling a Stat for:", actor.name, "'s", stat);
 				console.log("Metanthropes RPG System | ====================================");
-				MetaRoll(actor, stat);
+				MetaRoll(actor, action, stat);
 			} else if (dataset.rollType == "Metapower") {
 				const actor = this.actor;
 				const stat = dataset.stat;
@@ -278,12 +279,13 @@ export class MetanthropesActorSheet extends ActorSheet {
 			console.log("Metanthropes RPG System | ====================================");
 			console.log("Metanthropes RPG System | We are about to make a new Custom Roll for a", dataset.rollType);
 			console.log("Metanthropes RPG System | Dataset:", dataset);
-			if (dataset.rollType == "Stat") {
+			if (dataset.rollType == "StatRoll") {
 				const actor = this.actor;
+				const action = dataset.rollType;
 				const stat = dataset.stat;
 				console.log("Metanthropes RPG System | Rolling a Stat for:", actor.name, "'s", stat);
 				console.log("Metanthropes RPG System | ====================================");
-				MetaRollCustom(actor, stat);
+				MetaRollCustom(actor, action, stat);
 			} else if (dataset.rollType == "Metapower") {
 				const actor = this.actor;
 				const stat = dataset.stat;

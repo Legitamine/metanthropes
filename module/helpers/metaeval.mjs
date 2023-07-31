@@ -1,4 +1,4 @@
-export async function MetaEvaluate(actor, stat, statValue, multiAction = 0, bonus = 0, penalty = 0) {
+export async function MetaEvaluate(actor, action, stat, statValue, multiAction = 0, bonus = 0, penalty = 0) {
 	let result = null;
 	let resultLevel = null;
 	const roll = await new Roll("1d100").evaluate({ async: true });
@@ -44,7 +44,12 @@ export async function MetaEvaluate(actor, stat, statValue, multiAction = 0, bonu
 		levelsOfSuccess = 0;
 	}
 	//* Beggining of the message to be printed to chat
-	let message = `Attempts a roll with ${stat} score of ${statValue}%`;
+	let message = null;
+	if (action === "StatRoll") {
+		message = `Attempts a roll with ${stat} score of ${statValue}%`;
+	} else if (action === "Initiative") {
+		message = `Rolls for Initiative with ${stat} score of ${statValue}%`;
+	}
 	//? if we have a bonus or penalty, add it to the message
 	if (bonus > 0) {
 		message += `, a Bonus of +${bonus}%`;
@@ -72,12 +77,21 @@ export async function MetaEvaluate(actor, stat, statValue, multiAction = 0, bonu
 	if (!criticalSuccess && !criticalFailure && currentDestiny > 0) {
 		message += `<div class="hide-button hidden"><br><button class="metaeval-reroll" data-idactor="${actor.id}"
 			data-stat="${stat}" data-statvalue="${statValue}" data-multiaction="${multiAction}"
-			data-bonus="${bonus}" data-penalty="${penalty}"
+			data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}"
 			>Spend 🤞 Destiny to reroll</button><br><br></div>`;
 	}
-	console.log("Metanthropes RPG System |",
+	if (action === "Initiative") {
+		message += `<div class="hide-button hidden"><button class="keep-initiative" data-idactor="${actor.id}"
+			data-stat="${stat}" data-statvalue="${statValue}" data-multiaction="${multiAction}"
+			data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}"
+			>Keep Initiative of: ${resultLevel}</button><br><br></div>`;
+	}
+	console.log(
+		"Metanthropes RPG System |",
 		"MetaEval Results for:",
 		actor.name,
+		"Action:",
+		action,
 		stat,
 		":",
 		statValue,
@@ -102,21 +116,43 @@ export async function MetaEvaluate(actor, stat, statValue, multiAction = 0, bonu
 	);
 	//set flags for the actor to be used as the lastrolled values of your most recent roll.
 	// the idea is to use these later in metapowers to spend your levels of success.
+	//? Setting Flags with results
 	await actor.setFlag("metanthropes-system", "lastrolled", {
 		resultLevel: resultLevel,
+		//!I should change to follow this format:
 		metaEvaluate: resultLevel,
+		metaInitiative: resultLevel,
+	});
+	await actor.setFlag("metanthropes-system", "initiative", {
+		initiativeValue: resultLevel,
 	});
 	//print message to chat and enable Dice So Nice to roll the dice and display the message
-	roll.toMessage({
-		speaker: ChatMessage.getSpeaker({ actor: actor }),
-		flavor: message,
-		rollMode: game.settings.get("core", "rollMode"),
-		//I've used the optional chaining operator (?.) to check if effects-metapower exists before trying to access its value. If effects-metapower or its value is not defined, it will fall back to the "error no statrolled found" text using the nullish coalescing operator (??).
-		//content: item.system.effects-metapower?.value ?? "error no statrolled found",
-		//content: `<button class="custom-button">🤞</button>`,
-		//content seems to be overwriten by Dice So Nice, so maybe I can add my button here?
-		flags: { "metanthropes-system": { actorId: actor.id } },
-	});
+	//? Printing the results to chat
+	//if (action === "StatRoll") {
+		roll.toMessage({
+			speaker: ChatMessage.getSpeaker({ actor: actor }),
+			flavor: message,
+			rollMode: game.settings.get("core", "rollMode"),
+			//I've used the optional chaining operator (?.) to check if effects-metapower exists before trying to access its value. If effects-metapower or its value is not defined, it will fall back to the "error no statrolled found" text using the nullish coalescing operator (??).
+			//content: item.system.effects-metapower?.value ?? "error no statrolled found",
+			//content: `<button class="custom-button">🤞</button>`,
+			//content seems to be overwriten by Dice So Nice, so maybe I can add my button here?
+			flags: { "metanthropes-system": { actorId: actor.id } },
+		});
+		//! I will need to figure out if I want to pass the combatant from metainitiative if I need to do that
+	//	} else if (action === "Initiative") {
+	//		//! not sure what's really different here, I should test some more
+	//		roll.toMessage({
+	//			speaker: ChatMessage.getSpeaker({
+	//				actor: actor,
+	//				token: combatant.token,
+	//				alias: combatant.name,
+	//			}),
+	//			flavor: message,
+	//			rollMode: game.settings.get("core", "rollMode"),
+	//			flags: { "metanthropes-system": { actorId: actor.id } },
+	//		});
+	//	}
 }
 //* This is the function that is called when the destiny re-roll button is clicked
 export async function MetaEvaluateReRoll(event) {
@@ -129,6 +165,7 @@ export async function MetaEvaluateReRoll(event) {
 	const bonus = parseInt(button.dataset.bonus);
 	const penalty = parseInt(button.dataset.penalty);
 	const actor = game.actors.get(actorId);
+	const action = button.dataset.action;
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	// make this function only available to the owner of the actor
 	if ((actor && actor.isOwner) || game.user.isGM) {
@@ -141,7 +178,7 @@ export async function MetaEvaluateReRoll(event) {
 			if (message) {
 				message.render();
 			}
-			MetaEvaluate(actor, stat, statValue, multiAction, bonus, penalty);
+			MetaEvaluate(actor, action, stat, statValue, multiAction, bonus, penalty);
 		}
 	}
 }

@@ -12,16 +12,16 @@ export class MetanthropesCombat extends Combat {
 		const astatValue = a.actor.getFlag("metanthropes-system", "initiative")?.statValue ?? -Infinity;
 		const bstatValue = b.actor.getFlag("metanthropes-system", "initiative")?.statValue ?? -Infinity;
 		console.log("Metanthropes RPG - from within sortCombatants  === +++ === +++ ===");
-		console.log("a:", a);
-		console.log("b:", b);
-		console.log("a.initiative:", a.initiative);
-		console.log("b.initiative:", b.initiative);
-		console.log("astatValue:", astatValue);
-		console.log("bstatValue:", bstatValue);
-		console.log("ia:", ia);
-		console.log("ib:", ib);
-		console.log("ib - ia:", ib - ia);
-		console.log("astatValue > bstatValue:", astatValue > bstatValue);
+		//	console.log("a:", a);
+		//	console.log("b:", b);
+		//	console.log("a.initiative:", a.initiative);
+		//	console.log("b.initiative:", b.initiative);
+		//	console.log("astatValue:", astatValue);
+		//	console.log("bstatValue:", bstatValue);
+		//	console.log("ia:", ia);
+		//	console.log("ib:", ib);
+		//	console.log("ib - ia:", ib - ia);
+		//	console.log("astatValue > bstatValue:", astatValue > bstatValue);
 		// sort by initiative first, then sort by statValue if the initiative is the same
 		return ib - ia || (astatValue > bstatValue ? -1 : 1);
 	}
@@ -73,9 +73,7 @@ export class MetanthropesCombat extends Combat {
 	 * @returns {Promise<Combat>}       A promise which resolves to the updated Combat document once updates are complete.
 	 */
 	async rollInitiative(ids, { formula = null, updateTurn = true, messageOptions = {} } = {}) {
-		console.log("=======++++++++++++++============");
-		console.log("Metanthropes RPG inside rollInitiative");
-		console.log("=======++++++++++++++============");
+		console.log("Metanthropes RPG System | inside rollInitiative");
 		// Structure input data
 		ids = typeof ids === "string" ? [ids] : ids;
 		const currentId = this.combatant?.id;
