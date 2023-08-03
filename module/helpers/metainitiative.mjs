@@ -32,7 +32,7 @@ export async function MetaInitiative(combatant) {
 	await MetaRoll (actor, action, initiativeStat);
 	// Update the combatant with the new initiative value
 	let checkresult = await actor.getFlag("metanthropes-system", "initiative").initiativeValue;
-	console.log("Metanthropes RPG System | MetaInitiative | MetaRoll finished for", actor.name, "'s Initiative with:", initiativeStat, initiativeStatValue, "and the result was:", checkresult);
+	console.log("Metanthropes RPG System | MetaInitiative | MetaRoll Result for", actor.name, "'s Initiative with:", initiativeStat, initiativeStatValue, "was:", checkresult);
 	await combatant.update({ initiative: checkresult });
 	// This is to check for hidden combatants and display a different message for them in chat
 	// Construct chat message data
@@ -72,6 +72,8 @@ export async function MetaInitiativeReRoll(event) {
 	const actor = game.actors.get(actorId);
 	const combatant = game.combat.getCombatantByActor(actorId);
 	console.log("Metanthropes RPG  System | Rerolling MetaInitiative - do we get the correct combatant data?", combatant);
+	//! maybe split this off to another function?
+	//! should I have a promise if this fails to work?
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	// make this function only available to the owner of the actor
 	if ((actor && actor.isOwner) || game.user.isGM) {
@@ -84,6 +86,9 @@ export async function MetaInitiativeReRoll(event) {
 			if (message) {
 				message.render();
 			}
+			//! do I need metainitiative here or should I just send it back to metaroll or metaevaluate?
+			//! core condition step process should dictate this
+			//! if I have to re-check for hunger, disease, pain, etc. then I need to send it back to metaroll that checks for these
 			MetaInitiative(combatant);
 		}
 	}

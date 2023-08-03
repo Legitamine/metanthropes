@@ -47,15 +47,14 @@ export class MetanthropesActor extends Actor {
 		}
 		//? Fix for Token Attacher / CF Import - from wh4e
 		if (!createData.prototypeToken) createData.prototypeToken = {};
-		//? Link Actor data and enable vision only for Protagonists
+		//? Enable vision for all actors except vehicles
 		if (data.type !== "Vehicle") {
 			createData.prototypeToken.sight = { enabled: true };
-			//! Adding this here so all actors have prototypeToken.actorLink = true until I figure out how to do it for tokens and not actors
+		}
+		//? Enable Linked Tockens for Protagonists and Metanthropes by default
+		if (data.type == "Protagonist" || data.type == "Metanthrope") {
 			createData.prototypeToken.actorLink = true;
 		}
-		//	if (data.type == "Protagonist") {
-		//		createData.prototypeToken.actorLink = true;
-		//	}
 		this.updateSource(createData);
 	}
 	/** @override */
@@ -81,6 +80,7 @@ export class MetanthropesActor extends Actor {
 			if (!this.primeimg || this.primeimg == "systems/metanthropes-system/artwork/.png") {
 				//? for Protagonists without a prime metapower defined, make it the metanthropes-logo
 				if (!this.system.entermeta.primemetapower.value) {
+					//! we need a new image file for this - right now will show up as a missing graphic error
 					this.primeimg = `systems/metanthropes-system/artwork/metapowers/Choose Prime Metapower.png`;
 				} else {
 					//? for Protagonists with a prime metapower defined, make it their respective metapower icon
@@ -116,16 +116,6 @@ export class MetanthropesActor extends Actor {
 		let charzerofullpenalty = 0;
 		console.log("Metanthropes RPG System | Actor Prep | Updating Characteristics & Stats for", this.type, "-", this.name);
 		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
-			//	console.log("Metanthropes RPG Calculating", CharKey, "Base: Initial + Progressed");
-			//	console.log(
-			//		CharKey,
-			//		"Base:",
-			//		CharValue.Base,
-			//		"Initial:",
-			//		CharValue.Initial,
-			//		"Progressed:",
-			//		CharValue.Progressed
-			//	);
 			//? reset charzerofullpenalty to 0
 			charzerofullpenalty = 0;
 			//? Calculate the advancement count based on the characteristic's progressed value
@@ -141,16 +131,6 @@ export class MetanthropesActor extends Actor {
 				console.log("Metanthropes RPG System | Actor Prep | Experience Spent to Progress", CharKey, "Characteristic:", characteristicExperienceSpent);
 			}
 			parseInt((CharValue.Base = Number(CharValue.Initial) + Number(Number(CharValue.Progressed) * 5)));
-			//	console.log("Metanthropes RPG New", CharKey, "Base:", CharValue.Base);
-			//	console.log("Metanthropes RPG Calculating", CharKey, "Buff:", CharValue.Buff.Name, CharValue.Buff.Current);
-			//	console.log(
-			//		"Metanthropes RPG Calculating",
-			//		CharKey,
-			//		"Condition:",
-			//		CharValue.Condition.Name,
-			//		CharValue.Condition.Current
-			//	);
-			//	console.log("Metanthropes RPG Calculating", CharKey, "Current: Base + Buff - Condition");
 			parseInt(
 				(CharValue.Current =
 					Number(CharValue.Base) +
@@ -161,22 +141,9 @@ export class MetanthropesActor extends Actor {
 				charzerofullpenalty = CharValue.Current;
 				CharValue.Current = 0;
 				//! decided not to spam everyone about this, however logging it to console
-				//ui.notifications.error(this.name + "'s " + CharKey + " has dropped to 0!");
 				console.log("Metanthropes RPG System | Actor Prep |", this.name+"'s", CharKey, "has dropped to 0!");
 			}
-			//	console.log("Metanthropes RPG New", CharKey, "Current:", CharValue.Current);
-			//	console.log("------------------------------------------------------------------------");
 			for (const [StatKey, StatValue] of Object.entries(CharValue.Stats)) {
-				//	console.log("Metanthropes RPG Calculating", StatKey, "Base: Initial + Progressed");
-				//	console.log(
-				//		StatKey,
-				//		"Base:",
-				//		StatValue.Base,
-				//		"Initial:",
-				//		StatValue.Initial,
-				//		"Progressed:",
-				//		StatValue.Progressed
-				//	);
 				//? Calculate the advancement count based on the characteristic's progressed value
 				advancementCount = Number(StatValue.Progressed);
 				//? Calculate the experience spent on this characteristic
@@ -189,77 +156,32 @@ export class MetanthropesActor extends Actor {
 				//? Add the experience spent on this characteristic to the total experience spent, only if Progressed is >0
 				if (advancementCount > 0) {
 					experienceSpent += statExperienceSpent;
-					//console.log("Experience Spent to Progress", StatKey, "Stat:", statExperienceSpent);
 				}
 				parseInt((StatValue.Base = Number(StatValue.Initial) + Number(Number(StatValue.Progressed) * 5)));
-				//console.log("Metanthropes RPG New", StatKey, "Base:", StatValue.Base);
-				//	console.log(
-				//		"Metanthropes RPG Calculating",
-				//		StatKey,
-				//		"Buff:",
-				//		StatValue.Buff.Name,
-				//		StatValue.Buff.Current
-				//	);
-				//	console.log(
-				//		"Metanthropes RPG Calculating",
-				//		StatKey,
-				//		"Condition:",
-				//		StatValue.Condition.Name,
-				//		StatValue.Condition.Current
-				//	);
-				// console.log("Metanthropes RPG Calculating", StatKey, "Current: Base + Buff - Condition");
 				parseInt(
 					(StatValue.Current =
 						Number(StatValue.Base) +
 						Number(Number(StatValue.Buff.Current) * 5) -
 						Number(Number(StatValue.Condition.Current) * 5))
 				);
-				// console.log("Metanthropes RPG New", StatKey, "Current:", StatValue.Current);
-				//	console.log(
-				//		"Metanthropes RPG Calculating",
-				//		StatKey,
-				//		"for Rolls:",
-				//		StatKey,
-				//		"Current +",
-				//		CharKey,
-				//		"Current"
-				//	);
 				parseInt(
 					(StatValue.Roll =
 						Number(StatValue.Current) + Number(CharValue.Current) + Number(charzerofullpenalty))
 				);
 				if (StatValue.Roll <= 0) {
 					StatValue.Roll = 0;
-					//ui.notifications.error(this.name + "'s " + StatKey + " has dropped to 0!");
 					//! decided not to spam everyone about this, however logging it to console
 					console.log("Metanthropes RPG System | Actor Prep |", this.name+"'s", StatKey, "has dropped to 0!");
-					// console.log("Metanthropes RPG", StatKey, "has dropped to 0!");
 				}
-				// console.log("Metanthropes RPG Final", StatKey, "for Rolls:", StatValue.Roll);
-				//	console.log(
-				//		"============================================================================================="
-				//	);
 			}
 		}
-		//	console.log("Metanthropes RPG New Life Maximum: Initial Life + Endurance for Rolls");
 		parseInt(
 			(systemData.Vital.Life.max =
 				Number(systemData.Vital.Life.Initial) + Number(systemData.Characteristics.Body.Stats.Endurance.Roll))
 		);
-		//	console.log("Metanthropes RPG New Life Maximum:", systemData.Vital.Life.max);
-		//	console.log("Metanthropes RPG System | ====================================");
-		//	console.log("Metanthropes RPG Calculating Movement");
+		console.log("Metanthropes RPG System |", actor.name+"'s", "New Life Maximum:", systemData.Vital.Life.max);
 		parseInt((systemData.physical.movement.additional = Number(systemData.physical.movement.initial)));
 		parseInt((systemData.physical.movement.sprint = Number(Number(systemData.physical.movement.initial) * 5)));
-		//! do the update await thing!!!!FFS
-		//	console.log(
-		//		"Metanthropes RPG New Movement Value:",
-		//		systemData.physical.movement.initial,
-		//		"Additional:",
-		//		systemData.physical.movement.additional,
-		//		"Sprint:",
-		//		systemData.physical.movement.sprint
-		//	);
 		//? Calculate total Experience Spent Progressing Perks & Characteristics & Stats
 		//	console.log(
 		//		"Total Experience Spent automagically for",
@@ -481,11 +403,13 @@ export class MetanthropesActor extends Actor {
 	getRollData() {
 		const data = super.getRollData();
 		// Prepare character roll data.
+		//! should I exclude vehicles from this?
 		this._prepareCharacteristicsRollData(data);
 		return data;
 	}
 	_prepareCharacteristicsRollData(data) {
 		//? do the following in order to quickly see the actor's data structure to use in rolls
+		//! why doesn't combatant.actor get this?
 		// 	const actor = game.actors.getName("My Character Name");
 		//	console.log(actor.getRollData());
 		//! I don't need the below if I am going to call @Characteristics.Body.Stats. etc
