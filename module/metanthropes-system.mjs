@@ -354,7 +354,7 @@ Hooks.on("renderChatMessage", async (message, html) => {
 	const actor = game.actors.get(actorId);
 	//? Check if the current user is the owner of the actor
 	if (game.user.name === actor.system.metaowner.value || game.user.isGM) {
-		//? Unhide the buttons - assumes DF Chat Enhancements module is installed (provides hidden class)
+		//? Unhide the buttons - assumes DF Chat Enhancements module is installed (provides hidden class that works)
 		html.find(".hide-button").removeClass("hidden");
 		//? Listen for Re-Roll button clicks
 		html.find(".rolld10-reroll").on("click", Rolld10ReRoll);
@@ -366,7 +366,7 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		html.find(".re-roll-damage").on("click", ReRollDamage);
 		html.find(".re-roll-healing").on("click", ReRollHealing);
 		//? Listen for metainitiative re-roll
-		html.find(".metainitiative-re-roll").on("click", MetaInitiativeReRoll);
+		html.find(".metainitiative-reroll").on("click", MetaInitiativeReRoll);
 		//? Listen for activations
 		html.find(".metapower-activate").on("click", MetapowerActivate);
 		html.find(".possession-use").on("click", PossessionUse);

@@ -4,35 +4,49 @@
 */
 import { MetaRoll } from "../metanthropes/metaroll.mjs";
 export async function MetaInitiative(combatant) {
-	const actor = combatant.actor;
-	console.log("Metanthropes RPG System | MetaInitiative | Engaged for", actor.type, ":", actor.name);
+	//? Check to see if this is a linked actor
+	let actor = null;
+	if (combatant.token.actorLink) {
+		//? If it is, get data directly from the actor document
+		let actorId = combatant.actorId;
+		actor = game.actors.get(actorId);
+		// actor = combatant.actor;
+		} else {
+		//? If it's not linked, get data from the token document
+		actor = combatant.token.actor;
+		}
+	console.log("Metanthropes RPG System | MetaInitiative | Engaged for", actor.type + ":", actor.name);
 	//? Check for alternate Stat to use for Initiative
-	const reflexesStat = 'Reflexes';
-	const awarenessStat = 'Awareness';
-	const reflexesValue = actor.system.Characteristics.Body.Stats.Reflexes.Roll;
-	const awarenessValue = actor.system.Characteristics.Soul.Stats.Awareness.Roll;
+	const reflexesStat = "Reflexes";
+	const awarenessStat = "Awareness";
 	let initiativeStat = reflexesStat;
-	let initiativeStatValue = reflexesValue;
 	//? Check if the actor has the metapower "Danger Sense" equipped
 	const metapowers = actor.items.filter((item) => item.type === "Metapower");
 	const hasDangerSense = metapowers.some((metapower) => metapower.name === "Danger Sense");
 	if (hasDangerSense) {
 		//? Apply the alternate stat values if the actor has Danger Sense
 		initiativeStat = awarenessStat;
-		initiativeStatValue = awarenessValue;
 	}
 	//? Call MetaEvaluate
 	let action = "Initiative";
-	//! do I need to reset the value in advance?
-	//	await actor.setFlag("metanthropes-system", "initiative", {
-	//		initiativeValue: resultLevel,
-	//	});
-	console.log("Metanthropes RPG System | MetaInitiative | Engaging MetaRoll for", actor.name, "'s Initiative with:", initiativeStat, initiativeStatValue);
+	console.log(
+		"Metanthropes RPG System | MetaInitiative | Engaging MetaRoll for",
+		actor.name + "'s Initiative with",
+		initiativeStat
+	);
+	await actor.getRollData();
 	//not this await MetaEvaluate (actor, action, initiativeStat, initiativeStatValue, 0, 0, 0);
-	await MetaRoll (actor, action, initiativeStat);
+	await MetaRoll(actor, action, initiativeStat);
 	// Update the combatant with the new initiative value
 	let checkresult = await actor.getFlag("metanthropes-system", "initiative").initiativeValue;
-	console.log("Metanthropes RPG System | MetaInitiative | MetaRoll Result for", actor.name, "'s Initiative with:", initiativeStat, initiativeStatValue, "was:", checkresult);
+	console.log(
+		"Metanthropes RPG System | MetaInitiative | MetaRoll Result for",
+		actor.name + "'s Initiative with",
+		initiativeStat,
+		//initiativeStatValue,
+		"was:",
+		checkresult
+	);
 	await combatant.update({ initiative: checkresult });
 	// This is to check for hidden combatants and display a different message for them in chat
 	// Construct chat message data
@@ -69,9 +83,10 @@ export async function MetaInitiativeReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
 	const actorId = button.dataset.idactor;
+	//! confusing the combatant witha actor - I need a better way to id the correct one
 	const actor = game.actors.get(actorId);
 	const combatant = game.combat.getCombatantByActor(actorId);
-	console.log("Metanthropes RPG  System | Rerolling MetaInitiative - do we get the correct combatant data?", combatant);
+	console.log("Metanthropes RPG  System | Rerolling MetaInitiative for combatant:", combatant);
 	//! maybe split this off to another function?
 	//! should I have a promise if this fails to work?
 	let currentDestiny = actor.system.Vital.Destiny.value;

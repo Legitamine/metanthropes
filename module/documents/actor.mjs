@@ -179,7 +179,7 @@ export class MetanthropesActor extends Actor {
 			(systemData.Vital.Life.max =
 				Number(systemData.Vital.Life.Initial) + Number(systemData.Characteristics.Body.Stats.Endurance.Roll))
 		);
-		console.log("Metanthropes RPG System |", actor.name+"'s", "New Life Maximum:", systemData.Vital.Life.max);
+		console.log("Metanthropes RPG System |", actorData.name+"'s", "New Life Maximum:", systemData.Vital.Life.max);
 		parseInt((systemData.physical.movement.additional = Number(systemData.physical.movement.initial)));
 		parseInt((systemData.physical.movement.sprint = Number(Number(systemData.physical.movement.initial) * 5)));
 		//? Calculate total Experience Spent Progressing Perks & Characteristics & Stats

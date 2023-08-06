@@ -1,6 +1,7 @@
 //* MetaEvaluate is the function that calculates the results of a roll and prints it to chat
 //* inputs like bonus is expected to be a positive number and multiAction and penalty are expected to be negative numbers
 export async function MetaEvaluate(actor, action, stat, statValue, multiAction = 0, bonus = 0, penalty = 0) {
+	//! We have to determine if this is a real actor or a token - or should I do that in the MetaRoll function?
 	console.log("Metanthropes RPG System | MetaEvaluate | Engaged for:", actor.name, action, stat, statValue, "Multi-Action:", multiAction, "Bonus:", bonus, "Penalty:", penalty)
 	//? evaluate the result of the roll
 	let result = null;
@@ -74,13 +75,21 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 	} else {
 		message += `.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 	}
+	//? Buttons to Re-Roll MetaEvaluate results
 	//?add re-roll button to message, only if it's not a Critical and only if they have at least 1 destiny or more
 	if (!criticalSuccess && !criticalFailure && currentDestiny > 0) {
+		//? Need to have different buttons for the various actions, so the correct function is being re-called by the correct button id and the correct parameters are being passed
+		if (action === "StatRoll") {
 		message += `<div class="hide-button hidden"><br><button class="metaeval-reroll" data-idactor="${actor.id}"
 			data-stat="${stat}" data-statvalue="${statValue}" data-multiaction="${multiAction}"
 			data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}"
 			>Spend 🤞 Destiny to reroll</button><br><br></div>`;
+		} else if (action === "Initiative") {
+			message += `<div class="hide-button hidden"><br><button class="metainitiative-reroll" data-idactor="${actor.id}"
+				>Spend 🤞 Destiny to reroll</button><br><br></div>`;
+		}
 	}
+	//? Buttons for Keeping the results of MetaEvalute
 	//	if (action === "Initiative") {
 	//		message += `<div class="hide-button hidden"><button class="keep-initiative" data-idactor="${actor.id}"
 	//			data-stat="${stat}" data-statvalue="${statValue}" data-multiaction="${multiAction}"
@@ -89,7 +98,7 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 	//	}
 	console.log(
 		"Metanthropes RPG System | MetaEvaluate | Finished for:",
-		actor.name,
+		actor.token.name,
 		"Action:",
 		action,
 		stat,
@@ -132,13 +141,13 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 	//? Printing the results to chat
 	//if (action === "StatRoll") {
 		roll.toMessage({
-			speaker: ChatMessage.getSpeaker({ actor: actor }),
+			speaker: ChatMessage.getSpeaker({ 
+				actor: actor,
+				//token: combatant.token,
+				//alias: combatant.name, 
+			}),
 			flavor: message,
 			rollMode: game.settings.get("core", "rollMode"),
-			//I've used the optional chaining operator (?.) to check if effects-metapower exists before trying to access its value. If effects-metapower or its value is not defined, it will fall back to the "error no statrolled found" text using the nullish coalescing operator (??).
-			//content: item.system.effects-metapower?.value ?? "error no statrolled found",
-			//content: `<button class="custom-button">🤞</button>`,
-			//content seems to be overwriten by Dice So Nice, so maybe I can add my button here?
 			flags: { "metanthropes-system": { actorId: actor.id } },
 		});
 		//! I will need to figure out if(how?) I want to pass the combatant from metainitiative if I need to do that

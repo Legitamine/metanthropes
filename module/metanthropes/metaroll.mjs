@@ -6,7 +6,6 @@ import { MetaEvaluate } from "../helpers/metaeval.mjs";
  * we determine if we need additional info if it is more than a stat roll
  */
 
-
 //! genikotero question einai ean thelw na pernaw ta re-rolls apo to MetaRoll prwta
 //! px to hunger tha prepei na to pernaw kathe fora poy kanw re-roll? mporw na kanw destiny spend gia re-rolling tou hunger?
 //! episis na analavei to MetaRoll ta chat messages? why/why not?
@@ -14,8 +13,23 @@ import { MetaEvaluate } from "../helpers/metaeval.mjs";
 //! thumisou na vgaleis ta ui.notifications.error apo to actor - kai isws na ta kaneis chat messages ???
 
 export async function MetaRoll(actor, action, stat) {
-	console.log("Metanthropes RPG System | MetaRoll | Engaged for", actor.type+":", actor.name+"'s", action, "with:", stat);
-	const statValue = actor.system.RollStats[stat];
+	let statValue;
+	//? Check if it's a linked actor or not
+	if (actor.istoken) {
+		//? For tokens we take the data from the token, not the original actor
+		statValue = actor.data.system.RollStats[stat];
+	} else {
+		//? For linked actors we take the data from the actor document directly
+		statValue = actor.system.RollStats[stat];
+	}
+	console.log(
+		"Metanthropes RPG System | MetaRoll | Engaged for",
+		actor.type + ":",
+		actor.name + "'s",
+		action,
+		"with",
+		stat
+	);
 	const disease = actor.system.Characteristics.Body.CoreConditions.Diseased;
 	const pain = actor.system.Characteristics.Mind.CoreConditions.Pain;
 	const hunger = actor.system.Characteristics.Mind.CoreConditions.Hunger; //also fatigue?
@@ -54,7 +68,20 @@ export async function MetaRoll(actor, action, stat) {
 	let multiAction = 0;
 	let bonus = 0;
 	let penalty = diseasePenalty;
-	console.log("Metanthropes RPG System | MetaRoll | Engaging MetaEvaluate for:", actor.name+"'s", action, "with:", stat, statValue, "Multi-Action:", multiAction, "Bonus:", bonus, "Penalty:", penalty);
+	console.log(
+		"Metanthropes RPG System | MetaRoll | Engaging MetaEvaluate for:",
+		actor.name + "'s",
+		action,
+		"with",
+		stat,
+		statValue,
+		"Multi-Action:",
+		multiAction,
+		"Bonus:",
+		bonus,
+		"Penalty:",
+		penalty
+	);
 	await MetaEvaluate(actor, action, stat, statValue, multiAction, bonus, penalty);
 	let checkresult = await actor.getFlag("metanthropes-system", "lastrolled").metaEvaluate;
 	console.log(
@@ -62,8 +89,7 @@ export async function MetaRoll(actor, action, stat) {
 		actor.name,
 		"Action:",
 		action,
-		stat,
-		":",
+		stat + ":",
 		statValue,
 		"Result:",
 		checkresult
