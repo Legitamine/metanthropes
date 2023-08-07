@@ -348,11 +348,13 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 // Add event listener for re-roll button click, hiding the button for non-owners
 Hooks.on("renderChatMessage", async (message, html) => {
 	//? Get the actor from the message - all our messages have the actoruuid flag set, so if it's not our message, return.
-	let actorUUID = message.getFlag("metanthropes-system", "actoruuid");
+	const actorUUID = message.getFlag("metanthropes-system", "actoruuid");
 	if (!actorUUID) return;
-	let actor = await fromUuid(actorUUID);
-	//? Check if the current user is the owner of the actor
-	if (game.user.name === actor.system.metaowner.value || game.user.isGM) {
+	const actor = await fromUuid(actorUUID);
+	const metaowner = actor.system.metaowner.value;
+	console.log("Metanthropes RPG System | metaowner:", actor.system.metaowner.value, metaowner);
+	//? Proceed only if the current user is the owner of the actor, or a GM
+	if (game.user.name === metaowner || game.user.isGM) {
 		//? Unhide the buttons - assumes DF Chat Enhancements module is installed (provides hidden class that works)
 		html.find(".hide-button").removeClass("hidden");
 		//? Listen for Re-Roll button clicks

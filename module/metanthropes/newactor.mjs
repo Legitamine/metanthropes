@@ -934,7 +934,7 @@ export async function NewActorSummary(actor) {
 					callback: async (html) => {
 						let actorname = html.find('[name="actorname"]').val();
 						await actor.update({ name: actorname });
-						if (actor.type == "Protagonist") {
+						if (actor.type == "Protagonist" || actor.type== "Metanthrope") {
 							await actor.update({ "prototypeToken.name": actorname });
 						}
 						console.log(`Metanthropes RPG System | ${actor.type}'s Name: ${actorname}`);

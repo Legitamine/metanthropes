@@ -13,7 +13,7 @@ export async function Rolld10(actor, what, destinyreroll, dice) {
 	if (destinyreroll === 1) {
 		let currentDestiny = actor.system.Vital.Destiny.value;
 		message += `<br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>
-		<div class="hide-button hidden"><br><button class="rolld10-reroll" data-idactor="${actor.id}"
+		<div class="hide-button hidden"><br><button class="rolld10-reroll" data-actoruuid="${actor.uuid}"
 		data-what="${what}" data-destinyreroll="${destinyreroll}" data-dice="${dice}">Spend 🤞 Destiny to reroll
 		</button><br><br></div>`;
 	}
@@ -25,18 +25,18 @@ export async function Rolld10(actor, what, destinyreroll, dice) {
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		flavor: message,
 		rollMode: game.settings.get("core", "rollMode"),
-		flags: { "metanthropes-system": { actorId: actor.id } },
+		flags: { "metanthropes-system": { actoruuid: actor.uuid } },
 	});
 }
 //* This is the function that is called when the destiny re-roll button is clicked
 export async function Rolld10ReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
-	const actorId = button.dataset.idactor;
+	const actoruuid = button.dataset.actoruuid;
 	const what = button.dataset.what;
 	const destinyreroll = parseInt(button.dataset.destinyreroll);
 	const dice = parseInt(button.dataset.dice);
-	const actor = game.actors.get(actorId);
+	const actor = await fromUuid(actoruuid);
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	// make this function only available to the owner of the actor
 	if ((actor && actor.isOwner) || game.user.isGM) {
