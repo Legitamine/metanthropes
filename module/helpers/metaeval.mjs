@@ -52,6 +52,8 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 		message = `Attempts a roll with ${stat} score of ${statValue}%`;
 	} else if (action === "Initiative") {
 		message = `Rolls for Initiative with ${stat} score of ${statValue}%`;
+	} else if (action === "Metapower") {
+		message = `Rolls for Metapower with ${stat} score of ${statValue}%`;	
 	}
 	//? if we have a bonus or penalty, add it to the message
 	if (bonus > 0) {
@@ -87,9 +89,21 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 		} else if (action === "Initiative") {
 			message += `<div class="hide-button hidden"><br><button class="metainitiative-reroll" data-actoruuid="${actor.uuid}"
 				>Spend 🤞 Destiny to reroll</button><br><br></div>`;
+		} else if (action === "Metapower") {
+			message += `<div class="hide-button hidden"><br><button class="metapower-reroll" data-actoruuid="${actor.uuid}"
+				data-stat="${stat}" data-statvalue="${statValue}" data-multiaction="${multiAction}"
+				data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}"
+				>Spend 🤞 Destiny to reroll</button><br><br></div>`;
 		}
 	}
 	//? Buttons for Keeping the results of MetaEvalute
+	//! I should include a way to proceed if the results are criticals
+	if (action === "Metapower") {
+		message += `<div class="hide-button hidden"><button class="metapower-activate" data-actoruuid="${actor.uuid}"
+			data-stat="${stat}" data-statvalue="${statValue}" data-multiaction="${multiAction}"
+			data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}"
+			>Activate Metapower with: ${resultLevel}</button><br><br></div>`;
+	}
 	//	if (action === "Initiative") {
 	//		message += `<div class="hide-button hidden"><button class="keep-initiative" data-idactor="${actor.id}"
 	//			data-stat="${stat}" data-statvalue="${statValue}" data-multiaction="${multiAction}"

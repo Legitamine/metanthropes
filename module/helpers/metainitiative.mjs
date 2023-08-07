@@ -10,22 +10,35 @@ export async function MetaInitiative(combatant) {
 		//? If it is, get data directly from the actor document
 		let actorId = combatant.actorId;
 		actor = game.actors.get(actorId);
-		} else {
+	} else {
 		//? If it's not linked, get data from the token document
 		actor = combatant.token.actor;
-		}
+	}
 	console.log("Metanthropes RPG System | MetaInitiative | Engaged for", actor.type + ":", actor.name);
 	//? Check for alternate Stat to use for Initiative
 	const reflexesStat = "Reflexes";
 	const awarenessStat = "Awareness";
-	let initiativeStat = reflexesStat;
-	//? Check if the actor has the metapower "Danger Sense" equipped
+	const perceptionStat = "Perception";
+	const reflexesValue = actor.system.RollStats[reflexesStat];
+	const awarenessValue = actor.system.RollStats[awarenessStat];
+	const perceptionValue = actor.system.RollStats[perceptionStat];
+	let initiativeStat;
+	//? Check for metapowers that allow other Initiative stat than Reflexes
 	const metapowers = actor.items.filter((item) => item.type === "Metapower");
 	const hasDangerSense = metapowers.some((metapower) => metapower.name === "Danger Sense");
+	const hasTemporalAwareness = metapowers.some((metapower) => metapower.name === "Temporal Awareness");
+	//? Evaluate the best available stat to use for Initiative
+	let initiativeStats = [{ name: reflexesStat, value: reflexesValue }];
 	if (hasDangerSense) {
-		//? Apply the alternate stat values if the actor has Danger Sense
-		initiativeStat = awarenessStat;
+		initiativeStats.push({ name: awarenessStat, value: awarenessValue });
 	}
+	if (hasTemporalAwareness) {
+		initiativeStats.push({ name: perceptionStat, value: perceptionValue });
+	}
+	//? Sort the stats array in descending order based on the stat value
+	initiativeStats.sort((a, b) => b.value - a.value);
+	//? The initiativeStat is the name of the stat with the highest value
+	initiativeStat = initiativeStats[0].name;
 	//? Call MetaRoll
 	let action = "Initiative";
 	console.log(
