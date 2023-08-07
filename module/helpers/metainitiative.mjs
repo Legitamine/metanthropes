@@ -10,7 +10,6 @@ export async function MetaInitiative(combatant) {
 		//? If it is, get data directly from the actor document
 		let actorId = combatant.actorId;
 		actor = game.actors.get(actorId);
-		// actor = combatant.actor;
 		} else {
 		//? If it's not linked, get data from the token document
 		actor = combatant.token.actor;
@@ -27,23 +26,22 @@ export async function MetaInitiative(combatant) {
 		//? Apply the alternate stat values if the actor has Danger Sense
 		initiativeStat = awarenessStat;
 	}
-	//? Call MetaEvaluate
+	//? Call MetaRoll
 	let action = "Initiative";
 	console.log(
 		"Metanthropes RPG System | MetaInitiative | Engaging MetaRoll for",
 		actor.name + "'s Initiative with",
 		initiativeStat
 	);
+	//? Initialize the actor's RollStat table before calling MetaRoll
 	await actor.getRollData();
-	//not this await MetaEvaluate (actor, action, initiativeStat, initiativeStatValue, 0, 0, 0);
 	await MetaRoll(actor, action, initiativeStat);
-	// Update the combatant with the new initiative value
+	//? Update the combatant with the new initiative value
 	let checkresult = await actor.getFlag("metanthropes-system", "initiative").initiativeValue;
 	console.log(
 		"Metanthropes RPG System | MetaInitiative | MetaRoll Result for",
 		actor.name + "'s Initiative with",
 		initiativeStat,
-		//initiativeStatValue,
 		"was:",
 		checkresult
 	);
@@ -89,7 +87,7 @@ export async function MetaInitiativeReRoll(event) {
 	//! maybe split this off to another function?
 	//! should I have a promise if this fails to work?
 	let currentDestiny = actor.system.Vital.Destiny.value;
-	// make this function only available to the owner of the actor
+	//? make this function only available to the owner of the actor, or a GM
 	if ((actor && actor.isOwner) || game.user.isGM) {
 		// Reduce Destiny.value by 1
 		if (currentDestiny > 0) {

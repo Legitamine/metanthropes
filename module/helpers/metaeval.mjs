@@ -28,7 +28,7 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 	}
 	//? check for critical success or failure
 	if (criticalSuccess) {
-		result = `🟩 Critical Success 🟩, rewarding ${actor.name} with +1 * 🤞`;
+		result = `🟩 Critical Success 🟩, rewarding ${actor.name} with +1 * 🤞 Destiny`;
 		currentDestiny += 1;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfSuccess = 10;
@@ -40,7 +40,7 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 		}
 	}
 	if (criticalFailure) {
-		result = `🟥 Critical Failure 🟥, rewarding ${actor.name} with +1 * 🤞`;
+		result = `🟥 Critical Failure 🟥, rewarding ${actor.name} with +1 * 🤞 Destiny`;
 		currentDestiny += 1;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfFailure = 10;
