@@ -80,12 +80,12 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 	if (!criticalSuccess && !criticalFailure && currentDestiny > 0) {
 		//? Need to have different buttons for the various actions, so the correct function is being re-called by the correct button id and the correct parameters are being passed
 		if (action === "StatRoll") {
-		message += `<div class="hide-button hidden"><br><button class="metaeval-reroll" data-idactor="${actor.id}"
+		message += `<div class="hide-button hidden"><br><button class="metaeval-reroll" data-actoruuid="${actor.uuid}"
 			data-stat="${stat}" data-statvalue="${statValue}" data-multiaction="${multiAction}"
 			data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}"
 			>Spend 🤞 Destiny to reroll</button><br><br></div>`;
 		} else if (action === "Initiative") {
-			message += `<div class="hide-button hidden"><br><button class="metainitiative-reroll" data-idactor="${actor.id}"
+			message += `<div class="hide-button hidden"><br><button class="metainitiative-reroll" data-actoruuid="${actor.uuid}"
 				>Spend 🤞 Destiny to reroll</button><br><br></div>`;
 		}
 	}
@@ -98,10 +98,10 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 	//	}
 	console.log(
 		"Metanthropes RPG System | MetaEvaluate | Finished for:",
-		actor.token.name,
+		actor.name,
 		"Action:",
 		action,
-		stat,
+		stat+
 		":",
 		statValue,
 		"Roll:",
@@ -121,7 +121,9 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 		"Result Level:",
 		resultLevel,
 		"Current Destiny:",
-		currentDestiny
+		currentDestiny,
+		"Actor UUID:",
+		actor.uuid
 	);
 	//set flags for the actor to be used as the lastrolled values of your most recent roll.
 	// the idea is to use these later in metapowers to spend your levels of success.
@@ -148,7 +150,7 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 			}),
 			flavor: message,
 			rollMode: game.settings.get("core", "rollMode"),
-			flags: { "metanthropes-system": { actorId: actor.id } },
+			flags: { "metanthropes-system": { actoruuid: actor.uuid } },
 		});
 		//! I will need to figure out if(how?) I want to pass the combatant from metainitiative if I need to do that
 	//	} else if (action === "Initiative") {
@@ -172,13 +174,14 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 export async function MetaEvaluateReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
-	const actorId = button.dataset.idactor;
+	const actorUUID = button.dataset.actoruuid;
 	const stat = button.dataset.stat;
 	const statValue = parseInt(button.dataset.statvalue);
 	const multiAction = parseInt(button.dataset.multiaction);
 	const bonus = parseInt(button.dataset.bonus);
 	const penalty = parseInt(button.dataset.penalty);
-	const actor = game.actors.get(actorId);
+	const actor = await fromUuid(actorUUID);
+	console.log("Metanthropes RPG System | MetaEvaluateReRoll | Engaged for:", actor, actorUUID)
 	const action = button.dataset.action;
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	// make this function only available to the owner of the actor

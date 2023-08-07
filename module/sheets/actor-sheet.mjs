@@ -177,7 +177,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 	}
 	//code from boilerplate on rolls
 	async _onRoll(event) {
-		console.log("Metanthropes RPG System | Evaluating a new _onRoll(event)");
+		console.log("Metanthropes RPG System | Evaluating a new _onRoll(event) for this:", this);
 		event.preventDefault();
 		const element = event.currentTarget;
 		const dataset = element.dataset;

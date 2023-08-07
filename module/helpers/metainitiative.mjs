@@ -82,10 +82,9 @@ export async function MetaInitiative(combatant) {
 export async function MetaInitiativeReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
-	const actorId = button.dataset.idactor;
-	//! confusing the combatant witha actor - I need a better way to id the correct one
-	const actor = game.actors.get(actorId);
-	const combatant = game.combat.getCombatantByActor(actorId);
+	const actorUUID = button.dataset.actoruuid;
+	const actor = await fromUuid(actorUUID);
+	const combatant = game.combat.getCombatantByActor(actor);
 	console.log("Metanthropes RPG  System | Rerolling MetaInitiative for combatant:", combatant);
 	//! maybe split this off to another function?
 	//! should I have a promise if this fails to work?

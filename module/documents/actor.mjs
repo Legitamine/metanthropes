@@ -3,12 +3,12 @@
 //?import MetaInitiative for combat
 import { MetaInitiative } from "../helpers/metainitiative.mjs";
 export class MetanthropesActor extends Actor {
-	// Setting default Token configuration for all actors
+	//? Setting default Token configuration for all actors
 	async _preCreate(data, options, user) {
 		await super._preCreate(data, options, user);
 		let createData = {};
 		let defaultToken = game.settings.get("core", "defaultToken");
-		// Configure Display Bars & Name Visibility
+		//? Configure Display Bars & Name Visibility
 		if (!data.prototypeToken)
 			mergeObject(createData, {
 				"prototypeToken.bar1": { attribute: "Vital.Destiny" },
@@ -114,7 +114,7 @@ export class MetanthropesActor extends Actor {
 		let statExperienceSpent = 0;
 		let advancementCount = 0;
 		let charzerofullpenalty = 0;
-		console.log("Metanthropes RPG System | Actor Prep | Updating Characteristics & Stats for", this.type, "-", this.name);
+		console.log("Metanthropes RPG System | Actor Prep | Updating Characteristics & Stats for", this.type+":", this.name);
 		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
 			//? reset charzerofullpenalty to 0
 			charzerofullpenalty = 0;
@@ -228,7 +228,7 @@ export class MetanthropesActor extends Actor {
 		let advancementCount = 0;
 		let perkExperienceSpent = 0;
 		// console.log("Metanthropes RPG System | ====================================");
-		console.log("Metanthropes RPG System | Actor Prep | Updating Perks for", this.type, "-", this.name);
+		console.log("Metanthropes RPG System | Actor Prep | Updating Perks for", this.type+":", this.name);
 		//	console.log("Experience Spent before Perks:", experienceAlreadySpent);
 		//? Calculate the experience spent on Knowledge Perks
 		for (const [KnowPerkKey, KnowPerkValue] of Object.entries(systemData.Perks.Knowledge)) {
@@ -292,8 +292,7 @@ export class MetanthropesActor extends Actor {
 	}
 	async _prepareDerivedMovementData(actorData) {
 		const systemData = actorData.system;
-		//console.log("Metanthropes RPG System | ====================================");
-		console.log("Metanthropes RPG System | Actor Prep | Updating Movement for", this.type, "-", this.name);
+		console.log("Metanthropes RPG System | Actor Prep | Updating Movement for", this.type+":", this.name);
 		//*first we will calculate the current values from buffs and conditions, then we take their modifiers and calculate the movement value
 		let speedinitial = Number(systemData.physical.speed.initial);
 		let weightinitial = Number(systemData.physical.weight.initial);

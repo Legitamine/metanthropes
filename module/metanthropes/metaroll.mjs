@@ -17,7 +17,8 @@ export async function MetaRoll(actor, action, stat) {
 	//? Check if it's a linked actor or not
 	if (actor.istoken) {
 		//? For tokens we take the data from the token, not the original actor
-		statValue = actor.data.system.RollStats[stat];
+		//statValue = actor.data.system.RollStats[stat];
+		statValue = actor.token.document.actor.system.RollStats[stat];
 	} else {
 		//? For linked actors we take the data from the actor document directly
 		statValue = actor.system.RollStats[stat];

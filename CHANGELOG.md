@@ -1,12 +1,13 @@
 ### Latest Changes
 These are the latest changes for the Official Metanthropes RPG System for Foundry VTT
 #### 0.7.00 - Current (status)
+- XP System: Metapowers (pushed to v0.8)
 - Foundry core version 11 support (done)
 - New Player Experience: Movement Automations (done)
-- XP System: Metapowers (pending)
-- New Actor / Token logic to support non-linked Actors (testing)
-- Added official system support for Terrain Ruler, Enhanced Terrain Layer and DF Chat Enhancements (done)
-- New MetaEvaluate Function (done)
+- New Player Experience: Tooltips for the majority of the Overview Sheet (done)
+- New Actor / Token logic to support non-linked Actors (done)
+- Added official system support for Terrain Ruler, Enhanced Terrain Layer, Combat Carousel (PR pending) and DF Chat Enhancements (done)
+- New MetaEvaluate Function for Stat Rolls and Initiative (done)
 #### 0.6.00 - 0.6.10
 - New Player Experience: New Character sheet for protagonists with better UI and UX
 - New Player Experience: New Actor Creation workflow with automations and drop-down menus
