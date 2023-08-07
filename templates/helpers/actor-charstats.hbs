@@ -22,7 +22,7 @@
 				<div>
 					<p class="style-cs-buffs">🛡️ <label
 							for="system.Characteristics.{{@key}}.Buff.Current">{{this.Buff.Name}}</label></p>
-					<p class="style-cs-buffs"><select class="style-cs-buffs"
+					<p class="style-cs-buffs" title="Buff Level"><select class="style-cs-buffs"
 							name="system.Characteristics.{{@key}}.Buff.Current"
 							id="system.Characteristics.{{@key}}.Buff.Current" data-dtype="Number">
 							<option value="0" {{selected Buff.Current 0}}>0</option>
@@ -35,7 +35,7 @@
 					</p>
 					<p class="style-cs-conditions">💀 <label
 							for="system.Characteristics.{{@key}}.Condition.Current">{{this.Condition.Name}}</label></p>
-					<p class="style-cs-conditions">
+					<p class="style-cs-conditions" title="Condition Level">
 						<select class="style-cs-conditions" name="system.Characteristics.{{@key}}.Condition.Current"
 							id="system.Characteristics.{{@key}}.Condition.Current" data-dtype="Number">
 							<option value="0" {{selected this.Condition.Current 0}}>0</option>
@@ -69,7 +69,7 @@
 							</select>
 						</p>
 					</div>
-					<div class="style-cs-rolls" data-roll-type="Stat" data-stat="{{@key}}">
+					<div class="style-cs-rolls" data-roll-type="StatRoll" data-stat="{{@key}}">
 						{{this.Roll}}
 					</div>
 					<div>
@@ -77,7 +77,7 @@
 								for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current">{{this.Buff.Name}}</label>
 						</p>
 						<p class="style-cs-buffs">
-							<select class="style-cs-buffs"
+							<select class="style-cs-buffs" title="Buff Level"
 								name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current"
 								id="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current" data-dtype="Number">
 								<option value="0" {{selected this.Buff.Current 0}}>0</option>
@@ -96,7 +96,7 @@
 						<p class="style-cs-conditions">💀 <label
 								for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Name">{{this.Condition.Name}}</label>
 						</p>
-						<p class="style-cs-conditions"><select class="style-cs-conditions"
+						<p class="style-cs-conditions"><select class="style-cs-conditions" title="Condition Level"
 								name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Current"
 								id="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Current"
 								data-dtype="Number">
@@ -117,7 +117,7 @@
 				<div class="style-cs-conditions">
 					<p class="style-cs-conditions">💀 <label
 							for="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}">{{@key}}</label></p>
-					<p class="style-cs-conditions"><select class="style-cs-conditions"
+					<p class="style-cs-conditions" title="Condition Level"><select class="style-cs-conditions"
 							name="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}"
 							id="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}" data-dtype="Number">
 							<option value="0" {{selected this 0}}>0</option>
@@ -142,7 +142,7 @@
 			<div class="style-labels-secondary">
 				<span class="style-cs-conditions">💀 <label
 						for="system.physical.speed.Conditions.slowed.value">Slowed</label> <select
-						class="style-cs-conditions" name="system.physical.speed.Conditions.slowed.value"
+						class="style-cs-conditions" title="Condition Level" name="system.physical.speed.Conditions.slowed.value"
 						id="system.physical.speed.Conditions.slowed.value" data-dtype="Number">
 						<option value="0" {{selected system.physical.speed.Conditions.slowed.value 0}}>0
 						</option>
@@ -172,7 +172,7 @@
 				</span>
 				<span class="style-cs-buffs">🛡️ <label
 						for="system.physical.speed.Buffs.accelerated.value">Accelerated</label> <select
-						class="style-cs-buffs" name="system.physical.speed.Buffs.accelerated.value"
+						class="style-cs-buffs" title="Buff Level" name="system.physical.speed.Buffs.accelerated.value"
 						id="system.physical.speed.Buffs.accelerated.value" data-dtype="Number">
 						<option value="0" {{selected system.physical.speed.Buffs.accelerated.value 0}}>0</option>
 						<option value="1" {{selected system.physical.speed.Buffs.accelerated.value 1}}>1</option>
@@ -191,7 +191,7 @@
 			<div class="style-labels-secondary">
 				<span class="style-cs-conditions">💀 <label
 						for="system.physical.weight.Conditions.encumbered.value">Encumbered</label> <select
-						class="style-cs-conditions" name="system.physical.weight.Conditions.encumbered.value"
+						class="style-cs-conditions" title="Condition Level" name="system.physical.weight.Conditions.encumbered.value"
 						id="system.physical.weight.Conditions.encumbered.value" data-dtype="Number">
 						<option value="0" {{selected system.physical.weight.Conditions.encumbered.value 0}}>0
 						</option>
@@ -221,7 +221,7 @@
 				</span>
 				<span class="style-cs-buffs">🛡️ <label
 						for="system.physical.weight.Buffs.lightened.value">Lightened</label> <select
-						class="style-cs-buffs" name="system.physical.weight.Buffs.lightened.value"
+						class="style-cs-buffs" title="Buff Level" name="system.physical.weight.Buffs.lightened.value"
 						id="system.physical.weight.Buffs.lightened.value" data-dtype="Number">
 						<option value="0" {{selected system.physical.weight.Buffs.lightened.value 0}}>0</option>
 						<option value="1" {{selected system.physical.weight.Buffs.lightened.value 1}}>1</option>
@@ -240,7 +240,7 @@
 			<div class="style-labels-secondary">
 				<span class="style-cs-conditions">💀 <label
 						for="system.physical.size.Conditions.shrunken.value">Shrunken</label> <select
-						class="style-cs-conditions" name="system.physical.size.Conditions.shrunken.value"
+						class="style-cs-conditions" title="Condition Level" name="system.physical.size.Conditions.shrunken.value"
 						id="system.physical.size.Conditions.shrunken.value" data-dtype="Number">
 						<option value="0" {{selected system.physical.size.Conditions.shrunken.value 0}}>0
 						</option>
@@ -269,7 +269,7 @@
 				<span class="style-cs-values" title="Size represents how much space a Character (or an Object) can occupy in an area.">📐 Size {{system.physical.size.value}}
 				</span>
 				<span class="style-cs-buffs">🛡️ <label for="system.physical.size.Buff.enlarged.value">Enlarged</label>
-					<select class="style-cs-buffs" name="system.physical.size.Buffs.enlarged.value"
+					<select class="style-cs-buffs" title="Buff Level" name="system.physical.size.Buffs.enlarged.value"
 						id="system.physical.size.Buffs.enlarged.value" data-dtype="Number">
 						<option value="0" {{selected system.physical.size.Buffs.enlarged.value 0}}>0</option>
 						<option value="1" {{selected system.physical.size.Buffs.enlarged.value 1}}>1</option>
@@ -288,7 +288,7 @@
 		</div>
 		<div class="layout-container-small style-container-small">
 			<form>
-				<div title="Resistance is a static number that reduces the total amount of Damage dealt,">Resistances</div>
+				<div title="Resistance is a static number that reduces the total amount of Damage dealt">Resistances</div>
 				<div class="form-group">Cosmic
 					<input name="system.physical.resistances.cosmic.initial" type="number"
 						value="{{system.physical.resistances.cosmic.initial}}" data-dtype="Number" placeholder="0" />

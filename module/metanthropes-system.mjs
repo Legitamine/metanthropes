@@ -303,8 +303,8 @@ Hooks.once("enhancedTerrainLayer.ready", (RuleProvider) => {
 	console.log("Metanthropes RPG System | Enhanced Terrain Layer Integration Started");
 	class MetanthropesRuleProvider extends RuleProvider {
 		calculateCombinedCost(terrain, options) {
-			let cost;
-			// Calculate the cost for this terrain
+			//? I want to reduce movement by 1 for every 2 points of terrain (?)
+			let cost = terrain - 1;
 			return cost;
 		}
 	}
@@ -347,14 +347,13 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 // Hook to look for re-rolls of meta dice in chat
 // Add event listener for re-roll button click, hiding the button for non-owners
 Hooks.on("renderChatMessage", async (message, html) => {
-	//? Get the actor from the message
-	const actorId = message.getFlag("metanthropes-system", "actorId");
-	//? all our messages have the actorId flag set, so if it's not our message, return.
-	if (!actorId) return;
-	const actor = game.actors.get(actorId);
+	//? Get the actor from the message - all our messages have the actoruuid flag set, so if it's not our message, return.
+	let actorUUID = message.getFlag("metanthropes-system", "actoruuid");
+	if (!actorUUID) return;
+	let actor = await fromUuid(actorUUID);
 	//? Check if the current user is the owner of the actor
 	if (game.user.name === actor.system.metaowner.value || game.user.isGM) {
-		//? Unhide the buttons - assumes DF Chat Enhancements module is installed (provides hidden class)
+		//? Unhide the buttons - assumes DF Chat Enhancements module is installed (provides hidden class that works)
 		html.find(".hide-button").removeClass("hidden");
 		//? Listen for Re-Roll button clicks
 		html.find(".rolld10-reroll").on("click", Rolld10ReRoll);
@@ -366,7 +365,7 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		html.find(".re-roll-damage").on("click", ReRollDamage);
 		html.find(".re-roll-healing").on("click", ReRollHealing);
 		//? Listen for metainitiative re-roll
-		html.find(".metainitiative-re-roll").on("click", MetaInitiativeReRoll);
+		html.find(".metainitiative-reroll").on("click", MetaInitiativeReRoll);
 		//? Listen for activations
 		html.find(".metapower-activate").on("click", MetapowerActivate);
 		html.find(".possession-use").on("click", PossessionUse);

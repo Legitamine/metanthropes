@@ -539,7 +539,7 @@
 							"type": "number",
 							"dtype": "Number",
 							"label": "Starting Perks",
-							"value": 2
+							"value": 0
 						}
 					}
 				}

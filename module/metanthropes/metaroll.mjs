@@ -5,8 +5,32 @@ import { MetaEvaluate } from "../helpers/metaeval.mjs";
  * we dermine if it's a simple roll, a detailed roll or a re-roll of existing results
  * we determine if we need additional info if it is more than a stat roll
  */
-export async function MetaRoll(actor, stat) {
-	const statValue = actor.system.RollStats[stat];
+
+//! genikotero question einai ean thelw na pernaw ta re-rolls apo to MetaRoll prwta
+//! px to hunger tha prepei na to pernaw kathe fora poy kanw re-roll? mporw na kanw destiny spend gia re-rolling tou hunger?
+//! episis na analavei to MetaRoll ta chat messages? why/why not?
+//! testing rq: protagonists, humans, metatherions klp klp linked kai mh, paizoune swsta? emfanizontai ola swsta k me to initiative??
+//! thumisou na vgaleis ta ui.notifications.error apo to actor - kai isws na ta kaneis chat messages ???
+
+export async function MetaRoll(actor, action, stat) {
+	let statValue;
+	//? Check if it's a linked actor or not
+	if (actor.istoken) {
+		//? For tokens we take the data from the token, not the original actor
+		//statValue = actor.data.system.RollStats[stat];
+		statValue = actor.token.document.actor.system.RollStats[stat];
+	} else {
+		//? For linked actors we take the data from the actor document directly
+		statValue = actor.system.RollStats[stat];
+	}
+	console.log(
+		"Metanthropes RPG System | MetaRoll | Engaged for",
+		actor.type + ":",
+		actor.name + "'s",
+		action,
+		"with",
+		stat
+	);
 	const disease = actor.system.Characteristics.Body.CoreConditions.Diseased;
 	const pain = actor.system.Characteristics.Mind.CoreConditions.Pain;
 	const hunger = actor.system.Characteristics.Mind.CoreConditions.Hunger; //also fatigue?
@@ -34,31 +58,66 @@ export async function MetaRoll(actor, stat) {
 	//? Check for disease
 	//* disease is expected to be a positive number, where as penalty is expected to be negative
 	let diseasePenalty = 0;
-	if (disease > 0) { //! not correct placement, need to figure out how to progress thru the logic for this
+	if (disease > 0) {
+		//! not correct placement, need to figure out how to progress thru the logic for this
 		//? check if penalty is worse than the disease level and set it accordingly
 		if (diseasePenalty > -(disease * 10)) {
 			diseasePenalty = -(disease * 10);
 		}
 	}
-	//! ready to call MetaEvaluate for simple roll without any additional bonuses or penalties
-	//* send the data we collected to the MetaRollStat function
+	//? ready to call MetaEvaluate for simple roll without any additional bonuses or penalties
 	let multiAction = 0;
 	let bonus = 0;
 	let penalty = diseasePenalty;
-	await MetaEvaluate(actor, stat, statValue, multiAction, bonus, penalty);
+	console.log(
+		"Metanthropes RPG System | MetaRoll | Engaging MetaEvaluate for:",
+		actor.name + "'s",
+		action,
+		"with",
+		stat,
+		statValue,
+		"Multi-Action:",
+		multiAction,
+		"Bonus:",
+		bonus,
+		"Penalty:",
+		penalty
+	);
+	await MetaEvaluate(actor, action, stat, statValue, multiAction, bonus, penalty);
 	let checkresult = await actor.getFlag("metanthropes-system", "lastrolled").metaEvaluate;
-	console.log("Metanthropes RPG System |", "MetaRoll Results for:", actor.name, stat, ":", statValue, "Result:", checkresult);
+	console.log(
+		"Metanthropes RPG System | MetaRoll | MetaEvaluate Result for",
+		actor.name,
+		"Action:",
+		action,
+		stat + ":",
+		statValue,
+		"Result:",
+		checkresult
+	);
+	console.log("Metanthropes RPG System | MetaRoll | Finished");
 }
 
 //! different function if called via right-click, allowing to set options
-export async function MetaRollCustom(actor, stat) {
+export async function MetaRollCustom(actor, action, stat) {
 	const statValue = actor.system.RollStats[stat];
 	const disease = actor.system.Characteristics.Body.CoreConditions.Diseased;
-	//! add the similar checks as above 
+	//! add the similar checks as above
+	//! could I instead somehow extend the MetaRoll function to accept additional parameters?
 	//? calculate the max number of multi-actions possible based on the stat value
 	const maxMultiActions = Math.floor((statValue - 1) / 10);
 	const multiActionOptions = Array.from({ length: maxMultiActions - 1 }, (_, i) => i + 2);
-	//create the dialog content
+	//? Title and Buttons for the Dialog
+	let dialogtitle = null;
+	let dialogbuttonlabel = null;
+	if (action === "StatRoll") {
+		dialogtitle = `${actor.name}'s ${stat}`;
+		dialogbuttonlabel = `Roll ${stat}`;
+	} else if (action === "Initiative") {
+		dialogtitle = `${actor.name}'s Initiative`;
+		dialogbuttonlabel = `Roll Initiative`;
+	}
+	//? Create the Dialog content
 	let dialogContent = `
 	<div class="metanthropes layout-metaroll-dialog">
 		<p>Select total number of Multi-Actions:</p>
@@ -75,14 +134,15 @@ export async function MetaRollCustom(actor, stat) {
 			</div>
 	</div>
 	`;
+	//? Create the Dialog
 	let dialog = new Dialog({
-		title: `${actor.name}'s ${stat}`,
+		title: dialogtitle,
 		content: dialogContent,
 		buttons: {
 			roll: {
-				label: `Roll ${stat}`,
+				label: dialogbuttonlabel,
 				callback: async (html) => {
-					//collect multi-action value
+					//? collect multi-action value
 					let multiAction = html.find("#multiActionCount").val();
 					if (multiAction === "no") {
 						multiAction = 0;
@@ -90,10 +150,11 @@ export async function MetaRollCustom(actor, stat) {
 						let selectedMultiActions = parseInt(html.find("#multiActionCount").val());
 						multiAction = selectedMultiActions * -10;
 					}
-					// collect bonus and penalty values
+					//? collect bonus and penalty values
 					let bonus = parseInt(html.find("#bonus").val());
 					let penalty = -parseInt(html.find("#penalty").val());
 					//? Check for disease
+					//! is this the right place to do so?
 					//* disease is expected to be a positive number, where as penalty is expected to be negative
 					if (disease > 0) {
 						//? check if penalty is worse than the disease level and set it accordingly
@@ -101,8 +162,8 @@ export async function MetaRollCustom(actor, stat) {
 							penalty = -(disease * 10);
 						}
 					}
-					//send the data we collected to the MetaEvaluate function
-					MetaEvaluate(actor, stat, statValue, multiAction, bonus, penalty);
+					//?send the data we collected to the MetaEvaluate function
+					MetaEvaluate(actor, action, stat, statValue, multiAction, bonus, penalty);
 				},
 			},
 		},
