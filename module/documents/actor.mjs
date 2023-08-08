@@ -20,7 +20,7 @@ export class MetanthropesActor extends Actor {
 				"prototypeToken.name": data.name, // Set token name to actor name
 			});
 		else if (data.prototypeToken) createData.prototypeToken = data.prototypeToken;
-		// Set custom default tokens portraits
+		//? Set custom default tokens portraits
 		if (!data.img || data.img == "icons/svg/mystery-man.svg") {
 			createData.img = "systems/metanthropes-system/artwork/tokens/token-utilitarian.webp";
 			if (data.type == "Vehicle") createData.img = "systems/metanthropes-system/artwork/tokens/token-hammer.webp";
@@ -51,7 +51,7 @@ export class MetanthropesActor extends Actor {
 		if (data.type !== "Vehicle") {
 			createData.prototypeToken.sight = { enabled: true };
 		}
-		//? Enable Linked Tockens for Protagonists and Metanthropes by default
+		//? Enable Linked Tokens for Protagonists and Metanthropes by default
 		if (data.type == "Protagonist" || data.type == "Metanthrope") {
 			createData.prototypeToken.actorLink = true;
 		}

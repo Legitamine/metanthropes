@@ -16,6 +16,7 @@ import { MetaRoll } from "../metanthropes/metaroll.mjs";
  * MetaInitiative(combatant);
  */
 export async function MetaInitiative(combatant) {
+	console.log("Metanthropes RPG System | MetaInitiative | Engaged for combatant:", combatant, "and preparing actor data");
 	//? Check to see if this is a linked actor
 	let actor = null;
 	if (combatant.token.actorLink) {
@@ -26,6 +27,8 @@ export async function MetaInitiative(combatant) {
 		//? If it's not linked, get data from the token document
 		actor = combatant.token.actor;
 	}
+	//? Initialize the actor's RollStat table before proceeding
+	await actor.getRollData();
 	console.log("Metanthropes RPG System | MetaInitiative | Engaged for", actor.type + ":", actor.name);
 	//? Check for alternate Stat to use for Initiative
 	const reflexesStat = "Reflexes";
@@ -58,9 +61,8 @@ export async function MetaInitiative(combatant) {
 		actor.name + "'s Initiative with",
 		initiativeStat
 	);
-	//? Initialize the actor's RollStat table before calling MetaRoll
-	await actor.getRollData();
 	await MetaRoll(actor, action, initiativeStat);
+	//todo have to decide how core conditions are going to be evaluated
 	//? Update the combatant with the new initiative value
 	let checkResult = await actor.getFlag("metanthropes-system", "lastrolled").Initiative;
 	console.log(

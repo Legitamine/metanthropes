@@ -168,6 +168,8 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 			break;
 		case "Initiative":
 			newRolls.Initiative = resultLevel;
+			newRolls.InitiativeStat = stat;
+			newRolls.InitiativeStatValue = statValue;
 			break;
 		case "Metapower":
 			newRolls.Metapower = resultLevel;
