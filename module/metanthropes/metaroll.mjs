@@ -13,19 +13,6 @@ import { MetaEvaluate } from "../helpers/metaeval.mjs";
 //! thumisou na vgaleis ta ui.notifications.error apo to actor - kai isws na ta kaneis chat messages ???
 
 export async function MetaRoll(actor, action, stat) {
-	//? Check if it's a linked actor or not
-	// let statValue;
-	//! should I use the actor.uuid here instead?
-	//! check the disease for example if it works or not for tokens
-	//!! it does, so do I really need this check? actors come already correctly from the actors.sheet right?
-	//	if (actor.istoken) {
-	//		//? For tokens we take the data from the token, not the original actor
-	//		//statValue = actor.data.system.RollStats[stat];
-	//		statValue = actor.token.document.actor.system.RollStats[stat];
-	//	} else {
-	//		//? For linked actors we take the data from the actor document directly
-	//		statValue = actor.system.RollStats[stat];
-	//	}
 	const statValue = actor.system.RollStats[stat];
 	console.log(
 		"Metanthropes RPG System | MetaRoll | Engaged for",

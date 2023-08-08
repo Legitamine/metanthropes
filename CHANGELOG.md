@@ -1,6 +1,7 @@
 ### Latest Changes
 These are the latest changes for the Official Metanthropes RPG System for Foundry VTT
 #### 0.7.00 - Current (status)
+- Fixed a long-time known issue with the Metapower & Possession Sheets (done)
 - XP System: Metapowers (pushed to v0.8)
 - Added official support for Terrain Ruler and Enhanced Terrain Layer (pushed to v0.9)
 - Foundry core version 11 support (done)

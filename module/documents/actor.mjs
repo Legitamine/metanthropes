@@ -290,7 +290,7 @@ export class MetanthropesActor extends Actor {
 		//console.log("Metanthropes RPG System |", this.type, "-", this.name, "is ready for Action!");
 		//console.log("Metanthropes RPG System | ====================================");
 	}
-	async _prepareDerivedMovementData(actorData) {
+	_prepareDerivedMovementData(actorData) {
 		const systemData = actorData.system;
 		console.log("Metanthropes RPG System | Actor Prep | Updating Movement for", this.type+":", this.name);
 		//*first we will calculate the current values from buffs and conditions, then we take their modifiers and calculate the movement value
@@ -306,9 +306,9 @@ export class MetanthropesActor extends Actor {
 		let sizecurrent = sizeinitial + sizebuff - sizecondition;
 		let weightcurrent = weightinitial - weightbuff + weightcondition;
 		let speedcurrent = speedinitial + speedbuff - speedcondition;
-		await this.update({ "system.physical.size.value": sizecurrent });
-		await this.update({ "system.physical.weight.value": weightcurrent });
-		await this.update({ "system.physical.speed.value": speedcurrent });
+		this.update({ "system.physical.size.value": sizecurrent });
+		this.update({ "system.physical.weight.value": weightcurrent });
+		this.update({ "system.physical.speed.value": speedcurrent });
 		let speedModifiers = {
 			0: 0,
 			1: 0,
@@ -384,10 +384,10 @@ export class MetanthropesActor extends Actor {
 		let movementvalue = Math.ceil(
 			speedModifiers[speedcurrent] * weightModifiers[weightcurrent] * sizeModifiers[sizecurrent] - wobblyModifier
 		);
-		await this.update({ "system.physical.movement.value": movementvalue });
+		this.update({ "system.physical.movement.value": movementvalue });
 		//! for some reason these updates didn't work as intented, why is that?
-		await this.update({ "system.physical.movement.additional": movementvalue });
-		await this.update({ "system.physical.movement.sprint": movementvalue * 5 });
+		this.update({ "system.physical.movement.additional": movementvalue });
+		this.update({ "system.physical.movement.sprint": movementvalue * 5 });
 		console.log(
 			"Metanthropes RPG System | Actor Prep | New Movement:",
 			movementvalue,
@@ -396,8 +396,6 @@ export class MetanthropesActor extends Actor {
 			"Sprint:",
 			movementvalue * 5
 		);
-		//console.log("Metanthropes RPG System |", this.name, "is ready to Move!");
-		//console.log("Metanthropes RPG System | ====================================");
 	}
 	getRollData() {
 		const data = super.getRollData();

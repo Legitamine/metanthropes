@@ -99,6 +99,8 @@ export async function MetaEvaluate(actor, action, stat, statValue, multiAction =
 	//? Buttons for Keeping the results of MetaEvalute
 	//! I should include a way to proceed if the results are criticals
 	if (action === "Metapower") {
+		//! I can either have MetaEvaluate take all the necessairy inputs passed down from MetaRoll about the Item, 
+		//! or I can start from here to collect his information to pass it along? if so, to whom?
 		message += `<div class="hide-button hidden"><button class="metapower-activate" data-actoruuid="${actor.uuid}"
 			data-stat="${stat}" data-statvalue="${statValue}" data-multiaction="${multiAction}"
 			data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}"

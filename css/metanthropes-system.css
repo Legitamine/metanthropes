@@ -895,7 +895,7 @@ option {
 .metanthropes .style-pos-rolls {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 1rem;
+  font-size: 14px;
   color: #000;
   justify-content: center;
   justify-self: center;
@@ -947,7 +947,7 @@ option {
   flex: 2;
   margin: 0;
   overflow: hidden;
-  font-size: 13px;
+  font-size: 15px;
   text-align: left;
   align-items: center;
   display: flex;
@@ -964,14 +964,13 @@ option {
   justify-content: center;
 }
 .metanthropes .items-list .item-controls a {
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
   margin: 0 6px;
 }
 .metanthropes .items-list .item {
   align-items: center;
   padding: 0 2px;
-  border-bottom: 1px solid #000;
 }
 .metanthropes .items-list .item .item-name {
   color: #000;
