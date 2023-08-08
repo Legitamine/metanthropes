@@ -1,8 +1,20 @@
-//* MetaInitiative function handles Initiative rolls
-/*
-//* Used primarly for determing if special effects apply to the initiative roll
-*/
+//? Import dependencies
 import { MetaRoll } from "../metanthropes/metaroll.mjs";
+/**
+ * MetaInitiative handles Initiative rolls for a given combatant.
+ *
+ * This function determines the best stat to use for Initiative based on the combatant's Metapowers.
+ * It then calls the MetaRoll function for that stat and updates the combatant's Initiative value with the result.
+ * todo: I should manipulate here the Initiative result based on the combatant's Metapowers
+ * The function works for both linked and unlinked actors.
+ *
+ * @param {Object} combatant - The combatant making the initiative roll.
+ *
+ * @returns {Promise<void>} A promise that resolves once the function completes its operations.
+ *
+ * @example
+ * MetaInitiative(combatant);
+ */
 export async function MetaInitiative(combatant) {
 	//? Check to see if this is a linked actor
 	let actor = null;
@@ -50,71 +62,52 @@ export async function MetaInitiative(combatant) {
 	await actor.getRollData();
 	await MetaRoll(actor, action, initiativeStat);
 	//? Update the combatant with the new initiative value
-	let checkresult = await actor.getFlag("metanthropes-system", "initiative").initiativeValue;
+	let checkResult = await actor.getFlag("metanthropes-system", "lastrolled").Initiative;
 	console.log(
 		"Metanthropes RPG System | MetaInitiative | MetaRoll Result for",
 		actor.name + "'s Initiative with",
 		initiativeStat,
 		"was:",
-		checkresult
+		checkResult
 	);
-	await combatant.update({ initiative: checkresult });
-	// This is to check for hidden combatants and display a different message for them in chat
-	// Construct chat message data
-	//	let messageData = foundry.utils.mergeObject(
-	//		{
-	//			speaker: ChatMessage.getSpeaker({
-	//				actor: combatant.actor,
-	//				token: combatant.token,
-	//				alias: combatant.name,
-	//			}),
-	//			flavor: game.i18n.format("COMBAT.RollsInitiative", { name: combatant.name }),
-	//			flags: { "core.initiativeRoll": true },
-	//		},
-	//		messageOptions
-	//	);
-	//	const chatData = await roll.toMessage(messageData, { create: false });
-	//	// If the combatant is hidden, use a private roll unless an alternative rollMode was explicitly requested
-	//	chatData.rollMode =
-	//		"rollMode" in messageOptions
-	//			? messageOptions.rollMode
-	//			: combatant.hidden
-	//			? CONST.DICE_ROLL_MODES.PRIVATE
-	//			: chatRollMode;
-	//!figure out how to play 1 sound for all initiative rolls?
-	// I will take these values and store them inside an initiative flag on the actor
+	await combatant.update({ initiative: checkResult });
 }
-//! remove excess bonus / penalty / modifier if not needed at all for initiative
-// MetaInitiativeRollStat function is used to roll a stat and get the levels of success/failure and print the message to chat
-// export async function MetaInitiativeRollStat(actor, stat, statValue, modifier = 0, bonus = 0, penalty = 0) {
 
-//}
-// Function to handle re-roll for destiny
+/**
+ * MetaInitiativeReRoll handles the re-roll of a previously evaluated Initiative roll by spending Destiny.
+ *
+ * This function is triggered when the "Spend Destiny to reroll" button is clicked in the chat.
+ * It reduces the actor's Destiny by 1 and then calls the MetaInitiative function to recalculate the initiative.
+ * The button is only visible to the owner of the actor or a GM.
+ *
+ * @param {Event} event - The event object from the button click.
+ *
+ * @returns {Promise<void>} A promise that resolves once the function completes its operations.
+ *
+ * @example
+ * This function is typically called via an event listener and not directly.
+ */
+
 export async function MetaInitiativeReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
 	const actorUUID = button.dataset.actoruuid;
 	const actor = await fromUuid(actorUUID);
 	const combatant = game.combat.getCombatantByActor(actor);
-	console.log("Metanthropes RPG  System | Rerolling MetaInitiative for combatant:", combatant);
-	//! maybe split this off to another function?
-	//! should I have a promise if this fails to work?
+	console.log("Metanthropes RPG  System | MetaInitiativeReRoll | Engaged for combatant:", combatant);
 	let currentDestiny = actor.system.Vital.Destiny.value;
-	//? make this function only available to the owner of the actor, or a GM
-	if ((actor && actor.isOwner) || game.user.isGM) {
-		// Reduce Destiny.value by 1
-		if (currentDestiny > 0) {
-			currentDestiny -= 1;
-			await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-			// Update re-roll button visibility
-			const message = game.messages.get(button.dataset.messageId);
-			if (message) {
-				message.render();
-			}
-			//! do I need metainitiative here or should I just send it back to metaroll or metaevaluate?
-			//! core condition step process should dictate this
-			//! if I have to re-check for hunger, disease, pain, etc. then I need to send it back to metaroll that checks for these
-			MetaInitiative(combatant);
+	//? Reduce Destiny.value by 1
+	//todo if we know we have enough destiny to spend, don't need to check here as well
+	if (currentDestiny > 0) {
+		currentDestiny -= 1;
+		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
+		//? Update re-roll button visibility
+		const message = game.messages.get(button.dataset.messageId);
+		if (message) {
+			message.render();
 		}
+		//! depending on how Core Conditions are handled, this might need to be changed, as now we'll go over MetaRoll Evaluations again before we actually roll for Initiative a second time
+		await MetaInitiative(combatant);
+		console.log("Metanthropes RPG System | MetaInitiativeReRoll | MetaInitiative finished, no reason to exist?");
 	}
 }
