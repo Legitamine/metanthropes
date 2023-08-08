@@ -13,7 +13,7 @@ This is the official Metanthropes RPG system for Foundry VTT.
 This is a work in progress and is not ready for general use. Installation instructions will be placed here when the system is ready. Please do not use this system for your games, unless you want to help playtest and know what you're doing. If so, please join us on our Discord server: https://metanthropes.com/discord
 
 ## Supported Modules
-This System aims to utilize the latest and best in Foundry VTT. Currently offers support for Foundry VTT versions 10 and 11. Latest supported version is v11.306.
+This System aims to utilize the latest and best in Foundry VTT. Currently offers support for Foundry VTT versions 10 and 11. Latest supported version is v11.307.
 
 To get the best experience while playing Metanthropes RPG, we recommend to install the following fully supported modules:
 
@@ -27,8 +27,6 @@ To get the best experience while playing Metanthropes RPG, we recommend to insta
 ### Known Issues
 - Automatic XP Calculation for Characteristics and Stats assumes that you progressed your Characteristic first, otherwise it will spent more XP than what it should. 
 	- Workaround: Use the Spent XP manual input field to adjust the XP spent for the Stat.
-- Metapowers tab in your Character Sheet displays the Current value of the Stat for that Metapower's Activation. If any Stat is changed, or a Roll is made, the values in the Metapowers Tab become null.
-	- Workaround: Close your Character Sheet and re-open, the correct values will be displayed.
 - Combat: Hidden Combatants are not rolling hidden Initiative correctly.
 	- Workaround: The Narrator should manually ensure their rolls are hidden before rolling for Initiative.
 

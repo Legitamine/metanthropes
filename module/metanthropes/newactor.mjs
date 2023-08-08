@@ -993,7 +993,7 @@ export async function NewActorFinish(actor) {
 			<form>
             <div class="form-group">
                 <label for="actorimg">${actor.type} Image:</label>
-                <img id="actorimg" src="${actor.img}" title="Choose your ${actor.type}'s Image" height="320" width="320" style="cursor:pointer;"/>
+                <img id="actorimg" src="${actor.img}" title="Choose your ${actor.type}'s Image" height="320" width="270" style="cursor:pointer;"/>
             </div>
         </form>
 		</div>

@@ -266,6 +266,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 			const stat = dataset.stat;
 			MetaRoll(actor, stat);
 		}
+		//? After doing a meta roll, re-render the actor sheet.
+		this.render(true);
 	}
 	//first try to make a custom roll for right-clicking
 	async _onCustomRoll(event) {
@@ -361,6 +363,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 			const stat = dataset.stat;
 			MetaRoll(actor, stat);
 		}
+		//? After doing a custom roll, re-render the actor sheet.
+		this.render(true);
 	}
 	//? New Actor Logic
 	async _onNewActor(event) {

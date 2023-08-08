@@ -360,7 +360,7 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		//? Listen for Re-Roll button clicks
 		html.find(".rolld10-reroll").on("click", Rolld10ReRoll);
 		html.find(".metaeval-reroll").on("click", MetaEvaluateReRoll);
-		html.find(".metapower-re-roll").on("click", MetapowerReRoll);
+		html.find(".metapower-reroll").on("click", MetapowerReRoll);
 		html.find(".possession-re-roll").on("click", PossessionReRoll);
 		html.find(".re-roll-targets").on("click", ReRollTargets);
 		html.find(".re-roll-duration").on("click", ReRollDuration);

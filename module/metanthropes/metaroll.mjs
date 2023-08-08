@@ -1,9 +1,23 @@
-//? MetaRoll function handles the dialog box for selecting multi-actions and bonuses/penalties when rolling a stat
+//? Import the dependencies
 import { MetaEvaluate } from "../helpers/metaeval.mjs";
-/*
- * we want to roll against a stat - always
- * we dermine if it's a simple roll, a detailed roll or a re-roll of existing results
- * we determine if we need additional info if it is more than a stat roll
+/**
+ * Handles rolling for Metanthropes RPG
+ *
+ * This function checks various Core Conditions (e.g., unconsciousness, hunger, disease)
+ * before proceeding with the roll. It then calls the MetaEvaluate function to
+ * calculate the result of the roll. This funtion assumes your actor doesn't have any effects applied,
+ * if you have effects applied (bonus, penalties, multi-action) use MetaRollCustom instead.
+ * todo merge both functions into one
+ *
+ * @param {Object} actor - The actor making the roll.
+ * @param {string} action - The type of action being performed (e.g., "StatRoll", "Initiative").
+ * @param {string} stat - The stat being rolled against.
+ *
+ * @returns {Promise<void>} A promise that resolves once the function completes its operations.
+ *
+ * @example
+ * Rolling a simple stat
+ * MetaRoll(actor, "StatRoll", "Power");
  */
 
 //! genikotero question einai ean thelw na pernaw ta re-rolls apo to MetaRoll prwta
@@ -13,16 +27,7 @@ import { MetaEvaluate } from "../helpers/metaeval.mjs";
 //! thumisou na vgaleis ta ui.notifications.error apo to actor - kai isws na ta kaneis chat messages ???
 
 export async function MetaRoll(actor, action, stat) {
-	let statValue;
-	//? Check if it's a linked actor or not
-	if (actor.istoken) {
-		//? For tokens we take the data from the token, not the original actor
-		//statValue = actor.data.system.RollStats[stat];
-		statValue = actor.token.document.actor.system.RollStats[stat];
-	} else {
-		//? For linked actors we take the data from the actor document directly
-		statValue = actor.system.RollStats[stat];
-	}
+	const statValue = actor.system.RollStats[stat];
 	console.log(
 		"Metanthropes RPG System | MetaRoll | Engaged for",
 		actor.type + ":",
@@ -35,13 +40,6 @@ export async function MetaRoll(actor, action, stat) {
 	const pain = actor.system.Characteristics.Mind.CoreConditions.Pain;
 	const hunger = actor.system.Characteristics.Mind.CoreConditions.Hunger; //also fatigue?
 	const unconscious = actor.system.Characteristics.Soul.CoreConditions.Unconscious;
-	// placeholder for new Actor/Token logic
-	//	let statValue;
-	//	if (token.data.actorLink) { //check if the token is linked to an actor
-	//		statValue = actor.system.RollStats[stat];
-	//	} else { // if not, use the token's data
-	//		statValue = token.system.RollStats[stat];
-	//	}
 	//? Check if we are unconscious
 	if (unconscious > 0) {
 		ui.notifications.error(actor.name + " is unconscious and can't act!");
@@ -54,12 +52,12 @@ export async function MetaRoll(actor, action, stat) {
 	}
 	//? Check for hunger
 	//* if we have hunger, we must beat the hunger roll before attempting to act
-	//! to do hunger check
+	//todo hunger check
 	//? Check for disease
 	//* disease is expected to be a positive number, where as penalty is expected to be negative
 	let diseasePenalty = 0;
 	if (disease > 0) {
-		//! not correct placement, need to figure out how to progress thru the logic for this
+		//todo is this the correct placement? need to figure out how to progress thru the logic for this
 		//? check if penalty is worse than the disease level and set it accordingly
 		if (diseasePenalty > -(disease * 10)) {
 			diseasePenalty = -(disease * 10);
@@ -84,7 +82,7 @@ export async function MetaRoll(actor, action, stat) {
 		penalty
 	);
 	await MetaEvaluate(actor, action, stat, statValue, multiAction, bonus, penalty);
-	let checkresult = await actor.getFlag("metanthropes-system", "lastrolled").metaEvaluate;
+	let checkResult = await actor.getFlag("metanthropes-system", "lastrolled").MetaEvaluate;
 	console.log(
 		"Metanthropes RPG System | MetaRoll | MetaEvaluate Result for",
 		actor.name,
@@ -93,12 +91,28 @@ export async function MetaRoll(actor, action, stat) {
 		stat + ":",
 		statValue,
 		"Result:",
-		checkresult
+		checkResult
 	);
 	console.log("Metanthropes RPG System | MetaRoll | Finished");
 }
-
-//! different function if called via right-click, allowing to set options
+/**
+ * Handles the dialog box for custom multi-actions and bonuses/penalties when rolling a stat.
+ *
+ * This function is intended to be called when the user 'right-clicks' the roll button,
+ * allowing for more complex roll configurations. It provides a dialog for the user to
+ * select multi-actions, bonuses, and penalties, and then calls the MetaEvaluate function
+ * to calculate the result of the roll.
+ *
+ * @param {Object} actor - The actor making the roll.
+ * @param {string} action - The type of action being performed (e.g., "StatRoll", "Initiative").
+ * @param {string} stat - The stat being rolled against.
+ *
+ * @returns {Promise<void>} A promise that resolves once the function completes its operations.
+ *
+ * @example
+ * Rolling a stat with custom options. A dialog box will show up to allow to enter custom values.
+ * MetaRollCustom(actor, "StatRoll", "Power");
+ */
 export async function MetaRollCustom(actor, action, stat) {
 	const statValue = actor.system.RollStats[stat];
 	const disease = actor.system.Characteristics.Body.CoreConditions.Diseased;

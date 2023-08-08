@@ -15,10 +15,10 @@ export class MetanthropesItem extends Item {
 		// As with the actor class, items are documents that can have their data
 		// preparation methods overridden (such as prepareBaseData()).
 		super.prepareData();
-		// Check if the item type is "Metapower" and the image is not set or is the default image
+		//? Give the item a default image based on the Metapower Name
 		if (this.type === "Metapower") {
-			const mpname = this.system.Activation.MetapowerName.value; // Replace this with the correct path to mpname property in your system
-			const imgPath = `systems/metanthropes-system/artwork/metapowers/${mpname}.png`; // Replace this with the correct path to your images folder
+			const mpname = this.system.Activation.MetapowerName.value;
+			const imgPath = `systems/metanthropes-system/artwork/metapowers/${mpname}.png`;
 			this.img = imgPath;
 		}
 	}
@@ -63,7 +63,7 @@ export class MetanthropesItem extends Item {
 		// Otherwise, create a roll and send a chat message from it.
 		else {
 			// Retrieve roll data.
-			//? I need to better understand what this does exactly and how it works with the bigger picture.
+			//! I need to better understand what this does exactly and how it works with the bigger picture.
 			const rollData = this.getRollData();
 			// capture the info for the MetaRoll function
 			const actor = this.actor;

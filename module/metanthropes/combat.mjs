@@ -9,60 +9,15 @@ export class MetanthropesCombat extends Combat {
 	_sortCombatants(a, b) {
 		const ia = Number.isNumeric(a.initiative) ? a.initiative : -Infinity;
 		const ib = Number.isNumeric(b.initiative) ? b.initiative : -Infinity;
-		const astatValue = a.actor.getFlag("metanthropes-system", "initiative")?.statValue ?? -Infinity;
-		const bstatValue = b.actor.getFlag("metanthropes-system", "initiative")?.statValue ?? -Infinity;
-		// console.log("Metanthropes RPG - from within sortCombatants  === +++ === +++ ===");
-		//	console.log("a:", a);
-		//	console.log("b:", b);
-		//	console.log("a.initiative:", a.initiative);
-		//	console.log("b.initiative:", b.initiative);
-		//	console.log("astatValue:", astatValue);
-		//	console.log("bstatValue:", bstatValue);
-		//	console.log("ia:", ia);
-		//	console.log("ib:", ib);
-		//	console.log("ib - ia:", ib - ia);
-		//	console.log("astatValue > bstatValue:", astatValue > bstatValue);
-		// sort by initiative first, then sort by statValue if the initiative is the same
+		const astatValue = a.actor.getFlag("metanthropes-system", "lastrolled")?.InitiativeStatValue ?? -Infinity;
+		const bstatValue = b.actor.getFlag("metanthropes-system", "initiative")?.InitiativeStatValue ?? -Infinity;
+		//? sort by initiative first, then sort by statValue if the initiative is the same
 		return ib - ia || (astatValue > bstatValue ? -1 : 1);
 	}
-		// If initiative result level is the same, sort by statValue
-		// this particular line is checking first to see if we have already started the initiative (the flags would exist and would be set, otherwise undefined) and if not set it to -Infinity so the combatant can be added to the combat tracker.
-		//	const astatValue = a.actor.getFlag("metanthropes-system", "initiative")?.statValue ?? -Infinity;
-		//	const bstatValue = b.actor.getFlag("metanthropes-system", "initiative")?.statValue ?? -Infinity;
-		//
-		//	return bstatValue - astatValue || (a.id > b.id ? 1 : -1);
-	
 	//todo: award Destiny and re-roll initiative if tied both in Initiative and statValue
-	//	if (astatValue !== undefined && bstatValue !== undefined) {
-	//		if (astatValue == bstatValue) {
-	//			let aDestiny = a.actor.system.Vital.Destiny.value;
-	//			let bDestiny = b.actor.system.Vital.Destiny.value;
-	//			//a.initiative = 0;
-	//			//b.initiative = 0;
-	//			console.log(
-	//				"Metanthropes RPG - Actors tied in initiative",
-	//				a.actor.name,
-	//				a.initiative,
-	//				astatValue,
-	//				"aDestiny:",
-	//				aDestiny,
-	//				"&",
-	//				b.actor.name,
-	//				b.initiative,
-	//				bstatValue,
-	//				"bDestiny:",
-	//				bDestiny
-	//			);
-	//			//todo: give them a destiny point and roll again
-	//			//await MetaInitiative(a);
-	//			//await MetaInitiative(b);
-	//			return bstatValue - astatValue || (a.id > b.id ? 1 : -1);
-	//		} else {
-	//			return bstatValue - astatValue || (a.id > b.id ? 1 : -1);
-	//		}
-	//	}
+	
 	/**
-	 * Roll initiative for one or multiple Combatants within the Combat document
+	 * Roll Initiative for one or multiple Combatants within the Combat document
 	 * @param {string|string[]} ids     A Combatant id or Array of ids for which to roll
 	 * @param {object} [options={}]     Additional options which modify how initiative rolls are created or presented.
 	 * @param {string|null} [options.formula]         A non-default initiative formula to roll. Otherwise, the system
@@ -87,46 +42,24 @@ export class MetanthropesCombat extends Combat {
 			// Produce an initiative roll for the Combatant
 			console.log("Metanthropes RPG System | Combat | Engaging MetaInitiative for combatant:", combatant);
 			await MetaInitiative(combatant);
-			let initiativeResult = combatant.actor.getFlag("metanthropes-system", "initiative").initiativeValue;
-			console.log("Metanthropes RPG System | Combat | MetaInitiative finished, updating combatant with new initiative:", initiativeResult);
+			let initiativeResult = combatant.actor.getFlag("metanthropes-system", "lastrolled").Initiative;
+			console.log(
+				"Metanthropes RPG System | Combat | MetaInitiative finished, updating combatant with new initiative:",
+				initiativeResult
+			);
 			updates.push({ _id: id, initiative: initiativeResult });
-			//	// Construct chat message data
-			//	let messageData = foundry.utils.mergeObject(
-			//		{
-			//			speaker: ChatMessage.getSpeaker({
-			//				actor: combatant.actor,
-			//				token: combatant.token,
-			//				alias: combatant.name,
-			//			}),
-			//			flavor: game.i18n.format("COMBAT.RollsInitiative", { name: combatant.name }),
-			//			flags: { "core.initiativeRoll": true },
-			//		},
-			//		messageOptions
-			//	);
-			//! warning: I am not taking into account hidding combatants
-			//todo: need to figure out a way to pass this into the metainitiative
-			//	const chatData = await roll.toMessage(messageData, { create: false });
-			//
-			//	// If the combatant is hidden, use a private roll unless an alternative rollMode was explicitly requested
-			//	chatData.rollMode =
-			//		"rollMode" in messageOptions
-			//			? messageOptions.rollMode
-			//			: combatant.hidden
-			//			? CONST.DICE_ROLL_MODES.PRIVATE
-			//			: chatRollMode;
-			//	figure out how to play 1 sound for all initiative rolls?
-			//	// Play 1 sound for the whole rolled set
-			//	if (i > 0) chatData.sound = null;
-			//	messages.push(chatData);
+			//! warning: I am not taking into account hidding combatants, making private rolls where needed
 		}
 		if (!updates.length) return this;
-		// Update multiple combatants
+		//? Update multiple combatants
 		await this.updateEmbeddedDocuments("Combatant", updates);
-		// Ensure the turn order remains with the same combatant
+		//! do we need this?
+		//? Ensure the turn order remains with the same combatant
 		if (updateTurn && currentId) {
 			await this.update({ turn: this.turns.findIndex((t) => t.id === currentId) });
 		}
-		// Create multiple chat messages
+		//! do we need this?
+		//? Create multiple chat messages
 		await ChatMessage.implementation.create(messages);
 		return this;
 	}
