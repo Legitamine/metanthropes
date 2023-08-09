@@ -9,15 +9,17 @@ import { MetaEvaluate } from "../helpers/metaeval.mjs";
  * if you have effects applied (bonus, penalties, multi-action) use MetaRollCustom instead.
  * todo merge both functions into one
  *
- * @param {Object} actor - The actor making the roll.
+ * @param {Object} actor - The actor making the roll. Expected to be an Actor object.
  * @param {string} action - The type of action being performed (e.g., "StatRoll", "Initiative").
- * @param {string} stat - The stat being rolled against.
+ * @param {string} stat - The stat being rolled against. Expected to be a string.
+ * @param {number} destinyCost - The destiny cost of the action. Expected to be a positive number.
+ * @param {string} itemname - The name of the Metapower, Possession or Combo being used. Expected to be a string.
  *
  * @returns {Promise<void>} A promise that resolves once the function completes its operations.
  *
  * @example
  * Rolling a simple stat
- * MetaRoll(actor, "StatRoll", "Power");
+ * MetaRoll(actor, "StatRoll", "Power", 0);
  */
 
 //! genikotero question einai ean thelw na pernaw ta re-rolls apo to MetaRoll prwta
@@ -26,7 +28,7 @@ import { MetaEvaluate } from "../helpers/metaeval.mjs";
 //! testing rq: protagonists, humans, metatherions klp klp linked kai mh, paizoune swsta? emfanizontai ola swsta k me to initiative??
 //! thumisou na vgaleis ta ui.notifications.error apo to actor - kai isws na ta kaneis chat messages ???
 
-export async function MetaRoll(actor, action, stat) {
+export async function MetaRoll(actor, action, stat, destinyCost = 0, itemname = null) {
 	const statValue = actor.system.RollStats[stat];
 	console.log(
 		"Metanthropes RPG System | MetaRoll | Engaged for",
@@ -79,9 +81,13 @@ export async function MetaRoll(actor, action, stat) {
 		"Bonus:",
 		bonus,
 		"Penalty:",
-		penalty
+		penalty,
+		"Destiny Cost:",
+		destinyCost,
+		"Item Name:",
+		itemname
 	);
-	await MetaEvaluate(actor, action, stat, statValue, multiAction, bonus, penalty);
+	await MetaEvaluate(actor, action, stat, statValue, multiAction, bonus, penalty, destinyCost, itemname);
 	let checkResult = await actor.getFlag("metanthropes-system", "lastrolled").MetaEvaluate;
 	console.log(
 		"Metanthropes RPG System | MetaRoll | MetaEvaluate Result for",
