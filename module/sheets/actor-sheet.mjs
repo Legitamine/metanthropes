@@ -17,7 +17,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		return mergeObject(super.defaultOptions, {
 			classes: ["metanthropes", "sheet", "actor"], // these are custom css classes that are used in the html file
 			width: 1012,
-			height: 920,
+			height: 910,
 			closeOnSubmit: false,
 			submitOnClose: true,
 			submitOnChange: true,
@@ -263,13 +263,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 				const damage = dataset.damage;
 				const conditions = dataset.conditions;
 				// PossessionRoll(actor, stat, itemname, attacktype, effect, targets, damage, conditions);
-			} else if (dataset.rollType == "Combo") {
-				const actor = this.actor;
-				const stat = dataset.stat;
-				console.log("Metanthropes RPG System | Rolling a Combo for:", actor.name, "'s", stat);
-				console.log("Metanthropes RPG System | ====================================");
-				MetaRoll(actor, stat);
 			} else {
+				console.log("Metanthropes RPG System | ====================================");
 				console.log("Metanthropes RPG System | ERROR: not defined rollType", dataset.rollType);
 				console.log("Metanthropes RPG System | ====================================");
 				return;

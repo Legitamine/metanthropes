@@ -114,7 +114,7 @@ export class MetanthropesActor extends Actor {
 		let statExperienceSpent = 0;
 		let advancementCount = 0;
 		let charzerofullpenalty = 0;
-		console.log("Metanthropes RPG System | Actor Prep | Updating Characteristics & Stats for", this.type+":", this.name);
+		// console.log("Metanthropes RPG System | Actor Prep | Updating Characteristics & Stats for", this.type+":", this.name);
 		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
 			//? reset charzerofullpenalty to 0
 			charzerofullpenalty = 0;
@@ -128,7 +128,7 @@ export class MetanthropesActor extends Actor {
 			//? Add the experience spent on this characteristic to the total experience spent, only if Progressed is >0
 			if (advancementCount > 0) {
 				experienceSpent += characteristicExperienceSpent;
-				console.log("Metanthropes RPG System | Actor Prep | Experience Spent to Progress", CharKey, "Characteristic:", characteristicExperienceSpent);
+				// console.log("Metanthropes RPG System | Actor Prep | Experience Spent to Progress", CharKey, "Characteristic:", characteristicExperienceSpent);
 			}
 			parseInt((CharValue.Base = Number(CharValue.Initial) + Number(Number(CharValue.Progressed) * 5)));
 			parseInt(
@@ -141,7 +141,7 @@ export class MetanthropesActor extends Actor {
 				charzerofullpenalty = CharValue.Current;
 				CharValue.Current = 0;
 				//! decided not to spam everyone about this, however logging it to console
-				console.log("Metanthropes RPG System | Actor Prep |", this.name+"'s", CharKey, "has dropped to 0!");
+				// console.log("Metanthropes RPG System | Actor Prep |", this.name+"'s", CharKey, "has dropped to 0!");
 			}
 			for (const [StatKey, StatValue] of Object.entries(CharValue.Stats)) {
 				//? Calculate the advancement count based on the characteristic's progressed value
@@ -171,7 +171,7 @@ export class MetanthropesActor extends Actor {
 				if (StatValue.Roll <= 0) {
 					StatValue.Roll = 0;
 					//! decided not to spam everyone about this, however logging it to console
-					console.log("Metanthropes RPG System | Actor Prep |", this.name+"'s", StatKey, "has dropped to 0!");
+					// console.log("Metanthropes RPG System | Actor Prep |", this.name+"'s", StatKey, "has dropped to 0!");
 				}
 			}
 		}
@@ -179,7 +179,7 @@ export class MetanthropesActor extends Actor {
 			(systemData.Vital.Life.max =
 				Number(systemData.Vital.Life.Initial) + Number(systemData.Characteristics.Body.Stats.Endurance.Roll))
 		);
-		console.log("Metanthropes RPG System |", actorData.name+"'s", "New Life Maximum:", systemData.Vital.Life.max);
+		// console.log("Metanthropes RPG System | Actor Prep |", actorData.name+"'s", "New Life Maximum:", systemData.Vital.Life.max);
 		parseInt((systemData.physical.movement.additional = Number(systemData.physical.movement.initial)));
 		parseInt((systemData.physical.movement.sprint = Number(Number(systemData.physical.movement.initial) * 5)));
 		//? Calculate total Experience Spent Progressing Perks & Characteristics & Stats
@@ -228,7 +228,7 @@ export class MetanthropesActor extends Actor {
 		let advancementCount = 0;
 		let perkExperienceSpent = 0;
 		// console.log("Metanthropes RPG System | ====================================");
-		console.log("Metanthropes RPG System | Actor Prep | Updating Perks for", this.type+":", this.name);
+		// console.log("Metanthropes RPG System | Actor Prep | Updating Perks for", this.type+":", this.name);
 		//	console.log("Experience Spent before Perks:", experienceAlreadySpent);
 		//? Calculate the experience spent on Knowledge Perks
 		for (const [KnowPerkKey, KnowPerkValue] of Object.entries(systemData.Perks.Knowledge)) {
@@ -253,8 +253,8 @@ export class MetanthropesActor extends Actor {
 		//? Calculate total Experience Spent Progressing Perks & Characteristics & Stats
 		//? test if we have spent enough xp on the starting perks
 		if (experienceSpent < startingPerks * 100) {
-			console.log("Metanthropes RPG System | Actor Prep |", this.name, "has not spent enough XP on starting perks!");
-			console.log("Metanthropes RPG System | Actor Prep |", this.name, "has spent", experienceSpent, "XP on perks");
+			// console.log("Metanthropes RPG System | Actor Prep |", this.name, "has not spent enough XP on starting perks!");
+			// console.log("Metanthropes RPG System | Actor Prep |", this.name, "has spent", experienceSpent, "XP on perks");
 			console.log(
 				"Metanthropes RPG System | Actor Prep |",
 				this.name,
@@ -283,7 +283,7 @@ export class MetanthropesActor extends Actor {
 		if (systemData.Vital.Experience.Stored < 0) {
 			ui.notifications.warn(this.name + "'s Stored Experience is Negative!");
 			
-			console.log("Metanthropes RPG System | Actor Prep | WARNING: Stored Experience is Negative!");
+			// console.log("Metanthropes RPG System | Actor Prep | WARNING: Stored Experience is Negative!");
 			
 		}
 		//	console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
@@ -292,7 +292,7 @@ export class MetanthropesActor extends Actor {
 	}
 	_prepareDerivedMovementData(actorData) {
 		const systemData = actorData.system;
-		console.log("Metanthropes RPG System | Actor Prep | Updating Movement for", this.type+":", this.name);
+		// console.log("Metanthropes RPG System | Actor Prep | Updating Movement for", this.type+":", this.name);
 		//*first we will calculate the current values from buffs and conditions, then we take their modifiers and calculate the movement value
 		let speedinitial = Number(systemData.physical.speed.initial);
 		let weightinitial = Number(systemData.physical.weight.initial);
@@ -388,14 +388,7 @@ export class MetanthropesActor extends Actor {
 		//! for some reason these updates didn't work as intented, why is that?
 		this.update({ "system.physical.movement.additional": movementvalue });
 		this.update({ "system.physical.movement.sprint": movementvalue * 5 });
-		console.log(
-			"Metanthropes RPG System | Actor Prep | New Movement:",
-			movementvalue,
-			"Additional:",
-			movementvalue,
-			"Sprint:",
-			movementvalue * 5
-		);
+		// console.log("Metanthropes RPG System | Actor Prep | New Movement:", movementvalue, "Additional:", movementvalue, "Sprint:", movementvalue * 5);
 	}
 	getRollData() {
 		const data = super.getRollData();

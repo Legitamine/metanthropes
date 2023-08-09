@@ -14,7 +14,7 @@
  * @param {number} [bonus=0] - Any bonuses applied to the roll. Expected to be positive.
  * @param {number} [penalty=0] - Any penalties applied to the roll. Expected to be negative.
  * @param {number} [destinyCost=0] - The Destiny cost of the Metapower. Expected to be positive.
- * @param {string} [itemname=""] - The name of the item being used to activate the Metapower.
+ * @param {string} [itemname=""] - The name of the Possession or Metapower. Expected to be a string.
  *
  * @returns {Promise<void>} A promise that resolves once the function completes its operations.
  *
@@ -62,7 +62,7 @@ export async function MetaEvaluate(
 	let levelsOfFailure = Math.floor((rollResult - statValue - bonus - multiAction - penalty) / 10);
 	const criticalSuccess = rollResult === 1;
 	const criticalFailure = rollResult === 100;
-	let currentDestiny = actor.system.Vital.Destiny.value;
+	let currentDestiny = Number(actor.system.Vital.Destiny.value);
 	//? Check for Destiny Cost in case of a Metapower
 	if (action === "Metapower") {
 		if (currentDestiny < destinyCost) {
@@ -135,47 +135,70 @@ export async function MetaEvaluate(
 	message += ` and the result is ${rollResult}.<br><br>It is a ${result}`;
 	//? if we have levels of success or failure, add them to the message
 	if (levelsOfSuccess > 0) {
-		message += `, accumulating: ${levelsOfSuccess} * ✔️ Level(s) of Success.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+		if (levelsOfSuccess === 1) {
+			message += `, accumulating: ${levelsOfSuccess} * ✔️ Level of Success.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+			resultLevel = levelsOfSuccess;
+		} else {
+		message += `, accumulating: ${levelsOfSuccess} * ✔️ Levels of Success.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 		resultLevel = levelsOfSuccess;
+		}
 	} else if (levelsOfFailure > 0) {
-		message += `, accumulating: ${levelsOfFailure} * ❌ Level(s) of Failure.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+		if (levelsOfFailure === 1) {
+			message += `, accumulating: ${levelsOfFailure} * ❌ Level of Failure.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+			resultLevel = -levelsOfFailure;
+		} else {
+		message += `, accumulating: ${levelsOfFailure} * ❌ Levels of Failure.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 		resultLevel = -levelsOfFailure;
+		}
 	} else {
 		message += `.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 	}
 	//? Buttons to Re-Roll MetaEvaluate results - only adds button to message, if it's not a Critical and only if they have at least 1 destiny or more to spend
 	//* The buttons are hidden for everone except the owner of the actor and the GM as long as DF Chat Enhancements is installed
 	//! In case of Metapowers with DestinyCost it should also check to see they have enough Destiny to spend to re-activate the power??
-	if (!criticalSuccess && !criticalFailure && currentDestiny > 0 + destinyCost) {
+	//? Define threshold of showing the button, to re-roll we need a minimum of 1 Destiny + the Destiny Cost of the Metapower (only applies to Metapowers with DestinyCost, otherwise it's 0)
+	let threshold = Number(1 + Number(destinyCost));
+	//console.log("Metanthropes RPG System | MetaEvaluate | Threshold for re-roll:", threshold);
+	//console.log("Metanthropes RPG System | MetaEvaluate | Current Destiny:", currentDestiny);
+	//console.log("Metanthropes RPG System | MetaEvaluate | Critical Success:", criticalSuccess);
+	//console.log("Metanthropes RPG System | MetaEvaluate | Critical Failure:", criticalFailure);
+	if (!criticalSuccess && !criticalFailure && currentDestiny >= threshold) {
+		//console.log("Metanthropes RPG System | MetaEvaluate | button showing up");
 		//? Need to have different buttons for the various actions, so the correct function is being re-called by the correct button and the correct parameters are being passed
 		if (action === "Initiative") {
 			message += `<div class="hide-button hidden"><br><button class="metainitiative-reroll" data-actoruuid="${actor.uuid}"
-				>Spend 🤞 Destiny to reroll</button><br><br></div>`;
+				>Spend 🤞 Destiny to reroll</button><br></div>`;
 		} else {
 			message += `<div class="hide-button hidden"><br><button class="metaeval-reroll" data-actoruuid="${actor.uuid}"
 				data-stat="${stat}" data-statvalue="${statValue}" data-multiaction="${multiAction}"
 				data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}" data-destinyCost="${destinyCost}" 
 				data-itemname="${itemname}"
-				>Spend 🤞 Destiny to reroll</button><br><br></div>`;
+				>Spend 🤞 Destiny to reroll</button><br></div>`;
 		}
+	} else {
+		//console.log("Metanthropes RPG System | MetaEvaluate | No button shows up");
+		//message += `<div><br></div>`;
 	}
 	//? Buttons for Keeping the results of MetaEvalute
 	//! I should include a way to auto-proceed if the results are criticals
 	if (action === "Metapower") {
 		//! I can either have MetaEvaluate take all the necessairy inputs passed down from MetaRoll about the Item,
 		//! or can I start from here to collect his information to pass it along? if so, to which function?
-		message += `<div class="hide-button hidden"><button class="metapower-activate" data-actoruuid="${actor.uuid}"
+		message += `<div class="hide-button hidden"><br><button class="metapower-activate" data-actoruuid="${actor.uuid}"
 			data-stat="${stat}" data-statvalue="${statValue}" data-multiaction="${multiAction}"
 			data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}" data-destinycost="${destinyCost}" 
 			data-itemname="${itemname}"
-			>Activate ${itemname}</button><br><br></div>`;
+			>Activate Ⓜ️ ${itemname}</button><br></div>`;
 	} else if (action === "Possession") {
-		message += `<div class="hide-button hidden"><button class="possession-activate" data-actoruuid="${actor.uuid}"
+		message += `<div class="hide-button hidden"><br><button class="possession-activate" data-actoruuid="${actor.uuid}"
 			data-stat="${stat}" data-statvalue="${statValue}" data-multiaction="${multiAction}"
 			data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}"
 			data-itemname="${itemname}"
-			>Use ${itemname}</button><br><br></div>`;
+			>Use 🛠️ ${itemname}</button><br></div>`;
+	} else {
+		//message += `<div><br></div>`;
 	}
+	message += `<div><br></div>`;
 	//? Update actor flags with the results of the roll
 	//? Fetch the current state of the .lastrolled flag
 	let previousRolls = actor.getFlag("metanthropes-system", "lastrolled") || {};
