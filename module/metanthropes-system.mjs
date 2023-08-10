@@ -352,22 +352,22 @@ Hooks.on("renderChatMessage", async (message, html) => {
 	if (!actorUUID) return;
 	const actor = await fromUuid(actorUUID);
 	const metaowner = actor.system.metaowner.value;
-	console.log("Metanthropes RPG System | metaowner:", actor.system.metaowner.value, metaowner);
+	//console.log("Metanthropes RPG System | DEBUG | metaowner:", actor.system.metaowner.value, metaowner);
 	//? Proceed only if the current user is the owner of the actor, or a GM
 	if (game.user.name === metaowner || game.user.isGM) {
 		//? Unhide the buttons - assumes DF Chat Enhancements module is installed (provides hidden class that works)
 		html.find(".hide-button").removeClass("hidden");
-		//? Listen for Re-Roll button clicks
+		//? Listen for Destiny reroll button clicks
 		html.find(".rolld10-reroll").on("click", Rolld10ReRoll);
 		html.find(".metaeval-reroll").on("click", MetaEvaluateReRoll);
-		html.find(".metapower-reroll").on("click", MetapowerReRoll);
-		html.find(".possession-re-roll").on("click", PossessionReRoll);
+		html.find(".metainitiative-reroll").on("click", MetaInitiativeReRoll);
+		//html.find(".metapower-reroll").on("click", MetapowerReRoll);
+		//html.find(".possession-re-roll").on("click", PossessionReRoll);
 		html.find(".re-roll-targets").on("click", ReRollTargets);
 		html.find(".re-roll-duration").on("click", ReRollDuration);
 		html.find(".re-roll-damage").on("click", ReRollDamage);
 		html.find(".re-roll-healing").on("click", ReRollHealing);
-		//? Listen for metainitiative re-roll
-		html.find(".metainitiative-reroll").on("click", MetaInitiativeReRoll);
+
 		//? Listen for activations
 		html.find(".metapower-activate").on("click", MetapowerActivate);
 		html.find(".possession-use").on("click", PossessionUse);

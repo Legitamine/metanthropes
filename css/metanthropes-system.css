@@ -98,8 +98,14 @@ option {
 
 .window-content {
   font-family: "nasalization", sans-serif;
-  padding: 1px;
-  margin: 1px;
+  padding: 3px;
+  margin: 3px;
+}
+
+.dialog-content {
+  font-family: "nasalization", sans-serif;
+  padding: 3px;
+  margin: 3px;
 }
 
 .window-app .window-content {
@@ -109,6 +115,8 @@ option {
   background-repeat: repeat;
   background-origin: border-box;
   background-clip: border-box;
+  padding: 3px;
+  margin: 3px;
 }
 
 .chat-message {
@@ -323,10 +331,6 @@ option {
   text-align: center;
 }
 
-.metanthropes {
-  padding: 3px;
-  margin: 3px;
-}
 .metanthropes .layout-container-grid3x4 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -876,7 +880,7 @@ option {
 .metanthropes .style-mp-rolls {
   opacity: 1;
   font-family: "nasalization", sans-serif;
-  font-size: 1rem;
+  font-size: 14px;
   color: #000;
   justify-content: center;
   justify-self: center;

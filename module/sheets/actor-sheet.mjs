@@ -17,7 +17,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		return mergeObject(super.defaultOptions, {
 			classes: ["metanthropes", "sheet", "actor"], // these are custom css classes that are used in the html file
 			width: 1012,
-			height: 920,
+			height: 910,
 			closeOnSubmit: false,
 			submitOnClose: true,
 			submitOnChange: true,
@@ -55,7 +55,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//	//? Troubleshooting template.json data
 		//	// Log the value of system.Characteristics
 		//	console.log("Metanthropes RPG System | system.Characteristics:", context.system.Characteristics);
-//	
+		//
 		//	// Log the Title property of each characteristic
 		//	for (const key in context.system.Characteristics) {
 		//		console.log(`Metanthropes RPG System | ${key} Title:`, context.system.Characteristics[key].Title);
@@ -177,7 +177,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 	}
 	//code from boilerplate on rolls
 	async _onRoll(event) {
-		console.log("Metanthropes RPG System | Evaluating a new _onRoll(event) for this:", this);
+		console.log("Metanthropes RPG System | _onRoll | Evaluating a new _onRoll(event) for this:", this);
 		event.preventDefault();
 		const element = event.currentTarget;
 		const dataset = element.dataset;
@@ -189,13 +189,34 @@ export class MetanthropesActorSheet extends ActorSheet {
 				const actor = this.actor;
 				const action = dataset.rollType;
 				const stat = dataset.stat;
-				console.log("Metanthropes RPG System | Engaging MetaRoll for:", actor.name+"'s", action, "with", stat);
-				MetaRoll(actor, action, stat);
+				console.log(
+					"Metanthropes RPG System | _onRoll | Engaging MetaRoll for:",
+					actor.name + "'s",
+					action,
+					"with",
+					stat
+				);
+				await MetaRoll(actor, action, stat);
 			} else if (dataset.rollType == "Metapower") {
 				const actor = this.actor;
 				const stat = dataset.stat;
+				const action = dataset.rollType;
+				const destinyCost = dataset.destinycost;
 				const itemname = dataset.itemname;
-				const destcost = dataset.destcost;
+				console.log(
+					"Metanthropes RPG System | _onRoll | Engaging MetaRoll for:",
+					actor,
+					"Action:",
+					action,
+					"Metapower:",
+					itemname,
+					"Destiny Cost:",
+					destinyCost,
+					"with:",
+					stat
+				);
+				await MetaRoll(actor, action, stat, destinyCost, itemname);
+				console.log("Metanthropes RPG System | _onRoll | Finished");
 				const effect = dataset.effect;
 				const targets = dataset.targets;
 				const targetsdice = dataset.targetsdice;
@@ -205,51 +226,45 @@ export class MetanthropesActorSheet extends ActorSheet {
 				const healing = dataset.healing;
 				const buffs = dataset.buffs;
 				const conditions = dataset.conditions;
-				console.log(
-					"Metanthropes RPG System | Rolling a Metapower for:",
-					actor,
-					"Metapower:",
-					itemname,
-					"Destiny Cost:",
-					destcost,
-					"with:",
-					stat
-				);
-				console.log("Metanthropes RPG System | ====================================");
-				MetapowerRoll(
-					actor,
-					stat,
-					itemname,
-					destcost,
-					effect,
-					targets,
-					targetsdice,
-					duration,
-					durationdice,
-					damage,
-					healing,
-					buffs,
-					conditions
-				);
+
+				//	MetapowerRoll(
+				//		actor,
+				//		stat,
+				//		itemname,
+				//		destcost,
+				//		effect,
+				//		targets,
+				//		targetsdice,
+				//		duration,
+				//		durationdice,
+				//		damage,
+				//		healing,
+				//		buffs,
+				//		conditions
+				//	);
 			} else if (dataset.rollType == "Possession") {
 				const actor = this.actor;
+				const action = dataset.rollType;
 				const stat = dataset.stat;
 				const itemname = dataset.itemname;
+				console.log(
+					"Metanthropes RPG System | _onRoll | Engaging MetaRoll for:",
+					actor.name + "'s",
+					action + ":",
+					itemname,
+					"with",
+					stat
+				);
+				await MetaRoll(actor, action, stat, 0, itemname);
+				console.log("Metanthropes RPG System | _onRoll | Finished");
 				const attacktype = dataset.attacktype;
 				const effect = dataset.effect;
 				const targets = dataset.targets;
 				const damage = dataset.damage;
 				const conditions = dataset.conditions;
-				console.log("Metanthropes RPG System | Rolling a Possession for:", actor.name, "'s", stat);
-				console.log("Metanthropes RPG System | ====================================");
-				PossessionRoll(actor, stat, itemname, attacktype, effect, targets, damage, conditions);
-			} else if (dataset.rollType == "Combo") {
-				const actor = this.actor;
-				const stat = dataset.stat;
-				console.log("Metanthropes RPG System | Rolling a Combo for:", actor.name, "'s", stat);
-				console.log("Metanthropes RPG System | ====================================");
-				MetaRoll(actor, stat);
+				// PossessionRoll(actor, stat, itemname, attacktype, effect, targets, damage, conditions);
 			} else {
+				console.log("Metanthropes RPG System | ====================================");
 				console.log("Metanthropes RPG System | ERROR: not defined rollType", dataset.rollType);
 				console.log("Metanthropes RPG System | ====================================");
 				return;
@@ -271,6 +286,9 @@ export class MetanthropesActorSheet extends ActorSheet {
 	}
 	//first try to make a custom roll for right-clicking
 	async _onCustomRoll(event) {
+		//! this is a mess and needs refactoring
+		//todo: refactor this
+		//! this is a mess and needs refactoring
 		event.preventDefault();
 		const element = event.currentTarget;
 		const dataset = element.dataset;

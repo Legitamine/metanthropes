@@ -88,8 +88,13 @@ option {
 }
 .window-content {
 	font-family: $font-primary;
-	padding: $padding-sm;
-	margin: $margin-sm;
+	padding: $padding-md;
+	margin: $margin-md;
+}
+.dialog-content {
+	font-family: $font-primary;
+	padding: $padding-md;
+	margin: $margin-md;
 }
 .window-app .window-content {
 	background-image: url("../artwork/background.webp");
@@ -98,6 +103,8 @@ option {
 	background-repeat: repeat;
 	background-origin: border-box;
 	background-clip: border-box;
+	padding: $padding-md;
+	margin: $margin-md;
 }
 .chat-message {
 	background-image: url("../artwork/chat-results.webp");
