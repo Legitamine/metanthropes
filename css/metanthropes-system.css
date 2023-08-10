@@ -525,10 +525,14 @@ option {
   align-self: auto;
   align-items: stretch;
   align-content: space-between;
-  height: 200px;
+  height: auto;
   padding: 6px;
   margin: 6px;
   overflow-y: auto;
+  font-family: "gill-sans-nova", sans-serif;
+  font-size: var(--font-size-14);
+  font-weight: 500;
+  color: #000;
 }
 .metanthropes .style-container-outer-charstats {
   opacity: 1;

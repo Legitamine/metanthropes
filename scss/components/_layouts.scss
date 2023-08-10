@@ -190,8 +190,12 @@
 	align-self: auto;
 	align-items: stretch;
 	align-content: space-between;
-	height: 200px;
+	height: auto;
 	padding: $padding-lg;
 	margin: $margin-lg;
 	overflow-y: auto;
+	font-family: $font-secondary;
+	font-size: var(--font-size-14);
+	font-weight: 500;
+	color: $c-black;
 }

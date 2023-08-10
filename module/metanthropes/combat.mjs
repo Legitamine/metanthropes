@@ -15,6 +15,8 @@ export class MetanthropesCombat extends Combat {
 		return ib - ia || (astatValue > bstatValue ? -1 : 1);
 	}
 	//todo: award Destiny and re-roll initiative if tied both in Initiative and statValue
+	//! gia na paixei to full ruleset, prepei na kanw 'confirm initiative'
+	
 	
 	/**
 	 * Roll Initiative for one or multiple Combatants within the Combat document

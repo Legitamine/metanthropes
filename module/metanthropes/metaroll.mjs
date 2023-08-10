@@ -40,8 +40,9 @@ export async function MetaRoll(actor, action, stat, destinyCost = 0, itemname = 
 	);
 	const disease = actor.system.Characteristics.Body.CoreConditions.Diseased;
 	const pain = actor.system.Characteristics.Mind.CoreConditions.Pain;
-	const hunger = actor.system.Characteristics.Mind.CoreConditions.Hunger; //also fatigue?
-	const unconscious = actor.system.Characteristics.Soul.CoreConditions.Unconscious;
+	const hunger = actor.system.Characteristics.Mind.CoreConditions.Hunger;
+	// const unconscious = actor.system.Characteristics.Soul.CoreConditions.Unconscious;
+	// fatigue in v0.9
 	//? Check if we are unconscious
 	if (unconscious > 0) {
 		ui.notifications.error(actor.name + " is unconscious and can't act!");
