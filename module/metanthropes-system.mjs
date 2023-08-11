@@ -16,13 +16,11 @@ import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 //? Import Re-Roll helpers
 import { MetaEvaluateReRoll } from "./helpers/metaeval.mjs";
 import { Rolld10ReRoll } from "./helpers/extrasroll.mjs";
-import { MetapowerReRoll } from "./helpers/mprollstat.mjs";
-import { PossessionReRoll } from "./helpers/posrollstat.mjs";
+import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
 import { ReRollTargets } from "./helpers/extrasroll.mjs";
 import { ReRollDuration } from "./helpers/extrasroll.mjs";
 import { ReRollDamage } from "./helpers/extrasroll.mjs";
 import { ReRollHealing } from "./helpers/extrasroll.mjs";
-import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
 import { PossessionUse } from "./helpers/posuse.mjs";
 import { MetapowerActivate } from "./helpers/mpactivate.mjs";
 //* Handlebars helpers

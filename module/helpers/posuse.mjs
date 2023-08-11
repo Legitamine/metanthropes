@@ -1,18 +1,5 @@
-export async function PossessionUse(event) {
-	event.preventDefault();
-	const button = event.target;
-	const actorId = button.dataset.idactor;
-	const stat = button.dataset.stat;
-	const statValue = parseInt(button.dataset.statValue);
-	const itemname = button.dataset.itemname;
-	const attacktype = button.dataset.attacktype;
-	const effect = button.dataset.effect;
-	const actor = game.actors.get(actorId);
-	const targets = button.dataset.targets;
-	const damage = button.dataset.damage;
-	const modifier = parseInt(button.dataset.modifier);
-	const conditions = button.dataset.conditions;
-	//todo: utilize existing levels of success and spent levels of success
+export async function PossessionUse(actor, itemname, attacktype, effect, targets, damage, modifier, conditions) {
+	//todo: perks integration
 	// Create a chat message with the provided content
 	const powerroll = actor.system.Characteristics.Body.Stats.Power.Roll;
 	let contentdata = null;

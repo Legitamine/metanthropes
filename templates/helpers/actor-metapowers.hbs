@@ -3,8 +3,8 @@
 		<li class="item flexrow items-header">
 			<div class="item-name">⏫: {{metapowerLevel}}</div>
 			<div class="item-itemname">Metapower</div>
-			<div class="item-destinycost">🤞</div>
 			<div class="item-statroll">🎲</div>
+			<div class="item-destinycost">🤞</div>
 			<div class="item-actionslot">⏱</div>
 			<div class="item-range">📏</div>
 			<div class="item-controls"><i class="fa-duotone fa-gears"></i></div>
@@ -20,22 +20,13 @@
 					</h4>
 				</div>
 				<div class="item-itemname item-prop">{{item.system.Activation.MetapowerName.value}}</div>
-				<div class="item-destinycost item-prop">{{item.system.Activation.DestinyCost.value}}</div>
 				<div class="item-statroll style-mp-rolls" data-roll-type="Metapower"
-							data-stat="{{item.system.Activation.StatRolled.value}}" data-itemname="{{item.name}}"
-							data-destinycost="{{item.system.Activation.DestinyCost.value}}"
-							data-effect="{{item.system.EffectDescription.value}}"
-							data-targets="{{item.system.Activation.Targets.value}}"
-							data-targetsdice="{{item.system.Activation.TargetsDice.value}}"
-							data-duration="{{item.system.Activation.Duration.value}}"
-							data-durationdice="{{item.system.Activation.DurationDice.value}}"
-							data-damage="{{item.system.Effects.Damage.value}}"
-							data-healing="{{item.system.Effects.Healing.value}}"
-							data-buffs="{{item.system.Effects.Buffs.value}}"
-							data-conditions="{{item.system.Effects.Conditions.value}}">
+							data-itemname="{{item.name}}"
+							data-destinycost="{{item.system.Activation.DestinyCost.value}}">
 					{{item.system.Activation.StatRolled.value}}:
 					{{lookup ../../system.RollStats item.system.Activation.StatRolled.value}}
 				</div>
+				<div class="item-destinycost item-prop">{{item.system.Activation.DestinyCost.value}}</div>
 				<div class="item-actionslot item-prop">{{item.system.Activation.ActionSlot.value}}</div>
 				<div class="item-range item-prop">{{item.system.Activation.Range.value}}</div>
 				<div class="item-controls">

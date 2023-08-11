@@ -15,7 +15,7 @@
  * @param {number} [penalty=0] - Any penalties applied to the roll. Expected to be negative.
  * @param {number} [pain=0] - Any Pain Condition applied to the roll. Expected to be positive.
  * @param {number} [destinyCost=0] - The Destiny cost of the Metapower. Expected to be positive.
- * @param {string} [itemname=""] - The name of the Possession or Metapower. Expected to be a string.
+ * @param {string} [itemName=""] - The name of the Possession or Metapower. Expected to be a string.
  *
  * @returns {Promise<void>} A promise that resolves once the function completes its operations.
  *
@@ -36,7 +36,7 @@ export async function MetaEvaluate(
 	penalty = 0,
 	pain = 0,
 	destinyCost = 0,
-	itemname = null
+	itemName = null
 ) {
 	console.log(
 		"Metanthropes RPG System | MetaEvaluate | Engaged for:",
@@ -53,7 +53,7 @@ export async function MetaEvaluate(
 		"Destiny Cost:",
 		destinyCost,
 		"Item Name:",
-		itemname
+		itemName
 	);
 	//? evaluate the result of the roll
 	let result = null;
@@ -116,12 +116,12 @@ export async function MetaEvaluate(
 		message = `Rolls for Initiative with ${stat} score of ${statScore}%`;
 	} else if (action === "Metapower") {
 		if (destinyCost > 0) {
-			message = `Spends ${destinyCost} * 🤞 Destiny and rolls to activate the Metapower: ${itemname} with ${stat} score of ${statScore}%`;
+			message = `Spends ${destinyCost} * 🤞 Destiny and rolls to activate the Metapower: ${itemName} with ${stat} score of ${statScore}%`;
 		} else {
-			message = `Rolls to activate the Metapower: ${itemname} with ${stat} score of ${statScore}%`;
+			message = `Rolls to activate the Metapower: ${itemName} with ${stat} score of ${statScore}%`;
 		}
 	} else if (action === "Possession") {
-		message = `Rolls to use the Possession: ${itemname} with ${stat} score of ${statScore}%`;
+		message = `Rolls to use the Possession: ${itemName} with ${stat} score of ${statScore}%`;
 	}
 	//? if we have a bonus or penalty, add it to the message
 	if (bonus > 0) {
@@ -138,7 +138,7 @@ export async function MetaEvaluate(
 	message += ` and the result is ${rollResult}.<br><br>It is a ${result}`;
 	//? if we have Pain condition, our results are lowered by an equal amount - in case of Criticals we ignore Pain
 	if (!criticalFailure && !criticalSuccess && pain > 0) {
-		message += ` and it's being reduced further by Pain * ${pain}`;
+		message += ` and it's being further reduced by Pain * ${pain}`;
 	}
 	//? if we have levels of success or failure, add them to the message
 	if (levelsOfSuccess > 0) {
@@ -162,7 +162,6 @@ export async function MetaEvaluate(
 	}
 	//? Buttons to Re-Roll MetaEvaluate results - only adds button to message, if it's not a Critical and only if they have at least 1 destiny or more to spend
 	//* The buttons are hidden for everone except the owner of the actor and the GM as long as DF Chat Enhancements is installed
-	//! In case of Metapowers with DestinyCost it should also check to see they have enough Destiny to spend to re-activate the power??
 	//? Define threshold of showing the button, to re-roll we need a minimum of 1 Destiny + the Destiny Cost of the Metapower (only applies to Metapowers with DestinyCost, otherwise it's 0)
 	let threshold = Number(1 + Number(destinyCost));
 	//console.log("Metanthropes RPG System | MetaEvaluate | Threshold for re-roll:", threshold);
@@ -177,9 +176,9 @@ export async function MetaEvaluate(
 				>Spend 🤞 Destiny to reroll</button><br></div>`;
 		} else {
 			message += `<div class="hide-button hidden"><br><button class="metaeval-reroll" data-actoruuid="${actor.uuid}"
-				data-stat="${stat}" data-statScore="${statScore}" data-multiaction="${multiAction}"
-				data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}" data-destinyCost="${destinyCost}" 
-				data-itemname="${itemname}"
+				data-stat="${stat}" data-stat-score="${statScore}" data-multi-action="${multiAction}"
+				data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}" data-destiny-cost="${destinyCost}" 
+				data-item-name="${itemName}" data-pain="${pain}"
 				>Spend 🤞 Destiny to reroll</button><br></div>`;
 		}
 	} else {
@@ -187,21 +186,14 @@ export async function MetaEvaluate(
 		//message += `<div><br></div>`;
 	}
 	//? Buttons for Keeping the results of MetaEvalute
-	//! I should include a way to auto-proceed if the results are criticals
 	if (action === "Metapower") {
-		//! I can either have MetaEvaluate take all the necessairy inputs passed down from MetaRoll about the Item,
-		//! or can I start from here to collect his information to pass it along? if so, to which function?
 		message += `<div class="hide-button hidden"><br><button class="metapower-activate" data-actoruuid="${actor.uuid}"
-			data-stat="${stat}" data-statScore="${statScore}" data-multiaction="${multiAction}"
-			data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}" data-destinycost="${destinyCost}" 
-			data-itemname="${itemname}"
-			>Activate Ⓜ️ ${itemname}</button><br></div>`;
+			data-item-name="${itemName}"
+			>Activate Ⓜ️ ${itemName}</button><br></div>`;
 	} else if (action === "Possession") {
 		message += `<div class="hide-button hidden"><br><button class="possession-activate" data-actoruuid="${actor.uuid}"
-			data-stat="${stat}" data-statScore="${statScore}" data-multiaction="${multiAction}"
-			data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}"
-			data-itemname="${itemname}"
-			>Use 🛠️ ${itemname}</button><br></div>`;
+			data-item-name="${itemName}"
+			>Use 🛠️ ${itemName}</button><br></div>`;
 	} else {
 		//message += `<div><br></div>`;
 	}
@@ -260,10 +252,12 @@ export async function MetaEvaluate(
 		bonus,
 		"Penalty:",
 		penalty,
+		"Pain:",
+		pain,
 		"Destiny Cost:",
 		destinyCost,
 		"Item Name:",
-		itemname,
+		itemName,
 		"levelsOfSuccess:",
 		levelsOfSuccess,
 		"levelsOfFailure:",
@@ -297,27 +291,26 @@ export async function MetaEvaluate(
  */
 export async function MetaEvaluateReRoll(event) {
 	event.preventDefault();
+	//? Collect the data from the button
 	const button = event.target;
 	const actorUUID = button.dataset.actoruuid;
 	const stat = button.dataset.stat;
 	const statScore = parseInt(button.dataset.statScore);
-	const multiAction = parseInt(button.dataset.multiaction);
+	const multiAction = parseInt(button.dataset.multiAction);
 	const bonus = parseInt(button.dataset.bonus);
 	const penalty = parseInt(button.dataset.penalty);
-	const destinyCost = parseInt(button.dataset.destinycost);
+	const destinyCost = parseInt(button.dataset.destinyCost);
 	const actor = await fromUuid(actorUUID);
 	const action = button.dataset.action;
-	const itemname = button.dataset.itemname;
+	const itemName = button.dataset.itemName;
+	const pain = button.dataset.pain;
+	//? Disable the button after it's been clicked
+	button.disabled = true;
 	console.log("Metanthropes RPG System | MetaEvaluateReRoll | Engaged for:", actor.name + "'s", action, actorUUID);
 	//? Reduce Destiny.value by 1
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	currentDestiny -= 1;
 	await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-	//	//? Update re-roll button visibility
-	//	const message = game.messages.get(button.dataset.messageId);
-	//	if (message) {
-	//		message.render();
-	//	}
-	await MetaEvaluate(actor, action, stat, statScore, multiAction, bonus, penalty, destinyCost, itemname);
+	await MetaEvaluate(actor, action, stat, statScore, multiAction, bonus, penalty, pain, destinyCost, itemName);
 	console.log("Metanthropes RPG System | MetaEvaluateReRoll | Finished for:", actor.name + "'s", action, actorUUID);
 }
