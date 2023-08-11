@@ -116,12 +116,12 @@ export async function MetaEvaluate(
 		message = `Rolls for Initiative with ${stat} score of ${statScore}%`;
 	} else if (action === "Metapower") {
 		if (destinyCost > 0) {
-			message = `Spends ${destinyCost} * 🤞 Destiny and rolls to activate the Metapower: ${itemName} with ${stat} score of ${statScore}%`;
+			message = `Spends ${destinyCost} * 🤞 Destiny and rolls to activate the Ⓜ️ Metapower: ${itemName} with ${stat} score of ${statScore}%`;
 		} else {
-			message = `Rolls to activate the Metapower: ${itemName} with ${stat} score of ${statScore}%`;
+			message = `Rolls to activate the Ⓜ️ Metapower: ${itemName} with ${stat} score of ${statScore}%`;
 		}
 	} else if (action === "Possession") {
-		message = `Rolls to use the Possession: ${itemName} with ${stat} score of ${statScore}%`;
+		message = `Rolls to use the 🛠️ Possession: ${itemName} with ${stat} score of ${statScore}%`;
 	}
 	//? if we have a bonus or penalty, add it to the message
 	if (bonus > 0) {
@@ -160,17 +160,11 @@ export async function MetaEvaluate(
 	} else {
 		message += `.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 	}
-	//? Buttons to Re-Roll MetaEvaluate results - only adds button to message, if it's not a Critical and only if they have at least 1 destiny or more to spend
+	//? Buttons to Re-Roll MetaEvaluate results - only adds the button to message, if it's not a Critical and only if they have enough Destiny for needed reroll.
 	//* The buttons are hidden for everone except the owner of the actor and the GM as long as DF Chat Enhancements is installed
 	//? Define threshold of showing the button, to re-roll we need a minimum of 1 Destiny + the Destiny Cost of the Metapower (only applies to Metapowers with DestinyCost, otherwise it's 0)
 	let threshold = Number(1 + Number(destinyCost));
-	//console.log("Metanthropes RPG System | MetaEvaluate | Threshold for re-roll:", threshold);
-	//console.log("Metanthropes RPG System | MetaEvaluate | Current Destiny:", currentDestiny);
-	//console.log("Metanthropes RPG System | MetaEvaluate | Critical Success:", criticalSuccess);
-	//console.log("Metanthropes RPG System | MetaEvaluate | Critical Failure:", criticalFailure);
 	if (!criticalSuccess && !criticalFailure && currentDestiny >= threshold) {
-		//console.log("Metanthropes RPG System | MetaEvaluate | button showing up");
-		//? Need to have different buttons for the various actions, so the correct function is being re-called by the correct button and the correct parameters are being passed
 		if (action === "Initiative") {
 			message += `<div class="hide-button hidden"><br><button class="metainitiative-reroll" data-actoruuid="${actor.uuid}"
 				>Spend 🤞 Destiny to reroll</button><br></div>`;
@@ -191,8 +185,8 @@ export async function MetaEvaluate(
 			data-item-name="${itemName}"
 			>Activate Ⓜ️ ${itemName}</button><br></div>`;
 	} else if (action === "Possession") {
-		message += `<div class="hide-button hidden"><br><button class="possession-activate" data-actoruuid="${actor.uuid}"
-			data-item-name="${itemName}"
+		message += `<div class="hide-button hidden"><br><button class="possession-use" data-actoruuid="${actor.uuid}"
+			data-item-name="${itemName}" data-multi-action="${multiAction}"
 			>Use 🛠️ ${itemName}</button><br></div>`;
 	} else {
 		//message += `<div><br></div>`;
@@ -312,5 +306,10 @@ export async function MetaEvaluateReRoll(event) {
 	currentDestiny -= 1;
 	await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 	await MetaEvaluate(actor, action, stat, statScore, multiAction, bonus, penalty, pain, destinyCost, itemName);
+	//? Refresh the actor sheet if it's open
+	const sheet = actor.sheet;
+	if (sheet && sheet.rendered) {
+		sheet.render(true);
+	}
 	console.log("Metanthropes RPG System | MetaEvaluateReRoll | Finished for:", actor.name + "'s", action, actorUUID);
 }

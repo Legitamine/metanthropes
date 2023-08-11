@@ -12,7 +12,7 @@ import { MetaEvaluate } from "../helpers/metaeval.mjs";
  * @param {string} stat - The stat being rolled against. Expected to be a string.
  * @param {boolean} isCustomRoll - Whether the roll is custom or not. Expected to be a boolean.
  * @param {number} destinyCost - The destiny cost of the action. Expected to be a positive number.
- * @param {string} itemname - The name of the Metapower, Possession or Combo being used. Expected to be a string.
+ * @param {string} itemName - The name of the Metapower, Possession or Combo being used. Expected to be a string.
  *
  * @returns {Promise<void>} A promise that resolves once the function completes its operations.
  *
@@ -25,7 +25,7 @@ import { MetaEvaluate } from "../helpers/metaeval.mjs";
 //! testing rq: protagonists, humans, metatherions klp klp linked kai mh, paizoune swsta? emfanizontai ola swsta k me to initiative??
 //! thumisou na vgaleis ta ui.notifications.error apo to actor - kai isws na ta kaneis chat messages ???
 
-export async function MetaRoll(actor, action, stat, isCustomRoll = false, destinyCost = 0, itemname = null) {
+export async function MetaRoll(actor, action, stat, isCustomRoll = false, destinyCost = 0, itemName = null) {
 	const statScore = actor.system.RollStats[stat];
 	console.log(
 		"Metanthropes RPG System | MetaRoll | Engaged for",
@@ -80,7 +80,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			action,
 			stat,
 			statScore,
-			itemname
+			itemName
 		);
 		console.log("Metanthropes RPG System | MetaRoll | Custom Roll Values:", multiAction, bonus, customPenalty);
 		//? Check if Custom Penalty is smaller than Disease penalty (values are expected to be negatives)
@@ -107,9 +107,9 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			"Destiny Cost:",
 			destinyCost,
 			"Item Name:",
-			itemname
+			itemName
 		);
-		await MetaEvaluate(actor, action, stat, statScore, multiAction, bonus, penalty, pain, destinyCost, itemname);
+		await MetaEvaluate(actor, action, stat, statScore, multiAction, bonus, penalty, pain, destinyCost, itemName);
 	} else {
 		penalty = diseasePenalty;
 		console.log(
@@ -130,9 +130,9 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			"Destiny Cost:",
 			destinyCost,
 			"Item Name:",
-			itemname
+			itemName
 		);
-		await MetaEvaluate(actor, action, stat, statScore, multiAction, bonus, penalty, pain, destinyCost, itemname);
+		await MetaEvaluate(actor, action, stat, statScore, multiAction, bonus, penalty, pain, destinyCost, itemName);
 	}
 	let checkResult = await actor.getFlag("metanthropes-system", "lastrolled").MetaEvaluate;
 	console.log(
@@ -158,14 +158,14 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
  * @param {string} action - The type of action being performed (e.g., "StatRoll", "Initiative"). Expected to be a string.
  * @param {string} stat - The stat being rolled against. Expected to be a string.
  * @param {number} statScore - The score of the Stat being rolled against. Expected to be a positive number.
- * @param {string} itemname - The name of the Metapower, Possession or Combo being used. Expected to be a string.
+ * @param {string} itemName - The name of the Metapower, Possession or Combo being used. Expected to be a string.
  *
  * @returns {Promise<Object>} A promise that resolves with an object containing multiAction, bonus, and customPenalty values.
  *
  * @example
  * This function is intended to be called within the MetaRoll function and not used directly.
  */
-export async function MetaRollCustomDialog(actor, action, stat, statScore, itemname = null) {
+export async function MetaRollCustomDialog(actor, action, stat, statScore, itemName = null) {
 	return new Promise((resolve) => {
 		//? calculate the max number of multi-actions possible based on the stat value
 		const maxMultiActions = Math.floor((statScore - 1) / 10);
@@ -178,10 +178,10 @@ export async function MetaRollCustomDialog(actor, action, stat, statScore, itemn
 			dialogbuttonlabel = `Roll ${stat}`;
 		} else if (action === "Metapower") {
 			dialogtitle = `${actor.name}'s Metapower`;
-			dialogbuttonlabel = `Activate Ⓜ️ ${itemname}`;
+			dialogbuttonlabel = `Activate Ⓜ️ ${itemName}`;
 		} else if (action === "Possession") {
 			dialogtitle = `${actor.name}'s Possession`;
-			dialogbuttonlabel = `Use 🛠️ ${itemname}`;
+			dialogbuttonlabel = `Use 🛠️ ${itemName}`;
 		}
 		//? Create the Dialog content
 		let dialogContent = `

@@ -21,8 +21,8 @@
 				</div>
 				<div class="item-itemname item-prop">{{item.system.Activation.MetapowerName.value}}</div>
 				<div class="item-statroll style-mp-rolls" data-roll-type="Metapower"
-							data-itemname="{{item.name}}"
-							data-destinycost="{{item.system.Activation.DestinyCost.value}}">
+							data-item-name="{{item.name}}" data-stat="{{item.system.Activation.StatRolled.value}}"
+							data-destiny-cost="{{item.system.Activation.DestinyCost.value}}">
 					{{item.system.Activation.StatRolled.value}}:
 					{{lookup ../../system.RollStats item.system.Activation.StatRolled.value}}
 				</div>

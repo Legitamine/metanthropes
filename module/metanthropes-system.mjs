@@ -371,17 +371,3 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		html.find(".possession-use").on("click", PossessionUse);
 	}
 });
-//*listen for stat changes, this should enable metapower sheet to update correctly when a stat changes
-//!this issue also occurs when rolling something
-//! not working properly atm
-Hooks.on("updateActor", (actor, data, options, userId) => {
-	if (data.hasOwnProperty("system")) {
-		// Get the actor's sheet
-		const sheet = actor.sheet;
-		// Check if the sheet is an instance of MetanthropesActorSheet
-		if (sheet instanceof MetanthropesActorSheet || sheet instanceof MetanthropesItemSheet) {
-			// Re-render the sheet to update the lookup value
-			sheet.render();
-		}
-	}
-});

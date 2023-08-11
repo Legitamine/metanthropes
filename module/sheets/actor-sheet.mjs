@@ -5,9 +5,8 @@
 //? This controls how the sheet functions
 //*
 ////
+//? Import MetaRoll
 import { MetaRoll } from "../metanthropes/metaroll.mjs";
-import { MetapowerActivate } from "../helpers/mpactivate.mjs";
-import { PossessionRoll } from "../helpers/posroll.mjs";
 //? Import New Actor
 import { NewActor } from "../metanthropes/newactor.mjs";
 export class MetanthropesActorSheet extends ActorSheet {
@@ -181,7 +180,9 @@ export class MetanthropesActorSheet extends ActorSheet {
 		const element = event.currentTarget;
 		//? Disable element for a few seconds to prevent double-clicking
 		element.disabled = true;
-		setTimeout(() => { element.disabled = false; }, 3000);
+		setTimeout(() => {
+			element.disabled = false;
+		}, 3000);
 		const dataset = element.dataset;
 		console.log("Metanthropes RPG System | _handleMetaRolls | Engaged", isCustomRoll);
 		//? Handle all types of rolls here based on the rollType (data-roll-type)
@@ -189,8 +190,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 			const actor = this.actor;
 			const action = dataset.rollType;
 			const stat = dataset.stat;
-			const destinyCost = dataset.destinycost || 0; //? Destiny Cost is optional, so if it's not defined, set it to 0
-			const itemname = dataset.itemname || ""; //? Item Name is optional, so if it's not defined, set it to ""
+			const destinyCost = dataset.destinyCost || 0; //? Destiny Cost is optional, so if it's not defined, set it to 0
+			const itemName = dataset.itemName || ""; //? Item Name is optional, so if it's not defined, set it to ""
 			if (dataset.rollType == "StatRoll") {
 				console.log(
 					"Metanthropes RPG System | _handleMetaRolls | Engaging MetaRoll for:",
@@ -199,7 +200,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 					"with",
 					stat
 				);
-				await MetaRoll(actor, action, stat, isCustomRoll, destinyCost, itemname);
+				await MetaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
 				console.log("Metanthropes RPG System | _handleMetaRolls | Finished Rolling for StatRoll");
 			} else if (dataset.rollType == "Metapower") {
 				console.log(
@@ -208,33 +209,25 @@ export class MetanthropesActorSheet extends ActorSheet {
 					"Action:",
 					action,
 					"Metapower:",
-					itemname,
+					itemName,
 					"Destiny Cost:",
 					destinyCost,
 					"with:",
 					stat
 				);
-				await MetaRoll(actor, action, stat, isCustomRoll, destinyCost, itemname);
+				await MetaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
 				console.log("Metanthropes RPG System | _handleMetaRolls | Finished Rolling for Metapower");
 			} else if (dataset.rollType == "Possession") {
 				console.log(
 					"Metanthropes RPG System | _handleMetaRolls | Engaging MetaRoll for:",
 					actor.name + "'s",
 					action + ":",
-					itemname,
+					itemName,
 					"with",
 					stat
 				);
-				await MetaRoll(actor, action, stat, isCustomRoll, 0, itemname);
+				await MetaRoll(actor, action, stat, isCustomRoll, 0, itemName);
 				console.log("Metanthropes RPG System | _handleMetaRolls | Finished Rolling for Possession");
-				const attacktype = dataset.attacktype;
-				const effect = dataset.effect;
-				const targets = dataset.targets;
-				const damage = dataset.damage;
-				const conditions = dataset.conditions;
-				console.log("Metanthropes RPG System | _handleMetaRolls | Engaging PossessionUse for:", actor.name + "'s", itemname);
-				await PossessionUse (actor, stat, itemname, attacktype, effect, targets, damage, conditions);
-				console.log("Metanthropes RPG System | _handleMetaRolls | Finished with PossessionUse");
 			} else {
 				console.log(
 					"Metanthropes RPG System | _handleMetaRolls | ERROR: not defined rollType",
@@ -253,10 +246,16 @@ export class MetanthropesActorSheet extends ActorSheet {
 	//? Handle Left-Click Rolls
 	async _onRoll(event) {
 		this._handleMetaRolls(event, false);
+		//? After doing a roll, re-render the actor sheet.
+		console.log("Metanthropes RPG System | _onRoll | Finished, re-rendering the actor sheet");
+		this.render(true);
 	}
 	//? Handle Right-Click Rolls
 	async _onCustomRoll(event) {
 		this._handleMetaRolls(event, true);
+		//? After doing a custom roll, re-render the actor sheet.
+		console.log("Metanthropes RPG System | _onCustomRoll | Finished, re-rendering the actor sheet");
+		this.render(true);
 	}
 	//? New Actor Logic
 	async _onNewActor(event) {
