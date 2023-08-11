@@ -29,7 +29,7 @@ import { MetaEvaluate } from "../helpers/metaeval.mjs";
 //! thumisou na vgaleis ta ui.notifications.error apo to actor - kai isws na ta kaneis chat messages ???
 
 export async function MetaRoll(actor, action, stat, destinyCost = 0, itemname = null) {
-	const statValue = actor.system.RollStats[stat];
+	const statScore = actor.system.RollStats[stat];
 	console.log(
 		"Metanthropes RPG System | MetaRoll | Engaged for",
 		actor.type + ":",
@@ -38,29 +38,30 @@ export async function MetaRoll(actor, action, stat, destinyCost = 0, itemname = 
 		"with",
 		stat
 	);
-	const disease = actor.system.Characteristics.Body.CoreConditions.Diseased;
-	const pain = actor.system.Characteristics.Mind.CoreConditions.Pain;
-	const hunger = actor.system.Characteristics.Mind.CoreConditions.Hunger;
-	// const unconscious = actor.system.Characteristics.Soul.CoreConditions.Unconscious;
-	// fatigue in v0.9
-	//? Check if we are unconscious
-	if (unconscious > 0) {
-		ui.notifications.error(actor.name + " is unconscious and can't act!");
-		return;
-	}
 	//? Check if we are ok to do the roll stat-wise
-	if (statValue <= 0) {
+	if (statScore <= 0) {
 		ui.notifications.error(actor.name + " can't Roll " + stat + " with a Current value of 0!");
 		return;
 	}
-	//? Check for hunger
+	//? Checking various Core Conditions
+	//? Pain is passed to MetaEvaluate
+	const pain = actor.system.Characteristics.Mind.CoreConditions.Pain;
+	//? Check for Fatigue
+	//? Check for Hunger
 	//* if we have hunger, we must beat the hunger roll before attempting to act
-	//todo hunger check
+	const hunger = actor.system.Characteristics.Mind.CoreConditions.Hunger;
+	//? Check if we are unconscious
+	// const unconscious = actor.system.Characteristics.Soul.CoreConditions.Unconscious;
+	
+	//	if (unconscious > 0) {
+	//		ui.notifications.error(actor.name + " is unconscious and can't act!");
+	//		return;
+	//	}
 	//? Check for disease
 	//* disease is expected to be a positive number, where as penalty is expected to be negative
+	const disease = actor.system.Characteristics.Body.CoreConditions.Diseased;
 	let diseasePenalty = 0;
 	if (disease > 0) {
-		//todo is this the correct placement? need to figure out how to progress thru the logic for this
 		//? check if penalty is worse than the disease level and set it accordingly
 		if (diseasePenalty > -(disease * 10)) {
 			diseasePenalty = -(disease * 10);
@@ -76,19 +77,21 @@ export async function MetaRoll(actor, action, stat, destinyCost = 0, itemname = 
 		action,
 		"with",
 		stat,
-		statValue,
+		statScore,
 		"Multi-Action:",
 		multiAction,
 		"Bonus:",
 		bonus,
 		"Penalty:",
 		penalty,
+		"Pain:",
+		pain,
 		"Destiny Cost:",
 		destinyCost,
 		"Item Name:",
 		itemname
 	);
-	await MetaEvaluate(actor, action, stat, statValue, multiAction, bonus, penalty, destinyCost, itemname);
+	await MetaEvaluate(actor, action, stat, statScore, multiAction, bonus, penalty, pain, destinyCost, itemname);
 	let checkResult = await actor.getFlag("metanthropes-system", "lastrolled").MetaEvaluate;
 	console.log(
 		"Metanthropes RPG System | MetaRoll | MetaEvaluate Result for",
@@ -96,7 +99,7 @@ export async function MetaRoll(actor, action, stat, destinyCost = 0, itemname = 
 		"Action:",
 		action,
 		stat + ":",
-		statValue,
+		statScore,
 		"Result:",
 		checkResult
 	);
@@ -121,12 +124,12 @@ export async function MetaRoll(actor, action, stat, destinyCost = 0, itemname = 
  * MetaRollCustom(actor, "StatRoll", "Power");
  */
 export async function MetaRollCustom(actor, action, stat) {
-	const statValue = actor.system.RollStats[stat];
+	const statScore = actor.system.RollStats[stat];
 	const disease = actor.system.Characteristics.Body.CoreConditions.Diseased;
 	//! add the similar checks as above
 	//! could I instead somehow extend the MetaRoll function to accept additional parameters?
 	//? calculate the max number of multi-actions possible based on the stat value
-	const maxMultiActions = Math.floor((statValue - 1) / 10);
+	const maxMultiActions = Math.floor((statScore - 1) / 10);
 	const multiActionOptions = Array.from({ length: maxMultiActions - 1 }, (_, i) => i + 2);
 	//? Title and Buttons for the Dialog
 	let dialogtitle = null;
@@ -184,7 +187,7 @@ export async function MetaRollCustom(actor, action, stat) {
 						}
 					}
 					//?send the data we collected to the MetaEvaluate function
-					MetaEvaluate(actor, action, stat, statValue, multiAction, bonus, penalty);
+					MetaEvaluate(actor, action, stat, statScore, multiAction, bonus, penalty);
 				},
 			},
 		},
