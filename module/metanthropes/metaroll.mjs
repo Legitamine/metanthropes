@@ -171,23 +171,22 @@ export async function MetaRollCustomDialog(actor, action, stat, statScore, itemN
 		const maxMultiActions = Math.floor((statScore - 1) / 10);
 		const multiActionOptions = Array.from({ length: maxMultiActions - 1 }, (_, i) => i + 2);
 		//? Title and Buttons for the Dialog
-		let dialogtitle = null;
-		let dialogbuttonlabel = null;
+		let dialogTitle = null;
+		let dialogButtonLabel = null;
 		if (action === "StatRoll") {
-			dialogtitle = `${actor.name}'s ${stat}`;
-			dialogbuttonlabel = `Roll ${stat}`;
+			dialogTitle = `${actor.name}'s ${stat}`;
+			dialogButtonLabel = `Roll 📊 ${stat}`;
 		} else if (action === "Metapower") {
-			dialogtitle = `${actor.name}'s Metapower`;
-			dialogbuttonlabel = `Activate Ⓜ️ ${itemName}`;
+			dialogTitle = `${actor.name}'s Metapower`;
+			dialogButtonLabel = `Activate Ⓜ️ ${itemName}`;
 		} else if (action === "Possession") {
-			dialogtitle = `${actor.name}'s Possession`;
-			dialogbuttonlabel = `Use 🛠️ ${itemName}`;
+			dialogTitle = `${actor.name}'s Possession`;
+			dialogButtonLabel = `Use 🛠️ ${itemName}`;
 		}
 		//? Create the Dialog content
 		let dialogContent = `
 			<div class="metanthropes layout-metaroll-dialog">
-				<p>Select total number of Multi-Actions:</p>
-				<select id="multiActionCount">
+				Select total number of Multi-Actions:	<select id="multiActionCount">
 					<option value="no">None</option>
 					${multiActionOptions.map((option) => `<option value="${option}">${option}</option>`).join("")}
 				</select>
@@ -196,17 +195,18 @@ export async function MetaRollCustomDialog(actor, action, stat, statScore, itemN
 						<span class="style-cs-buffs ">Bonus: <input class="style-cs-buffs style-container-input-charstat"
 						type="number" id="bonus" min="0" value="0">%		</span>
 						<span class="style-cs-conditions">Penalty: <input class="style-cs-conditions style-container-input-charstat"
-						type="number" id="penalty" min="0" value="0">%</span><br><br>
+						type="number" id="penalty" min="0" value="0">%</span><br>
 					</div>
 			</div>
+			<br>
 			`;
 		//? Create the Dialog
 		let dialog = new Dialog({
-			title: dialogtitle,
+			title: dialogTitle,
 			content: dialogContent,
 			buttons: {
 				roll: {
-					label: dialogbuttonlabel,
+					label: dialogButtonLabel,
 					callback: async (html) => {
 						//? collect multi-action value
 						let multiAction = html.find("#multiActionCount").val();
