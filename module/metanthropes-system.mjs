@@ -355,19 +355,37 @@ Hooks.on("renderChatMessage", async (message, html) => {
 	if (game.user.name === metaowner || game.user.isGM) {
 		//? Unhide the buttons - assumes DF Chat Enhancements module is installed (provides hidden class that works)
 		html.find(".hide-button").removeClass("hidden");
-		//? Listen for Destiny reroll button clicks
-		html.find(".rolld10-reroll").on("click", Rolld10ReRoll);
-		html.find(".metaeval-reroll").on("click", MetaEvaluateReRoll);
-		html.find(".metainitiative-reroll").on("click", MetaInitiativeReRoll);
-		//html.find(".metapower-reroll").on("click", MetapowerReRoll);
-		//html.find(".possession-re-roll").on("click", PossessionReRoll);
-		html.find(".re-roll-targets").on("click", ReRollTargets);
-		html.find(".re-roll-duration").on("click", ReRollDuration);
-		html.find(".re-roll-damage").on("click", ReRollDamage);
-		html.find(".re-roll-healing").on("click", ReRollHealing);
-
-		//? Listen for activations
-		html.find(".metapower-activate").on("click", MetapowerActivate);
-		html.find(".possession-use").on("click", PossessionUse);
+		//? Handle Main Chat Buttons (all the buttons that will be displayed if any of them is clicked)
+		html.on("click", ".metanthropes-main-chat-button", function (event) {
+			const button = $(event.currentTarget);
+			if (button.hasClass("metaeval-reroll")) {
+				MetaEvaluateReRoll(event);
+			} else if (button.hasClass("metainitiative-reroll")) {
+				MetaInitiativeReRoll(event);
+			} else if (button.hasClass("metapower-activate")) {
+				MetapowerActivate(event);
+			} else if (button.hasClass("possession-use")) {
+				PossessionUse(event);
+			}
+			//? Disable all main chat buttons
+			html.find(".metanthropes-main-chat-button").prop("disabled", true);
+		});
+		//? Handle secondary chat buttons (all the buttons that will disable themselves when clicked)
+		html.on("click", ".metanthropes-secondary-chat-button", function (event) {
+			const button = $(event.currentTarget);
+			if (button.hasClass("rolld10-reroll")) {
+				Rolld10ReRoll(event);
+			} else if (button.hasClass("re-roll-targets")) {
+				ReRollTargets(event);
+			} else if (button.hasClass("re-roll-duration")) {
+				ReRollDuration(event);
+			} else if (button.hasClass("re-roll-damage")) {
+				ReRollDamage(event);
+			} else if (button.hasClass("re-roll-healing")) {
+				ReRollHealing(event);
+			}
+			//? Disable only the clicked secondary chat button
+			button.prop("disabled", true);
+		});
 	}
 });

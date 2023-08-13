@@ -106,6 +106,7 @@ export async function MetaInitiativeReRoll(event) {
 	//? Reduce Destiny.value by 1
 	currentDestiny -= 1;
 	await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
+	console.log("Metanthropes RPG System | MetaInitiativeReRoll | Engaging MetaInitiative for:", actor.name + "'s", action, actorUUID);
 	await MetaInitiative(combatant);
 	//? Refresh the actor sheet if it's open
 	const sheet = actor.sheet;

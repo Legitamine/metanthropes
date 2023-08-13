@@ -25,20 +25,20 @@ export async function MetapowerActivate(event) {
 	const buffs = itemData.system.Effects.Buffs.value;
 	const conditions = itemData.system.Effects.Conditions.value;
 	// Create a chat message with the provided content
-	let contentdata = null;
 	let flavordata = null;
+	let contentdata = null;
 	// Check if activation was successfull
 	const result = actor.getFlag("metanthropes-system", "lastrolled");
 	console.log("MetapowerActivate - result:", result);
 	if (result.Metapower <= 0) {
 		flavordata = `Fails to Activate ${itemName}!`;
 	} else {
-		flavordata = `Activates ${itemName} with the following:>`;
+		flavordata = `Activates ${itemName} with the following:`;
 		contentdata = `<div>Effect:${effect}</div><br>`;
 		if (targetsdice) {
 			contentdata += `<div class="hide-button layout-hide">🎯 Targets:
 		<button class="re-roll-targets" data-idactor="${actor.id}" data-item-name="${itemName}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
-		🎯 [[${targetsdice}]] ${targets} 🤞</button>
+		🎯 [[${targetsdice}d10x10]] ${targets} 🤞</button>
 		</div><br>`;
 		} else {
 			contentdata += `<div>🎯 Targets:${targets}</div><br>`;
@@ -46,7 +46,7 @@ export async function MetapowerActivate(event) {
 		if (durationdice) {
 			contentdata += `<div class="hide-button layout-hide">⏳ Duration:
 		<button class="re-roll-duration" data-idactor="${actor.id}" data-item-name="${itemName}" data-durationdice="${durationdice}" data-duration="${duration}" >
-		⏳ [[${durationdice}]] ${duration} 🤞</button>
+		⏳ [[${durationdice}d10x10]] ${duration} 🤞</button>
 		</div><br>`;
 		} else {
 			contentdata += `<div>⏳ Duration:${duration}</div><br>`;
@@ -54,13 +54,13 @@ export async function MetapowerActivate(event) {
 		if (damage) {
 			contentdata += `<div class="hide-button layout-hide">💥 Damage:
 		<button class="re-roll-damage" data-idactor="${actor.id}" data-item-name="${itemName}" data-damage="${damage}" >
-		💥 [[${damage}]] 🤞</button>
+		💥 [[${damage}d10x10]] 🤞</button>
 		</div><br>`;
 		}
 		if (healing) {
 			contentdata += `<div class="hide-button layout-hide">💞 Healing:
 		<button class="re-roll-healing" data-idactor="${actor.id}" data-item-name="${itemName}" data-healing="${healing}" >
-		💞 [[${healing}]] 🤞</button>
+		💞 [[${healing}d10x10]] 🤞</button>
 		</div><br>`;
 		}
 		if (buffs) {

@@ -116,9 +116,9 @@ option {
 	background-color: $c-background;
 }
 
-.chat-message .message-header .flavor-text, .chat-message .message-header .whisper-to {
+.chat-message .message-header .flavor-text, .chat-message .message-header .whisper-to, .chat-message .message-content {
 	font-family: $font-secondary;
-	font-size: var(--font-size-14);
-	font-weight: 500;
+	font-size: var(--font-size-15);
+	font-weight: 600;
 	color: $c-black;
 }

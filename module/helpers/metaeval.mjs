@@ -7,9 +7,9 @@
  * todo: in case of metapower activation, when do we calculate the destiny cost?
  *
  * @param {Object} actor - The actor making the roll.
- * @param {string} action - The type of action being performed (e.g., "StatRoll", "Initiative", "Metapower", "Possession", "Combo").
- * @param {string} stat - The stat being rolled against.
- * @param {number} statScore - The current score of the stat being rolled against.
+ * @param {string} action - The type of action being performed (e.g., "StatRoll", "Initiative", "Metapower", "Possession", "Combo"). Expected to be a string.
+ * @param {string} stat - The stat being rolled against. Expected to be a string.
+ * @param {number} statScore - The current score of the stat being rolled against. Expected to be a positive number.
  * @param {number} [multiAction=0] - The reduction for multi-actions. Expected to be negative.
  * @param {number} [bonus=0] - Any bonuses applied to the roll. Expected to be positive.
  * @param {number} [penalty=0] - Any penalties applied to the roll. Expected to be negative.
@@ -25,6 +25,9 @@
  *
  * Evaluating the same roll but with a multiaction reduction of -30, a bonus of +10, and a penalty of -50
  * MetaEvaluate(actor, "StatRoll", "Power", 50, -30, 10, -50, 0);
+ * 
+ * Evaluating a Possession roll for a Possession with a Power stat score of 50
+ * MetaEvaluate(actor, "Possession", "Power", 50, 0, 0, 0, 0, 0, "Possession Name");
  */
 export async function MetaEvaluate(
 	actor,
@@ -166,10 +169,10 @@ export async function MetaEvaluate(
 	let threshold = Number(1 + Number(destinyCost));
 	if (!criticalSuccess && !criticalFailure && currentDestiny >= threshold) {
 		if (action === "Initiative") {
-			message += `<div class="hide-button hidden"><br><button class="metainitiative-reroll" data-actoruuid="${actor.uuid}"
+			message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button metainitiative-reroll" data-actoruuid="${actor.uuid}"
 				>Spend 🤞 Destiny to reroll</button><br></div>`;
 		} else {
-			message += `<div class="hide-button hidden"><br><button class="metaeval-reroll" data-actoruuid="${actor.uuid}"
+			message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button metaeval-reroll" data-actoruuid="${actor.uuid}"
 				data-stat="${stat}" data-stat-score="${statScore}" data-multi-action="${multiAction}"
 				data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}" data-destiny-cost="${destinyCost}" 
 				data-item-name="${itemName}" data-pain="${pain}"
@@ -181,11 +184,11 @@ export async function MetaEvaluate(
 	}
 	//? Buttons for Keeping the results of MetaEvalute
 	if (action === "Metapower") {
-		message += `<div class="hide-button hidden"><br><button class="metapower-activate" data-actoruuid="${actor.uuid}"
+		message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button metapower-activate" data-actoruuid="${actor.uuid}"
 			data-item-name="${itemName}"
 			>Activate Ⓜ️ ${itemName}</button><br></div>`;
 	} else if (action === "Possession") {
-		message += `<div class="hide-button hidden"><br><button class="possession-use" data-actoruuid="${actor.uuid}"
+		message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button possession-use" data-actoruuid="${actor.uuid}"
 			data-item-name="${itemName}" data-multi-action="${multiAction}"
 			>Use 🛠️ ${itemName}</button><br></div>`;
 	} else {
@@ -298,8 +301,6 @@ export async function MetaEvaluateReRoll(event) {
 	const action = button.dataset.action;
 	const itemName = button.dataset.itemName;
 	const pain = button.dataset.pain;
-	//? Disable the button after it's been clicked
-	button.disabled = true;
 	console.log("Metanthropes RPG System | MetaEvaluateReRoll | Engaged for:", actor.name + "'s", action, actorUUID);
 	//? Reduce Destiny.value by 1
 	let currentDestiny = actor.system.Vital.Destiny.value;
