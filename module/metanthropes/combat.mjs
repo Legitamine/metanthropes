@@ -9,12 +9,14 @@ export class MetanthropesCombat extends Combat {
 	_sortCombatants(a, b) {
 		const ia = Number.isNumeric(a.initiative) ? a.initiative : -Infinity;
 		const ib = Number.isNumeric(b.initiative) ? b.initiative : -Infinity;
-		const astatValue = a.actor.getFlag("metanthropes-system", "lastrolled")?.InitiativeStatValue ?? -Infinity;
-		const bstatValue = b.actor.getFlag("metanthropes-system", "initiative")?.InitiativeStatValue ?? -Infinity;
-		//? sort by initiative first, then sort by statValue if the initiative is the same
-		return ib - ia || (astatValue > bstatValue ? -1 : 1);
+		const astatScore = a.actor.getFlag("metanthropes-system", "lastrolled")?.InitiativestatScore ?? -Infinity;
+		const bstatScore = b.actor.getFlag("metanthropes-system", "initiative")?.InitiativestatScore ?? -Infinity;
+		//? sort by initiative first, then sort by statScore if the initiative is the same
+		return ib - ia || (astatScore > bstatScore ? -1 : 1);
 	}
-	//todo: award Destiny and re-roll initiative if tied both in Initiative and statValue
+	//todo: award Destiny and re-roll initiative if tied both in Initiative and statScore
+	//! gia na paixei to full ruleset, prepei na kanw 'confirm initiative'
+	
 	
 	/**
 	 * Roll Initiative for one or multiple Combatants within the Combat document

@@ -1,14 +1,16 @@
 //* This is how we roll d10s
 export async function Rolld10(actor, what, destinyreroll, dice) {
+	//! kanw add itemName - what mporei na einai to damage, healing etc - mazi me itemName tha to kanei pio wraio
+	//! thelw info apo bro gia to poia metapowers allazoune ta dice poy kaneis reroll gia na ta kanw include edw
+	//! na valw to effect twn metapowers poy kanoune affect ta explosive dice, Foundry paizei me x1x2x10
 	//? This functions rolls a number of d10 and allow rerolls if destiny is set to 1
 	//? destiny allows for rerolling the result by spending 1 Destiny Point
-	//! thelw info apo bro gia to poia metapowers allazoune ta dice poy kaneis reroll gia na ta kanw include edw
 	//! review CSS classes
 	//? dice is the number of d10 to roll
 	const rolld10 = await new Roll(`${dice}d10x10`).evaluate({ async: true });
-	const total = rolld10.total;
+	const rollTotal = rolld10.total;
 	//* Message to be printed to chat
-	let message = `${actor.name} rolls for ${what} with ${dice} * d10 and gets a total of ${total}. <br>`;
+	let message = `${actor.name} rolls for ${what} with ${dice} * d10 and gets a total of ${rollTotal}.<br>`;
 	//? if destiny is set to 1, allow rerolling the result by spending 1 Destiny Point
 	if (destinyreroll === 1) {
 		let currentDestiny = actor.system.Vital.Destiny.value;
@@ -18,7 +20,7 @@ export async function Rolld10(actor, what, destinyreroll, dice) {
 		</button><br><br></div>`;
 	}
 	await actor.setFlag("metanthropes-system", "lastrolled", {
-		rolld10: total,
+		rolld10: rollTotal,
 	});
 	//print message to chat and enable Dice So Nice to roll the dice and display the message
 	rolld10.toMessage({

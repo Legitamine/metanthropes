@@ -131,10 +131,10 @@ option {
   background-color: rgba(129, 129, 129, 0.3725490196);
 }
 
-.chat-message .message-header .flavor-text, .chat-message .message-header .whisper-to {
+.chat-message .message-header .flavor-text, .chat-message .message-header .whisper-to, .chat-message .message-content {
   font-family: "gill-sans-nova", sans-serif;
-  font-size: var(--font-size-14);
-  font-weight: 500;
+  font-size: var(--font-size-15);
+  font-weight: 600;
   color: #000;
 }
 
@@ -525,10 +525,14 @@ option {
   align-self: auto;
   align-items: stretch;
   align-content: space-between;
-  height: 200px;
+  height: auto;
   padding: 6px;
   margin: 6px;
   overflow-y: auto;
+  font-family: "gill-sans-nova", sans-serif;
+  font-size: var(--font-size-14);
+  font-weight: 500;
+  color: #000;
 }
 .metanthropes .style-container-outer-charstats {
   opacity: 1;

@@ -1,76 +1,83 @@
 export async function PossessionUse(event) {
-	event.preventDefault();
+	//todo: perks integration
+	//? Get the data we need
 	const button = event.target;
-	const actorId = button.dataset.idactor;
-	const stat = button.dataset.stat;
-	const statValue = parseInt(button.dataset.statValue);
-	const itemname = button.dataset.itemname;
-	const attacktype = button.dataset.attacktype;
-	const effect = button.dataset.effect;
-	const actor = game.actors.get(actorId);
-	const targets = button.dataset.targets;
-	const damage = button.dataset.damage;
-	const modifier = parseInt(button.dataset.modifier);
-	const conditions = button.dataset.conditions;
-	//todo: utilize existing levels of success and spent levels of success
+	//? Disable the button after it's been clicked
+	button.disabled = true;
+	const actorUUID = button.dataset.actoruuid;
+	const itemName = button.dataset.itemName;
+	const multiAction = button.dataset.multiAction;
+	const actor = await fromUuid(actorUUID);
+	const possessions = actor.items.filter((i) => i.type === "Possession");
+	//? Find the first item that matches the name
+	const itemData = possessions.find((possession) => possession.name === itemName);
+	if (!itemData) {
+		console.log("Metanthropes RPG - PossessionUse - Could not find itemData for ", itemName);
+		return;
+	}
+	console.log("Metanthropes RPG - PossessionUse - itemData:", itemData);
+	const attacktype = itemData.system.AttackType.value;
+	const effect = itemData.system.EffectDescription.value;
+	const targets = itemData.system.Usage.Targets.value;
+	const damage = itemData.system.Effects.Damage.value;
+	const conditions = itemData.system.Effects.Conditions.value;
 	// Create a chat message with the provided content
-	const powerroll = actor.system.Characteristics.Body.Stats.Power.Roll;
+	const powerScore = actor.system.Characteristics.Body.Stats.Power.Roll;
 	let contentdata = null;
 	let flavordata = null;
 	let damagedata = null;
 	// Check if activation was successfull
-	const result = actor.getFlag("metanthropes-system", "posused");
-	console.log("PossessionUse - result:", result);
-	if (result.resultLevel <= 0) {
+	const result = actor.getFlag("metanthropes-system", "lastrolled");
+	if (result.Possession <= 0) {
 		if (attacktype === "Melee") {
-			flavordata = `<h3>Fails to attack with their ${itemname}!</h3>`;
+			flavordata = `Fails to attack with their ${itemName}!`;
 		} else if (attacktype === "Projectile") {
-			flavordata = `<h3>Throws their ${itemname} at the sky!</h3>`;
+			flavordata = `Throws their ${itemName} in the air!`;
 		} else if (attacktype === "Firearm") {
-			flavordata = `<h3>Fires their ${itemname} and hits air!</h3>`;
+			flavordata = `Fires their ${itemName} and hits nothing!`;
 		} else {
-			console.log("Metanthropes RPG - PossessionUse - Unknown attacktype: ", attacktype);
-			flavordata = `<h3>Fails to use ${itemname}!</h3>`;
+			console.log("Metanthropes RPG System | PossessionUse | Unknown attacktype for failed roll: ", attacktype);
+			flavordata = `Fails to use ${itemName}!`;
 		}
 	} else {
 		if (attacktype === "Melee") {
-			flavordata = `<h3>Attacks with their ${itemname} with the following:</h3>`;
-			if (modifier < 0) {
+			flavordata = `Attacks with their ${itemName} with the following:`;
+			if (multiAction < 0) {
 				//todo: need to add modifier size here to input in the damage calc
-				damagedata = powerroll + modifier;
+				damagedata = powerScore + multiAction;
 			} else {
-				damagedata = powerroll;
+				damagedata = powerScore;
 			}
 		} else if (attacktype === "Projectile") {
-			flavordata = `<h3>Throws their ${itemname} with the following:</h3>`;
-			damagedata = Math.ceil(powerroll / 2);
+			flavordata = `Throws their ${itemName} with the following:`;
+			damagedata = Math.ceil(powerScore / 2);
 		} else if (attacktype === "Firearm") {
-			flavordata = `<h3>Fires their ${itemname} with the following:</h3>`;
+			flavordata = `Fires their ${itemName} with the following:`;
 		} else {
-			console.log("Metanthropes RPG - PossessionUse - Unknown attacktype: ", attacktype);
-			flavordata = `<h3>Uses ${itemname} with the following:</h3>`;
+			console.log("Metanthropes RPG System | PossessionUse | Unknown attacktype: ", attacktype);
+			flavordata = `Uses ${itemName} with the following:`;
 		}
 		if (effect) {
-			contentdata = `<div><h4>Effect:</h4>${effect}</div><br>`;
+			contentdata = `<div>Effect:${effect}</div><br>`;
 		} else {
 			contentdata = "";
 		}
-		contentdata += `<div><h4>🎯 Targets:</h4>${targets}</div><br>`;
+		contentdata += `<div>🎯 Targets:${targets}</div><br>`;
 		if (damage) {
 			if (damagedata > 0) {
-				contentdata += `<div class="hide-button layout-hide"><h4>💥 Damage:</h4>
-			<button class="re-roll-damage" data-idactor="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" data-damagedata="${damagedata}">
-			💥 [[${damagedata}+${damage}]] 🤞</button>
+				contentdata += `<div class="hide-button layout-hide">💥 Damage:
+			<button class="re-roll-damage" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-damage="${damage}" data-damagedata="${damagedata}">
+			💥 [[${damagedata}+${damage}d10x10]] 🤞</button>
 			</div><br>`;
 			} else {
-				contentdata += `<div class="hide-button layout-hide"><h4>💥 Damage:</h4>
-			<button class="re-roll-damage" data-idactor="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" >
-			💥 [[${damage}]] 🤞</button>
+				contentdata += `<div class="hide-button layout-hide">💥 Damage:
+			<button class="re-roll-damage" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-damage="${damage}" >
+			💥 [[${damage}d10x10]] 🤞</button>
 			</div><br>`;
 			}
 		}
 		if (conditions) {
-			contentdata += `<div><h4>💀 Conditions:</h4>${conditions}</div><br>`;
+			contentdata += `<div>💀 Conditions:${conditions}</div><br>`;
 		}
 	}
 	//send the activation message to chat
@@ -79,8 +86,13 @@ export async function PossessionUse(event) {
 		flavor: flavordata,
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		content: contentdata,
-		flags: { "metanthropes-system": { actorId: actor.id } },
+		flags: { "metanthropes-system": { actoruuid: actor.uuid } },
 	};
 	// Send the message to chat
 	ChatMessage.create(chatData);
+	//? Refresh the actor sheet if it's open
+	const sheet = actor.sheet;
+	if (sheet && sheet.rendered) {
+		sheet.render(true);
+	}
 }

@@ -12,7 +12,7 @@
 			<li class="item flexrow" data-item-id="{{item._id}}">
 				<div class="item-name flexrow">
 					<div class="item-image">
-						<img src="{{item.img}}" title="{{item.name}}" width="30" height="30" style="border: none"/>
+						<img src="{{item.img}}" title="{{item.name}}" width="30" height="30" style="border: none" />
 					</div>
 					<h4>
 						<div class="item-control item-edit" title="Possession Details">
@@ -22,12 +22,7 @@
 				</div>
 				<div class="item-attacktype item-prop">{{item.system.AttackType.value}}</div>
 				<div class="item-statroll style-pos-rolls" data-roll-type="Possession"
-					data-stat="{{item.system.StatRolled.value}}" data-itemname="{{item.name}}"
-					data-attacktype="{{item.system.AttackType.value}}"
-					data-effect="{{item.system.EffectDescription.value}}"
-					data-targets="{{item.system.Usage.Targets.value}}"
-					data-damage="{{item.system.Effects.Damage.value}}"
-					data-conditions="{{item.system.Effects.Conditions.value}}">
+					data-stat="{{item.system.StatRolled.value}}" data-item-name="{{item.name}}">
 					{{item.system.StatRolled.value}}: {{lookup ../../system.RollStats item.system.StatRolled.value}}
 				</div>
 				<div class="item-actionslot item-prop">{{item.system.Usage.ActionSlot.value}}</div>

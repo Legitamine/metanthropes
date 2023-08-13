@@ -4,7 +4,7 @@ import { MetaRoll } from "../metanthropes/metaroll.mjs";
  * MetaInitiative handles Initiative rolls for a given combatant.
  *
  * This function determines the best stat to use for Initiative based on the combatant's Metapowers.
- * It then calls the MetaRoll function for that stat and updates the combatant's Initiative value with the result.
+ * It then calls the MetaRoll function for that stat and updates the combatant's Initiative score with the result.
  * todo: I should manipulate here the Initiative result based on the combatant's Metapowers
  * The function works for both linked and unlinked actors.
  *
@@ -16,9 +16,14 @@ import { MetaRoll } from "../metanthropes/metaroll.mjs";
  * MetaInitiative(combatant);
  */
 export async function MetaInitiative(combatant) {
-	console.log("Metanthropes RPG System | MetaInitiative | Engaged for combatant:", combatant, "and preparing actor data");
+	console.log(
+		"Metanthropes RPG System | MetaInitiative | Engaged for combatant:",
+		combatant,
+		"and preparing actor data"
+	);
 	//? Check to see if this is a linked actor
 	let actor = null;
+	//! not working for v10
 	if (combatant.token.actorLink) {
 		//? If it is, get data directly from the actor document
 		let actorId = combatant.actorId;
@@ -34,25 +39,25 @@ export async function MetaInitiative(combatant) {
 	const reflexesStat = "Reflexes";
 	const awarenessStat = "Awareness";
 	const perceptionStat = "Perception";
-	const reflexesValue = actor.system.RollStats[reflexesStat];
-	const awarenessValue = actor.system.RollStats[awarenessStat];
-	const perceptionValue = actor.system.RollStats[perceptionStat];
+	const reflexesScore = actor.system.RollStats[reflexesStat];
+	const awarenessScore = actor.system.RollStats[awarenessStat];
+	const perceptionScore = actor.system.RollStats[perceptionStat];
 	let initiativeStat;
 	//? Check for metapowers that allow other Initiative stat than Reflexes
 	const metapowers = actor.items.filter((item) => item.type === "Metapower");
 	const hasDangerSense = metapowers.some((metapower) => metapower.name === "Danger Sense");
 	const hasTemporalAwareness = metapowers.some((metapower) => metapower.name === "Temporal Awareness");
 	//? Evaluate the best available stat to use for Initiative
-	let initiativeStats = [{ name: reflexesStat, value: reflexesValue }];
+	let initiativeStats = [{ name: reflexesStat, score: reflexesScore }];
 	if (hasDangerSense) {
-		initiativeStats.push({ name: awarenessStat, value: awarenessValue });
+		initiativeStats.push({ name: awarenessStat, score: awarenessScore });
 	}
 	if (hasTemporalAwareness) {
-		initiativeStats.push({ name: perceptionStat, value: perceptionValue });
+		initiativeStats.push({ name: perceptionStat, score: perceptionScore });
 	}
-	//? Sort the stats array in descending order based on the stat value
-	initiativeStats.sort((a, b) => b.value - a.value);
-	//? The initiativeStat is the name of the stat with the highest value
+	//? Sort the stats array in descending order based on the stat score
+	initiativeStats.sort((a, b) => b.score - a.score);
+	//? The initiativeStat is the name of the stat with the highest score
 	initiativeStat = initiativeStats[0].name;
 	//? Call MetaRoll
 	let action = "Initiative";
@@ -63,7 +68,7 @@ export async function MetaInitiative(combatant) {
 	);
 	await MetaRoll(actor, action, initiativeStat);
 	//todo have to decide how core conditions are going to be evaluated
-	//? Update the combatant with the new initiative value
+	//? Update the combatant with the new initiative score
 	let checkResult = await actor.getFlag("metanthropes-system", "lastrolled").Initiative;
 	console.log(
 		"Metanthropes RPG System | MetaInitiative | MetaRoll Result for",
@@ -99,17 +104,14 @@ export async function MetaInitiativeReRoll(event) {
 	console.log("Metanthropes RPG  System | MetaInitiativeReRoll | Engaged for combatant:", combatant);
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	//? Reduce Destiny.value by 1
-	//todo if we know we have enough destiny to spend, don't need to check here as well
-	if (currentDestiny > 0) {
-		currentDestiny -= 1;
-		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-		//? Update re-roll button visibility
-		const message = game.messages.get(button.dataset.messageId);
-		if (message) {
-			message.render();
-		}
-		//! depending on how Core Conditions are handled, this might need to be changed, as now we'll go over MetaRoll Evaluations again before we actually roll for Initiative a second time
-		await MetaInitiative(combatant);
-		console.log("Metanthropes RPG System | MetaInitiativeReRoll | MetaInitiative finished, no reason to exist?");
+	currentDestiny -= 1;
+	await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
+	console.log("Metanthropes RPG System | MetaInitiativeReRoll | Engaging MetaInitiative for:", actor.name + "'s", action, actorUUID);
+	await MetaInitiative(combatant);
+	//? Refresh the actor sheet if it's open
+	const sheet = actor.sheet;
+	if (sheet && sheet.rendered) {
+		sheet.render(true);
 	}
+	console.log("Metanthropes RPG System | MetaInitiativeReRoll | MetaInitiative finished, no reason to exist?");
 }
