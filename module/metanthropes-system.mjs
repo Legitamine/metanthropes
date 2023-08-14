@@ -1,38 +1,33 @@
 console.log("Metanthropes RPG System | ====================================");
 console.log("Metanthropes RPG System | Awakened");
 console.log("Metanthropes RPG System | ====================================");
-// Import modules.
+//? Import Combat Modules.
 import { MetanthropesCombat } from "./metanthropes/combat.mjs";
 import { MetaCombatTracker } from "./metanthropes/combattracker.mjs";
 import { MetaCombatant } from "./metanthropes/combatant.mjs";
-// Import document classes.
+//? Import document classes.
 import { MetanthropesActor } from "./documents/actor.mjs";
 import { MetanthropesItem } from "./documents/item.mjs";
-// Import sheet classes.
+//? Import sheet classes.
 import { MetanthropesActorSheet } from "./sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
-// Import helpers.
+//? Pre-load Handlebars templates
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
-//? Import Re-Roll helpers
+//? Import helpers
 import { MetaEvaluateReRoll } from "./helpers/metaeval.mjs";
 import { Rolld10ReRoll } from "./helpers/extrasroll.mjs";
 import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
-import { ReRollTargets } from "./helpers/extrasroll.mjs";
-import { ReRollDuration } from "./helpers/extrasroll.mjs";
-import { ReRollDamage } from "./helpers/extrasroll.mjs";
-import { ReRollHealing } from "./helpers/extrasroll.mjs";
 import { PossessionUse } from "./helpers/posuse.mjs";
 import { MetapowerActivate } from "./helpers/mpactivate.mjs";
-//* Handlebars helpers
-//! Supposedly Foundry includes its own select helper, but I couldn't get it to work.
+//? Handlebars helpers
+//! Supposedly Foundry includes its own select helper, but I couldn't get it to work properly.
 Handlebars.registerHelper("selected", function (option, value) {
 	return option === value ? "selected" : "";
 });
 //? Handlebars helper for displaying actor values on the item sheets.
 //! I don't recall where this is being used exactly
 Handlebars.registerHelper("getStatValue", function (statName) {
-	//handlebars helper console log
-	console.log("Handlebars helper statName:", statName);
+	console.log("Metanthropes RPG System | DEBUG: ARE WE USING THIS? | Handlebars helper statName:", statName);
 	return actor.system.RollStats[statName];
 });
 //? this allows me to use an each loop to list stuff unless the key is...
@@ -41,7 +36,7 @@ Handlebars.registerHelper("unless_key_is", function (key, value, options) {
 		return options.fn(this);
 	}
 });
-// Log system initialization.
+//? System Initialization.
 Hooks.once("init", async function () {
 	console.log("Metanthropes RPG System | ====================================");
 	console.log("Metanthropes RPG System | Initializing");
@@ -295,21 +290,21 @@ Hooks.once("ready", async function () {
 		});
 	}
 });
-//? Enhanced Terrain Layer Integration
-Hooks.once("enhancedTerrainLayer.ready", (RuleProvider) => {
-	console.log("Metanthropes RPG System | ====================================");
-	console.log("Metanthropes RPG System | Enhanced Terrain Layer Integration Started");
-	class MetanthropesRuleProvider extends RuleProvider {
-		calculateCombinedCost(terrain, options) {
-			//? I want to reduce movement by 1 for every 2 points of terrain (?)
-			let cost = terrain - 1;
-			return cost;
-		}
-	}
-	enhancedTerrainLayer.registerSystem("metanthropes-system", MetanthropesRuleProvider);
-	console.log("Metanthropes RPG System | Enhanced Terrain Layer Integration Finished");
-	console.log("Metanthropes RPG System | ====================================");
-});
+//	//? Enhanced Terrain Layer Integration - disabled until post v0.9
+//	Hooks.once("enhancedTerrainLayer.ready", (RuleProvider) => {
+//		console.log("Metanthropes RPG System | ====================================");
+//		console.log("Metanthropes RPG System | Enhanced Terrain Layer Integration Started");
+//		class MetanthropesRuleProvider extends RuleProvider {
+//			calculateCombinedCost(terrain, options) {
+//				//? I want to reduce movement by 1 for every 2 points of terrain (?)
+//				let cost = terrain - 1;
+//				return cost;
+//			}
+//		}
+//		enhancedTerrainLayer.registerSystem("metanthropes-system", MetanthropesRuleProvider);
+//		console.log("Metanthropes RPG System | Enhanced Terrain Layer Integration Finished");
+//		console.log("Metanthropes RPG System | ====================================");
+//	});
 //? Drag Ruler Integration
 Hooks.once("dragRuler.ready", (SpeedProvider) => {
 	console.log("Metanthropes RPG System | ====================================");
@@ -342,8 +337,7 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 	console.log("Metanthropes RPG System | Drag Ruler Integration Finished");
 	console.log("Metanthropes RPG System | ====================================");
 });
-// Hook to look for re-rolls of meta dice in chat
-// Add event listener for re-roll button click, hiding the button for non-owners
+//? Chat Message Event Listeners
 Hooks.on("renderChatMessage", async (message, html) => {
 	//? Get the actor from the message - all our messages have the actoruuid flag set, so if it's not our message, return.
 	const actorUUID = message.getFlag("metanthropes-system", "actoruuid");
@@ -370,19 +364,11 @@ Hooks.on("renderChatMessage", async (message, html) => {
 			//? Disable all main chat buttons
 			html.find(".metanthropes-main-chat-button").prop("disabled", true);
 		});
-		//? Handle secondary chat buttons (all the buttons that will disable themselves when clicked)
+		//? Handle secondary chat buttons (all the buttons that will disable only themselves when clicked)
 		html.on("click", ".metanthropes-secondary-chat-button", function (event) {
 			const button = $(event.currentTarget);
 			if (button.hasClass("rolld10-reroll")) {
 				Rolld10ReRoll(event);
-			} else if (button.hasClass("re-roll-targets")) {
-				ReRollTargets(event);
-			} else if (button.hasClass("re-roll-duration")) {
-				ReRollDuration(event);
-			} else if (button.hasClass("re-roll-damage")) {
-				ReRollDamage(event);
-			} else if (button.hasClass("re-roll-healing")) {
-				ReRollHealing(event);
 			}
 			//? Disable only the clicked secondary chat button
 			button.prop("disabled", true);

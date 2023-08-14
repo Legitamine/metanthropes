@@ -1,3 +1,5 @@
+import { MetapowerActivate } from "./mpactivate.mjs";
+
 /**
  * MetaEvaluate calculates the result of a roll, sets actor flags and prints it to chat
  *
@@ -25,7 +27,7 @@
  *
  * Evaluating the same roll but with a multiaction reduction of -30, a bonus of +10, and a penalty of -50
  * MetaEvaluate(actor, "StatRoll", "Power", 50, -30, 10, -50, 0);
- * 
+ *
  * Evaluating a Possession roll for a Possession with a Power stat score of 50
  * MetaEvaluate(actor, "Possession", "Power", 50, 0, 0, 0, 0, 0, "Possession Name");
  */
@@ -61,6 +63,7 @@ export async function MetaEvaluate(
 	//? evaluate the result of the roll
 	let result = null;
 	let resultLevel = null;
+	let autoExecute = false;
 	const roll = await new Roll("1d100").evaluate({ async: true });
 	const rollResult = roll.total;
 	let levelsOfSuccess = Math.floor((statScore + bonus + penalty + multiAction - rollResult) / 10);
@@ -149,16 +152,16 @@ export async function MetaEvaluate(
 			message += `, accumulating: ${levelsOfSuccess} * ✔️ Level of Success.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 			resultLevel = levelsOfSuccess;
 		} else {
-		message += `, accumulating: ${levelsOfSuccess} * ✔️ Levels of Success.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
-		resultLevel = levelsOfSuccess;
+			message += `, accumulating: ${levelsOfSuccess} * ✔️ Levels of Success.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+			resultLevel = levelsOfSuccess;
 		}
 	} else if (levelsOfFailure > 0) {
 		if (levelsOfFailure === 1) {
 			message += `, accumulating: ${levelsOfFailure} * ❌ Level of Failure.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 			resultLevel = -levelsOfFailure;
 		} else {
-		message += `, accumulating: ${levelsOfFailure} * ❌ Levels of Failure.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
-		resultLevel = -levelsOfFailure;
+			message += `, accumulating: ${levelsOfFailure} * ❌ Levels of Failure.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+			resultLevel = -levelsOfFailure;
 		}
 	} else {
 		message += `.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
@@ -178,21 +181,21 @@ export async function MetaEvaluate(
 				data-item-name="${itemName}" data-pain="${pain}"
 				>Spend 🤞 Destiny to reroll</button><br></div>`;
 		}
-	} else {
-		//console.log("Metanthropes RPG System | MetaEvaluate | No button shows up");
-		//message += `<div><br></div>`;
-	}
-	//? Buttons for Keeping the results of MetaEvalute
-	if (action === "Metapower") {
-		message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button metapower-activate" data-actoruuid="${actor.uuid}"
+		//? Buttons for Keeping the results of MetaEvalute
+		if (action === "Metapower") {
+			message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button metapower-activate" data-actoruuid="${actor.uuid}"
 			data-item-name="${itemName}"
 			>Activate Ⓜ️ ${itemName}</button><br></div>`;
-	} else if (action === "Possession") {
-		message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button possession-use" data-actoruuid="${actor.uuid}"
+		} else if (action === "Possession") {
+			message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button possession-use" data-actoruuid="${actor.uuid}"
 			data-item-name="${itemName}" data-multi-action="${multiAction}"
 			>Use 🛠️ ${itemName}</button><br></div>`;
+		} else {
+			//message += `<div><br></div>`;
+		}
 	} else {
-		//message += `<div><br></div>`;
+		//? Set autoExecute to true if it's a Critical Success or Failure, or if the actor doesn't have enough Destiny to reroll
+		autoExecute = true;
 	}
 	message += `<div><br></div>`;
 	//? Update actor flags with the results of the roll
@@ -268,6 +271,20 @@ export async function MetaEvaluate(
 		"Actor UUID:",
 		actor.uuid
 	);
+	//? If autoExecute is true, we execute the Metapower or Possession
+	if (autoExecute) {
+		//? wait for 2 seconds to ensure the chat messages display in the proper order
+		await new Promise((resolve) => setTimeout(resolve, 2000));
+		//? Automatically execute the activation/use of the Metapower/Possession if it's a Critical Success/Failure or not enough destiny to reroll
+		if (action === "Metapower") {
+			console.log("Metanthropes RPG System | MetaEvaluate | Auto-Activating Metapower:", itemName);
+			MetapowerActivate(actor.uuid, itemName);
+		} else if (action === "Possession") {
+			//! not fully done, make sure to update this after PossessionUse is refactored
+			console.log("Metanthropes RPG System | MetaEvaluate | Auto-Using Possession:", itemName);
+			PossessionUse(actor.uuid, itemName, multiAction);
+		};
+	}
 }
 
 /**

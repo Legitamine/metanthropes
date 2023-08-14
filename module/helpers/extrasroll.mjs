@@ -1,272 +1,127 @@
-//* This is how we roll d10s
-export async function Rolld10(actor, what, destinyreroll, dice) {
-	//! kanw add itemName - what mporei na einai to damage, healing etc - mazi me itemName tha to kanei pio wraio
-	//! thelw info apo bro gia to poia metapowers allazoune ta dice poy kaneis reroll gia na ta kanw include edw
-	//! na valw to effect twn metapowers poy kanoune affect ta explosive dice, Foundry paizei me x1x2x10
-	//? This functions rolls a number of d10 and allow rerolls if destiny is set to 1
-	//? destiny allows for rerolling the result by spending 1 Destiny Point
-	//! review CSS classes
+/**
+ * Rolld10 handles the rolling of d10 dice for a given actor and purpose.
+ *
+ * This function determines the number of d10 dice to roll based on the provided parameters.
+ * It checks for the presence of certain Metapowers that might affect the roll and then performs the roll.
+ * If destinyReRoll is set to 1, it allows for a re-roll by spending a Destiny Point.
+ * todo: Include effects of Metapowers that affect explosive dice.
+ *
+ * @param {Object} actor - The actor performing the roll. Expected to be an Actor object.
+ * @param {string} what - The reason or purpose for the roll. Expected to be a string.
+ * @param {boolean} destinyReRoll - Determines if a re-roll using Destiny is allowed. Expected to be a boolean.
+ * @param {number} dice - The number of d10 dice to roll. Expected to be a positive number.
+ * @param {string} [itemName=null] - The name of the item associated with the roll, if any. Expected to be a string.
+ * @param {number} [fixedNumber=0] - A fixed number to add to the roll result, if any. Expected to be a positive number.
+ *
+ * @returns {Promise<void>} A promise that resolves once the function completes its operations.
+ *
+ * @example
+ * Rolling an actor's Weapon Damage for 3 * d10:
+ * Rolld10(actor, "Damage", true, 3, "Weapon Name");
+ */
+export async function Rolld10(actor, what, destinyReRoll, dice, itemName = null, fixedNumber = 0) {
+	//? Checking if actor has Metapowers that affect the explosive dice
+	let explosiveDice = "x10";
+	const metapowers = actor.items.filter((item) => item.type === "Metapower");
+	const hasDangerSense = metapowers.some((metapower) => metapower.name === "Danger Sense");
+	if (hasDangerSense) {
+		explosiveDice = "x1x2x10";
+	}
 	//? dice is the number of d10 to roll
-	const rolld10 = await new Roll(`${dice}d10x10`).evaluate({ async: true });
+	let rolld10;
+	if (fixedNumber > 0) {
+		rolld10 = await new Roll(`${fixedNumber}+${dice}d10${explosiveDice}`).evaluate({ async: true });
+	} else {
+		rolld10 = await new Roll(`${dice}d10${explosiveDice}`).evaluate({ async: true });
+	}
 	const rollTotal = rolld10.total;
 	//* Message to be printed to chat
-	let message = `${actor.name} rolls for ${what} with ${dice} * d10 and gets a total of ${rollTotal}.<br>`;
-	//? if destiny is set to 1, allow rerolling the result by spending 1 Destiny Point
-	if (destinyreroll === 1) {
-		let currentDestiny = actor.system.Vital.Destiny.value;
+	let message = null;
+	if (itemName) {
+		if (fixedNumber > 0) {
+			message = `${actor.name} rolls for ${itemName}'s ${what} with ${dice} * d10 + ${fixedNumber} and gets a total of ${rollTotal}.<br>`;
+		} else {
+			message = `${actor.name} rolls for ${itemName}'s ${what} with ${dice} * d10 and gets a total of ${rollTotal}.<br>`;
+		}
+	} else {
+		if (fixedNumber > 0) {
+			message = `${actor.name} rolls for ${what} with ${dice} * d10 + ${fixedNumber} and gets a total of ${rollTotal}.<br>`;
+		} else {
+			message = `${actor.name} rolls for ${what} with ${dice} * d10 and gets a total of ${rollTotal}.<br>`;
+		}
+	}
+	//? if destinyReRoll is true, allow rerolling the result by spending 1 Destiny Point
+	let currentDestiny = Number(actor.system.Vital.Destiny.value);
+	if (destinyReRoll && currentDestiny > 0) {
 		message += `<br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>
-		<div class="hide-button hidden"><br><button class="rolld10-reroll" data-actoruuid="${actor.uuid}"
-		data-what="${what}" data-destinyreroll="${destinyreroll}" data-dice="${dice}">Spend 🤞 Destiny to reroll
+		<div class="hide-button hidden"><br><button class="metanthropes-secondary-chat-button rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+		data-what="${what}" data-destiny-re-roll="${destinyReRoll}" data-dice="${dice}" data-fixed-number="${fixedNumber}">Spend 🤞 Destiny to reroll
 		</button><br><br></div>`;
 	}
 	await actor.setFlag("metanthropes-system", "lastrolled", {
 		rolld10: rollTotal,
+		rolld10what: what,
+		rolld10item: itemName,
 	});
-	//print message to chat and enable Dice So Nice to roll the dice and display the message
+	//? Print message to chat
 	rolld10.toMessage({
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		flavor: message,
 		rollMode: game.settings.get("core", "rollMode"),
 		flags: { "metanthropes-system": { actoruuid: actor.uuid } },
 	});
+	//? Refresh the actor sheet if it's open
+	const sheet = actor.sheet;
+	if (sheet && sheet.rendered) {
+		sheet.render(true);
+	}
 }
-//* This is the function that is called when the destiny re-roll button is clicked
+/**
+ * Rolld10ReRoll is triggered when the destiny re-roll button is clicked.
+ *
+ * This function handles the re-rolling of d10 dice for a given actor based on the provided event data.
+ * It reduces the actor's Destiny value by 1 and then calls the Rolld10 function to perform the re-roll.
+ *
+ * @param {Event} event - The event object associated with the button click.
+ *
+ * @returns {Promise<void>} A promise that resolves once the function completes its operations.
+ *
+ * @example
+ * This function is not called directly, but rather via an event listener.
+ */
 export async function Rolld10ReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
 	const actoruuid = button.dataset.actoruuid;
 	const what = button.dataset.what;
-	const destinyreroll = parseInt(button.dataset.destinyreroll);
+	const destinyReRoll = button.dataset.destinyReRoll;
+	const itemName = button.dataset.itemName;
 	const dice = parseInt(button.dataset.dice);
+	const fixedNumber = parseInt(button.dataset.fixedNumber);
 	const actor = await fromUuid(actoruuid);
-	let currentDestiny = actor.system.Vital.Destiny.value;
-	// make this function only available to the owner of the actor
-	if ((actor && actor.isOwner) || game.user.isGM) {
-		// Reduce Destiny.value by 1
-		if (currentDestiny > 0) {
-			currentDestiny -= 1;
-			await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-			//! Currently unused
-			//? Update re-roll button visibility
-			const message = game.messages.get(button.dataset.messageId);
-			if (message) {
-				message.render();
-			}
-			Rolld10(actor, what, destinyreroll, dice);
+	//? Reduce Destiny.value by 1
+	console.log("Metanthropes RPG System | Rolld10ReRoll | Evaluating destiny for:", actor);
+	let currentDestiny = Number(actor.system.Vital.Destiny.value);
+	//? Need to check if actor has enough Destiny to spend, because they might have already spent it on another secondary button
+	if (currentDestiny > 0 && destinyReRoll) {
+		currentDestiny -= 1;
+		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
+		console.log(
+			"Metanthropes RPG System | Rolld10ReRoll | Engaging Rolld10 for:",
+			actor.name + "'s",
+			what,
+			destinyReRoll,
+			dice,
+			itemName,
+			fixedNumber
+		);
+		await Rolld10(actor, what, destinyReRoll, dice, itemName, fixedNumber);
+		//? Refresh the actor sheet if it's open
+		const sheet = actor.sheet;
+		if (sheet && sheet.rendered) {
+			sheet.render(true);
 		}
-	}
-}
-export async function ReRollTargets(event) {
-	console.log("=====+++++++======+++++++");
-	console.log("INSIDE RE ROLL TARGETS");
-	console.log("=====+++++++======+++++++");
-	event.preventDefault();
-	const button = event.target;
-	const actorId = button.dataset.idactor;
-	const itemname = button.dataset.itemname;
-	const targetsdice = button.dataset.targetsdice;
-	const targets = button.dataset.targets;
-	const actor = game.actors.get(actorId);
-	let currentDestiny = actor.system.Vital.Destiny.value;
-	// make this function only available to the owner of the actor
-	if ((actor && actor.isOwner) || game.user.isGM) {
-		// Reduce Destiny.value by 1
-		if (currentDestiny > 0) {
-			currentDestiny -= 1;
-			await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-			// Update re-roll button visibility
-			const message = game.messages.get(button.dataset.messageId);
-			if (message) {
-				message.render();
-			}
-			RollTargets(actor, itemname, targetsdice, targets);
-		}
-	}
-}
-export async function RollTargets(actor, itemname, targetsdice, targets) {
-	console.log("=====+++++++======+++++++");
-	console.log("INSIDE ROLL TARGETS");
-	console.log("=====+++++++======+++++++");
-	// Create a chat message with the provided content
-	let currentDestiny = actor.system.Vital.Destiny.value;
-	let contentdata = `<div class="metanthropes hide-button layout-hide">
-	<button class="re-roll-targets" data-idactor="${actor.id}" data-itemname="${itemname}" data-targetsdice="${targetsdice}" data-targets="${targets}" >
-	🎯 [[${targetsdice}]] ${targets} 🤞</button>
-	</div>
-	<div>${actor.name} has ${currentDestiny} * 🤞 remaining.
-	</div>
-	`;
-	//send the activation message to chat
-	let chatData = {
-		user: game.user.id,
-		flavor: `<h3>Re-Rolls Targets for ${itemname}</h3>`,
-		speaker: ChatMessage.getSpeaker({ actor: actor }),
-		content: contentdata,
-		flags: { "metanthropes-system": { actorId: actor.id } },
-	};
-	// Send the message to chat
-	ChatMessage.create(chatData);
-}
-export async function ReRollDuration(event) {
-	console.log("=====+++++++======+++++++");
-	console.log("INSIDE RE ROLL DURATION");
-	console.log("=====+++++++======+++++++");
-	event.preventDefault();
-	const button = event.target;
-	const actorId = button.dataset.idactor;
-	const itemname = button.dataset.itemname;
-	const durationdice = button.dataset.durationdice;
-	const duration = button.dataset.duration;
-	const actor = game.actors.get(actorId);
-	let currentDestiny = actor.system.Vital.Destiny.value;
-	// make this function only available to the owner of the actor
-	if ((actor && actor.isOwner) || game.user.isGM) {
-		// Reduce Destiny.value by 1
-		if (currentDestiny > 0) {
-			currentDestiny -= 1;
-			await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-			// Update re-roll button visibility
-			const message = game.messages.get(button.dataset.messageId);
-			if (message) {
-				message.render();
-			}
-			RollDuration(actor, itemname, durationdice, duration);
-		}
-	}
-}
-export async function RollDuration(actor, itemname, durationdice, duration) {
-	console.log("=====+++++++======+++++++");
-	console.log("INSIDE ROLL DURATION");
-	console.log("=====+++++++======+++++++");
-	// Create a chat message with the provided content
-	let currentDestiny = actor.system.Vital.Destiny.value;
-	let contentdata = `<div class="metanthropes hide-button layout-hide">
-	<button class="re-roll-duration" data-idactor="${actor.id}" data-itemname="${itemname}" data-durationdice="${durationdice}" data-duration="${duration}" >
-	⏳ [[${durationdice}]] ${duration} 🤞</button>
-	</div>
-	<div>${actor.name} has ${currentDestiny} * 🤞 remaining.
-	</div>
-	`;
-	//send the activation message to chat
-	let chatData = {
-		user: game.user.id,
-		flavor: `<h3>Re-Rolls Duration for ${itemname}</h3>`,
-		speaker: ChatMessage.getSpeaker({ actor: actor }),
-		content: contentdata,
-		flags: { "metanthropes-system": { actorId: actor.id } },
-	};
-	// Send the message to chat
-	ChatMessage.create(chatData);
-}
-export async function ReRollDamage(event) {
-	console.log("=====+++++++======+++++++");
-	console.log("INSIDE RE ROLL DAMAGE");
-	console.log("=====+++++++======+++++++");
-	event.preventDefault();
-	const button = event.target;
-	const actorId = button.dataset.idactor;
-	const itemname = button.dataset.itemname;
-	const damage = button.dataset.damage;
-	const damagedata = button.dataset.damagedata;
-	const actor = game.actors.get(actorId);
-	let currentDestiny = actor.system.Vital.Destiny.value;
-	// make this function only available to the owner of the actor
-	if ((actor && actor.isOwner) || game.user.isGM) {
-		// Reduce Destiny.value by 1
-		if (currentDestiny > 0) {
-			currentDestiny -= 1;
-			await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-			// Update re-roll button visibility
-			const message = game.messages.get(button.dataset.messageId);
-			if (message) {
-				message.render();
-			}
-			RollDamage(actor, itemname, damage, damagedata);
-		}
-	}
-}
-export async function RollDamage(actor, itemname, damage, damagedata) {
-	console.log("=====+++++++======+++++++");
-	console.log("INSIDE ROLL DAMAGE");
-	console.log("=====+++++++======+++++++");
-	// Create a chat message with the provided content
-	let currentDestiny = actor.system.Vital.Destiny.value;
-	let contentdata = null;
-	if (damagedata > 0) {
-		contentdata = `<div class="metanthropes hide-button layout-hide">
-	<button class="re-roll-damage" data-idactor="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" data-damagedata="${damagedata}" >
-	💥 [[${damagedata}+${damage}]] 🤞</button>
-	</div>
-	<div>${actor.name} has ${currentDestiny} * 🤞 remaining.
-	</div>
-	`;
 	} else {
-		contentdata = `<div class="metanthropes hide-button layout-hide">
-		<button class="re-roll-damage" data-idactor="${actor.id}" data-itemname="${itemname}" data-damage="${damage}" >
-		💥 [[${damage}]] 🤞</button>
-		</div>
-		<div>${actor.name} has ${currentDestiny} * 🤞 remaining.
-		</div>
-		`;
+		console.log("Metanthropes RPG System | Rolld10ReRoll | Not enough Destiny to spend, or destinyReRoll is false");
 	}
-	//send the activation message to chat
-	let chatData = {
-		user: game.user.id,
-		flavor: `<h3>Re-Rolls Damage for ${itemname}</h3>`,
-		speaker: ChatMessage.getSpeaker({ actor: actor }),
-		content: contentdata,
-		flags: { "metanthropes-system": { actorId: actor.id } },
-	};
-	// Send the message to chat
-	ChatMessage.create(chatData);
-}
-export async function ReRollHealing(event) {
-	console.log("=====+++++++======+++++++");
-	console.log("INSIDE RE ROLL HEALING");
-	console.log("=====+++++++======+++++++");
-	event.preventDefault();
-	const button = event.target;
-	const actorId = button.dataset.idactor;
-	const itemname = button.dataset.itemname;
-	const healing = button.dataset.healing;
-	const actor = game.actors.get(actorId);
-	let currentDestiny = actor.system.Vital.Destiny.value;
-	// make this function only available to the owner of the actor
-	if ((actor && actor.isOwner) || game.user.isGM) {
-		// Reduce Destiny.value by 1
-		if (currentDestiny > 0) {
-			currentDestiny -= 1;
-			await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-			// Update re-roll button visibility
-			const message = game.messages.get(button.dataset.messageId);
-			if (message) {
-				message.render();
-			}
-			RollHealing(actor, itemname, healing);
-		}
-	}
-}
-export async function RollHealing(actor, itemname, healing) {
-	console.log("=====+++++++======+++++++");
-	console.log("INSIDE ROLL HEALING");
-	console.log("=====+++++++======+++++++");
-	// Create a chat message with the provided content
-	let currentDestiny = actor.system.Vital.Destiny.value;
-	let contentdata = `<div class="metanthropes hide-button layout-hide">
-	<button class="re-roll-healing" data-idactor="${actor.id}" data-itemname="${itemname}" data-healing="${healing}" >
-	💞 [[${healing}]] 🤞</button>
-	</div>
-	<div>${actor.name} has ${currentDestiny} * 🤞 remaining.
-	</div>
-	`;
-	//send the activation message to chat
-	let chatData = {
-		user: game.user.id,
-		flavor: `<h3>Re-Rolls Healing for ${itemname}</h3>`,
-		speaker: ChatMessage.getSpeaker({ actor: actor }),
-		content: contentdata,
-		flags: { "metanthropes-system": { actorId: actor.id } },
-	};
-	// Send the message to chat
-	ChatMessage.create(chatData);
 }
