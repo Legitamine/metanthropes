@@ -1,4 +1,4 @@
-export async function MetapowerActivate(actorUUID, itemName, event = null) {
+export async function MetaExecute(actorUUID, action, itemName, event = null) {
 	//todo: utilize existing levels of success and spent levels of success
 	//? If we called this from a button click, get the data we need
 	if (event) {
@@ -10,26 +10,33 @@ export async function MetapowerActivate(actorUUID, itemName, event = null) {
 	//? Checking if actor has Metapowers that affect the explosive dice
 	let explosiveDice = "x10";
 	const metapowers = actor.items.filter((item) => item.type === "Metapower");
-	const hasDangerSense = metapowers.some((metapower) => metapower.name === "Danger Sense");
-	if (hasDangerSense) {
+	const hasArbiterPowers = metapowers.some((metapower) => metapower.name === "Arbiter Powers");
+	if (hasArbiterPowers) {
 		explosiveDice = "x1x2x10";
 	}
+	//? Main Execution
+	if (action === "Metapower") {
+		//
+	}
+	else if (action === "Possession") {
+	}
 	//? Find the first item that matches the name
-	const itemData = metapowers.find((metapower) => metapower.name === itemName);
-	if (!itemData) {
-		console.log("Metanthropes RPG - MetapowerActivate - Could not find itemData for ", itemName);
+	const MetaItemData = metapowers.find((metapower) => metapower.name === itemName);
+	if (!MetaItemData) {
+		console.log("Metanthropes RPG System | MetaExecute | Could not find MetaItemData for ", itemName);
 		return;
 	}
-	console.log("Metanthropes RPG - MetapowerActivate - itemData:", itemData);
-	const effect = itemData.system.EffectDescription.value;
-	const targets = itemData.system.Activation.Targets.value;
-	const targetsdice = itemData.system.Activation.TargetsDice.value;
-	const duration = itemData.system.Activation.Duration.value;
-	const durationdice = itemData.system.Activation.DurationDice.value;
-	const damage = itemData.system.Effects.Damage.value;
-	const healing = itemData.system.Effects.Healing.value;
-	const buffs = itemData.system.Effects.Buffs.value;
-	const conditions = itemData.system.Effects.Conditions.value;
+	console.log("Metanthropes RPG System | MetaExecute | MetaItemData:", MetaItemData);
+	//! edw einai to trick gia to mergure - prepei ola ta properties na einai kai sta 2
+	const effect = MetaItemData.system.EffectDescription.value;
+	const targets = MetaItemData.system.Activation.Targets.value;
+	const targetsdice = MetaItemData.system.Activation.TargetsDice.value;
+	const duration = MetaItemData.system.Activation.Duration.value;
+	const durationdice = MetaItemData.system.Activation.DurationDice.value;
+	const damage = MetaItemData.system.Effects.Damage.value;
+	const healing = MetaItemData.system.Effects.Healing.value;
+	const buffs = MetaItemData.system.Effects.Buffs.value;
+	const conditions = MetaItemData.system.Effects.Conditions.value;
 	//! need a new field to track fixed numbers to be added to the roll results
 	//! do I need multiples based on different damage types?
 	// Create a chat message with the provided content
@@ -37,7 +44,7 @@ export async function MetapowerActivate(actorUUID, itemName, event = null) {
 	let contentdata = null;
 	// Check if activation was successfull
 	const result = actor.getFlag("metanthropes-system", "lastrolled");
-	//console.log("MetapowerActivate - result:", result);
+	//console.log("MetaExecute - result:", result);
 	if (result.Metapower <= 0) {
 		flavordata = `Fails to Activate ${itemName}!`;
 	} else {

@@ -1,5 +1,4 @@
-import { MetapowerActivate } from "./mpactivate.mjs";
-
+import { MetaExecute } from "./metaexecute.mjs";
 /**
  * MetaEvaluate calculates the result of a roll, sets actor flags and prints it to chat
  *
@@ -172,7 +171,7 @@ export async function MetaEvaluate(
 	let threshold = Number(1 + Number(destinyCost));
 	if (!criticalSuccess && !criticalFailure && currentDestiny >= threshold) {
 		if (action === "Initiative") {
-			message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button metainitiative-reroll" data-actoruuid="${actor.uuid}"
+			message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button metainitiative-reroll" data-actoruuid="${actor.uuid}" data-action="${action}"
 				>Spend 🤞 Destiny to reroll</button><br></div>`;
 		} else {
 			message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button metaeval-reroll" data-actoruuid="${actor.uuid}"
@@ -278,11 +277,11 @@ export async function MetaEvaluate(
 		//? Automatically execute the activation/use of the Metapower/Possession if it's a Critical Success/Failure or not enough destiny to reroll
 		if (action === "Metapower") {
 			console.log("Metanthropes RPG System | MetaEvaluate | Auto-Activating Metapower:", itemName);
-			MetapowerActivate(actor.uuid, itemName);
+			MetaExecute(actor.uuid, action, itemName);
 		} else if (action === "Possession") {
 			//! not fully done, make sure to update this after PossessionUse is refactored
 			console.log("Metanthropes RPG System | MetaEvaluate | Auto-Using Possession:", itemName);
-			PossessionUse(actor.uuid, itemName, multiAction);
+			MetaExecute(actor.uuid, action, itemName, multiAction);
 		};
 	}
 }

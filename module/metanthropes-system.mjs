@@ -17,8 +17,7 @@ import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 import { MetaEvaluateReRoll } from "./helpers/metaeval.mjs";
 import { Rolld10ReRoll } from "./helpers/extrasroll.mjs";
 import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
-import { PossessionUse } from "./helpers/posuse.mjs";
-import { MetapowerActivate } from "./helpers/mpactivate.mjs";
+import { MetaExecute } from "./helpers/metaexecute.mjs";
 //? Handlebars helpers
 //! Supposedly Foundry includes its own select helper, but I couldn't get it to work properly.
 Handlebars.registerHelper("selected", function (option, value) {
@@ -357,9 +356,9 @@ Hooks.on("renderChatMessage", async (message, html) => {
 			} else if (button.hasClass("metainitiative-reroll")) {
 				MetaInitiativeReRoll(event);
 			} else if (button.hasClass("metapower-activate")) {
-				MetapowerActivate(event);
+				MetaExecute(event);
 			} else if (button.hasClass("possession-use")) {
-				PossessionUse(event);
+				MetaExecute(event);
 			}
 			//? Disable all main chat buttons
 			html.find(".metanthropes-main-chat-button").prop("disabled", true);

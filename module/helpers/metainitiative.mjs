@@ -99,6 +99,7 @@ export async function MetaInitiativeReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
 	const actorUUID = button.dataset.actoruuid;
+	const action = button.dataset.action;
 	const actor = await fromUuid(actorUUID);
 	const combatant = game.combat.getCombatantByActor(actor);
 	console.log("Metanthropes RPG  System | MetaInitiativeReRoll | Engaged for combatant:", combatant);
