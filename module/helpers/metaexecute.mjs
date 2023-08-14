@@ -27,7 +27,7 @@ export async function MetaExecute(actorUUID, action, itemName, event = null) {
 		return;
 	}
 	console.log("Metanthropes RPG System | MetaExecute | MetaItemData:", MetaItemData);
-	//! edw einai to trick gia to mergure - prepei ola ta properties na einai kai sta 2
+	//! edw einai to trick gia to merger - prepei ola ta properties na einai kai sta 2
 	const effect = MetaItemData.system.EffectDescription.value;
 	const targets = MetaItemData.system.Activation.Targets.value;
 	const targetsdice = MetaItemData.system.Activation.TargetsDice.value;
@@ -39,58 +39,62 @@ export async function MetaExecute(actorUUID, action, itemName, event = null) {
 	const conditions = MetaItemData.system.Effects.Conditions.value;
 	//! need a new field to track fixed numbers to be added to the roll results
 	//! do I need multiples based on different damage types?
+	//todo na skeftw tin xrisi twn flags kai pws ta diavazw - ti xreiazomai pragmatika?
+	//todo mazi me ta activations (lvls) na skeftw kai ta usage (lvls antistoixa)
+	//todo episis upcoming combos!
+	//todo kai olo mazi na kanei seamless integration se ena executioN!
 	// Create a chat message with the provided content
-	let flavordata = null;
-	let contentdata = null;
+	let flavorData = null;
+	let contentData = null;
 	// Check if activation was successfull
 	const result = actor.getFlag("metanthropes-system", "lastrolled");
 	//console.log("MetaExecute - result:", result);
 	if (result.Metapower <= 0) {
-		flavordata = `Fails to Activate ${itemName}!`;
+		flavorData = `Fails to Activate ${itemName}!`;
 	} else {
-		flavordata = `Activates ${itemName} with the following:`;
-		contentdata = `<div>Effect:${effect}</div><br>`;
+		flavorData = `Activates ${itemName} with the following:`;
+		contentData = `<div>Effect:${effect}</div><br>`;
 		if (targetsdice) {
-			contentdata += `<div class="hide-button hidden">🎯 Targets:
+			contentData += `<div class="hide-button hidden">🎯 Targets:
 		<button class="metanthropes-secondary-chat-button targets rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${targetsdice}" data-what="🎯 Targets" data-targets="${targets}" data-destiny-re-roll="true">
 		🎯 [[${targetsdice}d10${explosiveDice}]] ${targets} 🤞</button>
 		</div><br>`;
 		} else {
-			contentdata += `<div>🎯 Targets: ${targets}</div><br>`;
+			contentData += `<div>🎯 Targets: ${targets}</div><br>`;
 		}
 		if (durationdice) {
-			contentdata += `<div class="hide-button hidden">⏳ Duration:
+			contentData += `<div class="hide-button hidden">⏳ Duration:
 		<button class="metanthropes-secondary-chat-button duration rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${durationdice}" data-what="⏳ Duration" data-duration="${duration}" data-destiny-re-roll="true">
 		⏳ [[${durationdice}d10${explosiveDice}]] ${duration} 🤞</button>
 		</div><br>`;
 		} else {
-			contentdata += `<div>⏳ Duration:${duration}</div><br>`;
+			contentData += `<div>⏳ Duration:${duration}</div><br>`;
 		}
 		if (damage) {
-			contentdata += `<div class="hide-button hidden">💥 Damage:
+			contentData += `<div class="hide-button hidden">💥 Damage:
 		<button class="metanthropes-secondary-chat-button damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="💥 Damage" data-dice="${damage}" data-destiny-re-roll="true">
 		💥 [[${damage}d10${explosiveDice}]] 🤞</button>
 		</div><br>`;
 		}
 		if (healing) {
-			contentdata += `<div class="hide-button hidden">💞 Healing:
+			contentData += `<div class="hide-button hidden">💞 Healing:
 		<button class="metanthropes-secondary-chat-button healing rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="💞 Healing" data-dice="${healing}" data-destiny-re-roll="true">
 		💞 [[${healing}d10${explosiveDice}]] 🤞</button>
 		</div><br>`;
 		}
 		if (buffs) {
-			contentdata += `<div>🛡️ Buffs:${buffs}</div><br>`;
+			contentData += `<div>🛡️ Buffs:${buffs}</div><br>`;
 		}
 		if (conditions) {
-			contentdata += `<div>💀 Conditions:${conditions}</div><br>`;
+			contentData += `<div>💀 Conditions:${conditions}</div><br>`;
 		}
 	}
 	//send the activation message to chat
 	let chatData = {
 		user: game.user.id,
-		flavor: flavordata,
+		flavor: flavorData,
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
-		content: contentdata,
+		content: contentData,
 		flags: { "metanthropes-system": { actoruuid: actor.uuid } },
 	};
 	// Send the message to chat
