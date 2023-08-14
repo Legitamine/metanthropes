@@ -19,8 +19,6 @@ To get the best experience while playing Metanthropes RPG, we recommend to insta
 
 - Dice So Nice: https://foundryvtt.com/packages/dice-so-nice
 - Drag Ruler: https://foundryvtt.com/packages/drag-ruler
-- Terrain Ruler: https://foundryvtt.com/packages/terrain-ruler
-- Enhanced Terrain Layer: https://foundryvtt.com/packages/enhanced-terrain-layer
 - Moulinette: https://foundryvtt.com/packages/moulinette-core
 - DF Chat Enhancements: https://foundryvtt.com/packages/df-chat-enhance
 

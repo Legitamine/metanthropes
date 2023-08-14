@@ -24,7 +24,7 @@ export async function NewActor(actor) {
 		await NewActorSummary(actor);
 		await NewActorFinish(actor);
 	} catch (error) {
-		console.log("Metanthropes RPG System | New Actor Error:", error);
+		console.log("Metanthropes RPG System | New Actor | New Actor Error:", error);
 	}
 }
 //* Filter function for Prime Metapower Selection
@@ -48,7 +48,7 @@ function createFilterDropdown(id, options) {
 }
 export async function NewStatRoll(actor, char, stat, number) {
 	return new Promise((resolve, reject) => {
-		Rolld10(actor, stat, 1, number);
+		Rolld10(actor, stat, true, number);
 		let statcontent = `
 			<div class="metanthropes layout-metaroll-dialog">
 				<h2>Confirm your ${actor.type}'s ${stat} 📊 Stat</h2>
@@ -61,12 +61,12 @@ export async function NewStatRoll(actor, char, stat, number) {
 				ok: {
 					label: `Confirm ${stat} 📊 Stat`,
 					callback: async () => {
-						let statvalue = actor.getFlag("metanthropes-system", "lastrolled").rolld10;
+						let statScore = actor.getFlag("metanthropes-system", "lastrolled").rolld10;
 						await actor.update({
-							[`system.Characteristics.${char}.Stats.${stat}.Initial`]: Number(statvalue),
+							[`system.Characteristics.${char}.Stats.${stat}.Initial`]: Number(statScore),
 						});
 						console.log(
-							`Metanthropes RPG System | New ${stat} Stat:`,
+							`Metanthropes RPG System | New Actor | ${actor.name}'s new ${stat} Initial Stat Score:`,
 							actor.system.Characteristics[char].Stats[stat].Initial
 						);
 						resolve();
@@ -107,13 +107,13 @@ export async function NewActorDestiny(actor) {
 						label: "Confirm 🤞 Destiny",
 						callback: async (html) => {
 							let destinydice = html.find('[name="startdestiny"]').val();
-							await Rolld10(actor, "Destiny", 0, destinydice);
-							const total = actor.getFlag("metanthropes-system", "lastrolled").rolld10;
-							await actor.update({ "system.Vital.Destiny.value": Number(total) });
-							await actor.update({ "system.Vital.Destiny.max": Number(total) });
+							await Rolld10(actor, "Destiny", false, destinydice);
+							const NewDestiny = actor.getFlag("metanthropes-system", "lastrolled").rolld10;
+							await actor.update({ "system.Vital.Destiny.value": Number(NewDestiny) });
+							await actor.update({ "system.Vital.Destiny.max": Number(NewDestiny) });
 							await actor.update({ "system.metaowner.value": playername });
-							console.log(`Metanthropes RPG System | New Actor Owner: ${playername}`);
-							console.log(`Metanthropes RPG System | ${playername}'s ${actor.type} Destiny: ${total}`);
+							console.log(`Metanthropes RPG System | New Actor | New Actor Owner: ${playername}`);
+							console.log(`Metanthropes RPG System | New Actor | ${playername}'s ${actor.type} Destiny: ${NewDestiny}`);
 							resolve();
 						},
 					},
@@ -203,7 +203,7 @@ export async function NewActorPrimeMetapower(actor) {
 								"system.entermeta.primemetapower.value": primeMetapowerName,
 								primeimg: `systems/metanthropes-system/artwork/metapowers/${primeMetapowerName}.png`,
 							});
-							console.log(`Metanthropes RPG System | New Prime Metapower: ${primeMetapowerName}`);
+							console.log(`Metanthropes RPG System | New Actor | New Prime Metapower: ${primeMetapowerName}`);
 							resolve();
 						},
 					},
@@ -316,15 +316,15 @@ export async function NewActorCharacteristics(actor) {
 							await actor.update({ [`system.Characteristics.${secondary}.Initial`]: Number(20) });
 							await actor.update({ [`system.Characteristics.${tertiary}.Initial`]: Number(10) });
 							console.log(
-								`Metanthropes RPG System | New primary: ${primary}`,
+								`Metanthropes RPG System | New Actor | New primary: ${primary}`,
 								actor.system.Characteristics[primary].Initial
 							);
 							console.log(
-								`Metanthropes RPG System | New secondary: ${secondary}`,
+								`Metanthropes RPG System | New Actor | New secondary: ${secondary}`,
 								actor.system.Characteristics[secondary].Initial
 							);
 							console.log(
-								`Metanthropes RPG System | New tertiary: ${tertiary}`,
+								`Metanthropes RPG System | New Actor | New tertiary: ${tertiary}`,
 								actor.system.Characteristics[tertiary].Initial
 							);
 							resolve();
@@ -774,16 +774,16 @@ export async function NewActorRoleplay(actor) {
 					callback: async (html) => {
 						let RPbackgroundpick = html.find('[name="RPbackground"]').val();
 						await actor.update({ "system.Vital.background.value": RPbackgroundpick });
-						console.log(`Metanthropes RPG System | New Background: ${RPbackgroundpick}`);
+						console.log(`Metanthropes RPG System | New Actor | New Background: ${RPbackgroundpick}`);
 						let RPmetamorphosispick = html.find('[name="RPmetamorphosis"]').val();
 						await actor.update({ "system.entermeta.metamorphosis.value": RPmetamorphosispick });
-						console.log(`Metanthropes RPG System | New Metamorphosis: ${RPmetamorphosispick}`);
+						console.log(`Metanthropes RPG System | New Actor | New Metamorphosis: ${RPmetamorphosispick}`);
 						let RParcpick = html.find('[name="RParc"]').val();
 						await actor.update({ "system.Vital.arc.value": RParcpick });
-						console.log(`Metanthropes RPG System | New Arc: ${RParcpick}`);
+						console.log(`Metanthropes RPG System | New Actor | New Arc: ${RParcpick}`);
 						let RPregressionpick = html.find('[name="RPregression"]').val();
 						await actor.update({ "system.entermeta.regression.value": RPregressionpick });
-						console.log(`Metanthropes RPG System | New Regression: ${RPregressionpick}`);
+						console.log(`Metanthropes RPG System | New Actor | New Regression: ${RPregressionpick}`);
 						resolve();
 					},
 				},
@@ -836,11 +836,11 @@ export async function NewActorProgression(actor) {
 						callback: async (html) => {
 							let startingxp = html.find('[name="startingxp"]').val();
 							await actor.update({ "system.Vital.Experience.Total": Number(startingxp) });
-							console.log(`Metanthropes RPG System | ${actor.type}'s Starting Experience: ${startingxp}`);
+							console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Starting Experience: ${startingxp}`);
 							let startingperks = html.find('[name="startingperks"]').val();
 							//? setting the starting perks count to the database to be used later in determining XP costs
 							await actor.update({ "system.Perks.Details.Starting.value": startingperks });
-							console.log(`Metanthropes RPG System | ${actor.type}'s Starting Perks: ${startingperks}`);
+							console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Starting Perks: ${startingperks}`);
 							resolve();
 						},
 					},
@@ -869,7 +869,7 @@ export async function NewActorSummary(actor) {
 	//? adding logic to check and provide input for Narrator Name
 	let gameversion = game.version;
 	let narratorname = "The Composer";
-	console.log(`Metanthropes RPG System | Game Version: ${gameversion}`);
+	console.log(`Metanthropes RPG System | New Actor | Game Version: ${gameversion}`);
 	if (gameversion>11) {
 		narratorname = game.users.activeGM.name;
 	}
@@ -937,35 +937,35 @@ export async function NewActorSummary(actor) {
 						if (actor.type == "Protagonist" || actor.type== "Metanthrope") {
 							await actor.update({ "prototypeToken.name": actorname });
 						}
-						console.log(`Metanthropes RPG System | ${actor.type}'s Name: ${actorname}`);
+						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Name: ${actorname}`);
 						let actorage = html.find('[name="actorage"]').val();
 						await actor.update({ "system.Vital.age.value": Number(actorage) });
-						console.log(`Metanthropes RPG System | ${actor.type}'s Age: ${actorage}`);
+						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Age: ${actorage}`);
 						let actorgender = html.find('[name="actorgender"]').val();
 						await actor.update({ "system.humanoids.gender.value": actorgender });
-						console.log(`Metanthropes RPG System | ${actor.type}'s Gender: ${actorgender}`);
+						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Gender: ${actorgender}`);
 						let actorheight = html.find('[name="actorheight"]').val();
 						await actor.update({ "system.humanoids.height.value": Number(actorheight) });
-						console.log(`Metanthropes RPG System | ${actor.type}'s Height: ${actorheight}`);
+						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Height: ${actorheight}`);
 						let actorweight = html.find('[name="actorweight"]').val();
 						await actor.update({ "system.humanoids.weight.value": Number(actorweight) });
-						console.log(`Metanthropes RPG System | ${actor.type}'s Weight: ${actorweight}`);
+						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Weight: ${actorweight}`);
 						let actorpob = html.find('[name="actorpob"]').val();
 						await actor.update({ "system.humanoids.birthplace.value": actorpob });
-						console.log(`Metanthropes RPG System | ${actor.type}'s Place of Birth: ${actorpob}`);
+						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Place of Birth: ${actorpob}`);
 						await actor.update({ "system.metaowner.value": playername });
-						console.log(`Metanthropes RPG System | ${actor.type}'s Player Name: ${playername}`);
+						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Player Name: ${playername}`);
 						await actor.update({ "system.entermeta.narrator.value": narratorname });
-						console.log(`Metanthropes RPG System | ${actor.type}'s Narrator Name: ${narratorname}`);
+						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Narrator Name: ${narratorname}`);
 						let saganame = html.find('[name="saganame"]').val();
 						await actor.update({ "system.entermeta.sagas.value": saganame });
-						console.log(`Metanthropes RPG System | ${actor.type}'s Saga Name: ${saganame}`);
+						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Saga Name: ${saganame}`);
 						let coalitionname = html.find('[name="coalitionname"]').val();
 						await actor.update({ "system.entermeta.coalition.value": coalitionname });
-						console.log(`Metanthropes RPG System | ${actor.type}'s Coalition Name: ${coalitionname}`);
+						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Coalition Name: ${coalitionname}`);
 						let factionname = html.find('[name="factionname"]').val();
 						await actor.update({ "system.entermeta.faction.value": factionname });
-						console.log(`Metanthropes RPG System | ${actor.type}'s Faction Name: ${factionname}`);
+						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Faction Name: ${factionname}`);
 						resolve();
 					},
 				},
