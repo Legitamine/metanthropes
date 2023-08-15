@@ -9,7 +9,7 @@
  * @param {string} what - The reason or purpose for the roll. Expected to be a string. (eg: "Damage")
  * @param {boolean} destinyReRoll - Determines if a re-roll using Destiny is allowed. Expected to be a boolean.
  * @param {number} dice - The number of d10 dice to roll. Expected to be a positive number.
- * @param {string} [itemName=null] - The name of the item associated with the roll, if any. Expected to be a string.
+ * @param {string} [itemName=""] - The name of the item associated with the roll, if any. Expected to be a string.
  * @param {number} [baseNumber=0] - A fixed number to add to the roll result, if any. Expected to be a positive number.
  *
  * @returns {Promise<void>} A promise that resolves once the function completes its operations.
@@ -18,7 +18,7 @@
  * Rolling an actor's Weapon Damage for 3 * d10:
  * Rolld10(actor, "Damage", true, 3, "Weapon Name");
  */
-export async function Rolld10(actor, what, destinyReRoll, dice, itemName = null, baseNumber = 0) {
+export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", baseNumber = 0) {
 	//? Checking if actor has Metapowers that affect the explosive dice
 	let explosiveDice = "x10";
 	const metapowers = actor.items.filter((item) => item.type === "Metapower");
