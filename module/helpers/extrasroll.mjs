@@ -121,7 +121,7 @@ export async function Rolld10ReRoll(event) {
 			sheet.render(true);
 		}
 	} else {
-		ui.Notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
+		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
 		console.log("Metanthropes RPG System | Rolld10ReRoll | Not enough Destiny to spend, or destinyReRoll is false");
 	}
 }

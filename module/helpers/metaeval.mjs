@@ -183,11 +183,11 @@ export async function MetaEvaluate(
 		//? Buttons for Keeping the results of MetaEvalute
 		if (action === "Metapower") {
 			message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button metapower-activate" data-actoruuid="${actor.uuid}"
-			data-item-name="${itemName}"
+			data-item-name="${itemName}" data-action="${action}" data-multi-action="${multiAction}"
 			>Activate Ⓜ️ ${itemName}</button><br></div>`;
 		} else if (action === "Possession") {
 			message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button possession-use" data-actoruuid="${actor.uuid}"
-			data-item-name="${itemName}" data-multi-action="${multiAction}"
+			data-item-name="${itemName}" data-action="${action}" data-multi-action="${multiAction}"
 			>Use 🛠️ ${itemName}</button><br></div>`;
 		} else {
 			//message += `<div><br></div>`;
@@ -272,16 +272,16 @@ export async function MetaEvaluate(
 	);
 	//? If autoExecute is true, we execute the Metapower or Possession
 	if (autoExecute) {
-		//? wait for 2 seconds to ensure the chat messages display in the proper order
-		await new Promise((resolve) => setTimeout(resolve, 2000));
+		//? wait for 5 seconds to ensure the chat messages display in the proper order and animations clear out
+		await new Promise((resolve) => setTimeout(resolve, 5000));
 		//? Automatically execute the activation/use of the Metapower/Possession if it's a Critical Success/Failure or not enough destiny to reroll
 		if (action === "Metapower") {
 			console.log("Metanthropes RPG System | MetaEvaluate | Auto-Activating Metapower:", itemName);
-			MetaExecute(actor.uuid, action, itemName);
+			MetaExecute(null, actor.uuid, action, itemName);
 		} else if (action === "Possession") {
 			//! not fully done, make sure to update this after PossessionUse is refactored
 			console.log("Metanthropes RPG System | MetaEvaluate | Auto-Using Possession:", itemName);
-			MetaExecute(actor.uuid, action, itemName, multiAction);
+			MetaExecute(null, actor.uuid, action, itemName, multiAction);
 		};
 	}
 }
