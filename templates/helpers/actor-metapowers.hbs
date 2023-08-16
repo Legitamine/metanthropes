@@ -7,7 +7,9 @@
 			<div class="item-destinycost">🤞</div>
 			<div class="item-actionslot">⏱</div>
 			<div class="item-range">📏</div>
+			{{#if ../isGM}}
 			<div class="item-controls"><i class="fa-duotone fa-gears"></i></div>
+			{{/if}}
 		</li>
 		{{#each Metapowers as |item id|}}
 			<li class="item flexrow" data-item-id="{{item._id}}">
@@ -29,9 +31,11 @@
 				<div class="item-destinycost item-prop">{{item.system.Activation.DestinyCost.value}}</div>
 				<div class="item-actionslot item-prop">{{item.system.Activation.ActionSlot.value}}</div>
 				<div class="item-range item-prop">{{item.system.Activation.Range.value}}</div>
+				{{#if ../../isGM}}
 				<div class="item-controls">
 					<a class="item-control item-delete" title="Delete Metapower"><i class="fa-duotone fa-trash"></i></a>
 				</div>
+				{{/if}}
 			</li>
 		{{/each}}
 	{{/each}}

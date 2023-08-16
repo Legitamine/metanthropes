@@ -46,9 +46,9 @@ function createFilterDropdown(id, options) {
 
 	return dropdown;
 }
-export async function NewStatRoll(actor, char, stat, number) {
+export async function NewStatRoll(actor, char, stat, dice) {
 	return new Promise((resolve, reject) => {
-		Rolld10(actor, stat, true, number);
+		Rolld10(actor, stat, true, dice);
 		let statcontent = `
 			<div class="metanthropes layout-metaroll-dialog">
 				<h2>Confirm your ${actor.type}'s ${stat} 📊 Stat</h2>
@@ -80,7 +80,7 @@ export async function NewStatRoll(actor, char, stat, number) {
 }
 export async function NewActorDestiny(actor) {
 	//? we will store the player's name as declared by the Gamemaster in the World User Settings
-	let playername = game.user.name;
+	let playerName = game.user.name;
 	let dialogContent = `
 	<div class="metanthropes layout-metaroll-dialog">
 		<h2>Choose your ${actor.type}'s 🤞 Destiny</h2>
@@ -111,9 +111,9 @@ export async function NewActorDestiny(actor) {
 							const NewDestiny = actor.getFlag("metanthropes-system", "lastrolled").rolld10;
 							await actor.update({ "system.Vital.Destiny.value": Number(NewDestiny) });
 							await actor.update({ "system.Vital.Destiny.max": Number(NewDestiny) });
-							await actor.update({ "system.metaowner.value": playername });
-							console.log(`Metanthropes RPG System | New Actor | New Actor Owner: ${playername}`);
-							console.log(`Metanthropes RPG System | New Actor | ${playername}'s ${actor.type} Destiny: ${NewDestiny}`);
+							await actor.update({ "system.metaowner.value": playerName });
+							console.log(`Metanthropes RPG System | New Actor | New Actor Owner: ${playerName}`);
+							console.log(`Metanthropes RPG System | New Actor | ${playerName}'s ${actor.type} Destiny: ${NewDestiny}`);
 							resolve();
 						},
 					},
@@ -810,12 +810,12 @@ export async function NewActorProgression(actor) {
 			<h2>Choose your ${actor.type}'s 📈 Progression</h2>
 			<form>
 				<div class="form-group">
-					<label for="startingxp" title="Your Narrator will tell you what to enter here">Starting 📈 Experience:</label>
-					<input type="number" id="startingxp" name="startingxp" value="1000">
+					<label for="startingXP" title="Your Narrator will tell you what to enter here">Starting 📈 Experience:</label>
+					<input type="number" id="startingXP" name="startingXP" value="1000">
 				</div>
 				<div class="form-group">
-					<label for="startingperks" title="Your Narrator will tell you what to enter here">Starting 📚 Perks:</label>
-					<input type="number" id="startingperks" name="startingperks" value="2">
+					<label for="startingPerks" title="Your Narrator will tell you what to enter here">Starting 📚 Perks:</label>
+					<input type="number" id="startingPerks" name="startingPerks" value="2">
 				</div>
 			</form>
 		</div>
@@ -834,13 +834,13 @@ export async function NewActorProgression(actor) {
 					ok: {
 						label: "Confirm 📈 Progression",
 						callback: async (html) => {
-							let startingxp = html.find('[name="startingxp"]').val();
-							await actor.update({ "system.Vital.Experience.Total": Number(startingxp) });
-							console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Starting Experience: ${startingxp}`);
-							let startingperks = html.find('[name="startingperks"]').val();
+							let startingXP = html.find('[name="startingXP"]').val();
+							await actor.update({ "system.Vital.Experience.Total": Number(startingXP) });
+							console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Starting Experience: ${startingXP}`);
+							let startingPerks = html.find('[name="startingPerks"]').val();
 							//? setting the starting perks count to the database to be used later in determining XP costs
-							await actor.update({ "system.Perks.Details.Starting.value": startingperks });
-							console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Starting Perks: ${startingperks}`);
+							await actor.update({ "system.Perks.Details.Starting.value": startingPerks });
+							console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Starting Perks: ${startingPerks}`);
 							resolve();
 						},
 					},
@@ -864,15 +864,8 @@ export async function NewActorProgression(actor) {
 	});
 }
 export async function NewActorSummary(actor) {
-	let playername = game.user.name;
-	//! game.users.activeGM does not exist in v10
-	//? adding logic to check and provide input for Narrator Name
-	let gameversion = game.version;
-	let narratorname = "The Composer";
-	console.log(`Metanthropes RPG System | New Actor | Game Version: ${gameversion}`);
-	if (gameversion>11) {
-		narratorname = game.users.activeGM.name;
-	}
+	let playerName = game.user.name;
+	let narratorName = game.users.activeGM.name;
 	let dialogContent = `
 		<div class="metanthropes layout-metaroll-dialog">
 			<h2>Choose your ${actor.type}'s ✍️ Summary</h2>
@@ -904,10 +897,10 @@ export async function NewActorSummary(actor) {
 				</div>
 				<p>Session Details:</p>
 				<div class="form-group">
-					<label for="narratorname" title="This should be filled out automatically">Narrator Name: </label>${narratorname}
+					<label for="narratorName" title="This should be filled out automatically">Narrator Name: </label>${narratorName}
 				</div>
 				<div class="form-group">
-					<label for="playername" title="This should be filled out automatically">Player Name: </label>${playername}
+					<label for="playerName" title="This should be filled out automatically">Player Name: </label>${playerName}
 				</div>
 				<div class="form-group">
 					<label for="saganame" title="The name for this Saga">Saga Name: </label>
@@ -953,10 +946,10 @@ export async function NewActorSummary(actor) {
 						let actorpob = html.find('[name="actorpob"]').val();
 						await actor.update({ "system.humanoids.birthplace.value": actorpob });
 						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Place of Birth: ${actorpob}`);
-						await actor.update({ "system.metaowner.value": playername });
-						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Player Name: ${playername}`);
-						await actor.update({ "system.entermeta.narrator.value": narratorname });
-						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Narrator Name: ${narratorname}`);
+						await actor.update({ "system.metaowner.value": playerName });
+						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Player Name: ${playerName}`);
+						await actor.update({ "system.entermeta.narrator.value": narratorName });
+						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Narrator Name: ${narratorName}`);
 						let saganame = html.find('[name="saganame"]').val();
 						await actor.update({ "system.entermeta.sagas.value": saganame });
 						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Saga Name: ${saganame}`);
