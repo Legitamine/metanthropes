@@ -1,20 +1,3 @@
-////
-//*
-//! Metanthropes RPG System for FoundryVTT
-//? This is the Item Sheet for the Metanthropes RPG System for FoundryVTT.
-//? This controls how
-//todo: Enable basic functionality
-//*
-////
-
-////
-//*
-//! Table of Contents
-//*
-//? 1. Extend the default ItemSheet
-
-////
-
 export class MetanthropesItemSheet extends ItemSheet {
 	/** @override */
 	static get defaultOptions() {
@@ -29,7 +12,11 @@ export class MetanthropesItemSheet extends ItemSheet {
 			tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
 		});
 	}
-
+	//? Only Narrators are allowed to drag and drop items
+	/** @override */
+	_canDragDrop(selector) {
+		return game.user.isGM;
+	}
 	/** @override */
 	get template() {
 		const path = "systems/metanthropes-system/templates/item";
@@ -62,15 +49,23 @@ export class MetanthropesItemSheet extends ItemSheet {
 		context.system = itemData.system;
 		context.flags = itemData.flags;
 
+		//? Indicate that the user is a Narrator
+		context.isGM = game.user.isGM;
+
 		return context;
 	}
 
 	/* -------------------------------------------- */
 
 	/** @override */
-	//	activateListeners(html) {
-	//		super.activateListeners(html);
-//	
+	activateListeners(html) {
+	//? Only Narrators are allowed to edit the item
+	if (!game.user.isGM) {
+		html.find('input, textarea, select').attr('disabled', 'disabled');
+	}
+	//? Call the super class's activateListeners method to ensure any other listeners are set up
+	super.activateListeners(html);
+	}
 	//		// Everything below here is only needed if the sheet is editable
 	//		if (!this.isEditable) return;
 //	

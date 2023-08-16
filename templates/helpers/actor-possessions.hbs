@@ -6,7 +6,9 @@
 			<div class="item-statroll">🎲</div>
 			<div class="item-actionslot">⏱</div>
 			<div class="item-range">📏</div>
+			{{#if ../isGM}}
 			<div class="item-controls"><i class="fa-duotone fa-gears"></i></div>
+			{{/if}}
 		</li>
 		{{#each Possessions as |item id|}}
 			<li class="item flexrow" data-item-id="{{item._id}}">
@@ -27,10 +29,12 @@
 				</div>
 				<div class="item-actionslot item-prop">{{item.system.Usage.ActionSlot.value}}</div>
 				<div class="item-range item-prop">{{item.system.Usage.Range.value}}</div>
+				{{#if ../../isGM}}
 				<div class="item-controls">
 					<a class="item-control item-delete" title="Delete Possession"><i
 							class="fa-duotone fa-trash"></i></a>
 				</div>
+				{{/if}}
 			</li>
 		{{/each}}
 	{{/each}}

@@ -1,32 +1,85 @@
 <form class="metanthropes {{cssClass}}" autocomplete="off">
 	<header class="sheet-header">
-		<img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
-		<div class="header-fields">
-			<h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Possession Name" />
-			</h1>
-			<div class="grid grid-2col">
-				<div class="resource">
-					<label class="resource-label">🎲:</label>
-					<input type="text" name="system.StatRolled.value" value="{{system.StatRolled.value}}"
-						data-dtype="String" />
-				</div>
-				<div class="resource">
-					<label class="resource-label">Category:</label>
-					<input type="text" name="system.Category.value" value="{{system.Category.value}}"
-						data-dtype="String" />
-				</div>
-				<div class="resource">
-					<label class="resource-label">Attack Type:</label>
-					<input type="text" name="system.AttackType.value" value="{{system.AttackType.value}}"
-						data-dtype="String" />
-				</div>
-				<div class="resource">
-					<label class="resource-label">Quantity:</label>
-					<input type="number" name="system.Quantity.value" value="{{system.Quantity.value}}"
-						data-dtype="Number" />
+		{{#if isGM}}
+		<img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" style="border:none" />
+		{{else}}
+			<img class="profile-img" src="{{item.img}}" title="{{item.name}}" style="border:none" />
+			{{/if}}
+			<div class="header-fields">
+				<h1 class="charname"><input name="name" type="text" value="{{item.name}}"
+						placeholder="Possession Name" />
+				</h1>
+				<div class="grid grid-2col">
+					<div class="resource">
+						<label class="resource-label">🎲:</label>
+						<select name="system.StatRolled.value">
+							<option value="Awareness" {{#if (eq system.StatRolled.value "Awareness")}}selected{{/if}}>
+								Awareness
+							</option>
+							<option value="Consciousness"
+								{{#if (eq system.StatRolled.value "Consciousness")}}selected{{/if}}>Consciousness
+							</option>
+							<option value="Creativity" {{#if (eq system.StatRolled.value "Creativity")}}selected{{/if}}>
+								Creativity
+							</option>
+							<option value="Endurance" {{#if (eq system.StatRolled.value "Endurance")}}selected{{/if}}>
+								Endurance
+							</option>
+							<option value="Manipulation"
+								{{#if (eq system.StatRolled.value "Manipulation")}}selected{{/if}}>
+								Manipulation
+							</option>
+							<option value="Perception" {{#if (eq system.StatRolled.value "Perception")}}selected{{/if}}>
+								Perception
+							</option>
+							<option value="Power" {{#if (eq system.StatRolled.value "Power")}}selected{{/if}}>Power
+							</option>
+							<option value="Reflexes" {{#if (eq system.StatRolled.value "Reflexes")}}selected{{/if}}>
+								Reflexes
+							</option>
+							<option value="Willpower" {{#if (eq system.StatRolled.value "Willpower")}}selected{{/if}}>
+								Willpower
+							</option>
+						</select>
+
+					</div>
+					<div class="resource">
+						<label class="resource-label">Category:</label>
+						<select name="system.Category.value">
+							<option value="Strike" {{#if (eq system.Category.value "Strike")}}selected{{/if}}>Strike
+							</option>
+							<option value="Weapon" {{#if (eq system.Category.value "Weapon")}}selected{{/if}}>Weapon
+							</option>
+							<option value="Armor" {{#if (eq system.Category.value "Armor")}}selected{{/if}}>Armor
+							</option>
+							<option value="Gadget" {{#if (eq system.Category.value "Gadget")}}selected{{/if}}>Gadget
+							</option>
+							<option value="Drug" {{#if (eq system.Category.value "Drug")}}selected{{/if}}>Drug
+							</option>
+						</select>
+
+					</div>
+					<div class="resource">
+						<label class="resource-label">Attack Type:</label>
+						<select name="system.AttackType.value">
+							<option value="Melee" {{#if (eq system.AttackType.value "Melee")}}selected{{/if}}>Melee
+							</option>
+							<option value="Projectile" {{#if (eq system.AttackType.value "Projectile")}}selected{{/if}}>
+								Projectile
+							</option>
+							<option value="Firearm" {{#if (eq system.AttackType.value "Firearm")}}selected{{/if}}>
+								Firearm
+							</option>
+						</select>
+
+					</div>
+					<div class="resource">
+						<label class="resource-label">Quantity:</label>
+						<input type="number" name="system.Quantity.value" value="{{system.Quantity.value}}"
+							data-dtype="Number" />
+					</div>
 				</div>
 			</div>
-		</div>
 	</header>
 	{{!-- Sheet Tab Navigation --}}
 	<nav class="sheet-tabs tabs" data-group="primary">

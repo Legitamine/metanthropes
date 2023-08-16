@@ -58,12 +58,16 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//	for (const key in context.system.Characteristics) {
 		//		console.log(`Metanthropes RPG System | ${key} Title:`, context.system.Characteristics[key].Title);
 		//	}
+		//? Indicate that the user is a Narrator
+		context.isGM = game.user.isGM;
+		console.log("Metanthropes RPG System | getData | Is this a GM?", context.isGM);
 		return context;
 	}
 	//prepare items
 	_prepareItems(context) {
 		// Initialize containers.
 		const Possessions = {
+			Strike: [],
 			Weapon: [],
 			Armor: [],
 			Gadget: [],

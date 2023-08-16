@@ -36,7 +36,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		actorUUID = button.dataset.actoruuid;
 		itemName = button.dataset.itemName;
 		action = button.dataset.action;
-		multiAction = button.dataset.multiAction;
+		multiAction = button.dataset.multiAction || 0;
 	}
 	const actor = await fromUuid(actorUUID);
 	//? Checking if actor has Metapowers that affect the explosive dice
