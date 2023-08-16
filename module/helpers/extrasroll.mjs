@@ -29,7 +29,7 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 	//? dice is the number of d10 to roll
 	let rolld10;
 	if (baseNumber > 0) {
-		rolld10 = await new Roll(`${baseNumber}+${dice}d10${explosiveDice}`).evaluate({ async: true });
+		rolld10 = await new Roll(`${dice}d10${explosiveDice}+${baseNumber}`).evaluate({ async: true });
 	} else {
 		rolld10 = await new Roll(`${dice}d10${explosiveDice}`).evaluate({ async: true });
 	}

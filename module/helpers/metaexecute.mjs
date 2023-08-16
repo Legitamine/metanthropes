@@ -62,7 +62,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 	let conditions;
 	let powerScore;
 	let attackType;
-	let damageData;
+	let baseNumber;
 	//? Gather specific data based on the action
 	if (action === "Metapower") {
 		//? Find the first item ()that matches itemName
@@ -114,39 +114,42 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			flavorData = `Activates Ⓜ️ Metapower: ${itemName} with the following:`;
 			contentData = `<div>Effect: ${effect}</div><br>`;
 			if (targetsDice) {
-				contentData += `<div>🎯 Target(s): [[${targetsDice}d10${explosiveDice}]] ${targets}</div><br>`;
+				contentData += `<div>🎯 Targets: [[${targetsDice}d10${explosiveDice}]] ${targets}</div><br>`;
 				contentData += `<div class="hide-button hidden">
-		<button class="metanthropes-secondary-chat-button targets rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${targetsDice}" data-what="🎯 Target(s)" data-targets="${targets}" data-destiny-re-roll="true">
-		Spend 🤞 Destiny to reroll</button>
+		<button class="metanthropes-secondary-chat-button targets rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${targetsDice}" data-what="🎯 Targets" data-targets="${targets}" data-destiny-re-roll="true">
+		🤞 to reroll 🎯 Targets</button>
 		</div><br>`;
 			} else {
-				contentData += `<div>🎯 Target(s): ${targets}</div><br>`;
+				contentData += `<div>🎯 Targets: ${targets}</div><br>`;
 			}
 			if (durationDice) {
-				contentData += `<div class="hide-button hidden">⏳ Duration:
+				contentData += `<div>⏳ Duration: [[${durationDice}d10${explosiveDice}]] ${duration} </div><br>`;
+				contentData += `<div class="hide-button hidden">
 		<button class="metanthropes-secondary-chat-button duration rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${durationDice}" data-what="⏳ Duration" data-duration="${duration}" data-destiny-re-roll="true">
-		⏳ [[${durationDice}d10${explosiveDice}]] ${duration} 🤞</button>
+		🤞 to reroll ⏳ Duration</button>
 		</div><br>`;
 			} else {
-				contentData += `<div>⏳ Duration:${duration}</div><br>`;
+				contentData += `<div>⏳ Duration: ${duration}</div><br>`;
 			}
 			if (damage) {
-				contentData += `<div class="hide-button hidden">💥 Damage:
+				contentData += `<div>💥 Damage: [[${damage}d10${explosiveDice}]] </div><br>`;
+				contentData += `<div class="hide-button hidden">
 		<button class="metanthropes-secondary-chat-button damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="💥 Damage" data-dice="${damage}" data-destiny-re-roll="true">
-		💥 [[${damage}d10${explosiveDice}]] 🤞</button>
+		🤞 to reroll 💥 Damage</button>
 		</div><br>`;
 			}
 			if (healing) {
-				contentData += `<div class="hide-button hidden">💞 Healing:
+				contentData += `<div>💞 Healing: [[${healing}d10${explosiveDice}]] </div><br>`;
+				contentData += `<div class="hide-button hidden">
 		<button class="metanthropes-secondary-chat-button healing rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="💞 Healing" data-dice="${healing}" data-destiny-re-roll="true">
-		💞 [[${healing}d10${explosiveDice}]] 🤞</button>
+		🤞 to reroll 💞 Healing</button>
 		</div><br>`;
 			}
 			if (buffs) {
-				contentData += `<div>🛡️ Buffs:${buffs}</div><br>`;
+				contentData += `<div>🛡️ Buffs: ${buffs}</div><br>`;
 			}
 			if (conditions) {
-				contentData += `<div>💀 Conditions:${conditions}</div><br>`;
+				contentData += `<div>💀 Conditions: ${conditions}</div><br>`;
 			}
 		}
 		console.log("Metanthropes RPG System | MetaExecute | Finished Executing Metapower Activation");
@@ -154,7 +157,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		//? Check if using was successfull
 		if (rollResult.Possession <= 0) {
 			if (attackType === "Melee") {
-				flavorData = `Fails to attack with their ${itemName}!`;
+				flavorData = `Fails to connect with their ${itemName}!`;
 			} else if (attackType === "Projectile") {
 				flavorData = `Throws their ${itemName} in the air!`;
 			} else if (attackType === "Firearm") {
@@ -173,13 +176,13 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 				flavorData = `Attacks with their ${itemName} with the following:`;
 				if (multiAction < 0) {
 					//todo: need to add modifier size here to input in the damage calc
-					damageData = powerScore + multiAction;
+					baseNumber = powerScore + multiAction;
 				} else {
-					damageData = powerScore;
+					baseNumber = powerScore;
 				}
 			} else if (attackType === "Projectile") {
 				flavorData = `Throws their ${itemName} with the following:`;
-				damageData = Math.ceil(powerScore / 2);
+				baseNumber = Math.ceil(powerScore / 2);
 			} else if (attackType === "Firearm") {
 				flavorData = `Fires their ${itemName} with the following:`;
 			} else {
@@ -193,16 +196,18 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			}
 			contentData += `<div>🎯 Targets: ${targets}</div><br>`;
 			if (damage) {
-				if (damageData > 0) {
-					contentData += `<div class="hide-button layout-hide">💥 Damage:
-					<button class="metanthropes-secondary-chat-button damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="💥 Damage" data-dice="${damage}" data-destiny-re-roll="true" data-damage-data="${damageData}">
-			💥 [[/roll ${damage}d10${explosiveDice}[tade damage]+${damageData}[kati allo dmg]]] 🤞</button>
+				if (baseNumber > 0) {
+					contentData += `<div>💥 Damage: [[${damage}d10${explosiveDice}+${baseNumber}]] </div><br>`;
+					contentData += `<div class="hide-button hidden">
+					<button class="metanthropes-secondary-chat-button damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="💥 Damage" data-dice="${damage}" data-destiny-re-roll="true" data-base-number="${baseNumber}">
+					🤞 to reroll 💥 Damage</button>
 			</div><br>`;
 				} else {
-					contentData += `<div class="hide-button layout-hide">💥 Damage:
-					<button class="metanthropes-secondary-chat-button damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="💥 Damage" data-dice="${damage}" data-destiny-re-roll="true" >
-			💥 [[${damage}d10${explosiveDice}[kati damage]]] 🤞</button>
-			</div><br>`;
+					contentData += `<div>💥 Damage: [[${damage}d10${explosiveDice}]] </div><br>`;
+					contentData += `<div class="hide-button hidden">
+					<button class="metanthropes-secondary-chat-button damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="💥 Damage" data-dice="${damage}" data-destiny-re-roll="true">
+					🤞 to reroll 💥 Damage</button>
+					</div><br>`;
 				}
 			}
 			if (conditions) {
