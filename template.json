@@ -1049,7 +1049,7 @@
 						"type": "number",
 						"dtype": "Number",
 						"label": "⏫",
-						"value": "1"
+						"value": 1
 					},
 					"EnergyType": {
 						"type": "text",
@@ -1185,19 +1185,19 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Possession Description",
-				"value": null
+				"value": "Possession Description"
 			},
 			"EffectDescription": {
 				"type": "text",
 				"dtype": "String",
 				"label": "Effect Description",
-				"value": null
+				"value": "Effect Description"
 			},
 			"ResultDescription": {
 				"type": "text",
 				"dtype": "String",
 				"label": "Results Description",
-				"value": null
+				"value": "Results Description"
 			},
 			"Quantity": {
 				"type": "number",
@@ -1218,7 +1218,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Effect Description",
-				"value": "Metapower Effects"
+				"value": "Effect Description"
 			}
 		},
 		"Combo": {

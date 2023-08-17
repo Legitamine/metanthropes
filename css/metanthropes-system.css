@@ -513,9 +513,6 @@ option {
   padding: 1px;
   margin: 3px;
 }
-.metanthropes .layout-hide {
-  display: none;
-}
 .metanthropes .layout-editor {
   display: flex;
   flex-direction: column;
@@ -525,6 +522,7 @@ option {
   align-self: auto;
   align-items: stretch;
   align-content: space-between;
+  min-height: 80px;
   height: auto;
   padding: 1px;
   margin: 1px;

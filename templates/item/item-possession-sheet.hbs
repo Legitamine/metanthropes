@@ -39,7 +39,6 @@
 							Willpower
 						</option>
 					</select>
-
 				</div>
 				<div class="resource">
 					<label class="resource-label">Category:</label>
@@ -55,7 +54,6 @@
 						<option value="Drug" {{#if (eq system.Category.value "Drug")}}selected{{/if}}>Drug
 						</option>
 					</select>
-
 				</div>
 				<div class="resource">
 					<label class="resource-label">Attack Type:</label>
@@ -69,7 +67,6 @@
 							Firearm
 						</option>
 					</select>
-
 				</div>
 				<div class="resource">
 					<label class="resource-label">Quantity:</label>
@@ -82,7 +79,7 @@
 	{{!-- Sheet Tab Navigation --}}
 	<nav class="sheet-tabs tabs" data-group="primary">
 		<a class="item" data-tab="description">Description</a>
-		<a class="item" data-tab="material">🧱 Properties</a>
+		<a class="item" data-tab="material" title="Material Properties">🧱 Properties</a>
 		<a class="item" data-tab="usage">Usage</a>
 		<a class="item" data-tab="effects">Effects</a>
 		<a class="item" data-tab="results">Results</a>
@@ -95,11 +92,11 @@
 			<div>{{system.Description.label}}:<br></div>
 			{{#if isGM}}
 				<div class="layout-editor">
-					{{editor system.Description.value target="system.Description.value" rollData=rollData button=true owner=owner editable=true}}
+					{{editor system.Description.value target="system.Description.value" button=true editable=true}}
 				</div>
 			{{else}}
 				<div class="layout-editor">
-					{{editor system.Description.value target="system.Description.value" rollData=rollData button=false owner=owner editable=false}}
+					{{editor system.Description.value target="system.Description.value" button=false editable=false}}
 				</div>
 			{{/if}}
 		</div>
@@ -131,11 +128,11 @@
 				<div>{{system.EffectDescription.label}}:<br></div>
 				{{#if isGM}}
 					<div class="layout-editor">
-						{{editor system.EffectDescription.value target="system.EffectDescription.value" rollData=rollData button=true owner=owner editable=true}}
+						{{editor system.EffectDescription.value target="system.EffectDescription.value" button=true editable=true}}
 					</div>
 				{{else}}
 					<div class="layout-editor">
-						{{editor system.EffectDescription.value target="system.EffectDescription.value" rollData=rollData button=false owner=owner editable=false}}
+						{{editor system.EffectDescription.value target="system.EffectDescription.value" button=false editable=false}}
 					</div>
 				{{/if}}
 			</div>
@@ -153,11 +150,11 @@
 				<div>{{system.ResultDescription.label}}:<br></div>
 				{{#if isGM}}
 					<div class="layout-editor">
-						{{editor system.ResultDescription.value target="system.ResultDescription.value" rollData=rollData button=true owner=owner editable=true}}
+						{{editor system.ResultDescription.value target="system.ResultDescription.value" button=true editable=true}}
 					</div>
 				{{else}}
 					<div class="layout-editor">
-						{{editor system.ResultDescription.value target="system.ResultDescription.value" rollData=rollData button=false owner=owner editable=false}}
+						{{editor system.ResultDescription.value target="system.ResultDescription.value" button=false editable=false}}
 					</div>
 				{{/if}}
 			</div>

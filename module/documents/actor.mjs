@@ -281,7 +281,7 @@ export class MetanthropesActor extends Actor {
 			))
 		);
 		if (systemData.Vital.Experience.Stored < 0) {
-			ui.notifications.warn(this.name + "'s Stored Experience is Negative!");
+			ui.notifications.error(this.name + "'s Stored Experience is Negative!");
 			
 			// console.log("Metanthropes RPG System | Actor Prep | WARNING: Stored Experience is Negative!");
 			

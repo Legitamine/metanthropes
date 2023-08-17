@@ -148,7 +148,7 @@ export async function NewActorPrimeMetapower(actor) {
                 </select>
             </div>
             <div class="form-group">
-                <label for="energyType" title="Energy Type dictates the Damage and other properties of an effect. Energy Types additionally influence the spending of Experience for unlocking and advancing new Metapowers.">⚡ Energy Type:</label>
+                <label for="energyType" title="Energy Type dictates the Damage and other properties of an effect. Energy Types additionally influence the spending of Experience for unlocking and advancing new Metapowers.">✨ Energy Type:</label>
                 <select id="energyType">
                     <option value="">All</option>
                     ${[...new Set(MetapowersList.map((m) => m.energyType))]
@@ -822,7 +822,7 @@ export async function NewActorProgression(actor) {
 		`;
 	let dialogOptions = {
 		width: 550,
-		height: 210,
+		height: 230,
 		index: 1000,
 	};
 	return new Promise((resolve, reject) => {
@@ -870,7 +870,7 @@ export async function NewActorSummary(actor) {
 		<div class="metanthropes layout-metaroll-dialog">
 			<h2>Choose your ${actor.type}'s ✍️ Summary</h2>
 			<form>
-			<p>Protagonist Details:</p>
+			<h3>Protagonist Details:</h3>
 				<div class="form-group">
 					<label for="actorname" title="Your ${actor.type}'s Name for the Saga">Name: </label>
 					<input type="text" id="actorname" name="actorname" value="${actor.type}'s Name">
@@ -895,7 +895,7 @@ export async function NewActorSummary(actor) {
 					<label for="actorpob" title="Your ${actor.type}'s Place of Birth for the Saga">Place of Birth: </label>
 					<input type="text" id="actorpob" name="actorpob" value="">
 				</div>
-				<p>Session Details:</p>
+				<h3>Session Details:</h3>
 				<div class="form-group">
 					<label for="narratorName" title="This should be filled out automatically">Narrator Name: </label>${narratorName}
 				</div>

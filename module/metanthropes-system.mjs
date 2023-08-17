@@ -342,7 +342,7 @@ Hooks.on("renderChatMessage", async (message, html) => {
 	const actorUUID = message.getFlag("metanthropes-system", "actoruuid");
 	if (!actorUUID) return;
 	const actor = await fromUuid(actorUUID);
-	const metaowner = actor.system.metaowner.value;
+	const metaowner = actor.system.metaowner.value || null;
 	//console.log("Metanthropes RPG System | DEBUG | metaowner:", actor.system.metaowner.value, metaowner);
 	//? Proceed only if the current user is the owner of the actor, or a GM
 	if (game.user.name === metaowner || game.user.isGM) {

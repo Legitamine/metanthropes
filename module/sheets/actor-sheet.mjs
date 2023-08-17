@@ -60,12 +60,12 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//	}
 		//? Indicate that the user is a Narrator
 		context.isGM = game.user.isGM;
-		console.log("Metanthropes RPG System | getData | Is this a GM?", context.isGM);
+		//console.log("Metanthropes RPG System | getData | Is this a GM?", context.isGM);
 		return context;
 	}
 	//prepare items
 	_prepareItems(context) {
-		// Initialize containers.
+		//? Initialize containers.
 		const Possessions = {
 			Strike: [],
 			Weapon: [],
@@ -87,34 +87,33 @@ export class MetanthropesActorSheet extends ActorSheet {
 			4: [],
 			5: [],
 		};
-		// Iterate through items, allocating to containers
+		//? Iterate through items, allocating to containers
 		for (let i of context.items) {
 			i.img = i.img || DEFAULT_TOKEN;
-			// Append to Possessions.
+			//? Append to Possessions.
 			if (i.type === "Possession") {
 				if (i.system.Category.value != undefined) {
 					Possessions[i.system.Category.value].push(i);
 				}
 			}
-			// Append to Metapowers.
+			//? Append to Metapowers.
 			else if (i.type === "Metapower") {
 				if (i.system.Activation.Level.value != undefined) {
 					Metapowers[i.system.Activation.Level.value].push(i);
 				}
+			//? Append to Combos.
 			} else if (i.type === "Combo") {
 				if (i.system.level != undefined) {
 					Combos[i.system.Level.value].push(i);
 				}
 			}
 		}
-
-		// Assign and return
+		//? Assign and return
 		context.Possessions = Possessions;
 		context.Metapowers = Metapowers;
 		context.Combos = Combos;
 	}
-	//* activate listeners for clickable stuff on the actor sheet!
-	//code from boilerplate
+	//? activate listeners for clickable stuff on the actor sheet!
 	activateListeners(html) {
 		super.activateListeners(html);
 		// Render the item sheet for viewing/editing prior to the editable check.
@@ -136,7 +135,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			li.slideUp(200, () => this.render(false));
 		});
 		// Active Effect management
-		// html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
+		html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
 		//? Find the different type of rolls and add the event listeners
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
 		html.find(".style-cs-rolls").on("contextmenu", this._onCustomRoll.bind(this));

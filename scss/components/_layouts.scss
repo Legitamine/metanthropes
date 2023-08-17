@@ -177,10 +177,6 @@
 	padding: $padding-sm;
 	margin: $margin-md;
 }
-.layout-hide {
-	display: none;
-	//@include element-invisible;
-}
 .layout-editor {
 	display: flex;
 	flex-direction: column;
@@ -190,6 +186,7 @@
 	align-self: auto;
 	align-items: stretch;
 	align-content: space-between;
+	min-height: 80px;
 	height: auto;
 	padding: $padding-sm;
 	margin: $margin-sm;

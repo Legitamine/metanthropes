@@ -1,14 +1,139 @@
 <form class="metanthropes {{cssClass}}" autocomplete="off">
 	<header class="sheet-header">
 		{{#if isGM}}
-		<img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" style="border:none" />
+			<img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" style="border:none" />
 		{{else}}
 			<img class="profile-img" src="{{item.img}}" title="{{item.name}}" style="border:none" />
-			{{/if}}
-			<div class="header-fields">
-				<h1 class="charname"><input name="name" type="text" value="{{item.name}}"
-						placeholder="Metapower Name" /></h1>
+		{{/if}}
+		<div class="header-fields">
+			<h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Metapower Name" />
+			</h1>
+			<div class="grid grid-2col">
+				<div class="resource">
+					<label class="resource-label" title="Which Stat is rolled when Activating this Metapower.">🎲:</label>
+					<select name="system.StatRolled.value">
+						<option value="Awareness" {{#if (eq system.StatRolled.value "Awareness")}}selected{{/if}}>
+							Awareness
+						</option>
+						<option value="Consciousness"
+							{{#if (eq system.StatRolled.value "Consciousness")}}selected{{/if}}>Consciousness
+						</option>
+						<option value="Creativity" {{#if (eq system.StatRolled.value "Creativity")}}selected{{/if}}>
+							Creativity
+						</option>
+						<option value="Endurance" {{#if (eq system.StatRolled.value "Endurance")}}selected{{/if}}>
+							Endurance
+						</option>
+						<option value="Manipulation" {{#if (eq system.StatRolled.value "Manipulation")}}selected{{/if}}>
+							Manipulation
+						</option>
+						<option value="Perception" {{#if (eq system.StatRolled.value "Perception")}}selected{{/if}}>
+							Perception
+						</option>
+						<option value="Power" {{#if (eq system.StatRolled.value "Power")}}selected{{/if}}>Power
+						</option>
+						<option value="Reflexes" {{#if (eq system.StatRolled.value "Reflexes")}}selected{{/if}}>
+							Reflexes
+						</option>
+						<option value="Willpower" {{#if (eq system.StatRolled.value "Willpower")}}selected{{/if}}>
+							Willpower
+						</option>
+					</select>
+<!-- use this as refference on how to add rolls on item sheets, but you'll have to get roll data first from item-sheet.mjs
+				<div class="item-statroll style-mp-rolls" data-roll-type="Metapower"
+							data-item-name="{{item.name}}" data-stat="{{item.system.Activation.StatRolled.value}}"
+							data-destiny-cost="{{item.system.Activation.DestinyCost.value}}">{{lookup ../../system.RollStats item.system.Activation.StatRolled.value}}
+				</div>
+-->
+				</div>
+				<div class="resource">
+					<label class="resource-label" title="Each Classification includes Metapowers which have a similar role and utilize capabilities and functions in a similar manner.">🔣:</label>
+					<select name="system.Activation.Classification.value">
+						<option value="Aegis"
+							{{#if (eq system.Activation.Classification.value "Aegis")}}selected{{/if}}>Aegis
+						</option>
+						<option value="Animator"
+							{{#if (eq system.Activation.Classification.value "Animator")}}selected{{/if}}>
+							Animator
+						</option>
+						<option value="Arbiter"
+							{{#if (eq system.Activation.Classification.value "Arbiter")}}selected{{/if}}>
+							Arbiter
+						</option>
+						<option value="Clairvoyant"
+							{{#if (eq system.Activation.Classification.value "Clairvoyant")}}selected{{/if}}>
+							Clairvoyant
+						</option>
+						<option value="Controller"
+							{{#if (eq system.Activation.Classification.value "Controller")}}selected{{/if}}>
+							Controller
+						</option>
+						<option value="Cosmonaut"
+							{{#if (eq system.Activation.Classification.value "Cosmonaut")}}selected{{/if}}>
+							Cosmonaut
+						</option>
+						<option value="Hammer"
+							{{#if (eq system.Activation.Classification.value "Hammer")}}selected{{/if}}>
+							Hammer
+						</option>
+						<option value="Kineticist"
+							{{#if (eq system.Activation.Classification.value "Kineticist")}}selected{{/if}}>
+							Kineticist
+						</option>
+						<option value="Manipulator"
+							{{#if (eq system.Activation.Classification.value "Manipulator")}}selected{{/if}}>
+							Manipulator
+						</option>
+						<option value="Utilitarian"
+							{{#if (eq system.Activation.Classification.value "Utilitarian")}}selected{{/if}}>
+							Utilitarian
+						</option>
+					</select>
+				</div>
+				<div class="resource">
+					<label class="resource-label" title="The Name of the Metapower">Ⓜ️:</label>
+					<input type="text" name="system.Activation.MetapowerName.value"
+						value="{{system.Activation.MetapowerName.value}}" data-dtype="String" />
+				</div>
+				<div class="resource">
+					<label class="resource-label" title="Energy Type dictates the Damage and other properties of an effect.">✨:</label>
+					<select name="system.Activation.EnergyType.value">
+						<option value="Cosmic" {{#if (eq system.Activation.EnergyType.value "Cosmic")}}selected{{/if}}>
+							Cosmic
+						</option>
+						<option value="Elemental"
+							{{#if (eq system.Activation.EnergyType.value "Elemental")}}selected{{/if}}>Elemental
+						</option>
+						<option value="Material"
+							{{#if (eq system.Activation.EnergyType.value "Material")}}selected{{/if}}>Material
+						</option>
+						<option value="Psychic"
+							{{#if (eq system.Activation.EnergyType.value "Psychic")}}selected{{/if}}>Psychic
+						</option>
+					</select>
+				</div>
+				<div class="resource">
+					<label class="resource-label" title="The Level of the Metapower">⏫:</label>
+					<select name="system.Activation.Level.value">
+						<option value="1" {{#if (eq system.Activation.Level.value "1")}}selected{{/if}}>1
+						</option>
+						<option value="2" {{#if (eq system.Activation.Level.value "2")}}selected{{/if}}>2
+						</option>
+						<option value="3" {{#if (eq system.Activation.Level.value "3")}}selected{{/if}}>3
+						</option>
+						<option value="4" {{#if (eq system.Activation.Level.value "4")}}selected{{/if}}>4
+						</option>
+						<option value="5" {{#if (eq system.Activation.Level.value "5")}}selected{{/if}}>5
+						</option>
+					</select>
+				</div>
+				<div class="resource">
+					<label class="resource-label" title="The Destiny Cost to Activate this Metapower">🤞:</label>
+					<input type="number" name="system.Activation.DestinyCost.value"
+						value="{{system.Activation.DestinyCost.value}}" data-dtype="Number" />
+				</div>
 			</div>
+		</div>
 	</header>
 	{{!-- Sheet Tab Navigation --}}
 	<nav class="sheet-tabs tabs" data-group="primary">
@@ -22,30 +147,48 @@
 		<div class="tab description" data-group="primary" data-tab="description">
 			<div>{{system.Description.label}}:<br></div>
 			{{#if isGM}}
-			<div class="layout-editor">{{editor system.Description.value target="system.Description.value" rollData=rollData button=true owner=owner editable=true}}</div>
+				<div class="layout-editor">
+					{{editor system.Description.value target="system.Description.value" button=true editable=true}}
+				</div>
 			{{else}}
-			<div class="layout-editor">{{editor system.Description.value target="system.Description.value" rollData=rollData button=false owner=owner editable=false}}</div>
+				<div class="layout-editor">
+					{{editor system.Description.value target="system.Description.value" button=false editable=false}}
+				</div>
 			{{/if}}
 		</div>
 		{{!-- Activation Tab --}}
 		<div class="tab activation" data-group="primary" data-tab="activation">
 			{{!-- As you add new fields, add them in here! --}}
 			{{#each system.Activation}}
-				<div class="resource">
-					<label class="resource-label">{{this.label}}:</label>
-					<input type="{{this.type}}" name="system.Activation.{{@key}}.value" value="{{this.value}}"
-						data-dtype="{{this.dtype}}" />
-				</div>
+				{{#unless (or 
+			        (eq @key "StatRolled") 
+			        (eq @key "Classification") 
+			        (eq @key "MetapowerName") 
+			        (eq @key "EnergyType") 
+			        (eq @key "Level") 
+			        (eq @key "DestinyCost")
+			    )}}
+					<div class="resource">
+						<label class="resource-label">{{this.label}}:</label>
+						<input type="{{this.type}}" name="system.Activation.{{@key}}.value" value="{{this.value}}"
+							data-dtype="{{this.dtype}}" />
+					</div>
+				{{/unless}}
 			{{/each}}
+
 		</div>
 		{{!-- Effects Tab --}}
 		<div class="tab effects" data-group="primary" data-tab="effects">
 			<div>
 				<div>{{system.EffectDescription.label}}:<br></div>
 				{{#if isGM}}
-				<div class="layout-editor">{{editor system.EffectDescription.value target="system.EffectDescription.value" rollData=rollData button=true owner=owner editable=editable}}</div>
+					<div class="layout-editor">
+						{{editor system.EffectDescription.value target="system.EffectDescription.value" button=true editable=true}}
+					</div>
 				{{else}}
-				<div class="layout-editor">{{editor system.EffectDescription.value target="system.EffectDescription.value" rollData=rollData button=false owner=owner editable=false}}</div>
+					<div class="layout-editor">
+						{{editor system.EffectDescription.value target="system.EffectDescription.value" button=false editable=false}}
+					</div>
 				{{/if}}
 			</div>
 			{{#each system.Effects}}

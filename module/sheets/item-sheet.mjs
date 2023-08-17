@@ -3,8 +3,8 @@ export class MetanthropesItemSheet extends ItemSheet {
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
 			classes: ["metanthropes", "sheet", "item"],
-			width: 650,
-			height: 700,
+			width: 700,
+			height: 720,
 			closeOnSubmit: false,
 			submitOnClose: true,
 			submitOnChange: true,
@@ -13,6 +13,7 @@ export class MetanthropesItemSheet extends ItemSheet {
 		});
 	}
 	//? Only Narrators are allowed to drag and drop items
+	//! players are also able to drag n drop possessions from itempiles perhaps?
 	/** @override */
 	_canDragDrop(selector) {
 		return game.user.isGM;
@@ -59,16 +60,16 @@ export class MetanthropesItemSheet extends ItemSheet {
 
 	/** @override */
 	activateListeners(html) {
-	//? Only Narrators are allowed to edit the item
-	if (!game.user.isGM) {
-		html.find('input, textarea, select').attr('disabled', 'disabled');
-	}
-	//? Call the super class's activateListeners method to ensure any other listeners are set up
-	super.activateListeners(html);
+		//? Call the super class's activateListeners method to ensure any other listeners are set up
+		super.activateListeners(html);
+		//? Only Narrators are allowed to edit the item
+		if (!game.user.isGM) {
+			html.find("input, textarea, select").attr("disabled", "disabled");
+		}
 	}
 	//		// Everything below here is only needed if the sheet is editable
 	//		if (!this.isEditable) return;
-//	
+	//
 	//		// Roll handlers, click handlers, etc. would go here.
 	//	}
 }

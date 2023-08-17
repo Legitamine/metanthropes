@@ -15,7 +15,7 @@
  * todo episis upcoming combos!
  * todo kai olo mazi na kanei seamless integration se ena executioN!
  * !todo utilize existing levels of success and spent levels of success
- * ! what to do with targets being 1d10/2 ????
+ * ! what to do with targets being 1d10/2 ???? ++ *special* rolls
  *
  * @param {Event} [event] - The button click event, if the function was triggered by a button click. Expected to be null if the function is called directly.
  * @param {string} actorUUID - The UUID of the actor performing the action. Expected to be a string.
