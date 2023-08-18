@@ -917,6 +917,16 @@ option {
   color: #7d0f81;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
+.metanthropes .style-editor {
+  opacity: 1;
+  font-family: "gill-sans-nova", sans-serif;
+  font-size: 1rem;
+  color: #000;
+  padding: 3px;
+  margin: 3px;
+  border: 1px solid #000;
+  border-radius: 15px;
+}
 .metanthropes .items-header {
   margin: 1px;
   padding: 1px;
@@ -953,7 +963,7 @@ option {
   flex: 2;
   margin: 0;
   overflow: hidden;
-  font-size: 15px;
+  font-size: 16px;
   text-align: left;
   align-items: center;
   display: flex;
@@ -966,7 +976,7 @@ option {
 }
 .metanthropes .items-list .item-controls {
   display: flex;
-  flex: 0 0 100px;
+  flex: 0 0 80px;
   justify-content: center;
 }
 .metanthropes .items-list .item-controls a {
@@ -990,8 +1000,6 @@ option {
 }
 .metanthropes .items-list .item-prop {
   text-align: center;
-  border-left: 1px solid #000;
-  border-right: 1px solid #000;
   font-size: 14px;
 }
 .metanthropes .items-list .items-header {

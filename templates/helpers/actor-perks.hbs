@@ -1,10 +1,10 @@
 <div class="perks">
 	<div class="flexrow">
 		<div class="knowledge">
-			<h3 class="style-labels-text">Knowledge</h3>
+			<h3 class="style-labels-text" title="Knowledge refers to abilities developed through studying theories, learning thesis and theorems, and performing simulations and experiments.">Knowledge</h3>
 			{{#each system.Perks.Knowledge}}
 				<div class="perk-item">
-					<label for="system.Perks.Knowledge.{{@key}}.value">{{this.label}}:</label>
+					<label for="system.Perks.Knowledge.{{@key}}.value" title="{{this.title}}">{{this.label}}:</label>
 					<select name="system.Perks.Knowledge.{{@key}}.value" id="system.Perks.Knowledge.{{@key}}.value"
 						data-dtype="{{this.dtype}}">
 						<option value="0" {{selected this.value 0}}>0</option>
@@ -18,10 +18,10 @@
 			{{/each}}
 		</div>
 		<div class="perks-skills flex">
-			<h3 class="style-labels-text">Skills</h3>
+			<h3 class="style-labels-text" title="Skills refer to abilities that develop through practical appliance, repetition and practicing them in the field.">Skills</h3>
 			{{#each system.Perks.Skills}}
 				<div class="perk-item">
-					<label for="system.Perks.Skills.{{@key}}.value">{{this.label}}:</label>
+					<label for="system.Perks.Skills.{{@key}}.value" title="{{this.title}}">{{this.label}}:</label>
 					<select name="system.Perks.Skills.{{@key}}.value" id="system.Perks.Skills.{{@key}}.value"
 						data-dtype="{{this.dtype}}">
 						<option value="0" {{selected this.value 0}}>0</option>

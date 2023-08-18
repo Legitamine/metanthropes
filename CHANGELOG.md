@@ -16,9 +16,8 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 ######  Fixed:	Fixes to existing issues, including bug fixes
 ######  Known Issues:	Issues that are known and will be fixed in future releases
 
-<br>
-<br>
 -->
+
 ## Current: v0.7
 
 ###### Unreleased:
@@ -29,6 +28,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 -   Fully automated Stat, Initiative, Metapower, Possession and Strike Rolls.
 -   New approach to rolling a new Protagonist
 -   New tooltips for the majority of the Overview Sheet
+-	New Protagonist Character Sheet sections: Notes & Summary
 -   Movement Score is now automatically calculated based on Speed, Weight and Size.
 -	Non-linked Actors are now available to Narrators.
 -   New Supported module: Carousel Combat Tracker (PR pending)

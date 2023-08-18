@@ -184,7 +184,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Physical Description",
-						"value": "Details about physical appearance..."
+						"value": "Details about your physical appearance."
 					}
 				}
 			},
@@ -457,31 +457,36 @@
 							"type": "number",
 							"dtype": "Number",
 							"label": "Academics",
-							"value": 0
+							"value": 0,
+							"title": "Academics offer a Character access to educational, cultural, social, and historical fields of knowledges. In addition to the fields of study, each Level at Academics provides the Character with additional foreign languages."
 						},
 						"Engineering": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Engineering",
-							"value": 0
+							"value": 0,
+							"title": "Engineering offers a Character access to architectural and design capabilities and craftmanship in order to forge, repair or construct any Possession. Engineering includes both blueprint drafting and construction skills.  In addition to the fields of study, each Level at Engineering provides the Character with the ability to certain forms of structural damage."
 						},
 						"Medicine": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Medicine",
-							"value": 0
+							"value": 0,
+							"title": "Medicine offers the Character the ability to diagnose and treat medical conditions. In addition to the fields of study, each Level at Medicine provides the Character with the ability to reduce Conditions and restore Life to biological organisms."
 						},
 						"Science": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Science",
-							"value": 0
+							"value": 0,
+							"title": "Science offers the Character access to mathematical and technological fields, as well as access to specific fields of science. In addition to the fields of study, each Level at Science provides the Character with the ability to run experiments, simulations and set up computing servers and data analyzers."
 						},
 						"Lore": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Lore",
-							"value": 0
+							"value": 0,
+							"title": "Lore offers the Character knowledge of the unseen Metapowered world that is shrouded in mystery. Lore is folklore, occult, mysticism, and knowledge of the peculiarities of Metanthropes and other more obscure beings. In addition to the fields of study, each Level at Lore provides the Character with the awareness of the existence of Metapowers and Combos beyond the ones they own, and the ability to identify them they encounter them."
 						}
 					},
 					"Skills": {
@@ -489,31 +494,36 @@
 							"type": "number",
 							"dtype": "Number",
 							"label": "Artistry",
-							"value": 0
+							"value": 0,
+							"title": "Artistry represents the skill of a Character with any form of expression. Examples could include acting, sculpturing, drawing, poetry, singing, dancing, make-up artistry, cooking, graphic design, game design or any other similar form of Artistry."
 						},
 						"Athletics": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Athletics",
-							"value": 0
+							"value": 0,
+							"title": "Athletics represent the Character's control over their body and may include skills such as acrobatics, martial arts, self-defense, parkour, wresting, and any kind of sport. Higher levels give access to further combat and acrobatic techniques, that can be attempted without a Penalty."
 						},
 						"Expertise": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Expertise",
-							"value": 0
+							"value": 0,
+							"title": "Expertise represents a Character's skill level in a specific activity. Expertise is a Skill that offers a Bonus on a specific Stat roll (this Bonus does not apply to Metapowered activations which use the same roll). With each level at this Skill, the Character must also select a specialization. Expertise can be unlocked multiple times, each time selecting a different specialization."
 						},
 						"Operation": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Operation",
-							"value": 0
+							"value": 0,
+							"title": "With this Skill, a Character can operate tools, heavy machinery and drive or pilot any vehicles. Higher levels at this Perk allow a Character to use more complex devices and drive or pilot marvels of technology."
 						},
 						"Weapons": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Weapons",
-							"value": 0
+							"value": 0,
+							"title": "With the Weapons Skill, a Character has undergone training of armed combat of any weapon type, from melee weapons to firearms and explosives. Higher levels at this Perk offer access to more advanced weapons."
 						}
 					},
 					"Details": {
@@ -713,7 +723,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Metamorphosis Details",
-						"value": "some metamorphosis"
+						"value": "Details about how you became to be a Metanthrope."
 					}
 				}
 			}
@@ -1114,8 +1124,8 @@
 					"Notes": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Metabase Notes",
-						"value": "Notes on how to use this Metapower"
+						"label": "Additional Information",
+						"value": "Additional Information about Activating this Metapower"
 					}
 				},
 				"Effects": {
@@ -1146,8 +1156,8 @@
 					"Notes": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Metabase Notes",
-						"value": "Notes on how to use this Metapower"
+						"label": "Additional Information",
+						"value": "Additional Information about the Effects of this Metapower"
 					}
 				}
 			}

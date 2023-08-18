@@ -25,6 +25,8 @@ export async function NewActor(actor) {
 		await NewActorFinish(actor);
 	} catch (error) {
 		console.log("Metanthropes RPG System | New Actor | New Actor Error:", error);
+	} finally {
+		console.log("Metanthropes RPG System | New Actor | New Actor Creation Complete for", actor.type, actor.name);
 	}
 }
 //* Filter function for Prime Metapower Selection

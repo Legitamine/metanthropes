@@ -414,3 +414,13 @@
 	//		text-shadow: $s-outline;
 	//	}
 }
+.style-editor {
+	opacity: 1;
+	font-family: $font-secondary;
+	font-size: 1rem;
+	color: $c-black;
+	padding: $padding-md;
+	margin: $margin-md;
+	border: $border-style-solid;
+	border-radius: $border-radius;
+}
