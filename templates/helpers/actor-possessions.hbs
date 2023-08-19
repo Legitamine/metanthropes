@@ -24,11 +24,11 @@
 				</div>
 				<div class="item-attacktype item-prop">{{item.system.AttackType.value}}</div>
 				<div class="item-statroll style-pos-rolls" data-roll-type="Possession"
-					data-stat="{{item.system.StatRolled.value}}" data-item-name="{{item.name}}">
-					{{item.system.StatRolled.value}}: {{lookup ../../system.RollStats item.system.StatRolled.value}}
+					data-stat="{{item.system.Execution.StatRolled.value}}" data-item-name="{{item.name}}">
+					{{item.system.Execution.StatRolled.value}}: {{lookup ../../system.RollStats item.system.Execution.StatRolled.value}}
 				</div>
-				<div class="item-actionslot item-prop">{{item.system.Usage.ActionSlot.value}}</div>
-				<div class="item-range item-prop">{{item.system.Usage.Range.value}}</div>
+				<div class="item-actionslot item-prop">{{item.system.Execution.ActionSlot.value}}</div>
+				<div class="item-range item-prop">{{item.system.Execution.Range.value}}</div>
 				{{#if ../../isGM}}
 				<div class="item-controls">
 					<a class="item-control item-delete" title="Delete Possession"><i

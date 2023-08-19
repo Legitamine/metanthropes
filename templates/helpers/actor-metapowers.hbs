@@ -21,16 +21,16 @@
 						<div class="item-control item-edit" title="Metapower Details">{{item.name}}</div>
 					</h4>
 				</div>
-				<div class="item-itemname item-prop">{{item.system.Activation.MetapowerName.value}}</div>
+				<div class="item-itemname item-prop">{{item.system.MetapowerName.value}}</div>
 				<div class="item-statroll style-mp-rolls" data-roll-type="Metapower"
-							data-item-name="{{item.name}}" data-stat="{{item.system.Activation.StatRolled.value}}"
-							data-destiny-cost="{{item.system.Activation.DestinyCost.value}}">
-					{{item.system.Activation.StatRolled.value}}:
-					{{lookup ../../system.RollStats item.system.Activation.StatRolled.value}}
+							data-item-name="{{item.name}}" data-stat="{{item.system.Execution.StatRolled.value}}"
+							data-destiny-cost="{{item.system.DestinyCost.value}}">
+					{{item.system.Execution.StatRolled.value}}:
+					{{lookup ../../system.RollStats item.system.Execution.StatRolled.value}}
 				</div>
-				<div class="item-destinycost item-prop">{{item.system.Activation.DestinyCost.value}}</div>
-				<div class="item-actionslot item-prop">{{item.system.Activation.ActionSlot.value}}</div>
-				<div class="item-range item-prop">{{item.system.Activation.Range.value}}</div>
+				<div class="item-destinycost item-prop">{{item.system.DestinyCost.value}}</div>
+				<div class="item-actionslot item-prop">{{item.system.Execution.ActionSlot.value}}</div>
+				<div class="item-range item-prop">{{item.system.Execution.Range.value}}</div>
 				{{#if ../../isGM}}
 				<div class="item-controls">
 					<a class="item-control item-delete" title="Delete Metapower"><i class="fa-duotone fa-trash"></i></a>

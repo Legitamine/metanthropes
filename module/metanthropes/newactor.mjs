@@ -115,7 +115,9 @@ export async function NewActorDestiny(actor) {
 							await actor.update({ "system.Vital.Destiny.max": Number(NewDestiny) });
 							await actor.update({ "system.metaowner.value": playerName });
 							console.log(`Metanthropes RPG System | New Actor | New Actor Owner: ${playerName}`);
-							console.log(`Metanthropes RPG System | New Actor | ${playerName}'s ${actor.type} Destiny: ${NewDestiny}`);
+							console.log(
+								`Metanthropes RPG System | New Actor | ${playerName}'s ${actor.type} Destiny: ${NewDestiny}`
+							);
 							resolve();
 						},
 					},
@@ -205,7 +207,9 @@ export async function NewActorPrimeMetapower(actor) {
 								"system.entermeta.primemetapower.value": primeMetapowerName,
 								primeimg: `systems/metanthropes-system/artwork/metapowers/${primeMetapowerName}.png`,
 							});
-							console.log(`Metanthropes RPG System | New Actor | New Prime Metapower: ${primeMetapowerName}`);
+							console.log(
+								`Metanthropes RPG System | New Actor | New Prime Metapower: ${primeMetapowerName}`
+							);
 							resolve();
 						},
 					},
@@ -838,11 +842,15 @@ export async function NewActorProgression(actor) {
 						callback: async (html) => {
 							let startingXP = html.find('[name="startingXP"]').val();
 							await actor.update({ "system.Vital.Experience.Total": Number(startingXP) });
-							console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Starting Experience: ${startingXP}`);
+							console.log(
+								`Metanthropes RPG System | New Actor | ${actor.type}'s Starting Experience: ${startingXP}`
+							);
 							let startingPerks = html.find('[name="startingPerks"]').val();
 							//? setting the starting perks count to the database to be used later in determining XP costs
 							await actor.update({ "system.Perks.Details.Starting.value": startingPerks });
-							console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Starting Perks: ${startingPerks}`);
+							console.log(
+								`Metanthropes RPG System | New Actor | ${actor.type}'s Starting Perks: ${startingPerks}`
+							);
 							resolve();
 						},
 					},
@@ -874,28 +882,32 @@ export async function NewActorSummary(actor) {
 			<form>
 			<h3>Protagonist Details:</h3>
 				<div class="form-group">
-					<label for="actorname" title="Your ${actor.type}'s Name for the Saga">Name: </label>
-					<input type="text" id="actorname" name="actorname" value="${actor.type}'s Name">
+					<label for="actorname" title="Your ${actor.type}'s Name">Name: </label>
+					<input type="text" dtype="String" id="actorname" name="actorname" value="${actor.type}'s Name">
 				</div>
 				<div class="form-group">
-					<label for="actorgender" title="Your ${actor.type}'s Gender for the Saga">Gender: </label>
-					<input type="text" id="actorgender" name="actorgender" value="">
+					<label for="actorgender" title="Your ${actor.type}'s Gender">Gender: </label>
+					<input type="text" dtype="String" id="actorgender" name="actorgender" value="">
 				</div>
 				<div class="form-group">
-					<label for="actorage" title="Your ${actor.type}'s Age for the Saga">Age: </label>
-					<input class="style-container-input-charstat" type="number" id="actorage" name="actorage" value="">yr
+					<label for="actorgenderpronoun" title="Your ${actor.type}'s Gender Pronoun. (Example: "He/Him/His", "She/Her/Hers", "They/Them/Theirs")">Pronoun: </label>
+					<input type=text dtype="String" id="actorgenderpronoun" name="actorgenderpronoun" value="">
 				</div>
 				<div class="form-group">
-					<label for="actorheight" title="Your ${actor.type}'s Height for the Saga">Height: </label>
-					<input class="style-container-input-charstat" type="number" id="actorheight" name="actorheight" value="">m
+					<label for="actorage" title="Your ${actor.type}'s Age">Age: </label>
+					<input class="style-container-input-charstat" type="number" dtype="Number" id="actorage" name="actorage" value="">yr
 				</div>
 				<div class="form-group">
-					<label for="actorweight" title="Your ${actor.type}'s Weight for the Saga">Weight: </label>
-					<input class="style-container-input-charstat" type="number" id="actorweight" name="actorweight" value="">kg
+					<label for="actorheight" title="Your ${actor.type}'s Height">Height: </label>
+					<input class="style-container-input-charstat" type="number" dtype="Number" id="actorheight" name="actorheight" value="">m
 				</div>
 				<div class="form-group">
-					<label for="actorpob" title="Your ${actor.type}'s Place of Birth for the Saga">Place of Birth: </label>
-					<input type="text" id="actorpob" name="actorpob" value="">
+					<label for="actorweight" title="Your ${actor.type}'s Weight">Weight: </label>
+					<input class="style-container-input-charstat" type="number" dtype="Number" id="actorweight" name="actorweight" value="">kg
+				</div>
+				<div class="form-group">
+					<label for="actorpob" title="Your ${actor.type}'s Place of Birth">Place of Birth: </label>
+					<input type="text" dtype="String" id="actorpob" name="actorpob" value="">
 				</div>
 				<h3>Session Details:</h3>
 				<div class="form-group">
@@ -906,15 +918,15 @@ export async function NewActorSummary(actor) {
 				</div>
 				<div class="form-group">
 					<label for="saganame" title="The name for this Saga">Saga Name: </label>
-					<input type="text" id="saganame" name="saganame" value="">
+					<input type="text" dtype="String" id="saganame" name="saganame" value="">
 				</div>
 				<div class="form-group">
 					<label for="coalitionname" title="The name of your Coalition of Metanthropes">Coalition Name: </label>
-					<input type="text" id="coalitionname" name="coalitionname" value="">
+					<input type="text" dtype="String" id="coalitionname" name="coalitionname" value="">
 				</div>
 				<div class="form-group">
 					<label for="factionname" title="The name of the Faction your Coalition is a part of">Faction Name: </label>
-					<input type="text" id="factionname" name="factionname" value="">
+					<input type="text" dtype="String" id="factionname" name="factionname" value="">
 				</div>
 			</form>
 		</div>
@@ -929,7 +941,7 @@ export async function NewActorSummary(actor) {
 					callback: async (html) => {
 						let actorname = html.find('[name="actorname"]').val();
 						await actor.update({ name: actorname });
-						if (actor.type == "Protagonist" || actor.type== "Metanthrope") {
+						if (actor.type == "Protagonist" || actor.type == "Metanthrope") {
 							await actor.update({ "prototypeToken.name": actorname });
 						}
 						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Name: ${actorname}`);
@@ -939,6 +951,11 @@ export async function NewActorSummary(actor) {
 						let actorgender = html.find('[name="actorgender"]').val();
 						await actor.update({ "system.humanoids.gender.value": actorgender });
 						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Gender: ${actorgender}`);
+						let actorgenderpronoun = html.find('[name="actorgenderpronoun"]').val();
+						await actor.update({ "system.humanoids.genderpronoun.value": actorgenderpronoun });
+						console.log(
+							`Metanthropes RPG System | New Actor | ${actor.type}'s Gender Pronoun: ${actorgenderpronoun}`
+						);
 						let actorheight = html.find('[name="actorheight"]').val();
 						await actor.update({ "system.humanoids.height.value": Number(actorheight) });
 						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Height: ${actorheight}`);
@@ -947,20 +964,28 @@ export async function NewActorSummary(actor) {
 						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Weight: ${actorweight}`);
 						let actorpob = html.find('[name="actorpob"]').val();
 						await actor.update({ "system.humanoids.birthplace.value": actorpob });
-						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Place of Birth: ${actorpob}`);
+						console.log(
+							`Metanthropes RPG System | New Actor | ${actor.type}'s Place of Birth: ${actorpob}`
+						);
 						await actor.update({ "system.metaowner.value": playerName });
 						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Player Name: ${playerName}`);
 						await actor.update({ "system.entermeta.narrator.value": narratorName });
-						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Narrator Name: ${narratorName}`);
+						console.log(
+							`Metanthropes RPG System | New Actor | ${actor.type}'s Narrator Name: ${narratorName}`
+						);
 						let saganame = html.find('[name="saganame"]').val();
 						await actor.update({ "system.entermeta.sagas.value": saganame });
 						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Saga Name: ${saganame}`);
 						let coalitionname = html.find('[name="coalitionname"]').val();
 						await actor.update({ "system.entermeta.coalition.value": coalitionname });
-						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Coalition Name: ${coalitionname}`);
+						console.log(
+							`Metanthropes RPG System | New Actor | ${actor.type}'s Coalition Name: ${coalitionname}`
+						);
 						let factionname = html.find('[name="factionname"]').val();
 						await actor.update({ "system.entermeta.faction.value": factionname });
-						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Faction Name: ${factionname}`);
+						console.log(
+							`Metanthropes RPG System | New Actor | ${actor.type}'s Faction Name: ${factionname}`
+						);
 						resolve();
 					},
 				},

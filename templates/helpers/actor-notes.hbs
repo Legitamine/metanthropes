@@ -1,18 +1,26 @@
 {{#if isGM}}
-<div><h3>{{system.notes-narrator.label}}</h3></div>
+<div><h3>{{system.secret-notes-narrator.label}}</h3></div>
 <div class="layout-editor style-editor">
-	{{editor system.notes-narrator.value target="system.notes-narrator.value" button=true editable=true}}
+	{{editor system.secret-notes-narrator.value target="system.secret-notes-narrator.value" button=true editable=true}}
 </div>
 {{/if}}
-<div><h3>{{system.notes-protagonist.label}}</h3></div>
-<div class="layout-editor style-editor">
-	{{editor system.notes-protagonist.value target="system.notes-protagonist.value" button=true editable=true}}
-</div>
 <div><h3>{{system.physical.Description.label}}</h3></div>
 <div class="layout-editor style-editor">
 	{{editor system.physical.Description.value target="system.physical.Description.value" button=true editable=true}}
 </div>
-<div><h3>{{system.entermeta.Description.label}}</h3></div>
+<div><h3>{{system.notes-protagonist.label}}</h3></div>
 <div class="layout-editor style-editor">
-	{{editor system.entermeta.Description.value target="system.entermeta.Description.value" button=true editable=true}}
+	{{editor system.notes-protagonist.value target="system.notes-protagonist.value" button=true editable=true}}
+</div>
+<div><h3>{{system.entermeta.coalitionNotes.label}}</h3></div>
+<div class="layout-editor style-editor">
+	{{editor system.entermeta.coalitionNotes.value target="system.entermeta.coalitionNotes.value" button=true editable=true}}
+</div>
+<div><h3>{{system.entermeta.sagaNotes.label}}</h3></div>
+<div class="layout-editor style-editor">
+	{{editor system.entermeta.sagaNotes.value target="system.entermeta.sagaNotes.value" button=true editable=true}}
+</div>
+<div><h3>{{system.notes-narrator.label}}</h3></div>
+<div class="layout-editor style-editor">
+	{{editor system.notes-narrator.value target="system.notes-narrator.value" button=true editable=true}}
 </div>

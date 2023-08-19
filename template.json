@@ -291,15 +291,15 @@
 							"Sense-Lost": 0
 						},
 						"Stats": {
-							"Perception": {
-								"Initial": 1,
+							"Creativity": {
+								"Initial": 3,
 								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Perception determines a Character's observatory, evaluative and calculative capabilities.",
-								"Buff": { "Name": "Alerted", "Current": 0 },
-								"Condition": { "Name": "Disoriented", "Current": 0 }
+								"Title": "Creativity determines a Character's imagination, expression, and handiwork.",
+								"Buff": { "Name": "Inspired", "Current": 0 },
+								"Condition": { "Name": "Wobbly", "Current": 0 }
 							},
 							"Manipulation": {
 								"Initial": 2,
@@ -311,15 +311,15 @@
 								"Buff": { "Name": "Articulated", "Current": 0 },
 								"Condition": { "Name": "Confused", "Current": 0 }
 							},
-							"Creativity": {
-								"Initial": 3,
+							"Perception": {
+								"Initial": 1,
 								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Creativity determines a Character's imagination, expression, and handiwork.",
-								"Buff": { "Name": "Inspired", "Current": 0 },
-								"Condition": { "Name": "Wobbly", "Current": 0 }
+								"Title": "Perception determines a Character's observatory, evaluative and calculative capabilities.",
+								"Buff": { "Name": "Alerted", "Current": 0 },
+								"Condition": { "Name": "Disoriented", "Current": 0 }
 							}
 						}
 					},
@@ -333,15 +333,15 @@
 						"Condition": { "Name": "Tormented", "Current": 0 },
 						"CoreConditions": { "Amnesia": 0, "Probed": 0, "Infiltrated": 0, "Unconscious": 0 },
 						"Stats": {
-							"Willpower": {
-								"Initial": 1,
+							"Awareness": {
+								"Initial": 3,
 								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Willpower determines a Character's courage, discipline, and confidence.",
-								"Buff": { "Name": "Determined", "Current": 0 },
-								"Condition": { "Name": "Terrorized", "Current": 0 }
+								"Title": "Awareness determines a Character's empathy, intuition, and instinctual responses.",
+								"Buff": { "Name": "Focused", "Current": 0 },
+								"Condition": { "Name": "Bewildered", "Current": 0 }
 							},
 							"Consciousness": {
 								"Initial": 2,
@@ -353,15 +353,15 @@
 								"Buff": { "Name": "Awakened", "Current": 0 },
 								"Condition": { "Name": "Demented", "Current": 0 }
 							},
-							"Awareness": {
-								"Initial": 3,
+							"Willpower": {
+								"Initial": 1,
 								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Awareness determines a Character's empathy, intuition, and instinctual responses.",
-								"Buff": { "Name": "Focused", "Current": 0 },
-								"Condition": { "Name": "Bewildered", "Current": 0 }
+								"Title": "Willpower determines a Character's courage, discipline, and confidence.",
+								"Buff": { "Name": "Determined", "Current": 0 },
+								"Condition": { "Name": "Terrorized", "Current": 0 }
 							}
 						}
 					}
@@ -422,6 +422,12 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Gender",
+						"value": null
+					},
+					"genderpronoun": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Pronoun",
 						"value": null
 					},
 					"birthplace": {
@@ -692,7 +698,7 @@
 					"sagas": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Sagas",
+						"label": "Saga",
 						"value": null
 					},
 					"sessions": {
@@ -719,11 +725,17 @@
 						"label": "Narrator",
 						"value": null
 					},
-					"Description": {
+					"sagaNotes": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Metamorphosis Details",
-						"value": "Details about how you became to be a Metanthrope."
+						"label": "Saga Notes",
+						"value": "My notes for this Saga"
+					},
+					"coalitionNotes": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Coalition Notes",
+						"value": "Notes about my Coalition of Metanthropes"
 					}
 				}
 			}
@@ -782,6 +794,12 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Narrator Notes",
+				"value": "Notes given to you by your Narrator"
+			},
+			"secret-notes-narrator": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Secret Narrator Notes",
 				"value": "This is my favorite Protagonist"
 			}
 		},
@@ -841,7 +859,7 @@
 		}
 	},
 	"Item": {
-		"types": ["Object", "Possession", "Metapower", "Combo"],
+		"types": ["Metapower", "Possession", "Combo", "Object"],
 		"templates": {
 			"material": {
 				"Material": {
@@ -898,6 +916,317 @@
 						"dtype": "String",
 						"label": "🧱 Description",
 						"value": "some material properties"
+					}
+				}
+			},
+			"execution": {
+				"Execution": {
+					"StatRolled": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🎲",
+						"value": null,
+						"options": [
+							"Awareness",
+							"Consciousness",
+							"Creativity",
+							"Endurance",
+							"Manipulation",
+							"Perception",
+							"Power",
+							"Reflexes",
+							"Willpower"
+						]
+					},
+					"ActionSlot": {
+						"type": "text",
+						"dtype": "String",
+						"label": "⏱",
+						"value": null,
+						"options": [
+							"Always Active",
+							"Reaction",
+							"Extra Action",
+							"Movement",
+							"Main Action",
+							"Focused Action: Full Turn",
+							"Focused Action: Cycle",
+							"Focused Action: 1d10 Cycles",
+							"Focused Action: Hour",
+							"Focused Action: 1d10 Hours"
+						]
+					},
+					"ActionSlotDice": {
+						"type": "number",
+						"dtype": "Number",
+						"label": "⏱ 🎲",
+						"value": null
+					},
+					"ActionSlotDiceBase": {
+						"type": "number",
+						"dtype": "Number",
+						"label": "⏱ 🎲 Base",
+						"value": null
+					},
+					"Range": {
+						"type": "text",
+						"dtype": "String",
+						"label": "📏",
+						"value": null,
+						"options": [
+							"Self [Area 0]",
+							"Hexagon [Area 1]",
+							"Room [Area 2]",
+							"Building [Area 3]",
+							"Square [Area 4]",
+							"Block [Area 5]",
+							"Neighborhood [Area 6]",
+							"District [Area 7]",
+							"Town [Area 8]",
+							"City [Area 9]",
+							"Region [Area 10]",
+							"Sector [Area 11]",
+							"Country [Area 12]",
+							"Zone [Area 13]",
+							"Continent [Area 14]",
+							"Hemisphere [Area 15]",
+							"Planet [Area 16]"
+						]
+					},
+					"AreaEffect": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🗺️",
+						"value": null,
+						"options": [
+							"Hexagon [Area 1]",
+							"Room [Area 2]",
+							"Building [Area 3]",
+							"Square [Area 4]",
+							"Block [Area 5]",
+							"Neighborhood [Area 6]",
+							"District [Area 7]",
+							"Town [Area 8]",
+							"City [Area 9]",
+							"Region [Area 10]",
+							"Sector [Area 11]",
+							"Country [Area 12]",
+							"Zone [Area 13]",
+							"Continent [Area 14]",
+							"Hemisphere [Area 15]",
+							"Planet [Area 16]"
+						]
+					},
+					"AdditionalInfo": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Additional Information",
+						"value": "Execution Information"
+					}
+				}
+			},
+			"effects": {
+				"Effects": {
+					"EffectDescription": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Effect Description",
+						"value": "Effect Description"
+					},
+					"Targets": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🎯",
+						"value": null
+					},
+					"TargetsDice": {
+						"type": "number",
+						"dtype": "Number",
+						"label": "🎯 🎲",
+						"value": null
+					},
+					"Duration": {
+						"type": "text",
+						"dtype": "String",
+						"label": "⏳",
+						"value": null,
+						"options": [
+							"Instantaneous",
+							"Round",
+							"One Cycle",
+							"1d10 Cycles",
+							"One Hour",
+							"1d10 Hours",
+							"One Day",
+							"1d10 Days",
+							"One Week",
+							"1d10 Weeks",
+							"One Month",
+							"1d10 Months",
+							"One Year",
+							"1d10 Years",
+							"Permanent"
+						]
+					},
+					"Damage": {
+						"Cosmic": {
+							"Label": "✨ Cosmic 💥",
+							"type": "number",
+							"dtype": "Number",
+							"Base": 0,
+							"Dice": 0
+						},
+						"Elemental": {
+							"Label": "✨ Elemental 💥",
+							"type": "number",
+							"dtype": "Number",
+							"Base": 0,
+							"Dice": 0
+						},
+						"Material": {
+							"Label": "✨ Material 💥",
+							"type": "number",
+							"dtype": "Number",
+							"Base": 0,
+							"Dice": 0
+						},
+						"Psychic": {
+							"Label": "✨ Psychic 💥",
+							"type": "number",
+							"dtype": "Number",
+							"Base": 0,
+							"Dice": 0
+						}
+					},
+					"Healing": {
+						"Label": "💞",
+						"type": "number",
+						"dtype": "Number",
+						"Base": 0,
+						"Dice": 0
+					},
+					"Special": {
+						"Label": "Special",
+						"type": "number",
+						"dtype": "Number",
+						"Base": 0,
+						"Dice": 0
+					},
+					"Conditions": {
+						"Applied": {
+							"Label": "💀 ➕",
+							"type": "text",
+							"dtype": "String",
+							"Value": null
+						},
+						"Removed": {
+							"Label": "💀 ➖",
+							"type": "text",
+							"dtype": "String",
+							"Value": null
+						}
+					},
+					"Buffs": {
+						"Applied": {
+							"Label": "🛡️ ➕",
+							"type": "text",
+							"dtype": "String",
+							"Value": null
+						},
+						"Removed": {
+							"Label": "🛡️ ➖",
+							"type": "text",
+							"dtype": "String",
+							"Value": null
+						}
+					},
+					"AdditionalInfo": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Effect Additional Information",
+						"value": null
+					}
+				}
+			},
+			"results": {
+				"Results": {
+					"level00": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🟩",
+						"value": null
+					},
+					"level01": {
+						"type": "text",
+						"dtype": "String",
+						"label": "1 * ✔️",
+						"value": null
+					},
+					"level02": {
+						"type": "text",
+						"dtype": "String",
+						"label": "2 * ✔️",
+						"value": null
+					},
+					"level03": {
+						"type": "text",
+						"dtype": "String",
+						"label": "3 * ✔️",
+						"value": null
+					},
+					"level04": {
+						"type": "text",
+						"dtype": "String",
+						"label": "4 * ✔️",
+						"value": null
+					},
+					"level05": {
+						"type": "text",
+						"dtype": "String",
+						"label": "5 * ✔️",
+						"value": null
+					},
+					"level06": {
+						"type": "text",
+						"dtype": "String",
+						"label": "6 * ✔️",
+						"value": null
+					},
+					"level07": {
+						"type": "text",
+						"dtype": "String",
+						"label": "7 * ✔️",
+						"value": null
+					},
+					"level08": {
+						"type": "text",
+						"dtype": "String",
+						"label": "8 * ✔️",
+						"value": null
+					},
+					"level09": {
+						"type": "text",
+						"dtype": "String",
+						"label": "9 * ✔️",
+						"value": null
+					},
+					"level10": {
+						"type": "text",
+						"dtype": "String",
+						"label": "10 * ✔️",
+						"value": null
+					},
+					"level11": {
+						"type": "text",
+						"dtype": "String",
+						"label": "11+ * ✔️",
+						"value": null
+					},
+					"AdditionalInfo": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Results Additional Information",
+						"value": "Additional Information about the results"
 					}
 				}
 			},
@@ -1172,63 +1501,92 @@
 			}
 		},
 		"Possession": {
-			"templates": ["material", "metapos"],
-			"Category": {
-				"type": "text",
-				"dtype": "String",
-				"label": "Category",
-				"value": "Weapon"
-			},
-			"AttackType": {
-				"type": "text",
-				"dtype": "String",
-				"label": "Attack Type",
-				"value": "Melee"
-			},
-			"StatRolled": {
-				"type": "text",
-				"dtype": "String",
-				"label": "🎲",
-				"value": "Power"
-			},
+			"templates": ["material", "execution", "effects", "results"],
 			"Description": {
 				"type": "text",
 				"dtype": "String",
 				"label": "Possession Description",
 				"value": "Possession Description"
 			},
-			"EffectDescription": {
+			"Category": {
 				"type": "text",
 				"dtype": "String",
-				"label": "Effect Description",
-				"value": "Effect Description"
+				"label": "Category",
+				"value": null,
+				"options": ["Strike", "Weapon", "Armor", "Gadget", "Drug"]
 			},
-			"ResultDescription": {
+			"AttackType": {
 				"type": "text",
 				"dtype": "String",
-				"label": "Results Description",
-				"value": "Results Description"
+				"label": "Attack Type",
+				"value": null,
+				"options": ["None", "Melee", "Projectile", "Firearm"]
 			},
 			"Quantity": {
 				"type": "number",
 				"dtype": "Number",
 				"label": "Quantity",
 				"value": 1
+			},
+			"Perk": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Perk",
+				"value": null,
+				"options": ["None", "Operation", "Weapons"]
 			}
 		},
 		"Metapower": {
-			"templates": ["metabase"],
+			"templates": ["execution", "effects", "results"],
+			"MetapowerName": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Ⓜ️",
+				"value": "Metapower Name"
+			},
 			"Description": {
 				"type": "text",
 				"dtype": "String",
 				"label": "Metapower Description",
 				"value": "Metapower Description"
 			},
-			"EffectDescription": {
+			"Classification": {
 				"type": "text",
 				"dtype": "String",
-				"label": "Effect Description",
-				"value": "Effect Description"
+				"label": "🔣",
+				"value": null,
+				"options": [
+					"Aegis",
+					"Animator",
+					"Arbiter",
+					"Clairvoyant",
+					"Controller",
+					"Cosmonaut",
+					"Hammer",
+					"Kineticist",
+					"Manipulator",
+					"Utilitarian"
+				]
+			},
+			"Level": {
+				"type": "number",
+				"dtype": "Number",
+				"label": "⏫",
+				"value": null,
+				"options": ["1", "2", "3", "4", "5"]
+			},
+			"EnergyType": {
+				"type": "text",
+				"dtype": "String",
+				"label": "✨",
+				"value": null,
+				"options": ["Cosmic", "Elemental", "Material", "Psychic"]
+			},
+			"DestinyCost": {
+				"type": "number",
+				"dtype": "Number",
+				"label": "🤞",
+				"value": 0
 			}
 		},
 		"Combo": {

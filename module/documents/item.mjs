@@ -17,7 +17,7 @@ export class MetanthropesItem extends Item {
 		super.prepareData();
 		//? Give the item a default image based on the Metapower Name
 		if (this.type === "Metapower") {
-			const mpname = this.system.Activation.MetapowerName.value;
+			const mpname = this.system.MetapowerName.value;
 			const imgPath = `systems/metanthropes-system/artwork/metapowers/${mpname}.png`;
 			this.img = imgPath;
 		}
