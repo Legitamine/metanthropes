@@ -423,4 +423,11 @@
 	margin: $margin-md;
 	border: $border-style-solid;
 	border-radius: $border-radius;
+	min-height: 50px;
+	height: auto;
+	max-height: 800px;
+	overflow-y: auto;
+}
+.editor-content {
+	min-height: 50px;
 }

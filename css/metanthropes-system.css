@@ -926,6 +926,13 @@ option {
   margin: 3px;
   border: 1px solid #000;
   border-radius: 15px;
+  min-height: 50px;
+  height: auto;
+  max-height: 800px;
+  overflow-y: auto;
+}
+.metanthropes .editor-content {
+  min-height: 50px;
 }
 .metanthropes .items-header {
   margin: 1px;

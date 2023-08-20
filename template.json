@@ -1144,7 +1144,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Effect Additional Information",
-						"value": null
+						"value": "Effect Additional Information"
 					}
 				}
 			},
@@ -1572,7 +1572,7 @@
 				"type": "number",
 				"dtype": "Number",
 				"label": "⏫",
-				"value": null,
+				"value": 1,
 				"options": ["1", "2", "3", "4", "5"]
 			},
 			"EnergyType": {

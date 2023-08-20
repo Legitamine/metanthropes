@@ -50,9 +50,10 @@
 				</div>
 			</div>
 			<div>
-				<div class="style-labels-text">📈 Experience: {{system.Vital.Experience.Total}} Spent:
-					{{system.Vital.Experience.Spent}} + <input name="system.Vital.Experience.Manual" type="number"
-						value="{{system.Vital.Experience.Manual}}" data-dtype="Number" placeholder="0" />
+				<div class="style-labels-text">{{system.Vital.Experience.Label}}: {{system.Vital.Experience.Total}} Spent:
+					{{system.Vital.Experience.Spent}}
+					{{#if isGM}} + <input name="system.Vital.Experience.Manual" type="number"
+						value="{{system.Vital.Experience.Manual}}" data-dtype="Number" placeholder="0" /> {{/if}}
 					Stored:{{#if (gte system.Vital.Experience.Stored 0)}}
 						<span class="style-cs-positive">{{system.Vital.Experience.Stored}}</span>
 					{{else}}

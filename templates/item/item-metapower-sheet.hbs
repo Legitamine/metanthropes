@@ -93,8 +93,6 @@
 				{{#unless (or
 					(eq @key "StatRolled")
 					(eq @key "AdditionalInfo")
-					(eq @key "Conditions")
-					(eq @key "Buffs")
 				)}}
 					<div class="resource">
 						<label class="resource-label">{{this.label}}:</label>
@@ -113,13 +111,12 @@
 					</div>
 				{{/unless}}
 			{{/each}}
+			<div><label class="resource-label">{{system.Execution.AdditionalInfo.label}}:</label></div>
 			{{#if isGM}}
-				<div><label class="resource-label">{{system.Execution.AdditionalInfo.label}}:</label></div>
 				<div class="layout-editor">
 					{{editor system.Execution.AdditionalInfo.value target="system.Execution.AdditionalInfo.value" button=true editable=true}}
 				</div>
 			{{else}}
-				<div><label class="resource-label">{{system.Execution.AdditionalInfo.label}}:</label></div>
 				<div class="layout-editor">
 					{{editor system.Execution.AdditionalInfo.value target="system.Execution.AdditionalInfo.value" button=false editable=false}}
 				</div>
@@ -127,22 +124,25 @@
 		</div>
 		{{!-- Effects Tab --}}
 		<div class="tab effects" data-group="primary" data-tab="effects">
-			<div>
-				<div>{{system.Effects.EffectDescription.label}}:<br></div>
-				{{#if isGM}}
-					<div class="layout-editor">
-						{{editor system.Effects.EffectDescription.value target="system.Effects.EffectDescription.value" button=true editable=true}}
-					</div>
-				{{else}}
-					<div class="layout-editor">
-						{{editor system.Effects.EffectDescription.value target="system.Effects.EffectDescription.value" button=false editable=false}}
-					</div>
-				{{/if}}
-			</div>
+			<div>{{system.Effects.EffectDescription.label}}:<br></div>
+			{{#if isGM}}
+				<div class="layout-editor">
+					{{editor system.Effects.EffectDescription.value target="system.Effects.EffectDescription.value" button=true editable=true}}
+				</div>
+			{{else}}
+				<div class="layout-editor">
+					{{editor system.Effects.EffectDescription.value target="system.Effects.EffectDescription.value" button=false editable=false}}
+				</div>
+			{{/if}}
 			{{#each system.Effects}}
 				{{#unless (or 
 				(eq @key "EffectDescription")
 				(eq @key "AdditionalInfo")
+				(eq @key "Conditions")
+				(eq @key "Buffs")
+				(eq @key "Damage")
+				(eq @key "Healing")
+				(eq @key "Special")
 				)}}
 					<div class="resource">
 						<label class="resource-label">{{this.label}}:</label>
@@ -157,16 +157,16 @@
 						{{else}}
 							<input type="{{this.type}}" name="system.Effects.{{@key}}.value" value="{{this.value}}"
 								data-dtype="{{this.dtype}}" />
+						{{/if}}
 					</div>
 				{{/unless}}
 			{{/each}}
+			<div><label class="resource-label">{{system.Effects.AdditionalInfo.label}}:</label></div>
 			{{#if isGM}}
-				<div><label class="resource-label">{{system.Effects.AdditionalInfo.label}}:</label></div>
 				<div class="layout-editor">
 					{{editor system.Effects.AdditionalInfo.value target="system.Effects.AdditionalInfo.value" button=true editable=true}}
 				</div>
 			{{else}}
-				<div><label class="resource-label">{{system.Effects.AdditionalInfo.label}}:</label></div>
 				<div class="layout-editor">
 					{{editor system.Effects.AdditionalInfo.value target="system.Effects.AdditionalInfo.value" button=false editable=false}}
 				</div>
