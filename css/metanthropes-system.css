@@ -523,6 +523,7 @@ option {
   align-items: stretch;
   align-content: space-between;
   min-height: 80px;
+  max-height: 500px;
   height: auto;
   padding: 1px;
   margin: 1px;
@@ -531,6 +532,24 @@ option {
   font-size: var(--font-size-14);
   font-weight: 500;
   color: #000;
+}
+.metanthropes .editor {
+  min-height: 80px;
+  height: auto;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.metanthropes .editor-content .ProseMirror {
+  min-height: 80px;
+  height: auto;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.metanthropes .sheet-header .metapower-img {
+  flex: 0 0 160px;
+  height: 160px;
+  width: 160px;
+  margin-right: 6px;
 }
 .metanthropes .style-container-outer-charstats {
   opacity: 1;

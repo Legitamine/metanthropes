@@ -3,8 +3,8 @@ export class MetanthropesItemSheet extends ItemSheet {
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
 			classes: ["metanthropes", "sheet", "item"],
-			width: 700,
-			height: 720,
+			width: 820,
+			height: 820,
 			closeOnSubmit: false,
 			submitOnClose: true,
 			submitOnChange: true,

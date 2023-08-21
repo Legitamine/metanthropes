@@ -1,66 +1,104 @@
 <form class="metanthropes {{cssClass}}" autocomplete="off">
 	<header class="sheet-header">
 		{{#if isGM}}
-			<img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" style="border:none" />
+			<img class="metapower-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" style="border:none" />
 		{{else}}
-			<img class="profile-img" src="{{item.img}}" title="{{item.name}}" style="border:none" />
+			<img class="metapower-img" src="{{item.img}}" title="{{item.name}}" style="border:none" />
 		{{/if}}
 		<div class="header-fields">
-			<h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Metapower Name" />
+			<h1 class="charname">
+				{{#if isGM}}
+					<input name="name" type="text" value="{{item.name}}" placeholder="Metapower Name" />
+				{{else}}
+					{{item.name}}
+				{{/if}}
 			</h1>
 			<div class="grid grid-2col">
 				<div class="resource">
-					<label class="resource-label"
-						title="Which Stat is rolled when Activating this Metapower.">🎲:</label>
-					<select name="system.Execution.StatRolled.value">
-						{{#each system.Execution.StatRolled.options as |option|}}
-							<option value="{{option}}"
-								{{#if (eq option ../system.Execution.StatRolled.value)}}selected{{/if}}>{{option}}
-							</option>
-						{{/each}}
-					</select>
+					<label class="resource-label" title="Which Stat is rolled when Activating this Metapower.">🎲
+						Stat:</label>
+					{{#if isGM}}
+						<select name="system.Execution.StatRolled.value">
+							{{#each system.Execution.StatRolled.options as |option|}}
+								<option value="{{option}}"
+									{{#if (eq option ../system.Execution.StatRolled.value)}}selected{{/if}}>{{option}}
+								</option>
+							{{/each}}
+						</select>
+					{{else}}
+						<span class="item-statroll style-mp-rolls" data-roll-type="Metapower"
+							data-item-name="{{item.name}}" data-stat="{{item.system.Execution.StatRolled.value}}"
+							data-destiny-cost="{{item.system.DestinyCost.value}}">
+							{{item.system.Execution.StatRolled.value}}: 
+							{{lookup ../system.RollStats item.system.Execution.StatRolled.value}}
+						</span>
+					{{/if}}
 				</div>
 				<div class="resource">
 					<label class="resource-label"
-						title="Each Classification includes Metapowers which have a similar role and utilize capabilities and functions in a similar manner.">🔣:</label>
-					<select name="system.Classification.value">
-						{{#each system.Classification.options as |option|}}
-							<option value="{{option}}"
-								{{#if (eq option ../system.Classification.value)}}selected{{/if}}>{{option}}
-							</option>
-						{{/each}}
-					</select>
+						title="Each Classification includes Metapowers which have a similar role and utilize capabilities and functions in a similar manner.">🔣
+						Classification:</label>
+					{{#if isGM}}
+						<select name="system.Classification.value">
+							{{#each system.Classification.options as |option|}}
+								<option value="{{option}}"
+									{{#if (eq option ../system.Classification.value)}}selected{{/if}}>{{option}}
+								</option>
+							{{/each}}
+						</select>
+					{{else}}
+						{{system.Classification.value}}
+					{{/if}}
 				</div>
 				<div class="resource">
-					<label class="resource-label" title="The Name of the Ⓜ️ Metapower">Ⓜ️:</label>
-					<input type="text" name="system.MetapowerName.value" value="{{system.MetapowerName.value}}"
-						data-dtype="String" />
+					<label class="resource-label" title="The Name of the Ⓜ️ Metapower">Ⓜ️ Metapower:</label>
+					{{#if isGM}}
+						<input type="text" name="system.MetapowerName.value" value="{{system.MetapowerName.value}}"
+							data-dtype="String" />
+					{{else}}
+						{{system.MetapowerName.value}}
+					{{/if}}
 				</div>
 				<div class="resource">
 					<label class="resource-label"
-						title="Energy Type dictates the Damage and other properties of an effect.">✨:</label>
-					<select name="system.EnergyType.value">
-						{{#each system.EnergyType.options as |option|}}
-							<option value="{{option}}" {{#if (eq option ../system.EnergyType.value)}}selected{{/if}}>
-								{{option}}
-							</option>
-						{{/each}}
-					</select>
+						title="Energy Type dictates the Damage and other properties of an effect.">✨ Energy
+						Type:</label>
+					{{#if isGM}}
+						<select name="system.EnergyType.value">
+							{{#each system.EnergyType.options as |option|}}
+								<option value="{{option}}"
+									{{#if (eq option ../system.EnergyType.value)}}selected{{/if}}>
+									{{option}}
+								</option>
+							{{/each}}
+						</select>
+					{{else}}
+						{{system.EnergyType.value}}
+					{{/if}}
 				</div>
 				<div class="resource">
-					<label class="resource-label" title="The Level of the Metapower">⏫:</label>
-					<select name="system.Level.value">
-						{{#each system.Level.options as |option|}}
-							<option value="{{option}}" {{#if (eq option ../system.Level.value)}}selected{{/if}}>
-								{{option}}
-							</option>
-						{{/each}}
-					</select>
+					<label class="resource-label" title="The Level of the Metapower">⏫ Level:</label>
+					{{#if isGM}}
+						<select name="system.Level.value">
+							{{#each system.Level.options as |option|}}
+								<option value="{{option}}" {{#if (eq option ../system.Level.value)}}selected{{/if}}>
+									{{option}}
+								</option>
+							{{/each}}
+						</select>
+					{{else}}
+						{{system.Level.value}}
+					{{/if}}
 				</div>
 				<div class="resource">
-					<label class="resource-label" title="The Destiny Cost to Activate this Metapower">🤞:</label>
-					<input type="number" name="system.DestinyCost.value" value="{{system.DestinyCost.value}}"
-						data-dtype="Number" />
+					<label class="resource-label" title="The Destiny Cost to Activate this Metapower">🤞 Destiny
+						Cost:</label>
+					{{#if isGM}}
+						<input type="number" name="system.DestinyCost.value" value="{{system.DestinyCost.value}}"
+							data-dtype="Number" />
+					{{else}}
+						{{system.DestinyCost.value}}
+					{{/if}}
 				</div>
 			</div>
 		</div>
@@ -70,7 +108,9 @@
 		<a class="item" data-tab="description">Description</a>
 		<a class="item" data-tab="activation">Activation</a>
 		<a class="item" data-tab="effects">Effects</a>
-		<a class="item" data-tab="results">Results</a>
+		{{#if isGM}}
+			<a class="item" data-tab="results">Results</a>
+		{{/if}}
 	</nav>
 	{{!-- Sheet Body --}}
 	<section class="sheet-body">
@@ -90,25 +130,38 @@
 		{{!-- Activation Tab --}}
 		<div class="tab activation" data-group="primary" data-tab="activation">
 			{{#each system.Execution}}
-				{{#unless (or
-					(eq @key "StatRolled")
-					(eq @key "AdditionalInfo")
-				)}}
+				{{#unless (or (eq @key "StatRolled") (eq @key "AdditionalInfo"))}}
 					<div class="resource">
 						<label class="resource-label">{{this.label}}:</label>
 						{{#if this.options}}
-							<select name="system.Execution.{{@key}}.value">
-								{{#each this.options as |option|}}
-									<option value="{{option}}" {{#if (eq option ../this.value)}}selected{{/if}}>
-										{{option}}
-									</option>
-								{{/each}}
-							</select>
+							{{#if ../isGM}}
+								<select name="system.Execution.{{@key}}.value">
+									{{#each this.options as |option|}}
+										<option value="{{option}}" {{#if (eq option ../this.value)}}selected{{/if}}>
+											{{option}}
+										</option>
+									{{/each}}
+								</select>
+							{{else}}
+								{{this.value}}
+							{{/if}}
+						{{else if this.selections}}
+							{{#if ../isGM}}
+								<select multiple name="system.Execution.{{@key}}.value">
+									{{selectOptions this.selections selected=this.value}}
+								</select>
+							{{/if}}
+							<span class="selected-values">
+								{{!-- Display the selected values here --}}
+								{{this.value}}
+							</span>
 						{{else}}
-							<input type="{{this.type}}" name="system.Execution.{{@key}}.value" value="{{this.value}}"
-								data-dtype="{{this.dtype}}" />
+							<div>
+								<input type="{{this.type}}" name="system.Execution.{{@key}}.value"
+									value="{{this.value}}" data-dtype="{{this.dtype}}" />
+							</div>
 						{{/if}}
-					</div>
+					</div><br>
 				{{/unless}}
 			{{/each}}
 			<div><label class="resource-label">{{system.Execution.AdditionalInfo.label}}:</label></div>
@@ -122,6 +175,7 @@
 				</div>
 			{{/if}}
 		</div>
+
 		{{!-- Effects Tab --}}
 		<div class="tab effects" data-group="primary" data-tab="effects">
 			<div>{{system.Effects.EffectDescription.label}}:<br></div>

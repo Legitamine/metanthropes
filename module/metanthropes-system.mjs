@@ -35,6 +35,14 @@ Handlebars.registerHelper("unless_key_is", function (key, value, options) {
 		return options.fn(this);
 	}
 });
+//? Handlebars helper for joining an array into a single value
+Handlebars.registerHelper("join", function (array, separator) {
+	return array.join(separator);
+});
+//? Handlebars helper for checking if the value is included in the array
+Handlebars.registerHelper("includes", function (array, value) {
+	return Array.isArray(array) && array.includes(value);
+});
 //? System Initialization.
 Hooks.once("init", async function () {
 	console.log("Metanthropes RPG System | ====================================");

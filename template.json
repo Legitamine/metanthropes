@@ -941,7 +941,7 @@
 					"ActionSlot": {
 						"type": "text",
 						"dtype": "String",
-						"label": "⏱",
+						"label": "⏱ Action",
 						"value": null,
 						"options": [
 							"Always Active",
@@ -956,22 +956,83 @@
 							"Focused Action: 1d10 Hours"
 						]
 					},
-					"ActionSlotDice": {
-						"type": "number",
-						"dtype": "Number",
-						"label": "⏱ 🎲",
-						"value": null
+					"Targets": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Number of 🎯 Targets",
+						"value": null,
+						"options": [
+							"Self",
+							"One",
+							"1 or 2",
+							"1d10/2",
+							"1d10",
+							"2d10",
+							"5d10",
+							"10d10",
+							"All (Area)",
+							"Any (Area)"
+						]
 					},
-					"ActionSlotDiceBase": {
-						"type": "number",
-						"dtype": "Number",
-						"label": "⏱ 🎲 Base",
-						"value": null
+					"TargetsEligibility": {
+						"label": "Eligible 🎯 Targets",
+						"value": [],
+						"selections": {
+							"Willing": "Willing",
+							"Detectable": "Detectable",
+							"Perceptible": "Perceptible",
+							"Visible": "Visible",
+							"Audible": "Audible",
+							"Odorous": "Odorous",
+							"Tangible": "Tangible",
+							"Taste-able": "Taste-able"
+						}
+					},
+					"TargetsType": {
+						"label": "Type of 🎯 Targets",
+						"value": [],
+						"selections": {
+							"Animal": "Animal",
+							"Human": "Human",
+							"Metanthrope": "Metanthrope",
+							"Extradimensional": "Extradimensional",
+							"Extraterrestrial": "Extraterrestrial",
+							"Metatherion": "Metatherion",
+							"Living": "Living",
+							"Dead": "Dead",
+							"Plant": "Plant",
+							"Object": "Object",
+							"Character": "Character",
+							"Metapowered": "Metapowered"
+						}
+					},
+					"Duration": {
+						"type": "text",
+						"dtype": "String",
+						"label": "⏳ Duration",
+						"value": null,
+						"options": [
+							"Instantaneous",
+							"Round",
+							"One Cycle",
+							"1d10 Cycles",
+							"One Hour",
+							"1d10 Hours",
+							"One Day",
+							"1d10 Days",
+							"One Week",
+							"1d10 Weeks",
+							"One Month",
+							"1d10 Months",
+							"One Year",
+							"1d10 Years",
+							"Permanent"
+						]
 					},
 					"Range": {
 						"type": "text",
 						"dtype": "String",
-						"label": "📏",
+						"label": "📏 Range",
 						"value": null,
 						"options": [
 							"Self [Area 0]",
@@ -996,9 +1057,10 @@
 					"AreaEffect": {
 						"type": "text",
 						"dtype": "String",
-						"label": "🗺️",
+						"label": "🗺️ Area of Effect",
 						"value": null,
 						"options": [
+							"None",
 							"Hexagon [Area 1]",
 							"Room [Area 2]",
 							"Building [Area 3]",
@@ -1021,7 +1083,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Additional Information",
-						"value": "Execution Information"
+						"value": "Additional Information"
 					}
 				}
 			},
@@ -1033,65 +1095,30 @@
 						"label": "Effect Description",
 						"value": "Effect Description"
 					},
-					"Targets": {
-						"type": "text",
-						"dtype": "String",
-						"label": "🎯",
-						"value": null
-					},
-					"TargetsDice": {
-						"type": "number",
-						"dtype": "Number",
-						"label": "🎯 🎲",
-						"value": null
-					},
-					"Duration": {
-						"type": "text",
-						"dtype": "String",
-						"label": "⏳",
-						"value": null,
-						"options": [
-							"Instantaneous",
-							"Round",
-							"One Cycle",
-							"1d10 Cycles",
-							"One Hour",
-							"1d10 Hours",
-							"One Day",
-							"1d10 Days",
-							"One Week",
-							"1d10 Weeks",
-							"One Month",
-							"1d10 Months",
-							"One Year",
-							"1d10 Years",
-							"Permanent"
-						]
-					},
 					"Damage": {
 						"Cosmic": {
-							"Label": "✨ Cosmic 💥",
+							"Label": "✨ Cosmic 💥 Damage",
 							"type": "number",
 							"dtype": "Number",
 							"Base": 0,
 							"Dice": 0
 						},
 						"Elemental": {
-							"Label": "✨ Elemental 💥",
+							"Label": "✨ Elemental 💥 Damage",
 							"type": "number",
 							"dtype": "Number",
 							"Base": 0,
 							"Dice": 0
 						},
 						"Material": {
-							"Label": "✨ Material 💥",
+							"Label": "✨ Material 💥 Damage",
 							"type": "number",
 							"dtype": "Number",
 							"Base": 0,
 							"Dice": 0
 						},
 						"Psychic": {
-							"Label": "✨ Psychic 💥",
+							"Label": "✨ Psychic 💥 Damage",
 							"type": "number",
 							"dtype": "Number",
 							"Base": 0,
@@ -1099,14 +1126,14 @@
 						}
 					},
 					"Healing": {
-						"Label": "💞",
+						"Label": "💞 Healing",
 						"type": "number",
 						"dtype": "Number",
 						"Base": 0,
 						"Dice": 0
 					},
 					"Special": {
-						"Label": "Special",
+						"Label": "Special Dice",
 						"type": "number",
 						"dtype": "Number",
 						"Base": 0,
