@@ -3,13 +3,13 @@ export class MetanthropesItemSheet extends ItemSheet {
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
 			classes: ["metanthropes", "sheet", "item"],
-			width: 820,
+			width: 860,
 			height: 820,
 			closeOnSubmit: false,
 			submitOnClose: true,
 			submitOnChange: true,
 			resizable: true,
-			tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
+			tabs: [{ navSelector: ".itemnavselector", contentSelector: ".itemnavtabs", initial: "description" }],
 		});
 	}
 	//? Only Narrators are allowed to drag and drop items

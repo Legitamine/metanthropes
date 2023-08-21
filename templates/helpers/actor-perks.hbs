@@ -1,10 +1,10 @@
 <div class="perks">
 	<div class="flexrow">
 		<div class="knowledge">
-			<h3 class="style-labels-text" title="Knowledge refers to abilities developed through studying theories, learning thesis and theorems, and performing simulations and experiments.">Knowledge</h3>
+			<h2 class="style-labels-text" title="Knowledge refers to abilities developed through studying theories, learning thesis and theorems, and performing simulations and experiments.">Knowledge</h2>
 			{{#each system.Perks.Knowledge}}
 				<div class="perk-item">
-					<label for="system.Perks.Knowledge.{{@key}}.value" title="{{this.title}}">{{this.label}}:</label>
+					<label for="system.Perks.Knowledge.{{@key}}.value" title="{{this.title}}" class="resource-label">{{this.label}}:</label>
 					<select name="system.Perks.Knowledge.{{@key}}.value" id="system.Perks.Knowledge.{{@key}}.value"
 						data-dtype="{{this.dtype}}">
 						<option value="0" {{selected this.value 0}}>0</option>
@@ -18,10 +18,10 @@
 			{{/each}}
 		</div>
 		<div class="perks-skills flex">
-			<h3 class="style-labels-text" title="Skills refer to abilities that develop through practical appliance, repetition and practicing them in the field.">Skills</h3>
+			<h2 class="style-labels-text" title="Skills refer to abilities that develop through practical appliance, repetition and practicing them in the field.">Skills</h2>
 			{{#each system.Perks.Skills}}
 				<div class="perk-item">
-					<label for="system.Perks.Skills.{{@key}}.value" title="{{this.title}}">{{this.label}}:</label>
+					<label for="system.Perks.Skills.{{@key}}.value" title="{{this.title}}" class="resource-label">{{this.label}}:</label>
 					<select name="system.Perks.Skills.{{@key}}.value" id="system.Perks.Skills.{{@key}}.value"
 						data-dtype="{{this.dtype}}">
 						<option value="0" {{selected this.value 0}}>0</option>
@@ -36,11 +36,11 @@
 		</div>
 	</div>
 	<div class="perks-extra">
-		<h3 class="style-labels-text">Details</h3>
+		<h2 class="style-labels-text">Details</h2>
 			{{#each system.Perks.Details}}
 				{{#unless_key_is @key "Starting"}}
 				<div class="perk-item">
-					<label for="system.Perks.Details.{{@key}}.value">{{this.label}}:</label>
+					<label for="system.Perks.Details.{{@key}}.value" class="resource-label">{{this.label}}:</label>
 					<input class="style-container-input-longtext" type="{{this.type}}"
 						name="system.Perks.Details.{{@key}}.value" value="{{this.value}}" data-dtype="{{this.dtype}}"
 						placeholder="{{this.value}}">

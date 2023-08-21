@@ -29,7 +29,7 @@
 						<span class="item-statroll style-mp-rolls" data-roll-type="Metapower"
 							data-item-name="{{item.name}}" data-stat="{{item.system.Execution.StatRolled.value}}"
 							data-destiny-cost="{{item.system.DestinyCost.value}}">
-							{{item.system.Execution.StatRolled.value}}: 
+							{{item.system.Execution.StatRolled.value}}
 							{{lookup ../system.RollStats item.system.Execution.StatRolled.value}}
 						</span>
 					{{/if}}
@@ -104,19 +104,21 @@
 		</div>
 	</header>
 	{{!-- Sheet Tab Navigation --}}
-	<nav class="sheet-tabs tabs" data-group="primary">
-		<a class="item" data-tab="description">Description</a>
-		<a class="item" data-tab="activation">Activation</a>
-		<a class="item" data-tab="effects">Effects</a>
-		{{#if isGM}}
-			<a class="item" data-tab="results">Results</a>
-		{{/if}}
-	</nav>
+	<div class="layout-container-nav style-container-nav">
+		<nav class="style-container-nav-children itemnavselector tabs" data-group="primary">
+			<a class="item style-cs-labels" data-tab="description">Description</a>
+			<a class="item style-cs-labels" data-tab="activation">Activation</a>
+			<a class="item style-cs-labels" data-tab="effects">Effects</a>
+			{{#if isGM}}
+				<a class="item style-cs-labels" data-tab="results">Results</a>
+			{{/if}}
+		</nav>
+	</div>
 	{{!-- Sheet Body --}}
-	<section class="sheet-body">
+	<section class="itemnavtabs">
 		{{!-- Description Tab --}}
 		<div class="tab description" data-group="primary" data-tab="description">
-			<div>{{system.Description.label}}:<br></div>
+			<div class="resource-label">{{system.Description.label}}:<br></div>
 			{{#if isGM}}
 				<div class="layout-editor">
 					{{editor system.Description.value target="system.Description.value" button=true editable=true}}
@@ -178,7 +180,7 @@
 
 		{{!-- Effects Tab --}}
 		<div class="tab effects" data-group="primary" data-tab="effects">
-			<div>{{system.Effects.EffectDescription.label}}:<br></div>
+			<div class="resource-label">{{system.Effects.EffectDescription.label}}:<br></div>
 			{{#if isGM}}
 				<div class="layout-editor">
 					{{editor system.Effects.EffectDescription.value target="system.Effects.EffectDescription.value" button=true editable=true}}

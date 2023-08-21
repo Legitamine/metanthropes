@@ -46,10 +46,43 @@
 
 .tox {
 	.tox-editor-container {
-		background: $c-white;
+		//background: $c-white;
+		min-height: 80px;
+		height: auto;
+		max-height: 500px;
+		overflow-y: auto;
 	}
 
 	.tox-edit-area {
 		padding: 0 8px;
+		min-height: 80px;
+		height: auto;
+		max-height: 500px;
+		overflow-y: auto;
 	}
+}
+
+.resource {
+	font-family: $font-primary;
+	font-size: 0.9rem;
+	color: $c-black;
+	justify-content: center;
+	align-items: center;
+	align-self: center;
+	font-weight: 500;
+	padding: $padding-sm;
+	margin: $margin-sm;
+}
+
+.resource-label {
+	font-family: $font-title;
+	font-size: 0.9rem;
+	color: $c-black;
+	justify-content: center;
+	justify-self: center;
+	align-items: center;
+	align-self: center;
+	font-weight: 700;
+	padding: $padding-sm;
+	margin: $margin-sm;
 }
