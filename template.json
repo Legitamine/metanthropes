@@ -671,7 +671,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Synthetic Description",
-						"value": "some synthetic life form"
+						"value": null
 					}
 				}
 			},
@@ -915,7 +915,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "🧱 Description",
-						"value": "some material properties"
+						"value": null
 					}
 				}
 			},
@@ -1083,7 +1083,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Additional Information",
-						"value": "Additional Information"
+						"value": null
 					}
 				}
 			},
@@ -1093,32 +1093,32 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Effect Description",
-						"value": "Effect Description"
+						"value": null
 					},
 					"Damage": {
 						"Cosmic": {
-							"Label": "✨ Cosmic 💥 Damage",
+							"label": "✨ Cosmic 💥 Damage",
 							"type": "number",
 							"dtype": "Number",
 							"Base": 0,
 							"Dice": 0
 						},
 						"Elemental": {
-							"Label": "✨ Elemental 💥 Damage",
+							"label": "✨ Elemental 💥 Damage",
 							"type": "number",
 							"dtype": "Number",
 							"Base": 0,
 							"Dice": 0
 						},
 						"Material": {
-							"Label": "✨ Material 💥 Damage",
+							"label": "✨ Material 💥 Damage",
 							"type": "number",
 							"dtype": "Number",
 							"Base": 0,
 							"Dice": 0
 						},
 						"Psychic": {
-							"Label": "✨ Psychic 💥 Damage",
+							"label": "✨ Psychic 💥 Damage",
 							"type": "number",
 							"dtype": "Number",
 							"Base": 0,
@@ -1126,14 +1126,20 @@
 						}
 					},
 					"Healing": {
-						"Label": "💞 Healing",
+						"label": "💞 Healing",
 						"type": "number",
 						"dtype": "Number",
 						"Base": 0,
 						"Dice": 0
 					},
 					"Special": {
-						"Label": "Special Dice",
+						"label": "Special",
+						"SpecialDiceName": {
+							"type": "text",
+							"dtype": "String",
+							"label": "Dice Name",
+							"value": "None"
+						},
 						"type": "number",
 						"dtype": "Number",
 						"Base": 0,
@@ -1141,37 +1147,37 @@
 					},
 					"Conditions": {
 						"Applied": {
-							"Label": "💀 ➕",
+							"label": "💀 ➕",
 							"type": "text",
 							"dtype": "String",
-							"Value": null
+							"value": null
 						},
 						"Removed": {
-							"Label": "💀 ➖",
+							"label": "💀 ➖",
 							"type": "text",
 							"dtype": "String",
-							"Value": null
+							"value": null
 						}
 					},
 					"Buffs": {
 						"Applied": {
-							"Label": "🛡️ ➕",
+							"label": "🛡️ ➕",
 							"type": "text",
 							"dtype": "String",
-							"Value": null
+							"value": null
 						},
 						"Removed": {
-							"Label": "🛡️ ➖",
+							"label": "🛡️ ➖",
 							"type": "text",
 							"dtype": "String",
-							"Value": null
+							"value": null
 						}
 					},
 					"AdditionalInfo": {
 						"type": "text",
 						"dtype": "String",
 						"label": "Effect Additional Information",
-						"value": "Effect Additional Information"
+						"value": null
 					}
 				}
 			},
@@ -1253,7 +1259,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Results Additional Information",
-						"value": "Additional Information about the results"
+						"value": null
 					}
 				}
 			},
@@ -1481,7 +1487,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Additional Information",
-						"value": "Additional Information about Activating this Metapower"
+						"value": null
 					}
 				},
 				"Effects": {
@@ -1513,7 +1519,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Additional Information",
-						"value": "Additional Information about the Effects of this Metapower"
+						"value": null
 					}
 				}
 			}
@@ -1524,7 +1530,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Object Description",
-				"value": "some object description"
+				"value": null
 			}
 		},
 		"Possession": {
@@ -1533,7 +1539,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Possession Description",
-				"value": "Possession Description"
+				"value": null
 			},
 			"Category": {
 				"type": "text",
@@ -1581,7 +1587,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Metapower Description",
-				"value": "Metapower Description"
+				"value": null
 			},
 			"Classification": {
 				"type": "text",

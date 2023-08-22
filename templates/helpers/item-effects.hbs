@@ -1,52 +1,142 @@
 <div class="tab effects" data-group="primary" data-tab="effects">
-	<div class="resource-label">{{system.Effects.EffectDescription.label}}:<br></div>
-	{{#if isGM}}
-		<div class="layout-editor">
-			{{editor system.Effects.EffectDescription.value target="system.Effects.EffectDescription.value" button=true editable=true}}
-		</div>
-	{{else}}
-		<div class="layout-editor">
-			{{editor system.Effects.EffectDescription.value target="system.Effects.EffectDescription.value" button=false editable=false}}
-		</div>
+	{{! -- Effect Description --}}
+	{{#if (or isGM (and system.Effects.EffectDescription.value (not (or (eq system.Effects.EffectDescription.value null) (eq system.Effects.EffectDescription.value 0) (eq system.Effects.EffectDescription.value "None")))))}}
+		<div class="resource-label">{{system.Effects.EffectDescription.label}}:<br></div>
+		{{#if isGM}}
+			<div class="layout-editor">
+				{{editor system.Effects.EffectDescription.value target="system.Effects.EffectDescription.value" button=true editable=true}}
+			</div><br>
+		{{else}}
+			<div class="layout-editor">
+				{{editor system.Effects.EffectDescription.value target="system.Effects.EffectDescription.value" button=false editable=false}}
+			</div><br>
+		{{/if}}
 	{{/if}}
-	<div>
-		
+	{{! -- Effect Damage --}}
+	<div class="resource">
+		{{#each system.Effects.Damage}}
+			{{#if (or ../isGM (and this.Dice (not (or (eq this.Dice null) (eq this.Dice 0) (eq this.Dice "None")))))}}
+				<div class="resource-label">{{this.label}}:
+					<span class="resource">
+						{{#if ../isGM}}
+							<input type="{{this.type}}" name="system.Effects.Damage.{{@key}}.Base" value="{{this.Base}}"
+								data-dtype="{{this.dtype}}" />
+						{{else}}
+							{{this.Base}}
+						{{/if}}
+						Base +
+						{{#if ../isGM}}
+							<input type="{{this.type}}" name="system.Effects.Damage.{{@key}}.Dice" value="{{this.Dice}}"
+								data-dtype="{{this.dtype}}" />
+						{{else}}
+							{{this.Dice}}
+						{{/if}}
+						* d10
+					</span>
+				</div><br>
+			{{/if}}
+		{{/each}}
 	</div>
-	{{#each system.Effects}}
-		{{#unless (or 
-				(eq @key "EffectDescription")
-				(eq @key "AdditionalInfo")
-				(eq @key "Conditions")
-				(eq @key "Buffs")
-				(eq @key "Damage")
-				(eq @key "Healing")
-				(eq @key "Special")
-				)}}
-			<div class="resource">
-				<label class="resource-label">{{this.label}}:</label>
-				{{#if this.options}}
-					<select name="system.Effects.{{@key}}.value">
-						{{#each this.options as |option|}}
-							<option value="{{option}}" {{#if (eq option ../this.value)}}selected{{/if}}>
-								{{option}}
-							</option>
-						{{/each}}
-					</select>
+	{{! -- Effect Healing --}}
+	<div class="resource">
+		{{#if (or isGM (and system.Effects.Healing.Dice (not (or (eq system.Effects.Healing.Dice null) (eq system.Effects.Healing.Dice 0) (eq system.Effects.Healing.Dice "None")))))}}
+			<label class="resource-label">{{system.Effects.Healing.label}}:</label>
+			<span class="resource">
+				{{#if isGM}}
+					<input type="{{system.Effects.Healing.type}}" name="system.Effects.Healing.Base"
+						value="{{system.Effects.Healing.Base}}" data-dtype="{{system.Effects.Healing.dtype}}" />
 				{{else}}
-					<input type="{{this.type}}" name="system.Effects.{{@key}}.value" value="{{this.value}}"
-						data-dtype="{{this.dtype}}" />
+					{{system.Effects.Healing.Base}}
 				{{/if}}
-			</div>
-		{{/unless}}
-	{{/each}}
-	<div><label class="resource-label">{{system.Effects.AdditionalInfo.label}}:</label></div>
-	{{#if isGM}}
-		<div class="layout-editor">
-			{{editor system.Effects.AdditionalInfo.value target="system.Effects.AdditionalInfo.value" button=true editable=true}}
-		</div>
-	{{else}}
-		<div class="layout-editor">
-			{{editor system.Effects.AdditionalInfo.value target="system.Effects.AdditionalInfo.value" button=false editable=false}}
-		</div>
+				Base +
+				{{#if isGM}}
+					<input type="{{system.Effects.Healing.type}}" name="system.Effects.Healing.Dice"
+						value="{{system.Effects.Healing.Dice}}" data-dtype="{{system.Effects.Healing.dtype}}" />
+				{{else}}
+					{{system.Effects.Healing.Dice}}
+				{{/if}}
+				* d10
+			</span><br>
+		{{/if}}
+	</div>
+	{{! -- Effect Special --}}
+	{{#if (or isGM (and system.Effects.Special.SpecialDiceName.value (not (or (eq system.Effects.Special.SpecialDiceName.value null) (eq system.Effects.Special.SpecialDiceName.value 0) (eq system.Effects.Special.SpecialDiceName.value "None")))))}}
+		<div class="resource">
+			<label class="resource-label">{{system.Effects.Special.label}}:</label>
+			{{#if isGM}}
+				<span>
+					{{system.Effects.Special.SpecialDiceName.label}}:</label>
+				</span>
+				<input type="{{system.Effects.Special.SpecialDiceName.type}}"
+					name="system.Effects.Special.SpecialDiceName.value"
+					value="{{system.Effects.Special.SpecialDiceName.value}}"
+					data-dtype="{{system.Effects.Special.SpecialDiceName.dtype}}" />
+			{{else}}
+				{{system.Effects.Special.SpecialDiceName.value}}:
+			{{/if}}
+			<span class="resource">
+				{{#if isGM}}
+					<input type="{{system.Effects.Special.type}}" name="system.Effects.Special.Base"
+						value="{{system.Effects.Special.Base}}" data-dtype="{{system.Effects.Special.dtype}}" />
+				{{else}}
+					{{system.Effects.Special.Base}}
+				{{/if}}
+				Base +
+				{{#if isGM}}
+					<input type="{{system.Effects.Special.type}}" name="system.Effects.Special.Dice"
+						value="{{system.Effects.Special.Dice}}" data-dtype="{{system.Effects.Special.dtype}}" />
+				{{else}}
+					{{system.Effects.Special.Dice}}
+				{{/if}}
+				* d10
+			</span>
+		</div><br>
 	{{/if}}
-</div>
+	{{! -- Effect Buffs --}}
+	<div class="resource">
+		{{#each system.Effects.Buffs}}
+			{{#if (or ../isGM (and this.value (not (or (eq this.value null) (eq this.value 0) (eq this.value "None")))))}}
+				<div class="resource">
+					<label class="resource-label">{{this.label}}:</label>
+					{{#if ../isGM}}
+						<input type="{{this.type}}" name="system.Effects.Buffs.{{@key}}.value" value="{{this.value}}"
+							data-dtype="{{this.dtype}}" />
+					{{else}}
+						{{this.value}}
+					{{/if}}
+				</div><br>
+			{{/if}}
+		{{/each}}
+	</div>
+	{{! -- Effect Conditions --}}
+	<div class="resource">
+		{{#each system.Effects.Conditions}}
+			{{#if (or ../isGM (and this.value (not (or (eq this.value null) (eq this.value 0) (eq this.value "None")))))}}
+				<div class="resource">
+					<label class="resource-label">{{this.label}}:</label>
+					{{#if ../isGM}}
+						<input type="{{this.type}}" name="system.Effects.Conditions.{{@key}}.value"
+							value="{{this.value}}" data-dtype="{{this.dtype}}" />
+					{{else}}
+						{{this.value}}
+					{{/if}}
+				</div><br>
+			{{/if}}
+		{{/each}}
+	</div>
+	{{! -- Effect Additional Info --}}
+	{{#if (or isGM (and system.Effects.AdditionalInfo.value (not (or (eq system.Effects.AdditionalInfo.value null) (eq system.Effects.AdditionalInfo.value 0) (eq system.Effects.AdditionalInfo.value "None")))))}}
+		<div>
+			<label class="resource-label">{{system.Effects.AdditionalInfo.label}}:</label>
+		</div>
+		{{#if isGM}}
+			<div class="layout-editor">
+				{{editor system.Effects.AdditionalInfo.value target="system.Effects.AdditionalInfo.value" button=true editable=true}}
+			</div>
+		{{else}}
+			<div class="layout-editor">
+				{{editor system.Effects.AdditionalInfo.value target="system.Effects.AdditionalInfo.value" button=false editable=false}}
+			</div>
+		{{/if}}
+	{{/if}}
+</div><br>

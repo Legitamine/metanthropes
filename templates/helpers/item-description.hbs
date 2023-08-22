@@ -1,13 +1,15 @@
 <div class="tab description" data-group="primary" data-tab="description">
 	{{!-- To render inline rolls in a TinyMCE editor, you need to pass the parent actor's (if any) roll data to the rollData prop. --}}
-	<div>{{system.Description.label}}:<br></div>
-	{{#if isGM}}
-		<div class="layout-editor">
-			{{editor system.Description.value target="system.Description.value" button=true editable=true}}
-		</div>
-	{{else}}
-		<div class="layout-editor">
-			{{editor system.Description.value target="system.Description.value" button=false editable=false}}
-		</div>
+	{{#if (or isGM (and system.Description.value (not (or (eq system.Description.value null) (eq system.Description.value 0) (eq system.Description.value "None")))))}}
+		<div class="resource-label">{{system.Description.label}}:<br></div>
+		{{#if isGM}}
+			<div class="layout-editor">
+				{{editor system.Description.value target="system.Description.value" button=true editable=true}}
+			</div><br>
+		{{else}}
+			<div class="layout-editor">
+				{{editor system.Description.value target="system.Description.value" button=false editable=false}}
+			</div><br>
+		{{/if}}
 	{{/if}}
 </div>
