@@ -549,15 +549,19 @@ option {
   width: 160px;
   margin-right: 6px;
 }
+.metanthropes .sheet-header .possession-img {
+  flex: 0 0 160px;
+  height: 160px;
+  width: 160px;
+  margin-right: 6px;
+}
 .metanthropes .perk-item {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 .metanthropes .perk-item .resource-label {
-  flex: 1;
-  text-align: center;
-  margin-right: 6px;
+  margin-right: 10px;
 }
 .metanthropes .style-container-outer-charstats {
   opacity: 1;

@@ -184,7 +184,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Physical Description",
-						"value": "Details about your physical appearance."
+						"value": "Details about your physical appearance"
 					}
 				}
 			},
@@ -239,7 +239,7 @@
 						"Progressed": 0,
 						"Base": 0,
 						"Current": 0,
-						"Title": "Body is the Characteristic which defines a Character's constitution, physical prowess, and physique.",
+						"Title": "Body is the Characteristic which defines a Character's constitution, physical prowess, and physique",
 						"Buff": { "Name": "Hardened", "Current": 0 },
 						"Condition": { "Name": "Burned", "Current": 0 },
 						"CoreConditions": { "Bleeding": 0, "Asphyxiation": 0, "Diseased": 0, "Maimed": 0 },
@@ -250,7 +250,7 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Endurance determines a Character's stamina, health, and vigor.",
+								"Title": "Endurance determines a Character's stamina, health, and vigor",
 								"Buff": { "Name": "Fortified", "Current": 0 },
 								"Condition": { "Name": "Bone Injury", "Current": 0 }
 							},
@@ -260,7 +260,7 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Power determines a Character's strength, striking effectiveness, and physical explosiveness.",
+								"Title": "Power determines a Character's strength, striking effectiveness, and physical explosiveness",
 								"Buff": { "Name": "Empowered", "Current": 0 },
 								"Condition": { "Name": "Muscle Injury", "Current": 0 }
 							},
@@ -270,7 +270,7 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Reflexes determines a Character's agility, motor skills and balance.",
+								"Title": "Reflexes determines a Character's agility, motor skills and balance",
 								"Buff": { "Name": "Hastened", "Current": 0 },
 								"Condition": { "Name": "Skin Injury", "Current": 0 }
 							}
@@ -281,7 +281,7 @@
 						"Progressed": 0,
 						"Base": 0,
 						"Current": 0,
-						"Title": "Mind is the Characteristic which defines a Character's brainpower, problem solving and innovative thoughts.",
+						"Title": "Mind is the Characteristic which defines a Character's brainpower, problem solving and innovative thoughts",
 						"Buff": { "Name": "Sharpened", "Current": 0 },
 						"Condition": { "Name": "Disconnected", "Current": 0 },
 						"CoreConditions": {
@@ -297,7 +297,7 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Creativity determines a Character's imagination, expression, and handiwork.",
+								"Title": "Creativity determines a Character's imagination, expression, and handiwork",
 								"Buff": { "Name": "Inspired", "Current": 0 },
 								"Condition": { "Name": "Wobbly", "Current": 0 }
 							},
@@ -307,7 +307,7 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Manipulation determines a Character's persuasiveness, charisma, and social engineering skills.",
+								"Title": "Manipulation determines a Character's persuasiveness, charisma, and social engineering skills",
 								"Buff": { "Name": "Articulated", "Current": 0 },
 								"Condition": { "Name": "Confused", "Current": 0 }
 							},
@@ -317,7 +317,7 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Perception determines a Character's observatory, evaluative and calculative capabilities.",
+								"Title": "Perception determines a Character's observatory, evaluative and calculative capabilities",
 								"Buff": { "Name": "Alerted", "Current": 0 },
 								"Condition": { "Name": "Disoriented", "Current": 0 }
 							}
@@ -328,7 +328,7 @@
 						"Progressed": 0,
 						"Base": 0,
 						"Current": 0,
-						"Title": "Soul is the Characteristic which defines a Character's conviction, spiritual prowess, and mettle.",
+						"Title": "Soul is the Characteristic which defines a Character's conviction, spiritual prowess, and mettle",
 						"Buff": { "Name": "Enlightened", "Current": 0 },
 						"Condition": { "Name": "Tormented", "Current": 0 },
 						"CoreConditions": { "Amnesia": 0, "Probed": 0, "Infiltrated": 0, "Unconscious": 0 },
@@ -339,7 +339,7 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Awareness determines a Character's empathy, intuition, and instinctual responses.",
+								"Title": "Awareness determines a Character's empathy, intuition, and instinctual responses",
 								"Buff": { "Name": "Focused", "Current": 0 },
 								"Condition": { "Name": "Bewildered", "Current": 0 }
 							},
@@ -349,7 +349,7 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Consciousness determines a Character's recollection, subconscious processing, and sanity.",
+								"Title": "Consciousness determines a Character's recollection, subconscious processing, and sanity",
 								"Buff": { "Name": "Awakened", "Current": 0 },
 								"Condition": { "Name": "Demented", "Current": 0 }
 							},
@@ -359,7 +359,7 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Willpower determines a Character's courage, discipline, and confidence.",
+								"Title": "Willpower determines a Character's courage, discipline, and confidence",
 								"Buff": { "Name": "Determined", "Current": 0 },
 								"Condition": { "Name": "Terrorized", "Current": 0 }
 							}
@@ -452,7 +452,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Humanoid Description",
-						"value": "A typical human with brown hair and brown eyes."
+						"value": "A typical human with brown hair and brown eyes"
 					}
 				}
 			},
@@ -464,35 +464,35 @@
 							"dtype": "Number",
 							"label": "Academics",
 							"value": 0,
-							"title": "Academics offer a Character access to educational, cultural, social, and historical fields of knowledges. In addition to the fields of study, each Level at Academics provides the Character with additional foreign languages."
+							"title": "Academics offer a Character access to educational, cultural, social, and historical fields of knowledges. In addition to the fields of study, each Level at Academics provides the Character with additional foreign languages"
 						},
 						"Engineering": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Engineering",
 							"value": 0,
-							"title": "Engineering offers a Character access to architectural and design capabilities and craftmanship in order to forge, repair or construct any Possession. Engineering includes both blueprint drafting and construction skills.  In addition to the fields of study, each Level at Engineering provides the Character with the ability to certain forms of structural damage."
+							"title": "Engineering offers a Character access to architectural and design capabilities and craftmanship in order to forge, repair or construct any Possession. Engineering includes both blueprint drafting and construction skills.  In addition to the fields of study, each Level at Engineering provides the Character with the ability to certain forms of structural damage"
 						},
 						"Medicine": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Medicine",
 							"value": 0,
-							"title": "Medicine offers the Character the ability to diagnose and treat medical conditions. In addition to the fields of study, each Level at Medicine provides the Character with the ability to reduce Conditions and restore Life to biological organisms."
+							"title": "Medicine offers the Character the ability to diagnose and treat medical conditions. In addition to the fields of study, each Level at Medicine provides the Character with the ability to reduce Conditions and restore Life to biological organisms"
 						},
 						"Science": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Science",
 							"value": 0,
-							"title": "Science offers the Character access to mathematical and technological fields, as well as access to specific fields of science. In addition to the fields of study, each Level at Science provides the Character with the ability to run experiments, simulations and set up computing servers and data analyzers."
+							"title": "Science offers the Character access to mathematical and technological fields, as well as access to specific fields of science. In addition to the fields of study, each Level at Science provides the Character with the ability to run experiments, simulations and set up computing servers and data analyzers"
 						},
 						"Lore": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Lore",
 							"value": 0,
-							"title": "Lore offers the Character knowledge of the unseen Metapowered world that is shrouded in mystery. Lore is folklore, occult, mysticism, and knowledge of the peculiarities of Metanthropes and other more obscure beings. In addition to the fields of study, each Level at Lore provides the Character with the awareness of the existence of Metapowers and Combos beyond the ones they own, and the ability to identify them they encounter them."
+							"title": "Lore offers the Character knowledge of the unseen Metapowered world that is shrouded in mystery. Lore is folklore, occult, mysticism, and knowledge of the peculiarities of Metanthropes and other more obscure beings. In addition to the fields of study, each Level at Lore provides the Character with the awareness of the existence of Metapowers and Combos beyond the ones they own, and the ability to identify them they encounter them"
 						}
 					},
 					"Skills": {
@@ -501,35 +501,35 @@
 							"dtype": "Number",
 							"label": "Artistry",
 							"value": 0,
-							"title": "Artistry represents the skill of a Character with any form of expression. Examples could include acting, sculpturing, drawing, poetry, singing, dancing, make-up artistry, cooking, graphic design, game design or any other similar form of Artistry."
+							"title": "Artistry represents the skill of a Character with any form of expression. Examples could include acting, sculpturing, drawing, poetry, singing, dancing, make-up artistry, cooking, graphic design, game design or any other similar form of Artistry"
 						},
 						"Athletics": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Athletics",
 							"value": 0,
-							"title": "Athletics represent the Character's control over their body and may include skills such as acrobatics, martial arts, self-defense, parkour, wresting, and any kind of sport. Higher levels give access to further combat and acrobatic techniques, that can be attempted without a Penalty."
+							"title": "Athletics represent the Character's control over their body and may include skills such as acrobatics, martial arts, self-defense, parkour, wresting, and any kind of sport. Higher levels give access to further combat and acrobatic techniques, that can be attempted without a Penalty"
 						},
 						"Expertise": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Expertise",
 							"value": 0,
-							"title": "Expertise represents a Character's skill level in a specific activity. Expertise is a Skill that offers a Bonus on a specific Stat roll (this Bonus does not apply to Metapowered activations which use the same roll). With each level at this Skill, the Character must also select a specialization. Expertise can be unlocked multiple times, each time selecting a different specialization."
+							"title": "Expertise represents a Character's skill level in a specific activity. Expertise is a Skill that offers a Bonus on a specific Stat roll (this Bonus does not apply to Metapowered activations which use the same roll). With each level at this Skill, the Character must also select a specialization. Expertise can be unlocked multiple times, each time selecting a different specialization"
 						},
 						"Operation": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Operation",
 							"value": 0,
-							"title": "With this Skill, a Character can operate tools, heavy machinery and drive or pilot any vehicles. Higher levels at this Perk allow a Character to use more complex devices and drive or pilot marvels of technology."
+							"title": "With this Skill, a Character can operate tools, heavy machinery and drive or pilot any vehicles. Higher levels at this Perk allow a Character to use more complex devices and drive or pilot marvels of technology"
 						},
 						"Weapons": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Weapons",
 							"value": 0,
-							"title": "With the Weapons Skill, a Character has undergone training of armed combat of any weapon type, from melee weapons to firearms and explosives. Higher levels at this Perk offer access to more advanced weapons."
+							"title": "With the Weapons Skill, a Character has undergone training of armed combat of any weapon type, from melee weapons to firearms and explosives. Higher levels at this Perk offer access to more advanced weapons"
 						}
 					},
 					"Details": {
@@ -1555,12 +1555,18 @@
 				"label": "Quantity",
 				"value": 1
 			},
-			"Perk": {
+			"RequiredPerk": {
 				"type": "text",
 				"dtype": "String",
-				"label": "Perk",
-				"value": null,
+				"label": "Required 📚 Perk",
+				"value": "None",
 				"options": ["None", "Operation", "Weapons"]
+			},
+			"RequiredPerkLevel": {
+				"type": "number",
+				"dtype": "Number",
+				"label": "Required 📚 Perk Level",
+				"value": 0
 			}
 		},
 		"Metapower": {
@@ -1622,7 +1628,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Combo Description",
-				"value": "Combos are not officially supported yet. This is a placeholder for future capabilities."
+				"value": "Combos are not officially supported yet. This is a placeholder for future capabilities"
 			}
 		}
 	}

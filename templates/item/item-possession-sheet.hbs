@@ -1,119 +1,128 @@
 <form class="metanthropes {{cssClass}}" autocomplete="off">
 	<header class="sheet-header">
 		{{#if isGM}}
-			<img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" style="border:none" />
+			<img class="possession-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" style="border:none" />
 		{{else}}
-			<img class="profile-img" src="{{item.img}}" title="{{item.name}}" style="border:none" />
+			<img class="possession-img" src="{{item.img}}" title="{{item.name}}" style="border:none" />
 		{{/if}}
 		<div class="header-fields">
-			<h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Possession Name" />
+			<h1 class="charname">
+				{{#if isGM}}
+					<input name="name" type="text" value="{{item.name}}" placeholder="Possession Name" />
+				{{else}}
+					{{item.name}}
+				{{/if}}
 			</h1>
 			<div class="grid grid-2col">
 				<div class="resource">
-					<label class="resource-label">🎲:</label>
-					<select name="system.StatRolled.value">
-						<option value="Awareness" {{#if (eq system.StatRolled.value "Awareness")}}selected{{/if}}>
-							Awareness
-						</option>
-						<option value="Consciousness"
-							{{#if (eq system.StatRolled.value "Consciousness")}}selected{{/if}}>Consciousness
-						</option>
-						<option value="Creativity" {{#if (eq system.StatRolled.value "Creativity")}}selected{{/if}}>
-							Creativity
-						</option>
-						<option value="Endurance" {{#if (eq system.StatRolled.value "Endurance")}}selected{{/if}}>
-							Endurance
-						</option>
-						<option value="Manipulation" {{#if (eq system.StatRolled.value "Manipulation")}}selected{{/if}}>
-							Manipulation
-						</option>
-						<option value="Perception" {{#if (eq system.StatRolled.value "Perception")}}selected{{/if}}>
-							Perception
-						</option>
-						<option value="Power" {{#if (eq system.StatRolled.value "Power")}}selected{{/if}}>Power
-						</option>
-						<option value="Reflexes" {{#if (eq system.StatRolled.value "Reflexes")}}selected{{/if}}>
-							Reflexes
-						</option>
-						<option value="Willpower" {{#if (eq system.StatRolled.value "Willpower")}}selected{{/if}}>
-							Willpower
-						</option>
-					</select>
+					<label class="resource-label" title="Which Stat is rolled when Using this Possession">🎲
+						Stat:</label>
+					{{#if isGM}}
+						<select name="system.Execution.StatRolled.value">
+							{{#each system.Execution.StatRolled.options as |option|}}
+								<option value="{{option}}"
+									{{#if (eq option ../system.Execution.StatRolled.value)}}selected{{/if}}>{{option}}
+								</option>
+							{{/each}}
+						</select>
+					{{else}}
+						<span class="item-statroll style-pos-rolls" data-roll-type="Possession"
+							data-item-name="{{item.name}}" data-stat="{{item.system.Execution.StatRolled.value}}"
+							data-required-perk="{{item.system.RequiredPerk.value}}"
+							data-required-perk-level="{{item.system.RequiredPerkLevel.value}}">
+							{{item.system.Execution.StatRolled.value}}
+							{{lookup ../system.RollStats item.system.Execution.StatRolled.value}}
+						</span>
+					{{/if}}
 				</div>
 				<div class="resource">
-					<label class="resource-label">Category:</label>
-					<select name="system.Category.value">
-						<option value="Strike" {{#if (eq system.Category.value "Strike")}}selected{{/if}}>Strike
-						</option>
-						<option value="Weapon" {{#if (eq system.Category.value "Weapon")}}selected{{/if}}>Weapon
-						</option>
-						<option value="Armor" {{#if (eq system.Category.value "Armor")}}selected{{/if}}>Armor
-						</option>
-						<option value="Gadget" {{#if (eq system.Category.value "Gadget")}}selected{{/if}}>Gadget
-						</option>
-						<option value="Drug" {{#if (eq system.Category.value "Drug")}}selected{{/if}}>Drug
-						</option>
-					</select>
+					<label class="resource-label" title="The Category of the Possession">Category:</label>
+					{{#if isGM}}
+						<select name="system.Category.value">
+							{{#each system.Category.options as |option|}}
+								<option value="{{option}}" {{#if (eq option ../system.Category.value)}}selected{{/if}}>
+									{{option}}
+								</option>
+							{{/each}}
+						</select>
+					{{else}}
+						{{system.Category.value}}
+					{{/if}}
 				</div>
 				<div class="resource">
-					<label class="resource-label">Attack Type:</label>
-					<select name="system.AttackType.value">
-						<option value="Melee" {{#if (eq system.AttackType.value "Melee")}}selected{{/if}}>Melee
-						</option>
-						<option value="Projectile" {{#if (eq system.AttackType.value "Projectile")}}selected{{/if}}>
-							Projectile
-						</option>
-						<option value="Firearm" {{#if (eq system.AttackType.value "Firearm")}}selected{{/if}}>
-							Firearm
-						</option>
-					</select>
+					<label class="resource-label" title="The Attack Type of the Possession">Attack Type:</label>
+					{{#if isGM}}
+						<select name="system.AttackType.value">
+							{{#each system.AttackType.options as |option|}}
+								<option value="{{option}}"
+									{{#if (eq option ../system.AttackType.value)}}selected{{/if}}>{{option}}
+								</option>
+							{{/each}}
+						</select>
+					{{else}}
+						{{system.AttackType.value}}
+					{{/if}}
 				</div>
 				<div class="resource">
-					<label class="resource-label">Quantity:</label>
-					<input type="number" name="system.Quantity.value" value="{{system.Quantity.value}}"
-						data-dtype="Number" />
+					<label class="resource-label"
+						title="How many of this Possession you have with you">Quantity:</label>
+					{{#if isGM}}
+						<input type="number" name="system.Quantity.value" value="{{system.Quantity.value}}"
+							data-dtype="Number" />
+					{{else}}
+						{{system.Quantity.value}}
+					{{/if}}
+				</div>
+				<div class="resource">
+					<label class="resource-label" title="Which Perk is required to use this Possession">Required 📚
+						Perk:</label>
+					{{#if isGM}}
+						<select name="system.RequiredPerk.value">
+							{{#each system.RequiredPerk.options as |option|}}
+								<option value="{{option}}"
+									{{#if (eq option ../system.RequiredPerk.value)}}selected{{/if}}>{{option}}
+								</option>
+							{{/each}}
+						</select>
+					{{else}}
+						{{system.RequiredPerk.value}}
+					{{/if}}
+				</div>
+				<div class="resource">
+					<label class="resource-label" title="What Perk Level is required to use this Possession">Required 📚
+						Perk Level:</label>
+					{{#if isGM}}
+						<input type="number" name="system.RequiredPerkLevel.value"
+							value="{{system.RequiredPerkLevel.value}}" data-dtype="Number" />
+					{{else}}
+						{{system.RequiredPerkLevel.value}}
+					{{/if}}
 				</div>
 			</div>
 		</div>
 	</header>
 	{{!-- Sheet Tab Navigation --}}
-	<nav class="sheet-tabs tabs" data-group="primary">
-		<a class="item" data-tab="description">Description</a>
-		<a class="item" data-tab="material" title="Material Properties">🧱 Properties</a>
-		<a class="item" data-tab="usage">Usage</a>
-		<a class="item" data-tab="effects">Effects</a>
-		<a class="item" data-tab="results">Results</a>
-	</nav>
-	{{!-- Sheet Body --}}
-	<section class="sheet-body">
-		{{!-- Description Tab --}}
-		<div class="tab description" data-group="primary" data-tab="description">
-			{{!-- To render inline rolls in a TinyMCE editor, you need to pass the parent actor's (if any) roll data to the rollData prop. --}}
-			<div>{{system.Description.label}}:<br></div>
+	<div class="layout-container-nav style-container-nav">
+		<nav class="style-container-nav-children itemnavselector tabs" data-group="primary">
+			<a class="item style-cs-labels" data-tab="description">Description</a>
 			{{#if isGM}}
-				<div class="layout-editor">
-					{{editor system.Description.value target="system.Description.value" button=true editable=true}}
-				</div>
-			{{else}}
-				<div class="layout-editor">
-					{{editor system.Description.value target="system.Description.value" button=false editable=false}}
-				</div>
+				<a class="item style-cs-labels" data-tab="material" title="Material Properties">🧱 Properties</a>
 			{{/if}}
-		</div>
+			<a class="item style-cs-labels" data-tab="execution">Usage</a>
+			<a class="item style-cs-labels" data-tab="effects">Effects</a>
+			{{#if isGM}}
+				<a class="item style-cs-labels" data-tab="results">Results</a>
+			{{/if}}
+		</nav>
+	</div>
+	{{!-- Sheet Body --}}
+	<section class="itemnavtabs">
+		{{!-- Description Tab --}}
+		{{> "systems/metanthropes-system/templates/helpers/item-description.hbs"}}
 		{{!-- Usage Tab --}}
-		<div class="tab usage" data-group="primary" data-tab="usage">
-			{{!-- As you add new fields, add them in here! --}}
-			{{#each system.Usage}}
-				<div class="resource">
-					<label class="resource-label">{{this.label}}:</label>
-					<input type="{{this.type}}" name="system.Usage.{{@key}}.value" value="{{this.value}}"
-						data-dtype="{{this.dtype}}" />
-				</div>
-			{{/each}}
-		</div>
+		{{> "systems/metanthropes-system/templates/helpers/item-execution.hbs"}}
 		{{!-- Material Properties Tab --}}
 		<div class="tab material" data-group="primary" data-tab="material">
-			{{!-- As you add new fields, add them in here! --}}
 			{{#each system.Material}}
 				<div class="resource">
 					<label class="resource-label">{{this.label}}:</label>
@@ -123,27 +132,7 @@
 			{{/each}}
 		</div>
 		{{!-- Effects Tab --}}
-		<div class="tab effects" data-group="primary" data-tab="effects">
-			<div>
-				<div>{{system.EffectDescription.label}}:<br></div>
-				{{#if isGM}}
-					<div class="layout-editor">
-						{{editor system.EffectDescription.value target="system.EffectDescription.value" button=true editable=true}}
-					</div>
-				{{else}}
-					<div class="layout-editor">
-						{{editor system.EffectDescription.value target="system.EffectDescription.value" button=false editable=false}}
-					</div>
-				{{/if}}
-			</div>
-			{{#each system.Effects}}
-				<div class="resource">
-					<label class="resource-label">{{this.label}}:</label>
-					<input type="{{this.type}}" name="system.Effects.{{@key}}.value" value="{{this.value}}"
-						data-dtype="{{this.dtype}}" />
-				</div>
-			{{/each}}
-		</div>
+		{{> "systems/metanthropes-system/templates/helpers/item-effects.hbs"}}
 		{{!-- Results Tab --}}
 		<div class="tab results" data-group="primary" data-tab="results">
 			<div>

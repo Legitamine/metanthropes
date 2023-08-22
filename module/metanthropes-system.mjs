@@ -23,26 +23,29 @@ import { MetaExecute } from "./helpers/metaexecute.mjs";
 Handlebars.registerHelper("selected", function (option, value) {
 	return option === value ? "selected" : "";
 });
-//? Handlebars helper for displaying actor values on the item sheets.
-//! I don't recall where this is being used exactly
-Handlebars.registerHelper("getStatValue", function (statName) {
-	console.log("Metanthropes RPG System | DEBUG: ARE WE USING THIS? | Handlebars helper statName:", statName);
-	return actor.system.RollStats[statName];
-});
-//? this allows me to use an each loop to list stuff unless the key is...
-Handlebars.registerHelper("unless_key_is", function (key, value, options) {
-	if (key !== value) {
-		return options.fn(this);
-	}
-});
-//? Handlebars helper for joining an array into a single value
+//? Used to join an array into a single string with a space between each item ex: {{join this.value ', '}}
 Handlebars.registerHelper("join", function (array, separator) {
 	return array.join(separator);
 });
-//? Handlebars helper for checking if the value is included in the array
-Handlebars.registerHelper("includes", function (array, value) {
-	return Array.isArray(array) && array.includes(value);
-});
+//! Deprecated - I don't think I'm using this anymore, but I'm not sure
+// //? Handlebars helper for displaying actor values on the item sheets.
+//	//! I don't recall where this is being used exactly
+//	Handlebars.registerHelper("getStatValue", function (statName) {
+//		console.log("Metanthropes RPG System | DEBUG: ARE WE USING THIS? | Handlebars helper statName:", statName);
+//		return actor.system.RollStats[statName];
+//	});
+//	//? this allows me to use an each loop to list stuff unless the key is...
+//	Handlebars.registerHelper("unless_key_is", function (key, value, options) {
+//		if (key !== value) {
+//			return options.fn(this);
+//		}
+//	});
+//	//? Handlebars helper for joining an array into a single value
+
+//	//? Handlebars helper for checking if the value is included in the array
+//	Handlebars.registerHelper("includes", function (array, value) {
+//		return Array.isArray(array) && array.includes(value);
+//	});
 //? System Initialization.
 Hooks.once("init", async function () {
 	console.log("Metanthropes RPG System | ====================================");

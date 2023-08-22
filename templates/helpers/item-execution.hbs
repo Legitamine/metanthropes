@@ -1,0 +1,46 @@
+<div class="tab execution" data-group="primary" data-tab="execution">
+	{{#each system.Execution}}
+		{{#unless (or (eq @key "StatRolled") (eq @key "AdditionalInfo"))}}
+			<div class="resource">
+				<label class="resource-label">{{this.label}}:</label>
+				{{#if this.options}}
+					{{#if ../isGM}}
+						<select name="system.Execution.{{@key}}.value">
+							{{#each this.options as |option|}}
+								<option value="{{option}}" {{#if (eq option ../this.value)}}selected{{/if}}>
+									{{option}}
+								</option>
+							{{/each}}
+						</select>
+					{{else}}
+						{{this.value}}
+					{{/if}}
+				{{else if this.selections}}
+					{{#if ../isGM}}
+						<select multiple name="system.Execution.{{@key}}.value">
+							{{selectOptions this.selections selected=this.value}}
+						</select>
+					{{/if}}
+					<span class="selected-values">
+						{{join this.value ', '}}
+					</span>
+				{{else}}
+					<div>
+						<input type="{{this.type}}" name="system.Execution.{{@key}}.value" value="{{this.value}}"
+							data-dtype="{{this.dtype}}" />
+					</div>
+				{{/if}}
+			</div><br>
+		{{/unless}}
+	{{/each}}
+	<div><label class="resource-label">{{system.Execution.AdditionalInfo.label}}:</label></div>
+	{{#if isGM}}
+		<div class="layout-editor">
+			{{editor system.Execution.AdditionalInfo.value target="system.Execution.AdditionalInfo.value" button=true editable=true}}
+		</div>
+	{{else}}
+		<div class="layout-editor">
+			{{editor system.Execution.AdditionalInfo.value target="system.Execution.AdditionalInfo.value" button=false editable=false}}
+		</div>
+	{{/if}}
+</div>

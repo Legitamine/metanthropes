@@ -1,0 +1,52 @@
+<div class="tab effects" data-group="primary" data-tab="effects">
+	<div class="resource-label">{{system.Effects.EffectDescription.label}}:<br></div>
+	{{#if isGM}}
+		<div class="layout-editor">
+			{{editor system.Effects.EffectDescription.value target="system.Effects.EffectDescription.value" button=true editable=true}}
+		</div>
+	{{else}}
+		<div class="layout-editor">
+			{{editor system.Effects.EffectDescription.value target="system.Effects.EffectDescription.value" button=false editable=false}}
+		</div>
+	{{/if}}
+	<div>
+		
+	</div>
+	{{#each system.Effects}}
+		{{#unless (or 
+				(eq @key "EffectDescription")
+				(eq @key "AdditionalInfo")
+				(eq @key "Conditions")
+				(eq @key "Buffs")
+				(eq @key "Damage")
+				(eq @key "Healing")
+				(eq @key "Special")
+				)}}
+			<div class="resource">
+				<label class="resource-label">{{this.label}}:</label>
+				{{#if this.options}}
+					<select name="system.Effects.{{@key}}.value">
+						{{#each this.options as |option|}}
+							<option value="{{option}}" {{#if (eq option ../this.value)}}selected{{/if}}>
+								{{option}}
+							</option>
+						{{/each}}
+					</select>
+				{{else}}
+					<input type="{{this.type}}" name="system.Effects.{{@key}}.value" value="{{this.value}}"
+						data-dtype="{{this.dtype}}" />
+				{{/if}}
+			</div>
+		{{/unless}}
+	{{/each}}
+	<div><label class="resource-label">{{system.Effects.AdditionalInfo.label}}:</label></div>
+	{{#if isGM}}
+		<div class="layout-editor">
+			{{editor system.Effects.AdditionalInfo.value target="system.Effects.AdditionalInfo.value" button=true editable=true}}
+		</div>
+	{{else}}
+		<div class="layout-editor">
+			{{editor system.Effects.AdditionalInfo.value target="system.Effects.AdditionalInfo.value" button=false editable=false}}
+		</div>
+	{{/if}}
+</div>

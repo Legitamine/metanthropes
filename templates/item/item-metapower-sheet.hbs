@@ -15,7 +15,7 @@
 			</h1>
 			<div class="grid grid-2col">
 				<div class="resource">
-					<label class="resource-label" title="Which Stat is rolled when Activating this Metapower.">🎲
+					<label class="resource-label" title="Which Stat is rolled when Activating this Metapower">🎲
 						Stat:</label>
 					{{#if isGM}}
 						<select name="system.Execution.StatRolled.value">
@@ -36,7 +36,7 @@
 				</div>
 				<div class="resource">
 					<label class="resource-label"
-						title="Each Classification includes Metapowers which have a similar role and utilize capabilities and functions in a similar manner.">🔣
+						title="Each Classification includes Metapowers which have a similar role and utilize capabilities and functions in a similar manner">🔣
 						Classification:</label>
 					{{#if isGM}}
 						<select name="system.Classification.value">
@@ -61,7 +61,7 @@
 				</div>
 				<div class="resource">
 					<label class="resource-label"
-						title="Energy Type dictates the Damage and other properties of an effect.">✨ Energy
+						title="Energy Type dictates the Damage and other properties of an effect">✨ Energy
 						Type:</label>
 					{{#if isGM}}
 						<select name="system.EnergyType.value">
@@ -107,7 +107,7 @@
 	<div class="layout-container-nav style-container-nav">
 		<nav class="style-container-nav-children itemnavselector tabs" data-group="primary">
 			<a class="item style-cs-labels" data-tab="description">Description</a>
-			<a class="item style-cs-labels" data-tab="activation">Activation</a>
+			<a class="item style-cs-labels" data-tab="execution">Activation</a>
 			<a class="item style-cs-labels" data-tab="effects">Effects</a>
 			{{#if isGM}}
 				<a class="item style-cs-labels" data-tab="results">Results</a>
@@ -117,116 +117,10 @@
 	{{!-- Sheet Body --}}
 	<section class="itemnavtabs">
 		{{!-- Description Tab --}}
-		<div class="tab description" data-group="primary" data-tab="description">
-			<div class="resource-label">{{system.Description.label}}:<br></div>
-			{{#if isGM}}
-				<div class="layout-editor">
-					{{editor system.Description.value target="system.Description.value" button=true editable=true}}
-				</div>
-			{{else}}
-				<div class="layout-editor">
-					{{editor system.Description.value target="system.Description.value" button=false editable=false}}
-				</div>
-			{{/if}}
-		</div>
+		{{> "systems/metanthropes-system/templates/helpers/item-description.hbs"}}
 		{{!-- Activation Tab --}}
-		<div class="tab activation" data-group="primary" data-tab="activation">
-			{{#each system.Execution}}
-				{{#unless (or (eq @key "StatRolled") (eq @key "AdditionalInfo"))}}
-					<div class="resource">
-						<label class="resource-label">{{this.label}}:</label>
-						{{#if this.options}}
-							{{#if ../isGM}}
-								<select name="system.Execution.{{@key}}.value">
-									{{#each this.options as |option|}}
-										<option value="{{option}}" {{#if (eq option ../this.value)}}selected{{/if}}>
-											{{option}}
-										</option>
-									{{/each}}
-								</select>
-							{{else}}
-								{{this.value}}
-							{{/if}}
-						{{else if this.selections}}
-							{{#if ../isGM}}
-								<select multiple name="system.Execution.{{@key}}.value">
-									{{selectOptions this.selections selected=this.value}}
-								</select>
-							{{/if}}
-							<span class="selected-values">
-								{{!-- Display the selected values here --}}
-								{{this.value}}
-							</span>
-						{{else}}
-							<div>
-								<input type="{{this.type}}" name="system.Execution.{{@key}}.value"
-									value="{{this.value}}" data-dtype="{{this.dtype}}" />
-							</div>
-						{{/if}}
-					</div><br>
-				{{/unless}}
-			{{/each}}
-			<div><label class="resource-label">{{system.Execution.AdditionalInfo.label}}:</label></div>
-			{{#if isGM}}
-				<div class="layout-editor">
-					{{editor system.Execution.AdditionalInfo.value target="system.Execution.AdditionalInfo.value" button=true editable=true}}
-				</div>
-			{{else}}
-				<div class="layout-editor">
-					{{editor system.Execution.AdditionalInfo.value target="system.Execution.AdditionalInfo.value" button=false editable=false}}
-				</div>
-			{{/if}}
-		</div>
-
+		{{> "systems/metanthropes-system/templates/helpers/item-execution.hbs"}}
 		{{!-- Effects Tab --}}
-		<div class="tab effects" data-group="primary" data-tab="effects">
-			<div class="resource-label">{{system.Effects.EffectDescription.label}}:<br></div>
-			{{#if isGM}}
-				<div class="layout-editor">
-					{{editor system.Effects.EffectDescription.value target="system.Effects.EffectDescription.value" button=true editable=true}}
-				</div>
-			{{else}}
-				<div class="layout-editor">
-					{{editor system.Effects.EffectDescription.value target="system.Effects.EffectDescription.value" button=false editable=false}}
-				</div>
-			{{/if}}
-			{{#each system.Effects}}
-				{{#unless (or 
-				(eq @key "EffectDescription")
-				(eq @key "AdditionalInfo")
-				(eq @key "Conditions")
-				(eq @key "Buffs")
-				(eq @key "Damage")
-				(eq @key "Healing")
-				(eq @key "Special")
-				)}}
-					<div class="resource">
-						<label class="resource-label">{{this.label}}:</label>
-						{{#if this.options}}
-							<select name="system.Effects.{{@key}}.value">
-								{{#each this.options as |option|}}
-									<option value="{{option}}" {{#if (eq option ../this.value)}}selected{{/if}}>
-										{{option}}
-									</option>
-								{{/each}}
-							</select>
-						{{else}}
-							<input type="{{this.type}}" name="system.Effects.{{@key}}.value" value="{{this.value}}"
-								data-dtype="{{this.dtype}}" />
-						{{/if}}
-					</div>
-				{{/unless}}
-			{{/each}}
-			<div><label class="resource-label">{{system.Effects.AdditionalInfo.label}}:</label></div>
-			{{#if isGM}}
-				<div class="layout-editor">
-					{{editor system.Effects.AdditionalInfo.value target="system.Effects.AdditionalInfo.value" button=true editable=true}}
-				</div>
-			{{else}}
-				<div class="layout-editor">
-					{{editor system.Effects.AdditionalInfo.value target="system.Effects.AdditionalInfo.value" button=false editable=false}}
-				</div>
-			{{/if}}
-		</div>
+		{{> "systems/metanthropes-system/templates/helpers/item-effects.hbs"}}
 	</section>
 </form>
