@@ -5,60 +5,59 @@
 		{{#if isGM}}
 			<div class="layout-editor">
 				{{editor system.Effects.EffectDescription.value target="system.Effects.EffectDescription.value" button=true editable=true}}
-			</div><br>
+			</div>
 		{{else}}
 			<div class="layout-editor">
 				{{editor system.Effects.EffectDescription.value target="system.Effects.EffectDescription.value" button=false editable=false}}
-			</div><br>
+			</div>
 		{{/if}}
 	{{/if}}
 	{{! -- Effect Damage --}}
-	<div class="resource">
-		{{#each system.Effects.Damage}}
-			{{#if (or ../isGM (and this.Dice (not (or (eq this.Dice null) (eq this.Dice 0) (eq this.Dice "None")))))}}
-				<div class="resource-label">{{this.label}}:
-					<span class="resource">
-						{{#if ../isGM}}
-							<input type="{{this.type}}" name="system.Effects.Damage.{{@key}}.Base" value="{{this.Base}}"
-								data-dtype="{{this.dtype}}" />
-						{{else}}
-							{{this.Base}}
+	{{#each system.Effects.Damage}}
+		{{#if (or ../isGM (or (and this.Base (not (or (eq this.Base null) (eq this.Base 0)))) (and this.Dice (not (or (eq this.Dice null) (eq this.Dice 0))))))}}
+			<div class="resource-label">{{this.label}}:
+				<span class="resource">
+					{{#if ../isGM}}
+						<input type="{{this.type}}" name="system.Effects.Damage.{{@key}}.Base" value="{{this.Base}}"
+							data-dtype="{{this.dtype}}" /> Base + 
+						<input type="{{this.type}}" name="system.Effects.Damage.{{@key}}.Dice" value="{{this.Dice}}"
+							data-dtype="{{this.dtype}}" /> * d10
+					{{else}}
+						{{#if (and this.Base (not (or (eq this.Base null) (eq this.Base 0))))}}
+							{{this.Base}} Base
+							{{#if (and this.Dice (not (or (eq this.Dice null) (eq this.Dice 0))))}} + {{/if}}
 						{{/if}}
-						Base +
-						{{#if ../isGM}}
-							<input type="{{this.type}}" name="system.Effects.Damage.{{@key}}.Dice" value="{{this.Dice}}"
-								data-dtype="{{this.dtype}}" />
-						{{else}}
-							{{this.Dice}}
+						{{#if (and this.Dice (not (or (eq this.Dice null) (eq this.Dice 0))))}}
+							{{this.Dice}} * d10
 						{{/if}}
-						* d10
-					</span>
-				</div><br>
-			{{/if}}
-		{{/each}}
-	</div>
+					{{/if}}
+				</span>
+			</div><br>
+		{{/if}}
+	{{/each}}
 	{{! -- Effect Healing --}}
-	<div class="resource">
-		{{#if (or isGM (and system.Effects.Healing.Dice (not (or (eq system.Effects.Healing.Dice null) (eq system.Effects.Healing.Dice 0) (eq system.Effects.Healing.Dice "None")))))}}
+	{{#if (or isGM (or (and system.Effects.Healing.Base (not (or (eq system.Effects.Healing.Base null) (eq system.Effects.Healing.Base 0)))) (and system.Effects.Healing.Dice (not (or (eq system.Effects.Healing.Dice null) (eq system.Effects.Healing.Dice 0))))))}}
+		<div class="resource">
 			<label class="resource-label">{{system.Effects.Healing.label}}:</label>
 			<span class="resource">
 				{{#if isGM}}
 					<input type="{{system.Effects.Healing.type}}" name="system.Effects.Healing.Base"
-						value="{{system.Effects.Healing.Base}}" data-dtype="{{system.Effects.Healing.dtype}}" />
-				{{else}}
-					{{system.Effects.Healing.Base}}
-				{{/if}}
-				Base +
-				{{#if isGM}}
+						value="{{system.Effects.Healing.Base}}" data-dtype="{{system.Effects.Healing.dtype}}" /> Base + 
 					<input type="{{system.Effects.Healing.type}}" name="system.Effects.Healing.Dice"
-						value="{{system.Effects.Healing.Dice}}" data-dtype="{{system.Effects.Healing.dtype}}" />
+						value="{{system.Effects.Healing.Dice}}" data-dtype="{{system.Effects.Healing.dtype}}" /> * d10
 				{{else}}
-					{{system.Effects.Healing.Dice}}
+					{{#if (and system.Effects.Healing.Base (not (or (eq system.Effects.Healing.Base null) (eq system.Effects.Healing.Base 0))))}}
+						{{system.Effects.Healing.Base}} Base
+						{{#if (and system.Effects.Healing.Dice (not (or (eq system.Effects.Healing.Dice null) (eq system.Effects.Healing.Dice 0))))}}
+							+ {{/if}}
+					{{/if}}
+					{{#if (and system.Effects.Healing.Dice (not (or (eq system.Effects.Healing.Dice null) (eq system.Effects.Healing.Dice 0))))}}
+						{{system.Effects.Healing.Dice}} * d10
+					{{/if}}
 				{{/if}}
-				* d10
-			</span><br>
-		{{/if}}
-	</div>
+			</span>
+		</div><br>
+	{{/if}}
 	{{! -- Effect Special --}}
 	{{#if (or isGM (and system.Effects.Special.SpecialDiceName.value (not (or (eq system.Effects.Special.SpecialDiceName.value null) (eq system.Effects.Special.SpecialDiceName.value 0) (eq system.Effects.Special.SpecialDiceName.value "None")))))}}
 		<div class="resource">
@@ -71,25 +70,23 @@
 					name="system.Effects.Special.SpecialDiceName.value"
 					value="{{system.Effects.Special.SpecialDiceName.value}}"
 					data-dtype="{{system.Effects.Special.SpecialDiceName.dtype}}" />
+				<input type="{{system.Effects.Special.type}}" name="system.Effects.Special.Base"
+					value="{{system.Effects.Special.Base}}" data-dtype="{{system.Effects.Special.dtype}}" /> Base + 
+				<input type="{{system.Effects.Special.type}}" name="system.Effects.Special.Dice"
+					value="{{system.Effects.Special.Dice}}" data-dtype="{{system.Effects.Special.dtype}}" /> * d10
 			{{else}}
 				{{system.Effects.Special.SpecialDiceName.value}}:
+				<span class="resource">
+					{{#if (and system.Effects.Special.Base (not (or (eq system.Effects.Special.Base null) (eq system.Effects.Special.Base 0))))}}
+						{{system.Effects.Special.Base}} Base
+						{{#if (and system.Effects.Special.Dice (not (or (eq system.Effects.Special.Dice null) (eq system.Effects.Special.Dice 0))))}}
+							+ {{/if}}
+					{{/if}}
+					{{#if (and system.Effects.Special.Dice (not (or (eq system.Effects.Special.Dice null) (eq system.Effects.Special.Dice 0))))}}
+						{{system.Effects.Special.Dice}} * d10
+					{{/if}}
+				</span>
 			{{/if}}
-			<span class="resource">
-				{{#if isGM}}
-					<input type="{{system.Effects.Special.type}}" name="system.Effects.Special.Base"
-						value="{{system.Effects.Special.Base}}" data-dtype="{{system.Effects.Special.dtype}}" />
-				{{else}}
-					{{system.Effects.Special.Base}}
-				{{/if}}
-				Base +
-				{{#if isGM}}
-					<input type="{{system.Effects.Special.type}}" name="system.Effects.Special.Dice"
-						value="{{system.Effects.Special.Dice}}" data-dtype="{{system.Effects.Special.dtype}}" />
-				{{else}}
-					{{system.Effects.Special.Dice}}
-				{{/if}}
-				* d10
-			</span>
 		</div><br>
 	{{/if}}
 	{{! -- Effect Buffs --}}

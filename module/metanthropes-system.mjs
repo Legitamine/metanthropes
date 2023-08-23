@@ -27,6 +27,10 @@ Handlebars.registerHelper("selected", function (option, value) {
 Handlebars.registerHelper("join", function (array, separator) {
 	return array.join(separator);
 });
+//? Used to check if a value is an array
+Handlebars.registerHelper("isArray", function(value) {
+    return Array.isArray(value);
+});
 //! Deprecated - I don't think I'm using this anymore, but I'm not sure
 // //? Handlebars helper for displaying actor values on the item sheets.
 //	//! I don't recall where this is being used exactly

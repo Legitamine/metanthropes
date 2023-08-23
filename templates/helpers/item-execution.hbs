@@ -1,6 +1,6 @@
 <div class="tab execution" data-group="primary" data-tab="execution">
 	{{#each system.Execution}}
-		{{#if (or ../isGM (and this.value (not (or (eq this.value null) (eq this.value 0) (eq this.value "None")))))}}
+		{{#if (or ../isGM (and (not (or (eq this.value null) (eq this.value 0) (eq this.value "None"))) (or (not (isArray this.value)) (and (isArray this.value) (gt this.value.length 0)))))}}
 			{{#unless (or (eq @key "StatRolled") (eq @key "AdditionalInfo"))}}
 				<div class="resource">
 					<label class="resource-label">{{this.label}}:</label>
@@ -22,9 +22,11 @@
 								{{selectOptions this.selections selected=this.value}}
 							</select>
 						{{/if}}
-						<span class="selected-values">
-							{{join this.value ', '}}
-						</span>
+						{{#if (and (isArray this.value) (gt this.value.length 0))}}
+							<span class="selected-values">
+								{{join this.value ', '}}
+							</span>
+						{{/if}}
 					{{else}}
 						<div>
 							<input type="{{this.type}}" name="system.Execution.{{@key}}.value" value="{{this.value}}"
