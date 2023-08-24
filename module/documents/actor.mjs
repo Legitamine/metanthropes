@@ -281,7 +281,7 @@ export class MetanthropesActor extends Actor {
 			))
 		);
 		if (systemData.Vital.Experience.Stored < 0) {
-			ui.notifications.warn(this.name + "'s Stored Experience is Negative!");
+			ui.notifications.error(this.name + "'s Stored Experience is Negative!");
 			
 			// console.log("Metanthropes RPG System | Actor Prep | WARNING: Stored Experience is Negative!");
 			
@@ -306,9 +306,9 @@ export class MetanthropesActor extends Actor {
 		let sizecurrent = sizeinitial + sizebuff - sizecondition;
 		let weightcurrent = weightinitial - weightbuff + weightcondition;
 		let speedcurrent = speedinitial + speedbuff - speedcondition;
-		this.update({ "system.physical.size.value": sizecurrent });
-		this.update({ "system.physical.weight.value": weightcurrent });
-		this.update({ "system.physical.speed.value": speedcurrent });
+		systemData.physical.size.value = sizecurrent;
+		systemData.physical.weight.value = weightcurrent;
+		systemData.physical.speed.value = speedcurrent;
 		let speedModifiers = {
 			0: 0,
 			1: 0,
@@ -384,10 +384,9 @@ export class MetanthropesActor extends Actor {
 		let movementvalue = Math.ceil(
 			speedModifiers[speedcurrent] * weightModifiers[weightcurrent] * sizeModifiers[sizecurrent] - wobblyModifier
 		);
-		this.update({ "system.physical.movement.value": movementvalue });
-		//! for some reason these updates didn't work as intented, why is that?
-		this.update({ "system.physical.movement.additional": movementvalue });
-		this.update({ "system.physical.movement.sprint": movementvalue * 5 });
+		systemData.physical.movement.value = movementvalue;
+		systemData.physical.movement.additional = movementvalue;
+		systemData.physical.movement.sprint = (movementvalue * 5);
 		// console.log("Metanthropes RPG System | Actor Prep | New Movement:", movementvalue, "Additional:", movementvalue, "Sprint:", movementvalue * 5);
 	}
 	getRollData() {

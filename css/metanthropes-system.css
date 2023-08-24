@@ -133,7 +133,7 @@ option {
 
 .chat-message .message-header .flavor-text, .chat-message .message-header .whisper-to, .chat-message .message-content {
   font-family: "gill-sans-nova", sans-serif;
-  font-size: var(--font-size-15);
+  font-size: 15px;
   font-weight: 600;
   color: #000;
 }
@@ -490,9 +490,7 @@ option {
   margin: 1px;
 }
 .metanthropes .layout-container-nav {
-  display: flex;
-  flex-direction: row;
-  row-gap: 6px;
+  display: block;
 }
 .metanthropes .layout-metaroll-dialog {
   display: flex;
@@ -513,9 +511,6 @@ option {
   padding: 1px;
   margin: 3px;
 }
-.metanthropes .layout-hide {
-  display: none;
-}
 .metanthropes .layout-editor {
   display: flex;
   flex-direction: column;
@@ -525,6 +520,8 @@ option {
   align-self: auto;
   align-items: stretch;
   align-content: space-between;
+  min-height: 80px;
+  max-height: 500px;
   height: auto;
   padding: 1px;
   margin: 1px;
@@ -533,6 +530,38 @@ option {
   font-size: var(--font-size-14);
   font-weight: 500;
   color: #000;
+}
+.metanthropes .editor {
+  min-height: 80px;
+  height: auto;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.metanthropes .editor-content .ProseMirror {
+  min-height: 80px;
+  height: auto;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.metanthropes .sheet-header .metapower-img {
+  flex: 0 0 160px;
+  height: 160px;
+  width: 160px;
+  margin-right: 6px;
+}
+.metanthropes .sheet-header .possession-img {
+  flex: 0 0 160px;
+  height: 160px;
+  width: 160px;
+  margin-right: 6px;
+}
+.metanthropes .perk-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.metanthropes .perk-item .resource-label {
+  margin-right: 10px;
 }
 .metanthropes .style-container-outer-charstats {
   opacity: 1;
@@ -652,15 +681,12 @@ option {
   border-radius: 15px;
   padding: 3px;
   margin: 3px;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 .metanthropes .style-container-nav-children {
-  justify-content: space-between;
-  justify-items: stretch;
   align-items: center;
-  align-self: center;
-  align-content: center;
   font-size: 1rem;
+  font-weight: 600;
   color: #000;
   padding: 1px;
   margin: 1px;
@@ -886,14 +912,11 @@ option {
   font-family: "nasalization", sans-serif;
   font-size: 14px;
   color: #000;
-  justify-content: center;
-  justify-self: center;
   justify-items: center;
-  align-items: center;
   align-self: center;
-  align-content: center;
-  padding: 3px;
-  margin: 3px;
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
 }
 .metanthropes .style-mp-rolls:hover {
   cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
@@ -905,19 +928,33 @@ option {
   font-family: "nasalization", sans-serif;
   font-size: 14px;
   color: #000;
-  justify-content: center;
-  justify-self: center;
   justify-items: center;
-  align-items: center;
   align-self: center;
-  align-content: center;
-  padding: 3px;
-  margin: 3px;
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
 }
 .metanthropes .style-pos-rolls:hover {
   cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
   color: #7d0f81;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+}
+.metanthropes .style-editor {
+  opacity: 1;
+  font-family: "gill-sans-nova", sans-serif;
+  font-size: 1rem;
+  color: #000;
+  padding: 3px;
+  margin: 3px;
+  border: 1px solid #000;
+  border-radius: 15px;
+  min-height: 50px;
+  height: auto;
+  max-height: 800px;
+  overflow-y: auto;
+}
+.metanthropes .editor-content {
+  min-height: 50px;
 }
 .metanthropes .items-header {
   margin: 1px;
@@ -955,7 +992,7 @@ option {
   flex: 2;
   margin: 0;
   overflow: hidden;
-  font-size: 15px;
+  font-size: 16px;
   text-align: left;
   align-items: center;
   display: flex;
@@ -968,7 +1005,7 @@ option {
 }
 .metanthropes .items-list .item-controls {
   display: flex;
-  flex: 0 0 100px;
+  flex: 0 0 80px;
   justify-content: center;
 }
 .metanthropes .items-list .item-controls a {
@@ -992,8 +1029,6 @@ option {
 }
 .metanthropes .items-list .item-prop {
   text-align: center;
-  border-left: 1px solid #000;
-  border-right: 1px solid #000;
   font-size: 14px;
 }
 .metanthropes .items-list .items-header {
@@ -1057,8 +1092,38 @@ option {
   height: 100%;
 }
 .metanthropes .tox .tox-editor-container {
-  background: #fff;
+  min-height: 80px;
+  height: auto;
+  max-height: 500px;
+  overflow-y: auto;
 }
 .metanthropes .tox .tox-edit-area {
   padding: 0 8px;
+  min-height: 80px;
+  height: auto;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.metanthropes .resource {
+  font-family: "nasalization", sans-serif;
+  font-size: 0.9rem;
+  color: #000;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  font-weight: 500;
+  padding: 1px;
+  margin: 1px;
+}
+.metanthropes .resource-label {
+  font-family: "nasalization", sans-serif;
+  font-size: 0.9rem;
+  color: #000;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
+  font-weight: 700;
+  padding: 1px;
+  margin: 1px;
 }

@@ -184,7 +184,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Physical Description",
-						"value": "Details about physical appearance..."
+						"value": "Details about your physical appearance"
 					}
 				}
 			},
@@ -239,7 +239,7 @@
 						"Progressed": 0,
 						"Base": 0,
 						"Current": 0,
-						"Title": "Body is the Characteristic which defines a Character's constitution, physical prowess, and physique.",
+						"Title": "Body is the Characteristic which defines a Character's constitution, physical prowess, and physique",
 						"Buff": { "Name": "Hardened", "Current": 0 },
 						"Condition": { "Name": "Burned", "Current": 0 },
 						"CoreConditions": { "Bleeding": 0, "Asphyxiation": 0, "Diseased": 0, "Maimed": 0 },
@@ -250,7 +250,7 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Endurance determines a Character's stamina, health, and vigor.",
+								"Title": "Endurance determines a Character's stamina, health, and vigor",
 								"Buff": { "Name": "Fortified", "Current": 0 },
 								"Condition": { "Name": "Bone Injury", "Current": 0 }
 							},
@@ -260,7 +260,7 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Power determines a Character's strength, striking effectiveness, and physical explosiveness.",
+								"Title": "Power determines a Character's strength, striking effectiveness, and physical explosiveness",
 								"Buff": { "Name": "Empowered", "Current": 0 },
 								"Condition": { "Name": "Muscle Injury", "Current": 0 }
 							},
@@ -270,7 +270,7 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Reflexes determines a Character's agility, motor skills and balance.",
+								"Title": "Reflexes determines a Character's agility, motor skills and balance",
 								"Buff": { "Name": "Hastened", "Current": 0 },
 								"Condition": { "Name": "Skin Injury", "Current": 0 }
 							}
@@ -281,7 +281,7 @@
 						"Progressed": 0,
 						"Base": 0,
 						"Current": 0,
-						"Title": "Mind is the Characteristic which defines a Character's brainpower, problem solving and innovative thoughts.",
+						"Title": "Mind is the Characteristic which defines a Character's brainpower, problem solving and innovative thoughts",
 						"Buff": { "Name": "Sharpened", "Current": 0 },
 						"Condition": { "Name": "Disconnected", "Current": 0 },
 						"CoreConditions": {
@@ -291,15 +291,15 @@
 							"Sense-Lost": 0
 						},
 						"Stats": {
-							"Perception": {
-								"Initial": 1,
+							"Creativity": {
+								"Initial": 3,
 								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Perception determines a Character's observatory, evaluative and calculative capabilities.",
-								"Buff": { "Name": "Alerted", "Current": 0 },
-								"Condition": { "Name": "Disoriented", "Current": 0 }
+								"Title": "Creativity determines a Character's imagination, expression, and handiwork",
+								"Buff": { "Name": "Inspired", "Current": 0 },
+								"Condition": { "Name": "Wobbly", "Current": 0 }
 							},
 							"Manipulation": {
 								"Initial": 2,
@@ -307,19 +307,19 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Manipulation determines a Character's persuasiveness, charisma, and social engineering skills.",
+								"Title": "Manipulation determines a Character's persuasiveness, charisma, and social engineering skills",
 								"Buff": { "Name": "Articulated", "Current": 0 },
 								"Condition": { "Name": "Confused", "Current": 0 }
 							},
-							"Creativity": {
-								"Initial": 3,
+							"Perception": {
+								"Initial": 1,
 								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Creativity determines a Character's imagination, expression, and handiwork.",
-								"Buff": { "Name": "Inspired", "Current": 0 },
-								"Condition": { "Name": "Wobbly", "Current": 0 }
+								"Title": "Perception determines a Character's observatory, evaluative and calculative capabilities",
+								"Buff": { "Name": "Alerted", "Current": 0 },
+								"Condition": { "Name": "Disoriented", "Current": 0 }
 							}
 						}
 					},
@@ -328,20 +328,20 @@
 						"Progressed": 0,
 						"Base": 0,
 						"Current": 0,
-						"Title": "Soul is the Characteristic which defines a Character's conviction, spiritual prowess, and mettle.",
+						"Title": "Soul is the Characteristic which defines a Character's conviction, spiritual prowess, and mettle",
 						"Buff": { "Name": "Enlightened", "Current": 0 },
 						"Condition": { "Name": "Tormented", "Current": 0 },
 						"CoreConditions": { "Amnesia": 0, "Probed": 0, "Infiltrated": 0, "Unconscious": 0 },
 						"Stats": {
-							"Willpower": {
-								"Initial": 1,
+							"Awareness": {
+								"Initial": 3,
 								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Willpower determines a Character's courage, discipline, and confidence.",
-								"Buff": { "Name": "Determined", "Current": 0 },
-								"Condition": { "Name": "Terrorized", "Current": 0 }
+								"Title": "Awareness determines a Character's empathy, intuition, and instinctual responses",
+								"Buff": { "Name": "Focused", "Current": 0 },
+								"Condition": { "Name": "Bewildered", "Current": 0 }
 							},
 							"Consciousness": {
 								"Initial": 2,
@@ -349,19 +349,19 @@
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Consciousness determines a Character's recollection, subconscious processing, and sanity.",
+								"Title": "Consciousness determines a Character's recollection, subconscious processing, and sanity",
 								"Buff": { "Name": "Awakened", "Current": 0 },
 								"Condition": { "Name": "Demented", "Current": 0 }
 							},
-							"Awareness": {
-								"Initial": 3,
+							"Willpower": {
+								"Initial": 1,
 								"Progressed": 0,
 								"Base": 0,
 								"Current": 0,
 								"Roll": 0,
-								"Title": "Awareness determines a Character's empathy, intuition, and instinctual responses.",
-								"Buff": { "Name": "Focused", "Current": 0 },
-								"Condition": { "Name": "Bewildered", "Current": 0 }
+								"Title": "Willpower determines a Character's courage, discipline, and confidence",
+								"Buff": { "Name": "Determined", "Current": 0 },
+								"Condition": { "Name": "Terrorized", "Current": 0 }
 							}
 						}
 					}
@@ -424,6 +424,12 @@
 						"label": "Gender",
 						"value": null
 					},
+					"genderpronoun": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Pronoun",
+						"value": null
+					},
 					"birthplace": {
 						"type": "text",
 						"dtype": "String",
@@ -446,7 +452,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Humanoid Description",
-						"value": "A typical human with brown hair and brown eyes."
+						"value": "A typical human with brown hair and brown eyes"
 					}
 				}
 			},
@@ -457,31 +463,36 @@
 							"type": "number",
 							"dtype": "Number",
 							"label": "Academics",
-							"value": 0
+							"value": 0,
+							"title": "Academics offer a Character access to educational, cultural, social, and historical fields of knowledges. In addition to the fields of study, each Level at Academics provides the Character with additional foreign languages"
 						},
 						"Engineering": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Engineering",
-							"value": 0
+							"value": 0,
+							"title": "Engineering offers a Character access to architectural and design capabilities and craftmanship in order to forge, repair or construct any Possession. Engineering includes both blueprint drafting and construction skills.  In addition to the fields of study, each Level at Engineering provides the Character with the ability to certain forms of structural damage"
 						},
 						"Medicine": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Medicine",
-							"value": 0
+							"value": 0,
+							"title": "Medicine offers the Character the ability to diagnose and treat medical conditions. In addition to the fields of study, each Level at Medicine provides the Character with the ability to reduce Conditions and restore Life to biological organisms"
 						},
 						"Science": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Science",
-							"value": 0
+							"value": 0,
+							"title": "Science offers the Character access to mathematical and technological fields, as well as access to specific fields of science. In addition to the fields of study, each Level at Science provides the Character with the ability to run experiments, simulations and set up computing servers and data analyzers"
 						},
 						"Lore": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Lore",
-							"value": 0
+							"value": 0,
+							"title": "Lore offers the Character knowledge of the unseen Metapowered world that is shrouded in mystery. Lore is folklore, occult, mysticism, and knowledge of the peculiarities of Metanthropes and other more obscure beings. In addition to the fields of study, each Level at Lore provides the Character with the awareness of the existence of Metapowers and Combos beyond the ones they own, and the ability to identify them they encounter them"
 						}
 					},
 					"Skills": {
@@ -489,31 +500,36 @@
 							"type": "number",
 							"dtype": "Number",
 							"label": "Artistry",
-							"value": 0
+							"value": 0,
+							"title": "Artistry represents the skill of a Character with any form of expression. Examples could include acting, sculpturing, drawing, poetry, singing, dancing, make-up artistry, cooking, graphic design, game design or any other similar form of Artistry"
 						},
 						"Athletics": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Athletics",
-							"value": 0
+							"value": 0,
+							"title": "Athletics represent the Character's control over their body and may include skills such as acrobatics, martial arts, self-defense, parkour, wresting, and any kind of sport. Higher levels give access to further combat and acrobatic techniques, that can be attempted without a Penalty"
 						},
 						"Expertise": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Expertise",
-							"value": 0
+							"value": 0,
+							"title": "Expertise represents a Character's skill level in a specific activity. Expertise is a Skill that offers a Bonus on a specific Stat roll (this Bonus does not apply to Metapowered activations which use the same roll). With each level at this Skill, the Character must also select a specialization. Expertise can be unlocked multiple times, each time selecting a different specialization"
 						},
 						"Operation": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Operation",
-							"value": 0
+							"value": 0,
+							"title": "With this Skill, a Character can operate tools, heavy machinery and drive or pilot any vehicles. Higher levels at this Perk allow a Character to use more complex devices and drive or pilot marvels of technology"
 						},
 						"Weapons": {
 							"type": "number",
 							"dtype": "Number",
 							"label": "Weapons",
-							"value": 0
+							"value": 0,
+							"title": "With the Weapons Skill, a Character has undergone training of armed combat of any weapon type, from melee weapons to firearms and explosives. Higher levels at this Perk offer access to more advanced weapons"
 						}
 					},
 					"Details": {
@@ -655,7 +671,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Synthetic Description",
-						"value": "some synthetic life form"
+						"value": null
 					}
 				}
 			},
@@ -682,7 +698,7 @@
 					"sagas": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Sagas",
+						"label": "Saga",
 						"value": null
 					},
 					"sessions": {
@@ -709,11 +725,17 @@
 						"label": "Narrator",
 						"value": null
 					},
-					"Description": {
+					"sagaNotes": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Metamorphosis Details",
-						"value": "some metamorphosis"
+						"label": "Saga Notes",
+						"value": "My notes for this Saga"
+					},
+					"coalitionNotes": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Coalition Notes",
+						"value": "Notes about my Coalition of Metanthropes"
 					}
 				}
 			}
@@ -724,7 +746,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Metaowner",
-				"value": "NPC"
+				"value": null
 			}
 		},
 		"Extradimensional": {
@@ -733,7 +755,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Metaowner",
-				"value": "NPC"
+				"value": null
 			}
 		},
 		"Extraterrestrial": {
@@ -742,7 +764,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Metaowner",
-				"value": "NPC"
+				"value": null
 			}
 		},
 		"Metanthrope": {
@@ -751,7 +773,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Metaowner",
-				"value": "NPC"
+				"value": null
 			}
 		},
 		"Protagonist": {
@@ -772,6 +794,12 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Narrator Notes",
+				"value": "Notes given to you by your Narrator"
+			},
+			"secret-notes-narrator": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Secret Narrator Notes",
 				"value": "This is my favorite Protagonist"
 			}
 		},
@@ -781,7 +809,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Metaowner",
-				"value": "NPC"
+				"value": null
 			}
 		},
 		"MetaTherion": {
@@ -790,7 +818,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Metaowner",
-				"value": "NPC"
+				"value": null
 			}
 		},
 		"Artificial": {
@@ -799,7 +827,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Metaowner",
-				"value": "NPC"
+				"value": null
 			}
 		},
 		"Animated-Plant": {
@@ -808,7 +836,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Metaowner",
-				"value": "NPC"
+				"value": null
 			}
 		},
 		"Animated-Cadaver": {
@@ -817,7 +845,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Metaowner",
-				"value": "NPC"
+				"value": null
 			}
 		},
 		"Vehicle": {
@@ -826,12 +854,12 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Metaowner",
-				"value": "NPC"
+				"value": null
 			}
 		}
 	},
 	"Item": {
-		"types": ["Object", "Possession", "Metapower", "Combo"],
+		"types": ["Metapower", "Possession", "Combo", "Object"],
 		"templates": {
 			"material": {
 				"Material": {
@@ -887,7 +915,351 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "🧱 Description",
-						"value": "some material properties"
+						"value": null
+					}
+				}
+			},
+			"execution": {
+				"Execution": {
+					"StatRolled": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🎲",
+						"value": null,
+						"options": [
+							"Awareness",
+							"Consciousness",
+							"Creativity",
+							"Endurance",
+							"Manipulation",
+							"Perception",
+							"Power",
+							"Reflexes",
+							"Willpower"
+						]
+					},
+					"ActionSlot": {
+						"type": "text",
+						"dtype": "String",
+						"label": "⏱ Action",
+						"value": null,
+						"options": [
+							"Always Active",
+							"Reaction",
+							"Extra Action",
+							"Movement",
+							"Main Action",
+							"Focused Action: Full Turn",
+							"Focused Action: Cycle",
+							"Focused Action: 1d10 Cycles",
+							"Focused Action: Hour",
+							"Focused Action: 1d10 Hours"
+						]
+					},
+					"Targets": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Number of 🎯 Targets",
+						"value": null,
+						"options": [
+							"Self",
+							"One",
+							"1 or 2",
+							"1d10/2",
+							"1d10",
+							"2d10",
+							"5d10",
+							"10d10",
+							"All (Area)",
+							"Any (Area)"
+						]
+					},
+					"TargetsEligibility": {
+						"label": "Eligible 🎯 Targets",
+						"value": [],
+						"selections": {
+							"Willing": "Willing",
+							"Detectable": "Detectable",
+							"Perceptible": "Perceptible",
+							"Visible": "Visible",
+							"Audible": "Audible",
+							"Odorous": "Odorous",
+							"Tangible": "Tangible",
+							"Taste-able": "Taste-able"
+						}
+					},
+					"TargetsType": {
+						"label": "Type of 🎯 Targets",
+						"value": [],
+						"selections": {
+							"Animal": "Animal",
+							"Human": "Human",
+							"Metanthrope": "Metanthrope",
+							"Extradimensional": "Extradimensional",
+							"Extraterrestrial": "Extraterrestrial",
+							"Metatherion": "Metatherion",
+							"Living": "Living",
+							"Dead": "Dead",
+							"Plant": "Plant",
+							"Object": "Object",
+							"Character": "Character",
+							"Metapowered": "Metapowered"
+						}
+					},
+					"Duration": {
+						"type": "text",
+						"dtype": "String",
+						"label": "⏳ Duration",
+						"value": null,
+						"options": [
+							"Instantaneous",
+							"Round",
+							"One Cycle",
+							"1d10 Cycles",
+							"One Hour",
+							"1d10 Hours",
+							"One Day",
+							"1d10 Days",
+							"One Week",
+							"1d10 Weeks",
+							"One Month",
+							"1d10 Months",
+							"One Year",
+							"1d10 Years",
+							"Permanent"
+						]
+					},
+					"Range": {
+						"type": "text",
+						"dtype": "String",
+						"label": "📏 Range",
+						"value": null,
+						"options": [
+							"Self [Area 0]",
+							"Hexagon [Area 1]",
+							"Room [Area 2]",
+							"Building [Area 3]",
+							"Square [Area 4]",
+							"Block [Area 5]",
+							"Neighborhood [Area 6]",
+							"District [Area 7]",
+							"Town [Area 8]",
+							"City [Area 9]",
+							"Region [Area 10]",
+							"Sector [Area 11]",
+							"Country [Area 12]",
+							"Zone [Area 13]",
+							"Continent [Area 14]",
+							"Hemisphere [Area 15]",
+							"Planet [Area 16]"
+						]
+					},
+					"AreaEffect": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🗺️ Area of Effect",
+						"value": null,
+						"options": [
+							"None",
+							"Hexagon [Area 1]",
+							"Room [Area 2]",
+							"Building [Area 3]",
+							"Square [Area 4]",
+							"Block [Area 5]",
+							"Neighborhood [Area 6]",
+							"District [Area 7]",
+							"Town [Area 8]",
+							"City [Area 9]",
+							"Region [Area 10]",
+							"Sector [Area 11]",
+							"Country [Area 12]",
+							"Zone [Area 13]",
+							"Continent [Area 14]",
+							"Hemisphere [Area 15]",
+							"Planet [Area 16]"
+						]
+					},
+					"AdditionalInfo": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Additional Information",
+						"value": null
+					}
+				}
+			},
+			"effects": {
+				"Effects": {
+					"EffectDescription": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Effect Description",
+						"value": null
+					},
+					"Damage": {
+						"Cosmic": {
+							"label": "✨ Cosmic 💥 Damage",
+							"type": "number",
+							"dtype": "Number",
+							"Base": 0,
+							"Dice": 0
+						},
+						"Elemental": {
+							"label": "✨ Elemental 💥 Damage",
+							"type": "number",
+							"dtype": "Number",
+							"Base": 0,
+							"Dice": 0
+						},
+						"Material": {
+							"label": "✨ Material 💥 Damage",
+							"type": "number",
+							"dtype": "Number",
+							"Base": 0,
+							"Dice": 0
+						},
+						"Psychic": {
+							"label": "✨ Psychic 💥 Damage",
+							"type": "number",
+							"dtype": "Number",
+							"Base": 0,
+							"Dice": 0
+						}
+					},
+					"Healing": {
+						"label": "💞 Healing",
+						"type": "number",
+						"dtype": "Number",
+						"Base": 0,
+						"Dice": 0
+					},
+					"Special": {
+						"label": "Special",
+						"SpecialDiceName": {
+							"type": "text",
+							"dtype": "String",
+							"label": "Dice Name",
+							"value": "None"
+						},
+						"type": "number",
+						"dtype": "Number",
+						"Base": 0,
+						"Dice": 0
+					},
+					"Conditions": {
+						"Applied": {
+							"label": "💀 ➕",
+							"type": "text",
+							"dtype": "String",
+							"value": null
+						},
+						"Removed": {
+							"label": "💀 ➖",
+							"type": "text",
+							"dtype": "String",
+							"value": null
+						}
+					},
+					"Buffs": {
+						"Applied": {
+							"label": "🛡️ ➕",
+							"type": "text",
+							"dtype": "String",
+							"value": null
+						},
+						"Removed": {
+							"label": "🛡️ ➖",
+							"type": "text",
+							"dtype": "String",
+							"value": null
+						}
+					},
+					"AdditionalInfo": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Effect Additional Information",
+						"value": null
+					}
+				}
+			},
+			"results": {
+				"Results": {
+					"level00": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🟩",
+						"value": null
+					},
+					"level01": {
+						"type": "text",
+						"dtype": "String",
+						"label": "1 * ✔️",
+						"value": null
+					},
+					"level02": {
+						"type": "text",
+						"dtype": "String",
+						"label": "2 * ✔️",
+						"value": null
+					},
+					"level03": {
+						"type": "text",
+						"dtype": "String",
+						"label": "3 * ✔️",
+						"value": null
+					},
+					"level04": {
+						"type": "text",
+						"dtype": "String",
+						"label": "4 * ✔️",
+						"value": null
+					},
+					"level05": {
+						"type": "text",
+						"dtype": "String",
+						"label": "5 * ✔️",
+						"value": null
+					},
+					"level06": {
+						"type": "text",
+						"dtype": "String",
+						"label": "6 * ✔️",
+						"value": null
+					},
+					"level07": {
+						"type": "text",
+						"dtype": "String",
+						"label": "7 * ✔️",
+						"value": null
+					},
+					"level08": {
+						"type": "text",
+						"dtype": "String",
+						"label": "8 * ✔️",
+						"value": null
+					},
+					"level09": {
+						"type": "text",
+						"dtype": "String",
+						"label": "9 * ✔️",
+						"value": null
+					},
+					"level10": {
+						"type": "text",
+						"dtype": "String",
+						"label": "10 * ✔️",
+						"value": null
+					},
+					"level11": {
+						"type": "text",
+						"dtype": "String",
+						"label": "11+ * ✔️",
+						"value": null
+					},
+					"AdditionalInfo": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Results Additional Information",
+						"value": null
 					}
 				}
 			},
@@ -1049,7 +1421,7 @@
 						"type": "number",
 						"dtype": "Number",
 						"label": "⏫",
-						"value": "1"
+						"value": 1
 					},
 					"EnergyType": {
 						"type": "text",
@@ -1114,8 +1486,8 @@
 					"Notes": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Metabase Notes",
-						"value": "Notes on how to use this Metapower"
+						"label": "Additional Information",
+						"value": null
 					}
 				},
 				"Effects": {
@@ -1146,8 +1518,8 @@
 					"Notes": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Metabase Notes",
-						"value": "Notes on how to use this Metapower"
+						"label": "Additional Information",
+						"value": null
 					}
 				}
 			}
@@ -1158,67 +1530,102 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Object Description",
-				"value": "some object description"
+				"value": null
 			}
 		},
 		"Possession": {
-			"templates": ["material", "metapos"],
-			"Category": {
-				"type": "text",
-				"dtype": "String",
-				"label": "Category",
-				"value": "Weapon"
-			},
-			"AttackType": {
-				"type": "text",
-				"dtype": "String",
-				"label": "Attack Type",
-				"value": "Melee"
-			},
-			"StatRolled": {
-				"type": "text",
-				"dtype": "String",
-				"label": "🎲",
-				"value": "Power"
-			},
+			"templates": ["material", "execution", "effects", "results"],
 			"Description": {
 				"type": "text",
 				"dtype": "String",
 				"label": "Possession Description",
 				"value": null
 			},
-			"EffectDescription": {
+			"Category": {
 				"type": "text",
 				"dtype": "String",
-				"label": "Effect Description",
-				"value": null
+				"label": "Category",
+				"value": null,
+				"options": ["Strike", "Weapon", "Armor", "Gadget", "Drug"]
 			},
-			"ResultDescription": {
+			"AttackType": {
 				"type": "text",
 				"dtype": "String",
-				"label": "Results Description",
-				"value": null
+				"label": "Attack Type",
+				"value": null,
+				"options": ["None", "Melee", "Projectile", "Firearm"]
 			},
 			"Quantity": {
 				"type": "number",
 				"dtype": "Number",
 				"label": "Quantity",
 				"value": 1
+			},
+			"RequiredPerk": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Required 📚 Perk",
+				"value": "None",
+				"options": ["None", "Operation", "Weapons"]
+			},
+			"RequiredPerkLevel": {
+				"type": "number",
+				"dtype": "Number",
+				"label": "Required 📚 Perk Level",
+				"value": 0
 			}
 		},
 		"Metapower": {
-			"templates": ["metabase"],
+			"templates": ["execution", "effects", "results"],
+			"MetapowerName": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Ⓜ️",
+				"value": "Metapower Name"
+			},
 			"Description": {
 				"type": "text",
 				"dtype": "String",
 				"label": "Metapower Description",
-				"value": "Metapower Description"
+				"value": null
 			},
-			"EffectDescription": {
+			"Classification": {
 				"type": "text",
 				"dtype": "String",
-				"label": "Effect Description",
-				"value": "Metapower Effects"
+				"label": "🔣",
+				"value": null,
+				"options": [
+					"Aegis",
+					"Animator",
+					"Arbiter",
+					"Clairvoyant",
+					"Controller",
+					"Cosmonaut",
+					"Hammer",
+					"Kineticist",
+					"Manipulator",
+					"Utilitarian"
+				]
+			},
+			"Level": {
+				"type": "number",
+				"dtype": "Number",
+				"label": "⏫",
+				"value": 1,
+				"options": ["1", "2", "3", "4", "5"]
+			},
+			"EnergyType": {
+				"type": "text",
+				"dtype": "String",
+				"label": "✨",
+				"value": null,
+				"options": ["Cosmic", "Elemental", "Material", "Psychic"]
+			},
+			"DestinyCost": {
+				"type": "number",
+				"dtype": "Number",
+				"label": "🤞",
+				"value": 0
 			}
 		},
 		"Combo": {
@@ -1227,7 +1634,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Combo Description",
-				"value": "Combos are not officially supported yet. This is a placeholder for future capabilities."
+				"value": "Combos are not officially supported yet. This is a placeholder for future capabilities"
 			}
 		}
 	}

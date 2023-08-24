@@ -14,5 +14,8 @@ export const preloadHandlebarsTemplates = async function () {
 		"systems/metanthropes-system/templates/helpers/actor-charstats.hbs",
 		"systems/metanthropes-system/templates/helpers/actor-notes.hbs",
 		"systems/metanthropes-system/templates/helpers/actor-summary.hbs",
+		"systems/metanthropes-system/templates/helpers/item-description.hbs",
+		"systems/metanthropes-system/templates/helpers/item-execution.hbs",
+		"systems/metanthropes-system/templates/helpers/item-effects.hbs",
 	]);
 };

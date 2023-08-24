@@ -1,60 +1,126 @@
 <form class="metanthropes {{cssClass}}" autocomplete="off">
 	<header class="sheet-header">
 		{{#if isGM}}
-		<img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" style="border:none" />
+			<img class="metapower-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" style="border:none" />
 		{{else}}
-			<img class="profile-img" src="{{item.img}}" title="{{item.name}}" style="border:none" />
-			{{/if}}
-			<div class="header-fields">
-				<h1 class="charname"><input name="name" type="text" value="{{item.name}}"
-						placeholder="Metapower Name" /></h1>
+			<img class="metapower-img" src="{{item.img}}" title="{{item.name}}" style="border:none" />
+		{{/if}}
+		<div class="header-fields">
+			<h1 class="charname">
+				{{#if isGM}}
+					<input name="name" type="text" value="{{item.name}}" placeholder="Metapower Name" />
+				{{else}}
+					{{item.name}}
+				{{/if}}
+			</h1>
+			<div class="grid grid-2col">
+				<div class="resource">
+					<label class="resource-label" title="Which Stat is rolled when Activating this Metapower">🎲
+						Stat:</label>
+					{{#if isGM}}
+						<select name="system.Execution.StatRolled.value">
+							{{#each system.Execution.StatRolled.options as |option|}}
+								<option value="{{option}}"
+									{{#if (eq option ../system.Execution.StatRolled.value)}}selected{{/if}}>{{option}}
+								</option>
+							{{/each}}
+						</select>
+					{{else}}
+						<span class="item-statroll style-mp-rolls" data-roll-type="Metapower"
+							data-item-name="{{item.name}}" data-stat="{{item.system.Execution.StatRolled.value}}"
+							data-destiny-cost="{{item.system.DestinyCost.value}}">
+							{{item.system.Execution.StatRolled.value}}
+							{{lookup ../system.RollStats item.system.Execution.StatRolled.value}}
+						</span>
+					{{/if}}
+				</div>
+				<div class="resource">
+					<label class="resource-label"
+						title="Each Classification includes Metapowers which have a similar role and utilize capabilities and functions in a similar manner">🔣
+						Classification:</label>
+					{{#if isGM}}
+						<select name="system.Classification.value">
+							{{#each system.Classification.options as |option|}}
+								<option value="{{option}}"
+									{{#if (eq option ../system.Classification.value)}}selected{{/if}}>{{option}}
+								</option>
+							{{/each}}
+						</select>
+					{{else}}
+						{{system.Classification.value}}
+					{{/if}}
+				</div>
+				<div class="resource">
+					<label class="resource-label" title="The Name of the Ⓜ️ Metapower">Ⓜ️ Metapower:</label>
+					{{#if isGM}}
+						<input type="text" name="system.MetapowerName.value" value="{{system.MetapowerName.value}}"
+							data-dtype="String" />
+					{{else}}
+						{{system.MetapowerName.value}}
+					{{/if}}
+				</div>
+				<div class="resource">
+					<label class="resource-label"
+						title="Energy Type dictates the Damage and other properties of an effect">✨ Energy
+						Type:</label>
+					{{#if isGM}}
+						<select name="system.EnergyType.value">
+							{{#each system.EnergyType.options as |option|}}
+								<option value="{{option}}"
+									{{#if (eq option ../system.EnergyType.value)}}selected{{/if}}>
+									{{option}}
+								</option>
+							{{/each}}
+						</select>
+					{{else}}
+						{{system.EnergyType.value}}
+					{{/if}}
+				</div>
+				<div class="resource">
+					<label class="resource-label" title="The Level of the Metapower">⏫ Level:</label>
+					{{#if isGM}}
+						<select name="system.Level.value">
+							{{#each system.Level.options as |option|}}
+								<option value="{{option}}" {{#if (eq option ../system.Level.value)}}selected{{/if}}>
+									{{option}}
+								</option>
+							{{/each}}
+						</select>
+					{{else}}
+						{{system.Level.value}}
+					{{/if}}
+				</div>
+				<div class="resource">
+					<label class="resource-label" title="The Destiny Cost to Activate this Metapower">🤞 Destiny
+						Cost:</label>
+					{{#if isGM}}
+						<input type="number" name="system.DestinyCost.value" value="{{system.DestinyCost.value}}"
+							data-dtype="Number" />
+					{{else}}
+						{{system.DestinyCost.value}}
+					{{/if}}
+				</div>
 			</div>
+		</div>
 	</header>
 	{{!-- Sheet Tab Navigation --}}
-	<nav class="sheet-tabs tabs" data-group="primary">
-		<a class="item" data-tab="description">Description</a>
-		<a class="item" data-tab="activation">Activation</a>
-		<a class="item" data-tab="effects">Effects</a>
-	</nav>
-	{{!-- Sheet Body --}}
-	<section class="sheet-body">
-		{{!-- Description Tab --}}
-		<div class="tab description" data-group="primary" data-tab="description">
-			<div>{{system.Description.label}}:<br></div>
+	<div class="layout-container-nav style-container-nav">
+		<nav class="style-container-nav-children itemnavselector tabs" data-group="primary">
+			<a class="item style-cs-labels" data-tab="description">Description</a>
+			<a class="item style-cs-labels" data-tab="execution">Activation</a>
+			<a class="item style-cs-labels" data-tab="effects">Effects</a>
 			{{#if isGM}}
-			<div class="layout-editor">{{editor system.Description.value target="system.Description.value" rollData=rollData button=true owner=owner editable=true}}</div>
-			{{else}}
-			<div class="layout-editor">{{editor system.Description.value target="system.Description.value" rollData=rollData button=false owner=owner editable=false}}</div>
+				<a class="item style-cs-labels" data-tab="results">Results</a>
 			{{/if}}
-		</div>
+		</nav>
+	</div>
+	{{!-- Sheet Body --}}
+	<section class="itemnavtabs">
+		{{!-- Description Tab --}}
+		{{> "systems/metanthropes-system/templates/helpers/item-description.hbs"}}
 		{{!-- Activation Tab --}}
-		<div class="tab activation" data-group="primary" data-tab="activation">
-			{{!-- As you add new fields, add them in here! --}}
-			{{#each system.Activation}}
-				<div class="resource">
-					<label class="resource-label">{{this.label}}:</label>
-					<input type="{{this.type}}" name="system.Activation.{{@key}}.value" value="{{this.value}}"
-						data-dtype="{{this.dtype}}" />
-				</div>
-			{{/each}}
-		</div>
+		{{> "systems/metanthropes-system/templates/helpers/item-execution.hbs"}}
 		{{!-- Effects Tab --}}
-		<div class="tab effects" data-group="primary" data-tab="effects">
-			<div>
-				<div>{{system.EffectDescription.label}}:<br></div>
-				{{#if isGM}}
-				<div class="layout-editor">{{editor system.EffectDescription.value target="system.EffectDescription.value" rollData=rollData button=true owner=owner editable=editable}}</div>
-				{{else}}
-				<div class="layout-editor">{{editor system.EffectDescription.value target="system.EffectDescription.value" rollData=rollData button=false owner=owner editable=false}}</div>
-				{{/if}}
-			</div>
-			{{#each system.Effects}}
-				<div class="resource">
-					<label class="resource-label">{{this.label}}:</label>
-					<input type="{{this.type}}" name="system.Effects.{{@key}}.value" value="{{this.value}}"
-						data-dtype="{{this.dtype}}" />
-				</div>
-			{{/each}}
-		</div>
+		{{> "systems/metanthropes-system/templates/helpers/item-effects.hbs"}}
 	</section>
 </form>

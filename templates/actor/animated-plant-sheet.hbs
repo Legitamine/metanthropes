@@ -1,84 +1,64 @@
 <form class="metanthropes {{cssClass}}" autocomplete="off">
 	<header>
-		<div class="layout-container-grid4x1 style-container-grid4x1">
-			<div class="layout-container-small style-container-small">
-				<div>Name<input name="name" type="text" value="{{actor.name}}" placeholder="Plant Name"
-						data-dtype="String" />
+		<div class="layout-container-actorinfo style-container-actorinfo">
+			{{#if system.metaowner.value}}
+				<div class="layout-container-actorinfo-details">
+					<img src="systems/metanthropes-system/artwork/Meta-Avatar-Rotating.gif" alt="Metanthropes RPG"
+						title="Metanthropes RPG {{actor.type}}" height="85" width="85"
+						style="border: none; border-radius: 50%" />
 				</div>
-				<div>Player
-					<input name="system.metaowner.value" type="text" value="{{system.metaowner.value}}"
-						placeholder="Player Name" data-dtype="String" />
+				<div class="layout-container-actorinfo-details">
+					<div class="style-actorinfo-tier3">
+						Player
+					</div>
+					<div class="style-actorinfo-tier4">
+						{{system.metaowner.value}}
+					</div>
 				</div>
-				<div>                                                                  <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="85" width="85" />
+				<div class="layout-container-actorinfo-details">
+					<div class="style-actorinfo-tier2">
+						{{actor.type}}
+					</div>
+					<div class="style-actorinfo-tier1">
+						{{actor.name}}
+					</div>
 				</div>
-			</div>
-			<div class="layout-container-small style-container-small">
-				<div>Prime Metapower
-					<input name="system.entermeta.primemetapower.value" type="text"
-						value="{{system.entermeta.primemetapower.value}}" data-dtype="String"
-						placeholder="Prime Metapower" />
+				<div class="layout-container-actorinfo-details">
+						<img src="{{actor.img}}" title="{{actor.name}}" height="85" width="70"
+							style="border: none; border-radius: 15px" />
+						<img src="systems/metanthropes-system/artwork/metapowers/{{system.entermeta.primemetapower.value}}.png"
+							alt="{{system.entermeta.primemetapower.value}}"
+							title="Prime Ⓜ️ Metapower: {{system.entermeta.primemetapower.value}}" height="85" width="85"
+							style="border: none;" />
 				</div>
-				<div>Metamorphosis
-					<input name="system.entermeta.metamorphosis.value" type="text"
-						value="{{system.entermeta.metamorphosis.value}}" data-dtype="String"
-						placeholder="Metamorphosis" />
+				<div>
 				</div>
-				<div>Background
-					<input name="system.Vital.background.value" type="text" value="{{system.Vital.background.value}}"
-						data-dtype="String" placeholder="Background" />
+			{{else}}
+				<div></div>
+				<div></div>
+				<div>
+					<button class="new-actor" title="Roll New {{actor.type}}">Roll New {{actor.type}}</button>
 				</div>
-				<div>Arc
-					<input name="system.Vital.arc.value" type="text" value="{{system.Vital.arc.value}}"
-						data-dtype="String" placeholder="Arc" />
-				</div>
-				<div>Regression
-					<input name="system.entermeta.regression.value" type="text"
-						value="{{system.entermeta.regression.value}}" data-dtype="String"
-						placeholder="Regression" />
-				</div>
-			</div>
-			<div class="layout-container-small style-container-small">
-				<div>Age
-					<input name="system.Vital.age.value" type="number" value="{{system.Vital.age.value}}"
-						data-dtype="Number" placeholder="" />
-				</div>
-			</div>
-			<div class="layout-container-small style-container-small">
-				<div>Narrator
-					<input name="system.entermeta.narrator.value" type="text"
-						value="{{system.entermeta.narrator.value}}" data-dtype="String" placeholder="Narrator Name" />
-				</div>
-				<div>Saga
-					<input name="system.entermeta.sagas.value" type="text" value="{{system.entermeta.sagas.value}}"
-						data-dtype="String" placeholder="Saga Name" />
-				</div>
-				<div>Sessions Played
-					<input name="system.entermeta.sessions.value" type="number" value="{{system.entermeta.sessions.value}}"
-						data-dtype="Number" placeholder="0" />
-				</div>
-				<div>Coalition
-					<input name="system.entermeta.coalition.value" type="text"
-						value="{{system.entermeta.coalition.value}}" data-dtype="String" placeholder="Coalition Name" />
-				</div>
-				<div>Faction
-					<input name="system.entermeta.faction.value" type="text" value="{{system.entermeta.faction.value}}"
-						data-dtype="String" placeholder="Faction Name" />
-				</div>
-			</div>
+			{{/if}}
 		</div>
-		<div class="layout-container-grid1x4 style-container-grid1x4">
-			<div class="layout-container-small style-container-small">
-				<div class="style-labels-text">
+		<div class="layout-container-vitals style-container-vitals">
+			<div>
+				<div class="style-labels-text" title="Life represents a Character's overall health, vitality, and will to live. Metanthrope Characters have a Life total of (100 + their Endurance score). Metanthrope Characters also gain an additional +25 Life for every 5.000 Total Experience they have accumulated">
 					❤️ Life
+					{{#if isGM}}
 					<input name="system.Vital.Life.value" type="number" value="{{system.Vital.Life.value}}"
-						data-dtype="Number" />/{{system.Vital.Life.max}}
+						data-dtype="Number" />
+					{{else}}
+					{{system.Vital.Life.value}}
+					{{/if}}
+					/{{system.Vital.Life.max}}
 				</div>
 			</div>
-			<div class="layout-container-small style-container-small">
-				<div class="style-labels-text">📈 Experience Total: <input name="system.Vital.Experience.Total" type="number"
-						value="{{system.Vital.Experience.Total}}" data-dtype="Number" placeholder="1000" /> Spent:
-					{{system.Vital.Experience.Spent}} + <input name="system.Vital.Experience.Manual" type="number"
-						value="{{system.Vital.Experience.Manual}}" data-dtype="Number" placeholder="0" />
+			<div>
+				<div class="style-labels-text">{{system.Vital.Experience.Label}}: {{system.Vital.Experience.Total}} Spent:
+					{{system.Vital.Experience.Spent}}
+					{{#if isGM}} + <input name="system.Vital.Experience.Manual" type="number"
+						value="{{system.Vital.Experience.Manual}}" data-dtype="Number" placeholder="0" /> {{/if}}
 					Stored:{{#if (gte system.Vital.Experience.Stored 0)}}
 						<span class="style-cs-positive">{{system.Vital.Experience.Stored}}</span>
 					{{else}}
@@ -86,17 +66,8 @@
 					{{/if}}
 				</div>
 			</div>
-			<div class="layout-container-small style-container-small">
-				<div class="style-labels-text">🤞 Destiny
-					<input name="system.Vital.Destiny.value" type="number" value="{{system.Vital.Destiny.value}}"
-						data-dtype="Number" placeholder="0" />/<input name="system.Vital.Destiny.max" type="number"
-						value="{{system.Vital.Destiny.max}}">
-				</div>
-			</div>
-			<div class="layout-container-small style-container-small">
-				<div class="style-labels-text">👣 Movement
-					<input name="system.physical.movement.initial" type="number"
-						value="{{system.physical.movement.initial}}" data-dtype="Number" placeholder="10" />
+			<div>
+				<div class="style-labels-text" title="Destiny (🤞) is a resource which Players can spend to reroll any roll with an undesirable outcome, activate powerful Metapowered effects, and even save their Protagonists from dying">🤞 Destiny {{system.Vital.Destiny.value}}/{{system.Vital.Destiny.max}}
 				</div>
 			</div>
 		</div>
@@ -115,7 +86,7 @@
 				{{> "systems/metanthropes-system/templates/helpers/actor-charstats.hbs"}}
 			</div>
 			<div class="tab cs-metapowers" data-group="cs" data-tab="cs-metapowers">
-				<div class="layout-container-small style-container-small">
+				<div class="layout-container-outer-tabs style-container-outer-tabs">
 					{{> "systems/metanthropes-system/templates/helpers/actor-metapowers.hbs"}}
 				</div>
 			</div>
@@ -125,16 +96,8 @@
 				{{> "systems/metanthropes-system/templates/helpers/actor-combos.hbs"}}
 			</div>
 			<div class="tab cs-notes" data-group="cs" data-tab="cs-notes">
-				<div class="layout-container-small style-container-small">
-					NOTES
-					are partially implemented
+				<div class="layout-container-outer-tabs style-container-outer-tabs">
 					{{> "systems/metanthropes-system/templates/helpers/actor-notes.hbs"}}
-					<div class="layout-container-grid1x3 style-container-border style-labels-text">
-						{{editor system.physical.Description.value target="system.physical.Description.value" button=true owner=owner editable=editable}}
-					</div>
-					<div class="layout-container-grid1x3 style-container-border style-labels-text">
-						{{editor system.entermeta.Description.value target="system.entermeta.Description.value" button=true owner=owner editable=editable}}
-					</div>
 				</div>
 			</div>
 		</section>

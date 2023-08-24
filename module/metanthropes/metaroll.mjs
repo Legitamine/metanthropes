@@ -84,6 +84,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		);
 		console.log("Metanthropes RPG System | MetaRoll | Custom Roll Values:", multiAction, bonus, customPenalty);
 		//? Check if Custom Penalty is smaller than Disease penalty (values are expected to be negatives)
+		//! add a new function to compare values for bonus and penalty - this way we can do the disease and perk check the same way without caring about the order in which we do them
 		if (customPenalty < diseasePenalty) {
 			penalty = customPenalty;
 		} else {

@@ -154,9 +154,7 @@
 }
 //nav container with 1 flex row
 .layout-container-nav {
-	display: flex;
-	flex-direction: row;
-	row-gap: 6px;
+	display: block;
 }
 .layout-metaroll-dialog {
 	display: flex;
@@ -177,10 +175,6 @@
 	padding: $padding-sm;
 	margin: $margin-md;
 }
-.layout-hide {
-	display: none;
-	//@include element-invisible;
-}
 .layout-editor {
 	display: flex;
 	flex-direction: column;
@@ -190,6 +184,8 @@
 	align-self: auto;
 	align-items: stretch;
 	align-content: space-between;
+	min-height: 80px;
+	max-height: 500px;
 	height: auto;
 	padding: $padding-sm;
 	margin: $margin-sm;
@@ -198,4 +194,40 @@
 	font-size: var(--font-size-14);
 	font-weight: 500;
 	color: $c-black;
+}
+.editor {
+	min-height: 80px;
+	height: auto;
+	max-height: 500px;
+	overflow-y: auto;
+}
+.editor-content .ProseMirror {
+	min-height: 80px;
+	height: auto;
+	max-height: 500px;
+	overflow-y: auto;
+}
+
+.sheet-header .metapower-img {
+	flex: 0 0 160px;
+	height: 160px;
+	width: 160px;
+	margin-right: $margin-lg;
+}
+
+.sheet-header .possession-img {
+	flex: 0 0 160px;
+	height: 160px;
+	width: 160px;
+	margin-right: $margin-lg;
+}
+
+.perk-item {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.perk-item .resource-label {
+	margin-right: 10px;
 }
