@@ -38,15 +38,15 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 	let message = null;
 	if (itemName) {
 		if (baseNumber > 0) {
-			message = `${actor.name} rolls for ${itemName}'s ${what} with ${dice} * d10 + ${baseNumber} and gets a total of ${rollTotal}.<br>`;
+			message = `${actor.name} rolls for ${itemName}'s ${what} with ${dice}d10 + ${baseNumber} and gets a total of ${rollTotal}.<br>`;
 		} else {
-			message = `${actor.name} rolls for ${itemName}'s ${what} with ${dice} * d10 and gets a total of ${rollTotal}.<br>`;
+			message = `${actor.name} rolls for ${itemName}'s ${what} with ${dice}d10 and gets a total of ${rollTotal}.<br>`;
 		}
 	} else {
 		if (baseNumber > 0) {
-			message = `${actor.name} rolls for ${what} with ${dice} * d10 + ${baseNumber} and gets a total of ${rollTotal}.<br>`;
+			message = `${actor.name} rolls for ${what} with ${dice}d10 + ${baseNumber} and gets a total of ${rollTotal}.<br>`;
 		} else {
-			message = `${actor.name} rolls for ${what} with ${dice} * d10 and gets a total of ${rollTotal}.<br>`;
+			message = `${actor.name} rolls for ${what} with ${dice}d10 and gets a total of ${rollTotal}.<br>`;
 		}
 	}
 	//? if destinyReRoll is true, allow rerolling the result by spending 1 Destiny Point

@@ -118,7 +118,7 @@ option {
 
 .chat-message .message-header .flavor-text, .chat-message .message-header .whisper-to, .chat-message .message-content {
 	font-family: $font-secondary;
-	font-size: var(--font-size-15);
+	font-size: 15px;
 	font-weight: 600;
 	color: $c-black;
 }
