@@ -12,7 +12,7 @@ This is the official Metanthropes RPG system for Foundry VTT.
 This is a work in progress and is not ready for general use. Installation instructions will be placed here when the system is ready. Please do not use this system for your games, unless you want to help playtest and know what you're doing. If so, please join us on our Discord server: https://metanthropes.com/discord
 
 ## Officially Supported Modules
-This System aims to utilize the latest and best in Foundry VTT. Currently offers support for Foundry VTT versions 11. Latest supported version is v11.307.
+This System aims to utilize the latest and best in Foundry VTT. Currently offers support for Foundry VTT versions 11. Latest supported version is v11.308.
 
 To get the best experience while playing Metanthropes RPG, we recommend to install the following fully supported modules: (System suggested and required module automations & PRs are pending)
 
