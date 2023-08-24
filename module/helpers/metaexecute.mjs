@@ -66,14 +66,14 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 	let areaEffect = metaItemData.system.Execution.AreaEffect.value;
 	//? Gather all the effect data
 	let effectDescription = metaItemData.system.Effects.EffectDescription.value;
-	let cosmicDamageBase = metaItemData.system.Effects.Damage.Cosmic.Base;
-	let cosmicDamageDice = metaItemData.system.Effects.Damage.Cosmic.Dice;
-	let elementalDamageBase = metaItemData.system.Effects.Damage.Elemental.Base;
-	let elementalDamageDice = metaItemData.system.Effects.Damage.Elemental.Dice;
-	let materialDamageBase = metaItemData.system.Effects.Damage.Material.Base;
-	let materialDamageDice = metaItemData.system.Effects.Damage.Material.Dice;
-	let psychicDamageBase = metaItemData.system.Effects.Damage.Psychic.Base;
-	let psychicDamageDice = metaItemData.system.Effects.Damage.Psychic.Dice;
+	let damageCosmicBase = metaItemData.system.Effects.Damage.Cosmic.Base;
+	let damageCosmicDice = metaItemData.system.Effects.Damage.Cosmic.Dice;
+	let damageElementalBase = metaItemData.system.Effects.Damage.Elemental.Base;
+	let damageElementalDice = metaItemData.system.Effects.Damage.Elemental.Dice;
+	let damageMaterialBase = metaItemData.system.Effects.Damage.Material.Base;
+	let damageMaterialDice = metaItemData.system.Effects.Damage.Material.Dice;
+	let damagePsychicBase = metaItemData.system.Effects.Damage.Psychic.Base;
+	let damagePsychicDice = metaItemData.system.Effects.Damage.Psychic.Dice;
 	let healingBase = metaItemData.system.Effects.Healing.Base;
 	let healingDice = metaItemData.system.Effects.Healing.Dice;
 	let specialName = metaItemData.system.Effects.Special.SpecialDiceName.value;
@@ -87,19 +87,17 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 	let powerScore;
 	let category;
 	let attackType;
-	let baseNumber;
+	let baseActorDamage = null;
 	let quantity;
 	let requiredPerk;
 	let requiredPerkLevel;
 	//? Prep chat message variables
 	let actionSlotMessage;
-	let actionSlotFocusedMessage;
 	let targetsMessage;
 	let targetsNumberDiceMessage;
 	let durationMessage;
 	let durationDiceMessage;
 	let areaEffectMessage;
-	let executionMessage;
 	let damageCosmicMessage;
 	let damageElementalMessage;
 	let damageMaterialMessage;
@@ -110,7 +108,6 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 	let buffsRemovedMessage;
 	let conditionsAppliedMessage;
 	let conditionsRemovedMessage;
-	let effectMessage;
 	let flavorMessage;
 	let contentMessage;
 	//? Prep dice holding variables
@@ -118,27 +115,70 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 	let targetsNumberDice;
 	let durationDice;
 	//? Prep chat message buttons
-	let actionSlotRerollButton = ``;
-	let targetsRerollButton = ``;
-	let durationRerollButton = ``;
-	let executionRerollButtons = ``;
-	let damageRerollButton = ``;
-	let healingRerollButton = ``;
-	let specialRerollButton = ``;
+	let actionSlotRerollButton = null;
+	let targetsRerollButton = null;
+	let durationRerollButton = null;
+	let damageCosmicRerollButton = null;
+	let damageElementalRerollButton = null;
+	let damageMaterialRerollButton = null;
+	let damagePsychicRerollButton = null;
+	let healingRerollButton = null;
+	let specialRerollButton = null;
 	//? Get the last rolled result
 	const rollResult = actor.getFlag("metanthropes-system", "lastrolled");
-	//! afou ta execution k effects fields einai ta idia gia metapowers kai possessions, xreiazomai na ta kanw differentiate mono gia to chat message, to logic tha einai to idio in either case - right???
-	//? Gather specific data based on the action
+	//? Gather specific data & set the flavor message based on the action
 	if (action === "Metapower") {
 		//? Metapower only properties
+		// space intentionally left blank
+		//? Check if activation was successfull
+		if (rollResult.Metapower <= 0) {
+			flavorMessage = `Fails to Activate ${itemName}!`;
+		} else {
+			//? Activate Metapower
+			flavorMessage = `Activates Ⓜ️ Metapower: ${itemName}.<br><br>`;
+		}
 	} else if (action === "Possession") {
 		//? Possession only properties
 		powerScore = actor.system.Characteristics.Body.Stats.Power.Roll;
-		category = metaItemData.system.Category.value;
+		category = metaItemData.system.Category.value; // currently unused
 		attackType = metaItemData.system.AttackType.value;
-		quantity = metaItemData.system.Quantity.value;
-		requiredPerk = metaItemData.system.RequiredPerk.value;
-		requiredPerkLevel = metaItemData.system.RequiredPerkLevel.value;
+		quantity = metaItemData.system.Quantity.value; // currently unused
+		requiredPerk = metaItemData.system.RequiredPerk.value; // currently unused
+		requiredPerkLevel = metaItemData.system.RequiredPerkLevel.value; // currently unused
+		//? Check if using was successfull
+		if (rollResult.Possession <= 0) {
+			if (attackType === "Melee") {
+				flavorMessage = `Fails to connect with their ${itemName}!<br>`;
+			} else if (attackType === "Projectile") {
+				flavorMessage = `Throws their ${itemName} in the air!<br>`;
+			} else if (attackType === "Firearm") {
+				flavorMessage = `Fires their ${itemName} and hits nothing!<br>`;
+			} else {
+				flavorMessage = `Fails to use ${itemName}!<br>`;
+			}
+		} else {
+			//? Use Possession
+			console.log("Metanthropes RPG System | MetaExecute | Using Possession:", itemName, attackType);
+			if (attackType === "Melee") {
+				//todo: need to add size modifier to increase the base d10 dice pool for unarmed strikes only
+				flavorMessage = `Attacks with their ${itemName}<br><br>`;
+				if (multiAction < 0) {
+					baseActorDamage = powerScore + multiAction;
+					damageMaterialBase = baseActorDamage + damageMaterialBase;
+				} else {
+					baseActorDamage = powerScore;
+					damageMaterialBase = baseActorDamage + damageMaterialBase;
+				}
+			} else if (attackType === "Projectile") {
+				flavorMessage = `Throws their ${itemName}<br><br>`;
+				baseActorDamage = Math.ceil(powerScore / 2);
+				damageMaterialBase = baseActorDamage + damageMaterialBase;
+			} else if (attackType === "Firearm") {
+				flavorMessage = `Fires their ${itemName}<br><br>`;
+			} else {
+				flavorMessage = `Uses ${itemName}<br><br>`;
+			}
+		}
 	} else {
 		console.log("Metanthropes RPG System | MetaExecute | cannot Execute action:", action);
 		return;
@@ -147,11 +187,10 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 	if (areaEffect !== "None") {
 		areaEffectMessage = `🗺️: ` + areaEffect + `<br>`;
 	} else {
-		areaEffectMessage = ``;
+		areaEffectMessage = null;
 	}
-	//* execution step
-	//!! issue: the flavor message cannot contain any rollable results - they have to be in the content message instead
-	//	//? finalize action slot
+	//* execution message
+	//? finalize action slot
 	if (actionSlot.includes("Always Active")) {
 		//? always active return
 		console.log("Metanthropes RPG System | MetaExecute | Always Active:", itemName);
@@ -164,18 +203,18 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			//? roll for cycles
 			actionSlotDice = 1;
 			actionSlotMessage += `Focused Action: [[1d10${explosiveDice}]] Cycles<br>`;
-			actionSlotRerollButton = `<div class="hide-button hidden">
+			actionSlotRerollButton = `<div class="hide-button hidden"><br>
 				<button class="metanthropes-secondary-chat-button action-slot rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${actionSlotDice}" data-what="⏱ Activation" data-destiny-re-roll="true">
 				🤞 to reroll ⏱ Activation</button>
-				</div><br>`;
+				<br></div>`;
 		} else if (actionSlot.includes("1d10 Hours")) {
 			//? roll for hours
 			actionSlotDice = 1;
 			actionSlotMessage += `Focused Action: [[1d10${explosiveDice}]] Hours<br>`;
-			actionSlotRerollButton = `<div class="hide-button hidden">
+			actionSlotRerollButton = `<div class="hide-button hidden"><br>
 				<button class="metanthropes-secondary-chat-button action-slot rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${actionSlotDice}" data-what="⏱ Activation" data-destiny-re-roll="true">
 				🤞 to reroll ⏱ Activation</button>
-				</div><br>`;
+				<br></div>`;
 		} else {
 			actionSlotMessage += actionSlot + `<br>`;
 		}
@@ -196,10 +235,10 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			targetsNumberDiceMessage = `[[${targetsNumberDice}d10${explosiveDice}]]`;
 		}
 		targetsMessage = `🎯: ${targetsNumberDiceMessage}`;
-		targetsRerollButton = `<div class="hide-button hidden">
+		targetsRerollButton = `<div class="hide-button hidden"><br>
 					<button class="metanthropes-secondary-chat-button targets rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${targetsNumberDice}" data-what="🎯 Targets" data-destiny-re-roll="true">
 					🤞 to reroll 🎯 Targets</button>
-					</div><br>`;
+					<br></div>`;
 	} else {
 		targetsMessage = `🎯: ${targetsNumber}`;
 	}
@@ -219,153 +258,196 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		durationDiceMessage = duration.match(/1d10 (.+)/);
 		durationDice = 1;
 		durationMessage = `⏳: [[1d10${explosiveDice}]] ` + durationDiceMessage[1] + `<br>`;
-		durationRerollButton = `<div class="hide-button hidden">
+		durationRerollButton = `<div class="hide-button hidden"><br>
 			<button class="metanthropes-secondary-chat-button duration rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${durationDice}" data-what="⏳ Duration" data-destiny-re-roll="true">
 			🤞 to reroll ⏳ Duration</button>
-			</div><br>`;
+			<br></div>`;
 	} else {
 		//? fixed duration
 		durationMessage = `⏳: ` + duration + `<br>`;
 	}
-	//? execution message
-	executionMessage = actionSlotMessage + targetsMessage + durationMessage;
-	executionRerollButtons = actionSlotRerollButton + targetsRerollButton + durationRerollButton;
-	//? effect message
-
-	if (cosmicDamageBase > 0 || cosmicDamageDice > 0) {
-		damageCosmicMessage = `💥: `;
-		damageCosmicMessage += `[[${cosmicDamageBase}+${cosmicDamageDice}d10${explosiveDice}[Cosmic]]]<br>`;
-		damageRerollButton = `<div class="hide-button hidden">
-			<button class="metanthropes-secondary-chat-button damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Cosmic 💥 Damage" data-dice="${cosmicDamageDice}" data-destiny-re-roll="true" data-base-number="${cosmicDamageBase}">
+	//* effect message
+	if (damageCosmicBase > 0 && damageCosmicDice > 0) {
+		damageCosmicMessage = `💥: [[${damageCosmicDice}d10${explosiveDice}+${damageCosmicBase}[Cosmic]]]<br>`;
+		damageCosmicRerollButton = `<div class="hide-button hidden"><br>
+			<button class="metanthropes-secondary-chat-button cosmic-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Cosmic 💥 Damage" data-dice="${damageCosmicDice}" data-destiny-re-roll="true" data-base-number="${damageCosmicBase}">
 			🤞 to reroll Cosmic 💥</button>
-			</div><br>`;
+			<br></div>`;
+	} else if (damageCosmicBase > 0) {
+		damageCosmicMessage = `💥: [[${damageCosmicBase}[Cosmic]]]<br>`;
+	} else if (damageCosmicDice > 0) {
+		damageCosmicMessage = `💥: [[${damageCosmicDice}d10${explosiveDice}[Cosmic]]]<br>`;
+		damageCosmicRerollButton = `<div class="hide-button hidden"><br>
+			<button class="metanthropes-secondary-chat-button cosmic-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Cosmic 💥 Damage" data-dice="${damageCosmicDice}" data-destiny-re-roll="true">
+			🤞 to reroll Cosmic 💥</button>
+			<br></div>`;
 	}
-	if (elementalDamageBase > 0 || elementalDamageDice > 0) {
-		damageElementalMessage = `💥: `;
-		damageElementalMessage += `[[${elementalDamageBase}+${elementalDamageDice}d10${explosiveDice}[Elemental]]]<br>`;
-		damageRerollButton = `<div class="hide-button hidden">
-			<button class="metanthropes-secondary-chat-button damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Elemental 💥 Damage" data-dice="${elementalDamageDice}" data-destiny-re-roll="true" data-base-number="${elementalDamageBase}">
+	if (damageElementalBase > 0 && damageElementalDice > 0) {
+		damageElementalMessage = `💥: [[${damageElementalDice}d10${explosiveDice}+${damageElementalBase}[Elemental]]]<br>`;
+		damageElementalRerollButton = `<div class="hide-button hidden"><br>
+			<button class="metanthropes-secondary-chat-button elemental-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Elemental 💥 Damage" data-dice="${damageElementalDice}" data-destiny-re-roll="true" data-base-number="${damageElementalBase}">
 			🤞 to reroll Elemental 💥</button>
-			</div><br>`;
+			<br></div>`;
+	} else if (damageElementalBase > 0) {
+		damageElementalMessage = `💥: [[${damageElementalBase}[Elemental]]]<br>`;
+	} else if (damageElementalDice > 0) {
+		damageElementalMessage = `💥: [[${damageElementalDice}d10${explosiveDice}[Elemental]]]<br>`;
+		damageElementalRerollButton = `<div class="hide-button hidden"><br>
+			<button class="metanthropes-secondary-chat-button elemental-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Elemental 💥 Damage" data-dice="${damageElementalDice}" data-destiny-re-roll="true">
+			🤞 to reroll Elemental 💥</button>
+			<br></div>`;
 	}
-	if (materialDamageBase > 0 || materialDamageDice > 0) {
-		damageMaterialMessage = `💥: `;
-		damageMaterialMessage += `[[${materialDamageBase}+${materialDamageDice}d10${explosiveDice}[Material]]]<br>`;
-		damageRerollButton = `<div class="hide-button hidden">
-			<button class="metanthropes-secondary-chat-button damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Material 💥 Damage" data-dice="${materialDamageDice}" data-destiny-re-roll="true" data-base-number="${materialDamageBase}">
+	if (damageMaterialBase > 0 && damageMaterialDice > 0) {
+		damageMaterialMessage = `💥: [[${damageMaterialDice}d10${explosiveDice}+${damageMaterialBase}[Material]]]<br>`;
+		damageMaterialRerollButton = `<div class="hide-button hidden"><br>
+			<button class="metanthropes-secondary-chat-button material-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Material 💥 Damage" data-dice="${damageMaterialDice}" data-destiny-re-roll="true" data-base-number="${damageMaterialBase}">
 			🤞 to reroll Material 💥</button>
-			</div><br>`;
+			<br></div>`;
+	} else if (damageMaterialBase > 0) {
+		damageMaterialMessage = `💥: [[${damageMaterialBase}[Material]]]<br>`;
+	} else if (damageMaterialDice > 0) {
+		damageMaterialMessage = `💥: [[${damageMaterialDice}d10${explosiveDice}[Material]]]<br>`;
+		damageMaterialRerollButton = `<div class="hide-button hidden"><br>
+			<button class="metanthropes-secondary-chat-button material-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Material 💥 Damage" data-dice="${damageMaterialDice}" data-destiny-re-roll="true">
+			🤞 to reroll Material 💥</button>
+			<br></div>`;
 	}
-	if (psychicDamageBase > 0 || psychicDamageDice > 0) {
-		damagePsychicMessage = `💥: `;
-		damagePsychicMessage += `[[${psychicDamageBase}+${psychicDamageDice}d10${explosiveDice}[Psychic]]]<br>`;
-		damageRerollButton = `<div class="hide-button hidden">
-			<button class="metanthropes-secondary-chat-button damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Psychic 💥 Damage" data-dice="${psychicDamageDice}" data-destiny-re-roll="true" data-base-number="${psychicDamageBase}">
+	if (damagePsychicBase > 0 && damagePsychicDice > 0) {
+		damagePsychicMessage = `💥: [[${damagePsychicDice}d10${explosiveDice}+${damagePsychicBase}[Psychic]]]<br>`;
+		damagePsychicRerollButton = `<div class="hide-button hidden"><br>
+			<button class="metanthropes-secondary-chat-button psychic-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Psychic 💥 Damage" data-dice="${damagePsychicDice}" data-destiny-re-roll="true" data-base-number="${damagePsychicBase}">
 			🤞 to reroll Psychic 💥</button>
-			</div><br>`;
+			<br></div>`;
+	} else if (damagePsychicBase > 0) {
+		damagePsychicMessage = `💥: [[${damagePsychicBase}[Psychic]]]<br>`;
+	} else if (damagePsychicDice > 0) {
+		damagePsychicMessage = `💥: [[${damagePsychicDice}d10${explosiveDice}[Psychic]]]<br>`;
+		damagePsychicRerollButton = `<div class="hide-button hidden"><br>
+			<button class="metanthropes-secondary-chat-button psychic-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Psychic 💥 Damage" data-dice="${damagePsychicDice}" data-destiny-re-roll="true">
+			🤞 to reroll Psychic 💥</button>
+			<br></div>`;
 	}
-
-	if (healingBase > 0 || healingDice > 0) {
-		healingMessage = `💞: `;
-		healingMessage += `[[${healingBase}+${healingDice}d10${explosiveDice}[Healing]]]<br>`;
-		healingRerollButton = `<div class="hide-button hidden">
+	if (healingBase > 0 && healingDice > 0) {
+		healingMessage = `<br>💞: [[${healingDice}d10${explosiveDice}+${healingBase}[Healing]]]<br>`;
+		healingRerollButton = `<div class="hide-button hidden"><br>
 			<button class="metanthropes-secondary-chat-button healing rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="💞 Healing" data-dice="${healingDice}" data-destiny-re-roll="true" data-base-number="${healingBase}">
 			🤞 to reroll 💞 Healing</button>
-			</div><br>`;
+			<br></div>`;
+	} else if (healingBase > 0) {
+		healingMessage = `<br>💞: [[${healingBase}[Healing]]]<br>`;
+	} else if (healingDice > 0) {
+		healingMessage = `<br>💞: [[${healingDice}d10${explosiveDice}[Healing]]]<br>`;
+		healingRerollButton = `<div class="hide-button hidden"><br>
+			<button class="metanthropes-secondary-chat-button healing rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="💞 Healing" data-dice="${healingDice}" data-destiny-re-roll="true">
+			🤞 to reroll 💞 Healing</button>
+			<br></div>`;
 	}
-
-	if (specialBase > 0 || specialDice > 0) {
-		specialMessage = `${specialName}: `;
-		specialMessage += `[[${specialBase}+${specialDice}d10${explosiveDice}[${specialName}]]]<br>`;
-		specialRerollButton = `<div class="hide-button hidden">
+	if (specialBase > 0 && specialDice > 0) {
+		specialMessage = `<br>${specialName}: [[${specialDice}d10${explosiveDice}+${specialBase}]]<br>`;
+		specialRerollButton = `<div class="hide-button hidden"><br>
 			<button class="metanthropes-secondary-chat-button special rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="${specialName}" data-dice="${specialDice}" data-destiny-re-roll="true" data-base-number="${specialBase}">
 			🤞 to reroll ${specialName}</button>
-			</div><br>`;
+			<br></div>`;
+	} else if (specialBase > 0) {
+		specialMessage = `<br>${specialName}: [[${specialBase}]]<br><br>`;
+	} else if (specialDice > 0) {
+		specialMessage = `<br>${specialName}: [[${specialDice}d10${explosiveDice}]]<br>`;
+		specialRerollButton = `<div class="hide-button hidden"><br>
+			<button class="metanthropes-secondary-chat-button special rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="${specialName}" data-dice="${specialDice}" data-destiny-re-roll="true">
+			🤞 to reroll ${specialName}</button>
+			<br></div>`;
 	}
-
 	if (buffsApplied) {
-		buffsAppliedMessage = `🛡️ ➕: ` + buffsApplied;
+		buffsAppliedMessage = `🛡️ ➕: ` + buffsApplied + `<br>`;
 	}
 	if (buffsRemoved) {
-		buffsRemovedMessage = `🛡️ ➖: ` + buffsRemoved;
+		buffsRemovedMessage = `🛡️ ➖: ` + buffsRemoved + `<br>`;
 	}
 	if (conditionsApplied) {
-		conditionsAppliedMessage = `💀 ➕: ` + conditionsApplied;
+		conditionsAppliedMessage = `💀 ➕: ` + conditionsApplied + `<br>`;
 	}
 	if (conditionsRemoved) {
-		conditionsRemovedMessage = `💀 ➖: ` + conditionsRemoved;
+		conditionsRemovedMessage = `💀 ➖: ` + conditionsRemoved + `<br>`;
 	}
-	//* check gia perk ean einai possession
-	//! perk einai penalty ?! so prepei na to dw sto metaEvaluate stage
-	//? prep flavor and content message
-	if (action === "Metapower") {
-		//? Check if activation was successfull
-		if (rollResult.Metapower <= 0) {
-			flavorMessage = `Fails to Activate ${itemName}!`;
-		} else {
-			//? Activate Metapower
-			flavorMessage = `Activates Ⓜ️ Metapower: ${itemName}.<br><br>`;
-		}
-	} else if (action === "Possession") {
-		//? Check if using was successfull
-		if (rollResult.Possession <= 0) {
-			if (attackType === "Melee") {
-				flavorMessage = `Fails to connect with their ${itemName}!`;
-			} else if (attackType === "Projectile") {
-				flavorMessage = `Throws their ${itemName} in the air!`;
-			} else if (attackType === "Firearm") {
-				flavorMessage = `Fires their ${itemName} and hits nothing!`;
-			} else {
-				console.log(
-					"Metanthropes RPG System | MetaExecute | Unknown attackType for possession activation:",
-					attackType
-				);
-				flavorMessage = `Fails to use ${itemName}!`;
-			}
-		} else {
-			//? Use Possession
-			console.log("Metanthropes RPG System | MetaExecute | Using Possession:", itemName, attackType);
-			if (attackType === "Melee") {
-				flavorMessage = `Attacks with their ${itemName} with the following:`;
-				if (multiAction < 0) {
-					//todo: need to add modifier size here to input in the damage calc
-					baseNumber = powerScore + multiAction;
-				} else {
-					baseNumber = powerScore;
-				}
-			} else if (attackType === "Projectile") {
-				flavorMessage = `Throws their ${itemName} with the following:`;
-				baseNumber = Math.ceil(powerScore / 2);
-			} else if (attackType === "Firearm") {
-				flavorMessage = `Fires their ${itemName} with the following:`;
-			} else {
-				console.log("Metanthropes RPG System | PossessionUse | Unknown attackType: ", attackType);
-				flavorMessage = `Uses ${itemName} with the following:`;
-			}
-		}
-		//? Use Possession
-		console.log("Metanthropes RPG System | MetaExecute | Finished Executing Possession Use");
-	}
-	//? Prep content message
+	//? Prep message to be presented in the content section (allows inline rolls)
+	//! maybe I need to replace the foundry inline rolls with my own way in order to properly round up results and display a d10vsd20
 	contentMessage = actionSlotMessage;
 	contentMessage += targetsMessage;
 	contentMessage += durationMessage;
 	contentMessage += `📏: ` + range + `<br>`;
-	contentMessage += areaEffectMessage;
-	contentMessage += `<br><div>${effectDescription}</div><br>`;
-	contentMessage += damageCosmicMessage;
-	contentMessage += damageElementalMessage;
-	contentMessage += damageMaterialMessage;
-	contentMessage += damagePsychicMessage;
-	contentMessage += healingMessage;
-	contentMessage += specialMessage;
-	contentMessage += buffsAppliedMessage;
-	contentMessage += buffsRemovedMessage;
-	contentMessage += conditionsAppliedMessage;
-	contentMessage += conditionsRemovedMessage;
-	contentMessage += actionSlotRerollButton;
-	contentMessage += targetsRerollButton;
-	contentMessage += durationRerollButton;
+	if (areaEffectMessage) {
+		contentMessage += areaEffectMessage;
+	}
+	contentMessage += `<div><br>${effectDescription}<br></div>`;
+	if (damageCosmicMessage) {
+		contentMessage += damageCosmicMessage;
+	}
+	if (damageElementalMessage) {
+		contentMessage += damageElementalMessage;
+	}
+	if (damageMaterialMessage) {
+		contentMessage += damageMaterialMessage;
+	}
+	if (damagePsychicMessage) {
+		contentMessage += damagePsychicMessage;
+	}
+	if (damageCosmicMessage || damageElementalMessage || damageMaterialMessage || damagePsychicMessage) {
+		contentMessage += `<br>`;
+	}
+	if (healingMessage) {
+		contentMessage += healingMessage;
+		contentMessage += `<br>`;
+	}
+	if (specialMessage) {
+		contentMessage += specialMessage;
+		contentMessage += `<br>`;
+	}
+	if (buffsAppliedMessage) {
+		contentMessage += buffsAppliedMessage;
+	}
+	if (buffsRemovedMessage) {
+		contentMessage += buffsRemovedMessage;
+	}
+	if (buffsAppliedMessage || buffsRemovedMessage) {
+		contentMessage += `<br>`;
+	}
+	if (conditionsAppliedMessage) {
+		contentMessage += conditionsAppliedMessage;
+	}
+	if (conditionsRemovedMessage) {
+		contentMessage += conditionsRemovedMessage;
+	}
+	if (conditionsAppliedMessage || conditionsRemovedMessage) {
+		contentMessage += `<br>`;
+	}
+	//? add reroll buttons
+	if (actionSlotRerollButton) {
+		contentMessage += actionSlotRerollButton;
+	}
+	if (targetsRerollButton) {
+		contentMessage += targetsRerollButton;
+	}
+	if (durationRerollButton) {
+		contentMessage += durationRerollButton;
+	}
+	if (damageCosmicRerollButton) {
+		contentMessage += damageCosmicRerollButton;
+	}
+	if (damageElementalRerollButton) {
+		contentMessage += damageElementalRerollButton;
+	}
+	if (damageMaterialRerollButton) {
+		contentMessage += damageMaterialRerollButton;
+	}
+	if (damagePsychicRerollButton) {
+		contentMessage += damagePsychicRerollButton;
+	}
+	if (healingRerollButton) {
+		contentMessage += healingRerollButton;
+	}
+	if (specialRerollButton) {
+		contentMessage += specialRerollButton;
+	}
 	//? prepare the Chat message
 	let chatData = {
 		user: game.user.id,

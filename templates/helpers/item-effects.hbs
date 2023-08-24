@@ -18,17 +18,17 @@
 			<div class="resource-label">{{this.label}}:
 				<span class="resource">
 					{{#if ../isGM}}
-						<input type="{{this.type}}" name="system.Effects.Damage.{{@key}}.Base" value="{{this.Base}}"
-							data-dtype="{{this.dtype}}" /> Base + 
 						<input type="{{this.type}}" name="system.Effects.Damage.{{@key}}.Dice" value="{{this.Dice}}"
 							data-dtype="{{this.dtype}}" />d10
+						+ <input type="{{this.type}}" name="system.Effects.Damage.{{@key}}.Base" value="{{this.Base}}"
+							data-dtype="{{this.dtype}}" /> Base
 					{{else}}
-						{{#if (and this.Base (not (or (eq this.Base null) (eq this.Base 0))))}}
-							{{this.Base}} Base
-							{{#if (and this.Dice (not (or (eq this.Dice null) (eq this.Dice 0))))}} + {{/if}}
-						{{/if}}
 						{{#if (and this.Dice (not (or (eq this.Dice null) (eq this.Dice 0))))}}
 							{{this.Dice}}d10
+						{{/if}}
+						{{#if (and this.Base (not (or (eq this.Dice null) (eq this.Dice 0))))}} + {{/if}}
+						{{#if (and this.Base (not (or (eq this.Base null) (eq this.Base 0))))}}
+							{{this.Base}} Base
 						{{/if}}
 					{{/if}}
 				</span>
@@ -41,18 +41,18 @@
 			<label class="resource-label">{{system.Effects.Healing.label}}:</label>
 			<span class="resource">
 				{{#if isGM}}
-					<input type="{{system.Effects.Healing.type}}" name="system.Effects.Healing.Base"
-						value="{{system.Effects.Healing.Base}}" data-dtype="{{system.Effects.Healing.dtype}}" /> Base + 
 					<input type="{{system.Effects.Healing.type}}" name="system.Effects.Healing.Dice"
 						value="{{system.Effects.Healing.Dice}}" data-dtype="{{system.Effects.Healing.dtype}}" />d10
+					+ <input type="{{system.Effects.Healing.type}}" name="system.Effects.Healing.Base"
+						value="{{system.Effects.Healing.Base}}" data-dtype="{{system.Effects.Healing.dtype}}" /> Base
 				{{else}}
-					{{#if (and system.Effects.Healing.Base (not (or (eq system.Effects.Healing.Base null) (eq system.Effects.Healing.Base 0))))}}
-						{{system.Effects.Healing.Base}} Base
-						{{#if (and system.Effects.Healing.Dice (not (or (eq system.Effects.Healing.Dice null) (eq system.Effects.Healing.Dice 0))))}}
-							+ {{/if}}
-					{{/if}}
 					{{#if (and system.Effects.Healing.Dice (not (or (eq system.Effects.Healing.Dice null) (eq system.Effects.Healing.Dice 0))))}}
 						{{system.Effects.Healing.Dice}}d10
+					{{/if}}
+					{{#if (and system.Effects.Healing.Base (not (or (eq system.Effects.Healing.Dice null) (eq system.Effects.Healing.Dice 0))))}}
+						+ {{/if}}
+					{{#if (and system.Effects.Healing.Base (not (or (eq system.Effects.Healing.Base null) (eq system.Effects.Healing.Base 0))))}}
+						{{system.Effects.Healing.Base}} Base
 					{{/if}}
 				{{/if}}
 			</span>
@@ -71,19 +71,19 @@
 					value="{{system.Effects.Special.SpecialDiceName.value}}"
 					data-dtype="{{system.Effects.Special.SpecialDiceName.dtype}}" />
 				<input type="{{system.Effects.Special.type}}" name="system.Effects.Special.Base"
-					value="{{system.Effects.Special.Base}}" data-dtype="{{system.Effects.Special.dtype}}" /> Base + 
+					value="{{system.Effects.Special.Base}}" data-dtype="{{system.Effects.Special.dtype}}" /> Base +
 				<input type="{{system.Effects.Special.type}}" name="system.Effects.Special.Dice"
 					value="{{system.Effects.Special.Dice}}" data-dtype="{{system.Effects.Special.dtype}}" />d10
 			{{else}}
 				{{system.Effects.Special.SpecialDiceName.value}}:
 				<span class="resource">
-					{{#if (and system.Effects.Special.Base (not (or (eq system.Effects.Special.Base null) (eq system.Effects.Special.Base 0))))}}
-						{{system.Effects.Special.Base}} Base
-						{{#if (and system.Effects.Special.Dice (not (or (eq system.Effects.Special.Dice null) (eq system.Effects.Special.Dice 0))))}}
-							+ {{/if}}
-					{{/if}}
 					{{#if (and system.Effects.Special.Dice (not (or (eq system.Effects.Special.Dice null) (eq system.Effects.Special.Dice 0))))}}
 						{{system.Effects.Special.Dice}}d10
+					{{/if}}
+					{{#if (and system.Effects.Special.Base (not (or (eq system.Effects.Special.Dice null) (eq system.Effects.Special.Dice 0))))}}
+						+ {{/if}}
+					{{#if (and system.Effects.Special.Base (not (or (eq system.Effects.Special.Base null) (eq system.Effects.Special.Base 0))))}}
+						{{system.Effects.Special.Base}} Base
 					{{/if}}
 				</span>
 			{{/if}}

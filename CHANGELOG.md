@@ -23,9 +23,10 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 ###### Unreleased:
 -	Progression of Characteristics and Stats, Metapowers and Perks (scheduled for v0.8)
 -   Official support for modules: Terrain Ruler and Enhanced Terrain Layer (scheduled for v0.9)
+-	Size Score will now properly buff unarmed strike dice damage (scheduled for v0.9)
 
 ### Added:
--   Fully automated Stat, Initiative, Metapower, Possession and Strike Rolls.
+-   Fully automated Stat, Initiative, Metapower, Possession and Strike Rolls. Right clicking allows the player to set custom options.
 -   New approach to rolling a new Protagonist
 -   New tooltips for the majority of the Overview Sheet
 -	New Protagonist Character Sheet sections: Notes & Summary
@@ -36,13 +37,17 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 ### Changed:
 -	Revamped the Character sheet to be more intuitive and take less screen 'real estate'
 -	Metapowers and Possessions details are now only editable by Narrators
--	Revamped the Items sheets (Metapowers, Possessions, Strikes) to be more intuitive and take less screen 'real estate'
+-	Revamped the Items sheets (Metapowers & Possessions) to be more intuitive and take less screen 'real estate'
 -   Changed Destiny Reroll button in chat, to now only be visible to the owner of that Character and the Narrator
 -   Protagonists and Metanthropes are now Actor-Linked to their tokens, all other Actor types are not linked by default.
 -   Foundry version 11 is now required
 ### Fixed:
 -   Fixed a known issue with the Metapower & Possession Sheets not displaying Stat Scores correctly after rolling
-
+### Deprecated:
+-	Deprecated the Items and Actors from previous versions. They will still open in v0.7 allowing you to migrate any data you need to the new Actors and Items. These will be removed in v0.8.
+### Known Issues:
+-	New actor rolls that change the Stat values will be hidden behind the character sheet. Workaround: close the character sheet until you finish the new actor creation.
+-	Targets that have 1d10/2 are not working properly. No workaround at the moment.
 
 ## Previous Versions
 
