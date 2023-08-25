@@ -41,32 +41,56 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		ui.notifications.error(actor.name + " can't Roll " + stat + " with a Current value of 0!");
 		return;
 	}
-	//? Check for Hunger - if we have hunger, we must beat the hunger roll before doing our action
-	const hunger = actor.system.Characteristics.Mind.CoreConditions.Hunger;
-	if (hunger > 0) {
-		try {
-			const hungerRoll = await new Roll("1d100").evaluate({ async: true });
-			const hungerRollResult = hungerRoll.total;
-			if (hungerRollResult > hunger) {
-				ui.notifications.error(actor.name + " is too hungry and can't act!");
-				return;
-			}
-		} catch (error) {
-			console.log("Metanthropes RPG System | MetaRoll | Hunger Roll Error:", error);
-		}
-	}
-	//? Pain is passed to MetaEvaluate
-	const pain = actor.system.Characteristics.Mind.CoreConditions.Pain;
-	//? Check for Fatigue
-	//? Check if we are unconscious
-	//? Check for disease
-	//* disease is expected to be a positive number, whereas penalty is expected to be negative
-	const disease = actor.system.Characteristics.Body.CoreConditions.Diseased;
+	//* Check for Bonuses
+	// space intentionally left blank
+	//* Check for Penalties
+	let perkPenalty = 0;
 	let diseasePenalty = 0;
-	if (disease > 0) {
-		//? check if penalty is worse than the disease level and set it accordingly
-		if (diseasePenalty > -(disease * 10)) {
-			diseasePenalty = -(disease * 10);
+	//? Check for Core Conditions
+		//? Check for Hunger - if we have hunger, we must beat the hunger roll before doing our action
+		const hunger = actor.system.Characteristics.Mind.CoreConditions.Hunger;
+		if (hunger > 0) {
+			try {
+				const hungerRoll = await new Roll("1d100").evaluate({ async: true });
+				const hungerRollResult = hungerRoll.total;
+				if (hungerRollResult > hunger) {
+					ui.notifications.error(actor.name + " is too hungry and can't act!");
+					return;
+				}
+			} catch (error) {
+				console.log("Metanthropes RPG System | MetaRoll | Hunger Roll Error:", error);
+			}
+		}
+		//? Pain is passed to MetaEvaluate
+		const pain = actor.system.Characteristics.Mind.CoreConditions.Pain;
+		//? Check for Fatigue
+		//? Check if we are unconscious
+		//? Check for disease
+		//* disease is expected to be a positive number, whereas penalty is expected to be negative
+		const disease = actor.system.Characteristics.Body.CoreConditions.Diseased;
+		if (disease > 0) {
+			//? check if penalty is worse than the disease level and set it accordingly
+			if (diseasePenalty > -(disease * 10)) {
+				diseasePenalty = -(disease * 10);
+			}
+		}
+	//? Check for Possession Perk Penalty
+	if (itemName && action === "Possession") {
+		const requiredPerk = actor.items.getName(itemName).system.RequiredPerk.value;
+		console.log("Metanthropes RPG System | MetaRoll | Required Perk for", itemName, "is", requiredPerk);
+		if (requiredPerk !== "None") {
+			const requiredPerkLevel = actor.items.getName(itemName).system.RequiredPerkLevel.value;
+			const actorPerkLevel = actor.system.Perks.Skills[requiredPerk].value;
+			const levelDifference = requiredPerkLevel - actorPerkLevel;
+			if (levelDifference > 0) {
+				perkPenalty = levelDifference * -10;
+				console.log(
+					"Metanthropes RPG System | MetaRoll | Perk Penalty for",
+					actor.name,
+					"is",
+					perkPenalty
+				);
+			}
 		}
 	}
 	//? ready to call MetaEvaluate, but first we check if we have custom options
@@ -89,6 +113,9 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			penalty = customPenalty;
 		} else {
 			penalty = diseasePenalty;
+		}
+		if (penalty > perkPenalty) {
+			penalty = perkPenalty;
 		}
 		console.log(
 			"Metanthropes RPG System | MetaRoll | Engaging MetaEvaluate for:",
@@ -113,6 +140,9 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		await MetaEvaluate(actor, action, stat, statScore, multiAction, bonus, penalty, pain, destinyCost, itemName);
 	} else {
 		penalty = diseasePenalty;
+		if (penalty > perkPenalty) {
+			penalty = perkPenalty;
+		}
 		console.log(
 			"Metanthropes RPG System | MetaRoll | Engaging MetaEvaluate for:",
 			actor.name + "'s",

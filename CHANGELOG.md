@@ -31,6 +31,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 -   New tooltips (mouse over to see information) for the majority of the UI elements
 -	New Protagonist Character Sheet sections: Notes & Summary
 -   Movement Score is now automatically calculated based on Speed, Weight and Size and is reflected in the grid when you move your character. Green is for normal movement, Yellow for Additional Movement, Orange for Sprint and Red for no more movement. (requires Drag Ruler module)
+-   Possessions now may require a Perk to be a certain Level and will add a -10% Penalty to the roll for each Level missing
 -	Non-linked Actors are now available to Narrators
 -   Introduced Narrator's Toolbox: a set of Narrator-only macros designed to help with the game flow and automate the end of Scene/Session/Arc player awards
 -   New Supported module: Carousel Combat Tracker (PR pending)

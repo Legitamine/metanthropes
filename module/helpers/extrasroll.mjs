@@ -35,7 +35,7 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 	} else {
 		rolld10 = await new Roll(`${dice}d10${explosiveDice}`).evaluate({ async: true });
 	}
-	if (isHalf) {
+	if (isHalf === true) {
 		rollTotal = Math.ceil(rolld10.total / 2);
 	} else {
 		rollTotal = rolld10.total;

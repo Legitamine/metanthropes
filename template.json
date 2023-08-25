@@ -1626,7 +1626,7 @@
 				"dtype": "String",
 				"label": "Required 📚 Perk",
 				"value": "None",
-				"options": ["None", "Operation", "Weapons"]
+				"options": ["None", "Artistry", "Athletics", "Expertise", "Operation", "Weapons"]
 			},
 			"RequiredPerkLevel": {
 				"type": "number",
