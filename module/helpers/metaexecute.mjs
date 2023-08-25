@@ -227,18 +227,23 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		//? roll for targets
 		if (targetsNumber === "1d10/2") {
 			//? roll for 1d10/2
-			targetsNumberDice = "special";
-			targetsNumberDiceMessage = `[[1d5x5]]`;
+			targetsNumberDiceMessage = `[[ceil(1d10${explosiveDice}/2)]]`;
+			targetsMessage = `🎯: ${targetsNumberDiceMessage}`;
+			targetsNumberDice = 1;
+			targetsRerollButton = `<div class="hide-button hidden"><br>
+			<button class="metanthropes-secondary-chat-button targets rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${targetsNumberDice}" data-what="🎯 Targets" data-is-half="true" data-destiny-re-roll="true">
+			🤞 to reroll 🎯 Targets</button>
+			<br></div>`;
 		} else {
 			//? all other rolls
 			targetsNumberDice = await metaExtractNumberOfDice(targetsNumber);
 			targetsNumberDiceMessage = `[[${targetsNumberDice}d10${explosiveDice}]]`;
+			targetsMessage = `🎯: ${targetsNumberDiceMessage}`;
+			targetsRerollButton = `<div class="hide-button hidden"><br>
+			<button class="metanthropes-secondary-chat-button targets rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${targetsNumberDice}" data-what="🎯 Targets" data-destiny-re-roll="true">
+			🤞 to reroll 🎯 Targets</button>
+			<br></div>`;
 		}
-		targetsMessage = `🎯: ${targetsNumberDiceMessage}`;
-		targetsRerollButton = `<div class="hide-button hidden"><br>
-					<button class="metanthropes-secondary-chat-button targets rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${targetsNumberDice}" data-what="🎯 Targets" data-destiny-re-roll="true">
-					🤞 to reroll 🎯 Targets</button>
-					<br></div>`;
 	} else {
 		targetsMessage = `🎯: ${targetsNumber}`;
 	}

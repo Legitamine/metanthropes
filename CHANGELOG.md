@@ -32,6 +32,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 -	New Protagonist Character Sheet sections: Notes & Summary
 -   Movement Score is now automatically calculated based on Speed, Weight and Size and is reflected in the grid when you move your character. Green is for normal movement, Yellow for Additional Movement, Orange for Sprint and Red for no more movement. (requires Drag Ruler module)
 -	Non-linked Actors are now available to Narrators
+-   Introduced Narrator's Toolbox: a set of Narrator-only macros designed to help with the game flow and automate the end of Scene/Session/Arc player awards
 -   New Supported module: Carousel Combat Tracker (PR pending)
 -   New Supported module: DF Chat Enhancements
 ### Changed:
@@ -45,9 +46,6 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 -   Fixed a known issue with the Metapower & Possession Sheets not displaying Stat Scores correctly after rolling
 ### Deprecated:
 -	Deprecated the Items and Actors from previous versions. They will still open in v0.7 allowing you to migrate any data you need to the new Actors and Items. These will be removed in v0.8
-### Known Issues:
--	New actor rolls that change the Stat values will be hidden behind the character sheet. Workaround: close the character sheet until you finish the new actor creation
--	Targets that have 1d10/2 are not working properly. No workaround at the moment
 
 ## Previous Versions
 

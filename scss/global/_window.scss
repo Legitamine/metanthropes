@@ -116,9 +116,20 @@ option {
 	background-color: $c-background;
 }
 
-.chat-message .message-header .flavor-text, .chat-message .message-header .whisper-to, .chat-message .message-content {
+.chat-message .message-header .flavor-text,
+.chat-message .message-header .whisper-to,
+.chat-message .message-content {
 	font-family: $font-secondary;
 	font-size: 15px;
 	font-weight: 600;
 	color: $c-black;
+}
+//mana from discord black magic!
+.fa-solid.fa-dice-d20:before,
+.fas.fa-dice-d20:before {
+	content: "\f6cd";
+}
+//me adding this for carousel
+.far.fa-dice-d20:before {
+	content: "\f6cd";
 }

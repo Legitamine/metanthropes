@@ -8,6 +8,7 @@
 <div class="layout-editor style-editor">
 	{{editor system.physical.Description.value target="system.physical.Description.value" button=true editable=true}}
 </div>
+{{#if (eq actor.type "Protagonist")}}
 <div><h3>{{system.notes-protagonist.label}}</h3></div>
 <div class="layout-editor style-editor">
 	{{editor system.notes-protagonist.value target="system.notes-protagonist.value" button=true editable=true}}
@@ -24,3 +25,4 @@
 <div class="layout-editor style-editor">
 	{{editor system.notes-narrator.value target="system.notes-narrator.value" engine="prosemirror" collaborate=false button=true editable=true}}
 </div>
+{{/if}}

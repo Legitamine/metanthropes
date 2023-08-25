@@ -14,12 +14,26 @@ import { MetapowersList } from "./metapowerlist.mjs";
 export async function NewActor(actor) {
 	try {
 		await NewActorDestiny(actor);
-		await NewActorPrimeMetapower(actor);
+		if (
+			actor.type !== "Human" &&
+			actor.type !== "Vehicle" &&
+			actor.type !== "Animal" &&
+			actor.type !== "Animated-Cadaver"
+		) {
+			await NewActorPrimeMetapower(actor);
+		}
 		await NewActorCharacteristics(actor);
 		await NewActorBodyStats(actor);
 		await NewActorMindStats(actor);
 		await NewActorSoulStats(actor);
+		if (
+			actor.type !== "Human" &&
+			actor.type !== "Vehicle" &&
+			actor.type !== "Animal" &&
+			actor.type !== "Animated-Cadaver"
+		) {
 		await NewActorRoleplay(actor);
+		}
 		await NewActorProgression(actor);
 		await NewActorSummary(actor);
 		await NewActorFinish(actor);

@@ -1,18 +1,20 @@
-//*Narrator's Toolbox v0.1
+//*Narrator's Toolbox - Edit Protagonist Details*//
 if (game.user.isGM) {
 	let actors = game.actors.contents.filter((a) => a.type === "Protagonist");
 	let dialogContent = `<form>`;
 	for (let actor of actors) {
 		dialogContent += `<div class="form-group">
-            <label>${actor.name}</label>
-			<div>New Name: <input type="text" name="newName-${actor.id}" value="${actor.name}"></div>
-			<div>New Player: <input type="text" name="newPlayer-${actor.id}" value="${actor.system.metaowner.value}"></div>
-            <div>Total Experience: <input type="number" name="totalExperience-${actor.id}" value="${actor.system.Vital.Experience.Total}"></div>
-            <div>Current Destiny: <input type="number" name="currentDestiny-${actor.id}" value="${actor.system.Vital.Destiny.value}"></div>
-            <div>Max Destiny: <input type="number" name="maxDestiny-${actor.id}" value="${actor.system.Vital.Destiny.max}"></div>
+            <label>Protagonist Name: ${actor.name}</label>
+			<div>New Protagonist Name: <input type="text" name="newName-${actor.id}" value="${actor.name}"></div>
+			<div>New Player Name: <input type="text" name="newPlayer-${actor.id}" value="${actor.system.metaowner.value}"></div>
+			<div>New Life Current: <input type="number" dtype="Number" name="life-${actor.id}" value="${actor.system.Vital.Life.value}"></div>
+            <div>New Total Experience: <input type="number" name="totalExperience-${actor.id}" value="${actor.system.Vital.Experience.Total}"></div>
+            <div>New Current Destiny: <input type="number" name="currentDestiny-${actor.id}" value="${actor.system.Vital.Destiny.value}"></div>
+			<div></div>
         </div>`;
 	}
 	dialogContent += `</form>`;
+	dialogContent += `<div>Confirming will make the new Current Destiny also the Max Destiny for each Protagonist</div>`;
 	let dialogOptions = {
 		width: 750,
 		height: 520,
@@ -20,7 +22,7 @@ if (game.user.isGM) {
 	};
 	let toolboxdialog = new Dialog(
 		{
-			title: "Narrator's Toolbox",
+			title: "Narrator's Toolbox - Edit Protagonist Details",
 			content: dialogContent,
 			buttons: {
 				ok: {
@@ -29,9 +31,10 @@ if (game.user.isGM) {
 						for (let actor of actors) {
 							let totalExperience = html.find(`[name="totalExperience-${actor.id}"]`).val();
 							let currentDestiny = html.find(`[name="currentDestiny-${actor.id}"]`).val();
-							let maxDestiny = html.find(`[name="maxDestiny-${actor.id}"]`).val();
+							let maxDestiny = currentDestiny;
 							let newName = html.find(`[name="newName-${actor.id}"]`).val();
 							let newPlayer = html.find(`[name="newPlayer-${actor.id}"]`).val();
+							let life = html.find(`[name="life-${actor.id}"]`).val();
 							await actor.update({
 								name: newName,
 								"system.metaowner.value": newPlayer,
@@ -39,6 +42,7 @@ if (game.user.isGM) {
 								"system.Vital.Destiny.value": currentDestiny,
 								"system.Vital.Destiny.max": maxDestiny,
 								"prototypeToken.name": newName,
+								"system.Vital.Life.value": life,
 							});
 						}
 					},
