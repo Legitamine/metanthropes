@@ -11,6 +11,7 @@
  * @param {number} dice - The number of d10 dice to roll. Expected to be a positive number.
  * @param {string} [itemName=""] - The name of the item associated with the roll, if any. Expected to be a string.
  * @param {number} [baseNumber=0] - A fixed number to add to the roll result, if any. Expected to be a positive number.
+ * @param {boolean} [isHalf=false] - Determines if the roll result should be halved. Expected to be a boolean.
  *
  * @returns {Promise<void>} A promise that resolves once the function completes its operations.
  *
@@ -18,9 +19,10 @@
  * Rolling an actor's Weapon Damage for 3 * d10:
  * Rolld10(actor, "Damage", true, 3, "Weapon Name");
  */
-export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", baseNumber = 0) {
+export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", baseNumber = 0, isHalf = false) {
 	//? Checking if actor has Metapowers that affect the explosive dice
 	let explosiveDice = "x10";
+	let rollTotal;
 	const metapowers = actor.items.filter((item) => item.type === "Metapower");
 	const hasArbiterPowers = metapowers.some((metapower) => metapower.name === "Arbiter Powers");
 	if (hasArbiterPowers) {
@@ -33,20 +35,40 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 	} else {
 		rolld10 = await new Roll(`${dice}d10${explosiveDice}`).evaluate({ async: true });
 	}
-	const rollTotal = rolld10.total;
+	if (isHalf) {
+		rollTotal = Math.ceil(rolld10.total / 2);
+	} else {
+		rollTotal = rolld10.total;
+	}
 	//? Message to be printed to chat
 	let message = null;
 	if (itemName) {
 		if (baseNumber > 0) {
-			message = `${actor.name} rolls for ${itemName}'s ${what} with ${dice}d10 + ${baseNumber} and gets a total of ${rollTotal}.<br>`;
+			if (isHalf === true) {
+				message = `${actor.name} rolls for ${itemName}'s ${what} with (${dice}d10 + ${baseNumber})/2 and gets a total of ${rollTotal}.<br>`;
+			} else {
+				message = `${actor.name} rolls for ${itemName}'s ${what} with ${dice}d10 + ${baseNumber} and gets a total of ${rollTotal}.<br>`;
+			}
 		} else {
-			message = `${actor.name} rolls for ${itemName}'s ${what} with ${dice}d10 and gets a total of ${rollTotal}.<br>`;
+			if (isHalf === true) {
+				message = `${actor.name} rolls for ${itemName}'s ${what} with (${dice}d10)/2 and gets a total of ${rollTotal}.<br>`;
+			} else {
+				message = `${actor.name} rolls for ${itemName}'s ${what} with ${dice}d10 and gets a total of ${rollTotal}.<br>`;
+			}
 		}
 	} else {
 		if (baseNumber > 0) {
-			message = `${actor.name} rolls for ${what} with ${dice}d10 + ${baseNumber} and gets a total of ${rollTotal}.<br>`;
+			if (isHalf === true) {
+				message = `${actor.name} rolls for ${what} with (${dice}d10 + ${baseNumber})/2 and gets a total of ${rollTotal}.<br>`;
+			} else {
+				message = `${actor.name} rolls for ${what} with ${dice}d10 + ${baseNumber} and gets a total of ${rollTotal}.<br>`;
+			}
 		} else {
-			message = `${actor.name} rolls for ${what} with ${dice}d10 and gets a total of ${rollTotal}.<br>`;
+			if (isHalf === true) {
+				message = `${actor.name} rolls for ${what} with (${dice}d10)/2 and gets a total of ${rollTotal}.<br>`;
+			} else {
+				message = `${actor.name} rolls for ${what} with ${dice}d10 and gets a total of ${rollTotal}.<br>`;
+			}
 		}
 	}
 	//? if destinyReRoll is true, allow rerolling the result by spending 1 Destiny Point
@@ -54,7 +76,7 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 	if (destinyReRoll && currentDestiny > 0) {
 		message += `<br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>
 		<div class="hide-button hidden"><br><button class="metanthropes-secondary-chat-button rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
-		data-what="${what}" data-destiny-re-roll="${destinyReRoll}" data-dice="${dice}" data-base-number="${baseNumber}">Spend 🤞 Destiny to reroll
+		data-what="${what}" data-destiny-re-roll="${destinyReRoll}" data-dice="${dice}" data-base-number="${baseNumber}" data-is-half="${isHalf}">Spend 🤞 Destiny to reroll
 		</button><br><br></div>`;
 	}
 	await actor.setFlag("metanthropes-system", "lastrolled", {
@@ -69,11 +91,12 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 		rollMode: game.settings.get("core", "rollMode"),
 		flags: { "metanthropes-system": { actoruuid: actor.uuid } },
 	});
-	//? Refresh the actor sheet if it's open
-	const sheet = actor.sheet;
-	if (sheet && sheet.rendered) {
-		sheet.render(true);
-	}
+	//! doing a refresh during actor creation causes the actor window to come in focus, so disabling it for now
+	//	//? Refresh the actor sheet if it's open
+	//	const sheet = actor.sheet;
+	//	if (sheet && sheet.rendered) {
+	//		sheet.render(true);
+	//	}
 }
 /**
  * Rolld10ReRoll is triggered when the destiny re-roll button is clicked.
@@ -94,9 +117,10 @@ export async function Rolld10ReRoll(event) {
 	const actoruuid = button.dataset.actoruuid;
 	const what = button.dataset.what;
 	const destinyReRoll = button.dataset.destinyReRoll;
-	const itemName = button.dataset.itemName;
+	const itemName = button.dataset.itemName || null;
 	const dice = parseInt(button.dataset.dice);
-	const baseNumber = parseInt(button.dataset.baseNumber);
+	const baseNumber = parseInt(button.dataset.baseNumber) || 0;
+	const isHalf = button.dataset.isHalf || false;
 	const actor = await fromUuid(actoruuid);
 	//? Reduce Destiny.value by 1
 	console.log("Metanthropes RPG System | Rolld10ReRoll | Evaluating destiny for:", actor);
@@ -112,14 +136,16 @@ export async function Rolld10ReRoll(event) {
 			destinyReRoll,
 			dice,
 			itemName,
-			baseNumber
+			baseNumber,
+			isHalf
 		);
-		await Rolld10(actor, what, destinyReRoll, dice, itemName, baseNumber);
-		//? Refresh the actor sheet if it's open
-		const sheet = actor.sheet;
-		if (sheet && sheet.rendered) {
-			sheet.render(true);
-		}
+		await Rolld10(actor, what, destinyReRoll, dice, itemName, baseNumber, isHalf);
+		//! doing a refresh during actor creation causes the actor window to come in focus, so disabling it for now
+		//	//? Refresh the actor sheet if it's open
+		//	const sheet = actor.sheet;
+		//	if (sheet && sheet.rendered) {
+		//		sheet.render(true);
+		//	}
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
 		console.log("Metanthropes RPG System | Rolld10ReRoll | Not enough Destiny to spend, or destinyReRoll is false");

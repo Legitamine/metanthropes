@@ -131,11 +131,22 @@ option {
   background-color: rgba(129, 129, 129, 0.3725490196);
 }
 
-.chat-message .message-header .flavor-text, .chat-message .message-header .whisper-to, .chat-message .message-content {
+.chat-message .message-header .flavor-text,
+.chat-message .message-header .whisper-to,
+.chat-message .message-content {
   font-family: "gill-sans-nova", sans-serif;
   font-size: 15px;
   font-weight: 600;
   color: #000;
+}
+
+.fa-solid.fa-dice-d20:before,
+.fas.fa-dice-d20:before {
+  content: "\f6cd";
+}
+
+.far.fa-dice-d20:before {
+  content: "\f6cd";
 }
 
 .grid,

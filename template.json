@@ -747,6 +747,12 @@
 				"dtype": "String",
 				"label": "Metaowner",
 				"value": null
+			},
+			"secret-notes-narrator": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Secret Narrator Notes",
+				"value": "This is my favorite Human"
 			}
 		},
 		"Extradimensional": {
@@ -756,6 +762,12 @@
 				"dtype": "String",
 				"label": "Metaowner",
 				"value": null
+			},
+			"secret-notes-narrator": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Secret Narrator Notes",
+				"value": "This is my favorite Extradimensional"
 			}
 		},
 		"Extraterrestrial": {
@@ -765,6 +777,12 @@
 				"dtype": "String",
 				"label": "Metaowner",
 				"value": null
+			},
+			"secret-notes-narrator": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Secret Narrator Notes",
+				"value": "This is my favorite Extraterrestrial"
 			}
 		},
 		"Metanthrope": {
@@ -774,6 +792,12 @@
 				"dtype": "String",
 				"label": "Metaowner",
 				"value": null
+			},
+			"secret-notes-narrator": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Secret Narrator Notes",
+				"value": "This is my favorite Metanthrope"
 			}
 		},
 		"Protagonist": {
@@ -810,6 +834,12 @@
 				"dtype": "String",
 				"label": "Metaowner",
 				"value": null
+			},
+			"secret-notes-narrator": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Secret Narrator Notes",
+				"value": "This is my favorite Animal"
 			}
 		},
 		"MetaTherion": {
@@ -819,6 +849,12 @@
 				"dtype": "String",
 				"label": "Metaowner",
 				"value": null
+			},
+			"secret-notes-narrator": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Secret Narrator Notes",
+				"value": "This is my favorite Metatherion"
 			}
 		},
 		"Artificial": {
@@ -828,6 +864,12 @@
 				"dtype": "String",
 				"label": "Metaowner",
 				"value": null
+			},
+			"secret-notes-narrator": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Secret Narrator Notes",
+				"value": "This is my favorite Artificial"
 			}
 		},
 		"Animated-Plant": {
@@ -837,6 +879,12 @@
 				"dtype": "String",
 				"label": "Metaowner",
 				"value": null
+			},
+			"secret-notes-narrator": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Secret Narrator Notes",
+				"value": "This is my favorite Animated Plant"
 			}
 		},
 		"Animated-Cadaver": {
@@ -846,6 +894,12 @@
 				"dtype": "String",
 				"label": "Metaowner",
 				"value": null
+			},
+			"secret-notes-narrator": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Secret Narrator Notes",
+				"value": "This is my favorite Animated Cadaver"
 			}
 		},
 		"Vehicle": {
@@ -855,6 +909,12 @@
 				"dtype": "String",
 				"label": "Metaowner",
 				"value": null
+			},
+			"secret-notes-narrator": {
+				"type": "text",
+				"dtype": "String",
+				"label": "Secret Narrator Notes",
+				"value": "This is my favorite Vehicle"
 			}
 		}
 	},
