@@ -1331,6 +1331,7 @@
 						},
 						"type": "number",
 						"dtype": "Number",
+						"isHalf": false,
 						"Base": 0,
 						"Dice": 0
 					},

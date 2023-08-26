@@ -20,6 +20,7 @@
  * Rolld10(actor, "Damage", true, 3, "Weapon Name");
  */
 export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", baseNumber = 0, isHalf = false) {
+	console.log("Metanthropes RPG System | Rolld10 | Engaged for", actor.name + "'s", what, "Destiny Reroll allowed?", destinyReRoll, "how many d10s:", dice, "item:", itemName, "base:", baseNumber, "is d10/2?", isHalf);	
 	//? Checking if actor has Metapowers that affect the explosive dice
 	let explosiveDice = "x10";
 	let rollTotal;
@@ -35,7 +36,7 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 	} else {
 		rolld10 = await new Roll(`${dice}d10${explosiveDice}`).evaluate({ async: true });
 	}
-	if (isHalf === true) {
+	if (isHalf) {
 		rollTotal = Math.ceil(rolld10.total / 2);
 	} else {
 		rollTotal = rolld10.total;
@@ -44,13 +45,13 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 	let message = null;
 	if (itemName) {
 		if (baseNumber > 0) {
-			if (isHalf === true) {
-				message = `${actor.name} rolls for ${itemName}'s ${what} with (${dice}d10 + ${baseNumber})/2 and gets a total of ${rollTotal}.<br>`;
+			if (isHalf) {
+				message = `${actor.name} rolls for ${itemName}'s ${what} with (${dice}d10)/2 + ${baseNumber} and gets a total of ${rollTotal}.<br>`;
 			} else {
 				message = `${actor.name} rolls for ${itemName}'s ${what} with ${dice}d10 + ${baseNumber} and gets a total of ${rollTotal}.<br>`;
 			}
 		} else {
-			if (isHalf === true) {
+			if (isHalf) {
 				message = `${actor.name} rolls for ${itemName}'s ${what} with (${dice}d10)/2 and gets a total of ${rollTotal}.<br>`;
 			} else {
 				message = `${actor.name} rolls for ${itemName}'s ${what} with ${dice}d10 and gets a total of ${rollTotal}.<br>`;
@@ -58,13 +59,13 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 		}
 	} else {
 		if (baseNumber > 0) {
-			if (isHalf === true) {
-				message = `${actor.name} rolls for ${what} with (${dice}d10 + ${baseNumber})/2 and gets a total of ${rollTotal}.<br>`;
+			if (isHalf) {
+				message = `${actor.name} rolls for ${what} with (${dice}d10)/2 + ${baseNumber} and gets a total of ${rollTotal}.<br>`;
 			} else {
 				message = `${actor.name} rolls for ${what} with ${dice}d10 + ${baseNumber} and gets a total of ${rollTotal}.<br>`;
 			}
 		} else {
-			if (isHalf === true) {
+			if (isHalf) {
 				message = `${actor.name} rolls for ${what} with (${dice}d10)/2 and gets a total of ${rollTotal}.<br>`;
 			} else {
 				message = `${actor.name} rolls for ${what} with ${dice}d10 and gets a total of ${rollTotal}.<br>`;
@@ -91,6 +92,7 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 		rollMode: game.settings.get("core", "rollMode"),
 		flags: { "metanthropes-system": { actoruuid: actor.uuid } },
 	});
+	console.log("Metanthropes RPG System | Rolld10 | Finished for", actor.name + "'s", what);	
 	//! doing a refresh during actor creation causes the actor window to come in focus, so disabling it for now
 	//	//? Refresh the actor sheet if it's open
 	//	const sheet = actor.sheet;

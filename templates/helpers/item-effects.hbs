@@ -74,18 +74,29 @@
 					value="{{system.Effects.Special.Base}}" data-dtype="{{system.Effects.Special.dtype}}" /> Base +
 				<input type="{{system.Effects.Special.type}}" name="system.Effects.Special.Dice"
 					value="{{system.Effects.Special.Dice}}" data-dtype="{{system.Effects.Special.dtype}}" />d10
+				<input type="checkbox" name="system.Effects.Special.isHalf" value="{{system.Effects.Special.isHalf}}"
+					{{#if system.Effects.Special.isHalf}}checked{{/if}} data-dtype="Boolean" /> d10/2
 			{{else}}
 				{{system.Effects.Special.SpecialDiceName.value}}:
 				<span class="resource">
 					{{#if (and system.Effects.Special.Dice (not (or (eq system.Effects.Special.Dice null) (eq system.Effects.Special.Dice 0))))}}
-						{{system.Effects.Special.Dice}}d10
+						{{system.Effects.Special.Dice}}
+						{{#if system.Effects.Special.isHalf}}
+							d10/2
+						{{else}}
+							d10
+						{{/if}}
 					{{/if}}
+
 					{{#if (and system.Effects.Special.Base (not (or (eq system.Effects.Special.Dice null) (eq system.Effects.Special.Dice 0))))}}
-						+ {{/if}}
+						+
+					{{/if}}
+
 					{{#if (and system.Effects.Special.Base (not (or (eq system.Effects.Special.Base null) (eq system.Effects.Special.Base 0))))}}
 						{{system.Effects.Special.Base}} Base
 					{{/if}}
 				</span>
+
 			{{/if}}
 		</div><br>
 	{{/if}}
