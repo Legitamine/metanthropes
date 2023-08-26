@@ -48,19 +48,19 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 	let diseasePenalty = 0;
 	//? Check for Core Conditions
 		//? Check for Hunger - if we have hunger, we must beat the hunger roll before doing our action
-		const hunger = actor.system.Characteristics.Mind.CoreConditions.Hunger;
-		if (hunger > 0) {
-			try {
-				const hungerRoll = await new Roll("1d100").evaluate({ async: true });
-				const hungerRollResult = hungerRoll.total;
-				if (hungerRollResult > hunger) {
-					ui.notifications.error(actor.name + " is too hungry and can't act!");
-					return;
-				}
-			} catch (error) {
-				console.log("Metanthropes RPG System | MetaRoll | Hunger Roll Error:", error);
-			}
-		}
+		//	const hunger = actor.system.Characteristics.Mind.CoreConditions.Hunger;
+		//	if (hunger > 0) {
+		//		try {
+		//			const hungerRoll = await new Roll("1d100").evaluate({ async: true });
+		//			const hungerRollResult = hungerRoll.total;
+		//			if (hungerRollResult > hunger) {
+		//				ui.notifications.error(actor.name + " is too hungry and can't act!");
+		//				return;
+		//			}
+		//		} catch (error) {
+		//			console.log("Metanthropes RPG System | MetaRoll | Hunger Roll Error:", error);
+		//		}
+		//	}
 		//? Pain is passed to MetaEvaluate
 		const pain = actor.system.Characteristics.Mind.CoreConditions.Pain;
 		//? Check for Fatigue

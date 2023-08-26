@@ -139,11 +139,32 @@ export async function MetaEvaluate(
 	if (multiAction < 0) {
 		message += `, a Multi-Action reduction of ${multiAction}%`;
 	}
-	//? Print the result of the roll
-	message += ` and the result is ${rollResult}.<br><br>It is a ${result}`;
-	//? if we have Pain condition, our results are lowered by an equal amount - in case of Criticals we ignore Pain
-	if (!criticalFailure && !criticalSuccess && pain > 0) {
-		message += ` and it's being further reduced by Pain * ${pain}`;
+	message += ` and the result is ${rollResult}.<br><br>`;
+	//? if we have Pain condition, our succesfull (only) results are lowered by an equal amount - in case of Criticals we ignore Pain
+	let painEffect = levelsOfSuccess - pain;
+	if (resultLevel > 0 && !criticalSuccess && pain > 0) {
+		console.log("Metanthropes RPG System | MetaEvaluate | Pain Effect:", painEffect);
+		if (painEffect < 0) {
+			result = "Failure 🟥";
+			resultLevel = 0;
+			levelsOfFailure = -painEffect;
+			levelsOfSuccess = 0;
+			message += `It was a Success, turned into a ${result}, because of Pain * ${pain}`;
+			console.log("Metanthropes RPG System | MetaEvaluate | Pain Effect<0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
+		}
+		if (painEffect = 0) {
+			message += `It is still a ${result}, besides being affected by Pain * ${pain}`;
+			levelsOfSuccess = 0;
+			console.log("Metanthropes RPG System | MetaEvaluate | Pain Effect=0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
+		}
+		if (painEffect > 0) {
+			message += `It is a ${result}, reduced by Pain * ${pain}`;
+			levelsOfSuccess = painEffect;
+			console.log("Metanthropes RPG System | MetaEvaluate | Pain Effect>0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
+		}
+	} else {
+		//? Print the result of the roll
+		message += `It is a ${result}`;
 	}
 	//? if we have levels of success or failure, add them to the message
 	if (levelsOfSuccess > 0) {
