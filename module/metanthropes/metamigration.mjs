@@ -4,8 +4,8 @@ export async function metaMigrateData() {
 	console.log("Metanthropes RPG System | Migrating Items to version", currentVersion);
 	const worldItems = game.items.contents
 	for (let item of worldItems) {
-		console.log("Metanthropes RPG System | Migrating Item:", item.name, item);
 		if (item.system.Execution.ActionSlot.label === "⏱ Action") {
+			console.log("Metanthropes RPG System | Migrating Item:", item.name, item);
 			await item.update({ "system.Execution.ActionSlot.label": "⏱ Activation" });
 		}
 	}

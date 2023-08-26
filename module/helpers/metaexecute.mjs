@@ -79,6 +79,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 	let specialName = metaItemData.system.Effects.Special.SpecialDiceName.value;
 	let specialBase = metaItemData.system.Effects.Special.Base;
 	let specialDice = metaItemData.system.Effects.Special.Dice;
+	let specialIsHalf = metaItemData.system.Effects.Special.isHalf;
 	let buffsApplied = metaItemData.system.Effects.Buffs.Applied.value;
 	let buffsRemoved = metaItemData.system.Effects.Buffs.Removed.value;
 	let conditionsApplied = metaItemData.system.Effects.Conditions.Applied.value;
@@ -133,7 +134,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		// space intentionally left blank
 		//? Check if activation was successfull
 		if (rollResult.Metapower <= 0) {
-			flavorMessage = `Fails to Activate ${itemName}!`;
+			flavorMessage = `Fails to Activate ${itemName}!<br><br>`;
 			executeRoll = false;
 		} else {
 			//? Activate Metapower
@@ -152,13 +153,13 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		if (rollResult.Possession <= 0) {
 			executeRoll = false;
 			if (attackType === "Melee") {
-				flavorMessage = `Fails to connect with their ${itemName}!<br>`;
+				flavorMessage = `Fails to connect with their ${itemName}!<br><br>`;
 			} else if (attackType === "Projectile") {
-				flavorMessage = `Throws their ${itemName} in the air!<br>`;
+				flavorMessage = `Throws their ${itemName} in the air!<br><br>`;
 			} else if (attackType === "Firearm") {
-				flavorMessage = `Fires their ${itemName} and hits nothing!<br>`;
+				flavorMessage = `Fires their ${itemName} and hits nothing!<br><br>`;
 			} else {
-				flavorMessage = `Fails to use ${itemName}!<br>`;
+				flavorMessage = `Fails to use ${itemName}!<br><br>`;
 			}
 		} else {
 			executeRoll = true;
@@ -339,34 +340,50 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			<br></div>`;
 		}
 		if (healingBase > 0 && healingDice > 0) {
-			healingMessage = `<br>💞: [[${healingDice}d10${explosiveDice}+${healingBase}[Healing]]]<br>`;
+			healingMessage = `💞: [[${healingDice}d10${explosiveDice}+${healingBase}[Healing]]]<br>`;
 			healingRerollButton = `<div class="hide-button hidden"><br>
 			<button class="metanthropes-secondary-chat-button healing rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="💞 Healing" data-dice="${healingDice}" data-destiny-re-roll="true" data-base-number="${healingBase}">
 			🤞 to reroll 💞 Healing</button>
 			<br></div>`;
 		} else if (healingBase > 0) {
-			healingMessage = `<br>💞: [[${healingBase}[Healing]]]<br>`;
+			healingMessage = `💞: [[${healingBase}[Healing]]]<br>`;
 		} else if (healingDice > 0) {
-			healingMessage = `<br>💞: [[${healingDice}d10${explosiveDice}[Healing]]]<br>`;
+			healingMessage = `💞: [[${healingDice}d10${explosiveDice}[Healing]]]<br>`;
 			healingRerollButton = `<div class="hide-button hidden"><br>
 			<button class="metanthropes-secondary-chat-button healing rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="💞 Healing" data-dice="${healingDice}" data-destiny-re-roll="true">
 			🤞 to reroll 💞 Healing</button>
 			<br></div>`;
 		}
 		if (specialBase > 0 && specialDice > 0) {
-			specialMessage = `<br>${specialName}: [[${specialDice}d10${explosiveDice}+${specialBase}]]<br>`;
-			specialRerollButton = `<div class="hide-button hidden"><br>
+			if (!specialIsHalf) {
+				specialMessage = `${specialName}: [[${specialDice}d10${explosiveDice}+${specialBase}]]<br>`;
+				specialRerollButton = `<div class="hide-button hidden"><br>
 			<button class="metanthropes-secondary-chat-button special rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="${specialName}" data-dice="${specialDice}" data-destiny-re-roll="true" data-base-number="${specialBase}">
 			🤞 to reroll ${specialName}</button>
 			<br></div>`;
+			} else if (specialIsHalf) {
+				specialMessage = `${specialName}: [[ceil(${specialDice}d10${explosiveDice}/2)+${specialBase}]]<br>`;
+				specialRerollButton = `<div class="hide-button hidden"><br>
+			<button class="metanthropes-secondary-chat-button special rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="${specialName}" data-dice="${specialDice}" data-destiny-re-roll="true" data-base-number="${specialBase}" data-is-half="true">
+			🤞 to reroll ${specialName}</button>
+			<br></div>`;
+			}
 		} else if (specialBase > 0) {
-			specialMessage = `<br>${specialName}: [[${specialBase}]]<br><br>`;
+			specialMessage = `${specialName}: [[${specialBase}]]<br><br>`;
 		} else if (specialDice > 0) {
-			specialMessage = `<br>${specialName}: [[${specialDice}d10${explosiveDice}]]<br>`;
-			specialRerollButton = `<div class="hide-button hidden"><br>
+			if (!specialIsHalf) {
+				specialMessage = `${specialName}: [[${specialDice}d10${explosiveDice}]]<br>`;
+				specialRerollButton = `<div class="hide-button hidden"><br>
 			<button class="metanthropes-secondary-chat-button special rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="${specialName}" data-dice="${specialDice}" data-destiny-re-roll="true">
 			🤞 to reroll ${specialName}</button>
 			<br></div>`;
+			} else if (specialIsHalf) {
+				specialMessage = `${specialName}: [[ceil(${specialDice}d10${explosiveDice}/2)]]<br>`;
+				specialRerollButton = `<div class="hide-button hidden"><br>
+			<button class="metanthropes-secondary-chat-button special rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="${specialName}" data-dice="${specialDice}" data-destiny-re-roll="true" data-is-half="true">
+			🤞 to reroll ${specialName}</button>
+			<br></div>`;
+			}
 		}
 		if (buffsApplied) {
 			buffsAppliedMessage = `🛡️ ➕: ` + buffsApplied + `<br>`;
@@ -388,7 +405,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		if (areaEffectMessage) {
 			contentMessage += areaEffectMessage;
 		}
-		contentMessage += `<div><br>${effectDescription}<br></div>`;
+		contentMessage += `<br>${effectDescription}<br>`;
 		if (damageCosmicMessage) {
 			contentMessage += damageCosmicMessage;
 		}
