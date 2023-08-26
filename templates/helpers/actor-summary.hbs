@@ -1,41 +1,75 @@
 <!-- I would need to refactor the db to include titles to do this properly -->
 <div class="summary">
-	<div class="flexrow">
+	<div class="layout-container-grid2x2">
 		<div class="layout-container-summary style-container-summary">
-			<div title="Each Metanthrope Character begins the game with one level in their first Metapower, called Prime Metapower. No other additional Metapower unlocked can be higher-level than the level of the Prime Metapower. The Classification and the Energy type of the Protagonist's Prime Metapower will influence the Experience cost of unlocking and advancing other Metapowers">Prime Ⓜ️ Metapower: {{system.entermeta.primemetapower.value}}
+			<div class="resource-label"
+				title="Each Metanthrope Character begins the game with one level in their first Metapower, called Prime Metapower. No other additional Metapower unlocked can be higher-level than the level of the Prime Metapower. The Classification and the Energy type of the Protagonist's Prime Metapower will influence the Experience cost of unlocking and advancing other Metapowers">
+				Prime Ⓜ️ Metapower: <span class="resource">{{system.entermeta.primemetapower.value}}</span>
 			</div>
-			<div title="The Metamorphosis is a pivotal moment that defines how, when, why, and under what circumstances your Protagonist crosses the threshold from being a human to becoming a Metanthrope">Metamorphosis: {{system.entermeta.metamorphosis.value}}
+			<div class="resource-label" title="{{system.entermeta.metamorphosis.title}}">
+				{{system.entermeta.metamorphosis.label}}:
+				{{#with (lookup actor.system.entermeta.metamorphosis.options actor.system.entermeta.metamorphosis.value) as |metamorphosisOption|}}
+					<span class="resource" title="{{metamorphosisOption.title}}">
+						{{metamorphosisOption.label}}
+					</span>
+				{{/with}}
 			</div>
-			<div title="A Character's Background is who or what that Character used to be prior to becoming a Metanthrope">Background: {{system.Vital.background.value}}
+			<div class="resource-label"
+				title="A Character's Background is who or what that Character used to be prior to becoming a Metanthrope">
+				Background: <span class="resource">{{system.Vital.background.value}}</span>
 			</div>
-			<div title="Arc represents the fundamental concept, behavioral patterns, goals, daily agenda, and core beliefs of a Metanthrope. It defines how your Protagonist acts in various situations, establishes their hierarchies during conflicts, determines the ideologies they support in dialogues, and guides their use of Metapowers to achieve their objectives. The Arc embodies the archetype your Protagonist represents">Arc: {{system.Vital.arc.value}}
+			<div class="resource-label" title="{{system.Vital.arc.title}}">
+				{{system.Vital.arc.label}}:
+				{{#with (lookup actor.system.Vital.arc.options actor.system.Vital.arc.value) as |arcOption|}}
+					<span class="resource" title="{{arcOption.title}}">
+						{{arcOption.label}}
+					</span>
+				{{/with}}
 			</div>
-			<div title="Regression is a fundamental aspect of a Metanthrope's existence, representing their connection to their human origins. It encompasses the reversion to human behaviors, quirks, and attachments that persist despite their ascension. Regressions can manifest as unique knacks, idiosyncrasies, nostalgic attachments, or self-imposed restrictions. It is important to recognize that Regression is not considered a weakness, as it can be a source of strength, adding depth, drama, complexity, and inner conflict to a Metanthrope's roleplay. Every Metanthrope possesses a Regression, whether they openly embrace it, keep it hidden, or are unaware of its existence">Regression: {{system.entermeta.regression.value}}
+			<div class="resource-label" title="{{system.entermeta.regression.title}}">
+				{{system.entermeta.regression.label}}:
+				{{#with (lookup actor.system.entermeta.regression.options actor.system.entermeta.regression.value) as |regressionOption|}}
+					<span class="resource" title="{{regressionOption.title}}">
+						{{regressionOption.label}}
+					</span>
+				{{/with}}
 			</div>
 		</div>
 		<div class="layout-container-summary style-container-summary">
-			<div>Gender: {{system.humanoids.gender.value}}
+			<div class="resource-label">Gender: <span class="resource">{{system.humanoids.gender.value}}</span>
 			</div>
-			<div>Age: {{system.Vital.age.value}} yr
+			<div class="resource-label">Age: <span class="resource">{{system.Vital.age.value}} yr</span>
 			</div>
-			<div>Height: {{system.humanoids.height.value}} m
+			<div class="resource-label">Height: <span class="resource">{{system.humanoids.height.value}} m</span>
 			</div>
-			<div>Weight: {{system.humanoids.weight.value}} kg
+			<div class="resource-label">Weight: <span class="resource">{{system.humanoids.weight.value}} kg</span>
 			</div>
-			<div>Place of Birth: {{system.humanoids.birthplace.value}}
+			<div class="resource-label">Place of Birth: <span
+					class="resource">{{system.humanoids.birthplace.value}}</span>
 			</div>
 		</div>
 		<div class="layout-container-summary style-container-summary">
-			<div>Narrator: {{system.entermeta.narrator.value}}
+			<div class="resource-label">Narrator: <span class="resource">{{system.entermeta.narrator.value}}</span>
 			</div>
-			<div>Saga: {{system.entermeta.sagas.value}}
+			<div class="resource-label">Saga: <span class="resource">{{system.entermeta.sagas.value}}</span>
 			</div>
-			<div>Sessions Played: {{system.entermeta.sessions.value}}
+			<div class="resource-label">Sessions Played: <span
+					class="resource">{{system.entermeta.sessions.value}}</span>
 			</div>
-			<div>Coalition: {{system.entermeta.coalition.value}}
+			<div class="resource-label">Coalition: <span class="resource">{{system.entermeta.coalition.value}}</span>
 			</div>
-			<div>Faction: {{system.entermeta.faction.value}}
+			<div class="resource-label">Faction: <span class="resource">{{system.entermeta.faction.value}}</span>
 			</div>
 		</div>
+		<div class="resource-label">
+			<img src="{{actor.img}}" title="{{actor.name}}" height="145" width="110"
+				style="border: none; border-radius: 15px" />
+		</div>
+	</div>
+	<div>
+		<h3>{{system.physical.Description.label}}</h3>
+	</div>
+	<div class="layout-editor style-editor">
+		{{editor system.physical.Description.value target="system.physical.Description.value" button=true editable=true}}
 	</div>
 </div>

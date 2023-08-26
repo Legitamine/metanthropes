@@ -41,6 +41,14 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		ui.notifications.error(actor.name + " can't Roll " + stat + " with a Current value of 0!");
 		return;
 	}
+	//? Check for always active item activation
+	if (itemName) {
+		const actionSlot = actor.items.getName(itemName).system.Execution.ActionSlot.value;
+		if (actionSlot === "Always Active") {
+			ui.notifications.info(actor.name + "'s " + itemName + " is always active, no need to roll!");
+			return;
+		}
+	}
 	//* Check for Bonuses
 	// space intentionally left blank
 	//* Check for Penalties

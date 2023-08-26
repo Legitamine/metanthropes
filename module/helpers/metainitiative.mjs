@@ -23,7 +23,6 @@ export async function MetaInitiative(combatant) {
 	);
 	//? Check to see if this is a linked actor
 	let actor = null;
-	//! not working for v10
 	if (combatant.token.actorLink) {
 		//? If it is, get data directly from the actor document
 		let actorId = combatant.actorId;

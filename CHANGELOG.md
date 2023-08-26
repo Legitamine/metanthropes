@@ -28,10 +28,12 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 ### Added:
 -   Fully automated Stat, Initiative, Metapower, Possession and Strike Rolls. Right clicking allows the player to set custom options
 -   New approach to rolling a new Protagonist. 10 steps designed to guide the player throughout the creation process
--   New tooltips (mouse over to see information) for the majority of the UI elements
+-   New tooltips (mouse over to see information) for the majority of the UI elements of the Character sheet
 -	New Protagonist Character Sheet sections: Notes & Summary
 -   Movement Score is now automatically calculated based on Speed, Weight and Size and is reflected in the grid when you move your character. Green is for normal movement, Yellow for Additional Movement, Orange for Sprint and Red for no more movement. (requires Drag Ruler module)
 -   Possessions now may require a Perk to be a certain Level and will add a -10% Penalty to the roll for each Level missing
+-   Activations for Metapowers and Possessions that are 'Always Active', now properly prevent you from rolling the dice and display an information message in the client instead
+-   Pain now is automatically calculated, lowering your levels of success and informing you about it in the chat
 -	Non-linked Actors are now available to Narrators
 -   Introduced Narrator's Toolbox: a set of Narrator-only macros designed to help with the game flow and automate the end of Scene/Session/Arc player awards
 -   New Supported module: Carousel Combat Tracker (PR pending)
@@ -42,6 +44,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 -	Revamped the Items sheets (Metapowers & Possessions) to be more intuitive and take less screen 'real estate'
 -   Changed Destiny Reroll button in chat, to now only be visible to the owner of that Character and the Narrator
 -   Protagonists and Metanthropes are now Actor-Linked to their tokens, all other Actor types are not linked by default
+-   All built-in d20 references have been changed to d10 dice
 -   Foundry version 11 is now required
 ### Fixed:
 -   Fixed a known issue with the Metapower & Possession Sheets not displaying Stat Scores correctly after rolling

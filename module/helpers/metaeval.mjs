@@ -151,13 +151,11 @@ export async function MetaEvaluate(
 			levelsOfSuccess = 0;
 			message += `It was a Success, turned into a ${result}, because of Pain * ${pain}`;
 			console.log("Metanthropes RPG System | MetaEvaluate | Pain Effect<0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
-		}
-		if (painEffect = 0) {
+		} else if (painEffect === 0) {
 			message += `It is still a ${result}, besides being affected by Pain * ${pain}`;
 			levelsOfSuccess = 0;
 			console.log("Metanthropes RPG System | MetaEvaluate | Pain Effect=0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
-		}
-		if (painEffect > 0) {
+		} else if (painEffect > 0) {
 			message += `It is a ${result}, reduced by Pain * ${pain}`;
 			levelsOfSuccess = painEffect;
 			console.log("Metanthropes RPG System | MetaEvaluate | Pain Effect>0", painEffect, "levelsOfSuccess:", levelsOfSuccess);

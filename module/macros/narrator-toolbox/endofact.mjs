@@ -32,8 +32,12 @@ if (game.user.isGM) {
 							let freePerks = parseInt(actor.system.Perks.Details.Starting.value);
 							let awardPerks = parseInt(html.find(`[name="awardPerks-${actor.id}"]`).val());
 							let newFreePerks = freePerks + awardPerks;
+							let newArc = html.find(`[name="newArc-${actor.id}"]`).val();
+							let newRegression = html.find(`[name="newRegression-${actor.id}"]`).val();
 							await actor.update({
 								"system.Perks.Details.Starting.value": newFreePerks,
+								"system.Vital.arc.value": newArc,
+								"system.entermeta.regression.value": newRegression,
 							});
 						}
 					},
