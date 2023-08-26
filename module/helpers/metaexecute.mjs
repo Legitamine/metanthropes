@@ -137,7 +137,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			executeRoll = false;
 		} else {
 			//? Activate Metapower
-			flavorMessage = `Activates Ⓜ️ Metapower: ${itemName}.<br><br>`;
+			flavorMessage = `Activates ${itemName}.<br><br>`;
 			executeRoll = true;
 		}
 	} else if (action === "Possession") {
@@ -388,7 +388,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		if (areaEffectMessage) {
 			contentMessage += areaEffectMessage;
 		}
-		contentMessage += `<div><br>${effectDescription}<br><br></div>`;
+		contentMessage += `<div><br>${effectDescription}<br></div>`;
 		if (damageCosmicMessage) {
 			contentMessage += damageCosmicMessage;
 		}

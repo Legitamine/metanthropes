@@ -7,6 +7,7 @@ if (game.user.isGM) {
             <label>Protagonist Name: ${actor.name}</label>
 			<div>New Protagonist Name: <input type="text" name="newName-${actor.id}" value="${actor.name}"></div>
 			<div>New Player Name: <input type="text" name="newPlayer-${actor.id}" value="${actor.system.metaowner.value}"></div>
+			<div>New Gender: <input type="text" name="newGender-${actor.id}" value="${actor.system.humanoids.gender.value}"></div>
 			<div>New Life Current: <input type="number" dtype="Number" name="life-${actor.id}" value="${actor.system.Vital.Life.value}"></div>
             <div>New Total Experience: <input type="number" name="totalExperience-${actor.id}" value="${actor.system.Vital.Experience.Total}"></div>
             <div>New Current Destiny: <input type="number" name="currentDestiny-${actor.id}" value="${actor.system.Vital.Destiny.value}"></div>
@@ -34,10 +35,12 @@ if (game.user.isGM) {
 							let maxDestiny = currentDestiny;
 							let newName = html.find(`[name="newName-${actor.id}"]`).val();
 							let newPlayer = html.find(`[name="newPlayer-${actor.id}"]`).val();
+							let newGender = html.find(`[name="newGender-${actor.id}"]`).val();
 							let life = html.find(`[name="life-${actor.id}"]`).val();
 							await actor.update({
 								name: newName,
 								"system.metaowner.value": newPlayer,
+								"system.humanoids.gender.value": newGender,
 								"system.Vital.Experience.Total": totalExperience,
 								"system.Vital.Destiny.value": currentDestiny,
 								"system.Vital.Destiny.max": maxDestiny,

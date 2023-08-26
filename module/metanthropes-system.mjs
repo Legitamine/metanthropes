@@ -18,6 +18,7 @@ import { MetaEvaluateReRoll } from "./helpers/metaeval.mjs";
 import { Rolld10ReRoll } from "./helpers/extrasroll.mjs";
 import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
 import { MetaExecute } from "./helpers/metaexecute.mjs";
+import { metaMigrateData } from "./metanthropes/metamigration.mjs";
 //? Handlebars helpers
 //! Supposedly Foundry includes its own select helper, but I couldn't get it to work properly.
 Handlebars.registerHelper("selected", function (option, value) {
@@ -28,8 +29,8 @@ Handlebars.registerHelper("join", function (array, separator) {
 	return array.join(separator);
 });
 //? Used to check if a value is an array
-Handlebars.registerHelper("isArray", function(value) {
-    return Array.isArray(value);
+Handlebars.registerHelper("isArray", function (value) {
+	return Array.isArray(value);
 });
 //! Deprecated - I don't think I'm using this anymore, but I'm not sure
 // //? Handlebars helper for displaying actor values on the item sheets.
@@ -160,6 +161,10 @@ function rollItemMacro(itemUuid) {
 Hooks.once("ready", async function () {
 	//? Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
 	Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
+	//* Migration section
+	console.log("Metanthropes RPG System | Starting Migration");
+	await metaMigrateData();
+	console.log("Metanthropes RPG System | Finished Migration");
 	//? Add support for Moulinette: Free modules with artwork & sounds is available for indexing by Moulinette
 	if (game.moulinette) {
 		game.moulinette.sources.push({

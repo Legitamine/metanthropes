@@ -1130,7 +1130,7 @@
 					"ActionSlot": {
 						"type": "text",
 						"dtype": "String",
-						"label": "⏱ Action",
+						"label": "⏱ Activation",
 						"value": null,
 						"options": [
 							"Always Active",

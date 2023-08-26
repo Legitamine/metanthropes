@@ -10,6 +10,32 @@
 import { Rolld10 } from "../helpers/extrasroll.mjs";
 //? Import list of 100 Metapowers
 import { MetapowersList } from "./metapowerlist.mjs";
+//* Finalizes a Premade Protagonist for the Introduction sessions
+export async function FinalizePremadeProtagonist(actor) {
+	try {
+		await Rolld10(actor, "Destiny", false, 1);
+		let playerName = game.user.name;
+		const NewDestiny = actor.getFlag("metanthropes-system", "lastrolled").rolld10;
+		await actor.update({ "system.Vital.Destiny.value": Number(NewDestiny) });
+		await actor.update({ "system.Vital.Destiny.max": Number(NewDestiny) });
+		console.log(
+			`Metanthropes RPG System | New Actor | ${playerName}'s ${actor.type} Starting Destiny: ${NewDestiny}`
+		);
+		await NewActorSummary(actor);
+		await NewActorFinish(actor);
+	} catch (error) {
+		console.log(
+			"Metanthropes RPG System | Finalize Pre-made Protagonist | Finalize Pre-made Protagonist Error:",
+			error
+		);
+	} finally {
+		console.log(
+			"Metanthropes RPG System | Finalize Pre-made Protagonist | Finalize Pre-made Protagonist Creation Complete for",
+			actor.type,
+			actor.name
+		);
+	}
+}
 //* New Actor Function
 export async function NewActor(actor) {
 	try {
@@ -32,7 +58,7 @@ export async function NewActor(actor) {
 			actor.type !== "Animal" &&
 			actor.type !== "Animated-Cadaver"
 		) {
-		await NewActorRoleplay(actor);
+			await NewActorRoleplay(actor);
 		}
 		await NewActorProgression(actor);
 		await NewActorSummary(actor);

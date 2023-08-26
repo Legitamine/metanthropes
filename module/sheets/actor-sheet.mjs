@@ -9,6 +9,8 @@
 import { MetaRoll } from "../metanthropes/metaroll.mjs";
 //? Import New Actor
 import { NewActor } from "../metanthropes/newactor.mjs";
+//? Import Finalize Premade Protagonist
+import { FinalizePremadeProtagonist } from "../metanthropes/newactor.mjs";
 export class MetanthropesActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
@@ -145,6 +147,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 		html.find(".style-pos-rolls").on("contextmenu", this._onCustomRoll.bind(this));
 		//? New Actor Logic
 		html.find(".new-actor").click(this._onNewActor.bind(this));
+		//? Finalize Premade Protagonist
+		html.find(".finalize-premade-protagonist").click(this._onFinalizePremadeProtagonist.bind(this));
 		// Drag events for macros.
 		if (this.actor.isOwner) {
 			let handler = (ev) => this._onDragStart(ev);
@@ -265,5 +269,11 @@ export class MetanthropesActorSheet extends ActorSheet {
 		event.preventDefault();
 		const actor = this.actor;
 		await NewActor(actor);
+	}
+	//? Finalize Premade Protagonist
+	async _onFinalizePremadeProtagonist(event) {
+		event.preventDefault();
+		const actor = this.actor;
+		await FinalizePremadeProtagonist(actor);
 	}
 }
