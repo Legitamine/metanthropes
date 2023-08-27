@@ -55,6 +55,9 @@ export class MetanthropesActor extends Actor {
 		if (data.type == "Protagonist" || data.type == "Metanthrope") {
 			createData.prototypeToken.actorLink = true;
 		}
+		if (data.type == "Protoganist" && data.name == "Duplicate") {
+			createData.prototypeToken.actorLink = false;
+		}
 		this.updateSource(createData);
 	}
 	/** @override */
@@ -175,10 +178,19 @@ export class MetanthropesActor extends Actor {
 				}
 			}
 		}
-		parseInt(
-			(systemData.Vital.Life.max =
-				Number(systemData.Vital.Life.Initial) + Number(systemData.Characteristics.Body.Stats.Endurance.Roll))
-		);
+		if (this.name !== "Duplicate") {
+			parseInt(
+				(systemData.Vital.Life.max =
+					Number(systemData.Vital.Life.Initial) + Number(systemData.Characteristics.Body.Stats.Endurance.Roll))
+			);
+		} else {
+			const duplicateMaxLife = this.getFlag("metanthropes-system", "duplicateself").maxlife;
+			parseInt((systemData.Vital.Life.max = Number(duplicateMaxLife)));
+			const duplicateCurrentLife = systemData.Vital.Life.value;
+			if (duplicateCurrentLife > duplicateMaxLife) {
+				parseInt((systemData.Vital.Life.value = Number(duplicateMaxLife)));
+			}
+		}
 		// console.log("Metanthropes RPG System | Actor Prep |", actorData.name+"'s", "New Life Maximum:", systemData.Vital.Life.max);
 		parseInt((systemData.physical.movement.additional = Number(systemData.physical.movement.initial)));
 		parseInt((systemData.physical.movement.sprint = Number(Number(systemData.physical.movement.initial) * 5)));
@@ -282,9 +294,8 @@ export class MetanthropesActor extends Actor {
 		);
 		if (systemData.Vital.Experience.Stored < 0) {
 			ui.notifications.error(this.name + "'s Stored Experience is Negative!");
-			
+
 			// console.log("Metanthropes RPG System | Actor Prep | WARNING: Stored Experience is Negative!");
-			
 		}
 		//	console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
 		//console.log("Metanthropes RPG System |", this.type, "-", this.name, "is ready for Action!");
@@ -386,7 +397,7 @@ export class MetanthropesActor extends Actor {
 		);
 		systemData.physical.movement.value = movementvalue;
 		systemData.physical.movement.additional = movementvalue;
-		systemData.physical.movement.sprint = (movementvalue * 5);
+		systemData.physical.movement.sprint = movementvalue * 5;
 		// console.log("Metanthropes RPG System | Actor Prep | New Movement:", movementvalue, "Additional:", movementvalue, "Sprint:", movementvalue * 5);
 	}
 	getRollData() {

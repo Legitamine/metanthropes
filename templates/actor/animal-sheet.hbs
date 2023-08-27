@@ -1,5 +1,5 @@
 <form class="metanthropes {{cssClass}}" autocomplete="off">
-		<header>
+	<header>
 		<div class="layout-container-actorinfo style-container-actorinfo">
 			{{#if system.metaowner.value}}
 				<div class="layout-container-actorinfo-details">
@@ -24,8 +24,8 @@
 					</div>
 				</div>
 				<div class="layout-container-actorinfo-details">
-						<img src="{{actor.img}}" title="{{actor.name}}" height="85" width="70"
-							style="border: none; border-radius: 15px" />
+					<img src="{{actor.img}}" title="{{actor.name}}" height="85" width="70"
+						style="border: none; border-radius: 15px" />
 				</div>
 				<div>
 				</div>
@@ -39,22 +39,24 @@
 		</div>
 		<div class="layout-container-vitals style-container-vitals">
 			<div>
-				<div class="style-labels-text" title="Life represents a Character's overall health, vitality, and will to live. Metanthrope Characters have a Life total of (100 + their Endurance score). Metanthrope Characters also gain an additional +25 Life for every 5.000 Total Experience they have accumulated">
+				<div class="style-labels-text"
+					title="Life represents a Character's overall health, vitality, and will to live. Metanthrope Characters have a Life total of (100 + their Endurance score). Metanthrope Characters also gain an additional +25 Life for every 5.000 Total Experience they have accumulated">
 					❤️ Life
 					{{#if isGM}}
-					<input name="system.Vital.Life.value" type="number" value="{{system.Vital.Life.value}}"
-						data-dtype="Number" />
+						<input name="system.Vital.Life.value" type="number" value="{{system.Vital.Life.value}}"
+							data-dtype="Number" />
 					{{else}}
-					{{system.Vital.Life.value}}
+						{{system.Vital.Life.value}}
 					{{/if}}
 					/{{system.Vital.Life.max}}
 				</div>
 			</div>
 			<div>
-				<div class="style-labels-text">{{system.Vital.Experience.Label}}: {{system.Vital.Experience.Total}} Spent:
+				<div class="style-labels-text">{{system.Vital.Experience.Label}}: {{system.Vital.Experience.Total}}
+					Spent:
 					{{system.Vital.Experience.Spent}}
 					{{#if isGM}} + <input name="system.Vital.Experience.Manual" type="number"
-						value="{{system.Vital.Experience.Manual}}" data-dtype="Number" placeholder="0" /> {{/if}}
+							value="{{system.Vital.Experience.Manual}}" data-dtype="Number" placeholder="0" /> {{/if}}
 					Stored:{{#if (gte system.Vital.Experience.Stored 0)}}
 						<span class="style-cs-positive">{{system.Vital.Experience.Stored}}</span>
 					{{else}}
@@ -63,7 +65,9 @@
 				</div>
 			</div>
 			<div>
-				<div class="style-labels-text" title="Destiny (🤞) is a resource which Players can spend to reroll any roll with an undesirable outcome, activate powerful Metapowered effects, and even save their Protagonists from dying">🤞 Destiny {{system.Vital.Destiny.value}}/{{system.Vital.Destiny.max}}
+				<div class="style-labels-text"
+					title="Destiny (🤞) is a resource which Players can spend to reroll any roll with an undesirable outcome, activate powerful Metapowered effects, and even save their Protagonists from dying">
+					🤞 Destiny {{system.Vital.Destiny.value}}/{{system.Vital.Destiny.max}}
 				</div>
 			</div>
 		</div>

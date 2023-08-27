@@ -65,10 +65,15 @@ export async function MetaInitiative(combatant) {
 		actor.name + "'s Initiative with",
 		initiativeStat
 	);
-	await MetaRoll(actor, action, initiativeStat);
+	let checkResult;
+	if (actor.name !=="Duplicate") {
+		await MetaRoll(actor, action, initiativeStat);
+		checkResult = await actor.getFlag("metanthropes-system", "lastrolled").Initiative;
+	} else {
+		checkResult = -11;
+	}
 	//todo have to decide how core conditions are going to be evaluated
 	//? Update the combatant with the new initiative score
-	let checkResult = await actor.getFlag("metanthropes-system", "lastrolled").Initiative;
 	console.log(
 		"Metanthropes RPG System | MetaInitiative | MetaRoll Result for",
 		actor.name + "'s Initiative with",
@@ -106,7 +111,12 @@ export async function MetaInitiativeReRoll(event) {
 	//? Reduce Destiny.value by 1
 	currentDestiny -= 1;
 	await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-	console.log("Metanthropes RPG System | MetaInitiativeReRoll | Engaging MetaInitiative for:", actor.name + "'s", action, actorUUID);
+	console.log(
+		"Metanthropes RPG System | MetaInitiativeReRoll | Engaging MetaInitiative for:",
+		actor.name + "'s",
+		action,
+		actorUUID
+	);
 	await MetaInitiative(combatant);
 	//? Refresh the actor sheet if it's open
 	const sheet = actor.sheet;

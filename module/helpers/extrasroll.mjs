@@ -20,7 +20,21 @@
  * Rolld10(actor, "Damage", true, 3, "Weapon Name");
  */
 export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", baseNumber = 0, isHalf = false) {
-	console.log("Metanthropes RPG System | Rolld10 | Engaged for", actor.name + "'s", what, "Destiny Reroll allowed?", destinyReRoll, "how many d10s:", dice, "item:", itemName, "base:", baseNumber, "is d10/2?", isHalf);	
+	console.log(
+		"Metanthropes RPG System | Rolld10 | Engaged for",
+		actor.name + "'s",
+		what,
+		"Destiny Reroll allowed?",
+		destinyReRoll,
+		"how many d10s:",
+		dice,
+		"item:",
+		itemName,
+		"base:",
+		baseNumber,
+		"is d10/2?",
+		isHalf
+	);
 	//? Checking if actor has Metapowers that affect the explosive dice
 	let explosiveDice = "x10";
 	let rollTotal;
@@ -92,7 +106,7 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 		rollMode: game.settings.get("core", "rollMode"),
 		flags: { "metanthropes-system": { actoruuid: actor.uuid } },
 	});
-	console.log("Metanthropes RPG System | Rolld10 | Finished for", actor.name + "'s", what);	
+	console.log("Metanthropes RPG System | Rolld10 | Finished for", actor.name + "'s", what);
 	//! doing a refresh during actor creation causes the actor window to come in focus, so disabling it for now
 	//	//? Refresh the actor sheet if it's open
 	//	const sheet = actor.sheet;

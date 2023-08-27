@@ -150,15 +150,30 @@ export async function MetaEvaluate(
 			levelsOfFailure = -painEffect;
 			levelsOfSuccess = 0;
 			message += `It was a Success, turned into a ${result}, because of Pain * ${pain}`;
-			console.log("Metanthropes RPG System | MetaEvaluate | Pain Effect<0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
+			console.log(
+				"Metanthropes RPG System | MetaEvaluate | Pain Effect<0",
+				painEffect,
+				"levelsOfSuccess:",
+				levelsOfSuccess
+			);
 		} else if (painEffect === 0) {
 			message += `It is still a ${result}, besides being affected by Pain * ${pain}`;
 			levelsOfSuccess = 0;
-			console.log("Metanthropes RPG System | MetaEvaluate | Pain Effect=0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
+			console.log(
+				"Metanthropes RPG System | MetaEvaluate | Pain Effect=0",
+				painEffect,
+				"levelsOfSuccess:",
+				levelsOfSuccess
+			);
 		} else if (painEffect > 0) {
 			message += `It is a ${result}, reduced by Pain * ${pain}`;
 			levelsOfSuccess = painEffect;
-			console.log("Metanthropes RPG System | MetaEvaluate | Pain Effect>0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
+			console.log(
+				"Metanthropes RPG System | MetaEvaluate | Pain Effect>0",
+				painEffect,
+				"levelsOfSuccess:",
+				levelsOfSuccess
+			);
 		}
 	} else {
 		//? Print the result of the roll
@@ -301,7 +316,7 @@ export async function MetaEvaluate(
 			//! not fully done, make sure to update this after PossessionUse is refactored
 			console.log("Metanthropes RPG System | MetaEvaluate | Auto-Using Possession:", itemName);
 			MetaExecute(null, actor.uuid, action, itemName, multiAction);
-		};
+		}
 	}
 }
 

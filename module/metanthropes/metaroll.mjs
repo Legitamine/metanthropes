@@ -55,33 +55,33 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 	let perkPenalty = 0;
 	let diseasePenalty = 0;
 	//? Check for Core Conditions
-		//? Check for Hunger - if we have hunger, we must beat the hunger roll before doing our action
-		//	const hunger = actor.system.Characteristics.Mind.CoreConditions.Hunger;
-		//	if (hunger > 0) {
-		//		try {
-		//			const hungerRoll = await new Roll("1d100").evaluate({ async: true });
-		//			const hungerRollResult = hungerRoll.total;
-		//			if (hungerRollResult > hunger) {
-		//				ui.notifications.error(actor.name + " is too hungry and can't act!");
-		//				return;
-		//			}
-		//		} catch (error) {
-		//			console.log("Metanthropes RPG System | MetaRoll | Hunger Roll Error:", error);
-		//		}
-		//	}
-		//? Pain is passed to MetaEvaluate
-		const pain = actor.system.Characteristics.Mind.CoreConditions.Pain;
-		//? Check for Fatigue
-		//? Check if we are unconscious
-		//? Check for disease
-		//* disease is expected to be a positive number, whereas penalty is expected to be negative
-		const disease = actor.system.Characteristics.Body.CoreConditions.Diseased;
-		if (disease > 0) {
-			//? check if penalty is worse than the disease level and set it accordingly
-			if (diseasePenalty > -(disease * 10)) {
-				diseasePenalty = -(disease * 10);
-			}
+	//? Check for Hunger - if we have hunger, we must beat the hunger roll before doing our action
+	//	const hunger = actor.system.Characteristics.Mind.CoreConditions.Hunger;
+	//	if (hunger > 0) {
+	//		try {
+	//			const hungerRoll = await new Roll("1d100").evaluate({ async: true });
+	//			const hungerRollResult = hungerRoll.total;
+	//			if (hungerRollResult > hunger) {
+	//				ui.notifications.error(actor.name + " is too hungry and can't act!");
+	//				return;
+	//			}
+	//		} catch (error) {
+	//			console.log("Metanthropes RPG System | MetaRoll | Hunger Roll Error:", error);
+	//		}
+	//	}
+	//? Pain is passed to MetaEvaluate
+	const pain = actor.system.Characteristics.Mind.CoreConditions.Pain;
+	//? Check for Fatigue
+	//? Check if we are unconscious
+	//? Check for disease
+	//* disease is expected to be a positive number, whereas penalty is expected to be negative
+	const disease = actor.system.Characteristics.Body.CoreConditions.Diseased;
+	if (disease > 0) {
+		//? check if penalty is worse than the disease level and set it accordingly
+		if (diseasePenalty > -(disease * 10)) {
+			diseasePenalty = -(disease * 10);
 		}
+	}
 	//? Check for Possession Perk Penalty
 	if (itemName && action === "Possession") {
 		const requiredPerk = actor.items.getName(itemName).system.RequiredPerk.value;
@@ -92,12 +92,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			const levelDifference = requiredPerkLevel - actorPerkLevel;
 			if (levelDifference > 0) {
 				perkPenalty = levelDifference * -10;
-				console.log(
-					"Metanthropes RPG System | MetaRoll | Perk Penalty for",
-					actor.name,
-					"is",
-					perkPenalty
-				);
+				console.log("Metanthropes RPG System | MetaRoll | Perk Penalty for", actor.name, "is", perkPenalty);
 			}
 		}
 	}
@@ -184,6 +179,20 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		"Result:",
 		checkResult
 	);
+	if (checkResult > 0 && action === "Metapower" && (itemName === "Clone" || itemName === "Couple" || itemName === "Team")) {
+		console.log("Metanthropes RPG System | MetaRoll | Duplicate Self Metapower Activation Detected");
+		let currentLife = actor.system.Vital.Life.value;
+		let duplicateMaxLife = 0;
+		if (itemName === "Clone") {
+		duplicateMaxLife = Math.ceil(currentLife * 0.1);
+		} else if (itemName === "Couple") {
+		duplicateMaxLife = Math.ceil(currentLife * 0.2);
+		} else if (itemName === "Team") {
+		duplicateMaxLife = Math.ceil(currentLife * 0.3);
+		}
+		actor.setFlag("metanthropes-system", "duplicateself", { maxlife: duplicateMaxLife });
+		console.log("Metanthropes RPG System | MetaRoll | Duplicate Self Metapower Max Life:", duplicateMaxLife);
+	}
 	console.log("Metanthropes RPG System | MetaRoll | Finished");
 }
 /**

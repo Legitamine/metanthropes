@@ -24,12 +24,12 @@
 					</div>
 				</div>
 				<div class="layout-container-actorinfo-details">
-						<img src="{{actor.img}}" title="{{actor.name}}" height="85" width="70"
-							style="border: none; border-radius: 15px" />
-						<img src="systems/metanthropes-system/artwork/metapowers/{{system.entermeta.primemetapower.value}}.png"
-							alt="{{system.entermeta.primemetapower.value}}"
-							title="Prime Ⓜ️ Metapower: {{system.entermeta.primemetapower.value}}" height="85" width="85"
-							style="border: none;" />
+					<img src="{{actor.img}}" title="{{actor.name}}" height="85" width="70"
+						style="border: none; border-radius: 15px" />
+					<img src="systems/metanthropes-system/artwork/metapowers/{{system.entermeta.primemetapower.value}}.png"
+						alt="{{system.entermeta.primemetapower.value}}"
+						title="Prime Ⓜ️ Metapower: {{system.entermeta.primemetapower.value}}" height="85" width="85"
+						style="border: none;" />
 				</div>
 				<div>
 				</div>
@@ -43,22 +43,24 @@
 		</div>
 		<div class="layout-container-vitals style-container-vitals">
 			<div>
-				<div class="style-labels-text" title="Life represents a Character's overall health, vitality, and will to live. Metanthrope Characters have a Life total of (100 + their Endurance score). Metanthrope Characters also gain an additional +25 Life for every 5.000 Total Experience they have accumulated">
+				<div class="style-labels-text"
+					title="Life represents a Character's overall health, vitality, and will to live. Metanthrope Characters have a Life total of (100 + their Endurance score). Metanthrope Characters also gain an additional +25 Life for every 5.000 Total Experience they have accumulated">
 					❤️ Life
 					{{#if isGM}}
-					<input name="system.Vital.Life.value" type="number" value="{{system.Vital.Life.value}}"
-						data-dtype="Number" />
+						<input name="system.Vital.Life.value" type="number" value="{{system.Vital.Life.value}}"
+							data-dtype="Number" />
 					{{else}}
-					{{system.Vital.Life.value}}
+						{{system.Vital.Life.value}}
 					{{/if}}
 					/{{system.Vital.Life.max}}
 				</div>
 			</div>
 			<div>
-				<div class="style-labels-text">{{system.Vital.Experience.Label}}: {{system.Vital.Experience.Total}} Spent:
+				<div class="style-labels-text">{{system.Vital.Experience.Label}}: {{system.Vital.Experience.Total}}
+					Spent:
 					{{system.Vital.Experience.Spent}}
 					{{#if isGM}} + <input name="system.Vital.Experience.Manual" type="number"
-						value="{{system.Vital.Experience.Manual}}" data-dtype="Number" placeholder="0" /> {{/if}}
+							value="{{system.Vital.Experience.Manual}}" data-dtype="Number" placeholder="0" /> {{/if}}
 					Stored:{{#if (gte system.Vital.Experience.Stored 0)}}
 						<span class="style-cs-positive">{{system.Vital.Experience.Stored}}</span>
 					{{else}}
@@ -67,7 +69,9 @@
 				</div>
 			</div>
 			<div>
-				<div class="style-labels-text" title="Destiny (🤞) is a resource which Players can spend to reroll any roll with an undesirable outcome, activate powerful Metapowered effects, and even save their Protagonists from dying">🤞 Destiny {{system.Vital.Destiny.value}}/{{system.Vital.Destiny.max}}
+				<div class="style-labels-text"
+					title="Destiny (🤞) is a resource which Players can spend to reroll any roll with an undesirable outcome, activate powerful Metapowered effects, and even save their Protagonists from dying">
+					🤞 Destiny {{system.Vital.Destiny.value}}/{{system.Vital.Destiny.max}}
 				</div>
 			</div>
 		</div>
@@ -88,11 +92,11 @@
 				{{> "systems/metanthropes-system/templates/helpers/actor-charstats.hbs"}}
 			</div>
 			<div class="tab cs-metapowers" data-group="cs" data-tab="cs-metapowers">
-			<div class="layout-container-outer-tabs style-container-outer-tabs">
+				<div class="layout-container-outer-tabs style-container-outer-tabs">
 					{{> "systems/metanthropes-system/templates/helpers/actor-metapowers.hbs"}}
 				</div>
 			</div>
-				<div class="tab cs-combos" data-group="cs" data-tab="cs-combos">
+			<div class="tab cs-combos" data-group="cs" data-tab="cs-combos">
 				COMBOS
 				are not implemented.
 				{{> "systems/metanthropes-system/templates/helpers/actor-combos.hbs"}}
