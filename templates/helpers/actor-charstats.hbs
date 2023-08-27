@@ -7,7 +7,8 @@
 					<p class="style-cs-values" title="Initial value">🏁
 						{{this.Initial}}
 					</p>
-					<p class="style-cs-values" title="Progression Level">📈 <select name="system.Characteristics.{{@key}}.Progressed"
+					<p class="style-cs-values" title="Progression Level">📈 <select
+							name="system.Characteristics.{{@key}}.Progressed"
 							id="system.Characteristics.{{@key}}.Progressed" data-dtype="Number">
 							<option value="0" {{selected this.Progressed 0}}>0</option>
 							<option value="1" {{selected this.Progressed 1}}>1</option>
@@ -137,12 +138,15 @@
 	<div class="layout-container-physical style-container-phyisical">
 		<div class="layout-container-small style-container-small">
 			<div class="style-labels-text">
-				<span title="Movement during Action Scenes represents the series of movements a Character is going to perform during a Turn. Movement is spent by moving around the area, using items and by interacting with the environment, such as when climbing higher ground in the terrain or when pulling levers, bushing buttons and so on">👣 Movement {{system.physical.movement.value}} </span>
+				<span
+					title="Movement during Action Scenes represents the series of movements a Character is going to perform during a Turn. Movement is spent by moving around the area, using items and by interacting with the environment, such as when climbing higher ground in the terrain or when pulling levers, bushing buttons and so on">👣
+					Movement {{system.physical.movement.value}} </span>
 			</div>
 			<div class="style-labels-secondary">
 				<span class="style-cs-conditions">💀 <label
 						for="system.physical.speed.Conditions.slowed.value">Slowed</label> <select
-						class="style-cs-conditions" title="Condition Level" name="system.physical.speed.Conditions.slowed.value"
+						class="style-cs-conditions" title="Condition Level"
+						name="system.physical.speed.Conditions.slowed.value"
 						id="system.physical.speed.Conditions.slowed.value" data-dtype="Number">
 						<option value="0" {{selected system.physical.speed.Conditions.slowed.value 0}}>0
 						</option>
@@ -168,7 +172,8 @@
 						</option>
 					</select>
 				</span>
-				<span class="style-cs-values" title="Speed represents how fast a Character can move in the Grid">💨 Speed {{system.physical.speed.value}}
+				<span class="style-cs-values" title="Speed represents how fast a Character can move in the Grid">💨
+					Speed {{system.physical.speed.value}}
 				</span>
 				<span class="style-cs-buffs">🛡️ <label
 						for="system.physical.speed.Buffs.accelerated.value">Accelerated</label> <select
@@ -191,7 +196,8 @@
 			<div class="style-labels-secondary">
 				<span class="style-cs-conditions">💀 <label
 						for="system.physical.weight.Conditions.encumbered.value">Encumbered</label> <select
-						class="style-cs-conditions" title="Condition Level" name="system.physical.weight.Conditions.encumbered.value"
+						class="style-cs-conditions" title="Condition Level"
+						name="system.physical.weight.Conditions.encumbered.value"
 						id="system.physical.weight.Conditions.encumbered.value" data-dtype="Number">
 						<option value="0" {{selected system.physical.weight.Conditions.encumbered.value 0}}>0
 						</option>
@@ -217,7 +223,9 @@
 						</option>
 					</select>
 				</span>
-				<span class="style-cs-values" title="Weight represents how heavy or light a Character (or an Object) is">⚖️ Weight {{system.physical.weight.value}}
+				<span class="style-cs-values"
+					title="Weight represents how heavy or light a Character (or an Object) is">⚖️ Weight
+					{{system.physical.weight.value}}
 				</span>
 				<span class="style-cs-buffs">🛡️ <label
 						for="system.physical.weight.Buffs.lightened.value">Lightened</label> <select
@@ -240,7 +248,8 @@
 			<div class="style-labels-secondary">
 				<span class="style-cs-conditions">💀 <label
 						for="system.physical.size.Conditions.shrunken.value">Shrunken</label> <select
-						class="style-cs-conditions" title="Condition Level" name="system.physical.size.Conditions.shrunken.value"
+						class="style-cs-conditions" title="Condition Level"
+						name="system.physical.size.Conditions.shrunken.value"
 						id="system.physical.size.Conditions.shrunken.value" data-dtype="Number">
 						<option value="0" {{selected system.physical.size.Conditions.shrunken.value 0}}>0
 						</option>
@@ -266,7 +275,9 @@
 						</option>
 					</select>
 				</span>
-				<span class="style-cs-values" title="Size represents how much space a Character (or an Object) can occupy in an area">📐 Size {{system.physical.size.value}}
+				<span class="style-cs-values"
+					title="Size represents how much space a Character (or an Object) can occupy in an area">📐 Size
+					{{system.physical.size.value}}
 				</span>
 				<span class="style-cs-buffs">🛡️ <label for="system.physical.size.Buff.enlarged.value">Enlarged</label>
 					<select class="style-cs-buffs" title="Buff Level" name="system.physical.size.Buffs.enlarged.value"
@@ -288,7 +299,8 @@
 		</div>
 		<div class="layout-container-small style-container-small">
 			<form>
-				<div title="Resistance is a static number that reduces the total amount of Damage dealt">Resistances</div>
+				<div title="Resistance is a static number that reduces the total amount of Damage dealt">Resistances
+				</div>
 				<div class="form-group">Cosmic
 					<input name="system.physical.resistances.cosmic.initial" type="number"
 						value="{{system.physical.resistances.cosmic.initial}}" data-dtype="Number" placeholder="0" />
@@ -309,19 +321,25 @@
 		</div>
 		<div class="layout-container-small style-container-small">
 			<form>
-				<div class="form-group" title="Cover offer a Character a chance for incoming attacks to hit the Cover instead of the Character">Cover
+				<div class="form-group"
+					title="Cover offer a Character a chance for incoming attacks to hit the Cover instead of the Character">
+					Cover
 					<input name="system.physical.cover.value" type="number" value="{{system.physical.cover.value}}"
 						data-dtype="Number" placeholder="0" />%
 				</div>
-				<div class="form-group" title="Immunity offers immunity to medical conditions and specific effects">Immunities
+				<div class="form-group" title="Immunity offers immunity to medical conditions and specific effects">
+					Immunities
 					<input name="system.physical.immunities.value" type="text"
 						value="{{system.physical.immunities.value}}" data-dtype="String" placeholder="Immunities" />
 				</div>
-				<div class="form-group" title="Detections allow a Character to perceive something others cannot">Detections
+				<div class="form-group" title="Detections allow a Character to perceive something others cannot">
+					Detections
 					<input name="system.physical.detections.value" type="text"
 						value="{{system.physical.detections.value}}" data-dtype="String" placeholder="Detections" />
 				</div>
-				<div class="form-group" title="Shifts are Buffs which alter the physiology, biomass, shape, and form of the one who activates them. Multiple Shifts activated at the same target do not stack, and only the one with the highest numerical value is considered">Shifts
+				<div class="form-group"
+					title="Shifts are Buffs which alter the physiology, biomass, shape, and form of the one who activates them. Multiple Shifts activated at the same target do not stack, and only the one with the highest numerical value is considered">
+					Shifts
 					<input name="system.physical.shifts.value" type="text" value="{{system.physical.shifts.value}}"
 						data-dtype="String" placeholder="Shifts" />
 				</div>

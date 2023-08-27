@@ -16,8 +16,7 @@ export class MetanthropesCombat extends Combat {
 	}
 	//todo: award Destiny and re-roll initiative if tied both in Initiative and statScore
 	//! gia na paixei to full ruleset, prepei na kanw 'confirm initiative'
-	
-	
+
 	/**
 	 * Roll Initiative for one or multiple Combatants within the Combat document
 	 * @param {string|string[]} ids     A Combatant id or Array of ids for which to roll

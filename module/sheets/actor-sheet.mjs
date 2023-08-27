@@ -103,7 +103,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 				if (i.system.Level.value != undefined) {
 					Metapowers[i.system.Level.value].push(i);
 				}
-			//? Append to Combos.
+				//? Append to Combos.
 			} else if (i.type === "Combo") {
 				if (i.system.level != undefined) {
 					Combos[i.system.Level.value].push(i);

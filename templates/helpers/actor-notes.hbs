@@ -1,24 +1,34 @@
 {{#if isGM}}
-<div><h3>{{system.secret-notes-narrator.label}}</h3></div>
-<div class="layout-editor style-editor">
-	{{editor system.secret-notes-narrator.value target="system.secret-notes-narrator.value" button=true editable=true}}
-</div>
+	<div>
+		<h3>{{system.secret-notes-narrator.label}}</h3>
+	</div>
+	<div class="layout-editor style-editor">
+		{{editor system.secret-notes-narrator.value target="system.secret-notes-narrator.value" button=true editable=true}}
+	</div>
 {{/if}}
 {{#if (eq actor.type "Protagonist")}}
-<div><h3>{{system.notes-protagonist.label}}</h3></div>
-<div class="layout-editor style-editor">
-	{{editor system.notes-protagonist.value target="system.notes-protagonist.value" button=true editable=true}}
-</div>
-<div><h3>{{system.entermeta.coalitionNotes.label}}</h3></div>
-<div class="layout-editor style-editor">
-	{{editor system.entermeta.coalitionNotes.value target="system.entermeta.coalitionNotes.value" button=true editable=true}}
-</div>
-<div><h3>{{system.entermeta.sagaNotes.label}}</h3></div>
-<div class="layout-editor style-editor">
-	{{editor system.entermeta.sagaNotes.value target="system.entermeta.sagaNotes.value" button=true editable=true}}
-</div>
-<div><h3>{{system.notes-narrator.label}}</h3></div>
-<div class="layout-editor style-editor">
-	{{editor system.notes-narrator.value target="system.notes-narrator.value" engine="prosemirror" collaborate=false button=true editable=true}}
-</div>
+	<div>
+		<h3>{{system.notes-protagonist.label}}</h3>
+	</div>
+	<div class="layout-editor style-editor">
+		{{editor system.notes-protagonist.value target="system.notes-protagonist.value" button=true editable=true}}
+	</div>
+	<div>
+		<h3>{{system.entermeta.coalitionNotes.label}}</h3>
+	</div>
+	<div class="layout-editor style-editor">
+		{{editor system.entermeta.coalitionNotes.value target="system.entermeta.coalitionNotes.value" button=true editable=true}}
+	</div>
+	<div>
+		<h3>{{system.entermeta.sagaNotes.label}}</h3>
+	</div>
+	<div class="layout-editor style-editor">
+		{{editor system.entermeta.sagaNotes.value target="system.entermeta.sagaNotes.value" button=true editable=true}}
+	</div>
+	<div>
+		<h3>{{system.notes-narrator.label}}</h3>
+	</div>
+	<div class="layout-editor style-editor">
+		{{editor system.notes-narrator.value target="system.notes-narrator.value" engine="prosemirror" collaborate=false button=true editable=true}}
+	</div>
 {{/if}}
