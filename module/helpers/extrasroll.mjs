@@ -50,7 +50,7 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 	} else {
 		rolld10 = await new Roll(`${dice}d10${explosiveDice}`).evaluate({ async: true });
 	}
-	if (isHalf) {
+	if (isHalf === true) {
 		rollTotal = Math.ceil(rolld10.total / 2);
 	} else {
 		rollTotal = rolld10.total;
@@ -59,13 +59,13 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 	let message = null;
 	if (itemName) {
 		if (baseNumber > 0) {
-			if (isHalf) {
+			if (isHalf === true) {
 				message = `${actor.name} rolls for ${itemName}'s ${what} with (${dice}d10)/2 + ${baseNumber} and gets a total of ${rollTotal}.<br>`;
 			} else {
 				message = `${actor.name} rolls for ${itemName}'s ${what} with ${dice}d10 + ${baseNumber} and gets a total of ${rollTotal}.<br>`;
 			}
 		} else {
-			if (isHalf) {
+			if (isHalf === true) {
 				message = `${actor.name} rolls for ${itemName}'s ${what} with (${dice}d10)/2 and gets a total of ${rollTotal}.<br>`;
 			} else {
 				message = `${actor.name} rolls for ${itemName}'s ${what} with ${dice}d10 and gets a total of ${rollTotal}.<br>`;
@@ -73,13 +73,13 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 		}
 	} else {
 		if (baseNumber > 0) {
-			if (isHalf) {
+			if (isHalf === true) {
 				message = `${actor.name} rolls for ${what} with (${dice}d10)/2 + ${baseNumber} and gets a total of ${rollTotal}.<br>`;
 			} else {
 				message = `${actor.name} rolls for ${what} with ${dice}d10 + ${baseNumber} and gets a total of ${rollTotal}.<br>`;
 			}
 		} else {
-			if (isHalf) {
+			if (isHalf === true) {
 				message = `${actor.name} rolls for ${what} with (${dice}d10)/2 and gets a total of ${rollTotal}.<br>`;
 			} else {
 				message = `${actor.name} rolls for ${what} with ${dice}d10 and gets a total of ${rollTotal}.<br>`;

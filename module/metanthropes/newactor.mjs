@@ -90,7 +90,7 @@ function createFilterDropdown(id, options) {
 }
 export async function NewStatRoll(actor, char, stat, dice) {
 	return new Promise((resolve, reject) => {
-		Rolld10(actor, stat, true, dice);
+		Rolld10(actor, stat, true, dice, null, 0, false);
 		let statcontent = `
 			<div class="metanthropes layout-metaroll-dialog">
 				<h2>Confirm your ${actor.type}'s ${stat} 📊 Stat</h2>
