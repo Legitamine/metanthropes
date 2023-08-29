@@ -350,7 +350,7 @@ export async function MetaEvaluateReRoll(event) {
 	const actor = await fromUuid(actorUUID);
 	const action = button.dataset.action;
 	const itemName = button.dataset.itemName;
-	const pain = button.dataset.pain;
+	const pain = parseInt(button.dataset.pain);
 	console.log("Metanthropes RPG System | MetaEvaluateReRoll | Engaged for:", actor.name + "'s", action, actorUUID);
 	//? Reduce Destiny.value by 1
 	let currentDestiny = actor.system.Vital.Destiny.value;

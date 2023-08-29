@@ -50,7 +50,7 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 	} else {
 		rolld10 = await new Roll(`${dice}d10${explosiveDice}`).evaluate({ async: true });
 	}
-	if (isHalf === true) {
+	if (isHalf) {
 		rollTotal = Math.ceil(rolld10.total / 2);
 	} else {
 		rollTotal = rolld10.total;
@@ -59,13 +59,13 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 	let message = null;
 	if (itemName) {
 		if (baseNumber > 0) {
-			if (isHalf === true) {
+			if (isHalf) {
 				message = `${actor.name} rolls for ${itemName}'s ${what} with (${dice}d10)/2 + ${baseNumber} and gets a total of ${rollTotal}.<br>`;
 			} else {
 				message = `${actor.name} rolls for ${itemName}'s ${what} with ${dice}d10 + ${baseNumber} and gets a total of ${rollTotal}.<br>`;
 			}
 		} else {
-			if (isHalf === true) {
+			if (isHalf) {
 				message = `${actor.name} rolls for ${itemName}'s ${what} with (${dice}d10)/2 and gets a total of ${rollTotal}.<br>`;
 			} else {
 				message = `${actor.name} rolls for ${itemName}'s ${what} with ${dice}d10 and gets a total of ${rollTotal}.<br>`;
@@ -73,13 +73,13 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 		}
 	} else {
 		if (baseNumber > 0) {
-			if (isHalf === true) {
+			if (isHalf) {
 				message = `${actor.name} rolls for ${what} with (${dice}d10)/2 + ${baseNumber} and gets a total of ${rollTotal}.<br>`;
 			} else {
 				message = `${actor.name} rolls for ${what} with ${dice}d10 + ${baseNumber} and gets a total of ${rollTotal}.<br>`;
 			}
 		} else {
-			if (isHalf === true) {
+			if (isHalf) {
 				message = `${actor.name} rolls for ${what} with (${dice}d10)/2 and gets a total of ${rollTotal}.<br>`;
 			} else {
 				message = `${actor.name} rolls for ${what} with ${dice}d10 and gets a total of ${rollTotal}.<br>`;
@@ -132,11 +132,11 @@ export async function Rolld10ReRoll(event) {
 	const button = event.target;
 	const actoruuid = button.dataset.actoruuid;
 	const what = button.dataset.what;
-	const destinyReRoll = button.dataset.destinyReRoll;
+	const destinyReRoll = button.dataset.destinyReRoll === "true" ? true : false;
 	const itemName = button.dataset.itemName || null;
-	const dice = parseInt(button.dataset.dice);
+	const dice = parseInt(button.dataset.dice) || 0;
 	const baseNumber = parseInt(button.dataset.baseNumber) || 0;
-	const isHalf = button.dataset.isHalf || false;
+	const isHalf = button.dataset.isHalf === "true" ? true : false;
 	const actor = await fromUuid(actoruuid);
 	//? Reduce Destiny.value by 1
 	console.log("Metanthropes RPG System | Rolld10ReRoll | Evaluating destiny for:", actor);

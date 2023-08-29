@@ -100,7 +100,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 	let bonus = 0;
 	let penalty = 0;
 	let multiAction = 0;
-	if (isCustomRoll === true) {
+	if (isCustomRoll) {
 		console.log("Metanthropes RPG System | MetaRoll | Custom Roll Detected");
 		let { multiAction, bonus, customPenalty } = await MetaRollCustomDialog(
 			actor,
@@ -179,7 +179,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		"Result:",
 		checkResult
 	);
-	if (checkResult > 0 && action === "Metapower" && (itemName === "Clone" || itemName === "Couple" || itemName === "Team")) {
+	if (checkResult > 0 && action === "Metapower" && (itemName === "Clone" || itemName === "Couple" || itemName === "Team" || itemName === "Squad" || itemName === "Unit")) {
 		console.log("Metanthropes RPG System | MetaRoll | Duplicate Self Metapower Activation Detected");
 		let currentLife = actor.system.Vital.Life.value;
 		let duplicateMaxLife = 0;
