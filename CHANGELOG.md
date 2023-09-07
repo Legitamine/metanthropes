@@ -30,6 +30,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 -   Movement Score is now automatically calculated based on Speed, Weight and Size and is reflected in the grid when you move your character. Green is for normal movement, Yellow for Additional Movement, Orange for Sprint and Red for no more movement. (requires Drag Ruler module)
 -   Possessions now may require a Perk to be a certain Level and will add a -10% Penalty to the roll for each Level missing
 -   Activations for Metapowers and Possessions that are 'Always Active', now properly prevent you from rolling the dice and display an information message in the client instead
+-	A Character's Initiative will now automatically roll with the highest amongst Awareness, Reflexes and Perception, as long as the character has the appropriate Metapower like Danger Sense (6th Sense) and Temporal Awareness (Time Bending)
 -   Pain now is automatically calculated, lowering your levels of success and informing you about it in the chat
 -   Non-linked Actors are now available to Narrators
 -   Introduced Narrator's Toolbox: a set of Narrator-only macros designed to help with the game flow and automate the end of Scene/Session/Arc player awards
@@ -38,6 +39,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 ### Changed:
 
+-	Change Log (this page) will from now on follow the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 -   Revamped the Character sheet to be more intuitive and take less screen 'real estate'
 -   Metapowers and Possessions details are now only editable by Narrators
 -   Revamped the Items sheets (Metapowers & Possessions) to be more intuitive and take less screen 'real estate'
@@ -54,7 +56,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 -   Deprecated the Items and Actors from previous versions. They will still open in v0.7 allowing you to migrate any data you need to the new Actors and Items. These will be removed in v0.8
 
-###### Unreleased:
+### Unreleased:
 
 -   Progression of Characteristics and Stats, Metapowers and Perks (scheduled for v0.8)
 -   Official support for modules: Terrain Ruler and Enhanced Terrain Layer (scheduled for v0.9)
