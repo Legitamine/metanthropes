@@ -36,6 +36,8 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 -   Introduced Narrator's Toolbox: a set of Narrator-only macros designed to help with the game flow and automate the end of Scene/Session/Arc player awards
 -   New Supported module: Carousel Combat Tracker (PR pending)
 -   New Supported module: DF Chat Enhancements
+-	New Supported module: Monks' Token Bar
+-   New Supported module: Streamer View
 
 ### Changed:
 
