@@ -23,15 +23,6 @@ export async function FinalizePremadeProtagonist(actor) {
 		);
 		await NewActorSummary(actor);
 		await NewActorFinish(actor);
-		//? set the token name to the actor name
-		await actor.update({ "prototypeToken.name": actor.name });
-		//? set the token disposition to friendly
-		await actor.update({ "prototypeToken.disposition": 1});
-		//? set bloodsplats to red color
-		await actor.update({ "prototypeToken.flags.splatter": { bloodColor: '#d10000ff' } });
-		await actor.update({ "prototypeToken.flags.monks-bloodsplats.bloodsplat-color": "#d10000ff" });
-		//? set token bar inclusion
-		await actor.update({ "prototypeToken.flags.monks-tokenbar": {include: 'include'} });
 	} catch (error) {
 		console.log(
 			"Metanthropes RPG System | Finalize Pre-made Protagonist | Finalize Pre-made Protagonist Error:",
