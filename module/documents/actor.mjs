@@ -13,11 +13,12 @@ export class MetanthropesActor extends Actor {
 			mergeObject(createData, {
 				"prototypeToken.bar1": { attribute: "Vital.Destiny" },
 				"prototypeToken.bar2": { attribute: "Vital.Life" },
-				// values from https://foundryvtt.com/api/enums/foundry.CONST.TOKEN_DISPLAY_MODES.html
-				"prototypeToken.displayName": defaultToken?.displayName || CONST.TOKEN_DISPLAY_MODES.NONE, // Default display name to be off
-				"prototypeToken.displayBars": defaultToken?.displayBars || CONST.TOKEN_DISPLAY_MODES.HOVER, // Default display bars to be on hover
-				"prototypeToken.disposition": defaultToken?.disposition || CONST.TOKEN_DISPOSITIONS.NEUTRAL, // Default disposition to neutral
-				"prototypeToken.name": data.name, // Set token name to actor name
+				//* values from https://foundryvtt.com/api/enums/foundry.CONST.TOKEN_DISPLAY_MODES.html
+				//? this is controlled via the new actor process - the below are used as a fall-back setting
+				"prototypeToken.displayName": defaultToken?.displayName || CONST.TOKEN_DISPLAY_MODES.HOVER, //? Default display name to be on hover
+				"prototypeToken.displayBars": defaultToken?.displayBars || CONST.TOKEN_DISPLAY_MODES.HOVER, //? Default display bars to be on hover
+				"prototypeToken.disposition": defaultToken?.disposition || CONST.TOKEN_DISPOSITIONS.NEUTRAL, //? Default disposition to neutral
+				"prototypeToken.name": data.name, //? Set token name to actor name
 			});
 		else if (data.prototypeToken) createData.prototypeToken = data.prototypeToken;
 		//? Set custom default tokens portraits

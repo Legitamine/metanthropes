@@ -2,7 +2,6 @@
 
 These are the latest changes to the Metanthropes RPG System for Foundry VTT
 <br>
-<br>
 
 <!--
 ### Legend
@@ -47,6 +46,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 -   Revamped the Items sheets (Metapowers & Possessions) to be more intuitive and take less screen 'real estate'
 -   Changed Destiny Reroll button in chat, to now only be visible to the owner of that Character and the Narrator
 -   Protagonists and Metanthropes are now Actor-Linked to their tokens, all other Actor types are not linked by default
+-   New Actors will now have their token default values change once the 'Roll new Actor' 10-step process is completed. 'Finish Premade Protagonist' button will also trigger similar changes. Controls the visibility of the Name, Bars and disposition: Protagonists are friendly, Metatherions hostile and others neutral by default.
 -   All built-in d20 references have been changed to d10 dice
 -   Foundry version 11 is now required
 

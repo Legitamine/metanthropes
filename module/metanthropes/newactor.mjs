@@ -1075,18 +1075,35 @@ export async function NewActorFinish(actor) {
 							await actor.update({
 								img: actorimg,
 							});
-							//? set the token name to the actor name
-							await actor.update({ "prototypeToken.name": actor.name });
-							//? set the token disposition to friendly
-							if (actor.type == "Protagonist") {
-							await actor.update({ "prototypeToken.disposition": 1});
-							}
 							//? set bloodsplats to red color
-							await actor.update({ "prototypeToken.flags.splatter": { bloodColor: '#d10000ff' } });
-							await actor.update({ "prototypeToken.flags.monks-bloodsplats.bloodsplat-color": "#d10000ff" });
-							//? set token bar inclusion
+							await actor.update({ "prototypeToken.flags.splatter": { bloodColor: "#d10000ff" } });
+							await actor.update({
+								"prototypeToken.flags.monks-bloodsplats.bloodsplat-colour": "#d10000ff",
+							});
 							if (actor.type == "Protagonist") {
-							await actor.update({ "prototypeToken.flags.monks-tokenbar": {include: 'include'} });
+								//? set the token disposition to friendly
+								await actor.update({ "prototypeToken.disposition": 1 });
+								//? set token bar inclusion
+								await actor.update({ "prototypeToken.flags.monks-tokenbar": { include: "include" } });
+								//? make bars visible on hover by anyone
+								await actor.update({ "prototypeToken.displayName": 30 });
+								await actor.update({ "prototypeToken.displayBars": 30 });
+							} else if (actor.type == "Metatherion") {
+								//? set the token disposition to hostile
+								await actor.update({ "prototypeToken.disposition": -1 });
+								//? set token bar exclusion
+								await actor.update({ "prototypeToken.flags.monks-tokenbar": { include: "exclude" } });
+								//? make bars visible on hover by owner
+								await actor.update({ "prototypeToken.displayName": 20 });
+								await actor.update({ "prototypeToken.displayBars": 20 });
+							} else {
+								//? set the token disposition to secret
+								await actor.update({ "prototypeToken.disposition": -2 });
+								//? set token bar exclusion
+								await actor.update({ "prototypeToken.flags.monks-tokenbar": { include: "exclude" } });
+								//? make bars visible on hover by owner
+								await actor.update({ "prototypeToken.displayName": 20 });
+								await actor.update({ "prototypeToken.displayBars": 20 });
 							}
 							ui.notifications.info(actor.name + " has entered the Multiverse!");
 							resolve();
