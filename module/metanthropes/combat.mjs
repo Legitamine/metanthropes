@@ -1,11 +1,17 @@
 import { MetaInitiative } from "../helpers/metainitiative.mjs";
 export class MetanthropesCombat extends Combat {
-	//adding the concept of Cycles to the combat system
-	constructor(data, context) {
-		super(data, context);
-		this.cycle = 1;
-		this.cycleRound = 1;
-	}
+	//? adding the concept of Cycles & Rounds to the combat system
+	async prepareDerivedData() {
+        super.prepareDerivedData();
+        let cycle = this.getFlag("metanthropes-system", "cycle") || 1;
+        let cycleRound = this.getFlag("metanthropes-system", "cycleRound") || 1;
+		console.log("Metanthropes RPG System | Combat | prepareDerivedData | Cycle:", cycle, "Round:", cycleRound);
+		//? set the flags to be used later
+		await this.setFlag("metanthropes-system", "cycle", cycle);
+		await this.setFlag("metanthropes-system", "cycleRound", cycleRound);
+		this.cycle = cycle;
+		this.cycleRound = cycleRound;
+    }
 	_sortCombatants(a, b) {
 		const ia = Number.isNumeric(a.initiative) ? a.initiative : -Infinity;
 		const ib = Number.isNumeric(b.initiative) ? b.initiative : -Infinity;
@@ -74,61 +80,45 @@ export class MetanthropesCombat extends Combat {
 		const combatant = this.combatants.get(id, { strict: true });
 		await combatant.update({ initiative: value });
 		console.log("=======++++++++++++++============");
-		console.log("Metanthropes RPG inside setInitiative");
+		console.log("Metanthropes RPG DELETE ME setInitiative");
 		console.log("=======++++++++++++++============");
 	}
 	//! edw einai ?? - ayto psanxei formula, enw egw exw allo function to do that
 	async _getInitiativeFormula(combatant) {
-		console.log("Metanthropes RPG inside _getInitiativeFormula  === +++ === +++ === ");
+		console.log("Metanthropes RPG inside _getInitiativeFormula  === +++ DELETE ME +++ === ");
 		await MetaInitiative(combatant);
 	}
-	// The below should help define what a this.cycle is and when to start a new this.cycle (every 2 Rounds)
-	/* -------------------------------------------- */
-
-	/**
-	 * Advance the combat to the next round
-	 * @returns {Promise<Combat>}
-	 */
 	async nextRound() {
 		await super.nextRound();
-		console.log("Metanthropes RPG Calculating Next Round Values === +++ === +++ === ");
-		console.log("this.round:", this.round, "this.cycle:", this.cycle, "this.cycleRound:", this.cycleRound);
-		console.log("this is this", this);
-		// Calculate the new this.cycle and this.cycleRound values
+		//! I should probably do something similar for previous round
+		//? Calculate the Cycle and Round values
+		//? Get the most recent Cycle and Round values from the Combat document
+		let cycle = await this.getFlag("metanthropes-system", "cycle");
+		let cycleRound = await this.getFlag("metanthropes-system", "cycleRound");
 		if (this.round === 1) {
-			this.cycle = 1;
-			this.cycleRound = 1;
+			cycle = 1;
+			cycleRound = 1;
 		} else if (this.round === 2) {
-			this.cycle = 1;
-			this.cycleRound = 2;
+			cycle = 1;
+			cycleRound = 2;
 		} else if (this.round === 3) {
-			this.cycle = 2;
-			this.cycleRound = 1;
+			cycle = 2;
+			cycleRound = 1;
 		} else if (this.round > 2 && (this.round - 1) % 2 === 0) {
-			this.cycle++;
-			this.cycleRound = 1;
+			cycle++;
+			cycleRound = 1;
 		} else {
-			this.cycleRound = 2;
+			cycleRound = 2;
 		}
-
-		// Update the this.cycle and this.cycleRound values in the combat data
-		await this.setFlag("metanthropes-system", "this.cycle", this.cycle);
-		await this.setFlag("metanthropes-system", "this.cycleRound", this.cycleRound);
-
-		// Reroll initiative for all combatants at the start of a new this.cycle (every odd this.cycleRound)
-		if (this.cycle > 1 && this.cycleRound === 1) {
-			console.log("Metanthropes RPG re-rolling initiative for nextRound === +++ === +++ === ");
-			console.log("this.round:", this.round, "this.cycle:", this.cycle, "this.cycleRound:", this.cycleRound);
-			console.log("this is this", this);
-			console.log("this.combatants", this.combatants);
-			const combatantIds = this.combatants.map((combatant) => combatant.id);
-			// this will have the GM auto-roll all subsequent initiative rolls
-			// await this.rollInitiative(combatantIds);
+		this.cycle = cycle;
+		this.cycleRound = cycleRound;
+		await this.setFlag("metanthropes-system", "cycle", cycle);
+		await this.setFlag("metanthropes-system", "cycleRound", cycleRound);
+		console.log("Metanthropes RPG System | Combat | nextRound | Cycle:", cycle, "Round:", cycleRound);
+		//? Reroll initiative for all combatants at the start of a new Cycle (every odd cycleRound)
+		if (cycle > 1 && cycleRound === 1) {
 			await this.resetAll();
 		}
-
 		return this;
 	}
-
-	/* -------------------------------------------- */
 }

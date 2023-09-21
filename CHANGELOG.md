@@ -53,6 +53,9 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 ### Fixed:
 
 -   Fixed a known issue with the Metapower & Possession Sheets not displaying Stat Scores correctly after rolling
+- 	Fixed a bug when using an item with an empty Effect Description
+-	Fixed an issue where the Combat Tracker did not display the correct values for the current Cycle and Round
+-	Fixed an issue where after changing into a new Cycle and rolling a new initiative, the Combat Tracker did not order the Turn order correctly
 
 ### Deprecated:
 
