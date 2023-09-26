@@ -189,6 +189,10 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		duplicateMaxLife = Math.ceil(currentLife * 0.2);
 		} else if (itemName === "Team") {
 		duplicateMaxLife = Math.ceil(currentLife * 0.3);
+		} else if (itemName === "Squad") {
+		duplicateMaxLife = Math.ceil(currentLife * 0.4);
+		} else if (itemName === "Unit") {
+		duplicateMaxLife = Math.ceil(currentLife * 0.5);
 		}
 		actor.setFlag("metanthropes-system", "duplicateself", { maxlife: duplicateMaxLife });
 		console.log("Metanthropes RPG System | MetaRoll | Duplicate Self Metapower Max Life:", duplicateMaxLife);

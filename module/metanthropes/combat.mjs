@@ -42,13 +42,15 @@ export class MetanthropesCombat extends Combat {
 		const currentId = this.combatant?.id;
 		//? Iterate over Combatants, performing an initiative roll for each
 		const updates = [];
-		const messages = [];
 		for (let [i, id] of ids.entries()) {
 			//? Get Combatant data (non-strictly)
 			const combatant = this.combatants.get(id);
 			if (!combatant?.isOwner) continue;
 			//? Produce an initiative roll for the Combatant
-			console.log("Metanthropes RPG System | Combat | rollInitiative | MetaInitiative for combatant:", combatant);
+			console.log(
+				"Metanthropes RPG System | Combat | rollInitiative | Engaging MetaInitiative for combatant:",
+				combatant
+			);
 			await MetaInitiative(combatant);
 			let initiativeResult = combatant.actor.getFlag("metanthropes-system", "lastrolled").Initiative;
 			console.log(
@@ -69,20 +71,27 @@ export class MetanthropesCombat extends Combat {
 		//? Get the most recent Cycle and Round values from the Combat document
 		let cycle = await this.getFlag("metanthropes-system", "cycle");
 		let cycleRound = await this.getFlag("metanthropes-system", "cycleRound");
-		if (this.round === 1) {
-			cycle = 1;
-			cycleRound = 1;
-		} else if (this.round === 2) {
-			cycle = 1;
-			cycleRound = 2;
-		} else if (this.round === 3) {
-			cycle = 2;
-			cycleRound = 1;
-		} else if (this.round > 2 && (this.round - 1) % 2 === 0) {
-			cycle++;
-			cycleRound = 1;
-		} else {
-			cycleRound = 2;
+		switch (this.round) {
+			case 1:
+				cycle = 1;
+				cycleRound = 1;
+				break;
+			case 2:
+				cycle = 1;
+				cycleRound = 2;
+				break;
+			case 3:
+				cycle = 2;
+				cycleRound = 1;
+				break;
+			default:
+				if (this.round > 2 && (this.round - 1) % 2 === 0) {
+					cycle++;
+					cycleRound = 1;
+				} else {
+					cycleRound = 2;
+				}
+				break;
 		}
 		this.cycle = cycle;
 		this.cycleRound = cycleRound;

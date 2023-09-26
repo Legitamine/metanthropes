@@ -1,5 +1,5 @@
 export async function metaMigrateData() {
-	// Get the current version
+	//? Get the current version
 	const currentVersion = game.system.data.version;
 	console.log("Metanthropes RPG System | Migrating Items to version", currentVersion);
 	const worldItems = game.items.contents;
@@ -11,7 +11,8 @@ export async function metaMigrateData() {
 	}
 }
 
-// Helper function to compare version numbers !unused
+//* Helper function to compare version numbers 
+//!unused
 export function isNewerVersion(version, oldVersion) {
 	return version
 		.split(".")

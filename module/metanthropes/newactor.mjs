@@ -19,12 +19,12 @@ export async function FinalizePremadeProtagonist(actor) {
 		await actor.update({ "system.Vital.Destiny.value": Number(NewDestiny) });
 		await actor.update({ "system.Vital.Destiny.max": Number(NewDestiny) });
 		console.log(
-			`Metanthropes RPG System | New Actor | ${playerName}'s ${actor.type} Starting Destiny: ${NewDestiny}`
+			`Metanthropes RPG System | Finalize Pre-made Protagonist | ${playerName}'s ${actor.type} Starting Destiny: ${NewDestiny}`
 		);
 		await NewActorSummary(actor);
 		await NewActorFinish(actor);
 	} catch (error) {
-		console.log(
+		console.error(
 			"Metanthropes RPG System | Finalize Pre-made Protagonist | Finalize Pre-made Protagonist Error:",
 			error
 		);
@@ -64,7 +64,7 @@ export async function NewActor(actor) {
 		await NewActorSummary(actor);
 		await NewActorFinish(actor);
 	} catch (error) {
-		console.log("Metanthropes RPG System | New Actor | New Actor Error:", error);
+		console.error("Metanthropes RPG System | New Actor | New Actor Error:", error);
 	} finally {
 		console.log("Metanthropes RPG System | New Actor | New Actor Creation Complete for", actor.type, actor.name);
 	}
@@ -262,13 +262,13 @@ export async function NewActorPrimeMetapower(actor) {
 				},
 				default: "ok",
 				render: (html) => {
-					// Get dropdown for Prime Metapower selection
+					//? Get dropdown for Prime Metapower selection
 					let primeMetapowerDropdown = html.find("#primeMetapower")[0];
-					// Get dropdowns for filters
+					//? Get dropdowns for filters
 					let classificationDropdown = html.find("#classification")[0];
 					let energyTypeDropdown = html.find("#energyType")[0];
 					let statRolledDropdown = html.find("#statRolled")[0];
-					// Filter function
+					//? Filter function
 					html.find("#classification, #energyType, #statRolled").change(() => {
 						let selectedClassification = classificationDropdown.value;
 						let selectedEnergyType = energyTypeDropdown.value;
@@ -279,7 +279,7 @@ export async function NewActorPrimeMetapower(actor) {
 								(!selectedEnergyType || metapower.energyType === selectedEnergyType) &&
 								(!selectedStatRolled || metapower.statRolled === selectedStatRolled)
 						);
-						// Update Prime Metapower dropdown options
+						//? Update Prime Metapower dropdown options
 						primeMetapowerDropdown.innerHTML = "";
 						filteredMetapowers.forEach((metapower, index) => {
 							let option = document.createElement("option");
@@ -288,7 +288,7 @@ export async function NewActorPrimeMetapower(actor) {
 							primeMetapowerDropdown.appendChild(option);
 						});
 					});
-					// Update Prime Metapower image
+					//? Update Prime Metapower image
 					html.find("#primeMetapower").change(() => {
 						let primeMetapowerName = primeMetapowerDropdown.value;
 						//? making sure the value is not empty before proceeding
@@ -385,9 +385,9 @@ export async function NewActorCharacteristics(actor) {
 				},
 				default: "ok",
 				render: (html) => {
-					// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
+					//? Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
 					html.find('[name="primary"]').change((event) => {
-						// Update the options in the Secondary dropdown based on the Primary selection
+						//? Update the options in the Secondary dropdown based on the Primary selection
 						let primary = event.target.value;
 						let secondaryOptions = ["Body", "Mind", "Soul"].filter((option) => option !== primary);
 						let secondaryDropdown = html.find('[name="secondary"]');
@@ -395,11 +395,11 @@ export async function NewActorCharacteristics(actor) {
 						secondaryOptions.forEach((option) => {
 							secondaryDropdown.append(new Option(option, option));
 						});
-						// Trigger a change event to update the Tertiary dropdown
+						//? Trigger a change event to update the Tertiary dropdown
 						secondaryDropdown.trigger("change");
 					});
 					html.find('[name="secondary"]').change((event) => {
-						// Update the options in the Tertiary dropdown based on the Secondary selection
+						//? Update the options in the Tertiary dropdown based on the Secondary selection
 						let primary = html.find('[name="primary"]').val();
 						let secondary = event.target.value;
 						let tertiaryOptions = ["Body", "Mind", "Soul"].filter(
@@ -495,9 +495,9 @@ export async function NewActorBodyStats(actor) {
 				},
 				default: "ok",
 				render: (html) => {
-					// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
+					//? Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
 					html.find('[name="primary"]').change((event) => {
-						// Update the options in the Secondary dropdown based on the Primary selection
+						//? Update the options in the Secondary dropdown based on the Primary selection
 						let primary = event.target.value;
 						let secondaryOptions = ["Endurance", "Power", "Reflexes"].filter(
 							(option) => option !== primary
@@ -507,11 +507,11 @@ export async function NewActorBodyStats(actor) {
 						secondaryOptions.forEach((option) => {
 							secondaryDropdown.append(new Option(option, option));
 						});
-						// Trigger a change event to update the Tertiary dropdown
+						//? Trigger a change event to update the Tertiary dropdown
 						secondaryDropdown.trigger("change");
 					});
 					html.find('[name="secondary"]').change((event) => {
-						// Update the options in the Tertiary dropdown based on the Secondary selection
+						//? Update the options in the Tertiary dropdown based on the Secondary selection
 						let primary = html.find('[name="primary"]').val();
 						let secondary = event.target.value;
 						let tertiaryOptions = ["Endurance", "Power", "Reflexes"].filter(
@@ -604,9 +604,9 @@ export async function NewActorMindStats(actor) {
 				},
 				default: "ok",
 				render: (html) => {
-					// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
+					//? Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
 					html.find('[name="primary"]').change((event) => {
-						// Update the options in the Secondary dropdown based on the Primary selection
+						//? Update the options in the Secondary dropdown based on the Primary selection
 						let primary = event.target.value;
 						let secondaryOptions = ["Perception", "Manipulation", "Creativity"].filter(
 							(option) => option !== primary
@@ -616,11 +616,11 @@ export async function NewActorMindStats(actor) {
 						secondaryOptions.forEach((option) => {
 							secondaryDropdown.append(new Option(option, option));
 						});
-						// Trigger a change event to update the Tertiary dropdown
+						//? Trigger a change event to update the Tertiary dropdown
 						secondaryDropdown.trigger("change");
 					});
 					html.find('[name="secondary"]').change((event) => {
-						// Update the options in the Tertiary dropdown based on the Secondary selection
+						//? Update the options in the Tertiary dropdown based on the Secondary selection
 						let primary = html.find('[name="primary"]').val();
 						let secondary = event.target.value;
 						let tertiaryOptions = ["Perception", "Manipulation", "Creativity"].filter(
@@ -713,9 +713,9 @@ export async function NewActorSoulStats(actor) {
 				},
 				default: "ok",
 				render: (html) => {
-					// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
+					//? Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
 					html.find('[name="primary"]').change((event) => {
-						// Update the options in the Secondary dropdown based on the Primary selection
+						//? Update the options in the Secondary dropdown based on the Primary selection
 						let primary = event.target.value;
 						let secondaryOptions = ["Willpower", "Consciousness", "Awareness"].filter(
 							(option) => option !== primary
@@ -725,11 +725,11 @@ export async function NewActorSoulStats(actor) {
 						secondaryOptions.forEach((option) => {
 							secondaryDropdown.append(new Option(option, option));
 						});
-						// Trigger a change event to update the Tertiary dropdown
+						//? Trigger a change event to update the Tertiary dropdown
 						secondaryDropdown.trigger("change");
 					});
 					html.find('[name="secondary"]').change((event) => {
-						// Update the options in the Tertiary dropdown based on the Secondary selection
+						//? Update the options in the Tertiary dropdown based on the Secondary selection
 						let primary = html.find('[name="primary"]').val();
 						let secondary = event.target.value;
 						let tertiaryOptions = ["Willpower", "Consciousness", "Awareness"].filter(
@@ -1076,6 +1076,7 @@ export async function NewActorFinish(actor) {
 								img: actorimg,
 							});
 							//? set bloodsplats to red color
+							//todo Monk's Bloodsplats had an update that further enhances what options are available.
 							await actor.update({ "prototypeToken.flags.splatter": { bloodColor: "#d10000ff" } });
 							await actor.update({
 								"prototypeToken.flags.monks-bloodsplats.bloodsplat-colour": "#d10000ff",

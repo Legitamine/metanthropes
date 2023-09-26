@@ -1,21 +1,9 @@
-////
-//*
-//! Metanthropes RPG System for FoundryVTT
-//? This is the Item document for the Metanthropes RPG System for FoundryVTT.
-//? This controls how Items are created and what they can do.
-//todo: Enable basic functionality
-//*
-////
 import { MetaRoll } from "../metanthropes/metaroll.mjs";
 export class MetanthropesItem extends Item {
-	/**
-	 * Augment the basic Item data model with additional dynamic data.
-	 */
+	/** @override */
 	prepareData() {
-		// As with the actor class, items are documents that can have their data
-		// preparation methods overridden (such as prepareBaseData()).
 		super.prepareData();
-		//? Give the item a default image based on the Metapower Name
+		//? Give Metapowers an image based on the Metapower Name
 		if (this.type === "Metapower") {
 			const mpname = this.system.MetapowerName.value;
 			const imgPath = `systems/metanthropes-system/artwork/metapowers/${mpname}.png`;
@@ -52,7 +40,7 @@ export class MetanthropesItem extends Item {
 
 		// If there's no roll data, send a chat message.
 		//! should this be .value at the end?
-		if (!this.system.Activation.statrolled) {
+		if (!this.system.Execution.StatRolled.value) {
 			ChatMessage.create({
 				speaker: speaker,
 				rollMode: rollMode,
@@ -67,7 +55,7 @@ export class MetanthropesItem extends Item {
 			const rollData = this.getRollData();
 			// capture the info for the MetaRoll function
 			const actor = this.actor;
-			const stat = this.system.Activation.statrolled.value;
+			const stat = this.system.Execution.StatRolled.value;
 			console.log("Metanthropes RPG System | ====================================");
 			console.log("Metanthropes RPG System | we are inside item roll else - is this working?");
 			console.log("Metanthropes RPG System | ====================================");

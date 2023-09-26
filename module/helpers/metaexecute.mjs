@@ -49,7 +49,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 	//? Find the first item ()that matches itemName
 	let metaItemData = actor.items.find((item) => item.name === itemName);
 	if (!metaItemData) {
-		console.log("Metanthropes RPG System | MetaExecute | Could not find any item named:", itemName);
+		console.error("Metanthropes RPG System | MetaExecute | Could not find any item named:", itemName);
 		return;
 	}
 	console.log("Metanthropes RPG System | MetaExecute | Engaged for", itemName);
@@ -450,7 +450,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		let currentDestiny = actor.system.Vital.Destiny.value;
 		contentMessage += `<div>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br></div>`;
 		if (currentDestiny > 0) {
-			//? add reroll buttons
+			//? add destiny reroll buttons
 			if (actionSlotRerollButton) {
 				contentMessage += actionSlotRerollButton;
 			}

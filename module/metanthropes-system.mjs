@@ -165,7 +165,7 @@ Hooks.once("ready", async function () {
 	console.log("Metanthropes RPG System | Starting Migration");
 	await metaMigrateData();
 	console.log("Metanthropes RPG System | Finished Migration");
-	//? Add support for Moulinette: Free modules with artwork & sounds is available for indexing by Moulinette
+	//? Add support for Moulinette: Free modules with artwork & sounds are indexable by Moulinette
 	if (game.moulinette) {
 		game.moulinette.sources.push({
 			type: "images",
@@ -344,8 +344,8 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 				{ range: baseSpeed * 4, color: "additional" },
 				{ range: baseSpeed * 10, color: "sprint" },
 			];
-			//	I can add special modifiers to speed (like flying, etc)
-			//		// Characters that aren't wearing armor are allowed to run with three times their speed
+			//todo	I can add special modifiers to speed (like flying, etc)
+			// Example: Characters that aren't wearing armor are allowed to run with three times their speed
 			//		if (!token.actor.data.isWearingArmor) {
 			//			ranges.push({range: baseSpeed * 3, color: "dash"})
 			//		}
@@ -363,7 +363,6 @@ Hooks.on("renderChatMessage", async (message, html) => {
 	if (!actorUUID) return;
 	const actor = await fromUuid(actorUUID);
 	const metaowner = actor.system.metaowner.value || null;
-	//console.log("Metanthropes RPG System | DEBUG | metaowner:", actor.system.metaowner.value, metaowner);
 	//? Proceed only if the current user is the owner of the actor, or a GM
 	if (game.user.name === metaowner || game.user.isGM) {
 		//? Unhide the buttons - assumes DF Chat Enhancements module is installed (provides hidden class that works)

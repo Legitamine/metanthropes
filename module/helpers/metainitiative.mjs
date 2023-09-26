@@ -16,11 +16,7 @@ import { MetaRoll } from "../metanthropes/metaroll.mjs";
  * MetaInitiative(combatant);
  */
 export async function MetaInitiative(combatant) {
-	console.log(
-		"Metanthropes RPG System | MetaInitiative | Engaged for combatant:",
-		combatant,
-		"and preparing actor data"
-	);
+	console.log("Metanthropes RPG System | MetaInitiative | Engaged for combatant:", combatant);
 	//? Check to see if this is a linked actor
 	let actor = null;
 	if (combatant.token.actorLink) {
@@ -65,23 +61,23 @@ export async function MetaInitiative(combatant) {
 		actor.name + "'s Initiative with",
 		initiativeStat
 	);
-	let checkResult;
-	if (actor.name !=="Duplicate") {
+	let initiativeResult;
+	if (actor.name !== "Duplicate") {
 		await MetaRoll(actor, action, initiativeStat);
-		checkResult = await actor.getFlag("metanthropes-system", "lastrolled").Initiative;
+		initiativeResult = await actor.getFlag("metanthropes-system", "lastrolled").Initiative;
 	} else {
-		checkResult = -11;
+		initiativeResult = -11;
 	}
-	//todo have to decide how core conditions are going to be evaluated
+	//todo add Metapowers that affect Initiative results
 	//? Update the combatant with the new initiative score
 	console.log(
 		"Metanthropes RPG System | MetaInitiative | MetaRoll Result for",
 		actor.name + "'s Initiative with",
 		initiativeStat,
 		"was:",
-		checkResult
+		initiativeResult
 	);
-	await combatant.update({ initiative: checkResult });
+	await combatant.update({ initiative: initiativeResult });
 }
 
 /**
@@ -109,7 +105,7 @@ export async function MetaInitiativeReRoll(event) {
 	console.log("Metanthropes RPG  System | MetaInitiativeReRoll | Engaged for combatant:", combatant);
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	//? Reduce Destiny.value by 1
-	currentDestiny -= 1;
+	currentDestiny--;
 	await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 	console.log(
 		"Metanthropes RPG System | MetaInitiativeReRoll | Engaging MetaInitiative for:",
@@ -123,5 +119,4 @@ export async function MetaInitiativeReRoll(event) {
 	if (sheet && sheet.rendered) {
 		sheet.render(true);
 	}
-	console.log("Metanthropes RPG System | MetaInitiativeReRoll | MetaInitiative finished, no reason to exist?");
 }

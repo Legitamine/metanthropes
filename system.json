@@ -2,7 +2,7 @@
 	"id": "metanthropes-system",
 	"title": "Metanthropes RPG",
 	"description": "Metanthropes RPG System for FoundryVTT",
-	"version": "0.7.77",
+	"version": "0.7.78",
 	"compatibility": {
 		"minimum": "11",
 		"verified": "11.309",

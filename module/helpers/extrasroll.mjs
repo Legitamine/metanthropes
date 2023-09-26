@@ -138,12 +138,10 @@ export async function Rolld10ReRoll(event) {
 	const baseNumber = parseInt(button.dataset.baseNumber) || 0;
 	const isHalf = button.dataset.isHalf === "true" ? true : false;
 	const actor = await fromUuid(actoruuid);
-	//? Reduce Destiny.value by 1
-	console.log("Metanthropes RPG System | Rolld10ReRoll | Evaluating destiny for:", actor);
-	let currentDestiny = Number(actor.system.Vital.Destiny.value);
 	//? Need to check if actor has enough Destiny to spend, because they might have already spent it on another secondary button
+	let currentDestiny = Number(actor.system.Vital.Destiny.value);
 	if (currentDestiny > 0 && destinyReRoll) {
-		currentDestiny -= 1;
+		currentDestiny--;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		console.log(
 			"Metanthropes RPG System | Rolld10ReRoll | Engaging Rolld10 for:",
@@ -164,6 +162,6 @@ export async function Rolld10ReRoll(event) {
 		//	}
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
-		console.log("Metanthropes RPG System | Rolld10ReRoll | Not enough Destiny to spend, or destinyReRoll is false");
+		console.warn("Metanthropes RPG System | Rolld10ReRoll | Not enough Destiny to spend, or destinyReRoll is false");
 	}
 }
