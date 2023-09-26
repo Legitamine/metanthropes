@@ -7,16 +7,13 @@ import { metaExtractNumberOfDice } from "./metahelpers.mjs";
  * The function checks for Metapowers that affect explosive dice and applies the corresponding logic.
  * It also constructs and sends a chat message detailing the execution results.
  *
- * todo: Consider further refactoring to separate Metapower and Possession logic into distinct helper functions.
  * todo: Ensure all necessary data fields are available and handle any missing data gracefully.
  * ! need a new field to track fixed numbers to be added to the roll rollResults
  * ! do I need multiples based on different damage types?
  * todo na skeftw tin xrisi twn flags kai pws ta diavazw - ti xreiazomai pragmatika?
  * todo mazi me ta activations (lvls) na skeftw kai ta usage (lvls antistoixa)
  * todo episis upcoming combos!
- * todo kai olo mazi na kanei seamless integration se ena executioN!
  * !todo utilize existing levels of success and spent levels of success
- * ! what to do with targets being 1d10/2 ???? ++ *special* rolls
  *
  * @param {Event} [event] - The button click event, if the function was triggered by a button click. Expected to be null if the function is called directly.
  * @param {string} actorUUID - The UUID of the actor performing the action. Expected to be a string.
@@ -405,7 +402,9 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		if (areaEffectMessage) {
 			contentMessage += areaEffectMessage;
 		}
+		if (effectDescription) {
 		contentMessage += `<br>${effectDescription}<br>`;
+		}
 		if (damageCosmicMessage) {
 			contentMessage += damageCosmicMessage;
 		}

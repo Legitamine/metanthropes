@@ -14,7 +14,7 @@ This is a work in progress and is not ready for general use. Installation instru
 
 ## Officially Supported Modules
 
-This System aims to utilize the latest and best in Foundry VTT. Currently offers support for Foundry VTT version 11. Latest supported version is v11.308.
+This System aims to utilize the latest and best in Foundry VTT. Currently offers support for Foundry VTT version 11. Latest supported version is v11.309.
 
 To get the best experience while playing Metanthropes RPG, we recommend to install the following fully supported modules: (System suggested and required module automations & PRs are planned for v1.0)
 
