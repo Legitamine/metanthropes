@@ -2,16 +2,17 @@ import { MetaInitiative } from "../helpers/metainitiative.mjs";
 export class MetanthropesCombat extends Combat {
 	//? adding the concept of Cycles & Rounds to the combat system
 	async prepareDerivedData() {
-        super.prepareDerivedData();
-        let cycle = this.getFlag("metanthropes-system", "cycle") || 1;
-        let cycleRound = this.getFlag("metanthropes-system", "cycleRound") || 1;
+		super.prepareDerivedData();
+		let cycle = this.getFlag("metanthropes-system", "cycle") || 1;
+		let cycleRound = this.getFlag("metanthropes-system", "cycleRound") || 1;
 		console.log("Metanthropes RPG System | Combat | prepareDerivedData | Cycle:", cycle, "Round:", cycleRound);
 		//? set the flags to be used later
 		await this.setFlag("metanthropes-system", "cycle", cycle);
 		await this.setFlag("metanthropes-system", "cycleRound", cycleRound);
+		//? embed the Cycle and Round values into the Combat document for use in the Combat Tracker
 		this.cycle = cycle;
 		this.cycleRound = cycleRound;
-    }
+	}
 	_sortCombatants(a, b) {
 		const ia = Number.isNumeric(a.initiative) ? a.initiative : -Infinity;
 		const ib = Number.isNumeric(b.initiative) ? b.initiative : -Infinity;
@@ -36,57 +37,30 @@ export class MetanthropesCombat extends Combat {
 	 */
 	async rollInitiative(ids, { formula = null, updateTurn = true, messageOptions = {} } = {}) {
 		console.log("Metanthropes RPG System | Combat | rollInitiative Engaged");
-		// Structure input data
+		//? Structure input data
 		ids = typeof ids === "string" ? [ids] : ids;
 		const currentId = this.combatant?.id;
-		// Iterate over Combatants, performing an initiative roll for each
+		//? Iterate over Combatants, performing an initiative roll for each
 		const updates = [];
 		const messages = [];
 		for (let [i, id] of ids.entries()) {
-			// Get Combatant data (non-strictly)
+			//? Get Combatant data (non-strictly)
 			const combatant = this.combatants.get(id);
 			if (!combatant?.isOwner) continue;
-			// Produce an initiative roll for the Combatant
-			console.log("Metanthropes RPG System | Combat | Engaging MetaInitiative for combatant:", combatant);
+			//? Produce an initiative roll for the Combatant
+			console.log("Metanthropes RPG System | Combat | rollInitiative | MetaInitiative for combatant:", combatant);
 			await MetaInitiative(combatant);
 			let initiativeResult = combatant.actor.getFlag("metanthropes-system", "lastrolled").Initiative;
 			console.log(
-				"Metanthropes RPG System | Combat | MetaInitiative finished, updating combatant with new initiative:",
+				"Metanthropes RPG System | Combat | rollInitiative | MetaInitiative finished, updating combatant with new initiative:",
 				initiativeResult
 			);
 			updates.push({ _id: id, initiative: initiativeResult });
-			//! warning: I am not taking into account hidding combatants, making private rolls where needed
 		}
 		if (!updates.length) return this;
 		//? Update multiple combatants
 		await this.updateEmbeddedDocuments("Combatant", updates);
-		//! do we need this?
-		//? Ensure the turn order remains with the same combatant
-		if (updateTurn && currentId) {
-			await this.update({ turn: this.turns.findIndex((t) => t.id === currentId) });
-		}
-		//! do we need this?
-		//? Create multiple chat messages
-		await ChatMessage.implementation.create(messages);
 		return this;
-	}
-	/**
-	 * Assign initiative for a single Combatant within the Combat encounter.
-	 * Update the Combat turn order to maintain the same combatant as the current turn.
-	 * @param {string} id         The combatant ID for which to set initiative
-	 * @param {number} value      A specific initiative value to set
-	 */
-	async setInitiative(id, value) {
-		const combatant = this.combatants.get(id, { strict: true });
-		await combatant.update({ initiative: value });
-		console.log("=======++++++++++++++============");
-		console.log("Metanthropes RPG DELETE ME setInitiative");
-		console.log("=======++++++++++++++============");
-	}
-	//! edw einai ?? - ayto psanxei formula, enw egw exw allo function to do that
-	async _getInitiativeFormula(combatant) {
-		console.log("Metanthropes RPG inside _getInitiativeFormula  === +++ DELETE ME +++ === ");
-		await MetaInitiative(combatant);
 	}
 	async nextRound() {
 		await super.nextRound();
@@ -118,6 +92,7 @@ export class MetanthropesCombat extends Combat {
 		//? Reroll initiative for all combatants at the start of a new Cycle (every odd cycleRound)
 		if (cycle > 1 && cycleRound === 1) {
 			await this.resetAll();
+			this.setupTurns();
 		}
 		return this;
 	}
