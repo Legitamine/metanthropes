@@ -73,7 +73,7 @@ export async function MetaEvaluate(
 	//? Check for Destiny Cost in case of a Metapower
 	if (action === "Metapower") {
 		if (currentDestiny < destinyCost) {
-			ui.notifications.error(actor.name + " doesn't have enough Destiny to try and activate this Metapower!");
+			ui.notifications.warn(actor.name + " doesn't have enough Destiny to activate " + itemName);
 			return;
 		} else {
 			currentDestiny -= destinyCost;
@@ -96,19 +96,17 @@ export async function MetaEvaluate(
 	//? check for critical success or failure
 	if (criticalSuccess) {
 		result = `🟩 Critical Success 🟩, rewarding ${actor.name} with +1 * 🤞 Destiny`;
-		currentDestiny += 1;
+		currentDestiny++;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfSuccess = 10;
 		levelsOfFailure = 0;
-		if (statScore < 100) {
-			levelsOfSuccess += 0;
-		} else {
+		if (statScore > 100) {
 			levelsOfSuccess += Math.floor((statScore - 100) / 10);
 		}
 	}
 	if (criticalFailure) {
 		result = `🟥 Critical Failure 🟥, rewarding ${actor.name} with +1 * 🤞 Destiny`;
-		currentDestiny += 1;
+		currentDestiny++;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfFailure = 10;
 		levelsOfSuccess = 0;
@@ -201,6 +199,7 @@ export async function MetaEvaluate(
 	}
 	//? Buttons to Re-Roll MetaEvaluate results - only adds the button to message, if it's not a Critical and only if they have enough Destiny for needed reroll.
 	//* The buttons are hidden for everone except the owner of the actor and the GM as long as DF Chat Enhancements is installed
+	//todo I should figure out how to do this on my own without the need to have DF Chat Enhancements installed
 	//? Define threshold of showing the button, to re-roll we need a minimum of 1 Destiny + the Destiny Cost of the Metapower (only applies to Metapowers with DestinyCost, otherwise it's 0)
 	let threshold = Number(1 + Number(destinyCost));
 	if (!criticalSuccess && !criticalFailure && currentDestiny >= threshold) {
@@ -224,10 +223,11 @@ export async function MetaEvaluate(
 			data-item-name="${itemName}" data-action="${action}" data-multi-action="${multiAction}"
 			>Use 🛠️ ${itemName}</button><br></div>`;
 		} else {
+			// Intentionally left blank for future expansion
 			//message += `<div><br></div>`;
 		}
-	} else {
-		//? Set autoExecute to true if it's a Critical Success or Failure, or if the actor doesn't have enough Destiny to reroll
+	} else if (!action === "Initiative") {
+		//? Set autoExecute to true if it's either a Critical Success or a Critical Failure, or if the actor doesn't have enough Destiny to reroll
 		autoExecute = true;
 	}
 	message += `<div><br></div>`;
@@ -258,6 +258,9 @@ export async function MetaEvaluate(
 		case "Possession":
 			newRolls.Possession = resultLevel;
 			break;
+		default:
+			console.error("Metanthropes RPG System | MetaEvaluate | Error: Action not recognized:", action);
+			return;
 	}
 	//? Update the actor with the new .lastrolled values
 	await actor.setFlag("metanthropes-system", "lastrolled", newRolls);
@@ -313,7 +316,6 @@ export async function MetaEvaluate(
 			console.log("Metanthropes RPG System | MetaEvaluate | Auto-Activating Metapower:", itemName);
 			MetaExecute(null, actor.uuid, action, itemName);
 		} else if (action === "Possession") {
-			//! not fully done, make sure to update this after PossessionUse is refactored
 			console.log("Metanthropes RPG System | MetaEvaluate | Auto-Using Possession:", itemName);
 			MetaExecute(null, actor.uuid, action, itemName, multiAction);
 		}
@@ -354,7 +356,7 @@ export async function MetaEvaluateReRoll(event) {
 	console.log("Metanthropes RPG System | MetaEvaluateReRoll | Engaged for:", actor.name + "'s", action, actorUUID);
 	//? Reduce Destiny.value by 1
 	let currentDestiny = actor.system.Vital.Destiny.value;
-	currentDestiny -= 1;
+	currentDestiny--;
 	await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 	await MetaEvaluate(actor, action, stat, statScore, multiAction, bonus, penalty, pain, destinyCost, itemName);
 	//? Refresh the actor sheet if it's open

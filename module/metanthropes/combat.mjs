@@ -22,7 +22,7 @@ export class MetanthropesCombat extends Combat {
 		return ib - ia || (astatScore > bstatScore ? -1 : 1);
 	}
 	//todo: award Destiny and re-roll initiative if tied both in Initiative and statScore
-	//! gia na paixei to full ruleset, prepei na kanw 'confirm initiative'
+	//! gia na paixei to full ruleset, prepei na kanw 'confirm initiative' ??
 
 	/**
 	 * Roll Initiative for one or multiple Combatants within the Combat document
@@ -39,16 +39,17 @@ export class MetanthropesCombat extends Combat {
 		console.log("Metanthropes RPG System | Combat | rollInitiative Engaged");
 		//? Structure input data
 		ids = typeof ids === "string" ? [ids] : ids;
-		const currentId = this.combatant?.id;
 		//? Iterate over Combatants, performing an initiative roll for each
 		const updates = [];
-		const messages = [];
 		for (let [i, id] of ids.entries()) {
 			//? Get Combatant data (non-strictly)
 			const combatant = this.combatants.get(id);
 			if (!combatant?.isOwner) continue;
 			//? Produce an initiative roll for the Combatant
-			console.log("Metanthropes RPG System | Combat | rollInitiative | MetaInitiative for combatant:", combatant);
+			console.log(
+				"Metanthropes RPG System | Combat | rollInitiative | Engaging MetaInitiative for combatant:",
+				combatant
+			);
 			await MetaInitiative(combatant);
 			let initiativeResult = combatant.actor.getFlag("metanthropes-system", "lastrolled").Initiative;
 			console.log(
@@ -63,37 +64,49 @@ export class MetanthropesCombat extends Combat {
 		return this;
 	}
 	async nextRound() {
+		console.warn("Metanthropes RPG System | Combat | nextRound | Engaged");
 		await super.nextRound();
+		//todo Bleeding - assuming this function runs at the end of every Round, bleeding goes here
 		//! I should probably do something similar for previous round
 		//? Calculate the Cycle and Round values
 		//? Get the most recent Cycle and Round values from the Combat document
 		let cycle = await this.getFlag("metanthropes-system", "cycle");
 		let cycleRound = await this.getFlag("metanthropes-system", "cycleRound");
-		if (this.round === 1) {
-			cycle = 1;
-			cycleRound = 1;
-		} else if (this.round === 2) {
-			cycle = 1;
-			cycleRound = 2;
-		} else if (this.round === 3) {
-			cycle = 2;
-			cycleRound = 1;
-		} else if (this.round > 2 && (this.round - 1) % 2 === 0) {
-			cycle++;
-			cycleRound = 1;
-		} else {
-			cycleRound = 2;
+		switch (this.round) {
+			case 1:
+				cycle = 1;
+				cycleRound = 1;
+				break;
+			case 2:
+				cycle = 1;
+				cycleRound = 2;
+				break;
+			case 3:
+				cycle = 2;
+				cycleRound = 1;
+				break;
+			default:
+				if (this.round > 2 && (this.round - 1) % 2 === 0) {
+					cycle++;
+					cycleRound = 1;
+				} else {
+					cycleRound = 2;
+				}
+				break;
 		}
+		console.log("Metanthropes RPG System | Combat | nextRound | logic step 1 | Cycle:", cycle, "Round:", cycleRound);
 		this.cycle = cycle;
 		this.cycleRound = cycleRound;
 		await this.setFlag("metanthropes-system", "cycle", cycle);
 		await this.setFlag("metanthropes-system", "cycleRound", cycleRound);
-		console.log("Metanthropes RPG System | Combat | nextRound | Cycle:", cycle, "Round:", cycleRound);
+		console.log("Metanthropes RPG System | Combat | nextRound | logic step 2 | Cycle:", cycle, "Round:", cycleRound);
+		console.log("Metanthropes RPG System | Combat | nextRound | logic step was there any difference?");
 		//? Reroll initiative for all combatants at the start of a new Cycle (every odd cycleRound)
 		if (cycle > 1 && cycleRound === 1) {
 			await this.resetAll();
 			this.setupTurns();
 		}
+		console.warn("Metanthropes RPG System | Combat | nextRound | Finished");
 		return this;
 	}
 }

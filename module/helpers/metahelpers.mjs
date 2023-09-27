@@ -1,4 +1,4 @@
-//* extracts the number of d10 dice from a value
+//* extracts the number of d10 dice from a given value
 export async function metaExtractNumberOfDice(value) {
 	const match = value.match(/^(\d+)d10$/);
 	if (match) {

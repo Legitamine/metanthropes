@@ -16,11 +16,7 @@ import { MetaRoll } from "../metanthropes/metaroll.mjs";
  * MetaInitiative(combatant);
  */
 export async function MetaInitiative(combatant) {
-	console.log(
-		"Metanthropes RPG System | MetaInitiative | Engaged for combatant:",
-		combatant,
-		"and preparing actor data"
-	);
+	console.log("Metanthropes RPG System | MetaInitiative | Engaged for combatant:", combatant);
 	//? Check to see if this is a linked actor
 	let actor = null;
 	if (combatant.token.actorLink) {
@@ -31,7 +27,7 @@ export async function MetaInitiative(combatant) {
 		//? If it's not linked, get data from the token document
 		actor = combatant.token.actor;
 	}
-	//? Initialize the actor's RollStat table before proceeding
+	//? Initialize the actor's RollStat array before proceeding
 	await actor.getRollData();
 	console.log("Metanthropes RPG System | MetaInitiative | Engaged for", actor.type + ":", actor.name);
 	//? Check for alternate Stat to use for Initiative
@@ -41,7 +37,7 @@ export async function MetaInitiative(combatant) {
 	const reflexesScore = actor.system.RollStats[reflexesStat];
 	const awarenessScore = actor.system.RollStats[awarenessStat];
 	const perceptionScore = actor.system.RollStats[perceptionStat];
-	let initiativeStat;
+	let initiativeStatRolled;
 	//? Check for metapowers that allow other Initiative stat than Reflexes
 	const metapowers = actor.items.filter((item) => item.type === "Metapower");
 	const hasDangerSense = metapowers.some((metapower) => metapower.name === "Danger Sense");
@@ -56,32 +52,34 @@ export async function MetaInitiative(combatant) {
 	}
 	//? Sort the stats array in descending order based on the stat score
 	initiativeStats.sort((a, b) => b.score - a.score);
-	//? The initiativeStat is the name of the stat with the highest score
-	initiativeStat = initiativeStats[0].name;
+	//? The initiativeStatRolled becomes the name of the stat with the highest score
+	initiativeStatRolled = initiativeStats[0].name;
 	//? Call MetaRoll
 	let action = "Initiative";
 	console.log(
 		"Metanthropes RPG System | MetaInitiative | Engaging MetaRoll for",
 		actor.name + "'s Initiative with",
-		initiativeStat
+		initiativeStatRolled
 	);
-	let checkResult;
-	if (actor.name !=="Duplicate") {
-		await MetaRoll(actor, action, initiativeStat);
-		checkResult = await actor.getFlag("metanthropes-system", "lastrolled").Initiative;
+	let initiativeResult;
+	//* Special Initiative Rules
+	//? Duplicates from Duplicate Self Metapower get a -11 Initiative, this will ensure they always go last
+	if (actor.name !== "Duplicate") {
+		await MetaRoll(actor, action, initiativeStatRolled);
+		initiativeResult = await actor.getFlag("metanthropes-system", "lastrolled").Initiative;
 	} else {
-		checkResult = -11;
+		initiativeResult = -11;
 	}
-	//todo have to decide how core conditions are going to be evaluated
+	//todo add Metapowers that affect Initiative results
 	//? Update the combatant with the new initiative score
 	console.log(
 		"Metanthropes RPG System | MetaInitiative | MetaRoll Result for",
 		actor.name + "'s Initiative with",
-		initiativeStat,
+		initiativeStatRolled,
 		"was:",
-		checkResult
+		initiativeResult
 	);
-	await combatant.update({ initiative: checkResult });
+	await combatant.update({ initiative: initiativeResult });
 }
 
 /**
@@ -109,7 +107,7 @@ export async function MetaInitiativeReRoll(event) {
 	console.log("Metanthropes RPG  System | MetaInitiativeReRoll | Engaged for combatant:", combatant);
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	//? Reduce Destiny.value by 1
-	currentDestiny -= 1;
+	currentDestiny--;
 	await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 	console.log(
 		"Metanthropes RPG System | MetaInitiativeReRoll | Engaging MetaInitiative for:",
@@ -123,5 +121,4 @@ export async function MetaInitiativeReRoll(event) {
 	if (sheet && sheet.rendered) {
 		sheet.render(true);
 	}
-	console.log("Metanthropes RPG System | MetaInitiativeReRoll | MetaInitiative finished, no reason to exist?");
 }
