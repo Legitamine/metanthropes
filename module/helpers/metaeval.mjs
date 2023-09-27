@@ -226,7 +226,7 @@ export async function MetaEvaluate(
 			// Intentionally left blank for future expansion
 			//message += `<div><br></div>`;
 		}
-	} else {
+	} else if (!action === "Initiative") {
 		//? Set autoExecute to true if it's either a Critical Success or a Critical Failure, or if the actor doesn't have enough Destiny to reroll
 		autoExecute = true;
 	}

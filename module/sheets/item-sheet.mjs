@@ -14,6 +14,7 @@ export class MetanthropesItemSheet extends ItemSheet {
 	}
 	//? Only Narrators are allowed to drag and drop items
 	//! players are also able to drag n drop possessions from itempiles perhaps?
+	//todo investigate exactly what players can drag n drop - is there something similar in the actor sheet?
 	/** @override */
 	_canDragDrop(selector) {
 		return game.user.isGM;

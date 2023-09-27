@@ -1,10 +1,3 @@
-////
-//*
-//! Metanthropes RPG System for FoundryVTT
-//? This is the Actor Sheet for the Metanthropes RPG System for FoundryVTT.
-//? This controls how the sheet functions
-//*
-////
 //? Import MetaRoll
 import { MetaRoll } from "../metanthropes/metaroll.mjs";
 //? Import New Actor
@@ -145,9 +138,9 @@ export class MetanthropesActorSheet extends ActorSheet {
 		html.find(".style-mp-rolls").on("contextmenu", this._onCustomRoll.bind(this));
 		html.find(".style-pos-rolls").click(this._onRoll.bind(this));
 		html.find(".style-pos-rolls").on("contextmenu", this._onCustomRoll.bind(this));
-		//? New Actor Logic
+		//? Roll New Actor Button
 		html.find(".new-actor").click(this._onNewActor.bind(this));
-		//? Finalize Premade Protagonist
+		//? Finalize Premade Protagonist Button
 		html.find(".finalize-premade-protagonist").click(this._onFinalizePremadeProtagonist.bind(this));
 		// Drag events for macros.
 		if (this.actor.isOwner) {
@@ -185,13 +178,13 @@ export class MetanthropesActorSheet extends ActorSheet {
 	async _handleMetaRolls(event, isCustomRoll = false) {
 		event.preventDefault();
 		const element = event.currentTarget;
-		//? Disable element for a few seconds to prevent double-clicking
+		//? Disable the element for 3 seconds to prevent double-clicking
 		element.disabled = true;
 		setTimeout(() => {
 			element.disabled = false;
 		}, 3000);
 		const dataset = element.dataset;
-		console.log("Metanthropes RPG System | _handleMetaRolls | Engaged", isCustomRoll);
+		console.log("Metanthropes RPG System | _handleMetaRolls | Engaged via right-click:", isCustomRoll);
 		//? Handle all types of rolls here based on the rollType (data-roll-type)
 		if (dataset.rollType) {
 			const actor = this.actor;
@@ -236,17 +229,18 @@ export class MetanthropesActorSheet extends ActorSheet {
 				await MetaRoll(actor, action, stat, isCustomRoll, 0, itemName);
 				console.log("Metanthropes RPG System | _handleMetaRolls | Finished Rolling for Possession");
 			} else {
-				console.log(
+				console.error(
 					"Metanthropes RPG System | _handleMetaRolls | ERROR: not defined rollType",
 					dataset.rollType
 				);
 				return;
 			}
 		} else {
-			console.log("Metanthropes RPG System | _handleMetaRolls | ERROR: rollType not defined");
+			console.error("Metanthropes RPG System | _handleMetaRolls | ERROR: rollType not defined");
 			return;
 		}
 		//? After doing a meta roll, re-render the actor sheet.
+		//! do I need to do this both here and in _onRoll & _onCustomRoll?
 		console.log("Metanthropes RPG System | _handleMetaRolls | Finished, re-rendering the actor sheet");
 		this.render(true);
 	}

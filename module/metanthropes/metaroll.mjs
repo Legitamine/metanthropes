@@ -168,6 +168,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		);
 		await MetaEvaluate(actor, action, stat, statScore, multiAction, bonus, penalty, pain, destinyCost, itemName);
 	}
+	//* Post-roll actions
 	let checkResult = await actor.getFlag("metanthropes-system", "lastrolled").MetaEvaluate;
 	console.log(
 		"Metanthropes RPG System | MetaRoll | MetaEvaluate Result for",

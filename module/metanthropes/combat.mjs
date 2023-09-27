@@ -22,7 +22,7 @@ export class MetanthropesCombat extends Combat {
 		return ib - ia || (astatScore > bstatScore ? -1 : 1);
 	}
 	//todo: award Destiny and re-roll initiative if tied both in Initiative and statScore
-	//! gia na paixei to full ruleset, prepei na kanw 'confirm initiative'
+	//! gia na paixei to full ruleset, prepei na kanw 'confirm initiative' ??
 
 	/**
 	 * Roll Initiative for one or multiple Combatants within the Combat document
@@ -39,7 +39,6 @@ export class MetanthropesCombat extends Combat {
 		console.log("Metanthropes RPG System | Combat | rollInitiative Engaged");
 		//? Structure input data
 		ids = typeof ids === "string" ? [ids] : ids;
-		const currentId = this.combatant?.id;
 		//? Iterate over Combatants, performing an initiative roll for each
 		const updates = [];
 		for (let [i, id] of ids.entries()) {
@@ -65,7 +64,9 @@ export class MetanthropesCombat extends Combat {
 		return this;
 	}
 	async nextRound() {
+		console.warn("Metanthropes RPG System | Combat | nextRound | Engaged");
 		await super.nextRound();
+		//todo Bleeding - assuming this function runs at the end of every Round, bleeding goes here
 		//! I should probably do something similar for previous round
 		//? Calculate the Cycle and Round values
 		//? Get the most recent Cycle and Round values from the Combat document
@@ -93,16 +94,19 @@ export class MetanthropesCombat extends Combat {
 				}
 				break;
 		}
+		console.log("Metanthropes RPG System | Combat | nextRound | logic step 1 | Cycle:", cycle, "Round:", cycleRound);
 		this.cycle = cycle;
 		this.cycleRound = cycleRound;
 		await this.setFlag("metanthropes-system", "cycle", cycle);
 		await this.setFlag("metanthropes-system", "cycleRound", cycleRound);
-		console.log("Metanthropes RPG System | Combat | nextRound | Cycle:", cycle, "Round:", cycleRound);
+		console.log("Metanthropes RPG System | Combat | nextRound | logic step 2 | Cycle:", cycle, "Round:", cycleRound);
+		console.log("Metanthropes RPG System | Combat | nextRound | logic step was there any difference?");
 		//? Reroll initiative for all combatants at the start of a new Cycle (every odd cycleRound)
 		if (cycle > 1 && cycleRound === 1) {
 			await this.resetAll();
 			this.setupTurns();
 		}
+		console.warn("Metanthropes RPG System | Combat | nextRound | Finished");
 		return this;
 	}
 }

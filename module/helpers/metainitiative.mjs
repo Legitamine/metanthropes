@@ -27,7 +27,7 @@ export async function MetaInitiative(combatant) {
 		//? If it's not linked, get data from the token document
 		actor = combatant.token.actor;
 	}
-	//? Initialize the actor's RollStat table before proceeding
+	//? Initialize the actor's RollStat array before proceeding
 	await actor.getRollData();
 	console.log("Metanthropes RPG System | MetaInitiative | Engaged for", actor.type + ":", actor.name);
 	//? Check for alternate Stat to use for Initiative
@@ -37,7 +37,7 @@ export async function MetaInitiative(combatant) {
 	const reflexesScore = actor.system.RollStats[reflexesStat];
 	const awarenessScore = actor.system.RollStats[awarenessStat];
 	const perceptionScore = actor.system.RollStats[perceptionStat];
-	let initiativeStat;
+	let initiativeStatRolled;
 	//? Check for metapowers that allow other Initiative stat than Reflexes
 	const metapowers = actor.items.filter((item) => item.type === "Metapower");
 	const hasDangerSense = metapowers.some((metapower) => metapower.name === "Danger Sense");
@@ -52,18 +52,20 @@ export async function MetaInitiative(combatant) {
 	}
 	//? Sort the stats array in descending order based on the stat score
 	initiativeStats.sort((a, b) => b.score - a.score);
-	//? The initiativeStat is the name of the stat with the highest score
-	initiativeStat = initiativeStats[0].name;
+	//? The initiativeStatRolled becomes the name of the stat with the highest score
+	initiativeStatRolled = initiativeStats[0].name;
 	//? Call MetaRoll
 	let action = "Initiative";
 	console.log(
 		"Metanthropes RPG System | MetaInitiative | Engaging MetaRoll for",
 		actor.name + "'s Initiative with",
-		initiativeStat
+		initiativeStatRolled
 	);
 	let initiativeResult;
+	//* Special Initiative Rules
+	//? Duplicates from Duplicate Self Metapower get a -11 Initiative, this will ensure they always go last
 	if (actor.name !== "Duplicate") {
-		await MetaRoll(actor, action, initiativeStat);
+		await MetaRoll(actor, action, initiativeStatRolled);
 		initiativeResult = await actor.getFlag("metanthropes-system", "lastrolled").Initiative;
 	} else {
 		initiativeResult = -11;
@@ -73,7 +75,7 @@ export async function MetaInitiative(combatant) {
 	console.log(
 		"Metanthropes RPG System | MetaInitiative | MetaRoll Result for",
 		actor.name + "'s Initiative with",
-		initiativeStat,
+		initiativeStatRolled,
 		"was:",
 		initiativeResult
 	);
