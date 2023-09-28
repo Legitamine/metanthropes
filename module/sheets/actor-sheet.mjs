@@ -86,7 +86,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		context.Possessions = Possessions;
 		context.Metapowers = Metapowers;
 	}
-	//? activate listeners for clickable stuff on the actor sheet!
+	//* activate listeners for clickable stuff on the actor sheet!
 	activateListeners(html) {
 		super.activateListeners(html);
 		//? Render the item sheet for viewing/editing prior to the editable check.
@@ -95,19 +95,18 @@ export class MetanthropesActorSheet extends ActorSheet {
 			const item = this.actor.items.get(li.data("itemId"));
 			item.sheet.render(true);
 		});
-		// -------------------------------------------------------------
-		// Everything below here is only needed if the sheet is editable
+		//* Everything below this point is only needed if the sheet is editable
 		if (!this.isEditable) return;
-		// Add Inventory Item
+		//? Add Inventory Item
 		html.find(".item-create").click(this._onItemCreate.bind(this));
-		// Delete Inventory Item
+		//? Delete Inventory Item
 		html.find(".item-delete").click((ev) => {
 			const li = $(ev.currentTarget).parents(".item");
 			const item = this.actor.items.get(li.data("itemId"));
 			item.delete();
 			li.slideUp(200, () => this.render(false));
 		});
-		// Active Effect management
+		//? Active Effect management
 		html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
 		//? Find the different type of rolls and add the event listeners
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
@@ -120,7 +119,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		html.find(".new-actor").click(this._onNewActor.bind(this));
 		//? Finalize Premade Protagonist Button
 		html.find(".finalize-premade-protagonist").click(this._onFinalizePremadeProtagonist.bind(this));
-		// Drag events for macros.
+		//? Drag events for macros.
 		if (this.actor.isOwner) {
 			let handler = (ev) => this._onDragStart(ev);
 			html.find("li.item").each((i, li) => {
@@ -151,7 +150,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		// Finally, create the item!
 		return await Item.create(itemData, { parent: this.actor });
 	}
-	//? Handling Rolls
+	//* Handling Rolls
 	async _handleMetaRolls(event, isCustomRoll = false) {
 		event.preventDefault();
 		const element = event.currentTarget;
@@ -212,29 +211,26 @@ export class MetanthropesActorSheet extends ActorSheet {
 				);
 				return;
 			}
-		} else {
-			console.error("Metanthropes RPG System | _handleMetaRolls | ERROR: rollType not defined");
-			return;
 		}
 		//? After doing a meta roll, re-render the actor sheet.
 		console.log("Metanthropes RPG System | _handleMetaRolls | Finished, re-rendering the actor sheet");
 		this.render(true);
 	}
-	//? Handle Left-Click Rolls
+	//* Handle Left-Click Rolls
 	async _onRoll(event) {
 		this._handleMetaRolls(event, false);
 	}
-	//? Handle Right-Click Rolls
+	//* Handle Right-Click Rolls
 	async _onCustomRoll(event) {
 		this._handleMetaRolls(event, true);
 	}
-	//? New Actor Logic
+	//* New Actor Logic
 	async _onNewActor(event) {
 		event.preventDefault();
 		const actor = this.actor;
 		await NewActor(actor);
 	}
-	//? Finalize Premade Protagonist
+	//* Finalize Premade Protagonist
 	async _onFinalizePremadeProtagonist(event) {
 		event.preventDefault();
 		const actor = this.actor;

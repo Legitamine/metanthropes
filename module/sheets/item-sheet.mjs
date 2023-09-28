@@ -22,19 +22,11 @@ export class MetanthropesItemSheet extends ItemSheet {
 	/** @override */
 	get template() {
 		const path = "systems/metanthropes-system/templates/item";
-		// Return a single sheet for all item types.
-		// return `${path}/item-sheet.html`;
-
-		// Alternatively, you could use the following return statement to do a
-		// unique item sheet by type, like `weapon-sheet.html`.
 		return `${path}/item-${this.item.type}-sheet.hbs`;
 	}
-
-	/* -------------------------------------------- */
-
 	/** @override */
 	getData() {
-		// Retrieve base data structure.
+		//? Retrieve base data structure.
 		const context = super.getData();
 
 		// Use a safe clone of the item data for further operations.
@@ -63,7 +55,7 @@ export class MetanthropesItemSheet extends ItemSheet {
 	activateListeners(html) {
 		//? Call the super class's activateListeners method to ensure any other listeners are set up
 		super.activateListeners(html);
-		//? Only Narrators are allowed to edit the item
+		//? Only Narrators are allowed to edit the item sheet
 		if (!game.user.isGM) {
 			html.find("input, textarea, select").attr("disabled", "disabled");
 		}

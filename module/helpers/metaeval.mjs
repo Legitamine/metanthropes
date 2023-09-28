@@ -234,10 +234,10 @@ export async function MetaEvaluate(
 		}
 	}
 	message += `<div><br></div>`;
-	//? Update actor flags with the results of the roll
+	//* Update actor flags with the results of the roll
 	//? Fetch the current state of the .lastrolled flag
 	let previousRolls = actor.getFlag("metanthropes-system", "lastrolled") || {};
-	//? Store the values
+	//? Store the values into the .previousrolled flag
 	await actor.unsetFlag("metanthropes-system", "previousrolled");
 	await actor.setFlag("metanthropes-system", "previousrolled", previousRolls);
 	//? Prepare the new values for .lastrolled
@@ -316,7 +316,7 @@ export async function MetaEvaluate(
 		"Actor UUID:",
 		actor.uuid
 	);
-	//? If autoExecute is true, we execute the Metapower or Possession
+	//* If autoExecute is true, we execute the Metapower or Possession
 	if (autoExecute) {
 		//? wait for 5 seconds to ensure the chat messages display in the proper order and animations clear out
 		await new Promise((resolve) => setTimeout(resolve, 5000));
@@ -363,7 +363,7 @@ export async function MetaEvaluateReRoll(event) {
 	const itemName = button.dataset.itemName;
 	const pain = parseInt(button.dataset.pain);
 	console.log("Metanthropes RPG System | MetaEvaluateReRoll | Engaged for:", actor.name + "'s", action, actorUUID);
-	//? Reduce Destiny.value by 1
+	//? Reduce Destiny by 1
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	currentDestiny--;
 	await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });

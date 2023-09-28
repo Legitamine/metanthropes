@@ -1,17 +1,17 @@
 import { MetaInitiative } from "../helpers/metainitiative.mjs";
 export class MetanthropesCombat extends Combat {
 	//? adding the concept of Cycles & Rounds to the combat system
-	async prepareDerivedData() {
+	prepareDerivedData() {
 		super.prepareDerivedData();
-		let cycle = (await this.getFlag("metanthropes-system", "cycle")) || 1;
-		let cycleRound = (await this.getFlag("metanthropes-system", "cycleRound")) || 1;
-		console.log("Metanthropes RPG System | Combat | prepareDerivedData | Cycle:", cycle, "Round:", cycleRound);
+		let cycle = this.getFlag("metanthropes-system", "cycle") || 1;
+		let cycleRound = this.getFlag("metanthropes-system", "cycleRound") || 1;
 		//? set the flags to be used later
-		await this.setFlag("metanthropes-system", "cycle", cycle);
-		await this.setFlag("metanthropes-system", "cycleRound", cycleRound);
+		this.setFlag("metanthropes-system", "cycle", cycle);
+		this.setFlag("metanthropes-system", "cycleRound", cycleRound);
 		//? embed the Cycle and Round values into the Combat document for use in the Combat Tracker
 		this.cycle = cycle;
 		this.cycleRound = cycleRound;
+		console.log("Metanthropes RPG System | Combat | prepareDerivedData | Cycle:", cycle, "Round:", cycleRound);
 	}
 	_sortCombatants(a, b) {
 		const ia = Number.isNumeric(a.initiative) ? a.initiative : -Infinity;
@@ -104,23 +104,10 @@ export class MetanthropesCombat extends Combat {
 				}
 				break;
 		}
-		console.log(
-			"Metanthropes RPG System | Combat | nextRound | logic step 1 | Cycle:",
-			cycle,
-			"Round:",
-			cycleRound
-		);
 		this.cycle = cycle;
 		this.cycleRound = cycleRound;
 		await this.setFlag("metanthropes-system", "cycle", cycle);
 		await this.setFlag("metanthropes-system", "cycleRound", cycleRound);
-		console.log(
-			"Metanthropes RPG System | Combat | nextRound | logic step 2 | Cycle:",
-			cycle,
-			"Round:",
-			cycleRound
-		);
-		console.log("Metanthropes RPG System | Combat | nextRound | logic step was there any difference?");
 		//? Reroll initiative for all combatants at the start of a new Cycle (every odd cycleRound)
 		if (cycle > 1 && cycleRound === 1) {
 			await this.resetAll();
