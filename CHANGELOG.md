@@ -40,6 +40,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 ### Changed:
 
+-   Foundry version 11 is now required
 -	Change Log (this page) will from now on follow the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 -   Revamped the Character sheet to be more intuitive and take less screen 'real estate'
 -   Metapowers and Possessions details are now only editable by Narrators
@@ -48,7 +49,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 -   Protagonists and Metanthropes are now Actor-Linked to their tokens, all other Actor types are not linked by default
 -   New Actors will now have their token default values change once the 'Roll new Actor' 10-step process is completed. 'Finish Premade Protagonist' button will also trigger similar changes. Controls the visibility of the Name, Bars and disposition: Protagonists are friendly, Metatherions hostile and others neutral by default.
 -   All built-in d20 references have been changed to d10 dice
--   Foundry version 11 is now required
+-   When a character's maximum Life drops (because of Burned condition for example) and their current Life is now greater than their new maximum Life, their current Life will now be set to the new maximum
 
 ### Fixed:
 

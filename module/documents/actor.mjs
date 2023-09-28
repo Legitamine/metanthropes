@@ -371,7 +371,7 @@ export class MetanthropesActor extends Actor {
 		let wobblyModifier = Number(systemData.Characteristics.Mind.Stats.Creativity.Condition.Current);
 		//? movement value is always rounded up
 		let movementvalue = Math.ceil(
-			speedModifiers[speedcurrent] * weightModifiers[weightcurrent] * sizeModifiers[sizecurrent] - wobblyModifier
+			(speedModifiers[speedcurrent] * weightModifiers[weightcurrent] * sizeModifiers[sizecurrent]) - wobblyModifier
 		);
 		systemData.physical.movement.value = movementvalue;
 		systemData.physical.movement.additional = movementvalue;
@@ -395,6 +395,9 @@ export class MetanthropesActor extends Actor {
 					Number(systemData.Vital.Life.Initial) +
 					Number(systemData.Characteristics.Body.Stats.Endurance.Roll))
 			);
+			if (systemData.Vital.Life.max < systemData.Vital.Life.value) {
+				parseInt((systemData.Vital.Life.value = Number(systemData.Vital.Life.max)));
+			}
 		} else {
 			const duplicateMaxLife = this.getFlag("metanthropes-system", "duplicateself").maxlife;
 			parseInt((systemData.Vital.Life.max = Number(duplicateMaxLife)));
