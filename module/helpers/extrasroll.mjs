@@ -88,7 +88,7 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 	}
 	//? if destinyReRoll is true, allow rerolling the result by spending 1 Destiny Point
 	let currentDestiny = Number(actor.system.Vital.Destiny.value);
-	if (destinyReRoll && currentDestiny > 0) {
+	if (destinyReRoll && (currentDestiny > 0)) {
 		message += `<br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>
 		<div class="hide-button hidden"><br><button class="metanthropes-secondary-chat-button rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 		data-what="${what}" data-destiny-re-roll="${destinyReRoll}" data-dice="${dice}" data-base-number="${baseNumber}" data-is-half="${isHalf}">Spend 🤞 Destiny to reroll

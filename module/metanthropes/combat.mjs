@@ -1,28 +1,38 @@
 import { MetaInitiative } from "../helpers/metainitiative.mjs";
 export class MetanthropesCombat extends Combat {
 	//? adding the concept of Cycles & Rounds to the combat system
-	async prepareDerivedData() {
+	prepareDerivedData() {
 		super.prepareDerivedData();
 		let cycle = this.getFlag("metanthropes-system", "cycle") || 1;
 		let cycleRound = this.getFlag("metanthropes-system", "cycleRound") || 1;
-		console.log("Metanthropes RPG System | Combat | prepareDerivedData | Cycle:", cycle, "Round:", cycleRound);
 		//? set the flags to be used later
-		await this.setFlag("metanthropes-system", "cycle", cycle);
-		await this.setFlag("metanthropes-system", "cycleRound", cycleRound);
+		this.setFlag("metanthropes-system", "cycle", cycle);
+		this.setFlag("metanthropes-system", "cycleRound", cycleRound);
 		//? embed the Cycle and Round values into the Combat document for use in the Combat Tracker
 		this.cycle = cycle;
 		this.cycleRound = cycleRound;
+		console.log("Metanthropes RPG System | Combat | prepareDerivedData | Cycle:", cycle, "Round:", cycleRound);
 	}
 	_sortCombatants(a, b) {
 		const ia = Number.isNumeric(a.initiative) ? a.initiative : -Infinity;
 		const ib = Number.isNumeric(b.initiative) ? b.initiative : -Infinity;
-		const astatScore = a.actor.getFlag("metanthropes-system", "lastrolled")?.InitiativestatScore ?? -Infinity;
-		const bstatScore = b.actor.getFlag("metanthropes-system", "initiative")?.InitiativestatScore ?? -Infinity;
+		const astatScore = a.actor.getFlag("metanthropes-system", "lastrolled")?.InitiativeStatScore ?? -Infinity;
+		const bstatScore = b.actor.getFlag("metanthropes-system", "lastrolled")?.InitiativeStatScore ?? -Infinity;
 		//? sort by initiative first, then sort by statScore if the initiative is the same
+		//? first check to see if we have a perfect tie
+		if (a.initiative && b.initiative) {
+			if (ia === ib && astatScore === bstatScore) {
+				//todo: award 1 Destiny and re-roll initiative if tied both in Initiative and statScore
+				console.warn(
+					"Metanthropes RPG System | Combat | _sortCombatants | Perfect Tie between combatants:",
+					a.name,
+					"and:",
+					b.name
+				);
+			}
+		}
 		return ib - ia || (astatScore > bstatScore ? -1 : 1);
 	}
-	//todo: award Destiny and re-roll initiative if tied both in Initiative and statScore
-	//! gia na paixei to full ruleset, prepei na kanw 'confirm initiative' ??
 
 	/**
 	 * Roll Initiative for one or multiple Combatants within the Combat document
@@ -94,13 +104,10 @@ export class MetanthropesCombat extends Combat {
 				}
 				break;
 		}
-		console.log("Metanthropes RPG System | Combat | nextRound | logic step 1 | Cycle:", cycle, "Round:", cycleRound);
 		this.cycle = cycle;
 		this.cycleRound = cycleRound;
 		await this.setFlag("metanthropes-system", "cycle", cycle);
 		await this.setFlag("metanthropes-system", "cycleRound", cycleRound);
-		console.log("Metanthropes RPG System | Combat | nextRound | logic step 2 | Cycle:", cycle, "Round:", cycleRound);
-		console.log("Metanthropes RPG System | Combat | nextRound | logic step was there any difference?");
 		//? Reroll initiative for all combatants at the start of a new Cycle (every odd cycleRound)
 		if (cycle > 1 && cycleRound === 1) {
 			await this.resetAll();

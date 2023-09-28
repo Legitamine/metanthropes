@@ -8,7 +8,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
-			classes: ["metanthropes", "sheet", "actor"], // these are custom css classes that are used in the html file
+			classes: ["metanthropes", "sheet", "actor"], //? these are custom css classes that are used in the html file
 			width: 1012,
 			height: 910,
 			closeOnSubmit: false,
@@ -29,36 +29,27 @@ export class MetanthropesActorSheet extends ActorSheet {
 	}
 	getData() {
 		const context = super.getData();
-		// from boilerplate:
-		// Use a safe clone of the actor data for further operations.
-		// It uses the document data's built in toObject() method and gives it the false parameter, which instructs Foundry to not just convert this to a plain object but to also run a deep clone on nested objects/arrays.
-		// from https://foundryvtt.wiki/en/development/guides/SD-tutorial/SD07-Extending-the-ActorSheet-class
+		//* from boilerplate:
+		//* Use a safe clone of the actor data for further operations.
+		//* It uses the document data's built in toObject() method and gives it the false parameter, which instructs Foundry to not just convert this to a plain object but to also run a deep clone on nested objects/arrays.
+		//* from https://foundryvtt.wiki/en/development/guides/SD-tutorial/SD07-Extending-the-ActorSheet-class
 		const actorData = this.actor.toObject(false);
-		// Add the actor's data to context.data for easier access, as well as flags.
+		//? Add the actor's data to context.data for easier access, as well as flags.
 		context.system = actorData.system;
 		context.flags = actorData.flags;
-		// Prepare character data and items.
+		//? Prepare character data and items.
 		if (actorData.type !== "Animal") {
 			this._prepareItems(context);
 		}
-		// Add roll data for TinyMCE editors.
+		//? Add roll data for TinyMCE editors.
 		context.rollData = context.actor.getRollData();
-		// Prepare active effects
+		//! Prepare active effects - causes errors?
 		// context.effects = prepareActiveEffectCategories(this.actor.effects);
-		//	//? Troubleshooting template.json data
-		//	// Log the value of system.Characteristics
-		//	console.log("Metanthropes RPG System | system.Characteristics:", context.system.Characteristics);
-		//
-		//	// Log the Title property of each characteristic
-		//	for (const key in context.system.Characteristics) {
-		//		console.log(`Metanthropes RPG System | ${key} Title:`, context.system.Characteristics[key].Title);
-		//	}
-		//? Indicate that the user is a Narrator
+		//? Add check if the user is a Narrator (Game Master)
 		context.isGM = game.user.isGM;
-		//console.log("Metanthropes RPG System | getData | Is this a GM?", context.isGM);
 		return context;
 	}
-	//prepare items
+	//* Prepare items
 	_prepareItems(context) {
 		//? Initialize containers.
 		const Possessions = {
@@ -69,13 +60,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 			Drug: [],
 		};
 		const Metapowers = {
-			1: [],
-			2: [],
-			3: [],
-			4: [],
-			5: [],
-		};
-		const Combos = {
 			1: [],
 			2: [],
 			3: [],
@@ -96,40 +80,33 @@ export class MetanthropesActorSheet extends ActorSheet {
 				if (i.system.Level.value != undefined) {
 					Metapowers[i.system.Level.value].push(i);
 				}
-				//? Append to Combos.
-			} else if (i.type === "Combo") {
-				if (i.system.level != undefined) {
-					Combos[i.system.Level.value].push(i);
-				}
 			}
 		}
 		//? Assign and return
 		context.Possessions = Possessions;
 		context.Metapowers = Metapowers;
-		context.Combos = Combos;
 	}
-	//? activate listeners for clickable stuff on the actor sheet!
+	//* activate listeners for clickable stuff on the actor sheet!
 	activateListeners(html) {
 		super.activateListeners(html);
-		// Render the item sheet for viewing/editing prior to the editable check.
+		//? Render the item sheet for viewing/editing prior to the editable check.
 		html.find(".item-edit").click((ev) => {
 			const li = $(ev.currentTarget).parents(".item");
 			const item = this.actor.items.get(li.data("itemId"));
 			item.sheet.render(true);
 		});
-		// -------------------------------------------------------------
-		// Everything below here is only needed if the sheet is editable
+		//* Everything below this point is only needed if the sheet is editable
 		if (!this.isEditable) return;
-		// Add Inventory Item
+		//? Add Inventory Item
 		html.find(".item-create").click(this._onItemCreate.bind(this));
-		// Delete Inventory Item
+		//? Delete Inventory Item
 		html.find(".item-delete").click((ev) => {
 			const li = $(ev.currentTarget).parents(".item");
 			const item = this.actor.items.get(li.data("itemId"));
 			item.delete();
 			li.slideUp(200, () => this.render(false));
 		});
-		// Active Effect management
+		//? Active Effect management
 		html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
 		//? Find the different type of rolls and add the event listeners
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
@@ -142,7 +119,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		html.find(".new-actor").click(this._onNewActor.bind(this));
 		//? Finalize Premade Protagonist Button
 		html.find(".finalize-premade-protagonist").click(this._onFinalizePremadeProtagonist.bind(this));
-		// Drag events for macros.
+		//? Drag events for macros.
 		if (this.actor.isOwner) {
 			let handler = (ev) => this._onDragStart(ev);
 			html.find("li.item").each((i, li) => {
@@ -170,11 +147,10 @@ export class MetanthropesActorSheet extends ActorSheet {
 		};
 		// Remove the type from the dataset since it's in the itemData.type prop.
 		delete itemData.system["type"];
-
 		// Finally, create the item!
 		return await Item.create(itemData, { parent: this.actor });
 	}
-	//? Handling Rolls
+	//* Handling Rolls
 	async _handleMetaRolls(event, isCustomRoll = false) {
 		event.preventDefault();
 		const element = event.currentTarget;
@@ -235,36 +211,26 @@ export class MetanthropesActorSheet extends ActorSheet {
 				);
 				return;
 			}
-		} else {
-			console.error("Metanthropes RPG System | _handleMetaRolls | ERROR: rollType not defined");
-			return;
 		}
 		//? After doing a meta roll, re-render the actor sheet.
-		//! do I need to do this both here and in _onRoll & _onCustomRoll?
 		console.log("Metanthropes RPG System | _handleMetaRolls | Finished, re-rendering the actor sheet");
 		this.render(true);
 	}
-	//? Handle Left-Click Rolls
+	//* Handle Left-Click Rolls
 	async _onRoll(event) {
 		this._handleMetaRolls(event, false);
-		//? After doing a roll, re-render the actor sheet.
-		console.log("Metanthropes RPG System | _onRoll | Finished, re-rendering the actor sheet");
-		this.render(true);
 	}
-	//? Handle Right-Click Rolls
+	//* Handle Right-Click Rolls
 	async _onCustomRoll(event) {
 		this._handleMetaRolls(event, true);
-		//? After doing a custom roll, re-render the actor sheet.
-		console.log("Metanthropes RPG System | _onCustomRoll | Finished, re-rendering the actor sheet");
-		this.render(true);
 	}
-	//? New Actor Logic
+	//* New Actor Logic
 	async _onNewActor(event) {
 		event.preventDefault();
 		const actor = this.actor;
 		await NewActor(actor);
 	}
-	//? Finalize Premade Protagonist
+	//* Finalize Premade Protagonist
 	async _onFinalizePremadeProtagonist(event) {
 		event.preventDefault();
 		const actor = this.actor;

@@ -183,7 +183,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			}
 		}
 	} else {
-		console.log("Metanthropes RPG System | MetaExecute | cannot Execute action:", action);
+		console.error("Metanthropes RPG System | MetaExecute | cannot Execute action:", action);
 		return;
 	}
 	if (executeRoll) {
@@ -197,7 +197,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		//? finalize action slot
 		if (actionSlot.includes("Always Active")) {
 			//? always active return
-			console.log("Metanthropes RPG System | MetaExecute | Always Active:", itemName);
+			console.warn("Metanthropes RPG System | MetaExecute | Always Active:", itemName);
 			ui.notifications.info(actor.name + "'s " + itemName + " is Always Active!");
 			return;
 		} else if (actionSlot.includes("Focused")) {
@@ -276,7 +276,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			durationMessage = `⏳: ` + duration + `<br>`;
 		}
 		//* effect message
-		if (damageCosmicBase > 0 && damageCosmicDice > 0) {
+		if ((damageCosmicBase > 0) && (damageCosmicDice > 0)) {
 			damageCosmicMessage = `💥: [[${damageCosmicDice}d10${explosiveDice}+${damageCosmicBase}[Cosmic]]]<br>`;
 			damageCosmicRerollButton = `<div class="hide-button hidden"><br>
 			<button class="metanthropes-secondary-chat-button cosmic-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Cosmic 💥 Damage" data-dice="${damageCosmicDice}" data-destiny-re-roll="true" data-base-number="${damageCosmicBase}">
@@ -291,7 +291,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			🤞 to reroll Cosmic 💥</button>
 			<br></div>`;
 		}
-		if (damageElementalBase > 0 && damageElementalDice > 0) {
+		if ((damageElementalBase > 0) && (damageElementalDice > 0)) {
 			damageElementalMessage = `💥: [[${damageElementalDice}d10${explosiveDice}+${damageElementalBase}[Elemental]]]<br>`;
 			damageElementalRerollButton = `<div class="hide-button hidden"><br>
 			<button class="metanthropes-secondary-chat-button elemental-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Elemental 💥 Damage" data-dice="${damageElementalDice}" data-destiny-re-roll="true" data-base-number="${damageElementalBase}">
@@ -306,7 +306,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			🤞 to reroll Elemental 💥</button>
 			<br></div>`;
 		}
-		if (damageMaterialBase > 0 && damageMaterialDice > 0) {
+		if ((damageMaterialBase > 0) && (damageMaterialDice > 0)) {
 			damageMaterialMessage = `💥: [[${damageMaterialDice}d10${explosiveDice}+${damageMaterialBase}[Material]]]<br>`;
 			damageMaterialRerollButton = `<div class="hide-button hidden"><br>
 			<button class="metanthropes-secondary-chat-button material-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Material 💥 Damage" data-dice="${damageMaterialDice}" data-destiny-re-roll="true" data-base-number="${damageMaterialBase}">
@@ -321,7 +321,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			🤞 to reroll Material 💥</button>
 			<br></div>`;
 		}
-		if (damagePsychicBase > 0 && damagePsychicDice > 0) {
+		if ((damagePsychicBase > 0) && (damagePsychicDice > 0)) {
 			damagePsychicMessage = `💥: [[${damagePsychicDice}d10${explosiveDice}+${damagePsychicBase}[Psychic]]]<br>`;
 			damagePsychicRerollButton = `<div class="hide-button hidden"><br>
 			<button class="metanthropes-secondary-chat-button psychic-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Psychic 💥 Damage" data-dice="${damagePsychicDice}" data-destiny-re-roll="true" data-base-number="${damagePsychicBase}">
@@ -336,7 +336,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			🤞 to reroll Psychic 💥</button>
 			<br></div>`;
 		}
-		if (healingBase > 0 && healingDice > 0) {
+		if ((healingBase > 0) && (healingDice > 0)) {
 			healingMessage = `💞: [[${healingDice}d10${explosiveDice}+${healingBase}[Healing]]]<br>`;
 			healingRerollButton = `<div class="hide-button hidden"><br>
 			<button class="metanthropes-secondary-chat-button healing rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="💞 Healing" data-dice="${healingDice}" data-destiny-re-roll="true" data-base-number="${healingBase}">
@@ -351,7 +351,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			🤞 to reroll 💞 Healing</button>
 			<br></div>`;
 		}
-		if (specialBase > 0 && specialDice > 0) {
+		if ((specialBase > 0) && (specialDice > 0)) {
 			if (!specialIsHalf) {
 				specialMessage = `${specialName}: [[${specialDice}d10${explosiveDice}+${specialBase}]]<br>`;
 				specialRerollButton = `<div class="hide-button hidden"><br>

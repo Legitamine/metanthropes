@@ -32,7 +32,7 @@ You may read about our [planned features and milestones](https://github.com/Legi
 Briefly, we are working torwards the following milestones:
 
 -   Officially Support the full Ruleset for Metanthropes RPG
--   Synchronize your Protagonist details with the website for off-line viewing and editing
+-   Synchronize your Protagonist details with our website for off-line viewing and editing
 -   Fully automate the Combat System
 
 ### Latest Changes

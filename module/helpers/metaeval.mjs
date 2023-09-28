@@ -81,7 +81,7 @@ export async function MetaEvaluate(
 		}
 	}
 	//? this kicks-off the calculation, assuming that is is a failure
-	if (rollResult - multiAction - penalty > statScore + bonus) {
+	if ((rollResult - multiAction - penalty) > (statScore + bonus)) {
 		//? in which case we don't care about what levels of success we have, so we set to 0 to avoid confusion later
 		result = "Failure 🟥";
 		levelsOfSuccess = 0;
@@ -140,7 +140,7 @@ export async function MetaEvaluate(
 	message += ` and the result is ${rollResult}.<br><br>`;
 	//? if we have Pain condition, our succesfull (only) results are lowered by an equal amount - in case of Criticals we ignore Pain
 	let painEffect = levelsOfSuccess - pain;
-	if (resultLevel > 0 && !criticalSuccess && pain > 0) {
+	if ((resultLevel > 0) && !criticalSuccess && (pain > 0)) {
 		console.log("Metanthropes RPG System | MetaEvaluate | Pain Effect:", painEffect);
 		if (painEffect < 0) {
 			result = "Failure 🟥";
@@ -202,7 +202,7 @@ export async function MetaEvaluate(
 	//todo I should figure out how to do this on my own without the need to have DF Chat Enhancements installed
 	//? Define threshold of showing the button, to re-roll we need a minimum of 1 Destiny + the Destiny Cost of the Metapower (only applies to Metapowers with DestinyCost, otherwise it's 0)
 	let threshold = Number(1 + Number(destinyCost));
-	if (!criticalSuccess && !criticalFailure && currentDestiny >= threshold) {
+	if (!criticalSuccess && !criticalFailure && (currentDestiny >= threshold)) {
 		if (action === "Initiative") {
 			message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button metainitiative-reroll" data-actoruuid="${actor.uuid}" data-action="${action}"
 				>Spend 🤞 Destiny to reroll</button><br></div>`;
@@ -226,15 +226,19 @@ export async function MetaEvaluate(
 			// Intentionally left blank for future expansion
 			//message += `<div><br></div>`;
 		}
-	} else if (!action === "Initiative") {
-		//? Set autoExecute to true if it's either a Critical Success or a Critical Failure, or if the actor doesn't have enough Destiny to reroll
-		autoExecute = true;
+	} else {
+		if (!(action === "Initiative")) {
+			//? Set autoExecute to true if it's either a Critical Success or a Critical Failure, or if the actor doesn't have enough Destiny to reroll
+			autoExecute = true;
+			console.log("Metanthropes RPG System | MetaEvaluate | Auto-Execute:", autoExecute);
+		}
 	}
 	message += `<div><br></div>`;
-	//? Update actor flags with the results of the roll
+	//* Update actor flags with the results of the roll
 	//? Fetch the current state of the .lastrolled flag
 	let previousRolls = actor.getFlag("metanthropes-system", "lastrolled") || {};
-	//? Store the values
+	//? Store the values into the .previousrolled flag
+	await actor.unsetFlag("metanthropes-system", "previousrolled");
 	await actor.setFlag("metanthropes-system", "previousrolled", previousRolls);
 	//? Prepare the new values for .lastrolled
 	await actor.unsetFlag("metanthropes-system", "lastrolled");
@@ -246,6 +250,7 @@ export async function MetaEvaluate(
 	switch (action) {
 		case "StatRoll":
 			newRolls.StatRoll = resultLevel;
+			newRolls.StatRolled = stat;
 			break;
 		case "Initiative":
 			newRolls.Initiative = resultLevel;
@@ -254,9 +259,13 @@ export async function MetaEvaluate(
 			break;
 		case "Metapower":
 			newRolls.Metapower = resultLevel;
+			newRolls.StatRolled = stat;
+			newRolls.MetapowerName = itemName;
 			break;
 		case "Possession":
 			newRolls.Possession = resultLevel;
+			newRolls.StatRolled = stat;
+			newRolls.PossessionName = itemName;
 			break;
 		default:
 			console.error("Metanthropes RPG System | MetaEvaluate | Error: Action not recognized:", action);
@@ -307,7 +316,7 @@ export async function MetaEvaluate(
 		"Actor UUID:",
 		actor.uuid
 	);
-	//? If autoExecute is true, we execute the Metapower or Possession
+	//* If autoExecute is true, we execute the Metapower or Possession
 	if (autoExecute) {
 		//? wait for 5 seconds to ensure the chat messages display in the proper order and animations clear out
 		await new Promise((resolve) => setTimeout(resolve, 5000));
@@ -354,7 +363,7 @@ export async function MetaEvaluateReRoll(event) {
 	const itemName = button.dataset.itemName;
 	const pain = parseInt(button.dataset.pain);
 	console.log("Metanthropes RPG System | MetaEvaluateReRoll | Engaged for:", actor.name + "'s", action, actorUUID);
-	//? Reduce Destiny.value by 1
+	//? Reduce Destiny by 1
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	currentDestiny--;
 	await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });

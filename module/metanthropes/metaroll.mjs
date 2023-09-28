@@ -83,7 +83,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		}
 	}
 	//? Check for Possession Perk Penalty
-	if (itemName && action === "Possession") {
+	if (itemName && (action === "Possession")) {
 		const requiredPerk = actor.items.getName(itemName).system.RequiredPerk.value;
 		console.log("Metanthropes RPG System | MetaRoll | Required Perk for", itemName, "is", requiredPerk);
 		if (requiredPerk !== "None") {
@@ -180,7 +180,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		"Result:",
 		checkResult
 	);
-	if (checkResult > 0 && action === "Metapower" && (itemName === "Clone" || itemName === "Couple" || itemName === "Team" || itemName === "Squad" || itemName === "Unit")) {
+	if ((checkResult > 0) && (action === "Metapower") && (itemName === "Clone" || itemName === "Couple" || itemName === "Team" || itemName === "Squad" || itemName === "Unit")) {
 		console.log("Metanthropes RPG System | MetaRoll | Duplicate Self Metapower Activation Detected");
 		let currentLife = actor.system.Vital.Life.value;
 		let duplicateMaxLife = 0;
