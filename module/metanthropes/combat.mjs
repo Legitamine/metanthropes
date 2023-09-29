@@ -1,28 +1,38 @@
 import { MetaInitiative } from "../helpers/metainitiative.mjs";
 export class MetanthropesCombat extends Combat {
 	//? adding the concept of Cycles & Rounds to the combat system
-	async prepareDerivedData() {
+	prepareDerivedData() {
 		super.prepareDerivedData();
 		let cycle = this.getFlag("metanthropes-system", "cycle") || 1;
 		let cycleRound = this.getFlag("metanthropes-system", "cycleRound") || 1;
-		console.log("Metanthropes RPG System | Combat | prepareDerivedData | Cycle:", cycle, "Round:", cycleRound);
 		//? set the flags to be used later
-		await this.setFlag("metanthropes-system", "cycle", cycle);
-		await this.setFlag("metanthropes-system", "cycleRound", cycleRound);
+		this.setFlag("metanthropes-system", "cycle", cycle);
+		this.setFlag("metanthropes-system", "cycleRound", cycleRound);
 		//? embed the Cycle and Round values into the Combat document for use in the Combat Tracker
 		this.cycle = cycle;
 		this.cycleRound = cycleRound;
+		console.log("Metanthropes | Combat | prepareDerivedData | Cycle:", cycle, "Round:", cycleRound);
 	}
 	_sortCombatants(a, b) {
 		const ia = Number.isNumeric(a.initiative) ? a.initiative : -Infinity;
 		const ib = Number.isNumeric(b.initiative) ? b.initiative : -Infinity;
-		const astatScore = a.actor.getFlag("metanthropes-system", "lastrolled")?.InitiativestatScore ?? -Infinity;
-		const bstatScore = b.actor.getFlag("metanthropes-system", "initiative")?.InitiativestatScore ?? -Infinity;
+		const astatScore = a.actor.getFlag("metanthropes-system", "lastrolled")?.InitiativeStatScore ?? -Infinity;
+		const bstatScore = b.actor.getFlag("metanthropes-system", "lastrolled")?.InitiativeStatScore ?? -Infinity;
 		//? sort by initiative first, then sort by statScore if the initiative is the same
+		//? first check to see if we have a perfect tie
+		if (a.initiative && b.initiative) {
+			if (ia === ib && astatScore === bstatScore) {
+				//todo: award 1 Destiny and re-roll initiative if tied both in Initiative and statScore
+				console.warn(
+					"Metanthropes | Combat | _sortCombatants | Perfect Tie between combatants:",
+					a.name,
+					"and:",
+					b.name
+				);
+			}
+		}
 		return ib - ia || (astatScore > bstatScore ? -1 : 1);
 	}
-	//todo: award Destiny and re-roll initiative if tied both in Initiative and statScore
-	//! gia na paixei to full ruleset, prepei na kanw 'confirm initiative'
 
 	/**
 	 * Roll Initiative for one or multiple Combatants within the Combat document
@@ -36,23 +46,24 @@ export class MetanthropesCombat extends Combat {
 	 * @returns {Promise<Combat>}       A promise which resolves to the updated Combat document once updates are complete.
 	 */
 	async rollInitiative(ids, { formula = null, updateTurn = true, messageOptions = {} } = {}) {
-		console.log("Metanthropes RPG System | Combat | rollInitiative Engaged");
+		console.log("Metanthropes | Combat | rollInitiative Engaged");
 		//? Structure input data
 		ids = typeof ids === "string" ? [ids] : ids;
-		const currentId = this.combatant?.id;
 		//? Iterate over Combatants, performing an initiative roll for each
 		const updates = [];
-		const messages = [];
 		for (let [i, id] of ids.entries()) {
 			//? Get Combatant data (non-strictly)
 			const combatant = this.combatants.get(id);
 			if (!combatant?.isOwner) continue;
 			//? Produce an initiative roll for the Combatant
-			console.log("Metanthropes RPG System | Combat | rollInitiative | MetaInitiative for combatant:", combatant);
+			console.log(
+				"Metanthropes | Combat | rollInitiative | Engaging MetaInitiative for combatant:",
+				combatant
+			);
 			await MetaInitiative(combatant);
 			let initiativeResult = combatant.actor.getFlag("metanthropes-system", "lastrolled").Initiative;
 			console.log(
-				"Metanthropes RPG System | Combat | rollInitiative | MetaInitiative finished, updating combatant with new initiative:",
+				"Metanthropes | Combat | rollInitiative | MetaInitiative finished, updating combatant with new initiative:",
 				initiativeResult
 			);
 			updates.push({ _id: id, initiative: initiativeResult });
@@ -63,37 +74,46 @@ export class MetanthropesCombat extends Combat {
 		return this;
 	}
 	async nextRound() {
+		console.warn("Metanthropes | Combat | nextRound | Engaged");
 		await super.nextRound();
+		//todo Bleeding - assuming this function runs at the end of every Round, bleeding goes here
 		//! I should probably do something similar for previous round
 		//? Calculate the Cycle and Round values
 		//? Get the most recent Cycle and Round values from the Combat document
 		let cycle = await this.getFlag("metanthropes-system", "cycle");
 		let cycleRound = await this.getFlag("metanthropes-system", "cycleRound");
-		if (this.round === 1) {
-			cycle = 1;
-			cycleRound = 1;
-		} else if (this.round === 2) {
-			cycle = 1;
-			cycleRound = 2;
-		} else if (this.round === 3) {
-			cycle = 2;
-			cycleRound = 1;
-		} else if (this.round > 2 && (this.round - 1) % 2 === 0) {
-			cycle++;
-			cycleRound = 1;
-		} else {
-			cycleRound = 2;
+		switch (this.round) {
+			case 1:
+				cycle = 1;
+				cycleRound = 1;
+				break;
+			case 2:
+				cycle = 1;
+				cycleRound = 2;
+				break;
+			case 3:
+				cycle = 2;
+				cycleRound = 1;
+				break;
+			default:
+				if (this.round > 2 && (this.round - 1) % 2 === 0) {
+					cycle++;
+					cycleRound = 1;
+				} else {
+					cycleRound = 2;
+				}
+				break;
 		}
 		this.cycle = cycle;
 		this.cycleRound = cycleRound;
 		await this.setFlag("metanthropes-system", "cycle", cycle);
 		await this.setFlag("metanthropes-system", "cycleRound", cycleRound);
-		console.log("Metanthropes RPG System | Combat | nextRound | Cycle:", cycle, "Round:", cycleRound);
 		//? Reroll initiative for all combatants at the start of a new Cycle (every odd cycleRound)
 		if (cycle > 1 && cycleRound === 1) {
 			await this.resetAll();
 			this.setupTurns();
 		}
+		console.warn("Metanthropes | Combat | nextRound | Finished");
 		return this;
 	}
 }

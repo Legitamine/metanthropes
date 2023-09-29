@@ -2,7 +2,7 @@ name: Metanthropes Automated Build & Release
 on:
     push:
         branches:
-            - stable
+            - main
 jobs:
     build:
         name: Metanthropes Automated Builder

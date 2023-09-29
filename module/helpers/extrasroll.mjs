@@ -21,7 +21,7 @@
  */
 export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", baseNumber = 0, isHalf = false) {
 	console.log(
-		"Metanthropes RPG System | Rolld10 | Engaged for",
+		"Metanthropes | Rolld10 | Engaged for",
 		actor.name + "'s",
 		what,
 		"Destiny Reroll allowed?",
@@ -88,7 +88,7 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 	}
 	//? if destinyReRoll is true, allow rerolling the result by spending 1 Destiny Point
 	let currentDestiny = Number(actor.system.Vital.Destiny.value);
-	if (destinyReRoll && currentDestiny > 0) {
+	if (destinyReRoll && (currentDestiny > 0)) {
 		message += `<br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>
 		<div class="hide-button hidden"><br><button class="metanthropes-secondary-chat-button rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 		data-what="${what}" data-destiny-re-roll="${destinyReRoll}" data-dice="${dice}" data-base-number="${baseNumber}" data-is-half="${isHalf}">Spend 🤞 Destiny to reroll
@@ -106,7 +106,7 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 		rollMode: game.settings.get("core", "rollMode"),
 		flags: { "metanthropes-system": { actoruuid: actor.uuid } },
 	});
-	console.log("Metanthropes RPG System | Rolld10 | Finished for", actor.name + "'s", what);
+	console.log("Metanthropes | Rolld10 | Finished for", actor.name + "'s", what);
 	//! doing a refresh during actor creation causes the actor window to come in focus, so disabling it for now
 	//	//? Refresh the actor sheet if it's open
 	//	const sheet = actor.sheet;
@@ -138,15 +138,13 @@ export async function Rolld10ReRoll(event) {
 	const baseNumber = parseInt(button.dataset.baseNumber) || 0;
 	const isHalf = button.dataset.isHalf === "true" ? true : false;
 	const actor = await fromUuid(actoruuid);
-	//? Reduce Destiny.value by 1
-	console.log("Metanthropes RPG System | Rolld10ReRoll | Evaluating destiny for:", actor);
-	let currentDestiny = Number(actor.system.Vital.Destiny.value);
 	//? Need to check if actor has enough Destiny to spend, because they might have already spent it on another secondary button
+	let currentDestiny = Number(actor.system.Vital.Destiny.value);
 	if (currentDestiny > 0 && destinyReRoll) {
-		currentDestiny -= 1;
+		currentDestiny--;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		console.log(
-			"Metanthropes RPG System | Rolld10ReRoll | Engaging Rolld10 for:",
+			"Metanthropes | Rolld10ReRoll | Engaging Rolld10 for:",
 			actor.name + "'s",
 			what,
 			destinyReRoll,
@@ -164,6 +162,6 @@ export async function Rolld10ReRoll(event) {
 		//	}
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
-		console.log("Metanthropes RPG System | Rolld10ReRoll | Not enough Destiny to spend, or destinyReRoll is false");
+		console.warn("Metanthropes | Rolld10ReRoll | Not enough Destiny to spend, or destinyReRoll is false");
 	}
 }

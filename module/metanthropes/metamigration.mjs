@@ -1,17 +1,18 @@
 export async function metaMigrateData() {
-	// Get the current version
+	//? Get the current version
 	const currentVersion = game.system.data.version;
-	console.log("Metanthropes RPG System | Migrating Items to version", currentVersion);
+	console.log("Metanthropes | Migrating Items to version", currentVersion);
 	const worldItems = game.items.contents;
 	for (let item of worldItems) {
 		if (item.system.Execution.ActionSlot.label === "⏱ Action") {
-			console.log("Metanthropes RPG System | Migrating Item:", item.name, item);
+			console.log("Metanthropes | Migrating Item:", item.name, item);
 			await item.update({ "system.Execution.ActionSlot.label": "⏱ Activation" });
 		}
 	}
 }
 
-// Helper function to compare version numbers !unused
+//* Helper function to compare version numbers 
+//!unused
 export function isNewerVersion(version, oldVersion) {
 	return version
 		.split(".")

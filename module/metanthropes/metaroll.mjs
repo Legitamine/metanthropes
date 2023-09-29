@@ -1,7 +1,7 @@
 //? Import the dependencies
 import { MetaEvaluate } from "../helpers/metaeval.mjs";
 /**
- * Handles rolling for Metanthropes RPG
+ * Handles rolling for Metanthropes
  *
  * This function checks various Core Conditions (e.g., unconsciousness, hunger, disease)
  * before proceeding with the roll. It then calls the MetaEvaluate function to
@@ -28,7 +28,7 @@ import { MetaEvaluate } from "../helpers/metaeval.mjs";
 export async function MetaRoll(actor, action, stat, isCustomRoll = false, destinyCost = 0, itemName = null) {
 	const statScore = actor.system.RollStats[stat];
 	console.log(
-		"Metanthropes RPG System | MetaRoll | Engaged for",
+		"Metanthropes | MetaRoll | Engaged for",
 		actor.type + ":",
 		actor.name + "'s",
 		action,
@@ -66,7 +66,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 	//				return;
 	//			}
 	//		} catch (error) {
-	//			console.log("Metanthropes RPG System | MetaRoll | Hunger Roll Error:", error);
+	//			console.log("Metanthropes | MetaRoll | Hunger Roll Error:", error);
 	//		}
 	//	}
 	//? Pain is passed to MetaEvaluate
@@ -83,16 +83,16 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		}
 	}
 	//? Check for Possession Perk Penalty
-	if (itemName && action === "Possession") {
+	if (itemName && (action === "Possession")) {
 		const requiredPerk = actor.items.getName(itemName).system.RequiredPerk.value;
-		console.log("Metanthropes RPG System | MetaRoll | Required Perk for", itemName, "is", requiredPerk);
+		console.log("Metanthropes | MetaRoll | Required Perk for", itemName, "is", requiredPerk);
 		if (requiredPerk !== "None") {
 			const requiredPerkLevel = actor.items.getName(itemName).system.RequiredPerkLevel.value;
 			const actorPerkLevel = actor.system.Perks.Skills[requiredPerk].value;
 			const levelDifference = requiredPerkLevel - actorPerkLevel;
 			if (levelDifference > 0) {
 				perkPenalty = levelDifference * -10;
-				console.log("Metanthropes RPG System | MetaRoll | Perk Penalty for", actor.name, "is", perkPenalty);
+				console.log("Metanthropes | MetaRoll | Perk Penalty for", actor.name, "is", perkPenalty);
 			}
 		}
 	}
@@ -101,7 +101,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 	let penalty = 0;
 	let multiAction = 0;
 	if (isCustomRoll) {
-		console.log("Metanthropes RPG System | MetaRoll | Custom Roll Detected");
+		console.log("Metanthropes | MetaRoll | Custom Roll Detected");
 		let { multiAction, bonus, customPenalty } = await MetaRollCustomDialog(
 			actor,
 			action,
@@ -109,7 +109,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			statScore,
 			itemName
 		);
-		console.log("Metanthropes RPG System | MetaRoll | Custom Roll Values:", multiAction, bonus, customPenalty);
+		console.log("Metanthropes | MetaRoll | Custom Roll Values:", multiAction, bonus, customPenalty);
 		//? Check if Custom Penalty is smaller than Disease penalty (values are expected to be negatives)
 		//! add a new function to compare values for bonus and penalty - this way we can do the disease and perk check the same way without caring about the order in which we do them
 		if (customPenalty < diseasePenalty) {
@@ -121,7 +121,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			penalty = perkPenalty;
 		}
 		console.log(
-			"Metanthropes RPG System | MetaRoll | Engaging MetaEvaluate for:",
+			"Metanthropes | MetaRoll | Engaging MetaEvaluate for:",
 			actor.name + "'s Custom",
 			action,
 			"with",
@@ -147,7 +147,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			penalty = perkPenalty;
 		}
 		console.log(
-			"Metanthropes RPG System | MetaRoll | Engaging MetaEvaluate for:",
+			"Metanthropes | MetaRoll | Engaging MetaEvaluate for:",
 			actor.name + "'s",
 			action,
 			"with",
@@ -168,9 +168,10 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		);
 		await MetaEvaluate(actor, action, stat, statScore, multiAction, bonus, penalty, pain, destinyCost, itemName);
 	}
+	//* Post-roll actions
 	let checkResult = await actor.getFlag("metanthropes-system", "lastrolled").MetaEvaluate;
 	console.log(
-		"Metanthropes RPG System | MetaRoll | MetaEvaluate Result for",
+		"Metanthropes | MetaRoll | MetaEvaluate Result for",
 		actor.name,
 		"Action:",
 		action,
@@ -179,8 +180,8 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		"Result:",
 		checkResult
 	);
-	if (checkResult > 0 && action === "Metapower" && (itemName === "Clone" || itemName === "Couple" || itemName === "Team" || itemName === "Squad" || itemName === "Unit")) {
-		console.log("Metanthropes RPG System | MetaRoll | Duplicate Self Metapower Activation Detected");
+	if ((checkResult > 0) && (action === "Metapower") && (itemName === "Clone" || itemName === "Couple" || itemName === "Team" || itemName === "Squad" || itemName === "Unit")) {
+		console.log("Metanthropes | MetaRoll | Duplicate Self Metapower Activation Detected");
 		let currentLife = actor.system.Vital.Life.value;
 		let duplicateMaxLife = 0;
 		if (itemName === "Clone") {
@@ -189,11 +190,15 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		duplicateMaxLife = Math.ceil(currentLife * 0.2);
 		} else if (itemName === "Team") {
 		duplicateMaxLife = Math.ceil(currentLife * 0.3);
+		} else if (itemName === "Squad") {
+		duplicateMaxLife = Math.ceil(currentLife * 0.4);
+		} else if (itemName === "Unit") {
+		duplicateMaxLife = Math.ceil(currentLife * 0.5);
 		}
 		actor.setFlag("metanthropes-system", "duplicateself", { maxlife: duplicateMaxLife });
-		console.log("Metanthropes RPG System | MetaRoll | Duplicate Self Metapower Max Life:", duplicateMaxLife);
+		console.log("Metanthropes | MetaRoll | Duplicate Self Metapower Max Life:", duplicateMaxLife);
 	}
-	console.log("Metanthropes RPG System | MetaRoll | Finished");
+	console.log("Metanthropes | MetaRoll | Finished");
 }
 /**
  * Handles the dialog box for custom multi-actions and bonuses/penalties when rolling.

@@ -19,18 +19,18 @@ export async function FinalizePremadeProtagonist(actor) {
 		await actor.update({ "system.Vital.Destiny.value": Number(NewDestiny) });
 		await actor.update({ "system.Vital.Destiny.max": Number(NewDestiny) });
 		console.log(
-			`Metanthropes RPG System | New Actor | ${playerName}'s ${actor.type} Starting Destiny: ${NewDestiny}`
+			`Metanthropes | Finalize Pre-made Protagonist | ${playerName}'s ${actor.type} Starting Destiny: ${NewDestiny}`
 		);
 		await NewActorSummary(actor);
 		await NewActorFinish(actor);
 	} catch (error) {
-		console.log(
-			"Metanthropes RPG System | Finalize Pre-made Protagonist | Finalize Pre-made Protagonist Error:",
+		console.error(
+			"Metanthropes | Finalize Pre-made Protagonist | Finalize Pre-made Protagonist Error:",
 			error
 		);
 	} finally {
 		console.log(
-			"Metanthropes RPG System | Finalize Pre-made Protagonist | Finalize Pre-made Protagonist Creation Complete for",
+			"Metanthropes | Finalize Pre-made Protagonist | Finalize Pre-made Protagonist Creation Complete for",
 			actor.type,
 			actor.name
 		);
@@ -64,9 +64,9 @@ export async function NewActor(actor) {
 		await NewActorSummary(actor);
 		await NewActorFinish(actor);
 	} catch (error) {
-		console.log("Metanthropes RPG System | New Actor | New Actor Error:", error);
+		console.error("Metanthropes | New Actor | New Actor Error:", error);
 	} finally {
-		console.log("Metanthropes RPG System | New Actor | New Actor Creation Complete for", actor.type, actor.name);
+		console.log("Metanthropes | New Actor | New Actor Creation Complete for", actor.type, actor.name);
 	}
 }
 //* Filter function for Prime Metapower Selection
@@ -108,7 +108,7 @@ export async function NewStatRoll(actor, char, stat, dice) {
 							[`system.Characteristics.${char}.Stats.${stat}.Initial`]: Number(statScore),
 						});
 						console.log(
-							`Metanthropes RPG System | New Actor | ${actor.name}'s new ${stat} Initial Stat Score:`,
+							`Metanthropes | New Actor | ${actor.name}'s new ${stat} Initial Stat Score:`,
 							actor.system.Characteristics[char].Stats[stat].Initial
 						);
 						resolve();
@@ -153,9 +153,9 @@ export async function NewActorDestiny(actor) {
 							await actor.update({ "system.Vital.Destiny.value": Number(NewDestiny) });
 							await actor.update({ "system.Vital.Destiny.max": Number(NewDestiny) });
 							await actor.update({ "system.metaowner.value": playerName });
-							console.log(`Metanthropes RPG System | New Actor | New Actor Owner: ${playerName}`);
+							console.log(`Metanthropes | New Actor | New Actor Owner: ${playerName}`);
 							console.log(
-								`Metanthropes RPG System | New Actor | ${playerName}'s ${actor.type} Destiny: ${NewDestiny}`
+								`Metanthropes | New Actor | ${playerName}'s ${actor.type} Destiny: ${NewDestiny}`
 							);
 							resolve();
 						},
@@ -247,7 +247,7 @@ export async function NewActorPrimeMetapower(actor) {
 								primeimg: `systems/metanthropes-system/artwork/metapowers/${primeMetapowerName}.png`,
 							});
 							console.log(
-								`Metanthropes RPG System | New Actor | New Prime Metapower: ${primeMetapowerName}`
+								`Metanthropes | New Actor | New Prime Metapower: ${primeMetapowerName}`
 							);
 							resolve();
 						},
@@ -262,13 +262,13 @@ export async function NewActorPrimeMetapower(actor) {
 				},
 				default: "ok",
 				render: (html) => {
-					// Get dropdown for Prime Metapower selection
+					//? Get dropdown for Prime Metapower selection
 					let primeMetapowerDropdown = html.find("#primeMetapower")[0];
-					// Get dropdowns for filters
+					//? Get dropdowns for filters
 					let classificationDropdown = html.find("#classification")[0];
 					let energyTypeDropdown = html.find("#energyType")[0];
 					let statRolledDropdown = html.find("#statRolled")[0];
-					// Filter function
+					//? Filter function
 					html.find("#classification, #energyType, #statRolled").change(() => {
 						let selectedClassification = classificationDropdown.value;
 						let selectedEnergyType = energyTypeDropdown.value;
@@ -279,7 +279,7 @@ export async function NewActorPrimeMetapower(actor) {
 								(!selectedEnergyType || metapower.energyType === selectedEnergyType) &&
 								(!selectedStatRolled || metapower.statRolled === selectedStatRolled)
 						);
-						// Update Prime Metapower dropdown options
+						//? Update Prime Metapower dropdown options
 						primeMetapowerDropdown.innerHTML = "";
 						filteredMetapowers.forEach((metapower, index) => {
 							let option = document.createElement("option");
@@ -288,7 +288,7 @@ export async function NewActorPrimeMetapower(actor) {
 							primeMetapowerDropdown.appendChild(option);
 						});
 					});
-					// Update Prime Metapower image
+					//? Update Prime Metapower image
 					html.find("#primeMetapower").change(() => {
 						let primeMetapowerName = primeMetapowerDropdown.value;
 						//? making sure the value is not empty before proceeding
@@ -361,15 +361,15 @@ export async function NewActorCharacteristics(actor) {
 							await actor.update({ [`system.Characteristics.${secondary}.Initial`]: Number(20) });
 							await actor.update({ [`system.Characteristics.${tertiary}.Initial`]: Number(10) });
 							console.log(
-								`Metanthropes RPG System | New Actor | New primary: ${primary}`,
+								`Metanthropes | New Actor | New primary: ${primary}`,
 								actor.system.Characteristics[primary].Initial
 							);
 							console.log(
-								`Metanthropes RPG System | New Actor | New secondary: ${secondary}`,
+								`Metanthropes | New Actor | New secondary: ${secondary}`,
 								actor.system.Characteristics[secondary].Initial
 							);
 							console.log(
-								`Metanthropes RPG System | New Actor | New tertiary: ${tertiary}`,
+								`Metanthropes | New Actor | New tertiary: ${tertiary}`,
 								actor.system.Characteristics[tertiary].Initial
 							);
 							resolve();
@@ -385,9 +385,9 @@ export async function NewActorCharacteristics(actor) {
 				},
 				default: "ok",
 				render: (html) => {
-					// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
+					//? Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
 					html.find('[name="primary"]').change((event) => {
-						// Update the options in the Secondary dropdown based on the Primary selection
+						//? Update the options in the Secondary dropdown based on the Primary selection
 						let primary = event.target.value;
 						let secondaryOptions = ["Body", "Mind", "Soul"].filter((option) => option !== primary);
 						let secondaryDropdown = html.find('[name="secondary"]');
@@ -395,11 +395,11 @@ export async function NewActorCharacteristics(actor) {
 						secondaryOptions.forEach((option) => {
 							secondaryDropdown.append(new Option(option, option));
 						});
-						// Trigger a change event to update the Tertiary dropdown
+						//? Trigger a change event to update the Tertiary dropdown
 						secondaryDropdown.trigger("change");
 					});
 					html.find('[name="secondary"]').change((event) => {
-						// Update the options in the Tertiary dropdown based on the Secondary selection
+						//? Update the options in the Tertiary dropdown based on the Secondary selection
 						let primary = html.find('[name="primary"]').val();
 						let secondary = event.target.value;
 						let tertiaryOptions = ["Body", "Mind", "Soul"].filter(
@@ -495,9 +495,9 @@ export async function NewActorBodyStats(actor) {
 				},
 				default: "ok",
 				render: (html) => {
-					// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
+					//? Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
 					html.find('[name="primary"]').change((event) => {
-						// Update the options in the Secondary dropdown based on the Primary selection
+						//? Update the options in the Secondary dropdown based on the Primary selection
 						let primary = event.target.value;
 						let secondaryOptions = ["Endurance", "Power", "Reflexes"].filter(
 							(option) => option !== primary
@@ -507,11 +507,11 @@ export async function NewActorBodyStats(actor) {
 						secondaryOptions.forEach((option) => {
 							secondaryDropdown.append(new Option(option, option));
 						});
-						// Trigger a change event to update the Tertiary dropdown
+						//? Trigger a change event to update the Tertiary dropdown
 						secondaryDropdown.trigger("change");
 					});
 					html.find('[name="secondary"]').change((event) => {
-						// Update the options in the Tertiary dropdown based on the Secondary selection
+						//? Update the options in the Tertiary dropdown based on the Secondary selection
 						let primary = html.find('[name="primary"]').val();
 						let secondary = event.target.value;
 						let tertiaryOptions = ["Endurance", "Power", "Reflexes"].filter(
@@ -604,9 +604,9 @@ export async function NewActorMindStats(actor) {
 				},
 				default: "ok",
 				render: (html) => {
-					// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
+					//? Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
 					html.find('[name="primary"]').change((event) => {
-						// Update the options in the Secondary dropdown based on the Primary selection
+						//? Update the options in the Secondary dropdown based on the Primary selection
 						let primary = event.target.value;
 						let secondaryOptions = ["Perception", "Manipulation", "Creativity"].filter(
 							(option) => option !== primary
@@ -616,11 +616,11 @@ export async function NewActorMindStats(actor) {
 						secondaryOptions.forEach((option) => {
 							secondaryDropdown.append(new Option(option, option));
 						});
-						// Trigger a change event to update the Tertiary dropdown
+						//? Trigger a change event to update the Tertiary dropdown
 						secondaryDropdown.trigger("change");
 					});
 					html.find('[name="secondary"]').change((event) => {
-						// Update the options in the Tertiary dropdown based on the Secondary selection
+						//? Update the options in the Tertiary dropdown based on the Secondary selection
 						let primary = html.find('[name="primary"]').val();
 						let secondary = event.target.value;
 						let tertiaryOptions = ["Perception", "Manipulation", "Creativity"].filter(
@@ -713,9 +713,9 @@ export async function NewActorSoulStats(actor) {
 				},
 				default: "ok",
 				render: (html) => {
-					// Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
+					//? Add event listeners to dynamically update the options in the Secondary and Tertiary dropdowns
 					html.find('[name="primary"]').change((event) => {
-						// Update the options in the Secondary dropdown based on the Primary selection
+						//? Update the options in the Secondary dropdown based on the Primary selection
 						let primary = event.target.value;
 						let secondaryOptions = ["Willpower", "Consciousness", "Awareness"].filter(
 							(option) => option !== primary
@@ -725,11 +725,11 @@ export async function NewActorSoulStats(actor) {
 						secondaryOptions.forEach((option) => {
 							secondaryDropdown.append(new Option(option, option));
 						});
-						// Trigger a change event to update the Tertiary dropdown
+						//? Trigger a change event to update the Tertiary dropdown
 						secondaryDropdown.trigger("change");
 					});
 					html.find('[name="secondary"]').change((event) => {
-						// Update the options in the Tertiary dropdown based on the Secondary selection
+						//? Update the options in the Tertiary dropdown based on the Secondary selection
 						let primary = html.find('[name="primary"]').val();
 						let secondary = event.target.value;
 						let tertiaryOptions = ["Willpower", "Consciousness", "Awareness"].filter(
@@ -819,16 +819,16 @@ export async function NewActorRoleplay(actor) {
 					callback: async (html) => {
 						let RPbackgroundpick = html.find('[name="RPbackground"]').val();
 						await actor.update({ "system.Vital.background.value": RPbackgroundpick });
-						console.log(`Metanthropes RPG System | New Actor | New Background: ${RPbackgroundpick}`);
+						console.log(`Metanthropes | New Actor | New Background: ${RPbackgroundpick}`);
 						let RPmetamorphosispick = html.find('[name="RPmetamorphosis"]').val();
 						await actor.update({ "system.entermeta.metamorphosis.value": RPmetamorphosispick });
-						console.log(`Metanthropes RPG System | New Actor | New Metamorphosis: ${RPmetamorphosispick}`);
+						console.log(`Metanthropes | New Actor | New Metamorphosis: ${RPmetamorphosispick}`);
 						let RParcpick = html.find('[name="RParc"]').val();
 						await actor.update({ "system.Vital.arc.value": RParcpick });
-						console.log(`Metanthropes RPG System | New Actor | New Arc: ${RParcpick}`);
+						console.log(`Metanthropes | New Actor | New Arc: ${RParcpick}`);
 						let RPregressionpick = html.find('[name="RPregression"]').val();
 						await actor.update({ "system.entermeta.regression.value": RPregressionpick });
-						console.log(`Metanthropes RPG System | New Actor | New Regression: ${RPregressionpick}`);
+						console.log(`Metanthropes | New Actor | New Regression: ${RPregressionpick}`);
 						resolve();
 					},
 				},
@@ -882,13 +882,13 @@ export async function NewActorProgression(actor) {
 							let startingXP = html.find('[name="startingXP"]').val();
 							await actor.update({ "system.Vital.Experience.Total": Number(startingXP) });
 							console.log(
-								`Metanthropes RPG System | New Actor | ${actor.type}'s Starting Experience: ${startingXP}`
+								`Metanthropes | New Actor | ${actor.type}'s Starting Experience: ${startingXP}`
 							);
 							let startingPerks = html.find('[name="startingPerks"]').val();
 							//? setting the starting perks count to the database to be used later in determining XP costs
 							await actor.update({ "system.Perks.Details.Starting.value": startingPerks });
 							console.log(
-								`Metanthropes RPG System | New Actor | ${actor.type}'s Starting Perks: ${startingPerks}`
+								`Metanthropes | New Actor | ${actor.type}'s Starting Perks: ${startingPerks}`
 							);
 							resolve();
 						},
@@ -983,47 +983,47 @@ export async function NewActorSummary(actor) {
 						if (actor.type == "Protagonist" || actor.type == "Metanthrope") {
 							await actor.update({ "prototypeToken.name": actorname });
 						}
-						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Name: ${actorname}`);
+						console.log(`Metanthropes | New Actor | ${actor.type}'s Name: ${actorname}`);
 						let actorage = html.find('[name="actorage"]').val();
 						await actor.update({ "system.Vital.age.value": Number(actorage) });
-						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Age: ${actorage}`);
+						console.log(`Metanthropes | New Actor | ${actor.type}'s Age: ${actorage}`);
 						let actorgender = html.find('[name="actorgender"]').val();
 						await actor.update({ "system.humanoids.gender.value": actorgender });
-						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Gender: ${actorgender}`);
+						console.log(`Metanthropes | New Actor | ${actor.type}'s Gender: ${actorgender}`);
 						let actorgenderpronoun = html.find('[name="actorgenderpronoun"]').val();
 						await actor.update({ "system.humanoids.genderpronoun.value": actorgenderpronoun });
 						console.log(
-							`Metanthropes RPG System | New Actor | ${actor.type}'s Gender Pronouns: ${actorgenderpronoun}`
+							`Metanthropes | New Actor | ${actor.type}'s Gender Pronouns: ${actorgenderpronoun}`
 						);
 						let actorheight = html.find('[name="actorheight"]').val();
 						await actor.update({ "system.humanoids.height.value": Number(actorheight) });
-						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Height: ${actorheight}`);
+						console.log(`Metanthropes | New Actor | ${actor.type}'s Height: ${actorheight}`);
 						let actorweight = html.find('[name="actorweight"]').val();
 						await actor.update({ "system.humanoids.weight.value": Number(actorweight) });
-						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Weight: ${actorweight}`);
+						console.log(`Metanthropes | New Actor | ${actor.type}'s Weight: ${actorweight}`);
 						let actorpob = html.find('[name="actorpob"]').val();
 						await actor.update({ "system.humanoids.birthplace.value": actorpob });
 						console.log(
-							`Metanthropes RPG System | New Actor | ${actor.type}'s Place of Birth: ${actorpob}`
+							`Metanthropes | New Actor | ${actor.type}'s Place of Birth: ${actorpob}`
 						);
 						await actor.update({ "system.metaowner.value": playerName });
-						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Player Name: ${playerName}`);
+						console.log(`Metanthropes | New Actor | ${actor.type}'s Player Name: ${playerName}`);
 						await actor.update({ "system.entermeta.narrator.value": narratorName });
 						console.log(
-							`Metanthropes RPG System | New Actor | ${actor.type}'s Narrator Name: ${narratorName}`
+							`Metanthropes | New Actor | ${actor.type}'s Narrator Name: ${narratorName}`
 						);
 						let saganame = html.find('[name="saganame"]').val();
 						await actor.update({ "system.entermeta.sagas.value": saganame });
-						console.log(`Metanthropes RPG System | New Actor | ${actor.type}'s Saga Name: ${saganame}`);
+						console.log(`Metanthropes | New Actor | ${actor.type}'s Saga Name: ${saganame}`);
 						let coalitionname = html.find('[name="coalitionname"]').val();
 						await actor.update({ "system.entermeta.coalition.value": coalitionname });
 						console.log(
-							`Metanthropes RPG System | New Actor | ${actor.type}'s Coalition Name: ${coalitionname}`
+							`Metanthropes | New Actor | ${actor.type}'s Coalition Name: ${coalitionname}`
 						);
 						let factionname = html.find('[name="factionname"]').val();
 						await actor.update({ "system.entermeta.faction.value": factionname });
 						console.log(
-							`Metanthropes RPG System | New Actor | ${actor.type}'s Faction Name: ${factionname}`
+							`Metanthropes | New Actor | ${actor.type}'s Faction Name: ${factionname}`
 						);
 						resolve();
 					},
@@ -1076,6 +1076,7 @@ export async function NewActorFinish(actor) {
 								img: actorimg,
 							});
 							//? set bloodsplats to red color
+							//todo Monk's Bloodsplats had an update that further enhances what options are available.
 							await actor.update({ "prototypeToken.flags.splatter": { bloodColor: "#d10000ff" } });
 							await actor.update({
 								"prototypeToken.flags.monks-bloodsplats.bloodsplat-colour": "#d10000ff",

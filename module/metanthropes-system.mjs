@@ -1,6 +1,6 @@
-console.log("Metanthropes RPG System | ====================================");
-console.log("Metanthropes RPG System | Awakened");
-console.log("Metanthropes RPG System | ====================================");
+console.log("Metanthropes | ====================================");
+console.log("Metanthropes | Awakened");
+console.log("Metanthropes | ====================================");
 //? Import Combat Modules.
 import { MetanthropesCombat } from "./metanthropes/combat.mjs";
 import { MetaCombatTracker } from "./metanthropes/combattracker.mjs";
@@ -36,7 +36,7 @@ Handlebars.registerHelper("isArray", function (value) {
 // //? Handlebars helper for displaying actor values on the item sheets.
 //	//! I don't recall where this is being used exactly
 //	Handlebars.registerHelper("getStatValue", function (statName) {
-//		console.log("Metanthropes RPG System | DEBUG: ARE WE USING THIS? | Handlebars helper statName:", statName);
+//		console.log("Metanthropes | DEBUG: ARE WE USING THIS? | Handlebars helper statName:", statName);
 //		return actor.system.RollStats[statName];
 //	});
 //	//? this allows me to use an each loop to list stuff unless the key is...
@@ -53,8 +53,8 @@ Handlebars.registerHelper("isArray", function (value) {
 //	});
 //? System Initialization.
 Hooks.once("init", async function () {
-	console.log("Metanthropes RPG System | ====================================");
-	console.log("Metanthropes RPG System | Initializing");
+	console.log("Metanthropes | ====================================");
+	console.log("Metanthropes | Initializing");
 	// add our classes so they are more easily accessible
 	game.metanthropes = {
 		MetanthropesActor,
@@ -89,8 +89,8 @@ Hooks.once("init", async function () {
 		makeDefault: true,
 	});
 	// Preload Handlebars templates.
-	console.log("Metanthropes RPG System | Initialized");
-	console.log("Metanthropes RPG System | ====================================");
+	console.log("Metanthropes | Initialized");
+	console.log("Metanthropes | ====================================");
 	return preloadHandlebarsTemplates();
 });
 /* -------------------------------------------- */
@@ -162,28 +162,28 @@ Hooks.once("ready", async function () {
 	//? Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
 	Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
 	//* Migration section
-	console.log("Metanthropes RPG System | Starting Migration");
+	console.log("Metanthropes | Starting Migration");
 	await metaMigrateData();
-	console.log("Metanthropes RPG System | Finished Migration");
-	//? Add support for Moulinette: Free modules with artwork & sounds is available for indexing by Moulinette
+	console.log("Metanthropes | Finished Migration");
+	//? Add support for Moulinette: Free modules with artwork & sounds are indexable by Moulinette
 	if (game.moulinette) {
 		game.moulinette.sources.push({
 			type: "images",
-			publisher: "Metanthropes RPG",
+			publisher: "Metanthropes",
 			pack: "Metapowers",
 			source: "data",
 			path: "systems/metanthropes-system/artwork/metapowers",
 		});
 		game.moulinette.sources.push({
 			type: "images",
-			publisher: "Metanthropes RPG",
+			publisher: "Metanthropes",
 			pack: "Masculine Tokens",
 			source: "data",
 			path: "systems/metanthropes-system/artwork/tokens/portraits/masculine",
 		});
 		game.moulinette.sources.push({
 			type: "images",
-			publisher: "Metanthropes RPG",
+			publisher: "Metanthropes",
 			pack: "Feminine Tokens",
 			source: "data",
 			path: "systems/metanthropes-system/artwork/tokens/portraits/feminine",
@@ -295,14 +295,14 @@ Hooks.once("ready", async function () {
 		});
 		game.moulinette.sources.push({
 			type: "sounds",
-			publisher: "Metanthropes RPG",
+			publisher: "Metanthropes",
 			pack: "Music",
 			source: "data",
 			path: "systems/metanthropes-system/audio/music",
 		});
 		game.moulinette.sources.push({
 			type: "sounds",
-			publisher: "Metanthropes RPG",
+			publisher: "Metanthropes",
 			pack: "Sound Effects",
 			source: "data",
 			path: "systems/metanthropes-system/audio/sound-effects",
@@ -311,8 +311,8 @@ Hooks.once("ready", async function () {
 });
 //	//? Enhanced Terrain Layer Integration - disabled until post v0.9
 //	Hooks.once("enhancedTerrainLayer.ready", (RuleProvider) => {
-//		console.log("Metanthropes RPG System | ====================================");
-//		console.log("Metanthropes RPG System | Enhanced Terrain Layer Integration Started");
+//		console.log("Metanthropes | ====================================");
+//		console.log("Metanthropes | Enhanced Terrain Layer Integration Started");
 //		class MetanthropesRuleProvider extends RuleProvider {
 //			calculateCombinedCost(terrain, options) {
 //				//? I want to reduce movement by 1 for every 2 points of terrain (?)
@@ -321,13 +321,13 @@ Hooks.once("ready", async function () {
 //			}
 //		}
 //		enhancedTerrainLayer.registerSystem("metanthropes-system", MetanthropesRuleProvider);
-//		console.log("Metanthropes RPG System | Enhanced Terrain Layer Integration Finished");
-//		console.log("Metanthropes RPG System | ====================================");
+//		console.log("Metanthropes | Enhanced Terrain Layer Integration Finished");
+//		console.log("Metanthropes | ====================================");
 //	});
 //? Drag Ruler Integration
 Hooks.once("dragRuler.ready", (SpeedProvider) => {
-	console.log("Metanthropes RPG System | ====================================");
-	console.log("Metanthropes RPG System | Drag Ruler Integration Started");
+	console.log("Metanthropes | ====================================");
+	console.log("Metanthropes | Drag Ruler Integration Started");
 	class MetanthropesSystemSpeedProvider extends SpeedProvider {
 		get colors() {
 			return [
@@ -344,8 +344,8 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 				{ range: baseSpeed * 4, color: "additional" },
 				{ range: baseSpeed * 10, color: "sprint" },
 			];
-			//	I can add special modifiers to speed (like flying, etc)
-			//		// Characters that aren't wearing armor are allowed to run with three times their speed
+			//todo	I can add special modifiers to speed (like flying, etc)
+			// Example: Characters that aren't wearing armor are allowed to run with three times their speed
 			//		if (!token.actor.data.isWearingArmor) {
 			//			ranges.push({range: baseSpeed * 3, color: "dash"})
 			//		}
@@ -353,8 +353,8 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 		}
 	}
 	dragRuler.registerSystem("metanthropes-system", MetanthropesSystemSpeedProvider);
-	console.log("Metanthropes RPG System | Drag Ruler Integration Finished");
-	console.log("Metanthropes RPG System | ====================================");
+	console.log("Metanthropes | Drag Ruler Integration Finished");
+	console.log("Metanthropes | ====================================");
 });
 //? Chat Message Event Listeners
 Hooks.on("renderChatMessage", async (message, html) => {
@@ -363,7 +363,6 @@ Hooks.on("renderChatMessage", async (message, html) => {
 	if (!actorUUID) return;
 	const actor = await fromUuid(actorUUID);
 	const metaowner = actor.system.metaowner.value || null;
-	//console.log("Metanthropes RPG System | DEBUG | metaowner:", actor.system.metaowner.value, metaowner);
 	//? Proceed only if the current user is the owner of the actor, or a GM
 	if (game.user.name === metaowner || game.user.isGM) {
 		//? Unhide the buttons - assumes DF Chat Enhancements module is installed (provides hidden class that works)
