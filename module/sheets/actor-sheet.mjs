@@ -160,7 +160,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			element.disabled = false;
 		}, 3000);
 		const dataset = element.dataset;
-		console.log("Metanthropes RPG System | _handleMetaRolls | Engaged via right-click:", isCustomRoll);
+		console.log("Metanthropes | _handleMetaRolls | Engaged via right-click:", isCustomRoll);
 		//? Handle all types of rolls here based on the rollType (data-roll-type)
 		if (dataset.rollType) {
 			const actor = this.actor;
@@ -170,17 +170,17 @@ export class MetanthropesActorSheet extends ActorSheet {
 			const itemName = dataset.itemName || ""; //? Item Name is optional, so if it's not defined, set it to ""
 			if (dataset.rollType == "StatRoll") {
 				console.log(
-					"Metanthropes RPG System | _handleMetaRolls | Engaging MetaRoll for:",
+					"Metanthropes | _handleMetaRolls | Engaging MetaRoll for:",
 					actor.name + "'s",
 					action,
 					"with",
 					stat
 				);
 				await MetaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
-				console.log("Metanthropes RPG System | _handleMetaRolls | Finished Rolling for StatRoll");
+				console.log("Metanthropes | _handleMetaRolls | Finished Rolling for StatRoll");
 			} else if (dataset.rollType == "Metapower") {
 				console.log(
-					"Metanthropes RPG System | _handleMetaRolls | Engaging MetaRoll for:",
+					"Metanthropes | _handleMetaRolls | Engaging MetaRoll for:",
 					actor,
 					"Action:",
 					action,
@@ -192,10 +192,10 @@ export class MetanthropesActorSheet extends ActorSheet {
 					stat
 				);
 				await MetaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
-				console.log("Metanthropes RPG System | _handleMetaRolls | Finished Rolling for Metapower");
+				console.log("Metanthropes | _handleMetaRolls | Finished Rolling for Metapower");
 			} else if (dataset.rollType == "Possession") {
 				console.log(
-					"Metanthropes RPG System | _handleMetaRolls | Engaging MetaRoll for:",
+					"Metanthropes | _handleMetaRolls | Engaging MetaRoll for:",
 					actor.name + "'s",
 					action + ":",
 					itemName,
@@ -203,17 +203,17 @@ export class MetanthropesActorSheet extends ActorSheet {
 					stat
 				);
 				await MetaRoll(actor, action, stat, isCustomRoll, 0, itemName);
-				console.log("Metanthropes RPG System | _handleMetaRolls | Finished Rolling for Possession");
+				console.log("Metanthropes | _handleMetaRolls | Finished Rolling for Possession");
 			} else {
 				console.error(
-					"Metanthropes RPG System | _handleMetaRolls | ERROR: not defined rollType",
+					"Metanthropes | _handleMetaRolls | ERROR: not defined rollType",
 					dataset.rollType
 				);
 				return;
 			}
 		}
 		//? After doing a meta roll, re-render the actor sheet.
-		console.log("Metanthropes RPG System | _handleMetaRolls | Finished, re-rendering the actor sheet");
+		console.log("Metanthropes | _handleMetaRolls | Finished, re-rendering the actor sheet");
 		this.render(true);
 	}
 	//* Handle Left-Click Rolls

@@ -1,11 +1,11 @@
 {
 	"id": "metanthropes-system",
-	"title": "Metanthropes RPG",
+	"title": "Metanthropes",
 	"description": "Metanthropes RPG System for FoundryVTT",
-	"version": "0.7.81",
+	"version": "0.7.82",
 	"compatibility": {
 		"minimum": "11",
-		"verified": "11.309",
+		"verified": "11.311",
 		"maximum": "11"
 	},
 	"authors": [
@@ -22,6 +22,7 @@
 	],
 	"esmodules": ["module/metanthropes-system.mjs"],
 	"styles": ["css/metanthropes-system.css"],
+	"background": "systems/metanthropes-system/artwork/cover.jpg",
 	"gridDistance": 2,
 	"gridUnits": "m",
 	"primaryTokenAttribute": "Vital.Destiny.value",

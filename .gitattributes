@@ -40,9 +40,11 @@
 #
 # image files are treated as binary by default.
 ###############################################################################
-#*.jpg   binary
-#*.png   binary
-#*.gif   binary
+*.jpg   binary
+*.png   binary
+*.gif   binary
+*.webp  binary
+*.webm  binary
 
 ###############################################################################
 # diff behavior for common document formats
@@ -61,3 +63,8 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+#######
+# Foundry Specifics
+#######
+packs/** binary

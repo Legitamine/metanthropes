@@ -43,7 +43,7 @@ export async function MetaEvaluate(
 	itemName = null
 ) {
 	console.log(
-		"Metanthropes RPG System | MetaEvaluate | Engaged for:",
+		"Metanthropes | MetaEvaluate | Engaged for:",
 		actor.name,
 		action,
 		stat,
@@ -141,7 +141,7 @@ export async function MetaEvaluate(
 	//? if we have Pain condition, our succesfull (only) results are lowered by an equal amount - in case of Criticals we ignore Pain
 	let painEffect = levelsOfSuccess - pain;
 	if ((resultLevel > 0) && !criticalSuccess && (pain > 0)) {
-		console.log("Metanthropes RPG System | MetaEvaluate | Pain Effect:", painEffect);
+		console.log("Metanthropes | MetaEvaluate | Pain Effect:", painEffect);
 		if (painEffect < 0) {
 			result = "Failure 🟥";
 			resultLevel = 0;
@@ -149,7 +149,7 @@ export async function MetaEvaluate(
 			levelsOfSuccess = 0;
 			message += `It was a Success, turned into a ${result}, because of Pain * ${pain}`;
 			console.log(
-				"Metanthropes RPG System | MetaEvaluate | Pain Effect<0",
+				"Metanthropes | MetaEvaluate | Pain Effect<0",
 				painEffect,
 				"levelsOfSuccess:",
 				levelsOfSuccess
@@ -158,7 +158,7 @@ export async function MetaEvaluate(
 			message += `It is still a ${result}, besides being affected by Pain * ${pain}`;
 			levelsOfSuccess = 0;
 			console.log(
-				"Metanthropes RPG System | MetaEvaluate | Pain Effect=0",
+				"Metanthropes | MetaEvaluate | Pain Effect=0",
 				painEffect,
 				"levelsOfSuccess:",
 				levelsOfSuccess
@@ -167,7 +167,7 @@ export async function MetaEvaluate(
 			message += `It is a ${result}, reduced by Pain * ${pain}`;
 			levelsOfSuccess = painEffect;
 			console.log(
-				"Metanthropes RPG System | MetaEvaluate | Pain Effect>0",
+				"Metanthropes | MetaEvaluate | Pain Effect>0",
 				painEffect,
 				"levelsOfSuccess:",
 				levelsOfSuccess
@@ -230,7 +230,7 @@ export async function MetaEvaluate(
 		if (!(action === "Initiative")) {
 			//? Set autoExecute to true if it's either a Critical Success or a Critical Failure, or if the actor doesn't have enough Destiny to reroll
 			autoExecute = true;
-			console.log("Metanthropes RPG System | MetaEvaluate | Auto-Execute:", autoExecute);
+			console.log("Metanthropes | MetaEvaluate | Auto-Execute:", autoExecute);
 		}
 	}
 	message += `<div><br></div>`;
@@ -268,7 +268,7 @@ export async function MetaEvaluate(
 			newRolls.PossessionName = itemName;
 			break;
 		default:
-			console.error("Metanthropes RPG System | MetaEvaluate | Error: Action not recognized:", action);
+			console.error("Metanthropes | MetaEvaluate | Error: Action not recognized:", action);
 			return;
 	}
 	//? Update the actor with the new .lastrolled values
@@ -283,7 +283,7 @@ export async function MetaEvaluate(
 		flags: { "metanthropes-system": { actoruuid: actor.uuid } },
 	});
 	console.log(
-		"Metanthropes RPG System | MetaEvaluate | Finished for:",
+		"Metanthropes | MetaEvaluate | Finished for:",
 		actor.name,
 		"Action:",
 		action,
@@ -322,10 +322,10 @@ export async function MetaEvaluate(
 		await new Promise((resolve) => setTimeout(resolve, 5000));
 		//? Automatically execute the activation/use of the Metapower/Possession if it's a Critical Success/Failure or not enough destiny to reroll
 		if (action === "Metapower") {
-			console.log("Metanthropes RPG System | MetaEvaluate | Auto-Activating Metapower:", itemName);
+			console.log("Metanthropes | MetaEvaluate | Auto-Activating Metapower:", itemName);
 			MetaExecute(null, actor.uuid, action, itemName);
 		} else if (action === "Possession") {
-			console.log("Metanthropes RPG System | MetaEvaluate | Auto-Using Possession:", itemName);
+			console.log("Metanthropes | MetaEvaluate | Auto-Using Possession:", itemName);
 			MetaExecute(null, actor.uuid, action, itemName, multiAction);
 		}
 	}
@@ -362,7 +362,7 @@ export async function MetaEvaluateReRoll(event) {
 	const action = button.dataset.action;
 	const itemName = button.dataset.itemName;
 	const pain = parseInt(button.dataset.pain);
-	console.log("Metanthropes RPG System | MetaEvaluateReRoll | Engaged for:", actor.name + "'s", action, actorUUID);
+	console.log("Metanthropes | MetaEvaluateReRoll | Engaged for:", actor.name + "'s", action, actorUUID);
 	//? Reduce Destiny by 1
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	currentDestiny--;
@@ -373,5 +373,5 @@ export async function MetaEvaluateReRoll(event) {
 	if (sheet && sheet.rendered) {
 		sheet.render(true);
 	}
-	console.log("Metanthropes RPG System | MetaEvaluateReRoll | Finished for:", actor.name + "'s", action, actorUUID);
+	console.log("Metanthropes | MetaEvaluateReRoll | Finished for:", actor.name + "'s", action, actorUUID);
 }
