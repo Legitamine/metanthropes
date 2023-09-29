@@ -29,7 +29,7 @@ import { metaExtractNumberOfDice } from "./metahelpers.mjs";
 export async function MetaExecute(event, actorUUID, action, itemName, multiAction = 0) {
 	//? If we called this from a button click, get the data we need
 	if (event) {
-		console.log("Metanthropes RPG System | MetaExecute | event:", event);
+		console.log("Metanthropes | MetaExecute | event:", event);
 		const button = event.target;
 		actorUUID = button.dataset.actoruuid;
 		itemName = button.dataset.itemName;
@@ -49,10 +49,10 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 	//? Find the first item ()that matches itemName
 	let metaItemData = actor.items.find((item) => item.name === itemName);
 	if (!metaItemData) {
-		console.error("Metanthropes RPG System | MetaExecute | Could not find any item named:", itemName);
+		console.error("Metanthropes | MetaExecute | Could not find any item named:", itemName);
 		return;
 	}
-	console.log("Metanthropes RPG System | MetaExecute | Engaged for", itemName);
+	console.log("Metanthropes | MetaExecute | Engaged for", itemName);
 	//? Gather all the execution data
 	let actionSlot = metaItemData.system.Execution.ActionSlot.value;
 	let targetsNumber = metaItemData.system.Execution.Targets.value;
@@ -161,7 +161,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		} else {
 			executeRoll = true;
 			//? Use Possession
-			console.log("Metanthropes RPG System | MetaExecute | Using Possession:", itemName, attackType);
+			console.log("Metanthropes | MetaExecute | Using Possession:", itemName, attackType);
 			if (attackType === "Melee") {
 				//todo: need to add size modifier to increase the base d10 dice pool for unarmed strikes only
 				flavorMessage = `Attacks with their ${itemName}<br><br>`;
@@ -183,7 +183,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			}
 		}
 	} else {
-		console.error("Metanthropes RPG System | MetaExecute | cannot Execute action:", action);
+		console.error("Metanthropes | MetaExecute | cannot Execute action:", action);
 		return;
 	}
 	if (executeRoll) {
@@ -197,7 +197,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		//? finalize action slot
 		if (actionSlot.includes("Always Active")) {
 			//? always active return
-			console.warn("Metanthropes RPG System | MetaExecute | Always Active:", itemName);
+			console.warn("Metanthropes | MetaExecute | Always Active:", itemName);
 			ui.notifications.info(actor.name + "'s " + itemName + " is Always Active!");
 			return;
 		} else if (actionSlot.includes("Focused")) {

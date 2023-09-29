@@ -21,7 +21,7 @@
  */
 export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", baseNumber = 0, isHalf = false) {
 	console.log(
-		"Metanthropes RPG System | Rolld10 | Engaged for",
+		"Metanthropes | Rolld10 | Engaged for",
 		actor.name + "'s",
 		what,
 		"Destiny Reroll allowed?",
@@ -106,7 +106,7 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 		rollMode: game.settings.get("core", "rollMode"),
 		flags: { "metanthropes-system": { actoruuid: actor.uuid } },
 	});
-	console.log("Metanthropes RPG System | Rolld10 | Finished for", actor.name + "'s", what);
+	console.log("Metanthropes | Rolld10 | Finished for", actor.name + "'s", what);
 	//! doing a refresh during actor creation causes the actor window to come in focus, so disabling it for now
 	//	//? Refresh the actor sheet if it's open
 	//	const sheet = actor.sheet;
@@ -144,7 +144,7 @@ export async function Rolld10ReRoll(event) {
 		currentDestiny--;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		console.log(
-			"Metanthropes RPG System | Rolld10ReRoll | Engaging Rolld10 for:",
+			"Metanthropes | Rolld10ReRoll | Engaging Rolld10 for:",
 			actor.name + "'s",
 			what,
 			destinyReRoll,
@@ -162,6 +162,6 @@ export async function Rolld10ReRoll(event) {
 		//	}
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
-		console.warn("Metanthropes RPG System | Rolld10ReRoll | Not enough Destiny to spend, or destinyReRoll is false");
+		console.warn("Metanthropes | Rolld10ReRoll | Not enough Destiny to spend, or destinyReRoll is false");
 	}
 }
