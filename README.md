@@ -37,6 +37,6 @@ Briefly, we are working torwards the following milestones:
 
 ### Latest Changes
 
-For the latest changes you may check out the [detailed Change Log](https://github.com/Legitamine/metanthropes-system/blob/stable/CHANGELOG.md)
+For the latest changes you may check out the [detailed Change Log](https://github.com/Legitamine/metanthropes-system/blob/main/CHANGELOG.md)
 
 Our eternal gratitude goes to the amazing community of Foundry Developers <3

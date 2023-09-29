@@ -405,6 +405,13 @@
 	//		text-shadow: $s-outline;
 	//	}
 }
+.style-view-properties {
+	&:hover {
+		cursor: help;
+		color: $c-purple;
+		text-shadow: $s-outline;
+	}
+}
 .style-editor {
 	opacity: 1;
 	font-family: $font-secondary;

@@ -72,11 +72,11 @@ export async function MetaEvaluate(
 	let currentDestiny = Number(actor.system.Vital.Destiny.value);
 	//? Check for Destiny Cost in case of a Metapower
 	if (action === "Metapower") {
-		if (currentDestiny < destinyCost) {
-			ui.notifications.warn(actor.name + " doesn't have enough Destiny to activate " + itemName);
+		if (currentDestiny < Number(destinyCost)) {
+			ui.notifications.warn(actor.name + " doesn't have " + destinyCost + " Destiny to activate " + itemName);
 			return;
 		} else {
-			currentDestiny -= destinyCost;
+			currentDestiny -= Number(destinyCost);
 			await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		}
 	}
@@ -118,7 +118,7 @@ export async function MetaEvaluate(
 	} else if (action === "Initiative") {
 		message = `Rolls for Initiative with ${stat} score of ${statScore}%`;
 	} else if (action === "Metapower") {
-		if (destinyCost > 0) {
+		if (Number(destinyCost) > 0) {
 			message = `Spends ${destinyCost} * 🤞 Destiny and rolls to activate the Ⓜ️ Metapower: ${itemName} with ${stat} score of ${statScore}%`;
 		} else {
 			message = `Rolls to activate the Ⓜ️ Metapower: ${itemName} with ${stat} score of ${statScore}%`;
@@ -201,7 +201,7 @@ export async function MetaEvaluate(
 	//* The buttons are hidden for everone except the owner of the actor and the GM as long as DF Chat Enhancements is installed
 	//todo I should figure out how to do this on my own without the need to have DF Chat Enhancements installed
 	//? Define threshold of showing the button, to re-roll we need a minimum of 1 Destiny + the Destiny Cost of the Metapower (only applies to Metapowers with DestinyCost, otherwise it's 0)
-	let threshold = Number(1 + Number(destinyCost));
+	let threshold = 1 + Number(destinyCost);
 	if (!criticalSuccess && !criticalFailure && (currentDestiny >= threshold)) {
 		if (action === "Initiative") {
 			message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button metainitiative-reroll" data-actoruuid="${actor.uuid}" data-action="${action}"

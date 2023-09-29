@@ -1,5 +1,5 @@
-//? Import MetaRoll
-import { MetaRoll } from "../metanthropes/metaroll.mjs";
+//? Import HandleMetaRolls
+import { HandleMetaRolls } from "../helpers/metarollhandler.mjs";
 //? Import New Actor
 import { NewActor } from "../metanthropes/newactor.mjs";
 //? Import Finalize Premade Protagonist
@@ -43,7 +43,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 		}
 		//? Add roll data for TinyMCE editors.
 		context.rollData = context.actor.getRollData();
-		//! Prepare active effects - causes errors?
+		//! Prepare active effects - causes error when enabled - prepareActiveEffectCategories is not defined
+		//! it needs effects.mjs from https://gitlab.com/asacolips-projects/foundry-mods/boilerplate/-/blob/master/module/helpers/effects.mjs?ref_type=heads
 		// context.effects = prepareActiveEffectCategories(this.actor.effects);
 		//? Add check if the user is a Narrator (Game Master)
 		context.isGM = game.user.isGM;
@@ -107,6 +108,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			li.slideUp(200, () => this.render(false));
 		});
 		//? Active Effect management
+		//! probably needs the effects from boilerplate to work
 		html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
 		//? Find the different type of rolls and add the event listeners
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
@@ -150,79 +152,13 @@ export class MetanthropesActorSheet extends ActorSheet {
 		// Finally, create the item!
 		return await Item.create(itemData, { parent: this.actor });
 	}
-	//* Handling Rolls
-	async _handleMetaRolls(event, isCustomRoll = false) {
-		event.preventDefault();
-		const element = event.currentTarget;
-		//? Disable the element for 3 seconds to prevent double-clicking
-		element.disabled = true;
-		setTimeout(() => {
-			element.disabled = false;
-		}, 3000);
-		const dataset = element.dataset;
-		console.log("Metanthropes | _handleMetaRolls | Engaged via right-click:", isCustomRoll);
-		//? Handle all types of rolls here based on the rollType (data-roll-type)
-		if (dataset.rollType) {
-			const actor = this.actor;
-			const action = dataset.rollType;
-			const stat = dataset.stat;
-			const destinyCost = dataset.destinyCost || 0; //? Destiny Cost is optional, so if it's not defined, set it to 0
-			const itemName = dataset.itemName || ""; //? Item Name is optional, so if it's not defined, set it to ""
-			if (dataset.rollType == "StatRoll") {
-				console.log(
-					"Metanthropes | _handleMetaRolls | Engaging MetaRoll for:",
-					actor.name + "'s",
-					action,
-					"with",
-					stat
-				);
-				await MetaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
-				console.log("Metanthropes | _handleMetaRolls | Finished Rolling for StatRoll");
-			} else if (dataset.rollType == "Metapower") {
-				console.log(
-					"Metanthropes | _handleMetaRolls | Engaging MetaRoll for:",
-					actor,
-					"Action:",
-					action,
-					"Metapower:",
-					itemName,
-					"Destiny Cost:",
-					destinyCost,
-					"with:",
-					stat
-				);
-				await MetaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
-				console.log("Metanthropes | _handleMetaRolls | Finished Rolling for Metapower");
-			} else if (dataset.rollType == "Possession") {
-				console.log(
-					"Metanthropes | _handleMetaRolls | Engaging MetaRoll for:",
-					actor.name + "'s",
-					action + ":",
-					itemName,
-					"with",
-					stat
-				);
-				await MetaRoll(actor, action, stat, isCustomRoll, 0, itemName);
-				console.log("Metanthropes | _handleMetaRolls | Finished Rolling for Possession");
-			} else {
-				console.error(
-					"Metanthropes | _handleMetaRolls | ERROR: not defined rollType",
-					dataset.rollType
-				);
-				return;
-			}
-		}
-		//? After doing a meta roll, re-render the actor sheet.
-		console.log("Metanthropes | _handleMetaRolls | Finished, re-rendering the actor sheet");
-		this.render(true);
-	}
 	//* Handle Left-Click Rolls
 	async _onRoll(event) {
-		this._handleMetaRolls(event, false);
+		HandleMetaRolls(event, this, false);
 	}
 	//* Handle Right-Click Rolls
 	async _onCustomRoll(event) {
-		this._handleMetaRolls(event, true);
+		HandleMetaRolls(event, this, true);
 	}
 	//* New Actor Logic
 	async _onNewActor(event) {
