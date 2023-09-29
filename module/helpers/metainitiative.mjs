@@ -104,7 +104,7 @@ export async function MetaInitiativeReRoll(event) {
 	const action = button.dataset.action;
 	const actor = await fromUuid(actorUUID);
 	const combatant = game.combat.getCombatantByActor(actor);
-	console.log("Metanthropes RPG  System | MetaInitiativeReRoll | Engaged for combatant:", combatant);
+	console.log("Metanthropes | MetaInitiativeReRoll | Engaged for combatant:", combatant);
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	//? Reduce Destiny.value by 1
 	currentDestiny--;

@@ -1,3 +1,5 @@
+//? Import HandleMetaRolls
+import { HandleMetaRolls } from "../helpers/metarollhandler.mjs";
 export class MetanthropesItemSheet extends ItemSheet {
 	/** @override */
 	static get defaultOptions() {
@@ -28,7 +30,6 @@ export class MetanthropesItemSheet extends ItemSheet {
 	getData() {
 		//? Retrieve base data structure.
 		const context = super.getData();
-
 		// Use a safe clone of the item data for further operations.
 		const itemData = context.item;
 
@@ -48,10 +49,7 @@ export class MetanthropesItemSheet extends ItemSheet {
 
 		return context;
 	}
-
-	/* -------------------------------------------- */
-
-	/** @override */
+//* Clickable stuff on the item sheets
 	activateListeners(html) {
 		//? Call the super class's activateListeners method to ensure any other listeners are set up
 		super.activateListeners(html);
@@ -59,10 +57,20 @@ export class MetanthropesItemSheet extends ItemSheet {
 		if (!game.user.isGM) {
 			html.find("input, textarea, select").attr("disabled", "disabled");
 		}
+	//* Everything below this point is only needed if the sheet is editable
+	if (!this.isEditable) return;
+	//? Find the different type of rolls and add the event listeners
+	html.find(".style-mp-rolls").click(this._onRoll.bind(this));
+	html.find(".style-mp-rolls").on("contextmenu", this._onCustomRoll.bind(this));
+	html.find(".style-pos-rolls").click(this._onRoll.bind(this));
+	html.find(".style-pos-rolls").on("contextmenu", this._onCustomRoll.bind(this));
 	}
-	//		// Everything below here is only needed if the sheet is editable
-	//		if (!this.isEditable) return;
-	//
-	//		// Roll handlers, click handlers, etc. would go here.
-	//	}
+	//* Handle Left-Click Rolls
+	async _onRoll(event) {
+		await HandleMetaRolls(event, this, false);
+	}
+	//* Handle Right-Click Rolls
+	async _onCustomRoll(event) {
+		await HandleMetaRolls(event, this, true);
+	}
 }

@@ -950,6 +950,11 @@ option {
   color: #7d0f81;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
+.metanthropes .style-view-properties:hover {
+  cursor: help;
+  color: #7d0f81;
+  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+}
 .metanthropes .style-editor {
   opacity: 1;
   font-family: "gill-sans-nova", sans-serif;

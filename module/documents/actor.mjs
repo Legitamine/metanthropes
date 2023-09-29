@@ -390,15 +390,18 @@ export class MetanthropesActor extends Actor {
 		if (actorData.type == "Vehicle") return;
 		const systemData = actorData.system;
 		if (this.name !== "Duplicate") {
+			//? Apply Max Life according to Body + Endurance
 			parseInt(
 				(systemData.Vital.Life.max =
 					Number(systemData.Vital.Life.Initial) +
 					Number(systemData.Characteristics.Body.Stats.Endurance.Roll))
 			);
+			//? If current Life is higher than max Life, set current Life to max Life
 			if (systemData.Vital.Life.max < systemData.Vital.Life.value) {
 				parseInt((systemData.Vital.Life.value = Number(systemData.Vital.Life.max)));
 			}
 		} else {
+			//? Apply Max Life for Duplicates from the Duplicate Self Metapower Activation value
 			const duplicateMaxLife = this.getFlag("metanthropes-system", "duplicateself").maxlife;
 			parseInt((systemData.Vital.Life.max = Number(duplicateMaxLife)));
 			const duplicateCurrentLife = systemData.Vital.Life.value;

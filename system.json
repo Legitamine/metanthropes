@@ -2,7 +2,7 @@
 	"id": "metanthropes-system",
 	"title": "Metanthropes",
 	"description": "Metanthropes RPG System for FoundryVTT",
-	"version": "0.7.82",
+	"version": "0.7.83",
 	"compatibility": {
 		"minimum": "11",
 		"verified": "11.311",
@@ -29,8 +29,8 @@
 	"secondaryTokenAttribute": "Vital.Life.value",
 	"url": "https://github.com/legitamine/metanthropes-system",
 	"manifest": "https://github.com/legitamine/metanthropes-system/releases/latest/download/system.json",
-	"license": "https://github.com/legitamine/metanthropes-system/blob/stable/LICENSE.txt",
-	"readme": "https://github.com/legitamine/metanthropes-system/blob/stable/readme.md",
-	"changelog": "https://github.com/legitamine/metanthropes-system/blob/stable/changelog.md",
+	"license": "https://github.com/legitamine/metanthropes-system/blob/main/LICENSE.txt",
+	"readme": "https://github.com/legitamine/metanthropes-system/blob/main/readme.md",
+	"changelog": "https://github.com/legitamine/metanthropes-system/blob/main/changelog.md",
 	"bugs": "https://gitub.com/legitamine/metanthropes-system/issues"
 }
