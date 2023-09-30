@@ -66,6 +66,9 @@
 					{{else}}
 						<span class="style-cs-negative">{{system.Vital.Experience.Stored}}</span>
 					{{/if}}
+					<span>
+						<button class="progression-dialog" title="Progress your {{actor.type}}">📈 Progression</button>
+					</span>
 				</div>
 			</div>
 			<div>
@@ -102,10 +105,6 @@
 			</div>
 			<div class="tab cs-combos" data-group="cs" data-tab="cs-combos">
 				<div class="layout-container-outer-tabs style-container-outer-tabs">
-					<br><br>
-					<div class="resource-label">COMBOS are not officially supported yet. This is a placeholder for
-						future capabilities.
-					</div>
 					{{> "systems/metanthropes-system/templates/helpers/actor-combos.hbs"}}
 				</div>
 			</div>

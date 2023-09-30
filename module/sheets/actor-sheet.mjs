@@ -4,6 +4,8 @@ import { HandleMetaRolls } from "../helpers/metarollhandler.mjs";
 import { NewActor } from "../metanthropes/newactor.mjs";
 //? Import Finalize Premade Protagonist
 import { FinalizePremadeProtagonist } from "../metanthropes/newactor.mjs";
+//? Import Progression Dialog
+import { openProgressionDialog } from "../metanthropes/progression.mjs";
 export class MetanthropesActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
@@ -109,7 +111,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		});
 		//? Active Effect management
 		//! probably needs the effects from boilerplate to work
-		html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
+		// html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
 		//? Find the different type of rolls and add the event listeners
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
 		html.find(".style-cs-rolls").on("contextmenu", this._onCustomRoll.bind(this));
@@ -121,6 +123,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 		html.find(".new-actor").click(this._onNewActor.bind(this));
 		//? Finalize Premade Protagonist Button
 		html.find(".finalize-premade-protagonist").click(this._onFinalizePremadeProtagonist.bind(this));
+		//? Progression Dialog Button
+		html.find(".progression-dialog").click(this._onProgressionDialog.bind(this));
 		//? Drag events for macros.
 		if (this.actor.isOwner) {
 			let handler = (ev) => this._onDragStart(ev);
@@ -171,5 +175,14 @@ export class MetanthropesActorSheet extends ActorSheet {
 		event.preventDefault();
 		const actor = this.actor;
 		await FinalizePremadeProtagonist(actor);
+	}
+	//* Progression Dialog
+	async _onProgressionDialog(event) {
+		event.preventDefault();
+		//? Get the most up-to-date data for the actor
+		const actorData = this.getData();
+		console.warn("Metanthropes | _onProgressionDialog | actorData:", actorData);
+		console.log("Metanthropes | _onProgressionDialog | confirm name", actorData.actor.name);
+		await openProgressionDialog(actorData);
 	}
 }

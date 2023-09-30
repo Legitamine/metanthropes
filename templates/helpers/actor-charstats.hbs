@@ -7,16 +7,8 @@
 					<p class="style-cs-values" title="Initial value">🏁
 						{{this.Initial}}
 					</p>
-					<p class="style-cs-values" title="Progression Level">📈 <select
-							name="system.Characteristics.{{@key}}.Progressed"
-							id="system.Characteristics.{{@key}}.Progressed" data-dtype="Number">
-							<option value="0" {{selected this.Progressed 0}}>0</option>
-							<option value="1" {{selected this.Progressed 1}}>1</option>
-							<option value="2" {{selected this.Progressed 2}}>2</option>
-							<option value="3" {{selected this.Progressed 3}}>3</option>
-							<option value="4" {{selected this.Progressed 4}}>4</option>
-							<option value="5" {{selected this.Progressed 5}}>5</option>
-						</select>
+					<p class="style-cs-values" title="Progression Level">📈
+						{{this.Progressed}}
 					</p>
 				</div>
 				<div class="style-cs-chars-value">{{this.Current}}</div>
@@ -58,16 +50,8 @@
 						<p class="style-cs-values" title="Initial value">🏁
 							{{this.Initial}}
 						</p>
-						<p class="style-cs-values" title="Progression Level">📈 <select
-								name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Progressed"
-								id="system.Characteristics.{{@../key}}.Stats.{{@key}}.Progressed" data-dtype="Number">
-								<option value="0" {{selected this.Progressed 0}}>0</option>
-								<option value="1" {{selected this.Progressed 1}}>1</option>
-								<option value="2" {{selected this.Progressed 2}}>2</option>
-								<option value="3" {{selected this.Progressed 3}}>3</option>
-								<option value="4" {{selected this.Progressed 4}}>4</option>
-								<option value="5" {{selected this.Progressed 5}}>5</option>
-							</select>
+						<p class="style-cs-values" title="Progression Level">📈
+							{{this.Progressed}}
 						</p>
 					</div>
 					<div class="style-cs-rolls" data-roll-type="StatRoll" data-stat="{{@key}}">

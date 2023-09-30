@@ -10,6 +10,15 @@
 	align-items: center;
 	align-self: center;
 }
+.style-container-outer-charstatsprogression {
+	opacity: 1;
+	//border: $border-style-solid;
+	//border-radius: $border-radius;
+	justify-content: center;
+	justify-self: center;
+	align-items: center;
+	align-self: center;
+}
 //big container styling
 .style-container-grid3x2 {
 	opacity: 1;
@@ -31,6 +40,15 @@
 	align-self: center;
 }
 .style-container-actorinfo {
+	opacity: 1;
+	border: $border-style-solid;
+	border-radius: $border-radius;
+	justify-content: stretch;
+	justify-self: center;
+	align-items: center;
+	align-self: center;
+}
+.style-container-progressionheader {
 	opacity: 1;
 	border: $border-style-solid;
 	border-radius: $border-radius;
@@ -274,6 +292,19 @@
 	font-family: $font-primary;
 	font-size: 1.6rem;
 	color: $c-black;
+	justify-content: center;
+	justify-self: center;
+	align-items: center;
+	align-self: center;
+	padding: $padding-sm;
+	margin: $margin-sm;
+}
+.style-cs-stats-value {
+	opacity: 1;
+	font-family: $font-primary;
+	font-size: 2.4rem;
+	color: $c-black;
+	font-weight: bold;
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
