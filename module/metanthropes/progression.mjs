@@ -1,5 +1,3 @@
-//* Progression dialog for spending XP.
-
 //* Progression Dialog Class
 export class ProgressionDialog extends Dialog {
 	static get defaultOptions() {
@@ -7,7 +5,7 @@ export class ProgressionDialog extends Dialog {
 			template: "systems/metanthropes-system/templates/progression/progression-dialog.hbs",
 			classes: ["metanthropes", "progression"],
 			width: 1012,
-			height: 680,
+			height: 700,
 			tabs: [
 				{
 					navSelector: ".progressionnavselector",
@@ -21,31 +19,78 @@ export class ProgressionDialog extends Dialog {
 			resizable: true,
 		});
 	}
-
-	getData(options={}) {
+	//* Get the Data for actor - the data provided is a copy of the actual actor document, so we are not working on the stored values
+	getData(options = {}) {
 		//? Retrieve base data structure.
 		const context = super.getData(options);
 		//? Explicitly define the structure of the data for the template
-        return {
-            content: context.content,
-            buttons: context.buttons,
-            actor: this.data.actorData.actor
-        };
+		return {
+			content: context.content,
+			buttons: context.buttons,
+			actor: this.data.actorData.actor,
+		};
 	}
-
+	//* Activate listeners
 	activateListeners(html) {
 		super.activateListeners(html);
 		// Add any event listeners specific to this dialog here.
 		// For example, handling tab switching, button clicks, etc.
 	}
-
-	// ... any other methods specific to this dialog
+	//* Handle changes to the form ???
+	calculateOverviewExperience(actorData) {
+		const systemData = actorData.system;
+		let experienceSpent = 0;
+		let characteristicExperienceSpent = 0;
+		let statExperienceSpent = 0;
+		let progressionCount = 0;
+		let ifCharacteristicBecomesZeroPenalty = 0;
+		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
+			//? reset ifCharacteristicBecomesZeroPenalty to 0
+			ifCharacteristicBecomesZeroPenalty = 0;
+			//? Calculate the progression count based on the characteristic's progressed value
+			progressionCount = Number(CharValue.Progressed);
+			//? Calculate the experience spent on this characteristic
+			characteristicExperienceSpent = 0;
+			for (let i = 0; i < progressionCount; i++) {
+				characteristicExperienceSpent += Number((Number(CharValue.Initial) + Number(i * 5)) * 10);
+			}
+			//? Add the experience spent on this characteristic to the total experience spent, only if Progressed is >0
+			if (progressionCount > 0) {
+				experienceSpent += characteristicExperienceSpent;
+			}
+			for (const [StatKey, StatValue] of Object.entries(CharValue.Stats)) {
+				//? Calculate the progression count based on the characteristic's progressed value
+				progressionCount = Number(StatValue.Progressed);
+				//? Calculate the experience spent on this characteristic
+				statExperienceSpent = 0;
+				for (let i = 0; i < progressionCount; i++) {
+					statExperienceSpent += Number(
+						(Number(StatValue.Initial) + Number(CharValue.Base) + Number(i * 5)) * 3
+					);
+				}
+				//? Add the experience spent on this characteristic to the total experience spent, only if Progressed is >0
+				if (progressionCount > 0) {
+					experienceSpent += statExperienceSpent;
+				}
+			}
+		}
+		systemData.Vital.Experience.Spent = Number(experienceSpent);
+		systemData.Vital.Experience.Stored = Number(
+			Number(systemData.Vital.Experience.Total) -
+				Number(experienceSpent) -
+				Number(systemData.Vital.Experience.Manual)
+		);
+		return {
+			spent: systemData.Vital.Experience.Spent,
+			stored: systemData.Vital.Experience.Stored,
+		};
+	}
+	//* ... any other methods specific to this dialog
 }
-
 //* Main function for creating and managing the dialog
 export async function openProgressionDialog(actorData) {
 	//? Define the dialog content
-	const dialogContent = "sample dialog content";
+	const dialogContent = "Make sure that your Stored XP is not negative before confirming!";
 	//? Define the dialog buttons
 	const dialogButtons = {
 		confirm: {
@@ -54,7 +99,7 @@ export async function openProgressionDialog(actorData) {
 				//? Gather changes
 				const changes = {
 					//? gather changes
-				}
+				};
 				//? Update the actor with the changes
 				await actorData.actor.update(changes);
 			},
@@ -62,58 +107,22 @@ export async function openProgressionDialog(actorData) {
 		cancel: {
 			label: "Cancel",
 			//? Do nothing on Cancel
-			callback: () => {}
-		}
+			callback: () => {},
+		},
 	};
 	//? Define the dialog options
 	const dialogOptions = {
-		title: `${actorData.actor.name}'s 📈 Progression`,
-		content: dialogContent,
-    };
+		//? Placeholder for future use
+	};
 	const dialogData = {
 		actorData: actorData,
-		buttons: dialogButtons
+		buttons: dialogButtons,
+		content: dialogContent,
+		title: `${actorData.actor.name}'s 📈 Progression`,
 	};
 	const progressionDialog = new ProgressionDialog(dialogData, dialogOptions);
 	progressionDialog.render(true);
 }
-	//	//? Generate the initial dialog content
-	//	//? This could involve calling the appropriate function to generate the content for the currently selected tab
-	//	const dialogContent = await renderTemplate(
-	//	    "systems/metanthropes-system/templates/progression/progression-dialog.hbs",
-	//	    actorData
-	//	);
-	//	//? Dialog options
-	//	let dialogOptions = {
-	//		width: 600,
-	//		height: 400,
-	//		resizable: true,
-	//	};
-	//	//!?let dialogContent = generateOverviewContent(actor);
-	//	//? Create the dialog
-	//	new Dialog(
-	//		{
-	//			title: `${actor.name}'s 📈 Progression`,
-	//			content: dialogContent,
-	//			buttons: {
-	//				confirm: {
-	//					label: "Confirm 📈 Progression",
-	//					callback: async (html) => {
-	//						//? Gather changes
-	//						const changes = {
-	//							//? gather changes
-	//						}
-	//						//? Update the actor with the changes
-	//						await actor.update(changes);
-	//					},
-	//				},
-	//				cancel: {
-	//					label: "Cancel",
-	//					//? Do nothing on Cancel
-	//					callback: () => {}
-	//				}
-	//			}
-	//		}, dialogOptions).render(true);
 
 //* Function for generating the content of the Overview tab
 function generateOverviewContent(actor) {
@@ -148,72 +157,3 @@ function generateMetapowersContent(actor) {
 function validateFormInput(actor, formData) {
 	//? Validate the form input and return any errors
 }
-
-//	import { renderTemplate } from "./templateHelper.mjs";
-//
-//	// Import the handlebar templates
-//	import overviewTemplate from "../templates/overview.hbs";
-//	import perksTemplate from "../templates/perks.hbs";
-//	import metapowersTemplate from "../templates/metapowers.hbs";
-
-//	export async function openProgressionDialog(actor) {
-//	    // Create a deep copy of the actor data
-//	    let actorDataCopy = foundry.utils.deepClone(actor.data);
-//
-//	    // Generate the initial dialog content
-//	    let dialogContent = await generateOverviewContent(actorDataCopy);
-//
-//	    // Create the dialog
-//	    let dialog = new Dialog({
-//	        title: `Progression for ${actor.name}`,
-//	        content: dialogContent,
-//	        buttons: {
-//	            confirm: {
-//	                label: "Confirm Progression",
-//	                callback: async (html) => {
-//	                    // Apply the changes to the actor data
-//	                    await applyChanges(actor, actorDataCopy, html);
-//	                },
-//	            },
-//	            cancel: {
-//	                label: "Cancel",
-//	                callback: () => { /* Do nothing */ },
-//	            },
-//	        },
-//	        default: "confirm",
-//	        render: (html) => {
-//	            // Handle interactions for the Overview tab
-//	            handleOverviewInteractions(actorDataCopy, html);
-//	        },
-//	    });
-//
-//	    // Render the dialog
-//	    dialog.render(true);
-//	}
-//
-
-//	async function generateOverviewContent(actorData) {
-//		// Render the Overview tab content using the handlebar template
-//		return await renderTemplate(overviewTemplate, { actor: actorData });
-//	}
-//
-//	function handleOverviewInteractions(actorData, html) {
-//		// Handle interactions for the Overview tab
-//		// ...
-//	}
-//
-//	async function applyChanges(actor, actorDataCopy, html) {
-//		// Calculate the changes based on the actorDataCopy and the current state of the dialog
-//		let changes = calculateChanges(actorDataCopy, html);
-//
-//		// Apply the changes to the actor
-//		await actor.update(changes);
-//	}
-//
-//	function calculateChanges(actorDataCopy, html) {
-//		// Calculate the changes based on the actorDataCopy and the current state of the dialog
-//		// ...
-//
-//		return changes;
-//	}
-//

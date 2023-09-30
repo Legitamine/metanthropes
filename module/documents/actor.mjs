@@ -91,19 +91,20 @@ export class MetanthropesActor extends Actor {
 	prepareDerivedData() {
 		const actorData = this;
 		this._prepareDerivedCharacteristicsData(actorData);
-		this._prepareDerivedCharacteristicsXPData(actorData);
-		this._prepareDerivedPerkXPData(actorData);
+		//! removing these for the progression update
+		// this._prepareDerivedCharacteristicsXPData(actorData);
+		// this._prepareDerivedPerkXPData(actorData);
 		this._prepareDerivedMovementData(actorData);
 		this._prepareDerivedVitalData(actorData);
 	}
 	_prepareDerivedCharacteristicsData(actorData) {
 		if (actorData.type == "Vehicle") return;
 		const systemData = actorData.system;
-		let characteristicZeroPenalty;
+		let ifCharacteristicBecomesZeroPenalty;
 		let progressionCount;
 		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
-			//? reset characteristicZeroPenalty to 0
-			characteristicZeroPenalty = 0;
+			//? reset ifCharacteristicBecomesZeroPenalty to 0
+			ifCharacteristicBecomesZeroPenalty = 0;
 			//? Calculate the progression count based on the Characteristic's progressed value
 			progressionCount = Number(CharValue.Progressed);
 			//? Calculate the Base score for this Characteristic (Initial + Progressed)
@@ -117,7 +118,7 @@ export class MetanthropesActor extends Actor {
 			);
 			//? Determine if the Characteristic has dropped to 0
 			if (CharValue.Current <= 0) {
-				characteristicZeroPenalty = CharValue.Current;
+				ifCharacteristicBecomesZeroPenalty = CharValue.Current;
 				CharValue.Current = 0;
 				console.warn(
 					"Metanthropes | Actor Prep | Derived Characteristics |",
@@ -138,10 +139,10 @@ export class MetanthropesActor extends Actor {
 						Number(Number(StatValue.Buff.Current) * 5) -
 						Number(Number(StatValue.Condition.Current) * 5))
 				);
-				//? Calculate the Roll score for this Stat (Current + Characteristic + characteristicZeroPenalty)
+				//? Calculate the Roll score for this Stat (Current + Characteristic + ifCharacteristicBecomesZeroPenalty)
 				parseInt(
 					(StatValue.Roll =
-						Number(StatValue.Current) + Number(CharValue.Current) + Number(characteristicZeroPenalty))
+						Number(StatValue.Current) + Number(CharValue.Current) + Number(ifCharacteristicBecomesZeroPenalty))
 				);
 				//? Determine if the Stat has dropped to 0
 				if (StatValue.Roll <= 0) {
@@ -163,10 +164,10 @@ export class MetanthropesActor extends Actor {
 		let characteristicExperienceSpent = 0;
 		let statExperienceSpent = 0;
 		let progressionCount = 0;
-		let characteristicZeroPenalty = 0;
+		let ifCharacteristicBecomesZeroPenalty = 0;
 		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
-			//? reset characteristicZeroPenalty to 0
-			characteristicZeroPenalty = 0;
+			//? reset ifCharacteristicBecomesZeroPenalty to 0
+			ifCharacteristicBecomesZeroPenalty = 0;
 			//? Calculate the progression count based on the characteristic's progressed value
 			progressionCount = Number(CharValue.Progressed);
 			//? Calculate the experience spent on this characteristic
@@ -274,7 +275,7 @@ export class MetanthropesActor extends Actor {
 		if (systemData.Vital.Experience.Stored < 0) {
 			console.error("Metanthropes | Actor Prep | WARNING: Stored Experience is Negative for:", this.name);
 			//! the below either .info or .error will cause an exception? This should also affect v0.7.xx builds
-			//ui.notifications.info(this.name + "'s Stored Experience is Negative!");
+			//! ui.notifications.info(this.name + "'s Stored Experience is Negative!");
 		}
 		//	console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
 		//console.log("Metanthropes |", this.type, "-", this.name, "is ready for Action!");

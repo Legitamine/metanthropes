@@ -181,8 +181,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 		event.preventDefault();
 		//? Get the most up-to-date data for the actor
 		const actorData = this.getData();
-		console.warn("Metanthropes | _onProgressionDialog | actorData:", actorData);
-		console.log("Metanthropes | _onProgressionDialog | confirm name", actorData.actor.name);
 		await openProgressionDialog(actorData);
 	}
 }
