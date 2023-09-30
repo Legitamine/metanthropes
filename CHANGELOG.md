@@ -59,6 +59,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 - 	Fixed an issue where chat displayed 'null' when using an item with an empty Effect Description
 -	Fixed an issue where the Combat Tracker did not display the correct values for the current Cycle and Round
 -	Fixed an issue where after changing into a new Cycle and rolling a new initiative, the Combat Tracker did not order the Turn order correctly
+-	Fixed a minor bug where Maximum Life would sometimes not calculate correctly if the Actor had negative Stored Experience
 
 ### Deprecated:
 
