@@ -246,7 +246,7 @@ export class MetanthropesActor extends Actor {
 		if (experienceSpent < startingPerks * 100) {
 			// console.log("Metanthropes | Actor Prep |", this.name, "has not spent enough XP on starting perks!");
 			// console.log("Metanthropes | Actor Prep |", this.name, "has spent", experienceSpent, "XP on perks");
-			console.log(
+			console.warn(
 				"Metanthropes | Actor Prep |",
 				this.name,
 				"needs to spend",
@@ -268,19 +268,22 @@ export class MetanthropesActor extends Actor {
 					Number(experienceAlreadySpent) -
 					Number(systemData.Vital.Experience.Manual) +
 					//? here we are adding the cost of free starting perks to the stored xp
-					Number(startingPerks * 100)
+					(Number(startingPerks) * 100)
 			))
 		);
 		if (systemData.Vital.Experience.Stored < 0) {
-			ui.notifications.error(this.name + "'s Stored Experience is Negative!");
-
-			// console.log("Metanthropes | Actor Prep | WARNING: Stored Experience is Negative!");
+			console.error("Metanthropes | Actor Prep | WARNING: Stored Experience is Negative for:", this.name);
+			//! the below either .info or .error will cause an exception? This should also affect v0.7.xx builds
+			//ui.notifications.info(this.name + "'s Stored Experience is Negative!");
 		}
 		//	console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
 		//console.log("Metanthropes |", this.type, "-", this.name, "is ready for Action!");
 		//console.log("Metanthropes | ====================================");
 	}
 	_prepareDerivedMovementData(actorData) {
+		//! this section needs to be updated with camelCase
+		//todo when implementing vehicles, we'll have to revise how movement is calcualated, right now Vehicles don't have Characteristics and so they can't have movement either as it's tied to the Wobbly Calculation - perhaps just skip that for vehicles? We'll see exactly how, when it's time to implement Vehicles
+		if (actorData.type == "Vehicle") return;
 		const systemData = actorData.system;
 		//? first we will calculate the current values from buffs and conditions, then we take their modifiers and calculate the movement value
 		let speedinitial = Number(systemData.physical.speed.initial);

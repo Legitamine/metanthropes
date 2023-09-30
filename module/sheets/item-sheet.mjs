@@ -67,10 +67,10 @@ export class MetanthropesItemSheet extends ItemSheet {
 	}
 	//* Handle Left-Click Rolls
 	async _onRoll(event) {
-		await HandleMetaRolls(event, this, false);
+		HandleMetaRolls(event, this, false);
 	}
 	//* Handle Right-Click Rolls
 	async _onCustomRoll(event) {
-		await HandleMetaRolls(event, this, true);
+		HandleMetaRolls(event, this, true);
 	}
 }
