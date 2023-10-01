@@ -24,10 +24,7 @@ export async function FinalizePremadeProtagonist(actor) {
 		await NewActorSummary(actor);
 		await NewActorFinish(actor);
 	} catch (error) {
-		console.error(
-			"Metanthropes | Finalize Pre-made Protagonist | Finalize Pre-made Protagonist Error:",
-			error
-		);
+		console.error("Metanthropes | Finalize Pre-made Protagonist | Finalize Pre-made Protagonist Error:", error);
 	} finally {
 		console.log(
 			"Metanthropes | Finalize Pre-made Protagonist | Finalize Pre-made Protagonist Creation Complete for",
@@ -177,55 +174,55 @@ export async function NewActorDestiny(actor) {
 }
 export async function NewActorPrimeMetapower(actor) {
 	let dialogContent = `
-    <div class="metanthropes layout-metaroll-dialog">
-        <h2>Choose your ${actor.type}'s Prime Ⓜ️ Metapower</h2>
-        <form>
-            <div class="form-group">
-                <label for="classification" title="Each Classification includes Metapowers which have a similar role and utilize capabilities and functions in a similar manner">🔣 Classification:</label>
-                <select id="classification">
-                    <option value="">All</option>
-                    ${[...new Set(MetapowersList.map((m) => m.classification))]
-						.sort()
-						.map((c) => `<option value="${c}">${c}</option>`)
-						.join("")}
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="energyType" title="Energy Type dictates the Damage and other properties of an effect. Energy Types additionally influence the spending of Experience for unlocking and advancing new Metapowers">✨ Energy Type:</label>
-                <select id="energyType">
-                    <option value="">All</option>
-                    ${[...new Set(MetapowersList.map((m) => m.energyType))]
-						.sort()
-						.map((e) => `<option value="${e}">${e}</option>`)
-						.join("")}
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="statRolled" title="Which Stat is rolled when Activating this Metapower">🎲 Stat Rolled:</label>
-                <select id="statRolled">
-                    <option value="">All</option>
-                    ${[...new Set(MetapowersList.map((m) => m.statRolled))]
-						.sort()
-						.map((s) => `<option value="${s}">${s}</option>`)
-						.join("")}
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="primeMetapower" title="Each Metanthrope Character begins the game with one level in their first Metapower, called Prime Metapower. No other additional Metapower unlocked can be higher-level than the level of the Prime Metapower. The Classification and the Energy type of the Protagonist's Prime Metapower will influence the Experience cost of unlocking and advancing other Metapowers">Prime Ⓜ️ Metapower:</label>
-                <select id="primeMetapower">
-                    ${MetapowersList.map((m) => m.name)
-						.sort()
-						.map((name) => `<option value="${name}">${name}</option>`)
-						.join("")}
-                </select>
+		<div class="metanthropes layout-metaroll-dialog">
+		<h2>Choose your ${actor.type}'s Prime Ⓜ️ Metapower</h2>
+		<form>
+			<div class="form-group">
+			<label for="classification" title="Each Classification includes Metapowers which have a similar role and utilize capabilities and functions in a similar manner">🔣 Classification:</label>
+			<select id="classification">
+				<option value="">All</option>
+				${[...new Set(MetapowersList.map((m) => m.classification))]
+					.sort()
+					.map((c) => `<option value="${c}">${c}</option>`)
+					.join("")}
+			</select>
+			</div>
+			<div class="form-group">
+			<label for="energyType" title="Energy Type dictates the Damage and other properties of an effect. Energy Types additionally influence the spending of Experience for unlocking and advancing new Metapowers">✨ Energy Type:</label>
+			<select id="energyType">
+			<option value="">All</option>
+			${[...new Set(MetapowersList.map((m) => m.energyType))]
+				.sort()
+				.map((e) => `<option value="${e}">${e}</option>`)
+				.join("")}
+			</select>
+			</div>
+			<div class="form-group">
+			<label for="statRolled" title="Which Stat is rolled when Activating this Metapower">🎲 Stat Rolled:</label>
+			<select id="statRolled">
+				<option value="">All</option>
+				${[...new Set(MetapowersList.map((m) => m.statRolled))]
+					.sort()
+					.map((s) => `<option value="${s}">${s}</option>`)
+					.join("")}
+			</select>
+			</div>
+			<div class="form-group">
+			<label for="primeMetapower" title="Each Metanthrope Character begins the game with one level in their first Metapower, called Prime Metapower. No other additional Metapower unlocked can be higher-level than the level of the Prime Metapower. The Classification and the Energy type of the Protagonist's Prime Metapower will influence the Experience cost of unlocking and advancing other Metapowers">Prime Ⓜ️ Metapower:</label>
+			<select id="primeMetapower">
+				${MetapowersList.map((m) => m.name)
+					.sort()
+					.map((name) => `<option value="${name}">${name}</option>`)
+					.join("")}
+			</select>
 			</div>
 			<div class="form-group">
 				<label for="primeMetapowerImg"></label>
 				<img id="primeMetapowerImg" src="systems/metanthropes-system/artwork/metapowers/6th Sense.png" alt="Prime Metapower Image" style="border: none;" height="270" width="270" />
-            </div>
-        </form>
-    </div>
-    `;
+		</div>
+		</form>
+	</div>
+	`;
 	let dialogOptions = {
 		width: 485,
 		height: 600,
@@ -246,9 +243,7 @@ export async function NewActorPrimeMetapower(actor) {
 								"system.entermeta.primemetapower.value": primeMetapowerName,
 								primeimg: `systems/metanthropes-system/artwork/metapowers/${primeMetapowerName}.png`,
 							});
-							console.log(
-								`Metanthropes | New Actor | New Prime Metapower: ${primeMetapowerName}`
-							);
+							console.log(`Metanthropes | New Actor | New Prime Metapower: ${primeMetapowerName}`);
 							resolve();
 						},
 					},
@@ -887,9 +882,7 @@ export async function NewActorProgression(actor) {
 							let startingPerks = html.find('[name="startingPerks"]').val();
 							//? setting the starting perks count to the database to be used later in determining XP costs
 							await actor.update({ "system.Perks.Details.Starting.value": startingPerks });
-							console.log(
-								`Metanthropes | New Actor | ${actor.type}'s Starting Perks: ${startingPerks}`
-							);
+							console.log(`Metanthropes | New Actor | ${actor.type}'s Starting Perks: ${startingPerks}`);
 							resolve();
 						},
 					},
@@ -1003,28 +996,20 @@ export async function NewActorSummary(actor) {
 						console.log(`Metanthropes | New Actor | ${actor.type}'s Weight: ${actorweight}`);
 						let actorpob = html.find('[name="actorpob"]').val();
 						await actor.update({ "system.humanoids.birthplace.value": actorpob });
-						console.log(
-							`Metanthropes | New Actor | ${actor.type}'s Place of Birth: ${actorpob}`
-						);
+						console.log(`Metanthropes | New Actor | ${actor.type}'s Place of Birth: ${actorpob}`);
 						await actor.update({ "system.metaowner.value": playerName });
 						console.log(`Metanthropes | New Actor | ${actor.type}'s Player Name: ${playerName}`);
 						await actor.update({ "system.entermeta.narrator.value": narratorName });
-						console.log(
-							`Metanthropes | New Actor | ${actor.type}'s Narrator Name: ${narratorName}`
-						);
+						console.log(`Metanthropes | New Actor | ${actor.type}'s Narrator Name: ${narratorName}`);
 						let saganame = html.find('[name="saganame"]').val();
 						await actor.update({ "system.entermeta.sagas.value": saganame });
 						console.log(`Metanthropes | New Actor | ${actor.type}'s Saga Name: ${saganame}`);
 						let coalitionname = html.find('[name="coalitionname"]').val();
 						await actor.update({ "system.entermeta.coalition.value": coalitionname });
-						console.log(
-							`Metanthropes | New Actor | ${actor.type}'s Coalition Name: ${coalitionname}`
-						);
+						console.log(`Metanthropes | New Actor | ${actor.type}'s Coalition Name: ${coalitionname}`);
 						let factionname = html.find('[name="factionname"]').val();
 						await actor.update({ "system.entermeta.faction.value": factionname });
-						console.log(
-							`Metanthropes | New Actor | ${actor.type}'s Faction Name: ${factionname}`
-						);
+						console.log(`Metanthropes | New Actor | ${actor.type}'s Faction Name: ${factionname}`);
 						resolve();
 					},
 				},
@@ -1050,10 +1035,10 @@ export async function NewActorFinish(actor) {
 		<div class="metanthropes layout-metaroll-dialog">
 			<h2>${actor.type}: ${actor.name} is ready to enter the Multiverse!</h2>
 			<form>
-            <div class="form-group">
+		<div class="form-group">
                 <label for="actorimg">${actor.type} Image:</label>
                 <img id="actorimg" src="${actor.img}" title="Choose your ${actor.type}'s Image" height="320" width="220" style="cursor:pointer;"/>
-            </div>
+		</div>
         </form>
 		</div>
 	`;

@@ -1,5 +1,8 @@
+/**
+ * Migrates data from older versions of the system to newer versions
+ * @returns {Promise<void>}
+ */
 export async function metaMigrateData() {
-	//? Get the current version
 	const currentVersion = game.system.data.version;
 	console.log("Metanthropes | Migrating Items to version", currentVersion);
 	const worldItems = game.items.contents;

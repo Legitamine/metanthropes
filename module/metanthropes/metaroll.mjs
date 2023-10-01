@@ -8,11 +8,11 @@ import { MetaEvaluate } from "../helpers/metaeval.mjs";
  * calculate the result of the roll.
  *
  * @param {Object} actor - The actor making the roll. Expected to be an Actor object.
- * @param {string} action - The type of action being performed (e.g., "StatRoll", "Initiative", etc).
- * @param {string} stat - The stat being rolled against. Expected to be a string.
- * @param {boolean} isCustomRoll - Whether the roll is custom or not. Expected to be a boolean.
- * @param {number} destinyCost - The destiny cost of the action. Expected to be a positive number.
- * @param {string} itemName - The name of the Metapower, Possession or Combo being used. Expected to be a string.
+ * @param {String} action - The type of action being performed (e.g., "StatRoll", "Initiative", etc).
+ * @param {String} stat - The stat being rolled against. Expected to be a string.
+ * @param {Boolean} isCustomRoll - Whether the roll is custom or not. Expected to be a boolean.
+ * @param {Number} destinyCost - The destiny cost of the action. Expected to be a positive number.
+ * @param {String} itemName - The name of the Metapower, Possession or Combo being used. Expected to be a string.
  *
  * @returns {Promise<void>} A promise that resolves once the function completes its operations.
  *
@@ -111,7 +111,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		);
 		console.log("Metanthropes | MetaRoll | Custom Roll Values:", multiAction, bonus, customPenalty);
 		//? Check if Custom Penalty is smaller than Disease penalty (values are expected to be negatives)
-		//! add a new function to compare values for bonus and penalty - this way we can do the disease and perk check the same way without caring about the order in which we do them
+		//todo add a new function to compare values for bonus and penalty - this way we can do the disease and perk check the same way without caring about the order in which we do them
 		if (customPenalty < diseasePenalty) {
 			penalty = customPenalty;
 		} else {

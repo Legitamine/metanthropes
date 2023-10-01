@@ -1,4 +1,9 @@
-import { MetaRoll } from "../metanthropes/metaroll.mjs";
+/**
+ * Extend the basic Item with some very simple modifications.
+ * 
+ * @extends {Item}
+ * 
+ */
 export class MetanthropesItem extends Item {
 	prepareData() {
 		super.prepareData();
@@ -13,6 +18,8 @@ export class MetanthropesItem extends Item {
 	 * Prepare a data object which is passed to any Roll formulas which are created related to this Item
 	 * @private
 	 */
+	//! If I understand this correct - returing the actorData will also inlcude this rollData that includes a copy of the system - why do I need that?
+	//! Make sure I review the item-sheet as well to optimize this where needed!!
 	getRollData() {
 		//! Is this being used?
 		//? If present, return the actor's roll data.

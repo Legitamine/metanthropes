@@ -33,7 +33,6 @@ export class MetanthropesCombat extends Combat {
 		}
 		return ib - ia || (astatScore > bstatScore ? -1 : 1);
 	}
-
 	/**
 	 * Roll Initiative for one or multiple Combatants within the Combat document
 	 * @param {string|string[]} ids     A Combatant id or Array of ids for which to roll

@@ -453,7 +453,7 @@ option {
 }
 .metanthropes .layout-container-progressionheader {
   display: grid;
-  grid-template-columns: 0.6fr 0.8fr 1.4fr 0.8fr 0.8fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   -moz-column-gap: 1px;
        column-gap: 1px;
   padding: 1px;

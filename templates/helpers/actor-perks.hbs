@@ -32,9 +32,15 @@
 				<div>
 					<h3>{{this.label}}</h3>
 				</div>
+				{{#if ../isGM}}
+					<div class="layout-editor style-editor">
+						{{editor this.value target=(concat "system.Perks.Details." @key ".value") button=true editable=true}}
+					</div>
+				{{else}}
 				<div class="layout-editor style-editor">
-					{{editor this.value target=(concat "system.Perks.Details." @key ".value") button=true editable=true}}
+					{{editor this.value target=(concat "system.Perks.Details." @key ".value") button=true editable=false}}
 				</div>
+				{{/if}}
 			{{/unless}}
 		{{/each}}
 	</div>

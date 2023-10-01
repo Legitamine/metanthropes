@@ -91,9 +91,9 @@ export class MetanthropesActor extends Actor {
 	prepareDerivedData() {
 		const actorData = this;
 		this._prepareDerivedCharacteristicsData(actorData);
-		//! removing these for the progression update
-		// this._prepareDerivedCharacteristicsXPData(actorData);
-		// this._prepareDerivedPerkXPData(actorData);
+		//! remove these for the progression update
+		this._prepareDerivedCharacteristicsXPData(actorData);
+		this._prepareDerivedPerkXPData(actorData);
 		this._prepareDerivedMovementData(actorData);
 		this._prepareDerivedVitalData(actorData);
 	}

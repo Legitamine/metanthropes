@@ -6,6 +6,15 @@ import { NewActor } from "../metanthropes/newactor.mjs";
 import { FinalizePremadeProtagonist } from "../metanthropes/newactor.mjs";
 //? Import Progression Dialog
 import { openProgressionDialog } from "../metanthropes/progression.mjs";
+/**
+ * MetanthropesActorSheet - An Actor Sheet for Metanthropes actors.
+ * 
+ * This class extends the foundry ActorSheet class.
+ * It is used to display and edit actors.
+ * 
+ * @extends {ActorSheet}
+ * 
+ */
 export class MetanthropesActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {

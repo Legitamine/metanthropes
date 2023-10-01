@@ -1,4 +1,13 @@
 //* Progression Dialog Class
+//? Import metaExtractFormData Helper
+import { metaExtractFormData } from "../helpers/metahelpers.mjs";
+/**
+ * Extend the basic Dialog class to create a custom progression dialog window
+ * @extends {Dialog}
+ *
+ * @param {Object} data
+ * @param {Object} options
+ */
 export class ProgressionDialog extends Dialog {
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
@@ -23,21 +32,34 @@ export class ProgressionDialog extends Dialog {
 	getData(options = {}) {
 		//? Retrieve base data structure.
 		const context = super.getData(options);
-		//? Explicitly define the structure of the data for the template
+		//? Initialize tempExperienceValues if it's not already set
+		this.tempExperienceValues = {
+			"TempSpent": this.data.actorData.actor.system.Vital.Experience.Spent,
+			"TempStored": this.data.actorData.actor.system.Vital.Experience.Stored,
+		};
+		//? Explicitly define the structure of the data for the dialog template to use
+		console.warn("Metanthropes | Progression Dialog | getData | this:", this);
+		console.log("Metanthropes | Progression Dialog | getData | context:", context)
 		return {
 			content: context.content,
 			buttons: context.buttons,
 			actor: this.data.actorData.actor,
+			tempExperience: this.tempExperienceValues,
 		};
 	}
 	//* Activate listeners
 	activateListeners(html) {
 		super.activateListeners(html);
-		// Add any event listeners specific to this dialog here.
-		// For example, handling tab switching, button clicks, etc.
+		//? Listen for changes in the Overview tab
+		html.find('input[name^="actor.system.Characteristics"], select[name^="actor.system.Characteristics"]').change(
+			(event) => this._onOverviewProgressionChange(event)
+		);
+		//? Listen for changes in the Perk tab
+		html.find('select[name^="actor.system.Perks"]').change((event) => this._onPerkProgressionChange(event));
 	}
-	//* Handle changes to the form ???
-	calculateOverviewExperience(actorData) {
+	//* Handle changes from Overview tab
+	_recalculateOverviewExperience(actorData) {
+		console.warn("Metanthropes | Progression Dialog | _recalculateOverviewExperience | actorData:", actorData);
 		const systemData = actorData.system;
 		let experienceSpent = 0;
 		let characteristicExperienceSpent = 0;
@@ -80,34 +102,160 @@ export class ProgressionDialog extends Dialog {
 				Number(experienceSpent) -
 				Number(systemData.Vital.Experience.Manual)
 		);
-		return {
-			spent: systemData.Vital.Experience.Spent,
-			stored: systemData.Vital.Experience.Stored,
-		};
+		//? Store the calculated values in a temporary object
+		//! wtf chatGPT!?
+		actorData.system.Vital.Experience.Spent = systemData.Vital.Experience.Spent;
+		actorData.system.Vital.Experience.Stored = systemData.Vital.Experience.Stored;
+		//? Update the displayed values in the dialog
+		this.render();
 	}
-	//* ... any other methods specific to this dialog
+	_recalculatePerksExperience(actorData) {
+		if (
+			actorData.type == "Vehicle" ||
+			actorData.type == "Animal" ||
+			actorData.type == "Animated-Plant" ||
+			actorData.type == "MetaTherion"
+		)
+			return;
+		const systemData = actorData.system;
+		let startingPerks = Number(systemData.Perks.Details.Starting.value);
+		let experienceAlreadySpent = Number(systemData.Vital.Experience.Spent);
+		let experienceSpent = 0;
+		let progressionCount = 0;
+		let perkExperienceSpent = 0;
+		//? Calculate the experience spent on Knowledge Perks
+		for (const [KnowPerkKey, KnowPerkValue] of Object.entries(systemData.Perks.Knowledge)) {
+			//? Calculate the progression count based on the perk's progressed value
+			progressionCount = Number(KnowPerkValue.value);
+			//? Calculate the experience spent based on the perks's progressed value
+			perkExperienceSpent = progressionCount * 100;
+			//? Add the experience spent on this perk to the total experience spent
+			experienceSpent += perkExperienceSpent;
+		}
+		//? Calculate the experience spent on Skills Perks
+		for (const [SkillPerkKey, SkillPerkValue] of Object.entries(systemData.Perks.Skills)) {
+			//? Calculate the progression count based on the perk's progressed value
+			progressionCount = Number(SkillPerkValue.value);
+			//? Calculate the experience spent based on the perks's progressed value
+			perkExperienceSpent = progressionCount * 100;
+			//? Add the experience spent on this perk to the total experience spent
+			experienceSpent += perkExperienceSpent;
+		}
+		//? Calculate total Experience Spent Progressing Perks & Characteristics & Stats
+		//? test if we have spent enough xp on the starting perks
+		if (experienceSpent < startingPerks * 100) {
+			console.warn(
+				"Metanthropes | Actor Prep |",
+				this.name,
+				"needs to spend",
+				startingPerks * 100,
+				"total XP on perks"
+			);
+		}
+		//? Update Experience Spent for Perks with exiting in systemData.Vital.Experience.Spent
+		//? adding this to remove the xp calculated for spent xp on the starting perks
+		//! TempStored
+		parseInt(
+			(systemData.Vital.Experience.Spent =
+				Number(experienceSpent) + Number(experienceAlreadySpent) - Number(startingPerks * 100))
+		);
+		parseInt(
+			(systemData.Vital.Experience.Stored = Number(
+				Number(systemData.Vital.Experience.Total) -
+					Number(experienceSpent) -
+					Number(experienceAlreadySpent) -
+					Number(systemData.Vital.Experience.Manual) +
+					//? here we are adding the cost of free starting perks to the stored xp
+					Number(startingPerks) * 100
+			))
+		);
+		//? Store the calculated values in a temporary object
+		//! wtf chatGPT!?
+		actorData.system.Vital.Experience.Spent = systemData.Vital.Experience.Spent;
+		actorData.system.Vital.Experience.Stored = systemData.Vital.Experience.Stored;
+		//? Update the displayed values in the dialog
+		this.render();
+	}
+	//* Handle changes from Overview tab
+	_onOverviewProgressionChange(event) {
+		event.preventDefault();
+		console.log("Metanthropes | Progression Dialog | _onOverviewProgressionChange | event:", event)
+		//? Extract actor data from the form, using our custom function
+		const actorData = metaExtractFormData(event.currentTarget.form);
+		console.warn("Metanthropes | Progression Dialog | _onOverviewProgressionChange | actorData:", actorData);
+		//? Use a method similar to _prepareDerivedCharacteristicsData to recalculate experience
+		this._recalculateOverviewExperience(actorData);
+		//? Update the displayed values in the dialog
+		this.render();
+	}
+	//* Handle changes from Perks tab
+	_onPerkProgressionChange(event) {
+		event.preventDefault();
+		//? Extract actor data from the form, using our custom function
+		const actorData = metaExtractFormData(event.currentTarget.form);
+		console.warn("Metanthropes | Progression Dialog | _onPerkProgressionChange | actorData:", actorData);
+		//? Use a method similar to _prepareDerivedPerkXPData to recalculate experience
+		this._recalculatePerksExperience(actorData);
+		//? Update the displayed values in the dialog
+		this.render();
+	}
+	//* Recalculate the total Experience spent and stored
+	_validateAndStoreExperience(actorData) {
+		const systemData = actorData.system;
+		//? Validate that stored experience is not negative
+		if (systemData.Vital.Experience.Stored < 0) {
+			//? Disable the Confirm button
+			this.dialog.find('button[data-button="confirm"]').prop("disabled", true);
+			//? Display a warning (you can customize this to fit your UI/UX)
+			ui.notifications.warn("Stored Experience is Negative!");
+		} else {
+			//? Enable the Confirm button if it was previously disabled
+			this.dialog.find('button[data-button="confirm"]').prop("disabled", false);
+		}
+		//? Use the temporary object to update the actor data
+		if (this.tempExperienceValues) {
+			this.actor.update(this.tempExperienceValues);
+		}
+	}
 }
 //* Main function for creating and managing the dialog
+/**
+ * Open the Progression Dialog for the provided actor.
+ *
+ * @param {Object} actorData
+ * @param {Object} dialogOptions
+ */
 export async function openProgressionDialog(actorData) {
 	//? Define the dialog content
-	const dialogContent = "Make sure that your Stored XP is not negative before confirming!";
+	const dialogContent = "Make sure that your Stored Experience is not negative before confirming!";
 	//? Define the dialog buttons
 	const dialogButtons = {
 		confirm: {
 			label: "Confirm 📈 Progression",
 			callback: async (html) => {
-				//? Gather changes
-				const changes = {
-					//? gather changes
-				};
-				//? Update the actor with the changes
-				await actorData.actor.update(changes);
+				//? Extract actor data from the form
+				const formData = new FormData(html[0]);
+				const actorData = this._getFormData(formData);
+				//? Validate the experience values
+				this._validateAndStoreExperience(actorData);
+				//? If stored experience is not negative, update the actor
+				if (this.tempExperienceValues["system.Vital.Experience.Stored"] >= 0) {
+					await actorData.actor.update(this.tempExperienceValues);
+				} else {
+					//? Optionally, you can provide a notification or feedback to the user if the validation fails
+					ui.notifications.warn("Please ensure Stored Experience is not negative before confirming.");
+				}
 			},
 		},
-		cancel: {
-			label: "Cancel",
-			//? Do nothing on Cancel
-			callback: () => {},
+		reset: {
+			label: "Reset 📈 Progression",
+			callback: () => {
+				this.tempExperienceValues = {
+					"system.Vital.Experience.Spent": this.data.actorData.actor.system.Vital.Experience.Spent,
+					"system.Vital.Experience.Stored": this.data.actorData.actor.system.Vital.Experience.Stored,
+				};
+				this.render();
+			},
 		},
 	};
 	//? Define the dialog options
@@ -122,38 +270,4 @@ export async function openProgressionDialog(actorData) {
 	};
 	const progressionDialog = new ProgressionDialog(dialogData, dialogOptions);
 	progressionDialog.render(true);
-}
-
-//* Function for generating the content of the Overview tab
-function generateOverviewContent(actor) {
-	return `
-    <div class="tab-content-overview">
-        <p>Overview content for ${actor.name} goes here.</p>
-    </div>
-    `;
-}
-
-//* Function for handling user interactions within the Overview tab
-function handleOverviewInteractions(actor, html) {
-	//? Add event listeners and handle user interactions within the Overview tab
-}
-
-//* Function for generating the content of the Perks tab
-function generatePerksContent(actor) {
-	//? Generate and return the HTML content for the Perks tab
-}
-
-//* Function for handling user interactions within the Perks tab
-function handlePerksInteractions(actor, html) {
-	//? Add event listeners and handle user interactions within the Perks tab
-}
-
-//* Function for generating the content of the Metapowers tab
-function generateMetapowersContent(actor) {
-	//? Generate and return the HTML content for the Metapowers tab
-}
-
-//* Function for validating the form input
-function validateFormInput(actor, formData) {
-	//? Validate the form input and return any errors
 }

@@ -1,6 +1,18 @@
-console.log("Metanthropes | ====================================");
-console.log("Metanthropes | Awakened");
-console.log("Metanthropes | ====================================");
+/**
+ * Metanthropes RPG System for FoundryVTT
+ * Author: qp
+ * 
+ * Throughtout this project, I use the following syntax for comments:
+ ** //! Marks a special comment that stands out (in Red) for identifying potential issues or critical todos.
+ ** //* Marks a comment that is used as a section header (in Green) for better readability.
+ ** //? Marks a comment that is used for explaining what the below code does (in Blue) to help me remember.
+ ** //todo Marks a comment that is used for identifying a todo (in Orange) that needs to be addressed.
+ *
+ * To get automatic colloring for these comments, I use the following VSCode extension:
+ * aaron-bond.better-comments
+ * 
+ */
+//* Imports
 //? Import Combat Modules.
 import { MetanthropesCombat } from "./metanthropes/combat.mjs";
 import { MetaCombatTracker } from "./metanthropes/combattracker.mjs";
@@ -19,7 +31,7 @@ import { Rolld10ReRoll } from "./helpers/extrasroll.mjs";
 import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
 import { MetaExecute } from "./helpers/metaexecute.mjs";
 import { metaMigrateData } from "./metanthropes/metamigration.mjs";
-//? Handlebars helpers
+//* Handlebars helpers
 //! Supposedly Foundry includes its own select helper, but I couldn't get it to work properly.
 Handlebars.registerHelper("selected", function (option, value) {
 	return option === value ? "selected" : "";
@@ -32,54 +44,35 @@ Handlebars.registerHelper("join", function (array, separator) {
 Handlebars.registerHelper("isArray", function (value) {
 	return Array.isArray(value);
 });
-//! Deprecated - I don't think I'm using this anymore, but I'm not sure
-// //? Handlebars helper for displaying actor values on the item sheets.
-//	//! I don't recall where this is being used exactly
-//	Handlebars.registerHelper("getStatValue", function (statName) {
-//		console.log("Metanthropes | DEBUG: ARE WE USING THIS? | Handlebars helper statName:", statName);
-//		return actor.system.RollStats[statName];
-//	});
-//	//? this allows me to use an each loop to list stuff unless the key is...
-//	Handlebars.registerHelper("unless_key_is", function (key, value, options) {
-//		if (key !== value) {
-//			return options.fn(this);
-//		}
-//	});
-//	//? Handlebars helper for joining an array into a single value
-
-//	//? Handlebars helper for checking if the value is included in the array
-//	Handlebars.registerHelper("includes", function (array, value) {
-//		return Array.isArray(array) && array.includes(value);
-//	});
-//? System Initialization.
+//* System Initialization.
 Hooks.once("init", async function () {
 	console.log("Metanthropes | ====================================");
 	console.log("Metanthropes | Initializing");
-	// add our classes so they are more easily accessible
+	//? add our classes so they are more easily accessible
 	game.metanthropes = {
 		MetanthropesActor,
 		MetanthropesItem,
 		rollItemMacro,
 		createItemMacro,
 	};
-	// Metanthropes Initiative System
+	//? Metanthropes Initiative System
 	//! should I remove this?
 	CONFIG.Combat.initiative = {
 		formula: "1d100 + @RollStats.Reflexes",
 		decimals: 2,
 	};
-	// Metanthropes Combat System
+	//? Metanthropes Combat System
 	CONFIG.Combat.documentClass = MetanthropesCombat;
-	//setup custom combatant
+	//? setup custom combatant
 	CONFIG.Actor.entityClass = MetaCombatant;
-	// setup custom combat tracker
+	//? setup custom combat tracker
 	CONFIG.ui.combat = MetaCombatTracker;
-	// time in seconds for Round Duration
+	//? time in seconds for Round Duration
 	// CONFIG.time.roundTime = 120;
-	// Define custom Entity classes.
+	//? Define custom Entity classes.
 	CONFIG.Actor.documentClass = MetanthropesActor;
 	CONFIG.Item.documentClass = MetanthropesItem;
-	// Register sheet application classes instead of defaults.
+	//? Register sheet application classes instead of defaults.
 	Actors.unregisterSheet("core", ActorSheet);
 	Actors.registerSheet("metanthropes", MetanthropesActorSheet, {
 		makeDefault: true,
@@ -88,22 +81,21 @@ Hooks.once("init", async function () {
 	Items.registerSheet("metanthropes", MetanthropesItemSheet, {
 		makeDefault: true,
 	});
-	// Preload Handlebars templates.
+	//? Preload Handlebars templates.
 	console.log("Metanthropes | Initialized");
 	console.log("Metanthropes | ====================================");
 	return preloadHandlebarsTemplates();
 });
-/* -------------------------------------------- */
-/*  Hotbar Macros                               */
-/* -------------------------------------------- */
 /**
+ * 
  * Create a Macro from an Item drop.
  * Get an existing item macro if one exists, otherwise create a new one.
  * @param {Object} data     The dropped data
  * @param {number} slot     The hotbar slot to use
  * @returns {Promise}
  */
-//do I need this here? Could it instead be inside a helper file that I import here and call from here?
+//* Hotbar Macros
+//! do I need this here? Could it instead be inside a helper file that I import here and call from here?
 async function createItemMacro(data, slot) {
 	// First, determine if this is a valid owned item.
 	if (data.type !== "Item") return;
@@ -132,6 +124,7 @@ async function createItemMacro(data, slot) {
  * Get an existing item macro if one exists, otherwise create a new one.
  * @param {string} itemUuid
  */
+//* Roll Item Macro
 function rollItemMacro(itemUuid) {
 	// Reconstruct the drop data so that we can load the item.
 	const dropData = {
@@ -151,13 +144,7 @@ function rollItemMacro(itemUuid) {
 		item.roll();
 	});
 }
-/* -------------------------------------------- */
-//*Hooks
-/* -------------------------------------------- */
-/* -------------------------------------------- */
-/*  Ready Hook                                  */
-/* -------------------------------------------- */
-// dragable macros
+//* Ready Hook
 Hooks.once("ready", async function () {
 	//? Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
 	Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
@@ -309,22 +296,7 @@ Hooks.once("ready", async function () {
 		});
 	}
 });
-//	//? Enhanced Terrain Layer Integration - disabled until post v0.9
-//	Hooks.once("enhancedTerrainLayer.ready", (RuleProvider) => {
-//		console.log("Metanthropes | ====================================");
-//		console.log("Metanthropes | Enhanced Terrain Layer Integration Started");
-//		class MetanthropesRuleProvider extends RuleProvider {
-//			calculateCombinedCost(terrain, options) {
-//				//? I want to reduce movement by 1 for every 2 points of terrain (?)
-//				let cost = terrain - 1;
-//				return cost;
-//			}
-//		}
-//		enhancedTerrainLayer.registerSystem("metanthropes-system", MetanthropesRuleProvider);
-//		console.log("Metanthropes | Enhanced Terrain Layer Integration Finished");
-//		console.log("Metanthropes | ====================================");
-//	});
-//? Drag Ruler Integration
+//* Drag Ruler Integration
 Hooks.once("dragRuler.ready", (SpeedProvider) => {
 	console.log("Metanthropes | ====================================");
 	console.log("Metanthropes | Drag Ruler Integration Started");
@@ -356,7 +328,7 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 	console.log("Metanthropes | Drag Ruler Integration Finished");
 	console.log("Metanthropes | ====================================");
 });
-//? Chat Message Event Listeners
+//* Chat Message Event Listeners
 Hooks.on("renderChatMessage", async (message, html) => {
 	//? Get the actor from the message - all our messages have the actoruuid flag set, so if it's not our message, return.
 	const actorUUID = message.getFlag("metanthropes-system", "actoruuid");
@@ -367,7 +339,7 @@ Hooks.on("renderChatMessage", async (message, html) => {
 	if (game.user.name === metaowner || game.user.isGM) {
 		//? Unhide the buttons - assumes DF Chat Enhancements module is installed (provides hidden class that works)
 		html.find(".hide-button").removeClass("hidden");
-		//? Handle Main Chat Buttons (all the buttons that will be displayed if any of them is clicked)
+		//? Handle Main Chat Buttons (all the buttons that will be disabled if any of them is clicked)
 		html.on("click", ".metanthropes-main-chat-button", function (event) {
 			const button = $(event.currentTarget);
 			if (button.hasClass("metaeval-reroll")) {

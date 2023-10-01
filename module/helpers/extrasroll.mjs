@@ -88,7 +88,7 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 	}
 	//? if destinyReRoll is true, allow rerolling the result by spending 1 Destiny Point
 	let currentDestiny = Number(actor.system.Vital.Destiny.value);
-	if (destinyReRoll && (currentDestiny > 0)) {
+	if (destinyReRoll && currentDestiny > 0) {
 		message += `<br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>
 		<div class="hide-button hidden"><br><button class="metanthropes-secondary-chat-button rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 		data-what="${what}" data-destiny-re-roll="${destinyReRoll}" data-dice="${dice}" data-base-number="${baseNumber}" data-is-half="${isHalf}">Spend 🤞 Destiny to reroll
@@ -134,8 +134,8 @@ export async function Rolld10ReRoll(event) {
 	const what = button.dataset.what;
 	const destinyReRoll = button.dataset.destinyReRoll === "true" ? true : false;
 	const itemName = button.dataset.itemName || null;
-	const dice = parseInt(button.dataset.dice) || 0;
-	const baseNumber = parseInt(button.dataset.baseNumber) || 0;
+	const dice = parseInt(button.dataset.dice) ?? 0;
+	const baseNumber = parseInt(button.dataset.baseNumber) ?? 0;
 	const isHalf = button.dataset.isHalf === "true" ? true : false;
 	const actor = await fromUuid(actoruuid);
 	//? Need to check if actor has enough Destiny to spend, because they might have already spent it on another secondary button
