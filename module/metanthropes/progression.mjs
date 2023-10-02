@@ -1,6 +1,58 @@
-//* Progression Dialog Class
 //? Import metaExtractFormData Helper
 import { metaExtractFormData } from "../helpers/metahelpers.mjs";
+/**
+ * Open the Progression Dialog for the provided actor.
+ *
+ * @param {Object} actorData
+ * @param {Object} dialogOptions
+ */
+export async function openProgressionDialog(actorData) {
+	//? Define the dialog content
+	const dialogContent = "Make sure that your Stored Experience is not negative before confirming!";
+	//? Define the dialog buttons
+	const dialogButtons = {
+		confirm: {
+			label: "Confirm 📈 Progression",
+			callback: async (html) => {
+				//? Extract actor data from the form
+				const formData = new FormData(html[0]);
+				const actorData = this._getFormData(formData);
+				//? Validate the experience values
+				this._validateAndStoreExperience(actorData);
+				//? If stored experience is not negative, update the actor
+				if (this.tempExperienceValues["system.Vital.Experience.Stored"] >= 0) {
+					await actorData.actor.update(this.tempExperienceValues);
+				} else {
+					//? Optionally, you can provide a notification or feedback to the user if the validation fails
+					ui.notifications.warn("Please ensure Stored Experience is not negative before confirming.");
+				}
+			},
+		},
+		reset: {
+			label: "Reset 📈 Progression",
+			callback: () => {
+				this.tempExperienceValues = {
+					"system.Vital.Experience.Spent": this.data.actorData.actor.system.Vital.Experience.Spent,
+					"system.Vital.Experience.Stored": this.data.actorData.actor.system.Vital.Experience.Stored,
+				};
+				this.render();
+			},
+		},
+	};
+	//? Define the dialog options
+	const dialogOptions = {
+		//? Placeholder for future use
+	};
+	const dialogData = {
+		actorData: actorData,
+		buttons: dialogButtons,
+		content: dialogContent,
+		title: `${actorData.actor.name}'s 📈 Progression`,
+	};
+	const progressionDialog = new ProgressionDialog(dialogData, dialogOptions);
+	progressionDialog.render(true);
+}
+
 /**
  * Extend the basic Dialog class to create a custom progression dialog window
  * @extends {Dialog}
@@ -32,14 +84,15 @@ export class ProgressionDialog extends Dialog {
 	getData(options = {}) {
 		//? Retrieve base data structure.
 		const context = super.getData(options);
+		console.error("Metanthropes | Progression Dialog | getData | context:", context);
 		//? Initialize tempExperienceValues if it's not already set
 		this.tempExperienceValues = {
-			"TempSpent": this.data.actorData.actor.system.Vital.Experience.Spent,
-			"TempStored": this.data.actorData.actor.system.Vital.Experience.Stored,
+			TempSpent: this.data.actorData.actor.system.Vital.Experience.Spent,
+			TempStored: this.data.actorData.actor.system.Vital.Experience.Stored,
 		};
 		//? Explicitly define the structure of the data for the dialog template to use
 		console.warn("Metanthropes | Progression Dialog | getData | this:", this);
-		console.log("Metanthropes | Progression Dialog | getData | context:", context)
+		console.log("Metanthropes | Progression Dialog | getData | context:", context);
 		return {
 			content: context.content,
 			buttons: context.buttons,
@@ -179,7 +232,7 @@ export class ProgressionDialog extends Dialog {
 	//* Handle changes from Overview tab
 	_onOverviewProgressionChange(event) {
 		event.preventDefault();
-		console.log("Metanthropes | Progression Dialog | _onOverviewProgressionChange | event:", event)
+		console.log("Metanthropes | Progression Dialog | _onOverviewProgressionChange | event:", event);
 		//? Extract actor data from the form, using our custom function
 		const actorData = metaExtractFormData(event.currentTarget.form);
 		console.warn("Metanthropes | Progression Dialog | _onOverviewProgressionChange | actorData:", actorData);
@@ -217,57 +270,4 @@ export class ProgressionDialog extends Dialog {
 			this.actor.update(this.tempExperienceValues);
 		}
 	}
-}
-//* Main function for creating and managing the dialog
-/**
- * Open the Progression Dialog for the provided actor.
- *
- * @param {Object} actorData
- * @param {Object} dialogOptions
- */
-export async function openProgressionDialog(actorData) {
-	//? Define the dialog content
-	const dialogContent = "Make sure that your Stored Experience is not negative before confirming!";
-	//? Define the dialog buttons
-	const dialogButtons = {
-		confirm: {
-			label: "Confirm 📈 Progression",
-			callback: async (html) => {
-				//? Extract actor data from the form
-				const formData = new FormData(html[0]);
-				const actorData = this._getFormData(formData);
-				//? Validate the experience values
-				this._validateAndStoreExperience(actorData);
-				//? If stored experience is not negative, update the actor
-				if (this.tempExperienceValues["system.Vital.Experience.Stored"] >= 0) {
-					await actorData.actor.update(this.tempExperienceValues);
-				} else {
-					//? Optionally, you can provide a notification or feedback to the user if the validation fails
-					ui.notifications.warn("Please ensure Stored Experience is not negative before confirming.");
-				}
-			},
-		},
-		reset: {
-			label: "Reset 📈 Progression",
-			callback: () => {
-				this.tempExperienceValues = {
-					"system.Vital.Experience.Spent": this.data.actorData.actor.system.Vital.Experience.Spent,
-					"system.Vital.Experience.Stored": this.data.actorData.actor.system.Vital.Experience.Stored,
-				};
-				this.render();
-			},
-		},
-	};
-	//? Define the dialog options
-	const dialogOptions = {
-		//? Placeholder for future use
-	};
-	const dialogData = {
-		actorData: actorData,
-		buttons: dialogButtons,
-		content: dialogContent,
-		title: `${actorData.actor.name}'s 📈 Progression`,
-	};
-	const progressionDialog = new ProgressionDialog(dialogData, dialogOptions);
-	progressionDialog.render(true);
 }

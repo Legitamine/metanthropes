@@ -169,6 +169,10 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		await MetaEvaluate(actor, action, stat, statScore, multiAction, bonus, penalty, pain, destinyCost, itemName);
 	}
 	//* Post-roll actions
+	//? Clear all metapower related result flags (currently only from duplicateself)
+	//! the idea here being that if the flags are going to be added later, here we prevent them from remaining from previous successful activations
+	actor.unsetFlag("metanthropes-system", "duplicateself");
+	//? Get the result of the last roll
 	let checkResult = await actor.getFlag("metanthropes-system", "lastrolled").MetaEvaluate;
 	console.log(
 		"Metanthropes | MetaRoll | MetaEvaluate Result for",
@@ -180,6 +184,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		"Result:",
 		checkResult
 	);
+	//* Check for Duplicate Self Metapower Activation
 	if ((checkResult > 0) && (action === "Metapower") && (itemName === "Clone" || itemName === "Couple" || itemName === "Team" || itemName === "Squad" || itemName === "Unit")) {
 		console.log("Metanthropes | MetaRoll | Duplicate Self Metapower Activation Detected");
 		let currentLife = actor.system.Vital.Life.value;

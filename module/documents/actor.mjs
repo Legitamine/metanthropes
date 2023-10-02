@@ -101,12 +101,9 @@ export class MetanthropesActor extends Actor {
 		if (actorData.type == "Vehicle") return;
 		const systemData = actorData.system;
 		let ifCharacteristicBecomesZeroPenalty;
-		let progressionCount;
 		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
 			//? reset ifCharacteristicBecomesZeroPenalty to 0
 			ifCharacteristicBecomesZeroPenalty = 0;
-			//? Calculate the progression count based on the Characteristic's progressed value
-			progressionCount = Number(CharValue.Progressed);
 			//? Calculate the Base score for this Characteristic (Initial + Progressed)
 			parseInt((CharValue.Base = Number(CharValue.Initial) + Number(Number(CharValue.Progressed) * 5)));
 			//? Calculate the Current score for this Characteristic (Base + Buff - Condition)
@@ -128,8 +125,6 @@ export class MetanthropesActor extends Actor {
 				);
 			}
 			for (const [StatKey, StatValue] of Object.entries(CharValue.Stats)) {
-				//? Calculate the progression count based on the characteristic's progressed value
-				progressionCount = Number(StatValue.Progressed);
 				//? Calculate the Base score for this Stat (Initial + Progressed)
 				parseInt((StatValue.Base = Number(StatValue.Initial) + Number(Number(StatValue.Progressed) * 5)));
 				//? Calculate the Current score for this Stat (Base + Buff - Condition)
@@ -142,7 +137,9 @@ export class MetanthropesActor extends Actor {
 				//? Calculate the Roll score for this Stat (Current + Characteristic + ifCharacteristicBecomesZeroPenalty)
 				parseInt(
 					(StatValue.Roll =
-						Number(StatValue.Current) + Number(CharValue.Current) + Number(ifCharacteristicBecomesZeroPenalty))
+						Number(StatValue.Current) +
+						Number(CharValue.Current) +
+						Number(ifCharacteristicBecomesZeroPenalty))
 				);
 				//? Determine if the Stat has dropped to 0
 				if (StatValue.Roll <= 0) {
@@ -269,7 +266,7 @@ export class MetanthropesActor extends Actor {
 					Number(experienceAlreadySpent) -
 					Number(systemData.Vital.Experience.Manual) +
 					//? here we are adding the cost of free starting perks to the stored xp
-					(Number(startingPerks) * 100)
+					Number(startingPerks) * 100
 			))
 		);
 		if (systemData.Vital.Experience.Stored < 0) {
@@ -375,7 +372,7 @@ export class MetanthropesActor extends Actor {
 		let wobblyModifier = Number(systemData.Characteristics.Mind.Stats.Creativity.Condition.Current);
 		//? movement value is always rounded up
 		let movementvalue = Math.ceil(
-			(speedModifiers[speedcurrent] * weightModifiers[weightcurrent] * sizeModifiers[sizecurrent]) - wobblyModifier
+			speedModifiers[speedcurrent] * weightModifiers[weightcurrent] * sizeModifiers[sizecurrent] - wobblyModifier
 		);
 		systemData.physical.movement.value = movementvalue;
 		systemData.physical.movement.additional = movementvalue;
@@ -422,18 +419,16 @@ export class MetanthropesActor extends Actor {
 	}
 	getRollData() {
 		const data = super.getRollData();
-		if (data.Characteristics) this._prepareCharacteristicsRollData(data);
-		return data;
-	}
-	_prepareCharacteristicsRollData(data) {
-		//? this will add stats used in rolls to be accessible via 'system.RollStats'
-		if (data.Characteristics) {
-			data.RollStats = {};
-			for (let [char, charName] of Object.entries(data.Characteristics)) {
-				for (let [stat, value] of Object.entries(charName.Stats)) {
-					data.RollStats[stat] = value.Roll;
-				}
+		if (!data.Characteristics) {
+			console.error("Metanthropes | Actor getRollData |", this.name, "has no Characteristics!");
+			return;
+		}
+		data.RollStats = {};
+		for (let [char, charName] of Object.entries(data.Characteristics)) {
+			for (let [stat, statName] of Object.entries(charName.Stats)) {
+				data.RollStats[stat] = statName.Roll;
 			}
 		}
+		return data;
 	}
 }

@@ -37,22 +37,26 @@ export class MetanthropesItemSheet extends ItemSheet {
 	}
 	/** @override */
 	getData() {
+		//! In the item getData we currently collect and store in .rollData the actor's roll data.
+		//! However it's never used from there - right??
 		//? Retrieve base data structure.
 		const context = super.getData();
 		//? Use a safe clone of the item data for further operations.
 		//! this is not the same as in actor??
 		const itemData = context.item;
-		//? Retrieve the roll data for TinyMCE editors.
-		context.rollData = {};
-		let actor = this.object?.parent ?? null;
-		if (actor) {
-			context.rollData = actor.getRollData();
-		}
+		//! We don't use the rollData so no need for this to exist
+		//	// ? Retrieve the roll data for TinyMCE editors.
+		//	context.rollData = {};
+		//	let actor = this.object?.parent ?? null;
+		//	if (actor) {
+		//		context.rollData = actor.getRollData();
+		//	}
 		//? Add the actor's data to context.data for easier access, as well as flags.
 		context.system = itemData.system;
 		context.flags = itemData.flags;
-		//? Indicate that the user is a Narrator
+		//? Pass along info whether the user is a Narrator(GameMaster)
 		context.isGM = game.user.isGM;
+		console.error("Metanthropes | ItemSheet getData | context:", context);
 		return context;
 	}
 	//* Clickable stuff on the item sheets
@@ -64,6 +68,7 @@ export class MetanthropesItemSheet extends ItemSheet {
 			html.find("input, textarea, select").attr("disabled", "disabled");
 		}
 		//* Everything below this point is only needed if the sheet is editable
+		//? Observers (non-owners) of the item sheet, should not be able to roll anything
 		if (!this.isEditable) return;
 		//? Find the different type of rolls and add the event listeners
 		html.find(".style-mp-rolls").click(this._onRoll.bind(this));

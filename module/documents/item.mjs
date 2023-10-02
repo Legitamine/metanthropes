@@ -23,12 +23,12 @@ export class MetanthropesItem extends Item {
 	getRollData() {
 		//! Is this being used?
 		//? If present, return the actor's roll data.
-		console.log("Metanthropes | Item getRollData | Engaged");
+		console.error("Metanthropes | Item getRollData | Engaged");
 		if (!this.actor) return null;
 		const rollData = this.actor.getRollData();
 		//? Grab the item's system data as well.
 		rollData.item = foundry.utils.deepClone(this.system);
-		console.log("Metanthropes | Item getRollData | rollData:", rollData);
+		console.error("Metanthropes | Item getRollData | rollData:", rollData);
 		return rollData;
 	}
 }

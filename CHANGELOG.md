@@ -22,7 +22,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 ### Added:
 
--   New Progression process: Added a new button on the Character sheet that will allow both Players and Narrators to spend a Character's Experience points to increase their Characteristics, Stats, Metapowers and Perks. It will also award a character with additional Life for every 5.000 Experience points accumulated
+-   New Progression process: Added a new button on the Character sheet that will allow both Players and Narrators to spend a Character's Experience points to increase their Characteristics, Stats, Metapowers and Perks. It will also award a character with additional 25 Life for every 5.000 Experience points accumulated
 
 ### Changed:
 
@@ -31,6 +31,10 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 ### Fixed:
 
 -   Fixed various minor issues and optimized the code for better performance and error handling
+
+### Known Issues:
+
+-   Adding a new Item(Metapower, Possession) to an Actor won't properly refresh their Stat Scores until the Character sheet is closed and reopened, or until the Actor makes a new Roll
 
 ### Removed:
 
@@ -77,6 +81,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 -   Fixed an issue where chat displayed 'null' when using an item with an empty Effect Description
 -   Fixed an issue where the Combat Tracker did not display the correct values for the current Cycle and Round
 -   Fixed an issue where after changing into a new Cycle and rolling a new initiative, the Combat Tracker did not order the Turn order correctly
+-   Fixed a minor bug where Maximum Life would sometimes not calculate correctly if the Actor had negative Stored Experience
 
 ### Deprecated:
 
