@@ -18,7 +18,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 -->
 
-## Current Build: v0.7.83
+## Latest Version: v0.7.85
 
 ### Added:
 
