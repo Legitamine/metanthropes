@@ -5,7 +5,7 @@ import { NewActor } from "../metanthropes/newactor.mjs";
 //? Import Finalize Premade Protagonist
 import { FinalizePremadeProtagonist } from "../metanthropes/newactor.mjs";
 //? Import Progression Dialog
-import { openProgressionDialog } from "../metanthropes/progression.mjs";
+import { openProgressionDialog } from "../metanthropes/metaprogression.mjs";
 /**
  * MetanthropesActorSheet - An Actor Sheet for Metanthropes actors.
  * 
@@ -43,7 +43,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//* from boilerplate:
 		//* It uses Foundry's built in toObject() method and gives it the false parameter, which instructs Foundry to not just convert this to a plain object but to also run a deep clone on nested objects/arrays.
 		//* from https://foundryvtt.wiki/en/development/guides/SD-tutorial/SD07-Extending-the-ActorSheet-class
-		console.error("Metanthropes | ActorSheet getData | what we get as context before anything:", context)
 		//? Use a safe clone of the actor data for further operations.
 		const actorData = this.actor.toObject(false);
 		//? Add the actor's data to context.data for easier access, as well as flags.
@@ -61,9 +60,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		// context.effects = prepareActiveEffectCategories(this.actor.effects);
 		//? Add check if the user is a Narrator (Game Master)
 		context.isGM = game.user.isGM;
-		console.error("Metanthropes | ActorSheet getData | what we return as FINAL context:", context)
 		//todo I would like to refresh the sheet after getting all the data
-		console.warn("Metanthropes | ActorSheet getData | this:", this)
 		return context;
 	}
 	//* Prepare items
@@ -191,19 +188,19 @@ export class MetanthropesActorSheet extends ActorSheet {
 		const actor = this.actor;
 		await FinalizePremadeProtagonist(actor);
 	}
-	prepareCharacteristicsProgression(actorData) {
-		if (actorData.type == "Vehicle") return;
-		const systemData = actorData.system;
+	prepareCharacteristicsProgression(progressionActorData) {
+		if (progressionActorData.type == "Vehicle") return;
+		const systemData = progressionActorData.system;
 		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
 			//? Calculate the Base score for this Characteristic (Initial + Progressed)
-			parseInt((CharValue.Base = Number(CharValue.Initial) + Number(Number(CharValue.Progressed) * 5)));
+			parseInt((CharValue.ProgressionBase = Number(CharValue.Initial) + Number(Number(CharValue.Progressed) * 5)));
 			//? Determine if the Characteristic has dropped to 0
 			for (const [StatKey, StatValue] of Object.entries(CharValue.Stats)) {
 				//? Calculate the Base score for this Stat (Initial + Progressed)
-				parseInt((StatValue.Base = Number(StatValue.Initial) + Number(Number(StatValue.Progressed) * 5)));
+				parseInt((StatValue.ProgressionBase = Number(StatValue.Initial) + Number(Number(StatValue.Progressed) * 5)));
 				//? Calculate the Score used for Progression for this Stat (Base + Characteristic_Base)
 				parseInt(
-					(StatValue.Roll = Number(StatValue.Base) + Number(CharValue.Base))
+					(StatValue.ProgressionRoll = Number(StatValue.ProgressionBase) + Number(CharValue.ProgressionBase))
 				);
 			}
 		}
@@ -211,12 +208,9 @@ export class MetanthropesActorSheet extends ActorSheet {
 	//* Progression Dialog
 	_onProgressionDialog(event) {
 		event.preventDefault();
-		console.warn("Metanthropes | Actor Sheet | Progression Dialog | this:", this);
 		//? Get the most up-to-date data for the actor
-		const actorData = this.getData();
-		this.prepareCharacteristicsProgression(actorData);
-		console.warn("Metanthropes | Actor Sheet | Progression Dialog | this after this.getData():", this);
-		console.warn("Metanthropes | Actor Sheet | Progression Dialog | what we pass along to openProgressionDialog:", actorData);
-		openProgressionDialog(actorData);
+		const progressionActorData = this.getData();
+		this.prepareCharacteristicsProgression(progressionActorData);
+		openProgressionDialog(progressionActorData);
 	}
 }

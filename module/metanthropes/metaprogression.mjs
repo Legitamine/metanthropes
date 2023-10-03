@@ -6,7 +6,7 @@ import { metaExtractFormData } from "../helpers/metahelpers.mjs";
  * @param {Object} actorData
  * @param {Object} dialogOptions
  */
-export async function openProgressionDialog(actorData) {
+export async function openProgressionDialog(progressionActorData) {
 	//? Define the dialog content
 	const dialogContent = "Make sure that your Stored Experience is not negative before confirming!";
 	//? Define the dialog buttons
@@ -44,10 +44,10 @@ export async function openProgressionDialog(actorData) {
 		//? Placeholder for future use
 	};
 	const dialogData = {
-		actorData: actorData,
+		progressionActorData: progressionActorData,
 		buttons: dialogButtons,
 		content: dialogContent,
-		title: `${actorData.actor.name}'s 📈 Progression`,
+		title: `${progressionActorData.actor.name}'s 📈 Progression`,
 	};
 	const progressionDialog = new ProgressionDialog(dialogData, dialogOptions);
 	progressionDialog.render(true);
@@ -84,20 +84,17 @@ export class ProgressionDialog extends Dialog {
 	getData(options = {}) {
 		//? Retrieve base data structure.
 		const context = super.getData(options);
-		console.error("Metanthropes | Progression Dialog | getData | context:", context);
+		const progressionActor = this.data.progressionActorData;
 		//? Initialize tempExperienceValues if it's not already set
-		this.tempExperienceValues = {
-			TempSpent: this.data.actorData.actor.system.Vital.Experience.Spent,
-			TempStored: this.data.actorData.actor.system.Vital.Experience.Stored,
+		progressionActor.progressionTempExperience = {
+			Spent: progressionActor.system.Vital.Experience.Spent,
+			Stored: progressionActor.system.Vital.Experience.Stored,
 		};
 		//? Explicitly define the structure of the data for the dialog template to use
-		console.warn("Metanthropes | Progression Dialog | getData | this:", this);
-		console.log("Metanthropes | Progression Dialog | getData | context:", context);
 		return {
 			content: context.content,
 			buttons: context.buttons,
-			actor: this.data.actorData.actor,
-			tempExperience: this.tempExperienceValues,
+			actor: progressionActor,
 		};
 	}
 	//* Activate listeners
@@ -109,6 +106,44 @@ export class ProgressionDialog extends Dialog {
 		);
 		//? Listen for changes in the Perk tab
 		html.find('select[name^="actor.system.Perks"]').change((event) => this._onPerkProgressionChange(event));
+	}
+	//* Handle changes from Overview tab
+	_onOverviewProgressionChange(event) {
+		event.preventDefault();
+		console.log("Metanthropes | Progression Dialog | _onOverviewProgressionChange | event:", event);
+		//? Extract actor data from the form, using our custom function
+		const actorData = metaExtractFormData(event.currentTarget.form);
+		console.warn("Metanthropes | Progression Dialog | _onOverviewProgressionChange | actorData:", actorData);
+		//? Use a method similar to _prepareDerivedCharacteristicsData to recalculate experience
+		this._recalculateOverviewExperience(actorData);
+		//? Update the displayed values in the dialog
+		this.render();
+	}
+	//* Handle changes from Perks tab
+	_onPerkProgressionChange(event) {
+		event.preventDefault();
+		//? Extract actor data from the form, using our custom function and merge it with the existing progress
+		const progressionFormData = metaExtractFormData(event.currentTarget.form);
+		//? Adjust the keys in progressionFormData to remove the "actor." prefix
+		const adjustedFormData = {};
+		for (const [key, value] of Object.entries(progressionFormData)) {
+			const adjustedKey = key.startsWith("actor.") ? key.slice(6) : key;
+			adjustedFormData[adjustedKey] = value;
+		}
+		const progressionActorData = this.data.progressionActorData;
+		console.log(
+			"Metanthropes | Progression Dialog | _onPerkProgressionChange | progressionActorData:, progressionFormData:",
+			progressionActorData,
+			progressionFormData
+		);
+		const mergedData = mergeObject(progressionActorData, adjustedFormData, { overwrite: true, recursive: true });
+		console.warn("Metanthropes | Progression Dialog | _onPerkProgressionChange | mergedData:", mergedData);
+		this.data.progressionActorData = mergedData
+		//? Use a method similar to _prepareDerivedPerkXPData to recalculate experience
+		console.warn("Metanthropes | Progression Dialog | _onPerkProgressionChange | mergedData:", mergedData);
+		this._recalculatePerksExperience(mergedData);
+		//? Update the displayed values in the dialog
+		this.render();
 	}
 	//* Handle changes from Overview tab
 	_recalculateOverviewExperience(actorData) {
@@ -162,15 +197,17 @@ export class ProgressionDialog extends Dialog {
 		//? Update the displayed values in the dialog
 		this.render();
 	}
-	_recalculatePerksExperience(actorData) {
-		if (
-			actorData.type == "Vehicle" ||
-			actorData.type == "Animal" ||
-			actorData.type == "Animated-Plant" ||
-			actorData.type == "MetaTherion"
-		)
-			return;
-		const systemData = actorData.system;
+	_recalculatePerksExperience(progressionActorPerkData) {
+		const progressionActor = progressionActorPerkData;
+		console.error(
+			"Metanthropes | Progression Dialog | _recalculatePerksExperience | progressionActorPerkData:",
+			progressionActorPerkData
+		);
+		const systemData = progressionActorPerkData.system;
+		console.error(
+			"Metanthropes | Progression Dialog | _recalculatePerksExperience | progressionActorPerkData:",
+			progressionActorPerkData
+		);
 		let startingPerks = Number(systemData.Perks.Details.Starting.value);
 		let experienceAlreadySpent = Number(systemData.Vital.Experience.Spent);
 		let experienceSpent = 0;
@@ -198,8 +235,8 @@ export class ProgressionDialog extends Dialog {
 		//? test if we have spent enough xp on the starting perks
 		if (experienceSpent < startingPerks * 100) {
 			console.warn(
-				"Metanthropes | Actor Prep |",
-				this.name,
+				"Metanthropes | _recalculatePerksExperience |",
+				progressionActor.actor.name,
 				"needs to spend",
 				startingPerks * 100,
 				"total XP on perks"
@@ -209,46 +246,22 @@ export class ProgressionDialog extends Dialog {
 		//? adding this to remove the xp calculated for spent xp on the starting perks
 		//! TempStored
 		parseInt(
-			(systemData.Vital.Experience.Spent =
+			(progressionActor.progressionTempExperience.Spent =
 				Number(experienceSpent) + Number(experienceAlreadySpent) - Number(startingPerks * 100))
 		);
 		parseInt(
-			(systemData.Vital.Experience.Stored = Number(
+			(progressionActor.progressionTempExperience.Stored = Number(
 				Number(systemData.Vital.Experience.Total) -
 					Number(experienceSpent) -
-					Number(experienceAlreadySpent) -
-					Number(systemData.Vital.Experience.Manual) +
+					Number(experienceAlreadySpent) +
 					//? here we are adding the cost of free starting perks to the stored xp
 					Number(startingPerks) * 100
 			))
 		);
 		//? Store the calculated values in a temporary object
 		//! wtf chatGPT!?
-		actorData.system.Vital.Experience.Spent = systemData.Vital.Experience.Spent;
-		actorData.system.Vital.Experience.Stored = systemData.Vital.Experience.Stored;
-		//? Update the displayed values in the dialog
-		this.render();
-	}
-	//* Handle changes from Overview tab
-	_onOverviewProgressionChange(event) {
-		event.preventDefault();
-		console.log("Metanthropes | Progression Dialog | _onOverviewProgressionChange | event:", event);
-		//? Extract actor data from the form, using our custom function
-		const actorData = metaExtractFormData(event.currentTarget.form);
-		console.warn("Metanthropes | Progression Dialog | _onOverviewProgressionChange | actorData:", actorData);
-		//? Use a method similar to _prepareDerivedCharacteristicsData to recalculate experience
-		this._recalculateOverviewExperience(actorData);
-		//? Update the displayed values in the dialog
-		this.render();
-	}
-	//* Handle changes from Perks tab
-	_onPerkProgressionChange(event) {
-		event.preventDefault();
-		//? Extract actor data from the form, using our custom function
-		const actorData = metaExtractFormData(event.currentTarget.form);
-		console.warn("Metanthropes | Progression Dialog | _onPerkProgressionChange | actorData:", actorData);
-		//? Use a method similar to _prepareDerivedPerkXPData to recalculate experience
-		this._recalculatePerksExperience(actorData);
+		//actorData.system.Vital.Experience.Spent = systemData.Vital.Experience.Spent;
+		//actorData.system.Vital.Experience.Stored = systemData.Vital.Experience.Stored;
 		//? Update the displayed values in the dialog
 		this.render();
 	}

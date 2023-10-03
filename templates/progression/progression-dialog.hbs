@@ -9,15 +9,15 @@
 					Total: {{actor.system.Vital.Experience.Total}}
 				</div>
 				<div class="style-labels-text">
-					Spent: {{TempSpent}}
+					Spent: {{actor.progressionTempExperience.Spent}}
 				</div>
 				<div class="style-labels-text">
-					Stored: {{#if (gte TempStored 0)}}
+					Stored: {{#if (gte actor.progressionTempExperience.Stored 0)}}
 						<span
-							class="style-cs-positive">{{TempStored}}</span>
+							class="style-cs-positive">{{actor.progressionTempExperience.Stored}}</span>
 					{{else}}
 						<span
-							class="style-cs-negative">{{TempStored}}</span>
+							class="style-cs-negative">{{actor.progressionTempExperience.Stored}}</span>
 					{{/if}}
 				</div>
 			</div>
