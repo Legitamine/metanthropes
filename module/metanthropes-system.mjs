@@ -1,7 +1,7 @@
 /**
  * Metanthropes RPG System for FoundryVTT
  * Author: qp
- * 
+ *
  * Throughtout this project, I use the following syntax for comments:
  ** //! Marks a special comment that stands out (in Red) for identifying potential issues or critical todos.
  ** //* Marks a comment that is used as a section header (in Green) for better readability.
@@ -10,7 +10,7 @@
  *
  * To get automatic colloring for these comments, I use the following VSCode extension:
  * aaron-bond.better-comments
- * 
+ *
  */
 //* Imports
 //? Import Combat Modules.
@@ -81,13 +81,29 @@ Hooks.once("init", async function () {
 	Items.registerSheet("metanthropes", MetanthropesItemSheet, {
 		makeDefault: true,
 	});
+	//? Advanced Logging
+	game.settings.register("metanthropes-system", "metaAdvancedLogging", {
+		name: "Enable Advanced Logging",
+		hint: `
+		The Console helps you identify any issues or potential bugs in regards to Metanthropes System for Foundry VTT.
+		Enable this setting to see even more detailed logs in the Console.
+		You can press 'F12' in the Foundry Client or 'CTRL+SHIFT+i' in a Chrome-ium web browser to show the Console.
+		`,
+		scope: "client", //? This specifies if it's a client-side setting
+		config: true, //? This makes the setting appear in the module configuration
+		type: Boolean,
+		default: false,
+		onChange: (value) => {
+			//? Do something when the setting is changed, if necessary
+		},
+	});
 	//? Preload Handlebars templates.
 	console.log("Metanthropes | Initialized");
 	console.log("Metanthropes | ====================================");
 	return preloadHandlebarsTemplates();
 });
 /**
- * 
+ *
  * Create a Macro from an Item drop.
  * Get an existing item macro if one exists, otherwise create a new one.
  * @param {Object} data     The dropped data

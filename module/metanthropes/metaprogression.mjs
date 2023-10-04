@@ -15,26 +15,27 @@ export async function openProgressionDialog(progressionActorData) {
 			label: "Confirm 📈 Progression",
 			callback: async (html) => {
 				//? Extract actor data from the form
-				const formData = new FormData(html[0]);
-				const actorData = this._getFormData(formData);
+				//const formData = new FormData(html[0]);
+				//const actorData = this._getFormData(formData);
 				//? Validate the experience values
-				this._validateAndStoreExperience(actorData);
+				this._validateAndStoreExperience(progressionActorData);
 				//? If stored experience is not negative, update the actor
-				if (this.tempExperienceValues["system.Vital.Experience.Stored"] >= 0) {
-					await actorData.actor.update(this.tempExperienceValues);
-				} else {
-					//? Optionally, you can provide a notification or feedback to the user if the validation fails
-					ui.notifications.warn("Please ensure Stored Experience is not negative before confirming.");
-				}
+				//	if (this.tempExperienceValues["system.Vital.Experience.Stored"] >= 0) {
+				//		await actorData.actor.update(this.tempExperienceValues);
+				//	} else {
+				//		//? Optionally, you can provide a notification or feedback to the user if the validation fails
+				//		ui.notifications.warn("Please ensure Stored Experience is not negative before confirming.");
+				//	}
 			},
 		},
 		reset: {
 			label: "Reset 📈 Progression",
 			callback: () => {
-				this.tempExperienceValues = {
-					"system.Vital.Experience.Spent": this.data.actorData.actor.system.Vital.Experience.Spent,
-					"system.Vital.Experience.Stored": this.data.actorData.actor.system.Vital.Experience.Stored,
-				};
+				this._resetProgression();
+				//	this.tempExperienceValues = {
+				//		"system.Vital.Experience.Spent": this.data.actorData.actor.system.Vital.Experience.Spent,
+				//		"system.Vital.Experience.Stored": this.data.actorData.actor.system.Vital.Experience.Stored,
+				//	};
 				this.render();
 			},
 		},
@@ -84,17 +85,11 @@ export class ProgressionDialog extends Dialog {
 	getData(options = {}) {
 		//? Retrieve base data structure.
 		const context = super.getData(options);
-		const progressionActor = this.data.progressionActorData;
-		//? Initialize tempExperienceValues if it's not already set
-		progressionActor.progressionTempExperience = {
-			Spent: progressionActor.system.Vital.Experience.Spent,
-			Stored: progressionActor.system.Vital.Experience.Stored,
-		};
 		//? Explicitly define the structure of the data for the dialog template to use
 		return {
 			content: context.content,
 			buttons: context.buttons,
-			actor: progressionActor,
+			actor: this.data.progressionActorData,
 		};
 	}
 	//* Activate listeners
@@ -122,26 +117,24 @@ export class ProgressionDialog extends Dialog {
 	//* Handle changes from Perks tab
 	_onPerkProgressionChange(event) {
 		event.preventDefault();
+		console.log("Metanthropes | Progression Dialog | _onPerkProgressionChange | this:", this);
 		//? Extract actor data from the form, using our custom function and merge it with the existing progress
 		const progressionFormData = metaExtractFormData(event.currentTarget.form);
+		console.log ("Metanthropes | Progression Dialog | _onPerkProgressionChange | progressionFormData:", progressionFormData)
 		//? Adjust the keys in progressionFormData to remove the "actor." prefix
 		const adjustedFormData = {};
 		for (const [key, value] of Object.entries(progressionFormData)) {
 			const adjustedKey = key.startsWith("actor.") ? key.slice(6) : key;
 			adjustedFormData[adjustedKey] = value;
 		}
-		const progressionActorData = this.data.progressionActorData;
-		console.log(
-			"Metanthropes | Progression Dialog | _onPerkProgressionChange | progressionActorData:, progressionFormData:",
-			progressionActorData,
-			progressionFormData
-		);
-		const mergedData = mergeObject(progressionActorData, adjustedFormData, { overwrite: true, recursive: true });
-		console.warn("Metanthropes | Progression Dialog | _onPerkProgressionChange | mergedData:", mergedData);
-		this.data.progressionActorData = mergedData
+		console.warn("Metanthropes | Progression Dialog | _onPerkProgressionChange | adjustedFormData:", adjustedFormData);
+		//const progressionActorData = this.data.progressionActorData;
+		//const mergedData = mergeObject(progressionActorData, adjustedFormData, { overwrite: true, recursive: true });
+		//console.warn("Metanthropes | Progression Dialog | _onPerkProgressionChange | mergedData:", mergedData);
+		//this.data.progressionActorData = mergedData
 		//? Use a method similar to _prepareDerivedPerkXPData to recalculate experience
-		console.warn("Metanthropes | Progression Dialog | _onPerkProgressionChange | mergedData:", mergedData);
-		this._recalculatePerksExperience(mergedData);
+		//console.error("Metanthropes | Progression Dialog | _onPerkProgressionChange | mergedData:", mergedData);
+		//this._recalculatePerksExperience(mergedData);
 		//? Update the displayed values in the dialog
 		this.render();
 	}
@@ -266,21 +259,25 @@ export class ProgressionDialog extends Dialog {
 		this.render();
 	}
 	//* Recalculate the total Experience spent and stored
-	_validateAndStoreExperience(actorData) {
-		const systemData = actorData.system;
-		//? Validate that stored experience is not negative
-		if (systemData.Vital.Experience.Stored < 0) {
-			//? Disable the Confirm button
-			this.dialog.find('button[data-button="confirm"]').prop("disabled", true);
-			//? Display a warning (you can customize this to fit your UI/UX)
-			ui.notifications.warn("Stored Experience is Negative!");
-		} else {
-			//? Enable the Confirm button if it was previously disabled
-			this.dialog.find('button[data-button="confirm"]').prop("disabled", false);
-		}
-		//? Use the temporary object to update the actor data
-		if (this.tempExperienceValues) {
-			this.actor.update(this.tempExperienceValues);
-		}
+	_validateAndStoreExperience(progressionActorData) {
+		console.error("Metanthropes | Progression Dialog | _validateAndStoreExperience | progressionActorData:", progressionActorData);
+		//	const systemData = actorData.system;
+		//	//? Validate that stored experience is not negative
+		//	if (systemData.Vital.Experience.Stored < 0) {
+		//		//? Disable the Confirm button
+		//		this.dialog.find('button[data-button="confirm"]').prop("disabled", true);
+		//		//? Display a warning (you can customize this to fit your UI/UX)
+		//		ui.notifications.warn("Stored Experience is Negative!");
+		//	} else {
+		//		//? Enable the Confirm button if it was previously disabled
+		//		this.dialog.find('button[data-button="confirm"]').prop("disabled", false);
+		//	}
+		//	//? Use the temporary object to update the actor data
+		//	if (this.tempExperienceValues) {
+		//		this.actor.update(this.tempExperienceValues);
+		//	}
+	}
+	_resetProgression() {
+		console.warn("Metanthropes | Progression Dialog | _resetProgression | Reseting Progression");
 	}
 }

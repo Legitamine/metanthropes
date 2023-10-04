@@ -69,6 +69,8 @@ export class MetanthropesActor extends Actor {
 	}
 	/** @override */
 	prepareBaseData() {
+		//* Data modifications in this step occur before processing embedded
+		//* documents or derived data.
 		if (this.type == "Human") {
 			this.system.Vital.Life.Initial = 50;
 		}
@@ -89,6 +91,12 @@ export class MetanthropesActor extends Actor {
 	}
 	/** @override */
 	prepareDerivedData() {
+		//* Augment the basic actor data with additional dynamic data. Typically,
+		//* you'll want to handle most of your calculated/derived data in this step.
+		//* Data calculated in this step should generally not exist in template.json
+		//* (such as ability modifiers rather than ability scores) and should be
+		//* available both inside and outside of character sheets (such as if an actor
+		//* is queried and has a roll executed directly from it).
 		const actorData = this;
 		this._prepareDerivedCharacteristicsData(actorData);
 		//! remove these for the progression update
