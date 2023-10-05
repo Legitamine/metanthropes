@@ -1,38 +1,38 @@
 export function metaLog(logType = 0, ...variables) {
-	//? Check if Advanced Logging is enabled
+	//? Check if Advanced Logging is enabled from the UI
 	const metaAdvancedLogging = game.settings.get("metanthropes-system", "metaAdvancedLogging");
 	//? Only show Advanced Logs in the console if the setting is enabled
 	if (!metaAdvancedLogging && logType > 2) {
 		return;
 	}
 	let logFunction = console.log;
-	let logMessage = `%cMetanthropes %c | `;
-	let logStyle0 = "background-color: #5C16C5; color: #fff";
+	let logMessage = `%cMetanthropes | `;
+	let logStyle = "background-color: #5C16C5; color: #fff";
+	let altLogStyle = "background-color: #00695c; color: #fff";
 	switch (logType) {
-		case 0 || 3:
-			logFunction = console.log;
-			break;
-		case 1 || 4:
+		case 1:
+		case 4:
 			logFunction = console.warn;
 			break;
-		case 2 || 5:
+		case 2:
+		case 5:
 			logFunction = console.error;
 			break;
-		default:
-			logFunction = console.log;
-			break;
 	}
-	let logVariables = variables.map((variable) => {
-		if (!variable) {
-			return "";
+	let styles = [logStyle];
+	let logStrings = [logMessage];
+	variables.forEach((variable, index) => {
+		if (variable !== null && variable !== undefined) {
+			let style = index % 2 === 0 ? logStyle : altLogStyle;
+			logStrings.push(`%c${variable}`);
+			styles.push(style);
+			if (index !== variables.length - 1) {
+				logStrings.push("%c | ");
+				styles.push(logStyle);
+			}
 		}
-		return `%c ${variable}`;
 	});
-	logFunction(
-		`${logMessage}${logVariables.join(` %c | `)}`,
-		logStyle0,
-		...Array(logVariables.length + 1).fill(`"background-color: #5C16C5; color: #fff",`)
-	);
+	logFunction(logStrings.join(""), ...styles);
 }
 
 /**
