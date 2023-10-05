@@ -31,6 +31,7 @@ import { Rolld10ReRoll } from "./helpers/extrasroll.mjs";
 import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
 import { MetaExecute } from "./helpers/metaexecute.mjs";
 import { metaMigrateData } from "./metanthropes/metamigration.mjs";
+import { metaLog } from "./helpers/metahelpers.mjs";
 //* Handlebars helpers
 //! Supposedly Foundry includes its own select helper, but I couldn't get it to work properly.
 Handlebars.registerHelper("selected", function (option, value) {
@@ -46,8 +47,6 @@ Handlebars.registerHelper("isArray", function (value) {
 });
 //* System Initialization.
 Hooks.once("init", async function () {
-	console.log("Metanthropes | ====================================");
-	console.log("Metanthropes | Initializing");
 	//? add our classes so they are more easily accessible
 	game.metanthropes = {
 		MetanthropesActor,
@@ -98,8 +97,7 @@ Hooks.once("init", async function () {
 		},
 	});
 	//? Preload Handlebars templates.
-	console.log("Metanthropes | Initialized");
-	console.log("Metanthropes | ====================================");
+	metaLog(3, "Initialized Metanthropes System");
 	return preloadHandlebarsTemplates();
 });
 /**
@@ -165,9 +163,9 @@ Hooks.once("ready", async function () {
 	//? Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
 	Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
 	//* Migration section
-	console.log("Metanthropes | Starting Migration");
+	metaLog(3, "Starting Migration");
 	await metaMigrateData();
-	console.log("Metanthropes | Finished Migration");
+	metaLog(3, "Finished Migration");
 	//? Add support for Moulinette: Free modules with artwork & sounds are indexable by Moulinette
 	if (game.moulinette) {
 		game.moulinette.sources.push({
@@ -314,8 +312,7 @@ Hooks.once("ready", async function () {
 });
 //* Drag Ruler Integration
 Hooks.once("dragRuler.ready", (SpeedProvider) => {
-	console.log("Metanthropes | ====================================");
-	console.log("Metanthropes | Drag Ruler Integration Started");
+	metaLog(3, "Drag Ruler Integration Started");
 	class MetanthropesSystemSpeedProvider extends SpeedProvider {
 		get colors() {
 			return [
@@ -341,8 +338,7 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 		}
 	}
 	dragRuler.registerSystem("metanthropes-system", MetanthropesSystemSpeedProvider);
-	console.log("Metanthropes | Drag Ruler Integration Finished");
-	console.log("Metanthropes | ====================================");
+	metaLog(3, "Drag Ruler Integration Finished");
 });
 //* Chat Message Event Listeners
 Hooks.on("renderChatMessage", async (message, html) => {

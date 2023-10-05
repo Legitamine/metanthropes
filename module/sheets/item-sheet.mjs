@@ -1,5 +1,5 @@
-//? Import HandleMetaRolls
 import { HandleMetaRolls } from "../helpers/metarollhandler.mjs";
+import { metaLog } from "../helpers/metahelpers.mjs";
 /**
  * MetanthropesItemSheet - An Item Sheet for Metanthropes items.
  *
@@ -56,7 +56,7 @@ export class MetanthropesItemSheet extends ItemSheet {
 		context.flags = itemData.flags;
 		//? Pass along info whether the user is a Narrator(GameMaster)
 		context.isGM = game.user.isGM;
-		console.error("Metanthropes | ItemSheet getData | context:", context);
+		metaLog(5, "ItemSheet getData", "context:", context);
 		return context;
 	}
 	//* Clickable stuff on the item sheets

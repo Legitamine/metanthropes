@@ -1,5 +1,5 @@
-//? Import metaExtractFormData Helper
 import { metaExtractFormData } from "../helpers/metahelpers.mjs";
+import { metaLog } from "../helpers/metahelpers.mjs";
 /**
  * Open the Progression Dialog for the provided actor.
  *
@@ -26,6 +26,14 @@ export async function openProgressionDialog(progressionActorData) {
 				//		//? Optionally, you can provide a notification or feedback to the user if the validation fails
 				//		ui.notifications.warn("Please ensure Stored Experience is not negative before confirming.");
 				//	}
+				//!? warn on negative stored xp
+				metaLog(
+					5,
+					"openProgressionDialog",
+					"on Confirm",
+					"WARNING: Stored Experience is Negative for:",
+					this.name
+				);
 			},
 		},
 		reset: {
@@ -105,10 +113,10 @@ export class ProgressionDialog extends Dialog {
 	//* Handle changes from Overview tab
 	_onOverviewProgressionChange(event) {
 		event.preventDefault();
-		console.log("Metanthropes | Progression Dialog | _onOverviewProgressionChange | event:", event);
+		metaLog(3, "MetaProgression", "_onOverviewProgressionChange", "event:", event);
 		//? Extract actor data from the form, using our custom function
 		const actorData = metaExtractFormData(event.currentTarget.form);
-		console.warn("Metanthropes | Progression Dialog | _onOverviewProgressionChange | actorData:", actorData);
+		metaLog(3, "MetaProgression", "_onOverviewProgressionChange", "actorData:", actorData);
 		//? Use a method similar to _prepareDerivedCharacteristicsData to recalculate experience
 		this._recalculateOverviewExperience(actorData);
 		//? Update the displayed values in the dialog
@@ -117,30 +125,28 @@ export class ProgressionDialog extends Dialog {
 	//* Handle changes from Perks tab
 	_onPerkProgressionChange(event) {
 		event.preventDefault();
-		console.log("Metanthropes | Progression Dialog | _onPerkProgressionChange | this:", this);
+		metaLog(3, "MetaProgression", "_onPerkProgressionChange", "event:", event);
 		//? Extract actor data from the form, using our custom function and merge it with the existing progress
 		const progressionFormData = metaExtractFormData(event.currentTarget.form);
-		console.log ("Metanthropes | Progression Dialog | _onPerkProgressionChange | progressionFormData:", progressionFormData)
+		metaLog(3, "MetaProgression", "_onPerkProgressionChange", "progressionFormData:", progressionFormData);
 		//? Adjust the keys in progressionFormData to remove the "actor." prefix
 		const adjustedFormData = {};
 		for (const [key, value] of Object.entries(progressionFormData)) {
 			const adjustedKey = key.startsWith("actor.") ? key.slice(6) : key;
 			adjustedFormData[adjustedKey] = value;
 		}
-		console.warn("Metanthropes | Progression Dialog | _onPerkProgressionChange | adjustedFormData:", adjustedFormData);
+		metaLog(4, "MetaProgression", "_onPerkProgressionChange", "adjustedFormData:", adjustedFormData);
 		//const progressionActorData = this.data.progressionActorData;
 		//const mergedData = mergeObject(progressionActorData, adjustedFormData, { overwrite: true, recursive: true });
-		//console.warn("Metanthropes | Progression Dialog | _onPerkProgressionChange | mergedData:", mergedData);
 		//this.data.progressionActorData = mergedData
 		//? Use a method similar to _prepareDerivedPerkXPData to recalculate experience
-		//console.error("Metanthropes | Progression Dialog | _onPerkProgressionChange | mergedData:", mergedData);
 		//this._recalculatePerksExperience(mergedData);
 		//? Update the displayed values in the dialog
 		this.render();
 	}
 	//* Handle changes from Overview tab
 	_recalculateOverviewExperience(actorData) {
-		console.warn("Metanthropes | Progression Dialog | _recalculateOverviewExperience | actorData:", actorData);
+		metaLog(4, "MetaProgression", "_recalculateOverviewExperience", "actorData:", actorData);
 		const systemData = actorData.system;
 		let experienceSpent = 0;
 		let characteristicExperienceSpent = 0;
@@ -192,13 +198,19 @@ export class ProgressionDialog extends Dialog {
 	}
 	_recalculatePerksExperience(progressionActorPerkData) {
 		const progressionActor = progressionActorPerkData;
-		console.error(
-			"Metanthropes | Progression Dialog | _recalculatePerksExperience | progressionActorPerkData:",
+		metaLog(
+			5,
+			"MetaProgression",
+			"_recalculatePerksExperience",
+			"progressionActorPerkData:",
 			progressionActorPerkData
 		);
 		const systemData = progressionActorPerkData.system;
-		console.error(
-			"Metanthropes | Progression Dialog | _recalculatePerksExperience | progressionActorPerkData:",
+		metaLog(
+			5,
+			"MetaProgression",
+			"_recalculatePerksExperience",
+			"progressionActorPerkData:",
 			progressionActorPerkData
 		);
 		let startingPerks = Number(systemData.Perks.Details.Starting.value);
@@ -227,9 +239,11 @@ export class ProgressionDialog extends Dialog {
 		//? Calculate total Experience Spent Progressing Perks & Characteristics & Stats
 		//? test if we have spent enough xp on the starting perks
 		if (experienceSpent < startingPerks * 100) {
-			console.warn(
-				"Metanthropes | _recalculatePerksExperience |",
-				progressionActor.actor.name,
+			metaLog(
+				2,
+				"MetaProgression",
+				"_recalculatePerksExperience",
+				this.name,
 				"needs to spend",
 				startingPerks * 100,
 				"total XP on perks"
@@ -260,7 +274,7 @@ export class ProgressionDialog extends Dialog {
 	}
 	//* Recalculate the total Experience spent and stored
 	_validateAndStoreExperience(progressionActorData) {
-		console.error("Metanthropes | Progression Dialog | _validateAndStoreExperience | progressionActorData:", progressionActorData);
+		metaLog(5, "MetaProgression", "_validateAndStoreExperience", "progressionActorData:", progressionActorData);
 		//	const systemData = actorData.system;
 		//	//? Validate that stored experience is not negative
 		//	if (systemData.Vital.Experience.Stored < 0) {
@@ -278,6 +292,6 @@ export class ProgressionDialog extends Dialog {
 		//	}
 	}
 	_resetProgression() {
-		console.warn("Metanthropes | Progression Dialog | _resetProgression | Reseting Progression");
+		metaLog(3, "MetaProgression", "_resetProgression", "Reseting Progression");
 	}
 }

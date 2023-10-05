@@ -1,3 +1,4 @@
+import { metaLog } from "../helpers/metahelpers.mjs";
 //* This is the base class for all Actors which represent the protagonists, metanthropes, vehicles, and other entities within the world.
 export class MetanthropesActor extends Actor {
 	//? Setting default Token configuration for all actors
@@ -77,7 +78,7 @@ export class MetanthropesActor extends Actor {
 		//? for Protagonists set the metanthropes-logo as default icon for metapower, if no metapower is selected
 		if (this.type == "Protagonist") {
 			if (!this.primeimg || this.primeimg == `systems/metanthropes-system/artwork/metanthropes-logo.webp`) {
-				console.log("Metanthropes | Actor Prep | Updating Prime Metapower Image for:", this.name);
+				metaLog(3, "MetanthropesActor", "prepareBaseData", "Updating Prime Metapower Image for:", this.name);
 				//? for Protagonists without a prime metapower defined, make it the metanthropes-logo
 				if (!this.system.entermeta.primemetapower.value) {
 					this.primeimg = `systems/metanthropes-system/artwork/metanthropes-logo.webp`;
@@ -125,8 +126,10 @@ export class MetanthropesActor extends Actor {
 			if (CharValue.Current <= 0) {
 				ifCharacteristicBecomesZeroPenalty = CharValue.Current;
 				CharValue.Current = 0;
-				console.warn(
-					"Metanthropes | Actor Prep | Derived Characteristics |",
+				metaLog(
+					1,
+					"MetanthropesActor",
+					"_prepareDerivedCharacteristicsData",
 					this.name + "'s",
 					CharKey,
 					"has dropped to 0!"
@@ -152,8 +155,10 @@ export class MetanthropesActor extends Actor {
 				//? Determine if the Stat has dropped to 0
 				if (StatValue.Roll <= 0) {
 					StatValue.Roll = 0;
-					console.warn(
-						"Metanthropes | Actor Prep | Derived Characteristics |",
+					metaLog(
+						1,
+						"MetanthropesActor",
+						"_prepareDerivedCharacteristicsData",
 						this.name + "'s",
 						StatKey,
 						"has dropped to 0!"
@@ -224,9 +229,6 @@ export class MetanthropesActor extends Actor {
 		let experienceSpent = 0;
 		let progressionCount = 0;
 		let perkExperienceSpent = 0;
-		// console.log("Metanthropes | ====================================");
-		// console.log("Metanthropes | Actor Prep | Updating Perks for", this.type+":", this.name);
-		//	console.log("Experience Spent before Perks:", experienceAlreadySpent);
 		//? Calculate the experience spent on Knowledge Perks
 		for (const [KnowPerkKey, KnowPerkValue] of Object.entries(systemData.Perks.Knowledge)) {
 			// Calculate the progression count based on the perk's progressed value
@@ -235,7 +237,7 @@ export class MetanthropesActor extends Actor {
 			perkExperienceSpent = progressionCount * 100;
 			// Add the experience spent on this perk to the total experience spent
 			experienceSpent += perkExperienceSpent;
-			//	console.log("Experience Spent to Progress", KnowPerkKey, "Perk:", perkExperienceSpent);
+			//	clog("Experience Spent to Progress", KnowPerkKey, "Perk:", perkExperienceSpent);
 		}
 		//? Calculate the experience spent on Skills Perks
 		for (const [SkillPerkKey, SkillPerkValue] of Object.entries(systemData.Perks.Skills)) {
@@ -245,22 +247,24 @@ export class MetanthropesActor extends Actor {
 			perkExperienceSpent = progressionCount * 100;
 			//? Add the experience spent on this perk to the total experience spent
 			experienceSpent += perkExperienceSpent;
-			//	console.log("Experience Spent to Progress", SkillPerkKey, "Perk:", perkExperienceSpent);
+			//	clog("Experience Spent to Progress", SkillPerkKey, "Perk:", perkExperienceSpent);
 		}
 		//? Calculate total Experience Spent Progressing Perks & Characteristics & Stats
 		//? test if we have spent enough xp on the starting perks
 		if (experienceSpent < startingPerks * 100) {
-			// console.log("Metanthropes | Actor Prep |", this.name, "has not spent enough XP on starting perks!");
-			// console.log("Metanthropes | Actor Prep |", this.name, "has spent", experienceSpent, "XP on perks");
-			console.warn(
-				"Metanthropes | Actor Prep |",
+			// clog("Metanthropes | Actor Prep |", this.name, "has not spent enough XP on starting perks!");
+			// clog("Metanthropes | Actor Prep |", this.name, "has spent", experienceSpent, "XP on perks");
+			metaLog(
+				2,
+				"MetanthropesActor",
+				"_prepareDerivedPerkXPData",
 				this.name,
 				"needs to spend",
 				startingPerks * 100,
 				"total XP on perks"
 			);
 		}
-		//	console.log("Total Experience Spent automagically for", this.name, "Perks:", experienceSpent);
+		//	clog("Total Experience Spent automagically for", this.name, "Perks:", experienceSpent);
 		//? Update Experience Spent for Perks with exiting in systemData.Vital.Experience.Spent
 		//? adding this to remove the xp calculated for spent xp on the starting perks
 		parseInt(
@@ -278,13 +282,16 @@ export class MetanthropesActor extends Actor {
 			))
 		);
 		if (systemData.Vital.Experience.Stored < 0) {
-			console.error("Metanthropes | Actor Prep | WARNING: Stored Experience is Negative for:", this.name);
+			metaLog(
+				2,
+				"MetanthropesActor",
+				"_prepareDerivedPerkXPData",
+				"WARNING: Stored Experience is Negative for:",
+				this.name
+			);
 			//! the below either .info or .error will cause an exception? This should also affect v0.7.xx builds
 			//! ui.notifications.info(this.name + "'s Stored Experience is Negative!");
 		}
-		//	console.log(this.name, "Has", systemData.Vital.Experience.Stored, "Stored Experience Remaining");
-		//console.log("Metanthropes |", this.type, "-", this.name, "is ready for Action!");
-		//console.log("Metanthropes | ====================================");
 	}
 	_prepareDerivedMovementData(actorData) {
 		//! this section needs to be updated with camelCase
@@ -385,9 +392,12 @@ export class MetanthropesActor extends Actor {
 		systemData.physical.movement.value = movementvalue;
 		systemData.physical.movement.additional = movementvalue;
 		systemData.physical.movement.sprint = movementvalue * 5;
-		console.log(
-			"Metanthropes | Actor Prep | Derive Movement Data |",
-			actorData.name + "'s Movement:",
+		metaLog(
+			3,
+			"MetanthropesActor",
+			"_prepareDerivedMovementData",
+			this.name + "'s",
+			"Movement:",
 			movementvalue,
 			"Additional:",
 			movementvalue,
@@ -418,9 +428,11 @@ export class MetanthropesActor extends Actor {
 				parseInt((systemData.Vital.Life.value = Number(duplicateMaxLife)));
 			}
 		}
-		console.log(
-			"Metanthropes | Actor Prep | Derive Vital Data |",
-			actorData.name + "'s",
+		metaLog(
+			3,
+			"MetanthropesActor",
+			"_prepareDerivedVitalData",
+			this.name + "'s",
 			"New Life Maximum:",
 			systemData.Vital.Life.max
 		);
@@ -428,7 +440,7 @@ export class MetanthropesActor extends Actor {
 	getRollData() {
 		const data = super.getRollData();
 		if (!data.Characteristics) {
-			console.error("Metanthropes | Actor getRollData |", this.name, "has no Characteristics!");
+			metaLog(2, "MetanthropesActor", "getRollData", this.name, "has no Characteristics!");
 			return;
 		}
 		data.RollStats = {};

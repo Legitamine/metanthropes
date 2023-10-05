@@ -1,11 +1,8 @@
-//? Import HandleMetaRolls
 import { HandleMetaRolls } from "../helpers/metarollhandler.mjs";
-//? Import New Actor
 import { NewActor } from "../metanthropes/newactor.mjs";
-//? Import Finalize Premade Protagonist
 import { FinalizePremadeProtagonist } from "../metanthropes/newactor.mjs";
-//? Import Progression Dialog
 import { openProgressionDialog } from "../metanthropes/metaprogression.mjs";
+import { metaLog } from "../helpers/metahelpers.mjs";
 /**
  * MetanthropesActorSheet - An Actor Sheet for Metanthropes actors.
  *
@@ -45,11 +42,11 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//* the context variable to see the structure, but some key properties for
 		//* sheets are the actor object, the data object, whether or not it's
 		//* editable, the items array, and the effects array.
-		//* Much like the Actor class' prepareData() method, we can use the getData() method to derive new data for the character sheet. 
-		//* The main difference is that values created here will only be available within this class and on the character sheet's HTML template. 
+		//* Much like the Actor class' prepareData() method, we can use the getData() method to derive new data for the character sheet.
+		//* The main difference is that values created here will only be available within this class and on the character sheet's HTML template.
 		//* If you were to use your browser's inspector to take a look at an actor's available data, you wouldn't see these values in the list, unlike those created in prepareData().
 		const context = super.getData();
-		console.warn("Metanthropes | ActorSheet getData start | this, context:", this, context);
+		metaLog(4, "ActorSheet getData start", "this, context:", this, context);
 		//* It uses Foundry's built in toObject() method and gives it the false parameter, which instructs Foundry to not just convert this to a plain object but to also run a deep clone on nested objects/arrays.
 		//* from https://foundryvtt.wiki/en/development/guides/SD-tutorial/SD07-Extending-the-ActorSheet-class
 		//? Use a safe clone of the actor data for further operations.

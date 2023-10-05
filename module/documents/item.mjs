@@ -1,8 +1,9 @@
+import { metaLog } from "../helpers/metahelpers.mjs";
 /**
  * Extend the basic Item with some very simple modifications.
- * 
+ *
  * @extends {Item}
- * 
+ *
  */
 export class MetanthropesItem extends Item {
 	prepareData() {
@@ -23,12 +24,12 @@ export class MetanthropesItem extends Item {
 	getRollData() {
 		//! Is this being used?
 		//? If present, return the actor's roll data.
-		console.error("Metanthropes | Item getRollData | Engaged");
+		metaLog(5, "MetaItem getRollData", "Engaged");
 		if (!this.actor) return null;
 		const rollData = this.actor.getRollData();
 		//? Grab the item's system data as well.
 		rollData.item = foundry.utils.deepClone(this.system);
-		console.error("Metanthropes | Item getRollData | rollData:", rollData);
+		metaLog(5, "MetaItem getRollData", "rollData:", rollData);
 		return rollData;
 	}
 }

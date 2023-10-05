@@ -1,3 +1,7 @@
+import { Rolld10 } from "../helpers/extrasroll.mjs";
+import { MetapowersList } from "./metapowerlist.mjs";
+import { metaLog } from "../helpers/metahelpers.mjs";
+
 //* newactor.mjs will be used to help in generating a new actor's stats and characteristics, along with other information.
 //! Needs new CSS Classes
 //! issues: filepicker opening in correct folder each time
@@ -6,10 +10,8 @@
 // if anything is checked na kanei randomize ta reults aytou tou step.
 // gia narrators episis prepei na kanw separate setup gia ta diafora alla types peran tou protagonist
 // kai episis na kanw expand to new actor function gia na kanei pick mono ta relative fields analoga me to type tou actor
-//? Import d10 roll function
-import { Rolld10 } from "../helpers/extrasroll.mjs";
-//? Import list of 100 Metapowers
-import { MetapowersList } from "./metapowerlist.mjs";
+//todo na kanw merge tha epimerous actor.updates gia na exw ena monadiko update oxi pollapla
+
 //* Finalizes a Premade Protagonist for the Introduction sessions
 export async function FinalizePremadeProtagonist(actor) {
 	try {
@@ -18,19 +20,13 @@ export async function FinalizePremadeProtagonist(actor) {
 		const NewDestiny = actor.getFlag("metanthropes-system", "lastrolled").rolld10;
 		await actor.update({ "system.Vital.Destiny.value": Number(NewDestiny) });
 		await actor.update({ "system.Vital.Destiny.max": Number(NewDestiny) });
-		console.log(
-			`Metanthropes | Finalize Pre-made Protagonist | ${playerName}'s ${actor.type} Starting Destiny: ${NewDestiny}`
-		);
+		metaLog(3, "Finalize Premade Protagonist", `${playerName}'s ${actor.type} Starting Destiny:`, NewDestiny);
 		await NewActorSummary(actor);
 		await NewActorFinish(actor);
 	} catch (error) {
-		console.error("Metanthropes | Finalize Pre-made Protagonist | Finalize Pre-made Protagonist Error:", error);
+		metaLog(2, "Finalize Premade Protagonist", "Error:", error);
 	} finally {
-		console.log(
-			"Metanthropes | Finalize Pre-made Protagonist | Finalize Pre-made Protagonist Creation Complete for",
-			actor.type,
-			actor.name
-		);
+		metaLog(3, "Finalize Premade Protagonist", "Creation Complete for:", actor.type, actor.name);
 	}
 }
 //* New Actor Function
@@ -61,9 +57,9 @@ export async function NewActor(actor) {
 		await NewActorSummary(actor);
 		await NewActorFinish(actor);
 	} catch (error) {
-		console.error("Metanthropes | New Actor | New Actor Error:", error);
+		metaLog(2, "New Actor", "Error:", error);
 	} finally {
-		console.log("Metanthropes | New Actor | New Actor Creation Complete for", actor.type, actor.name);
+		metaLog(3, "New Actor", "Creation Complete for:", actor.type, actor.name);
 	}
 }
 //* Filter function for Prime Metapower Selection
@@ -104,8 +100,10 @@ export async function NewStatRoll(actor, char, stat, dice) {
 						await actor.update({
 							[`system.Characteristics.${char}.Stats.${stat}.Initial`]: Number(statScore),
 						});
-						console.log(
-							`Metanthropes | New Actor | ${actor.name}'s new ${stat} Initial Stat Score:`,
+						metaLog(
+							3,
+							"NewStatRoll",
+							`${actor.name}'s new ${stat} Initial Score:`,
 							actor.system.Characteristics[char].Stats[stat].Initial
 						);
 						resolve();
@@ -150,10 +148,8 @@ export async function NewActorDestiny(actor) {
 							await actor.update({ "system.Vital.Destiny.value": Number(NewDestiny) });
 							await actor.update({ "system.Vital.Destiny.max": Number(NewDestiny) });
 							await actor.update({ "system.metaowner.value": playerName });
-							console.log(`Metanthropes | New Actor | New Actor Owner: ${playerName}`);
-							console.log(
-								`Metanthropes | New Actor | ${playerName}'s ${actor.type} Destiny: ${NewDestiny}`
-							);
+							metaLog(4, "NewActorDestiny", "New Actor Owner:", playerName);
+							metaLog(3, "NewActorDestiny", `${playerName}'s ${actor.type} Destiny:`, NewDestiny);
 							resolve();
 						},
 					},
@@ -243,7 +239,7 @@ export async function NewActorPrimeMetapower(actor) {
 								"system.entermeta.primemetapower.value": primeMetapowerName,
 								primeimg: `systems/metanthropes-system/artwork/metapowers/${primeMetapowerName}.png`,
 							});
-							console.log(`Metanthropes | New Actor | New Prime Metapower: ${primeMetapowerName}`);
+							metaLog(3, "NewActorPrimeMetapower", `New Prime Metapower:`, primeMetapowerName);
 							resolve();
 						},
 					},
@@ -355,16 +351,25 @@ export async function NewActorCharacteristics(actor) {
 							await actor.update({ [`system.Characteristics.${primary}.Initial`]: Number(30) });
 							await actor.update({ [`system.Characteristics.${secondary}.Initial`]: Number(20) });
 							await actor.update({ [`system.Characteristics.${tertiary}.Initial`]: Number(10) });
-							console.log(
-								`Metanthropes | New Actor | New primary: ${primary}`,
+							metaLog(
+								3,
+								"NewActorCharacteristics",
+								`New Primary:`,
+								primary,
 								actor.system.Characteristics[primary].Initial
 							);
-							console.log(
-								`Metanthropes | New Actor | New secondary: ${secondary}`,
+							metaLog(
+								3,
+								"NewActorCharacteristics",
+								`New Secondary:`,
+								secondary,
 								actor.system.Characteristics[secondary].Initial
 							);
-							console.log(
-								`Metanthropes | New Actor | New tertiary: ${tertiary}`,
+							metaLog(
+								3,
+								"NewActorCharacteristics",
+								`New Tertiary:`,
+								tertiary,
 								actor.system.Characteristics[tertiary].Initial
 							);
 							resolve();
@@ -814,16 +819,24 @@ export async function NewActorRoleplay(actor) {
 					callback: async (html) => {
 						let RPbackgroundpick = html.find('[name="RPbackground"]').val();
 						await actor.update({ "system.Vital.background.value": RPbackgroundpick });
-						console.log(`Metanthropes | New Actor | New Background: ${RPbackgroundpick}`);
 						let RPmetamorphosispick = html.find('[name="RPmetamorphosis"]').val();
 						await actor.update({ "system.entermeta.metamorphosis.value": RPmetamorphosispick });
-						console.log(`Metanthropes | New Actor | New Metamorphosis: ${RPmetamorphosispick}`);
 						let RParcpick = html.find('[name="RParc"]').val();
 						await actor.update({ "system.Vital.arc.value": RParcpick });
-						console.log(`Metanthropes | New Actor | New Arc: ${RParcpick}`);
 						let RPregressionpick = html.find('[name="RPregression"]').val();
 						await actor.update({ "system.entermeta.regression.value": RPregressionpick });
-						console.log(`Metanthropes | New Actor | New Regression: ${RPregressionpick}`);
+						metaLog(
+							3,
+							"NewActorRoleplay",
+							"New Background:",
+							RPbackgroundpick,
+							"New Metamorphosis:",
+							RPmetamorphosispick,
+							"New Arc:",
+							RParcpick,
+							"New Regression:",
+							RPregressionpick
+						);
 						resolve();
 					},
 				},
@@ -876,13 +889,16 @@ export async function NewActorProgression(actor) {
 						callback: async (html) => {
 							let startingXP = html.find('[name="startingXP"]').val();
 							await actor.update({ "system.Vital.Experience.Total": Number(startingXP) });
-							console.log(
-								`Metanthropes | New Actor | ${actor.type}'s Starting Experience: ${startingXP}`
-							);
 							let startingPerks = html.find('[name="startingPerks"]').val();
-							//? setting the starting perks count to the database to be used later in determining XP costs
 							await actor.update({ "system.Perks.Details.Starting.value": startingPerks });
-							console.log(`Metanthropes | New Actor | ${actor.type}'s Starting Perks: ${startingPerks}`);
+							metaLog(
+								3,
+								"NewActorProgression",
+								"New Starting Experience:",
+								startingXP,
+								"New Starting Perks:",
+								startingPerks
+							);
 							resolve();
 						},
 					},
@@ -976,40 +992,54 @@ export async function NewActorSummary(actor) {
 						if (actor.type == "Protagonist" || actor.type == "Metanthrope") {
 							await actor.update({ "prototypeToken.name": actorname });
 						}
-						console.log(`Metanthropes | New Actor | ${actor.type}'s Name: ${actorname}`);
 						let actorage = html.find('[name="actorage"]').val();
 						await actor.update({ "system.Vital.age.value": Number(actorage) });
-						console.log(`Metanthropes | New Actor | ${actor.type}'s Age: ${actorage}`);
 						let actorgender = html.find('[name="actorgender"]').val();
 						await actor.update({ "system.humanoids.gender.value": actorgender });
-						console.log(`Metanthropes | New Actor | ${actor.type}'s Gender: ${actorgender}`);
 						let actorgenderpronoun = html.find('[name="actorgenderpronoun"]').val();
 						await actor.update({ "system.humanoids.genderpronoun.value": actorgenderpronoun });
-						console.log(
-							`Metanthropes | New Actor | ${actor.type}'s Gender Pronouns: ${actorgenderpronoun}`
-						);
 						let actorheight = html.find('[name="actorheight"]').val();
 						await actor.update({ "system.humanoids.height.value": Number(actorheight) });
-						console.log(`Metanthropes | New Actor | ${actor.type}'s Height: ${actorheight}`);
 						let actorweight = html.find('[name="actorweight"]').val();
 						await actor.update({ "system.humanoids.weight.value": Number(actorweight) });
-						console.log(`Metanthropes | New Actor | ${actor.type}'s Weight: ${actorweight}`);
 						let actorpob = html.find('[name="actorpob"]').val();
 						await actor.update({ "system.humanoids.birthplace.value": actorpob });
-						console.log(`Metanthropes | New Actor | ${actor.type}'s Place of Birth: ${actorpob}`);
 						await actor.update({ "system.metaowner.value": playerName });
-						console.log(`Metanthropes | New Actor | ${actor.type}'s Player Name: ${playerName}`);
 						await actor.update({ "system.entermeta.narrator.value": narratorName });
-						console.log(`Metanthropes | New Actor | ${actor.type}'s Narrator Name: ${narratorName}`);
 						let saganame = html.find('[name="saganame"]').val();
 						await actor.update({ "system.entermeta.sagas.value": saganame });
-						console.log(`Metanthropes | New Actor | ${actor.type}'s Saga Name: ${saganame}`);
 						let coalitionname = html.find('[name="coalitionname"]').val();
 						await actor.update({ "system.entermeta.coalition.value": coalitionname });
-						console.log(`Metanthropes | New Actor | ${actor.type}'s Coalition Name: ${coalitionname}`);
 						let factionname = html.find('[name="factionname"]').val();
 						await actor.update({ "system.entermeta.faction.value": factionname });
-						console.log(`Metanthropes | New Actor | ${actor.type}'s Faction Name: ${factionname}`);
+						metaLog(
+							3,
+							"NewActorSummary",
+							`New ${actor.type}'s Name:`,
+							actorname,
+							"Age:",
+							actorage,
+							"Gender:",
+							actorgender,
+							"Pronouns:",
+							actorgenderpronoun,
+							"Height:",
+							actorheight,
+							"Weight:",
+							actorweight,
+							"Place of Birth:",
+							actorpob,
+							"Player Name:",
+							playerName,
+							"Narrator Name:",
+							narratorName,
+							"Saga Name:",
+							saganame,
+							"Coalition Name:",
+							coalitionname,
+							"Faction Name:",
+							factionname
+						);
 						resolve();
 					},
 				},
@@ -1092,6 +1122,7 @@ export async function NewActorFinish(actor) {
 								await actor.update({ "prototypeToken.displayBars": 20 });
 							}
 							ui.notifications.info(actor.name + " has entered the Multiverse!");
+							metaLog(0, "NewActorFinish", actor.name + " has entered the Multiverse!");
 							resolve();
 						},
 					},

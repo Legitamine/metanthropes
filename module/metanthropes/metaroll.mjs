@@ -1,5 +1,5 @@
-//? Import the dependencies
 import { MetaEvaluate } from "../helpers/metaeval.mjs";
+import { metaLog } from "../helpers/metahelpers.mjs";
 /**
  * Handles rolling for Metanthropes
  *
@@ -27,14 +27,7 @@ import { MetaEvaluate } from "../helpers/metaeval.mjs";
 
 export async function MetaRoll(actor, action, stat, isCustomRoll = false, destinyCost = 0, itemName = null) {
 	const statScore = actor.system.RollStats[stat];
-	console.log(
-		"Metanthropes | MetaRoll | Engaged for",
-		actor.type + ":",
-		actor.name + "'s",
-		action,
-		"with",
-		stat
-	);
+	metaLog(3, "MetaRoll", "Engaged for", actor.type + ":", actor.name + "'s", action, "with", stat);
 	//* Go through a series of tests and checks before actually rolling the dice
 	//? Check if we are ok to do the roll stat-wise
 	if (statScore <= 0) {
@@ -46,6 +39,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		const actionSlot = actor.items.getName(itemName).system.Execution.ActionSlot.value;
 		if (actionSlot === "Always Active") {
 			ui.notifications.info(actor.name + "'s " + itemName + " is always active, no need to roll!");
+			metaLog(1, "MetaRoll", actor.name + "'s " + itemName, "is Always Active!");
 			return;
 		}
 	}
@@ -83,16 +77,16 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		}
 	}
 	//? Check for Possession Perk Penalty
-	if (itemName && (action === "Possession")) {
+	if (itemName && action === "Possession") {
 		const requiredPerk = actor.items.getName(itemName).system.RequiredPerk.value;
-		console.log("Metanthropes | MetaRoll | Required Perk for", itemName, "is", requiredPerk);
+		metaLog(3, "MetaRoll", "Required Perk for", itemName, "is", requiredPerk);
 		if (requiredPerk !== "None") {
 			const requiredPerkLevel = actor.items.getName(itemName).system.RequiredPerkLevel.value;
 			const actorPerkLevel = actor.system.Perks.Skills[requiredPerk].value;
 			const levelDifference = requiredPerkLevel - actorPerkLevel;
 			if (levelDifference > 0) {
 				perkPenalty = levelDifference * -10;
-				console.log("Metanthropes | MetaRoll | Perk Penalty for", actor.name, "is", perkPenalty);
+				metaLog(2, "MetaRoll", "Perk Penalty for", actor.name, "is", perkPenalty);
 			}
 		}
 	}
@@ -101,7 +95,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 	let penalty = 0;
 	let multiAction = 0;
 	if (isCustomRoll) {
-		console.log("Metanthropes | MetaRoll | Custom Roll Detected");
+		metaLog(3, "MetaRoll", "Custom Roll Detected");
 		let { multiAction, bonus, customPenalty } = await MetaRollCustomDialog(
 			actor,
 			action,
@@ -109,7 +103,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			statScore,
 			itemName
 		);
-		console.log("Metanthropes | MetaRoll | Custom Roll Values:", multiAction, bonus, customPenalty);
+		metaLog(3, "MetaRoll", "Custom Roll Values:", multiAction, bonus, customPenalty);
 		//? Check if Custom Penalty is smaller than Disease penalty (values are expected to be negatives)
 		//todo add a new function to compare values for bonus and penalty - this way we can do the disease and perk check the same way without caring about the order in which we do them
 		if (customPenalty < diseasePenalty) {
@@ -120,8 +114,10 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		if (penalty > perkPenalty) {
 			penalty = perkPenalty;
 		}
-		console.log(
-			"Metanthropes | MetaRoll | Engaging MetaEvaluate for:",
+		metaLog(
+			3,
+			"MetaRoll",
+			"Engaging MetaEvaluate for:",
 			actor.name + "'s Custom",
 			action,
 			"with",
@@ -146,8 +142,10 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		if (penalty > perkPenalty) {
 			penalty = perkPenalty;
 		}
-		console.log(
-			"Metanthropes | MetaRoll | Engaging MetaEvaluate for:",
+		metaLog(
+			3,
+			"MetaRoll",
+			"Engaging MetaEvaluate for:",
 			actor.name + "'s",
 			action,
 			"with",
@@ -174,9 +172,11 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 	actor.unsetFlag("metanthropes-system", "duplicateself");
 	//? Get the result of the last roll
 	let checkResult = await actor.getFlag("metanthropes-system", "lastrolled").MetaEvaluate;
-	console.log(
-		"Metanthropes | MetaRoll | MetaEvaluate Result for",
-		actor.name,
+	metaLog(
+		3,
+		"MetaRoll",
+		"MetaEvaluate Result for",
+		actor.name + "'s",
 		"Action:",
 		action,
 		stat + ":",
@@ -185,25 +185,33 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		checkResult
 	);
 	//* Check for Duplicate Self Metapower Activation
-	if ((checkResult > 0) && (action === "Metapower") && (itemName === "Clone" || itemName === "Couple" || itemName === "Team" || itemName === "Squad" || itemName === "Unit")) {
-		console.log("Metanthropes | MetaRoll | Duplicate Self Metapower Activation Detected");
+	if (
+		checkResult > 0 &&
+		action === "Metapower" &&
+		(itemName === "Clone" ||
+			itemName === "Couple" ||
+			itemName === "Team" ||
+			itemName === "Squad" ||
+			itemName === "Unit")
+	) {
+		metaLog(0, "MetaRoll", "Duplicate Self Metapower Activation Detected");
 		let currentLife = actor.system.Vital.Life.value;
 		let duplicateMaxLife = 0;
 		if (itemName === "Clone") {
-		duplicateMaxLife = Math.ceil(currentLife * 0.1);
+			duplicateMaxLife = Math.ceil(currentLife * 0.1);
 		} else if (itemName === "Couple") {
-		duplicateMaxLife = Math.ceil(currentLife * 0.2);
+			duplicateMaxLife = Math.ceil(currentLife * 0.2);
 		} else if (itemName === "Team") {
-		duplicateMaxLife = Math.ceil(currentLife * 0.3);
+			duplicateMaxLife = Math.ceil(currentLife * 0.3);
 		} else if (itemName === "Squad") {
-		duplicateMaxLife = Math.ceil(currentLife * 0.4);
+			duplicateMaxLife = Math.ceil(currentLife * 0.4);
 		} else if (itemName === "Unit") {
-		duplicateMaxLife = Math.ceil(currentLife * 0.5);
+			duplicateMaxLife = Math.ceil(currentLife * 0.5);
 		}
 		actor.setFlag("metanthropes-system", "duplicateself", { maxlife: duplicateMaxLife });
-		console.log("Metanthropes | MetaRoll | Duplicate Self Metapower Max Life:", duplicateMaxLife);
+		metaLog(3, "MetaRoll", "Duplicate Self Metapower Max Life:", duplicateMaxLife);
 	}
-	console.log("Metanthropes | MetaRoll | Finished");
+	metaLog(3, "MetaRoll", "Finished");
 }
 /**
  * Handles the dialog box for custom multi-actions and bonuses/penalties when rolling.

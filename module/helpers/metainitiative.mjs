@@ -1,5 +1,5 @@
-//? Import dependencies
 import { MetaRoll } from "../metanthropes/metaroll.mjs";
+import { metaLog } from "../helpers/metahelpers.mjs";
 /**
  * MetaInitiative handles Initiative rolls for a given combatant.
  *
@@ -16,7 +16,7 @@ import { MetaRoll } from "../metanthropes/metaroll.mjs";
  * MetaInitiative(combatant);
  */
 export async function MetaInitiative(combatant) {
-	console.log("Metanthropes | MetaInitiative | Engaged for combatant:", combatant);
+	metaLog(3, "MetaInitiative", "Engaged for combatant:", combatant);
 	//? Check to see if this is a linked actor
 	let actor = null;
 	if (combatant.token.actorLink) {
@@ -29,7 +29,7 @@ export async function MetaInitiative(combatant) {
 	}
 	//? Initialize the actor's RollStat array before proceeding
 	await actor.getRollData();
-	console.log("Metanthropes | MetaInitiative | Engaged for", actor.type + ":", actor.name);
+	metaLog(3, "MetaInitiative", "Engaged for:", actor.name);
 	//? Check for alternate Stat to use for Initiative
 	const reflexesStat = "Reflexes";
 	const awarenessStat = "Awareness";
@@ -56,15 +56,11 @@ export async function MetaInitiative(combatant) {
 	initiativeStatRolled = initiativeStats[0].name;
 	//? Call MetaRoll
 	let action = "Initiative";
-	console.log(
-		"Metanthropes | MetaInitiative | Engaging MetaRoll for",
-		actor.name + "'s Initiative with",
-		initiativeStatRolled
-	);
 	let initiativeResult;
 	//* Special Initiative Rules
 	//? Duplicates from Duplicate Self Metapower get a -11 Initiative, this will ensure they always go last
 	if (actor.name !== "Duplicate") {
+		metaLog(3, "MetaInitiative", "Engaging MetaRoll for:", actor.name + "'s", action, "with", initiativeStatRolled);
 		await MetaRoll(actor, action, initiativeStatRolled);
 		initiativeResult = await actor.getFlag("metanthropes-system", "lastrolled").Initiative;
 	} else {
@@ -72,14 +68,16 @@ export async function MetaInitiative(combatant) {
 	}
 	//todo add Metapowers that affect Initiative results
 	//? Update the combatant with the new initiative score
-	console.log(
-		"Metanthropes | MetaInitiative | MetaRoll Result for",
+	await combatant.update({ initiative: initiativeResult });
+	metaLog(
+		3,
+		"MetaInitiative",
+		"MetaRoll Result for",
 		actor.name + "'s Initiative with",
 		initiativeStatRolled,
 		"was:",
 		initiativeResult
 	);
-	await combatant.update({ initiative: initiativeResult });
 }
 
 /**
@@ -104,17 +102,12 @@ export async function MetaInitiativeReRoll(event) {
 	const action = button.dataset.action;
 	const actor = await fromUuid(actorUUID);
 	const combatant = game.combat.getCombatantByActor(actor);
-	console.log("Metanthropes | MetaInitiativeReRoll | Engaged for combatant:", combatant);
+	metaLog(3, "MetaInitiativeReRoll", "Engaged for combatant:", combatant);
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	//? Reduce Destiny.value by 1
 	currentDestiny--;
 	await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-	console.log(
-		"Metanthropes | MetaInitiativeReRoll | Engaging MetaInitiative for:",
-		actor.name + "'s",
-		action,
-		actorUUID
-	);
+	metaLog(3, "MetaInitiativeReRoll", "Engaging MetaInitiative for:", actor.name);
 	await MetaInitiative(combatant);
 	//? Refresh the actor sheet if it's open
 	const sheet = actor.sheet;
