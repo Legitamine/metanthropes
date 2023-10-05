@@ -5,7 +5,16 @@ import { NewActor } from "../metanthropes/newactor.mjs";
 //? Import Finalize Premade Protagonist
 import { FinalizePremadeProtagonist } from "../metanthropes/newactor.mjs";
 //? Import Progression Dialog
-import { openProgressionDialog } from "../metanthropes/progression.mjs";
+import { openProgressionDialog } from "../metanthropes/metaprogression.mjs";
+/**
+ * MetanthropesActorSheet - An Actor Sheet for Metanthropes actors.
+ *
+ * This class extends the foundry ActorSheet class.
+ * It is used to display and edit actors.
+ *
+ * @extends {ActorSheet}
+ *
+ */
 export class MetanthropesActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
@@ -26,30 +35,40 @@ export class MetanthropesActorSheet extends ActorSheet {
 			],
 		});
 	}
+	/** @override */
 	get template() {
 		return `systems/metanthropes-system/templates/actor/${this.actor.type}-sheet.hbs`;
 	}
+	/** @override */
 	getData() {
+		//* Retrieve the data structure from the base sheet. You can inspect or log
+		//* the context variable to see the structure, but some key properties for
+		//* sheets are the actor object, the data object, whether or not it's
+		//* editable, the items array, and the effects array.
+		//* Much like the Actor class' prepareData() method, we can use the getData() method to derive new data for the character sheet. 
+		//* The main difference is that values created here will only be available within this class and on the character sheet's HTML template. 
+		//* If you were to use your browser's inspector to take a look at an actor's available data, you wouldn't see these values in the list, unlike those created in prepareData().
 		const context = super.getData();
-		//* from boilerplate:
-		//* Use a safe clone of the actor data for further operations.
-		//* It uses the document data's built in toObject() method and gives it the false parameter, which instructs Foundry to not just convert this to a plain object but to also run a deep clone on nested objects/arrays.
+		console.warn("Metanthropes | ActorSheet getData start | this, context:", this, context);
+		//* It uses Foundry's built in toObject() method and gives it the false parameter, which instructs Foundry to not just convert this to a plain object but to also run a deep clone on nested objects/arrays.
 		//* from https://foundryvtt.wiki/en/development/guides/SD-tutorial/SD07-Extending-the-ActorSheet-class
+		//? Use a safe clone of the actor data for further operations.
 		const actorData = this.actor.toObject(false);
-		//? Add the actor's data to context.data for easier access, as well as flags.
+		//? Add the actor's system attributes and flages to the context for easier access.
 		context.system = actorData.system;
 		context.flags = actorData.flags;
-		//? Prepare character data and items.
+		//? Prepare items
 		if (actorData.type !== "Animal") {
 			this._prepareItems(context);
 		}
-		//? Add roll data for TinyMCE editors.
-		context.rollData = context.actor.getRollData();
+		//? This will create the .RollStats array under .system that is used by Handlebars in the actor sheet for rolling
+		this.actor.getRollData();
 		//! Prepare active effects - causes error when enabled - prepareActiveEffectCategories is not defined
 		//! it needs effects.mjs from https://gitlab.com/asacolips-projects/foundry-mods/boilerplate/-/blob/master/module/helpers/effects.mjs?ref_type=heads
 		// context.effects = prepareActiveEffectCategories(this.actor.effects);
-		//? Add check if the user is a Narrator (Game Master)
+		//? Add a check for if the user is a Narrator (Game Master)
 		context.isGM = game.user.isGM;
+		//todo I would like to refresh the sheet after getting all the data
 		return context;
 	}
 	//* Prepare items
@@ -99,6 +118,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			item.sheet.render(true);
 		});
 		//* Everything below this point is only needed if the sheet is editable
+		//? Observers (non-owners) of the item sheet, should not be able to roll anything, or add/remove items
 		if (!this.isEditable) return;
 		//? Add Inventory Item
 		html.find(".item-create").click(this._onItemCreate.bind(this));
@@ -110,7 +130,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			li.slideUp(200, () => this.render(false));
 		});
 		//? Active Effect management
-		//! probably needs the effects from boilerplate to work
+		//! needs the effects from boilerplate to work
 		// html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
 		//? Find the different type of rolls and add the event listeners
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
@@ -176,13 +196,33 @@ export class MetanthropesActorSheet extends ActorSheet {
 		const actor = this.actor;
 		await FinalizePremadeProtagonist(actor);
 	}
+	prepareCharacteristicsProgression(progressionActorData) {
+		if (progressionActorData.type == "Vehicle") return;
+		const systemData = progressionActorData.system;
+		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
+			//? Calculate the Base score for this Characteristic (Initial + Progressed)
+			parseInt(
+				(CharValue.ProgressionBase = Number(CharValue.Initial) + Number(Number(CharValue.Progressed) * 5))
+			);
+			//? Determine if the Characteristic has dropped to 0
+			for (const [StatKey, StatValue] of Object.entries(CharValue.Stats)) {
+				//? Calculate the Base score for this Stat (Initial + Progressed)
+				parseInt(
+					(StatValue.ProgressionBase = Number(StatValue.Initial) + Number(Number(StatValue.Progressed) * 5))
+				);
+				//? Calculate the Score used for Progression for this Stat (Base + Characteristic_Base)
+				parseInt(
+					(StatValue.ProgressionRoll = Number(StatValue.ProgressionBase) + Number(CharValue.ProgressionBase))
+				);
+			}
+		}
+	}
 	//* Progression Dialog
-	async _onProgressionDialog(event) {
+	_onProgressionDialog(event) {
 		event.preventDefault();
 		//? Get the most up-to-date data for the actor
-		const actorData = this.getData();
-		console.warn("Metanthropes | _onProgressionDialog | actorData:", actorData);
-		console.log("Metanthropes | _onProgressionDialog | confirm name", actorData.actor.name);
-		await openProgressionDialog(actorData);
+		const progressionActorData = this.getData();
+		this.prepareCharacteristicsProgression(progressionActorData);
+		openProgressionDialog(progressionActorData);
 	}
 }

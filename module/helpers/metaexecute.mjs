@@ -34,17 +34,15 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		actorUUID = button.dataset.actoruuid;
 		itemName = button.dataset.itemName;
 		action = button.dataset.action;
-		multiAction = parseInt(button.dataset.multiAction) || 0;
+		multiAction = parseInt(button.dataset.multiAction) ?? 0;
 	}
 	const actor = await fromUuid(actorUUID);
 	//? Checking if actor has Metapowers that affect the explosive dice
-	let explosiveDice;
+	let explosiveDice = "x10";
 	const metapowers = actor.items.filter((item) => item.type === "Metapower");
 	const hasArbiterPowers = metapowers.some((metapower) => metapower.name === "Arbiter Powers");
 	if (hasArbiterPowers) {
 		explosiveDice = "x1x2x10";
-	} else {
-		explosiveDice = "x10";
 	}
 	//? Find the first item ()that matches itemName
 	let metaItemData = actor.items.find((item) => item.name === itemName);

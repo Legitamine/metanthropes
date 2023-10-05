@@ -8,11 +8,11 @@ import { MetaEvaluate } from "../helpers/metaeval.mjs";
  * calculate the result of the roll.
  *
  * @param {Object} actor - The actor making the roll. Expected to be an Actor object.
- * @param {string} action - The type of action being performed (e.g., "StatRoll", "Initiative", etc).
- * @param {string} stat - The stat being rolled against. Expected to be a string.
- * @param {boolean} isCustomRoll - Whether the roll is custom or not. Expected to be a boolean.
- * @param {number} destinyCost - The destiny cost of the action. Expected to be a positive number.
- * @param {string} itemName - The name of the Metapower, Possession or Combo being used. Expected to be a string.
+ * @param {String} action - The type of action being performed (e.g., "StatRoll", "Initiative", etc).
+ * @param {String} stat - The stat being rolled against. Expected to be a string.
+ * @param {Boolean} isCustomRoll - Whether the roll is custom or not. Expected to be a boolean.
+ * @param {Number} destinyCost - The destiny cost of the action. Expected to be a positive number.
+ * @param {String} itemName - The name of the Metapower, Possession or Combo being used. Expected to be a string.
  *
  * @returns {Promise<void>} A promise that resolves once the function completes its operations.
  *
@@ -111,7 +111,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		);
 		console.log("Metanthropes | MetaRoll | Custom Roll Values:", multiAction, bonus, customPenalty);
 		//? Check if Custom Penalty is smaller than Disease penalty (values are expected to be negatives)
-		//! add a new function to compare values for bonus and penalty - this way we can do the disease and perk check the same way without caring about the order in which we do them
+		//todo add a new function to compare values for bonus and penalty - this way we can do the disease and perk check the same way without caring about the order in which we do them
 		if (customPenalty < diseasePenalty) {
 			penalty = customPenalty;
 		} else {
@@ -169,6 +169,10 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		await MetaEvaluate(actor, action, stat, statScore, multiAction, bonus, penalty, pain, destinyCost, itemName);
 	}
 	//* Post-roll actions
+	//? Clear all metapower related result flags (currently only from duplicateself)
+	//! the idea here being that if the flags are going to be added later, here we prevent them from remaining from previous successful activations
+	actor.unsetFlag("metanthropes-system", "duplicateself");
+	//? Get the result of the last roll
 	let checkResult = await actor.getFlag("metanthropes-system", "lastrolled").MetaEvaluate;
 	console.log(
 		"Metanthropes | MetaRoll | MetaEvaluate Result for",
@@ -180,6 +184,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		"Result:",
 		checkResult
 	);
+	//* Check for Duplicate Self Metapower Activation
 	if ((checkResult > 0) && (action === "Metapower") && (itemName === "Clone" || itemName === "Couple" || itemName === "Team" || itemName === "Squad" || itemName === "Unit")) {
 		console.log("Metanthropes | MetaRoll | Duplicate Self Metapower Activation Detected");
 		let currentLife = actor.system.Vital.Life.value;
