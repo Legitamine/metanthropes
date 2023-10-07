@@ -151,7 +151,7 @@ export async function MetaEvaluate(
 		if (painEffect < 0) {
 			result = "Failure 🟥";
 			resultLevel = 0;
-			levelsOfFailure = -painEffect;
+			levelsOfFailure = 0;
 			levelsOfSuccess = 0;
 			message += `It was a Success, turned into a ${result}, because of Pain * ${pain}`;
 			metaLog(3, "MetaEvaluate", "Pain Effect should be <0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
