@@ -1,0 +1,60 @@
+<form class="metanthropes {{cssClass}}" autocomplete="off" onsubmit="event.preventDefault();">
+	<header>
+		<div class="layout-container-progressionheader style-container-progressionheader">
+			<div class="style-labels-text">
+				{{actor.system.Vital.Experience.Label}}
+			</div>
+			<div class="style-labels-text">
+				Total: {{actor.system.Vital.Experience.Total}}
+			</div>
+			<div class="style-labels-text">
+				Spent: {{actor.system.Vital.Experience.Spent}}
+			</div>
+			<div class="style-labels-text">
+				Stored: {{#if (gte actor.system.Vital.Experience.Stored 0)}}
+					<span class="style-cs-positive">{{actor.system.Vital.Experience.Stored}}</span>
+				{{else}}
+					<span class="style-cs-negative">{{actor.system.Vital.Experience.Stored}}</span>
+				{{/if}}
+			</div>
+		</div>
+	</header>
+	<main>
+		<div class="layout-container-nav style-container-nav">
+			<nav class="style-container-nav-children progressionnavselector tabs" data-group="progression">
+				<a class="item style-cs-labels" data-tab="progression-overview">📊 Overview</a>
+				{{#if actor.system.Perks}}
+					<a class="item style-cs-labels" data-tab="progression-perks">📚
+						Perks</a>
+				{{/if}}
+				{{#if actor.system.entermeta}}
+					<a class="item style-cs-labels" data-tab="progression-metapowers">Ⓜ️
+						Metapowers</a>
+				{{/if}}
+			</nav>
+		</div>
+		<section class="progressionnavtabs">
+			<div class="tab progression-overview" data-group="progression" data-tab="progression-overview">
+				{{> "systems/metanthropes-system/templates/progression/progression-overview.hbs"}}
+			</div>
+			<div class="tab progression-perks" data-group="progression" data-tab="progression-perks">
+				{{> "systems/metanthropes-system/templates/progression/progression-perks.hbs"}}
+			</div>
+			<div class="tab progression-metapowers" data-group="progression"
+				data-tab="progression-metapowers">
+				{{> "systems/metanthropes-system/templates/progression/progression-metapowers.hbs"}}
+			</div>
+		</section>
+	</main>
+	<div class="dialog-content layout-metaroll-dialog style-labels-secondary">
+		{{{content}}}
+	</div>
+	<div class="dialog-buttons">
+		{{#each buttons as |button id|}}
+			<button class="form-button {{cssClass}}" data-button="{{id}}" {{disabled button.disabled}}>
+				{{{button.icon}}}
+				{{{button.label}}}
+			</button>
+		{{/each}}
+	</div>
+</form>

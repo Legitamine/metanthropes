@@ -1,7 +1,7 @@
 import { HandleMetaRolls } from "../helpers/metarollhandler.mjs";
 import { NewActor } from "../metanthropes/newactor.mjs";
 import { FinalizePremadeProtagonist } from "../metanthropes/newactor.mjs";
-import { openProgressionDialog } from "../metanthropes/metaprogression.mjs";
+import { openProgressionForm } from "../metanthropes/metaprogression.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
 /**
  * MetanthropesActorSheet - An Actor Sheet for Metanthropes actors.
@@ -23,6 +23,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			submitOnClose: true,
 			submitOnChange: true,
 			resizable: true,
+			dragDrop: [{ dragSelector: ".item", dropSelector: null }],
 			tabs: [
 				{
 					navSelector: ".csnavselector",
@@ -36,8 +37,11 @@ export class MetanthropesActorSheet extends ActorSheet {
 	get template() {
 		return `systems/metanthropes-system/templates/actor/${this.actor.type}-sheet.hbs`;
 	}
+	get title() {
+		return this.actor.isToken ? `[Token] ${this.actor.name} - ${this.actor.type}` : `${this.actor.name} - ${this.actor.type}`;
+	}
 	/** @override */
-	getData() {
+	getData(options={}) {
 		//* Retrieve the data structure from the base sheet. You can inspect or log
 		//* the context variable to see the structure, but some key properties for
 		//* sheets are the actor object, the data object, whether or not it's
@@ -45,7 +49,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//* Much like the Actor class' prepareData() method, we can use the getData() method to derive new data for the character sheet.
 		//* The main difference is that values created here will only be available within this class and on the character sheet's HTML template.
 		//* If you were to use your browser's inspector to take a look at an actor's available data, you wouldn't see these values in the list, unlike those created in prepareData().
-		const context = super.getData();
+		const context = super.getData(options);
 		metaLog(4, "ActorSheet getData start", "this, context:", this, context);
 		//* It uses Foundry's built in toObject() method and gives it the false parameter, which instructs Foundry to not just convert this to a plain object but to also run a deep clone on nested objects/arrays.
 		//* from https://foundryvtt.wiki/en/development/guides/SD-tutorial/SD07-Extending-the-ActorSheet-class
@@ -141,7 +145,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//? Finalize Premade Protagonist Button
 		html.find(".finalize-premade-protagonist").click(this._onFinalizePremadeProtagonist.bind(this));
 		//? Progression Dialog Button
-		html.find(".progression-dialog").click(this._onProgressionDialog.bind(this));
+		html.find(".progression-dialog").click(this._onProgression.bind(this));
 		//? Drag events for macros.
 		if (this.actor.isOwner) {
 			let handler = (ev) => this._onDragStart(ev);
@@ -214,12 +218,18 @@ export class MetanthropesActorSheet extends ActorSheet {
 			}
 		}
 	}
-	//* Progression Dialog
-	_onProgressionDialog(event) {
+	//* Progression
+	_onProgression(event) {
 		event.preventDefault();
 		//? Get the most up-to-date data for the actor
 		const progressionActorData = this.getData();
 		this.prepareCharacteristicsProgression(progressionActorData);
-		openProgressionDialog(progressionActorData);
+		metaLog(
+			3,
+			"ActorSheet _onProgression",
+			"Data we pass along to progressionForm: progressionActorData:",
+			progressionActorData
+		);
+		openProgressionForm(progressionActorData);
 	}
 }

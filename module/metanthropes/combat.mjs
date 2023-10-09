@@ -24,7 +24,7 @@ export class MetanthropesCombat extends Combat {
 		if (a.initiative && b.initiative) {
 			if (ia === ib && astatScore === bstatScore) {
 				//todo: award 1 Destiny and re-roll initiative if tied both in Initiative and statScore
-				metaLog(1, "Combat", "_sortCombatants", "Perfect Tie between combatants:", a.name, "and:", b.name);
+				metaLog(4, "Combat", "_sortCombatants", "Perfect Tie between combatants:", a.name, "and:", b.name);
 			}
 		}
 		return ib - ia || (astatScore > bstatScore ? -1 : 1);

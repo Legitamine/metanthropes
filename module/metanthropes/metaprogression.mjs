@@ -1,16 +1,13 @@
+//!todo delete this if no longer needed from within helpers too!
 import { metaExtractFormData } from "../helpers/metahelpers.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
-/**
- * Open the Progression Dialog for the provided actor.
- *
- * @param {Object} actorData
- * @param {Object} dialogOptions
- */
-export async function openProgressionDialog(progressionActorData) {
+
+export async function openProgressionForm(progressionActorData) {
+	metaLog(3, "openProgressionForm", "Engaged for progressionActorData:", progressionActorData);
 	//? Define the dialog content
-	const dialogContent = "Make sure that your Stored Experience is not negative before confirming!";
+	const formContent = "Make sure that your Stored Experience is not negative before confirming!";
 	//? Define the dialog buttons
-	const dialogButtons = {
+	const formButtons = {
 		confirm: {
 			label: "Confirm 📈 Progression",
 			callback: async (html) => {
@@ -29,7 +26,7 @@ export async function openProgressionDialog(progressionActorData) {
 				//!? warn on negative stored xp
 				metaLog(
 					5,
-					"openProgressionDialog",
+					"openProgressionForm",
 					"on Confirm",
 					"WARNING: Stored Experience is Negative for:",
 					this.name
@@ -49,57 +46,101 @@ export async function openProgressionDialog(progressionActorData) {
 		},
 	};
 	//? Define the dialog options
-	const dialogOptions = {
+	const formOptions = {
 		//? Placeholder for future use
 	};
-	const dialogData = {
-		progressionActorData: progressionActorData,
-		buttons: dialogButtons,
-		content: dialogContent,
+	const formData = {
+		actor: progressionActorData,
+		buttons: formButtons,
+		content: formContent,
 		title: `${progressionActorData.actor.name}'s 📈 Progression`,
 	};
-	const progressionDialog = new ProgressionDialog(dialogData, dialogOptions);
-	progressionDialog.render(true);
+	metaLog(
+		3,
+		"openProgressionForm",
+		"Data we pass along to the new Form",
+		"formData:",
+		formData,
+		"formOptions:",
+		formOptions
+	);
+	new MetanthropesProgressionForm(formData, formOptions).render(true);
 }
 
-/**
- * Extend the basic Dialog class to create a custom progression dialog window
- * @extends {Dialog}
- *
- * @param {Object} data
- * @param {Object} options
- */
-export class ProgressionDialog extends Dialog {
+export class MetanthropesProgressionForm extends FormApplication {
+	constructor(object = {}, options = {}) {
+		super(options);
+		/**
+		 * The object target which we are using this form to modify
+		 * @type {*}
+		 */
+		this.object = object;
+		/**
+		 * A convenience reference to the form HTMLElement
+		 * @type {HTMLElement}
+		 */
+		this.form = null;
+		/**
+		 * Keep track of any FilePicker instances which are associated with this form
+		 * The values of this Array are inner-objects with references to the FilePicker instances and other metadata
+		 * @type {FilePicker[]}
+		 */
+		this.filepickers = [];
+		/**
+		 * Keep track of any mce editors which may be active as part of this form
+		 * The values of this object are inner-objects with references to the MCE editor and other metadata
+		 * @type {Object<string, object>}
+		 */
+		this.editors = {};
+	}
 	static get defaultOptions() {
-		return mergeObject(super.defaultOptions, {
-			template: "systems/metanthropes-system/templates/progression/progression-dialog.hbs",
-			classes: ["metanthropes", "progression"],
-			width: 1012,
-			height: 700,
-			tabs: [
-				{
-					navSelector: ".progressionnavselector",
-					contentSelector: ".progressionnavtabs",
-					initial: "progression-overview",
-				},
-			],
-			closeOnSubmit: true,
-			submitOnChange: false,
-			submitOnClose: false,
-			resizable: true,
-		});
+		const options = super.defaultOptions;
+		options.id = "progression-form";
+		options.template = "systems/metanthropes-system/templates/progression/progression-form.hbs";
+		options.width = 1012;
+		options.height = 700;
+		options.classes = ["metanthropes", "progression"];
+		options.tabs = [
+			{
+				navSelector: ".progressionnavselector",
+				contentSelector: ".progressionnavtabs",
+				initial: "progression-overview",
+			},
+		];
+		options.closeOnSubmit = true;
+		options.submitOnChange = false;
+		options.submitOnClose = false;
+		options.resizable = true;
+		options.minimizable = true;
+		options.title = "📈 Metanthropes Progression Form";
+		metaLog(3, "MetanthropesProgressionForm", "static defaultOptions", options);
+		return options;
+	}
+	async _render(...args) {
+		await super._render(...args);
 	}
 	//* Get the Data for actor - the data provided is a copy of the actual actor document, so we are not working on the stored values
-	getData(options = {}) {
-		//? Retrieve base data structure.
-		const context = super.getData(options);
-		//? Explicitly define the structure of the data for the dialog template to use
-		return {
-			content: context.content,
-			buttons: context.buttons,
-			actor: this.data.progressionActorData,
-		};
+	async getData() {
+		const data = await super.getData();
+		const progressionActor = this.object;
+		const options = this.options;
+		options.title = progressionActor.actor.name + "'s 📈 Progression";
+		options.actor = progressionActor;
+		metaLog(4, "MetanthropesProgressionForm", "what we get back from getData", data);
+		return data;
 	}
+	//	getData(options = {}) {
+	//		//? Retrieve base data structure.
+	//		const context = super.getData(options);
+	//		metaLog(1, "MetaProgression", "getData", "context:", context);
+	//		metaLog(2, "MetaProgression", "getData", "this:", this);
+	//		//? Explicitly define the structure of the data for the dialog template to use
+	//		return {
+	//			content: context.content,
+	//			buttons: context.buttons,
+	//			actor: this.data.progressionActorData,
+	//		};
+	//	}
 	//* Activate listeners
 	activateListeners(html) {
 		super.activateListeners(html);
@@ -113,10 +154,10 @@ export class ProgressionDialog extends Dialog {
 	//* Handle changes from Overview tab
 	_onOverviewProgressionChange(event) {
 		event.preventDefault();
-		metaLog(3, "MetaProgression", "_onOverviewProgressionChange", "event:", event);
+		metaLog(3, "MetanthropesProgressionForm", "_onOverviewProgressionChange(event):", event);
 		//? Extract actor data from the form, using our custom function
 		const actorData = metaExtractFormData(event.currentTarget.form);
-		metaLog(3, "MetaProgression", "_onOverviewProgressionChange", "actorData:", actorData);
+		metaLog(3, "MetanthropesProgressionForm", "_onOverviewProgressionChange", "actorData:", actorData);
 		//? Use a method similar to _prepareDerivedCharacteristicsData to recalculate experience
 		this._recalculateOverviewExperience(actorData);
 		//? Update the displayed values in the dialog
@@ -125,28 +166,28 @@ export class ProgressionDialog extends Dialog {
 	//* Handle changes from Perks tab
 	_onPerkProgressionChange(event) {
 		event.preventDefault();
-		metaLog(3, "MetaProgression", "_onPerkProgressionChange", "event:", event);
-		//? Extract actor data from the form, using our custom function and merge it with the existing progress
-		const progressionFormData = metaExtractFormData(event.currentTarget.form);
-		metaLog(3, "MetaProgression", "_onPerkProgressionChange", "progressionFormData:", progressionFormData);
-		//? Adjust the keys in progressionFormData to remove the "actor." prefix
-		const adjustedFormData = {};
-		for (const [key, value] of Object.entries(progressionFormData)) {
-			const adjustedKey = key.startsWith("actor.") ? key.slice(6) : key;
-			adjustedFormData[adjustedKey] = value;
-		}
-		metaLog(4, "MetaProgression", "_onPerkProgressionChange", "adjustedFormData:", adjustedFormData);
+		metaLog(3, "MetanthropesProgressionForm", "_onPerkProgressionChange(event)", event);
+		//	//? Extract actor data from the form, using our custom function and merge it with the existing progress
+		//	const progressionFormData = metaExtractFormData(event.currentTarget.form);
+		//	metaLog(3, "MetanthropesProgressionForm", "_onPerkProgressionChange", "progressionFormData:", progressionFormData);
+		//	//? Adjust the keys in progressionFormData to remove the "actor." prefix
+		//	const adjustedFormData = {};
+		//	for (const [key, value] of Object.entries(progressionFormData)) {
+		//		const adjustedKey = key.startsWith("actor.") ? key.slice(6) : key;
+		//		adjustedFormData[adjustedKey] = value;
+		//	}
+		//	metaLog(4, "MetaProgression", "_onPerkProgressionChange", "adjustedFormData:", adjustedFormData);
 		//const progressionActorData = this.data.progressionActorData;
 		//const mergedData = mergeObject(progressionActorData, adjustedFormData, { overwrite: true, recursive: true });
 		//this.data.progressionActorData = mergedData
 		//? Use a method similar to _prepareDerivedPerkXPData to recalculate experience
 		//this._recalculatePerksExperience(mergedData);
 		//? Update the displayed values in the dialog
-		this.render();
+		// this.render();
 	}
 	//* Handle changes from Overview tab
 	_recalculateOverviewExperience(actorData) {
-		metaLog(4, "MetaProgression", "_recalculateOverviewExperience", "actorData:", actorData);
+		metaLog(4, "MetantropesProgressionForm", "_recalculateOverviewExperience", "actorData:", actorData);
 		const systemData = actorData.system;
 		let experienceSpent = 0;
 		let characteristicExperienceSpent = 0;
@@ -200,7 +241,7 @@ export class ProgressionDialog extends Dialog {
 		const progressionActor = progressionActorPerkData;
 		metaLog(
 			5,
-			"MetaProgression",
+			"MetantropesProgressionForm",
 			"_recalculatePerksExperience",
 			"progressionActorPerkData:",
 			progressionActorPerkData
@@ -208,7 +249,7 @@ export class ProgressionDialog extends Dialog {
 		const systemData = progressionActorPerkData.system;
 		metaLog(
 			5,
-			"MetaProgression",
+			"MetantropesProgressionForm",
 			"_recalculatePerksExperience",
 			"progressionActorPerkData:",
 			progressionActorPerkData
@@ -241,7 +282,7 @@ export class ProgressionDialog extends Dialog {
 		if (experienceSpent < startingPerks * 100) {
 			metaLog(
 				2,
-				"MetaProgression",
+				"MetantropesProgressionForm",
 				"_recalculatePerksExperience",
 				this.name,
 				"needs to spend",
@@ -274,7 +315,7 @@ export class ProgressionDialog extends Dialog {
 	}
 	//* Recalculate the total Experience spent and stored
 	_validateAndStoreExperience(progressionActorData) {
-		metaLog(5, "MetaProgression", "_validateAndStoreExperience", "progressionActorData:", progressionActorData);
+		metaLog(5, "MetantropesProgressionForm", "_validateAndStoreExperience", "progressionActorData:", progressionActorData);
 		//	const systemData = actorData.system;
 		//	//? Validate that stored experience is not negative
 		//	if (systemData.Vital.Experience.Stored < 0) {
@@ -292,6 +333,6 @@ export class ProgressionDialog extends Dialog {
 		//	}
 	}
 	_resetProgression() {
-		metaLog(3, "MetaProgression", "_resetProgression", "Reseting Progression");
+		metaLog(3, "MetantropesProgressionForm", "_resetProgression", "Reseting Progression");
 	}
 }

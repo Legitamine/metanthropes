@@ -1,7 +1,5 @@
 export function metaLog(logType = 0, ...variables) {
-	//? Check if Advanced Logging is enabled from the UI
 	const metaAdvancedLogging = game.settings.get("metanthropes-system", "metaAdvancedLogging");
-	//? Only show Advanced Logs in the console if the setting is enabled
 	if (!metaAdvancedLogging && logType > 2) {
 		return;
 	}
@@ -21,10 +19,16 @@ export function metaLog(logType = 0, ...variables) {
 	}
 	let styles = [logStyle];
 	let logStrings = [logMessage];
+	let logObjects = [];
 	variables.forEach((variable, index) => {
 		if (variable !== null && variable !== undefined) {
 			let style = index % 2 === 0 ? logStyle : altLogStyle;
-			logStrings.push(`%c${variable}`);
+			if (typeof variable === "object") {
+				logStrings.push("%c[See Below the Object returned]");
+				logObjects.push(variable);
+			} else {
+				logStrings.push(`%c${variable}`);
+			}
 			styles.push(style);
 			if (index !== variables.length - 1) {
 				logStrings.push("%c | ");
@@ -32,7 +36,7 @@ export function metaLog(logType = 0, ...variables) {
 			}
 		}
 	});
-	logFunction(logStrings.join(""), ...styles);
+	logFunction(logStrings.join(""), ...styles, ...logObjects);
 }
 
 /**
