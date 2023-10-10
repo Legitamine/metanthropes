@@ -23,7 +23,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			submitOnClose: true,
 			submitOnChange: true,
 			resizable: true,
-			dragDrop: [{ dragSelector: ".item", dropSelector: null }],
+			dragDrop: [{ dragSelector: ".enablehotbar", dropSelector: null }],
 			tabs: [
 				{
 					navSelector: ".csnavselector",
@@ -50,7 +50,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//* The main difference is that values created here will only be available within this class and on the character sheet's HTML template.
 		//* If you were to use your browser's inspector to take a look at an actor's available data, you wouldn't see these values in the list, unlike those created in prepareData().
 		const context = super.getData(options);
-		metaLog(4, "ActorSheet getData start", "this, context:", this, context);
 		//* It uses Foundry's built in toObject() method and gives it the false parameter, which instructs Foundry to not just convert this to a plain object but to also run a deep clone on nested objects/arrays.
 		//* from https://foundryvtt.wiki/en/development/guides/SD-tutorial/SD07-Extending-the-ActorSheet-class
 		//? Use a safe clone of the actor data for further operations.
@@ -58,7 +57,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//? Add the actor's system attributes and flages to the context for easier access.
 		context.system = actorData.system;
 		context.flags = actorData.flags;
-		//? Prepare items
+		//? Prepare items - this will produce .Metapowers and .Possessions where applicable
 		if (actorData.type !== "Animal") {
 			this._prepareItems(context);
 		}
@@ -67,9 +66,10 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//! Prepare active effects - causes error when enabled - prepareActiveEffectCategories is not defined
 		//! it needs effects.mjs from https://gitlab.com/asacolips-projects/foundry-mods/boilerplate/-/blob/master/module/helpers/effects.mjs?ref_type=heads
 		// context.effects = prepareActiveEffectCategories(this.actor.effects);
-		//? Add a check for if the user is a Narrator (Game Master)
+		//? Add a check for if the user is a Narrator (Game Master) that will return true
 		context.isGM = game.user.isGM;
 		//todo I would like to refresh the sheet after getting all the data
+		metaLog(4, "MetanthropesActorSheet getData", "this, context:", this, context);
 		return context;
 	}
 	//* Prepare items

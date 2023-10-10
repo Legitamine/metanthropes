@@ -51,6 +51,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 -   Spending Levels of Success to activate more powerful Metapower effects (scheduled for v0.8)
 -   Destiny Save vs Death (scheduled for v0.8)
 -   Journal Entries with information for new players and Narrators (scheduled for v0.8)
+-   Metapowers and Possessions can be Drag-n-Dropped to your hotbar to allow for easier activations with a single keystroke! (scheduled for v0.9)
 
 ## Previous Version: v0.7.84
 

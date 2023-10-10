@@ -69,12 +69,14 @@ export async function openProgressionForm(progressionActorData) {
 
 export class MetanthropesProgressionForm extends FormApplication {
 	constructor(object = {}, options = {}) {
+		//* the below is the default from Foundry for FormApplication
 		super(options);
 		/**
 		 * The object target which we are using this form to modify
 		 * @type {*}
 		 */
 		this.object = object;
+		//!? should I use this section to put the form?
 		/**
 		 * A convenience reference to the form HTMLElement
 		 * @type {HTMLElement}
@@ -85,12 +87,14 @@ export class MetanthropesProgressionForm extends FormApplication {
 		 * The values of this Array are inner-objects with references to the FilePicker instances and other metadata
 		 * @type {FilePicker[]}
 		 */
+		//? Unused atm
 		this.filepickers = [];
 		/**
 		 * Keep track of any mce editors which may be active as part of this form
 		 * The values of this object are inner-objects with references to the MCE editor and other metadata
 		 * @type {Object<string, object>}
 		 */
+		//todo placeholder for the Perks tab editors
 		this.editors = {};
 	}
 	static get defaultOptions() {
@@ -122,10 +126,11 @@ export class MetanthropesProgressionForm extends FormApplication {
 	//* Get the Data for actor - the data provided is a copy of the actual actor document, so we are not working on the stored values
 	async getData() {
 		const data = await super.getData();
-		const progressionActor = this.object;
+		const progressionActor = this.object.actor;
 		const options = this.options;
-		options.title = progressionActor.actor.name + "'s 📈 Progression";
-		options.actor = progressionActor;
+		const buttons = this.object.buttons;
+		options.title = `${progressionActor.name}'s 📈 Progression`;
+		//options.actor = progressionActor;
 		metaLog(4, "MetanthropesProgressionForm", "what we get back from getData", data);
 		return data;
 	}

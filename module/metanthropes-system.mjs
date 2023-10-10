@@ -343,13 +343,14 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 //* Chat Message Event Listeners
 Hooks.on("renderChatMessage", async (message, html) => {
 	//? Get the actor from the message - all our messages have the actoruuid flag set, so if it's not our message, return.
-	const actorUUID = message.getFlag("metanthropes-system", "actoruuid");
+	const actorUUID = await message.getFlag("metanthropes-system", "actoruuid");
 	if (!actorUUID) return;
 	const actor = await fromUuid(actorUUID);
-	const metaowner = actor.system.metaowner.value || null;
+	const metaowner = await actor.system.metaowner.value || null;
 	//? Proceed only if the current user is the owner of the actor, or a GM
 	if (game.user.name === metaowner || game.user.isGM) {
 		//? Unhide the buttons - assumes DF Chat Enhancements module is installed (provides hidden class that works)
+		//todo Figure out a way to do this without any dependencies
 		html.find(".hide-button").removeClass("hidden");
 		//? Handle Main Chat Buttons (all the buttons that will be disabled if any of them is clicked)
 		html.on("click", ".metanthropes-main-chat-button", function (event) {

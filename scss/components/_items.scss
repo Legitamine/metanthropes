@@ -70,6 +70,8 @@
 	}
 
 	// Individual Item
+	//! I use this in the nav bars for the Forms in order to have it remain selected as the active tab
+	//todo understand why ^^ this is and how to make it properly
 	.item {
 		align-items: center;
 		padding: 0 2px; // to align with the header border
