@@ -24,7 +24,7 @@ export class MetanthropesItem extends Item {
 	getRollData() {
 		//! Is this being used?
 		//? If present, return the actor's roll data.
-		metaLog(5, "MetaItem getRollData", "Engaged");
+		metaLog(5, "MetaItem getRollData", "Engaged - !!! THIS SHOULD NOT HAPPEN !!!");
 		if (!this.actor) return null;
 		const rollData = this.actor.getRollData();
 		//? Grab the item's system data as well.

@@ -66,12 +66,14 @@ export class MetanthropesActor extends Actor {
 		//* the following, in order: data reset (to clear active effects),
 		//* prepareBaseData(), prepareEmbeddedDocuments() (including active effects),
 		//* prepareDerivedData().
+		//! I should never do an update during this step, as it will cause an infinite loop
 		super.prepareData();
 	}
 	/** @override */
 	prepareBaseData() {
 		//* Data modifications in this step occur before processing embedded
 		//* documents or derived data.
+		//? Setting Humans to have starting life of 50 instead of 100
 		if (this.type == "Human") {
 			this.system.Vital.Life.Initial = 50;
 		}
@@ -84,7 +86,7 @@ export class MetanthropesActor extends Actor {
 					this.primeimg = `systems/metanthropes-system/artwork/metanthropes-logo.webp`;
 				} else {
 					//? for Protagonists with a prime metapower defined, make it their respective metapower icon
-					let primemetapowerimage = this.system.entermeta.primemetapower.value;
+					const primemetapowerimage = this.system.entermeta.primemetapower.value;
 					this.primeimg = `systems/metanthropes-system/artwork/metapowers/${primemetapowerimage}.png`;
 				}
 			}
@@ -98,13 +100,27 @@ export class MetanthropesActor extends Actor {
 		//* (such as ability modifiers rather than ability scores) and should be
 		//* available both inside and outside of character sheets (such as if an actor
 		//* is queried and has a roll executed directly from it).
+		//* This function is called after prepareBaseData() and prepareEmbeddedDocuments().
 		const actorData = this;
 		this._prepareDerivedCharacteristicsData(actorData);
-		//! remove these for the progression update
-		this._prepareDerivedCharacteristicsXPData(actorData);
-		this._prepareDerivedPerkXPData(actorData);
 		this._prepareDerivedMovementData(actorData);
 		this._prepareDerivedVitalData(actorData);
+		//? Check to see if this actor has been Progressed
+		//todo Deprecate this after we finalize the Progression system (v0.9)
+		const hasProgressed = this.getFlag("metanthropes-system", "Progression").hasProgressed || false;
+		if (hasProgressed) {
+			metaLog(
+				4,
+				"MetanthropesActor",
+				"_prepareDerivedCharacteristicsXPData",
+				actorData.name,
+				"hasProgressed:",
+				hasProgressed
+			);
+			return;
+		}
+		this._prepareDerivedCharacteristicsXPData(actorData);
+		this._prepareDerivedPerkXPData(actorData);
 	}
 	_prepareDerivedCharacteristicsData(actorData) {
 		if (actorData.type == "Vehicle") return;
@@ -437,6 +453,7 @@ export class MetanthropesActor extends Actor {
 			systemData.Vital.Life.max
 		);
 	}
+	/** @override */
 	getRollData() {
 		const data = super.getRollData();
 		if (!data.Characteristics) {

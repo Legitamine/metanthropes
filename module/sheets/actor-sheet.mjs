@@ -1,6 +1,5 @@
 import { HandleMetaRolls } from "../helpers/metarollhandler.mjs";
-import { NewActor } from "../metanthropes/newactor.mjs";
-import { FinalizePremadeProtagonist } from "../metanthropes/newactor.mjs";
+import { NewActor, FinalizePremadeProtagonist } from "../metanthropes/newactor.mjs";
 import { openProgressionForm } from "../metanthropes/metaprogression.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
 /**
@@ -18,11 +17,12 @@ export class MetanthropesActorSheet extends ActorSheet {
 		return mergeObject(super.defaultOptions, {
 			classes: ["metanthropes", "sheet", "actor"], //? these are custom css classes that are used in the html file
 			width: 1012,
-			height: 910,
+			height: 913,
 			closeOnSubmit: false,
-			submitOnClose: true,
+			submitOnClose: false,
 			submitOnChange: true,
 			resizable: true,
+			//! I don't understand why I can still drag when no item has .enablehotbar
 			dragDrop: [{ dragSelector: ".enablehotbar", dropSelector: null }],
 			tabs: [
 				{
@@ -49,27 +49,29 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//* Much like the Actor class' prepareData() method, we can use the getData() method to derive new data for the character sheet.
 		//* The main difference is that values created here will only be available within this class and on the character sheet's HTML template.
 		//* If you were to use your browser's inspector to take a look at an actor's available data, you wouldn't see these values in the list, unlike those created in prepareData().
+		//? super.getData() will construct context.actor context.items and context.effects
 		const context = super.getData(options);
+		//? Use a safe clone of the actor data for further operations.
 		//* It uses Foundry's built in toObject() method and gives it the false parameter, which instructs Foundry to not just convert this to a plain object but to also run a deep clone on nested objects/arrays.
 		//* from https://foundryvtt.wiki/en/development/guides/SD-tutorial/SD07-Extending-the-ActorSheet-class
-		//? Use a safe clone of the actor data for further operations.
 		const actorData = this.actor.toObject(false);
 		//? Add the actor's system attributes and flages to the context for easier access.
 		context.system = actorData.system;
 		context.flags = actorData.flags;
 		//? Prepare items - this will produce .Metapowers and .Possessions where applicable
+		//todo break it down to metapowers and possessions so I can get better filtering by actor.type (?)
 		if (actorData.type !== "Animal") {
 			this._prepareItems(context);
 		}
-		//? This will create the .RollStats array under .system that is used by Handlebars in the actor sheet for rolling
+		//? This will create the .RollStats object under .system that is used by Handlebars in the actor sheet for rolling
 		this.actor.getRollData();
 		//! Prepare active effects - causes error when enabled - prepareActiveEffectCategories is not defined
 		//! it needs effects.mjs from https://gitlab.com/asacolips-projects/foundry-mods/boilerplate/-/blob/master/module/helpers/effects.mjs?ref_type=heads
 		// context.effects = prepareActiveEffectCategories(this.actor.effects);
-		//? Add a check for if the user is a Narrator (Game Master) that will return true
+		//? Provide a boolean for if the user is a Narrator(GameMaster)
 		context.isGM = game.user.isGM;
 		//todo I would like to refresh the sheet after getting all the data
-		metaLog(4, "MetanthropesActorSheet getData", "this, context:", this, context);
+		metaLog(4, "MetanthropesActorSheet getData results", "this, context, options", this, context, options);
 		return context;
 	}
 	//* Prepare items
@@ -91,6 +93,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		};
 		//? Iterate through items, allocating to containers
 		for (let i of context.items) {
+			//! Why do I need this line?
 			i.img = i.img || DEFAULT_TOKEN;
 			//? Append to Possessions.
 			if (i.type === "Possession") {
@@ -133,20 +136,22 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//? Active Effect management
 		//! needs the effects from boilerplate to work
 		// html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
-		//? Find the different type of rolls and add the event listeners
+		//? Roll Stat
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
 		html.find(".style-cs-rolls").on("contextmenu", this._onCustomRoll.bind(this));
+		//? Roll Metapower
 		html.find(".style-mp-rolls").click(this._onRoll.bind(this));
 		html.find(".style-mp-rolls").on("contextmenu", this._onCustomRoll.bind(this));
+		//? Roll Possession
 		html.find(".style-pos-rolls").click(this._onRoll.bind(this));
 		html.find(".style-pos-rolls").on("contextmenu", this._onCustomRoll.bind(this));
 		//? Roll New Actor Button
 		html.find(".new-actor").click(this._onNewActor.bind(this));
 		//? Finalize Premade Protagonist Button
 		html.find(".finalize-premade-protagonist").click(this._onFinalizePremadeProtagonist.bind(this));
-		//? Progression Dialog Button
-		html.find(".progression-dialog").click(this._onProgression.bind(this));
-		//? Drag events for macros.
+		//? Progression Form Button
+		html.find(".progression-form").click(this._onProgression.bind(this));
+		//!? Drag events for macros !??
 		if (this.actor.isOwner) {
 			let handler = (ev) => this._onDragStart(ev);
 			html.find("li.item").each((i, li) => {
@@ -156,6 +161,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			});
 		}
 	}
+	//! is this being used?
 	// code from boilerplate
 	async _onItemCreate(event) {
 		event.preventDefault();
@@ -205,7 +211,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 			parseInt(
 				(CharValue.ProgressionBase = Number(CharValue.Initial) + Number(Number(CharValue.Progressed) * 5))
 			);
-			//? Determine if the Characteristic has dropped to 0
 			for (const [StatKey, StatValue] of Object.entries(CharValue.Stats)) {
 				//? Calculate the Base score for this Stat (Initial + Progressed)
 				parseInt(
@@ -221,15 +226,18 @@ export class MetanthropesActorSheet extends ActorSheet {
 	//* Progression
 	_onProgression(event) {
 		event.preventDefault();
+		//! I don't need the actor's getData, I should do all this inside the Progression it self
+		//todo refactor this so that this only takes care to open the Progression Form, the Form itself should take care of what to show
+		metaLog(5, "ActorSheet _onProgression", "Can I use this?", this);
 		//? Get the most up-to-date data for the actor
-		const progressionActorData = this.getData();
-		this.prepareCharacteristicsProgression(progressionActorData);
-		metaLog(
-			3,
-			"ActorSheet _onProgression",
-			"Data we pass along to progressionForm: progressionActorData:",
-			progressionActorData
-		);
-		openProgressionForm(progressionActorData);
+		//const progressionActorData = this.getData();
+		//this.prepareCharacteristicsProgression(progressionActorData);
+		//	metaLog(
+		//		3,
+		//		"ActorSheet _onProgression",
+		//		"Data we pass along to progressionForm: progressionActorData:",
+		//		progressionActorData
+		//	);
+		//openProgressionForm(progressionActorData);
 	}
 }

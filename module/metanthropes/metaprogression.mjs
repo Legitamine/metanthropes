@@ -1,6 +1,5 @@
 //!todo delete this if no longer needed from within helpers too!
-import { metaExtractFormData } from "../helpers/metahelpers.mjs";
-import { metaLog } from "../helpers/metahelpers.mjs";
+import { metaExtractFormData, metaLog } from "../helpers/metahelpers.mjs";
 
 export async function openProgressionForm(progressionActorData) {
 	metaLog(3, "openProgressionForm", "Engaged for progressionActorData:", progressionActorData);
@@ -16,6 +15,8 @@ export async function openProgressionForm(progressionActorData) {
 				//const actorData = this._getFormData(formData);
 				//? Validate the experience values
 				this._validateAndStoreExperience(progressionActorData);
+				//? Set the flag so that the _prepareDerivedData methods for XP calculation are not called
+				await this.setFlag("metanthropes-system", "Progression", { hasProgressed: true });
 				//? If stored experience is not negative, update the actor
 				//	if (this.tempExperienceValues["system.Vital.Experience.Stored"] >= 0) {
 				//		await actorData.actor.update(this.tempExperienceValues);
@@ -96,10 +97,11 @@ export class MetanthropesProgressionForm extends FormApplication {
 		 */
 		//todo placeholder for the Perks tab editors
 		this.editors = {};
+		metaLog(5, "MetanthropesProgressionForm", "constructor", "this:", this);
 	}
 	static get defaultOptions() {
 		const options = super.defaultOptions;
-		options.id = "progression-form";
+		options.id = "metanthropes-progression-form";
 		options.template = "systems/metanthropes-system/templates/progression/progression-form.hbs";
 		options.width = 1012;
 		options.height = 700;
@@ -116,23 +118,21 @@ export class MetanthropesProgressionForm extends FormApplication {
 		options.submitOnClose = false;
 		options.resizable = true;
 		options.minimizable = true;
-		options.title = "📈 Metanthropes Progression Form";
-		metaLog(3, "MetanthropesProgressionForm", "static defaultOptions", options);
 		return options;
 	}
 	async _render(...args) {
 		await super._render(...args);
 	}
 	//* Get the Data for actor - the data provided is a copy of the actual actor document, so we are not working on the stored values
-	async getData() {
-		const data = await super.getData();
-		const progressionActor = this.object.actor;
-		const options = this.options;
-		const buttons = this.object.buttons;
-		options.title = `${progressionActor.name}'s 📈 Progression`;
+	async getData(options = {}) {
+		const context = await super.getData(options);
+		// ? do I need a safe copy here ? const actorData = this.object.actor;
+		//const options = this.options;
+		// const buttons = this.object.buttons;
+		//options.title = `${progressionActor.name}'s 📈 Progression`;
 		//options.actor = progressionActor;
-		metaLog(4, "MetanthropesProgressionForm", "what we get back from getData", data);
-		return data;
+		metaLog(4, "MetanthropesProgressionForm getData", "this, context, options", this, context, options);
+		return context;
 	}
 	//	getData(options = {}) {
 	//		//? Retrieve base data structure.
@@ -320,7 +320,13 @@ export class MetanthropesProgressionForm extends FormApplication {
 	}
 	//* Recalculate the total Experience spent and stored
 	_validateAndStoreExperience(progressionActorData) {
-		metaLog(5, "MetantropesProgressionForm", "_validateAndStoreExperience", "progressionActorData:", progressionActorData);
+		metaLog(
+			5,
+			"MetantropesProgressionForm",
+			"_validateAndStoreExperience",
+			"progressionActorData:",
+			progressionActorData
+		);
 		//	const systemData = actorData.system;
 		//	//? Validate that stored experience is not negative
 		//	if (systemData.Vital.Experience.Stored < 0) {

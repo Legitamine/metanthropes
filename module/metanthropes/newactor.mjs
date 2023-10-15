@@ -17,7 +17,7 @@ export async function FinalizePremadeProtagonist(actor) {
 	try {
 		await Rolld10(actor, "Destiny", false, 1);
 		let playerName = game.user.name;
-		const NewDestiny = actor.getFlag("metanthropes-system", "lastrolled").rolld10;
+		const NewDestiny = await actor.getFlag("metanthropes-system", "lastrolled").rolld10;
 		await actor.update({ "system.Vital.Destiny.value": Number(NewDestiny) });
 		await actor.update({ "system.Vital.Destiny.max": Number(NewDestiny) });
 		metaLog(3, "Finalize Premade Protagonist", `${playerName}'s ${actor.type} Starting Destiny:`, NewDestiny);

@@ -1,5 +1,4 @@
-import { metaExtractNumberOfDice } from "./metahelpers.mjs";
-import { metaLog } from "./metahelpers.mjs";
+import { metaExtractNumberOfDice, metaLog, metaIsItemEquipped } from "./metahelpers.mjs";
 /**
  * MetaExecute handles the execution of Metapowers and Possessions for a given actor.
  *
@@ -40,9 +39,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 	const actor = await fromUuid(actorUUID);
 	//? Checking if actor has Metapowers that affect the explosive dice
 	let explosiveDice = "x10";
-	const metapowers = actor.items.filter((item) => item.type === "Metapower");
-	const hasArbiterPowers = metapowers.some((metapower) => metapower.name === "Arbiter Powers");
-	if (hasArbiterPowers) {
+	if (metaIsItemEquipped(actor, "Arbiter Powers")) {
 		explosiveDice = "x1x2x10";
 	}
 	//? Find the first item ()that matches itemName

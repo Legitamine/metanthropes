@@ -1,4 +1,4 @@
-import { metaLog } from "../helpers/metahelpers.mjs";
+import { metaLog, metaIsItemEquipped } from "../helpers/metahelpers.mjs";
 /**
  * Rolld10 handles the rolling of d10 dice for a given actor and purpose.
  *
@@ -38,12 +38,10 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 		"d10/2?:",
 		isHalf
 	);
-	//? Checking if actor has Metapowers that affect the explosive dice
-	let explosiveDice = "x10";
 	let rollTotal;
-	const metapowers = actor.items.filter((item) => item.type === "Metapower");
-	const hasArbiterPowers = metapowers.some((metapower) => metapower.name === "Arbiter Powers");
-	if (hasArbiterPowers) {
+	let explosiveDice = "x10";
+	//? Checking if actor has Metapowers that affect the explosive dice
+	if (metaIsItemEquipped(actor, "Arbiter Powers")) {
 		explosiveDice = "x1x2x10";
 	}
 	//? dice is the number of d10 to roll
