@@ -1,28 +1,29 @@
 /**
- * Metanthropes RPG System for FoundryVTT
- * Author: qp
+ * Metanthropes RPG Official System for FoundryVTT
+ * Author: qp aka The Orchestrator
  *
  * Throughtout this project, I use the following syntax for comments:
- ** //! Marks a special comment that stands out (in Red) for identifying potential issues or critical todos.
- ** //* Marks a comment that is used as a section header (in Green) for better readability.
- ** //? Marks a comment that is used for explaining what the below code does (in Blue) to help me remember.
- ** //todo Marks a comment that is used for identifying a todo (in Orange) that needs to be addressed.
+ ** //! Marks a special comment that stands out (in Red) for critical notes.
+ ** //* Marks a comment that is used as a section header (in Green) for better visibility.
+ ** //? Marks a comment that is used for explaining what the below code does (in Blue) for better readability.
+ ** //todo Marks a comment that is used for marking (in Orange) potential optimization notes.
  *
- * To get automatic colloring for these comments, I use the following VSCode extension:
+ * To get automatic colloring for these comments in VSCode, you can use this extension:
  * aaron-bond.better-comments
  *
  */
 //* Imports
-//? Import Combat Modules.
+//? Import Combat Modules
 import { MetanthropesCombat } from "./metanthropes/combat.mjs";
 import { MetaCombatTracker } from "./metanthropes/combattracker.mjs";
 import { MetaCombatant } from "./metanthropes/combatant.mjs";
-//? Import document classes.
+//? Import document classes
 import { MetanthropesActor } from "./documents/actor.mjs";
 import { MetanthropesItem } from "./documents/item.mjs";
-//? Import sheet classes.
+//? Import sheet classes
 import { MetanthropesActorSheet } from "./sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
+import { MetanthropesActorProgressionSheet } from "./sheets/actor-progression-sheet.mjs";
 //? Pre-load Handlebars templates
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 //? Import helpers
@@ -76,6 +77,9 @@ Hooks.once("init", async function () {
 	Actors.registerSheet("metanthropes", MetanthropesActorSheet, {
 		makeDefault: true,
 	});
+	Actors.registerSheet("metanthropes", MetanthropesActorProgressionSheet, {
+		makeDefault: false,
+	});
 	Items.unregisterSheet("core", ItemSheet);
 	Items.registerSheet("metanthropes", MetanthropesItemSheet, {
 		makeDefault: true,
@@ -90,6 +94,7 @@ Hooks.once("init", async function () {
 		`,
 		scope: "client", //? This specifies if it's a client-side setting
 		config: true, //? This makes the setting appear in the module configuration
+		requiresReload: false, //? If true, a client reload (F5) is required to activate the setting
 		type: Boolean,
 		default: false,
 		onChange: (value) => {
@@ -166,8 +171,10 @@ Hooks.once("ready", async function () {
 	metaLog(3, "Starting Migration");
 	await metaMigrateData();
 	metaLog(3, "Finished Migration");
-	//? Add support for Moulinette: Free modules with artwork & sounds are indexable by Moulinette
+	//* Add support for Moulinette
 	if (game.moulinette) {
+		//* Metanthropes Content Moulinette Integration
+		//? Add Metanthropes Metapowers Artwork to Moulinette
 		game.moulinette.sources.push({
 			type: "images",
 			publisher: "Metanthropes",
@@ -175,6 +182,7 @@ Hooks.once("ready", async function () {
 			source: "data",
 			path: "systems/metanthropes-system/artwork/metapowers",
 		});
+		//? Add Metanthropes Portraits (Masculine) Artwork to Moulinette
 		game.moulinette.sources.push({
 			type: "images",
 			publisher: "Metanthropes",
@@ -182,6 +190,7 @@ Hooks.once("ready", async function () {
 			source: "data",
 			path: "systems/metanthropes-system/artwork/tokens/portraits/masculine",
 		});
+		//? Add Metanthropes Portraits (Feminine) Artwork to Moulinette
 		game.moulinette.sources.push({
 			type: "images",
 			publisher: "Metanthropes",
@@ -189,111 +198,7 @@ Hooks.once("ready", async function () {
 			source: "data",
 			path: "systems/metanthropes-system/artwork/tokens/portraits/feminine",
 		});
-		game.moulinette.sources.push({
-			type: "sounds",
-			publisher: "Dark Raven",
-			pack: "Free Soundscapes Module",
-			source: "data",
-			path: "modules/darkraven-games-soundscapes-free/audio",
-		});
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "Fragmaps",
-			pack: "Fragmaps Free Images",
-			source: "data",
-			path: "modules/fragmaps-free/images",
-		});
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "Fragmaps",
-			pack: "Fragmaps Free Tiles",
-			source: "data",
-			path: "modules/fragmaps-free/images/tiles",
-		});
-		game.moulinette.sources.push({
-			type: "sounds",
-			publisher: "Ivan Duch",
-			pack: "Free Music Packs",
-			source: "data",
-			path: "modules/ivan-duch-music-packs/audio",
-		});
-		game.moulinette.sources.push({
-			type: "sounds",
-			publisher: "Michael Ghelfi",
-			pack: "Free Ambience",
-			source: "data",
-			path: "modules/michaelghelfi/ambience",
-		});
-		game.moulinette.sources.push({
-			type: "sounds",
-			publisher: "Michael Ghelfi",
-			pack: "Free Music",
-			source: "data",
-			path: "modules/michaelghelfi/music",
-		});
-		game.moulinette.sources.push({
-			type: "sounds",
-			publisher: "Hologrounds Free",
-			pack: "Audio",
-			source: "data",
-			path: "modules/hologrounds-free-module/audio",
-		});
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "Hologrounds Free",
-			pack: "Maps",
-			source: "data",
-			path: "modules/hologrounds-free-module/maps",
-		});
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "Miska Free",
-			pack: "Maps",
-			source: "data",
-			path: "modules/miskasmaps/maps",
-		});
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "MAD Free",
-			pack: "Journal",
-			source: "data",
-			path: "modules/mad-freecontent/images/journal",
-		});
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "MAD Free",
-			pack: "Maps",
-			source: "data",
-			path: "modules/mad-freecontent/images/maps",
-		});
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "MAD Free",
-			pack: "Tiles",
-			source: "data",
-			path: "modules/mad-freecontent/images/tiles",
-		});
-		game.moulinette.sources.push({
-			type: "sounds",
-			publisher: "MAD Free",
-			pack: "Audio",
-			source: "data",
-			path: "modules/mad-freecontent/audio",
-		});
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "Coriolis",
-			pack: "AI Portraits",
-			source: "data",
-			path: "modules/coriolis-kbender-ai-art-pack/portraits",
-		});
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "Coriolis",
-			pack: "AI Tokens",
-			source: "data",
-			path: "modules/coriolis-kbender-ai-art-pack/tokens",
-		});
+		//? Add Metanthropes Music to Moulinette
 		game.moulinette.sources.push({
 			type: "sounds",
 			publisher: "Metanthropes",
@@ -301,12 +206,102 @@ Hooks.once("ready", async function () {
 			source: "data",
 			path: "systems/metanthropes-system/audio/music",
 		});
+		//? Add Metanthropes Sound Effects to Moulinette
 		game.moulinette.sources.push({
 			type: "sounds",
 			publisher: "Metanthropes",
 			pack: "Sound Effects",
 			source: "data",
 			path: "systems/metanthropes-system/audio/sound-effects",
+		});
+		//* Free Content that we use in our closed Alpha Moulinette Integration
+		//? Add Dark Raven's Free Soundscapes to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "sounds",
+			publisher: "Dark Raven",
+			pack: "Free Soundscapes Module",
+			source: "data",
+			path: "modules/darkraven-games-soundscapes-free/audio",
+		});
+		//? Add Fragmaps' Free Images to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "images",
+			publisher: "Fragmaps",
+			pack: "Fragmaps Free Images",
+			source: "data",
+			path: "modules/fragmaps-free/images",
+		});
+		//? Add Fragmaps' Free Tiles to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "images",
+			publisher: "Fragmaps",
+			pack: "Fragmaps Free Tiles",
+			source: "data",
+			path: "modules/fragmaps-free/images/tiles",
+		});
+		//? Add Ivan Duch's Free Music Packs to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "sounds",
+			publisher: "Ivan Duch",
+			pack: "Free Music Packs",
+			source: "data",
+			path: "modules/ivan-duch-music-packs/audio",
+		});
+		//? Add Michael Ghelfi's Free Ambience to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "sounds",
+			publisher: "Michael Ghelfi",
+			pack: "Free Ambience",
+			source: "data",
+			path: "modules/michaelghelfi/ambience",
+		});
+		//? Add Michael Ghelfi's Free Music to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "sounds",
+			publisher: "Michael Ghelfi",
+			pack: "Free Music",
+			source: "data",
+			path: "modules/michaelghelfi/music",
+		});
+		//? Add Hologrounds' Free Audio to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "sounds",
+			publisher: "Hologrounds Free",
+			pack: "Audio",
+			source: "data",
+			path: "modules/hologrounds-free-module/audio",
+		});
+		//? Add Hologrounds' Free Maps to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "images",
+			publisher: "Hologrounds Free",
+			pack: "Maps",
+			source: "data",
+			path: "modules/hologrounds-free-module/maps",
+		});
+		//? Add Miska's Free Maps to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "images",
+			publisher: "Miska Free",
+			pack: "Maps",
+			source: "data",
+			path: "modules/miskasmaps/maps",
+		});
+		//? Add Coriolis' AI Portraits Art Pack to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "images",
+			publisher: "Coriolis",
+			pack: "AI Portraits",
+			source: "data",
+			path: "modules/coriolis-kbender-ai-art-pack/portraits",
+		});
+		//? Add Coriolis' AI Tokens Art Pack to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "images",
+			publisher: "Coriolis",
+			pack: "AI Tokens",
+			source: "data",
+			path: "modules/coriolis-kbender-ai-art-pack/tokens",
 		});
 	}
 });
@@ -329,7 +324,7 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 				{ range: baseSpeed * 4, color: "additional" },
 				{ range: baseSpeed * 10, color: "sprint" },
 			];
-			//todo	I can add special modifiers to speed (like flying, etc)
+			//todo	I can add special modifiers to speed (like flying, etc) - perhaps Metapowers that affect Movement directly?
 			// Example: Characters that aren't wearing armor are allowed to run with three times their speed
 			//		if (!token.actor.data.isWearingArmor) {
 			//			ranges.push({range: baseSpeed * 3, color: "dash"})
@@ -346,7 +341,7 @@ Hooks.on("renderChatMessage", async (message, html) => {
 	const actorUUID = await message.getFlag("metanthropes-system", "actoruuid");
 	if (!actorUUID) return;
 	const actor = await fromUuid(actorUUID);
-	const metaowner = await actor.system.metaowner.value || null;
+	const metaowner = (await actor.system.metaowner.value) || null;
 	//? Proceed only if the current user is the owner of the actor, or a GM
 	if (game.user.name === metaowner || game.user.isGM) {
 		//? Unhide the buttons - assumes DF Chat Enhancements module is installed (provides hidden class that works)

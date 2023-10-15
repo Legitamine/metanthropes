@@ -6,6 +6,7 @@ import { metaLog } from "../helpers/metahelpers.mjs";
  * This function determines the best stat to use for Initiative based on the combatant's Metapowers.
  * It then calls the MetaRoll function for that stat and updates the combatant's Initiative score with the result.
  * todo: I should manipulate here the Initiative result based on the combatant's Metapowers
+ * todo: I need to figure out a way to kick combatants off the active encounter if it's their turn to play or to roll for initiative and are unconscious
  * The function works for both linked and unlinked actors.
  *
  * @param {Object} combatant - The combatant making the initiative roll.

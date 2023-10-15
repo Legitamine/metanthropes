@@ -1,6 +1,8 @@
 import { MetaInitiative } from "../helpers/metainitiative.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
 
+//! I should review if I need this or I can change it to a less complicated step
+//todo investigate - does the formula in system.json and metanthropes.mjs have an effect here? for v0.9 combat overhaul
 export class MetaCombatant extends Combatant {
 	getInitiativeRoll(formula) {
 		metaLog(2, "MetaCombatant getInitiativeRoll", "Engaged");

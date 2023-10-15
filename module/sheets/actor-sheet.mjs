@@ -1,6 +1,10 @@
+//? Import Roll Handler
 import { HandleMetaRolls } from "../helpers/metarollhandler.mjs";
+//? Import New Actor & Finalize Actor Logic
 import { NewActor, FinalizePremadeProtagonist } from "../metanthropes/newactor.mjs";
-import { openProgressionForm } from "../metanthropes/metaprogression.mjs";
+//? Import Progression Sheet
+import { MetaStartProgression } from "../metanthropes/metaprogression.mjs";
+//? Import helpers
 import { metaLog } from "../helpers/metahelpers.mjs";
 /**
  * MetanthropesActorSheet - An Actor Sheet for Metanthropes actors.
@@ -15,13 +19,10 @@ export class MetanthropesActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
+			id: "metanthropes-actor-sheet",
 			classes: ["metanthropes", "sheet", "actor"], //? these are custom css classes that are used in the html file
 			width: 1012,
 			height: 913,
-			closeOnSubmit: false,
-			submitOnClose: false,
-			submitOnChange: true,
-			resizable: true,
 			//! I don't understand why I can still drag when no item has .enablehotbar
 			dragDrop: [{ dragSelector: ".enablehotbar", dropSelector: null }],
 			tabs: [
@@ -31,17 +32,26 @@ export class MetanthropesActorSheet extends ActorSheet {
 					initial: "cs-charstats",
 				},
 			],
+			sheetConfig: false,
+			closeOnSubmit: false,
+			submitOnClose: false,
+			submitOnChange: true,
+			resizable: true,
+			minimizable: true,
 		});
 	}
 	/** @override */
 	get template() {
 		return `systems/metanthropes-system/templates/actor/${this.actor.type}-sheet.hbs`;
 	}
+	/** @override */
 	get title() {
-		return this.actor.isToken ? `[Token] ${this.actor.name} - ${this.actor.type}` : `${this.actor.name} - ${this.actor.type}`;
+		return this.actor.isToken
+			? `[Token] ${this.actor.name} - ${this.actor.type}`
+			: `${this.actor.name} - ${this.actor.type}`;
 	}
 	/** @override */
-	getData(options={}) {
+	getData(options = {}) {
 		//* Retrieve the data structure from the base sheet. You can inspect or log
 		//* the context variable to see the structure, but some key properties for
 		//* sheets are the actor object, the data object, whether or not it's
@@ -51,9 +61,9 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//* If you were to use your browser's inspector to take a look at an actor's available data, you wouldn't see these values in the list, unlike those created in prepareData().
 		//? super.getData() will construct context.actor context.items and context.effects
 		const context = super.getData(options);
-		//? Use a safe clone of the actor data for further operations.
 		//* It uses Foundry's built in toObject() method and gives it the false parameter, which instructs Foundry to not just convert this to a plain object but to also run a deep clone on nested objects/arrays.
 		//* from https://foundryvtt.wiki/en/development/guides/SD-tutorial/SD07-Extending-the-ActorSheet-class
+		//? Use a safe clone of the actor data for further operations.
 		const actorData = this.actor.toObject(false);
 		//? Add the actor's system attributes and flages to the context for easier access.
 		context.system = actorData.system;
@@ -203,41 +213,31 @@ export class MetanthropesActorSheet extends ActorSheet {
 		const actor = this.actor;
 		await FinalizePremadeProtagonist(actor);
 	}
-	prepareCharacteristicsProgression(progressionActorData) {
-		if (progressionActorData.type == "Vehicle") return;
-		const systemData = progressionActorData.system;
-		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
-			//? Calculate the Base score for this Characteristic (Initial + Progressed)
-			parseInt(
-				(CharValue.ProgressionBase = Number(CharValue.Initial) + Number(Number(CharValue.Progressed) * 5))
-			);
-			for (const [StatKey, StatValue] of Object.entries(CharValue.Stats)) {
-				//? Calculate the Base score for this Stat (Initial + Progressed)
-				parseInt(
-					(StatValue.ProgressionBase = Number(StatValue.Initial) + Number(Number(StatValue.Progressed) * 5))
-				);
-				//? Calculate the Score used for Progression for this Stat (Base + Characteristic_Base)
-				parseInt(
-					(StatValue.ProgressionRoll = Number(StatValue.ProgressionBase) + Number(CharValue.ProgressionBase))
-				);
-			}
-		}
-	}
 	//* Progression
-	_onProgression(event) {
+	async _onProgression(event) {
 		event.preventDefault();
 		//! I don't need the actor's getData, I should do all this inside the Progression it self
 		//todo refactor this so that this only takes care to open the Progression Form, the Form itself should take care of what to show
-		metaLog(5, "ActorSheet _onProgression", "Can I use this?", this);
-		//? Get the most up-to-date data for the actor
-		//const progressionActorData = this.getData();
-		//this.prepareCharacteristicsProgression(progressionActorData);
-		//	metaLog(
-		//		3,
-		//		"ActorSheet _onProgression",
-		//		"Data we pass along to progressionForm: progressionActorData:",
-		//		progressionActorData
-		//	);
-		//openProgressionForm(progressionActorData);
+		//? Get the actor for the Progression
+		const metaProgressionActor = this.actor;
+		//? Set the Flags for the Progression Form
+		//! Note that this flag will remain set unless otherwise told to do so!
+		//todo do this properly with a promise!
+		metaProgressionActor.setFlag("metanthropes-system", "Progression", { isProgressing: true });
+		//? Pass along the actor to the Progression Form
+		metaLog(
+			3,
+			"MetanthropesActorSheet",
+			"_onProgression",
+			"Engaging Progression Form for",
+			metaProgressionActor.name
+		);
+		try {
+			await MetaStartProgression(metaProgressionActor);
+		}
+		catch (error) {
+			metaLog(2, "MetanthropesActorSheet", "_onProgression", "ERROR:", error);
+			metaProgressionActor.setFlag("metanthropes-system", "Progression", { isProgressing: false });
+		}
 	}
 }

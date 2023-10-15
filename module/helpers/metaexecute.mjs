@@ -32,8 +32,8 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		metaLog(3, "MetaExecute", "Engaged via button click - Event:", event);
 		const button = event.target;
 		actorUUID = button.dataset.actoruuid;
-		itemName = button.dataset.itemName;
 		action = button.dataset.action;
+		itemName = button.dataset.itemName;
 		multiAction = parseInt(button.dataset.multiAction) ?? 0;
 	}
 	const actor = await fromUuid(actorUUID);

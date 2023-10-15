@@ -107,7 +107,14 @@ export class MetanthropesActor extends Actor {
 		this._prepareDerivedVitalData(actorData);
 		//? Check to see if this actor has been Progressed
 		//todo Deprecate this after we finalize the Progression system (v0.9)
-		const hasProgressed = this.getFlag("metanthropes-system", "Progression").hasProgressed || false;
+		const progressionFlag = this.getFlag("metanthropes-system", "Progression");
+		const isProgressing = progressionFlag && progressionFlag.isProgressing !== undefined ? progressionFlag.isProgressing : false;
+		if (isProgressing) {
+			//? Do the progression Calculations
+			this._prepareCharacteristicsProgression(actorData);
+		}
+		const hasProgressed =
+			progressionFlag && progressionFlag.hasProgressed !== undefined ? progressionFlag.hasProgressed : false;
 		if (hasProgressed) {
 			metaLog(
 				4,
@@ -452,6 +459,28 @@ export class MetanthropesActor extends Actor {
 			"New Life Maximum:",
 			systemData.Vital.Life.max
 		);
+	}
+	//* Calculate the Scores used in Progression
+	_prepareCharacteristicsProgression(actorData) {
+		if (actorData.type == "Vehicle") return;
+		metaLog(3, "MetanthropesActorProgression", "_prepareCharacteristicsProgression", "actorData:", actorData);
+		const systemData = actorData.system;
+		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
+			//? Calculate the Base score for this Characteristic (Initial + Progressed)
+			parseInt(
+				(CharValue.ProgressionBase = Number(CharValue.Initial) + Number(Number(CharValue.Progressed) * 5))
+			);
+			for (const [StatKey, StatValue] of Object.entries(CharValue.Stats)) {
+				//? Calculate the Base score for this Stat (Initial + Progressed)
+				parseInt(
+					(StatValue.ProgressionBase = Number(StatValue.Initial) + Number(Number(StatValue.Progressed) * 5))
+				);
+				//? Calculate the Score used for Progression for this Stat (Base + Characteristic_Base)
+				parseInt(
+					(StatValue.ProgressionRoll = Number(StatValue.ProgressionBase) + Number(CharValue.ProgressionBase))
+				);
+			}
+		}
 	}
 	/** @override */
 	getRollData() {

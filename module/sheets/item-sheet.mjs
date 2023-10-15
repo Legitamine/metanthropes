@@ -13,14 +13,17 @@ export class MetanthropesItemSheet extends ItemSheet {
 	/** @override */
 	static get defaultOptions() {
 		return mergeObject(super.defaultOptions, {
-			classes: ["metanthropes", "sheet", "item"],
+			id: "metanthropes-item-sheet",
+			classes: ["metanthropes", "item", "sheet"],
 			width: 860,
 			height: 860,
+			tabs: [{ navSelector: ".itemnavselector", contentSelector: ".itemnavtabs", initial: "description" }],
+			sheetConfig: false,
 			closeOnSubmit: false,
 			submitOnClose: true,
 			submitOnChange: true,
 			resizable: true,
-			tabs: [{ navSelector: ".itemnavselector", contentSelector: ".itemnavtabs", initial: "description" }],
+			minimizable: true,
 		});
 	}
 	//? Only Narrators are allowed to drag and drop items
@@ -64,16 +67,17 @@ export class MetanthropesItemSheet extends ItemSheet {
 	activateListeners(html) {
 		//? Call the super class's activateListeners method to ensure any other listeners are set up
 		super.activateListeners(html);
-		//? Only Narrators are allowed to edit the item sheet
+		//? Only Narrators are allowed to edit the item sheets
 		if (!game.user.isGM) {
 			html.find("input, textarea, select").attr("disabled", "disabled");
 		}
 		//* Everything below this point is only needed if the sheet is editable
 		//? Observers (non-owners) of the item sheet, should not be able to roll anything
 		if (!this.isEditable) return;
-		//? Find the different type of rolls and add the event listeners
+		//? Roll Metapower
 		html.find(".style-mp-rolls").click(this._onRoll.bind(this));
 		html.find(".style-mp-rolls").on("contextmenu", this._onCustomRoll.bind(this));
+		//? Roll Possession
 		html.find(".style-pos-rolls").click(this._onRoll.bind(this));
 		html.find(".style-pos-rolls").on("contextmenu", this._onCustomRoll.bind(this));
 	}

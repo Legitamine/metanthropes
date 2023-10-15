@@ -13,7 +13,7 @@ export async function metaMigrateData() {
 	metaLog(3, "metaMigrateData", "Finished");
 }
 //* Helper function to compare version numbers
-//! Unused
+//! Unused -- Foundry should come with it's own utility for this
 async function _metaIsNewerVersion(version, oldVersion) {
 	return version
 		.split(".")

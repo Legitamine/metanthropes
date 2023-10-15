@@ -22,6 +22,8 @@ export async function HandleMetaRolls(event, metaSheet, isCustomRoll = false) {
 	event.preventDefault();
 	const element = event.currentTarget;
 	//? Disable the element for 3 seconds to prevent double-clicking
+	//! Is this required since I disable the buttons now? Does this affect stat rolls? (I don't think so)
+	//todo Investigate if this is still required
 	element.disabled = true;
 	setTimeout(() => {
 		element.disabled = false;

@@ -23,7 +23,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 ### Added:
 
 -   New Progression process: Added a new button on the Character sheet that will allow both Players and Narrators to spend a Character's Experience points to increase their Characteristics, Stats, Metapowers and Perks. It will also award a character with additional 25 Life for every 5.000 Experience points accumulated
--   New Console Logging functionality: Added a new section that can be found in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Advanced Logging' feature. This will help in case you are encountering a bug, to collect information that will help in troubleshooting. This feature is turned off by default
+-   New Console Logging functionality: Added a new setting that can be found in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Advanced Logging' feature. This will help in case you are encountering a bug, to collect information that will assist us in troubleshooting. This feature is turned off by default
 
 ### Changed:
 
@@ -32,6 +32,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 ### Fixed:
 
 -   Fixed various minor issues and optimized the code for better performance and error handling
+-   Fixed Pain Condition to only change your result to Failure if it is greater than your Levels of Success. Previously it would also give you Levels of Failure, which was not intended
 
 ### Known Issues:
 
