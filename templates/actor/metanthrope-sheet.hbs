@@ -46,7 +46,7 @@
 				<div class="style-labels-text"
 					title="Life represents a Character's overall health, vitality, and will to live. Metanthrope Characters have a Life total of (100 + their Endurance score). Metanthrope Characters also gain an additional +25 Life for every 5.000 Total Experience they have accumulated">
 					❤️ Life
-					{{#if isGM}}
+					{{#if isNarrator}}
 						<input name="system.Vital.Life.value" type="number" value="{{system.Vital.Life.value}}"
 							data-dtype="Number" />
 					{{else}}
@@ -59,7 +59,7 @@
 				<div class="style-labels-text">{{system.Vital.Experience.Label}}: {{system.Vital.Experience.Total}}
 					Spent:
 					{{system.Vital.Experience.Spent}}
-					{{#if isGM}} + <input name="system.Vital.Experience.Manual" type="number"
+					{{#if isNarrator}} + <input name="system.Vital.Experience.Manual" type="number"
 							value="{{system.Vital.Experience.Manual}}" data-dtype="Number" placeholder="0" /> {{/if}}
 					Stored:{{#if (gte system.Vital.Experience.Stored 0)}}
 						<span class="style-cs-positive">{{system.Vital.Experience.Stored}}</span>
@@ -67,6 +67,9 @@
 						<span class="style-cs-negative">{{system.Vital.Experience.Stored}}</span>
 					{{/if}}
 				</div>
+			</div>
+			<div>
+				<button class="progression-form" title="Progress {{actor.type}}">Progress 📈</button>
 			</div>
 			<div>
 				<div class="style-labels-text"
@@ -79,12 +82,12 @@
 	<main>
 		<div class="layout-container-nav style-container-nav">
 			<nav class="style-container-nav-children csnavselector tabs" data-group="cs">
-				<a class="item" data-tab="cs-charstats">📊 Overview</a>
-				<a class="item" data-tab="cs-perks">📚 Perks</a>
-				<a class="item" data-tab="cs-metapowers">Ⓜ️ Metapowers</a>
-				<a class="item" data-tab="cs-combos">🔗 Combos</a>
-				<a class="item" data-tab="cs-possessions">🛠️ Possessions</a>
-				<a class="item" data-tab="cs-notes">📓 Notes</a>
+				<a class="item style-cs-labels" data-tab="cs-charstats">📊 Overview</a>
+				<a class="item style-cs-labels" data-tab="cs-perks">📚 Perks</a>
+				<a class="item style-cs-labels" data-tab="cs-metapowers">Ⓜ️ Metapowers</a>
+				<a class="item style-cs-labels" data-tab="cs-combos">🔗 Combos</a>
+				<a class="item style-cs-labels" data-tab="cs-possessions">🛠️ Possessions</a>
+				<a class="item style-cs-labels" data-tab="cs-notes">📓 Notes</a>
 			</nav>
 		</div>
 		<section class="csnavtabs">

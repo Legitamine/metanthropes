@@ -1,12 +1,12 @@
 <ol class="items-list">
 	{{#each Possessions as |Possessions Category|}}
-		<li class="item flexrow items-header">
+		<li class="item-list flexrow items-header">
 			<div class="item-name" title="The Category of this Possession">{{Category}}</div>
 			<div class="item-attacktype" title="The type of Attack of this Possession">Attack Type</div>
 			<div class="item-statroll" title="The Stat Rolled to use this Possession">🎲</div>
 			<div class="item-actionslot" title="Which part of my turn does it take to use this Possession">⏱</div>
 			<div class="item-range" title="The Range of this Possession">📏</div>
-			{{#if ../isGM}}
+			{{#if ../isNarrator}}
 				<div class="item-controls"><i class="fa-duotone fa-gears"></i></div>
 			{{/if}}
 		</li>
@@ -30,7 +30,7 @@
 				</div>
 				<div class="item-actionslot item-prop">{{item.system.Execution.ActionSlot.value}}</div>
 				<div class="item-range item-prop">{{item.system.Execution.Range.value}}</div>
-				{{#if ../../isGM}}
+				{{#if ../../isNarrator}}
 					<div class="item-controls">
 						<a class="item-control item-delete" title="Delete Possession"><i
 								class="fa-duotone fa-trash"></i></a>

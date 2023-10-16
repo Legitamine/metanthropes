@@ -1,16 +1,29 @@
-console.log("Metanthropes | ====================================");
-console.log("Metanthropes | Awakened");
-console.log("Metanthropes | ====================================");
-//? Import Combat Modules.
+/**
+ * Metanthropes RPG Official System for FoundryVTT
+ * Author: qp aka The Orchestrator
+ *
+ * Throughtout this project, I use the following syntax for comments:
+ ** //! Marks a special comment that stands out (in Red) for critical notes.
+ ** //* Marks a comment that is used as a section header (in Green) for better visibility.
+ ** //? Marks a comment that is used for explaining what the below code does (in Blue) for better readability.
+ ** //todo Marks a comment that is used for marking (in Orange) potential optimization notes.
+ *
+ * To get automatic colloring for these comments in VSCode, you can use this extension:
+ * aaron-bond.better-comments
+ *
+ */
+//* Imports
+//? Import Combat Modules
 import { MetanthropesCombat } from "./metanthropes/combat.mjs";
 import { MetaCombatTracker } from "./metanthropes/combattracker.mjs";
 import { MetaCombatant } from "./metanthropes/combatant.mjs";
-//? Import document classes.
+//? Import document classes
 import { MetanthropesActor } from "./documents/actor.mjs";
 import { MetanthropesItem } from "./documents/item.mjs";
-//? Import sheet classes.
+//? Import sheet classes
 import { MetanthropesActorSheet } from "./sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
+import { MetanthropesActorProgressionSheet } from "./sheets/actor-progression-sheet.mjs";
 //? Pre-load Handlebars templates
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 //? Import helpers
@@ -19,7 +32,8 @@ import { Rolld10ReRoll } from "./helpers/extrasroll.mjs";
 import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
 import { MetaExecute } from "./helpers/metaexecute.mjs";
 import { metaMigrateData } from "./metanthropes/metamigration.mjs";
-//? Handlebars helpers
+import { metaLog } from "./helpers/metahelpers.mjs";
+//* Handlebars helpers
 //! Supposedly Foundry includes its own select helper, but I couldn't get it to work properly.
 Handlebars.registerHelper("selected", function (option, value) {
 	return option === value ? "selected" : "";
@@ -32,78 +46,93 @@ Handlebars.registerHelper("join", function (array, separator) {
 Handlebars.registerHelper("isArray", function (value) {
 	return Array.isArray(value);
 });
-//! Deprecated - I don't think I'm using this anymore, but I'm not sure
-// //? Handlebars helper for displaying actor values on the item sheets.
-//	//! I don't recall where this is being used exactly
-//	Handlebars.registerHelper("getStatValue", function (statName) {
-//		console.log("Metanthropes | DEBUG: ARE WE USING THIS? | Handlebars helper statName:", statName);
-//		return actor.system.RollStats[statName];
-//	});
-//	//? this allows me to use an each loop to list stuff unless the key is...
-//	Handlebars.registerHelper("unless_key_is", function (key, value, options) {
-//		if (key !== value) {
-//			return options.fn(this);
-//		}
-//	});
-//	//? Handlebars helper for joining an array into a single value
-
-//	//? Handlebars helper for checking if the value is included in the array
-//	Handlebars.registerHelper("includes", function (array, value) {
-//		return Array.isArray(array) && array.includes(value);
-//	});
-//? System Initialization.
+//* System Initialization.
 Hooks.once("init", async function () {
-	console.log("Metanthropes | ====================================");
-	console.log("Metanthropes | Initializing");
-	// add our classes so they are more easily accessible
+	//? add our classes so they are more easily accessible
 	game.metanthropes = {
 		MetanthropesActor,
 		MetanthropesItem,
 		rollItemMacro,
 		createItemMacro,
 	};
-	// Metanthropes Initiative System
+	//? Metanthropes Initiative System
 	//! should I remove this?
 	CONFIG.Combat.initiative = {
 		formula: "1d100 + @RollStats.Reflexes",
 		decimals: 2,
 	};
-	// Metanthropes Combat System
+	//? Metanthropes Combat System
 	CONFIG.Combat.documentClass = MetanthropesCombat;
-	//setup custom combatant
+	//? setup custom combatant
 	CONFIG.Actor.entityClass = MetaCombatant;
-	// setup custom combat tracker
+	//? setup custom combat tracker
 	CONFIG.ui.combat = MetaCombatTracker;
-	// time in seconds for Round Duration
+	//? time in seconds for Round Duration
 	// CONFIG.time.roundTime = 120;
-	// Define custom Entity classes.
+	//? Define custom Entity classes.
 	CONFIG.Actor.documentClass = MetanthropesActor;
 	CONFIG.Item.documentClass = MetanthropesItem;
-	// Register sheet application classes instead of defaults.
+	//? Register sheet application classes instead of defaults.
 	Actors.unregisterSheet("core", ActorSheet);
 	Actors.registerSheet("metanthropes", MetanthropesActorSheet, {
 		makeDefault: true,
+	});
+	Actors.registerSheet("metanthropes", MetanthropesActorProgressionSheet, {
+		makeDefault: false,
 	});
 	Items.unregisterSheet("core", ItemSheet);
 	Items.registerSheet("metanthropes", MetanthropesItemSheet, {
 		makeDefault: true,
 	});
-	// Preload Handlebars templates.
-	console.log("Metanthropes | Initialized");
-	console.log("Metanthropes | ====================================");
+	//* System Settings
+	//? Advanced Logging
+	game.settings.register("metanthropes-system", "metaAdvancedLogging", {
+		name: "Enable Advanced Logging",
+		hint: `
+		The Console helps you identify any issues or potential bugs in regards to Metanthropes System for Foundry VTT.
+		Enable this setting to see even more detailed logs in the Console.
+		You can press 'F12' in the Foundry Client or 'CTRL+SHIFT+i' in a Chrome-ium web browser to show the Console.
+		`,
+		scope: "client", //? This specifies if it's a client-side setting
+		config: true, //? This makes the setting appear in the module configuration
+		requiresReload: false, //? If true, a client reload (F5) is required to activate the setting
+		type: Boolean,
+		default: false,
+		onChange: (value) => {
+			//? Do something when the setting is changed, if necessary
+		},
+	});
+	//? Beta Features Testing
+	game.settings.register("metanthropes-system", "metaBetaTesting", {
+		name: "Enable Beta Testing of New Features",
+		hint: `
+		Enable this setting to test New Features that are still in development.
+		These features may not be fully functional and will change during development.
+		This setting requires a reload (F5) to take effect.
+		`,
+		scope: "world", //? This specifies if it's a client-side setting
+		config: true, //? This makes the setting appear in the module configuration
+		requiresReload: true, //? If true, a client reload (F5) is required to activate the setting
+		type: Boolean,
+		default: false,
+		onChange: (value) => {
+			//? Do something when the setting is changed, if necessary
+		},
+	});
+	//? Preload Handlebars templates.
+	metaLog(3, "Initialized Metanthropes System");
 	return preloadHandlebarsTemplates();
 });
-/* -------------------------------------------- */
-/*  Hotbar Macros                               */
-/* -------------------------------------------- */
 /**
+ *
  * Create a Macro from an Item drop.
  * Get an existing item macro if one exists, otherwise create a new one.
  * @param {Object} data     The dropped data
  * @param {number} slot     The hotbar slot to use
  * @returns {Promise}
  */
-//do I need this here? Could it instead be inside a helper file that I import here and call from here?
+//* Hotbar Macros
+//! do I need this here? Could it instead be inside a helper file that I import here and call from here?
 async function createItemMacro(data, slot) {
 	// First, determine if this is a valid owned item.
 	if (data.type !== "Item") return;
@@ -132,6 +161,7 @@ async function createItemMacro(data, slot) {
  * Get an existing item macro if one exists, otherwise create a new one.
  * @param {string} itemUuid
  */
+//* Roll Item Macro
 function rollItemMacro(itemUuid) {
 	// Reconstruct the drop data so that we can load the item.
 	const dropData = {
@@ -151,22 +181,18 @@ function rollItemMacro(itemUuid) {
 		item.roll();
 	});
 }
-/* -------------------------------------------- */
-//*Hooks
-/* -------------------------------------------- */
-/* -------------------------------------------- */
-/*  Ready Hook                                  */
-/* -------------------------------------------- */
-// dragable macros
+//* Ready Hook
 Hooks.once("ready", async function () {
 	//? Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
 	Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
 	//* Migration section
-	console.log("Metanthropes | Starting Migration");
-	await metaMigrateData();
-	console.log("Metanthropes | Finished Migration");
-	//? Add support for Moulinette: Free modules with artwork & sounds are indexable by Moulinette
+	metaLog(3, "Starting Migration");
+	metaMigrateData();
+	metaLog(3, "Finished Migration");
+	//* Add support for Moulinette
 	if (game.moulinette) {
+		//* Metanthropes Content Moulinette Integration
+		//? Add Metanthropes Metapowers Artwork to Moulinette
 		game.moulinette.sources.push({
 			type: "images",
 			publisher: "Metanthropes",
@@ -174,6 +200,7 @@ Hooks.once("ready", async function () {
 			source: "data",
 			path: "systems/metanthropes-system/artwork/metapowers",
 		});
+		//? Add Metanthropes Portraits (Masculine) Artwork to Moulinette
 		game.moulinette.sources.push({
 			type: "images",
 			publisher: "Metanthropes",
@@ -181,6 +208,7 @@ Hooks.once("ready", async function () {
 			source: "data",
 			path: "systems/metanthropes-system/artwork/tokens/portraits/masculine",
 		});
+		//? Add Metanthropes Portraits (Feminine) Artwork to Moulinette
 		game.moulinette.sources.push({
 			type: "images",
 			publisher: "Metanthropes",
@@ -188,111 +216,7 @@ Hooks.once("ready", async function () {
 			source: "data",
 			path: "systems/metanthropes-system/artwork/tokens/portraits/feminine",
 		});
-		game.moulinette.sources.push({
-			type: "sounds",
-			publisher: "Dark Raven",
-			pack: "Free Soundscapes Module",
-			source: "data",
-			path: "modules/darkraven-games-soundscapes-free/audio",
-		});
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "Fragmaps",
-			pack: "Fragmaps Free Images",
-			source: "data",
-			path: "modules/fragmaps-free/images",
-		});
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "Fragmaps",
-			pack: "Fragmaps Free Tiles",
-			source: "data",
-			path: "modules/fragmaps-free/images/tiles",
-		});
-		game.moulinette.sources.push({
-			type: "sounds",
-			publisher: "Ivan Duch",
-			pack: "Free Music Packs",
-			source: "data",
-			path: "modules/ivan-duch-music-packs/audio",
-		});
-		game.moulinette.sources.push({
-			type: "sounds",
-			publisher: "Michael Ghelfi",
-			pack: "Free Ambience",
-			source: "data",
-			path: "modules/michaelghelfi/ambience",
-		});
-		game.moulinette.sources.push({
-			type: "sounds",
-			publisher: "Michael Ghelfi",
-			pack: "Free Music",
-			source: "data",
-			path: "modules/michaelghelfi/music",
-		});
-		game.moulinette.sources.push({
-			type: "sounds",
-			publisher: "Hologrounds Free",
-			pack: "Audio",
-			source: "data",
-			path: "modules/hologrounds-free-module/audio",
-		});
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "Hologrounds Free",
-			pack: "Maps",
-			source: "data",
-			path: "modules/hologrounds-free-module/maps",
-		});
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "Miska Free",
-			pack: "Maps",
-			source: "data",
-			path: "modules/miskasmaps/maps",
-		});
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "MAD Free",
-			pack: "Journal",
-			source: "data",
-			path: "modules/mad-freecontent/images/journal",
-		});
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "MAD Free",
-			pack: "Maps",
-			source: "data",
-			path: "modules/mad-freecontent/images/maps",
-		});
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "MAD Free",
-			pack: "Tiles",
-			source: "data",
-			path: "modules/mad-freecontent/images/tiles",
-		});
-		game.moulinette.sources.push({
-			type: "sounds",
-			publisher: "MAD Free",
-			pack: "Audio",
-			source: "data",
-			path: "modules/mad-freecontent/audio",
-		});
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "Coriolis",
-			pack: "AI Portraits",
-			source: "data",
-			path: "modules/coriolis-kbender-ai-art-pack/portraits",
-		});
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "Coriolis",
-			pack: "AI Tokens",
-			source: "data",
-			path: "modules/coriolis-kbender-ai-art-pack/tokens",
-		});
+		//? Add Metanthropes Music to Moulinette
 		game.moulinette.sources.push({
 			type: "sounds",
 			publisher: "Metanthropes",
@@ -300,6 +224,7 @@ Hooks.once("ready", async function () {
 			source: "data",
 			path: "systems/metanthropes-system/audio/music",
 		});
+		//? Add Metanthropes Sound Effects to Moulinette
 		game.moulinette.sources.push({
 			type: "sounds",
 			publisher: "Metanthropes",
@@ -307,27 +232,100 @@ Hooks.once("ready", async function () {
 			source: "data",
 			path: "systems/metanthropes-system/audio/sound-effects",
 		});
+		//* Free Content that we use in our closed Alpha Moulinette Integration
+		//? Add Dark Raven's Free Soundscapes to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "sounds",
+			publisher: "Dark Raven",
+			pack: "Free Soundscapes Module",
+			source: "data",
+			path: "modules/darkraven-games-soundscapes-free/audio",
+		});
+		//? Add Fragmaps' Free Images to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "images",
+			publisher: "Fragmaps",
+			pack: "Fragmaps Free Images",
+			source: "data",
+			path: "modules/fragmaps-free/images",
+		});
+		//? Add Fragmaps' Free Tiles to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "images",
+			publisher: "Fragmaps",
+			pack: "Fragmaps Free Tiles",
+			source: "data",
+			path: "modules/fragmaps-free/images/tiles",
+		});
+		//? Add Ivan Duch's Free Music Packs to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "sounds",
+			publisher: "Ivan Duch",
+			pack: "Free Music Packs",
+			source: "data",
+			path: "modules/ivan-duch-music-packs/audio",
+		});
+		//? Add Michael Ghelfi's Free Ambience to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "sounds",
+			publisher: "Michael Ghelfi",
+			pack: "Free Ambience",
+			source: "data",
+			path: "modules/michaelghelfi/ambience",
+		});
+		//? Add Michael Ghelfi's Free Music to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "sounds",
+			publisher: "Michael Ghelfi",
+			pack: "Free Music",
+			source: "data",
+			path: "modules/michaelghelfi/music",
+		});
+		//? Add Hologrounds' Free Audio to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "sounds",
+			publisher: "Hologrounds Free",
+			pack: "Audio",
+			source: "data",
+			path: "modules/hologrounds-free-module/audio",
+		});
+		//? Add Hologrounds' Free Maps to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "images",
+			publisher: "Hologrounds Free",
+			pack: "Maps",
+			source: "data",
+			path: "modules/hologrounds-free-module/maps",
+		});
+		//? Add Miska's Free Maps to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "images",
+			publisher: "Miska Free",
+			pack: "Maps",
+			source: "data",
+			path: "modules/miskasmaps/maps",
+		});
+		//? Add Coriolis' AI Portraits Art Pack to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "images",
+			publisher: "Coriolis",
+			pack: "AI Portraits",
+			source: "data",
+			path: "modules/coriolis-kbender-ai-art-pack/portraits",
+		});
+		//? Add Coriolis' AI Tokens Art Pack to Moulinette (Free Module)
+		game.moulinette.sources.push({
+			type: "images",
+			publisher: "Coriolis",
+			pack: "AI Tokens",
+			source: "data",
+			path: "modules/coriolis-kbender-ai-art-pack/tokens",
+		});
 	}
 });
-//	//? Enhanced Terrain Layer Integration - disabled until post v0.9
-//	Hooks.once("enhancedTerrainLayer.ready", (RuleProvider) => {
-//		console.log("Metanthropes | ====================================");
-//		console.log("Metanthropes | Enhanced Terrain Layer Integration Started");
-//		class MetanthropesRuleProvider extends RuleProvider {
-//			calculateCombinedCost(terrain, options) {
-//				//? I want to reduce movement by 1 for every 2 points of terrain (?)
-//				let cost = terrain - 1;
-//				return cost;
-//			}
-//		}
-//		enhancedTerrainLayer.registerSystem("metanthropes-system", MetanthropesRuleProvider);
-//		console.log("Metanthropes | Enhanced Terrain Layer Integration Finished");
-//		console.log("Metanthropes | ====================================");
-//	});
-//? Drag Ruler Integration
+//* Drag Ruler Integration
 Hooks.once("dragRuler.ready", (SpeedProvider) => {
-	console.log("Metanthropes | ====================================");
-	console.log("Metanthropes | Drag Ruler Integration Started");
+	metaLog(3, "Drag Ruler Integration Started");
 	class MetanthropesSystemSpeedProvider extends SpeedProvider {
 		get colors() {
 			return [
@@ -344,7 +342,7 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 				{ range: baseSpeed * 4, color: "additional" },
 				{ range: baseSpeed * 10, color: "sprint" },
 			];
-			//todo	I can add special modifiers to speed (like flying, etc)
+			//todo	I can add special modifiers to speed (like flying, etc) - perhaps Metapowers that affect Movement directly?
 			// Example: Characters that aren't wearing armor are allowed to run with three times their speed
 			//		if (!token.actor.data.isWearingArmor) {
 			//			ranges.push({range: baseSpeed * 3, color: "dash"})
@@ -353,21 +351,21 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 		}
 	}
 	dragRuler.registerSystem("metanthropes-system", MetanthropesSystemSpeedProvider);
-	console.log("Metanthropes | Drag Ruler Integration Finished");
-	console.log("Metanthropes | ====================================");
+	metaLog(3, "Drag Ruler Integration Finished");
 });
-//? Chat Message Event Listeners
+//* Chat Message Event Listeners
 Hooks.on("renderChatMessage", async (message, html) => {
 	//? Get the actor from the message - all our messages have the actoruuid flag set, so if it's not our message, return.
-	const actorUUID = message.getFlag("metanthropes-system", "actoruuid");
+	const actorUUID = await message.getFlag("metanthropes-system", "actoruuid");
 	if (!actorUUID) return;
 	const actor = await fromUuid(actorUUID);
-	const metaowner = actor.system.metaowner.value || null;
+	const metaowner = (await actor.system.metaowner.value) || null;
 	//? Proceed only if the current user is the owner of the actor, or a GM
 	if (game.user.name === metaowner || game.user.isGM) {
 		//? Unhide the buttons - assumes DF Chat Enhancements module is installed (provides hidden class that works)
+		//todo Figure out a way to do this without any dependencies
 		html.find(".hide-button").removeClass("hidden");
-		//? Handle Main Chat Buttons (all the buttons that will be displayed if any of them is clicked)
+		//? Handle Main Chat Buttons (all the buttons that will be disabled if any of them is clicked)
 		html.on("click", ".metanthropes-main-chat-button", function (event) {
 			const button = $(event.currentTarget);
 			if (button.hasClass("metaeval-reroll")) {

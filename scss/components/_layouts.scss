@@ -33,6 +33,17 @@
 	margin: $margin-zero;
 	overflow: hidden;
 }
+.layout-container-outer-charstatsprogression {
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr;
+	column-gap: 3px;
+	row-gap: 3px;
+	padding: $padding-zero;
+	margin: $margin-zero;
+	overflow: hidden;
+}
 //big container with 3 columns and 2 rows
 .layout-container-grid3x2 {
 	display: grid;
@@ -87,6 +98,15 @@
 .layout-container-actorinfo {
 	display: grid;
 	grid-template-columns: 0.4fr 0.7fr 1.6fr 1fr 0.4fr;
+	column-gap: 1px;
+	padding: $padding-sm;
+	margin: $margin-md;
+	overflow: hidden;
+	overflow-wrap: break-word;
+}
+.layout-container-progressionheader {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
 	column-gap: 1px;
 	padding: $padding-sm;
 	margin: $margin-md;
