@@ -1,7 +1,8 @@
 import { metaLog } from "../helpers/metahelpers.mjs";
 //* This is the base class for all Actors which represent the protagonists, metanthropes, vehicles, and other entities within the world.
 export class MetanthropesActor extends Actor {
-	//? Setting default Token configuration for all actors
+	/** @override */
+	//* Setting default Token configuration for all actors
 	async _preCreate(data, options, user) {
 		await super._preCreate(data, options, user);
 		let createData = {};

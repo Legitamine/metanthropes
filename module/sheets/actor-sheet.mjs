@@ -78,8 +78,10 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//! Prepare active effects - causes error when enabled - prepareActiveEffectCategories is not defined
 		//! it needs effects.mjs from https://gitlab.com/asacolips-projects/foundry-mods/boilerplate/-/blob/master/module/helpers/effects.mjs?ref_type=heads
 		// context.effects = prepareActiveEffectCategories(this.actor.effects);
+		//? Provide a boolean for if 'Beta Testing of New Features' is enabled
+		context.betaTesting = game.settings.get("metanthropes-system", "metaBetaTesting");
 		//? Provide a boolean for if the user is a Narrator(GameMaster)
-		context.isGM = game.user.isGM;
+		context.isNarrator = game.user.isGM;
 		//todo I would like to refresh the sheet after getting all the data
 		metaLog(4, "MetanthropesActorSheet getData results", "this, context, options", this, context, options);
 		return context;
@@ -216,8 +218,11 @@ export class MetanthropesActorSheet extends ActorSheet {
 	//* Progression
 	async _onProgression(event) {
 		event.preventDefault();
-		//! I don't need the actor's getData, I should do all this inside the Progression it self
-		//todo refactor this so that this only takes care to open the Progression Form, the Form itself should take care of what to show
+		//? Check if 'Beta Testing of New Features' is enabled
+		if (!game.settings.get("metanthropes-system", "metaBetaTesting")) {
+			ui.notifications.warn("Progression is only available if you enable Beta Testing of New Features");
+			return;
+		}
 		//? Get the actor for the Progression
 		const metaProgressionActor = this.actor;
 		//? Set the Flags for the Progression Form
@@ -234,8 +239,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		);
 		try {
 			await MetaStartProgression(metaProgressionActor);
-		}
-		catch (error) {
+		} catch (error) {
 			metaLog(2, "MetanthropesActorSheet", "_onProgression", "ERROR:", error);
 			metaProgressionActor.setFlag("metanthropes-system", "Progression", { isProgressing: false });
 		}

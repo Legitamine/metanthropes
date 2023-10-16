@@ -1,11 +1,11 @@
 <div class="tab execution" data-group="primary" data-tab="execution">
 	{{#each system.Execution}}
-		{{#if (or ../isGM (and (not (or (eq this.value null) (eq this.value 0) (eq this.value "None"))) (or (not (isArray this.value)) (and (isArray this.value) (gt this.value.length 0)))))}}
+		{{#if (or ../isNarrator (and (not (or (eq this.value null) (eq this.value 0) (eq this.value "None"))) (or (not (isArray this.value)) (and (isArray this.value) (gt this.value.length 0)))))}}
 			{{#unless (or (eq @key "StatRolled") (eq @key "AdditionalInfo"))}}
 				<div class="resource">
 					<label class="resource-label">{{this.label}}:</label>
 					{{#if this.options}}
-						{{#if ../isGM}}
+						{{#if ../isNarrator}}
 							<select name="system.Execution.{{@key}}.value">
 								{{#each this.options as |option|}}
 									<option value="{{option}}" {{#if (eq option ../this.value)}}selected{{/if}}>
@@ -17,7 +17,7 @@
 							{{this.value}}
 						{{/if}}
 					{{else if this.selections}}
-						{{#if ../isGM}}
+						{{#if ../isNarrator}}
 							<select multiple name="system.Execution.{{@key}}.value">
 								{{selectOptions this.selections selected=this.value}}
 							</select>
@@ -37,9 +37,9 @@
 			{{/unless}}
 		{{/if}}
 	{{/each}}
-	{{#if (or isGM (and system.Execution.AdditionalInfo.value (not (or (eq system.Execution.AdditionalInfo.value null) (eq system.Execution.AdditionalInfo.value 0) (eq system.Execution.AdditionalInfo.value "None")))))}}
+	{{#if (or isNarrator (and system.Execution.AdditionalInfo.value (not (or (eq system.Execution.AdditionalInfo.value null) (eq system.Execution.AdditionalInfo.value 0) (eq system.Execution.AdditionalInfo.value "None")))))}}
 		<div><label class="resource-label">{{system.Execution.AdditionalInfo.label}}:</label></div>
-		{{#if isGM}}
+		{{#if isNarrator}}
 			<div class="layout-editor">
 				{{editor system.Execution.AdditionalInfo.value target="system.Execution.AdditionalInfo.value" button=true editable=true}}
 			</div><br>

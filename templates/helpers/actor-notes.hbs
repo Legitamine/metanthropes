@@ -1,4 +1,4 @@
-{{#if isGM}}
+{{#if isNarrator}}
 	<div>
 		<h3>{{system.secret-notes-narrator.label}}</h3>
 	</div>
@@ -25,10 +25,19 @@
 	<div class="layout-editor style-editor">
 		{{editor system.entermeta.sagaNotes.value target="system.entermeta.sagaNotes.value" button=true editable=true}}
 	</div>
+	{{#if isNarrator}}
 	<div>
 		<h3>{{system.notes-narrator.label}}</h3>
 	</div>
 	<div class="layout-editor style-editor">
-		{{editor system.notes-narrator.value target="system.notes-narrator.value" engine="prosemirror" collaborate=false button=true editable=true}}
+		{{editor system.notes-narrator.value target="system.notes-narrator.value" button=true editable=true}}
 	</div>
+	{{else}}
+	<div>
+		<h3>{{system.notes-narrator.label}}</h3>
+	</div>
+	<div class="layout-editor style-editor">
+		{{editor system.notes-narrator.value target="system.notes-narrator.value" button=true editable=false}}
+	</div>
+	{{/if}}
 {{/if}}

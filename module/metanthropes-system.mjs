@@ -84,6 +84,7 @@ Hooks.once("init", async function () {
 	Items.registerSheet("metanthropes", MetanthropesItemSheet, {
 		makeDefault: true,
 	});
+	//* System Settings
 	//? Advanced Logging
 	game.settings.register("metanthropes-system", "metaAdvancedLogging", {
 		name: "Enable Advanced Logging",
@@ -95,6 +96,23 @@ Hooks.once("init", async function () {
 		scope: "client", //? This specifies if it's a client-side setting
 		config: true, //? This makes the setting appear in the module configuration
 		requiresReload: false, //? If true, a client reload (F5) is required to activate the setting
+		type: Boolean,
+		default: false,
+		onChange: (value) => {
+			//? Do something when the setting is changed, if necessary
+		},
+	});
+	//? Beta Features Testing
+	game.settings.register("metanthropes-system", "metaBetaTesting", {
+		name: "Enable Beta Testing of New Features",
+		hint: `
+		Enable this setting to test New Features that are still in development.
+		These features may not be fully functional and will change during development.
+		This setting requires a reload (F5) to take effect.
+		`,
+		scope: "world", //? This specifies if it's a client-side setting
+		config: true, //? This makes the setting appear in the module configuration
+		requiresReload: true, //? If true, a client reload (F5) is required to activate the setting
 		type: Boolean,
 		default: false,
 		onChange: (value) => {
@@ -169,7 +187,7 @@ Hooks.once("ready", async function () {
 	Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
 	//* Migration section
 	metaLog(3, "Starting Migration");
-	await metaMigrateData();
+	metaMigrateData();
 	metaLog(3, "Finished Migration");
 	//* Add support for Moulinette
 	if (game.moulinette) {
