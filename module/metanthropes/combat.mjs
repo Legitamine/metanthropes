@@ -1,4 +1,5 @@
 import { MetaInitiative } from "../helpers/metainitiative.mjs";
+import { metaLog } from "../helpers/metahelpers.mjs";
 export class MetanthropesCombat extends Combat {
 	//? adding the concept of Cycles & Rounds to the combat system
 	prepareDerivedData() {
@@ -11,7 +12,7 @@ export class MetanthropesCombat extends Combat {
 		//? embed the Cycle and Round values into the Combat document for use in the Combat Tracker
 		this.cycle = cycle;
 		this.cycleRound = cycleRound;
-		console.log("Metanthropes | Combat | prepareDerivedData | Cycle:", cycle, "Round:", cycleRound);
+		metaLog(3, "Combat", "prepareDerivedData", "Cycle:", cycle, "Round:", cycleRound);
 	}
 	_sortCombatants(a, b) {
 		const ia = Number.isNumeric(a.initiative) ? a.initiative : -Infinity;
@@ -23,12 +24,7 @@ export class MetanthropesCombat extends Combat {
 		if (a.initiative && b.initiative) {
 			if (ia === ib && astatScore === bstatScore) {
 				//todo: award 1 Destiny and re-roll initiative if tied both in Initiative and statScore
-				console.warn(
-					"Metanthropes | Combat | _sortCombatants | Perfect Tie between combatants:",
-					a.name,
-					"and:",
-					b.name
-				);
+				metaLog(4, "Combat", "_sortCombatants", "Perfect Tie between combatants:", a.name, "and:", b.name);
 			}
 		}
 		return ib - ia || (astatScore > bstatScore ? -1 : 1);
@@ -45,7 +41,7 @@ export class MetanthropesCombat extends Combat {
 	 * @returns {Promise<Combat>}       A promise which resolves to the updated Combat document once updates are complete.
 	 */
 	async rollInitiative(ids, { formula = null, updateTurn = true, messageOptions = {} } = {}) {
-		console.log("Metanthropes | Combat | rollInitiative Engaged");
+		metaLog(3, "Combat", "rollInitiative", "Engaged");
 		//? Structure input data
 		ids = typeof ids === "string" ? [ids] : ids;
 		//? Iterate over Combatants, performing an initiative roll for each
@@ -55,14 +51,16 @@ export class MetanthropesCombat extends Combat {
 			const combatant = this.combatants.get(id);
 			if (!combatant?.isOwner) continue;
 			//? Produce an initiative roll for the Combatant
-			console.log(
-				"Metanthropes | Combat | rollInitiative | Engaging MetaInitiative for combatant:",
-				combatant
-			);
+			metaLog(3, "Combat", "rollInitiative", "Engaging MetaInitiative for combatant:", combatant);
 			await MetaInitiative(combatant);
 			let initiativeResult = combatant.actor.getFlag("metanthropes-system", "lastrolled").Initiative;
-			console.log(
-				"Metanthropes | Combat | rollInitiative | MetaInitiative finished, updating combatant with new initiative:",
+			metaLog(
+				3,
+				"Combat",
+				"rollInitiative",
+				"MetaInitiative result for combatant:",
+				combatant,
+				"is:",
 				initiativeResult
 			);
 			updates.push({ _id: id, initiative: initiativeResult });
@@ -73,7 +71,7 @@ export class MetanthropesCombat extends Combat {
 		return this;
 	}
 	async nextRound() {
-		console.warn("Metanthropes | Combat | nextRound | Engaged");
+		metaLog(4, "Combat", "nextRound", "Engaged");
 		await super.nextRound();
 		//todo Bleeding - assuming this function runs at the end of every Round, bleeding goes here
 		//! I should probably do something similar for previous round
@@ -112,7 +110,7 @@ export class MetanthropesCombat extends Combat {
 			await this.resetAll();
 			this.setupTurns();
 		}
-		console.warn("Metanthropes | Combat | nextRound | Finished");
+		metaLog(4, "Combat", "nextRound", "Finished");
 		return this;
 	}
 }

@@ -17,7 +17,7 @@ export const preloadHandlebarsTemplates = async function () {
 		"systems/metanthropes-system/templates/helpers/item-description.hbs",
 		"systems/metanthropes-system/templates/helpers/item-execution.hbs",
 		"systems/metanthropes-system/templates/helpers/item-effects.hbs",
-		"systems/metanthropes-system/templates/progression/progression-dialog.hbs",
+		"systems/metanthropes-system/templates/progression/progression-sheet.hbs",
 		"systems/metanthropes-system/templates/progression/progression-overview.hbs",
 		"systems/metanthropes-system/templates/progression/progression-perks.hbs",
 		"systems/metanthropes-system/templates/progression/progression-metapowers.hbs",

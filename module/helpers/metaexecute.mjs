@@ -1,4 +1,4 @@
-import { metaExtractNumberOfDice } from "./metahelpers.mjs";
+import { metaExtractNumberOfDice, metaLog, metaIsItemEquipped } from "./metahelpers.mjs";
 /**
  * MetaExecute handles the execution of Metapowers and Possessions for a given actor.
  *
@@ -29,28 +29,26 @@ import { metaExtractNumberOfDice } from "./metahelpers.mjs";
 export async function MetaExecute(event, actorUUID, action, itemName, multiAction = 0) {
 	//? If we called this from a button click, get the data we need
 	if (event) {
-		console.log("Metanthropes | MetaExecute | event:", event);
+		metaLog(3, "MetaExecute", "Engaged via button click - Event:", event);
 		const button = event.target;
 		actorUUID = button.dataset.actoruuid;
-		itemName = button.dataset.itemName;
 		action = button.dataset.action;
+		itemName = button.dataset.itemName;
 		multiAction = parseInt(button.dataset.multiAction) ?? 0;
 	}
 	const actor = await fromUuid(actorUUID);
 	//? Checking if actor has Metapowers that affect the explosive dice
 	let explosiveDice = "x10";
-	const metapowers = actor.items.filter((item) => item.type === "Metapower");
-	const hasArbiterPowers = metapowers.some((metapower) => metapower.name === "Arbiter Powers");
-	if (hasArbiterPowers) {
+	if (metaIsItemEquipped(actor, "Arbiter Powers")) {
 		explosiveDice = "x1x2x10";
 	}
 	//? Find the first item ()that matches itemName
 	let metaItemData = actor.items.find((item) => item.name === itemName);
 	if (!metaItemData) {
-		console.error("Metanthropes | MetaExecute | Could not find any item named:", itemName);
+		metaLog(2, "MetaExecute", "ERROR: Could not find any item named:", itemName);
 		return;
 	}
-	console.log("Metanthropes | MetaExecute | Engaged for", itemName);
+	metaLog(3, "MetaExecute", "Engaged for", itemName);
 	//? Gather all the execution data
 	let actionSlot = metaItemData.system.Execution.ActionSlot.value;
 	let targetsNumber = metaItemData.system.Execution.Targets.value;
@@ -159,7 +157,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		} else {
 			executeRoll = true;
 			//? Use Possession
-			console.log("Metanthropes | MetaExecute | Using Possession:", itemName, attackType);
+			metaLog(3, "MetaExecute", "Using Possession:", itemName, "with Attack Type:", attackType);
 			if (attackType === "Melee") {
 				//todo: need to add size modifier to increase the base d10 dice pool for unarmed strikes only
 				flavorMessage = `Attacks with their ${itemName}<br><br>`;
@@ -181,7 +179,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			}
 		}
 	} else {
-		console.error("Metanthropes | MetaExecute | cannot Execute action:", action);
+		metaLog(2, "MetaExecute", "ERROR: cannot Execute action:", action);
 		return;
 	}
 	if (executeRoll) {
@@ -195,7 +193,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		//? finalize action slot
 		if (actionSlot.includes("Always Active")) {
 			//? always active return
-			console.warn("Metanthropes | MetaExecute | Always Active:", itemName);
+			metaLog(1, "MetaExecute", actor.name + "'s " + itemName, "is Always Active!");
 			ui.notifications.info(actor.name + "'s " + itemName + " is Always Active!");
 			return;
 		} else if (actionSlot.includes("Focused")) {
@@ -274,7 +272,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			durationMessage = `⏳: ` + duration + `<br>`;
 		}
 		//* effect message
-		if ((damageCosmicBase > 0) && (damageCosmicDice > 0)) {
+		if (damageCosmicBase > 0 && damageCosmicDice > 0) {
 			damageCosmicMessage = `💥: [[${damageCosmicDice}d10${explosiveDice}+${damageCosmicBase}[Cosmic]]]<br>`;
 			damageCosmicRerollButton = `<div class="hide-button hidden"><br>
 			<button class="metanthropes-secondary-chat-button cosmic-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Cosmic 💥 Damage" data-dice="${damageCosmicDice}" data-destiny-re-roll="true" data-base-number="${damageCosmicBase}">
@@ -289,7 +287,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			🤞 to reroll Cosmic 💥</button>
 			<br></div>`;
 		}
-		if ((damageElementalBase > 0) && (damageElementalDice > 0)) {
+		if (damageElementalBase > 0 && damageElementalDice > 0) {
 			damageElementalMessage = `💥: [[${damageElementalDice}d10${explosiveDice}+${damageElementalBase}[Elemental]]]<br>`;
 			damageElementalRerollButton = `<div class="hide-button hidden"><br>
 			<button class="metanthropes-secondary-chat-button elemental-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Elemental 💥 Damage" data-dice="${damageElementalDice}" data-destiny-re-roll="true" data-base-number="${damageElementalBase}">
@@ -304,7 +302,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			🤞 to reroll Elemental 💥</button>
 			<br></div>`;
 		}
-		if ((damageMaterialBase > 0) && (damageMaterialDice > 0)) {
+		if (damageMaterialBase > 0 && damageMaterialDice > 0) {
 			damageMaterialMessage = `💥: [[${damageMaterialDice}d10${explosiveDice}+${damageMaterialBase}[Material]]]<br>`;
 			damageMaterialRerollButton = `<div class="hide-button hidden"><br>
 			<button class="metanthropes-secondary-chat-button material-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Material 💥 Damage" data-dice="${damageMaterialDice}" data-destiny-re-roll="true" data-base-number="${damageMaterialBase}">
@@ -319,7 +317,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			🤞 to reroll Material 💥</button>
 			<br></div>`;
 		}
-		if ((damagePsychicBase > 0) && (damagePsychicDice > 0)) {
+		if (damagePsychicBase > 0 && damagePsychicDice > 0) {
 			damagePsychicMessage = `💥: [[${damagePsychicDice}d10${explosiveDice}+${damagePsychicBase}[Psychic]]]<br>`;
 			damagePsychicRerollButton = `<div class="hide-button hidden"><br>
 			<button class="metanthropes-secondary-chat-button psychic-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Psychic 💥 Damage" data-dice="${damagePsychicDice}" data-destiny-re-roll="true" data-base-number="${damagePsychicBase}">
@@ -334,7 +332,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			🤞 to reroll Psychic 💥</button>
 			<br></div>`;
 		}
-		if ((healingBase > 0) && (healingDice > 0)) {
+		if (healingBase > 0 && healingDice > 0) {
 			healingMessage = `💞: [[${healingDice}d10${explosiveDice}+${healingBase}[Healing]]]<br>`;
 			healingRerollButton = `<div class="hide-button hidden"><br>
 			<button class="metanthropes-secondary-chat-button healing rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="💞 Healing" data-dice="${healingDice}" data-destiny-re-roll="true" data-base-number="${healingBase}">
@@ -349,7 +347,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			🤞 to reroll 💞 Healing</button>
 			<br></div>`;
 		}
-		if ((specialBase > 0) && (specialDice > 0)) {
+		if (specialBase > 0 && specialDice > 0) {
 			if (!specialIsHalf) {
 				specialMessage = `${specialName}: [[${specialDice}d10${explosiveDice}+${specialBase}]]<br>`;
 				specialRerollButton = `<div class="hide-button hidden"><br>
@@ -401,7 +399,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			contentMessage += areaEffectMessage;
 		}
 		if (effectDescription) {
-		contentMessage += `<br>${effectDescription}<br>`;
+			contentMessage += `<br>${effectDescription}<br>`;
 		}
 		if (damageCosmicMessage) {
 			contentMessage += damageCosmicMessage;

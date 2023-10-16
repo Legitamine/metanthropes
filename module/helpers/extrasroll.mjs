@@ -1,3 +1,4 @@
+import { metaLog, metaIsItemEquipped } from "../helpers/metahelpers.mjs";
 /**
  * Rolld10 handles the rolling of d10 dice for a given actor and purpose.
  *
@@ -20,27 +21,27 @@
  * Rolld10(actor, "Damage", true, 3, "Weapon Name");
  */
 export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", baseNumber = 0, isHalf = false) {
-	console.log(
-		"Metanthropes | Rolld10 | Engaged for",
+	metaLog(
+		3,
+		"Rolld10",
+		"Engaged for:",
 		actor.name + "'s",
 		what,
-		"Destiny Reroll allowed?",
+		"Destiny ReRoll allowed?:",
 		destinyReRoll,
 		"how many d10s:",
 		dice,
-		"item:",
+		"Item:",
 		itemName,
-		"base:",
+		"Base:",
 		baseNumber,
-		"is d10/2?",
+		"d10/2?:",
 		isHalf
 	);
-	//? Checking if actor has Metapowers that affect the explosive dice
-	let explosiveDice = "x10";
 	let rollTotal;
-	const metapowers = actor.items.filter((item) => item.type === "Metapower");
-	const hasArbiterPowers = metapowers.some((metapower) => metapower.name === "Arbiter Powers");
-	if (hasArbiterPowers) {
+	let explosiveDice = "x10";
+	//? Checking if actor has Metapowers that affect the explosive dice
+	if (metaIsItemEquipped(actor, "Arbiter Powers")) {
 		explosiveDice = "x1x2x10";
 	}
 	//? dice is the number of d10 to roll
@@ -106,7 +107,7 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 		rollMode: game.settings.get("core", "rollMode"),
 		flags: { "metanthropes-system": { actoruuid: actor.uuid } },
 	});
-	console.log("Metanthropes | Rolld10 | Finished for", actor.name + "'s", what);
+	metaLog(3, "Rolld10", "Finished for:", actor.name + "'s", what);
 	//! doing a refresh during actor creation causes the actor window to come in focus, so disabling it for now
 	//	//? Refresh the actor sheet if it's open
 	//	const sheet = actor.sheet;
@@ -114,6 +115,7 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 	//		sheet.render(true);
 	//	}
 }
+
 /**
  * Rolld10ReRoll is triggered when the destiny re-roll button is clicked.
  *
@@ -143,14 +145,21 @@ export async function Rolld10ReRoll(event) {
 	if (currentDestiny > 0 && destinyReRoll) {
 		currentDestiny--;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-		console.log(
-			"Metanthropes | Rolld10ReRoll | Engaging Rolld10 for:",
+		metaLog(
+			3,
+			"Rolld10ReRoll",
+			"Engaged for:",
 			actor.name + "'s",
 			what,
+			"Destiny ReRoll allowed?:",
 			destinyReRoll,
+			"how many d10s:",
 			dice,
+			"Item:",
 			itemName,
+			"Base:",
 			baseNumber,
+			"d10/2?:",
 			isHalf
 		);
 		await Rolld10(actor, what, destinyReRoll, dice, itemName, baseNumber, isHalf);
@@ -162,6 +171,6 @@ export async function Rolld10ReRoll(event) {
 		//	}
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
-		console.warn("Metanthropes | Rolld10ReRoll | Not enough Destiny to spend, or destinyReRoll is false");
+		metaLog(1, "Rolld10ReRoll", "Not enough Destiny to spend", "OR", "destinyReRoll is not allowed");
 	}
 }
