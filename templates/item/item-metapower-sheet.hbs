@@ -1,13 +1,13 @@
 <form class="metanthropes {{cssClass}}" autocomplete="off">
 	<header class="sheet-header">
-		{{#if isGM}}
+		{{#if isNarrator}}
 			<img class="metapower-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" style="border:none" />
 		{{else}}
 			<img class="metapower-img" src="{{item.img}}" title="{{item.name}}" style="border:none" />
 		{{/if}}
 		<div class="header-fields">
 			<h1 class="charname">
-				{{#if isGM}}
+				{{#if isNarrator}}
 					<input name="name" type="text" value="{{item.name}}" placeholder="Metapower Name" />
 				{{else}}
 					{{item.name}}
@@ -17,7 +17,7 @@
 				<div class="resource">
 					<label class="resource-label" title="Which Stat is rolled when Activating this Metapower">🎲
 						Stat:</label>
-					{{#if isGM}}
+					{{#if isNarrator}}
 						<select name="system.Execution.StatRolled.value">
 							{{#each system.Execution.StatRolled.options as |option|}}
 								<option value="{{option}}"
@@ -44,7 +44,7 @@
 					<label class="resource-label"
 						title="Each Classification includes Metapowers which have a similar role and utilize capabilities and functions in a similar manner">🔣
 						Classification:</label>
-					{{#if isGM}}
+					{{#if isNarrator}}
 						<select name="system.Classification.value">
 							{{#each system.Classification.options as |option|}}
 								<option value="{{option}}"
@@ -58,7 +58,7 @@
 				</div>
 				<div class="resource">
 					<label class="resource-label" title="The Name of the Ⓜ️ Metapower">Ⓜ️ Metapower:</label>
-					{{#if isGM}}
+					{{#if isNarrator}}
 						<input type="text" name="system.MetapowerName.value" value="{{system.MetapowerName.value}}"
 							data-dtype="String" />
 					{{else}}
@@ -69,7 +69,7 @@
 					<label class="resource-label"
 						title="Energy Type dictates the Damage and other properties of an effect">✨ Energy
 						Type:</label>
-					{{#if isGM}}
+					{{#if isNarrator}}
 						<select name="system.EnergyType.value">
 							{{#each system.EnergyType.options as |option|}}
 								<option value="{{option}}"
@@ -84,7 +84,7 @@
 				</div>
 				<div class="resource">
 					<label class="resource-label" title="The Level of the Metapower">⏫ Level:</label>
-					{{#if isGM}}
+					{{#if isNarrator}}
 						<select name="system.Level.value">
 							{{#each system.Level.options as |option|}}
 								<option value="{{option}}" {{#if (eq option ../system.Level.value)}}selected{{/if}}>
@@ -99,7 +99,7 @@
 				<div class="resource">
 					<label class="resource-label" title="The Destiny Cost to Activate this Metapower">🤞 Destiny
 						Cost:</label>
-					{{#if isGM}}
+					{{#if isNarrator}}
 						<input type="number" name="system.DestinyCost.value" value="{{system.DestinyCost.value}}"
 							data-dtype="Number" />
 					{{else}}
@@ -115,7 +115,7 @@
 			<a class="item style-cs-labels" data-tab="description">Description</a>
 			<a class="item style-cs-labels" data-tab="execution">Activation</a>
 			<a class="item style-cs-labels" data-tab="effects">Effects</a>
-			{{#if isGM}}
+			{{#if isNarrator}}
 				<a class="item style-cs-labels" data-tab="results">Results</a>
 			{{/if}}
 		</nav>

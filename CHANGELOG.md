@@ -22,12 +22,14 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 ### Added:
 
--   New Progression process: Added a new button on the Character sheet that will allow both Players and Narrators to spend a Character's Experience points to increase their Characteristics, Stats, Metapowers and Perks. It will also award a character with additional 25 Life for every 5.000 Experience points accumulated
+-   Beta Testing New Features: You can find a new setting in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Beta Testing of New Features' option. This will allow you to test new features that are not yet ready for release. This feature is turned off by default
+-   New Progression process (In Progress - Not Functional - Requires Beta Testing Enabled): Added a new button on the Character sheet that will allow both Players and Narrators to spend a Character's Experience points to increase their Characteristics, Stats, Metapowers and Perks. It will also award a Protagonist with additional 25 Life for every 5.000 Experience points accumulated
 -   New Console Logging functionality: Added a new setting that can be found in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Advanced Logging' feature. This will help in case you are encountering a bug, to collect information that will assist us in troubleshooting. This feature is turned off by default
 
 ### Changed:
 
 -   Cleaned up and improved the majority of the code documentation. This is a non-visual change that won't affect the gameplay in any way, but will help other developers (and myself) when reviewing the code
+-   Removed the 'Sheet' Button from the Actor and Item sheets. This was used in development and no longer needed.
 
 ### Fixed:
 
@@ -40,7 +42,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 ### Removed:
 
--   Removed the old Item and Actor definitions that were deprecated in v0.7 (I hope everyone updated their Worlds by now - if you are not sure if this affects you, then it probably doesn't)
+-   (Unreleased) Removed the old Item and Actor definitions that were deprecated in v0.7 (I hope everyone updated their Worlds by now - if you are not sure if this affects you, then it probably doesn't)
 
 ### Unreleased:
 
@@ -48,13 +50,12 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 -   Aiming and Cover mechanics (scheduled for v0.8)
 -   New Character Creation Automation for randomizing a new Actor - Very useful for Narrators when creating NPCs (scheduled for v0.8)
 -   Split the content (Audio and Artwork) from the System into a separate Module to improve System upgrade speeds and reduce the size of the System (scheduled for v0.8)
--   Players can now Drag-n-Drop their favorite Metapowers and Possessions on the hotbar for quick activation using keyboard shortcuts (scheduled for v0.8)
 -   Spending Levels of Success to activate more powerful Metapower effects (scheduled for v0.8)
 -   Destiny Save vs Death (scheduled for v0.8)
 -   Journal Entries with information for new players and Narrators (scheduled for v0.8)
 -   Metapowers and Possessions can be Drag-n-Dropped to your hotbar to allow for easier activations with a single keystroke! (scheduled for v0.9)
 
-## Previous Version: v0.7.84
+## Previous Version: v0.7.85
 
 ### Added:
 
