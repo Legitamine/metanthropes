@@ -18,13 +18,14 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 -->
 
-## Latest Version: v0.8.xx
+## Latest Version: v0.8.19
 
 ### Added:
 
--   Beta Testing New Features: You can find a new setting in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Beta Testing of New Features' option. This will allow you to test new features that are not yet ready for release. This feature is turned off by default
--   New Progression process (In Progress - Not Functional - Requires Beta Testing Enabled): Added a new button on the Character sheet that will allow both Players and Narrators to spend a Character's Experience points to increase their Characteristics, Stats, Metapowers and Perks. It will also award a Protagonist with additional 25 Life for every 5.000 Experience points accumulated
--   New Console Logging functionality: Added a new setting that can be found in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Advanced Logging' feature. This will help in case you are encountering a bug, to collect information that will assist us in troubleshooting. This feature is turned off by default
+-   Beta Testing of New Features: You can find a new setting in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Beta Testing of New Features' option. This will allow you to test new features that are currently in development. This feature is turned off by default
+-   New Progression process (Requires Beta Testing of New Features - not fully functional yet): Added a new button on the Character sheet that will start the Actor progression process, to spend Experience points to increase Characteristics, Stats, Metapowers and Perks. It will also award a Protagonist with additional 25 Life, for every 5.000 Experience points accumulated
+-   New Console Logging functionality: Added a new setting that can be found in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Advanced Logging' feature. This will used, in the event you encounter a bug, to collect information that will assist us in troubleshooting. This feature is turned off by default
+-   Added automation for the Bleeding Core Condition. During Combat, if an Actor has the Bleeding Condition, they will now automatically lose 1 Life per Level of Bleeding, at the end of each Round.
 
 ### Changed:
 
