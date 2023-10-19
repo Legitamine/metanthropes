@@ -39,15 +39,12 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		const actionSlot = actor.items.getName(itemName).system.Execution.ActionSlot.value;
 		if (actionSlot === "Always Active") {
 			ui.notifications.info(actor.name + "'s " + itemName + " is always active, no need to roll!");
-			metaLog(1, "MetaRoll", actor.name + "'s " + itemName, "is Always Active!");
 			return;
 		}
 	}
 	//* Check for Bonuses
 	// space intentionally left blank
 	//* Check for Penalties
-	let perkPenalty = 0;
-	let diseasePenalty = 0;
 	//? Check for Core Conditions
 	//? Check for Hunger - if we have hunger, we must beat the hunger roll before doing our action
 	//	const hunger = actor.system.Characteristics.Mind.CoreConditions.Hunger;
@@ -68,7 +65,8 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 	//? Check for Fatigue
 	//? Check if we are unconscious
 	//? Check for disease
-	//* disease is expected to be a positive number, whereas penalty is expected to be negative
+	//! disease is expected to be a positive number, whereas penalty is expected to be negative
+	let diseasePenalty = 0;
 	const disease = actor.system.Characteristics.Body.CoreConditions.Diseased;
 	if (disease > 0) {
 		//? check if penalty is worse than the disease level and set it accordingly
@@ -76,7 +74,9 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			diseasePenalty = -(disease * 10);
 		}
 	}
-	//? Check for Possession Perk Penalty
+	//* Check for Reductions
+	//? Check for Reduction due to missing Perk Skill Levels
+	let perkReduction = 0;
 	if (itemName && action === "Possession") {
 		const requiredPerk = actor.items.getName(itemName).system.RequiredPerk.value;
 		metaLog(3, "MetaRoll", "Required Perk for", itemName, "is", requiredPerk);
@@ -85,12 +85,12 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			const actorPerkLevel = actor.system.Perks.Skills[requiredPerk].value;
 			const levelDifference = requiredPerkLevel - actorPerkLevel;
 			if (levelDifference > 0) {
-				perkPenalty = levelDifference * -10;
-				metaLog(2, "MetaRoll", "Perk Penalty for", actor.name, "is", perkPenalty);
+				perkReduction = levelDifference * -10;
+				metaLog(2, "MetaRoll", "Perk Penalty for", actor.name, "is", perkReduction);
 			}
 		}
 	}
-	//? ready to call MetaEvaluate, but first we check if we have custom options
+	//* ready to call MetaEvaluate, but first we check if we have custom options
 	let bonus = 0;
 	let penalty = 0;
 	let multiAction = 0;
@@ -111,9 +111,6 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		} else {
 			penalty = diseasePenalty;
 		}
-		if (penalty > perkPenalty) {
-			penalty = perkPenalty;
-		}
 		metaLog(
 			3,
 			"MetaRoll",
@@ -125,6 +122,8 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			statScore,
 			"Multi-Action:",
 			multiAction,
+			"Perk Reduction:",
+			perkReduction,
 			"Bonus:",
 			bonus,
 			"Penalty:",
@@ -136,12 +135,9 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			"Item Name:",
 			itemName
 		);
-		await MetaEvaluate(actor, action, stat, statScore, multiAction, bonus, penalty, pain, destinyCost, itemName);
+		await MetaEvaluate(actor, action, stat, statScore, multiAction, perkReduction, bonus, penalty, pain, destinyCost, itemName);
 	} else {
 		penalty = diseasePenalty;
-		if (penalty > perkPenalty) {
-			penalty = perkPenalty;
-		}
 		metaLog(
 			3,
 			"MetaRoll",
@@ -153,6 +149,8 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			statScore,
 			"Multi-Action:",
 			multiAction,
+			"Perk Reduction:",
+			perkReduction,
 			"Bonus:",
 			bonus,
 			"Penalty:",
@@ -164,7 +162,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			"Item Name:",
 			itemName
 		);
-		await MetaEvaluate(actor, action, stat, statScore, multiAction, bonus, penalty, pain, destinyCost, itemName);
+		await MetaEvaluate(actor, action, stat, statScore, multiAction, perkReduction, bonus, penalty, pain, destinyCost, itemName);
 	}
 	//* Post-roll actions
 	//? Clear all metapower related result flags (currently only from duplicateself)

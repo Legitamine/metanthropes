@@ -1,7 +1,7 @@
 import { MetaInitiative } from "../helpers/metainitiative.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
 export class MetanthropesCombat extends Combat {
-	//? adding the concept of Cycles & Rounds to the combat system
+	//? adding the concept of Cycles & Rounds to the Combat system
 	prepareDerivedData() {
 		super.prepareDerivedData();
 		let cycle = this.getFlag("metanthropes-system", "cycle") || 1;
@@ -73,9 +73,25 @@ export class MetanthropesCombat extends Combat {
 	async nextRound() {
 		metaLog(4, "Combat", "nextRound", "Engaged");
 		await super.nextRound();
-		//todo Bleeding - assuming this function runs at the end of every Round, bleeding goes here
-		//! I should probably do something similar for previous round
-		//? Calculate the Cycle and Round values
+		//* End of Round Effects
+		//? Iterate over Combatants
+		for (let combatant of this.combatants.values()) {
+			//? get the actor for the combatant
+			const actor = combatant.actor;
+			//* Bleeding Condition
+			const bleedingLevel = actor.system.Characteristics.Body.CoreConditions.Bleeding;
+			if (bleedingLevel > 0) {
+				const currentLife = actor.system.Vital.Life.value;
+				const newLife = Number(currentLife) - Number(bleedingLevel);
+				await actor.update({ "system.Vital.Life.value": newLife });
+				//? Create a chat message indicating the bleeding effect
+				await ChatMessage.create({
+					content: `Lost ${bleedingLevel} ❤️ Life due to Bleeding Condition!`,
+					speaker: ChatMessage.getSpeaker({ actor: actor }),
+				});
+			}
+		}
+		//* Update the Cycle and Round values
 		//? Get the most recent Cycle and Round values from the Combat document
 		let cycle = await this.getFlag("metanthropes-system", "cycle");
 		let cycleRound = await this.getFlag("metanthropes-system", "cycleRound");
@@ -105,10 +121,24 @@ export class MetanthropesCombat extends Combat {
 		this.cycleRound = cycleRound;
 		await this.setFlag("metanthropes-system", "cycle", cycle);
 		await this.setFlag("metanthropes-system", "cycleRound", cycleRound);
-		//? Reroll initiative for all combatants at the start of a new Cycle (every odd cycleRound)
+		//? Reroll initiative for all combatants at the start of a new Cycle
 		if (cycle > 1 && cycleRound === 1) {
 			await this.resetAll();
 			this.setupTurns();
+			await ChatMessage.create({
+				content: `New Cycle: ${cycle} Round: ${cycleRound} - Roll Inititiative!`,
+				speaker: {
+					alias: "Metanthropes Combat",
+				},
+			});
+		} else {
+			//? Create a chat message indicating the new Round
+			await ChatMessage.create({
+				content: `Cycle: ${cycle} Round: ${cycleRound}`,
+				speaker: {
+					alias: "Metanthropes Combat",
+				},
+			});
 		}
 		metaLog(4, "Combat", "nextRound", "Finished");
 		return this;

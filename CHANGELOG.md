@@ -18,18 +18,20 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 -->
 
-## Latest Version: v0.8.xx
+## Latest Version: v0.8.20
 
 ### Added:
 
--   Beta Testing New Features: You can find a new setting in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Beta Testing of New Features' option. This will allow you to test new features that are not yet ready for release. This feature is turned off by default
--   New Progression process (In Progress - Not Functional - Requires Beta Testing Enabled): Added a new button on the Character sheet that will allow both Players and Narrators to spend a Character's Experience points to increase their Characteristics, Stats, Metapowers and Perks. It will also award a Protagonist with additional 25 Life for every 5.000 Experience points accumulated
--   New Console Logging functionality: Added a new setting that can be found in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Advanced Logging' feature. This will help in case you are encountering a bug, to collect information that will assist us in troubleshooting. This feature is turned off by default
+-   Beta Testing of New Features (Narrator Only): You can find a new setting in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Beta Testing of New Features' option. This will allow you to test new features that are currently in development. This feature is turned off by default
+-   New Progression process (Requires Beta Testing of New Features - not fully functional yet): Added a new button on the Character sheet that will start the Actor progression process, to spend Experience points to increase Characteristics, Stats, Metapowers and Perks. It will also award a Protagonist with additional 25 Life, for every 5.000 Experience points accumulated
+-   New Console Logging functionality: Added a new setting that can be found in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Advanced Logging' feature. This will used, in the event you encounter a bug, to collect information that will assist us in troubleshooting. This feature is turned off by default
+-   Added automation for the Bleeding Condition. During Combat, if an Actor has the Bleeding Condition, they will now automatically lose 1 Life per Level of Bleeding, at the end of each Round
 
 ### Changed:
 
--   Cleaned up and improved the majority of the code documentation. This is a non-visual change that won't affect the gameplay in any way, but will help other developers (and myself) when reviewing the code
--   Removed the 'Sheet' Button from the Actor and Item sheets. This was used in development and no longer needed.
+-   When using a Possession that requires a Perk Skill at a certain Level, it will now Reduce the result of the roll, instead of imposing a Penalty on it. Note that Reductions stack with each other, so trying a Multi-Action, together with missing Perk Skill Levels, will now greatly reduce your chances of using that Possession successfully
+-   Cleaned up and improved the majority of the code documentation. This is a non-visual change that won't affect the gameplay in any way, but will help other developers (and myself) when reviewing and making further changes to the code
+-   Removed the 'Sheet' Button from the Actor and Item sheets. This was used in development and no longer needed
 
 ### Fixed:
 
@@ -46,7 +48,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 ### Unreleased:
 
--   Core Conditions automatically apply their effects to the rolls (scheduled for v0.8)
+-   Core Conditions automatically apply their effects to the rolls (in progress 1/3 completed)
 -   Aiming and Cover mechanics (scheduled for v0.8)
 -   New Character Creation Automation for randomizing a new Actor - Very useful for Narrators when creating NPCs (scheduled for v0.8)
 -   Split the content (Audio and Artwork) from the System into a separate Module to improve System upgrade speeds and reduce the size of the System (scheduled for v0.8)
