@@ -86,7 +86,7 @@ export class MetanthropesCombat extends Combat {
 				await actor.update({ "system.Vital.Life.value": newLife });
 				//? Create a chat message indicating the bleeding effect
 				await ChatMessage.create({
-					content: `Lost ${bleedingValue} ❤️ Life due to Bleeding Condition!`,
+					content: `Lost ${bleedingLevel} ❤️ Life due to Bleeding Condition!`,
 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 				});
 			}

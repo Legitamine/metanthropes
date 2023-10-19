@@ -57,8 +57,12 @@ export class MetanthropesItemSheet extends ItemSheet {
 		//? Add the actor's data to context.data for easier access, as well as flags.
 		context.system = itemData.system;
 		context.flags = itemData.flags;
+		//? Provide a boolean for if 'Beta Testing of New Features' is enabled
+		context.betaTesting = game.settings.get("metanthropes-system", "metaBetaTesting");
+		//? Provide a boolean for if 'Advanced Logging' is enabled
+		context.advancedLogging = game.settings.get("metanthropes-system", "metaAdvancedLogging");
 		//? Provide a boolean for if the user is a Narrator(GameMaster)
-		context.isGM = game.user.isGM;
+		context.isNarrator = game.user.isGM;
 		metaLog(5, "ItemSheet getData", "context:", context);
 		return context;
 	}

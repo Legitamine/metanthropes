@@ -80,6 +80,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 		// context.effects = prepareActiveEffectCategories(this.actor.effects);
 		//? Provide a boolean for if 'Beta Testing of New Features' is enabled
 		context.betaTesting = game.settings.get("metanthropes-system", "metaBetaTesting");
+		//? Provide a boolean for if 'Advanced Logging' is enabled
+		context.advancedLogging = game.settings.get("metanthropes-system", "metaAdvancedLogging");
 		//? Provide a boolean for if the user is a Narrator(GameMaster)
 		context.isNarrator = game.user.isGM;
 		//todo I would like to refresh the sheet after getting all the data
