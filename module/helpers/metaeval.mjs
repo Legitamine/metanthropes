@@ -82,7 +82,7 @@ export async function MetaEvaluate(
 		}
 	}
 	//? this kicks-off the calculation, assuming that is is a failure
-	if (rollResult - multiAction -perkReduction - penalty > statScore + bonus) {
+	if (rollResult - multiAction - perkReduction - penalty > statScore + bonus) {
 		//? in which case we don't care about what levels of success we have, so we set to 0 to avoid confusion later
 		result = "Failure 🟥";
 		levelsOfSuccess = 0;
@@ -187,15 +187,21 @@ export async function MetaEvaluate(
 		message += `.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 	}
 	//? Buttons to Re-Roll MetaEvaluate results - only adds the button to message, if it's not a Critical and only if they have enough Destiny for needed reroll.
-	//* The buttons are hidden for everone except the owner of the actor and the GM as long as DF Chat Enhancements is installed
+	//* The buttons are hidden for everyone except the owner of the actor and the GM as long as DF Chat Enhancements is installed
 	//todo I should figure out how to do this on my own without the need to have DF Chat Enhancements installed
 	//? Define threshold of showing the button, to re-roll we need a minimum of 1 Destiny + the Destiny Cost of the Metapower (only applies to Metapowers with DestinyCost, otherwise it's 0)
+	metaLog(3, "destinyCost", destinyCost);
 	let threshold = 1 + Number(destinyCost);
+	metaLog(3, "threshold", threshold);
 	if (!criticalSuccess && !criticalFailure && currentDestiny >= threshold) {
+		metaLog(3, "proceed normally");
 		if (action === "Initiative") {
+			//? Button to re-roll Initiative
 			message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button metainitiative-reroll" data-actoruuid="${actor.uuid}" data-action="${action}"
 				>Spend 🤞 Destiny to reroll</button><br></div>`;
 		} else {
+			metaLog(3, "show reroll button for metaevaluate");
+			//? Button to re-roll MetaEvaluate
 			message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button metaeval-reroll" data-actoruuid="${actor.uuid}"
 				data-stat="${stat}" data-stat-score="${statScore}" data-multi-action="${multiAction}" data-perk-reduction="${perkReduction}"
 				data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}" data-destiny-cost="${destinyCost}" 
@@ -216,6 +222,7 @@ export async function MetaEvaluate(
 			//message += `<div><br></div>`;
 		}
 	} else {
+		//? Auto-Execute the Metapower or Possession
 		if (!(action === "Initiative")) {
 			//? Set autoExecute to true if it's either a Critical Success or a Critical Failure, or if the actor doesn't have enough Destiny to reroll
 			autoExecute = true;
@@ -225,7 +232,7 @@ export async function MetaEvaluate(
 	message += `<div><br></div>`;
 	//* Update actor flags with the results of the roll
 	//? Fetch the current state of the .lastrolled flag
-	let previousRolls = actor.getFlag("metanthropes-system", "lastrolled") || {};
+	let previousRolls = (await actor.getFlag("metanthropes-system", "lastrolled")) || {};
 	//? Store the values into the .previousrolled flag
 	await actor.unsetFlag("metanthropes-system", "previousrolled");
 	await actor.setFlag("metanthropes-system", "previousrolled", previousRolls);
@@ -362,7 +369,19 @@ export async function MetaEvaluateReRoll(event) {
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	currentDestiny--;
 	await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-	await MetaEvaluate(actor, action, stat, statScore, multiAction, perkReduction, bonus, penalty, pain, destinyCost, itemName);
+	await MetaEvaluate(
+		actor,
+		action,
+		stat,
+		statScore,
+		multiAction,
+		perkReduction,
+		bonus,
+		penalty,
+		pain,
+		destinyCost,
+		itemName
+	);
 	//? Refresh the actor sheet if it's open
 	const sheet = actor.sheet;
 	if (sheet && sheet.rendered) {

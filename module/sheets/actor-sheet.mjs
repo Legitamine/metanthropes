@@ -70,6 +70,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		context.flags = actorData.flags;
 		//? Prepare items - this will produce .Metapowers and .Possessions where applicable
 		//todo break it down to metapowers and possessions so I can get better filtering by actor.type (?)
+		//todo for Duplicates, perhaps skipping thi step will remove all Metapowers and Possessions from the sheet? How do I keep the strike?
 		if (actorData.type !== "Animal") {
 			this._prepareItems(context);
 		}
@@ -82,10 +83,12 @@ export class MetanthropesActorSheet extends ActorSheet {
 		context.betaTesting = game.settings.get("metanthropes-system", "metaBetaTesting");
 		//? Provide a boolean for if 'Advanced Logging' is enabled
 		context.advancedLogging = game.settings.get("metanthropes-system", "metaAdvancedLogging");
+		//? Provide a combined boolean for if 'Beta Testing of New Features' and 'Advanced Logging' are enabled
+		context.advancedBetaTesting = context.betaTesting && context.advancedLogging;
 		//? Provide a boolean for if the user is a Narrator(GameMaster)
 		context.isNarrator = game.user.isGM;
 		//todo I would like to refresh the sheet after getting all the data
-		metaLog(4, "MetanthropesActorSheet getData results", "this, context, options", this, context, options);
+		metaLog(3, "MetanthropesActorSheet getData results", "this, context, options", this, context, options);
 		return context;
 	}
 	//* Prepare items
@@ -222,7 +225,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		event.preventDefault();
 		//? Check if 'Beta Testing of New Features' is enabled
 		if (!game.settings.get("metanthropes-system", "metaBetaTesting")) {
-			ui.notifications.warn("Progression is only available if you enable Beta Testing of New Features");
+			ui.notifications.warn("Progression is only available if Beta Testing of New Features is enabled");
 			return;
 		}
 		//? Get the actor for the Progression

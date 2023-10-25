@@ -4,34 +4,45 @@ import { metaLog } from "../helpers/metahelpers.mjs";
 
 //* newactor.mjs will be used to help in generating a new actor's stats and characteristics, along with other information.
 //! Needs new CSS Classes
-//! issues: filepicker opening in correct folder each time
-//! issues: char picks should drive which stat rolls are made first
+//todo char picks should drive/indicate which stat rolls should be prioritiezed
 // narrator's right click na kanei show ena dialog me ola ta steps k dipla check box (default yes) gia ta poia steps thelei na ginoune random
 // if anything is checked na kanei randomize ta reults aytou tou step.
 // gia narrators episis prepei na kanw separate setup gia ta diafora alla types peran tou protagonist
 // kai episis na kanw expand to new actor function gia na kanei pick mono ta relative fields analoga me to type tou actor
-//todo na kanw merge tha epimerous actor.updates gia na exw ena monadiko update oxi pollapla
 
-//* Finalizes a Premade Protagonist for the Introduction sessions
+//* Finalizes a Premade Protagonist
 export async function FinalizePremadeProtagonist(actor) {
+	const playerName = game.user.name;
 	try {
+		await NewActorControl(actor).catch((error) => {
+			metaLog(2, "Finalize Premade Protagonist", "Error at NewActorControl:", error);
+			throw error;
+		});
+		await NewActorSummary(actor).catch((error) => {
+			metaLog(2, "Finalize Premade Protagonist", "Error at NewActorSummary:", error);
+			throw error;
+		});
+		await NewActorFinish(actor).catch((error) => {
+			metaLog(2, "Finalize Premade Protagonist", "Error at NewActorFinish:", error);
+			throw error;
+		});
 		await Rolld10(actor, "Destiny", false, 1);
-		let playerName = game.user.name;
 		const NewDestiny = await actor.getFlag("metanthropes-system", "lastrolled").rolld10;
-		await actor.update({ "system.Vital.Destiny.value": Number(NewDestiny) });
-		await actor.update({ "system.Vital.Destiny.max": Number(NewDestiny) });
+		await actor.update({
+			"system.Vital.Destiny.value": Number(NewDestiny),
+			"system.Vital.Destiny.max": Number(NewDestiny),
+		});
 		metaLog(3, "Finalize Premade Protagonist", `${playerName}'s ${actor.type} Starting Destiny:`, NewDestiny);
-		await NewActorSummary(actor);
-		await NewActorFinish(actor);
 	} catch (error) {
 		metaLog(2, "Finalize Premade Protagonist", "Error:", error);
 	} finally {
-		metaLog(3, "Finalize Premade Protagonist", "Creation Complete for:", actor.type, actor.name);
+		//metaLog(3, "Finalize Premade Protagonist", "Creation Complete for:", `${playerName}'s`, actor.type, actor.name);
 	}
 }
 //* New Actor Function
 export async function NewActor(actor) {
 	try {
+		await NewActorControl(actor);
 		await NewActorDestiny(actor);
 		if (
 			actor.type !== "Human" &&
@@ -58,27 +69,30 @@ export async function NewActor(actor) {
 		await NewActorFinish(actor);
 	} catch (error) {
 		metaLog(2, "New Actor", "Error:", error);
+		await actor.update({ "system.metaowner.value": null });
 	} finally {
 		metaLog(3, "New Actor", "Creation Complete for:", actor.type, actor.name);
 	}
+}
+//* Give Control of an Actor to a Player, to allow showing the chat buttons for rerolls and execution
+export async function NewActorControl(actor) {
+	const playerName = game.user.name;
+	await actor.update({ "system.metaowner.value": playerName });
 }
 //* Filter function for Prime Metapower Selection
 function createFilterDropdown(id, options) {
 	let dropdown = document.createElement("select");
 	dropdown.id = id;
-
 	let anyOption = document.createElement("option");
 	anyOption.value = "Any";
 	anyOption.text = "Any";
 	dropdown.appendChild(anyOption);
-
 	options.forEach((optionValue) => {
 		let option = document.createElement("option");
 		option.value = optionValue;
 		option.text = optionValue;
 		dropdown.appendChild(option);
 	});
-
 	return dropdown;
 }
 export async function NewStatRoll(actor, char, stat, dice) {
@@ -117,7 +131,7 @@ export async function NewStatRoll(actor, char, stat, dice) {
 }
 export async function NewActorDestiny(actor) {
 	//? we will store the player's name as declared by the Gamemaster in the World User Settings
-	let playerName = game.user.name;
+	const playerName = game.user.name;
 	let dialogContent = `
 	<div class="metanthropes layout-metaroll-dialog">
 		<h2>Choose your ${actor.type}'s 🤞 Destiny</h2>
@@ -145,9 +159,11 @@ export async function NewActorDestiny(actor) {
 							let destinydice = html.find('[name="startdestiny"]').val();
 							await Rolld10(actor, "Destiny", false, destinydice);
 							const NewDestiny = actor.getFlag("metanthropes-system", "lastrolled").rolld10;
-							await actor.update({ "system.Vital.Destiny.value": Number(NewDestiny) });
-							await actor.update({ "system.Vital.Destiny.max": Number(NewDestiny) });
-							await actor.update({ "system.metaowner.value": playerName });
+							await actor.update({
+								"system.Vital.Destiny.value": Number(NewDestiny),
+								"system.Vital.Destiny.max": Number(NewDestiny),
+								"system.metaowner.value": playerName,
+							});
 							metaLog(4, "NewActorDestiny", "New Actor Owner:", playerName);
 							metaLog(3, "NewActorDestiny", `${playerName}'s ${actor.type} Destiny:`, NewDestiny);
 							resolve();
@@ -215,7 +231,7 @@ export async function NewActorPrimeMetapower(actor) {
 			<div class="form-group">
 				<label for="primeMetapowerImg"></label>
 				<img id="primeMetapowerImg" src="systems/metanthropes-system/artwork/metapowers/6th Sense.png" alt="Prime Metapower Image" style="border: none;" height="270" width="270" />
-		</div>
+			</div>
 		</form>
 	</div>
 	`;
@@ -348,26 +364,20 @@ export async function NewActorCharacteristics(actor) {
 							let primary = html.find('[name="primary"]').val();
 							let secondary = html.find('[name="secondary"]').val();
 							let tertiary = html.find('[name="tertiary"]').val();
-							await actor.update({ [`system.Characteristics.${primary}.Initial`]: Number(30) });
-							await actor.update({ [`system.Characteristics.${secondary}.Initial`]: Number(20) });
-							await actor.update({ [`system.Characteristics.${tertiary}.Initial`]: Number(10) });
+							await actor.update({
+								[`system.Characteristics.${primary}.Initial`]: Number(30),
+								[`system.Characteristics.${secondary}.Initial`]: Number(20),
+								[`system.Characteristics.${tertiary}.Initial`]: Number(10),
+							});
 							metaLog(
 								3,
 								"NewActorCharacteristics",
 								`New Primary:`,
 								primary,
-								actor.system.Characteristics[primary].Initial
-							);
-							metaLog(
-								3,
-								"NewActorCharacteristics",
+								actor.system.Characteristics[primary].Initial,
 								`New Secondary:`,
 								secondary,
-								actor.system.Characteristics[secondary].Initial
-							);
-							metaLog(
-								3,
-								"NewActorCharacteristics",
+								actor.system.Characteristics[secondary].Initial,
 								`New Tertiary:`,
 								tertiary,
 								actor.system.Characteristics[tertiary].Initial
@@ -818,13 +828,15 @@ export async function NewActorRoleplay(actor) {
 					label: "Confirm 🎭 Roleplay",
 					callback: async (html) => {
 						let RPbackgroundpick = html.find('[name="RPbackground"]').val();
-						await actor.update({ "system.Vital.background.value": RPbackgroundpick });
 						let RPmetamorphosispick = html.find('[name="RPmetamorphosis"]').val();
-						await actor.update({ "system.entermeta.metamorphosis.value": RPmetamorphosispick });
 						let RParcpick = html.find('[name="RParc"]').val();
-						await actor.update({ "system.Vital.arc.value": RParcpick });
 						let RPregressionpick = html.find('[name="RPregression"]').val();
-						await actor.update({ "system.entermeta.regression.value": RPregressionpick });
+						await actor.update({
+							"system.Vital.background.value": RPbackgroundpick,
+							"system.entermeta.metamorphosis.value": RPmetamorphosispick,
+							"system.Vital.arc.value": RParcpick,
+							"system.entermeta.regression.value": RPregressionpick,
+						});
 						metaLog(
 							3,
 							"NewActorRoleplay",
@@ -888,9 +900,11 @@ export async function NewActorProgression(actor) {
 						label: "Confirm 📈 Progression",
 						callback: async (html) => {
 							let startingXP = html.find('[name="startingXP"]').val();
-							await actor.update({ "system.Vital.Experience.Total": Number(startingXP) });
 							let startingPerks = html.find('[name="startingPerks"]').val();
-							await actor.update({ "system.Perks.Details.Starting.value": startingPerks });
+							await actor.update({
+								"system.Vital.Experience.Total": Number(startingXP),
+								"system.Perks.Details.Starting.value": Number(startingPerks),
+							});
 							metaLog(
 								3,
 								"NewActorProgression",
@@ -922,8 +936,8 @@ export async function NewActorProgression(actor) {
 	});
 }
 export async function NewActorSummary(actor) {
-	let playerName = game.user.name;
-	let narratorName = game.users.activeGM.name;
+	const playerName = game.user.name;
+	const narratorName = game.users.activeGM.name;
 	let dialogContent = `
 		<div class="metanthropes layout-metaroll-dialog">
 			<h2>Choose your ${actor.type}'s ✍️ Summary</h2>
@@ -931,7 +945,7 @@ export async function NewActorSummary(actor) {
 			<h3>Protagonist Details:</h3>
 				<div class="form-group">
 					<label for="actorname" title="Your ${actor.type}'s Name">Name: </label>
-					<input type="text" dtype="String" id="actorname" name="actorname" value="${actor.type}'s Name">
+					<input type="text" dtype="String" id="actorname" name="actorname" value="">
 				</div>
 				<div class="form-group">
 					<label for="actorgender" title="Your ${actor.type}'s Gender">Gender: </label>
@@ -987,31 +1001,49 @@ export async function NewActorSummary(actor) {
 				ok: {
 					label: "Confirm ✍️ Summary",
 					callback: async (html) => {
-						let actorname = html.find('[name="actorname"]').val();
-						await actor.update({ name: actorname });
+						const actorname = html.find('[name="actorname"]').val();
+						const actorage = html.find('[name="actorage"]').val();
+						const actorgender = html.find('[name="actorgender"]').val();
+						const actorgenderpronoun = html.find('[name="actorgenderpronoun"]').val();
+						const actorheight = html.find('[name="actorheight"]').val();
+						const actorweight = html.find('[name="actorweight"]').val();
+						const actorpob = html.find('[name="actorpob"]').val();
+						const saganame = html.find('[name="saganame"]').val();
+						const coalitionname = html.find('[name="coalitionname"]').val();
+						const factionname = html.find('[name="factionname"]').val();
+						if (!actorname) {
+							ui.notifications.error("Please enter a name for your " + actor.type);
+							return;
+						}
+						if (!actorgender) {
+							ui.notifications.error("Please provide the gender for your " + actor.type);
+							return;
+						}
+						try {
+							await actor.update({
+								name: actorname,
+								"system.Vital.age.value": Number(actorage),
+								"system.humanoids.gender.value": actorgender,
+								"system.humanoids.genderpronoun.value": actorgenderpronoun,
+								"system.humanoids.height.value": Number(actorheight),
+								"system.humanoids.weight.value": Number(actorweight),
+								"system.humanoids.birthplace.value": actorpob,
+								"system.entermeta.narrator.value": narratorName,
+								"system.entermeta.sagas.value": saganame,
+								"system.entermeta.coalition.value": coalitionname,
+								"system.entermeta.faction.value": factionname,
+							});
+						} catch (error) {
+							metaLog(2, "NewActorSummary", "Error in updating actor data", error);
+							reject(error);
+							return;
+						} finally {
+							//left blank
+						}
+						//todo should I just check here for .prototypeToken instead of checking for actor.type?
 						if (actor.type == "Protagonist" || actor.type == "Metanthrope") {
 							await actor.update({ "prototypeToken.name": actorname });
 						}
-						let actorage = html.find('[name="actorage"]').val();
-						await actor.update({ "system.Vital.age.value": Number(actorage) });
-						let actorgender = html.find('[name="actorgender"]').val();
-						await actor.update({ "system.humanoids.gender.value": actorgender });
-						let actorgenderpronoun = html.find('[name="actorgenderpronoun"]').val();
-						await actor.update({ "system.humanoids.genderpronoun.value": actorgenderpronoun });
-						let actorheight = html.find('[name="actorheight"]').val();
-						await actor.update({ "system.humanoids.height.value": Number(actorheight) });
-						let actorweight = html.find('[name="actorweight"]').val();
-						await actor.update({ "system.humanoids.weight.value": Number(actorweight) });
-						let actorpob = html.find('[name="actorpob"]').val();
-						await actor.update({ "system.humanoids.birthplace.value": actorpob });
-						await actor.update({ "system.metaowner.value": playerName });
-						await actor.update({ "system.entermeta.narrator.value": narratorName });
-						let saganame = html.find('[name="saganame"]').val();
-						await actor.update({ "system.entermeta.sagas.value": saganame });
-						let coalitionname = html.find('[name="coalitionname"]').val();
-						await actor.update({ "system.entermeta.coalition.value": coalitionname });
-						let factionname = html.find('[name="factionname"]').val();
-						await actor.update({ "system.entermeta.faction.value": factionname });
 						metaLog(
 							3,
 							"NewActorSummary",
@@ -1046,7 +1078,7 @@ export async function NewActorSummary(actor) {
 				cancel: {
 					label: "Cancel",
 					callback: async () => {
-						await actor.update({ "system.metaowner.value": null });
+						await actor.update({ "system.humanoids.gender.value": null });
 						reject();
 					},
 				},
@@ -1088,41 +1120,45 @@ export async function NewActorFinish(actor) {
 						callback: async (html) => {
 							let actorimg = html.find("#actorimg").attr("src");
 							await actor.update({
+								//? Set the actor's image
 								img: actorimg,
-							});
-							//? set bloodsplats to red color
-							//todo Monk's Bloodsplats had an update that further enhances what options are available.
-							await actor.update({ "prototypeToken.flags.splatter": { bloodColor: "#d10000ff" } });
-							await actor.update({
+								//? set bloodsplats to red color
+								//todo Monk's Bloodsplats had an update that further enhances what options are available.
+								"prototypeToken.flags.splatter": { bloodColor: "#d10000ff" },
 								"prototypeToken.flags.monks-bloodsplats.bloodsplat-colour": "#d10000ff",
 							});
 							if (actor.type == "Protagonist") {
-								//? set the token disposition to friendly
-								await actor.update({ "prototypeToken.disposition": 1 });
-								//? set token bar inclusion
-								await actor.update({ "prototypeToken.flags.monks-tokenbar": { include: "include" } });
-								//? make bars visible on hover by anyone
-								await actor.update({ "prototypeToken.displayName": 30 });
-								await actor.update({ "prototypeToken.displayBars": 30 });
+								await actor.update({
+									//? set the token disposition to friendly
+									"prototypeToken.disposition": 1,
+									//? set token bar inclusion
+									"prototypeToken.flags.monks-tokenbar": { include: "include" },
+									//? make bars visible on hover by anyone
+									"prototypeToken.displayName": 30,
+									"prototypeToken.displayBars": 30,
+								});
 							} else if (actor.type == "Metatherion") {
-								//? set the token disposition to hostile
-								await actor.update({ "prototypeToken.disposition": -1 });
-								//? set token bar exclusion
-								await actor.update({ "prototypeToken.flags.monks-tokenbar": { include: "exclude" } });
-								//? make bars visible on hover by owner
-								await actor.update({ "prototypeToken.displayName": 20 });
-								await actor.update({ "prototypeToken.displayBars": 20 });
+								await actor.update({
+									//? set the token disposition to hostile
+									"prototypeToken.disposition": -1,
+									//? set token bar exclusion
+									"prototypeToken.flags.monks-tokenbar": { include: "exclude" },
+									//? make bars visible on hover by owner
+									"prototypeToken.displayName": 20,
+									"prototypeToken.displayBars": 20,
+								});
 							} else {
-								//? set the token disposition to secret
-								await actor.update({ "prototypeToken.disposition": -2 });
-								//? set token bar exclusion
-								await actor.update({ "prototypeToken.flags.monks-tokenbar": { include: "exclude" } });
-								//? make bars visible on hover by owner
-								await actor.update({ "prototypeToken.displayName": 20 });
-								await actor.update({ "prototypeToken.displayBars": 20 });
+								await actor.update({
+									//? set the token disposition to secret
+									"prototypeToken.disposition": -2,
+									//? set token bar exclusion
+									"prototypeToken.flags.monks-tokenbar": { include: "exclude" },
+									//? make bars visible on hover by owner
+									"prototypeToken.displayName": 20,
+									"prototypeToken.displayBars": 20,
+								});
 							}
 							ui.notifications.info(actor.name + " has entered the Multiverse!");
-							metaLog(0, "NewActorFinish", actor.name + " has entered the Multiverse!");
 							resolve();
 						},
 					},

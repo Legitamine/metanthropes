@@ -35,7 +35,7 @@ export async function HandleMetaRolls(event, metaSheet, isCustomRoll = false) {
 		const actor = metaSheet.actor;
 		const action = dataset.rollType;
 		const stat = dataset.stat;
-		const destinyCost = Number(dataset.destinyCost) ?? 0; //? Destiny Cost is optional, so if it's not defined, set it to 0
+		const destinyCost = Number(dataset.destinyCost) || 0; //? Destiny Cost is optional, so if it's not defined, set it to 0
 		const itemName = dataset.itemName || ""; //? Item Name is optional, so if it's not defined, set it to ""
 		if (dataset.rollType == "StatRoll") {
 			metaLog(3, "HandleMetaRolls", "Engaging MetaRoll for:", actor.name + "'s", action, "with", stat);
