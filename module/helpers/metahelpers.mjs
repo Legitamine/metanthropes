@@ -42,14 +42,15 @@ export function metaLog(logType = 0, ...variables) {
 /**
  * Helper function to check if an item with a given name is equipped by an actor
  * Returns true/false
- * 
+ *
  * @param {*} actor - Object of the actor
  * @param {*} itemName  - String of the item name
  * @returns true/false
  */
 export async function metaIsItemEquipped(actor, itemName) {
 	const equippedItems = actor.items;
-	return equippedItems.some((item) => item.name === itemName);
+	const isEquipped = equippedItems.some((item) => item.name === itemName);
+	return isEquipped;
 }
 
 /**

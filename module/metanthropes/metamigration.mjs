@@ -4,13 +4,50 @@ import { metaLog } from "../helpers/metahelpers.mjs";
  * Migrates data from older versions of the system to newer versions
  * @returns {Promise<void>}
  */
-export async function metaMigrateData() {
-	metaLog(3, "metaMigrateData", "Started");
-	//? Migrate Items: replace "⏱ Action" with "⏱ Activation"
-	// await _metaMigrateItems();
-	//? Check for Invalid Actors
-	// await _metaInvalidData();
-	metaLog(3, "metaMigrateData", "Finished");
+export function metaMigrateData() {
+	//	metaLog(3, "metaMigrateData", "Started");
+	//	const migrationVersion = game.settings.get("metanthropes-system", "migrationVersion");
+	//	const isNewerVersion = foundry.utils.isNewerVersion;
+	//	if (!isNewerVersion(game.system.version, migrationVersion)) return;
+	//	metaLog(0, "Migrating World to latest version");
+	//	// if (isNewerVersion("0.7.21", migrationVersion)) _metaMigrateItems();
+	//	if (isNewerVersion("0.8.21", migrationVersion)) _metaTemplateChanges();
+	//	//	game.settings.set("metanthropes-system", "migrationVersion", game.system.version);
+	//	metaLog(3, "metaMigrateData", "Finished");
+}
+//* Handle template deprecations
+function _metaTemplateChanges() {
+	const worldItems = game.items.contents;
+	for (let item of worldItems) {
+		if (item.system.Execution.TargetsType.selections) {
+			const newSelections = {
+				Animal: "Animal",
+				Human: "Human",
+				Metanthrope: "Metanthrope",
+				Extradimensional: "Extradimensional",
+				Extraterrestrial: "Extraterrestrial",
+				Metatherion: "Metatherion",
+				Organism: "Organism",
+				Dead: "Dead",
+				Plant: "Plant",
+				Object: "Object",
+				Character: "Character",
+				Metapowered: "Metapowered",
+			};
+			metaLog(
+				3,
+				`metaMigrateData`,
+				`_metaTemplateChanges`,
+				`Migrating Item Target Type Selections for:`,
+				item.name
+			);
+			item.update({ "system.Execution.TargetsType.selections": newSelections });
+		}
+		if (item.system.Execution.TargetsType.value === "Living") {
+			item.update({ "system.Execution.TargetsType.value": "Organism" });
+			metaLog(3, `metaMigrateData`, `_metaTemplateChanges`, `Migrated Item:`, item.name);
+		}
+	}
 }
 //* Helper function to compare version numbers
 //! Unused -- Foundry should come with it's own utility for this
@@ -28,7 +65,7 @@ async function _metaMigrateItems() {
 	const worldItems = await game.items.contents;
 	for (let item of worldItems) {
 		if (item.system.Execution.ActionSlot.label === "⏱ Action") {
-			metaLog(4, `metaMigrateData`, `_metaMigrateItems`, `Migrating Item:`, item.name, item)
+			metaLog(4, `metaMigrateData`, `_metaMigrateItems`, `Migrating Item:`, item.name, item);
 			await item.update({ "system.Execution.ActionSlot.label": "⏱ Activation" });
 		}
 	}

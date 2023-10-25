@@ -45,6 +45,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 	//* Check for Bonuses
 	// space intentionally left blank
 	//* Check for Penalties
+	//! disease is expected to be a positive number, whereas penalties and reductions are expected to be negative
 	//? Check for Core Conditions
 	//? Check for Hunger - if we have hunger, we must beat the hunger roll before doing our action
 	//	const hunger = actor.system.Characteristics.Mind.CoreConditions.Hunger;
@@ -65,7 +66,6 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 	//? Check for Fatigue
 	//? Check if we are unconscious
 	//? Check for disease
-	//! disease is expected to be a positive number, whereas penalty is expected to be negative
 	let diseasePenalty = 0;
 	const disease = actor.system.Characteristics.Body.CoreConditions.Diseased;
 	if (disease > 0) {
@@ -135,7 +135,19 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			"Item Name:",
 			itemName
 		);
-		await MetaEvaluate(actor, action, stat, statScore, multiAction, perkReduction, bonus, penalty, pain, destinyCost, itemName);
+		await MetaEvaluate(
+			actor,
+			action,
+			stat,
+			statScore,
+			multiAction,
+			perkReduction,
+			bonus,
+			penalty,
+			pain,
+			destinyCost,
+			itemName
+		);
 	} else {
 		penalty = diseasePenalty;
 		metaLog(
@@ -162,53 +174,22 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			"Item Name:",
 			itemName
 		);
-		await MetaEvaluate(actor, action, stat, statScore, multiAction, perkReduction, bonus, penalty, pain, destinyCost, itemName);
+		await MetaEvaluate(
+			actor,
+			action,
+			stat,
+			statScore,
+			multiAction,
+			perkReduction,
+			bonus,
+			penalty,
+			pain,
+			destinyCost,
+			itemName
+		);
 	}
-	//* Post-roll actions
-	//? Clear all metapower related result flags (currently only from duplicateself)
-	//! the idea here being that if the flags are going to be added later, here we prevent them from remaining from previous successful activations
-	actor.unsetFlag("metanthropes-system", "duplicateself");
-	//? Get the result of the last roll
-	let checkResult = await actor.getFlag("metanthropes-system", "lastrolled").MetaEvaluate;
-	metaLog(
-		3,
-		"MetaRoll",
-		"MetaEvaluate Result for",
-		actor.name + "'s",
-		"Action:",
-		action,
-		stat + ":",
-		statScore,
-		"Result:",
-		checkResult
-	);
-	//* Check for Duplicate Self Metapower Activation
-	if (
-		checkResult > 0 &&
-		action === "Metapower" &&
-		(itemName === "Clone" ||
-			itemName === "Couple" ||
-			itemName === "Team" ||
-			itemName === "Squad" ||
-			itemName === "Unit")
-	) {
-		metaLog(0, "MetaRoll", "Duplicate Self Metapower Activation Detected");
-		let currentLife = actor.system.Vital.Life.value;
-		let duplicateMaxLife = 0;
-		if (itemName === "Clone") {
-			duplicateMaxLife = Math.ceil(currentLife * 0.1);
-		} else if (itemName === "Couple") {
-			duplicateMaxLife = Math.ceil(currentLife * 0.2);
-		} else if (itemName === "Team") {
-			duplicateMaxLife = Math.ceil(currentLife * 0.3);
-		} else if (itemName === "Squad") {
-			duplicateMaxLife = Math.ceil(currentLife * 0.4);
-		} else if (itemName === "Unit") {
-			duplicateMaxLife = Math.ceil(currentLife * 0.5);
-		}
-		actor.setFlag("metanthropes-system", "duplicateself", { maxlife: duplicateMaxLife });
-		metaLog(3, "MetaRoll", "Duplicate Self Metapower Max Life:", duplicateMaxLife);
-	}
+	//* Post-Evaluate-roll actions
+	// intentionally left blank
 	metaLog(3, "MetaRoll", "Finished");
 }
 /**

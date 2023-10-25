@@ -18,7 +18,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 -->
 
-## Latest Version: v0.8.20
+## Latest Version: v0.8.30
 
 ### Added:
 
@@ -31,20 +31,27 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 -   When using a Possession that requires a Perk Skill at a certain Level, it will now Reduce the result of the roll, instead of imposing a Penalty on it. Note that Reductions stack with each other, so trying a Multi-Action, together with missing Perk Skill Levels, will now greatly reduce your chances of using that Possession successfully
 -   Cleaned up and improved the majority of the code documentation. This is a non-visual change that won't affect the gameplay in any way, but will help other developers (and myself) when reviewing and making further changes to the code
+-   When you mouse-over the Name of a Metapower or Possession, you will now see a tooltip with the Effect Description of that Item. Clicking on the Name will open the Item sheet, as before
 -   Removed the 'Sheet' Button from the Actor and Item sheets. This was used in development and no longer needed
+-   Added the word 'Spend' to re-rolling d10 button in the chat, to make it more clear that you are spending Destiny to reroll the dice
+-   Added some validation logic to the 'New Actor' and the 'Finalize Premade Protagonist' processes, to ensure required values are set properly
+-   Added support for 3rd party Module [Hide Player UI](https://foundryvtt.com/packages/hide-player-ui) to conseal UI elements not used by players
 
 ### Fixed:
 
 -   Fixed various minor issues and optimized the code for better performance and error handling
 -   Fixed Pain Condition to only change your result to Failure if it is greater than your Levels of Success. Previously it would also give you Levels of Failure, which was not intended
+-   Fixed an issue that was causing d10 rolls to explode on 1's and 2's when it was not intended to do so
+-   Fixed an issue with activating the Duplicate Self Metapower. It was only semi-automated before, requiring extra steps from the Narrator. Now the process is almost fully-automated, requiring the Narrator to only right-click and select 'Duplicate' for the Protagonist (or Metanthrope) after they have successfully activated the Duplicate Self Metapower. Then the Narrator can drag the new (Duplicate) Actor to the Canvas, as many times as the number of Clones required and nothing further is required from the Narrator. The Clones will have the correct Stat Scores and Maximum Life and will be unlinked from the original Actor. Players can control their Clones and can use the Tab key to switch between them
 
 ### Known Issues:
 
--   Adding a new Item(Metapower, Possession) to an Actor won't properly refresh their Stat Scores until the Character sheet is closed and reopened, or until the Actor makes a new Roll
+-   Adding a new Item(Metapower, Possession) to an Actor, won't properly refresh their Stat Scores until the Character sheet is closed and reopened, or until the Actor makes a new Roll
+-   Duplicate Self Metapower: The Clones can't activate Metapowers or use Possessions besides Strike. Currently, Metapowers and Possessions are copied from the Actor when they become Duplicated. Narrators may wish to remove Metapowers and Possessions from the Duplicate before moving the Duplicate Actor to the Canvas, to avoid confusion, since the current automation doesn't remove these automatically. This will be fully automated in a future release
 
 ### Removed:
 
--   (Unreleased) Removed the old Item and Actor definitions that were deprecated in v0.7 (I hope everyone updated their Worlds by now - if you are not sure if this affects you, then it probably doesn't)
+-   Removed the old Item and Actor definitions that were deprecated in v0.7
 
 ### Unreleased:
 
