@@ -1268,6 +1268,13 @@
 							"Planet [Area 16]"
 						]
 					},
+					"AreaEffectType": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🗺️ (Type)",
+						"value": null,
+						"options": ["None", "Aura", "Line", "Burst", "Hemisphere", "Sphere"]
+					},
 					"AdditionalInfo": {
 						"type": "text",
 						"dtype": "String",
@@ -1281,13 +1288,31 @@
 					"PermanentEffectDescription": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Permanent Effect",
+						"label": "Permanent Effects",
 						"value": null
 					},
 					"EffectDescription": {
 						"type": "text",
 						"dtype": "String",
 						"label": "Effect",
+						"value": null
+					},
+					"VSStatRoll": {
+						"type": "text",
+						"dtype": "String",
+						"label": "🆚",
+						"options": [
+							"None",
+							"Awareness",
+							"Consciousness",
+							"Creativity",
+							"Endurance",
+							"Manipulation",
+							"Perception",
+							"Power",
+							"Reflexes",
+							"Willpower"
+						],
 						"value": null
 					},
 					"Damage": {
@@ -1356,6 +1381,12 @@
 						}
 					},
 					"Buffs": {
+						"Permanent": {
+							"label": "🛡️ ♾️",
+							"type": "text",
+							"dtype": "String",
+							"value": null
+						},
 						"Applied": {
 							"label": "🛡️ ➕",
 							"type": "text",

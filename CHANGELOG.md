@@ -18,7 +18,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 -->
 
-## Latest Version: v0.8.35
+## Latest Version: v0.8.36
 
 ### Added:
 
@@ -38,7 +38,8 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 -   Added the word 'Spend' to re-rolling d10 button in the chat, to make it more clear that you are spending Destiny to reroll the dice
 -   Added some validation logic to the 'New Actor' and the 'Finalize Premade Protagonist' processes, to ensure required values are set properly
 -   Added support for 3rd party Module [Hide Player UI](https://foundryvtt.com/packages/hide-player-ui) to conseal UI elements not used by players
--   Added a field called 'Permanent Effect' to Items (Metapowers/Possessions) to distinguish between activated Effects that show up in Chat and Permanent Effects that are always active. Renamed 'Effect Description' to just 'Effect'
+-   Added a field called 'Permanent Effects' to Items (Metapowers/Possessions) to distinguish between activated Effects that show up in Chat and Permanent Effects that are always active. Renamed 'Effect Description' to just 'Effect'
+-   Added new fields to Items to indicate the VS roll, any Permanent Buffs and the Area (Type). They will only show if applicable to the Players but are visible and editable by the Narrators
 
 ### Fixed:
 
