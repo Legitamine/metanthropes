@@ -28,7 +28,7 @@ import { MetanthropesActorProgressionSheet } from "./sheets/actor-progression-sh
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 //? Import helpers
 import { MetaEvaluateReRoll } from "./helpers/metaeval.mjs";
-import { Rolld10ReRoll } from "./helpers/extrasroll.mjs";
+import { Rolld10ReRoll, HungerReRoll } from "./helpers/extrasroll.mjs";
 import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
 import { MetaExecute } from "./helpers/metaexecute.mjs";
 import { metaMigrateData } from "./metanthropes/metamigration.mjs";
@@ -396,6 +396,8 @@ Hooks.on("renderChatMessage", async (message, html) => {
 				MetaExecute(event);
 			} else if (button.hasClass("possession-use")) {
 				MetaExecute(event);
+			} else if (button.hasClass("hunger-reroll")) {
+				HungerReRoll(event);
 			}
 			//? Disable all main chat buttons
 			html.find(".metanthropes-main-chat-button").prop("disabled", true);

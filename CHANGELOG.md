@@ -18,7 +18,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 -->
 
-## Latest Version: v0.8.30
+## Latest Version: v0.8.32
 
 ### Added:
 
@@ -26,6 +26,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 -   New Progression process (Requires Beta Testing of New Features - not fully functional yet): Added a new button on the Character sheet that will start the Actor progression process, to spend Experience points to increase Characteristics, Stats, Metapowers and Perks. It will also award a Protagonist with additional 25 Life, for every 5.000 Experience points accumulated
 -   New Console Logging functionality: Added a new setting that can be found in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Advanced Logging' feature. This will used, in the event you encounter a bug, to collect information that will assist us in troubleshooting. This feature is turned off by default
 -   Added automation for the Bleeding Condition. During Combat, if an Actor has the Bleeding Condition, they will now automatically lose 1 Life per Level of Bleeding, at the end of each Round
+-   Added automation for the Hunger Condition. Every time the Actor attempts a roll, they will now first have to overcome a Hunger Check. If they fail, their action is canceled and they can spend Destiny to reroll the Hunger Check until they succeed. Once they do, ther initial attempted action will resume execution.
 
 ### Changed:
 
