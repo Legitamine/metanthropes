@@ -110,7 +110,7 @@ export class MetanthropesCombat extends Combat {
 						break;
 				}
 				//? Create a chat message indicating the Unconscious effect
-				ChatMessage.create({
+				await ChatMessage.create({
 					content: `Is affected by the Unconscious Condition Level ${unconsciousLevel}, with the following effect:<br><br>${unconsciousEffect}`,
 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 				});
@@ -145,7 +145,7 @@ export class MetanthropesCombat extends Combat {
 						break;
 				}
 				//? Create a chat message indicating the Asphyxiation effect
-				ChatMessage.create({
+				await ChatMessage.create({
 					content: `Is affected by the Asphyxiation Condition Level ${asphyxiationLevel}, with the following effect:<br><br>${asphyxiationEffect}`,
 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 				});
@@ -180,7 +180,7 @@ export class MetanthropesCombat extends Combat {
 						break;
 				}
 				//? Create a chat message indicating the Unconscious effect
-				ChatMessage.create({
+				await ChatMessage.create({
 					content: `Is affected by the Fatigue Condition Level ${fatigueLevel}, with the following effect:<br><br>${fatigueEffect}`,
 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 				});
@@ -192,7 +192,7 @@ export class MetanthropesCombat extends Combat {
 				const newLife = Number(currentLife) - Number(bleedingLevel);
 				await actor.update({ "system.Vital.Life.value": newLife });
 				//? Create a chat message indicating the Bleeding effect
-				ChatMessage.create({
+				await ChatMessage.create({
 					content: `Lost ${bleedingLevel} ❤️ Life due to Bleeding Condition!`,
 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 				});
