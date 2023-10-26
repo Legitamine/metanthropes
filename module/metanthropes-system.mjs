@@ -28,12 +28,13 @@ import { MetanthropesActorProgressionSheet } from "./sheets/actor-progression-sh
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 //? Import helpers
 import { MetaEvaluateReRoll } from "./helpers/metaeval.mjs";
-import { Rolld10ReRoll } from "./helpers/extrasroll.mjs";
+import { Rolld10ReRoll, HungerReRoll } from "./helpers/extrasroll.mjs";
 import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
 import { MetaExecute } from "./helpers/metaexecute.mjs";
 import { metaMigrateData } from "./metanthropes/metamigration.mjs";
 import { metaLog } from "./helpers/metahelpers.mjs";
 //* Handlebars helpers
+//? Selected Helper
 //! Supposedly Foundry includes its own select helper, but I couldn't get it to work properly.
 Handlebars.registerHelper("selected", function (option, value) {
 	return option === value ? "selected" : "";
@@ -45,6 +46,12 @@ Handlebars.registerHelper("join", function (array, separator) {
 //? Used to check if a value is an array
 Handlebars.registerHelper("isArray", function (value) {
 	return Array.isArray(value);
+});
+//? HTML Stripper Helper (for Metapower effect as tooltips)
+Handlebars.registerHelper("stripHtml", function (htmlString) {
+	if (!htmlString) return "";
+	const strippedString = htmlString.replace(/<\/?[^>]+(>|$)/g, "");
+	return new Handlebars.SafeString(strippedString);
 });
 //* System Initialization.
 Hooks.once("init", async function () {
@@ -85,6 +92,19 @@ Hooks.once("init", async function () {
 		makeDefault: true,
 	});
 	//* System Settings
+	//? Migration Script Required
+	game.settings.register("metanthropes-system", "migrationVersion", {
+		name: "Last Migration Performed",
+		hint: `
+		This setting is used to keep track of the last migration script that was performed.
+		This setting is not visible in the UI and only used by the migration scripts.
+		`,
+		scope: "world", //? This specifies if it's a client-side setting
+		config: false, //? This makes the setting appear in the module configuration
+		requiresReload: false, //? If true, a client reload (F5) is required to activate the setting
+		type: String,
+		default: "0.8.20",
+	});
 	//? Advanced Logging
 	game.settings.register("metanthropes-system", "metaAdvancedLogging", {
 		name: "Enable Advanced Logging",
@@ -376,6 +396,8 @@ Hooks.on("renderChatMessage", async (message, html) => {
 				MetaExecute(event);
 			} else if (button.hasClass("possession-use")) {
 				MetaExecute(event);
+			} else if (button.hasClass("hunger-reroll")) {
+				HungerReRoll(event);
 			}
 			//? Disable all main chat buttons
 			html.find(".metanthropes-main-chat-button").prop("disabled", true);

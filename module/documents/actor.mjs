@@ -52,12 +52,54 @@ export class MetanthropesActor extends Actor {
 		if (data.type !== "Vehicle") {
 			createData.prototypeToken.sight = { enabled: true };
 		}
-		//? Enable Linked Tokens for Protagonists and Metanthropes by default
+		//? Unique Protagonists and Metanthropes
+		//! todo I must include other types that could have a Duplicate Self metapower active
 		if (data.type == "Protagonist" || data.type == "Metanthrope") {
-			createData.prototypeToken.actorLink = true;
-		}
-		if (data.type == "Protoganist" && data.name == "Duplicate") {
-			createData.prototypeToken.actorLink = false;
+			if (!(data.name.includes("Copy") || data.name.includes("Duplicate"))) {
+				//? Enable Linked Tokens for Protagonists & Metanthropes without 'Duplicate' or 'Copy' in their name
+				createData.prototypeToken.actorLink = true;
+				createData.prototypeToken.prependAdjective = false;
+			} else {
+				//? Replace the default 'Copy' name with 'Duplicate'
+				if (data.name.includes("Copy")) {
+					const newName = data.name.replace("Copy", "Duplicate");
+					createData.prototypeToken.name = newName;
+					createData.name = newName;
+				}
+				//? Disable Linked Tokens for Protagonists with 'Duplicate' in their name
+				createData.prototypeToken.actorLink = false;
+				//? Append numbers to the tokens
+				createData.prototypeToken.appendNumber = true;
+				//? Disable default behavior of prepending adjective to the name
+				createData.prototypeToken.prependAdjective = false;
+				//todo confirm if we also reset core conditions -> move this to the prepareData() function?
+				//	createData.system.Characteristics.Body.Condition.Current = 0;
+				//	createData.system.Characteristics.Mind.Condition.Current = 0;
+				//	createData.system.Characteristics.Soul.Condition.Current = 0;
+				//	createData.system.Characteristics.Body.Stats.Endurance.Condition.Current = 0;
+				//	createData.system.Characteristics.Body.Stats.Reflexes.Condition.Current = 0;
+				//	createData.system.Characteristics.Body.Stats.Power.Condition.Current = 0;
+				//	createData.system.Characteristics.Mind.Stats.Creativity.Condition.Current = 0;
+				//	createData.system.Characteristics.Mind.Stats.Manipulation.Condition.Current = 0;
+				//	createData.system.Characteristics.Mind.Stats.Perception.Condition.Current = 0;
+				//	createData.system.Characteristics.Soul.Stats.Consiousness.Condition.Current = 0;
+				//	createData.system.Characteristics.Soul.Stats.Awareness.Condition.Current = 0;
+				//	createData.system.Characteristics.Soul.Stats.Willpower.Condition.Current = 0;
+				//	createData.system.Body.CoreConditions.Asphyxiation = 0;
+				//	createData.system.Body.CoreConditions.Bleeding = 0;
+				//	createData.system.Body.CoreConditions.Diseased = 0;
+				//	createData.system.Body.CoreConditions.Maimed = 0;
+				//	createData.system.Mind.CoreConditions.Fatigue = 0;
+				//	createData.system.Mind.CoreConditions.Hunger = 0;
+				//	createData.system.Mind.CoreConditions.Pain = 0;
+				//	//! todo fix this: - no dashes in template.json
+				//	// createData.system.Mind.CoreConditions.Sense-Lost = 0;
+				//	//todo review with bro - this could be used to some abuse
+				//	createData.system.Soul.CoreConditions.Amnesia = 0;
+				//	createData.system.Soul.CoreConditions.Probed = 0;
+				//	createData.system.Soul.CoreConditions.Infiltrated = 0;
+				//	createData.system.Soul.CoreConditions.Unconscious = 0;
+			}
 		}
 		this.updateSource(createData);
 	}
@@ -109,7 +151,8 @@ export class MetanthropesActor extends Actor {
 		//? Check to see if this actor has been Progressed
 		//todo Deprecate this after we finalize the Progression system (v0.9)
 		const progressionFlag = this.getFlag("metanthropes-system", "Progression");
-		const isProgressing = progressionFlag && progressionFlag.isProgressing !== undefined ? progressionFlag.isProgressing : false;
+		const isProgressing =
+			progressionFlag && progressionFlag.isProgressing !== undefined ? progressionFlag.isProgressing : false;
 		if (isProgressing) {
 			//? Do the progression Calculations
 			this._prepareCharacteristicsProgression(actorData);
@@ -432,7 +475,7 @@ export class MetanthropesActor extends Actor {
 	_prepareDerivedVitalData(actorData) {
 		if (actorData.type == "Vehicle") return;
 		const systemData = actorData.system;
-		if (this.name !== "Duplicate") {
+		if (!this.name.includes("Duplicate")) {
 			//? Apply Max Life according to Body + Endurance
 			parseInt(
 				(systemData.Vital.Life.max =
@@ -440,16 +483,35 @@ export class MetanthropesActor extends Actor {
 					Number(systemData.Characteristics.Body.Stats.Endurance.Roll))
 			);
 			//? If current Life is higher than max Life, set current Life to max Life
-			if (systemData.Vital.Life.max < systemData.Vital.Life.value) {
+			if (systemData.Vital.Life.value > systemData.Vital.Life.max) {
 				parseInt((systemData.Vital.Life.value = Number(systemData.Vital.Life.max)));
 			}
 		} else {
 			//? Apply Max Life for Duplicates from the Duplicate Self Metapower Activation value
-			const duplicateMaxLife = this.getFlag("metanthropes-system", "duplicateself").maxlife;
-			parseInt((systemData.Vital.Life.max = Number(duplicateMaxLife)));
-			const duplicateCurrentLife = systemData.Vital.Life.value;
-			if (duplicateCurrentLife > duplicateMaxLife) {
-				parseInt((systemData.Vital.Life.value = Number(duplicateMaxLife)));
+			const duplicateSelfActivated = this.getFlag("metanthropes-system", "duplicateSelf");
+			//? Check if the actor has activated Duplicate Self Metapower
+			if (!duplicateSelfActivated) {
+				ui.notifications.error(
+					this.type +
+						" " +
+						this.name +
+						" hasn't activated Duplicate Self Metapower and should not be duplicated!"
+				);
+				metaLog(
+					2,
+					"MetanthropesActor",
+					"_prepareDerivedVitalData",
+					this.name,
+					"hasn't activated Duplicate Self Metapower and should not be duplicated!"
+				);
+				return;
+			} else {
+				const duplicateMaxLife = Number(this.getFlag("metanthropes-system", "duplicateSelf").maxLife);
+				parseInt((systemData.Vital.Life.max = duplicateMaxLife));
+				const duplicateCurrentLife = systemData.Vital.Life.value;
+				if (duplicateCurrentLife > duplicateMaxLife) {
+					parseInt((systemData.Vital.Life.value = duplicateMaxLife));
+				}
 			}
 		}
 		metaLog(

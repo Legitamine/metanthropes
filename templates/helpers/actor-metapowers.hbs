@@ -5,7 +5,8 @@
 			<div class="item-itemname" title="The Name of this Metapower">Metapower</div>
 			<div class="item-statroll" title="Stat Rolled to activate this Metapower">🎲</div>
 			<div class="item-destinycost" title="Destiny Cost to activate this Metapower">🤞</div>
-			<div class="item-actionslot" title="Which part of my turn does it take to activate this Metapower">⏱</div>
+			<div class="item-actionslot"
+				title="Which part of my turn does it take to activate this Metapower">⏱</div>
 			<div class="item-range" title="The Range of this Metapower">📏</div>
 			{{#if ../isNarrator}}
 				<div class="item-controls"><i class="fa-duotone fa-gears"></i></div>
@@ -15,18 +16,24 @@
 			<li class="item flexrow" data-item-id="{{item._id}}">
 				<div class="item-name flexrow">
 					<div class="item-image">
-						<img src="{{item.img}}" title="{{item.name}}" width="30" height="30" style="border: none" />
+						<img src="{{item.img}}" title="{{item.name}}" width="30" height="30"
+							style="border: none" />
 					</div>
 					<h4>
-						<div class="item-control item-edit style-view-properties" title="Metapower Details">
-							{{item.name}}</div>
+						<div class="item-control item-edit style-view-properties"
+							title="Click to see detailed information about this Metapower&#13Effect:&#10{{stripHtml item.system.Effects.EffectDescription.value}}">
+							{{item.name}}
+						</div>
 					</h4>
 				</div>
 				<div class="item-itemname item-prop">{{item.system.MetapowerName.value}}</div>
-				<div class="item-statroll style-mp-rolls" data-roll-type="Metapower" data-item-name="{{item.name}}"
+				<div class="item-statroll style-mp-rolls" data-roll-type="Metapower"
+					data-item-name="{{item.name}}"
 					data-stat="{{item.system.Execution.StatRolled.value}}"
-					data-destiny-cost="{{item.system.DestinyCost.value}}">{{item.system.Execution.StatRolled.value}}:
-					{{lookup ../../system.RollStats item.system.Execution.StatRolled.value}}</div>
+					data-destiny-cost="{{item.system.DestinyCost.value}}">
+					{{item.system.Execution.StatRolled.value}}:
+					{{lookup ../../system.RollStats item.system.Execution.StatRolled.value}}
+				</div>
 				<div class="item-destinycost item-prop">{{item.system.DestinyCost.value}}</div>
 				<div class="item-actionslot item-prop">{{item.system.Execution.ActionSlot.value}}</div>
 				<div class="item-range item-prop">{{item.system.Execution.Range.value}}</div>

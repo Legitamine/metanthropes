@@ -60,7 +60,7 @@ export async function MetaInitiative(combatant) {
 	let initiativeResult;
 	//* Special Initiative Rules
 	//? Duplicates from Duplicate Self Metapower get a -11 Initiative, this will ensure they always go last
-	if (actor.name !== "Duplicate") {
+	if (!actor.name.includes("Duplicate")) {
 		metaLog(3, "MetaInitiative", "Engaging MetaRoll for:", actor.name + "'s", action, "with", initiativeStatRolled);
 		await MetaRoll(actor, action, initiativeStatRolled);
 		initiativeResult = await actor.getFlag("metanthropes-system", "lastrolled").Initiative;
