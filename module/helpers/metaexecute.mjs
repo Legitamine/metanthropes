@@ -4,12 +4,11 @@ import { metaExtractNumberOfDice, metaLog, metaIsItemEquipped } from "./metahelp
  *
  * This function determines the type of action (Metapower or Possession) and executes the corresponding logic.
  * It can be triggered either directly or from a button click event.
- * The function checks for Metapowers that affect explosive dice and applies the corresponding logic.
+ * The function checks for Metapowers that affect explosive d10 dice and applies the corresponding logic.
  * It also constructs and sends a chat message detailing the execution results.
  *
  * todo: Ensure all necessary data fields are available and handle any missing data gracefully.
  * ! need a new field to track fixed numbers to be added to the roll rollResults
- * ! do I need multiples based on different damage types?
  * todo na skeftw tin xrisi twn flags kai pws ta diavazw - ti xreiazomai pragmatika?
  * todo mazi me ta activations (lvls) na skeftw kai ta usage (lvls antistoixa)
  * todo episis upcoming combos!
@@ -27,7 +26,6 @@ import { metaExtractNumberOfDice, metaLog, metaIsItemEquipped } from "./metahelp
  * MetaExecute(null, actorUUID, "Metapower", "Danger Sense");
  */
 export async function MetaExecute(event, actorUUID, action, itemName, multiAction = 0) {
-	//! Ask if reductions from perks affect the execution of possession values - px unfamiliar with weapons = reduced damage with melee weapons?
 	//? If we called this from a button click, get the data we need
 	if (event) {
 		metaLog(3, "MetaExecute", "Engaged via button click - Event:", event);
@@ -39,11 +37,11 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 	}
 	const actor = await fromUuid(actorUUID);
 	//? Checking if actor has Metapowers that affect the explosive dice
-	let explosiveDice = "x10";
-	if (await metaIsItemEquipped(actor, "Cognitive Efficiency")) {
-		explosiveDice = "x1x10";
-		metaLog(3, "MetaExecute", "Using Alternative explosive dice:", explosiveDice);
-	}
+	const explosiveDice = "x10";
+	//	if (await metaIsItemEquipped(actor, "Cognitive Efficiency")) {
+	//		explosiveDice = "x1x10";
+	//		metaLog(3, "MetaExecute", "Using Alternative explosive dice:", explosiveDice);
+	//	}
 	//? Find the first item ()that matches itemName
 	let metaItemData = actor.items.find((item) => item.name === itemName);
 	if (!metaItemData) {
@@ -490,7 +488,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 	};
 	//? Send the message to chat
 	ChatMessage.create(chatData);
-	//? Refresh the actor sheet if it's open
+	//* Refresh the actor sheet if it's open
 	//todo similar for item sheet? perhaps something to check for both?
 	const sheet = actor.sheet;
 	if (sheet && sheet.rendered) {
