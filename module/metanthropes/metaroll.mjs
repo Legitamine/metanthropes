@@ -1,5 +1,6 @@
 import { MetaEvaluate } from "../helpers/metaeval.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
+import { HungerRoll } from "../helpers/extrasroll.mjs";
 /**
  * Handles rolling for Metanthropes
  *
@@ -18,20 +19,15 @@ import { metaLog } from "../helpers/metahelpers.mjs";
  *
  * @example
  * Rolling a simple stat
- * MetaRoll(actor, "StatRoll", "Power", 0);
+ * MetaRoll(actor, "StatRoll", "Power");
  */
-
-//! px to hunger tha prepei na to pernaw kathe fora poy kanw re-roll? mporw na kanw destiny spend gia re-rolling tou hunger?
-//! testing rq: protagonists, humans, metatherions klp klp linked kai mh, paizoune swsta? emfanizontai ola swsta k me to initiative??
-//! thumisou na vgaleis ta ui.notifications.error apo to actor - kai isws na ta kaneis chat messages ???
-
 export async function MetaRoll(actor, action, stat, isCustomRoll = false, destinyCost = 0, itemName = null) {
 	const statScore = actor.system.RollStats[stat];
 	metaLog(3, "MetaRoll", "Engaged for", actor.type + ":", actor.name + "'s", action, "with", stat);
 	//* Go through a series of tests and checks before actually rolling the dice
 	//? Check if we are ok to do the roll stat-wise
 	if (statScore <= 0) {
-		ui.notifications.error(actor.name + " can't Roll " + stat + " with a Current value of 0!");
+		ui.notifications.error(actor.name + " can't Roll " + stat + " with a Score of 0!");
 		return;
 	}
 	//? Check for always active item activation
@@ -45,10 +41,31 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 	//* Check for Bonuses
 	// space intentionally left blank
 	//* Check for Penalties
-	//! disease is expected to be a positive number, whereas penalties and reductions are expected to be negative
 	//? Check for Core Conditions
 	//? Check for Hunger - if we have hunger, we must beat the hunger roll before doing our action
-	//	const hunger = actor.system.Characteristics.Mind.CoreConditions.Hunger;
+	const hungerLevel = actor.system.Characteristics.Mind.CoreConditions.Hunger;
+	hungerCheck: if (hungerLevel > 0) {
+		//? Check if actor has already overcome hunger
+		const hungerRollResult = (await actor.getFlag("metanthropes-system", "hungerRollResult")) || false;
+		if (hungerRollResult) {
+			//? If the flag exists, we clear it and resume running the rest of the checks
+			await actor.unsetFlag("metanthropes-system", "hungerRollResult");
+			metaLog(0, "MetaRoll", "Hunger Check Passed, moving on");
+			break hungerCheck;
+		} else {
+			//? Engage the Hunger Roll
+			await actor.setFlag("metanthropes-system", "MetaRollBeforeHungerCheck", {
+				action: action,
+				stat: stat,
+				isCustomRoll: isCustomRoll,
+				destinyCost: destinyCost,
+				itemName: itemName,
+			});
+			metaLog(0, "MetaRoll", "Hunger Check Failed, Engaging Hunger Roll");
+			await HungerRoll(actor, hungerLevel);
+			return;
+		}
+	}
 	//	if (hunger > 0) {
 	//		try {
 	//			const hungerRoll = await new Roll("1d100").evaluate({ async: true });
@@ -61,11 +78,13 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 	//			console.log("Metanthropes | MetaRoll | Hunger Roll Error:", error);
 	//		}
 	//	}
+	metaLog(0, "MetaRoll", "Moving on to Pain Check");
 	//? Pain is passed to MetaEvaluate
 	const pain = actor.system.Characteristics.Mind.CoreConditions.Pain;
 	//? Check for Fatigue
 	//? Check if we are unconscious
 	//? Check for disease
+	//! disease is expected to be a positive number, whereas penalties and reductions are expected to be negative
 	let diseasePenalty = 0;
 	const disease = actor.system.Characteristics.Body.CoreConditions.Diseased;
 	if (disease > 0) {
