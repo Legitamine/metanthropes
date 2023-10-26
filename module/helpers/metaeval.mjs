@@ -6,7 +6,6 @@ import { metaLog } from "../helpers/metahelpers.mjs";
  * This function calculates the results of a roll based on the provided parameters,
  * determines the levels of success or failure, checks for critical outcomes,
  * and then constructs and sends a message to the chat with the results.
- * todo: in case of metapower activation, when do we calculate the destiny cost?
  *
  * @param {Object} actor - The actor making the roll.
  * @param {String} action - The type of action being performed (e.g., "StatRoll", "Initiative", "Metapower", "Possession", "Combo"). Expected to be a string.

@@ -18,15 +18,16 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 -->
 
-## Latest Version: v0.8.33
+## Latest Version: v0.8.35
 
 ### Added:
 
 -   Beta Testing of New Features (Narrator Only): You can find a new setting in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Beta Testing of New Features' option. This will allow you to test new features that are currently in development. This feature is turned off by default
--   New Progression process (Requires Beta Testing of New Features - not fully functional yet): Added a new button on the Character sheet that will start the Actor progression process, to spend Experience points to increase Characteristics, Stats, Metapowers and Perks. It will also award a Protagonist with additional 25 Life, for every 5.000 Experience points accumulated
+-   New Progression process (Requires Beta Testing of New Features - not fully functional yet): Added a new button on the Actorsheet that will start the Actor progression process, to spend Experience points to increase Characteristics, Stats, Metapowers and Perks. It will also award a Protagonist with additional 25 Life, for every 5.000 Experience points accumulated
 -   New Console Logging functionality: Added a new setting that can be found in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Advanced Logging' feature. This will used, in the event you encounter a bug, to collect information that will assist us in troubleshooting. This feature is turned off by default
--   Added automation for the Bleeding Condition. During Combat, if an Actor has the Bleeding Condition, they will now automatically lose 1 Life per Level of Bleeding, at the end of each Round
--   Added automation for the Hunger Condition. Every time the Actor attempts a roll, they will now first have to overcome a Hunger Check. If they fail, their action is canceled and they can spend Destiny to reroll the Hunger Check until they succeed. Once they do, ther initial attempted action will resume execution.
+-   Added automation for the Bleeding Core Condition. During Combat, if an Actor has the Bleeding Condition, they will now automatically lose 1 Life per Level of Bleeding, at the end of each Combat Round
+-   Added automation for the Hunger Core Condition. Every time the Actor attempts a roll, they will now first have to overcome a Hunger Check. If they fail, their action is canceled and they can spend Destiny to reroll the Hunger Check until they succeed. Once they do, ther initial attempted action will resume execution.
+-   Added automation for the Fatigue, Unconsious and Asphyxiation Core Conditions. During Combat, if an Actor has any of these Conditions, they will now be informed in the chat at the end of each Combat Round about what is the effect of that Condition. This will help keep the Narrator and Player informed about the status of the Actor and any further rolls or actions that might be required
 
 ### Changed:
 
@@ -37,7 +38,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 -   Added the word 'Spend' to re-rolling d10 button in the chat, to make it more clear that you are spending Destiny to reroll the dice
 -   Added some validation logic to the 'New Actor' and the 'Finalize Premade Protagonist' processes, to ensure required values are set properly
 -   Added support for 3rd party Module [Hide Player UI](https://foundryvtt.com/packages/hide-player-ui) to conseal UI elements not used by players
--	Added a field called 'Permanent Effect' to Items (Metapowers/Possessions) to distinguish between activated Effects that show up in Chat and Permanent Effects that are always active. Renamed 'Effect Description' to just 'Effect'
+-   Added a field called 'Permanent Effect' to Items (Metapowers/Possessions) to distinguish between activated Effects that show up in Chat and Permanent Effects that are always active. Renamed 'Effect Description' to just 'Effect'
 
 ### Fixed:
 
@@ -48,7 +49,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 ### Known Issues:
 
--   Adding a new Item(Metapower, Possession) to an Actor, won't properly refresh their Stat Scores until the Character sheet is closed and reopened, or until the Actor makes a new Roll
+-   Adding a new Item(Metapower, Possession) to an Actor, won't properly refresh their Stat Scores until the Actorsheet is closed and reopened, or until the Actor makes a new Roll
 -   Duplicate Self Metapower: The Clones can't activate Metapowers or use Possessions besides Strike. However, Metapowers and Possessions are copied from the Actor when they become Duplicated. Narrators may wish to remove Metapowers and Possessions from the Duplicate before moving the Duplicate Actor to the Canvas, to avoid confusion, since the current automation doesn't remove these automatically. This will be fully automated in a future release
 
 ### Removed:
@@ -59,7 +60,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 -   Core Conditions automatically apply their effects to the rolls (in progress 1/3 completed)
 -   Aiming and Cover mechanics (scheduled for v0.8)
--   New Character Creation Automation for randomizing a new Actor - Very useful for Narrators when creating NPCs (scheduled for v0.8)
+-   New ActorCreation Automation for randomizing a new Actor - Very useful for Narrators when creating NPCs (scheduled for v0.8)
 -   Split the content (Audio and Artwork) from the System into a separate Module to improve System upgrade speeds and reduce the size of the System (scheduled for v0.8)
 -   Spending Levels of Success to activate more powerful Metapower effects (scheduled for v0.8)
 -   Destiny Save vs Death (scheduled for v0.8)
@@ -72,14 +73,14 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 -   Fully automated Stat, Initiative, Metapower, Possession and Strike Rolls. Right clicking allows the player to set custom options
 -   New approach to rolling a new Protagonist. 10 steps designed to guide the player throughout the creation process
--   New tooltips (mouse over to see information) for the majority of the UI elements of the Character sheet
--   New Protagonist Character Sheet sections: Notes & Summary
--   Movement Score is now automatically calculated based on Speed, Weight and Size and is reflected in the grid when you move your character. Green is for normal movement, Yellow for Additional Movement, Orange for Sprint and Red for no more movement. (requires Drag Ruler module)
--   Besides being able to click (or right-click) on the Stat for a Metapower or Possession tabs in your character sheet to roll it, you may now click on the Stat on the top of the Metapower or Possession sheet to roll it as well
+-   New tooltips (mouse over to see information) for the majority of the UI elements of the Actorsheet
+-   New Protagonist ActorSheet sections: Notes & Summary
+-   Movement Score is now automatically calculated based on Speed, Weight and Size and is reflected in the grid when you move your Actor. Green is for normal movement, Yellow for Additional Movement, Orange for Sprint and Red for no more movement. (requires Drag Ruler module)
+-   Besides being able to click (or right-click) on the Stat for a Metapower or Possession tabs in your Actorsheet to roll it, you may now click on the Stat on the top of the Metapower or Possession sheet to roll it as well
 -   Possessions now may require a Perk to be a certain Level and will add a -10% Penalty to the roll for each Level missing
 -   Activations for Metapowers and Possessions that are 'Always Active', now properly prevent you from rolling the dice and display an information message in the client instead
--   When Activating a Metapower and when Using a Possession and a character rolls a Critical Success/Failure and/or when the character doesn't have enough Destiny to spend on rerolls, the Metapower or Possession will auto-activate and the result will be displayed in the chat
--   A Character's Initiative will now automatically roll with the highest amongst Awareness, Reflexes and Perception, as long as the character has the appropriate Metapower like Danger Sense (6th Sense) and Temporal Awareness (Time Bending)
+-   When Activating a Metapower and when Using a Possession and an Actor' Rolls a Critical Success/Failure and/or when the Actordoesn't have enough Destiny to spend on rerolls, the Metapower or Possession will auto-activate and the result will be displayed in the chat
+-   An Actor's Initiative will now automatically roll with the highest amongst Awareness, Reflexes and Perception, as long as the Actorhas the appropriate Metapower like Danger Sense (6th Sense) and Temporal Awareness (Time Bending)
 -   Pain now is automatically calculated, lowering your levels of success and informing you about it in the chat
 -   Non-linked Actors are now available to Narrators
 -   Introduced Narrator's Toolbox: a set of Narrator-only macros designed to help with the game flow and automate the end of Scene/Session/Arc player awards
@@ -92,14 +93,14 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 -   Foundry version 11 is now required
 -   Change Log (this page) will from now on follow the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
--   Revamped the Character sheet to be more intuitive and take less screen 'real estate'
+-   Revamped the Actorsheet to be more intuitive and take less screen 'real estate'
 -   Metapowers and Possessions details are now only editable by Narrators
 -   Revamped the Items sheets (Metapowers & Possessions) to be more intuitive and take less screen 'real estate'
--   Changed Destiny Reroll button in chat, to now only be visible to the owner of that Character and the Narrator (currently requires module DF Chat Enhancements)
+-   Changed Destiny Reroll button in chat, to now only be visible to the owner of that Actorand the Narrator (currently requires module DF Chat Enhancements)
 -   Protagonists and Metanthropes are now Actor-Linked to their tokens, all other Actor types are not linked by default
 -   New Actors will now have their token default values change once the 'Roll new Actor' 10-step process is completed. The 'Finish Premade Protagonist' button will also trigger similar changes. This controls the visibility of the Name, Life & Destiny Bars and disposition towards other actors: Protagonists are Friendly to each other, Metatherions are Hostile and other actors are Neutral by default.
 -   All built-in d20 references have been changed to d10 dice
--   When a character's maximum Life drops (because of Burned condition for example) and their current Life is now greater than their new maximum Life, their current Life will now be set to the new maximum
+-   When an Actor's maximum Life drops (because of Burned condition for example) and their current Life is now greater than their new maximum Life, their current Life will now be set to the new maximum
 
 ### Fixed:
 

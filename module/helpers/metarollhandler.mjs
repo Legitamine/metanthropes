@@ -3,6 +3,7 @@ import { metaLog } from "../helpers/metahelpers.mjs";
 /**
  * HandleMetaRolls - A utility function to handle various types of meta rolls for the Metanthropes system.
  *
+ * This function is expected to be called via a button or click event in the actor or item sheet, not called directly.
  * This function processes the roll request based on the roll type specified in the dataset of the event target.
  * It supports different roll types such as "StatRoll", "Metapower", and "Possession". Depending on the roll type,
  * it engages the MetaRoll function with the appropriate parameters.
@@ -13,9 +14,6 @@ import { metaLog } from "../helpers/metahelpers.mjs";
  *
  * @returns {void}
  *
- * Usage:
- * - For standard rolls: HandleMetaRolls(event, actorSheet);
- * - For custom rolls: HandleMetaRolls(event, actorSheet, true);
  */
 
 export async function HandleMetaRolls(event, metaSheet, isCustomRoll = false) {
@@ -37,43 +35,47 @@ export async function HandleMetaRolls(event, metaSheet, isCustomRoll = false) {
 		const stat = dataset.stat;
 		const destinyCost = Number(dataset.destinyCost) || 0; //? Destiny Cost is optional, so if it's not defined, set it to 0
 		const itemName = dataset.itemName || ""; //? Item Name is optional, so if it's not defined, set it to ""
-		if (dataset.rollType == "StatRoll") {
-			metaLog(3, "HandleMetaRolls", "Engaging MetaRoll for:", actor.name + "'s", action, "with", stat);
-			await MetaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
-			metaLog(3, "HandleMetaRolls", "Finished Rolling for StatRoll");
-		} else if (dataset.rollType == "Metapower") {
-			metaLog(
-				3,
-				"HandleMetaRolls",
-				"Engaging MetaRoll for:",
-				actor.name + "'s",
-				action,
-				"Metapower:",
-				itemName,
-				"Destiny Cost:",
-				destinyCost,
-				"with:",
-				stat
-			);
-			await MetaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
-			metaLog(3, "HandleMetaRolls", "Finished Rolling for Metapower");
-		} else if (dataset.rollType == "Possession") {
-			metaLog(
-				3,
-				"HandleMetaRolls",
-				"Engaging MetaRoll for:",
-				actor.name + "'s",
-				action,
-				"Possession:",
-				itemName,
-				"with:",
-				stat
-			);
-			await MetaRoll(actor, action, stat, isCustomRoll, 0, itemName);
-			metaLog(3, "HandleMetaRolls", "Finished Rolling for Possession");
-		} else {
-			metaLog(2, "HandleMetaRolls", "ERROR: not defined rollType", dataset.rollType);
-			return;
+		switch (dataset.rollType) {
+			case "StatRoll":
+				metaLog(3, "HandleMetaRolls", "Engaging MetaRoll for:", actor.name + "'s", action, "with", stat);
+				await MetaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
+				metaLog(3, "HandleMetaRolls", "Finished Rolling for StatRoll");
+				break;
+			case "Metapower":
+				metaLog(
+					3,
+					"HandleMetaRolls",
+					"Engaging MetaRoll for:",
+					actor.name + "'s",
+					action,
+					"Metapower:",
+					itemName,
+					"Destiny Cost:",
+					destinyCost,
+					"with:",
+					stat
+				);
+				await MetaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
+				metaLog(3, "HandleMetaRolls", "Finished Rolling for Metapower");
+				break;
+			case "Possession":
+				metaLog(
+					3,
+					"HandleMetaRolls",
+					"Engaging MetaRoll for:",
+					actor.name + "'s",
+					action,
+					"Possession:",
+					itemName,
+					"with:",
+					stat
+				);
+				await MetaRoll(actor, action, stat, isCustomRoll, 0, itemName);
+				metaLog(3, "HandleMetaRolls", "Finished Rolling for Possession");
+				break;
+			default:
+				metaLog(2, "HandleMetaRolls", "ERROR: not defined rollType", dataset.rollType);
+				return;
 		}
 	}
 	//? After doing a meta roll, re-render the actor or item sheet.
