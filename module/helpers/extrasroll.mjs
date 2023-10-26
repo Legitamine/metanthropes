@@ -40,12 +40,12 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 		isHalf
 	);
 	let rollTotal;
-	let explosiveDice = "x10";
+	const explosiveDice = "x10";
 	//? Checking if actor has Metapowers that affect the explosive dice
-	if (await metaIsItemEquipped(actor, "Cognitive Efficiency")) {
-		explosiveDice = "x1x10";
-		metaLog(3, "Rolld10", "Using Alternative explosive dice:", explosiveDice);
-	}
+	//	if (await metaIsItemEquipped(actor, "Cognitive Efficiency")) {
+	//		explosiveDice = "x1x10";
+	//		metaLog(3, "Rolld10", "Using Alternative explosive dice:", explosiveDice);
+	//	}
 	//? dice is the number of d10 to roll
 	let rolld10;
 	if (baseNumber > 0) {

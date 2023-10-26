@@ -1278,10 +1278,16 @@
 			},
 			"effects": {
 				"Effects": {
+					"PermanentEffectDescription": {
+						"type": "text",
+						"dtype": "String",
+						"label": "Permanent Effect",
+						"value": null
+					},
 					"EffectDescription": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Effect Description",
+						"label": "Effect",
 						"value": null
 					},
 					"Damage": {
