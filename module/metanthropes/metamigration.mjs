@@ -73,6 +73,10 @@ async function _metaMigrateItems() {
 			metaLog(4, `metaMigrateData`, `_metaMigrateItems`, `Migrating Item:`, item.name, item);
 			await item.update({ "system.Effects.EffectDescription.label": "Effect" });
 		}
+		if (item.system.Effects.PermanentEffectDescription.label === "Permanent Effect") {
+			metaLog(4, `metaMigrateData`, `_metaMigrateItems`, `Migrating Item:`, item.name, item);
+			await item.update({ "system.Effects.PermanentEffectDescription.label": "Permanent Effects" });
+		}
 	}
 }
 //* Helper function to check for invalid actors

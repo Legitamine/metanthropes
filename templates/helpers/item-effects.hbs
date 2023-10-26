@@ -1,5 +1,5 @@
 <div class="tab effects" data-group="primary" data-tab="effects">
-	{{! -- Permanent Effect Description --}}
+	{{! -- Permanent Effects Description --}}
 	{{#if (or isNarrator (and system.Effects.PermanentEffectDescription.value (not (or (eq system.Effects.PermanentEffectDescription.value null) (eq system.Effects.PermanentEffectDescription.value 0) (eq system.Effects.PermanentEffectDescription.value "None")))))}}
 		<div class="resource-label">{{system.Effects.PermanentEffectDescription.label}}:<br></div>
 		{{#if isNarrator}}
@@ -11,6 +11,7 @@
 				{{editor system.Effects.PermanentEffectDescription.value target="system.Effects.PermanentEffectDescription.value" button=false editable=false}}
 			</div>
 		{{/if}}
+		<br>
 	{{/if}}
 	{{! -- Effect Description --}}
 	{{#if (or isNarrator (and system.Effects.EffectDescription.value (not (or (eq system.Effects.EffectDescription.value null) (eq system.Effects.EffectDescription.value 0) (eq system.Effects.EffectDescription.value "None")))))}}
@@ -24,6 +25,25 @@
 				{{editor system.Effects.EffectDescription.value target="system.Effects.EffectDescription.value" button=false editable=false}}
 			</div>
 		{{/if}}
+		<br>
+	{{/if}}
+	{{! -- VS --}}
+	{{#if (or isNarrator (and system.Effects.VSStatRoll.value (not (or (eq system.Effects.VSStatRoll.value null) (eq system.Effects.VSStatRoll.value 0) (eq system.Effects.VSStatRoll.value "None")))))}}
+		<label class="resource-label"
+			title="Which Stat is rolled against (VS) Activating this Metapower">{{system.Effects.VSStatRoll.label}}:</label>
+		{{#if isNarrator}}
+			<select name="system.Effects.VSStatRoll.value">
+				{{#each system.Effects.VSStatRoll.options as |option|}}
+					<option value="{{option}}"
+						{{#if (eq option ../system.Effects.VSStatRoll.value)}}selected{{/if}}>
+						{{option}}
+					</option>
+				{{/each}}
+			</select>
+		{{else}}
+			{{system.Effects.VSStatRoll.value}}
+		{{/if}}
+		<br><br>
 	{{/if}}
 	{{! -- Effect Damage --}}
 	{{#each system.Effects.Damage}}
@@ -31,15 +51,17 @@
 			<div class="resource-label">{{this.label}}:
 				<span class="resource">
 					{{#if ../isNarrator}}
-						<input type="{{this.type}}" name="system.Effects.Damage.{{@key}}.Dice" value="{{this.Dice}}"
-							data-dtype="{{this.dtype}}" />d10
-						+ <input type="{{this.type}}" name="system.Effects.Damage.{{@key}}.Base" value="{{this.Base}}"
-							data-dtype="{{this.dtype}}" /> Base
+						<input type="{{this.type}}" name="system.Effects.Damage.{{@key}}.Dice"
+							value="{{this.Dice}}" data-dtype="{{this.dtype}}" />d10
+						+ <input type="{{this.type}}" name="system.Effects.Damage.{{@key}}.Base"
+							value="{{this.Base}}" data-dtype="{{this.dtype}}" />
+						Base
 					{{else}}
 						{{#if (and this.Dice (not (or (eq this.Dice null) (eq this.Dice 0))))}}
 							{{this.Dice}}d10
 						{{/if}}
-						{{#if (and this.Base (not (or (eq this.Dice null) (eq this.Dice 0))))}} + {{/if}}
+						{{#if (and this.Base (not (or (eq this.Dice null) (eq this.Dice 0))))}}
+							+ {{/if}}
 						{{#if (and this.Base (not (or (eq this.Base null) (eq this.Base 0))))}}
 							{{this.Base}} Base
 						{{/if}}
@@ -55,9 +77,12 @@
 			<span class="resource">
 				{{#if isNarrator}}
 					<input type="{{system.Effects.Healing.type}}" name="system.Effects.Healing.Dice"
-						value="{{system.Effects.Healing.Dice}}" data-dtype="{{system.Effects.Healing.dtype}}" />d10
-					+ <input type="{{system.Effects.Healing.type}}" name="system.Effects.Healing.Base"
-						value="{{system.Effects.Healing.Base}}" data-dtype="{{system.Effects.Healing.dtype}}" /> Base
+						value="{{system.Effects.Healing.Dice}}"
+						data-dtype="{{system.Effects.Healing.dtype}}" />d10
+					+ <input type="{{system.Effects.Healing.type}}"
+						name="system.Effects.Healing.Base"
+						value="{{system.Effects.Healing.Base}}"
+						data-dtype="{{system.Effects.Healing.dtype}}" /> Base
 				{{else}}
 					{{#if (and system.Effects.Healing.Dice (not (or (eq system.Effects.Healing.Dice null) (eq system.Effects.Healing.Dice 0))))}}
 						{{system.Effects.Healing.Dice}}d10
@@ -84,11 +109,16 @@
 					value="{{system.Effects.Special.SpecialDiceName.value}}"
 					data-dtype="{{system.Effects.Special.SpecialDiceName.dtype}}" />
 				<input type="{{system.Effects.Special.type}}" name="system.Effects.Special.Base"
-					value="{{system.Effects.Special.Base}}" data-dtype="{{system.Effects.Special.dtype}}" /> Base +
+					value="{{system.Effects.Special.Base}}"
+					data-dtype="{{system.Effects.Special.dtype}}" />
+				Base +
 				<input type="{{system.Effects.Special.type}}" name="system.Effects.Special.Dice"
-					value="{{system.Effects.Special.Dice}}" data-dtype="{{system.Effects.Special.dtype}}" />d10
-				<input type="checkbox" name="system.Effects.Special.isHalf" value="{{system.Effects.Special.isHalf}}"
-					{{#if system.Effects.Special.isHalf}}checked{{/if}} data-dtype="Boolean" /> d10/2
+					value="{{system.Effects.Special.Dice}}"
+					data-dtype="{{system.Effects.Special.dtype}}" />d10
+				<input type="checkbox" name="system.Effects.Special.isHalf"
+					value="{{system.Effects.Special.isHalf}}"
+					{{#if system.Effects.Special.isHalf}}checked{{/if}} data-dtype="Boolean" />
+				d10/2
 			{{else}}
 				{{system.Effects.Special.SpecialDiceName.value}}:
 				<span class="resource">
@@ -100,16 +130,13 @@
 							d10
 						{{/if}}
 					{{/if}}
-
 					{{#if (and system.Effects.Special.Base (not (or (eq system.Effects.Special.Dice null) (eq system.Effects.Special.Dice 0))))}}
 						+
 					{{/if}}
-
 					{{#if (and system.Effects.Special.Base (not (or (eq system.Effects.Special.Base null) (eq system.Effects.Special.Base 0))))}}
 						{{system.Effects.Special.Base}} Base
 					{{/if}}
 				</span>
-
 			{{/if}}
 		</div><br>
 	{{/if}}
@@ -120,8 +147,8 @@
 				<div class="resource">
 					<label class="resource-label">{{this.label}}:</label>
 					{{#if ../isNarrator}}
-						<input type="{{this.type}}" name="system.Effects.Buffs.{{@key}}.value" value="{{this.value}}"
-							data-dtype="{{this.dtype}}" />
+						<input type="{{this.type}}" name="system.Effects.Buffs.{{@key}}.value"
+							value="{{this.value}}" data-dtype="{{this.dtype}}" />
 					{{else}}
 						{{this.value}}
 					{{/if}}
@@ -136,7 +163,8 @@
 				<div class="resource">
 					<label class="resource-label">{{this.label}}:</label>
 					{{#if ../isNarrator}}
-						<input type="{{this.type}}" name="system.Effects.Conditions.{{@key}}.value"
+						<input type="{{this.type}}"
+							name="system.Effects.Conditions.{{@key}}.value"
 							value="{{this.value}}" data-dtype="{{this.dtype}}" />
 					{{else}}
 						{{this.value}}
