@@ -1,4 +1,17 @@
 <div class="tab effects" data-group="primary" data-tab="effects">
+	{{! -- Permanent Effect Description --}}
+	{{#if (or isNarrator (and system.Effects.PermanentEffectDescription.value (not (or (eq system.Effects.PermanentEffectDescription.value null) (eq system.Effects.PermanentEffectDescription.value 0) (eq system.Effects.PermanentEffectDescription.value "None")))))}}
+		<div class="resource-label">{{system.Effects.PermanentEffectDescription.label}}:<br></div>
+		{{#if isNarrator}}
+			<div class="layout-editor">
+				{{editor system.Effects.PermanentEffectDescription.value target="system.Effects.PermanentEffectDescription.value" button=true editable=true}}
+			</div>
+		{{else}}
+			<div class="layout-editor">
+				{{editor system.Effects.PermanentEffectDescription.value target="system.Effects.PermanentEffectDescription.value" button=false editable=false}}
+			</div>
+		{{/if}}
+	{{/if}}
 	{{! -- Effect Description --}}
 	{{#if (or isNarrator (and system.Effects.EffectDescription.value (not (or (eq system.Effects.EffectDescription.value null) (eq system.Effects.EffectDescription.value 0) (eq system.Effects.EffectDescription.value "None")))))}}
 		<div class="resource-label">{{system.Effects.EffectDescription.label}}:<br></div>

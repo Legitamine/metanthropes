@@ -5,7 +5,7 @@ import { metaLog } from "../helpers/metahelpers.mjs";
  * @returns {Promise<void>}
  */
 export function metaMigrateData() {
-	//	metaLog(3, "metaMigrateData", "Started");
+	metaLog(3, "metaMigrateData", "Started");
 	//	const migrationVersion = game.settings.get("metanthropes-system", "migrationVersion");
 	//	const isNewerVersion = foundry.utils.isNewerVersion;
 	//	if (!isNewerVersion(game.system.version, migrationVersion)) return;
@@ -13,7 +13,8 @@ export function metaMigrateData() {
 	//	// if (isNewerVersion("0.7.21", migrationVersion)) _metaMigrateItems();
 	//	if (isNewerVersion("0.8.21", migrationVersion)) _metaTemplateChanges();
 	//	//	game.settings.set("metanthropes-system", "migrationVersion", game.system.version);
-	//	metaLog(3, "metaMigrateData", "Finished");
+	_metaMigrateItems();
+	metaLog(3, "metaMigrateData", "Finished");
 }
 //* Handle template deprecations
 function _metaTemplateChanges() {
@@ -64,9 +65,13 @@ async function _metaMigrateItems() {
 	metaLog(3, `metaMigrateData`, `_metaMigrateItems`, `Migrating Items to version`, currentVersion);
 	const worldItems = await game.items.contents;
 	for (let item of worldItems) {
-		if (item.system.Execution.ActionSlot.label === "⏱ Action") {
+		//	if (item.system.Execution.ActionSlot.label === "⏱ Action") {
+		//		metaLog(4, `metaMigrateData`, `_metaMigrateItems`, `Migrating Item:`, item.name, item);
+		//		await item.update({ "system.Execution.ActionSlot.label": "⏱ Activation" });
+		//	}
+		if (item.system.Effects.EffectDescription.label === "Effect Description") {
 			metaLog(4, `metaMigrateData`, `_metaMigrateItems`, `Migrating Item:`, item.name, item);
-			await item.update({ "system.Execution.ActionSlot.label": "⏱ Activation" });
+			await item.update({ "system.Effects.EffectDescription.label": "Effect" });
 		}
 	}
 }

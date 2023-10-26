@@ -18,7 +18,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 -->
 
-## Latest Version: v0.8.32
+## Latest Version: v0.8.33
 
 ### Added:
 
@@ -37,6 +37,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 -   Added the word 'Spend' to re-rolling d10 button in the chat, to make it more clear that you are spending Destiny to reroll the dice
 -   Added some validation logic to the 'New Actor' and the 'Finalize Premade Protagonist' processes, to ensure required values are set properly
 -   Added support for 3rd party Module [Hide Player UI](https://foundryvtt.com/packages/hide-player-ui) to conseal UI elements not used by players
+-	Added a field called 'Permanent Effect' to Items (Metapowers/Possessions) to distinguish between activated Effects that show up in Chat and Permanent Effects that are always active. Renamed 'Effect Description' to just 'Effect'
 
 ### Fixed:
 
@@ -48,7 +49,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 ### Known Issues:
 
 -   Adding a new Item(Metapower, Possession) to an Actor, won't properly refresh their Stat Scores until the Character sheet is closed and reopened, or until the Actor makes a new Roll
--   Duplicate Self Metapower: The Clones can't activate Metapowers or use Possessions besides Strike. Currently, Metapowers and Possessions are copied from the Actor when they become Duplicated. Narrators may wish to remove Metapowers and Possessions from the Duplicate before moving the Duplicate Actor to the Canvas, to avoid confusion, since the current automation doesn't remove these automatically. This will be fully automated in a future release
+-   Duplicate Self Metapower: The Clones can't activate Metapowers or use Possessions besides Strike. However, Metapowers and Possessions are copied from the Actor when they become Duplicated. Narrators may wish to remove Metapowers and Possessions from the Duplicate before moving the Duplicate Actor to the Canvas, to avoid confusion, since the current automation doesn't remove these automatically. This will be fully automated in a future release
 
 ### Removed:
 
