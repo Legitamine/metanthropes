@@ -58,6 +58,8 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 	let duration = metaItemData.system.Execution.Duration.value;
 	let range = metaItemData.system.Execution.Range.value;
 	let areaEffect = metaItemData.system.Execution.AreaEffect.value;
+	let areaType = metaItemData.system.Execution.AreaType.value;
+	let vsRoll = metaItemData.system.Effects.VSStatRoll.value;
 	//? Gather all the effect data
 	let effectDescription = metaItemData.system.Effects.EffectDescription.value;
 	let damageCosmicBase = metaItemData.system.Effects.Damage.Cosmic.Base;
@@ -74,6 +76,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 	let specialBase = metaItemData.system.Effects.Special.Base;
 	let specialDice = metaItemData.system.Effects.Special.Dice;
 	let specialIsHalf = metaItemData.system.Effects.Special.isHalf;
+	let buffsPermanent = metaItemData.system.Effects.Buffs.Permanent.value;
 	let buffsApplied = metaItemData.system.Effects.Buffs.Applied.value;
 	let buffsRemoved = metaItemData.system.Effects.Buffs.Removed.value;
 	let conditionsApplied = metaItemData.system.Effects.Conditions.Applied.value;
@@ -93,12 +96,14 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 	let durationMessage;
 	let durationDiceMessage;
 	let areaEffectMessage;
+	let vsMessage;
 	let damageCosmicMessage;
 	let damageElementalMessage;
 	let damageMaterialMessage;
 	let damagePsychicMessage;
 	let healingMessage;
 	let specialMessage;
+	let buffsPermanentMessage;
 	let buffsAppliedMessage;
 	let buffsRemovedMessage;
 	let conditionsAppliedMessage;
@@ -183,14 +188,22 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		metaLog(2, "MetaExecute", "ERROR: cannot Execute action:", action);
 		return;
 	}
+	//* Prepare content message constituents
 	if (executeRoll) {
 		//? check Area Effect
 		if (areaEffect !== "None") {
 			areaEffectMessage = `🗺️: ` + areaEffect + `<br>`;
+			//? check Area Type
+			if (areaType.length > 0) {
+				areaEffectMessage += `🗺️ (Type): ` + areaType + `<br>`;
+			}
 		} else {
 			areaEffectMessage = null;
 		}
-		//* execution message
+		//? check for VS
+		if (vsRoll !== "None") {
+			vsMessage = `🆚: ` + vsRoll + `<br>`;
+		}
 		//? finalize action slot
 		if (actionSlot.includes("Always Active")) {
 			//? always active return
@@ -379,6 +392,9 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			<br></div>`;
 			}
 		}
+		if (buffsPermanent) {
+			buffsPermanentMessage = `🛡️ ♾️: ` + buffsPermanent + `<br>`;
+		}
 		if (buffsApplied) {
 			buffsAppliedMessage = `🛡️ ➕: ` + buffsApplied + `<br>`;
 		}
@@ -391,7 +407,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		if (conditionsRemoved) {
 			conditionsRemovedMessage = `💀 ➖: ` + conditionsRemoved + `<br>`;
 		}
-		//? Prep message to be presented in the content section (allows inline rolls)
+		//* Assemble contentMessage to be presented in the content section (allows inline rolls)
 		//todo since this area allows inline rolls, couldn't we make the extra rolling here for spending lvl of success?
 		contentMessage = actionSlotMessage;
 		contentMessage += targetsMessage;
@@ -399,6 +415,10 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		contentMessage += `📏: ` + range + `<br>`;
 		if (areaEffectMessage) {
 			contentMessage += areaEffectMessage;
+			contentMessage += `<br>`;
+		}
+		if (vsMessage) {
+			contentMessage += vsMessage;
 		}
 		if (effectDescription) {
 			contentMessage += `<br>${effectDescription}<br>`;
@@ -426,13 +446,16 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			contentMessage += specialMessage;
 			contentMessage += `<br>`;
 		}
+		if (buffsPermanentMessage) {
+			contentMessage += buffsPermanentMessage;
+		}
 		if (buffsAppliedMessage) {
 			contentMessage += buffsAppliedMessage;
 		}
 		if (buffsRemovedMessage) {
 			contentMessage += buffsRemovedMessage;
 		}
-		if (buffsAppliedMessage || buffsRemovedMessage) {
+		if (buffsPermanent || buffsAppliedMessage || buffsRemovedMessage) {
 			contentMessage += `<br>`;
 		}
 		if (conditionsAppliedMessage) {
@@ -511,7 +534,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			itemName === "Squad" ||
 			itemName === "Unit")
 	) {
-		metaLog(0, "MetaRoll", "Duplicate Self Metapower Activation Detected");
+		metaLog(3, "MetaRoll", "Duplicate Self Metapower Activation Detected");
 		let currentLife = actor.system.Vital.Life.value;
 		let duplicateMaxLife = 0;
 		if (itemName === "Clone") {

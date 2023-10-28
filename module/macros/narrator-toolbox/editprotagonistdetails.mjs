@@ -4,15 +4,15 @@ if (game.user.isGM) {
 	let dialogContent = `<form>`;
 	for (let actor of actors) {
 		dialogContent += `<div class="form-group">
-            <label>Protagonist Name: ${actor.name}</label>
+			<label>Protagonist Name: ${actor.name}</label>
 			<div>New Protagonist Name: <input type="text" name="newName-${actor.id}" value="${actor.name}"></div>
 			<div>New Player Name: <input type="text" name="newPlayer-${actor.id}" value="${actor.system.metaowner.value}"></div>
 			<div>New Gender: <input type="text" name="newGender-${actor.id}" value="${actor.system.humanoids.gender.value}"></div>
 			<div>New Life Current: <input type="number" dtype="Number" name="life-${actor.id}" value="${actor.system.Vital.Life.value}"></div>
-            <div>New Total Experience: <input type="number" name="totalExperience-${actor.id}" value="${actor.system.Vital.Experience.Total}"></div>
-            <div>New Current Destiny: <input type="number" name="currentDestiny-${actor.id}" value="${actor.system.Vital.Destiny.value}"></div>
+			<div>New Total Experience: <input type="number" name="totalExperience-${actor.id}" value="${actor.system.Vital.Experience.Total}"></div>
+			<div>New Current Destiny: <input type="number" name="currentDestiny-${actor.id}" value="${actor.system.Vital.Destiny.value}"></div>
 			<div></div>
-        </div>`;
+		</div>`;
 	}
 	dialogContent += `</form>`;
 	dialogContent += `<div>Confirming will make the new Current Destiny also the Max Destiny for each Protagonist</div>`;
@@ -60,5 +60,5 @@ if (game.user.isGM) {
 	);
 	toolboxdialog.render(true);
 } else {
-	ui.notifications.warn("You must be a GM to use this macro.");
+	ui.notifications.warn("You must be a Narrator to use this macro.");
 }

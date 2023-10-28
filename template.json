@@ -1268,12 +1268,17 @@
 							"Planet [Area 16]"
 						]
 					},
-					"AreaEffectType": {
-						"type": "text",
-						"dtype": "String",
+					"AreaType": {
 						"label": "🗺️ (Type)",
-						"value": null,
-						"options": ["None", "Aura", "Line", "Burst", "Hemisphere", "Sphere"]
+						"value": [],
+						"selections": {
+							"None": "None",
+							"Aura": "Aura",
+							"Line": "Line",
+							"Burst": "Burst",
+							"Hemisphere": "Hemisphere",
+							"Sphere": "Sphere"
+						}
 					},
 					"AdditionalInfo": {
 						"type": "text",

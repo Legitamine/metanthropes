@@ -2,7 +2,7 @@
 	"id": "metanthropes-system",
 	"title": "Metanthropes",
 	"description": "Metanthropes RPG System for FoundryVTT",
-	"version": "0.8.36",
+	"version": "0.8.38",
 	"compatibility": {
 		"minimum": "11",
 		"verified": "11.313",
@@ -23,6 +23,32 @@
 	"esmodules": ["module/metanthropes-system.mjs"],
 	"styles": ["css/metanthropes-system.css"],
 	"background": "systems/metanthropes-system/artwork/cover.jpg",
+	"packs":[
+		{
+			"label": "Premade Protagonists",
+			"system": "metanthropes-system",
+			"type": "Actor",
+			"path": "packs/premade-protagonists",
+			"name": "premade-protagonists",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			},
+			"flags": {}
+		},
+		{
+			"label": "Narrator Toolkit",
+			"system": "metanthropes-system",
+			"type": "Macro",
+			"path": "packs/narrator-toolkit",
+			"name": "narrator-toolkit",
+			"ownership": {
+				"PLAYER": "NONE",
+				"ASSISTANT": "OWNER"
+			},
+			"flags": {}
+		}
+	],
 	"gridDistance": 2,
 	"gridUnits": "m",
 	"primaryTokenAttribute": "Vital.Destiny.value",

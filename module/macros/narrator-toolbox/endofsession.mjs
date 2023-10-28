@@ -4,14 +4,14 @@ if (game.user.isGM) {
 	let dialogContent = `<form>`;
 	for (let actor of actors) {
 		dialogContent += `<div class="form-group">
-            <label>Protagonist: ${actor.name}</label>
+			<label>Protagonist: ${actor.name}</label>
 			<div>Sessions Played: ${actor.system.entermeta.sessions.value}</div>
 			<div>Arc: ${actor.system.Vital.arc.value}</div>
 			<div>Regression: ${actor.system.entermeta.regression.value}</div>
 			<div>Total Experience: ${actor.system.Vital.Experience.Total}</div>
 			<div>Award Experience: <input type="number" name="awardExperience-${actor.id}" value="0"></div>
 			<div>Award Destiny: <input type="number" name="awardDestiny-${actor.id}" value="1"></div>
-        </div>`;
+		</div>`;
 	}
 	dialogContent += `</form>`;
 	dialogContent += `<div>Confirming will increase Session Played by +1 and reset Max Destiny for each Protagonist</div>`;
@@ -57,5 +57,5 @@ if (game.user.isGM) {
 	);
 	toolboxdialog.render(true);
 } else {
-	ui.notifications.warn("You must be a GM to use this macro.");
+	ui.notifications.warn("You must be a Narrator to use this macro.");
 }

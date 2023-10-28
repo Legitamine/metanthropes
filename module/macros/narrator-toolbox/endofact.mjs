@@ -4,14 +4,14 @@ if (game.user.isGM) {
 	let dialogContent = `<form>`;
 	for (let actor of actors) {
 		dialogContent += `<div class="form-group">
-            <label>Protagonist: ${actor.name}</label>
+			<label>Protagonist: ${actor.name}</label>
 			<div>Arc: ${actor.system.Vital.arc.value}</div>
 			<div>New Arc: <input type="text" name="newArc-${actor.id}" value="${actor.system.Vital.arc.value}"></div>
 			<div>Regression: ${actor.system.entermeta.regression.value}</div>
 			<div>New Regression: <input type="text" name="newRegression-${actor.id}" value="${actor.system.entermeta.regression.value}"></div>
 			<div>Starting/Free Perks: ${actor.system.Perks.Details.Starting.value}</div>
 			<div>Award Free Perks: <input type="number" name="awardPerks-${actor.id}" value="0"></div>
-        </div>`;
+		</div>`;
 	}
 	dialogContent += `</form>`;
 	dialogContent += `<div></div>`;
@@ -52,5 +52,5 @@ if (game.user.isGM) {
 	);
 	toolboxdialog.render(true);
 } else {
-	ui.notifications.warn("You must be a GM to use this macro.");
+	ui.notifications.warn("You must be a Narrator to use this macro.");
 }

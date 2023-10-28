@@ -18,6 +18,7 @@ export async function FinalizePremadeProtagonist(actor) {
 			metaLog(2, "Finalize Premade Protagonist", "Error at NewActorControl:", error);
 			throw error;
 		});
+		//todo: premade actor summary
 		await NewActorSummary(actor).catch((error) => {
 			metaLog(2, "Finalize Premade Protagonist", "Error at NewActorSummary:", error);
 			throw error;
