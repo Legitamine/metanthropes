@@ -54,6 +54,36 @@ export async function metaIsItemEquipped(actor, itemName) {
 }
 
 /**
+ * Helper function to check if a Metapower with a given name is equipped by an actor
+ * @param {*} actor - Object of the actor
+ * @param {*} metapower - String of the metapower name
+ * @returns true/false
+ *
+ * Note that this checks for the MetapowerName property, not the name of the individual metapower level ability
+ *
+ */
+export async function metaIsMetapowerEquipped(actor, metapower) {
+	const equippedItems = actor.items;
+	const isMetapowerEquipped = equippedItems.some((item) => item.system.MetapowerName === metapower);
+	return isMetapowerEquipped;
+}
+
+/**
+ * Helper function to get the maximum level of a Metapower equipped by an actor
+ * @param {*} actor - Object of the actor
+ * @param {*} metapower - String of the metapower name
+ * @returns integer
+ * 
+ */
+export async function metaGetMaxMetapowerLevel(actor, metapower) {
+	const equippedItems = actor.items.filter((item) => item.system.MetapowerName === metapower);
+	if (equippedItems.length === 0) return 0; //? Return 0 if no such metapower is equipped
+	const levels = equippedItems.map((item) => item.system.Level);
+	const maxLevel = Math.max(...levels);
+	return maxLevel;
+}
+
+/**
  * Helper function to extract the number of d10 dice from a given value
  *
  * @param {String} value

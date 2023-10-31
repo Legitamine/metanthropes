@@ -18,7 +18,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 -->
 
-## Latest Version: v0.8.38
+## Latest Version: v0.8.40
 
 ### In Beta Testing:
 
@@ -31,8 +31,8 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 -   Added automation for the Bleeding Core Condition. During Combat, if an Actor has the Bleeding Condition, they will now automatically lose 1 Life per Level of Bleeding, at the end of each Combat Round
 -   Added automation for the Hunger Core Condition. Every time the Actor attempts a roll, they will now first have to overcome a Hunger Check. If they fail, their action is canceled and they can spend Destiny to reroll the Hunger Check until they succeed. Once they do, ther initial attempted action will resume execution.
 -   Added automation for the Fatigue, Unconsious and Asphyxiation Core Conditions. During Combat, if an Actor has any of these Conditions, they will now be informed in the chat at the end of each Combat Round about what is the effect of that Condition. This will help keep the Narrator and Player informed about the status of the Actor and any further rolls or actions that might be required
--   Added the 'Narrator Toolkit' Compendium, a collection of Macros designed to help the Narrator with the game flow and automate the end of Scene/Session/Arc player awards. You can find it in the Compendiums Tab of the Sidebar - available for Narrators and Assistants only
--   Added automation for the Duplicate Self Metapower. It used to require many extra manual steps from the Narrator. Now the process is fully-automated, requiring the Narrator to only do a right-click on the Actor in the Sidebar and select 'Duplicate' for the Protagonist (or Metanthrope) that has successfully activated the Duplicate Self Metapower. Then the Narrator can drag the new Duplicate to the Canvas, as many times as the number of Clones required and nothing further is required from the Narrator. The Duplicates will have the correct Stat Scores and Maximum Life, will not have any Conditions or Buffs applied, will not have any Metapowers or Possessions besides 'Strike' and will be unlinked from the original Actor, allowing for multiple clones. Players can fully control their Duplicates and can use the Tab key to switch between them
+-   Added the 'Narrator Toolkit' Compendium, a collection of Macros designed to help the Narrator with the game flow and automate the End of Scene/Session/Arc player awards. Two utilities to help you manage your Protagonists' Details and Stats also exist. You can find it in the Compendiums Tab of the Sidebar - available for Narrators and Assistants only.
+-   Added automation for the Duplicate Self Metapower. It used to require many extra manual steps from the Narrator, now the process is fully-automated, requiring the Narrator to only do a right-click on the Actor in the Sidebar and select 'Duplicate' for the Protagonist (or Metanthrope) that has successfully activated the Duplicate Self Metapower. Then the Narrator can drag the new Duplicate to the Canvas, as many times as the number of Clones required and nothing further is required from the Narrator. The Duplicates will have the correct Stat Scores and Maximum Life, will not have any Conditions or Buffs applied, will not have any Metapowers or Possessions besides 'Strike' and will be unlinked from the original Actor, allowing for multiple clones. Players can fully control their Duplicates and can use the Tab key to switch between them
 
 ### Changed:
 

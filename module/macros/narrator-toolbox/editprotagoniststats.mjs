@@ -4,45 +4,47 @@ if (!game.user.isGM) {
 	return;
 }
 let actors = game.actors.contents.filter((a) => a.type === "Protagonist");
-let dialogContent = `<form>`;
-dialogContent += `<div class="form-group">
-<div>Protagonist Name</div>
-<div>BODY</div>
-<div>Endurance</div>
-<div>Power</div>
-<div>Reflexes</div>
-<div>MIND</div>
-<div>Creativity</div>
-<div>Manipulation</div>
-<div>Perception</div>
-<div>SOUL</div>
-<div>Awareness</div>
-<div>Consciousness</div>
-<div>Willpower</div>
+let dialogContent = `<form>
+<div class="style-form">To be used to edit a Protagonists's Initial Stat Scores, and Initial Characteristic Scores to custom values<br><br></div>`;
+dialogContent += `<div class="form-group style-form">
+<div class="style-form">Protagonist Name</div>
+<div class="style-form">BODY</div>
+<div class="style-form">Endurance</div>
+<div class="style-form">Power</div>
+<div class="style-form">Reflexes</div>
+<div class="style-form">MIND</div>
+<div class="style-form">Creativity</div>
+<div class="style-form">Manipulation</div>
+<div class="style-form">Perception</div>
+<div class="style-form">SOUL</div>
+<div class="style-form">Awareness</div>
+<div class="style-form">Consciousness</div>
+<div class="style-form">Willpower</div>
 </div>
 `;
 for (let actor of actors) {
 	dialogContent += `<div class="form-group">
-		<label>${actor.name}</label>
-		<div><input type="number" name="newBody-${actor.id}" value="${actor.system.Characteristics.Body.Initial}"></div>
-		<div><input type="number" name="newEndurance-${actor.id}" value="${actor.system.Characteristics.Body.Stats.Endurance.Initial}"></div>
-		<div><input type="number" name="newPower-${actor.id}" value="${actor.system.Characteristics.Body.Stats.Power.Initial}"></div>
-		<div><input type="number" name="newReflexes-${actor.id}" value="${actor.system.Characteristics.Body.Stats.Reflexes.Initial}"></div>
-		<div><input type="number" name="newMind-${actor.id}" value="${actor.system.Characteristics.Mind.Initial}"></div>
-		<div><input type="number" name="newCreativity-${actor.id}" value="${actor.system.Characteristics.Mind.Stats.Creativity.Initial}"></div>
-		<div><input type="number" name="newManipulation-${actor.id}" value="${actor.system.Characteristics.Mind.Stats.Manipulation.Initial}"></div>
-		<div><input type="number" name="newPerception-${actor.id}" value="${actor.system.Characteristics.Mind.Stats.Perception.Initial}"></div>
-		<div><input type="number" name="newSoul-${actor.id}" value="${actor.system.Characteristics.Soul.Initial}"></div>
-		<div><input type="number" name="newAwareness-${actor.id}" value="${actor.system.Characteristics.Soul.Stats.Awareness.Initial}"></div>
-		<div><input type="number" name="newConsciousness-${actor.id}" value="${actor.system.Characteristics.Soul.Stats.Consciousness.Initial}"></div>
-		<div><input type="number" name="newWillpower-${actor.id}" value="${actor.system.Characteristics.Soul.Stats.Willpower.Initial}"></div>
+		<div class="style-form">${actor.name}</div>
+		<div class="style-form"><input type="number" name="newBody-${actor.id}" value="${actor.system.Characteristics.Body.Initial}"></div>
+		<div class="style-form"><input type="number" name="newEndurance-${actor.id}" value="${actor.system.Characteristics.Body.Stats.Endurance.Initial}"></div>
+		<div class="style-form"><input type="number" name="newPower-${actor.id}" value="${actor.system.Characteristics.Body.Stats.Power.Initial}"></div>
+		<div class="style-form"><input type="number" name="newReflexes-${actor.id}" value="${actor.system.Characteristics.Body.Stats.Reflexes.Initial}"></div>
+		<div class="style-form"><input type="number" name="newMind-${actor.id}" value="${actor.system.Characteristics.Mind.Initial}"></div>
+		<div class="style-form"><input type="number" name="newCreativity-${actor.id}" value="${actor.system.Characteristics.Mind.Stats.Creativity.Initial}"></div>
+		<div class="style-form"><input type="number" name="newManipulation-${actor.id}" value="${actor.system.Characteristics.Mind.Stats.Manipulation.Initial}"></div>
+		<div class="style-form"><input type="number" name="newPerception-${actor.id}" value="${actor.system.Characteristics.Mind.Stats.Perception.Initial}"></div>
+		<div class="style-form"><input type="number" name="newSoul-${actor.id}" value="${actor.system.Characteristics.Soul.Initial}"></div>
+		<div class="style-form"><input type="number" name="newAwareness-${actor.id}" value="${actor.system.Characteristics.Soul.Stats.Awareness.Initial}"></div>
+		<div class="style-form"><input type="number" name="newConsciousness-${actor.id}" value="${actor.system.Characteristics.Soul.Stats.Consciousness.Initial}"></div>
+		<div class="style-form"><input type="number" name="newWillpower-${actor.id}" value="${actor.system.Characteristics.Soul.Stats.Willpower.Initial}"></div>
 		</div>`;
 }
-dialogContent += `</form>`;
-dialogContent += `<br><div>Confirming will set Protagonists' Current Life to Max Life</div><br>`;
+dialogContent += `</form><br><br>`;
+dialogContent += `<div>Confirming will set the Protagonists' Current Life to their Max Life</div><br><br>`;
 let dialogOptions = {
 	width: 1250,
 	height: 720,
+	resizable: true,
 };
 let toolboxdialog = new Dialog(
 	{

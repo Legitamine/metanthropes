@@ -1023,6 +1023,11 @@ option {
 .metanthropes .editor-content {
   min-height: 50px;
 }
+.metanthropes .style-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .metanthropes .items-header {
   margin: 1px;
   padding: 1px;

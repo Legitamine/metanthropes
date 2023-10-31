@@ -2,7 +2,7 @@
 	"id": "metanthropes-system",
 	"title": "Metanthropes",
 	"description": "Metanthropes RPG System for FoundryVTT",
-	"version": "0.8.38",
+	"version": "0.8.40",
 	"compatibility": {
 		"minimum": "11",
 		"verified": "11.313",
@@ -37,11 +37,119 @@
 			"flags": {}
 		},
 		{
+			"label": "Premade Antagonists",
+			"system": "metanthropes-system",
+			"type": "Actor",
+			"path": "packs/premade-antagonists",
+			"name": "premade-antagonists",
+			"ownership": {
+				"PLAYER": "NONE",
+				"ASSISTANT": "OWNER"
+			},
+			"flags": {}
+		},
+		{
 			"label": "Narrator Toolkit",
 			"system": "metanthropes-system",
 			"type": "Macro",
 			"path": "packs/narrator-toolkit",
 			"name": "narrator-toolkit",
+			"ownership": {
+				"PLAYER": "NONE",
+				"ASSISTANT": "OWNER"
+			},
+			"flags": {}
+		},
+		{
+			"label": "Metapowers",
+			"system": "metanthropes-system",
+			"type": "Item",
+			"path": "packs/metapowers",
+			"name": "metapowers",
+			"ownership": {
+				"PLAYER": "NONE",
+				"ASSISTANT": "OWNER"
+			},
+			"flags": {}
+		},
+		{
+			"label": "Possessions",
+			"system": "metanthropes-system",
+			"type": "Item",
+			"path": "packs/possessions",
+			"name": "possessions",
+			"ownership": {
+				"PLAYER": "NONE",
+				"ASSISTANT": "OWNER"
+			},
+			"flags": {}
+		},
+		{
+			"label": "How to Play",
+			"system": "metanthropes-system",
+			"type": "JournalEntry",
+			"path": "packs/how-to-play",
+			"name": "how-to-play",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			},
+			"flags": {}
+		},
+		{
+			"label": "Narrator Notes",
+			"system": "metanthropes-system",
+			"type": "JournalEntry",
+			"path": "packs/narrator-notes",
+			"name": "narrator-notes",
+			"ownership": {
+				"PLAYER": "NONE",
+				"ASSISTANT": "OWNER"
+			},
+			"flags": {}
+		},
+		{
+			"label": "Introductory Scenes",
+			"system": "metanthropes-system",
+			"type": "Scene",
+			"path": "packs/introductory-scenes",
+			"name": "introductory-scenes",
+			"ownership": {
+				"PLAYER": "NONE",
+				"ASSISTANT": "OWNER"
+			},
+			"flags": {}
+		},
+		{
+			"label": "Rollable Tables",
+			"system": "metanthropes-system",
+			"type": "RollTable",
+			"path": "packs/rollable-tables",
+			"name": "rollable-tables",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			},
+			"flags": {}
+		},
+		{
+			"label": "Music",
+			"system": "metanthropes-system",
+			"type": "Playlist",
+			"path": "packs/music",
+			"name": "music",
+			"ownership": {
+				"PLAYER": "NONE",
+				"ASSISTANT": "OWNER"
+			},
+			"flags": {}
+		},
+		{
+			"label": "Sound Effects",
+			"system": "metanthropes-system",
+			"type": "Playlist",
+			"path": "packs/sound-effects",
+			"name": "sound-effects",
 			"ownership": {
 				"PLAYER": "NONE",
 				"ASSISTANT": "OWNER"
