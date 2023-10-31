@@ -785,7 +785,7 @@
 								"label": "Artisan"
 							},
 							"Beloveds": {
-								"title": "our love interest is the most important thing in your life. It can be your significant other, , your human family or best friend, or even your pet. You hold your loved ones in higher esteem than even your Coalition, your Metanthrope status, or even your own life. Others might misunderstand your reasoning, your motives, and your methods, but they may never have felt the way you do about your beloved",
+								"title": "Your love interest is the most important thing in your life. It can be your significant other, your human family or best friend, or even your pet. You hold your loved ones in higher esteem than even your Coalition, your Metanthrope status, or even your own life. Others might misunderstand your reasoning, your motives, and your methods, but they may never have felt the way you do about your beloved",
 								"label": "Beloveds"
 							},
 							"Consensus": {
@@ -1268,12 +1268,17 @@
 							"Planet [Area 16]"
 						]
 					},
-					"AreaEffectType": {
-						"type": "text",
-						"dtype": "String",
+					"AreaType": {
 						"label": "🗺️ (Type)",
-						"value": null,
-						"options": ["None", "Aura", "Line", "Burst", "Hemisphere", "Sphere"]
+						"value": [],
+						"selections": {
+							"None": "None",
+							"Aura": "Aura",
+							"Line": "Line",
+							"Burst": "Burst",
+							"Hemisphere": "Hemisphere",
+							"Sphere": "Sphere"
+						}
 					},
 					"AdditionalInfo": {
 						"type": "text",

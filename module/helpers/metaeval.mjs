@@ -144,7 +144,7 @@ export async function MetaEvaluate(
 	//? if we have Pain condition, our succesfull (only) results are lowered by an equal amount - in case of Criticals we ignore Pain
 	let painEffect = levelsOfSuccess - pain;
 	if (resultLevel > 0 && !criticalSuccess && pain > 0) {
-		metaLog(1, "MetaEvaluate", "Results are affected by Pain");
+		metaLog(4, "MetaEvaluate", "Results are affected by Pain");
 		if (painEffect < 0) {
 			result = "Failure 🟥";
 			resultLevel = 0;

@@ -18,16 +18,21 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 -->
 
-## Latest Version: v0.8.36
+## Latest Version: v0.8.40
+
+### In Beta Testing:
+
+-   New Progression process: Added a new button on the Actorsheet that will start the Actor progression process, to spend Experience points to increase Characteristics, Stats, Metapowers and Perks. It will also award a Protagonist with additional 25 Life, for every 5.000 Experience points accumulated
 
 ### Added:
 
 -   Beta Testing of New Features (Narrator Only): You can find a new setting in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Beta Testing of New Features' option. This will allow you to test new features that are currently in development. This feature is turned off by default
--   New Progression process (Requires Beta Testing of New Features - not fully functional yet): Added a new button on the Actorsheet that will start the Actor progression process, to spend Experience points to increase Characteristics, Stats, Metapowers and Perks. It will also award a Protagonist with additional 25 Life, for every 5.000 Experience points accumulated
 -   New Console Logging functionality: Added a new setting that can be found in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Advanced Logging' feature. This will used, in the event you encounter a bug, to collect information that will assist us in troubleshooting. This feature is turned off by default
 -   Added automation for the Bleeding Core Condition. During Combat, if an Actor has the Bleeding Condition, they will now automatically lose 1 Life per Level of Bleeding, at the end of each Combat Round
 -   Added automation for the Hunger Core Condition. Every time the Actor attempts a roll, they will now first have to overcome a Hunger Check. If they fail, their action is canceled and they can spend Destiny to reroll the Hunger Check until they succeed. Once they do, ther initial attempted action will resume execution.
 -   Added automation for the Fatigue, Unconsious and Asphyxiation Core Conditions. During Combat, if an Actor has any of these Conditions, they will now be informed in the chat at the end of each Combat Round about what is the effect of that Condition. This will help keep the Narrator and Player informed about the status of the Actor and any further rolls or actions that might be required
+-   Added the 'Narrator Toolkit' Compendium, a collection of Macros designed to help the Narrator with the game flow and automate the End of Scene/Session/Arc player awards. Two utilities to help you manage your Protagonists' Details and Stats also exist. You can find it in the Compendiums Tab of the Sidebar - available for Narrators and Assistants only.
+-   Added automation for the Duplicate Self Metapower. It used to require many extra manual steps from the Narrator, now the process is fully-automated, requiring the Narrator to only do a right-click on the Actor in the Sidebar and select 'Duplicate' for the Protagonist (or Metanthrope) that has successfully activated the Duplicate Self Metapower. Then the Narrator can drag the new Duplicate to the Canvas, as many times as the number of Clones required and nothing further is required from the Narrator. The Duplicates will have the correct Stat Scores and Maximum Life, will not have any Conditions or Buffs applied, will not have any Metapowers or Possessions besides 'Strike' and will be unlinked from the original Actor, allowing for multiple clones. Players can fully control their Duplicates and can use the Tab key to switch between them
 
 ### Changed:
 
@@ -39,34 +44,22 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 -   Added some validation logic to the 'New Actor' and the 'Finalize Premade Protagonist' processes, to ensure required values are set properly
 -   Added support for 3rd party Module [Hide Player UI](https://foundryvtt.com/packages/hide-player-ui) to conseal UI elements not used by players
 -   Added a field called 'Permanent Effects' to Items (Metapowers/Possessions) to distinguish between activated Effects that show up in Chat and Permanent Effects that are always active. Renamed 'Effect Description' to just 'Effect'
--   Added new fields to Items to indicate the VS roll, any Permanent Buffs and the Area (Type). They will only show if applicable to the Players but are visible and editable by the Narrators
+-   Added new fields to Items to indicate the VS Stat Roll, any Permanent Buffs and the Area Effect (Type). These will show when applicable in the Item Sheet and the Chat
+-   Gave the Narrator the ability to change an Actor's available Destiny on the fly, by changing the value in the Actor's sheet. Note that Destiny is awarded properly via the 'Narrator Toolkit' Macros and this is only meant to be used manually in special cases
 
 ### Fixed:
 
 -   Fixed various minor issues and optimized the code for better performance and error handling
 -   Fixed Pain Condition to only change your result to Failure if it is greater than your Levels of Success. Previously it would also give you Levels of Failure, which was not intended
 -   Fixed an issue that was causing d10 rolls to explode on 1's and 2's when it was not intended to do so
--   Fixed an issue with activating the Duplicate Self Metapower. It was only semi-automated before, requiring extra steps from the Narrator. Now the process is almost fully-automated, requiring the Narrator to only right-click and select 'Duplicate' for the Protagonist (or Metanthrope) after they have successfully activated the Duplicate Self Metapower. Then the Narrator can drag the new (Duplicate) Actor to the Canvas, as many times as the number of Clones required and nothing further is required from the Narrator. The Clones will have the correct Stat Scores and Maximum Life and will be unlinked from the original Actor. Players can control their Clones and can use the Tab key to switch between them
 
 ### Known Issues:
 
 -   Adding a new Item(Metapower, Possession) to an Actor, won't properly refresh their Stat Scores until the Actorsheet is closed and reopened, or until the Actor makes a new Roll
--   Duplicate Self Metapower: The Clones can't activate Metapowers or use Possessions besides Strike. However, Metapowers and Possessions are copied from the Actor when they become Duplicated. Narrators may wish to remove Metapowers and Possessions from the Duplicate before moving the Duplicate Actor to the Canvas, to avoid confusion, since the current automation doesn't remove these automatically. This will be fully automated in a future release
 
 ### Removed:
 
 -   Removed the old Item and Actor definitions that were deprecated in v0.7
-
-### Unreleased:
-
--   Core Conditions automatically apply their effects to the rolls (in progress 1/3 completed)
--   Aiming and Cover mechanics (scheduled for v0.8)
--   New ActorCreation Automation for randomizing a new Actor - Very useful for Narrators when creating NPCs (scheduled for v0.8)
--   Split the content (Audio and Artwork) from the System into a separate Module to improve System upgrade speeds and reduce the size of the System (scheduled for v0.8)
--   Spending Levels of Success to activate more powerful Metapower effects (scheduled for v0.8)
--   Destiny Save vs Death (scheduled for v0.8)
--   Journal Entries with information for new players and Narrators (scheduled for v0.8)
--   Metapowers and Possessions can be Drag-n-Dropped to your hotbar to allow for easier activations with a single keystroke! (scheduled for v0.9)
 
 ## Previous Version: v0.7.85
 

@@ -49,13 +49,9 @@
 				<div class="style-labels-text"
 					title="Life represents a Character's overall health, vitality, and will to live. Metanthrope Characters have a Life total of (100 + their Endurance score). Metanthrope Characters also gain an additional +25 Life for every 5.000 Total Experience they have accumulated">
 					❤️ Life
-					{{#if isNarrator}}
-						<input name="system.Vital.Life.value" type="number"
+					{{#if isNarrator}}<input name="system.Vital.Life.value" type="number"
 							value="{{system.Vital.Life.value}}" data-dtype="Number" />
-					{{else}}
-						{{system.Vital.Life.value}}
-					{{/if}}
-					/{{system.Vital.Life.max}}
+					{{else}}{{system.Vital.Life.value}}{{/if}}/{{system.Vital.Life.max}}
 				</div>
 			</div>
 			<div>
@@ -76,12 +72,18 @@
 				</div>
 			</div>
 			<div>
-				<button class="progression-form" title="Progress {{actor.type}}">Progress 📈</button>
+				{{#if betaTesting}}
+					<button class="progression-form" title="Progress {{actor.type}}">Progress
+						📈</button>
+				{{/if}}
 			</div>
 			<div>
 				<div class="style-labels-text"
 					title="Destiny (🤞) is a resource which Players can spend to reroll any roll with an undesirable outcome, activate powerful Metapowered effects, and even save their Protagonists from dying">
-					🤞 Destiny {{system.Vital.Destiny.value}}/{{system.Vital.Destiny.max}}
+					🤞 Destiny {{#if isNarrator}}<input name="system.Vital.Destiny.value"
+							type="number" value="{{system.Vital.Destiny.value}}"
+							data-dtype="Number" />
+					{{else}}{{system.Vital.Destiny.value}}{{/if}}/{{system.Vital.Destiny.max}}
 				</div>
 			</div>
 		</div>

@@ -71,7 +71,7 @@ export class MetanthropesCombat extends Combat {
 		return this;
 	}
 	async nextRound() {
-		metaLog(4, "Combat", "nextRound", "Engaged");
+		metaLog(3, "Combat", "nextRound", "Engaged");
 		await super.nextRound();
 		//* End of Round Effects
 		//? Iterate over Combatants
@@ -233,7 +233,7 @@ export class MetanthropesCombat extends Combat {
 			await this.resetAll();
 			this.setupTurns();
 			await ChatMessage.create({
-				content: `New Cycle: ${cycle} Round: ${cycleRound} - Roll Inititiative!`,
+				content: `<br><br>New Cycle: ${cycle} Round: ${cycleRound}<br><br>Roll Inititiative!<br>`,
 				speaker: {
 					alias: "Metanthropes Combat",
 				},
@@ -241,13 +241,13 @@ export class MetanthropesCombat extends Combat {
 		} else {
 			//? Create a chat message indicating the new Round
 			await ChatMessage.create({
-				content: `Cycle: ${cycle} Round: ${cycleRound}`,
+				content: `<br><br>Cycle: ${cycle} Round: ${cycleRound}<br>`,
 				speaker: {
 					alias: "Metanthropes Combat",
 				},
 			});
 		}
-		metaLog(4, "Combat", "nextRound", "Finished");
+		metaLog(3, "Combat", "nextRound", "Finished");
 		return this;
 	}
 }
