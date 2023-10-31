@@ -52,8 +52,9 @@ export class MetanthropesActor extends Actor {
 		if (data.type !== "Vehicle") {
 			createData.prototypeToken.sight = { enabled: true };
 		}
-		//? Unique Protagonists and Metanthropes
+		//? Duplicate Self Metapower
 		//! todo I must include other types that could have a Duplicate Self metapower active
+		//todo I should probably check to see if any of Duplicate Self MPs are on the actor and if set to Duplicate them, then do the below
 		if (data.type == "Protagonist" || data.type == "Metanthrope") {
 			if (!(data.name.includes("Copy") || data.name.includes("Duplicate"))) {
 				//? Enable Linked Tokens for Protagonists & Metanthropes without 'Duplicate' or 'Copy' in their name
@@ -72,33 +73,10 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.appendNumber = true;
 				//? Disable default behavior of prepending adjective to the name
 				createData.prototypeToken.prependAdjective = false;
-				//todo confirm if we also reset core conditions -> move this to the prepareData() function?
-				//	createData.system.Characteristics.Body.Condition.Current = 0;
-				//	createData.system.Characteristics.Mind.Condition.Current = 0;
-				//	createData.system.Characteristics.Soul.Condition.Current = 0;
-				//	createData.system.Characteristics.Body.Stats.Endurance.Condition.Current = 0;
-				//	createData.system.Characteristics.Body.Stats.Reflexes.Condition.Current = 0;
-				//	createData.system.Characteristics.Body.Stats.Power.Condition.Current = 0;
-				//	createData.system.Characteristics.Mind.Stats.Creativity.Condition.Current = 0;
-				//	createData.system.Characteristics.Mind.Stats.Manipulation.Condition.Current = 0;
-				//	createData.system.Characteristics.Mind.Stats.Perception.Condition.Current = 0;
-				//	createData.system.Characteristics.Soul.Stats.Consiousness.Condition.Current = 0;
-				//	createData.system.Characteristics.Soul.Stats.Awareness.Condition.Current = 0;
-				//	createData.system.Characteristics.Soul.Stats.Willpower.Condition.Current = 0;
-				//	createData.system.Body.CoreConditions.Asphyxiation = 0;
-				//	createData.system.Body.CoreConditions.Bleeding = 0;
-				//	createData.system.Body.CoreConditions.Diseased = 0;
-				//	createData.system.Body.CoreConditions.Maimed = 0;
-				//	createData.system.Mind.CoreConditions.Fatigue = 0;
-				//	createData.system.Mind.CoreConditions.Hunger = 0;
-				//	createData.system.Mind.CoreConditions.Pain = 0;
-				//	//! todo fix this: - no dashes in template.json
-				//	// createData.system.Mind.CoreConditions.Sense-Lost = 0;
-				//	//todo review with bro - this could be used to some abuse
-				//	createData.system.Soul.CoreConditions.Amnesia = 0;
-				//	createData.system.Soul.CoreConditions.Probed = 0;
-				//	createData.system.Soul.CoreConditions.Infiltrated = 0;
-				//	createData.system.Soul.CoreConditions.Unconscious = 0;
+				//? Remove all Items (Metapowers and Possessions) besides 'Strike'
+				metaLog(1, "new dupli", data, createData);
+				const newItems = data.items.filter((item) => item.name === "Strike");
+				createData.items = newItems;
 			}
 		}
 		this.updateSource(createData);
@@ -146,6 +124,9 @@ export class MetanthropesActor extends Actor {
 		//* This function is called after prepareBaseData() and prepareEmbeddedDocuments().
 		const actorData = this;
 		this._prepareDerivedCharacteristicsData(actorData);
+		if (actorData.name.includes("Duplicate")) {
+			this._prepareDerivedDuplicateData(actorData);
+		}
 		this._prepareDerivedMovementData(actorData);
 		this._prepareDerivedVitalData(actorData);
 		//? Check to see if this actor has been Progressed
@@ -172,6 +153,46 @@ export class MetanthropesActor extends Actor {
 		}
 		this._prepareDerivedCharacteristicsXPData(actorData);
 		this._prepareDerivedPerkXPData(actorData);
+	}
+	_prepareDerivedDuplicateData(actorData) {
+		const systemData = actorData.system;
+		//? Remove all Conditions and Buffs
+		systemData.Characteristics.Body.Condition.Current = 0;
+		systemData.Characteristics.Body.Buff.Current = 0;
+		systemData.Characteristics.Mind.Condition.Current = 0;
+		systemData.Characteristics.Mind.Buff.Current = 0;
+		systemData.Characteristics.Soul.Condition.Current = 0;
+		systemData.Characteristics.Soul.Buff.Current = 0;
+		systemData.Characteristics.Body.Stats.Endurance.Condition.Current = 0;
+		systemData.Characteristics.Body.Stats.Endurance.Buff.Current = 0;
+		systemData.Characteristics.Body.Stats.Reflexes.Condition.Current = 0;
+		systemData.Characteristics.Body.Stats.Reflexes.Buff.Current = 0;
+		systemData.Characteristics.Body.Stats.Power.Condition.Current = 0;
+		systemData.Characteristics.Body.Stats.Power.Buff.Current = 0;
+		systemData.Characteristics.Mind.Stats.Creativity.Condition.Current = 0;
+		systemData.Characteristics.Mind.Stats.Creativity.Buff.Current = 0;
+		systemData.Characteristics.Mind.Stats.Manipulation.Condition.Current = 0;
+		systemData.Characteristics.Mind.Stats.Manipulation.Buff.Current = 0;
+		systemData.Characteristics.Mind.Stats.Perception.Condition.Current = 0;
+		systemData.Characteristics.Mind.Stats.Perception.Buff.Current = 0;
+		systemData.Characteristics.Soul.Stats.Consciousness.Condition.Current = 0;
+		systemData.Characteristics.Soul.Stats.Consciousness.Buff.Current = 0;
+		systemData.Characteristics.Soul.Stats.Awareness.Condition.Current = 0;
+		systemData.Characteristics.Soul.Stats.Awareness.Buff.Current = 0;
+		systemData.Characteristics.Soul.Stats.Willpower.Condition.Current = 0;
+		systemData.Characteristics.Soul.Stats.Willpower.Buff.Current = 0;
+		systemData.Characteristics.Body.CoreConditions.Asphyxiation = 0;
+		systemData.Characteristics.Body.CoreConditions.Bleeding = 0;
+		systemData.Characteristics.Body.CoreConditions.Diseased = 0;
+		systemData.Characteristics.Body.CoreConditions.Maimed = 0;
+		systemData.Characteristics.Mind.CoreConditions.Fatigue = 0;
+		systemData.Characteristics.Mind.CoreConditions.Hunger = 0;
+		systemData.Characteristics.Mind.CoreConditions.Pain = 0;
+		systemData.Characteristics.Mind.CoreConditions["Sense-Lost"] = 0;
+		systemData.Characteristics.Soul.CoreConditions.Amnesia = 0;
+		systemData.Characteristics.Soul.CoreConditions.Probed = 0;
+		systemData.Characteristics.Soul.CoreConditions.Infiltrated = 0;
+		systemData.Characteristics.Soul.CoreConditions.Unconscious = 0;
 	}
 	_prepareDerivedCharacteristicsData(actorData) {
 		if (actorData.type == "Vehicle") return;

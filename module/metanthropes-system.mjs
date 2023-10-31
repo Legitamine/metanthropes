@@ -413,3 +413,13 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		});
 	}
 });
+//* Duplicate Self Metapower - Remove Items from Duplicates
+Hooks.on("createActor", async (actor) => {
+	if (actor.name.includes("Duplicate")) {
+		const itemsToDelete = actor.items.filter((item) => item.name !== "Strike");
+		await actor.deleteEmbeddedDocuments(
+			"Item",
+			itemsToDelete.map((item) => item.id)
+		);
+	}
+});

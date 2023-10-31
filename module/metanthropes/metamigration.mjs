@@ -59,16 +59,11 @@ async function _metaIsNewerVersion(version, oldVersion) {
 		.some((v, i) => v > (oldVersion.split(".")[i] || 0));
 }
 //* Helper function to migrate Items
-//! Unused
 async function _metaMigrateItems() {
 	const currentVersion = await game.system.data.version;
 	metaLog(3, `metaMigrateData`, `_metaMigrateItems`, `Migrating Items to version`, currentVersion);
 	const worldItems = await game.items.contents;
 	for (let item of worldItems) {
-		//	if (item.system.Execution.ActionSlot.label === "⏱ Action") {
-		//		metaLog(4, `metaMigrateData`, `_metaMigrateItems`, `Migrating Item:`, item.name, item);
-		//		await item.update({ "system.Execution.ActionSlot.label": "⏱ Activation" });
-		//	}
 		if (item.system.Effects.EffectDescription.label === "Effect Description") {
 			metaLog(4, `metaMigrateData`, `_metaMigrateItems`, `Migrating Item:`, item.name, item);
 			await item.update({ "system.Effects.EffectDescription.label": "Effect" });
@@ -76,6 +71,10 @@ async function _metaMigrateItems() {
 		if (item.system.Effects.PermanentEffectDescription.label === "Permanent Effect") {
 			metaLog(4, `metaMigrateData`, `_metaMigrateItems`, `Migrating Item:`, item.name, item);
 			await item.update({ "system.Effects.PermanentEffectDescription.label": "Permanent Effects" });
+		}
+		if (item.system.Execution.AreaEffectType) {
+			metaLog(4, `metaMigrateData`, `_metaMigrateItems`, `Migrating Item:`, item.name, item);
+			await item.update({ "system.Execution.-=AreaEffectType": null });
 		}
 	}
 }
