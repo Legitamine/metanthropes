@@ -18,7 +18,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 -->
 
-## Latest Version: v0.8.40
+## Latest Version: v0.8.41
 
 ### In Beta Testing:
 
@@ -56,6 +56,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 ### Known Issues:
 
 -   Adding a new Item(Metapower, Possession) to an Actor, won't properly refresh their Stat Scores until the Actorsheet is closed and reopened, or until the Actor makes a new Roll
+-	When a new Combat Encounter begins, players see 3 Error Notifications saying something similar to: 'Player cannot update the combat document'. This issue is not affecting the gameplay and can be safely ignored. We are investigating the root cause and will be addressing this in a future update
 
 ### Removed:
 
