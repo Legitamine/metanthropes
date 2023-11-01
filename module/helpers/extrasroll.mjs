@@ -207,7 +207,7 @@ export async function HungerRoll(actor, hungerLevel) {
 	const hungerRollResult = hungerRoll.total;
 	hungerMessage = `Rolls to beat Hunger 💀 Condition Level ${hungerLevel} (need ${hungerTarget}% or lower) and gets a result of ${hungerRollResult}.<br><br>`;
 	if (hungerRollResult > hungerTarget) {
-		hungerMessage += `It is a  🟥 Failure!<br><br>${actor.name} is too hungry and can't act!<br><br>`;
+		hungerMessage += `It is a 🟥 Failure!<br><br>${actor.name} is too hungry and can't act!<br><br>`;
 		//? Button to re-roll Hunger using destiny
 		const currentDestiny = Number(actor.system.Vital.Destiny.value);
 		hungerMessage += `${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
