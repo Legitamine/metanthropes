@@ -15,7 +15,6 @@ import { metaLog } from "../helpers/metahelpers.mjs";
  * @returns {void}
  *
  */
-
 export async function HandleMetaRolls(event, metaSheet, isCustomRoll = false) {
 	event.preventDefault();
 	const element = event.currentTarget;

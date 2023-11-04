@@ -1,18 +1,8 @@
-2023/11/01-19:23:54.777 17c64 Recovering log #87
-2023/11/01-19:23:54.778 17c64 Recovering log #100
-2023/11/01-19:23:54.780 17c64 Delete type=0 #87
-2023/11/01-19:23:54.780 17c64 Delete type=2 #98
-2023/11/01-19:23:54.780 17c64 Delete type=0 #100
-2023/11/01-19:23:54.781 17c64 Delete type=3 #86
-2023/11/01-19:26:49.862 4df64 Level-0 table #103: started
-2023/11/01-19:26:49.895 4df64 Level-0 table #103: 207521 bytes OK
-2023/11/01-19:26:49.897 4df64 Delete type=0 #101
-2023/11/01-19:26:49.897 4df64 Manual compaction at level-0 from '!actors!43Nat30XC9rAAc9P' @ 72057594037927935 : 1 .. '!actors.items!rj19ilYrLuP74rNG.xFaeoP8OI99xVNr0' @ 0 : 0; will stop at (end)
-2023/11/01-19:26:49.897 4df64 Manual compaction at level-1 from '!actors!43Nat30XC9rAAc9P' @ 72057594037927935 : 1 .. '!actors.items!rj19ilYrLuP74rNG.xFaeoP8OI99xVNr0' @ 0 : 0; will stop at '!actors.items!rj19ilYrLuP74rNG.xFaeoP8OI99xVNr0' @ 74 : 1
-2023/11/01-19:26:49.897 4df64 Compacting 1@1 + 1@2 files
-2023/11/01-19:26:49.914 4df64 Generated table #104@1: 65 keys, 427688 bytes
-2023/11/01-19:26:49.914 4df64 Compacted 1@1 + 1@2 files => 427688 bytes
-2023/11/01-19:26:49.915 4df64 compacted to: files[ 0 0 1 0 0 0 0 ]
-2023/11/01-19:26:49.915 4df64 Delete type=2 #65
-2023/11/01-19:26:49.916 4df64 Delete type=2 #103
-2023/11/01-19:26:49.920 4df64 Manual compaction at level-1 from '!actors.items!rj19ilYrLuP74rNG.xFaeoP8OI99xVNr0' @ 74 : 1 .. '!actors.items!rj19ilYrLuP74rNG.xFaeoP8OI99xVNr0' @ 0 : 0; will stop at (end)
+2023/11/04-12:05:54.238 757ec Recovering log #119
+2023/11/04-12:05:54.240 757ec Delete type=0 #119
+2023/11/04-12:05:54.240 757ec Delete type=3 #117
+2023/11/04-12:11:41.940 4d20 Level-0 table #124: started
+2023/11/04-12:11:41.940 4d20 Level-0 table #124: 0 bytes OK
+2023/11/04-12:11:41.941 4d20 Delete type=0 #122
+2023/11/04-12:11:41.943 4d20 Manual compaction at level-0 from '!actors!43Nat30XC9rAAc9P' @ 72057594037927935 : 1 .. '!actors.items!rj19ilYrLuP74rNG.xFaeoP8OI99xVNr0' @ 0 : 0; will stop at (end)
+2023/11/04-12:11:41.943 4d20 Manual compaction at level-1 from '!actors!43Nat30XC9rAAc9P' @ 72057594037927935 : 1 .. '!actors.items!rj19ilYrLuP74rNG.xFaeoP8OI99xVNr0' @ 0 : 0; will stop at (end)

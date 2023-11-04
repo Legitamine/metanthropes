@@ -1,5 +1,11 @@
 import { metaLog } from "../helpers/metahelpers.mjs";
-//* This is the base class for all Actors which represent the protagonists, metanthropes, vehicles, and other entities within the world.
+
+/**
+ * The base Actor definition which defines common behavior of actors within the Metanthropes system.
+ * 
+ * @extends {Actor}
+ * 
+ */
 export class MetanthropesActor extends Actor {
 	/** @override */
 	//* Setting default Token configuration for all actors

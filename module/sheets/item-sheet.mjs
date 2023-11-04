@@ -1,5 +1,6 @@
 import { HandleMetaRolls } from "../helpers/metarollhandler.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
+
 /**
  * MetanthropesItemSheet - An Item Sheet for Metanthropes items.
  *
