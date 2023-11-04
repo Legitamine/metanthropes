@@ -1,4 +1,5 @@
 import { metaExtractNumberOfDice, metaLog, metaIsItemEquipped } from "./metahelpers.mjs";
+
 /**
  * MetaExecute handles the execution of Metapowers and Possessions for a given actor.
  *
@@ -550,5 +551,18 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		}
 		await actor.setFlag("metanthropes-system", "duplicateSelf", { maxLife: duplicateMaxLife });
 		metaLog(3, "MetaRoll", "Duplicate Self Metapower Max Life:", duplicateMaxLife);
+	}
+	//* Targeting Tests
+	let targetingTargets = game.user.targets;
+	for (let token of targetingTargets) {
+		let targetedActor = token.actor;
+		let targetingChatMessage = {
+			user: game.user.id,
+			flavor: "We are targeting",
+			speaker: ChatMessage.getSpeaker({ actor: actor }),
+			content: targetedActor.name,
+			flags: { "metanthropes-system": { actoruuid: actor.uuid } },
+		};
+		ChatMessage.create(targetingChatMessage);
 	}
 }

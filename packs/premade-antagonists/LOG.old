@@ -1,8 +1,8 @@
-2023/11/04-12:05:54.245 89d18 Recovering log #55
-2023/11/04-12:05:54.247 89d18 Delete type=0 #55
-2023/11/04-12:05:54.247 89d18 Delete type=3 #53
-2023/11/04-12:11:41.936 4d20 Level-0 table #60: started
-2023/11/04-12:11:41.936 4d20 Level-0 table #60: 0 bytes OK
-2023/11/04-12:11:41.937 4d20 Delete type=0 #58
-2023/11/04-12:11:41.937 4d20 Manual compaction at level-0 from '!actors!2GKLZDC1WftWwk9q' @ 72057594037927935 : 1 .. '!folders!vGr96hU80LOGL9yQ' @ 0 : 0; will stop at (end)
-2023/11/04-12:11:41.937 4d20 Manual compaction at level-1 from '!actors!2GKLZDC1WftWwk9q' @ 72057594037927935 : 1 .. '!folders!vGr96hU80LOGL9yQ' @ 0 : 0; will stop at (end)
+2023/11/04-14:57:29.754 1a1f4 Recovering log #67
+2023/11/04-14:57:29.757 1a1f4 Delete type=0 #67
+2023/11/04-14:57:29.757 1a1f4 Delete type=3 #65
+2023/11/04-15:09:18.971 81424 Level-0 table #72: started
+2023/11/04-15:09:18.971 81424 Level-0 table #72: 0 bytes OK
+2023/11/04-15:09:18.972 81424 Delete type=0 #70
+2023/11/04-15:09:18.972 81424 Manual compaction at level-0 from '!actors!2GKLZDC1WftWwk9q' @ 72057594037927935 : 1 .. '!folders!vGr96hU80LOGL9yQ' @ 0 : 0; will stop at (end)
+2023/11/04-15:09:18.972 81424 Manual compaction at level-1 from '!actors!2GKLZDC1WftWwk9q' @ 72057594037927935 : 1 .. '!folders!vGr96hU80LOGL9yQ' @ 0 : 0; will stop at (end)
