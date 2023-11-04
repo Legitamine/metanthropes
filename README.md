@@ -14,7 +14,7 @@ This is a work in progress and is not ready for general use. Installation instru
 
 ## Officially Supported Modules
 
-This System aims to utilize the latest and best in Foundry VTT. Currently offers support for Foundry VTT version 11. Latest supported version is v11.313.
+This System aims to utilize the latest and best in Foundry VTT. Currently offers support for Foundry VTT version 11. Latest supported version is v11.314.
 
 To get the best experience while playing Metanthropes RPG, we recommend to install the following fully supported modules: (System suggested and required module automations & PRs are planned for v1.0)
 
@@ -33,10 +33,12 @@ Briefly, we are working torwards the following milestones:
 
 -   Officially Support the full Ruleset for Metanthropes RPG
 -   Synchronize your Protagonist details with our website for off-line viewing and editing
--   Fully automate the Combat System
+-   Fully automate the Combat System and activation of Metapowers, including unique audio and visual effects
 
 ### Latest Changes
 
 For the latest changes you may check out the [detailed Change Log](https://github.com/Legitamine/metanthropes-system/blob/main/CHANGELOG.md)
+
+You can also view the archives of past releases, kept for posterity, [here](https://github.com/Legitamine/metanthropes-system/blob/main/CHANGELOGARCHIVES.md)
 
 Our eternal gratitude goes to the amazing community of Foundry Developers <3

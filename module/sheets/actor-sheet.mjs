@@ -6,6 +6,7 @@ import { NewActor, FinalizePremadeProtagonist } from "../metanthropes/newactor.m
 import { MetaStartProgression } from "../metanthropes/metaprogression.mjs";
 //? Import helpers
 import { metaLog } from "../helpers/metahelpers.mjs";
+
 /**
  * MetanthropesActorSheet - An Actor Sheet for Metanthropes actors.
  *

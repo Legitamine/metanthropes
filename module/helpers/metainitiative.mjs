@@ -1,5 +1,6 @@
 import { MetaRoll } from "../metanthropes/metaroll.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
+
 /**
  * MetaInitiative handles Initiative rolls for a given combatant.
  *
@@ -95,7 +96,6 @@ export async function MetaInitiative(combatant) {
  * @example
  * This function is typically called via an event listener and not directly.
  */
-
 export async function MetaInitiativeReRoll(event) {
 	event.preventDefault();
 	const button = event.target;

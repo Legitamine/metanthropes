@@ -1,4 +1,10 @@
 import { metaLog } from "../helpers/metahelpers.mjs";
+
+/**
+ * 
+ * MetanthropesActorProgressionSheet extends ActorSheet and is used for the Progression tab of the Actor sheet.
+ * 
+ */
 export class MetanthropesActorProgressionSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {

@@ -1,3 +1,14 @@
+/**
+ * 
+ * metaLog function controls how console logging happens.
+ * metaLog 0 (console.log), 1 (console.warn), 2 (console.error) show up in the console by default
+ * metaLog 3 (console.log), 4 (console.warn), 5 (console.error) show up in the console if the advanced logging setting is enabled in the system settings
+ * metaLog advanced logging is disabled by default and is designed to be used for troubleshooting and debugging
+ * 
+ * @param {Number} logType 
+ * @param  {...any} variables 
+ * @returns 
+ */
 export function metaLog(logType = 0, ...variables) {
 	const metaAdvancedLogging = game.settings.get("metanthropes-system", "metaAdvancedLogging");
 	if (!metaAdvancedLogging && logType > 2) {
@@ -96,6 +107,7 @@ export async function metaExtractNumberOfDice(value) {
 	}
 	return null; // Return null if the string doesn't match the expected format
 }
+
 /**
  *
  * Helper function to extract data from a form element
