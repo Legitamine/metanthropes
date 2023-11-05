@@ -22,7 +22,7 @@ To get the best experience while playing Metanthropes RPG, we recommend to insta
 -   [Drag Ruler](https://foundryvtt.com/packages/drag-ruler)
 -   [Moulinette](https://foundryvtt.com/packages/moulinette-core)
 -   [DF Chat Enhancements](https://foundryvtt.com/packages/df-chat-enhance)
--   [Carousel Combat Tracker](https://foundryvtt.com/packages/package/combat-tracker-dock)
+-   [Carousel Combat Tracker](https://foundryvtt.com/packages/combat-tracker-dock)
 -   [Monks' Token Bar](https://foundryvtt.com/packages/monks-tokenbar)
 
 ### Planned Features
