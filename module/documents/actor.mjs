@@ -1,5 +1,11 @@
 import { metaLog } from "../helpers/metahelpers.mjs";
-//* This is the base class for all Actors which represent the protagonists, metanthropes, vehicles, and other entities within the world.
+
+/**
+ * The base Actor definition which defines common behavior of actors within the Metanthropes system.
+ *
+ * @extends {Actor}
+ *
+ */
 export class MetanthropesActor extends Actor {
 	/** @override */
 	//* Setting default Token configuration for all actors
@@ -52,9 +58,11 @@ export class MetanthropesActor extends Actor {
 		if (data.type !== "Vehicle") {
 			createData.prototypeToken.sight = { enabled: true };
 		}
-		//? Duplicate Self Metapower
 		//! todo I must include other types that could have a Duplicate Self metapower active
 		//todo I should probably check to see if any of Duplicate Self MPs are on the actor and if set to Duplicate them, then do the below
+		//todo need to review the rules for Duplicate cause right now all non Protagonist/Metanthrope Actors are not linked, and thus duplication is abit more complicated.
+		//todo need to confirm with the Composer how to proceed
+		//? Duplicate Self Metapower
 		if (data.type == "Protagonist" || data.type == "Metanthrope") {
 			if (!(data.name.includes("Copy") || data.name.includes("Duplicate"))) {
 				//? Enable Linked Tokens for Protagonists & Metanthropes without 'Duplicate' or 'Copy' in their name
@@ -74,7 +82,6 @@ export class MetanthropesActor extends Actor {
 				//? Disable default behavior of prepending adjective to the name
 				createData.prototypeToken.prependAdjective = false;
 				//? Remove all Items (Metapowers and Possessions) besides 'Strike'
-				metaLog(1, "new dupli", data, createData);
 				const newItems = data.items.filter((item) => item.name === "Strike");
 				createData.items = newItems;
 			}

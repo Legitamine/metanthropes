@@ -6,6 +6,9 @@ import { NewActor, FinalizePremadeProtagonist } from "../metanthropes/newactor.m
 import { MetaStartProgression } from "../metanthropes/metaprogression.mjs";
 //? Import helpers
 import { metaLog } from "../helpers/metahelpers.mjs";
+//? Import Active Effect helper
+import { prepareActiveEffectCategories, onManageActiveEffect } from "../metanthropes/metaeffects.mjs";
+
 /**
  * MetanthropesActorSheet - An Actor Sheet for Metanthropes actors.
  *
@@ -76,9 +79,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 		}
 		//? This will create the .RollStats object under .system that is used by Handlebars in the actor sheet for rolling
 		this.actor.getRollData();
-		//! Prepare active effects - causes error when enabled - prepareActiveEffectCategories is not defined
-		//! it needs effects.mjs from https://gitlab.com/asacolips-projects/foundry-mods/boilerplate/-/blob/master/module/helpers/effects.mjs?ref_type=heads
-		// context.effects = prepareActiveEffectCategories(this.actor.effects);
 		//? Provide a boolean for if 'Beta Testing of New Features' is enabled
 		context.betaTesting = game.settings.get("metanthropes-system", "metaBetaTesting");
 		//? Provide a boolean for if 'Advanced Logging' is enabled
@@ -87,6 +87,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 		context.advancedBetaTesting = context.betaTesting && context.advancedLogging;
 		//? Provide a boolean for if the user is a Narrator(GameMaster)
 		context.isNarrator = game.user.isGM;
+		//? Add the actor's active effects to the context for easier access.
+		if (context.betaTesting) context.effects = prepareActiveEffectCategories(this.actor.effects);
 		//todo I would like to refresh the sheet after getting all the data
 		metaLog(3, "MetanthropesActorSheet getData results", "this, context, options", this, context, options);
 		return context;
@@ -151,8 +153,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			li.slideUp(200, () => this.render(false));
 		});
 		//? Active Effect management
-		//! needs the effects from boilerplate to work
-		// html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
+		if (this.betaTesting) html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
 		//? Roll Stat
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
 		html.find(".style-cs-rolls").on("contextmenu", this._onCustomRoll.bind(this));

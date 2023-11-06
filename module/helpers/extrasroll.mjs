@@ -248,6 +248,7 @@ export async function HungerRoll(actor, hungerLevel) {
 		flags: { "metanthropes-system": { actoruuid: actor.uuid } },
 	});
 }
+
 /**
  * Hunger ReRoll
  */

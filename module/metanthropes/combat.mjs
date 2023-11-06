@@ -1,5 +1,13 @@
 import { MetaInitiative } from "../helpers/metainitiative.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
+
+/**
+ * Metanthropes Combat Class
+ * Extends the base Combat class to implement additional Metanthropes-specific Combat features
+ * 
+ * @extends {Combat}
+ * 
+ */
 export class MetanthropesCombat extends Combat {
 	//? adding the concept of Cycles & Rounds to the Combat system
 	prepareDerivedData() {

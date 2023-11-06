@@ -19,8 +19,8 @@ export async function FinalizePremadeProtagonist(actor) {
 			throw error;
 		});
 		//todo: premade actor summary
-		await NewActorSummary(actor).catch((error) => {
-			metaLog(2, "Finalize Premade Protagonist", "Error at NewActorSummary:", error);
+		await NewPremadeSummary(actor).catch((error) => {
+			metaLog(2, "Finalize Premade Protagonist", "Error at NewPremadeSummary:", error);
 			throw error;
 		});
 		await NewActorFinish(actor).catch((error) => {
@@ -40,6 +40,7 @@ export async function FinalizePremadeProtagonist(actor) {
 		//metaLog(3, "Finalize Premade Protagonist", "Creation Complete for:", `${playerName}'s`, actor.type, actor.name);
 	}
 }
+
 //* New Actor Function
 export async function NewActor(actor) {
 	try {
@@ -75,11 +76,13 @@ export async function NewActor(actor) {
 		metaLog(3, "New Actor", "Creation Complete for:", actor.type, actor.name);
 	}
 }
+
 //* Give Control of an Actor to a Player, to allow showing the chat buttons for rerolls and execution
 export async function NewActorControl(actor) {
 	const playerName = game.user.name;
 	await actor.update({ "system.metaowner.value": playerName });
 }
+
 //* Filter function for Prime Metapower Selection
 function createFilterDropdown(id, options) {
 	let dropdown = document.createElement("select");
@@ -96,6 +99,7 @@ function createFilterDropdown(id, options) {
 	});
 	return dropdown;
 }
+
 export async function NewStatRoll(actor, char, stat, dice) {
 	return new Promise((resolve, reject) => {
 		Rolld10(actor, stat, true, dice, null, 0, false);
@@ -130,6 +134,7 @@ export async function NewStatRoll(actor, char, stat, dice) {
 		dialogstat.render(true);
 	});
 }
+
 export async function NewActorDestiny(actor) {
 	//? we will store the player's name as declared by the Gamemaster in the World User Settings
 	const playerName = game.user.name;
@@ -151,7 +156,7 @@ export async function NewActorDestiny(actor) {
 	return new Promise((resolve, reject) => {
 		let dialog = new Dialog(
 			{
-				title: `Step 1 of 10: ${actor.type}'s 🤞 Destiny`,
+				title: `Step 1 of 10: ${actor.type} 🤞 Destiny`,
 				content: dialogContent,
 				buttons: {
 					ok: {
@@ -185,6 +190,7 @@ export async function NewActorDestiny(actor) {
 		dialog.render(true, { zIndex: 900000 });
 	});
 }
+
 export async function NewActorPrimeMetapower(actor) {
 	let dialogContent = `
 		<div class="metanthropes layout-metaroll-dialog">
@@ -244,7 +250,7 @@ export async function NewActorPrimeMetapower(actor) {
 	return new Promise((resolve, reject) => {
 		let dialog = new Dialog(
 			{
-				title: `Step 2 of 10: ${actor.type}'s Prime Ⓜ️ Metapower`,
+				title: `Step 2 of 10: ${actor.type} Prime Ⓜ️ Metapower`,
 				content: dialogContent,
 				buttons: {
 					ok: {
@@ -316,6 +322,7 @@ export async function NewActorPrimeMetapower(actor) {
 		dialog.render(true, { zIndex: 900000 });
 	});
 }
+
 export async function NewActorCharacteristics(actor) {
 	let dialogContent = `
 	<div class="metanthropes layout-metaroll-dialog">
@@ -356,7 +363,7 @@ export async function NewActorCharacteristics(actor) {
 	return new Promise((resolve, reject) => {
 		let dialog = new Dialog(
 			{
-				title: `Step 3 of 10: ${actor.type}'s 📊 Characteristics`,
+				title: `Step 3 of 10: ${actor.type} 📊 Characteristics`,
 				content: dialogContent,
 				buttons: {
 					ok: {
@@ -433,6 +440,7 @@ export async function NewActorCharacteristics(actor) {
 		dialog.render(true, { zIndex: 900000 });
 	});
 }
+
 export async function NewActorBodyStats(actor) {
 	let dialogContent = `
 	<div class="metanthropes layout-metaroll-dialog">
@@ -473,7 +481,7 @@ export async function NewActorBodyStats(actor) {
 	return new Promise((resolve, reject) => {
 		let dialog = new Dialog(
 			{
-				title: `Step 4 of 10: ${actor.type}'s Body 📊 Stats`,
+				title: `Step 4 of 10: ${actor.type} Body 📊 Stats`,
 				content: dialogContent,
 				buttons: {
 					ok: {
@@ -545,6 +553,7 @@ export async function NewActorBodyStats(actor) {
 		dialog.render(true, { zIndex: 900000 });
 	});
 }
+
 export async function NewActorMindStats(actor) {
 	let dialogContent = `
 	<div class="metanthropes layout-metaroll-dialog">
@@ -585,7 +594,7 @@ export async function NewActorMindStats(actor) {
 	return new Promise((resolve, reject) => {
 		let dialog = new Dialog(
 			{
-				title: `Step 5 of 10: ${actor.type}'s Mind 📊 Stats`,
+				title: `Step 5 of 10: ${actor.type} Mind 📊 Stats`,
 				content: dialogContent,
 				buttons: {
 					ok: {
@@ -654,6 +663,7 @@ export async function NewActorMindStats(actor) {
 		dialog.render(true, { zIndex: 900000 });
 	});
 }
+
 export async function NewActorSoulStats(actor) {
 	let dialogContent = `
 	<div class="metanthropes layout-metaroll-dialog">
@@ -694,7 +704,7 @@ export async function NewActorSoulStats(actor) {
 	return new Promise((resolve, reject) => {
 		let dialog = new Dialog(
 			{
-				title: `Step 6 of 10: ${actor.type}'s Soul 📊 Stats`,
+				title: `Step 6 of 10: ${actor.type} Soul 📊 Stats`,
 				content: dialogContent,
 				buttons: {
 					ok: {
@@ -763,6 +773,7 @@ export async function NewActorSoulStats(actor) {
 		dialog.render(true, { zIndex: 900000 });
 	});
 }
+
 export async function NewActorRoleplay(actor) {
 	let dialogContent = `
 		<div class="metanthropes layout-metaroll-dialog">
@@ -822,7 +833,7 @@ export async function NewActorRoleplay(actor) {
 		`;
 	return new Promise((resolve, reject) => {
 		let dialog = new Dialog({
-			title: `Step 7 of 10: ${actor.type}'s 🎭 Roleplay`,
+			title: `Step 7 of 10: ${actor.type} 🎭 Roleplay`,
 			content: dialogContent,
 			buttons: {
 				ok: {
@@ -870,6 +881,7 @@ export async function NewActorRoleplay(actor) {
 		dialog.render(true, { zIndex: 900000 });
 	});
 }
+
 export async function NewActorProgression(actor) {
 	let dialogContent = `
 		<div class="metanthropes layout-metaroll-dialog">
@@ -894,7 +906,7 @@ export async function NewActorProgression(actor) {
 	return new Promise((resolve, reject) => {
 		let dialog = new Dialog(
 			{
-				title: `Step 8 of 10: ${actor.type}'s 📈 Progression`,
+				title: `Step 8 of 10: ${actor.type} 📈 Progression`,
 				content: dialogContent,
 				buttons: {
 					ok: {
@@ -936,6 +948,7 @@ export async function NewActorProgression(actor) {
 		dialog.render(true, { zIndex: 900000 });
 	});
 }
+
 export async function NewActorSummary(actor) {
 	const playerName = game.user.name;
 	const narratorName = game.users.activeGM.name;
@@ -945,11 +958,11 @@ export async function NewActorSummary(actor) {
 			<form>
 			<h3>Protagonist Details:</h3>
 				<div class="form-group">
-					<label for="actorname" title="Your ${actor.type}'s Name">Name: </label>
+					<label for="actorname" title="Your ${actor.type}'s Name">(Required) Name: </label>
 					<input type="text" dtype="String" id="actorname" name="actorname" value="">
 				</div>
 				<div class="form-group">
-					<label for="actorgender" title="Your ${actor.type}'s Gender">Gender: </label>
+					<label for="actorgender" title="Your ${actor.type}'s Gender">(Required) Gender: </label>
 					<input type="text" dtype="String" id="actorgender" name="actorgender" value="">
 				</div>
 				<div class="form-group">
@@ -996,7 +1009,7 @@ export async function NewActorSummary(actor) {
 	`;
 	return new Promise((resolve, reject) => {
 		let dialog = new Dialog({
-			title: `Step 9 of 10: ${actor.type}'s ✍️ Summary`,
+			title: `Step 9 of 10: ${actor.type} ✍️ Summary`,
 			content: dialogContent,
 			buttons: {
 				ok: {
@@ -1093,6 +1106,141 @@ export async function NewActorSummary(actor) {
 		dialog.render(true, { zIndex: 900000 });
 	});
 }
+
+export async function NewPremadeSummary(actor) {
+	const playerName = game.user.name;
+	const narratorName = game.users.activeGM.name;
+	let dialogContent = `
+		<div class="metanthropes layout-metaroll-dialog">
+			<h2>Choose your ${actor.type}'s ✍️ Summary</h2>
+			<form>
+			<h3>Protagonist Details:</h3>
+				<div class="form-group">
+					<label for="actorname" title="Your ${actor.type}'s Name">(Required) Name: </label>
+					<input type="text" dtype="String" id="actorname" name="actorname" value="">
+				</div>
+				<div class="form-group">
+					<label for="actorgender" title="Your ${actor.type}'s Gender">(Required) Gender: </label>
+					<input type="text" dtype="String" id="actorgender" name="actorgender" value="">
+				</div>
+				<div class="form-group">
+					<label for="actorgenderpronoun" title="Your ${actor.type}'s Gender Pronouns">Pronouns: </label>
+					<input type=text dtype="String" id="actorgenderpronoun" name="actorgenderpronoun" value="">
+				</div>
+				<div class="form-group">
+					<label for="actorage" title="Your ${actor.type}'s Age">Age: </label>
+					<input class="style-container-input-charstat" type="number" dtype="Number" id="actorage" name="actorage" value="">yr
+				</div>
+				<div class="form-group">
+					<label for="actorheight" title="Your ${actor.type}'s Height">Height: </label>
+					<input class="style-container-input-charstat" type="number" dtype="Number" id="actorheight" name="actorheight" value="">m
+				</div>
+				<div class="form-group">
+					<label for="actorweight" title="Your ${actor.type}'s Weight">Weight: </label>
+					<input class="style-container-input-charstat" type="number" dtype="Number" id="actorweight" name="actorweight" value="">kg
+				</div>
+				<div class="form-group">
+					<label for="actorpob" title="Your ${actor.type}'s Place of Birth">Place of Birth: </label>
+					<input type="text" dtype="String" id="actorpob" name="actorpob" value="">
+				</div>
+				<h3>Session Details:</h3>
+				<div class="form-group">
+					<label for="narratorName" title="This should be filled out automatically">Narrator Name: </label>${narratorName}
+				</div>
+				<div class="form-group">
+					<label for="playerName" title="This should be filled out automatically">Player Name: </label>${playerName}
+				</div>
+			</form>
+		</div>
+	`;
+	return new Promise((resolve, reject) => {
+		let dialog = new Dialog({
+			title: `Finalize Premade: ${actor.type} ✍️ Summary`,
+			content: dialogContent,
+			buttons: {
+				ok: {
+					label: "Confirm ✍️ Summary",
+					callback: async (html) => {
+						const actorname = html.find('[name="actorname"]').val();
+						const actorage = html.find('[name="actorage"]').val();
+						const actorgender = html.find('[name="actorgender"]').val();
+						const actorgenderpronoun = html.find('[name="actorgenderpronoun"]').val();
+						const actorheight = html.find('[name="actorheight"]').val();
+						const actorweight = html.find('[name="actorweight"]').val();
+						const actorpob = html.find('[name="actorpob"]').val();
+						if (!actorname) {
+							ui.notifications.error("Please enter a name for your " + actor.type);
+							return;
+						}
+						if (!actorgender) {
+							ui.notifications.error("Please provide the gender for your " + actor.type);
+							return;
+						}
+						try {
+							await actor.update({
+								name: actorname,
+								"system.Vital.age.value": Number(actorage),
+								"system.humanoids.gender.value": actorgender,
+								"system.humanoids.genderpronoun.value": actorgenderpronoun,
+								"system.humanoids.height.value": Number(actorheight),
+								"system.humanoids.weight.value": Number(actorweight),
+								"system.humanoids.birthplace.value": actorpob,
+								"system.entermeta.narrator.value": narratorName,
+							});
+						} catch (error) {
+							metaLog(2, "NewPremadeSummary", "Error in updating actor data", error);
+							reject(error);
+							return;
+						} finally {
+							//left blank
+						}
+						//todo should I just check here for .prototypeToken instead of checking for actor.type?
+						if (actor.type == "Protagonist" || actor.type == "Metanthrope") {
+							await actor.update({ "prototypeToken.name": actorname });
+						}
+						metaLog(
+							3,
+							"NewActorSummary",
+							`New ${actor.type}'s Name:`,
+							actorname,
+							"Age:",
+							actorage,
+							"Gender:",
+							actorgender,
+							"Pronouns:",
+							actorgenderpronoun,
+							"Height:",
+							actorheight,
+							"Weight:",
+							actorweight,
+							"Place of Birth:",
+							actorpob,
+							"Player Name:",
+							playerName,
+							"Narrator Name:",
+							narratorName
+						);
+						resolve();
+					},
+				},
+				cancel: {
+					label: "Cancel",
+					callback: async () => {
+						await actor.update({ "system.humanoids.gender.value": null });
+						reject();
+					},
+				},
+			},
+			default: "ok",
+			//	close: async () => {
+			//		await actor.update({ "system.metaowner.value": null });
+			//		reject();
+			//	},
+		});
+		dialog.render(true, { zIndex: 900000 });
+	});
+}
+
 export async function NewActorFinish(actor) {
 	let dialogContent = `
 		<div class="metanthropes layout-metaroll-dialog">

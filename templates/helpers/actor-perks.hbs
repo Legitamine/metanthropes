@@ -67,13 +67,19 @@
 				<div>
 					<h3>{{this.label}}</h3>
 				</div>
-				{{#if ../isNarrator}}
-					<div class="layout-editor style-editor">
-						{{editor this.value target=(concat "system.Perks.Details." @key ".value") button=true editable=true}}
-					</div>
+				{{#if ../betaTesting}}
+					{{#if ../isNarrator}}
+						<div class="layout-editor style-editor">
+							{{editor this.value target=(concat "system.Perks.Details." @key ".value") button=true editable=true}}
+						</div>
+					{{else}}
+						<div class="layout-editor style-editor">
+							{{editor this.value target=(concat "system.Perks.Details." @key ".value") button=true editable=false}}
+						</div>
+					{{/if}}
 				{{else}}
 					<div class="layout-editor style-editor">
-						{{editor this.value target=(concat "system.Perks.Details." @key ".value") button=true editable=false}}
+						{{editor this.value target=(concat "system.Perks.Details." @key ".value") button=true editable=true}}
 					</div>
 				{{/if}}
 			{{/unless}}
