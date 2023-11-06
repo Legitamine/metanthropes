@@ -96,6 +96,9 @@
 				<a class="item style-cs-labels" data-tab="cs-perks">📚 Perks</a>
 				<a class="item style-cs-labels" data-tab="cs-metapowers">Ⓜ️ Metapowers</a>
 				<a class="item style-cs-labels" data-tab="cs-combos">🔗 Combos</a>
+				{{#if betaTesting}}
+				<a class="item style-cs-labels" data-tab="cs-active-effects">⏰ Effects</a>
+				{{/if}}
 				<a class="item style-cs-labels" data-tab="cs-possessions">🛠️ Possessions</a>
 				<a class="item style-cs-labels" data-tab="cs-notes">📓 Notes</a>
 			</nav>
@@ -115,6 +118,11 @@
 			<div class="tab cs-combos" data-group="cs" data-tab="cs-combos">
 				<div class="layout-container-outer-tabs style-container-outer-tabs">
 					{{> "systems/metanthropes-system/templates/helpers/actor-combos.hbs"}}
+				</div>
+			</div>
+			<div class="tab cs-activeeffects" data-group="cs" data-tab="cs-active-effects">
+				<div class="layout-container-outer-tabs style-container-outer-tabs">
+					{{> "systems/metanthropes-system/templates/helpers/actor-active-effects.hbs"}}
 				</div>
 			</div>
 			<div class="tab cs-perks" data-group="cs" data-tab="cs-perks">
