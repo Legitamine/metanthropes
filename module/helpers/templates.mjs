@@ -7,13 +7,13 @@ export const preloadHandlebarsTemplates = async function () {
 	return loadTemplates([
 		// Actor partials.
 		"systems/metanthropes-system/templates/helpers/actor-combos.hbs",
-		"systems/metanthropes-system/templates/helpers/actor-effects.hbs",
 		"systems/metanthropes-system/templates/helpers/actor-metapowers.hbs",
 		"systems/metanthropes-system/templates/helpers/actor-perks.hbs",
 		"systems/metanthropes-system/templates/helpers/actor-possessions.hbs",
 		"systems/metanthropes-system/templates/helpers/actor-charstats.hbs",
 		"systems/metanthropes-system/templates/helpers/actor-notes.hbs",
 		"systems/metanthropes-system/templates/helpers/actor-summary.hbs",
+		"systems/metanthropes-system/templates/helpers/actor-active-effects.hbs",
 		"systems/metanthropes-system/templates/helpers/item-description.hbs",
 		"systems/metanthropes-system/templates/helpers/item-execution.hbs",
 		"systems/metanthropes-system/templates/helpers/item-effects.hbs",
