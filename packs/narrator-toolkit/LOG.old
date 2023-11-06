@@ -1,8 +1,1 @@
-2023/11/06-13:05:44.272 46bdc Log #118: 0 ops saved to Table #122 OK
-2023/11/06-13:05:44.272 46bdc Archiving F:\FoundryVTT\Data\systems\metanthropes-system\packs\narrator-toolkit/000118.log: OK
-2023/11/06-13:05:44.273 46bdc Log #121: 0 ops saved to Table #123 OK
-2023/11/06-13:05:44.273 46bdc Archiving F:\FoundryVTT\Data\systems\metanthropes-system\packs\narrator-toolkit/000121.log: OK
-2023/11/06-13:05:44.273 46bdc Table #29: 5 entries OK
-2023/11/06-13:05:44.276 46bdc Archiving F:\FoundryVTT\Data\systems\metanthropes-system\packs\narrator-toolkit/MANIFEST-000117: OK
-2023/11/06-13:05:44.276 46bdc Archiving F:\FoundryVTT\Data\systems\metanthropes-system\packs\narrator-toolkit/MANIFEST-000119: OK
-2023/11/06-13:05:44.278 46bdc **** Repaired leveldb F:\FoundryVTT\Data\systems\metanthropes-system\packs\narrator-toolkit; recovered 1 files; 9184 bytes. Some data may have been lost. ****
+2023/11/06-13:05:44.283 46bdc Delete type=3 #1

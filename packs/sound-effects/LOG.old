@@ -1,7 +1,1 @@
-2023/11/06-13:05:44.366 59dd0 Log #72: 0 ops saved to Table #76 OK
-2023/11/06-13:05:44.366 59dd0 Archiving F:\FoundryVTT\Data\systems\metanthropes-system\packs\sound-effects/000072.log: OK
-2023/11/06-13:05:44.366 59dd0 Log #75: 0 ops saved to Table #77 OK
-2023/11/06-13:05:44.367 59dd0 Archiving F:\FoundryVTT\Data\systems\metanthropes-system\packs\sound-effects/000075.log: OK
-2023/11/06-13:05:44.369 59dd0 Archiving F:\FoundryVTT\Data\systems\metanthropes-system\packs\sound-effects/MANIFEST-000071: OK
-2023/11/06-13:05:44.369 59dd0 Archiving F:\FoundryVTT\Data\systems\metanthropes-system\packs\sound-effects/MANIFEST-000073: OK
-2023/11/06-13:05:44.371 59dd0 **** Repaired leveldb F:\FoundryVTT\Data\systems\metanthropes-system\packs\sound-effects; recovered 0 files; 0 bytes. Some data may have been lost. ****
+2023/11/06-13:05:44.375 59dd0 Delete type=3 #1
