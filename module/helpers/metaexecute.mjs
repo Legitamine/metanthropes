@@ -553,6 +553,8 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		metaLog(3, "MetaRoll", "Duplicate Self Metapower Max Life:", duplicateMaxLife);
 	}
 	//* Targeting Tests
+	const betaTesting = await game.settings.get("metanthropes-system", "metaBetaTesting");
+	if (!betaTesting) return;
 	let targetingTargets = game.user.targets;
 	for (let token of targetingTargets) {
 		let targetedActor = token.actor;
