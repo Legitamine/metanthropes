@@ -1,0 +1,7 @@
+- name: Assign PR Author as Assignee
+  # You may pin to the exact commit or the version.
+  # uses: itsOliverBott/assign-pr-author-as-assignee@4862ea3abefdc3e7663b1245b5049eef4489bc8c
+  uses: itsOliverBott/assign-pr-author-as-assignee@release
+  with:
+    # GitHub token for repository access
+    token: 
