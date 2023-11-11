@@ -1,13 +1,13 @@
 /**
- * 
+ *
  * metaLog function controls how console logging happens.
  * metaLog 0 (console.log), 1 (console.warn), 2 (console.error) show up in the console by default
  * metaLog 3 (console.log), 4 (console.warn), 5 (console.error) show up in the console if the advanced logging setting is enabled in the system settings
  * metaLog advanced logging is disabled by default and is designed to be used for troubleshooting and debugging
- * 
- * @param {Number} logType 
- * @param  {...any} variables 
- * @returns 
+ *
+ * @param {Number} logType
+ * @param  {...any} variables
+ * @returns
  */
 export function metaLog(logType = 0, ...variables) {
 	const metaAdvancedLogging = game.settings.get("metanthropes-system", "metaAdvancedLogging");
@@ -51,6 +51,7 @@ export function metaLog(logType = 0, ...variables) {
 }
 
 /**
+ * ! confirm usage
  * Helper function to check if an item with a given name is equipped by an actor
  * Returns true/false
  *
@@ -65,6 +66,7 @@ export async function metaIsItemEquipped(actor, itemName) {
 }
 
 /**
+ * ! confirm usage
  * Helper function to check if a Metapower with a given name is equipped by an actor
  * @param {*} actor - Object of the actor
  * @param {*} metapower - String of the metapower name
@@ -80,11 +82,12 @@ export async function metaIsMetapowerEquipped(actor, metapower) {
 }
 
 /**
+ * ! confirm usage
  * Helper function to get the maximum level of a Metapower equipped by an actor
  * @param {*} actor - Object of the actor
  * @param {*} metapower - String of the metapower name
  * @returns integer
- * 
+ *
  */
 export async function metaGetMaxMetapowerLevel(actor, metapower) {
 	const equippedItems = actor.items.filter((item) => item.system.MetapowerName === metapower);
@@ -109,7 +112,7 @@ export async function metaExtractNumberOfDice(value) {
 }
 
 /**
- *
+ *! unused
  * Helper function to extract data from a form element
  *
  * @param {*} formElement
@@ -122,4 +125,76 @@ export function metaExtractFormData(formElement) {
 		extractedData[key] = value;
 	}
 	return extractedData;
+}
+
+/**
+ *! unused - not working yet
+ * Helper function to help in resizing elements based on the window size for a Responsive UI
+ * To be used in Actor Sheets to start, will extend and addapt it down the line for Item & Effect Sheets
+ *
+ * @param {*} event
+ * @param {*} element
+ *
+ */
+export function metaHandleResize(event, element, currentWidth) {
+	const windowSize = determineWindowSize(currentWidth);
+	let uiTargets = element ? $(element).find(".meta-ui-responsive") : this.element.find(".meta-ui-responsive");
+
+	function determineWindowSize(currentWidth) {
+		if (currentWidth <= 280) return "singleColumn";
+		if (currentWidth > 280 && currentWidth <= 450) return "small";
+		if (currentWidth > 450 && currentWidth <= 750) return "medium";
+		if (currentWidth > 750 && currentWidth <= 1190) return "default";
+		if (currentWidth > 1190) return "extended";
+	}
+
+	function responsiveUIChanges(target, windowSize) {
+		const classToggles = {
+			singleColumn: {
+				"meta-ui-hidden": ["style-cs-rolls", "meta-ui-extra-fields"],
+				"meta-ui-single-column-font": ["style-cs-chars-label", "style-cs-stats-label"],
+				"meta-ui-small-font": false,
+				"meta-ui-medium-font": false,
+				"layout-container-outer-charstats-single-column": "layout-container-outer-charstats",
+				"style-cs-rolls-single-column": "style-cs-rolls",
+			},
+			small: {
+				"meta-ui-hidden": ["meta-ui-hide-at-minimum"],
+				"meta-ui-small-font": ["style-cs-chars-label", "style-cs-stats-label"],
+				"meta-ui-medium-font": false,
+				"meta-ui-single-column-font": false,
+				"layout-container-outer-charstats-minimum": "layout-container-outer-charstats",
+			},
+			// Define other size categories following the same pattern...
+		};
+
+		// Apply the toggles based on the current window size category
+		const toggles = classToggles[windowSize];
+		for (const [toggleClass, affectedClasses] of Object.entries(toggles)) {
+			if (Array.isArray(affectedClasses)) {
+				affectedClasses.forEach((cls) => target.classList.toggle(cls, toggleClass === true));
+			} else {
+				target.classList.toggle(toggleClass, affectedClasses);
+			}
+		}
+	}
+
+	// Loop through the uiTargets and apply the appropriate class changes
+	for (let target of uiTargets) {
+		responsiveUIChanges(target, windowSize);
+	}
+}
+
+/**
+ *
+ * Helper function to refresh the actor sheet
+ * This is needed to ensure the Stat Scores display correctly in the Metapowers and Possessions tabs of the actor sheet
+ *
+ * @param {*} actor
+ */
+export function metaSheetRefresh(actor) {
+	const sheet = actor.sheet;
+	if (sheet && sheet.rendered) {
+		sheet.render(true);
+	}
 }

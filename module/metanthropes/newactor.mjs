@@ -11,7 +11,7 @@ import { metaLog } from "../helpers/metahelpers.mjs";
 // kai episis na kanw expand to new actor function gia na kanei pick mono ta relative fields analoga me to type tou actor
 
 //* Finalizes a Premade Protagonist
-export async function FinalizePremadeProtagonist(actor) {
+export async function FinalizePremadeActor(actor) {
 	const playerName = game.user.name;
 	try {
 		await NewActorControl(actor).catch((error) => {
@@ -100,6 +100,122 @@ function createFilterDropdown(id, options) {
 	return dropdown;
 }
 
+//* extend the Dialog class
+//* This handles z-index value to ensure that the dialog is always displayed over the Actor Sheet
+//* This also removes the Close button and the ability to press Escape to close the dialog
+export class MetaDialog extends Dialog {
+	/**
+	 * Render the outer application wrapper
+	 * @returns {Promise<jQuery>}   A promise resolving to the constructed jQuery object
+	 * @protected
+	 */
+	//* Note we are overriding the _renderOuter of the Application Class, so the below has both Application + Dialog merged in one
+	/** @override */
+	async _renderOuter() {
+		// Gather basic application data
+		const classes = this.options.classes;
+		const windowData = {
+			id: this.id,
+			classes: classes.join(" "),
+			appId: this.appId,
+			title: this.title,
+			headerButtons: this._getHeaderButtons(),
+		};
+		// Render the template and return the promise
+		let html = await renderTemplate("templates/app-window.html", windowData);
+		html = $(html);
+		// Activate header button click listeners after a slight timeout to prevent immediate interaction
+		setTimeout(() => {
+			html.find(".header-button").click((event) => {
+				event.preventDefault();
+				const button = windowData.headerButtons.find((b) => event.currentTarget.classList.contains(b.class));
+				button.onclick(event);
+			});
+		}, 500);
+		// Make the outer window draggable
+		const header = html.find("header")[0];
+		new Draggable(this, html, header, this.options.resizable);
+		// Make the outer window minimizable
+		if (this.options.minimizable) {
+			header.addEventListener("dblclick", this._onToggleMinimize.bind(this));
+		}
+		// Set the outer frame z-index
+		if (Object.keys(ui.windows).length === 0) _maxZ = 100 - 1;
+		this.position.zIndex = Math.min(++_maxZ, 9999);
+		/** @override */
+		//* Ensure that the dialog is always displayed over the Actor Sheet
+		this.position.zIndex += 10;
+		html.css({ zIndex: this.position.zIndex });
+		ui.activeWindow = this;
+		// Return the outer frame
+		/** @override */
+		//* Extending the Dialog Class _renderOuter
+		const app = html[0];
+		app.setAttribute("role", "dialog");
+		app.setAttribute("aria-modal", "true");
+		return html;
+	}
+	/**
+	 * Specify the set of config buttons which should appear in the Application header.
+	 * Buttons should be returned as an Array of objects.
+	 * The header buttons which are added to the application can be modified by the getApplicationHeaderButtons hook.
+	 * @fires getApplicationHeaderButtons
+	 * @returns {ApplicationHeaderButton[]}
+	 * @protected
+	 */
+	/** @override */
+	_getHeaderButtons() {
+		/** @override */
+		//* do not show Close button for MetaDialog
+		const buttons = [];
+		for (let cls of this.constructor._getInheritanceChain()) {
+			Hooks.call(`get${cls.name}HeaderButtons`, this, buttons);
+		}
+		return buttons;
+	}
+	/**
+	 * Handle a keydown event while the dialog is active
+	 * @param {KeyboardEvent} event   The keydown event
+	 * @private
+	 */
+	/** @override */
+	_onKeyDown(event) {
+		// Cycle Options
+		if (event.key === "Tab") {
+			const dialog = this.element[0];
+			// If we are already focused on the Dialog, let the default browser behavior take over
+			if (dialog.contains(document.activeElement)) return;
+			// If we aren't focused on the dialog, bring focus to one of its buttons
+			event.preventDefault();
+			event.stopPropagation();
+			const dialogButtons = Array.from(document.querySelectorAll(".dialog-button"));
+			const targetButton = event.shiftKey ? dialogButtons.pop() : dialogButtons.shift();
+			targetButton.focus();
+		}
+		// Close dialog
+		if (event.key === "Escape") {
+			event.preventDefault();
+			event.stopPropagation();
+			/** @override */
+			//* Do not close the dialog on Escape
+			return;
+		}
+		// Confirm choice
+		if (event.key === "Enter") {
+			// Only handle Enter presses if an input element within the Dialog has focus
+			const dialog = this.element[0];
+			if (!dialog.contains(document.activeElement) || document.activeElement instanceof HTMLTextAreaElement)
+				return;
+			event.preventDefault();
+			event.stopPropagation();
+			// Prefer a focused button, or enact the default option for the dialog
+			const button = document.activeElement.dataset.button || this.data.default;
+			const choice = this.data.buttons[button];
+			return this.submit(choice);
+		}
+	}
+}
+
 export async function NewStatRoll(actor, char, stat, dice) {
 	return new Promise((resolve, reject) => {
 		Rolld10(actor, stat, true, dice, null, 0, false);
@@ -108,7 +224,7 @@ export async function NewStatRoll(actor, char, stat, dice) {
 				<h2>Confirm your ${actor.type}'s ${stat} 📊 Stat</h2>
 			</div>
 			`;
-		let dialogstat = new Dialog({
+		let dialogstat = new MetaDialog({
 			title: `${actor.type}'s ${char} 📊 Stats`,
 			content: statcontent,
 			buttons: {
@@ -154,7 +270,7 @@ export async function NewActorDestiny(actor) {
 		height: 178,
 	};
 	return new Promise((resolve, reject) => {
-		let dialog = new Dialog(
+		let dialog = new MetaDialog(
 			{
 				title: `Step 1 of 10: ${actor.type} 🤞 Destiny`,
 				content: dialogContent,
@@ -179,7 +295,7 @@ export async function NewActorDestiny(actor) {
 						label: "Cancel",
 						callback: async () => {
 							await actor.update({ "system.metaowner.value": null });
-							reject();
+							reject("User Canceled");
 						},
 					},
 				},
@@ -187,7 +303,7 @@ export async function NewActorDestiny(actor) {
 			},
 			dialogOptions
 		);
-		dialog.render(true, { zIndex: 900000 });
+		dialog.render(true);
 	});
 }
 
@@ -245,10 +361,9 @@ export async function NewActorPrimeMetapower(actor) {
 	let dialogOptions = {
 		width: 485,
 		height: 600,
-		index: 1000,
 	};
 	return new Promise((resolve, reject) => {
-		let dialog = new Dialog(
+		let dialog = new MetaDialog(
 			{
 				title: `Step 2 of 10: ${actor.type} Prime Ⓜ️ Metapower`,
 				content: dialogContent,
@@ -264,13 +379,6 @@ export async function NewActorPrimeMetapower(actor) {
 							});
 							metaLog(3, "NewActorPrimeMetapower", `New Prime Metapower:`, primeMetapowerName);
 							resolve();
-						},
-					},
-					cancel: {
-						label: "Cancel",
-						callback: async () => {
-							await actor.update({ "system.metaowner.value": null });
-							reject();
 						},
 					},
 				},
@@ -312,14 +420,10 @@ export async function NewActorPrimeMetapower(actor) {
 						}
 					});
 				},
-				//	close: async () => {
-				//		await actor.update({ "system.metaowner.value": null });
-				//		reject();
-				//	},
 			},
 			dialogOptions
 		);
-		dialog.render(true, { zIndex: 900000 });
+		dialog.render(true);
 	});
 }
 
@@ -358,10 +462,9 @@ export async function NewActorCharacteristics(actor) {
 	let dialogOptions = {
 		width: 600,
 		height: 240,
-		index: 1000,
 	};
 	return new Promise((resolve, reject) => {
-		let dialog = new Dialog(
+		let dialog = new MetaDialog(
 			{
 				title: `Step 3 of 10: ${actor.type} 📊 Characteristics`,
 				content: dialogContent,
@@ -391,13 +494,6 @@ export async function NewActorCharacteristics(actor) {
 								actor.system.Characteristics[tertiary].Initial
 							);
 							resolve();
-						},
-					},
-					cancel: {
-						label: "Cancel",
-						callback: async () => {
-							await actor.update({ "system.metaowner.value": null });
-							reject();
 						},
 					},
 				},
@@ -430,14 +526,10 @@ export async function NewActorCharacteristics(actor) {
 						});
 					});
 				},
-				//	close: async () => {
-				//		await actor.update({ "system.metaowner.value": null });
-				//		reject();
-				//	},
 			},
 			dialogOptions
 		);
-		dialog.render(true, { zIndex: 900000 });
+		dialog.render(true);
 	});
 }
 
@@ -476,10 +568,9 @@ export async function NewActorBodyStats(actor) {
 	let dialogOptions = {
 		width: 600,
 		height: 240,
-		index: 1000,
 	};
 	return new Promise((resolve, reject) => {
-		let dialog = new Dialog(
+		let dialog = new MetaDialog(
 			{
 				title: `Step 4 of 10: ${actor.type} Body 📊 Stats`,
 				content: dialogContent,
@@ -502,13 +593,6 @@ export async function NewActorBodyStats(actor) {
 							} catch (error) {
 								reject();
 							}
-						},
-					},
-					cancel: {
-						label: "Cancel",
-						callback: async () => {
-							await actor.update({ "system.metaowner.value": null });
-							reject();
 						},
 					},
 				},
@@ -543,14 +627,10 @@ export async function NewActorBodyStats(actor) {
 						});
 					});
 				},
-				//	close: async () => {
-				//		await actor.update({ "system.metaowner.value": null });
-				//		reject();
-				//	},
 			},
 			dialogOptions
 		);
-		dialog.render(true, { zIndex: 900000 });
+		dialog.render(true);
 	});
 }
 
@@ -589,10 +669,9 @@ export async function NewActorMindStats(actor) {
 	let dialogOptions = {
 		width: 600,
 		height: 240,
-		index: 1000,
 	};
 	return new Promise((resolve, reject) => {
-		let dialog = new Dialog(
+		let dialog = new MetaDialog(
 			{
 				title: `Step 5 of 10: ${actor.type} Mind 📊 Stats`,
 				content: dialogContent,
@@ -612,13 +691,6 @@ export async function NewActorMindStats(actor) {
 							} catch (error) {
 								reject();
 							}
-						},
-					},
-					cancel: {
-						label: "Cancel",
-						callback: async () => {
-							await actor.update({ "system.metaowner.value": null });
-							reject();
 						},
 					},
 				},
@@ -653,14 +725,10 @@ export async function NewActorMindStats(actor) {
 						});
 					});
 				},
-				//	close: async () => {
-				//		await actor.update({ "system.metaowner.value": null });
-				//		reject();
-				//	},
 			},
 			dialogOptions
 		);
-		dialog.render(true, { zIndex: 900000 });
+		dialog.render(true);
 	});
 }
 
@@ -699,10 +767,9 @@ export async function NewActorSoulStats(actor) {
 	let dialogOptions = {
 		width: 600,
 		height: 240,
-		index: 1000,
 	};
 	return new Promise((resolve, reject) => {
-		let dialog = new Dialog(
+		let dialog = new MetaDialog(
 			{
 				title: `Step 6 of 10: ${actor.type} Soul 📊 Stats`,
 				content: dialogContent,
@@ -722,13 +789,6 @@ export async function NewActorSoulStats(actor) {
 							} catch (error) {
 								reject();
 							}
-						},
-					},
-					cancel: {
-						label: "Cancel",
-						callback: async () => {
-							await actor.update({ "system.metaowner.value": null });
-							reject();
 						},
 					},
 				},
@@ -763,14 +823,10 @@ export async function NewActorSoulStats(actor) {
 						});
 					});
 				},
-				//	close: async () => {
-				//		await actor.update({ "system.metaowner.value": null });
-				//		reject();
-				//	},
 			},
 			dialogOptions
 		);
-		dialog.render(true, { zIndex: 900000 });
+		dialog.render(true);
 	});
 }
 
@@ -832,7 +888,7 @@ export async function NewActorRoleplay(actor) {
 		</div>
 		`;
 	return new Promise((resolve, reject) => {
-		let dialog = new Dialog({
+		let dialog = new MetaDialog({
 			title: `Step 7 of 10: ${actor.type} 🎭 Roleplay`,
 			content: dialogContent,
 			buttons: {
@@ -864,21 +920,10 @@ export async function NewActorRoleplay(actor) {
 						resolve();
 					},
 				},
-				cancel: {
-					label: "Cancel",
-					callback: async () => {
-						await actor.update({ "system.metaowner.value": null });
-						reject();
-					},
-				},
 			},
 			default: "ok",
-			//	close: async () => {
-			//		await actor.update({ "system.metaowner.value": null });
-			//		reject();
-			//	},
 		});
-		dialog.render(true, { zIndex: 900000 });
+		dialog.render(true);
 	});
 }
 
@@ -901,10 +946,9 @@ export async function NewActorProgression(actor) {
 	let dialogOptions = {
 		width: 550,
 		height: 230,
-		index: 1000,
 	};
 	return new Promise((resolve, reject) => {
-		let dialog = new Dialog(
+		let dialog = new MetaDialog(
 			{
 				title: `Step 8 of 10: ${actor.type} 📈 Progression`,
 				content: dialogContent,
@@ -929,23 +973,12 @@ export async function NewActorProgression(actor) {
 							resolve();
 						},
 					},
-					cancel: {
-						label: "Cancel",
-						callback: async () => {
-							await actor.update({ "system.metaowner.value": null });
-							reject();
-						},
-					},
 				},
 				default: "ok",
-				//	close: async () => {
-				//		await actor.update({ "system.metaowner.value": null });
-				//		reject();
-				//	},
 			},
 			dialogOptions
 		);
-		dialog.render(true, { zIndex: 900000 });
+		dialog.render(true);
 	});
 }
 
@@ -958,11 +991,11 @@ export async function NewActorSummary(actor) {
 			<form>
 			<h3>Protagonist Details:</h3>
 				<div class="form-group">
-					<label for="actorname" title="Your ${actor.type}'s Name">(Required) Name: </label>
+					<label for="actorname" title="Your ${actor.type}'s Name"><span class="style-cs-conditions">(Required)</span> Name: </label>
 					<input type="text" dtype="String" id="actorname" name="actorname" value="">
 				</div>
 				<div class="form-group">
-					<label for="actorgender" title="Your ${actor.type}'s Gender">(Required) Gender: </label>
+					<label for="actorgender" title="Your ${actor.type}'s Gender">Gender: </label>
 					<input type="text" dtype="String" id="actorgender" name="actorgender" value="">
 				</div>
 				<div class="form-group">
@@ -1008,7 +1041,7 @@ export async function NewActorSummary(actor) {
 		</div>
 	`;
 	return new Promise((resolve, reject) => {
-		let dialog = new Dialog({
+		let dialog = new MetaDialog({
 			title: `Step 9 of 10: ${actor.type} ✍️ Summary`,
 			content: dialogContent,
 			buttons: {
@@ -1025,14 +1058,6 @@ export async function NewActorSummary(actor) {
 						const saganame = html.find('[name="saganame"]').val();
 						const coalitionname = html.find('[name="coalitionname"]').val();
 						const factionname = html.find('[name="factionname"]').val();
-						if (!actorname) {
-							ui.notifications.error("Please enter a name for your " + actor.type);
-							return;
-						}
-						if (!actorgender) {
-							ui.notifications.error("Please provide the gender for your " + actor.type);
-							return;
-						}
 						try {
 							await actor.update({
 								name: actorname,
@@ -1051,8 +1076,6 @@ export async function NewActorSummary(actor) {
 							metaLog(2, "NewActorSummary", "Error in updating actor data", error);
 							reject(error);
 							return;
-						} finally {
-							//left blank
 						}
 						//todo should I just check here for .prototypeToken instead of checking for actor.type?
 						if (actor.type == "Protagonist" || actor.type == "Metanthrope") {
@@ -1089,21 +1112,10 @@ export async function NewActorSummary(actor) {
 						resolve();
 					},
 				},
-				cancel: {
-					label: "Cancel",
-					callback: async () => {
-						await actor.update({ "system.humanoids.gender.value": null });
-						reject();
-					},
-				},
 			},
 			default: "ok",
-			//	close: async () => {
-			//		await actor.update({ "system.metaowner.value": null });
-			//		reject();
-			//	},
 		});
-		dialog.render(true, { zIndex: 900000 });
+		dialog.render(true);
 	});
 }
 
@@ -1116,11 +1128,11 @@ export async function NewPremadeSummary(actor) {
 			<form>
 			<h3>Protagonist Details:</h3>
 				<div class="form-group">
-					<label for="actorname" title="Your ${actor.type}'s Name">(Required) Name: </label>
+					<label for="actorname" title="Your ${actor.type}'s Name"><span class="style-cs-conditions">(Required)</span> Name: </label>
 					<input type="text" dtype="String" id="actorname" name="actorname" value="">
 				</div>
 				<div class="form-group">
-					<label for="actorgender" title="Your ${actor.type}'s Gender">(Required) Gender: </label>
+					<label for="actorgender" title="Your ${actor.type}'s Gender">Gender: </label>
 					<input type="text" dtype="String" id="actorgender" name="actorgender" value="">
 				</div>
 				<div class="form-group">
@@ -1170,10 +1182,10 @@ export async function NewPremadeSummary(actor) {
 						const actorpob = html.find('[name="actorpob"]').val();
 						if (!actorname) {
 							ui.notifications.error("Please enter a name for your " + actor.type);
-							return;
-						}
-						if (!actorgender) {
-							ui.notifications.error("Please provide the gender for your " + actor.type);
+							async () => {
+								await actor.update({ name: "Premade" });
+								reject();
+							};
 							return;
 						}
 						try {
@@ -1226,18 +1238,14 @@ export async function NewPremadeSummary(actor) {
 				cancel: {
 					label: "Cancel",
 					callback: async () => {
-						await actor.update({ "system.humanoids.gender.value": null });
+						await actor.update({ name: "Premade" });
 						reject();
 					},
 				},
 			},
 			default: "ok",
-			//	close: async () => {
-			//		await actor.update({ "system.metaowner.value": null });
-			//		reject();
-			//	},
 		});
-		dialog.render(true, { zIndex: 900000 });
+		dialog.render(true);
 	});
 }
 
@@ -1246,20 +1254,19 @@ export async function NewActorFinish(actor) {
 		<div class="metanthropes layout-metaroll-dialog">
 			<h2>${actor.type}: ${actor.name} is ready to enter the Multiverse!</h2>
 			<form>
-		<div class="form-group">
-                <label for="actorimg">${actor.type} Image:</label>
-                <img id="actorimg" src="${actor.img}" title="Choose your ${actor.type}'s Image" height="320" width="220" style="cursor:pointer;"/>
-		</div>
-        </form>
+				<div class="form-group">
+				<label for="actorimg">${actor.type} Portrait:</label>
+				<img id="actorimg" src="${actor.img}" title="Choose your ${actor.type}'s Portrait image" height="320" width="220" style="cursor:pointer;"/>
+				</div>
+			</form>
 		</div>
 	`;
 	let dialogOptions = {
 		width: 420,
 		height: 520,
-		index: 1000,
 	};
 	return new Promise((resolve, reject) => {
-		let dialog = new Dialog(
+		let dialog = new MetaDialog(
 			{
 				title: `Step 10 of 10: Enter Meta`,
 				content: dialogContent,
@@ -1328,6 +1335,6 @@ export async function NewActorFinish(actor) {
 			},
 			dialogOptions
 		);
-		dialog.render(true, { zIndex: 900000 });
+		dialog.render(true);
 	});
 }

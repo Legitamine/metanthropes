@@ -12,6 +12,7 @@
 @import "global/flex";
 //* Styles limited to metanthropes sheets */
 .metanthropes {
+	@import "components/responsive";
 	@import "components/layouts";
 	@import "components/styles";
 	@import "components/items";

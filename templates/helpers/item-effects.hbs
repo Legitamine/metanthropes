@@ -30,7 +30,7 @@
 	{{! -- VS --}}
 	{{#if (or isNarrator (and system.Effects.VSStatRoll.value (not (or (eq system.Effects.VSStatRoll.value null) (eq system.Effects.VSStatRoll.value 0) (eq system.Effects.VSStatRoll.value "None")))))}}
 		<label class="resource-label"
-			title="Which Stat is rolled against (VS) Activating this Metapower">{{system.Effects.VSStatRoll.label}}:</label>
+			title="Which Stat is rolled against (VS) this">{{system.Effects.VSStatRoll.label}}:</label>
 		{{#if isNarrator}}
 			<select name="system.Effects.VSStatRoll.value">
 				{{#each system.Effects.VSStatRoll.options as |option|}}

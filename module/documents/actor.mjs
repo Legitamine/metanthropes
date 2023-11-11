@@ -25,6 +25,7 @@ export class MetanthropesActor extends Actor {
 				"prototypeToken.displayBars": defaultToken?.displayBars || CONST.TOKEN_DISPLAY_MODES.HOVER, //? Default display bars to be on hover
 				"prototypeToken.disposition": defaultToken?.disposition || CONST.TOKEN_DISPOSITIONS.NEUTRAL, //? Default disposition to neutral
 				"prototypeToken.name": data.name, //? Set token name to actor name
+				"prototypeToken.texture.src": createData.img, //? Set token image to actor image
 			});
 		else if (data.prototypeToken) createData.prototypeToken = data.prototypeToken;
 		//? Set custom default tokens portraits
@@ -68,6 +69,9 @@ export class MetanthropesActor extends Actor {
 				//? Enable Linked Tokens for Protagonists & Metanthropes without 'Duplicate' or 'Copy' in their name
 				createData.prototypeToken.actorLink = true;
 				createData.prototypeToken.prependAdjective = false;
+				//? Make the size of the token reflect a typical humanoid relative to the grid
+				createData.prototypeToken.height = 0.5;
+				createData.prototypeToken.width = 0.5;
 			} else {
 				//? Replace the default 'Copy' name with 'Duplicate'
 				if (data.name.includes("Copy")) {

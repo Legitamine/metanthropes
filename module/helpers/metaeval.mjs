@@ -1,5 +1,5 @@
 import { MetaExecute } from "./metaexecute.mjs";
-import { metaLog } from "../helpers/metahelpers.mjs";
+import { metaLog, metaSheetRefresh } from "../helpers/metahelpers.mjs";
 /**
  * MetaEvaluate calculates the result of a roll, sets actor flags and prints it to chat
  *
@@ -382,9 +382,6 @@ export async function MetaEvaluateReRoll(event) {
 		itemName
 	);
 	//? Refresh the actor sheet if it's open
-	const sheet = actor.sheet;
-	if (sheet && sheet.rendered) {
-		sheet.render(true);
-	}
+	metaSheetRefresh(actor);
 	metaLog(3, "MetaEvaluateReRoll", "Finished for:", actor.name + "'s", action, actorUUID);
 }

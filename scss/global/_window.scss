@@ -80,6 +80,12 @@ option {
 	border: $border-style-dotted;
 	border-radius: $border-radius;
 }
+p {
+	font-family: $font-secondary;
+	margin: $margin-sm;
+	padding: $padding-sm;
+	text-align: center;
+}
 // this changes the font in most title-elements of Foundry UI
 .window-app {
 	font-family: $font-primary;
@@ -133,4 +139,3 @@ option {
 .far.fa-dice-d20:before {
 	content: "\f6cd";
 }
-

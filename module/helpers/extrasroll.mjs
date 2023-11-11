@@ -1,4 +1,4 @@
-import { metaLog, metaIsItemEquipped } from "../helpers/metahelpers.mjs";
+import { metaLog, metaSheetRefresh, metaIsItemEquipped } from "../helpers/metahelpers.mjs";
 import { MetaRoll } from "../metanthropes/metaroll.mjs";
 /**
  * Rolld10 handles the rolling of d10 dice for a given actor and purpose.
@@ -21,7 +21,7 @@ import { MetaRoll } from "../metanthropes/metaroll.mjs";
  * Rolling an actor's Weapon Damage for 3 * d10:
  * Rolld10(actor, "Damage", true, 3, "Weapon Name");
  */
-export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", baseNumber = 0, isHalf = false) {
+export async function Rolld10(actor, what, destinyReRoll, dice, itemName = null, baseNumber = 0, isHalf = false) {
 	metaLog(
 		3,
 		"Rolld10",
@@ -110,12 +110,8 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 		flags: { "metanthropes-system": { actoruuid: actor.uuid } },
 	});
 	metaLog(3, "Rolld10", "Finished for:", actor.name + "'s", what);
-	//! doing a refresh during actor creation causes the actor window to come in focus, so disabling it for now
-	//	//? Refresh the actor sheet if it's open
-	//	const sheet = actor.sheet;
-	//	if (sheet && sheet.rendered) {
-	//		sheet.render(true);
-	//	}
+	//? Refresh the actor sheet if it's open
+	metaSheetRefresh(actor);
 }
 
 /**
@@ -137,7 +133,7 @@ export async function Rolld10ReRoll(event) {
 	const actoruuid = button.dataset.actoruuid;
 	const what = button.dataset.what;
 	const destinyReRoll = button.dataset.destinyReRoll === "true" ? true : false;
-	const itemName = button.dataset.itemName || null;
+	const itemName = button.dataset.itemName === "null" ? null : button.dataset.itemName;
 	const dice = parseInt(button.dataset.dice) ?? 0;
 	const baseNumber = parseInt(button.dataset.baseNumber) ?? 0;
 	const isHalf = button.dataset.isHalf === "true" ? true : false;
@@ -165,12 +161,6 @@ export async function Rolld10ReRoll(event) {
 			isHalf
 		);
 		await Rolld10(actor, what, destinyReRoll, dice, itemName, baseNumber, isHalf);
-		//! doing a refresh during actor creation causes the actor window to come in focus, so disabling it for now
-		//	//? Refresh the actor sheet if it's open
-		//	const sheet = actor.sheet;
-		//	if (sheet && sheet.rendered) {
-		//		sheet.render(true);
-		//	}
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
 		metaLog(1, "Rolld10ReRoll", "Not enough Destiny to spend", "OR", "destinyReRoll is not allowed");

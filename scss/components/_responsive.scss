@@ -1,0 +1,28 @@
+// responsive.scss
+
+// Your defined breakpoints
+$minimum-width: 405px; // 40% of the default
+$default-width: 1012px; // Default width
+
+.meta-ui-hidden {
+	display: none !important;
+}
+
+.meta-ui-medium-font {
+	font-size: 0.9rem !important;
+}
+
+.meta-ui-small-font {
+	font-size: 0.55rem !important;
+}
+
+.meta-ui-single-column-font {
+	font-size: 0.8rem !important;
+}
+
+.meta-ui-obscure {
+	opacity: 0.5 !important;
+	&:hover {
+		opacity: 1 !important;
+	}
+}

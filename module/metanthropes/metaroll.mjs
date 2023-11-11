@@ -49,6 +49,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			//? If the flag exists, we clear it and resume running the rest of the checks
 			await actor.unsetFlag("metanthropes-system", "hungerRollResult");
 			metaLog(3, "MetaRoll", "Hunger Check Passed, moving on");
+			//todo: perhaps I should minimize the sheet while the hunger check is happening?
 			break hungerCheck;
 		} else {
 			//? Engage the Hunger Roll

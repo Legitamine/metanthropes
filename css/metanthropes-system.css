@@ -90,6 +90,13 @@ option {
   border-radius: 15px;
 }
 
+p {
+  font-family: "gill-sans-nova", sans-serif;
+  margin: 1px;
+  padding: 1px;
+  text-align: center;
+}
+
 .window-app {
   font-family: "nasalization", sans-serif;
   margin: 1px;
@@ -342,6 +349,24 @@ option {
   text-align: center;
 }
 
+.metanthropes .meta-ui-hidden {
+  display: none !important;
+}
+.metanthropes .meta-ui-medium-font {
+  font-size: 0.9rem !important;
+}
+.metanthropes .meta-ui-small-font {
+  font-size: 0.55rem !important;
+}
+.metanthropes .meta-ui-single-column-font {
+  font-size: 0.8rem !important;
+}
+.metanthropes .meta-ui-obscure {
+  opacity: 0.5 !important;
+}
+.metanthropes .meta-ui-obscure:hover {
+  opacity: 1 !important;
+}
 .metanthropes .layout-container-grid3x4 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -373,6 +398,24 @@ option {
   -moz-column-gap: 3px;
        column-gap: 3px;
   row-gap: 3px;
+  padding: 0px;
+  margin: 0px;
+  overflow: hidden;
+}
+.metanthropes .layout-container-outer-charstats-minimum {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  -moz-column-gap: 3px;
+       column-gap: 3px;
+  row-gap: 3px;
+  padding: 0px;
+  margin: 0px;
+  overflow: hidden;
+}
+.metanthropes .layout-container-outer-charstats-single-column {
+  display: grid;
   padding: 0px;
   margin: 0px;
   overflow: hidden;
@@ -430,6 +473,32 @@ option {
   margin: 0px;
   overflow: hidden;
   overflow-wrap: break-word;
+}
+.metanthropes .layout-container-grid2x1-cs {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  -moz-column-gap: 3px;
+       column-gap: 3px;
+  padding: 0px;
+  margin: 0px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  justify-content: space-evenly;
+  justify-self: stretch;
+}
+.metanthropes .layout-container-grid1x1-cs {
+  display: grid;
+  grid-template-columns: 1fr;
+  -moz-column-gap: 3px;
+       column-gap: 3px;
+  padding: 1px;
+  margin: 1px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  align-items: center;
+  align-self: center;
+  justify-content: space-evenly;
+  justify-self: stretch;
 }
 .metanthropes .layout-container-physical {
   display: grid;
@@ -519,6 +588,11 @@ option {
 .metanthropes .layout-container-summary {
   display: flex;
   flex-direction: column;
+  padding: 6px;
+  margin: 1px;
+}
+.metanthropes .layout-container-summary-controls {
+  display: flex;
   padding: 6px;
   margin: 1px;
 }
@@ -670,7 +744,7 @@ option {
   border-radius: 15px;
   justify-content: center;
   justify-self: stretch;
-  align-items: center;
+  align-items: stretch;
   align-self: stretch;
 }
 .metanthropes .style-container-grid1x3 {
@@ -696,9 +770,9 @@ option {
   opacity: 1;
   border: 1px solid #000;
   border-radius: 15px;
-  justify-content: flex-start;
+  justify-content: center;
   justify-self: stretch;
-  align-items: stretch;
+  align-items: center;
   align-self: stretch;
 }
 .metanthropes .style-container-outer-tabs {
@@ -715,6 +789,15 @@ option {
   justify-content: center;
   justify-self: stretch;
   align-items: stretch;
+  align-self: stretch;
+}
+.metanthropes .style-container-summary-controls {
+  opacity: 1;
+  border: 1px solid #000;
+  border-radius: 15px;
+  justify-content: space-evenly;
+  justify-self: stretch;
+  align-items: center;
   align-self: stretch;
 }
 .metanthropes .style-container-border {
@@ -965,6 +1048,25 @@ option {
   margin: 3px;
 }
 .metanthropes .style-cs-rolls:hover {
+  cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
+  color: #7d0f81;
+  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+}
+.metanthropes .style-cs-rolls-single-column {
+  opacity: 1;
+  font-family: "nasalization", sans-serif;
+  font-size: 2rem;
+  color: #000;
+  font-weight: bold;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  padding: 0px;
+  margin: 0px;
+}
+.metanthropes .style-cs-rolls-single-column:hover {
   cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
   color: #7d0f81;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;

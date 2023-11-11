@@ -1,4 +1,4 @@
-import { metaExtractNumberOfDice, metaLog, metaIsItemEquipped } from "./metahelpers.mjs";
+import { metaExtractNumberOfDice, metaLog, metaSheetRefresh, metaIsItemEquipped } from "./metahelpers.mjs";
 
 /**
  * MetaExecute handles the execution of Metapowers and Possessions for a given actor.
@@ -511,13 +511,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		flags: { "metanthropes-system": { actoruuid: actor.uuid } },
 	};
 	//? Send the message to chat
-	ChatMessage.create(chatData);
-	//* Refresh the actor sheet if it's open
-	//todo similar for item sheet? perhaps something to check for both?
-	const sheet = actor.sheet;
-	if (sheet && sheet.rendered) {
-		sheet.render(true);
-	}
+	await ChatMessage.create(chatData);
 	//* Post Execution Actions
 	//? Clear all metapower related result flags (currently only from duplicateself)
 	//! the idea here being that if the flags are going to be added later, here we prevent them from remaining from previous successful activations
@@ -534,10 +528,10 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			itemName === "Team" ||
 			itemName === "Squad" ||
 			itemName === "Unit")
-	) {
-		metaLog(3, "MetaRoll", "Duplicate Self Metapower Activation Detected");
-		let currentLife = actor.system.Vital.Life.value;
-		let duplicateMaxLife = 0;
+			) {
+				metaLog(3, "MetaRoll", "Duplicate Self Metapower Activation Detected");
+				let currentLife = actor.system.Vital.Life.value;
+				let duplicateMaxLife = 0;
 		if (itemName === "Clone") {
 			duplicateMaxLife = Math.ceil(currentLife * 0.1);
 		} else if (itemName === "Couple") {
@@ -552,6 +546,8 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		await actor.setFlag("metanthropes-system", "duplicateSelf", { maxLife: duplicateMaxLife });
 		metaLog(3, "MetaRoll", "Duplicate Self Metapower Max Life:", duplicateMaxLife);
 	}
+	//? Refresh the actor sheet if it's open
+	metaSheetRefresh(actor);
 	//* Targeting Tests
 	const betaTesting = await game.settings.get("metanthropes-system", "metaBetaTesting");
 	if (!betaTesting) return;

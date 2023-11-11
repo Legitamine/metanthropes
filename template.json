@@ -881,7 +881,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Human"
+				"value": "This is my favorite Human. Secret Narrator Notes section is only visible to Narrators"
 			}
 		},
 		"Extradimensional": {
@@ -896,7 +896,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Extradimensional"
+				"value": "This is my favorite Extradimensional. Secret Narrator Notes section is only visible to Narrators"
 			}
 		},
 		"Extraterrestrial": {
@@ -911,7 +911,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Extraterrestrial"
+				"value": "This is my favorite Extraterrestrial. Secret Narrator Notes section is only visible to Narrators"
 			}
 		},
 		"Metanthrope": {
@@ -926,7 +926,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Metanthrope"
+				"value": "This is my favorite Metanthrope. Secret Narrator Notes section is only visible to Narrators"
 			}
 		},
 		"Protagonist": {
@@ -953,7 +953,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Protagonist"
+				"value": "This is my favorite Protagonist. Secret Narrator Notes section is only visible to Narrators"
 			}
 		},
 		"Animal": {
@@ -968,7 +968,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Animal"
+				"value": "This is my favorite Animal. Secret Narrator Notes section is only visible to Narrators"
 			}
 		},
 		"MetaTherion": {
@@ -983,7 +983,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Metatherion"
+				"value": "This is my favorite Metatherion. Secret Narrator Notes section is only visible to Narrators"
 			}
 		},
 		"Artificial": {
@@ -998,7 +998,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Artificial"
+				"value": "This is my favorite Artificial. Secret Narrator Notes section is only visible to Narrators"
 			}
 		},
 		"Animated-Plant": {
@@ -1013,7 +1013,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Animated Plant"
+				"value": "This is my favorite Animated Plant. Secret Narrator Notes section is only visible to Narrators"
 			}
 		},
 		"Animated-Cadaver": {
@@ -1028,7 +1028,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Animated Cadaver"
+				"value": "This is my favorite Animated Cadaver. Secret Narrator Notes section is only visible to Narrators"
 			}
 		},
 		"Vehicle": {
@@ -1043,7 +1043,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Vehicle"
+				"value": "This is my favorite Vehicle. Secret Narrator Notes section is only visible to Narrators"
 			}
 		}
 	},

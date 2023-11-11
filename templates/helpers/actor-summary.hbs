@@ -1,10 +1,21 @@
 <!-- I would need to refactor the db to include titles to do this properly -->
 <div class="summary">
+	{{#if isNarrator}}
+		<div class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium">
+			<div>
+				<h3>{{system.secret-notes-narrator.label}}</h3>
+			</div>
+			<div class="layout-editor style-editor">
+				{{editor system.secret-notes-narrator.value target="system.secret-notes-narrator.value" button=true editable=true}}
+			</div>
+		</div>
+	{{/if}}
 	<div class="layout-container-grid2x2">
 		<div class="layout-container-summary style-container-summary">
 			<div class="resource-label"
 				title="Each Metanthrope Character begins the game with one level in their first Metapower, called Prime Metapower. No other additional Metapower unlocked can be higher-level than the level of the Prime Metapower. The Classification and the Energy type of the Protagonist's Prime Metapower will influence the Experience cost of unlocking and advancing other Metapowers">
-				Prime Ⓜ️ Metapower: <span class="resource">{{system.entermeta.primemetapower.value}}</span>
+				Prime Ⓜ️ Metapower: <span
+					class="resource">{{system.entermeta.primemetapower.value}}</span>
 			</div>
 			<div class="resource-label" title="{{system.entermeta.metamorphosis.title}}">
 				{{system.entermeta.metamorphosis.label}}:
@@ -36,47 +47,124 @@
 			</div>
 		</div>
 		<div class="layout-container-summary style-container-summary">
-			{{#if system.humanoids.gender.value}}
-				<div class="resource-label">Gender: <span class="resource">{{system.humanoids.gender.value}}</span>
-				</div>
-				<div class="resource-label">Age: <span class="resource">{{system.Vital.age.value}} yr</span>
-				</div>
-				<div class="resource-label">Height: <span class="resource">{{system.humanoids.height.value}} m</span>
-				</div>
-				<div class="resource-label">Weight: <span class="resource">{{system.humanoids.weight.value}} kg</span>
-				</div>
-				<div class="resource-label">Place of Birth: <span
-						class="resource">{{system.humanoids.birthplace.value}}</span>
-				</div>
-			{{else}}
-				<div>
-					<button class="finalize-premade-protagonist" title="Finalize Premade Protagonist">Finalize Premade
-						Protagonist</button>
-				</div>
-			{{/if}}
+			<div class="resource-label">Gender: <span
+					class="resource">{{system.humanoids.gender.value}}</span>
+			</div>
+			<div class="resource-label">Age: <span class="resource">{{system.Vital.age.value}}
+					yr</span>
+			</div>
+			<div class="resource-label">Height: <span class="resource">{{system.humanoids.height.value}}
+					m</span>
+			</div>
+			<div class="resource-label">Weight: <span class="resource">{{system.humanoids.weight.value}}
+					kg</span>
+			</div>
+			<div class="resource-label">Place of Birth: <span
+					class="resource">{{system.humanoids.birthplace.value}}</span>
+			</div>
 		</div>
 		<div class="layout-container-summary style-container-summary">
-			<div class="resource-label">Narrator: <span class="resource">{{system.entermeta.narrator.value}}</span>
+			<div class="resource-label">Narrator: <span
+					class="resource">{{system.entermeta.narrator.value}}</span>
 			</div>
 			<div class="resource-label">Saga: <span class="resource">{{system.entermeta.sagas.value}}</span>
 			</div>
 			<div class="resource-label">Sessions Played: <span
 					class="resource">{{system.entermeta.sessions.value}}</span>
 			</div>
-			<div class="resource-label">Coalition: <span class="resource">{{system.entermeta.coalition.value}}</span>
+			<div class="resource-label">Coalition: <span
+					class="resource">{{system.entermeta.coalition.value}}</span>
 			</div>
-			<div class="resource-label">Faction: <span class="resource">{{system.entermeta.faction.value}}</span>
+			<div class="resource-label">Faction: <span
+					class="resource">{{system.entermeta.faction.value}}</span>
 			</div>
 		</div>
-		<div class="resource-label">
-			<img src="{{actor.img}}" title="{{actor.name}}" height="145" width="110"
-				style="border: none; border-radius: 15px" />
+		<div class="layout-container-summary-controls style-container-summary-controls">
+			{{#unless isPremade}}
+				<div>
+					<img src="{{actor.img}}" title="Change {{actor.name}}'s Portrait image"
+						data-edit="img" height="145" width="110"
+						style="border: none; border-radius: 15px" />
+				</div>
+			{{/unless}}
+			{{#if (or isNarrator isPremade)}}
+				<div class="meta-ui-responsive meta-ui-hide-at-medium">
+					{{#if isPremade}}
+						<button class="finalize-premade-actor"
+							title="Finalize Premade Actor">Finalize Premade
+							{{actor.type}}</button>
+					{{/if}}
+					{{#if isNarrator}}
+						<button class="change-actor-player"
+							title="The Player can see & click on the Re-Roll Buttons in Chat">Change
+							Player</button>
+					{{/if}}
+				</div>
+			{{/if}}
 		</div>
 	</div>
-	<div>
-		<h3>{{system.physical.Description.label}}</h3>
-	</div>
-	<div class="layout-editor style-editor">
-		{{editor system.physical.Description.value target="system.physical.Description.value" button=true editable=true}}
+	<div class="layout-container-grid2x2 style-cs-values meta-ui-responsive meta-ui-hide-at-medium">
+		<div>
+			<div>
+				<h3>{{system.physical.Description.label}}</h3>
+			</div>
+			<div class="layout-editor style-editor">
+				{{editor system.physical.Description.value target="system.physical.Description.value" button=true editable=true}}
+			</div>
+		</div>
+		<div>
+			<div>
+				<h3>Hitbox</h3>
+			</div>
+			<div>
+				<img src="{{actor.img}}" title="Change {{actor.name}}'s Portrait image" data-edit="img"
+					height="145" width="110" style="border: none; border-radius: 15px" />
+			</div>
+		</div>
+		{{#if isNarrator}}
+			<div>
+				<div>
+					<h3>{{system.notes-narrator.label}}</h3>
+				</div>
+				<div class="layout-editor style-editor">
+					{{editor system.notes-narrator.value target="system.notes-narrator.value" button=true editable=true}}
+				</div>
+			</div>
+		{{else}}
+			<div>
+				<div>
+					<h3>{{system.notes-narrator.label}}</h3>
+				</div>
+				<div class="layout-editor style-editor">
+					{{editor system.notes-narrator.value target="system.notes-narrator.value" button=true editable=false}}
+				</div>
+			</div>
+		{{/if}}
+		{{#if (eq actor.type "Protagonist")}}
+			<div>
+				<div>
+					<h3>{{system.notes-protagonist.label}}</h3>
+				</div>
+				<div class="layout-editor style-editor">
+					{{editor system.notes-protagonist.value target="system.notes-protagonist.value" button=true editable=true}}
+				</div>
+			</div>
+			<div>
+				<div>
+					<h3>{{system.entermeta.coalitionNotes.label}}</h3>
+				</div>
+				<div class="layout-editor style-editor">
+					{{editor system.entermeta.coalitionNotes.value target="system.entermeta.coalitionNotes.value" button=true editable=true}}
+				</div>
+			</div>
+			<div>
+				<div>
+					<h3>{{system.entermeta.sagaNotes.label}}</h3>
+				</div>
+				<div class="layout-editor style-editor">
+					{{editor system.entermeta.sagaNotes.value target="system.entermeta.sagaNotes.value" button=true editable=true}}
+				</div>
+			</div>
+		{{/if}}
 	</div>
 </div>

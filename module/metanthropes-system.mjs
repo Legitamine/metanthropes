@@ -379,7 +379,7 @@ Hooks.on("renderChatMessage", async (message, html) => {
 	const actorUUID = await message.getFlag("metanthropes-system", "actoruuid");
 	if (!actorUUID) return;
 	const actor = await fromUuid(actorUUID);
-	const metaowner = (await actor.system.metaowner.value) || null;
+	const metaowner = actor.system?.metaowner.value || null;
 	//? Proceed only if the current user is the owner of the actor, or a GM
 	if (game.user.name === metaowner || game.user.isGM) {
 		//? Unhide the buttons - assumes DF Chat Enhancements module is installed (provides hidden class that works)
