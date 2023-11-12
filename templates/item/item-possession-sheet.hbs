@@ -1,9 +1,9 @@
 <form class="metanthropes {{cssClass}}" autocomplete="off">
 	<header class="sheet-header">
 		{{#if isNarrator}}
-			<img class="possession-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" style="border:none" />
+			<img class="possession-img" src="{{item.img}}" data-edit="img" data-tooltip="{{item.name}}" style="border:none" />
 		{{else}}
-			<img class="possession-img" src="{{item.img}}" title="{{item.name}}" style="border:none" />
+			<img class="possession-img" src="{{item.img}}" data-tooltip="{{item.name}}" style="border:none" />
 		{{/if}}
 		<div class="header-fields">
 			<h1 class="charname">
@@ -15,7 +15,7 @@
 			</h1>
 			<div class="grid grid-2col">
 				<div class="resource">
-					<label class="resource-label" title="Which Stat is rolled when Using this Possession">🎲
+					<label class="resource-label" data-tooltip="Which Stat is rolled when Using this Possession">🎲
 						Stat:</label>
 					{{#if isNarrator}}
 						<select name="system.Execution.StatRolled.value">
@@ -43,7 +43,7 @@
 					{{/if}}
 				</div>
 				<div class="resource">
-					<label class="resource-label" title="The Category of the Possession">Category:</label>
+					<label class="resource-label" data-tooltip="The Category of the Possession">Category:</label>
 					{{#if isNarrator}}
 						<select name="system.Category.value">
 							{{#each system.Category.options as |option|}}
@@ -57,7 +57,7 @@
 					{{/if}}
 				</div>
 				<div class="resource">
-					<label class="resource-label" title="The Attack Type of the Possession">Attack Type:</label>
+					<label class="resource-label" data-tooltip="The Attack Type of the Possession">Attack Type:</label>
 					{{#if isNarrator}}
 						<select name="system.AttackType.value">
 							{{#each system.AttackType.options as |option|}}
@@ -72,7 +72,7 @@
 				</div>
 				<div class="resource">
 					<label class="resource-label"
-						title="How many of this Possession you have with you">Quantity:</label>
+						data-tooltip="How many of this Possession you have with you">Quantity:</label>
 					{{#if isNarrator}}
 						<input type="number" name="system.Quantity.value" value="{{system.Quantity.value}}"
 							data-dtype="Number" />
@@ -81,7 +81,7 @@
 					{{/if}}
 				</div>
 				<div class="resource">
-					<label class="resource-label" title="Which Perk is required to use this Possession">📚
+					<label class="resource-label" data-tooltip="Which Perk is required to use this Possession">📚
 						Perk:</label>
 					{{#if isNarrator}}
 						<select name="system.RequiredPerk.value">
@@ -96,7 +96,7 @@
 					{{/if}}
 				</div>
 				<div class="resource">
-					<label class="resource-label" title="What Perk Level is required to use this Possession">📚
+					<label class="resource-label" data-tooltip="What Perk Level is required to use this Possession">📚
 						Perk Level:</label>
 					{{#if isNarrator}}
 						<input type="number" name="system.RequiredPerkLevel.value"
@@ -113,7 +113,7 @@
 		<nav class="style-container-nav-children itemnavselector tabs" data-group="primary">
 			<a class="item style-cs-labels" data-tab="description">Description</a>
 			{{#if isNarrator}}
-				<a class="item style-cs-labels" data-tab="material" title="Material Properties">🧱 Properties</a>
+				<a class="item style-cs-labels" data-tab="material" data-tooltip="Material Properties">🧱 Properties</a>
 			{{/if}}
 			<a class="item style-cs-labels" data-tab="execution">Usage</a>
 			<a class="item style-cs-labels" data-tab="effects">Effects</a>

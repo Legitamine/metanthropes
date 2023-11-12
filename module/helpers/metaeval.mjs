@@ -29,6 +29,8 @@ export async function MetaEvaluate(
 	statScore,
 	multiAction = 0,
 	perkReduction = 0,
+	aimingReduction = 0,
+	customReduction = 0,
 	bonus = 0,
 	penalty = 0,
 	pain = 0,
@@ -48,6 +50,10 @@ export async function MetaEvaluate(
 		multiAction,
 		"Perk Reduction:",
 		perkReduction,
+		"Aiming Reduction:",
+		aimingReduction,
+		"Custom Reduction:",
+		customReduction,
 		"Bonus:",
 		bonus,
 		"Penalty:",
@@ -65,8 +71,14 @@ export async function MetaEvaluate(
 	let autoExecute = false;
 	const roll = await new Roll("1d100").evaluate({ async: true });
 	const rollResult = roll.total;
-	let levelsOfSuccess = Math.floor((statScore + bonus + penalty + multiAction + perkReduction - rollResult) / 10);
-	let levelsOfFailure = Math.floor((rollResult - statScore - bonus - multiAction - perkReduction - penalty) / 10);
+	let levelsOfSuccess = Math.floor(
+		(statScore + bonus + penalty + multiAction + perkReduction + aimingReduction + customReduction - rollResult) /
+			10
+	);
+	let levelsOfFailure = Math.floor(
+		(rollResult - statScore - bonus - multiAction - perkReduction - aimingReduction - customReduction - penalty) /
+			10
+	);
 	const criticalSuccess = rollResult === 1;
 	const criticalFailure = rollResult === 100;
 	let currentDestiny = Number(actor.system.Vital.Destiny.value);
@@ -81,7 +93,7 @@ export async function MetaEvaluate(
 		}
 	}
 	//? this kicks-off the calculation, assuming that is is a failure
-	if (rollResult - multiAction - perkReduction - penalty > statScore + bonus) {
+	if (rollResult - multiAction - perkReduction - aimingReduction - customReduction - penalty > statScore + bonus) {
 		//? in which case we don't care about what levels of success we have, so we set to 0 to avoid confusion later
 		result = "Failure 🟥";
 		levelsOfSuccess = 0;
@@ -133,12 +145,18 @@ export async function MetaEvaluate(
 	if (penalty < 0) {
 		message += `, a Penalty of ${penalty}%`;
 	}
-	//? if we have Reductions, add it to the message
+	//? if we have Reductions, add them to the message
+	if (customReduction < 0) {
+		message += `, a Reduction of ${customReduction}%`;
+	}
 	if (multiAction < 0) {
 		message += `, a Multi-Action Reduction of ${multiAction}%`;
 	}
 	if (perkReduction < 0) {
 		message += `, a Reduction of ${perkReduction}% due to missing Perk Skill Levels`;
+	}
+	if (aimingReduction < 0) {
+		message += `, a Reduction of ${aimingReduction}% due to Aiming at a specific body part`;
 	}
 	message += ` and the result is ${rollResult}.<br><br>`;
 	//? if we have Pain condition, our succesfull (only) results are lowered by an equal amount - in case of Criticals we ignore Pain
@@ -204,7 +222,7 @@ export async function MetaEvaluate(
 			message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button metaeval-reroll" data-actoruuid="${actor.uuid}"
 				data-stat="${stat}" data-stat-score="${statScore}" data-multi-action="${multiAction}" data-perk-reduction="${perkReduction}"
 				data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}" data-destiny-cost="${destinyCost}" 
-				data-item-name="${itemName}" data-pain="${pain}"
+				data-item-name="${itemName}" data-pain="${pain}" data-aiming-reduction="${aimingReduction}" data-custom-reduction="${customReduction}"
 				>Spend 🤞 Destiny to reroll</button><br></div>`;
 		}
 		//? Buttons for Keeping the results of MetaEvalute
@@ -292,6 +310,10 @@ export async function MetaEvaluate(
 		multiAction,
 		"Perk Reduction:",
 		perkReduction,
+		"Aiming Reduction:",
+		aimingReduction,
+		"Custom Reduction:",
+		customReduction,
 		"Bonus:",
 		bonus,
 		"Penalty:",
@@ -356,12 +378,14 @@ export async function MetaEvaluateReRoll(event) {
 	const statScore = parseInt(button.dataset.statScore);
 	const multiAction = parseInt(button.dataset.multiAction);
 	const perkReduction = parseInt(button.dataset.perkReduction);
+	const aimingReduction = parseInt(button.dataset.aimingReduction);
+	const customReduction = parseInt(button.dataset.customReduction);
 	const bonus = parseInt(button.dataset.bonus);
 	const penalty = parseInt(button.dataset.penalty);
 	const destinyCost = parseInt(button.dataset.destinyCost);
 	const actor = await fromUuid(actorUUID);
 	const action = button.dataset.action;
-	const itemName = button.dataset.itemName;
+	const itemName = button.dataset.itemName === "null" ? null : button.dataset.itemName;
 	const pain = parseInt(button.dataset.pain);
 	metaLog(3, "MetaEvaluateReRoll", "Engaged for:", actor.name + "'s", action, actorUUID);
 	//? Reduce Destiny by 1
@@ -375,6 +399,8 @@ export async function MetaEvaluateReRoll(event) {
 		statScore,
 		multiAction,
 		perkReduction,
+		aimingReduction,
+		customReduction,
 		bonus,
 		penalty,
 		pain,

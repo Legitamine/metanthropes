@@ -2,21 +2,21 @@
 	class="meta-ui-responsive meta-ui-change-at-minimum layout-container-outer-charstats style-container-outer-charstats">
 	{{#each system.Characteristics}}
 		<div class="layout-container-stats style-container-stats meta-ui-responsive meta-ui-hide-at-minimum">
-			<div class="meta-ui-responsive style-cs-chars-label" title="{{this.Title}}">{{@key}}</div>
+			<div class="meta-ui-responsive style-cs-chars-label" data-tooltip="{{this.Title}}">{{@key}}</div>
 			<div class="meta-ui-responsive meta-ui-change-at-medium layout-container-grid3x1-cs">
 				<div class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium">
 					<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
-						title="Initial value">🏁
+						data-tooltip="Initial Score">🏁
 						{{this.Initial}}
 					</p>
 					{{#if ../betaTesting}}
 						<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
-							title="Progression Level">📈
+							data-tooltip="Progression Level">📈
 							{{this.Progressed}}
 						</p>
 					{{else}}
 						<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
-							title="Progression Level">📈 <select
+							data-tooltip="Progression Level">📈 <select
 								name="system.Characteristics.{{@key}}.Progressed"
 								id="system.Characteristics.{{@key}}.Progressed"
 								data-dtype="Number">
@@ -39,19 +39,19 @@
 				<div class="style-cs-chars-value">{{this.Current}}</div>
 				<div>
 					{{#if (gt this.Buff.Current 0)}}
-						<p class="style-cs-buffs" title="{{this.Buff.Name}} Buff Level">
+						<p class="style-cs-buffs" data-tooltip="{{this.Buff.Name}} Buff Level">
 					{{else}}
 						<p class="style-cs-buffs meta-ui-obscure"
-							title="{{this.Buff.Name}} Buff Level">
+							data-tooltip="{{this.Buff.Name}} Buff Level">
 					{{/if}}
 					🛡️ <label class="meta-ui-responsive meta-ui-hide-at-medium"
 						for="system.Characteristics.{{@key}}.Buff.Current">{{this.Buff.Name}}</label>
 					</p>
 					{{#if (gt this.Buff.Current 0)}}
-						<p class="style-cs-buffs" title="{{this.Buff.Name}} Buff Level">
+						<p class="style-cs-buffs" data-tooltip="{{this.Buff.Name}} Buff Level">
 					{{else}}
 						<p class="style-cs-buffs meta-ui-obscure"
-							title="{{this.Buff.Name}} Buff Level">
+							data-tooltip="{{this.Buff.Name}} Buff Level">
 					{{/if}}
 					<select class="style-cs-buffs"
 						name="system.Characteristics.{{@key}}.Buff.Current"
@@ -66,20 +66,20 @@
 					</p>
 					{{#if (gt this.Condition.Current 0)}}
 						<p class="style-cs-conditions"
-							title="{{this.Condition.Name}} Condition Level">
+							data-tooltip="{{this.Condition.Name}} Condition Level">
 					{{else}}
 						<p class="style-cs-conditions meta-ui-obscure"
-							title="{{this.Condition.Name}} Condition Level">
+							data-tooltip="{{this.Condition.Name}} Condition Level">
 					{{/if}}
 					💀 <label class="meta-ui-responsive meta-ui-hide-at-medium"
 						for="system.Characteristics.{{@key}}.Condition.Current">{{this.Condition.Name}}</label>
 					</p>
 					{{#if (gt this.Condition.Current 0)}}
 						<p class="style-cs-conditions"
-							title="{{this.Condition.Name}} Condition Level">
+							data-tooltip="{{this.Condition.Name}} Condition Level">
 					{{else}}
 						<p class="style-cs-conditions meta-ui-obscure"
-							title="{{this.Condition.Name}} Condition Level">
+							data-tooltip="{{this.Condition.Name}} Condition Level">
 					{{/if}}
 					<select class="style-cs-conditions"
 						name="system.Characteristics.{{@key}}.Condition.Current"
@@ -104,22 +104,22 @@
 		</div>
 		{{#each Stats}}
 			<div class="layout-container-stats style-container-stats">
-				<div class="meta-ui-responsive style-cs-stats-label" title="{{this.Title}}">{{@key}}
+				<div class="meta-ui-responsive style-cs-stats-label" data-tooltip="{{this.Title}}">{{@key}}
 				</div>
 				<div class="meta-ui-responsive meta-ui-change-at-medium layout-container-grid3x1-cs">
 					<div class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium">
 						<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
-							title="Initial value">🏁
+							data-tooltip="Initial Score">🏁
 							{{this.Initial}}
 						</p>
 						{{#if ../../betaTesting}}
 							<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
-								title="Progression Level">📈
+								data-tooltip="Progression Level">📈
 								{{this.Progressed}}
 							</p>
 						{{else}}
 							<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
-								title="Progression Level">📈 <select
+								data-tooltip="Progression Level">📈 <select
 									name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Progressed"
 									id="system.Characteristics.{{@../key}}.Stats.{{@key}}.Progressed"
 									data-dtype="Number">
@@ -145,16 +145,16 @@
 							</p>
 						{{/if}}
 					</div>
-					<div class="meta-ui-responsive meta-ui-change-at-single-column style-cs-rolls"
+					<div class="meta-ui-responsive meta-ui-change-at-single-column style-cs-rolls" data-tooltip="Click to Roll {{@key}}, Right-Click for Custom Roll"
 						data-roll-type="StatRoll" data-stat="{{@key}}">
 						{{this.Roll}}
 					</div>
 					<div class="meta-ui-responsive meta-ui-hide-at-minimum">
 						{{#if (gt this.Buff.Current 0)}}
-							<p class="style-cs-buffs" title="{{this.Buff.Name}} Buff Level">
+							<p class="style-cs-buffs" data-tooltip="{{this.Buff.Name}} Buff Level">
 						{{else}}
 							<p class="style-cs-buffs meta-ui-obscure"
-								title="{{this.Buff.Name}} Buff Level">
+								data-tooltip="{{this.Buff.Name}} Buff Level">
 						{{/if}}
 						🛡️ <label class="meta-ui-responsive meta-ui-hide-at-medium"
 							for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current">{{this.Buff.Name}}</label>
@@ -164,7 +164,7 @@
 						{{else}}
 							<p class="style-cs-buffs meta-ui-obscure">
 						{{/if}}
-						<select class="style-cs-buffs" title="{{this.Buff.Name}} Buff Level"
+						<select class="style-cs-buffs" data-tooltip="{{this.Buff.Name}} Buff Level"
 							name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current"
 							id="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current"
 							data-dtype="Number">
@@ -194,10 +194,10 @@
 						</p>
 						{{#if (gt this.Condition.Current 0)}}
 							<p class="style-cs-conditions"
-								title="{{this.Condition.Name}} Condition Level">
+								data-tooltip="{{this.Condition.Name}} Condition Level">
 						{{else}}
 							<p class="style-cs-conditions meta-ui-obscure"
-								title="{{this.Condition.Name}} Condition Level">
+								data-tooltip="{{this.Condition.Name}} Condition Level">
 						{{/if}}
 						💀 <label class="meta-ui-responsive meta-ui-hide-at-medium"
 							for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Name">{{this.Condition.Name}}</label>
@@ -208,7 +208,7 @@
 							<p class="style-cs-conditions meta-ui-obscure">
 						{{/if}}
 						<select class="style-cs-conditions"
-							title="{{this.Condition.Name}} Condition Level"
+							data-tooltip="{{this.Condition.Name}} Condition Level"
 							name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Current"
 							id="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Current"
 							data-dtype="Number">
@@ -244,7 +244,7 @@
 						{{/if}}
 						for="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}">{{@key}}</label>
 				</p>
-				<p title="{{@key}} Condition Level">
+				<p data-tooltip="{{@key}} Condition Level">
 					<select {{#if (gt this 0)}} class="style-cs-conditions" {{else}}
 						class="style-cs-conditions meta-ui-obscure" {{/if}}
 						name="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}"

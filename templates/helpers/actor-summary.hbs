@@ -13,34 +13,34 @@
 	<div class="layout-container-grid2x2">
 		<div class="layout-container-summary style-container-summary">
 			<div class="resource-label"
-				title="Each Metanthrope Character begins the game with one level in their first Metapower, called Prime Metapower. No other additional Metapower unlocked can be higher-level than the level of the Prime Metapower. The Classification and the Energy type of the Protagonist's Prime Metapower will influence the Experience cost of unlocking and advancing other Metapowers">
+				data-tooltip="Each Metanthrope Character begins the game with one level in their first Metapower, called Prime Metapower. No other additional Metapower unlocked can be higher-level than the level of the Prime Metapower. The Classification and the Energy type of the Protagonist's Prime Metapower will influence the Experience cost of unlocking and advancing other Metapowers">
 				Prime Ⓜ️ Metapower: <span
 					class="resource">{{system.entermeta.primemetapower.value}}</span>
 			</div>
-			<div class="resource-label" title="{{system.entermeta.metamorphosis.title}}">
+			<div class="resource-label" data-tooltip="{{system.entermeta.metamorphosis.title}}">
 				{{system.entermeta.metamorphosis.label}}:
 				{{#with (lookup actor.system.entermeta.metamorphosis.options actor.system.entermeta.metamorphosis.value) as |metamorphosisOption|}}
-					<span class="resource" title="{{metamorphosisOption.title}}">
+					<span class="resource" data-tooltip="{{metamorphosisOption.title}}">
 						{{metamorphosisOption.label}}
 					</span>
 				{{/with}}
 			</div>
 			<div class="resource-label"
-				title="A Character's Background is who or what that Character used to be prior to becoming a Metanthrope">
+				data-tooltip="A Character's Background is who or what that Character used to be prior to becoming a Metanthrope">
 				Background: <span class="resource">{{system.Vital.background.value}}</span>
 			</div>
-			<div class="resource-label" title="{{system.Vital.arc.title}}">
+			<div class="resource-label" data-tooltip="{{system.Vital.arc.title}}">
 				{{system.Vital.arc.label}}:
 				{{#with (lookup actor.system.Vital.arc.options actor.system.Vital.arc.value) as |arcOption|}}
-					<span class="resource" title="{{arcOption.title}}">
+					<span class="resource" data-tooltip="{{arcOption.title}}">
 						{{arcOption.label}}
 					</span>
 				{{/with}}
 			</div>
-			<div class="resource-label" title="{{system.entermeta.regression.title}}">
+			<div class="resource-label" data-tooltip="{{system.entermeta.regression.title}}">
 				{{system.entermeta.regression.label}}:
 				{{#with (lookup actor.system.entermeta.regression.options actor.system.entermeta.regression.value) as |regressionOption|}}
-					<span class="resource" title="{{regressionOption.title}}">
+					<span class="resource" data-tooltip="{{regressionOption.title}}">
 						{{regressionOption.label}}
 					</span>
 				{{/with}}
@@ -82,7 +82,7 @@
 		<div class="layout-container-summary-controls style-container-summary-controls">
 			{{#unless isPremade}}
 				<div>
-					<img src="{{actor.img}}" title="Change {{actor.name}}'s Portrait image"
+					<img src="{{actor.img}}" data-tooltip="Change {{actor.name}}'s Portrait image"
 						data-edit="img" height="145" width="110"
 						style="border: none; border-radius: 15px" />
 				</div>
@@ -91,12 +91,12 @@
 				<div class="meta-ui-responsive meta-ui-hide-at-medium">
 					{{#if isPremade}}
 						<button class="finalize-premade-actor"
-							title="Finalize Premade Actor">Finalize Premade
+							data-tooltip="Finalize Premade Actor">Finalize Premade
 							{{actor.type}}</button>
 					{{/if}}
 					{{#if isNarrator}}
 						<button class="change-actor-player"
-							title="The Player can see & click on the Re-Roll Buttons in Chat">Change
+							data-tooltip="The Player can see & click on the Re-Roll Buttons in Chat">Change
 							Player</button>
 					{{/if}}
 				</div>
@@ -117,7 +117,7 @@
 				<h3>Hitbox</h3>
 			</div>
 			<div>
-				<img src="{{actor.img}}" title="Change {{actor.name}}'s Portrait image" data-edit="img"
+				<img src="{{actor.img}}" data-tooltip="Change {{actor.name}}'s Portrait image" data-edit="img"
 					height="145" width="110" style="border: none; border-radius: 15px" />
 			</div>
 		</div>

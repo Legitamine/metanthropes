@@ -2,7 +2,7 @@
 	<div class="layout-container-actorinfo style-container-actorinfo meta-ui-responsive meta-ui-hide-at-medium">
 		<div class="layout-container-actorinfo-details">
 			<img src="systems/metanthropes-system/artwork/Meta-Avatar-Rotating.gif" alt="Metanthropes RPG"
-				title="Metanthropes RPG {{actor.type}}" height="85" width="85"
+				data-tooltip="Metanthropes RPG {{actor.type}}" height="85" width="85"
 				style="border: none; border-radius: 50%" />
 		</div>
 		{{#if system.metaowner.value}}
@@ -23,11 +23,11 @@
 				</div>
 			</div>
 			<div class="layout-container-actorinfo-details">
-				<img src="{{actor.img}}" title="{{actor.name}}" height="85" width="70"
+				<img src="{{actor.img}}" data-tooltip="{{actor.name}}" height="85" width="70"
 					style="border: none; border-radius: 15px" />
 				{{#if system.entermeta}}
 					<img src="{{actor.primeimg}}" alt="{{system.entermeta.primemetapower.value}}"
-						title="Prime Ⓜ️ Metapower: {{system.entermeta.primemetapower.value}}"
+						data-tooltip="Prime Ⓜ️ Metapower: {{system.entermeta.primemetapower.value}}"
 						height="85" width="85" style="border: none;" />
 				{{/if}}
 			</div>
@@ -36,7 +36,7 @@
 		{{else}}
 			<div></div>
 			<div>
-				<button class="new-actor" title="Roll New {{actor.type}}">Roll New
+				<button class="new-actor" data-tooltip="Roll New {{actor.type}}">Roll New
 					{{actor.type}}</button>
 			</div>
 			<div></div>
@@ -45,7 +45,7 @@
 	<div class="layout-container-vitals style-container-vitals">
 		<div>
 			<div class="style-labels-text"
-				title="Life represents a Character's overall health, vitality, and will to live. Metanthrope Characters have a Life total of (100 + their Endurance score). Metanthrope Characters also gain an additional +25 Life for every 5.000 Total Experience they have accumulated">
+				data-tooltip="Life represents a Character's overall health, vitality, and will to live. Metanthrope Characters have a Life total of (100 + their Endurance score). Metanthrope Characters also gain an additional +25 Life for every 5.000 Total Experience they have accumulated">
 				<span>❤️</span><span class="meta-ui-responsive meta-ui-hide-at-minimum">
 					Life</span>
 				{{#if isNarrator}}<input name="system.Vital.Life.value" type="number"
@@ -71,13 +71,13 @@
 		</div>
 		<div class="meta-ui-responsive meta-ui-hide-at-medium">
 			{{#if betaTesting}}
-				<button class="progression-form" title="Progress {{actor.type}}">Progress
+				<button class="progression-form" data-tooltip="Progress {{actor.type}}">Progress
 					📈</button>
 			{{/if}}
 		</div>
 		<div>
 			<div class="style-labels-text"
-				title="Destiny (🤞) is a resource which Players can spend to reroll any roll with an undesirable outcome, activate powerful Metapowered effects, and even save their Protagonists from dying">
+				data-tooltip="Destiny (🤞) is a resource which Players can spend to reroll any roll with an undesirable outcome, activate powerful Metapowered effects, and even save their Protagonists from dying">
 				<span>🤞</span><span class="meta-ui-responsive meta-ui-hide-at-minimum"> Destiny
 				</span>{{#if isNarrator}}<input name="system.Vital.Destiny.value" type="number"
 						value="{{system.Vital.Destiny.value}}" data-dtype="Number" />
