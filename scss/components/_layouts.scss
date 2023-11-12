@@ -129,7 +129,7 @@
 }
 .layout-container-physical {
 	display: grid;
-	grid-template-columns: 2fr 0.8fr 1.8fr;
+	grid-template-columns: 1fr 2fr 1fr;
 	column-gap: 1px;
 	padding: $padding-zero;
 	margin: $margin-zero;

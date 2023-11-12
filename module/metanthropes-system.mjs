@@ -47,7 +47,7 @@ Handlebars.registerHelper("join", function (array, separator) {
 Handlebars.registerHelper("isArray", function (value) {
 	return Array.isArray(value);
 });
-//? HTML Stripper Helper (for Metapower effect as tooltips)
+//? HTML Stripper Helper (for Item effect as tooltip)
 Handlebars.registerHelper("stripHtml", function (htmlString) {
 	if (!htmlString) return "";
 	const strippedString = htmlString.replace(/<\/?[^>]+(>|$)/g, "");
@@ -379,11 +379,11 @@ Hooks.on("renderChatMessage", async (message, html) => {
 	const actorUUID = await message.getFlag("metanthropes-system", "actoruuid");
 	if (!actorUUID) return;
 	const actor = await fromUuid(actorUUID);
-	const metaowner = actor.system?.metaowner.value || null;
+	if (!actor) return;
+	const metaowner = actor.system?.metaowner?.value || null;
 	//? Proceed only if the current user is the owner of the actor, or a GM
 	if (game.user.name === metaowner || game.user.isGM) {
-		//? Unhide the buttons - assumes DF Chat Enhancements module is installed (provides hidden class that works)
-		//todo Figure out a way to do this without any dependencies
+		//? Unhide the buttons
 		html.find(".hide-button").removeClass("hidden");
 		//? Handle Main Chat Buttons (all the buttons that will be disabled if any of them is clicked)
 		html.on("click", ".metanthropes-main-chat-button", function (event) {

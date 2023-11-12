@@ -144,7 +144,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 				}
 			}
 		}
-		metaLog(1, "MetanthropesActorSheet _prepareItems results", "Possessions, Metapowers", Possessions, Metapowers);
+		metaLog(3, "MetanthropesActorSheet _prepareItems results", "Possessions, Metapowers", Possessions, Metapowers);
 		//? Assign and return
 		context.Possessions = Possessions;
 		context.Metapowers = Metapowers;
@@ -158,8 +158,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 			const item = this.actor.items.get(li.data("itemId"));
 			item.sheet.render(true);
 		});
-		// //? Listen for Resize events to trigger responsive UI changes
-		// this.element[0].addEventListener("resize", this.throttledResize);
 		//* Everything below this point is only needed if the sheet is editable
 		//? Observers (non-owners) of the item sheet, should not be able to roll anything, or add/remove items
 		if (!this.isEditable) return;
@@ -203,8 +201,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		}
 	}
 	//* Responsive UI
-	//? Header Icons
-	/** @inheritdoc */
+	//? Header Buttons
 	/** @override */
 	_getHeaderButtons() {
 		let buttons = super._getHeaderButtons();
@@ -483,11 +480,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 			}
 		}
 	}
-	// /** @override */
-	// async close(options = {}) {
-	// 	this.removeEventListener("resize", this.throttledResize);
-	// 	return super.close(options);
-	// }
 	//! is this being used?
 	// code from boilerplate
 	async _onItemCreate(event) {
@@ -545,9 +537,9 @@ export class MetanthropesActorSheet extends ActorSheet {
 			title: "Change Player",
 			content: `
 			<form>
-			<div>Only the chosen Player can see and click the Buttons in the Chat<br><br></div>
-			<div>You can add/remove players from the Settings - User Management<br><br> To manually change the Player's name, please use the 'Narrator Toolbox - Edit Protagonist Details' Macro<br><br></div>
-			<div><p>Current Player: ${actor.system.metaowner.value}</p></div>
+				<div>Only the chosen Player can see and click the Buttons in the Chat<br><br></div>
+				<div><p>You can add/remove players from the Settings - User Management<br><br> To manually change the Player's name, please use the 'Narrator Toolbox - Edit Protagonist Details' Macro<br><br></p></div>
+				<div><p>Current Player: ${actor.system.metaowner.value}</p><br></div>
 				<div class="form-group">
 					<label>New Player</label>
 					<select id="player" name="player">

@@ -268,11 +268,17 @@ export async function MetaRollCustomDialog(actor, action, stat, statScore, itemN
 					<option value="no">None</option>
 					${multiActionOptions.map((option) => `<option value="${option}">${option}</option>`).join("")}
 				</select>
+				`;
+		if (action !== "StatRoll") {
+			dialogContent += `
 				<div>
 					<br>
 					<span>Aiming Reduction: <input class="style-container-input-charstat"
 						type="number" id="aimingReduction" min="0" value="0">%</span><br>
 				</div>
+				`;
+		}
+		dialogContent += `
 					<div>
 					<br>
 						<span class="style-cs-buffs">Bonus: <input class="style-cs-buffs style-container-input-charstat"
@@ -306,7 +312,7 @@ export async function MetaRollCustomDialog(actor, action, stat, statScore, itemN
 						let customPenalty = -parseInt(html.find("#penalty").val());
 						//? Collect Reductions
 						let customReduction = -parseInt(html.find("#customReduction").val());
-						let aimingReduction = -parseInt(html.find("#aimingReduction").val());
+						let aimingReduction = -parseInt(html.find("#aimingReduction").val()) || 0;
 						//? Return the data we collected to the MetaRoll function
 						resolve({ multiAction, bonus, customPenalty, customReduction, aimingReduction });
 					},

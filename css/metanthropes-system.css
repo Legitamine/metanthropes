@@ -349,6 +349,12 @@ p {
   text-align: center;
 }
 
+.metanthropes .chat-message .message-header .flavor-text .metanthropes .hide-button .meta-ui-hidden {
+  display: none !important;
+}
+.metanthropes .hide-button .meta-ui-hidden {
+  display: none !important;
+}
 .metanthropes .meta-ui-hidden {
   display: none !important;
 }
@@ -502,7 +508,7 @@ p {
 }
 .metanthropes .layout-container-physical {
   display: grid;
-  grid-template-columns: 2fr 0.8fr 1.8fr;
+  grid-template-columns: 1fr 2fr 1fr;
   -moz-column-gap: 1px;
        column-gap: 1px;
   padding: 0px;
@@ -697,7 +703,7 @@ p {
   opacity: 1;
   border: 1px solid #000;
   border-radius: 15px;
-  justify-content: stretch;
+  justify-content: center;
   justify-self: center;
   align-items: center;
   align-self: center;

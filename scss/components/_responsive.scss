@@ -4,6 +4,15 @@
 $minimum-width: 405px; // 40% of the default
 $default-width: 1012px; // Default width
 
+//! Hiding re-roll buttons from chat except from Narrator and Player of the Actor
+.chat-message .message-header .flavor-text .metanthropes .hide-button .meta-ui-hidden {
+	display: none !important;
+}
+
+.hide-button .meta-ui-hidden {
+	display: none !important;
+}
+
 .meta-ui-hidden {
 	display: none !important;
 }

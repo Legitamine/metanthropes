@@ -204,8 +204,7 @@ export async function MetaEvaluate(
 		message += `.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 	}
 	//? Buttons to Re-Roll MetaEvaluate results - only adds the button to message, if it's not a Critical and only if they have enough Destiny for needed reroll.
-	//* The buttons are hidden for everyone except the owner of the actor and the GM as long as DF Chat Enhancements is installed
-	//todo I should figure out how to do this on my own without the need to have DF Chat Enhancements installed
+	//* The buttons are hidden for everyone except the Player of the Actor and the GM
 	//? Define threshold of showing the button, to re-roll we need a minimum of 1 Destiny + the Destiny Cost of the Metapower (only applies to Metapowers with DestinyCost, otherwise it's 0)
 	metaLog(3, "destinyCost", destinyCost);
 	let threshold = 1 + Number(destinyCost);
