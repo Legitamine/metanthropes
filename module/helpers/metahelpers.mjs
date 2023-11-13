@@ -198,3 +198,29 @@ export function metaSheetRefresh(actor) {
 		sheet.render(true);
 	}
 }
+
+/**
+ * Helper function to print the currently open Document to the console
+ * Kindly provided by TyphonJS(Michael) from the FoundryVTT Discord
+ *
+ * @param {*} app
+ * @param {*} buttons
+ */
+export function metaLogDocument(app, buttons) {
+	//? Will only run if the 'Enable Advanced Logging' setting is enabled
+	if (game.settings.get("metanthropes-system", "metaAdvancedLogging")) {
+		buttons.unshift({
+			icon: "fas fa-terminal",
+			class: "metalog-doc",
+			onclick: async () => {
+				const uuid = app?.object?.uuid;
+				if (typeof uuid === "string") {
+					const doc = await globalThis.fromUuid(uuid);
+					if (doc) {
+						console.log(doc);
+					}
+				}
+			},
+		});
+	}
+}

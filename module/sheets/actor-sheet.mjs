@@ -52,7 +52,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 	}
 	/** @override */
 	get template() {
-		return `systems/metanthropes-system/templates/actor/${this.actor.type}-sheet.hbs`;
+		return `systems/metanthropes-system/templates/actor/actor-sheet.hbs`;
 	}
 	/** @override */
 	get title() {
@@ -94,12 +94,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 		context.advancedBetaTesting = context.betaTesting && context.advancedLogging;
 		//? Provide a boolean for if the user is a Narrator(GameMaster)
 		context.isNarrator = game.user.isGM;
-		//? Provide a boolean for it the Actor is premade
-		context.isPremade =
-			actorData.type === "Protagonist" &&
-			(actorData.name.includes("Premade") || actorData.name.includes("Protagonist"))
-				? true
-				: false;
 		//? Add the actor's active effects to the context for easier access.
 		if (context.betaTesting) context.effects = prepareActiveEffectCategories(this.actor.effects);
 		//todo I would like to refresh the sheet after getting all the data
@@ -144,7 +138,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 				}
 			}
 		}
-		metaLog(3, "MetanthropesActorSheet _prepareItems results", "Possessions, Metapowers", Possessions, Metapowers);
 		//? Assign and return
 		context.Possessions = Possessions;
 		context.Metapowers = Metapowers;
@@ -233,7 +226,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 		});
 		//? Filters-out the Item Piles button for all actors besides Vehicles
 		if (this.actor.type !== "Vehicle") buttons = buttons.filter((btn) => btn.label !== "Configure");
-		metaLog(4, "MetanthropesActorSheet _getHeaderButtons", "buttons", buttons);
 		return buttons;
 	}
 	async _onHeaderButtonClick(size) {
@@ -264,7 +256,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		}
 		await this.maximize();
 		this.render(true);
-		metaLog(4, "MetanthropesActorSheet _onHeaderButtonClick", size);
+		metaLog(3, "MetanthropesActorSheet _onHeaderButtonClick", size);
 	}
 	//? Render the sheet
 	/**
@@ -527,7 +519,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		event.preventDefault();
 		const actor = this.actor;
 		//? Present a dialog with values from the game.users object
-		const activePlayers = game.users.filter((user) => user.active && !user.isGM);
+		const activePlayers = game.users.filter((user) => user.active);
 		if (activePlayers.length === 0) {
 			ui.notifications.warn("There are no active players to choose from");
 			return;
@@ -537,7 +529,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			title: "Change Player",
 			content: `
 			<form>
-				<div>Only the chosen Player can see and click the Buttons in the Chat<br><br></div>
+				<div>Only Narrators (Gamemasters) and the chosen Player can see and click the Buttons in the Chat<br><br></div>
 				<div><p>You can add/remove players from the Settings - User Management<br><br> To manually change the Player's name, please use the 'Narrator Toolbox - Edit Protagonist Details' Macro<br><br></p></div>
 				<div><p>Current Player: ${actor.system.metaowner.value}</p><br></div>
 				<div class="form-group">

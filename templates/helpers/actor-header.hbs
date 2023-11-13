@@ -47,7 +47,12 @@
 			<div class="style-labels-text"
 				data-tooltip="Life represents a Character's overall health, vitality, and will to live. Metanthrope Characters have a Life total of (100 + their Endurance score). Metanthrope Characters also gain an additional +25 Life for every 5.000 Total Experience they have accumulated">
 				<span>❤️</span><span class="meta-ui-responsive meta-ui-hide-at-minimum">
-					Life</span>
+					{{#if actor.isSynthetic}}
+						Durability
+					{{else}}
+						Life
+					{{/if}}
+				</span>
 				{{#if isNarrator}}<input name="system.Vital.Life.value" type="number"
 						value="{{system.Vital.Life.value}}" data-dtype="Number" />
 				{{else}}{{system.Vital.Life.value}}{{/if}}<span

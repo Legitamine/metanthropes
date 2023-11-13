@@ -80,18 +80,18 @@
 			</div>
 		</div>
 		<div class="layout-container-summary-controls style-container-summary-controls">
-			{{#unless isPremade}}
+			{{#unless actor.isPremade}}
 				<div>
 					<img src="{{actor.img}}" data-tooltip="Change {{actor.name}}'s Portrait image"
 						data-edit="img" height="145" width="110"
 						style="border: none; border-radius: 15px" />
 				</div>
 			{{/unless}}
-			{{#if (or isNarrator isPremade)}}
+			{{#if (or isNarrator actor.isPremade)}}
 				<div class="meta-ui-responsive meta-ui-hide-at-medium">
-					{{#if isPremade}}
+					{{#if actor.isPremade}}
 						<button class="finalize-premade-actor"
-							data-tooltip="Finalize Premade Actor">Finalize Premade
+							data-tooltip="Finalize Premade {{actor.type}}">Finalize Premade
 							{{actor.type}}</button>
 					{{/if}}
 					{{#if isNarrator}}

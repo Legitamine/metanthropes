@@ -46,18 +46,13 @@ export async function NewActor(actor) {
 	try {
 		await NewActorControl(actor);
 		await NewActorDestiny(actor);
-		if (
-			actor.type !== "Human" &&
-			actor.type !== "Vehicle" &&
-			actor.type !== "Animal" &&
-			actor.type !== "Animated-Cadaver"
-		) {
-			await NewActorPrimeMetapower(actor);
+		if (actor.hasEnterMeta) await NewActorPrimeMetapower(actor);
+		if (actor.hasCharacteristics) {
+			await NewActorCharacteristics(actor);
+			await NewActorBodyStats(actor);
+			await NewActorMindStats(actor);
+			await NewActorSoulStats(actor);
 		}
-		await NewActorCharacteristics(actor);
-		await NewActorBodyStats(actor);
-		await NewActorMindStats(actor);
-		await NewActorSoulStats(actor);
 		if (
 			actor.type !== "Human" &&
 			actor.type !== "Vehicle" &&

@@ -85,9 +85,6 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.appendNumber = true;
 				//? Disable default behavior of prepending adjective to the name
 				createData.prototypeToken.prependAdjective = false;
-				//? Remove all Items (Metapowers and Possessions) besides 'Strike'
-				const newItems = data.items.filter((item) => item.name === "Strike");
-				createData.items = newItems;
 			}
 		}
 		this.updateSource(createData);
@@ -204,6 +201,12 @@ export class MetanthropesActor extends Actor {
 		systemData.Characteristics.Soul.CoreConditions.Probed = 0;
 		systemData.Characteristics.Soul.CoreConditions.Infiltrated = 0;
 		systemData.Characteristics.Soul.CoreConditions.Unconscious = 0;
+		systemData.physical.size.Buffs.enlarged.value = 0;
+		systemData.physical.size.Conditions.shrunken.value = 0;
+		systemData.physical.weight.Buffs.lightened.value = 0;
+		systemData.physical.weight.Conditions.encumbered.value = 0;
+		systemData.physical.speed.Buffs.accelerated.value = 0;
+		systemData.physical.speed.Conditions.slowed.value = 0;
 	}
 	_prepareDerivedCharacteristicsData(actorData) {
 		if (actorData.type == "Vehicle") return;
@@ -398,22 +401,22 @@ export class MetanthropesActor extends Actor {
 		if (actorData.type == "Vehicle") return;
 		const systemData = actorData.system;
 		//? first we will calculate the current values from buffs and conditions, then we take their modifiers and calculate the movement value
-		let speedinitial = Number(systemData.physical.speed.initial);
-		let weightinitial = Number(systemData.physical.weight.initial);
-		let sizeinitial = Number(systemData.physical.size.initial);
-		let speedbuff = Number(systemData.physical.speed.Buffs.accelerated.value);
-		let speedcondition = Number(systemData.physical.speed.Conditions.slowed.value);
-		let weightbuff = Number(systemData.physical.weight.Buffs.lightened.value);
-		let weightcondition = Number(systemData.physical.weight.Conditions.encumbered.value);
-		let sizebuff = Number(systemData.physical.size.Buffs.enlarged.value);
-		let sizecondition = Number(systemData.physical.size.Conditions.shrunken.value);
-		let sizecurrent = sizeinitial + sizebuff - sizecondition;
-		let weightcurrent = weightinitial - weightbuff + weightcondition;
-		let speedcurrent = speedinitial + speedbuff - speedcondition;
+		const speedinitial = Number(systemData.physical.speed.initial);
+		const weightinitial = Number(systemData.physical.weight.initial);
+		const sizeinitial = Number(systemData.physical.size.initial);
+		const speedbuff = Number(systemData.physical.speed.Buffs.accelerated.value);
+		const speedcondition = Number(systemData.physical.speed.Conditions.slowed.value);
+		const weightbuff = Number(systemData.physical.weight.Buffs.lightened.value);
+		const weightcondition = Number(systemData.physical.weight.Conditions.encumbered.value);
+		const sizebuff = Number(systemData.physical.size.Buffs.enlarged.value);
+		const sizecondition = Number(systemData.physical.size.Conditions.shrunken.value);
+		const sizecurrent = sizeinitial + sizebuff - sizecondition;
+		const weightcurrent = weightinitial - weightbuff + weightcondition;
+		const speedcurrent = speedinitial + speedbuff - speedcondition;
 		systemData.physical.size.value = sizecurrent;
 		systemData.physical.weight.value = weightcurrent;
 		systemData.physical.speed.value = speedcurrent;
-		let speedModifiers = {
+		const speedModifiers = {
 			0: 0,
 			1: 0,
 			2: 0,
@@ -436,7 +439,7 @@ export class MetanthropesActor extends Actor {
 			19: 10000,
 			20: 20000,
 		};
-		let weightModifiers = {
+		const weightModifiers = {
 			0: 200,
 			1: 100,
 			2: 50,
@@ -459,7 +462,7 @@ export class MetanthropesActor extends Actor {
 			19: 0.001,
 			20: 0.0002,
 		};
-		let sizeModifiers = {
+		const sizeModifiers = {
 			0: 0.0002,
 			1: 0.001,
 			2: 0.002,
@@ -483,9 +486,9 @@ export class MetanthropesActor extends Actor {
 			20: 19683,
 		};
 		//? in addition to the modifiers, Wobbly also affects final movemement value
-		let wobblyModifier = Number(systemData.Characteristics.Mind.Stats.Creativity.Condition.Current);
+		const wobblyModifier = Number(systemData.Characteristics.Mind.Stats.Creativity.Condition.Current);
 		//? movement value is always rounded up
-		let movementvalue = Math.ceil(
+		const movementvalue = Math.ceil(
 			speedModifiers[speedcurrent] * weightModifiers[weightcurrent] * sizeModifiers[sizecurrent] - wobblyModifier
 		);
 		systemData.physical.movement.value = movementvalue;
@@ -577,6 +580,7 @@ export class MetanthropesActor extends Actor {
 			}
 		}
 	}
+	//* Getters
 	/** @override */
 	getRollData() {
 		const data = super.getRollData();
@@ -591,5 +595,23 @@ export class MetanthropesActor extends Actor {
 			}
 		}
 		return data;
+	}
+	get hasCharacteristics() {
+		return Boolean(this.system.Characteristics);
+	}
+	get hasPerks() {
+		return Boolean(this.system.Perks);
+	}
+	get hasEnterMeta() {
+		return Boolean(this.system.entermeta);
+	}
+	get hasPossessions() {
+		return !["Animal", "MetaTherion", "Animated-Plant"].includes(this.type);
+	}
+	get isSynthetic() {
+		return Boolean(this.system.Synthetic);
+	}
+	get isPremade() {
+		return Boolean(this.name.includes("Premade") || this.name.includes(this.type));
 	}
 }

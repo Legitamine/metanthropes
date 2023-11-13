@@ -32,7 +32,7 @@ import { Rolld10ReRoll, HungerReRoll } from "./helpers/extrasroll.mjs";
 import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
 import { MetaExecute } from "./helpers/metaexecute.mjs";
 import { metaMigrateData } from "./metanthropes/metamigration.mjs";
-import { metaLog } from "./helpers/metahelpers.mjs";
+import { metaLog, metaLogDocument } from "./helpers/metahelpers.mjs";
 //* Handlebars helpers
 //? Selected Helper
 //! Supposedly Foundry includes its own select helper, but I couldn't get it to work properly.
@@ -413,13 +413,47 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		});
 	}
 });
-//* Duplicate Self Metapower - Remove Items from Duplicates
+//* New Actor Event Listener
 Hooks.on("createActor", async (actor) => {
+	if (
+		actor.name.includes("New") &&
+		actor.type !== "Vehicle" &&
+		actor.type !== "Animal" &&
+		actor.type !== "MetaTherion" &&
+		actor.type !== "Animated-Plant" &&
+		actor.type !== "Extradimensional" &&
+		actor.type !== "Extraterrestrial"
+	) {
+		//* New Humanoids get a Strike eqquipped by default
+		//? get the Strike Item from the Possessions Compendium
+		const possessionCompendium = await game.packs.get("metanthropes-system.possessions");
+		const possessionCompendiumIndex = await possessionCompendium.getIndex();
+		const strikeEntry = possessionCompendiumIndex.find((item) => item.name === "Strike");
+		if (strikeEntry) {
+			const strikeItem = await possessionCompendium.getDocument(strikeEntry._id);
+			await actor.createEmbeddedDocuments("Item", [strikeItem]);
+			metaLog(1, "New Actor Event Listener", "Gave 'Strike' to:", actor.name);
+			metaLog(1, "New Actor Event Listener", "strikeItem, strikeEntry", strikeItem, strikeEntry);
+		}
+		metaLog(3, "New Actor Event Listener", "Gave 'Strike' to:", actor.name);
+	}
+	//* Duplicate Self Metapower - Remove Items from Duplicates
 	if (actor.name.includes("Duplicate")) {
 		const itemsToDelete = actor.items.filter((item) => item.name !== "Strike");
 		await actor.deleteEmbeddedDocuments(
 			"Item",
 			itemsToDelete.map((item) => item.id)
 		);
+		metaLog(3, "New Actor Event Listener", "Removed Items from Duplicate", actor.name);
+		const effectsToDelete = actor.effects.filter((effect) => effect.label !== "Duplicate");
+		await actor.deleteEmbeddedDocuments(
+			"ActiveEffect",
+			effectsToDelete.map((effect) => effect.id)
+		);
+		metaLog(3, "New Actor Event Listener", "Removed Effects from Duplicate", actor.name);
 	}
 });
+// from TyphonJS (Michael) on Discord
+// In system entry point. You may have to get specific for particular sheets as some don't invoke hooks for the whole hierarchy.
+Hooks.on(`getActorSheetHeaderButtons`, metaLogDocument);
+Hooks.on(`getItemSheetHeaderButtons`, metaLogDocument);
