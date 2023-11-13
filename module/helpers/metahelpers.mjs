@@ -200,8 +200,10 @@ export function metaSheetRefresh(actor) {
 }
 
 /**
+ *
  * Helper function to print the currently open Document to the console
  * Kindly provided by TyphonJS(Michael) from the FoundryVTT Discord
+ * Inspired by a similar functionality from DevMode (https://foundryvtt.com/packages/_dev-mode)
  *
  * @param {*} app
  * @param {*} buttons
@@ -222,5 +224,27 @@ export function metaLogDocument(app, buttons) {
 				}
 			},
 		});
+	}
+}
+export class metaFilePicker extends FilePicker {
+	/** @override */
+	constructor(options = {}) {
+		super(options);
+		this.displayMode = options.displayMode || "tiles";
+	}
+	/** @override */
+	render(force, options) {
+		if (game.world && !game.user.can("FILES_BROWSE")) return this;
+		this.position.height = null;
+		//* Ensure the dialog is rendered above the MetaDialog
+		this.position.zIndex += 10;
+		metaLog(this);
+		this.element.css({ height: "" });
+		this.element.css({ zIndex: this.position.zIndex });
+		this._tabs[0].active = this.activeSource;
+		if (!this._loaded) {
+			this.browse();
+			return this;
+		} else return super.render(force, options);
 	}
 }

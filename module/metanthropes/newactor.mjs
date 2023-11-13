@@ -1,6 +1,6 @@
 import { Rolld10 } from "../helpers/extrasroll.mjs";
 import { MetapowersList } from "./metapowerlist.mjs";
-import { metaLog } from "../helpers/metahelpers.mjs";
+import { metaLog, metaFilePicker } from "../helpers/metahelpers.mjs";
 
 //* newactor.mjs will be used to help in generating a new actor's stats and characteristics, along with other information.
 //! Needs new CSS Classes
@@ -931,10 +931,16 @@ export async function NewActorProgression(actor) {
 					<label for="startingXP" title="Your Narrator will tell you what to enter here">Starting 📈 Experience:</label>
 					<input type="number" id="startingXP" name="startingXP" value="1000">
 				</div>
+				`;
+	if (actor.hasPerks) {
+		dialogContent += `
 				<div class="form-group">
 					<label for="startingPerks" title="Your Narrator will tell you what to enter here">Starting 📚 Perks:</label>
 					<input type="number" id="startingPerks" name="startingPerks" value="2">
 				</div>
+				`;
+	}
+	dialogContent += `
 			</form>
 		</div>
 		`;
@@ -952,11 +958,18 @@ export async function NewActorProgression(actor) {
 						label: "Confirm 📈 Progression",
 						callback: async (html) => {
 							let startingXP = html.find('[name="startingXP"]').val();
-							let startingPerks = html.find('[name="startingPerks"]').val();
-							await actor.update({
-								"system.Vital.Experience.Total": Number(startingXP),
-								"system.Perks.Details.Starting.value": Number(startingPerks),
-							});
+							let startingPerks = null;
+							if (actor.hasPerks) {
+								startingPerks = html.find('[name="startingPerks"]').val();
+								await actor.update({
+									"system.Vital.Experience.Total": Number(startingXP),
+									"system.Perks.Details.Starting.value": Number(startingPerks),
+								});
+							} else {
+								await actor.update({
+									"system.Vital.Experience.Total": Number(startingXP),
+								});
+							}
 							metaLog(
 								3,
 								"NewActorProgression",
@@ -1288,7 +1301,7 @@ export async function NewActorFinish(actor) {
 									"prototypeToken.displayName": 30,
 									"prototypeToken.displayBars": 30,
 								});
-							} else if (actor.type == "Metatherion") {
+							} else if (actor.type == "MetaTherion") {
 								await actor.update({
 									//? set the token disposition to hostile
 									"prototypeToken.disposition": -1,
@@ -1317,7 +1330,7 @@ export async function NewActorFinish(actor) {
 				default: "ok",
 				render: (html) => {
 					html.find("#actorimg").click((ev) => {
-						new FilePicker({
+						new metaFilePicker({
 							resource: "data",
 							current: "systems/metanthropes-system/artwork/tokens/portraits/",
 							displayMode: "tiles",
