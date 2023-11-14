@@ -97,6 +97,10 @@ p {
   text-align: center;
 }
 
+h3 {
+  text-align: center;
+}
+
 .window-app {
   font-family: "nasalization", sans-serif;
   margin: 1px;
@@ -643,6 +647,79 @@ p {
   font-size: var(--font-size-14);
   font-weight: 500;
   color: #000;
+}
+.metanthropes .layout-tab-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto auto auto auto auto;
+  grid-template-areas: "narratorSecret narratorSecret" "buttons buttons" "portrait prime" "portrait gender" "entermeta physical" "narrator actor" "saga coalition";
+  gap: 3px;
+}
+.metanthropes .layout-tab-summary-at-medium {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto auto auto auto auto;
+  grid-template-areas: "prime" "gender" "actor" "saga" "coalition";
+  gap: 3px;
+}
+.metanthropes .layout-tab-summary-narrator-secret {
+  grid-area: narratorSecret;
+  border: 1px solid #000;
+  border-radius: 15px;
+}
+.metanthropes .layout-tab-summary-buttons {
+  grid-area: buttons;
+}
+.metanthropes .layout-tab-summary-portrait {
+  border: 1px solid #000;
+  border-radius: 15px;
+  grid-area: portrait;
+}
+.metanthropes .layout-tab-summary-prime {
+  border: 1px solid #000;
+  border-radius: 15px;
+  grid-area: prime;
+}
+.metanthropes .layout-tab-summary-gender {
+  border: 1px solid #000;
+  border-radius: 15px;
+  grid-area: gender;
+}
+.metanthropes .layout-tab-summary-entermeta {
+  border: 1px solid #000;
+  border-radius: 15px;
+  grid-area: entermeta;
+}
+.metanthropes .layout-tab-summary-physical {
+  border: 1px solid #000;
+  border-radius: 15px;
+  grid-area: physical;
+}
+.metanthropes .layout-tab-summary-narrator {
+  border: 1px solid #000;
+  border-radius: 15px;
+  grid-area: narrator;
+}
+.metanthropes .layout-tab-summary-actor {
+  border: 1px solid #000;
+  border-radius: 15px;
+  grid-area: actor;
+}
+.metanthropes .layout-tab-summary-saga {
+  border: 1px solid #000;
+  border-radius: 15px;
+  grid-area: saga;
+}
+.metanthropes .layout-tab-summary-coalition {
+  border: 1px solid #000;
+  border-radius: 15px;
+  grid-area: coalition;
+}
+.metanthropes .layout-tab-perks-container {
+  margin: 1px;
+  padding: 1px;
+  border: 1px solid #000;
+  border-radius: 15px;
 }
 .metanthropes .editor {
   min-height: 80px;

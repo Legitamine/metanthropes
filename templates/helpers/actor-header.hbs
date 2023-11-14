@@ -1,9 +1,9 @@
 <header>
 	<div class="layout-container-actorinfo style-container-actorinfo meta-ui-responsive meta-ui-hide-at-medium">
 		<div class="layout-container-actorinfo-details">
-			<img src="systems/metanthropes-system/artwork/Meta-Avatar-Rotating.gif" alt="Metanthropes RPG"
-				data-tooltip="Metanthropes RPG {{actor.type}}" height="85" width="85"
-				style="border: none; border-radius: 50%" />
+			<img class="style-tab-header-logo"
+				src="systems/metanthropes-system/artwork/Meta-Avatar-Rotating.gif"
+				alt="Metanthropes RPG" data-tooltip="Metanthropes RPG {{actor.type}}" />
 		</div>
 		{{#if system.metaowner.value}}
 			<div class="layout-container-actorinfo-details">
@@ -23,12 +23,12 @@
 				</div>
 			</div>
 			<div class="layout-container-actorinfo-details">
-				<img src="{{actor.img}}" data-tooltip="{{actor.name}}" height="85" width="70"
-					style="border: none; border-radius: 15px" />
+				<img class="style-tab-header-portrait" src="{{actor.img}}" alt="{{actor.name}}'s Portrait Image"
+					data-tooltip="{{actor.name}}" />
 				{{#if system.entermeta}}
-					<img src="{{actor.primeimg}}" alt="{{system.entermeta.primemetapower.value}}"
-						data-tooltip="Prime Ⓜ️ Metapower: {{system.entermeta.primemetapower.value}}"
-						height="85" width="85" style="border: none;" />
+					<img class="style-tab-header-portrait" src="{{actor.primeimg}}"
+						alt="{{system.entermeta.primemetapower.value}}"
+						data-tooltip="Prime Ⓜ️ Metapower: {{system.entermeta.primemetapower.value}}" />
 				{{/if}}
 			</div>
 			<div class="meta-ui-responsive meta-ui-hide-at-medium">

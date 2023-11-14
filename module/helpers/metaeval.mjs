@@ -206,17 +206,13 @@ export async function MetaEvaluate(
 	//? Buttons to Re-Roll MetaEvaluate results - only adds the button to message, if it's not a Critical and only if they have enough Destiny for needed reroll.
 	//* The buttons are hidden for everyone except the Player of the Actor and the GM
 	//? Define threshold of showing the button, to re-roll we need a minimum of 1 Destiny + the Destiny Cost of the Metapower (only applies to Metapowers with DestinyCost, otherwise it's 0)
-	metaLog(3, "destinyCost", destinyCost);
-	let threshold = 1 + Number(destinyCost);
-	metaLog(3, "threshold", threshold);
+	const threshold = 1 + Number(destinyCost);
 	if (!criticalSuccess && !criticalFailure && currentDestiny >= threshold) {
-		metaLog(3, "proceed normally");
 		if (action === "Initiative") {
 			//? Button to re-roll Initiative
 			message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button metainitiative-reroll" data-actoruuid="${actor.uuid}" data-action="${action}"
 				>Spend 🤞 Destiny to reroll</button><br></div>`;
 		} else {
-			metaLog(3, "show reroll button for metaevaluate");
 			//? Button to re-roll MetaEvaluate
 			message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button metaeval-reroll" data-actoruuid="${actor.uuid}"
 				data-stat="${stat}" data-stat-score="${statScore}" data-multi-action="${multiAction}" data-perk-reduction="${perkReduction}"
@@ -242,7 +238,7 @@ export async function MetaEvaluate(
 		if (!(action === "Initiative")) {
 			//? Set autoExecute to true if it's either a Critical Success or a Critical Failure, or if the actor doesn't have enough Destiny to reroll
 			autoExecute = true;
-			metaLog(0, "MetaEvaluate", "Auto-Execution Detected");
+			metaLog(3, "MetaEvaluate", "Auto-Execution Detected");
 		}
 	}
 	message += `<div><br></div>`;

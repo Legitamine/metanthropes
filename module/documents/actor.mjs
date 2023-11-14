@@ -66,12 +66,24 @@ export class MetanthropesActor extends Actor {
 		//? Duplicate Self Metapower
 		if (data.type == "Protagonist" || data.type == "Metanthrope") {
 			if (!(data.name.includes("Copy") || data.name.includes("Duplicate"))) {
+				const hasmeta = data.hasEnterMeta;
+				metaLog(1, "MetanthropesActor", "_preCreate", "hasmeta:", hasmeta);
 				//? Enable Linked Tokens for Protagonists & Metanthropes without 'Duplicate' or 'Copy' in their name
 				createData.prototypeToken.actorLink = true;
 				createData.prototypeToken.prependAdjective = false;
 				//? Make the size of the token reflect a typical humanoid relative to the grid
 				createData.prototypeToken.height = 0.5;
 				createData.prototypeToken.width = 0.5;
+				createData.prototypeToken.texture.scaleX = 1.3;
+				createData.prototypeToken.texture.scaleY = 1.3;
+				//? Requires hex-size-support module to take effect
+				if (!createData.prototypeToken.flags) {
+					createData.prototypeToken.flags = {};
+				}
+				if (!createData.prototypeToken.flags["hex-size-support"]) {
+					createData.prototypeToken.flags["hex-size-support"] = {};
+				}
+				createData.prototypeToken.flags["hex-size-support"] = { hideBorder: true };
 			} else {
 				//? Replace the default 'Copy' name with 'Duplicate'
 				if (data.name.includes("Copy")) {
@@ -613,5 +625,8 @@ export class MetanthropesActor extends Actor {
 	}
 	get isPremade() {
 		return Boolean(this.name.includes("Premade") || this.name.includes(this.type));
+	}
+	get isDuplicate() {
+		return Boolean(this.name.includes("Duplicate"));
 	}
 }

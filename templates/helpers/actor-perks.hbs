@@ -1,13 +1,14 @@
 <div class="perks">
 	<div class="flexrow">
-		<div class="knowledge">
+		<div class="knowledge layout-tab-perks-container">
 			<h3 class="style-labels-text" style="text-align: center;"
 				data-tooltip="Knowledge refers to abilities developed through studying theories, learning thesis and theorems, and performing simulations and experiments">
 				Knowledge</h3>
 			{{#each system.Perks.Knowledge}}
 				<div class="perk-item">
 					{{#if ../betaTesting}}
-						<div class="resource-label" data-tooltip="{{this.title}}">{{this.label}}:
+						<div class="resource-label" data-tooltip="{{this.title}}">
+							{{this.label}}:
 							{{this.value}}
 						</div>
 					{{else}}
@@ -28,18 +29,20 @@
 				</div>
 			{{/each}}
 		</div>
-		<div class="perks-skills flex">
+		<div class="perks-skills flex layout-tab-perks-container">
 			<h3 class="style-labels-text" style="text-align: center;"
 				data-tooltip="Skills refer to abilities that develop through practical appliance, repetition and practicing them in the field">
 				Skills</h3>
 			{{#each system.Perks.Skills}}
 				<div class="perk-item">
 					{{#if ../betaTesting}}
-						<div class="resource-label" data-tooltip="{{this.title}}">{{this.label}}:
+						<div class="resource-label" data-tooltip="{{this.title}}">
+							{{this.label}}:
 							{{this.value}}
 						</div>
 					{{else}}
-						<label for="system.Perks.Skills.{{@key}}.value" data-tooltip="{{this.title}}"
+						<label for="system.Perks.Skills.{{@key}}.value"
+							data-tooltip="{{this.title}}"
 							class="resource-label">{{this.label}}:</label>
 						<select name="system.Perks.Skills.{{@key}}.value"
 							id="system.Perks.Skills.{{@key}}.value"
@@ -64,24 +67,26 @@
 	<div class="perks-extra">
 		{{#each system.Perks.Details}}
 			{{#unless (eq @key "Starting")}}
-				<div>
-					<h3>{{this.label}}</h3>
-				</div>
-				{{#if ../betaTesting}}
-					{{#if ../isNarrator}}
+				<div class="layout-tab-perks-container">
+					<div>
+						<h3>{{this.label}}</h3>
+					</div>
+					{{#if ../betaTesting}}
+						{{#if ../isNarrator}}
+							<div class="layout-editor style-editor">
+								{{editor this.value target=(concat "system.Perks.Details." @key ".value") button=true editable=true}}
+							</div>
+						{{else}}
+							<div class="layout-editor style-editor">
+								{{editor this.value target=(concat "system.Perks.Details." @key ".value") button=true editable=false}}
+							</div>
+						{{/if}}
+					{{else}}
 						<div class="layout-editor style-editor">
 							{{editor this.value target=(concat "system.Perks.Details." @key ".value") button=true editable=true}}
 						</div>
-					{{else}}
-						<div class="layout-editor style-editor">
-							{{editor this.value target=(concat "system.Perks.Details." @key ".value") button=true editable=false}}
-						</div>
 					{{/if}}
-				{{else}}
-					<div class="layout-editor style-editor">
-						{{editor this.value target=(concat "system.Perks.Details." @key ".value") button=true editable=true}}
-					</div>
-				{{/if}}
+				</div>
 			{{/unless}}
 		{{/each}}
 	</div>

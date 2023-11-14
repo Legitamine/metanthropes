@@ -40,9 +40,9 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			return;
 		}
 	}
-	//? Check for Hunger - if we have hunger, we must beat the hunger roll before doing our action
+	//? Check for Hunger: We must beat the Hunger check before doing our action (Initiative is exempt)
 	const hungerLevel = actor.system.Characteristics.Mind.CoreConditions.Hunger;
-	hungerCheck: if (hungerLevel > 0) {
+	hungerCheck: if (hungerLevel > 0 && action !== "Initiative") {
 		//? Check if actor has already overcome hunger
 		const hungerRollResult = (await actor.getFlag("metanthropes-system", "hungerRollResult")) || false;
 		if (hungerRollResult) {
@@ -251,6 +251,7 @@ export async function MetaRollCustomDialog(actor, action, stat, statScore, itemN
 		//? Title and Buttons for the Dialog
 		let dialogTitle = null;
 		let dialogButtonLabel = null;
+		const isBetaTesting = game.settings.get("metanthropes-system", "metaBetaTesting");
 		if (action === "StatRoll") {
 			dialogTitle = `${actor.name}'s ${stat}`;
 			dialogButtonLabel = `Roll 📊 ${stat}`;
@@ -263,13 +264,13 @@ export async function MetaRollCustomDialog(actor, action, stat, statScore, itemN
 		}
 		//? Create the Dialog content
 		let dialogContent = `
-			<div class="metanthropes layout-metaroll-dialog">
-				Select total number of Multi-Actions:	<select id="multiActionCount">
+			<div class="metanthropes layout-metaroll-dialog style-metaroll-dialog">
+				<p>Total number of Multi-Actions:	<select id="multiActionCount">
 					<option value="no">None</option>
 					${multiActionOptions.map((option) => `<option value="${option}">${option}</option>`).join("")}
-				</select>
+				</select></p>
 				`;
-		if (action !== "StatRoll") {
+		if (action !== "StatRoll" && isBetaTesting) {
 			dialogContent += `
 				<div>
 					<br>
@@ -281,15 +282,14 @@ export async function MetaRollCustomDialog(actor, action, stat, statScore, itemN
 		dialogContent += `
 					<div>
 					<br>
-						<span class="style-cs-buffs">Bonus: <input class="style-cs-buffs style-container-input-charstat"
+						<p><span class="style-cs-buffs">Bonus: <input class="style-cs-buffs style-container-input-charstat"
 						type="number" id="bonus" min="0" value="0">%</span>
 						<span class="style-cs-conditions">Penalty: <input class="style-cs-conditions style-container-input-charstat"
-						type="number" id="penalty" min="0" value="0">%</span>
-						<span class="style-cs-conditions">Reduction: <input class="style-cs-conditions style-container-input-charstat"
-						type="number" id="customReduction" min="0" value="0">%</span><br>
-					</div>
+						type="number" id="penalty" min="0" value="0">%</span><br></p>
+						</div><br>
+						<p class="style-cs-conditions">Reduction: <input class="style-cs-conditions style-container-input-charstat"
+						type="number" id="customReduction" min="0" value="0">%</p>
 			</div>
-			<br>
 			`;
 		//? Create the Dialog
 		let dialog = new Dialog({

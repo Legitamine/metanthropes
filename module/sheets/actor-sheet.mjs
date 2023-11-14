@@ -327,6 +327,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			const statLabel = target.classList.contains("style-cs-stats-label");
 			const characteristicContainer = target.classList.contains("meta-ui-change-at-minimum");
 			const charstats2Grid = target.classList.contains("meta-ui-change-at-medium");
+			const summary1Grid = target.classList.contains("meta-ui-change-summary-at-medium");
 			const statRoll = target.classList.contains("meta-ui-change-at-single-column");
 			const extraFields = target.classList.contains("meta-ui-extra-fields");
 			if (isSingleColumn) {
@@ -357,6 +358,10 @@ export class MetanthropesActorSheet extends ActorSheet {
 					target.classList.toggle("layout-container-grid2x1-cs", false);
 					target.classList.toggle("layout-container-grid1x1-cs", true);
 				}
+				if (summary1Grid) {
+					target.classList.toggle("layout-tab-summary-at-medium", true);
+					target.classList.toggle("layout-tab-summary", false);
+				}
 			} else if (isMinimumSize) {
 				if (hideAtMinimum) target.classList.toggle("meta-ui-hidden", true);
 				if (hideAtMedium) target.classList.toggle("meta-ui-hidden", true);
@@ -384,6 +389,10 @@ export class MetanthropesActorSheet extends ActorSheet {
 					target.classList.toggle("layout-container-grid3x1-cs", false);
 					target.classList.toggle("layout-container-grid2x1-cs", false);
 					target.classList.toggle("layout-container-grid1x1-cs", true);
+				}
+				if (summary1Grid) {
+					target.classList.toggle("layout-tab-summary-at-medium", true);
+					target.classList.toggle("layout-tab-summary", false);
 				}
 			} else if (isMediumSize) {
 				if (hideAtMinimum) target.classList.toggle("meta-ui-hidden", false);
@@ -413,6 +422,10 @@ export class MetanthropesActorSheet extends ActorSheet {
 					target.classList.toggle("layout-container-grid2x1-cs", true);
 					target.classList.toggle("layout-container-grid1x1-cs", false);
 				}
+				if (summary1Grid) {
+					target.classList.toggle("layout-tab-summary-at-medium", true);
+					target.classList.toggle("layout-tab-summary", false);
+				}
 			} else if (isMaximumSize) {
 				if (hideAtMinimum) target.classList.toggle("meta-ui-hidden", false);
 				if (hideAtMedium) target.classList.toggle("meta-ui-hidden", false);
@@ -441,6 +454,10 @@ export class MetanthropesActorSheet extends ActorSheet {
 					target.classList.toggle("layout-container-grid2x1-cs", false);
 					target.classList.toggle("layout-container-grid1x1-cs", false);
 				}
+				if (summary1Grid) {
+					target.classList.toggle("layout-tab-summary-at-medium", false);
+					target.classList.toggle("layout-tab-summary", true);
+				}
 			} else if (isBeyondMaximumSize) {
 				if (hideAtMinimum) target.classList.toggle("meta-ui-hidden", false);
 				if (hideAtMedium) target.classList.toggle("meta-ui-hidden", false);
@@ -468,6 +485,10 @@ export class MetanthropesActorSheet extends ActorSheet {
 					target.classList.toggle("layout-container-grid3x1-cs", true);
 					target.classList.toggle("layout-container-grid2x1-cs", false);
 					target.classList.toggle("layout-container-grid1x1-cs", false);
+				}
+				if (summary1Grid) {
+					target.classList.toggle("layout-tab-summary-at-medium", false);
+					target.classList.toggle("layout-tab-summary", true);
 				}
 			}
 		}

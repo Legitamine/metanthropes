@@ -261,6 +261,98 @@
 	font-weight: 500;
 	color: $c-black;
 }
+.layout-tab-summary {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto auto auto auto auto auto auto;
+	grid-template-areas:
+		"narratorSecret narratorSecret"
+		"buttons buttons"
+		"portrait prime"
+		"portrait gender"
+		"entermeta physical"
+		"narrator actor"
+		"saga coalition";
+	gap: 3px;
+}
+.layout-tab-summary-at-medium {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto auto auto auto auto auto auto;
+	grid-template-areas:
+		"prime"
+		"gender"
+		"actor"
+		"saga"
+		"coalition";
+	gap: 3px;
+}
+.layout-tab-summary-narrator-secret {
+	grid-area: narratorSecret;
+	border: $border-style-solid;
+	border-radius: $border-radius;
+}
+.layout-tab-summary-buttons {
+	grid-area: buttons;
+}
+.layout-tab-summary-portrait {
+	//	//? Ensures that portait Images used retain the correct aspect ratio
+	//	width: 100%;
+	//	height: auto;
+	//	max-height: 300px;
+	//	object-fit: contain;
+	//? Styling for the portrait container
+	border: $border-style-solid;
+	border-radius: $border-radius;
+	//? grid area
+	grid-area: portrait;
+}
+.layout-tab-summary-prime {
+	border: $border-style-solid;
+	border-radius: $border-radius;
+	grid-area: prime;
+}
+.layout-tab-summary-gender {
+	border: $border-style-solid;
+	border-radius: $border-radius;
+	grid-area: gender;
+}
+.layout-tab-summary-entermeta {
+	border: $border-style-solid;
+	border-radius: $border-radius;
+	grid-area: entermeta;
+}
+.layout-tab-summary-physical {
+	border: $border-style-solid;
+	border-radius: $border-radius;
+	grid-area: physical;
+}
+.layout-tab-summary-narrator {
+	border: $border-style-solid;
+	border-radius: $border-radius;
+	grid-area: narrator;
+}
+.layout-tab-summary-actor {
+	border: $border-style-solid;
+	border-radius: $border-radius;
+	grid-area: actor;
+}
+.layout-tab-summary-saga {
+	border: $border-style-solid;
+	border-radius: $border-radius;
+	grid-area: saga;
+}
+.layout-tab-summary-coalition {
+	border: $border-style-solid;
+	border-radius: $border-radius;
+	grid-area: coalition;
+}
+.layout-tab-perks-container {
+	margin: $margin-sm;
+	padding: $padding-sm;
+	border: $border-style-solid;
+	border-radius: $border-radius;
+}
 .editor {
 	min-height: 80px;
 	height: auto;

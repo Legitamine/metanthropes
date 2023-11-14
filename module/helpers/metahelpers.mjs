@@ -226,6 +226,16 @@ export function metaLogDocument(app, buttons) {
 		});
 	}
 }
+
+/**
+ *
+ * Helper class to extend the FilePicker class for a custom MetaDialog usage
+ * Primarily we want to use this to render a 'select your portrait' dialog for the User
+ * Minimizing the additional functionality and controls that FilePicker provides
+ *
+ * @param {*} app
+ * @param {*} buttons
+ */
 export class metaFilePicker extends FilePicker {
 	/** @override */
 	constructor(options = {}) {

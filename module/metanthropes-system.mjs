@@ -33,6 +33,7 @@ import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
 import { MetaExecute } from "./helpers/metaexecute.mjs";
 import { metaMigrateData } from "./metanthropes/metamigration.mjs";
 import { metaLog, metaLogDocument } from "./helpers/metahelpers.mjs";
+//* Starting System
 //* Handlebars helpers
 //? Selected Helper
 //! Supposedly Foundry includes its own select helper, but I couldn't get it to work properly.
@@ -342,6 +343,9 @@ Hooks.once("ready", async function () {
 			path: "modules/coriolis-kbender-ai-art-pack/tokens",
 		});
 	}
+	//? Done Loading Metanthropes System
+	metaLog(3, "Finished Loading Metanthropes System");
+	game.togglePause(false);
 });
 //* Drag Ruler Integration
 Hooks.once("dragRuler.ready", (SpeedProvider) => {
