@@ -305,9 +305,24 @@
 			<div
 				data-tooltip="Cover offer a Character a chance for incoming attacks to hit the Cover instead of the Character">
 				Cover
-				<input name="system.physical.cover.value" type="number"
-					value="{{system.physical.cover.value}}" data-dtype="Number" placeholder="0" />%
 			</div>
+			{{#each system.physical.cover.types}}
+				<div>
+					<span data-tooltip="Click to Roll for {{this.label}} Cover"
+						data-tooltip-direction="UP" class="meta-cover-roll"
+						data-type="{{this.label}}"
+						data-cover-value="{{this.value}}">{{this.label}}</span>:
+					<select name="system.physical.cover.types.{{@key}}.value" type="number"
+						data-dtype="Number">
+						{{#each this.options as |option|}}
+							<option value="{{option}}"
+								{{#if (eq option ../this.value)}}selected{{/if}}>
+								{{option}}
+							</option>
+						{{/each}}
+					</select>%
+				</div>
+			{{/each}}
 		</div>
 	</div>
 </div>
@@ -386,9 +401,11 @@
 	<div class="meta-ui-responsive meta-ui-hide-at-minimum">
 		<div class="layout-container-outer-tabs style-container-outer-tabs">
 			<br><br>
+			<p>
 			<div class="resource-label">EFFECTS are not fully supported yet. Additional
 				functionality is available in Beta Testing
 			</div>
+			</p>
 		</div>
 	</div>
 {{/if}}

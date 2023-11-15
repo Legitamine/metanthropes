@@ -1,5 +1,5 @@
 //? Import Roll Handler
-import { HandleMetaRolls } from "../helpers/metarollhandler.mjs";
+import { HandleMetaRolls, handleCoverRolls } from "../helpers/metarollhandler.mjs";
 //? Import New Actor & Finalize Actor Logic
 import { NewActor, FinalizePremadeActor } from "../metanthropes/newactor.mjs";
 //? Import Progression Sheet
@@ -8,7 +8,6 @@ import { MetaStartProgression } from "../metanthropes/metaprogression.mjs";
 import { metaLog, metaHandleResize } from "../helpers/metahelpers.mjs";
 //? Import Active Effect helper
 import { prepareActiveEffectCategories, onManageActiveEffect } from "../metanthropes/metaeffects.mjs";
-
 /**
  * MetanthropesActorSheet - An Actor Sheet for Metanthropes actors.
  *
@@ -183,6 +182,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 		html.find(".change-actor-player").click(this._onChangeActorPlayer.bind(this));
 		//? Progression Form Button
 		html.find(".progression-form").click(this._onProgression.bind(this));
+		//? Roll Cover
+		html.find(".meta-cover-roll").click(this._onCoverRoll.bind(this));
 		//!? Drag events for macros !??
 		if (this.actor.isOwner) {
 			let handler = (ev) => this._onDragStart(ev);
@@ -610,5 +611,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 			metaLog(2, "MetanthropesActorSheet", "_onProgression", "ERROR:", error);
 			metaProgressionActor.setFlag("metanthropes-system", "Progression", { isProgressing: false });
 		}
+	}
+	async _onCoverRoll(event) {
+		handleCoverRolls(event, this);
 	}
 }

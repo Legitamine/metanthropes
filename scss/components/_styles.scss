@@ -379,6 +379,13 @@
 	padding: $padding-sm;
 	margin: $margin-sm;
 }
+.meta-cover-roll {
+	&:hover {
+		cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
+		color: $c-purple;
+		text-shadow: $s-outline;
+	}
+}
 .style-cs-rolls {
 	opacity: 1;
 	font-family: $font-primary;

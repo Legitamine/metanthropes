@@ -529,7 +529,7 @@ h3 {
 }
 .metanthropes .layout-container-physical {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 0.9fr 1.5fr 1fr;
   -moz-column-gap: 1px;
        column-gap: 1px;
   padding: 0px;
@@ -733,8 +733,8 @@ h3 {
   grid-area: coalition;
 }
 .metanthropes .layout-tab-perks-container {
-  margin: 1px;
-  padding: 1px;
+  margin: 3px;
+  padding: 3px;
   border: 1px solid #000;
   border-radius: 15px;
 }
@@ -1132,6 +1132,11 @@ h3 {
   align-self: center;
   padding: 1px;
   margin: 1px;
+}
+.metanthropes .meta-cover-roll:hover {
+  cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
+  color: #7d0f81;
+  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
 .metanthropes .style-cs-rolls {
   opacity: 1;

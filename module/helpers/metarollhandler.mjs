@@ -1,5 +1,6 @@
 import { MetaRoll } from "../metanthropes/metaroll.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
+import { CoverRoll } from "../helpers/extrasroll.mjs";
 /**
  * HandleMetaRolls - A utility function to handle various types of meta rolls for the Metanthropes system.
  *
@@ -80,4 +81,19 @@ export async function HandleMetaRolls(event, metaSheet, isCustomRoll = false) {
 	//? After doing a meta roll, re-render the actor or item sheet.
 	metaLog(3, "HandleMetaRolls", "Finished, re-rendering the actor/item sheet");
 	metaSheet.render(true);
+}
+
+export async function handleCoverRolls(event, metaSheet) {
+	event.preventDefault();
+	const element = event.currentTarget;
+	//? Disable the element for 3 seconds to prevent double-clicking
+	element.disabled = true;
+	setTimeout(() => {
+		element.disabled = false;
+	}, 3000);
+	const dataset = element.dataset;
+	const actor = metaSheet.actor;
+	const coverType = dataset.type;
+	const coverValue = parseInt(dataset.coverValue);
+	CoverRoll(actor, coverType, coverValue);
 }

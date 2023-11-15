@@ -129,7 +129,7 @@
 }
 .layout-container-physical {
 	display: grid;
-	grid-template-columns: 1fr 2fr 1fr;
+	grid-template-columns: 0.9fr 1.5fr 1fr;
 	column-gap: 1px;
 	padding: $padding-zero;
 	margin: $margin-zero;
@@ -348,8 +348,8 @@
 	grid-area: coalition;
 }
 .layout-tab-perks-container {
-	margin: $margin-sm;
-	padding: $padding-sm;
+	margin: $margin-md;
+	padding: $padding-md;
 	border: $border-style-solid;
 	border-radius: $border-radius;
 }

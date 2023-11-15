@@ -178,7 +178,33 @@
 						"label": "Cover",
 						"initial": 0,
 						"value": 0,
-						"max": 100
+						"max": 100,
+						"types": {
+							"cosmic": {
+								"type": "number",
+								"label": "Cosmic",
+								"value": 0,
+								"options": [0, 10, 25, 50, 75, 90]
+							},
+							"elemental": {
+								"type": "number",
+								"label": "Elemental",
+								"value": 0,
+								"options": [0, 10, 25, 50, 75, 90]
+							},
+							"material": {
+								"type": "number",
+								"label": "Material",
+								"value": 0,
+								"options": [0, 10, 25, 50, 75, 90]
+							},
+							"psychic": {
+								"type": "number",
+								"label": "Psychic",
+								"value": 0,
+								"options": [0, 10, 25, 50, 75, 90]
+							}
+						}
 					},
 					"Description": {
 						"type": "text",
