@@ -36,6 +36,7 @@ Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 -   Added support for 3rd party Module [Hide Player UI](https://foundryvtt.com/packages/hide-player-ui) to conseal UI elements not used by players, great for the New Player Experience
 -   Added a field called 'Permanent Effects' to Items (Metapowers/Possessions) to distinguish between activated Effects that show up in Chat and Permanent Effects that are always active. Renamed 'Effect Description' to just 'Effect'
 -   Added new fields to Items to indicate the VS Stat Roll, any Permanent Buffs and the Area Effect (Type). These will show when applicable in the Item Sheet and the Chat
+-   Duplicate Clones now behave properly when having multiple Duplicates from various Actors in a Combat Encounter. They will now be properly shorted at the end of each Combat Round, based on their Reflexes Score, with the ones that have higher Reflexes going first
 -   Gave the Narrator the ability to change an Actor's available Destiny on the fly, by changing the value in the Actor's sheet. Note that Destiny is awarded properly via the 'Narrator Toolkit' Macros and this is only meant to be used manually in special cases
 -   Changed the tooltip system to take advantage of Foundry's built-in tooltip system. This results in bigger tooltips that are faster to render and easier to read
 

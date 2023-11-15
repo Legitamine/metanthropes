@@ -242,15 +242,25 @@ export class metaFilePicker extends FilePicker {
 		super(options);
 		this.displayMode = options.displayMode || "tiles";
 	}
+	static get defaultOptions() {
+		return foundry.utils.mergeObject(super.defaultOptions, {
+			template: "systems/metanthropes-system/templates/metanthropes/filepicker.html",
+			classes: ["filepicker"],
+			width: 520,
+			tabs: [{ navSelector: ".tabs" }],
+			dragDrop: [{ dragSelector: ".file", dropSelector: ".filepicker-body" }],
+			tileSize: false,
+			filters: [{ inputSelector: 'input[name="filter"]', contentSelector: ".filepicker-body" }],
+		});
+	}
 	/** @override */
 	render(force, options) {
 		if (game.world && !game.user.can("FILES_BROWSE")) return this;
 		this.position.height = null;
 		//* Ensure the dialog is rendered above the MetaDialog
-		this.position.zIndex += 10;
-		metaLog(this);
+		const newZIndex = this.position.zIndex + 10;
 		this.element.css({ height: "" });
-		this.element.css({ zIndex: this.position.zIndex });
+		this.element.css({ zIndex: newZIndex });
 		this._tabs[0].active = this.activeSource;
 		if (!this._loaded) {
 			this.browse();

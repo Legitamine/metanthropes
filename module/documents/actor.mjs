@@ -64,6 +64,12 @@ export class MetanthropesActor extends Actor {
 		//todo need to review the rules for Duplicate cause right now all non Protagonist/Metanthrope Actors are not linked, and thus duplication is abit more complicated.
 		//todo need to confirm with the Composer how to proceed
 		//? Duplicate Self Metapower
+		//* We control Unique (linked/unlined) from here 
+		//* we can control token sizes, and along with newActor similar finishing touches,
+		//* control like splatter blood color, auras, visions and perhaps even more
+		//todo should make it so that if the Duplicate Self MP is active, then we do the Duplicate logic
+		//todo otherwise we should just leave the default 'Copy' logic that Foundry provides
+		//! need to revise with Actor v3 changes
 		if (data.type == "Protagonist" || data.type == "Metanthrope") {
 			if (!(data.name.includes("Copy") || data.name.includes("Duplicate"))) {
 				const hasmeta = data.hasEnterMeta;
@@ -119,7 +125,7 @@ export class MetanthropesActor extends Actor {
 			this.system.Vital.Life.Initial = 50;
 		}
 		//? for Protagonists set the metanthropes-logo as default icon for metapower, if no metapower is selected
-		if (this.type == "Protagonist") {
+		if (this.hasEnterMeta) {
 			if (!this.primeimg || this.primeimg == `systems/metanthropes-system/artwork/metanthropes-logo.webp`) {
 				metaLog(3, "MetanthropesActor", "prepareBaseData", "Updating Prime Metapower Image for:", this.name);
 				//? for Protagonists without a prime metapower defined, make it the metanthropes-logo

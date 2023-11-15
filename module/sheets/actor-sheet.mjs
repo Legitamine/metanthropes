@@ -5,7 +5,7 @@ import { NewActor, FinalizePremadeActor } from "../metanthropes/newactor.mjs";
 //? Import Progression Sheet
 import { MetaStartProgression } from "../metanthropes/metaprogression.mjs";
 //? Import helpers
-import { metaLog, metaHandleResize } from "../helpers/metahelpers.mjs";
+import { metaLog, metaFilePicker, metaHandleResize } from "../helpers/metahelpers.mjs";
 //? Import Active Effect helper
 import { prepareActiveEffectCategories, onManageActiveEffect } from "../metanthropes/metaeffects.mjs";
 /**
@@ -184,6 +184,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 		html.find(".progression-form").click(this._onProgression.bind(this));
 		//? Roll Cover
 		html.find(".meta-cover-roll").click(this._onCoverRoll.bind(this));
+		//? Change Portrait
+		html.find(".meta-change-portrait").click(this._onChangePortrait.bind(this));
 		//!? Drag events for macros !??
 		if (this.actor.isOwner) {
 			let handler = (ev) => this._onDragStart(ev);
@@ -614,5 +616,30 @@ export class MetanthropesActorSheet extends ActorSheet {
 	}
 	async _onCoverRoll(event) {
 		handleCoverRolls(event, this);
+	}
+	async _onChangePortrait(event) {
+		event.preventDefault();
+		//const options = this._getFilePickerOptions(event);
+		// const fp = new metaFilePicker({
+		const fp = new metaFilePicker({
+			resource: "data",
+			current: "systems/metanthropes-system/artwork/tokens/portraits/",
+			displayMode: "tiles",
+			callback: this._onSelectFile.bind(this),
+		});
+		this.filepickers.push(fp);
+		return fp.browse();
+	}
+	_getFilePickerOptions(event) {
+		const button = event.currentTarget;
+		const target = button.src;
+		const field = button.form[target] || null;
+		return {
+			field: field,
+			type: button.dataset.type,
+			current: field?.value ?? "",
+			button: button,
+			callback: this._onSelectFile.bind(this),
+		};
 	}
 }

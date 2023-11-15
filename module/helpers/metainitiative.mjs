@@ -66,10 +66,16 @@ export async function MetaInitiative(combatant) {
 		await MetaRoll(actor, action, initiativeStatRolled);
 		initiativeResult = await actor.getFlag("metanthropes-system", "lastrolled").Initiative;
 	} else {
-		initiativeResult = -11;
+		//? We account for multiple Duplicates from various Actors, to ensure proper order based on their Reflexes score
+		const initiativeStatScore = initiativeStats[0].score;
+		let normalizedScore = initiativeStatScore > 500 ? 100 : initiativeStatScore / 5;
+		const decimalPart = (100 - normalizedScore).toString().padStart(2, "0");
+		initiativeResult = parseFloat(`-11.${decimalPart}`);
+		await actor.setFlag("metanthropes-system", "lastrolled", { Initiative: initiativeResult });
 	}
 	//todo add Metapowers that affect Initiative results
 	//? Update the combatant with the new initiative score
+	//! Is this triggering the errors?! Do I need it here??!
 	await combatant.update({ initiative: initiativeResult });
 	metaLog(
 		3,
