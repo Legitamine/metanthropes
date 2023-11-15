@@ -101,6 +101,23 @@ h3 {
   text-align: center;
 }
 
+.chat-message .table-draw .table-results .table-result img.result-image {
+  width: 100%;
+  max-height: 150px;
+  height: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border: none;
+  align-self: center;
+  text-align: center;
+  margin: 1px;
+  padding: 1px;
+}
+
+.chat-message .table-draw .table-results .table-result {
+  flex-direction: column;
+}
+
 .window-app {
   font-family: "nasalization", sans-serif;
   margin: 1px;
@@ -1198,9 +1215,7 @@ h3 {
   color: #000;
   padding: 3px;
   margin: 3px;
-  border: 1px solid #000;
-  border-radius: 15px;
-  min-height: 50px;
+  min-height: 70px;
   height: auto;
   max-height: 800px;
   overflow-y: auto;
@@ -1212,6 +1227,34 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.metanthropes .style-tab-header-logo {
+  max-height: 85px;
+  width: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border: none;
+  border-radius: 50%;
+}
+.metanthropes .style-tab-header-portrait {
+  max-height: 85px;
+  width: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border: none;
+  border-radius: 15px;
+}
+.metanthropes .style-tab-summary-portrait {
+  max-height: 300px;
+  width: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border: none;
+  border-radius: 15px;
+  transition: transform 1s ease-in-out 1s;
+}
+.metanthropes .style-tab-summary-portrait:hover {
+  transform: scale(2);
 }
 .metanthropes .items-header {
   margin: 1px;
