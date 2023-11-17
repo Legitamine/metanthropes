@@ -389,3 +389,10 @@
 .perk-item .resource-label {
 	margin-right: 10px;
 }
+
+.layout-tab-summary-portrait-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}

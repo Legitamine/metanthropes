@@ -770,6 +770,12 @@ h3 {
 .metanthropes .perk-item .resource-label {
   margin-right: 10px;
 }
+.metanthropes .layout-tab-summary-portrait-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .metanthropes .style-container-outer-charstats {
   opacity: 1;
   justify-content: center;
@@ -1256,10 +1262,18 @@ h3 {
      object-fit: contain;
   border: none;
   border-radius: 15px;
-  transition: transform 1s ease-in-out 1s;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
 }
 .metanthropes .style-tab-summary-portrait:hover {
   transform: scale(2);
+}
+.metanthropes .style-dialog-portrait {
+  max-height: 300px;
+  width: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border: none;
+  border-radius: 15px;
 }
 .metanthropes .items-header {
   margin: 1px;

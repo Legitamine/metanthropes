@@ -70,8 +70,11 @@
 	{{! -- Portrait Image Section --}}
 	<div class="layout-tab-summary-portrait meta-ui-responsive meta-ui-hide-at-medium">
 		<div class="layout-container-summary">
-			<img src="{{actor.img}}" data-tooltip="Change {{actor.name}}'s Portrait Image" alt="{{actor.name}}'s Portrait Image"
-				class="style-tab-summary-portrait meta-change-portrait" />
+			<div class="layout-tab-summary-portrait-container">
+				<img src="{{actor.img}}" data-tooltip="Change {{actor.name}}'s Portrait Image"
+					alt="{{actor.name}}'s Portrait Image"
+					class="style-tab-summary-portrait meta-change-portrait" />
+			</div>
 		</div>
 	</div>
 	{{! -- Gender Section --}}
@@ -93,7 +96,8 @@
 	</div>
 	{{! -- Enter Meta Section --}}
 	{{#if actor.hasEnterMeta}}
-		<div class="layout-container-summary layout-tab-summary-entermeta style-container-summary meta-ui-responsive meta-ui-hide-at-medium">
+		<div
+			class="layout-container-summary layout-tab-summary-entermeta style-container-summary meta-ui-responsive meta-ui-hide-at-medium">
 			<div class="resource-label">Narrator: <span
 					class="resource">{{system.entermeta.narrator.value}}</span>
 			</div>

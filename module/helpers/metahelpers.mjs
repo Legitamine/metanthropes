@@ -258,13 +258,44 @@ export class metaFilePicker extends FilePicker {
 		if (game.world && !game.user.can("FILES_BROWSE")) return this;
 		this.position.height = null;
 		//* Ensure the dialog is rendered above the MetaDialog
-		const newZIndex = this.position.zIndex + 10;
+		const newZIndex = this.position.zIndex + 100;
 		this.element.css({ height: "" });
 		this.element.css({ zIndex: newZIndex });
+		//! which one works?
+		this.position.zIndex = newZIndex;
 		this._tabs[0].active = this.activeSource;
 		if (!this._loaded) {
 			this.browse();
 			return this;
 		} else return super.render(force, options);
+	}
+	//* custom function to be called via the New Actor/Finalize process
+	//todo this is similar to actor-sheet function, should consolidate
+	async onSelectPortrait(selection, actorUuid) {
+		metaLog(1, "MetaDialog", "FilePicker Selection:", selection, "actor:", actorUuid);
+		const actor = await fromUuid(actorUuid);
+		metaLog(1, "MetaDialog", "this, Actor:", this, actor);
+		const path = selection;
+		//? Update the Actor image + Prototype token image
+		//todo need to evaluate how this works with non-linked tokens & actors
+		await actor.update({ img: path });
+		const prototype = actor.prototypeToken || false;
+		if (prototype) {
+			await actor.update({ "prototypeToken.texture.src": path });
+		}
+		//? Update Iterate over all scenes
+		for (const scene of game.scenes) {
+			let tokensToUpdate = [];
+			//? Find tokens that represent the actor
+			for (const token of scene.tokens.contents) {
+				if (token.actorId === actor.id) {
+					tokensToUpdate.push({ _id: token.id, "texture.src": path });
+				}
+			}
+			//? Update the token images
+			if (tokensToUpdate.length > 0) {
+				await scene.updateEmbeddedDocuments("Token", tokensToUpdate);
+			}
+		}
 	}
 }

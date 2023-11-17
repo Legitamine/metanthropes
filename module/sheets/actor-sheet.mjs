@@ -19,15 +19,10 @@ import { prepareActiveEffectCategories, onManageActiveEffect } from "../metanthr
  */
 export class MetanthropesActorSheet extends ActorSheet {
 	/** @override */
-	// constructor(options = {}) {
-	// 	super(options);
-	// 	//? Debounce the resizing of the sheet to allow for responsive UI changes to kick-in real-time
-	// 	this.throttledResize = foundry.utils.debounce(this._onResize.bind(this), 200);
-	// }
-	/** @override */
 	//todo Decide on the opening tab
 	static get defaultOptions() {
-		return mergeObject(super.defaultOptions, {
+		const options = super.defaultOptions;
+		return mergeObject(options, {
 			id: "metanthropes-actor-sheet",
 			classes: ["metanthropes", "sheet", "actor"], //? these are custom css classes that are used in the html file
 			width: 1012,
@@ -95,12 +90,9 @@ export class MetanthropesActorSheet extends ActorSheet {
 		context.isNarrator = game.user.isGM;
 		//? Add the actor's active effects to the context for easier access.
 		if (context.betaTesting) context.effects = prepareActiveEffectCategories(this.actor.effects);
-		//todo I would like to refresh the sheet after getting all the data
-		//? Trigger a resize event
-		//! the below kinda worked
-		//	const resizeElement = this.element[0];
-		//	this._onResize(null, resizeElement);
-		metaLog(3, "MetanthropesActorSheet getData results", "this, context, options", this, context, options);
+		//? Change the default Tab to Summary for Narrators opening up Premade Actors
+		if (game.user.isGM && this.actor.isPremade) this._tabs[0].active = "cs-summary";
+		metaLog(3, "MetanthropesActorSheet", "getData", "this, context, options", this, context, options);
 		return context;
 	}
 	//* Prepare items
@@ -619,8 +611,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 	}
 	async _onChangePortrait(event) {
 		event.preventDefault();
-		//const options = this._getFilePickerOptions(event);
-		// const fp = new metaFilePicker({
 		const fp = new metaFilePicker({
 			resource: "data",
 			current: "systems/metanthropes-system/artwork/tokens/portraits/",
@@ -630,16 +620,29 @@ export class MetanthropesActorSheet extends ActorSheet {
 		this.filepickers.push(fp);
 		return fp.browse();
 	}
-	_getFilePickerOptions(event) {
-		const button = event.currentTarget;
-		const target = button.src;
-		const field = button.form[target] || null;
-		return {
-			field: field,
-			type: button.dataset.type,
-			current: field?.value ?? "",
-			button: button,
-			callback: this._onSelectFile.bind(this),
-		};
+	async _onSelectFile(selection, filePicker) {
+		const actor = this.actor;
+		const path = selection;
+		//? Update the Actor image + Prototype token image
+		//todo need to evaluate how this works with non-linked tokens & actors
+		await actor.update({ img: path });
+		const prototype = actor.prototypeToken || false;
+		if (prototype) {
+			await actor.update({ "prototypeToken.texture.src": path });
+		}
+		//? Update Iterate over all scenes
+		for (const scene of game.scenes) {
+			let tokensToUpdate = [];
+			//? Find tokens that represent the actor
+			for (const token of scene.tokens.contents) {
+				if (token.actorId === actor.id) {
+					tokensToUpdate.push({ _id: token.id, "texture.src": path });
+				}
+			}
+			//? Update the token images
+			if (tokensToUpdate.length > 0) {
+				await scene.updateEmbeddedDocuments("Token", tokensToUpdate);
+			}
+		}
 	}
 }

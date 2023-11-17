@@ -1,14 +1,14 @@
 <form class="standard-form {{ cssClass }}" autocomplete="off" enctype="multipart/form-data">
 	<header class="filepicker-header">
 
-
+{{#if user.isGM}}
 		<nav class="tabs" aria-role="{{localize 'SHEETS.FormNavLabel'}}">
 			{{#each sources as |source id|}}
 				<a class="item" data-tab="{{id}}"><i class="{{source.icon}}"></i>
 					{{source.label}}</a>
 			{{/each}}
 		</nav>
-
+{{/if}}
 		<div class="form-group current-dir">
 			<button type="button" class="back" data-action="back" {{#unless canGoBack}}disabled{{/unless}}>
 				<i class="fas fa-level-up-alt fa-flip-horizontal fa-fw"></i>
@@ -26,8 +26,8 @@
 				title="{{ localize "FILES.TogglePrivacy" }}">
 				<i class="fas fa-eye-slash"></i>
 			</button>
-
 		</div>
+{{#if user.isGM}}
 		<div class="form-group favorites">
 			<div class="label">
 				<span>{{ localize "FILES.FavoritesLabel" }} </span>
@@ -66,7 +66,7 @@
 			<label>{{ localize "FILES.FilterLabel" }}</label>
 			<input type="search" name="filter" placeholder="{{ localize "FILES.Search" }}">
 		</div>
-
+{{/if}}
 		<div class="form-group">
 			<label>{{ localize "FILES.DisplayMode" }}</label>
 			<div class="form-fields display-modes">
