@@ -5,15 +5,20 @@
 				src="systems/metanthropes-system/artwork/Meta-Avatar-Rotating.gif"
 				alt="Metanthropes RPG" data-tooltip="Metanthropes RPG {{actor.type}}" />
 		</div>
-		{{#if system.metaowner.value}}
-			<div class="layout-container-actorinfo-details">
-				<div class="style-actorinfo-tier3">
-					Player
-				</div>
-				<div class="style-actorinfo-tier2">
-					{{system.metaowner.value}}
-				</div>
+		<div class="layout-container-actorinfo-details">
+			<div class="style-actorinfo-tier3">
+				Player
 			</div>
+			<div class="style-actorinfo-tier2">
+				{{system.metaowner.value}}
+			</div>
+		</div>
+		{{#if actor.isNewActor}}
+			<div>
+				<button class="new-actor" data-tooltip="Roll New {{actor.type}}">Roll New
+					{{actor.type}}</button>
+			</div>
+		{{else}}
 			<div class="layout-container-actorinfo-details">
 				<div class="style-actorinfo-tier2">
 					{{actor.type}} ({{system.humanoids.genderpronoun.value}})
@@ -22,25 +27,18 @@
 					{{actor.name}}
 				</div>
 			</div>
-			<div class="layout-container-actorinfo-details">
-				<img class="style-tab-header-portrait" src="{{actor.img}}" alt="{{actor.name}}'s Portrait Image"
-					data-tooltip="{{actor.name}}" />
-				{{#if system.entermeta}}
-					<img class="style-tab-header-portrait" src="{{actor.primeimg}}"
-						alt="{{system.entermeta.primemetapower.value}}"
-						data-tooltip="Prime Ⓜ️ Metapower: {{system.entermeta.primemetapower.value}}" />
-				{{/if}}
-			</div>
-			<div class="meta-ui-responsive meta-ui-hide-at-medium">
-			</div>
-		{{else}}
-			<div></div>
-			<div>
-				<button class="new-actor" data-tooltip="Roll New {{actor.type}}">Roll New
-					{{actor.type}}</button>
-			</div>
-			<div></div>
 		{{/if}}
+		<div class="layout-container-actorinfo-details">
+			<img class="style-tab-header-portrait" src="{{actor.img}}" alt="{{actor.name}}'s Portrait Image"
+				data-tooltip="{{actor.name}}" />
+		</div>
+		<div>
+			{{#if system.entermeta}}
+				<img class="style-tab-header-portrait" src="{{actor.primeimg}}"
+					alt="{{system.entermeta.primemetapower.value}}"
+					data-tooltip="Prime Ⓜ️ Metapower: {{system.entermeta.primemetapower.value}}" />
+			{{/if}}
+		</div>
 	</div>
 	<div class="layout-container-vitals style-container-vitals">
 		<div>

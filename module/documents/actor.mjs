@@ -633,6 +633,18 @@ export class MetanthropesActor extends Actor {
 	get isPremade() {
 		return Boolean(this.name.includes("Premade") || this.name.includes(this.type));
 	}
+	get isNewActor() {
+		if (this.type === "Vehicle" && this.name.includes("New Actor")) return true;
+		if (!this.hasCharacteristics) return false;
+		const charBody = this.system.Characteristics.Body;
+		const charMind = this.system.Characteristics.Mind;
+		const charSoul = this.system.Characteristics.Soul;
+		const charBodyStatValues = charBody.Stats.Power.Initial + charBody.Stats.Reflexes.Initial + charBody.Stats.Endurance.Initial;
+		const charMindStatValues = charMind.Stats.Creativity.Initial + charMind.Stats.Perception.Initial + charMind.Stats.Manipulation.Initial;
+		const charSoulStatValues = charSoul.Stats.Consciousness.Initial + charSoul.Stats.Willpower.Initial + charSoul.Stats.Awareness.Initial;
+		const charStatValues = charBodyStatValues + charMindStatValues + charSoulStatValues;
+		return Boolean(this.name.includes("New Actor") || charStatValues <= 20);
+	}
 	get isDuplicate() {
 		return Boolean(this.name.includes("Duplicate"));
 	}

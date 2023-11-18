@@ -539,7 +539,7 @@ h3 {
 }
 .metanthropes .layout-container-actorinfo {
   display: grid;
-  grid-template-columns: 0.4fr 0.7fr 1.6fr 1fr 0.4fr;
+  grid-template-columns: 0.4fr 0.7fr 1.7fr 0.5fr 0.8fr;
   -moz-column-gap: 1px;
        column-gap: 1px;
   padding: 1px;
@@ -1245,6 +1245,7 @@ h3 {
   -o-object-fit: contain;
      object-fit: contain;
   border: none;
+  scale: 1;
   border-radius: 50%;
 }
 .metanthropes .style-tab-header-portrait {

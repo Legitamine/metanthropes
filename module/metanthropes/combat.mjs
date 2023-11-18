@@ -14,9 +14,6 @@ export class MetanthropesCombat extends Combat {
 		super.prepareDerivedData();
 		let cycle = this.getFlag("metanthropes-system", "cycle") || 1;
 		let cycleRound = this.getFlag("metanthropes-system", "cycleRound") || 1;
-		//? set the flags to be used later
-		this.setFlag("metanthropes-system", "cycle", cycle);
-		this.setFlag("metanthropes-system", "cycleRound", cycleRound);
 		//? embed the Cycle and Round values into the Combat document for use in the Combat Tracker
 		this.cycle = cycle;
 		this.cycleRound = cycleRound;
@@ -208,8 +205,8 @@ export class MetanthropesCombat extends Combat {
 		}
 		//* Update the Cycle and Round values
 		//? Get the most recent Cycle and Round values from the Combat document
-		let cycle = await this.getFlag("metanthropes-system", "cycle");
-		let cycleRound = await this.getFlag("metanthropes-system", "cycleRound");
+		let cycle = await this.getFlag("metanthropes-system", "cycle") || 1;
+		let cycleRound = await this.getFlag("metanthropes-system", "cycleRound") || 1;
 		switch (this.round) {
 			case 1:
 				cycle = 1;
@@ -241,7 +238,7 @@ export class MetanthropesCombat extends Combat {
 			await this.resetAll();
 			this.setupTurns();
 			await ChatMessage.create({
-				content: `<br><br>New Cycle: ${cycle} Round: ${cycleRound}<br><br>Roll Inititiative!<br>`,
+				content: `<br>New Cycle: ${cycle} Round: ${cycleRound}<br><br>Roll Inititiative!<br><br>`,
 				speaker: {
 					alias: "Metanthropes Combat",
 				},
@@ -249,7 +246,7 @@ export class MetanthropesCombat extends Combat {
 		} else {
 			//? Create a chat message indicating the new Round
 			await ChatMessage.create({
-				content: `<br><br>Cycle: ${cycle} Round: ${cycleRound}<br>`,
+				content: `<br>Cycle: ${cycle} Round: ${cycleRound}<br><br>`,
 				speaker: {
 					alias: "Metanthropes Combat",
 				},

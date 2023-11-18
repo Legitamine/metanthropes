@@ -438,10 +438,8 @@ Hooks.on("createActor", async (actor) => {
 		if (strikeEntry) {
 			const strikeItem = await possessionCompendium.getDocument(strikeEntry._id);
 			await actor.createEmbeddedDocuments("Item", [strikeItem]);
-			metaLog(1, "New Actor Event Listener", "Gave 'Strike' to:", actor.name);
-			metaLog(1, "New Actor Event Listener", "strikeItem, strikeEntry", strikeItem, strikeEntry);
+			metaLog(3, "New Actor Event Listener", "Gave 'Strike' to:", actor.name);
 		}
-		metaLog(3, "New Actor Event Listener", "Gave 'Strike' to:", actor.name);
 	}
 	//* Duplicate Self Metapower - Remove Items from Duplicates
 	if (actor.name.includes("Duplicate")) {

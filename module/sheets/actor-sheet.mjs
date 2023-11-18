@@ -616,6 +616,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 			current: "systems/metanthropes-system/artwork/tokens/portraits/",
 			displayMode: "tiles",
 			callback: this._onSelectFile.bind(this),
+			filter: "portrait",
+			allowUpload: false,
 		});
 		this.filepickers.push(fp);
 		return fp.browse();
@@ -628,7 +630,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 		await actor.update({ img: path });
 		const prototype = actor.prototypeToken || false;
 		if (prototype) {
-			await actor.update({ "prototypeToken.texture.src": path });
+			const tokenImage = path.replace(/-portrait\.webp$/, "-token.webp");
+			await actor.update({ "prototypeToken.texture.src": tokenImage });
 		}
 		//? Update Iterate over all scenes
 		for (const scene of game.scenes) {
@@ -636,7 +639,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			//? Find tokens that represent the actor
 			for (const token of scene.tokens.contents) {
 				if (token.actorId === actor.id) {
-					tokensToUpdate.push({ _id: token.id, "texture.src": path });
+					tokensToUpdate.push({ _id: token.id, "texture.src": tokenImage });
 				}
 			}
 			//? Update the token images
