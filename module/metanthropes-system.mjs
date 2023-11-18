@@ -457,7 +457,8 @@ Hooks.on("createActor", async (actor) => {
 		metaLog(3, "New Actor Event Listener", "Removed Effects from Duplicate", actor.name);
 	}
 });
-// from TyphonJS (Michael) on Discord
-// In system entry point. You may have to get specific for particular sheets as some don't invoke hooks for the whole hierarchy.
+//* Hook to add header buttons on the Actor and Item sheets
+//? from TyphonJS (Michael) on Discord
+//? In system entry point. You may have to get specific for particular sheets as some don't invoke hooks for the whole hierarchy.
 Hooks.on(`getActorSheetHeaderButtons`, metaLogDocument);
 Hooks.on(`getItemSheetHeaderButtons`, metaLogDocument);

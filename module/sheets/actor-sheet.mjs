@@ -5,9 +5,11 @@ import { NewActor, FinalizePremadeActor } from "../metanthropes/newactor.mjs";
 //? Import Progression Sheet
 import { MetaStartProgression } from "../metanthropes/metaprogression.mjs";
 //? Import helpers
-import { metaLog, metaFilePicker, metaHandleResize } from "../helpers/metahelpers.mjs";
+import { metaLog, metaHandleResize } from "../helpers/metahelpers.mjs";
 //? Import Active Effect helper
 import { prepareActiveEffectCategories, onManageActiveEffect } from "../metanthropes/metaeffects.mjs";
+//? Import Custom Classes
+import { metaFilePicker } from "../metanthropes/metaclasses.mjs";
 /**
  * MetanthropesActorSheet - An Actor Sheet for Metanthropes actors.
  *

@@ -4,9 +4,9 @@ import { metaLog } from "../helpers/metahelpers.mjs";
 /**
  * Metanthropes Combat Class
  * Extends the base Combat class to implement additional Metanthropes-specific Combat features
- * 
+ *
  * @extends {Combat}
- * 
+ *
  */
 export class MetanthropesCombat extends Combat {
 	//? adding the concept of Cycles & Rounds to the Combat system
@@ -161,8 +161,7 @@ export class MetanthropesCombat extends Combat {
 				let fatigueEffect = "";
 				switch (fatigueLevel) {
 					case 1:
-						fatigueEffect =
-							"You are tired, you cannot attempt any Focused Actions until you rest.";
+						fatigueEffect = "You are tired, you cannot attempt any Focused Actions until you rest.";
 						break;
 					case 2:
 						fatigueEffect =
@@ -205,8 +204,8 @@ export class MetanthropesCombat extends Combat {
 		}
 		//* Update the Cycle and Round values
 		//? Get the most recent Cycle and Round values from the Combat document
-		let cycle = await this.getFlag("metanthropes-system", "cycle") || 1;
-		let cycleRound = await this.getFlag("metanthropes-system", "cycleRound") || 1;
+		let cycle = (await this.getFlag("metanthropes-system", "cycle")) || 1;
+		let cycleRound = (await this.getFlag("metanthropes-system", "cycleRound")) || 1;
 		switch (this.round) {
 			case 1:
 				cycle = 1;
@@ -254,5 +253,54 @@ export class MetanthropesCombat extends Combat {
 		}
 		metaLog(3, "Combat", "nextRound", "Finished");
 		return this;
+	}
+	/**
+	 * Show a chat message when Combat Begins
+	 * Also ensures that all Combatants have rolled for initiative before starting the Encounter
+	 *
+	 * @override
+	 *
+	 * @returns {Promise<Combat>}
+	 */
+	async startCombat() {
+		//? Check if all combatants have an initiative value
+		for (let combatant of this.combatants) {
+			if (combatant.initiative === null || combatant.initiative === undefined) {
+				ui.notifications.warn(
+					"All combatants must have rolled for Initiative before starting Combat Encounter!"
+				);
+				return;
+			}
+		}
+		await ChatMessage.create({
+			content: `<br>Combat Encounter Begins!<br><br>`,
+			speaker: { alias: "Metanthropes Combat" },
+		});
+		return super.startCombat();
+	}
+	/**
+	 * Show a chat message when Combat Ends
+	 *
+	 * @override
+	 *
+	 * @returns {Promise<Combat>}
+	 */
+	async endCombat() {
+		return Dialog.confirm({
+			title: game.i18n.localize("COMBAT.EndTitle"),
+			content: `<p>${game.i18n.localize("COMBAT.EndConfirmation")}</p>`,
+			yes: async () => {
+				const combatCycle = await this.getFlag("metanthropes-system", "cycle");
+				const combatRound = await this.getFlag("metanthropes-system", "cycleRound");
+				const combatCycleMessage = `${combatCycle} Cycle${combatCycle === 1 ? "" : "s"}`;
+				const combatRoundMessage = `${combatRound} Round${combatRound === 1 ? "" : "s"}`;
+				await ChatMessage.create({
+					content: `<br>Combat Encounter Ended after ${combatCycleMessage} and ${combatRoundMessage}!<br><br>`,
+					speaker: { alias: "Metanthropes Combat" },
+				});
+				//? End the combat
+				this.delete();
+			},
+		});
 	}
 }

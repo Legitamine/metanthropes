@@ -14,7 +14,7 @@ Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 -   New Console Logging functionality: Added a new setting that can be found in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Advanced Logging' feature. This becomes handy, if you encounter a bug, to collect more information that will assist us in troubleshooting. This setting also enables a new icon on the Actor and Item sheets that outputs the document to the Console. This feature is turned off by default
 -   Added the 'Narrator Toolkit' Compendium, a collection of Macros designed to help the Narrator with the game flow and automate the End of Scene/Session/Arc player awards. Two utilities to help you manage your Protagonists' Details and Stats also exist. You can find it in the Compendiums Tab of the Sidebar - available for Narrators and Assistants only
 -   Added 'Reduction' to the Custom Roll dialog, when Right Clicking on an Item Roll. This integrates with the existing automations when Rolling and will show the effects on the Chat. This acts as a placeholder for the upcoming Aiming & Targeting system
--   Added the 'Random Location' Roll Table to be able to quickly roll a random location on the body. This is a placeholder for the upcoming Aiming & Targeting system
+-   Added the 'Humanoid Hit Location' Rollable Table to be able to quickly roll for a random location on the human body. This is a placeholder for the upcoming Aiming & Targeting system
 -   Added the Cover Roll by clicking on any of the 4 Cover Types under the new Effects Tab. This is a random d100 roll that you can spend Destiny to reroll. This is a placeholder for the upcoming Aiming & Targeting system
 -   Added automation for the Bleeding Core Condition. During Combat, if an Actor has the Bleeding Condition, they will now automatically lose 1 Life per Level of Bleeding, at the end of each Combat Round
 -   Added automation for the Hunger Core Condition. Every time the Actor attempts a roll, they will now first have to overcome a Hunger Check. If they fail, their action is canceled and they can spend Destiny to reroll the Hunger Check until they succeed. Once they do, ther initial attempted action will resume execution
@@ -39,17 +39,18 @@ Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 -   Duplicate Clones now behave properly when having multiple Duplicates from various Actors in a Combat Encounter. They will now be properly shorted at the end of each Combat Round, based on their Reflexes Score, with the ones that have higher Reflexes going first
 -   Gave the Narrator the ability to change an Actor's available Destiny on the fly, by changing the value in the Actor's sheet. Note that Destiny is awarded properly via the 'Narrator Toolkit' Macros and this is only meant to be used manually in special cases
 -   Changed the tooltip system to take advantage of Foundry's built-in tooltip system. This results in bigger tooltips that are faster to render and easier to read
+-   Added Chat Messages for Starting and Ending a Combat Encounter, as well as at the start of each Combat Round. Additionally, we don't allow an Encounter to start if there are Combatants that haven't rolled their Initiative yet
 
 ### Fixed:
 
 -   Fixed various minor issues and optimized the code for better performance and error handling
 -   Fixed Pain Condition to only change your result to Failure if it is greater than your Levels of Success. Previously it would also give you Levels of Failure, which was not intended
 -   Fixed an issue that was causing d10 rolls to explode on 1's and 2's when it was not intended to do so
+-   Fixed an issue that caused non-Narrator players to see 3 Error Notifications saying something similar to: 'Player cannot update the combat document', every time a new Combat Encounter started
 
 ### Known Issues:
 
 -   Adding a new Item (Metapower, Possession) to an Actor, will hide the Stat Scores on the Item pages. This is a visual bug and to fix, either make any roll with the Actor, or change the Actor Sheet size via the icons on the header, or close and re-open the Sheet
--   When a new Combat Encounter begins, players see 3 Error Notifications saying something similar to: 'Player cannot update the combat document'. This issue is not affecting the gameplay and can be safely ignored. We are investigating the root cause and will be addressing this in a future release
 -   Resizing the Actor Sheet manually, is not a real-time effect and needs a second after releasing the resize control to change the UI. We'd like to make it real-time in the future, after we investigate the performance impact this change would have
 
 ### Deprecated:

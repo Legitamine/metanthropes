@@ -259,6 +259,14 @@ export async function HungerReRoll(event) {
 	}
 }
 
+/**
+ * CoverRoll handles the rolling a simple d100 to check if the actor can find Cover.
+ * 
+ * @param {*} actor 
+ * @param {*} coverType 
+ * @param {*} coverValue 
+ * @returns 
+ */
 export async function CoverRoll(actor, coverType, coverValue) {
 	let coverMessage = null;
 	let coverTarget = null;
@@ -303,6 +311,11 @@ export async function CoverRoll(actor, coverType, coverValue) {
 	});
 }
 
+/**
+ * Cover ReRoll
+ * 
+ * @param {*} event 
+ */
 export async function CoverReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
