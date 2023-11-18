@@ -121,7 +121,7 @@ export class MetanthropesActor extends Actor {
 		//* Data modifications in this step occur before processing embedded
 		//* documents or derived data.
 		//? Setting Humans to have starting life of 50 instead of 100
-		if (this.type == "Human") {
+		if (this.type === "Human") {
 			this.system.Vital.Life.Initial = 50;
 		}
 		//? for Protagonists set the metanthropes-logo as default icon for metapower, if no metapower is selected
@@ -622,7 +622,7 @@ export class MetanthropesActor extends Actor {
 		return Boolean(this.system.Perks);
 	}
 	get hasEnterMeta() {
-		return Boolean(this.system.entermeta);
+		return Boolean(this.system.entermeta && this.system.entermeta.primemetapower);
 	}
 	get hasPossessions() {
 		return !["Animal", "MetaTherion", "Animated-Plant"].includes(this.type);

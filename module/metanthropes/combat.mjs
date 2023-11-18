@@ -75,8 +75,71 @@ export class MetanthropesCombat extends Combat {
 		await this.updateEmbeddedDocuments("Combatant", updates);
 		return this;
 	}
+	/**
+	 * Return to the previous turn in the turn order
+	 * Checks to see if the combat has been started before reversing the turn
+	 *
+	 * @override
+	 *
+	 * @returns {Promise<Combat>}
+	 */
+	async previousTurn() {
+		metaLog(3, "Combat", "previousTurn", "Engaged");
+		if (!this.started)
+			return ui.notifications.warn("You must begin the encounter before reversing to previous turn!");
+		super.previousTurn();
+	}
+	/**
+	 * Advance the combat to the next turn
+	 * Checks to see if the combat has been started before advancing the turn
+	 *
+	 * @override
+	 *
+	 * @returns {Promise<Combat>}
+	 */
+	async nextTurn() {
+		if (!this.started) return ui.notifications.warn("You must begin the encounter before progressing the turn!");
+		if (this.cycleRound === 1) {
+			//? Check if all combatants have an initiative value
+			for (let combatant of this.combatants) {
+				if (combatant.initiative === null || combatant.initiative === undefined) {
+					ui.notifications.warn(
+						"All combatants must have rolled for Initiative before progressing the Turn!"
+					);
+					return;
+				}
+			}
+		}
+		super.nextTurn();
+	}
+	/**
+	 * Return to the previous Round in the combat encounter
+	 * Checks to see if the combat has been started before reversing the Round
+	 * todo: need to review the Cycle / Round assignment when reversing
+	 * 
+	 * @override
+	 * 
+	 * @returns {Promise<Combat>}
+	 */
+	async previousRound() {
+		metaLog(3, "Combat", "previousRound", "Engaged");
+		if (!this.started)
+			return ui.notifications.warn("You must begin the encounter before reversing to previous Round!");
+		super.previousRound();
+	}
+	/**
+	 * Previous Round reverts the combat to a previous round
+	 * todo: need to review the Cycle / Round assignment when reversing
+	 * Checks to see if the combat has been started before reversing the Round
+	 *
+	 * @override
+	 *
+	 * @returns {Promise<Combat>}
+	 */
 	async nextRound() {
 		metaLog(3, "Combat", "nextRound", "Engaged");
+		if (!this.started)
+			return ui.notifications.warn("You must begin the encounter before progressing to the next Round!");
 		await super.nextRound();
 		//* End of Round Effects
 		//? Iterate over Combatants
@@ -263,6 +326,8 @@ export class MetanthropesCombat extends Combat {
 	 * @returns {Promise<Combat>}
 	 */
 	async startCombat() {
+		//? Check if Combat is already active
+		if (this.started) return ui.notifications.warn("Combat Encounter has already started!");
 		//? Check if all combatants have an initiative value
 		for (let combatant of this.combatants) {
 			if (combatant.initiative === null || combatant.initiative === undefined) {
