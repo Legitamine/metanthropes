@@ -157,3 +157,24 @@ h3 {
 .far.fa-dice-d20:before {
 	content: "\f6cd";
 }
+//override filepicker list defaults
+.filepicker .tiles-list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	width: 508px;
+}
+.filepicker .tiles-list li {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 167px;
+	height: 290px;
+}
+.filepicker .tiles-list li img {
+	transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+	&:hover {
+		//overflow: visible;
+		//overflow-clip-margin: 50px;
+		transform: scale(1.8) translateY(40px);
+	}
+}

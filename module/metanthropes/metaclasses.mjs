@@ -38,6 +38,8 @@ export class metaFilePicker extends FilePicker {
 		this._tabs[0].active = this.activeSource;
 		if (!this._loaded) {
 			this.browse();
+			//? Bring to the Top
+			this.bringToTop();
 			return this;
 		} else return super.render(force, options);
 	}
@@ -73,9 +75,9 @@ export class metaFilePicker extends FilePicker {
 /**
  * The MetaDialog class is a custom Dialog that ensures it's always displayed over the Actor Sheet
  * It also removes the Close button and the ability to press Escape to close the dialog
- * 
+ *
  * @extends {Dialog}
- * 
+ *
  */
 export class MetaDialog extends Dialog {
 	/**

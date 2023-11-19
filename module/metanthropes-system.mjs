@@ -5,7 +5,7 @@
  * Throughtout this project, I use the following syntax for comments:
  ** //! Marks a special comment that stands out (in Red) for critical notes.
  ** //* Marks a comment that is used as a section header (in Green) for better visibility.
- ** //? Marks a comment that is used for explaining what the below code does (in Blue) for better readability.
+ ** //? Marks a comment that is used for elaborating my intent (in Blue) for better readability.
  ** //todo Marks a comment that is used for marking (in Orange) potential optimization notes.
  *
  * To get automatic colloring for these comments in VSCode, you can use this extension:
@@ -36,7 +36,8 @@ import { metaLog, metaLogDocument } from "./helpers/metahelpers.mjs";
 //* Starting System
 //* Handlebars helpers
 //? Selected Helper
-//! Supposedly Foundry includes its own select helper, but I couldn't get it to work properly.
+//! Foundry includes its own select helper, it requires a different template schema though.
+//todo Deprecate all remaining uses of this custom helper and use the built-in one instead.
 Handlebars.registerHelper("selected", function (option, value) {
 	return option === value ? "selected" : "";
 });
@@ -48,7 +49,9 @@ Handlebars.registerHelper("join", function (array, separator) {
 Handlebars.registerHelper("isArray", function (value) {
 	return Array.isArray(value);
 });
-//? HTML Stripper Helper (for Item effect as tooltip)
+//? HTML Stripper Helper (for an Item's Effect as a tooltip)
+//! Built-in data-tooltip could replace this (requires investigation)
+//todo I should review usage case with data-tooltip as it can have HTML as input
 Handlebars.registerHelper("stripHtml", function (htmlString) {
 	if (!htmlString) return "";
 	const strippedString = htmlString.replace(/<\/?[^>]+(>|$)/g, "");

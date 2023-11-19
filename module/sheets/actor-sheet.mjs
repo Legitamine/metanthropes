@@ -613,12 +613,15 @@ export class MetanthropesActorSheet extends ActorSheet {
 	}
 	async _onChangePortrait(event) {
 		event.preventDefault();
+		//? Based on the actor's type, set the current directory
+		const baseDir = "systems/metanthropes-system/artwork/portraits/";
+		const actorType = this.actor.type.toLowerCase();
+		const currentDir = baseDir + actorType + "/";
 		const fp = new metaFilePicker({
 			resource: "data",
-			current: "systems/metanthropes-system/artwork/tokens/portraits/",
+			current: currentDir,
 			displayMode: "tiles",
 			callback: this._onSelectFile.bind(this),
-			filter: "portrait",
 			allowUpload: false,
 		});
 		this.filepickers.push(fp);
@@ -630,9 +633,11 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//? Update the Actor image + Prototype token image
 		//todo need to evaluate how this works with non-linked tokens & actors
 		await actor.update({ img: path });
+		//? Change the directory from /artrwork/portraits/ to /tokens/
+		const tokenImage = path.replace("artwork/portraits", "tokens");
 		const prototype = actor.prototypeToken || false;
 		if (prototype) {
-			const tokenImage = path.replace(/-portrait\.webp$/, "-token.webp");
+			//! This expects to find the same file name as the portrait, but in the /tokens/ directory
 			await actor.update({ "prototypeToken.texture.src": tokenImage });
 		}
 		//? Update Iterate over all scenes

@@ -36,10 +36,11 @@ Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 -   Added support for 3rd party Module [Hide Player UI](https://foundryvtt.com/packages/hide-player-ui) to conseal UI elements not used by players, great for the New Player Experience
 -   Added a field called 'Permanent Effects' to Items (Metapowers/Possessions) to distinguish between activated Effects that show up in Chat and Permanent Effects that are always active. Renamed 'Effect Description' to just 'Effect'
 -   Added new fields to Items to indicate the VS Stat Roll, any Permanent Buffs and the Area Effect (Type). These will show when applicable in the Item Sheet and the Chat
+-   Changed Support for Item Piles 3rd Party Module. This module is used to be able to create containers (like loot chests) and for players to be able to drop & pickup items from the canvas and also trade items between them. Now Items Piles will only work for the 'Vehicle' Actor Type (to make them into containers) and with only 'Possession' Item Types for Trading and Dropping/Picking up from the Canva & Containers
 -   Duplicate Clones now behave properly when having multiple Duplicates from various Actors in a Combat Encounter. They will now be properly shorted at the end of each Combat Round, based on their Reflexes Score, with the ones that have higher Reflexes going first
 -   Gave the Narrator the ability to change an Actor's available Destiny on the fly, by changing the value in the Actor's sheet. Note that Destiny is awarded properly via the 'Narrator Toolkit' Macros and this is only meant to be used manually in special cases
 -   Changed the tooltip system to take advantage of Foundry's built-in tooltip system. This results in bigger tooltips that are faster to render and easier to read
--   Added Chat Messages for Starting and Ending a Combat Encounter, as well as at the start of each Combat Round. Additionally, we don't allow an Encounter to Begin or to click on the Previous/Next Rounds/Turns buttons if there are Combatants that haven't rolled their Initiative yet
+-   Added Chat Messages for Starting and Ending a Combat Encounter, as well as at the start of each Combat Round. Additionally, we don't allow an Encounter to Begin & New Cycle to continue & to click on the Previous/Next Rounds/Turns buttons, if there are Combatants that haven't rolled their Initiative yet
 
 ### Fixed:
 

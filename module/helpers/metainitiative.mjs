@@ -1,5 +1,5 @@
 import { MetaRoll } from "../metanthropes/metaroll.mjs";
-import { metaLog } from "../helpers/metahelpers.mjs";
+import { metaLog, metaSheetRefresh } from "../helpers/metahelpers.mjs";
 
 /**
  * MetaInitiative handles Initiative rolls for a given combatant.
@@ -60,14 +60,15 @@ export async function MetaInitiative(combatant) {
 	let action = "Initiative";
 	let initiativeResult;
 	//* Special Initiative Rules
-	//? Duplicates from Duplicate Self Metapower get a -11 Initiative, this will ensure they always go last
 	if (!(actor.name.includes("Duplicate") || actor.type.includes("Animated"))) {
+		//? If the actor is not a Duplicate or Animated, MetaRoll for Initiative
 		metaLog(3, "MetaInitiative", "Engaging MetaRoll for:", actor.name + "'s", action, "with", initiativeStatRolled);
 		await MetaRoll(actor, action, initiativeStatRolled);
 		initiativeResult = await actor.getFlag("metanthropes-system", "lastrolled").Initiative;
 	} else {
 		//? Logic for Duplicates & Animated
-		//? We account for multiple Duplicates from various Actors, to ensure proper order based on their Reflexes score
+		//? Duplicates from Duplicate Self Metapower get a -11 Initiative, this will ensure they always go last
+		//? We account for multiple Actors (Duplicates/Animated), to ensure proper order based on their Reflexes score
 		const initiativeStatScore = initiativeStats[0].score;
 		let normalizedScore = initiativeStatScore > 300 ? 100 : initiativeStatScore / 5;
 		const decimalPart = (100 - normalizedScore).toString().padStart(2, "0");
@@ -117,8 +118,5 @@ export async function MetaInitiativeReRoll(event) {
 	metaLog(3, "MetaInitiativeReRoll", "Engaging MetaInitiative for:", actor.name);
 	await MetaInitiative(combatant);
 	//? Refresh the actor sheet if it's open
-	const sheet = actor.sheet;
-	if (sheet && sheet.rendered) {
-		sheet.render(true);
-	}
+	metaSheetRefresh(actor);
 }
