@@ -121,7 +121,8 @@ h3 {
 	margin: $margin-md;
 }
 .window-app .window-content {
-	background-image: url("../artwork/background.webp");
+	//background-image: url("../artwork/background.webp");
+	background-image: url("../artwork/white-paper-test.jpg");
 	background-size: auto auto;
 	background-attachment: scroll, local;
 	background-repeat: repeat;
@@ -130,6 +131,17 @@ h3 {
 	padding: $padding-md;
 	margin: $margin-md;
 }
+//	.window-app .window-content {
+//		background-image: url("../artwork/metanthropes-logo.png"), url("../artwork/white-paper-test.jpg");
+//		background-position: center, auto auto; // center watermark, default position for background
+//		background-size: contain, auto auto; // size watermark to contain within the element, default size for background
+//		background-repeat: no-repeat, repeat; // no repeat for watermark, repeat for background
+//		background-attachment: scroll; // applies to both backgrounds
+//		background-origin: border-box; // applies to both backgrounds
+//		background-clip: border-box; // applies to both backgrounds
+//		padding: $padding-md;
+//		margin: $margin-md;
+//	}
 .chat-message {
 	background-image: url("../artwork/chat-results.webp");
 }

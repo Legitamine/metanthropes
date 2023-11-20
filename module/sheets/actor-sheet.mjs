@@ -633,12 +633,10 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//? Update the Actor image + Prototype token image
 		//todo need to evaluate how this works with non-linked tokens & actors
 		await actor.update({ img: path });
-		//? Change the directory from /artrwork/portraits/ to /tokens/
-		const tokenImage = path.replace("artwork/portraits", "tokens");
 		const prototype = actor.prototypeToken || false;
 		if (prototype) {
 			//! This expects to find the same file name as the portrait, but in the /tokens/ directory
-			await actor.update({ "prototypeToken.texture.src": tokenImage });
+			await actor.update({ "prototypeToken.texture.src": path });
 		}
 		//? Update Iterate over all scenes
 		for (const scene of game.scenes) {
@@ -646,7 +644,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			//? Find tokens that represent the actor
 			for (const token of scene.tokens.contents) {
 				if (token.actorId === actor.id) {
-					tokensToUpdate.push({ _id: token.id, "texture.src": tokenImage });
+					tokensToUpdate.push({ _id: token.id, "texture.src": path });
 				}
 			}
 			//? Update the token images

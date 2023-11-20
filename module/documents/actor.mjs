@@ -101,10 +101,10 @@ export class MetanthropesActor extends Actor {
 		}
 		createData.prototypeToken.flags["hex-size-support"] = { hideBorder: true };
 		//? Make the size of the token reflect a typical humanoid relative to the grid
-		createData.prototypeToken.height = 0.5;
-		createData.prototypeToken.width = 0.5;
-		createData.prototypeToken.texture.scaleX = 1.5;
-		createData.prototypeToken.texture.scaleY = 1.5;
+		createData.prototypeToken.height = 1;
+		createData.prototypeToken.width = 1;
+		createData.prototypeToken.texture.scaleX = 0.75;
+		createData.prototypeToken.texture.scaleY = 0.75;
 		this.updateSource(createData);
 	}
 	/** @override */

@@ -131,30 +131,6 @@
 				"ASSISTANT": "OWNER"
 			},
 			"flags": {}
-		},
-		{
-			"label": "Music",
-			"system": "metanthropes-system",
-			"type": "Playlist",
-			"path": "packs/music",
-			"name": "music",
-			"ownership": {
-				"PLAYER": "NONE",
-				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
-		},
-		{
-			"label": "Sound Effects",
-			"system": "metanthropes-system",
-			"type": "Playlist",
-			"path": "packs/sound-effects",
-			"name": "sound-effects",
-			"ownership": {
-				"PLAYER": "NONE",
-				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
 		}
 	],
 	"gridDistance": 2,
