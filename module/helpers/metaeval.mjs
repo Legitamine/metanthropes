@@ -13,6 +13,8 @@ import { metaLog, metaSheetRefresh } from "../helpers/metahelpers.mjs";
  * @param {Number} statScore - The current score of the stat being rolled against. Expected to be a positive number.
  * @param {Number} [multiAction=0] - The Reduction for multi-actions. Expected to be negative.
  * @param {Number} [perkReduction=0] - A Reduction caused by missing Perk Skill Levels. Expected to be negative.
+ * @param {Number} [aimingReduction=0] - A Reduction caused by aiming at a specific body part. Expected to be negative.
+ * @param {Number} [customReduction=0] - A Reduction caused by a custom effect. Expected to be negative.
  * @param {Number} [bonus=0] - Any bonuses applied to the roll. Expected to be positive.
  * @param {Number} [penalty=0] - Any penalties applied to the roll. Expected to be negative.
  * @param {Number} [pain=0] - Any Pain Condition applied to the roll. Expected to be positive.
@@ -123,7 +125,12 @@ export async function MetaEvaluate(
 		levelsOfFailure = 10;
 		levelsOfSuccess = 0;
 	}
-	//? Create the message to be printed to chat
+	//? Create the message to be printed to chat - remember: Penalties and Reductions are Negative, Bonus and Pain are Positive
+	const needToRoll = statScore + bonus + penalty + multiAction + perkReduction + aimingReduction + customReduction - (pain * 10);
+	let needToRollMessage = ``;
+	if (needToRoll <= 1) needToRollMessage = `(needs Critical Success)`;
+	else if (needToRoll >= 100) needToRollMessage = `(needs no Critical Failure)`;
+	else needToRollMessage = `(needs ${needToRoll} or less)`;
 	let message = null;
 	if (action === "StatRoll") {
 		message = `Attempts a Stat Roll with ${stat} score of ${statScore}%`;
@@ -158,7 +165,7 @@ export async function MetaEvaluate(
 	if (aimingReduction < 0) {
 		message += `, a Reduction of ${aimingReduction}% due to Aiming at a specific body part`;
 	}
-	message += ` and the result is ${rollResult}.<br><br>`;
+	message += ` and the result is ${rollResult} ${needToRollMessage}.<br><br>`;
 	//? if we have Pain condition, our succesfull (only) results are lowered by an equal amount - in case of Criticals we ignore Pain
 	let painEffect = levelsOfSuccess - pain;
 	if (resultLevel > 0 && !criticalSuccess && pain > 0) {

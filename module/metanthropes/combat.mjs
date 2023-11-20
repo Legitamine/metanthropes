@@ -179,7 +179,7 @@ export class MetanthropesCombat extends Combat {
 				}
 				//? Create a chat message indicating the Unconscious effect
 				await ChatMessage.create({
-					content: `Is affected by the Unconscious Condition Level ${unconsciousLevel}, with the following effect:<br><br>${unconsciousEffect}`,
+					content: `Is affected by the Unconscious Condition Level ${unconsciousLevel}, with the following effect:<br><br>${unconsciousEffect}<br><br>`,
 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 				});
 			}
@@ -214,7 +214,7 @@ export class MetanthropesCombat extends Combat {
 				}
 				//? Create a chat message indicating the Asphyxiation effect
 				await ChatMessage.create({
-					content: `Is affected by the Asphyxiation Condition Level ${asphyxiationLevel}, with the following effect:<br><br>${asphyxiationEffect}`,
+					content: `Is affected by the Asphyxiation Condition Level ${asphyxiationLevel}, with the following effect:<br><br>${asphyxiationEffect}<br><br>`,
 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 				});
 			}
@@ -248,7 +248,7 @@ export class MetanthropesCombat extends Combat {
 				}
 				//? Create a chat message indicating the Unconscious effect
 				await ChatMessage.create({
-					content: `Is affected by the Fatigue Condition Level ${fatigueLevel}, with the following effect:<br><br>${fatigueEffect}`,
+					content: `Is affected by the Fatigue Condition Level ${fatigueLevel}, with the following effect:<br><br>${fatigueEffect}<br><br>`,
 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 				});
 			}
@@ -260,7 +260,7 @@ export class MetanthropesCombat extends Combat {
 				await actor.update({ "system.Vital.Life.value": newLife });
 				//? Create a chat message indicating the Bleeding effect
 				await ChatMessage.create({
-					content: `Lost ${bleedingLevel} ❤️ Life due to Bleeding Condition!`,
+					content: `Lost ${bleedingLevel} ❤️ Life due to Bleeding Condition ${bleedingLevel}.<br><br>`,
 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 				});
 			}

@@ -417,12 +417,15 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		if (areaEffectMessage) {
 			contentMessage += areaEffectMessage;
 			contentMessage += `<br>`;
+		} else {
+			contentMessage += `<br>`;
 		}
 		if (vsMessage) {
 			contentMessage += vsMessage;
+			contentMessage += `<br>`;
 		}
 		if (effectDescription) {
-			contentMessage += `<br>${effectDescription}<br>`;
+			contentMessage += `${effectDescription}<br>`;
 		}
 		if (damageCosmicMessage) {
 			contentMessage += damageCosmicMessage;
@@ -469,36 +472,49 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			contentMessage += `<br>`;
 		}
 		//? check if actor has enough destiny points to reroll
-		let currentDestiny = actor.system.Vital.Destiny.value;
+		const currentDestiny = actor.system.Vital.Destiny.value;
 		contentMessage += `<div>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br></div>`;
 		if (currentDestiny > 0) {
+			let destinyRerollButtonMessage = false;
 			//? add destiny reroll buttons
 			if (actionSlotRerollButton) {
 				contentMessage += actionSlotRerollButton;
+				destinyRerollButtonMessage = true;
 			}
 			if (targetsRerollButton) {
 				contentMessage += targetsRerollButton;
+				destinyRerollButtonMessage = true;
 			}
 			if (durationRerollButton) {
 				contentMessage += durationRerollButton;
+				destinyRerollButtonMessage = true;
 			}
 			if (damageCosmicRerollButton) {
 				contentMessage += damageCosmicRerollButton;
+				destinyRerollButtonMessage = true;
 			}
 			if (damageElementalRerollButton) {
 				contentMessage += damageElementalRerollButton;
+				destinyRerollButtonMessage = true;
 			}
 			if (damageMaterialRerollButton) {
 				contentMessage += damageMaterialRerollButton;
+				destinyRerollButtonMessage = true;
 			}
 			if (damagePsychicRerollButton) {
 				contentMessage += damagePsychicRerollButton;
+				destinyRerollButtonMessage = true;
 			}
 			if (healingRerollButton) {
 				contentMessage += healingRerollButton;
+				destinyRerollButtonMessage = true;
 			}
 			if (specialRerollButton) {
 				contentMessage += specialRerollButton;
+				destinyRerollButtonMessage = true;
+			}
+			if (destinyRerollButtonMessage) {
+				contentMessage += `<br>`;
 			}
 		}
 	}

@@ -12,7 +12,7 @@
   background-image: url("../artwork/metanthropes-dice-roll-small-activated.webp");
 }
 
-input[type=text] {
+.metanthropes input[type=text] {
   min-width: 8ch;
   max-width: 22ch;
   margin: 1px;
@@ -23,7 +23,7 @@ input[type=text] {
   align-items: center;
 }
 
-input[type=number] {
+.metanthropes input[type=number] {
   min-width: 3ch;
   max-width: 5ch;
   margin: 1px;

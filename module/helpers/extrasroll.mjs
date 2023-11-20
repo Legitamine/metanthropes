@@ -195,7 +195,7 @@ export async function HungerRoll(actor, hungerLevel) {
 	}
 	const hungerRoll = await new Roll("1d100").evaluate({ async: true });
 	const hungerRollResult = hungerRoll.total;
-	hungerMessage = `Rolls to beat Hunger 💀 Condition Level ${hungerLevel} (need ${hungerTarget}% or lower) and gets a result of ${hungerRollResult}.<br><br>`;
+	hungerMessage = `Rolls to beat Hunger 💀 Condition Level ${hungerLevel} and gets a result of ${hungerRollResult} (needs ${hungerTarget} or less).<br><br>`;
 	if (hungerRollResult > hungerTarget) {
 		hungerMessage += `It is a 🟥 Failure!<br><br>${actor.name} is too hungry and can't act!<br><br>`;
 		//? Button to re-roll Hunger using destiny
@@ -289,7 +289,7 @@ export async function CoverRoll(actor, coverType, coverValue) {
 	}
 	const coverRoll = await new Roll("1d100").evaluate({ async: true });
 	const coverRollResult = coverRoll.total;
-	coverMessage = `Rolls to find ${coverType} Cover, with ${coverValue}% (need ${coverTarget}% or lower) and gets a result of ${coverRollResult}.<br><br>`;
+	coverMessage = `Rolls to find ${coverType} Cover, with ${coverValue}% and gets a result of ${coverRollResult} (needs ${coverTarget} or less).<br><br>`;
 	if (coverRollResult > coverTarget) {
 		coverMessage += `It is a 🟥 Failure!<br><br>${actor.name} can't find Cover!<br><br>`;
 		//? Button to re-roll Cover using destiny
