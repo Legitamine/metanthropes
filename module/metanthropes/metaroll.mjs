@@ -36,19 +36,20 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 	if (itemName) {
 		const actionSlot = actor.items.getName(itemName).system.Execution.ActionSlot.value;
 		if (actionSlot === "Always Active") {
-			ui.notifications.info(actor.name + "'s " + itemName + " is always active, no need to roll!");
+			ui.notifications.info(actor.name + "'s " + itemName + " is Always Active, no need to Roll!");
 			return;
 		}
 	}
-	//? Check for Hunger - if we have hunger, we must beat the hunger roll before doing our action
+	//? Check for Hunger: We must beat the Hunger check before doing our action (Initiative is exempt)
 	const hungerLevel = actor.system.Characteristics.Mind.CoreConditions.Hunger;
-	hungerCheck: if (hungerLevel > 0) {
+	hungerCheck: if (hungerLevel > 0 && action !== "Initiative") {
 		//? Check if actor has already overcome hunger
 		const hungerRollResult = (await actor.getFlag("metanthropes-system", "hungerRollResult")) || false;
 		if (hungerRollResult) {
 			//? If the flag exists, we clear it and resume running the rest of the checks
 			await actor.unsetFlag("metanthropes-system", "hungerRollResult");
 			metaLog(3, "MetaRoll", "Hunger Check Passed, moving on");
+			//todo: perhaps I should minimize the sheet while the hunger check is happening?
 			break hungerCheck;
 		} else {
 			//? Engage the Hunger Roll
@@ -65,17 +66,19 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		}
 	}
 	//? Check for Fatigue
+	// currently only mentioned in Combat Chat, no further automation
 	//? Check if we are unconscious
+	// currently only mentioned in Combat Chat, no further automation
 	//* Check for Bonuses
 	// space intentionally left blank
 	//* Check for Penalties
 	//? Pain is passed to MetaEvaluate
 	const pain = actor.system.Characteristics.Mind.CoreConditions.Pain;
-	//? Check for disease
+	//? Check for Disease
 	let diseasePenalty = 0;
 	const diseaseLevel = actor.system.Characteristics.Body.CoreConditions.Diseased;
 	if (diseaseLevel > 0) {
-		//? check if penalty is worse than the disease level and set it accordingly
+		//? Set diseasePenalty according to the Disease level
 		if (diseasePenalty > -(diseaseLevel * 10)) {
 			diseasePenalty = -(diseaseLevel * 10);
 		}
@@ -96,20 +99,32 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			}
 		}
 	}
+	//? Check for Reduction due to Aiming
 	//* ready to call MetaEvaluate, but first we check if we have custom options
 	let bonus = 0;
 	let penalty = 0;
 	let multiAction = 0;
+	let customReduction = 0;
+	let aimingReduction = 0;
 	if (isCustomRoll) {
 		metaLog(3, "MetaRoll", "Custom Roll Detected");
-		let { multiAction, bonus, customPenalty } = await MetaRollCustomDialog(
+		let { multiAction, bonus, customPenalty, customReduction, aimingReduction } = await MetaRollCustomDialog(
 			actor,
 			action,
 			stat,
 			statScore,
 			itemName
 		);
-		metaLog(3, "MetaRoll", "Custom Roll Values:", multiAction, bonus, customPenalty);
+		metaLog(
+			3,
+			"MetaRoll",
+			"Custom Roll Values:",
+			multiAction,
+			bonus,
+			customPenalty,
+			customReduction,
+			aimingReduction
+		);
 		//? Check if Custom Penalty is smaller than Disease penalty (values are expected to be negatives)
 		//todo add a new function to compare values for bonus and penalty - this way we can do the disease and perk check the same way without caring about the order in which we do them
 		if (customPenalty < diseasePenalty) {
@@ -130,6 +145,10 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			multiAction,
 			"Perk Reduction:",
 			perkReduction,
+			"Aiming Reduction:",
+			aimingReduction,
+			"Custom Reduction:",
+			customReduction,
 			"Bonus:",
 			bonus,
 			"Penalty:",
@@ -148,6 +167,8 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			statScore,
 			multiAction,
 			perkReduction,
+			aimingReduction,
+			customReduction,
 			bonus,
 			penalty,
 			pain,
@@ -169,6 +190,10 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			multiAction,
 			"Perk Reduction:",
 			perkReduction,
+			"Aiming Reduction:",
+			aimingReduction,
+			"Custom Reduction:",
+			customReduction,
 			"Bonus:",
 			bonus,
 			"Penalty:",
@@ -187,6 +212,8 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 			statScore,
 			multiAction,
 			perkReduction,
+			aimingReduction,
+			customReduction,
 			bonus,
 			penalty,
 			pain,
@@ -224,6 +251,7 @@ export async function MetaRollCustomDialog(actor, action, stat, statScore, itemN
 		//? Title and Buttons for the Dialog
 		let dialogTitle = null;
 		let dialogButtonLabel = null;
+		const isBetaTesting = game.settings.get("metanthropes-system", "metaBetaTesting");
 		if (action === "StatRoll") {
 			dialogTitle = `${actor.name}'s ${stat}`;
 			dialogButtonLabel = `Roll 📊 ${stat}`;
@@ -236,20 +264,32 @@ export async function MetaRollCustomDialog(actor, action, stat, statScore, itemN
 		}
 		//? Create the Dialog content
 		let dialogContent = `
-			<div class="metanthropes layout-metaroll-dialog">
-				Select total number of Multi-Actions:	<select id="multiActionCount">
+			<div class="metanthropes layout-metaroll-dialog style-metaroll-dialog">
+				<p>Total number of Multi-Actions:	<select id="multiActionCount">
 					<option value="no">None</option>
 					${multiActionOptions.map((option) => `<option value="${option}">${option}</option>`).join("")}
-				</select>
+				</select></p>
+				`;
+		if (action !== "StatRoll" && isBetaTesting) {
+			dialogContent += `
+				<div>
+					<br>
+					<span>Aiming Reduction: <input class="style-container-input-charstat"
+						type="number" id="aimingReduction" min="0" value="0">%</span><br>
+				</div>
+				`;
+		}
+		dialogContent += `
 					<div>
 					<br>
-						<span class="style-cs-buffs ">Bonus: <input class="style-cs-buffs style-container-input-charstat"
-						type="number" id="bonus" min="0" value="0">%		</span>
+						<p><span class="style-cs-buffs">Bonus: <input class="style-cs-buffs style-container-input-charstat"
+						type="number" id="bonus" min="0" value="0">%</span>
 						<span class="style-cs-conditions">Penalty: <input class="style-cs-conditions style-container-input-charstat"
-						type="number" id="penalty" min="0" value="0">%</span><br>
-					</div>
+						type="number" id="penalty" min="0" value="0">%</span><br></p>
+						</div><br>
+						<p class="style-cs-conditions">Reduction: <input class="style-cs-conditions style-container-input-charstat"
+						type="number" id="customReduction" min="0" value="0">%</p>
 			</div>
-			<br>
 			`;
 		//? Create the Dialog
 		let dialog = new Dialog({
@@ -267,11 +307,14 @@ export async function MetaRollCustomDialog(actor, action, stat, statScore, itemN
 							let selectedMultiActions = parseInt(html.find("#multiActionCount").val());
 							multiAction = selectedMultiActions * -10;
 						}
-						//? collect bonus and penalty values
+						//? Collect Bonus and Penalty values
 						let bonus = parseInt(html.find("#bonus").val());
 						let customPenalty = -parseInt(html.find("#penalty").val());
+						//? Collect Reductions
+						let customReduction = -parseInt(html.find("#customReduction").val());
+						let aimingReduction = -parseInt(html.find("#aimingReduction").val()) || 0;
 						//? Return the data we collected to the MetaRoll function
-						resolve({ multiAction, bonus, customPenalty });
+						resolve({ multiAction, bonus, customPenalty, customReduction, aimingReduction });
 					},
 				},
 			},

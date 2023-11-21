@@ -4,9 +4,9 @@ import { metaLog } from "../helpers/metahelpers.mjs";
 /**
  * Metanthropes Combat Class
  * Extends the base Combat class to implement additional Metanthropes-specific Combat features
- * 
+ *
  * @extends {Combat}
- * 
+ *
  */
 export class MetanthropesCombat extends Combat {
 	//? adding the concept of Cycles & Rounds to the Combat system
@@ -14,9 +14,6 @@ export class MetanthropesCombat extends Combat {
 		super.prepareDerivedData();
 		let cycle = this.getFlag("metanthropes-system", "cycle") || 1;
 		let cycleRound = this.getFlag("metanthropes-system", "cycleRound") || 1;
-		//? set the flags to be used later
-		this.setFlag("metanthropes-system", "cycle", cycle);
-		this.setFlag("metanthropes-system", "cycleRound", cycleRound);
 		//? embed the Cycle and Round values into the Combat document for use in the Combat Tracker
 		this.cycle = cycle;
 		this.cycleRound = cycleRound;
@@ -25,17 +22,42 @@ export class MetanthropesCombat extends Combat {
 	_sortCombatants(a, b) {
 		const ia = Number.isNumeric(a.initiative) ? a.initiative : -Infinity;
 		const ib = Number.isNumeric(b.initiative) ? b.initiative : -Infinity;
-		const astatScore = a.actor.getFlag("metanthropes-system", "lastrolled")?.InitiativeStatScore ?? -Infinity;
-		const bstatScore = b.actor.getFlag("metanthropes-system", "lastrolled")?.InitiativeStatScore ?? -Infinity;
+		//? Get actor for a
+		let aActor = null;
+		if (a.token.actorLink) {
+			const actorId = a.actorId;
+			aActor = game.actors.get(actorId);
+		} else {
+			aActor = a.token.actor;
+		}
+		//? Get actor for b
+		let bActor = null;
+		if (b.token.actorLink) {
+			const actorId = b.actorId;
+			bActor = game.actors.get(actorId);
+		} else {
+			bActor = b.token.actor;
+		}
 		//? sort by initiative first, then sort by statScore if the initiative is the same
+		let aStatScore = null;
+		let bStatScore = null;
 		//? first check to see if we have a perfect tie
-		if (a.initiative && b.initiative) {
-			if (ia === ib && astatScore === bstatScore) {
+		if (
+			a.initiative &&
+			b.initiative &&
+			!a.name.includes("Duplicate") &&
+			!b.name.includes("Duplicate") &&
+			!aActor.type.includes("Animated") &&
+			!bActor.type.includes("Animated")
+		) {
+			aStatScore = aActor.getFlag("metanthropes-system", "lastrolled")?.InitiativeStatScore ?? -Infinity;
+			bStatScore = bActor.getFlag("metanthropes-system", "lastrolled")?.InitiativeStatScore ?? -Infinity;
+			if (ia === ib && aStatScore === bStatScore) {
 				//todo: award 1 Destiny and re-roll initiative if tied both in Initiative and statScore
 				metaLog(4, "Combat", "_sortCombatants", "Perfect Tie between combatants:", a.name, "and:", b.name);
 			}
 		}
-		return ib - ia || (astatScore > bstatScore ? -1 : 1);
+		return ib - ia || (aStatScore > bStatScore ? -1 : 1);
 	}
 	/**
 	 * Roll Initiative for one or multiple Combatants within the Combat document
@@ -78,8 +100,71 @@ export class MetanthropesCombat extends Combat {
 		await this.updateEmbeddedDocuments("Combatant", updates);
 		return this;
 	}
+	/**
+	 * Return to the previous turn in the turn order
+	 * Checks to see if the combat has been started before reversing the turn
+	 *
+	 * @override
+	 *
+	 * @returns {Promise<Combat>}
+	 */
+	async previousTurn() {
+		metaLog(3, "Combat", "previousTurn", "Engaged");
+		if (!this.started)
+			return ui.notifications.warn("You must begin the encounter before reversing to previous turn!");
+		super.previousTurn();
+	}
+	/**
+	 * Advance the combat to the next turn
+	 * Checks to see if the combat has been started before advancing the turn
+	 *
+	 * @override
+	 *
+	 * @returns {Promise<Combat>}
+	 */
+	async nextTurn() {
+		if (!this.started) return ui.notifications.warn("You must begin the encounter before progressing the turn!");
+		if (this.cycleRound === 1) {
+			//? Check if all combatants have an initiative value
+			for (let combatant of this.combatants) {
+				if (combatant.initiative === null || combatant.initiative === undefined) {
+					ui.notifications.warn(
+						"All combatants must have rolled for Initiative before progressing the Turn!"
+					);
+					return;
+				}
+			}
+		}
+		super.nextTurn();
+	}
+	/**
+	 * Return to the previous Round in the combat encounter
+	 * Checks to see if the combat has been started before reversing the Round
+	 * todo: need to review the Cycle / Round assignment when reversing
+	 *
+	 * @override
+	 *
+	 * @returns {Promise<Combat>}
+	 */
+	async previousRound() {
+		metaLog(3, "Combat", "previousRound", "Engaged");
+		if (!this.started)
+			return ui.notifications.warn("You must begin the encounter before reversing to previous Round!");
+		super.previousRound();
+	}
+	/**
+	 * Previous Round reverts the combat to a previous round
+	 * todo: need to review the Cycle / Round assignment when reversing
+	 * Checks to see if the combat has been started before reversing the Round
+	 *
+	 * @override
+	 *
+	 * @returns {Promise<Combat>}
+	 */
 	async nextRound() {
 		metaLog(3, "Combat", "nextRound", "Engaged");
+		if (!this.started)
+			return ui.notifications.warn("You must begin the encounter before progressing to the next Round!");
 		await super.nextRound();
 		//* End of Round Effects
 		//? Iterate over Combatants
@@ -119,7 +204,7 @@ export class MetanthropesCombat extends Combat {
 				}
 				//? Create a chat message indicating the Unconscious effect
 				await ChatMessage.create({
-					content: `Is affected by the Unconscious Condition Level ${unconsciousLevel}, with the following effect:<br><br>${unconsciousEffect}`,
+					content: `Is affected by the Unconscious Condition Level ${unconsciousLevel}, with the following effect:<br><br>${unconsciousEffect}<br><br>`,
 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 				});
 			}
@@ -154,7 +239,7 @@ export class MetanthropesCombat extends Combat {
 				}
 				//? Create a chat message indicating the Asphyxiation effect
 				await ChatMessage.create({
-					content: `Is affected by the Asphyxiation Condition Level ${asphyxiationLevel}, with the following effect:<br><br>${asphyxiationEffect}`,
+					content: `Is affected by the Asphyxiation Condition Level ${asphyxiationLevel}, with the following effect:<br><br>${asphyxiationEffect}<br><br>`,
 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 				});
 			}
@@ -164,8 +249,7 @@ export class MetanthropesCombat extends Combat {
 				let fatigueEffect = "";
 				switch (fatigueLevel) {
 					case 1:
-						fatigueEffect =
-							"You are tired, you cannot attempt any Focused Actions until you rest.";
+						fatigueEffect = "You are tired, you cannot attempt any Focused Actions until you rest.";
 						break;
 					case 2:
 						fatigueEffect =
@@ -189,7 +273,7 @@ export class MetanthropesCombat extends Combat {
 				}
 				//? Create a chat message indicating the Unconscious effect
 				await ChatMessage.create({
-					content: `Is affected by the Fatigue Condition Level ${fatigueLevel}, with the following effect:<br><br>${fatigueEffect}`,
+					content: `Is affected by the Fatigue Condition Level ${fatigueLevel}, with the following effect:<br><br>${fatigueEffect}<br><br>`,
 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 				});
 			}
@@ -201,15 +285,15 @@ export class MetanthropesCombat extends Combat {
 				await actor.update({ "system.Vital.Life.value": newLife });
 				//? Create a chat message indicating the Bleeding effect
 				await ChatMessage.create({
-					content: `Lost ${bleedingLevel} ❤️ Life due to Bleeding Condition!`,
+					content: `Lost ${bleedingLevel} ❤️ Life due to Bleeding Condition ${bleedingLevel}.<br><br>`,
 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 				});
 			}
 		}
 		//* Update the Cycle and Round values
 		//? Get the most recent Cycle and Round values from the Combat document
-		let cycle = await this.getFlag("metanthropes-system", "cycle");
-		let cycleRound = await this.getFlag("metanthropes-system", "cycleRound");
+		let cycle = (await this.getFlag("metanthropes-system", "cycle")) || 1;
+		let cycleRound = (await this.getFlag("metanthropes-system", "cycleRound")) || 1;
 		switch (this.round) {
 			case 1:
 				cycle = 1;
@@ -241,7 +325,7 @@ export class MetanthropesCombat extends Combat {
 			await this.resetAll();
 			this.setupTurns();
 			await ChatMessage.create({
-				content: `<br><br>New Cycle: ${cycle} Round: ${cycleRound}<br><br>Roll Inititiative!<br>`,
+				content: `<br>New Cycle: ${cycle} Round: ${cycleRound}<br><br>Roll Inititiative!<br><br>`,
 				speaker: {
 					alias: "Metanthropes Combat",
 				},
@@ -249,7 +333,7 @@ export class MetanthropesCombat extends Combat {
 		} else {
 			//? Create a chat message indicating the new Round
 			await ChatMessage.create({
-				content: `<br><br>Cycle: ${cycle} Round: ${cycleRound}<br>`,
+				content: `<br>Cycle: ${cycle} Round: ${cycleRound}<br><br>`,
 				speaker: {
 					alias: "Metanthropes Combat",
 				},
@@ -257,5 +341,56 @@ export class MetanthropesCombat extends Combat {
 		}
 		metaLog(3, "Combat", "nextRound", "Finished");
 		return this;
+	}
+	/**
+	 * Show a chat message when Combat Begins
+	 * Also ensures that all Combatants have rolled for initiative before starting the Encounter
+	 *
+	 * @override
+	 *
+	 * @returns {Promise<Combat>}
+	 */
+	async startCombat() {
+		//? Check if Combat is already active
+		if (this.started) return ui.notifications.warn("Combat Encounter has already started!");
+		//? Check if all combatants have an initiative value
+		for (let combatant of this.combatants) {
+			if (combatant.initiative === null || combatant.initiative === undefined) {
+				ui.notifications.warn(
+					"All combatants must have rolled for Initiative before starting Combat Encounter!"
+				);
+				return;
+			}
+		}
+		await ChatMessage.create({
+			content: `<br>Combat Encounter Begins!<br><br>`,
+			speaker: { alias: "Metanthropes Combat" },
+		});
+		return super.startCombat();
+	}
+	/**
+	 * Show a chat message when Combat Ends
+	 *
+	 * @override
+	 *
+	 * @returns {Promise<Combat>}
+	 */
+	async endCombat() {
+		return Dialog.confirm({
+			title: game.i18n.localize("COMBAT.EndTitle"),
+			content: `<p>${game.i18n.localize("COMBAT.EndConfirmation")}</p>`,
+			yes: async () => {
+				const combatCycle = await this.getFlag("metanthropes-system", "cycle");
+				const combatRound = await this.getFlag("metanthropes-system", "cycleRound");
+				const combatCycleMessage = `${combatCycle} Cycle${combatCycle === 1 ? "" : "s"}`;
+				const combatRoundMessage = `${combatRound} Round${combatRound === 1 ? "" : "s"}`;
+				await ChatMessage.create({
+					content: `<br>Combat Encounter Ended after ${combatCycleMessage} and ${combatRoundMessage}!<br><br>`,
+					speaker: { alias: "Metanthropes Combat" },
+				});
+				//? End the combat
+				this.delete();
+			},
+		});
 	}
 }

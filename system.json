@@ -2,10 +2,10 @@
 	"id": "metanthropes-system",
 	"title": "Metanthropes",
 	"description": "Metanthropes RPG System for FoundryVTT",
-	"version": "0.8.50",
+	"version": "0.8.80",
 	"compatibility": {
 		"minimum": "11",
-		"verified": "11.314",
+		"verified": "11.315",
 		"maximum": "11"
 	},
 	"authors": [
@@ -22,7 +22,7 @@
 	],
 	"esmodules": ["module/metanthropes-system.mjs"],
 	"styles": ["css/metanthropes-system.css"],
-	"background": "systems/metanthropes-system/artwork/cover.jpg",
+	"background": "systems/metanthropes-system/artwork/ui/cover/cover.jpg",
 	"packs": [
 		{
 			"label": "Premade Protagonists",
@@ -128,30 +128,6 @@
 			"name": "rollable-tables",
 			"ownership": {
 				"PLAYER": "OBSERVER",
-				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
-		},
-		{
-			"label": "Music",
-			"system": "metanthropes-system",
-			"type": "Playlist",
-			"path": "packs/music",
-			"name": "music",
-			"ownership": {
-				"PLAYER": "NONE",
-				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
-		},
-		{
-			"label": "Sound Effects",
-			"system": "metanthropes-system",
-			"type": "Playlist",
-			"path": "packs/sound-effects",
-			"name": "sound-effects",
-			"ownership": {
-				"PLAYER": "NONE",
 				"ASSISTANT": "OWNER"
 			},
 			"flags": {}

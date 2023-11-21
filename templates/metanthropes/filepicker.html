@@ -1,0 +1,193 @@
+<form class="standard-form {{ cssClass }}" autocomplete="off" enctype="multipart/form-data">
+	<header class="filepicker-header">
+
+		{{#if user.isGM}}
+			<nav class="tabs" aria-role="{{localize 'SHEETS.FormNavLabel'}}">
+				{{#each sources as |source id|}}
+					<a class="item" data-tab="{{id}}"><i class="{{source.icon}}"></i>
+						{{source.label}}</a>
+				{{/each}}
+			</nav>
+		{{/if}}
+		<div class="form-group current-dir">
+
+			<button type="button" class="back" data-action="back" {{#unless canGoBack}}disabled{{/unless}}>
+				<i class="fas fa-level-up-alt fa-flip-horizontal fa-fw"></i>
+			</button>
+
+			<div class="form-fields">
+				<input type="text" name="target" value="{{target}}">
+			</div>
+			{{#if canUpload}}
+				<button type="button" data-action="mkdir"
+					title="{{ localize "FILES.CreateDirectory" }}">
+					<i class="fas fa-folder-plus"></i>
+				</button>
+			{{/if}}
+			{{#if user.isGM}}
+				<button class="privacy" type="button" data-action="toggle-privacy"
+					title="{{ localize "FILES.TogglePrivacy" }}">
+					<i class="fas fa-eye-slash"></i>
+				</button>
+			{{/if}}
+		</div>
+		{{#if user.isGM}}
+			<div class="form-group favorites">
+				<div class="label">
+					<span>{{ localize "FILES.FavoritesLabel" }} </span>
+					<a data-action="setFavorite"
+						data-tooltip="{{ localize "FILES.AddFavorite" }}"><i
+							class="fas fa-plus"></i></a>
+				</div>
+				<div class="paths">
+					{{#each favorites }}
+						<span class="path">
+							<a class="link" data-tooltip="{{ this.path }}"
+								data-source="{{ this.source }}"
+								data-path="{{ this.path }}"
+								data-action="goToFavorite">{{ this.label }}</a>
+							<a class="remove" data-tooltip="Remove from favorites"
+								data-source="{{ this.source }}"
+								data-path="{{ this.path }}"
+								data-action="removeFavorite"><i
+									class="fa-solid fa-trash"></i></a>
+						</span>
+					{{/each}}
+				</div>
+			</div>
+
+			{{#if isS3}}
+				<div class="form-group bucket">
+					<label>{{ localize "FILES.S3Label" }}</label>
+					<select name="bucket">
+						{{#select source.bucket}}
+							{{#each source.buckets}}
+								<option value="{{this}}">{{this}}</option>
+							{{/each}}
+						{{/select}}
+					</select>
+				</div>
+			{{/if}}
+
+			<div class="form-group filter-dir">
+				<label>{{ localize "FILES.FilterLabel" }}</label>
+				<input type="search" name="filter" placeholder="{{ localize "FILES.Search" }}">
+			</div>
+		{{/if}}
+		<div class="form-group">
+			<label>{{ localize "FILES.DisplayMode" }}</label>
+			<div class="form-fields display-modes">
+				<a class="display-mode" title="{{ localize 'FILES.DisplayModeList' }}" data-mode="list">
+					<i class="fas fa-bars"></i>
+				</a>
+				<a class="display-mode" title="{{ localize 'FILES.DisplayModeThumbs' }}"
+					data-mode="thumbs">
+					<i class="fas fa-th-list"></i>
+				</a>
+				<a class="display-mode" title="{{ localize 'FILES.DisplayModeTiles' }}"
+					data-mode="tiles">
+					<i class="fas fa-th-large"></i>
+				</a>
+				<a class="display-mode" title="{{ localize 'FILES.DisplayModeImages' }}"
+					data-mode="images">
+					<i class="fas fa-image"></i>
+				</a>
+			</div>
+		</div>
+
+		{{#if tileSize}}
+			<div class="form-group tile-size">
+				<label>{{ localize "FILES.TileSize" }}</label>
+				<div class="form-fields">
+					{{ numberInput tileSize name="tileSize" placeholder=(localize "FILES.InPixels") }}
+					<span class="units">{{ localize "FILES.UnitPixels" }}</span>
+				</div>
+				<p class="hint">{{ localize "FILES.TileSizeHint" }}</p>
+			</div>
+		{{/if}}
+	</header>
+
+	<section class="filepicker-body">
+		{{#if dirs}}
+			<ol class="directory folders-list details-list">
+				{{#each dirs}}
+					<li class="dir {{#if this.private}}private{{/if}}" data-path="{{this.path}}"
+						data-name="{{this.name}}">
+						<i class="fas fa-folder fa-fw"></i>{{this.name}}
+					</li>
+				{{/each}}
+			</ol>
+		{{/if}}
+
+		{{#if files}}
+			{{#if (eq displayMode "list")}}
+				<ol class="directory files-list details-list">
+					{{#each files}}
+						<li class="file" data-path="{{this.url}}" data-name="{{this.name}}">
+							<img data-src="{{ this.img }}">
+							<i class="fas fa-file fa-fw"></i>{{this.name}}
+						</li>
+					{{/each}}
+				</ol>
+
+			{{else if (eq displayMode "thumbs")}}
+				<ol class="directory files-list thumbs-list">
+					{{#each files}}
+						<li class="file flexrow" data-path="{{this.url}}"
+							data-name="{{this.name}}">
+							<img data-src="{{ this.img }}" width="48" height="48">
+							<span class="filename">{{this.name}}</span>
+						</li>
+					{{/each}}
+				</ol>
+
+			{{else if (eq displayMode "tiles")}}
+				<ol class="directory files-list tiles-list">
+					{{#each files}}
+						<li class="file" data-path="{{this.url}}" data-name="{{this.name}}">
+							<img data-src="{{ this.img }}" title="{{ this.name }}">
+						</li>
+					{{/each}}
+				</ol>
+
+			{{else if (eq displayMode "images")}}
+				<ol class="directory files-list images-list">
+					{{#each files}}
+						<li class="file" data-path="{{this.url}}" data-name="{{this.name}}">
+							<img data-src="{{ this.img }}" title="{{ this.name }}">
+							<span class="filename">{{this.name}}</span>
+						</li>
+					{{/each}}
+				</ol>
+			{{/if}}
+		{{/if}}
+
+		{{#if noResults}}
+			<p class="note">{{ localize "FILES.NoResults" }}</p>
+		{{/if}}
+	</section>
+	{{#if user.isGM}}
+		{{#if canUpload}}
+			<div class="form-group upload-file">
+				<label><i class="fas fa-upload fa-fw"></i> {{ localize "FILES.Upload" }}</label>
+				<div class="form-fields">
+					<input type="file" name="upload">
+				</div>
+			</div>
+		{{/if}}
+	{{/if}}
+	{{#if canSelect}}
+		<div class="form-group selected-file">
+			<label><i class="fas fa-file fa-fw"></i> {{ localize "FILES.Selected" }}</label>
+			<div class="form-fields">
+				<input type="text" name="file" value="{{selected}}">
+			</div>
+		</div>
+
+		<footer class="form-footer filepicker-footer">
+			<button class="bright" type="submit">
+				<i class="far fa-save"></i> Select Portrait Image
+			</button>
+		</footer>
+	{{/if}}
+</form>

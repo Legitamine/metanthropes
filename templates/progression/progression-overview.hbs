@@ -1,16 +1,16 @@
 <div class="layout-container-outer-charstatsprogression style-container-outer-charstatsprogression">
 	{{#each actor.system.Characteristics}}
 		<div class="layout-container-stats style-container-stats">
-			<div class="style-cs-chars-label" title="{{this.Title}}">{{@key}}</div>
+			<div class="style-cs-chars-label" data-tooltip="{{this.Title}}">{{@key}}</div>
 			<div class="layout-container-grid3x1-cs">
 				<div class="style-cs-values">
-					<p class="style-cs-values" title="Initial value">🏁
+					<p class="style-cs-values" data-tooltip="Initial value">🏁
 						{{this.Initial}}
 					</p>
 				</div>
 				<div class="style-cs-chars-value">{{this.ProgressionBase}}</div>
 				<div class="style-cs-values">
-					<p class="style-cs-values" title="Progression Level">📈 <select
+					<p class="style-cs-values" data-tooltip="Progression Level">📈 <select
 							name="actor.system.Characteristics.{{@key}}.Progressed"
 							id="actor.system.Characteristics.{{@key}}.Progressed" data-dtype="Number">
 							<option value="0" {{selected this.Progressed 0}}>0</option>
@@ -26,10 +26,10 @@
 		</div>
 		{{#each Stats}}
 			<div class="layout-container-stats style-container-stats">
-				<div class="style-cs-stats-label" title="{{this.Title}}">{{@key}}</div>
+				<div class="style-cs-stats-label" data-tooltip="{{this.Title}}">{{@key}}</div>
 				<div class="layout-container-grid3x1-cs">
 					<div class="style-cs-values">
-						<p class="style-cs-values" title="Initial value">🏁
+						<p class="style-cs-values" data-tooltip="Initial value">🏁
 							{{this.Initial}}
 						</p>
 					</div>
@@ -37,7 +37,7 @@
 						{{this.ProgressionRoll}}
 					</div>
 					<div class="style-cs-values">
-						<p class="style-cs-values" title="Progression Level">📈 <select
+						<p class="style-cs-values" data-tooltip="Progression Level">📈 <select
 								name="actor.system.Characteristics.{{@../key}}.Stats.{{@key}}.Progressed"
 								id="actor.system.Characteristics.{{@../key}}.Stats.{{@key}}.Progressed"
 								data-dtype="Number">

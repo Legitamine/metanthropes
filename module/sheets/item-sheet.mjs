@@ -88,6 +88,13 @@ export class MetanthropesItemSheet extends ItemSheet {
 		html.find(".style-pos-rolls").click(this._onRoll.bind(this));
 		html.find(".style-pos-rolls").on("contextmenu", this._onCustomRoll.bind(this));
 	}
+	/** @override */
+	_getHeaderButtons() {
+		let buttons = super._getHeaderButtons();
+		//? Filters-out the Item Piles button for all items besides Possessions
+		if (this.item.type !== "Possession") buttons = buttons.filter((btn) => btn.label !== "Configure");
+		return buttons;
+	}
 	//* Handle Left-Click Rolls
 	async _onRoll(event) {
 		HandleMetaRolls(event, this, false);

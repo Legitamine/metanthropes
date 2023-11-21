@@ -1,18 +1,22 @@
-<div class="layout-container-outer-charstats style-container-outer-charstats">
+<div
+	class="meta-ui-responsive meta-ui-change-at-minimum layout-container-outer-charstats style-container-outer-charstats">
 	{{#each system.Characteristics}}
-		<div class="layout-container-stats style-container-stats">
-			<div class="style-cs-chars-label" title="{{this.Title}}">{{@key}}</div>
-			<div class="layout-container-grid3x1-cs">
-				<div class="style-cs-values">
-					<p class="style-cs-values" title="Initial value">🏁
+		<div class="layout-container-stats style-container-stats meta-ui-responsive meta-ui-hide-at-minimum">
+			<div class="meta-ui-responsive style-cs-chars-label" data-tooltip="{{this.Title}}">{{@key}}</div>
+			<div class="meta-ui-responsive meta-ui-change-at-medium layout-container-grid3x1-cs">
+				<div class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium">
+					<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
+						data-tooltip="Initial Score">🏁
 						{{this.Initial}}
 					</p>
 					{{#if ../betaTesting}}
-						<p class="style-cs-values" title="Progression Level">📈
+						<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
+							data-tooltip="Progression Level">📈
 							{{this.Progressed}}
 						</p>
 					{{else}}
-						<p class="style-cs-values" title="Progression Level">📈 <select
+						<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
+							data-tooltip="Progression Level">📈 <select
 								name="system.Characteristics.{{@key}}.Progressed"
 								id="system.Characteristics.{{@key}}.Progressed"
 								data-dtype="Number">
@@ -34,60 +38,88 @@
 				</div>
 				<div class="style-cs-chars-value">{{this.Current}}</div>
 				<div>
-					<p class="style-cs-buffs">🛡️ <label
-							for="system.Characteristics.{{@key}}.Buff.Current">{{this.Buff.Name}}</label>
+					{{#if (gt this.Buff.Current 0)}}
+						<p class="style-cs-buffs" data-tooltip="{{this.Buff.Name}} Buff Level">
+					{{else}}
+						<p class="style-cs-buffs meta-ui-obscure"
+							data-tooltip="{{this.Buff.Name}} Buff Level">
+					{{/if}}
+					🛡️ <label class="meta-ui-responsive meta-ui-hide-at-medium"
+						for="system.Characteristics.{{@key}}.Buff.Current">{{this.Buff.Name}}</label>
 					</p>
-					<p class="style-cs-buffs" title="Buff Level"><select class="style-cs-buffs"
-							name="system.Characteristics.{{@key}}.Buff.Current"
-							id="system.Characteristics.{{@key}}.Buff.Current"
-							data-dtype="Number">
-							<option value="0" {{selected Buff.Current 0}}>0</option>
-							<option value="1" {{selected Buff.Current 1}}>1</option>
-							<option value="2" {{selected Buff.Current 2}}>2</option>
-							<option value="3" {{selected Buff.Current 3}}>3</option>
-							<option value="4" {{selected Buff.Current 4}}>4</option>
-							<option value="5" {{selected Buff.Current 5}}>5</option>
-						</select>
+					{{#if (gt this.Buff.Current 0)}}
+						<p class="style-cs-buffs" data-tooltip="{{this.Buff.Name}} Buff Level">
+					{{else}}
+						<p class="style-cs-buffs meta-ui-obscure"
+							data-tooltip="{{this.Buff.Name}} Buff Level">
+					{{/if}}
+					<select class="style-cs-buffs"
+						name="system.Characteristics.{{@key}}.Buff.Current"
+						id="system.Characteristics.{{@key}}.Buff.Current" data-dtype="Number">
+						<option value="0" {{selected Buff.Current 0}}>0</option>
+						<option value="1" {{selected Buff.Current 1}}>1</option>
+						<option value="2" {{selected Buff.Current 2}}>2</option>
+						<option value="3" {{selected Buff.Current 3}}>3</option>
+						<option value="4" {{selected Buff.Current 4}}>4</option>
+						<option value="5" {{selected Buff.Current 5}}>5</option>
+					</select>
 					</p>
-					<p class="style-cs-conditions">💀 <label
-							for="system.Characteristics.{{@key}}.Condition.Current">{{this.Condition.Name}}</label>
+					{{#if (gt this.Condition.Current 0)}}
+						<p class="style-cs-conditions"
+							data-tooltip="{{this.Condition.Name}} Condition Level">
+					{{else}}
+						<p class="style-cs-conditions meta-ui-obscure"
+							data-tooltip="{{this.Condition.Name}} Condition Level">
+					{{/if}}
+					💀 <label class="meta-ui-responsive meta-ui-hide-at-medium"
+						for="system.Characteristics.{{@key}}.Condition.Current">{{this.Condition.Name}}</label>
 					</p>
-					<p class="style-cs-conditions" title="Condition Level">
-						<select class="style-cs-conditions"
-							name="system.Characteristics.{{@key}}.Condition.Current"
-							id="system.Characteristics.{{@key}}.Condition.Current"
-							data-dtype="Number">
-							<option value="0" {{selected this.Condition.Current 0}}>0
-							</option>
-							<option value="1" {{selected this.Condition.Current 1}}>1
-							</option>
-							<option value="2" {{selected this.Condition.Current 2}}>2
-							</option>
-							<option value="3" {{selected this.Condition.Current 3}}>3
-							</option>
-							<option value="4" {{selected this.Condition.Current 4}}>4
-							</option>
-							<option value="5" {{selected this.Condition.Current 5}}>5
-							</option>
-						</select>
+					{{#if (gt this.Condition.Current 0)}}
+						<p class="style-cs-conditions"
+							data-tooltip="{{this.Condition.Name}} Condition Level">
+					{{else}}
+						<p class="style-cs-conditions meta-ui-obscure"
+							data-tooltip="{{this.Condition.Name}} Condition Level">
+					{{/if}}
+					<select class="style-cs-conditions"
+						name="system.Characteristics.{{@key}}.Condition.Current"
+						id="system.Characteristics.{{@key}}.Condition.Current"
+						data-dtype="Number">
+						<option value="0" {{selected this.Condition.Current 0}}>0
+						</option>
+						<option value="1" {{selected this.Condition.Current 1}}>1
+						</option>
+						<option value="2" {{selected this.Condition.Current 2}}>2
+						</option>
+						<option value="3" {{selected this.Condition.Current 3}}>3
+						</option>
+						<option value="4" {{selected this.Condition.Current 4}}>4
+						</option>
+						<option value="5" {{selected this.Condition.Current 5}}>5
+						</option>
+					</select>
 					</p>
 				</div>
 			</div>
 		</div>
 		{{#each Stats}}
 			<div class="layout-container-stats style-container-stats">
-				<div class="style-cs-stats-label" title="{{this.Title}}">{{@key}}</div>
-				<div class="layout-container-grid3x1-cs">
-					<div class="style-cs-values">
-						<p class="style-cs-values" title="Initial value">🏁
+				<div class="meta-ui-responsive style-cs-stats-label" data-tooltip="{{this.Title}}">{{@key}}
+				</div>
+				<div class="meta-ui-responsive meta-ui-change-at-medium layout-container-grid3x1-cs">
+					<div class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium">
+						<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
+							data-tooltip="Initial Score">🏁
 							{{this.Initial}}
 						</p>
 						{{#if ../../betaTesting}}
-							<p class="style-cs-values" title="Progression Level">📈
+							<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
+								data-tooltip="Progression Level">📈
 								{{this.Progressed}}
 							</p>
 						{{else}}
-							<p class="style-cs-values" title="Progression Level">📈 <select
+							<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
+								data-tooltip="Progression Level">📈 <select
 									name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Progressed"
 									id="system.Characteristics.{{@../key}}.Stats.{{@key}}.Progressed"
 									data-dtype="Number">
@@ -113,433 +145,121 @@
 							</p>
 						{{/if}}
 					</div>
-					<div class="style-cs-rolls" data-roll-type="StatRoll" data-stat="{{@key}}">
+					<div class="meta-ui-responsive meta-ui-change-at-single-column style-cs-rolls" data-tooltip="Click to Roll {{@key}}, Right-Click for Custom Roll"
+						data-roll-type="StatRoll" data-stat="{{@key}}">
 						{{this.Roll}}
 					</div>
-					<div>
-						<p class="style-cs-buffs">🛡️ <label
-								for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current">{{this.Buff.Name}}</label>
+					<div class="meta-ui-responsive meta-ui-hide-at-minimum">
+						{{#if (gt this.Buff.Current 0)}}
+							<p class="style-cs-buffs" data-tooltip="{{this.Buff.Name}} Buff Level">
+						{{else}}
+							<p class="style-cs-buffs meta-ui-obscure"
+								data-tooltip="{{this.Buff.Name}} Buff Level">
+						{{/if}}
+						🛡️ <label class="meta-ui-responsive meta-ui-hide-at-medium"
+							for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current">{{this.Buff.Name}}</label>
 						</p>
-						<p class="style-cs-buffs">
-							<select class="style-cs-buffs" title="Buff Level"
-								name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current"
-								id="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current"
-								data-dtype="Number">
-								<option value="0" {{selected this.Buff.Current 0}}>0
-								</option>
-								<option value="1" {{selected this.Buff.Current 1}}>1
-								</option>
-								<option value="2" {{selected this.Buff.Current 2}}>2
-								</option>
-								<option value="3" {{selected this.Buff.Current 3}}>3
-								</option>
-								<option value="4" {{selected this.Buff.Current 4}}>4
-								</option>
-								<option value="5" {{selected this.Buff.Current 5}}>5
-								</option>
-								<option value="6" {{selected this.Buff.Current 6}}>6
-								</option>
-								<option value="7" {{selected this.Buff.Current 7}}>7
-								</option>
-								<option value="8" {{selected this.Buff.Current 8}}>8
-								</option>
-								<option value="9" {{selected this.Buff.Current 9}}>9
-								</option>
-								<option value="10" {{selected this.Buff.Current 10}}>10
-								</option>
-							</select>
+						{{#if (gt this.Buff.Current 0)}}
+							<p class="style-cs-buffs">
+						{{else}}
+							<p class="style-cs-buffs meta-ui-obscure">
+						{{/if}}
+						<select class="style-cs-buffs" data-tooltip="{{this.Buff.Name}} Buff Level"
+							name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current"
+							id="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current"
+							data-dtype="Number">
+							<option value="0" {{selected this.Buff.Current 0}}>0
+							</option>
+							<option value="1" {{selected this.Buff.Current 1}}>1
+							</option>
+							<option value="2" {{selected this.Buff.Current 2}}>2
+							</option>
+							<option value="3" {{selected this.Buff.Current 3}}>3
+							</option>
+							<option value="4" {{selected this.Buff.Current 4}}>4
+							</option>
+							<option value="5" {{selected this.Buff.Current 5}}>5
+							</option>
+							<option value="6" {{selected this.Buff.Current 6}}>6
+							</option>
+							<option value="7" {{selected this.Buff.Current 7}}>7
+							</option>
+							<option value="8" {{selected this.Buff.Current 8}}>8
+							</option>
+							<option value="9" {{selected this.Buff.Current 9}}>9
+							</option>
+							<option value="10" {{selected this.Buff.Current 10}}>10
+							</option>
+						</select>
 						</p>
-						<p class="style-cs-conditions">💀 <label
-								for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Name">{{this.Condition.Name}}</label>
+						{{#if (gt this.Condition.Current 0)}}
+							<p class="style-cs-conditions"
+								data-tooltip="{{this.Condition.Name}} Condition Level">
+						{{else}}
+							<p class="style-cs-conditions meta-ui-obscure"
+								data-tooltip="{{this.Condition.Name}} Condition Level">
+						{{/if}}
+						💀 <label class="meta-ui-responsive meta-ui-hide-at-medium"
+							for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Name">{{this.Condition.Name}}</label>
 						</p>
-						<p class="style-cs-conditions"><select class="style-cs-conditions"
-								title="Condition Level"
-								name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Current"
-								id="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Current"
-								data-dtype="Number">
-								<option value="0" {{selected this.Condition.Current 0}}>
-									0</option>
-								<option value="1" {{selected this.Condition.Current 1}}>
-									1</option>
-								<option value="2" {{selected this.Condition.Current 2}}>
-									2</option>
-								<option value="3" {{selected this.Condition.Current 3}}>
-									3</option>
-								<option value="4" {{selected this.Condition.Current 4}}>
-									4</option>
-								<option value="5" {{selected this.Condition.Current 5}}>
-									5</option>
-							</select>
+						{{#if (gt this.Condition.Current 0)}}
+							<p class="style-cs-conditions">
+						{{else}}
+							<p class="style-cs-conditions meta-ui-obscure">
+						{{/if}}
+						<select class="style-cs-conditions"
+							data-tooltip="{{this.Condition.Name}} Condition Level"
+							name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Current"
+							id="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Current"
+							data-dtype="Number">
+							<option value="0" {{selected this.Condition.Current 0}}>
+								0</option>
+							<option value="1" {{selected this.Condition.Current 1}}>
+								1</option>
+							<option value="2" {{selected this.Condition.Current 2}}>
+								2</option>
+							<option value="3" {{selected this.Condition.Current 3}}>
+								3</option>
+							<option value="4" {{selected this.Condition.Current 4}}>
+								4</option>
+							<option value="5" {{selected this.Condition.Current 5}}>
+								5</option>
+						</select>
 						</p>
 					</div>
 				</div>
 			</div>
 		{{/each}}
-		<div class="layout-container-grid2x2 style-container-stats">
+		<div class="layout-container-grid2x2 style-container-stats meta-ui-responsive meta-ui-hide-at-minimum">
 			{{#each CoreConditions}}
-				<div class="style-cs-conditions">
-					<p class="style-cs-conditions">💀 <label
-							for="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}">{{@key}}</label>
-					</p>
-					<p class="style-cs-conditions" title="Condition Level"><select
-							class="style-cs-conditions"
-							name="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}"
-							id="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}"
-							data-dtype="Number">
-							<option value="0" {{selected this 0}}>0</option>
-							<option value="1" {{selected this 1}}>1</option>
-							<option value="2" {{selected this 2}}>2</option>
-							<option value="3" {{selected this 3}}>3</option>
-							<option value="4" {{selected this 4}}>4</option>
-							<option value="5" {{selected this 5}}>5</option>
-						</select>
-					</p>
-				</div>
-			{{/each}}
+				{{#if (gt this 0)}}
+					<div class="style-cs-conditions">
+				{{else}}
+					<div class="style-cs-conditions meta-ui-obscure">
+				{{/if}}
+				<p data-tooltip="{{@key}} Condition Level">💀 <label {{#if (gt this 0)}}
+						class="meta-ui-responsive meta-ui-hide-at-medium style-cs-conditions"
+						{{else}}
+						class="meta-ui-responsive meta-ui-hide-at-medium style-cs-conditions meta-ui-obscure"
+						{{/if}}
+						for="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}">{{@key}}</label>
+				</p>
+				<p data-tooltip="{{@key}} Condition Level">
+					<select {{#if (gt this 0)}} class="style-cs-conditions" {{else}}
+						class="style-cs-conditions meta-ui-obscure" {{/if}}
+						name="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}"
+						id="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}"
+						data-dtype="Number">
+						<option value="0" {{selected this 0}}>0</option>
+						<option value="1" {{selected this 1}}>1</option>
+						<option value="2" {{selected this 2}}>2</option>
+						<option value="3" {{selected this 3}}>3</option>
+						<option value="4" {{selected this 4}}>4</option>
+						<option value="5" {{selected this 5}}>5</option>
+					</select>
+				</p>
 		</div>
 	{{/each}}
 </div>
-<div>
-	<div class="layout-container-physical style-container-phyisical">
-		<div class="layout-container-small style-container-small">
-			<div class="style-labels-text">
-				<span
-					title="Movement during Action Scenes represents the series of movements a Character is going to perform during a Turn. Movement is spent by moving around the area, using items and by interacting with the environment, such as when climbing higher ground in the terrain or when pulling levers, bushing buttons and so on">👣
-					Movement {{system.physical.movement.value}} </span>
-			</div>
-			<div class="style-labels-secondary">
-				<span class="style-cs-conditions">💀 <label
-						for="system.physical.speed.Conditions.slowed.value">Slowed</label>
-					<select class="style-cs-conditions" title="Condition Level"
-						name="system.physical.speed.Conditions.slowed.value"
-						id="system.physical.speed.Conditions.slowed.value" data-dtype="Number">
-						<option value="0"
-							{{selected system.physical.speed.Conditions.slowed.value 0}}>0
-						</option>
-						<option value="1"
-							{{selected system.physical.speed.Conditions.slowed.value 1}}>1
-						</option>
-						<option value="2"
-							{{selected system.physical.speed.Conditions.slowed.value 2}}>2
-						</option>
-						<option value="3"
-							{{selected system.physical.speed.Conditions.slowed.value 3}}>3
-						</option>
-						<option value="4"
-							{{selected system.physical.speed.Conditions.slowed.value 4}}>4
-						</option>
-						<option value="5"
-							{{selected system.physical.speed.Conditions.slowed.value 5}}>5
-						</option>
-						<option value="6"
-							{{selected system.physical.speed.Conditions.slowed.value 6}}>6
-						</option>
-						<option value="7"
-							{{selected system.physical.speed.Conditions.slowed.value 7}}>7
-						</option>
-						<option value="8"
-							{{selected system.physical.speed.Conditions.slowed.value 8}}>8
-						</option>
-						<option value="9"
-							{{selected system.physical.speed.Conditions.slowed.value 9}}>9
-						</option>
-						<option value="10"
-							{{selected system.physical.speed.Conditions.slowed.value 10}}>10
-						</option>
-					</select>
-				</span>
-				<span class="style-cs-values"
-					title="Speed represents how fast a Character can move in the Grid">💨
-					Speed {{system.physical.speed.value}}
-				</span>
-				<span class="style-cs-buffs">🛡️ <label
-						for="system.physical.speed.Buffs.accelerated.value">Accelerated</label>
-					<select class="style-cs-buffs" title="Buff Level"
-						name="system.physical.speed.Buffs.accelerated.value"
-						id="system.physical.speed.Buffs.accelerated.value" data-dtype="Number">
-						<option value="0"
-							{{selected system.physical.speed.Buffs.accelerated.value 0}}>0
-						</option>
-						<option value="1"
-							{{selected system.physical.speed.Buffs.accelerated.value 1}}>1
-						</option>
-						<option value="2"
-							{{selected system.physical.speed.Buffs.accelerated.value 2}}>2
-						</option>
-						<option value="3"
-							{{selected system.physical.speed.Buffs.accelerated.value 3}}>3
-						</option>
-						<option value="4"
-							{{selected system.physical.speed.Buffs.accelerated.value 4}}>4
-						</option>
-						<option value="5"
-							{{selected system.physical.speed.Buffs.accelerated.value 5}}>5
-						</option>
-						<option value="6"
-							{{selected system.physical.speed.Buffs.accelerated.value 6}}>6
-						</option>
-						<option value="7"
-							{{selected system.physical.speed.Buffs.accelerated.value 7}}>7
-						</option>
-						<option value="8"
-							{{selected system.physical.speed.Buffs.accelerated.value 8}}>8
-						</option>
-						<option value="9"
-							{{selected system.physical.speed.Buffs.accelerated.value 9}}>9
-						</option>
-						<option value="10"
-							{{selected system.physical.speed.Buffs.accelerated.value 10}}>10
-						</option>
-					</select>
-				</span>
-			</div>
-			<div class="style-labels-secondary">
-				<span class="style-cs-conditions">💀 <label
-						for="system.physical.weight.Conditions.encumbered.value">Encumbered</label>
-					<select class="style-cs-conditions" title="Condition Level"
-						name="system.physical.weight.Conditions.encumbered.value"
-						id="system.physical.weight.Conditions.encumbered.value"
-						data-dtype="Number">
-						<option value="0"
-							{{selected system.physical.weight.Conditions.encumbered.value 0}}>
-							0
-						</option>
-						<option value="1"
-							{{selected system.physical.weight.Conditions.encumbered.value 1}}>
-							1
-						</option>
-						<option value="2"
-							{{selected system.physical.weight.Conditions.encumbered.value 2}}>
-							2
-						</option>
-						<option value="3"
-							{{selected system.physical.weight.Conditions.encumbered.value 3}}>
-							3
-						</option>
-						<option value="4"
-							{{selected system.physical.weight.Conditions.encumbered.value 4}}>
-							4
-						</option>
-						<option value="5"
-							{{selected system.physical.weight.Conditions.encumbered.value 5}}>
-							5
-						</option>
-						<option value="6"
-							{{selected system.physical.weight.Conditions.encumbered.value 6}}>
-							6
-						</option>
-						<option value="7"
-							{{selected system.physical.weight.Conditions.encumbered.value 7}}>
-							7
-						</option>
-						<option value="8"
-							{{selected system.physical.weight.Conditions.encumbered.value 8}}>
-							8
-						</option>
-						<option value="9"
-							{{selected system.physical.weight.Conditions.encumbered.value 9}}>
-							9
-						</option>
-						<option value="10"
-							{{selected system.physical.weight.Conditions.encumbered.value 10}}>
-							10
-						</option>
-					</select>
-				</span>
-				<span class="style-cs-values"
-					title="Weight represents how heavy or light a Character (or an Object) is">⚖️
-					Weight
-					{{system.physical.weight.value}}
-				</span>
-				<span class="style-cs-buffs">🛡️ <label
-						for="system.physical.weight.Buffs.lightened.value">Lightened</label>
-					<select class="style-cs-buffs" title="Buff Level"
-						name="system.physical.weight.Buffs.lightened.value"
-						id="system.physical.weight.Buffs.lightened.value" data-dtype="Number">
-						<option value="0"
-							{{selected system.physical.weight.Buffs.lightened.value 0}}>0
-						</option>
-						<option value="1"
-							{{selected system.physical.weight.Buffs.lightened.value 1}}>1
-						</option>
-						<option value="2"
-							{{selected system.physical.weight.Buffs.lightened.value 2}}>2
-						</option>
-						<option value="3"
-							{{selected system.physical.weight.Buffs.lightened.value 3}}>3
-						</option>
-						<option value="4"
-							{{selected system.physical.weight.Buffs.lightened.value 4}}>4
-						</option>
-						<option value="5"
-							{{selected system.physical.weight.Buffs.lightened.value 5}}>5
-						</option>
-						<option value="6"
-							{{selected system.physical.weight.Buffs.lightened.value 6}}>6
-						</option>
-						<option value="7"
-							{{selected system.physical.weight.Buffs.lightened.value 7}}>7
-						</option>
-						<option value="8"
-							{{selected system.physical.weight.Buffs.lightened.value 8}}>8
-						</option>
-						<option value="9"
-							{{selected system.physical.weight.Buffs.lightened.value 9}}>9
-						</option>
-						<option value="10"
-							{{selected system.physical.weight.Buffs.lightened.value 10}}>10
-						</option>
-					</select>
-				</span>
-			</div>
-			<div class="style-labels-secondary">
-				<span class="style-cs-conditions">💀 <label
-						for="system.physical.size.Conditions.shrunken.value">Shrunken</label>
-					<select class="style-cs-conditions" title="Condition Level"
-						name="system.physical.size.Conditions.shrunken.value"
-						id="system.physical.size.Conditions.shrunken.value" data-dtype="Number">
-						<option value="0"
-							{{selected system.physical.size.Conditions.shrunken.value 0}}>0
-						</option>
-						<option value="1"
-							{{selected system.physical.size.Conditions.shrunken.value 1}}>1
-						</option>
-						<option value="2"
-							{{selected system.physical.size.Conditions.shrunken.value 2}}>2
-						</option>
-						<option value="3"
-							{{selected system.physical.size.Conditions.shrunken.value 3}}>3
-						</option>
-						<option value="4"
-							{{selected system.physical.size.Conditions.shrunken.value 4}}>4
-						</option>
-						<option value="5"
-							{{selected system.physical.size.Conditions.shrunken.value 5}}>5
-						</option>
-						<option value="6"
-							{{selected system.physical.size.Conditions.shrunken.value 6}}>6
-						</option>
-						<option value="7"
-							{{selected system.physical.size.Conditions.shrunken.value 7}}>7
-						</option>
-						<option value="8"
-							{{selected system.physical.size.Conditions.shrunken.value 8}}>8
-						</option>
-						<option value="9"
-							{{selected system.physical.size.Conditions.shrunken.value 9}}>9
-						</option>
-						<option value="10"
-							{{selected system.physical.size.Conditions.shrunken.value 10}}>
-							10
-						</option>
-					</select>
-				</span>
-				<span class="style-cs-values"
-					title="Size represents how much space a Character (or an Object) can occupy in an area">📐
-					Size
-					{{system.physical.size.value}}
-				</span>
-				<span class="style-cs-buffs">🛡️ <label
-						for="system.physical.size.Buff.enlarged.value">Enlarged</label>
-					<select class="style-cs-buffs" title="Buff Level"
-						name="system.physical.size.Buffs.enlarged.value"
-						id="system.physical.size.Buffs.enlarged.value" data-dtype="Number">
-						<option value="0"
-							{{selected system.physical.size.Buffs.enlarged.value 0}}>0
-						</option>
-						<option value="1"
-							{{selected system.physical.size.Buffs.enlarged.value 1}}>1
-						</option>
-						<option value="2"
-							{{selected system.physical.size.Buffs.enlarged.value 2}}>2
-						</option>
-						<option value="3"
-							{{selected system.physical.size.Buffs.enlarged.value 3}}>3
-						</option>
-						<option value="4"
-							{{selected system.physical.size.Buffs.enlarged.value 4}}>4
-						</option>
-						<option value="5"
-							{{selected system.physical.size.Buffs.enlarged.value 5}}>5
-						</option>
-						<option value="6"
-							{{selected system.physical.size.Buffs.enlarged.value 6}}>6
-						</option>
-						<option value="7"
-							{{selected system.physical.size.Buffs.enlarged.value 7}}>7
-						</option>
-						<option value="8"
-							{{selected system.physical.size.Buffs.enlarged.value 8}}>8
-						</option>
-						<option value="9"
-							{{selected system.physical.size.Buffs.enlarged.value 9}}>9
-						</option>
-						<option value="10"
-							{{selected system.physical.size.Buffs.enlarged.value 10}}>10
-						</option>
-					</select>
-				</span>
-			</div>
-		</div>
-		<div class="layout-container-small style-container-small">
-			<form>
-				<div
-					title="Resistance is a static number that reduces the total amount of Damage dealt">
-					Resistances
-				</div>
-				<div class="form-group">Cosmic
-					<input name="system.physical.resistances.cosmic.initial" type="number"
-						value="{{system.physical.resistances.cosmic.initial}}"
-						data-dtype="Number" placeholder="0" />
-				</div>
-				<div class="form-group">Elemental
-					<input name="system.physical.resistances.elemental.initial" type="number"
-						value="{{system.physical.resistances.elemental.initial}}"
-						data-dtype="Number" placeholder="0" />
-				</div>
-				<div class="form-group">Material
-					<input name="system.physical.resistances.material.initial" type="number"
-						value="{{system.physical.resistances.material.initial}}"
-						data-dtype="Number" placeholder="0" />
-				</div>
-				<div class="form-group">Psychic
-					<input name="system.physical.resistances.psychic.initial" type="number"
-						value="{{system.physical.resistances.psychic.initial}}"
-						data-dtype="Number" placeholder="0" />
-				</div>
-			</form>
-		</div>
-		<div class="layout-container-small style-container-small">
-			<form>
-				<div class="form-group"
-					title="Cover offer a Character a chance for incoming attacks to hit the Cover instead of the Character">
-					Cover
-					<input name="system.physical.cover.value" type="number"
-						value="{{system.physical.cover.value}}" data-dtype="Number"
-						placeholder="0" />%
-				</div>
-				<div class="form-group"
-					title="Immunity offers immunity to medical conditions and specific effects">
-					Immunities
-					<input name="system.physical.immunities.value" type="text"
-						value="{{system.physical.immunities.value}}" data-dtype="String"
-						placeholder="Immunities" />
-				</div>
-				<div class="form-group"
-					title="Detections allow a Character to perceive something others cannot">
-					Detections
-					<input name="system.physical.detections.value" type="text"
-						value="{{system.physical.detections.value}}" data-dtype="String"
-						placeholder="Detections" />
-				</div>
-				<div class="form-group"
-					title="Shifts are Buffs which alter the physiology, biomass, shape, and form of the one who activates them. Multiple Shifts activated at the same target do not stack, and only the one with the highest numerical value is considered">
-					Shifts
-					<input name="system.physical.shifts.value" type="text"
-						value="{{system.physical.shifts.value}}" data-dtype="String"
-						placeholder="Shifts" />
-				</div>
-		</div>
-		</form>
-	</div>
+{{/each}}
 </div>

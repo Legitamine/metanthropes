@@ -1,4 +1,4 @@
-import { metaLog, metaIsItemEquipped } from "../helpers/metahelpers.mjs";
+import { metaLog, metaSheetRefresh, metaIsItemEquipped } from "../helpers/metahelpers.mjs";
 import { MetaRoll } from "../metanthropes/metaroll.mjs";
 /**
  * Rolld10 handles the rolling of d10 dice for a given actor and purpose.
@@ -21,7 +21,7 @@ import { MetaRoll } from "../metanthropes/metaroll.mjs";
  * Rolling an actor's Weapon Damage for 3 * d10:
  * Rolld10(actor, "Damage", true, 3, "Weapon Name");
  */
-export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", baseNumber = 0, isHalf = false) {
+export async function Rolld10(actor, what, destinyReRoll, dice, itemName = null, baseNumber = 0, isHalf = false) {
 	metaLog(
 		3,
 		"Rolld10",
@@ -110,12 +110,8 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = "", b
 		flags: { "metanthropes-system": { actoruuid: actor.uuid } },
 	});
 	metaLog(3, "Rolld10", "Finished for:", actor.name + "'s", what);
-	//! doing a refresh during actor creation causes the actor window to come in focus, so disabling it for now
-	//	//? Refresh the actor sheet if it's open
-	//	const sheet = actor.sheet;
-	//	if (sheet && sheet.rendered) {
-	//		sheet.render(true);
-	//	}
+	//? Refresh the actor sheet if it's open
+	metaSheetRefresh(actor);
 }
 
 /**
@@ -137,7 +133,7 @@ export async function Rolld10ReRoll(event) {
 	const actoruuid = button.dataset.actoruuid;
 	const what = button.dataset.what;
 	const destinyReRoll = button.dataset.destinyReRoll === "true" ? true : false;
-	const itemName = button.dataset.itemName || null;
+	const itemName = button.dataset.itemName === "null" ? null : button.dataset.itemName;
 	const dice = parseInt(button.dataset.dice) ?? 0;
 	const baseNumber = parseInt(button.dataset.baseNumber) ?? 0;
 	const isHalf = button.dataset.isHalf === "true" ? true : false;
@@ -165,12 +161,6 @@ export async function Rolld10ReRoll(event) {
 			isHalf
 		);
 		await Rolld10(actor, what, destinyReRoll, dice, itemName, baseNumber, isHalf);
-		//! doing a refresh during actor creation causes the actor window to come in focus, so disabling it for now
-		//	//? Refresh the actor sheet if it's open
-		//	const sheet = actor.sheet;
-		//	if (sheet && sheet.rendered) {
-		//		sheet.render(true);
-		//	}
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
 		metaLog(1, "Rolld10ReRoll", "Not enough Destiny to spend", "OR", "destinyReRoll is not allowed");
@@ -205,7 +195,7 @@ export async function HungerRoll(actor, hungerLevel) {
 	}
 	const hungerRoll = await new Roll("1d100").evaluate({ async: true });
 	const hungerRollResult = hungerRoll.total;
-	hungerMessage = `Rolls to beat Hunger 💀 Condition Level ${hungerLevel} (need ${hungerTarget}% or lower) and gets a result of ${hungerRollResult}.<br><br>`;
+	hungerMessage = `Rolls to beat Hunger 💀 Condition Level ${hungerLevel} and gets a result of ${hungerRollResult} (needs ${hungerTarget} or less).<br><br>`;
 	if (hungerRollResult > hungerTarget) {
 		hungerMessage += `It is a 🟥 Failure!<br><br>${actor.name} is too hungry and can't act!<br><br>`;
 		//? Button to re-roll Hunger using destiny
@@ -266,5 +256,80 @@ export async function HungerReRoll(event) {
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
 		metaLog(3, "HungerReRoll", "Not enough Destiny to spend");
+	}
+}
+
+/**
+ * CoverRoll handles the rolling a simple d100 to check if the actor can find Cover.
+ * 
+ * @param {*} actor 
+ * @param {*} coverType 
+ * @param {*} coverValue 
+ * @returns 
+ */
+export async function CoverRoll(actor, coverType, coverValue) {
+	let coverMessage = null;
+	let coverTarget = null;
+	if (coverValue === 0) {
+		ui.notifications.warn(actor.name + " does not have any " + coverType + " Cover to roll for!");
+		return;
+	} else if (coverValue === 10) {
+		coverTarget = 10;
+	} else if (coverValue === 25) {
+		coverTarget = 25;
+	} else if (coverValue === 50) {
+		coverTarget = 50;
+	} else if (coverValue === 75) {
+		coverTarget = 75;
+	} else if (coverValue === 90) {
+		coverTarget = 90;
+	} else {
+		metaLog(5, "CoverRoll", "Cover Value is not valid:", coverValue);
+		return;
+	}
+	const coverRoll = await new Roll("1d100").evaluate({ async: true });
+	const coverRollResult = coverRoll.total;
+	coverMessage = `Rolls to find ${coverType} Cover, with ${coverValue}% and gets a result of ${coverRollResult} (needs ${coverTarget} or less).<br><br>`;
+	if (coverRollResult > coverTarget) {
+		coverMessage += `It is a 🟥 Failure!<br><br>${actor.name} can't find Cover!<br><br>`;
+		//? Button to re-roll Cover using destiny
+		const currentDestiny = Number(actor.system.Vital.Destiny.value);
+		coverMessage += `${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+		if (currentDestiny > 0) {
+			coverMessage += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button cover-reroll" 
+			data-actoruuid="${actor.uuid}" data-cover-value="${coverValue}" data-type="${coverType}"
+			>Spend 🤞 Destiny to reroll</button><br></div><br>`;
+		}
+	} else {
+		coverMessage += `It is a 🟩 Success!<br><br>${actor.name} found ${coverType} Cover!<br><br>`;
+	}
+	coverRoll.toMessage({
+		speaker: ChatMessage.getSpeaker({ actor: actor }),
+		flavor: coverMessage,
+		rollMode: game.settings.get("core", "rollMode"),
+		flags: { "metanthropes-system": { actoruuid: actor.uuid } },
+	});
+}
+
+/**
+ * Cover ReRoll
+ * 
+ * @param {*} event 
+ */
+export async function CoverReRoll(event) {
+	event.preventDefault();
+	const button = event.target;
+	const actoruuid = button.dataset.actoruuid;
+	const actor = await fromUuid(actoruuid);
+	const coverType = button.dataset.type;
+	const coverValue = parseInt(button.dataset.coverValue);
+	let currentDestiny = Number(actor.system.Vital.Destiny.value);
+	if (currentDestiny > 0) {
+		currentDestiny--;
+		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
+		CoverRoll(actor, coverType, coverValue);
+	} else {
+		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
+		metaLog(3, "CoverReRoll", "Not enough Destiny to spend");
 	}
 }

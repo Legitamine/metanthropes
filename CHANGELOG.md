@@ -1,24 +1,69 @@
 # Latest Changes
 
 These are the latest changes to the Metanthropes RPG System for Foundry VTT
-<br>
 
-<!--
-### Legend
+Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 
-##### Each release will include notes in each of the below sections. If omitted, that section did not include any notable changes.
+# Early Access v0.8.80 [2023-11-22]
 
-######  Added:	New features to the System
-######  Changed:	Changes to existing features
-######  Fixed:	Fixes to existing issues, including bug fixes
-######  Known Issues:	Issues that are known and will be fixed in future releases
-######  Removed:	Features that were removed in this release
-######	Deprecated:	Features that will be removed in future releases
-######	Unreleased:	Features that are not yet released to the public
+### New Features:
 
--->
+-   Added buttons on the header of the Actor sheet to resize the Actor sheet to 5 preconfigured states: Single Column, Small, Medium, Normal (default) and Extended. You can still resize the sheet manually to your liking and now the UI will change the ammount of information it displays based on the width of the new size when you release the button. Clicking on the first two, will also switch your active tab to the Actors' Stats
+-   Added the Effects tab in the Actor sheet, where you can see all the Active Effects that the Actor has, the Immunities, Detections and Shifts as well as a section with Movement, Resistances and Cover information. This tab will be further expanded in future releases
+-   Beta Testing of New Features (Narrator Only): You can find a new setting in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Beta Testing of New Features' option. This will allow you to test new features that are currently in development. This feature is turned off by default
+-   New Console Logging functionality: Added a new setting that can be found in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Advanced Logging' feature. This becomes handy, if you encounter a bug, to collect more information that will assist us in troubleshooting. This setting also enables a new icon on the Actor and Item sheets that outputs the document to the Console. This feature is turned off by default
+-   Added the 'Narrator Toolkit' Compendium, a collection of Macros designed to help the Narrator with the game flow and automate the End of Scene/Session/Arc player awards. Two utilities to help you manage your Protagonists' Details and Stats also exist. You can find it in the Compendiums Tab of the Sidebar - available for Narrators and Assistants only
+-   Added 'Reduction' to the Custom Roll dialog, when Right Clicking on an Item Roll. This integrates with the existing automations when Rolling and will show the effects on the Chat. This acts as a placeholder for the upcoming Aiming & Targeting system
+-   Added the 'Humanoid Hit Location' Rollable Table to be able to quickly roll for a random location on the human body. This is a placeholder for the upcoming Aiming & Targeting system
+-   Added the Cover Roll by clicking on any of the 4 Cover Types under the new Effects Tab. This is a random d100 roll that you can spend Destiny to reroll. This is a placeholder for the upcoming Aiming & Targeting system
+-   Added automation for the Bleeding Core Condition. During Combat, if an Actor has the Bleeding Condition, they will now automatically lose 1 Life per Level of Bleeding, at the end of each Combat Round
+-   Added automation for the Hunger Core Condition. Every time the Actor attempts a roll, they will now first have to overcome a Hunger Check. If they fail, their action is canceled and they can spend Destiny to reroll the Hunger Check until they succeed. Once they do, ther initial attempted action will resume execution
+-   Added automation for the Fatigue, Unconsious and Asphyxiation Core Conditions. During Combat, if an Actor has any of these Conditions, they will now be informed in the chat at the end of each Combat Round about what is the effect of that Condition. This will help keep the Narrator and Player informed about the status of the Actor and any further rolls or actions that might be required
+-   Added automation for the Duplicate Self Metapower. It used to require many extra manual steps from the Narrator, now the process is fully-automated, requiring the Narrator to only do a right-click on the Actor in the Sidebar and select 'Duplicate' for the Actor that has successfully activated the Duplicate Self Metapower. Instead of the normal 'Actor (Copy)', there will be a new 'Actor (Duplicate)' created. Then the Narrator, can drag the new Duplicate to the Canvas, as many times as the number of Clones required. The Duplicates will have the correct Stat Scores and Maximum Life, will not have any Effects, Conditions or Buffs applied, will not have any Metapowers or Possessions besides 'Strike' and will be unlinked from the original Actor, allowing for multiple Tokens on the Canvas. Players can fully control their Duplicates and can use the Tab key to switch between them
+-   Added Automation to equip the Possession 'Strike' to all New Humanoid Actors
 
-## Latest Version: v0.8.50
+### Changed:
+
+-   Cleaned up and improved the majority of the code documentation. This is a non-visual change that won't affect the gameplay in any way, but will help other developers (and myself) when reviewing and making further changes to the code
+-   The World now automatically becomes unpaused when the Metanthropes System Finishes Loading
+-   Changed some of the images & code used in the UI to scale better with the new Responsive UI
+-   When using a Possession that requires a Perk Skill at a certain Level, it will now Reduce the result of the roll, instead of imposing a Penalty on it. Note that Reductions stack with each other, so trying a Multi-Action, together with missing Perk Skill Levels, will now greatly reduce your chances of using that Possession successfully
+-   When you mouse-over the Name of a Metapower or Possession, you will now see a tooltip with the Effect of that Item. Clicking on the Name will open the Item sheet, as before
+-   Removed the 'Sheet' Button from the Header of the Actor and Item sheets. This was used in development and no longer needed
+-   Removed the Close and Cancel buttons (as well as the ability to close the dialog with 'Esc') from the Roll New Actor process. You can still cancel the process, before you make your first roll. If any error is detected during the process, it will automatically reset itself and you can start over
+-   Added the word 'Spend' to re-rolling d10 button in the chat, to make it more clear that you are spending Destiny to reroll the dice
+-   Changed the Chat message when Rolling Dice, by adding '(needs ## or lower)' in the result message, to indicate the Roll Result you need, in order to Succeed in this Roll. This takes into account all Bonuses, Penalties, Reductions and Pain that apply to the roll
+-   Refactored the Actor Sheet, consolidated 11 sheets (per Type) into a single document that is dynamically created & rendered based on the Actor Type and features that Actor needs
+-   Added some validation logic to the 'New Actor' and the 'Finalize Premade Protagonist' processes, to ensure required values are set properly
+-   Added support for 3rd party Module [Hide Player UI](https://foundryvtt.com/packages/hide-player-ui) to conseal UI elements not used by players, great for the New Player Experience
+-   Added a field called 'Permanent Effects' to Items (Metapowers/Possessions) to distinguish between activated Effects that show up in Chat and Permanent Effects that are always active. Renamed 'Effect Description' to just 'Effect'
+-   Added new fields to Items to indicate the VS Stat Roll, any Permanent Buffs and the Area Effect (Type). These will show when applicable in the Item Sheet and the Chat
+-   Changed Support for Item Piles 3rd Party Module. This module is used to be able to create containers (like loot chests) and for players to be able to drop & pickup items from the canvas and also trade items between them. Now Items Piles will only work for the 'Vehicle' Actor Type (to make them into containers) and with only 'Possession' Item Types for Trading and Dropping/Picking up from the Canva & Containers
+-   Duplicate Clones now behave properly when having multiple Duplicates from various Actors in a Combat Encounter. They will now be properly shorted at the end of each Combat Round, based on their Reflexes Score, with the ones that have higher Reflexes going first
+-   Gave the Narrator the ability to change an Actor's available Destiny on the fly, by changing the value in the Actor's sheet. Note that Destiny is awarded properly via the 'Narrator Toolkit' Macros and this is only meant to be used manually in special cases
+-   Changed the tooltip system to take advantage of Foundry's built-in tooltip system. This results in bigger tooltips that are faster to render and easier to read
+-   Added Chat Messages for Starting and Ending a Combat Encounter, as well as at the start of each Combat Round. Additionally, we don't allow an Encounter to Begin & New Cycle to continue & to click on the Previous/Next Rounds/Turns buttons, if there are Combatants that haven't rolled their Initiative yet
+
+### Fixed:
+
+-   Fixed various minor issues and optimized the code for better performance and error handling
+-   Fixed an issue that caused a graphical glitch when right-clicking on an Actor's Token, now it correctly displays all the elements without overlapping
+-   Fixed Pain Condition to only change your result to Failure if it is greater than your Levels of Success. Previously it would also give you Levels of Failure, which was not intended
+-   Fixed an issue that was causing d10 rolls to explode on 1's and 2's when it was not intended to do so
+-   Fixed an issue that caused non-Narrator players to see 3 Error Notifications saying something similar to: 'Player cannot update the combat document', every time a new Combat Encounter started
+
+### Known Issues:
+
+-   Adding a new Item (Metapower, Possession) to an Actor, will hide the Stat Scores on the Item pages. This is a visual bug and to fix, either make any roll with the Actor, or change the Actor Sheet size via the icons on the header, or close and re-open the Sheet
+-   Resizing the Actor Sheet manually, is not a real-time effect and needs a second after releasing the resize control to change the UI. We'd like to make it real-time in the future, after we investigate the performance impact this change would have
+
+### Deprecated:
+
+-   Old Cover system is now deprecated and will be removed in v0.9
+
+### Removed:
+
+-   Removed the old Item and Actor definitions that were deprecated in v0.7
 
 ### In Beta Testing:
 
@@ -26,47 +71,9 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 -   Active Effects: Added a new section to the Actor Sheet that displays all Active Effects that the Actor has. This feature is in early development and not functional.
 -   Targeting: Testing the new Targeting feature, now when Activating a Metapower or Using a Posssession, there will be an extra Chat message, indicating the targets that were selected. This feature is for testing the targeting feature and evaluating how it will be used in conjuction with the Execution of Metapowers/Possessions and not truly functional yet.
 
-### Added:
+# Previous Version: v0.7.85
 
--   Beta Testing of New Features (Narrator Only): You can find a new setting in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Beta Testing of New Features' option. This will allow you to test new features that are currently in development. This feature is turned off by default
--   New Console Logging functionality: Added a new setting that can be found in the 'Configure Settings -> Metanthropes' Section where you can turn on the 'Enable Advanced Logging' feature. This will used, in the event you encounter a bug, to collect information that will assist us in troubleshooting. This feature is turned off by default
--   Added automation for the Bleeding Core Condition. During Combat, if an Actor has the Bleeding Condition, they will now automatically lose 1 Life per Level of Bleeding, at the end of each Combat Round
--   Added automation for the Hunger Core Condition. Every time the Actor attempts a roll, they will now first have to overcome a Hunger Check. If they fail, their action is canceled and they can spend Destiny to reroll the Hunger Check until they succeed. Once they do, ther initial attempted action will resume execution.
--   Added automation for the Fatigue, Unconsious and Asphyxiation Core Conditions. During Combat, if an Actor has any of these Conditions, they will now be informed in the chat at the end of each Combat Round about what is the effect of that Condition. This will help keep the Narrator and Player informed about the status of the Actor and any further rolls or actions that might be required
--   Added the 'Narrator Toolkit' Compendium, a collection of Macros designed to help the Narrator with the game flow and automate the End of Scene/Session/Arc player awards. Two utilities to help you manage your Protagonists' Details and Stats also exist. You can find it in the Compendiums Tab of the Sidebar - available for Narrators and Assistants only.
--   Added automation for the Duplicate Self Metapower. It used to require many extra manual steps from the Narrator, now the process is fully-automated, requiring the Narrator to only do a right-click on the Actor in the Sidebar and select 'Duplicate' for the Protagonist (or Metanthrope) that has successfully activated the Duplicate Self Metapower. Then the Narrator can drag the new Duplicate to the Canvas, as many times as the number of Clones required and nothing further is required from the Narrator. The Duplicates will have the correct Stat Scores and Maximum Life, will not have any Conditions or Buffs applied, will not have any Metapowers or Possessions besides 'Strike' and will be unlinked from the original Actor, allowing for multiple clones. Players can fully control their Duplicates and can use the Tab key to switch between them
-
-### Changed:
-
--   When using a Possession that requires a Perk Skill at a certain Level, it will now Reduce the result of the roll, instead of imposing a Penalty on it. Note that Reductions stack with each other, so trying a Multi-Action, together with missing Perk Skill Levels, will now greatly reduce your chances of using that Possession successfully
--   Cleaned up and improved the majority of the code documentation. This is a non-visual change that won't affect the gameplay in any way, but will help other developers (and myself) when reviewing and making further changes to the code
--   When you mouse-over the Name of a Metapower or Possession, you will now see a tooltip with the Effect Description of that Item. Clicking on the Name will open the Item sheet, as before
--   Removed the 'Sheet' Button from the Actor and Item sheets. This was used in development and no longer needed
--   Added the word 'Spend' to re-rolling d10 button in the chat, to make it more clear that you are spending Destiny to reroll the dice
--   Added some validation logic to the 'New Actor' and the 'Finalize Premade Protagonist' processes, to ensure required values are set properly
--   Added support for 3rd party Module [Hide Player UI](https://foundryvtt.com/packages/hide-player-ui) to conseal UI elements not used by players
--   Added a field called 'Permanent Effects' to Items (Metapowers/Possessions) to distinguish between activated Effects that show up in Chat and Permanent Effects that are always active. Renamed 'Effect Description' to just 'Effect'
--   Added new fields to Items to indicate the VS Stat Roll, any Permanent Buffs and the Area Effect (Type). These will show when applicable in the Item Sheet and the Chat
--   Gave the Narrator the ability to change an Actor's available Destiny on the fly, by changing the value in the Actor's sheet. Note that Destiny is awarded properly via the 'Narrator Toolkit' Macros and this is only meant to be used manually in special cases
-
-### Fixed:
-
--   Fixed various minor issues and optimized the code for better performance and error handling
--   Fixed Pain Condition to only change your result to Failure if it is greater than your Levels of Success. Previously it would also give you Levels of Failure, which was not intended
--   Fixed an issue that was causing d10 rolls to explode on 1's and 2's when it was not intended to do so
-
-### Known Issues:
-
--   Adding a new Item(Metapower, Possession) to an Actor, won't properly refresh their Stat Scores until the Actorsheet is closed and reopened, or until the Actor makes a new Roll
--   When a new Combat Encounter begins, players see 3 Error Notifications saying something similar to: 'Player cannot update the combat document'. This issue is not affecting the gameplay and can be safely ignored. We are investigating the root cause and will be addressing this in a future update
-
-### Removed:
-
--   Removed the old Item and Actor definitions that were deprecated in v0.7
-
-## Previous Version: v0.7.85
-
-### Added:
+## Added:
 
 -   Fully automated Stat, Initiative, Metapower, Possession and Strike Rolls. Right clicking allows the player to set custom options
 -   New approach to rolling a new Protagonist. 10 steps designed to guide the player throughout the creation process
@@ -86,7 +93,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 -   New Supported module: Monks' Token Bar
 -   New Supported module: Streamer View
 
-### Changed:
+## Changed:
 
 -   Foundry version 11 is now required
 -   Change Log (this page) will from now on follow the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
@@ -117,7 +124,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 -   Official support for modules: Terrain Ruler and Enhanced Terrain Layer (scheduled for v0.9)
 -   Size Score will now properly buff unarmed strike dice damage (scheduled for v0.9)
 
-## Archived Versions
+# Archived Versions
 
 You may find the previous versions of the Changelog in the [Changelog Archives](https://github.com/Legitamine/metanthropes-system/blob/main/CHANGELOGARCHIVES.md)
 

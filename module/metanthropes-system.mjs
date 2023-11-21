@@ -5,7 +5,7 @@
  * Throughtout this project, I use the following syntax for comments:
  ** //! Marks a special comment that stands out (in Red) for critical notes.
  ** //* Marks a comment that is used as a section header (in Green) for better visibility.
- ** //? Marks a comment that is used for explaining what the below code does (in Blue) for better readability.
+ ** //? Marks a comment that is used for elaborating my intent (in Blue) for better readability.
  ** //todo Marks a comment that is used for marking (in Orange) potential optimization notes.
  *
  * To get automatic colloring for these comments in VSCode, you can use this extension:
@@ -28,14 +28,16 @@ import { MetanthropesActorProgressionSheet } from "./sheets/actor-progression-sh
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 //? Import helpers
 import { MetaEvaluateReRoll } from "./helpers/metaeval.mjs";
-import { Rolld10ReRoll, HungerReRoll } from "./helpers/extrasroll.mjs";
+import { Rolld10ReRoll, HungerReRoll, CoverReRoll } from "./helpers/extrasroll.mjs";
 import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
 import { MetaExecute } from "./helpers/metaexecute.mjs";
 import { metaMigrateData } from "./metanthropes/metamigration.mjs";
-import { metaLog } from "./helpers/metahelpers.mjs";
+import { metaLog, metaLogDocument } from "./helpers/metahelpers.mjs";
+//* Starting System
 //* Handlebars helpers
 //? Selected Helper
-//! Supposedly Foundry includes its own select helper, but I couldn't get it to work properly.
+//! Foundry includes its own select helper, it requires a different template schema though.
+//todo Deprecate all remaining uses of this custom helper and use the built-in one instead.
 Handlebars.registerHelper("selected", function (option, value) {
 	return option === value ? "selected" : "";
 });
@@ -47,7 +49,9 @@ Handlebars.registerHelper("join", function (array, separator) {
 Handlebars.registerHelper("isArray", function (value) {
 	return Array.isArray(value);
 });
-//? HTML Stripper Helper (for Metapower effect as tooltips)
+//? HTML Stripper Helper (for an Item's Effect as a tooltip)
+//! Built-in data-tooltip could replace this (requires investigation)
+//todo I should review usage case with data-tooltip as it can have HTML as input
 Handlebars.registerHelper("stripHtml", function (htmlString) {
 	if (!htmlString) return "";
 	const strippedString = htmlString.replace(/<\/?[^>]+(>|$)/g, "");
@@ -342,6 +346,9 @@ Hooks.once("ready", async function () {
 			path: "modules/coriolis-kbender-ai-art-pack/tokens",
 		});
 	}
+	//? Done Loading Metanthropes System
+	metaLog(3, "Finished Loading Metanthropes System");
+	game.togglePause(false);
 });
 //* Drag Ruler Integration
 Hooks.once("dragRuler.ready", (SpeedProvider) => {
@@ -379,11 +386,11 @@ Hooks.on("renderChatMessage", async (message, html) => {
 	const actorUUID = await message.getFlag("metanthropes-system", "actoruuid");
 	if (!actorUUID) return;
 	const actor = await fromUuid(actorUUID);
-	const metaowner = (await actor.system.metaowner.value) || null;
+	if (!actor) return;
+	const metaowner = actor.system?.metaowner?.value || null;
 	//? Proceed only if the current user is the owner of the actor, or a GM
 	if (game.user.name === metaowner || game.user.isGM) {
-		//? Unhide the buttons - assumes DF Chat Enhancements module is installed (provides hidden class that works)
-		//todo Figure out a way to do this without any dependencies
+		//? Unhide the buttons
 		html.find(".hide-button").removeClass("hidden");
 		//? Handle Main Chat Buttons (all the buttons that will be disabled if any of them is clicked)
 		html.on("click", ".metanthropes-main-chat-button", function (event) {
@@ -398,6 +405,8 @@ Hooks.on("renderChatMessage", async (message, html) => {
 				MetaExecute(event);
 			} else if (button.hasClass("hunger-reroll")) {
 				HungerReRoll(event);
+			} else if (button.hasClass("cover-reroll")) {
+				CoverReRoll(event);
 			}
 			//? Disable all main chat buttons
 			html.find(".metanthropes-main-chat-button").prop("disabled", true);
@@ -413,13 +422,61 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		});
 	}
 });
-//* Duplicate Self Metapower - Remove Items from Duplicates
+//* New Actor Event Listener
 Hooks.on("createActor", async (actor) => {
-	if (actor.name.includes("Duplicate")) {
+	if (
+		actor.name.includes("New") &&
+		actor.type !== "Vehicle" &&
+		actor.type !== "Animal" &&
+		actor.type !== "MetaTherion" &&
+		actor.type !== "Animated-Plant" &&
+		actor.type !== "Extradimensional" &&
+		actor.type !== "Extraterrestrial"
+	) {
+		//* New Humanoids get a Strike equipped by default
+		//? get the Strike Item from the Possessions Compendium
+		const possessionCompendium = await game.packs.get("metanthropes-system.possessions");
+		const possessionCompendiumIndex = await possessionCompendium.getIndex();
+		const strikeEntry = possessionCompendiumIndex.find((item) => item.name === "Strike");
+		if (strikeEntry) {
+			const strikeItem = await possessionCompendium.getDocument(strikeEntry._id);
+			await actor.createEmbeddedDocuments("Item", [strikeItem]);
+			metaLog(3, "New Actor Event Listener", "Gave 'Strike' to:", actor.name);
+		}
+	}
+	//* Duplicate Self Metapower Activation Detection - Rename to Duplicate & Remove Items & Effects from Duplicates
+	if (actor.name.includes("Copy") && actor.isDuplicatingSelf) {
+		const newName = actor.name.replace("Copy", "Duplicate");
+		await actor.update({
+			name: newName,
+			"prototypeToken.name": newName,
+			"prototypeToken.actorLink": false,
+			"prototypeToken.appendNumber": true,
+			"prototypeToken.prependAdjective": false,
+		});
 		const itemsToDelete = actor.items.filter((item) => item.name !== "Strike");
 		await actor.deleteEmbeddedDocuments(
 			"Item",
 			itemsToDelete.map((item) => item.id)
 		);
+		metaLog(3, "New Actor Event Listener", "Removed Items from Duplicate", actor.name);
+		const effectsToDelete = actor.effects.filter((effect) => effect.label !== "Duplicate");
+		await actor.deleteEmbeddedDocuments(
+			"ActiveEffect",
+			effectsToDelete.map((effect) => effect.id)
+		);
+		metaLog(3, "New Actor Event Listener", "Removed Effects from Duplicate", actor.name);
+	}
+});
+//* Hook to add header buttons on the Actor and Item sheets
+//? from TyphonJS (Michael) on Discord
+//? In system entry point. You may have to get specific for particular sheets as some don't invoke hooks for the whole hierarchy.
+Hooks.on(`getActorSheetHeaderButtons`, metaLogDocument);
+Hooks.on(`getItemSheetHeaderButtons`, metaLogDocument);
+//* Customize Pause Logo
+Hooks.on("renderPause", (app, html, options) => {
+	if (options.paused) {
+		const img = html.find("img")[0];
+		img.src = "systems/metanthropes-system/artwork/ui/logos/metanthropes-logo.webp";
 	}
 });

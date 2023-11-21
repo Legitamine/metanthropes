@@ -33,6 +33,23 @@
 	margin: $margin-zero;
 	overflow: hidden;
 }
+.layout-container-outer-charstats-minimum {
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+	column-gap: 3px;
+	row-gap: 3px;
+	padding: $padding-zero;
+	margin: $margin-zero;
+	overflow: hidden;
+}
+.layout-container-outer-charstats-single-column {
+	display: grid;
+	padding: $padding-zero;
+	margin: $margin-zero;
+	overflow: hidden;
+}
 .layout-container-outer-charstatsprogression {
 	display: grid;
 	grid-auto-flow: column;
@@ -86,9 +103,33 @@
 	overflow: hidden;
 	overflow-wrap: break-word;
 }
+.layout-container-grid2x1-cs {
+	display: grid;
+	grid-template-columns: 1.4fr 1fr;
+	column-gap: 3px;
+	padding: $padding-zero;
+	margin: $margin-zero;
+	overflow: hidden;
+	overflow-wrap: break-word;
+	justify-content: space-evenly;
+	justify-self: stretch;
+}
+.layout-container-grid1x1-cs {
+	display: grid;
+	grid-template-columns: 1fr;
+	column-gap: 3px;
+	padding: $padding-sm;
+	margin: $margin-sm;
+	overflow: hidden;
+	overflow-wrap: break-word;
+	align-items: center;
+	align-self: center;
+	justify-content: space-evenly;
+	justify-self: stretch;
+}
 .layout-container-physical {
 	display: grid;
-	grid-template-columns: 2fr 0.8fr 1.8fr;
+	grid-template-columns: 0.9fr 1.5fr 1fr;
 	column-gap: 1px;
 	padding: $padding-zero;
 	margin: $margin-zero;
@@ -97,7 +138,7 @@
 }
 .layout-container-actorinfo {
 	display: grid;
-	grid-template-columns: 0.4fr 0.7fr 1.6fr 1fr 0.4fr;
+	grid-template-columns: 0.4fr 0.7fr 1.7fr 0.5fr 0.8fr;
 	column-gap: 1px;
 	padding: $padding-sm;
 	margin: $margin-md;
@@ -172,6 +213,11 @@
 	padding: $padding-lg;
 	margin: $margin-sm;
 }
+.layout-container-summary-controls {
+	display: flex;
+	padding: $padding-lg;
+	margin: $margin-sm;
+}
 //nav container with 1 flex row
 .layout-container-nav {
 	display: block;
@@ -215,6 +261,98 @@
 	font-weight: 500;
 	color: $c-black;
 }
+.layout-tab-summary {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto auto auto auto auto auto auto;
+	grid-template-areas:
+		"narratorSecret narratorSecret"
+		"buttons buttons"
+		"portrait prime"
+		"portrait gender"
+		"entermeta physical"
+		"narrator actor"
+		"saga coalition";
+	gap: 3px;
+}
+.layout-tab-summary-at-medium {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto auto auto auto auto auto auto;
+	grid-template-areas:
+		"prime"
+		"gender"
+		"actor"
+		"saga"
+		"coalition";
+	gap: 3px;
+}
+.layout-tab-summary-narrator-secret {
+	grid-area: narratorSecret;
+	border: $border-style-solid;
+	border-radius: $border-radius;
+}
+.layout-tab-summary-buttons {
+	grid-area: buttons;
+}
+.layout-tab-summary-portrait {
+	//	//? Ensures that portait Images used retain the correct aspect ratio
+	//	width: 100%;
+	//	height: auto;
+	//	max-height: 300px;
+	//	object-fit: contain;
+	//? Styling for the portrait container
+	border: $border-style-solid;
+	border-radius: $border-radius;
+	//? grid area
+	grid-area: portrait;
+}
+.layout-tab-summary-prime {
+	border: $border-style-solid;
+	border-radius: $border-radius;
+	grid-area: prime;
+}
+.layout-tab-summary-gender {
+	border: $border-style-solid;
+	border-radius: $border-radius;
+	grid-area: gender;
+}
+.layout-tab-summary-entermeta {
+	border: $border-style-solid;
+	border-radius: $border-radius;
+	grid-area: entermeta;
+}
+.layout-tab-summary-physical {
+	border: $border-style-solid;
+	border-radius: $border-radius;
+	grid-area: physical;
+}
+.layout-tab-summary-narrator {
+	border: $border-style-solid;
+	border-radius: $border-radius;
+	grid-area: narrator;
+}
+.layout-tab-summary-actor {
+	border: $border-style-solid;
+	border-radius: $border-radius;
+	grid-area: actor;
+}
+.layout-tab-summary-saga {
+	border: $border-style-solid;
+	border-radius: $border-radius;
+	grid-area: saga;
+}
+.layout-tab-summary-coalition {
+	border: $border-style-solid;
+	border-radius: $border-radius;
+	grid-area: coalition;
+}
+.layout-tab-perks-container {
+	margin: $margin-md;
+	padding: $padding-md;
+	border: $border-style-solid;
+	border-radius: $border-radius;
+}
 .editor {
 	min-height: 80px;
 	height: auto;
@@ -250,4 +388,11 @@
 
 .perk-item .resource-label {
 	margin-right: 10px;
+}
+
+.layout-tab-summary-portrait-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }

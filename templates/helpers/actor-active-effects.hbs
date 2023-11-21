@@ -1,42 +1,411 @@
-<ol class="items-list effects-list">
-	{{#each effects as |section sid|}}
-		<li class="items-header flexrow" data-effect-type="{{section.type}}">
-			<h3 class="item-name effect-name flexrow">{{localize section.label}}</h3>
-			<div class="effect-source">Source</div>
-			<div class="effect-source">Duration</div>
-			<div class="item-controls effect-controls flexrow">
-				<a class="effect-control" data-action="create"
-					title="Create Effect">
-					<i class="fas fa-plus"></i> Add Effect
-				</a>
+<div class="meta-ui-responsive meta-ui-hide-at-minimum">
+	<div class="layout-container-physical">
+		<div class="meta-ui-responsive meta-ui-hide-at-minimum layout-container-small style-container-small">
+			<div data-tooltip="Resistance is a static number that reduces the total amount of Damage dealt">
+				Resistances
 			</div>
-		</li>
-		<ol class="item-list">
-			{{#each section.effects as |effect|}}
-				<li class="item effect flexrow" data-effect-id="{{effect.id}}">
-					<div class="item-name effect-name flexrow">
-						<img class="item-image" src="{{effect.icon}}" />
-						<h4>{{effect.label}}</h4>
-					</div>
-					<div class="effect-source">{{effect.sourceName}}</div>
-					<div class="effect-duration">{{effect.duration.label}}</div>
+			<div>Cosmic
+				<input name="system.physical.resistances.cosmic.initial" type="number"
+					value="{{system.physical.resistances.cosmic.initial}}" data-dtype="Number"
+					placeholder="0" />
+			</div>
+			<div>Elemental
+				<input name="system.physical.resistances.elemental.initial" type="number"
+					value="{{system.physical.resistances.elemental.initial}}" data-dtype="Number"
+					placeholder="0" />
+			</div>
+			<div>Material
+				<input name="system.physical.resistances.material.initial" type="number"
+					value="{{system.physical.resistances.material.initial}}" data-dtype="Number"
+					placeholder="0" />
+			</div>
+			<div>Psychic
+				<input name="system.physical.resistances.psychic.initial" type="number"
+					value="{{system.physical.resistances.psychic.initial}}" data-dtype="Number"
+					placeholder="0" />
+			</div>
+		</div>
+		<div class="layout-container-small style-container-small">
+			<div class="style-labels-text"
+				data-tooltip="Movement during Action Scenes represents the series of movements a Character is going to perform during a Turn. Movement is spent by moving around the area, using items and by interacting with the environment, such as when climbing higher ground in the terrain or when pulling levers, bushing buttons and so on">
+				<span>👣
+				</span><span class="meta-ui-responsive meta-ui-hide-at-medium">Movement
+				</span>{{system.physical.movement.value}}</span>
+			</div>
+			<br>
+			<div class="style-labels-secondary">
+				{{#if (gt system.physical.speed.Conditions.slowed.value 0)}}
+					<span class="style-cs-conditions" data-tooltip="Slowed Condition Level">
+				{{else}}
+					<span class="style-cs-conditions meta-ui-obscure"
+						data-tooltip="Slowed Condition Level">
+				{{/if}}
+				💀 <label class="meta-ui-responsive meta-ui-hide-at-medium"
+					for="system.physical.speed.Conditions.slowed.value">Slowed</label>
+				<select class="style-cs-conditions" data-tooltip="Slowed Condition Level"
+					name="system.physical.speed.Conditions.slowed.value"
+					id="system.physical.speed.Conditions.slowed.value" data-dtype="Number">
+					<option value="0" {{selected system.physical.speed.Conditions.slowed.value 0}}>0
+					</option>
+					<option value="1" {{selected system.physical.speed.Conditions.slowed.value 1}}>1
+					</option>
+					<option value="2" {{selected system.physical.speed.Conditions.slowed.value 2}}>2
+					</option>
+					<option value="3" {{selected system.physical.speed.Conditions.slowed.value 3}}>3
+					</option>
+					<option value="4" {{selected system.physical.speed.Conditions.slowed.value 4}}>4
+					</option>
+					<option value="5" {{selected system.physical.speed.Conditions.slowed.value 5}}>5
+					</option>
+					<option value="6" {{selected system.physical.speed.Conditions.slowed.value 6}}>6
+					</option>
+					<option value="7" {{selected system.physical.speed.Conditions.slowed.value 7}}>7
+					</option>
+					<option value="8" {{selected system.physical.speed.Conditions.slowed.value 8}}>8
+					</option>
+					<option value="9" {{selected system.physical.speed.Conditions.slowed.value 9}}>9
+					</option>
+					<option value="10"
+						{{selected system.physical.speed.Conditions.slowed.value 10}}>10
+					</option>
+				</select>
+				</span>
+				<span class="style-cs-values"
+					data-tooltip="Speed represents how fast a Character can move in the Grid">💨
+					<span class="meta-ui-responsive meta-ui-hide-at-medium">Speed
+					</span>{{system.physical.speed.value}}
+				</span>
+				{{#if (gt system.physical.speed.Buffs.accelerated.value 0)}}
+					<span class="style-cs-buffs" data-tooltip="Accelerated Buff Level">
+				{{else}}
+					<span class="style-cs-buffs meta-ui-obscure"
+						data-tooltip="Accelerated Buff Level">
+				{{/if}}
+				🛡️ <label class="meta-ui-responsive meta-ui-hide-at-medium"
+					for="system.physical.speed.Buffs.accelerated.value">Accelerated</label>
+				<select class="style-cs-buffs" data-tooltip="Accelerated Buff Level"
+					name="system.physical.speed.Buffs.accelerated.value"
+					id="system.physical.speed.Buffs.accelerated.value" data-dtype="Number">
+					<option value="0" {{selected system.physical.speed.Buffs.accelerated.value 0}}>0
+					</option>
+					<option value="1" {{selected system.physical.speed.Buffs.accelerated.value 1}}>1
+					</option>
+					<option value="2" {{selected system.physical.speed.Buffs.accelerated.value 2}}>2
+					</option>
+					<option value="3" {{selected system.physical.speed.Buffs.accelerated.value 3}}>3
+					</option>
+					<option value="4" {{selected system.physical.speed.Buffs.accelerated.value 4}}>4
+					</option>
+					<option value="5" {{selected system.physical.speed.Buffs.accelerated.value 5}}>5
+					</option>
+					<option value="6" {{selected system.physical.speed.Buffs.accelerated.value 6}}>6
+					</option>
+					<option value="7" {{selected system.physical.speed.Buffs.accelerated.value 7}}>7
+					</option>
+					<option value="8" {{selected system.physical.speed.Buffs.accelerated.value 8}}>8
+					</option>
+					<option value="9" {{selected system.physical.speed.Buffs.accelerated.value 9}}>9
+					</option>
+					<option value="10"
+						{{selected system.physical.speed.Buffs.accelerated.value 10}}>10
+					</option>
+				</select>
+				</span>
+			</div>
+			<div class="style-labels-secondary">
+				{{#if (gt system.physical.weight.Conditions.encumbered.value 0)}}
+					<span class="style-cs-conditions" data-tooltip="Encumbered Condition Level">
+				{{else}}
+					<span class="style-cs-conditions meta-ui-obscure"
+						data-tooltip="Encumbered Condition Level">
+				{{/if}}
+				💀 <label class="meta-ui-responsive meta-ui-hide-at-medium"
+					for="system.physical.weight.Conditions.encumbered.value">Encumbered</label>
+				<select class="style-cs-conditions" data-tooltip="Encumbered Condition Level"
+					name="system.physical.weight.Conditions.encumbered.value"
+					id="system.physical.weight.Conditions.encumbered.value" data-dtype="Number">
+					<option value="0"
+						{{selected system.physical.weight.Conditions.encumbered.value 0}}>
+						0
+					</option>
+					<option value="1"
+						{{selected system.physical.weight.Conditions.encumbered.value 1}}>
+						1
+					</option>
+					<option value="2"
+						{{selected system.physical.weight.Conditions.encumbered.value 2}}>
+						2
+					</option>
+					<option value="3"
+						{{selected system.physical.weight.Conditions.encumbered.value 3}}>
+						3
+					</option>
+					<option value="4"
+						{{selected system.physical.weight.Conditions.encumbered.value 4}}>
+						4
+					</option>
+					<option value="5"
+						{{selected system.physical.weight.Conditions.encumbered.value 5}}>
+						5
+					</option>
+					<option value="6"
+						{{selected system.physical.weight.Conditions.encumbered.value 6}}>
+						6
+					</option>
+					<option value="7"
+						{{selected system.physical.weight.Conditions.encumbered.value 7}}>
+						7
+					</option>
+					<option value="8"
+						{{selected system.physical.weight.Conditions.encumbered.value 8}}>
+						8
+					</option>
+					<option value="9"
+						{{selected system.physical.weight.Conditions.encumbered.value 9}}>
+						9
+					</option>
+					<option value="10"
+						{{selected system.physical.weight.Conditions.encumbered.value 10}}>
+						10
+					</option>
+				</select>
+				</span>
+				<span class="style-cs-values"
+					data-tooltip="Weight represents how heavy or light a Character (or an Object) is">⚖️
+					<span class="meta-ui-responsive meta-ui-hide-at-medium">Weight
+					</span>{{system.physical.weight.value}}
+				</span>
+				{{#if (gt system.physical.weight.Buffs.lightened.value 0)}}
+					<span class="style-cs-buffs" data-tooltip="Lightened Buff Level">
+				{{else}}
+					<span class="style-cs-buffs meta-ui-obscure"
+						data-tooltip="Lightened Buff Level">
+				{{/if}}
+				🛡️ <label class="meta-ui-responsive meta-ui-hide-at-medium"
+					for="system.physical.weight.Buffs.lightened.value">Lightened</label>
+				<select class="style-cs-buffs" data-tooltip="Lightened Buff Level"
+					name="system.physical.weight.Buffs.lightened.value"
+					id="system.physical.weight.Buffs.lightened.value" data-dtype="Number">
+					<option value="0" {{selected system.physical.weight.Buffs.lightened.value 0}}>0
+					</option>
+					<option value="1" {{selected system.physical.weight.Buffs.lightened.value 1}}>1
+					</option>
+					<option value="2" {{selected system.physical.weight.Buffs.lightened.value 2}}>2
+					</option>
+					<option value="3" {{selected system.physical.weight.Buffs.lightened.value 3}}>3
+					</option>
+					<option value="4" {{selected system.physical.weight.Buffs.lightened.value 4}}>4
+					</option>
+					<option value="5" {{selected system.physical.weight.Buffs.lightened.value 5}}>5
+					</option>
+					<option value="6" {{selected system.physical.weight.Buffs.lightened.value 6}}>6
+					</option>
+					<option value="7" {{selected system.physical.weight.Buffs.lightened.value 7}}>7
+					</option>
+					<option value="8" {{selected system.physical.weight.Buffs.lightened.value 8}}>8
+					</option>
+					<option value="9" {{selected system.physical.weight.Buffs.lightened.value 9}}>9
+					</option>
+					<option value="10" {{selected system.physical.weight.Buffs.lightened.value 10}}>
+						10
+					</option>
+				</select>
+				</span>
+			</div>
+			<div class="style-labels-secondary">
+				{{#if (gt system.physical.size.Conditions.shrunken.value 0)}}
+					<span class="style-cs-conditions" data-tooltip="Shrunken Condition Level">
+				{{else}}
+					<span class="style-cs-conditions meta-ui-obscure"
+						data-tooltip="Shrunken Condition Level">
+				{{/if}}
+				💀 <label class="meta-ui-responsive meta-ui-hide-at-medium"
+					for="system.physical.size.Conditions.shrunken.value">Shrunken</label>
+				<select class="style-cs-conditions" data-tooltip="Shrunken Condition Level"
+					name="system.physical.size.Conditions.shrunken.value"
+					id="system.physical.size.Conditions.shrunken.value" data-dtype="Number">
+					<option value="0" {{selected system.physical.size.Conditions.shrunken.value 0}}>
+						0
+					</option>
+					<option value="1" {{selected system.physical.size.Conditions.shrunken.value 1}}>
+						1
+					</option>
+					<option value="2" {{selected system.physical.size.Conditions.shrunken.value 2}}>
+						2
+					</option>
+					<option value="3" {{selected system.physical.size.Conditions.shrunken.value 3}}>
+						3
+					</option>
+					<option value="4" {{selected system.physical.size.Conditions.shrunken.value 4}}>
+						4
+					</option>
+					<option value="5" {{selected system.physical.size.Conditions.shrunken.value 5}}>
+						5
+					</option>
+					<option value="6" {{selected system.physical.size.Conditions.shrunken.value 6}}>
+						6
+					</option>
+					<option value="7" {{selected system.physical.size.Conditions.shrunken.value 7}}>
+						7
+					</option>
+					<option value="8" {{selected system.physical.size.Conditions.shrunken.value 8}}>
+						8
+					</option>
+					<option value="9" {{selected system.physical.size.Conditions.shrunken.value 9}}>
+						9
+					</option>
+					<option value="10"
+						{{selected system.physical.size.Conditions.shrunken.value 10}}>
+						10
+					</option>
+				</select>
+				</span>
+				<span class="style-cs-values"
+					data-tooltip="Size represents how much space a Character (or an Object) can occupy in an area">📐
+					<span class="meta-ui-responsive meta-ui-hide-at-medium">Size
+					</span>{{system.physical.size.value}}
+				</span>
+				{{#if (gt system.physical.size.Buffs.enlarged.value 0)}}
+					<span class="style-cs-buffs" data-tooltip="Enlarged Buff Level">
+				{{else}}
+					<span class="style-cs-buffs meta-ui-obscure" data-tooltip="Enlarged Buff Level">
+				{{/if}}
+				🛡️ <label class="meta-ui-responsive meta-ui-hide-at-medium"
+					for="system.physical.size.Buff.enlarged.value">Enlarged</label>
+				<select class="style-cs-buffs" data-tooltip="Enlarged Buff Level"
+					name="system.physical.size.Buffs.enlarged.value"
+					id="system.physical.size.Buffs.enlarged.value" data-dtype="Number">
+					<option value="0" {{selected system.physical.size.Buffs.enlarged.value 0}}>0
+					</option>
+					<option value="1" {{selected system.physical.size.Buffs.enlarged.value 1}}>1
+					</option>
+					<option value="2" {{selected system.physical.size.Buffs.enlarged.value 2}}>2
+					</option>
+					<option value="3" {{selected system.physical.size.Buffs.enlarged.value 3}}>3
+					</option>
+					<option value="4" {{selected system.physical.size.Buffs.enlarged.value 4}}>4
+					</option>
+					<option value="5" {{selected system.physical.size.Buffs.enlarged.value 5}}>5
+					</option>
+					<option value="6" {{selected system.physical.size.Buffs.enlarged.value 6}}>6
+					</option>
+					<option value="7" {{selected system.physical.size.Buffs.enlarged.value 7}}>7
+					</option>
+					<option value="8" {{selected system.physical.size.Buffs.enlarged.value 8}}>8
+					</option>
+					<option value="9" {{selected system.physical.size.Buffs.enlarged.value 9}}>9
+					</option>
+					<option value="10" {{selected system.physical.size.Buffs.enlarged.value 10}}>10
+					</option>
+				</select>
+				</span>
+			</div>
+		</div>
+		<div class="meta-ui-responsive meta-ui-hide-at-minimum layout-container-small style-container-small">
+			<div
+				data-tooltip="Cover offer a Character a chance for incoming attacks to hit the Cover instead of the Character">
+				Cover
+			</div>
+			{{#each system.physical.cover.types}}
+				<div>
+					<span data-tooltip="Click to Roll for {{this.label}} Cover"
+						data-tooltip-direction="UP" class="meta-cover-roll"
+						data-type="{{this.label}}"
+						data-cover-value="{{this.value}}">{{this.label}}</span>:
+					<select name="system.physical.cover.types.{{@key}}.value" type="number"
+						data-dtype="Number">
+						{{#each this.options as |option|}}
+							<option value="{{option}}"
+								{{#if (eq option ../this.value)}}selected{{/if}}>
+								{{option}}
+							</option>
+						{{/each}}
+					</select>%
+				</div>
+			{{/each}}
+		</div>
+	</div>
+</div>
+{{#if betaTesting}}
+	<div>
+		<ol class="items-list effects-list">
+			{{#each effects as |section sid|}}
+				<li class="items-header flexrow" data-effect-type="{{section.type}}">
+					<h3 class="item-name effect-name flexrow">{{localize section.label}}</h3>
+					<div class="effect-source">Source</div>
+					<div class="effect-source">Duration</div>
 					<div class="item-controls effect-controls flexrow">
-						<a class="effect-control" data-action="toggle"
-							title="Toggle Effect">
-							<i
-								class="fas {{#if effect.disabled}}fa-check{{else}}fa-times{{/if}}"></i>
-						</a>
-						<a class="effect-control" data-action="edit"
-							title="Edit Effect">
-							<i class="fas fa-edit"></i>
-						</a>
-						<a class="effect-control" data-action="delete"
-							title="Delete Effect">
-							<i class="fas fa-trash"></i>
+						<a class="effect-control" data-action="create"
+							data-tooltip="Create Effect">
+							<i class="fas fa-plus"></i> Add Effect
 						</a>
 					</div>
 				</li>
+				<ol class="item-list">
+					{{#each section.effects as |effect|}}
+						<li class="item effect flexrow" data-effect-id="{{effect.id}}">
+							<div class="item-name effect-name flexrow">
+								<img class="item-image" src="{{effect.icon}}" />
+								<h4>{{effect.label}}</h4>
+							</div>
+							<div class="effect-source">{{effect.sourceName}}</div>
+							<div class="effect-duration">{{effect.duration.label}}</div>
+							<div class="item-controls effect-controls flexrow">
+								<a class="effect-control" data-action="toggle"
+									data-tooltip="Toggle Effect">
+									<i
+										class="fas {{#if effect.disabled}}fa-check{{else}}fa-times{{/if}}"></i>
+								</a>
+								<a class="effect-control" data-action="edit"
+									data-tooltip="Edit Effect">
+									<i class="fas fa-edit"></i>
+								</a>
+								<a class="effect-control" data-action="delete"
+									data-tooltip="Delete Effect">
+									<i class="fas fa-trash"></i>
+								</a>
+							</div>
+						</li>
+					{{/each}}
+				</ol>
 			{{/each}}
 		</ol>
-	{{/each}}
-</ol>
+	</div>
+{{else}}
+	<div class="meta-ui-responsive meta-ui-hide-at-minimum">
+		<div class="layout-container-grid1x3 style-container-physical">
+			<div data-tooltip="Immunity offers immunity to medical conditions and specific effects">
+				<p class="style-actorinfo-tier2">Immunities
+					<input name="system.physical.immunities.value" type="text"
+						value="{{system.physical.immunities.value}}" data-dtype="String"
+						placeholder="Immunities" />
+				</p>
+			</div>
+			<div data-tooltip="Detections allow a Character to perceive something others cannot">
+				<p class="style-actorinfo-tier2">Detections
+					<input name="system.physical.detections.value" type="text"
+						value="{{system.physical.detections.value}}" data-dtype="String"
+						placeholder="Detections" />
+				</p>
+			</div>
+			<div
+				data-tooltip="Shifts are Buffs which alter the physiology, biomass, shape, and form of the one who activates them. Multiple Shifts activated at the same target do not stack, and only the one with the highest numerical value is considered">
+				<p class="style-actorinfo-tier2">Shifts
+					<input name="system.physical.shifts.value" type="text"
+						value="{{system.physical.shifts.value}}" data-dtype="String"
+						placeholder="Shifts" />
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="meta-ui-responsive meta-ui-hide-at-minimum">
+		<div class="layout-container-outer-tabs style-container-outer-tabs">
+			<br><br>
+			<p>
+			<div class="resource-label">EFFECTS are not fully supported yet. Additional
+				functionality is available in Beta Testing
+			</div>
+			</p>
+		</div>
+	</div>
+{{/if}}

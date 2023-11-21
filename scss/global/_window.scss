@@ -3,15 +3,15 @@
 	display: block;
 	width: 40px;
 	height: var(--sidebar-item-height);
-	background: url("../artwork/metanthropes-dice-roll-small.webp") no-repeat 50% 50%;
+	background: url("../artwork/ui/dice/d100roll-white.webp") no-repeat 50% 50%;
 	background-size: 42px;
 	margin: 0 0.5em;
 }
 .combat-sidebar li.combatant .roll:hover {
-	background-image: url("../artwork/metanthropes-dice-roll-small-activated.webp");
+	background-image: url("../artwork/ui/dice/d100roll-white-selected.webp");
 }
 // this changes the input fields in Foundry UI
-input[type="text"] {
+.metanthropes input[type="text"] {
 	min-width: 8ch;
 	max-width: 22ch;
 	margin: $margin-sm;
@@ -21,7 +21,7 @@ input[type="text"] {
 	justify-content: center;
 	align-items: center;
 }
-input[type="number"] {
+.metanthropes input[type="number"] {
 	min-width: 3ch;
 	max-width: 5ch;
 	margin: $margin-sm;
@@ -44,7 +44,7 @@ main {
 }
 body {
 	font-family: $font-secondary;
-	background-image: url("../artwork/bg-canvas.webp");
+	background-image: url("../artwork/ui/canvas/bg-canvas.webp");
 	background-size: auto auto;
 	background-attachment: local;
 	background-repeat: repeat;
@@ -62,7 +62,7 @@ footer {
 // this changes the font for buttons of Foundry UI
 button {
 	font-family: $font-primary;
-	background-image: url("../artwork/button-3dhex.webp");
+	background-image: url("../artwork/ui/buttons/button-3dhex.webp");
 	background-size: contain;
 	text-shadow: $s-button;
 	border: $border-groove;
@@ -80,6 +80,30 @@ option {
 	border: $border-style-dotted;
 	border-radius: $border-radius;
 }
+p {
+	font-family: $font-secondary;
+	margin: $margin-sm;
+	padding: $padding-sm;
+	text-align: center;
+}
+h3 {
+	text-align: center;
+}
+//rolltable results
+.chat-message .table-draw .table-results .table-result img.result-image {
+	width: 100%;
+	max-height: 150px;
+	height: auto;
+	object-fit: contain;
+	border: none;
+	align-self: center;
+	text-align: center;
+	margin: $margin-sm;
+	padding: $padding-sm;
+}
+.chat-message .table-draw .table-results .table-result {
+	flex-direction: column;
+}
 // this changes the font in most title-elements of Foundry UI
 .window-app {
 	font-family: $font-primary;
@@ -96,21 +120,44 @@ option {
 	padding: $padding-md;
 	margin: $margin-md;
 }
+
 .window-app .window-content {
-	background-image: url("../artwork/background.webp");
-	background-size: auto auto;
-	background-attachment: scroll, local;
-	background-repeat: repeat;
+	position: relative;
+	background-image: url("../artwork/ui/window/background.webp");
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
 	background-origin: border-box;
 	background-clip: border-box;
-	padding: $padding-md;
-	margin: $margin-md;
+	&::before {
+		pointer-events: none;
+		content: "";
+		display: inline-block;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 55%;
+		height: 55%;
+		background-image: url("../artwork/ui/window/logo.webp");
+		background-position: center;
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-origin: padding-box;
+		background-clip: content-box;
+		filter: blur(2px);
+		opacity: 0.5;
+	}
 }
+
 .chat-message {
-	background-image: url("../artwork/chat-results.webp");
+	background-image: url("../artwork/ui/chat/chat-results.webp");
+	background-size: cover;
+	//opacity: 0.75;
 }
 #chat-form textarea {
-	background-image: url("../artwork/chat-box.webp");
+	background-image: url("../artwork/ui/chat/chat-box.webp");
 }
 .directory .directory-header .header-search input {
 	background-color: $c-background;
@@ -133,4 +180,22 @@ option {
 .far.fa-dice-d20:before {
 	content: "\f6cd";
 }
-
+//override filepicker list defaults
+.filepicker .tiles-list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	width: 508px;
+}
+.filepicker .tiles-list li {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 167px;
+	height: 290px;
+}
+.filepicker .tiles-list li img {
+	transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+	&:hover {
+		transform: scale(1.8) translateY(40px);
+	}
+}

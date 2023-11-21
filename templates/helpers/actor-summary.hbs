@@ -1,82 +1,176 @@
 <!-- I would need to refactor the db to include titles to do this properly -->
-<div class="summary">
-	<div class="layout-container-grid2x2">
-		<div class="layout-container-summary style-container-summary">
-			<div class="resource-label"
-				title="Each Metanthrope Character begins the game with one level in their first Metapower, called Prime Metapower. No other additional Metapower unlocked can be higher-level than the level of the Prime Metapower. The Classification and the Energy type of the Protagonist's Prime Metapower will influence the Experience cost of unlocking and advancing other Metapowers">
-				Prime Ⓜ️ Metapower: <span class="resource">{{system.entermeta.primemetapower.value}}</span>
+<div class="layout-tab-summary meta-ui-responsive meta-ui-change-summary-at-medium">
+	{{! -- Secret Narrator Notes Section --}}
+	{{#if isNarrator}}
+		<div class="layout-tab-summary-narrator-secret meta-ui-responsive meta-ui-hide-at-medium">
+			<div>
+				<h3>{{system.secret-notes-narrator.label}}</h3>
 			</div>
-			<div class="resource-label" title="{{system.entermeta.metamorphosis.title}}">
+			<div class="layout-editor style-editor">
+				{{editor system.secret-notes-narrator.value target="system.secret-notes-narrator.value" button=true editable=true}}
+			</div>
+		</div>
+	{{/if}}
+	{{! -- Buttons Section --}}
+	{{#if (or isNarrator actor.isPremade)}}
+		<div class="layout-tab-summary-buttons meta-ui-responsive meta-ui-hide-at-medium">
+			<div class="layout-container-grid1x3 style-container-physical">
+				{{#if actor.isPremade}}
+					<button class="finalize-premade-actor"
+						data-tooltip="Finalize Premade {{actor.type}}">Finalize
+						Premade
+						{{actor.type}}</button>
+				{{/if}}
+				{{#if isNarrator}}
+					<button class="change-actor-player"
+						data-tooltip="The Player can see & click on the Re-Roll Buttons in Chat">Change
+						Player</button>
+				{{/if}}
+			</div>
+		</div>
+	{{/if}}
+	{{! -- Prime Metapower Section --}}
+	{{#if actor.hasEnterMeta}}
+		<div class="layout-container-summary layout-tab-summary-prime style-container-summary">
+			<div class="resource-label"
+				data-tooltip="Each Metanthrope Character begins the game with one level in their first Metapower, called Prime Metapower. No other additional Metapower unlocked can be higher-level than the level of the Prime Metapower. The Classification and the Energy type of the Protagonist's Prime Metapower will influence the Experience cost of unlocking and advancing other Metapowers">
+				Prime Ⓜ️ Metapower: <span
+					class="resource">{{system.entermeta.primemetapower.value}}</span>
+			</div>
+			<div class="resource-label" data-tooltip="{{system.entermeta.metamorphosis.title}}">
 				{{system.entermeta.metamorphosis.label}}:
 				{{#with (lookup actor.system.entermeta.metamorphosis.options actor.system.entermeta.metamorphosis.value) as |metamorphosisOption|}}
-					<span class="resource" title="{{metamorphosisOption.title}}">
+					<span class="resource" data-tooltip="{{metamorphosisOption.title}}">
 						{{metamorphosisOption.label}}
 					</span>
 				{{/with}}
 			</div>
 			<div class="resource-label"
-				title="A Character's Background is who or what that Character used to be prior to becoming a Metanthrope">
+				data-tooltip="A Character's Background is who or what that Character used to be prior to becoming a Metanthrope">
 				Background: <span class="resource">{{system.Vital.background.value}}</span>
 			</div>
-			<div class="resource-label" title="{{system.Vital.arc.title}}">
+			<div class="resource-label" data-tooltip="{{system.Vital.arc.title}}">
 				{{system.Vital.arc.label}}:
 				{{#with (lookup actor.system.Vital.arc.options actor.system.Vital.arc.value) as |arcOption|}}
-					<span class="resource" title="{{arcOption.title}}">
+					<span class="resource" data-tooltip="{{arcOption.title}}">
 						{{arcOption.label}}
 					</span>
 				{{/with}}
 			</div>
-			<div class="resource-label" title="{{system.entermeta.regression.title}}">
+			<div class="resource-label" data-tooltip="{{system.entermeta.regression.title}}">
 				{{system.entermeta.regression.label}}:
 				{{#with (lookup actor.system.entermeta.regression.options actor.system.entermeta.regression.value) as |regressionOption|}}
-					<span class="resource" title="{{regressionOption.title}}">
+					<span class="resource" data-tooltip="{{regressionOption.title}}">
 						{{regressionOption.label}}
 					</span>
 				{{/with}}
 			</div>
 		</div>
-		<div class="layout-container-summary style-container-summary">
-			{{#if system.humanoids.gender.value}}
-				<div class="resource-label">Gender: <span class="resource">{{system.humanoids.gender.value}}</span>
-				</div>
-				<div class="resource-label">Age: <span class="resource">{{system.Vital.age.value}} yr</span>
-				</div>
-				<div class="resource-label">Height: <span class="resource">{{system.humanoids.height.value}} m</span>
-				</div>
-				<div class="resource-label">Weight: <span class="resource">{{system.humanoids.weight.value}} kg</span>
-				</div>
-				<div class="resource-label">Place of Birth: <span
-						class="resource">{{system.humanoids.birthplace.value}}</span>
-				</div>
-			{{else}}
-				<div>
-					<button class="finalize-premade-protagonist" title="Finalize Premade Protagonist">Finalize Premade
-						Protagonist</button>
-				</div>
-			{{/if}}
+	{{/if}}
+	{{! -- Portrait Image Section --}}
+	<div class="layout-tab-summary-portrait meta-ui-responsive meta-ui-hide-at-medium">
+		<div class="layout-container-summary">
+			<div class="layout-tab-summary-portrait-container">
+				<img src="{{actor.img}}" data-tooltip="Change {{actor.name}}'s Portrait Image"
+					alt="{{actor.name}}'s Portrait Image"
+					class="style-tab-summary-portrait meta-change-portrait" />
+			</div>
 		</div>
-		<div class="layout-container-summary style-container-summary">
-			<div class="resource-label">Narrator: <span class="resource">{{system.entermeta.narrator.value}}</span>
+	</div>
+	{{! -- Gender Section --}}
+	<div class="layout-container-summary layout-tab-summary-gender style-container-summary">
+		<div class="resource-label">Gender: <span class="resource">{{system.humanoids.gender.value}}</span>
+		</div>
+		<div class="resource-label">Age: <span class="resource">{{system.Vital.age.value}}
+				yr</span>
+		</div>
+		<div class="resource-label">Height: <span class="resource">{{system.humanoids.height.value}}
+				m</span>
+		</div>
+		<div class="resource-label">Weight: <span class="resource">{{system.humanoids.weight.value}}
+				kg</span>
+		</div>
+		<div class="resource-label">Place of Birth: <span
+				class="resource">{{system.humanoids.birthplace.value}}</span>
+		</div>
+	</div>
+	{{! -- Enter Meta Section --}}
+	{{#if actor.hasEnterMeta}}
+		<div
+			class="layout-container-summary layout-tab-summary-entermeta style-container-summary meta-ui-responsive meta-ui-hide-at-medium">
+			<div class="resource-label">Narrator: <span
+					class="resource">{{system.entermeta.narrator.value}}</span>
 			</div>
 			<div class="resource-label">Saga: <span class="resource">{{system.entermeta.sagas.value}}</span>
 			</div>
 			<div class="resource-label">Sessions Played: <span
 					class="resource">{{system.entermeta.sessions.value}}</span>
 			</div>
-			<div class="resource-label">Coalition: <span class="resource">{{system.entermeta.coalition.value}}</span>
+			<div class="resource-label">Coalition: <span
+					class="resource">{{system.entermeta.coalition.value}}</span>
 			</div>
-			<div class="resource-label">Faction: <span class="resource">{{system.entermeta.faction.value}}</span>
+			<div class="resource-label">Faction: <span
+					class="resource">{{system.entermeta.faction.value}}</span>
 			</div>
 		</div>
-		<div class="resource-label">
-			<img src="{{actor.img}}" title="{{actor.name}}" height="145" width="110"
-				style="border: none; border-radius: 15px" />
+	{{/if}}
+	{{! -- Physical Description Section --}}
+	<div class="layout-tab-summary-physical meta-ui-responsive meta-ui-hide-at-medium">
+		<div>
+			<h3>{{system.physical.Description.label}}</h3>
+		</div>
+		<div class="layout-editor style-editor">
+			{{editor system.physical.Description.value target="system.physical.Description.value" button=true editable=true}}
 		</div>
 	</div>
-	<div>
-		<h3>{{system.physical.Description.label}}</h3>
-	</div>
-	<div class="layout-editor style-editor">
-		{{editor system.physical.Description.value target="system.physical.Description.value" button=true editable=true}}
-	</div>
+	{{! -- NOTE: ONLY PROTAGONISTS HAVE THE EXTRA FIELDS HERE -- }}
+	{{#if (eq actor.type "Protagonist")}}
+		{{! -- Narrator Notes Section --}}
+		{{#if isNarrator}}
+			<div class="layout-tab-summary-narrator meta-ui-responsive meta-ui-hide-at-medium">
+				<div>
+					<h3>{{system.notes-narrator.label}}</h3>
+				</div>
+				<div class="layout-editor style-editor">
+					{{editor system.notes-narrator.value target="system.notes-narrator.value" button=true editable=true}}
+				</div>
+			</div>
+		{{else}}
+			<div class="layout-tab-summary-narrator meta-ui-responsive meta-ui-hide-at-medium">
+				<div>
+					<h3>{{system.notes-narrator.label}}</h3>
+				</div>
+				<div class="layout-editor style-editor">
+					{{editor system.notes-narrator.value target="system.notes-narrator.value" button=true editable=false}}
+				</div>
+			</div>
+		{{/if}}
+		{{! -- Protagonist Notes Section --}}
+		<div class="layout-tab-summary-actor">
+			<div>
+				<h3>{{system.notes-protagonist.label}}</h3>
+			</div>
+			<div class="layout-editor style-editor">
+				{{editor system.notes-protagonist.value target="system.notes-protagonist.value" button=true editable=true}}
+			</div>
+		</div>
+		{{! -- Saga Notes Section --}}
+		<div class="layout-tab-summary-saga">
+			<div>
+				<h3>{{system.entermeta.sagaNotes.label}}</h3>
+			</div>
+			<div class="layout-editor style-editor">
+				{{editor system.entermeta.sagaNotes.value target="system.entermeta.sagaNotes.value" button=true editable=true}}
+			</div>
+		</div>
+		{{! -- Coalition Notes Section --}}
+		<div class="layout-tab-summary-coalition">
+			<div>
+				<h3>{{system.entermeta.coalitionNotes.label}}</h3>
+			</div>
+			<div class="layout-editor style-editor">
+				{{editor system.entermeta.coalitionNotes.value target="system.entermeta.coalitionNotes.value" button=true editable=true}}
+			</div>
+		</div>
+	{{/if}}
 </div>

@@ -1,5 +1,6 @@
 import { MetaRoll } from "../metanthropes/metaroll.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
+import { CoverRoll } from "../helpers/extrasroll.mjs";
 /**
  * HandleMetaRolls - A utility function to handle various types of meta rolls for the Metanthropes system.
  *
@@ -33,7 +34,7 @@ export async function HandleMetaRolls(event, metaSheet, isCustomRoll = false) {
 		const action = dataset.rollType;
 		const stat = dataset.stat;
 		const destinyCost = Number(dataset.destinyCost) || 0; //? Destiny Cost is optional, so if it's not defined, set it to 0
-		const itemName = dataset.itemName || ""; //? Item Name is optional, so if it's not defined, set it to ""
+		const itemName = dataset.itemName || null; //? Item Name is optional, so if it's not defined, set it to null
 		switch (dataset.rollType) {
 			case "StatRoll":
 				metaLog(3, "HandleMetaRolls", "Engaging MetaRoll for:", actor.name + "'s", action, "with", stat);
@@ -80,4 +81,26 @@ export async function HandleMetaRolls(event, metaSheet, isCustomRoll = false) {
 	//? After doing a meta roll, re-render the actor or item sheet.
 	metaLog(3, "HandleMetaRolls", "Finished, re-rendering the actor/item sheet");
 	metaSheet.render(true);
+}
+/**
+ * HandleCoverRolls - A utility function to handle cover rolls for the Metanthropes system.
+ * This Function is called via a button or click event in the actor sheet, not called directly.
+ * todo This should be called directly at a later milestone when integrating with the Targeting & Aiming system
+ * 
+ * @param {*} event 
+ * @param {*} metaSheet 
+ */
+export async function handleCoverRolls(event, metaSheet) {
+	event.preventDefault();
+	const element = event.currentTarget;
+	//? Disable the element for 3 seconds to prevent double-clicking
+	element.disabled = true;
+	setTimeout(() => {
+		element.disabled = false;
+	}, 3000);
+	const dataset = element.dataset;
+	const actor = metaSheet.actor;
+	const coverType = dataset.type;
+	const coverValue = parseInt(dataset.coverValue);
+	CoverRoll(actor, coverType, coverValue);
 }

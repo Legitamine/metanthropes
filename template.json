@@ -178,13 +178,39 @@
 						"label": "Cover",
 						"initial": 0,
 						"value": 0,
-						"max": 100
+						"max": 100,
+						"types": {
+							"cosmic": {
+								"type": "number",
+								"label": "Cosmic",
+								"value": 0,
+								"options": [0, 10, 25, 50, 75, 90]
+							},
+							"elemental": {
+								"type": "number",
+								"label": "Elemental",
+								"value": 0,
+								"options": [0, 10, 25, 50, 75, 90]
+							},
+							"material": {
+								"type": "number",
+								"label": "Material",
+								"value": 0,
+								"options": [0, 10, 25, 50, 75, 90]
+							},
+							"psychic": {
+								"type": "number",
+								"label": "Psychic",
+								"value": 0,
+								"options": [0, 10, 25, 50, 75, 90]
+							}
+						}
 					},
 					"Description": {
 						"type": "text",
 						"dtype": "String",
 						"label": "Physical Description",
-						"value": "Details about your physical appearance"
+						"value": "<p>Details about your physical appearance</p>"
 					}
 				}
 			},
@@ -495,7 +521,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Humanoid Description",
-						"value": "A typical human with brown hair and brown eyes"
+						"value": "<p>A typical human with brown hair and brown eyes</p>"
 					}
 				}
 			},
@@ -858,13 +884,13 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "Saga Notes",
-						"value": "My notes for this Saga"
+						"value": "<p>My notes for this Saga</p>"
 					},
 					"coalitionNotes": {
 						"type": "text",
 						"dtype": "String",
 						"label": "Coalition Notes",
-						"value": "Notes about my Coalition of Metanthropes"
+						"value": "<p>Notes about my Coalition of Metanthropes</p>"
 					}
 				}
 			}
@@ -881,7 +907,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Human"
+				"value": "<p>This is my favorite Human. Secret Narrator Notes section is only visible to Narrators</p>"
 			}
 		},
 		"Extradimensional": {
@@ -896,7 +922,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Extradimensional"
+				"value": "<p>This is my favorite Extradimensional. Secret Narrator Notes section is only visible to Narrators</p>"
 			}
 		},
 		"Extraterrestrial": {
@@ -911,7 +937,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Extraterrestrial"
+				"value": "<p>This is my favorite Extraterrestrial. Secret Narrator Notes section is only visible to Narrators</p>"
 			}
 		},
 		"Metanthrope": {
@@ -926,7 +952,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Metanthrope"
+				"value": "<p>This is my favorite Metanthrope. Secret Narrator Notes section is only visible to Narrators</p>"
 			}
 		},
 		"Protagonist": {
@@ -941,19 +967,19 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Protagonist Notes",
-				"value": "My Notes"
+				"value": "<p>My Personal Notes</p>"
 			},
 			"notes-narrator": {
 				"type": "text",
 				"dtype": "String",
 				"label": "Narrator Notes",
-				"value": "Notes given to you by your Narrator"
+				"value": "<p>Notes given to you by your Narrator</p>"
 			},
 			"secret-notes-narrator": {
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Protagonist"
+				"value": "<p>This is my favorite Protagonist. Secret Narrator Notes section is only visible to Narrators</p>"
 			}
 		},
 		"Animal": {
@@ -968,7 +994,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Animal"
+				"value": "<p>This is my favorite Animal. Secret Narrator Notes section is only visible to Narrators</p>"
 			}
 		},
 		"MetaTherion": {
@@ -983,7 +1009,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Metatherion"
+				"value": "<p>This is my favorite MetaTherion. Secret Narrator Notes section is only visible to Narrators</p>"
 			}
 		},
 		"Artificial": {
@@ -998,7 +1024,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Artificial"
+				"value": "<p>This is my favorite Artificial. Secret Narrator Notes section is only visible to Narrators</p>"
 			}
 		},
 		"Animated-Plant": {
@@ -1013,7 +1039,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Animated Plant"
+				"value": "<p>This is my favorite Animated Plant. Secret Narrator Notes section is only visible to Narrators</p>"
 			}
 		},
 		"Animated-Cadaver": {
@@ -1028,7 +1054,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Animated Cadaver"
+				"value": "<p>This is my favorite Animated Cadaver. Secret Narrator Notes section is only visible to Narrators</p>"
 			}
 		},
 		"Vehicle": {
@@ -1043,7 +1069,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "This is my favorite Vehicle"
+				"value": "<p>This is my favorite Vehicle. Secret Narrator Notes section is only visible to Narrators</p>"
 			}
 		}
 	},
@@ -1606,7 +1632,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Combo Description",
-				"value": "Combos are not officially supported yet. This is a placeholder for future capabilities"
+				"value": "<p>Combos are not officially supported yet. This is a placeholder for future capabilities</p>"
 			}
 		}
 	}

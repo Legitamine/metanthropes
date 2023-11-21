@@ -13,7 +13,7 @@ export function metaMigrateData() {
 	//	// if (isNewerVersion("0.7.21", migrationVersion)) _metaMigrateItems();
 	//	if (isNewerVersion("0.8.21", migrationVersion)) _metaTemplateChanges();
 	//	//	game.settings.set("metanthropes-system", "migrationVersion", game.system.version);
-	_metaMigrateItems();
+	//_metaMigrateItems();
 	metaLog(3, "metaMigrateData", "Finished");
 }
 //* Handle template deprecations

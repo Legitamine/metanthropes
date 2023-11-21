@@ -3,16 +3,16 @@
   display: block;
   width: 40px;
   height: var(--sidebar-item-height);
-  background: url("../artwork/metanthropes-dice-roll-small.webp") no-repeat 50% 50%;
+  background: url("../artwork/ui/dice/d100roll-white.webp") no-repeat 50% 50%;
   background-size: 42px;
   margin: 0 0.5em;
 }
 
 .combat-sidebar li.combatant .roll:hover {
-  background-image: url("../artwork/metanthropes-dice-roll-small-activated.webp");
+  background-image: url("../artwork/ui/dice/d100roll-white-selected.webp");
 }
 
-input[type=text] {
+.metanthropes input[type=text] {
   min-width: 8ch;
   max-width: 22ch;
   margin: 1px;
@@ -23,7 +23,7 @@ input[type=text] {
   align-items: center;
 }
 
-input[type=number] {
+.metanthropes input[type=number] {
   min-width: 3ch;
   max-width: 5ch;
   margin: 1px;
@@ -49,7 +49,7 @@ main {
 
 body {
   font-family: "gill-sans-nova", sans-serif;
-  background-image: url("../artwork/bg-canvas.webp");
+  background-image: url("../artwork/ui/canvas/bg-canvas.webp");
   background-size: auto auto;
   background-attachment: local;
   background-repeat: repeat;
@@ -69,7 +69,7 @@ footer {
 
 button {
   font-family: "nasalization", sans-serif;
-  background-image: url("../artwork/button-3dhex.webp");
+  background-image: url("../artwork/ui/buttons/button-3dhex.webp");
   background-size: contain;
   text-shadow: 1px 1px 1px blue, 0 0 0.2em red, 0 0 0.2em red;
   border: 2px groove #7d0f81;
@@ -88,6 +88,34 @@ option {
   font-family: "nasalization", sans-serif;
   border: 1px dotted #000;
   border-radius: 15px;
+}
+
+p {
+  font-family: "gill-sans-nova", sans-serif;
+  margin: 1px;
+  padding: 1px;
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+.chat-message .table-draw .table-results .table-result img.result-image {
+  width: 100%;
+  max-height: 150px;
+  height: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border: none;
+  align-self: center;
+  text-align: center;
+  margin: 1px;
+  padding: 1px;
+}
+
+.chat-message .table-draw .table-results .table-result {
+  flex-direction: column;
 }
 
 .window-app {
@@ -109,22 +137,42 @@ option {
 }
 
 .window-app .window-content {
-  background-image: url("../artwork/background.webp");
-  background-size: auto auto;
-  background-attachment: scroll, local;
-  background-repeat: repeat;
+  position: relative;
+  background-image: url("../artwork/ui/window/background.webp");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
   background-origin: border-box;
   background-clip: border-box;
-  padding: 3px;
-  margin: 3px;
+}
+.window-app .window-content::before {
+  pointer-events: none;
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 55%;
+  height: 55%;
+  background-image: url("../artwork/ui/window/logo.webp");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-origin: padding-box;
+  background-clip: content-box;
+  filter: blur(2px);
+  opacity: 0.5;
 }
 
 .chat-message {
-  background-image: url("../artwork/chat-results.webp");
+  background-image: url("../artwork/ui/chat/chat-results.webp");
+  background-size: cover;
 }
 
 #chat-form textarea {
-  background-image: url("../artwork/chat-box.webp");
+  background-image: url("../artwork/ui/chat/chat-box.webp");
 }
 
 .directory .directory-header .header-search input {
@@ -147,6 +195,27 @@ option {
 
 .far.fa-dice-d20:before {
   content: "\f6cd";
+}
+
+.filepicker .tiles-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 508px;
+}
+
+.filepicker .tiles-list li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 167px;
+  height: 290px;
+}
+
+.filepicker .tiles-list li img {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+}
+.filepicker .tiles-list li img:hover {
+  transform: scale(1.8) translateY(40px);
 }
 
 .grid,
@@ -342,6 +411,30 @@ option {
   text-align: center;
 }
 
+.metanthropes .chat-message .message-header .flavor-text .metanthropes .hide-button .meta-ui-hidden {
+  display: none !important;
+}
+.metanthropes .hide-button .meta-ui-hidden {
+  display: none !important;
+}
+.metanthropes .meta-ui-hidden {
+  display: none !important;
+}
+.metanthropes .meta-ui-medium-font {
+  font-size: 0.9rem !important;
+}
+.metanthropes .meta-ui-small-font {
+  font-size: 0.55rem !important;
+}
+.metanthropes .meta-ui-single-column-font {
+  font-size: 0.8rem !important;
+}
+.metanthropes .meta-ui-obscure {
+  opacity: 0.5 !important;
+}
+.metanthropes .meta-ui-obscure:hover {
+  opacity: 1 !important;
+}
 .metanthropes .layout-container-grid3x4 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -373,6 +466,24 @@ option {
   -moz-column-gap: 3px;
        column-gap: 3px;
   row-gap: 3px;
+  padding: 0px;
+  margin: 0px;
+  overflow: hidden;
+}
+.metanthropes .layout-container-outer-charstats-minimum {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  -moz-column-gap: 3px;
+       column-gap: 3px;
+  row-gap: 3px;
+  padding: 0px;
+  margin: 0px;
+  overflow: hidden;
+}
+.metanthropes .layout-container-outer-charstats-single-column {
+  display: grid;
   padding: 0px;
   margin: 0px;
   overflow: hidden;
@@ -431,9 +542,35 @@ option {
   overflow: hidden;
   overflow-wrap: break-word;
 }
+.metanthropes .layout-container-grid2x1-cs {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  -moz-column-gap: 3px;
+       column-gap: 3px;
+  padding: 0px;
+  margin: 0px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  justify-content: space-evenly;
+  justify-self: stretch;
+}
+.metanthropes .layout-container-grid1x1-cs {
+  display: grid;
+  grid-template-columns: 1fr;
+  -moz-column-gap: 3px;
+       column-gap: 3px;
+  padding: 1px;
+  margin: 1px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  align-items: center;
+  align-self: center;
+  justify-content: space-evenly;
+  justify-self: stretch;
+}
 .metanthropes .layout-container-physical {
   display: grid;
-  grid-template-columns: 2fr 0.8fr 1.8fr;
+  grid-template-columns: 0.9fr 1.5fr 1fr;
   -moz-column-gap: 1px;
        column-gap: 1px;
   padding: 0px;
@@ -443,7 +580,7 @@ option {
 }
 .metanthropes .layout-container-actorinfo {
   display: grid;
-  grid-template-columns: 0.4fr 0.7fr 1.6fr 1fr 0.4fr;
+  grid-template-columns: 0.4fr 0.7fr 1.7fr 0.5fr 0.8fr;
   -moz-column-gap: 1px;
        column-gap: 1px;
   padding: 1px;
@@ -522,6 +659,11 @@ option {
   padding: 6px;
   margin: 1px;
 }
+.metanthropes .layout-container-summary-controls {
+  display: flex;
+  padding: 6px;
+  margin: 1px;
+}
 .metanthropes .layout-container-nav {
   display: block;
 }
@@ -564,6 +706,79 @@ option {
   font-weight: 500;
   color: #000;
 }
+.metanthropes .layout-tab-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto auto auto auto auto;
+  grid-template-areas: "narratorSecret narratorSecret" "buttons buttons" "portrait prime" "portrait gender" "entermeta physical" "narrator actor" "saga coalition";
+  gap: 3px;
+}
+.metanthropes .layout-tab-summary-at-medium {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto auto auto auto auto;
+  grid-template-areas: "prime" "gender" "actor" "saga" "coalition";
+  gap: 3px;
+}
+.metanthropes .layout-tab-summary-narrator-secret {
+  grid-area: narratorSecret;
+  border: 1px solid #000;
+  border-radius: 15px;
+}
+.metanthropes .layout-tab-summary-buttons {
+  grid-area: buttons;
+}
+.metanthropes .layout-tab-summary-portrait {
+  border: 1px solid #000;
+  border-radius: 15px;
+  grid-area: portrait;
+}
+.metanthropes .layout-tab-summary-prime {
+  border: 1px solid #000;
+  border-radius: 15px;
+  grid-area: prime;
+}
+.metanthropes .layout-tab-summary-gender {
+  border: 1px solid #000;
+  border-radius: 15px;
+  grid-area: gender;
+}
+.metanthropes .layout-tab-summary-entermeta {
+  border: 1px solid #000;
+  border-radius: 15px;
+  grid-area: entermeta;
+}
+.metanthropes .layout-tab-summary-physical {
+  border: 1px solid #000;
+  border-radius: 15px;
+  grid-area: physical;
+}
+.metanthropes .layout-tab-summary-narrator {
+  border: 1px solid #000;
+  border-radius: 15px;
+  grid-area: narrator;
+}
+.metanthropes .layout-tab-summary-actor {
+  border: 1px solid #000;
+  border-radius: 15px;
+  grid-area: actor;
+}
+.metanthropes .layout-tab-summary-saga {
+  border: 1px solid #000;
+  border-radius: 15px;
+  grid-area: saga;
+}
+.metanthropes .layout-tab-summary-coalition {
+  border: 1px solid #000;
+  border-radius: 15px;
+  grid-area: coalition;
+}
+.metanthropes .layout-tab-perks-container {
+  margin: 3px;
+  padding: 3px;
+  border: 1px solid #000;
+  border-radius: 15px;
+}
 .metanthropes .editor {
   min-height: 80px;
   height: auto;
@@ -596,6 +811,12 @@ option {
 .metanthropes .perk-item .resource-label {
   margin-right: 10px;
 }
+.metanthropes .layout-tab-summary-portrait-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .metanthropes .style-container-outer-charstats {
   opacity: 1;
   justify-content: center;
@@ -623,7 +844,7 @@ option {
   opacity: 1;
   border: 1px solid #000;
   border-radius: 15px;
-  justify-content: stretch;
+  justify-content: center;
   justify-self: center;
   align-items: center;
   align-self: center;
@@ -670,7 +891,7 @@ option {
   border-radius: 15px;
   justify-content: center;
   justify-self: stretch;
-  align-items: center;
+  align-items: stretch;
   align-self: stretch;
 }
 .metanthropes .style-container-grid1x3 {
@@ -696,9 +917,9 @@ option {
   opacity: 1;
   border: 1px solid #000;
   border-radius: 15px;
-  justify-content: flex-start;
+  justify-content: center;
   justify-self: stretch;
-  align-items: stretch;
+  align-items: center;
   align-self: stretch;
 }
 .metanthropes .style-container-outer-tabs {
@@ -717,12 +938,21 @@ option {
   align-items: stretch;
   align-self: stretch;
 }
+.metanthropes .style-container-summary-controls {
+  opacity: 1;
+  border: 1px solid #000;
+  border-radius: 15px;
+  justify-content: space-evenly;
+  justify-self: stretch;
+  align-items: center;
+  align-self: stretch;
+}
 .metanthropes .style-container-border {
   border: 1px solid #000;
   border-radius: 15px;
   border-style: dotted;
-  -o-border-image: url(../artwork/border.webp) 5/10px round;
-     border-image: url(../artwork/border.webp) 5/10px round;
+  -o-border-image: url(../artwork/ui/borders/border.webp) 5/10px round;
+     border-image: url(../artwork/ui/borders/border.webp) 5/10px round;
   border-radius: 15px;
 }
 .metanthropes .style-container-nav {
@@ -950,6 +1180,11 @@ option {
   padding: 1px;
   margin: 1px;
 }
+.metanthropes .meta-cover-roll:hover {
+  cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
+  color: #7d0f81;
+  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+}
 .metanthropes .style-cs-rolls {
   opacity: 1;
   font-family: "nasalization", sans-serif;
@@ -965,7 +1200,26 @@ option {
   margin: 3px;
 }
 .metanthropes .style-cs-rolls:hover {
-  cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
+  cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
+  color: #7d0f81;
+  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+}
+.metanthropes .style-cs-rolls-single-column {
+  opacity: 1;
+  font-family: "nasalization", sans-serif;
+  font-size: 2rem;
+  color: #000;
+  font-weight: bold;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  padding: 0px;
+  margin: 0px;
+}
+.metanthropes .style-cs-rolls-single-column:hover {
+  cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
   color: #7d0f81;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
@@ -981,7 +1235,7 @@ option {
   margin: 0px;
 }
 .metanthropes .style-mp-rolls:hover {
-  cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
+  cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
   color: #7d0f81;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
@@ -997,7 +1251,7 @@ option {
   margin: 0px;
 }
 .metanthropes .style-pos-rolls:hover {
-  cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
+  cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
   color: #7d0f81;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
@@ -1013,9 +1267,7 @@ option {
   color: #000;
   padding: 3px;
   margin: 3px;
-  border: 1px solid #000;
-  border-radius: 15px;
-  min-height: 50px;
+  min-height: 70px;
   height: auto;
   max-height: 800px;
   overflow-y: auto;
@@ -1027,6 +1279,43 @@ option {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.metanthropes .style-tab-header-logo {
+  max-height: 85px;
+  width: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border: none;
+  scale: 1;
+  border-radius: 50%;
+}
+.metanthropes .style-tab-header-portrait {
+  max-height: 85px;
+  width: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border: none;
+  border-radius: 15px;
+}
+.metanthropes .style-tab-summary-portrait {
+  max-height: 300px;
+  width: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border: none;
+  border-radius: 15px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+}
+.metanthropes .style-tab-summary-portrait:hover {
+  transform: scale(2);
+}
+.metanthropes .style-dialog-portrait {
+  max-height: 300px;
+  width: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border: none;
+  border-radius: 15px;
 }
 .metanthropes .items-header {
   margin: 1px;
@@ -1123,6 +1412,17 @@ option {
 .metanthropes .item-formula {
   flex: 0 0 200px;
   padding: 0 8px;
+}
+.metanthropes .effects .item .effect-source,
+.metanthropes .effects .item .effect-duration,
+.metanthropes .effects .item .effect-controls {
+  text-align: center;
+  border-left: 1px solid #b0a765;
+  border-right: 1px solid #b0a765;
+  font-size: 12px;
+}
+.metanthropes .effects .item .effect-controls {
+  border: none;
 }
 .metanthropes .item-form {
   font-family: "nasalization", sans-serif;

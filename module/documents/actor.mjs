@@ -1,4 +1,4 @@
-import { metaLog } from "../helpers/metahelpers.mjs";
+import { metaIsMetapowerEquipped, metaLog } from "../helpers/metahelpers.mjs";
 
 /**
  * The base Actor definition which defines common behavior of actors within the Metanthropes system.
@@ -25,32 +25,204 @@ export class MetanthropesActor extends Actor {
 				"prototypeToken.displayBars": defaultToken?.displayBars || CONST.TOKEN_DISPLAY_MODES.HOVER, //? Default display bars to be on hover
 				"prototypeToken.disposition": defaultToken?.disposition || CONST.TOKEN_DISPOSITIONS.NEUTRAL, //? Default disposition to neutral
 				"prototypeToken.name": data.name, //? Set token name to actor name
+				"prototypeToken.texture.src": createData.img, //? Set token image to actor image
 			});
 		else if (data.prototypeToken) createData.prototypeToken = data.prototypeToken;
 		//? Set custom default tokens portraits
-		if (!data.img || data.img == "icons/svg/mystery-man.svg") {
-			createData.img = "systems/metanthropes-system/artwork/tokens/token-utilitarian.webp";
-			if (data.type == "Vehicle") createData.img = "systems/metanthropes-system/artwork/tokens/token-hammer.webp";
-			if (data.type == "MetaTherion")
-				createData.img = "systems/metanthropes-system/artwork/tokens/token-manipulator.webp";
-			if (data.type == "Protagonist")
-				createData.img = "systems/metanthropes-system/artwork/tokens/portraits/Select Portrait.webp";
-			if (data.type == "Metanthrope")
-				createData.img = "systems/metanthropes-system/artwork/tokens/token-arbiter.webp";
-			if (data.type == "Artificial")
-				createData.img = "systems/metanthropes-system/artwork/tokens/token-controller.webp";
-			if (data.type == "Human")
-				createData.img = "systems/metanthropes-system/artwork/tokens/token-clairvoyant.webp";
-			if (data.type == "Animated-Plant")
-				createData.img = "systems/metanthropes-system/artwork/tokens/token-pink.webp";
-			if (data.type == "Animated-Cadaver")
-				createData.img = "systems/metanthropes-system/artwork/tokens/token-animator.webp";
-			if (data.type == "Animal")
-				createData.img = "systems/metanthropes-system/artwork/tokens/token-kineticist.webp";
-			if (data.type == "Extraterrestrial")
-				createData.img = "systems/metanthropes-system/artwork/tokens/token-aegis.webp";
-			if (data.type == "Extradimensional")
-				createData.img = "systems/metanthropes-system/artwork/tokens/token-cosmonaut.webp";
+		//todo Needs Refactoring - this is a mess
+		if (!createData.prototypeToken.flags) createData.prototypeToken.flags = {};
+		switch (data.type) {
+			case "Protagonist":
+				createData.img = "systems/metanthropes-system/tokens/defaults/token-hammer.webp";
+				createData.prototypeToken.texture.src = "systems/metanthropes-system/tokens/defaults/token-hammer.webp";
+				//? Splatter blood color for Protagonists
+				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
+				//? Monk's Bloodsplats blood color for Protagonists
+				//todo add more settings from new module options
+				createData.prototypeToken.flags["monks-bloodsplats"] = {
+					"bloodsplat-colour": "#d10000ff",
+					"bloodsplat-type": "",
+				};
+				//? Token Disposition to Friendly for Protagonists
+				createData.prototypeToken.disposition = 1;
+				//? Monk's Token Bar Inclusion for Protagonists
+				createData.prototypeToken.flags["monks-tokenbar"] = { include: "include" };
+				//? Make Name & Life/Destiny Bars visible on hover by Anyone for Protagonists
+				createData.prototypeToken.displayName = 30;
+				createData.prototypeToken.displayBars = 30;
+				break;
+			case "Metanthrope":
+				createData.img = "systems/metanthropes-system/tokens/defaults/token-utilitarian.webp";
+				createData.prototypeToken.texture.src =
+					"systems/metanthropes-system/tokens/defaults/token-utilitarian.webp";
+				//? Splatter blood color for Metanthropes
+				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
+				//? Monk's Bloodsplats blood color for Metanthropes
+				//todo add more settings from new module options
+				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#d10000ff";
+				//? Token Disposition to Neutral for Metanthropes
+				createData.prototypeToken.disposition = 0;
+				//? Monk's Token Bar Exclusion for Metanthropes
+				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
+				//? Make Name & Life/Destiny Bars visible on hover by Owner for Metanthropes
+				createData.prototypeToken.displayName = 20;
+				createData.prototypeToken.displayBars = 20;
+				break;
+			case "Human":
+				createData.img = "systems/metanthropes-system/tokens/defaults/token-aegis.webp";
+				createData.prototypeToken.texture.src = "systems/metanthropes-system/tokens/defaults/token-aegis.webp";
+				//? Splatter blood color for Humans
+				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
+				//? Monk's Bloodsplats blood color for Humans
+				//todo add more settings from new module options
+				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#d10000ff";
+				//? Token Disposition to Neutral for Humans
+				createData.prototypeToken.disposition = 0;
+				//? Monk's Token Bar Exclusion for Humans
+				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
+				//? Make Name & Life/Destiny Bars visible on hover by Owner for Humans
+				createData.prototypeToken.displayName = 20;
+				createData.prototypeToken.displayBars = 20;
+				break;
+			case "Artificial":
+				createData.img = "systems/metanthropes-system/tokens/defaults/token-animator.webp";
+				createData.prototypeToken.texture.src =
+					"systems/metanthropes-system/tokens/defaults/token-animator.webp";
+				//? Splatter blood color for Artificials
+				createData.prototypeToken.flags.splatter = { bloodColor: "#00BFFF" };
+				//? Monk's Bloodsplats blood color for Artificials
+				//todo add more settings from new module options
+				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#00BFFF";
+				//? Token Disposition to Neutral for Artificials
+				createData.prototypeToken.disposition = 0;
+				//? Monk's Token Bar Exclusion for Artificials
+				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
+				//? Make Name & Life/Destiny Bars visible on hover by Owner for Artificials
+				createData.prototypeToken.displayName = 20;
+				createData.prototypeToken.displayBars = 20;
+				break;
+			case "Animal":
+				createData.img = "systems/metanthropes-system/tokens/defaults/token-kineticist.webp";
+				createData.prototypeToken.texture.src =
+					"systems/metanthropes-system/tokens/defaults/token-kineticist.webp";
+				//? Splatter blood color for Animals
+				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
+				//? Monk's Bloodsplats blood color for Animals
+				//todo add more settings from new module options
+				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#d10000ff";
+				//? Token Disposition to Neutral for Animals
+				createData.prototypeToken.disposition = 0;
+				//? Monk's Token Bar Exclusion for Animals
+				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
+				//? Make Name & Life/Destiny Bars visible on hover by Owner for Animals
+				createData.prototypeToken.displayName = 20;
+				createData.prototypeToken.displayBars = 20;
+				break;
+			case "Animated-Plant":
+				createData.img = "systems/metanthropes-system/tokens/defaults/token-clairvoyant.webp";
+				createData.prototypeToken.texture.src =
+					"systems/metanthropes-system/tokens/defaults/token-clairvoyant.webp";
+				//? Splatter blood color for Animated-Plants
+				createData.prototypeToken.flags.splatter = { bloodColor: "#228B22" };
+				//? Monk's Bloodsplats blood color for Animated-Plants
+				//todo add more settings from new module options
+				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#228B22";
+				//? Token Disposition to Neutral for Animated-Plants
+				createData.prototypeToken.disposition = 0;
+				//? Monk's Token Bar Exclusion for Animated-Plants
+				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
+				//? Make Name & Life/Destiny Bars visible on hover by Owner for Animated-Plants
+				createData.prototypeToken.displayName = 20;
+				createData.prototypeToken.displayBars = 20;
+				break;
+			case "Animated-Cadaver":
+				createData.img = "systems/metanthropes-system/tokens/defaults/token-cosmonaut.webp";
+				createData.prototypeToken.texture.src =
+					"systems/metanthropes-system/tokens/defaults/token-cosmonaut.webp";
+				//? Splatter blood color for Animated-Cadavers
+				createData.prototypeToken.flags.splatter = { bloodColor: "#006400" };
+				//? Monk's Bloodsplats blood color for Animated-Cadavers
+				//todo add more settings from new module options
+				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#006400";
+				//? Token Disposition to Hostile for Animated-Cadavers
+				createData.prototypeToken.disposition = -1;
+				//? Monk's Token Bar Exclusion for Animated-Cadavers
+				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
+				//? Make Name & Life/Destiny Bars visible on hover by Owner for Animated-Cadavers
+				createData.prototypeToken.displayName = 20;
+				createData.prototypeToken.displayBars = 20;
+				break;
+			case "Extraterrestrial":
+				createData.img = "systems/metanthropes-system/tokens/defaults/token-arbiter.webp";
+				createData.prototypeToken.texture.src =
+					"systems/metanthropes-system/tokens/defaults/token-arbiter.webp";
+				//? Splatter blood color for Extraterrestrials
+				createData.prototypeToken.flags.splatter = { bloodColor: "#800080" };
+				//? Monk's Bloodsplats blood color for Extraterrestrials
+				//todo add more settings from new module options
+				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#800080";
+				//? Token Disposition to Neutral for Extraterrestrials
+				createData.prototypeToken.disposition = 0;
+				//? Monk's Token Bar Exclusion for Extraterrestrials
+				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
+				//? Make Name & Life/Destiny Bars visible on hover by Owner for Extraterrestrials
+				createData.prototypeToken.displayName = 20;
+				createData.prototypeToken.displayBars = 20;
+				break;
+			case "Extradimensional":
+				createData.img = "systems/metanthropes-system/tokens/defaults/token-pink.webp";
+				createData.prototypeToken.texture.src = "systems/metanthropes-system/tokens/defaults/token-pink.webp";
+				//? Splatter blood color for Extradimensionals
+				createData.prototypeToken.flags.splatter = { bloodColor: "#FF69B4" };
+				//? Monk's Bloodsplats blood color for Extradimensionals
+				//todo add more settings from new module options
+				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#FF69B4";
+				//? Token Disposition to Neutral for Extradimensionals
+				createData.prototypeToken.disposition = 0;
+				//? Monk's Token Bar Exclusion for Extradimensionals
+				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
+				//? Make Name & Life/Destiny Bars visible on hover by Owner for Extradimensionals
+				createData.prototypeToken.displayName = 20;
+				createData.prototypeToken.displayBars = 20;
+				break;
+			case "MetaTherion":
+				createData.img = "systems/metanthropes-system/tokens/defaults/token-manipulator.webp";
+				createData.prototypeToken.texture.src =
+					"systems/metanthropes-system/tokens/defaults/token-manipulator.webp";
+				//? Splatter blood color for MetaTherions
+				createData.prototypeToken.flags.splatter = { bloodColor: "#FF1493" };
+				//? Monk's Bloodsplats blood color for MetaTherions
+				//todo add more settings from new module options
+				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#FF1493";
+				//? Token Disposition to Hostile for MetaTherions
+				createData.prototypeToken.disposition = -1;
+				//? Monk's Token Bar Exclusion for MetaTherions
+				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
+				//? Make Name & Life/Destiny Bars visible on hover by Owner for MetaTherions
+				createData.prototypeToken.displayName = 20;
+				createData.prototypeToken.displayBars = 20;
+				break;
+			case "Vehicle":
+				createData.img = "systems/metanthropes-system/tokens/defaults/token-controller.webp";
+				createData.prototypeToken.texture.src =
+					"systems/metanthropes-system/tokens/defaults/token-controller.webp";
+				//? Splatter blood color for Vehicles
+				createData.prototypeToken.flags.splatter = { bloodColor: "#808080" };
+				//? Monk's Bloodsplats blood color for Vehicles
+				//todo add more settings from new module options
+				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#808080";
+				//? Token Disposition to Neutral for Vehicles
+				createData.prototypeToken.disposition = 0;
+				//? Monk's Token Bar Exclusion for Vehicles
+				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
+				//? Make Name & Life/Destiny Bars visible on hover by Owner for Vehicles
+				createData.prototypeToken.displayName = 20;
+				createData.prototypeToken.displayBars = 20;
+				break;
+			default:
+				createData.img = "systems/metanthropes-system/tokens/defaults/token-border.webp";
+				createData.prototypeToken.texture.src = "systems/metanthropes-system/tokens/defaults/token-border.webp";
+				break;
 		}
 		//? Fix for Token Attacher / CF Import - from wh4e
 		if (!createData.prototypeToken) createData.prototypeToken = {};
@@ -58,34 +230,22 @@ export class MetanthropesActor extends Actor {
 		if (data.type !== "Vehicle") {
 			createData.prototypeToken.sight = { enabled: true };
 		}
-		//! todo I must include other types that could have a Duplicate Self metapower active
-		//todo I should probably check to see if any of Duplicate Self MPs are on the actor and if set to Duplicate them, then do the below
-		//todo need to review the rules for Duplicate cause right now all non Protagonist/Metanthrope Actors are not linked, and thus duplication is abit more complicated.
-		//todo need to confirm with the Composer how to proceed
-		//? Duplicate Self Metapower
+		//* We control Unique (linked/unlined) from here
+		//* we can control token sizes, and along with newActor similar finishing touches,
+		//* control like splatter blood color, auras, visions and perhaps even more
+		//! need to revise with Actor v3 changes
 		if (data.type == "Protagonist" || data.type == "Metanthrope") {
 			if (!(data.name.includes("Copy") || data.name.includes("Duplicate"))) {
 				//? Enable Linked Tokens for Protagonists & Metanthropes without 'Duplicate' or 'Copy' in their name
 				createData.prototypeToken.actorLink = true;
 				createData.prototypeToken.prependAdjective = false;
-			} else {
-				//? Replace the default 'Copy' name with 'Duplicate'
-				if (data.name.includes("Copy")) {
-					const newName = data.name.replace("Copy", "Duplicate");
-					createData.prototypeToken.name = newName;
-					createData.name = newName;
-				}
-				//? Disable Linked Tokens for Protagonists with 'Duplicate' in their name
-				createData.prototypeToken.actorLink = false;
-				//? Append numbers to the tokens
-				createData.prototypeToken.appendNumber = true;
-				//? Disable default behavior of prepending adjective to the name
-				createData.prototypeToken.prependAdjective = false;
-				//? Remove all Items (Metapowers and Possessions) besides 'Strike'
-				const newItems = data.items.filter((item) => item.name === "Strike");
-				createData.items = newItems;
 			}
 		}
+		//? Make the size of the token reflect a typical humanoid relative to the grid
+		createData.prototypeToken.height = 1;
+		createData.prototypeToken.width = 1;
+		createData.prototypeToken.texture.scaleX = 0.73;
+		createData.prototypeToken.texture.scaleY = 0.73;
 		this.updateSource(createData);
 	}
 	/** @override */
@@ -102,20 +262,24 @@ export class MetanthropesActor extends Actor {
 		//* Data modifications in this step occur before processing embedded
 		//* documents or derived data.
 		//? Setting Humans to have starting life of 50 instead of 100
-		if (this.type == "Human") {
+		if (this.type === "Human") {
 			this.system.Vital.Life.Initial = 50;
 		}
 		//? for Protagonists set the metanthropes-logo as default icon for metapower, if no metapower is selected
-		if (this.type == "Protagonist") {
-			if (!this.primeimg || this.primeimg == `systems/metanthropes-system/artwork/metanthropes-logo.webp`) {
+		if (this.hasEnterMeta) {
+			if (
+				!this.primeimg ||
+				this.primeimg == `systems/metanthropes-system/artwork/ui/logos/metanthropes-logo.webp` ||
+				this.primeimg == `systems/metanthropes-system/artwork/metanthropes-logo.webp`
+			) {
 				metaLog(3, "MetanthropesActor", "prepareBaseData", "Updating Prime Metapower Image for:", this.name);
 				//? for Protagonists without a prime metapower defined, make it the metanthropes-logo
 				if (!this.system.entermeta.primemetapower.value) {
-					this.primeimg = `systems/metanthropes-system/artwork/metanthropes-logo.webp`;
+					this.primeimg = `systems/metanthropes-system/artwork/ui/logos/metanthropes-logo.webp`;
 				} else {
 					//? for Protagonists with a prime metapower defined, make it their respective metapower icon
 					const primemetapowerimage = this.system.entermeta.primemetapower.value;
-					this.primeimg = `systems/metanthropes-system/artwork/metapowers/${primemetapowerimage}.png`;
+					this.primeimg = `systems/metanthropes-system/artwork/metapowers/${primemetapowerimage}.webp`;
 				}
 			}
 		}
@@ -200,6 +364,12 @@ export class MetanthropesActor extends Actor {
 		systemData.Characteristics.Soul.CoreConditions.Probed = 0;
 		systemData.Characteristics.Soul.CoreConditions.Infiltrated = 0;
 		systemData.Characteristics.Soul.CoreConditions.Unconscious = 0;
+		systemData.physical.size.Buffs.enlarged.value = 0;
+		systemData.physical.size.Conditions.shrunken.value = 0;
+		systemData.physical.weight.Buffs.lightened.value = 0;
+		systemData.physical.weight.Conditions.encumbered.value = 0;
+		systemData.physical.speed.Buffs.accelerated.value = 0;
+		systemData.physical.speed.Conditions.slowed.value = 0;
 	}
 	_prepareDerivedCharacteristicsData(actorData) {
 		if (actorData.type == "Vehicle") return;
@@ -394,22 +564,22 @@ export class MetanthropesActor extends Actor {
 		if (actorData.type == "Vehicle") return;
 		const systemData = actorData.system;
 		//? first we will calculate the current values from buffs and conditions, then we take their modifiers and calculate the movement value
-		let speedinitial = Number(systemData.physical.speed.initial);
-		let weightinitial = Number(systemData.physical.weight.initial);
-		let sizeinitial = Number(systemData.physical.size.initial);
-		let speedbuff = Number(systemData.physical.speed.Buffs.accelerated.value);
-		let speedcondition = Number(systemData.physical.speed.Conditions.slowed.value);
-		let weightbuff = Number(systemData.physical.weight.Buffs.lightened.value);
-		let weightcondition = Number(systemData.physical.weight.Conditions.encumbered.value);
-		let sizebuff = Number(systemData.physical.size.Buffs.enlarged.value);
-		let sizecondition = Number(systemData.physical.size.Conditions.shrunken.value);
-		let sizecurrent = sizeinitial + sizebuff - sizecondition;
-		let weightcurrent = weightinitial - weightbuff + weightcondition;
-		let speedcurrent = speedinitial + speedbuff - speedcondition;
+		const speedinitial = Number(systemData.physical.speed.initial);
+		const weightinitial = Number(systemData.physical.weight.initial);
+		const sizeinitial = Number(systemData.physical.size.initial);
+		const speedbuff = Number(systemData.physical.speed.Buffs.accelerated.value);
+		const speedcondition = Number(systemData.physical.speed.Conditions.slowed.value);
+		const weightbuff = Number(systemData.physical.weight.Buffs.lightened.value);
+		const weightcondition = Number(systemData.physical.weight.Conditions.encumbered.value);
+		const sizebuff = Number(systemData.physical.size.Buffs.enlarged.value);
+		const sizecondition = Number(systemData.physical.size.Conditions.shrunken.value);
+		const sizecurrent = sizeinitial + sizebuff - sizecondition;
+		const weightcurrent = weightinitial - weightbuff + weightcondition;
+		const speedcurrent = speedinitial + speedbuff - speedcondition;
 		systemData.physical.size.value = sizecurrent;
 		systemData.physical.weight.value = weightcurrent;
 		systemData.physical.speed.value = speedcurrent;
-		let speedModifiers = {
+		const speedModifiers = {
 			0: 0,
 			1: 0,
 			2: 0,
@@ -432,7 +602,7 @@ export class MetanthropesActor extends Actor {
 			19: 10000,
 			20: 20000,
 		};
-		let weightModifiers = {
+		const weightModifiers = {
 			0: 200,
 			1: 100,
 			2: 50,
@@ -455,7 +625,7 @@ export class MetanthropesActor extends Actor {
 			19: 0.001,
 			20: 0.0002,
 		};
-		let sizeModifiers = {
+		const sizeModifiers = {
 			0: 0.0002,
 			1: 0.001,
 			2: 0.002,
@@ -479,9 +649,9 @@ export class MetanthropesActor extends Actor {
 			20: 19683,
 		};
 		//? in addition to the modifiers, Wobbly also affects final movemement value
-		let wobblyModifier = Number(systemData.Characteristics.Mind.Stats.Creativity.Condition.Current);
+		const wobblyModifier = Number(systemData.Characteristics.Mind.Stats.Creativity.Condition.Current);
 		//? movement value is always rounded up
-		let movementvalue = Math.ceil(
+		const movementvalue = Math.ceil(
 			speedModifiers[speedcurrent] * weightModifiers[weightcurrent] * sizeModifiers[sizecurrent] - wobblyModifier
 		);
 		systemData.physical.movement.value = movementvalue;
@@ -573,8 +743,10 @@ export class MetanthropesActor extends Actor {
 			}
 		}
 	}
+	//* Getters
 	/** @override */
 	getRollData() {
+		if (this.type == "Vehicle") return;
 		const data = super.getRollData();
 		if (!data.Characteristics) {
 			metaLog(2, "MetanthropesActor", "getRollData", this.name, "has no Characteristics!");
@@ -587,5 +759,51 @@ export class MetanthropesActor extends Actor {
 			}
 		}
 		return data;
+	}
+	get hasCharacteristics() {
+		return Boolean(this.system.Characteristics);
+	}
+	get hasPerks() {
+		return Boolean(this.system.Perks);
+	}
+	get hasEnterMeta() {
+		return Boolean(this.system.entermeta && this.system.entermeta.primemetapower);
+	}
+	get hasPossessions() {
+		return !["Animal", "MetaTherion", "Animated-Plant"].includes(this.type);
+	}
+	get isSynthetic() {
+		return Boolean(this.system.Synthetic);
+	}
+	get isPremade() {
+		return Boolean(this.name.includes("Premade") || this.name.includes(this.type));
+	}
+	get isNewActor() {
+		if (this.type === "Vehicle" && this.name.includes("New Actor")) return true;
+		if (!this.hasCharacteristics) return false;
+		const charBody = this.system.Characteristics.Body;
+		const charMind = this.system.Characteristics.Mind;
+		const charSoul = this.system.Characteristics.Soul;
+		const charBodyStatValues =
+			charBody.Stats.Power.Initial + charBody.Stats.Reflexes.Initial + charBody.Stats.Endurance.Initial;
+		const charMindStatValues =
+			charMind.Stats.Creativity.Initial + charMind.Stats.Perception.Initial + charMind.Stats.Manipulation.Initial;
+		const charSoulStatValues =
+			charSoul.Stats.Consciousness.Initial + charSoul.Stats.Willpower.Initial + charSoul.Stats.Awareness.Initial;
+		const charStatValues = charBodyStatValues + charMindStatValues + charSoulStatValues;
+		return Boolean(this.name.includes("New Actor") || charStatValues <= 20);
+	}
+	get isDuplicate() {
+		return Boolean(this.name.includes("Duplicate"));
+	}
+	get isHumanoid() {
+		return Boolean(this.system.humanoids);
+	}
+	get isDuplicatingSelf() {
+		if (metaIsMetapowerEquipped(this, "Duplicate Self")) {
+			return Boolean(this.getFlag("metanthropes-system", "duplicateSelf"));
+		} else {
+			return false;
+		}
 	}
 }
