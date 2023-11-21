@@ -1,4 +1,4 @@
-import { metaLog } from "../helpers/metahelpers.mjs";
+import { metaIsMetapowerEquipped, metaLog } from "../helpers/metahelpers.mjs";
 
 /**
  * The base Actor definition which defines common behavior of actors within the Metanthropes system.
@@ -30,6 +30,8 @@ export class MetanthropesActor extends Actor {
 		else if (data.prototypeToken) createData.prototypeToken = data.prototypeToken;
 		//? Set custom default tokens portraits
 		if (!data.img || data.img == "icons/svg/mystery-man.svg") {
+			//! need new custom default images for the below
+			//todo add new images
 			createData.img = "systems/metanthropes-system/artwork/tokens/token-utilitarian.webp";
 			if (data.type == "Vehicle") createData.img = "systems/metanthropes-system/artwork/tokens/token-hammer.webp";
 			if (data.type == "MetaTherion")
@@ -59,36 +61,14 @@ export class MetanthropesActor extends Actor {
 		if (data.type !== "Vehicle") {
 			createData.prototypeToken.sight = { enabled: true };
 		}
-		//! todo I must include other types that could have a Duplicate Self metapower active
-		//todo I should probably check to see if any of Duplicate Self MPs are on the actor and if set to Duplicate them, then do the below
-		//todo need to review the rules for Duplicate cause right now all non Protagonist/Metanthrope Actors are not linked, and thus duplication is abit more complicated.
-		//todo need to confirm with the Composer how to proceed
-		//? Duplicate Self Metapower
-		//* We control Unique (linked/unlined) from here 
+		//* We control Unique (linked/unlined) from here
 		//* we can control token sizes, and along with newActor similar finishing touches,
 		//* control like splatter blood color, auras, visions and perhaps even more
-		//todo should make it so that if the Duplicate Self MP is active, then we do the Duplicate logic
-		//todo otherwise we should just leave the default 'Copy' logic that Foundry provides
 		//! need to revise with Actor v3 changes
 		if (data.type == "Protagonist" || data.type == "Metanthrope") {
 			if (!(data.name.includes("Copy") || data.name.includes("Duplicate"))) {
-				const hasmeta = data.hasEnterMeta;
 				//? Enable Linked Tokens for Protagonists & Metanthropes without 'Duplicate' or 'Copy' in their name
 				createData.prototypeToken.actorLink = true;
-				createData.prototypeToken.prependAdjective = false;
-				
-			} else {
-				//? Replace the default 'Copy' name with 'Duplicate'
-				if (data.name.includes("Copy")) {
-					const newName = data.name.replace("Copy", "Duplicate");
-					createData.prototypeToken.name = newName;
-					createData.name = newName;
-				}
-				//? Disable Linked Tokens for Protagonists with 'Duplicate' in their name
-				createData.prototypeToken.actorLink = false;
-				//? Append numbers to the tokens
-				createData.prototypeToken.appendNumber = true;
-				//? Disable default behavior of prepending adjective to the name
 				createData.prototypeToken.prependAdjective = false;
 			}
 		}
@@ -639,9 +619,12 @@ export class MetanthropesActor extends Actor {
 		const charBody = this.system.Characteristics.Body;
 		const charMind = this.system.Characteristics.Mind;
 		const charSoul = this.system.Characteristics.Soul;
-		const charBodyStatValues = charBody.Stats.Power.Initial + charBody.Stats.Reflexes.Initial + charBody.Stats.Endurance.Initial;
-		const charMindStatValues = charMind.Stats.Creativity.Initial + charMind.Stats.Perception.Initial + charMind.Stats.Manipulation.Initial;
-		const charSoulStatValues = charSoul.Stats.Consciousness.Initial + charSoul.Stats.Willpower.Initial + charSoul.Stats.Awareness.Initial;
+		const charBodyStatValues =
+			charBody.Stats.Power.Initial + charBody.Stats.Reflexes.Initial + charBody.Stats.Endurance.Initial;
+		const charMindStatValues =
+			charMind.Stats.Creativity.Initial + charMind.Stats.Perception.Initial + charMind.Stats.Manipulation.Initial;
+		const charSoulStatValues =
+			charSoul.Stats.Consciousness.Initial + charSoul.Stats.Willpower.Initial + charSoul.Stats.Awareness.Initial;
 		const charStatValues = charBodyStatValues + charMindStatValues + charSoulStatValues;
 		return Boolean(this.name.includes("New Actor") || charStatValues <= 20);
 	}
@@ -650,5 +633,12 @@ export class MetanthropesActor extends Actor {
 	}
 	get isHumanoid() {
 		return Boolean(this.system.humanoids);
+	}
+	get isDuplicatingSelf() {
+		if (metaIsMetapowerEquipped(this, "Duplicate Self")) {
+			return Boolean(this.getFlag("metanthropes-system", "duplicateSelf"));
+		} else {
+			return false;
+		}
 	}
 }

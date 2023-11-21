@@ -26,7 +26,7 @@ export class MetanthropesCombat extends Combat {
 		const bstatScore = b.actor.getFlag("metanthropes-system", "lastrolled")?.InitiativeStatScore ?? -Infinity;
 		//? sort by initiative first, then sort by statScore if the initiative is the same
 		//? first check to see if we have a perfect tie
-		if (a.initiative && b.initiative) {
+		if (a.initiative && b.initiative && !a.token.actor.name.includes("Duplicate") && !b.token.actor.name.includes("Duplicate") && !a.token.actor.type.includes("Animated") && !b.token.actor.type.includes("Animated")) {
 			if (ia === ib && astatScore === bstatScore) {
 				//todo: award 1 Destiny and re-roll initiative if tied both in Initiative and statScore
 				metaLog(4, "Combat", "_sortCombatants", "Perfect Tie between combatants:", a.name, "and:", b.name);
@@ -116,9 +116,9 @@ export class MetanthropesCombat extends Combat {
 	 * Return to the previous Round in the combat encounter
 	 * Checks to see if the combat has been started before reversing the Round
 	 * todo: need to review the Cycle / Round assignment when reversing
-	 * 
+	 *
 	 * @override
-	 * 
+	 *
 	 * @returns {Promise<Combat>}
 	 */
 	async previousRound() {

@@ -30,16 +30,13 @@ export class metaFilePicker extends FilePicker {
 		if (game.world && !game.user.can("FILES_BROWSE")) return this;
 		this.position.height = null;
 		//* Ensure the dialog is rendered above the MetaDialog
-		const newZIndex = this.position.zIndex + 100;
+		const newZIndex = this.position.zIndex + 1500;
 		this.element.css({ height: "" });
 		this.element.css({ zIndex: newZIndex });
-		//! which one works?
-		this.position.zIndex = newZIndex;
 		this._tabs[0].active = this.activeSource;
 		if (!this._loaded) {
 			this.browse();
-			//? Bring to the Top
-			this.bringToTop();
+			this.position.zIndex = newZIndex;
 			return this;
 		} else return super.render(force, options);
 	}

@@ -433,7 +433,7 @@ Hooks.on("createActor", async (actor) => {
 		actor.type !== "Extradimensional" &&
 		actor.type !== "Extraterrestrial"
 	) {
-		//* New Humanoids get a Strike eqquipped by default
+		//* New Humanoids get a Strike equipped by default
 		//? get the Strike Item from the Possessions Compendium
 		const possessionCompendium = await game.packs.get("metanthropes-system.possessions");
 		const possessionCompendiumIndex = await possessionCompendium.getIndex();
@@ -444,8 +444,16 @@ Hooks.on("createActor", async (actor) => {
 			metaLog(3, "New Actor Event Listener", "Gave 'Strike' to:", actor.name);
 		}
 	}
-	//* Duplicate Self Metapower - Remove Items from Duplicates
-	if (actor.name.includes("Duplicate")) {
+	//* Duplicate Self Metapower Activation Detection - Rename to Duplicate & Remove Items & Effects from Duplicates
+	if (actor.name.includes("Copy") && actor.isDuplicatingSelf) {
+		const newName = actor.name.replace("Copy", "Duplicate");
+		await actor.update({
+			name: newName,
+			"prototypeToken.name": newName,
+			"prototypeToken.actorLink": false,
+			"prototypeToken.appendNumber": true,
+			"prototypeToken.prependAdjective": false,
+		});
 		const itemsToDelete = actor.items.filter((item) => item.name !== "Strike");
 		await actor.deleteEmbeddedDocuments(
 			"Item",
