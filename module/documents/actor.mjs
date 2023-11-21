@@ -32,28 +32,68 @@ export class MetanthropesActor extends Actor {
 		if (!data.img || data.img == "icons/svg/mystery-man.svg") {
 			//! need new custom default images for the below
 			//todo add new images
-			createData.img = "systems/metanthropes-system/artwork/tokens/token-utilitarian.webp";
-			if (data.type == "Vehicle") createData.img = "systems/metanthropes-system/artwork/tokens/token-hammer.webp";
-			if (data.type == "MetaTherion")
-				createData.img = "systems/metanthropes-system/artwork/tokens/token-manipulator.webp";
-			if (data.type == "Protagonist")
-				createData.img = "systems/metanthropes-system/artwork/tokens/portraits/Select Portrait.webp";
-			if (data.type == "Metanthrope")
-				createData.img = "systems/metanthropes-system/artwork/tokens/token-arbiter.webp";
-			if (data.type == "Artificial")
-				createData.img = "systems/metanthropes-system/artwork/tokens/token-controller.webp";
-			if (data.type == "Human")
-				createData.img = "systems/metanthropes-system/artwork/tokens/token-clairvoyant.webp";
-			if (data.type == "Animated-Plant")
-				createData.img = "systems/metanthropes-system/artwork/tokens/token-pink.webp";
-			if (data.type == "Animated-Cadaver")
-				createData.img = "systems/metanthropes-system/artwork/tokens/token-animator.webp";
-			if (data.type == "Animal")
-				createData.img = "systems/metanthropes-system/artwork/tokens/token-kineticist.webp";
-			if (data.type == "Extraterrestrial")
-				createData.img = "systems/metanthropes-system/artwork/tokens/token-aegis.webp";
-			if (data.type == "Extradimensional")
-				createData.img = "systems/metanthropes-system/artwork/tokens/token-cosmonaut.webp";
+			switch (data.type) {
+				case "Protagonist":
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-hammer.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-hammer.webp";
+					break;
+				case "Metanthrope":
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-utilitarian.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-utilitarian.webp";
+					break;
+				case "Human":
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-aegis.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-aegis.webp";
+					break;
+				case "Artificial":
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-animator.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-animator.webp";
+					break;
+				case "Animal":
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-kineticist.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-kineticist.webp";
+					break;
+				case "Animated-Plant":
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-clairvoyant.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-clairvoyant.webp";
+					break;
+				case "Animated-Cadaver":
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-cosmonaut.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-cosmonaut.webp";
+					break;
+				case "Extraterrestrial":
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-arbiter.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-arbiter.webp";
+					break;
+				case "Extradimensional":
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-pink.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-pink.webp";
+					break;
+				case "MetaTherion":
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-manipulator.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-manipulator.webp";
+					break;
+				case "Vehicle":
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-controller.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-controller.webp";
+					break;
+				default:
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-border.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-border.webp";
+					break;
+			}
 		}
 		//? Fix for Token Attacher / CF Import - from wh4e
 		if (!createData.prototypeToken) createData.prototypeToken = {};
@@ -72,19 +112,11 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.prependAdjective = false;
 			}
 		}
-		//? Requires hex-size-support module to take effect - hides the border of the token
-		if (!createData.prototypeToken.flags) {
-			createData.prototypeToken.flags = {};
-		}
-		if (!createData.prototypeToken.flags["hex-size-support"]) {
-			createData.prototypeToken.flags["hex-size-support"] = {};
-		}
-		createData.prototypeToken.flags["hex-size-support"] = { hideBorder: true };
 		//? Make the size of the token reflect a typical humanoid relative to the grid
 		createData.prototypeToken.height = 1;
 		createData.prototypeToken.width = 1;
-		createData.prototypeToken.texture.scaleX = 0.75;
-		createData.prototypeToken.texture.scaleY = 0.75;
+		createData.prototypeToken.texture.scaleX = 0.73;
+		createData.prototypeToken.texture.scaleY = 0.73;
 		this.updateSource(createData);
 	}
 	/** @override */
@@ -106,15 +138,19 @@ export class MetanthropesActor extends Actor {
 		}
 		//? for Protagonists set the metanthropes-logo as default icon for metapower, if no metapower is selected
 		if (this.hasEnterMeta) {
-			if (!this.primeimg || this.primeimg == `systems/metanthropes-system/artwork/metanthropes-logo.webp`) {
+			if (
+				!this.primeimg ||
+				this.primeimg == `systems/metanthropes-system/artwork/ui/logos/metanthropes-logo.webp` ||
+				this.primeimg == `systems/metanthropes-system/artwork/metanthropes-logo.webp`
+			) {
 				metaLog(3, "MetanthropesActor", "prepareBaseData", "Updating Prime Metapower Image for:", this.name);
 				//? for Protagonists without a prime metapower defined, make it the metanthropes-logo
 				if (!this.system.entermeta.primemetapower.value) {
-					this.primeimg = `systems/metanthropes-system/artwork/metanthropes-logo.webp`;
+					this.primeimg = `systems/metanthropes-system/artwork/ui/logos/metanthropes-logo.webp`;
 				} else {
 					//? for Protagonists with a prime metapower defined, make it their respective metapower icon
 					const primemetapowerimage = this.system.entermeta.primemetapower.value;
-					this.primeimg = `systems/metanthropes-system/artwork/metapowers/${primemetapowerimage}.png`;
+					this.primeimg = `systems/metanthropes-system/artwork/metapowers/${primemetapowerimage}.webp`;
 				}
 			}
 		}

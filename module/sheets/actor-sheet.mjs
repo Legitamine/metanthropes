@@ -5,7 +5,7 @@ import { NewActor, FinalizePremadeActor } from "../metanthropes/newactor.mjs";
 //? Import Progression Sheet
 import { MetaStartProgression } from "../metanthropes/metaprogression.mjs";
 //? Import helpers
-import { metaLog, metaHandleResize } from "../helpers/metahelpers.mjs";
+import { metaLog } from "../helpers/metahelpers.mjs";
 //? Import Active Effect helper
 import { prepareActiveEffectCategories, onManageActiveEffect } from "../metanthropes/metaeffects.mjs";
 //? Import Custom Classes
@@ -230,17 +230,17 @@ export class MetanthropesActorSheet extends ActorSheet {
 		switch (size) {
 			case "singleColumn":
 				this.position.width = 200;
-				this.position.height = 880;
+				this.position.height = 900;
 				this._tabs[0].active = "cs-charstats";
 				break;
 			case "small":
-				this.position.width = 300;
-				this.position.height = 380;
+				this.position.width = 305;
+				this.position.height = 385;
 				this._tabs[0].active = "cs-charstats";
 				break;
 			case "medium":
 				this.position.width = 550;
-				this.position.height = 895;
+				this.position.height = 900;
 				break;
 			case "extended":
 				this.position.width = 1400;

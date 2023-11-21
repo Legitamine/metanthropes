@@ -22,17 +22,42 @@ export class MetanthropesCombat extends Combat {
 	_sortCombatants(a, b) {
 		const ia = Number.isNumeric(a.initiative) ? a.initiative : -Infinity;
 		const ib = Number.isNumeric(b.initiative) ? b.initiative : -Infinity;
-		const astatScore = a.actor.getFlag("metanthropes-system", "lastrolled")?.InitiativeStatScore ?? -Infinity;
-		const bstatScore = b.actor.getFlag("metanthropes-system", "lastrolled")?.InitiativeStatScore ?? -Infinity;
+		//? Get actor for a
+		let aActor = null;
+		if (a.token.actorLink) {
+			const actorId = a.actorId;
+			aActor = game.actors.get(actorId);
+		} else {
+			aActor = a.token.actor;
+		}
+		//? Get actor for b
+		let bActor = null;
+		if (b.token.actorLink) {
+			const actorId = b.actorId;
+			bActor = game.actors.get(actorId);
+		} else {
+			bActor = b.token.actor;
+		}
 		//? sort by initiative first, then sort by statScore if the initiative is the same
+		let aStatScore = null;
+		let bStatScore = null;
 		//? first check to see if we have a perfect tie
-		if (a.initiative && b.initiative && !a.token.actor.name.includes("Duplicate") && !b.token.actor.name.includes("Duplicate") && !a.token.actor.type.includes("Animated") && !b.token.actor.type.includes("Animated")) {
-			if (ia === ib && astatScore === bstatScore) {
+		if (
+			a.initiative &&
+			b.initiative &&
+			!a.name.includes("Duplicate") &&
+			!b.name.includes("Duplicate") &&
+			!aActor.type.includes("Animated") &&
+			!bActor.type.includes("Animated")
+		) {
+			aStatScore = aActor.getFlag("metanthropes-system", "lastrolled")?.InitiativeStatScore ?? -Infinity;
+			bStatScore = bActor.getFlag("metanthropes-system", "lastrolled")?.InitiativeStatScore ?? -Infinity;
+			if (ia === ib && aStatScore === bStatScore) {
 				//todo: award 1 Destiny and re-roll initiative if tied both in Initiative and statScore
 				metaLog(4, "Combat", "_sortCombatants", "Perfect Tie between combatants:", a.name, "and:", b.name);
 			}
 		}
-		return ib - ia || (astatScore > bstatScore ? -1 : 1);
+		return ib - ia || (aStatScore > bStatScore ? -1 : 1);
 	}
 	/**
 	 * Roll Initiative for one or multiple Combatants within the Combat document

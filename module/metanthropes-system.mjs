@@ -473,3 +473,10 @@ Hooks.on("createActor", async (actor) => {
 //? In system entry point. You may have to get specific for particular sheets as some don't invoke hooks for the whole hierarchy.
 Hooks.on(`getActorSheetHeaderButtons`, metaLogDocument);
 Hooks.on(`getItemSheetHeaderButtons`, metaLogDocument);
+//* Customize Pause Logo
+Hooks.on("renderPause", (app, html, options) => {
+	if (options.paused) {
+		const img = html.find("img")[0];
+		img.src = "systems/metanthropes-system/artwork/ui/logos/metanthropes-logo.webp";
+	}
+});

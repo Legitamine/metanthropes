@@ -6,7 +6,7 @@ Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 
 # Early Access v0.8
 
-## New Features:
+### New Features:
 
 -   Added buttons on the header of the Actor sheet to resize the Actor sheet to 5 preconfigured states: Single Column, Small, Medium, Normal (default) and Extended. You can still resize the sheet manually to your liking and now the UI will change the ammount of information it displays based on the width of the new size when you release the button. Clicking on the first two, will also switch your active tab to the Actors' Stats
 -   Added the Effects tab in the Actor sheet, where you can see all the Active Effects that the Actor has, the Immunities, Detections and Shifts as well as a section with Movement, Resistances and Cover information. This tab will be further expanded in future releases
@@ -22,10 +22,11 @@ Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 -   Added automation for the Duplicate Self Metapower. It used to require many extra manual steps from the Narrator, now the process is fully-automated, requiring the Narrator to only do a right-click on the Actor in the Sidebar and select 'Duplicate' for the Actor that has successfully activated the Duplicate Self Metapower. Instead of the normal 'Actor (Copy)', there will be a new 'Actor (Duplicate)' created. Then the Narrator, can drag the new Duplicate to the Canvas, as many times as the number of Clones required. The Duplicates will have the correct Stat Scores and Maximum Life, will not have any Effects, Conditions or Buffs applied, will not have any Metapowers or Possessions besides 'Strike' and will be unlinked from the original Actor, allowing for multiple Tokens on the Canvas. Players can fully control their Duplicates and can use the Tab key to switch between them
 -   Added Automation to equip the Possession 'Strike' to all New Humanoid Actors
 
-## Changed:
+### Changed:
 
 -   Cleaned up and improved the majority of the code documentation. This is a non-visual change that won't affect the gameplay in any way, but will help other developers (and myself) when reviewing and making further changes to the code
 -   The World now automatically becomes unpaused when the Metanthropes System Finishes Loading
+-   Changed some of the images & code used in the UI to scale better with the new Responsive UI
 -   When using a Possession that requires a Perk Skill at a certain Level, it will now Reduce the result of the roll, instead of imposing a Penalty on it. Note that Reductions stack with each other, so trying a Multi-Action, together with missing Perk Skill Levels, will now greatly reduce your chances of using that Possession successfully
 -   When you mouse-over the Name of a Metapower or Possession, you will now see a tooltip with the Effect of that Item. Clicking on the Name will open the Item sheet, as before
 -   Removed the 'Sheet' Button from the Header of the Actor and Item sheets. This was used in development and no longer needed
@@ -46,6 +47,7 @@ Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 ### Fixed:
 
 -   Fixed various minor issues and optimized the code for better performance and error handling
+-   Fixed an issue that caused a graphical glitch when right-clicking on an Actor's Token, now it correctly displays all the elements without overlapping
 -   Fixed Pain Condition to only change your result to Failure if it is greater than your Levels of Success. Previously it would also give you Levels of Failure, which was not intended
 -   Fixed an issue that was causing d10 rolls to explode on 1's and 2's when it was not intended to do so
 -   Fixed an issue that caused non-Narrator players to see 3 Error Notifications saying something similar to: 'Player cannot update the combat document', every time a new Combat Encounter started

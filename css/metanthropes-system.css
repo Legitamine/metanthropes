@@ -3,13 +3,13 @@
   display: block;
   width: 40px;
   height: var(--sidebar-item-height);
-  background: url("../artwork/metanthropes-dice-roll-small.webp") no-repeat 50% 50%;
+  background: url("../artwork/ui/dice/d100roll-white.webp") no-repeat 50% 50%;
   background-size: 42px;
   margin: 0 0.5em;
 }
 
 .combat-sidebar li.combatant .roll:hover {
-  background-image: url("../artwork/metanthropes-dice-roll-small-activated.webp");
+  background-image: url("../artwork/ui/dice/d100roll-white-selected.webp");
 }
 
 .metanthropes input[type=text] {
@@ -49,7 +49,7 @@ main {
 
 body {
   font-family: "gill-sans-nova", sans-serif;
-  background-image: url("../artwork/bg-canvas.webp");
+  background-image: url("../artwork/ui/canvas/bg-canvas.webp");
   background-size: auto auto;
   background-attachment: local;
   background-repeat: repeat;
@@ -69,7 +69,7 @@ footer {
 
 button {
   font-family: "nasalization", sans-serif;
-  background-image: url("../artwork/button-3dhex.webp");
+  background-image: url("../artwork/ui/buttons/button-3dhex.webp");
   background-size: contain;
   text-shadow: 1px 1px 1px blue, 0 0 0.2em red, 0 0 0.2em red;
   border: 2px groove #7d0f81;
@@ -137,22 +137,42 @@ h3 {
 }
 
 .window-app .window-content {
-  background-image: url("../artwork/background.webp");
-  background-size: auto auto;
-  background-attachment: scroll, local;
-  background-repeat: repeat;
+  position: relative;
+  background-image: url("../artwork/ui/window/background.webp");
+  background-position: auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
   background-origin: border-box;
   background-clip: border-box;
-  padding: 3px;
-  margin: 3px;
+}
+.window-app .window-content::before {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 55%;
+  height: 55%;
+  background-image: url("../artwork/ui/window/logo.webp");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-origin: padding-box;
+  background-clip: content-box;
+  filter: blur(20px);
+  filter: contrast(110%);
+  opacity: 0.6;
 }
 
 .chat-message {
-  background-image: url("../artwork/chat-results.webp");
+  background-image: url("../artwork/ui/chat/chat-results.webp");
+  background-size: cover;
 }
 
 #chat-form textarea {
-  background-image: url("../artwork/chat-box.webp");
+  background-image: url("../artwork/ui/chat/chat-box.webp");
 }
 
 .directory .directory-header .header-search input {
@@ -931,8 +951,8 @@ h3 {
   border: 1px solid #000;
   border-radius: 15px;
   border-style: dotted;
-  -o-border-image: url(../artwork/border.webp) 5/10px round;
-     border-image: url(../artwork/border.webp) 5/10px round;
+  -o-border-image: url(../artwork/ui/borders/border.webp) 5/10px round;
+     border-image: url(../artwork/ui/borders/border.webp) 5/10px round;
   border-radius: 15px;
 }
 .metanthropes .style-container-nav {
@@ -1161,7 +1181,7 @@ h3 {
   margin: 1px;
 }
 .metanthropes .meta-cover-roll:hover {
-  cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
+  cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
   color: #7d0f81;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
@@ -1180,7 +1200,7 @@ h3 {
   margin: 3px;
 }
 .metanthropes .style-cs-rolls:hover {
-  cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
+  cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
   color: #7d0f81;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
@@ -1199,7 +1219,7 @@ h3 {
   margin: 0px;
 }
 .metanthropes .style-cs-rolls-single-column:hover {
-  cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
+  cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
   color: #7d0f81;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
@@ -1215,7 +1235,7 @@ h3 {
   margin: 0px;
 }
 .metanthropes .style-mp-rolls:hover {
-  cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
+  cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
   color: #7d0f81;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
@@ -1231,7 +1251,7 @@ h3 {
   margin: 0px;
 }
 .metanthropes .style-pos-rolls:hover {
-  cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
+  cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
   color: #7d0f81;
   text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
@@ -1392,6 +1412,17 @@ h3 {
 .metanthropes .item-formula {
   flex: 0 0 200px;
   padding: 0 8px;
+}
+.metanthropes .effects .item .effect-source,
+.metanthropes .effects .item .effect-duration,
+.metanthropes .effects .item .effect-controls {
+  text-align: center;
+  border-left: 1px solid #b0a765;
+  border-right: 1px solid #b0a765;
+  font-size: 12px;
+}
+.metanthropes .effects .item .effect-controls {
+  border: none;
 }
 .metanthropes .item-form {
   font-family: "nasalization", sans-serif;

@@ -3,12 +3,12 @@
 	display: block;
 	width: 40px;
 	height: var(--sidebar-item-height);
-	background: url("../artwork/metanthropes-dice-roll-small.webp") no-repeat 50% 50%;
+	background: url("../artwork/ui/dice/d100roll-white.webp") no-repeat 50% 50%;
 	background-size: 42px;
 	margin: 0 0.5em;
 }
 .combat-sidebar li.combatant .roll:hover {
-	background-image: url("../artwork/metanthropes-dice-roll-small-activated.webp");
+	background-image: url("../artwork/ui/dice/d100roll-white-selected.webp");
 }
 // this changes the input fields in Foundry UI
 .metanthropes input[type="text"] {
@@ -44,7 +44,7 @@ main {
 }
 body {
 	font-family: $font-secondary;
-	background-image: url("../artwork/bg-canvas.webp");
+	background-image: url("../artwork/ui/canvas/bg-canvas.webp");
 	background-size: auto auto;
 	background-attachment: local;
 	background-repeat: repeat;
@@ -62,7 +62,7 @@ footer {
 // this changes the font for buttons of Foundry UI
 button {
 	font-family: $font-primary;
-	background-image: url("../artwork/button-3dhex.webp");
+	background-image: url("../artwork/ui/buttons/button-3dhex.webp");
 	background-size: contain;
 	text-shadow: $s-button;
 	border: $border-groove;
@@ -121,31 +121,42 @@ h3 {
 	margin: $margin-md;
 }
 .window-app .window-content {
-	background-image: url("../artwork/background.webp");
-	background-size: auto auto;
-	background-attachment: scroll, local;
-	background-repeat: repeat;
+	position: relative;
+	background-image: url("../artwork/ui/window/background.webp");
+	background-position: auto;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
 	background-origin: border-box;
 	background-clip: border-box;
-	padding: $padding-md;
-	margin: $margin-md;
+	&::before {
+		pointer-events: none;
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 55%;
+		height: 55%;
+		background-image: url("../artwork/ui/window/logo.webp");
+		background-position: center;
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-origin: padding-box;
+		background-clip: content-box;
+		filter: blur(20px);
+		filter: contrast(110%);
+		opacity: 0.6;
+	}
 }
-//	.window-app .window-content {
-//		background-image: url("../artwork/metanthropes-logo.png"), url("../artwork/white-paper-test.jpg");
-//		background-position: center, auto auto; // center watermark, default position for background
-//		background-size: contain, auto auto; // size watermark to contain within the element, default size for background
-//		background-repeat: no-repeat, repeat; // no repeat for watermark, repeat for background
-//		background-attachment: scroll; // applies to both backgrounds
-//		background-origin: border-box; // applies to both backgrounds
-//		background-clip: border-box; // applies to both backgrounds
-//		padding: $padding-md;
-//		margin: $margin-md;
-//	}
+
 .chat-message {
-	background-image: url("../artwork/chat-results.webp");
+	background-image: url("../artwork/ui/chat/chat-results.webp");
+	background-size: cover;
+	//opacity: 0.75;
 }
 #chat-form textarea {
-	background-image: url("../artwork/chat-box.webp");
+	background-image: url("../artwork/ui/chat/chat-box.webp");
 }
 .directory .directory-header .header-search input {
 	background-color: $c-background;

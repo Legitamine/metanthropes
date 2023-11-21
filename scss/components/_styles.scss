@@ -146,7 +146,7 @@
 	border: $border-style-solid;
 	border-radius: $border-radius;
 	border-style: dotted;
-	border-image: url(../artwork/border.webp) 5 / 10px round;
+	border-image: url(../artwork/ui/borders/border.webp) 5 / 10px round;
 	border-radius: $border-radius;
 }
 //nav container styling
@@ -381,7 +381,7 @@
 }
 .meta-cover-roll {
 	&:hover {
-		cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
+		cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
 		color: $c-purple;
 		text-shadow: $s-outline;
 	}
@@ -400,15 +400,10 @@
 	padding: $padding-md;
 	margin: $margin-md;
 	&:hover {
-		cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
+		cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
 		color: $c-purple;
 		text-shadow: $s-outline;
 	}
-	//	&:focus {
-	//		cursor: url(../artwork/metanthropes-dice-roll-small-activated.webp), pointer;
-	//		color: $c-purple;
-	//		text-shadow: $s-outline;
-	//	}
 }
 .style-cs-rolls-single-column {
 	opacity: 1;
@@ -424,7 +419,7 @@
 	padding: $padding-zero;
 	margin: $margin-zero;
 	&:hover {
-		cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
+		cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
 		color: $c-purple;
 		text-shadow: $s-outline;
 	}
@@ -440,15 +435,10 @@
 	padding: $padding-zero;
 	margin: $margin-zero;
 	&:hover {
-		cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
+		cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
 		color: $c-purple;
 		text-shadow: $s-outline;
 	}
-	//	&:focus {
-	//		cursor: url(../artwork/metanthropes-dice-roll-small-activated.webp), pointer;
-	//		color: $c-purple;
-	//		text-shadow: $s-outline;
-	//	}
 }
 .style-pos-rolls {
 	opacity: 1;
@@ -461,15 +451,10 @@
 	padding: $padding-zero;
 	margin: $margin-zero;
 	&:hover {
-		cursor: url(../artwork/metanthropes-dice-roll-activated.webp), pointer;
+		cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
 		color: $c-purple;
 		text-shadow: $s-outline;
 	}
-	//	&:focus {
-	//		cursor: url(../artwork/metanthropes-dice-roll-small-activated.webp), pointer;
-	//		color: $c-purple;
-	//		text-shadow: $s-outline;
-	//	}
 }
 .style-view-properties {
 	&:hover {

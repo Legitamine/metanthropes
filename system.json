@@ -22,7 +22,7 @@
 	],
 	"esmodules": ["module/metanthropes-system.mjs"],
 	"styles": ["css/metanthropes-system.css"],
-	"background": "systems/metanthropes-system/artwork/cover.jpg",
+	"background": "systems/metanthropes-system/artwork/ui/cover/cover.jpg",
 	"packs": [
 		{
 			"label": "Premade Protagonists",
