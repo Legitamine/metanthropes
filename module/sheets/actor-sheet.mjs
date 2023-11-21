@@ -5,11 +5,9 @@ import { NewActor, FinalizePremadeActor } from "../metanthropes/newactor.mjs";
 //? Import Progression Sheet
 import { MetaStartProgression } from "../metanthropes/metaprogression.mjs";
 //? Import helpers
-import { metaLog } from "../helpers/metahelpers.mjs";
+import { metaChangePortrait, metaLog } from "../helpers/metahelpers.mjs";
 //? Import Active Effect helper
 import { prepareActiveEffectCategories, onManageActiveEffect } from "../metanthropes/metaeffects.mjs";
-//? Import Custom Classes
-import { metaFilePicker } from "../metanthropes/metaclasses.mjs";
 /**
  * MetanthropesActorSheet - An Actor Sheet for Metanthropes actors.
  *
@@ -613,44 +611,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 	}
 	async _onChangePortrait(event) {
 		event.preventDefault();
-		//? Based on the actor's type, set the current directory
-		const baseDir = "systems/metanthropes-system/artwork/portraits/";
-		const actorType = this.actor.type.toLowerCase();
-		const currentDir = baseDir + actorType + "/";
-		const fp = new metaFilePicker({
-			resource: "data",
-			current: currentDir,
-			displayMode: "tiles",
-			callback: this._onSelectFile.bind(this),
-			allowUpload: false,
-		});
-		this.filepickers.push(fp);
-		return fp.browse();
-	}
-	async _onSelectFile(selection, filePicker) {
-		const actor = this.actor;
-		const path = selection;
-		//? Update the Actor image + Prototype token image
-		//todo need to evaluate how this works with non-linked tokens & actors
-		await actor.update({ img: path });
-		const prototype = actor.prototypeToken || false;
-		if (prototype) {
-			//! This expects to find the same file name as the portrait, but in the /tokens/ directory
-			await actor.update({ "prototypeToken.texture.src": path });
-		}
-		//? Update Iterate over all scenes
-		for (const scene of game.scenes) {
-			let tokensToUpdate = [];
-			//? Find tokens that represent the actor
-			for (const token of scene.tokens.contents) {
-				if (token.actorId === actor.id) {
-					tokensToUpdate.push({ _id: token.id, "texture.src": path });
-				}
-			}
-			//? Update the token images
-			if (tokensToUpdate.length > 0) {
-				await scene.updateEmbeddedDocuments("Token", tokensToUpdate);
-			}
-		}
+		const actorUUID = this.actor.uuid;
+		const actor = await fromUuid(actorUUID);
+		metaChangePortrait(actor);
 	}
 }

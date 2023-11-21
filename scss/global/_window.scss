@@ -120,10 +120,11 @@ h3 {
 	padding: $padding-md;
 	margin: $margin-md;
 }
+
 .window-app .window-content {
 	position: relative;
 	background-image: url("../artwork/ui/window/background.webp");
-	background-position: auto;
+	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: scroll;
@@ -132,6 +133,7 @@ h3 {
 	&::before {
 		pointer-events: none;
 		content: "";
+		display: inline-block;
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -144,9 +146,8 @@ h3 {
 		background-repeat: no-repeat;
 		background-origin: padding-box;
 		background-clip: content-box;
-		filter: blur(20px);
-		filter: contrast(110%);
-		opacity: 0.6;
+		filter: blur(2px);
+		opacity: 0.5;
 	}
 }
 

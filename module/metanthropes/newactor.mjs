@@ -190,7 +190,7 @@ export async function NewActorDestiny(actor) {
 export async function NewActorPrimeMetapower(actor) {
 	let dialogContent = `
 		<div class="metanthropes layout-metaroll-dialog">
-		<h3>Choose your ${actor.type}'s Prime Ⓜ️ Metapower</h3>
+		<h3>Choose your ${actor.type}'s<br>Prime Ⓜ️ Metapower</h3>
 		<form>
 			<div class="form-group">
 			<label for="classification" title="Each Classification includes Metapowers which have a similar role and utilize capabilities and functions in a similar manner">🔣 Classification:</label>
@@ -233,14 +233,14 @@ export async function NewActorPrimeMetapower(actor) {
 			</div>
 			<div class="form-group">
 				<label for="primeMetapowerImg"></label>
-				<img id="primeMetapowerImg" src="systems/metanthropes-system/artwork/metapowers/6th Sense.png" alt="Prime Metapower Image" style="border: none;" height="270" width="270" />
+				<img id="primeMetapowerImg" src="systems/metanthropes-system/artwork/metapowers/6th Sense.webp" alt="Prime Metapower Image" style="border: none;" height="256" width="256" />
 			</div>
 		</form>
 	</div>
 	`;
 	let dialogOptions = {
 		width: 485,
-		height: 600,
+		height: 550,
 	};
 	return new Promise((resolve, reject) => {
 		let dialog = new MetaDialog(
@@ -296,7 +296,7 @@ export async function NewActorPrimeMetapower(actor) {
 						//? making sure the value is not empty before proceeding
 						if (primeMetapowerName) {
 							let primeMetapowerImg = html.find("#primeMetapowerImg")[0];
-							primeMetapowerImg.src = `systems/metanthropes-system/artwork/metapowers/${primeMetapowerName}.png`;
+							primeMetapowerImg.src = `systems/metanthropes-system/artwork/metapowers/${primeMetapowerName}.webp`;
 						}
 					});
 				},
@@ -1187,19 +1187,17 @@ export async function NewPremadeSummary(actor) {
 export async function NewActorFinish(actor) {
 	let dialogContent = `
 		<div class="metanthropes layout-metaroll-dialog">
-			<h3>${actor.type}: ${actor.name} is ready to enter the Multiverse!</h3>
+			<h3>${actor.type}: ${actor.name} <br>is ready to enter the Multiverse!</h3>
 			<form>
 				<div class="form-group">
-				<label for="actorimg">${actor.type} Portrait:</label>
-				<img src="${actor.img}" data-tooltip="Change ${actor.name}'s Portrait Image" alt="${actor.name}'s Portrait Image" data-actor-uuid="${actor.uuid}"
-				class="style-dialog-portrait meta-change-portrait" />
+					
 				</div>
 			</form>
 		</div>
 	`;
 	let dialogOptions = {
 		width: 420,
-		height: 520,
+		height: 300,
 	};
 	return new Promise((resolve, reject) => {
 		let dialog = new MetaDialog(
@@ -1210,45 +1208,6 @@ export async function NewActorFinish(actor) {
 					ok: {
 						label: "and so it begins...",
 						callback: async (html) => {
-							await actor.update({
-								//? set bloodsplats to red color
-								//todo: each type should have a different blood color
-								//todo: vehicles should not have splatter?
-								//todo Monk's Bloodsplats had an update that further enhances what options are available.
-								"prototypeToken.flags.splatter": { bloodColor: "#d10000ff" },
-								"prototypeToken.flags.monks-bloodsplats.bloodsplat-colour": "#d10000ff",
-							});
-							if (actor.type === "Protagonist") {
-								await actor.update({
-									//? set the token disposition to friendly
-									"prototypeToken.disposition": 1,
-									//? set token bar inclusion
-									"prototypeToken.flags.monks-tokenbar": { include: "include" },
-									//? make bars visible on hover by anyone
-									"prototypeToken.displayName": 30,
-									"prototypeToken.displayBars": 30,
-								});
-							} else if (actor.type === "MetaTherion") {
-								await actor.update({
-									//? set the token disposition to hostile
-									"prototypeToken.disposition": -1,
-									//? set token bar exclusion
-									"prototypeToken.flags.monks-tokenbar": { include: "exclude" },
-									//? make bars visible on hover by owner
-									"prototypeToken.displayName": 20,
-									"prototypeToken.displayBars": 20,
-								});
-							} else {
-								await actor.update({
-									//? set the token disposition to secret
-									"prototypeToken.disposition": -2,
-									//? set token bar exclusion
-									"prototypeToken.flags.monks-tokenbar": { include: "exclude" },
-									//? make bars visible on hover by owner
-									"prototypeToken.displayName": 20,
-									"prototypeToken.displayBars": 20,
-								});
-							}
 							ui.notifications.info(actor.name + " has entered the Multiverse!");
 							resolve();
 						},
