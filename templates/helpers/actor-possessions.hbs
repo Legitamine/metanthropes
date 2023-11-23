@@ -4,19 +4,20 @@
 			<div class="item-name" data-tooltip="The Category of this Possession">{{Category}}</div>
 			<div class="item-attacktype meta-ui-responsive meta-ui-hide-at-medium"
 				data-tooltip="The type of Attack of this Possession">Attack Type</div>
-			<div class="item-statroll" data-tooltip="The Stat Rolled to use this Possession">🎲</div>
+			<div class="item-statroll meta-ui-responsive meta-ui-hide-at-minimum"
+				data-tooltip="The Stat Rolled to use this Possession">🎲</div>
 			<div class="item-vsroll meta-ui-responsive meta-ui-extra-fields"
 				data-tooltip="Stat Rolled against using this Possession">🆚</div>
 			<div class="item-actionslot meta-ui-responsive meta-ui-hide-at-minimum"
 				data-tooltip="Which part of my turn does it take to use this Possession">⏱</div>
-			<div class="item-range meta-ui-responsive meta-ui-hide-at-minimum"
+			<div class="item-targets meta-ui-responsive meta-ui-hide-at-medium"
+				data-tooltip="The Number of Targets of this Possession">🎯</div>
+			<div class="item-duration meta-ui-responsive meta-ui-hide-at-medium"
+				data-tooltip="The Duration of this Possession">⏳</div>
+			<div class="item-range meta-ui-responsive meta-ui-extra-fields"
 				data-tooltip="The Range of this Possession">📏</div>
 			<div class="item-area meta-ui-responsive meta-ui-extra-fields"
 				data-tooltip="The Area of Effect Range of this Possession">🗺️</div>
-			<div class="item-targets meta-ui-responsive meta-ui-extra-fields"
-				data-tooltip="The Number of Targets of this Possession">🎯</div>
-			<div class="item-duration meta-ui-responsive meta-ui-extra-fields"
-				data-tooltip="The Duration of this Possession">⏳</div>
 			{{#if ../isNarrator}}
 				<div class="item-controls meta-ui-responsive meta-ui-hide-at-medium"><i
 						class="fa-duotone fa-gears"></i></div>
@@ -26,12 +27,15 @@
 			<li class="item flexrow" data-item-id="{{item._id}}">
 				<div class="item-name flexrow">
 					<div class="item-image">
-						<img src="{{item.img}}" data-tooltip="{{item.name}}" width="30" height="30"
-							style="border: none" />
+						<img class="style-pos-rolls" data-roll-type="Possession"
+							data-stat="{{item.system.Execution.StatRolled.value}}"
+							data-item-name="{{item.name}}" src="{{item.img}}"
+							data-tooltip="Click to Use<br><br>{{item.name}}<br><br>Right-Click for Custom Roll"
+							width="50" height="50" style="border: none" />
 					</div>
 					<h4>
 						<div class="item-control item-edit style-view-properties"
-							data-tooltip="Click to open the Possession Sheet<br>Effect: {{stripHtml item.system.Effects.EffectDescription.value}}">
+							data-tooltip="Click to open {{item.name}}<br><br>Effect: {{stripHtml item.system.Effects.EffectDescription.value}}">
 							{{item.name}}
 						</div>
 					</h4>
@@ -39,9 +43,7 @@
 				<div class="item-attacktype item-prop meta-ui-responsive meta-ui-hide-at-medium">
 					{{item.system.AttackType.value}}
 				</div>
-				<div class="item-statroll style-pos-rolls" data-roll-type="Possession"
-					data-stat="{{item.system.Execution.StatRolled.value}}"
-					data-item-name="{{item.name}}">
+				<div class="item-statroll item-prop meta-ui-responsive meta-ui-hide-at-minimum">
 					<span class="meta-ui-responsive meta-ui-hide-at-medium">{{item.system.Execution.StatRolled.value}}:
 					</span>
 					{{lookup ../../system.RollStats item.system.Execution.StatRolled.value}}
@@ -52,17 +54,17 @@
 				<div class="item-actionslot item-prop meta-ui-responsive meta-ui-hide-at-minimum">
 					{{item.system.Execution.ActionSlot.value}}
 				</div>
-				<div class="item-range item-prop meta-ui-responsive meta-ui-hide-at-minimum">
+				<div class="item-targets item-prop meta-ui-responsive meta-ui-hide-at-medium">
+					{{item.system.Execution.Targets.value}}
+				</div>
+				<div class="item-duration item-prop meta-ui-responsive meta-ui-hide-at-medium">
+					{{item.system.Execution.Duration.value}}
+				</div>
+				<div class="item-range item-prop meta-ui-responsive meta-ui-extra-fields">
 					{{item.system.Execution.Range.value}}
 				</div>
 				<div class="item-area item-prop meta-ui-responsive meta-ui-extra-fields">
 					{{item.system.Execution.AreaEffect.value}}
-				</div>
-				<div class="item-targets item-prop meta-ui-responsive meta-ui-extra-fields">
-					{{item.system.Execution.Targets.value}}
-				</div>
-				<div class="item-duration item-prop meta-ui-responsive meta-ui-extra-fields">
-					{{item.system.Execution.Duration.value}}
 				</div>
 				{{#if ../../isNarrator}}
 					<div class="item-controls meta-ui-responsive meta-ui-hide-at-medium">

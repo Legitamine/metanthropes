@@ -233,7 +233,7 @@ export async function NewActorPrimeMetapower(actor) {
 			</div>
 			<div class="form-group">
 				<label for="primeMetapowerImg"></label>
-				<img id="primeMetapowerImg" src="systems/metanthropes-system/artwork/metapowers/6th Sense.webp" alt="Prime Metapower Image" style="border: none;" height="256" width="256" />
+				<img id="primeMetapowerImg" src="systems/metanthropes-system/artwork/metapowers/6th Sense.webp" alt="Prime Metapower Image" style="border: none; z-index: 3;" height="256" width="256" />
 			</div>
 		</form>
 	</div>

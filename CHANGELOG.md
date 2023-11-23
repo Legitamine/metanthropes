@@ -4,6 +4,17 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 
+# Early Access v0.8.90 [2023-11-23]
+
+### Changed:
+
+-   Changed the Metapowers and Possessions tabs on the Actor Sheet. Now they are part of the new Responsive UI and will display different columns based on the width of the Actor sheet window
+-   Changed how Metapowers and Possessions are rolled. Now you can Click or Right-Click on the Icon of the Metapower or Possession to Roll it
+
+### Fixed:
+
+-   Fixed an issue with the new Responsive UI background that was causing some images to not display properly
+
 # Early Access v0.8.81 [2023-11-22]
 
 ### New Features:

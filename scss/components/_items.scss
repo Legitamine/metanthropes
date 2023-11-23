@@ -54,6 +54,7 @@
 			margin: 0;
 			white-space: nowrap;
 			overflow-x: hidden;
+			font-weight: 600;
 		}
 	}
 
@@ -83,9 +84,9 @@
 		.item-name {
 			color: $c-black;
 			.item-image {
-				flex: 0 0 30px;
-				height: 30px;
-				background-size: 30px;
+				flex: 0 0 50px;
+				height: 50px;
+				width: 50px;
 				border: none;
 				margin-right: 5px;
 			}
