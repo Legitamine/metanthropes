@@ -145,6 +145,7 @@ h3 {
   background-attachment: scroll;
   background-origin: border-box;
   background-clip: border-box;
+  z-index: 1;
 }
 .window-app .window-content::before {
   pointer-events: none;
@@ -162,7 +163,8 @@ h3 {
   background-repeat: no-repeat;
   background-origin: padding-box;
   background-clip: content-box;
-  filter: blur(2px);
+  z-index: 2;
+  filter: blur(1px);
   opacity: 0.5;
 }
 
@@ -213,9 +215,15 @@ h3 {
 
 .filepicker .tiles-list li img {
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+  z-index: 3;
 }
 .filepicker .tiles-list li img:hover {
   transform: scale(1.8) translateY(40px);
+  z-index: 4;
+}
+
+.window-app .window-resizable-handle {
+  z-index: 4;
 }
 
 .grid,
@@ -411,6 +419,9 @@ h3 {
   text-align: center;
 }
 
+.metanthropes {
+  z-index: 3;
+}
 .metanthropes .chat-message .message-header .flavor-text .metanthropes .hide-button .meta-ui-hidden {
   display: none !important;
 }
@@ -1363,6 +1374,7 @@ h3 {
   margin: 0;
   white-space: nowrap;
   overflow-x: hidden;
+  font-weight: 600;
 }
 .metanthropes .items-list .item-controls {
   display: flex;
@@ -1382,9 +1394,9 @@ h3 {
   color: #000;
 }
 .metanthropes .items-list .item .item-name .item-image {
-  flex: 0 0 30px;
-  height: 30px;
-  background-size: 30px;
+  flex: 0 0 50px;
+  height: 50px;
+  width: 50px;
   border: none;
   margin-right: 5px;
 }

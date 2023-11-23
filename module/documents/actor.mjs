@@ -33,8 +33,11 @@ export class MetanthropesActor extends Actor {
 		if (!createData.prototypeToken.flags) createData.prototypeToken.flags = {};
 		switch (data.type) {
 			case "Protagonist":
-				createData.img = "systems/metanthropes-system/tokens/defaults/token-hammer.webp";
-				createData.prototypeToken.texture.src = "systems/metanthropes-system/tokens/defaults/token-hammer.webp";
+				if (data.name.includes("New")) {
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-hammer.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-hammer.webp";
+				}
 				//? Splatter blood color for Protagonists
 				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
 				//? Monk's Bloodsplats blood color for Protagonists
@@ -52,9 +55,11 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 30;
 				break;
 			case "Metanthrope":
-				createData.img = "systems/metanthropes-system/tokens/defaults/token-utilitarian.webp";
-				createData.prototypeToken.texture.src =
-					"systems/metanthropes-system/tokens/defaults/token-utilitarian.webp";
+				if (data.name.includes("New")) {
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-utilitarian.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-utilitarian.webp";
+				}
 				//? Splatter blood color for Metanthropes
 				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
 				//? Monk's Bloodsplats blood color for Metanthropes
@@ -69,8 +74,11 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Human":
-				createData.img = "systems/metanthropes-system/tokens/defaults/token-aegis.webp";
-				createData.prototypeToken.texture.src = "systems/metanthropes-system/tokens/defaults/token-aegis.webp";
+				if (data.name.includes("New")) {
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-aegis.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-aegis.webp";
+				}
 				//? Splatter blood color for Humans
 				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
 				//? Monk's Bloodsplats blood color for Humans
@@ -85,9 +93,11 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Artificial":
-				createData.img = "systems/metanthropes-system/tokens/defaults/token-animator.webp";
-				createData.prototypeToken.texture.src =
-					"systems/metanthropes-system/tokens/defaults/token-animator.webp";
+				if (data.name.includes("New")) {
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-animator.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-animator.webp";
+				}
 				//? Splatter blood color for Artificials
 				createData.prototypeToken.flags.splatter = { bloodColor: "#00BFFF" };
 				//? Monk's Bloodsplats blood color for Artificials
@@ -102,9 +112,11 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Animal":
-				createData.img = "systems/metanthropes-system/tokens/defaults/token-kineticist.webp";
-				createData.prototypeToken.texture.src =
-					"systems/metanthropes-system/tokens/defaults/token-kineticist.webp";
+				if (data.name.includes("New")) {
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-kineticist.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-kineticist.webp";
+				}
 				//? Splatter blood color for Animals
 				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
 				//? Monk's Bloodsplats blood color for Animals
@@ -119,9 +131,11 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Animated-Plant":
-				createData.img = "systems/metanthropes-system/tokens/defaults/token-clairvoyant.webp";
-				createData.prototypeToken.texture.src =
-					"systems/metanthropes-system/tokens/defaults/token-clairvoyant.webp";
+				if (data.name.includes("New")) {
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-clairvoyant.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-clairvoyant.webp";
+				}
 				//? Splatter blood color for Animated-Plants
 				createData.prototypeToken.flags.splatter = { bloodColor: "#228B22" };
 				//? Monk's Bloodsplats blood color for Animated-Plants
@@ -136,9 +150,11 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Animated-Cadaver":
-				createData.img = "systems/metanthropes-system/tokens/defaults/token-cosmonaut.webp";
-				createData.prototypeToken.texture.src =
-					"systems/metanthropes-system/tokens/defaults/token-cosmonaut.webp";
+				if (data.name.includes("New")) {
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-cosmonaut.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-cosmonaut.webp";
+				}
 				//? Splatter blood color for Animated-Cadavers
 				createData.prototypeToken.flags.splatter = { bloodColor: "#006400" };
 				//? Monk's Bloodsplats blood color for Animated-Cadavers
@@ -153,9 +169,11 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Extraterrestrial":
-				createData.img = "systems/metanthropes-system/tokens/defaults/token-arbiter.webp";
-				createData.prototypeToken.texture.src =
-					"systems/metanthropes-system/tokens/defaults/token-arbiter.webp";
+				if (data.name.includes("New")) {
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-arbiter.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-arbiter.webp";
+				}
 				//? Splatter blood color for Extraterrestrials
 				createData.prototypeToken.flags.splatter = { bloodColor: "#800080" };
 				//? Monk's Bloodsplats blood color for Extraterrestrials
@@ -170,8 +188,11 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Extradimensional":
-				createData.img = "systems/metanthropes-system/tokens/defaults/token-pink.webp";
-				createData.prototypeToken.texture.src = "systems/metanthropes-system/tokens/defaults/token-pink.webp";
+				if (data.name.includes("New")) {
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-pink.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-pink.webp";
+				}
 				//? Splatter blood color for Extradimensionals
 				createData.prototypeToken.flags.splatter = { bloodColor: "#FF69B4" };
 				//? Monk's Bloodsplats blood color for Extradimensionals
@@ -186,9 +207,11 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "MetaTherion":
-				createData.img = "systems/metanthropes-system/tokens/defaults/token-manipulator.webp";
-				createData.prototypeToken.texture.src =
-					"systems/metanthropes-system/tokens/defaults/token-manipulator.webp";
+				if (data.name.includes("New")) {
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-manipulator.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-manipulator.webp";
+				}
 				//? Splatter blood color for MetaTherions
 				createData.prototypeToken.flags.splatter = { bloodColor: "#FF1493" };
 				//? Monk's Bloodsplats blood color for MetaTherions
@@ -203,9 +226,11 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Vehicle":
-				createData.img = "systems/metanthropes-system/tokens/defaults/token-controller.webp";
-				createData.prototypeToken.texture.src =
-					"systems/metanthropes-system/tokens/defaults/token-controller.webp";
+				if (data.name.includes("New")) {
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-controller.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-controller.webp";
+				}
 				//? Splatter blood color for Vehicles
 				createData.prototypeToken.flags.splatter = { bloodColor: "#808080" };
 				//? Monk's Bloodsplats blood color for Vehicles
@@ -220,8 +245,11 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			default:
-				createData.img = "systems/metanthropes-system/tokens/defaults/token-border.webp";
-				createData.prototypeToken.texture.src = "systems/metanthropes-system/tokens/defaults/token-border.webp";
+				if (data.name.includes("New")) {
+					createData.img = "systems/metanthropes-system/tokens/defaults/token-border.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes-system/tokens/defaults/token-border.webp";
+				}
 				break;
 		}
 		//? Fix for Token Attacher / CF Import - from wh4e

@@ -130,6 +130,7 @@ h3 {
 	background-attachment: scroll;
 	background-origin: border-box;
 	background-clip: border-box;
+	z-index: 1;
 	&::before {
 		pointer-events: none;
 		content: "";
@@ -146,7 +147,8 @@ h3 {
 		background-repeat: no-repeat;
 		background-origin: padding-box;
 		background-clip: content-box;
-		filter: blur(2px);
+		z-index: 2;
+		filter: blur(1px);
 		opacity: 0.5;
 	}
 }
@@ -195,7 +197,13 @@ h3 {
 }
 .filepicker .tiles-list li img {
 	transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+	z-index: 3;
 	&:hover {
 		transform: scale(1.8) translateY(40px);
+		z-index: 4;
 	}
+}
+
+.window-app .window-resizable-handle {
+	z-index: 4;
 }
