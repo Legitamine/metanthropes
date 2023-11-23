@@ -6,8 +6,8 @@ if (!game.user.isGM) {
 let actors = game.actors.contents.filter((a) => a.type === "Protagonist");
 let dialogContent = `<form>
 <div class="style-form">To be used to edit a Protagonists's Name, Player, Gender, Life, Experience and Destiny<br><br></div>
-<div class="style-form">Note that 'Player Name' needs to be the same as under Settings - 'User Management', for the buttons to appear in the Chat<br></div>
-<div class="style-form">Note that 'Gender', if left empty, will make the 'Finalize Premade Protagonist' button appear in the Summary Tab<br><br></div>
+<div class="style-form">Note that 'Player Name' needs to be the same as under Settings - 'User Management', for the buttons to appear in the Chat<br><br></div>
+<div class="style-form">To make the 'Finalize Premade Protagonist' button appear in the Summary Tab, set the New Protagonist Name to include either 'Premade' or 'Protagonist'<br><br></div>
 <div class="form-group style-form">
 	<div class="style-form">Protagonist Name</div>
 	<div class="style-form">New Protagonist Name</div>

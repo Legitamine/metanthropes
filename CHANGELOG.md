@@ -6,14 +6,23 @@ Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 
 # Early Access v0.8.90 [2023-11-23]
 
+### Added:
+
+-   Added New Compendium: 'Premade Protagonists' that contains 10 Protagonists, each with a Prime Metapower of each of the 10 Classifications. These are ready to be Finalized by the Player
+-   Added New Compendium: 'Introductory Adversaries' which contains 5 Conductors and 5 Adversaries. Conductors are powerful Metanthropes that are meant to be used as NPCs that guide the Introductory Story. The Adversaries are Non-Linked Wildcard Actors (meaning they get a random token image in the Canvas) and are meant to be used as opponents for the Introductory Combat Encounter
+-   Added New Compendium: 'Metapowers' which includes all the Metapowers that are used in the Introductory Session.
+-   Added New Compendium: 'Possessions' which includes all the Possessions that are used in the Introductory Session.
+
 ### Changed:
 
 -   Changed the Metapowers and Possessions tabs on the Actor Sheet. Now they are part of the new Responsive UI and will display different columns based on the width of the Actor sheet window
 -   Changed how Metapowers and Possessions are rolled. Now you can Click or Right-Click on the Icon of the Metapower or Possession to Roll it
+-   Updated the 'Narrator Toolkit' Compendium with updated Macro functionality and cleaner UI
 
 ### Fixed:
 
 -   Fixed an issue with the new Responsive UI background that was causing some images to not display properly
+-   Fixed an issue with importing Actors from Compendiums, that was causing the imported Actor to reset their Portrait Image to the Actor Types' Default. Now only new Actors with the name that includes 'New' will be subject to the default image setting
 
 # Early Access v0.8.81 [2023-11-22]
 

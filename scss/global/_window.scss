@@ -197,8 +197,10 @@ h3 {
 }
 .filepicker .tiles-list li img {
 	transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+	z-index: 3;
 	&:hover {
 		transform: scale(1.8) translateY(40px);
+		z-index: 4;
 	}
 }
 
