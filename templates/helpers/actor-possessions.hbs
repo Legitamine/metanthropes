@@ -6,8 +6,6 @@
 				data-tooltip="The type of Attack of this Possession">Attack Type</div>
 			<div class="item-statroll meta-ui-responsive meta-ui-hide-at-minimum"
 				data-tooltip="The Stat Rolled to use this Possession">🎲</div>
-			<div class="item-vsroll meta-ui-responsive meta-ui-extra-fields"
-				data-tooltip="Stat Rolled against using this Possession">🆚</div>
 			<div class="item-actionslot meta-ui-responsive meta-ui-hide-at-minimum"
 				data-tooltip="Which part of my turn does it take to use this Possession">⏱</div>
 			<div class="item-targets meta-ui-responsive meta-ui-hide-at-medium"
@@ -47,9 +45,6 @@
 					<span class="meta-ui-responsive meta-ui-hide-at-medium">{{item.system.Execution.StatRolled.value}}:
 					</span>
 					{{lookup ../../system.RollStats item.system.Execution.StatRolled.value}}
-				</div>
-				<div class="item-vsroll item-prop meta-ui-responsive meta-ui-extra-fields">
-					{{item.system.Effects.VSStatRoll.value}}
 				</div>
 				<div class="item-actionslot item-prop meta-ui-responsive meta-ui-hide-at-minimum">
 					{{item.system.Execution.ActionSlot.value}}

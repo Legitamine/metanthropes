@@ -153,7 +153,9 @@ h3 {
 	}
 }
 
-.chat-message {
+.chat-message,
+.chat-message.whisper,
+.chat-message.blind {
 	background-image: url("../artwork/ui/chat/chat-results.webp");
 	background-size: cover;
 	//opacity: 0.75;
@@ -206,4 +208,12 @@ h3 {
 
 .window-app .window-resizable-handle {
 	z-index: 4;
+}
+
+.sheet.journal-entry .journal-entry-content {
+	z-index: 3;
+}
+
+.image-popout figure {
+	z-index: 3;
 }

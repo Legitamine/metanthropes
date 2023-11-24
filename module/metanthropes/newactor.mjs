@@ -1134,16 +1134,46 @@ export async function NewPremadeSummary(actor) {
 								"system.humanoids.birthplace.value": actorpob,
 								"system.entermeta.narrator.value": narratorName,
 							});
+							const prototype = actor.prototypeToken || false;
+							if (prototype) {
+								//? Update Prototype Token first
+								await actor.update({ "prototypeToken.name": actorname });
+								//? Update Iterate over all scenes
+								for (const scene of game.scenes) {
+									let tokensToUpdate = [];
+									//? Find tokens that represent the actor
+									for (const token of scene.tokens.contents) {
+										if (token.actorId === actor.id) {
+											tokensToUpdate.push({ _id: token.id, name: actorname });
+										}
+									}
+									//? Update the tokens
+									if (tokensToUpdate.length > 0) {
+										try {
+											await scene.updateEmbeddedDocuments("Token", tokensToUpdate);
+										} catch (error) {
+											metaLog(
+												2,
+												"metaChangePortrait",
+												"Error updating token:",
+												error,
+												"tokens to update:",
+												tokensToUpdate
+											);
+										}
+									}
+								}
+							} else {
+								//? Update only the current token if this was called from the canvas instead of the sidebar
+								const token = actor.token;
+								await token.update({ name: actorname });
+							}
 						} catch (error) {
 							metaLog(2, "NewPremadeSummary", "Error in updating actor data", error);
 							reject(error);
 							return;
 						} finally {
 							//left blank
-						}
-						//todo should I just check here for .prototypeToken instead of checking for actor.type?
-						if (actor.type == "Protagonist" || actor.type == "Metanthrope") {
-							await actor.update({ "prototypeToken.name": actorname });
 						}
 						metaLog(
 							3,
