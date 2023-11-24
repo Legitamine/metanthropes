@@ -4,6 +4,19 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 
+# Early Access v0.8.93 [2023-11-24]
+
+### Changed:
+
+-   Changed Extradimensional, Extraterrestrial and Artificial Actors to be hostile to players by default
+
+### Fixed:
+
+-   Fixed an issue with the 'Finalize Premade Actor' button, that was not updating the Token's Name properly if it already existed in the Scene
+-   Added Background Image to the Whisper and Blind type of Chat Messages
+-   Removed VS Roll from the Possessions Tab as Possessions do not use VS Rolls
+-   Fixed an issue with the Journal Pages and Shown Journal Pages to players that was not displaying images correctly
+
 # Early Access v0.8.90 [2023-11-23]
 
 ### Added:

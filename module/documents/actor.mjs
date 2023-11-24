@@ -103,8 +103,8 @@ export class MetanthropesActor extends Actor {
 				//? Monk's Bloodsplats blood color for Artificials
 				//todo add more settings from new module options
 				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#00BFFF";
-				//? Token Disposition to Neutral for Artificials
-				createData.prototypeToken.disposition = 0;
+				//? Token Disposition to Hostile for Artificials
+				createData.prototypeToken.disposition = -1;
 				//? Monk's Token Bar Exclusion for Artificials
 				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
 				//? Make Name & Life/Destiny Bars visible on hover by Owner for Artificials
@@ -179,8 +179,8 @@ export class MetanthropesActor extends Actor {
 				//? Monk's Bloodsplats blood color for Extraterrestrials
 				//todo add more settings from new module options
 				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#800080";
-				//? Token Disposition to Neutral for Extraterrestrials
-				createData.prototypeToken.disposition = 0;
+				//? Token Disposition to Hostile for Extraterrestrials
+				createData.prototypeToken.disposition = -1;
 				//? Monk's Token Bar Exclusion for Extraterrestrials
 				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
 				//? Make Name & Life/Destiny Bars visible on hover by Owner for Extraterrestrials
@@ -198,8 +198,8 @@ export class MetanthropesActor extends Actor {
 				//? Monk's Bloodsplats blood color for Extradimensionals
 				//todo add more settings from new module options
 				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#FF69B4";
-				//? Token Disposition to Neutral for Extradimensionals
-				createData.prototypeToken.disposition = 0;
+				//? Token Disposition to Hostile for Extradimensionals
+				createData.prototypeToken.disposition = -1;
 				//? Monk's Token Bar Exclusion for Extradimensionals
 				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
 				//? Make Name & Life/Destiny Bars visible on hover by Owner for Extradimensionals
