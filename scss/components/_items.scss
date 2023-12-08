@@ -75,6 +75,7 @@
 	//todo understand why ^^ this is and how to make it properly
 	.item {
 		align-items: center;
+		text-align: center;
 		padding: 0 2px; // to align with the header border
 		//! didn't like this effect
 		//	border-bottom: 1px solid $c-black;

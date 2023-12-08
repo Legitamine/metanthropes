@@ -824,6 +824,12 @@ h3 {
   width: 160px;
   margin-right: 6px;
 }
+.metanthropes .sheet-header .effect-img {
+  flex: 0 0 80px;
+  height: 80px;
+  width: 80px;
+  margin-right: 6px;
+}
 .metanthropes .perk-item {
   display: flex;
   justify-content: center;
@@ -1398,6 +1404,7 @@ h3 {
 }
 .metanthropes .items-list .item {
   align-items: center;
+  text-align: center;
   padding: 0 2px;
 }
 .metanthropes .items-list .item .item-name {
@@ -1434,6 +1441,10 @@ h3 {
 .metanthropes .item-formula {
   flex: 0 0 200px;
   padding: 0 8px;
+}
+.metanthropes .effects .item {
+  text-align: center;
+  padding: 0 2px;
 }
 .metanthropes .effects .item .effect-source,
 .metanthropes .effects .item .effect-duration,

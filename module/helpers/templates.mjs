@@ -21,11 +21,15 @@ export const preloadHandlebarsTemplates = async function () {
 		"systems/metanthropes-system/templates/helpers/item-description.hbs",
 		"systems/metanthropes-system/templates/helpers/item-execution.hbs",
 		"systems/metanthropes-system/templates/helpers/item-effects.hbs",
+		"systems/metanthropes-system/templates/helpers/item-results.hbs",
+		"systems/metanthropes-system/templates/helpers/item-active-effects.hbs",
 		//? Item Sheet
 		"systems/metanthropes-system/templates/item/item-combo-sheet.hbs",
 		"systems/metanthropes-system/templates/item/item-metapower-sheet.hbs",
 		"systems/metanthropes-system/templates/item/item-Object-sheet.hbs",
 		"systems/metanthropes-system/templates/item/item-possession-sheet.hbs",
+		//? Active Effect Sheet
+		"systems/metanthropes-system/templates/helpers/active-effects.hbs",
 		//? Actor Progression partials
 		"systems/metanthropes-system/templates/progression/progression-sheet.hbs",
 		"systems/metanthropes-system/templates/progression/progression-overview.hbs",

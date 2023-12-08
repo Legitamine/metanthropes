@@ -1,6 +1,9 @@
+//? Import Roll Handler
 import { HandleMetaRolls } from "../helpers/metarollhandler.mjs";
+//? Improt meta helpers
 import { metaLog } from "../helpers/metahelpers.mjs";
-
+//? Import Active Effect helpers
+import { prepareActiveEffectCategories, onManageActiveEffect } from "../metanthropes/metaeffects.mjs";
 /**
  * MetanthropesItemSheet - An Item Sheet for Metanthropes items.
  *
@@ -66,6 +69,8 @@ export class MetanthropesItemSheet extends ItemSheet {
 		context.advancedBetaTesting = context.betaTesting && context.advancedLogging;
 		//? Provide a boolean for if the user is a Narrator(GameMaster)
 		context.isNarrator = game.user.isGM;
+		//? Prepare Active Effects
+		if (context.betaTesting) context.effects = prepareActiveEffectCategories(this.document.effects);
 		metaLog(3, "MetanthropesItemSheet getData results", "this, context, options", this, context, options);
 		return context;
 	}
@@ -81,6 +86,9 @@ export class MetanthropesItemSheet extends ItemSheet {
 		//* Everything below this point is only needed if the sheet is editable
 		//? Observers (non-owners) of the item sheet, should not be able to roll anything
 		if (!this.isEditable) return;
+		//? Active Effects
+		if (game.settings.get("metanthropes-system", "metaBetaTesting"))
+			html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.document));
 		//? Roll Metapower
 		html.find(".style-mp-rolls").click(this._onRoll.bind(this));
 		html.find(".style-mp-rolls").on("contextmenu", this._onCustomRoll.bind(this));

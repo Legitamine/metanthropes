@@ -1,13 +1,16 @@
+//? Import metaLog helper
+import { metaLog } from "../helpers/metahelpers.mjs";
 /**
- * 
+ *
  * Manage Active Effect instances through the Actor Sheet via effect control buttons.
- * 
+ *
  * @param {MouseEvent} event      The left-click event on the effect control
  * @param {Actor|Item} owner      The owning document which manages this effect
- * 
+ *
  */
 export function onManageActiveEffect(event, owner) {
 	event.preventDefault();
+	metaLog(3, "MetaEffects | onManageActiveEffect", { event, owner });
 	const a = event.currentTarget;
 	const li = a.closest("li");
 	const effect = li.dataset.effectId ? owner.effects.get(li.dataset.effectId) : null;
@@ -32,14 +35,15 @@ export function onManageActiveEffect(event, owner) {
 }
 
 /**
- * 
+ *
  * Prepare the data structure for Active Effects which are currently applied to an Actor or Item.
- * 
+ *
  * @param {ActiveEffect[]} effects    The array of Active Effect instances to prepare sheet data for
  * @return {object}                   Data for rendering
- * 
+ *
  */
 export function prepareActiveEffectCategories(effects) {
+	metaLog(3, "MetaEffects | prepareActiveEffectCategories", { effects });
 	// Define effect header categories
 	const categories = {
 		temporary: {
@@ -47,9 +51,9 @@ export function prepareActiveEffectCategories(effects) {
 			label: "Temporary Effects",
 			effects: [],
 		},
-		passive: {
-			type: "passive",
-			label: "Passive Effects",
+		permanent: {
+			type: "permanent",
+			label: "Permanent Effects",
 			effects: [],
 		},
 		inactive: {
@@ -64,7 +68,7 @@ export function prepareActiveEffectCategories(effects) {
 		e._getSourceName(); // Trigger a lookup for the source name
 		if (e.disabled) categories.inactive.effects.push(e);
 		else if (e.isTemporary) categories.temporary.effects.push(e);
-		else categories.passive.effects.push(e);
+		else categories.permanent.effects.push(e);
 	}
 	return categories;
 }

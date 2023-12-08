@@ -6,6 +6,7 @@ import { MetaDialog, metaFilePicker } from "../metanthropes/metaclasses.mjs";
 //* newactor.mjs will be used to help in generating a new actor's stats and characteristics, along with other information.
 //! Needs new CSS Classes
 //todo char picks should drive/indicate which stat rolls should be prioritiezed
+//todo changed title= to title= however the selection dropdowns are not showing the tooltips
 // narrator's right click na kanei show ena dialog me ola ta steps k dipla check box (default yes) gia ta poia steps thelei na ginoune random
 // if anything is checked na kanei randomize ta reults aytou tou step.
 // gia narrators episis prepei na kanw separate setup gia ta diafora alla types peran tou protagonist
@@ -1220,14 +1221,19 @@ export async function NewActorFinish(actor) {
 			<h3>${actor.type}: ${actor.name} <br>is ready to enter the Multiverse!</h3>
 			<form>
 				<div class="form-group">
-					
+					<div class="layout-tab-summary-portrait-container">
+					<img src="${actor.img}" title="Change ${actor.name}'s Portrait Image"
+						alt="${actor.name}'s Portrait Image"
+						data-actoruuid="${actor.uuid}"
+						class="style-tab-summary-portrait meta-change-portrait" />
+					</div>
 				</div>
 			</form>
 		</div>
 	`;
 	let dialogOptions = {
 		width: 420,
-		height: 300,
+		height: 420,
 	};
 	return new Promise((resolve, reject) => {
 		let dialog = new MetaDialog(

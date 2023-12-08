@@ -12,7 +12,7 @@ This is the official Metanthropes RPG system for Foundry VTT.
 
 This is a work in progress and is not ready for general use. Installation instructions will be placed here when the system is ready. Please do not use this system for your games, unless you want to help playtest and know what you're doing. If so, please [join us on Discord](https://metanthropes.com/discord)
 
-## Officially Supported Modules
+## Supported Modules
 
 This System aims to utilize the latest and best in Foundry VTT. Currently offers support for Foundry VTT version 11. Latest supported version is v11.315.
 
@@ -25,7 +25,7 @@ To get the best experience while playing Metanthropes RPG, we recommend to insta
 -   [Carousel Combat Tracker](https://foundryvtt.com/packages/combat-tracker-dock)
 -   [Monks' Token Bar](https://foundryvtt.com/packages/monks-tokenbar)
 
-### Planned Features
+## Planned Features
 
 You may read about our [planned features and milestones](https://github.com/Legitamine/metanthropes-system/projects?query=is%3Aopen) for this project and also check out the overall [roadmap for Metanthropes RPG](https://www.metanthropes.com/stratagem/projects/1-metanthropes-roadmap/)
 
@@ -35,7 +35,7 @@ Briefly, we are working torwards the following milestones:
 -   Synchronize your Protagonist details with our website for off-line viewing and editing
 -   Fully automate the Combat System and activation of Metapowers, including unique audio and visual effects
 
-### Latest Changes
+## Latest Changes
 
 For the latest changes you may check out the [detailed Change Log](https://github.com/Legitamine/metanthropes-system/blob/main/CHANGELOG.md)
 

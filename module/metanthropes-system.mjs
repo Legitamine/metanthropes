@@ -20,10 +20,12 @@ import { MetaCombatant } from "./metanthropes/combatant.mjs";
 //? Import document classes
 import { MetanthropesActor } from "./documents/actor.mjs";
 import { MetanthropesItem } from "./documents/item.mjs";
+import { MetanthropesActiveEffect } from "./documents/active-effect.mjs";
 //? Import sheet classes
 import { MetanthropesActorSheet } from "./sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
 import { MetanthropesActorProgressionSheet } from "./sheets/actor-progression-sheet.mjs";
+import { MetanthropesActiveEffectSheet } from "./sheets/active-effect-sheet.mjs";
 //? Pre-load Handlebars templates
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 //? Import helpers
@@ -66,8 +68,12 @@ Hooks.once("init", async function () {
 		rollItemMacro,
 		createItemMacro,
 	};
+	//? Testing Status Effects
+	console.log("Metanthropes logging Status Effects", CONFIG.statusEffects);
+	CONFIG.statusEffects = [];
+	console.log("Metanthropes logging Special Status Effects", CONFIG.specialStatusEffects);
 	//? Metanthropes Initiative System
-	//! should I remove this?
+	//! should I remove this? - removing it seems to break initiative, as we are 'highjacking' the formula method for metainitiative rolls
 	CONFIG.Combat.initiative = {
 		formula: "1d100 + @RollStats.Reflexes",
 		decimals: 2,
@@ -75,14 +81,18 @@ Hooks.once("init", async function () {
 	//? Metanthropes Combat System
 	CONFIG.Combat.documentClass = MetanthropesCombat;
 	//? setup custom combatant
+	//! CONFIG.Combatant.documentClass = MetaCombatant; instead?
 	CONFIG.Actor.entityClass = MetaCombatant;
 	//? setup custom combat tracker
 	CONFIG.ui.combat = MetaCombatTracker;
 	//? time in seconds for Round Duration
-	// CONFIG.time.roundTime = 120;
+	//todo: confirm default round time
+	//CONFIG.time.roundTime = 120;
 	//? Define custom Entity classes.
 	CONFIG.Actor.documentClass = MetanthropesActor;
 	CONFIG.Item.documentClass = MetanthropesItem;
+	//CONFIG.ActiveEffect.documentClass = metaActiveEffectConfig;
+	CONFIG.ActiveEffect.documentClass = MetanthropesActiveEffect;
 	//? Register sheet application classes instead of defaults.
 	Actors.unregisterSheet("core", ActorSheet);
 	Actors.registerSheet("metanthropes", MetanthropesActorSheet, {
@@ -95,8 +105,13 @@ Hooks.once("init", async function () {
 	Items.registerSheet("metanthropes", MetanthropesItemSheet, {
 		makeDefault: true,
 	});
+	//DocumentSheetConfig.unregisterSheet("core", ActiveEffectConfig);
+	DocumentSheetConfig.registerSheet(ActiveEffect, "metanthropes", MetanthropesActiveEffectSheet, {
+		makeDefault: true,
+	});
 	//* System Settings
 	//? Migration Script Required
+	//! unused
 	game.settings.register("metanthropes-system", "migrationVersion", {
 		name: "Last Migration Performed",
 		hint: `

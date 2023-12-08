@@ -4,9 +4,9 @@ import { HandleMetaRolls, handleCoverRolls } from "../helpers/metarollhandler.mj
 import { NewActor, FinalizePremadeActor } from "../metanthropes/newactor.mjs";
 //? Import Progression Sheet
 import { MetaStartProgression } from "../metanthropes/metaprogression.mjs";
-//? Import helpers
+//? Import meta helpers
 import { metaChangePortrait, metaLog } from "../helpers/metahelpers.mjs";
-//? Import Active Effect helper
+//? Import Active Effect helpers
 import { prepareActiveEffectCategories, onManageActiveEffect } from "../metanthropes/metaeffects.mjs";
 /**
  * MetanthropesActorSheet - An Actor Sheet for Metanthropes actors.
@@ -156,7 +156,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 			li.slideUp(200, () => this.render(false));
 		});
 		//? Active Effect management
-		if (this.betaTesting) html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
+		if (game.settings.get("metanthropes-system", "metaBetaTesting"))
+			html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
 		//? Roll Stat
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
 		html.find(".style-cs-rolls").on("contextmenu", this._onCustomRoll.bind(this));
@@ -299,6 +300,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 	//? Resize the sheet on render
 	/** @override */
 	async _render(force = false, options = {}) {
+		//todo: review why this gives a deprecation warning in the console
 		await super._render(force, options);
 		const resizeElement = this.element[0];
 		this._onResize(null, resizeElement);

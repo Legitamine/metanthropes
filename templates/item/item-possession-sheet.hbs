@@ -1,32 +1,38 @@
 <form class="metanthropes {{cssClass}}" autocomplete="off">
 	<header class="sheet-header">
 		{{#if isNarrator}}
-			<img class="possession-img" src="{{item.img}}" data-edit="img" data-tooltip="{{item.name}}" style="border:none" />
+			<img class="possession-img" src="{{item.img}}" data-edit="img" data-tooltip="{{item.name}}"
+				style="border:none" />
 		{{else}}
-			<img class="possession-img" src="{{item.img}}" data-tooltip="{{item.name}}" style="border:none" />
+			<img class="possession-img" src="{{item.img}}" data-tooltip="{{item.name}}"
+				style="border:none" />
 		{{/if}}
 		<div class="header-fields">
 			<h1 class="charname">
 				{{#if isNarrator}}
-					<input name="name" type="text" value="{{item.name}}" placeholder="Possession Name" />
+					<input name="name" type="text" value="{{item.name}}"
+						placeholder="Possession Name" />
 				{{else}}
 					{{item.name}}
 				{{/if}}
 			</h1>
 			<div class="grid grid-2col">
 				<div class="resource">
-					<label class="resource-label" data-tooltip="Which Stat is rolled when Using this Possession">🎲
+					<label class="resource-label"
+						data-tooltip="Which Stat is rolled when Using this Possession">🎲
 						Stat:</label>
 					{{#if isNarrator}}
 						<select name="system.Execution.StatRolled.value">
 							{{#each system.Execution.StatRolled.options as |option|}}
 								<option value="{{option}}"
-									{{#if (eq option ../system.Execution.StatRolled.value)}}selected{{/if}}>{{option}}
+									{{#if (eq option ../system.Execution.StatRolled.value)}}selected{{/if}}>
+									{{option}}
 								</option>
 							{{/each}}
 						</select>
 						<span class="item-statroll style-pos-rolls" data-roll-type="Possession"
-							data-item-name="{{item.name}}" data-stat="{{item.system.Execution.StatRolled.value}}"
+							data-item-name="{{item.name}}"
+							data-stat="{{item.system.Execution.StatRolled.value}}"
 							data-required-perk="{{item.system.RequiredPerk.value}}"
 							data-required-perk-level="{{item.system.RequiredPerkLevel.value}}">
 							{{item.system.Execution.StatRolled.value}}:
@@ -34,7 +40,8 @@
 						</span>
 					{{else}}
 						<span class="item-statroll style-pos-rolls" data-roll-type="Possession"
-							data-item-name="{{item.name}}" data-stat="{{item.system.Execution.StatRolled.value}}"
+							data-item-name="{{item.name}}"
+							data-stat="{{item.system.Execution.StatRolled.value}}"
 							data-required-perk="{{item.system.RequiredPerk.value}}"
 							data-required-perk-level="{{item.system.RequiredPerkLevel.value}}">
 							{{item.system.Execution.StatRolled.value}}:
@@ -43,11 +50,13 @@
 					{{/if}}
 				</div>
 				<div class="resource">
-					<label class="resource-label" data-tooltip="The Category of the Possession">Category:</label>
+					<label class="resource-label"
+						data-tooltip="The Category of the Possession">Category:</label>
 					{{#if isNarrator}}
 						<select name="system.Category.value">
 							{{#each system.Category.options as |option|}}
-								<option value="{{option}}" {{#if (eq option ../system.Category.value)}}selected{{/if}}>
+								<option value="{{option}}"
+									{{#if (eq option ../system.Category.value)}}selected{{/if}}>
 									{{option}}
 								</option>
 							{{/each}}
@@ -57,12 +66,14 @@
 					{{/if}}
 				</div>
 				<div class="resource">
-					<label class="resource-label" data-tooltip="The Attack Type of the Possession">Attack Type:</label>
+					<label class="resource-label"
+						data-tooltip="The Attack Type of the Possession">Attack Type:</label>
 					{{#if isNarrator}}
 						<select name="system.AttackType.value">
 							{{#each system.AttackType.options as |option|}}
 								<option value="{{option}}"
-									{{#if (eq option ../system.AttackType.value)}}selected{{/if}}>{{option}}
+									{{#if (eq option ../system.AttackType.value)}}selected{{/if}}>
+									{{option}}
 								</option>
 							{{/each}}
 						</select>
@@ -74,20 +85,22 @@
 					<label class="resource-label"
 						data-tooltip="How many of this Possession you have with you">Quantity:</label>
 					{{#if isNarrator}}
-						<input type="number" name="system.Quantity.value" value="{{system.Quantity.value}}"
-							data-dtype="Number" />
+						<input type="number" name="system.Quantity.value"
+							value="{{system.Quantity.value}}" data-dtype="Number" />
 					{{else}}
 						{{system.Quantity.value}}
 					{{/if}}
 				</div>
 				<div class="resource">
-					<label class="resource-label" data-tooltip="Which Perk is required to use this Possession">📚
+					<label class="resource-label"
+						data-tooltip="Which Perk is required to use this Possession">📚
 						Perk:</label>
 					{{#if isNarrator}}
 						<select name="system.RequiredPerk.value">
 							{{#each system.RequiredPerk.options as |option|}}
 								<option value="{{option}}"
-									{{#if (eq option ../system.RequiredPerk.value)}}selected{{/if}}>{{option}}
+									{{#if (eq option ../system.RequiredPerk.value)}}selected{{/if}}>
+									{{option}}
 								</option>
 							{{/each}}
 						</select>
@@ -96,11 +109,13 @@
 					{{/if}}
 				</div>
 				<div class="resource">
-					<label class="resource-label" data-tooltip="What Perk Level is required to use this Possession">📚
+					<label class="resource-label"
+						data-tooltip="What Perk Level is required to use this Possession">📚
 						Perk Level:</label>
 					{{#if isNarrator}}
 						<input type="number" name="system.RequiredPerkLevel.value"
-							value="{{system.RequiredPerkLevel.value}}" data-dtype="Number" />
+							value="{{system.RequiredPerkLevel.value}}"
+							data-dtype="Number" />
 					{{else}}
 						{{system.RequiredPerkLevel.value}}
 					{{/if}}
@@ -113,12 +128,14 @@
 		<nav class="style-container-nav-children itemnavselector tabs" data-group="primary">
 			<a class="item style-cs-labels" data-tab="description">Description</a>
 			{{#if isNarrator}}
-				<a class="item style-cs-labels" data-tab="material" data-tooltip="Material Properties">🧱 Properties</a>
+				<a class="item style-cs-labels" data-tab="material"
+					data-tooltip="Material Properties">🧱 Properties</a>
 			{{/if}}
 			<a class="item style-cs-labels" data-tab="execution">Usage</a>
 			<a class="item style-cs-labels" data-tab="effects">Effects</a>
 			{{#if isNarrator}}
 				<a class="item style-cs-labels" data-tab="results">Results</a>
+				<a class="item style-cs-labels" data-tab="active-effects">⏰ Effects</a>
 			{{/if}}
 		</nav>
 	</div>
@@ -133,34 +150,16 @@
 			{{#each system.Material}}
 				<div class="resource">
 					<label class="resource-label">{{this.label}}:</label>
-					<input type="{{this.type}}" name="system.Material.{{@key}}.value" value="{{this.value}}"
-						data-dtype="{{this.dtype}}" />
+					<input type="{{this.type}}" name="system.Material.{{@key}}.value"
+						value="{{this.value}}" data-dtype="{{this.dtype}}" />
 				</div>
 			{{/each}}
 		</div>
 		{{!-- Effects Tab --}}
 		{{> "systems/metanthropes-system/templates/helpers/item-effects.hbs"}}
 		{{!-- Results Tab --}}
-		<div class="tab results" data-group="primary" data-tab="results">
-			<div>
-				<div>{{system.ResultDescription.label}}:<br></div>
-				{{#if isNarrator}}
-					<div class="layout-editor">
-						{{editor system.ResultDescription.value target="system.ResultDescription.value" button=true editable=true}}
-					</div>
-				{{else}}
-					<div class="layout-editor">
-						{{editor system.ResultDescription.value target="system.ResultDescription.value" button=false editable=false}}
-					</div>
-				{{/if}}
-			</div>
-			{{#each system.Results}}
-				<div class="resource">
-					<label class="resource-label">{{this.label}}:</label>
-					<input type="{{this.type}}" name="system.Results.{{@key}}.value" value="{{this.value}}"
-						data-dtype="{{this.dtype}}" />
-				</div>
-			{{/each}}
-		</div>
+		{{> "systems/metanthropes-system/templates/helpers/item-results.hbs"}}
+		{{!-- Active Effects Tab --}}
+		{{> "systems/metanthropes-system/templates/helpers/item-active-effects.hbs"}}
 	</section>
 </form>

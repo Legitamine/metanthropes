@@ -20,6 +20,8 @@ export class MetanthropesCombat extends Combat {
 		metaLog(3, "Combat", "prepareDerivedData", "Cycle:", cycle, "Round:", cycleRound);
 	}
 	_sortCombatants(a, b) {
+		//todo: review an error when a combat is not active? requires investigation in a clean world
+		//todo: do we need a check here to proceed only if certain conditions are met like is the combat active?
 		const ia = Number.isNumeric(a.initiative) ? a.initiative : -Infinity;
 		const ib = Number.isNumeric(b.initiative) ? b.initiative : -Infinity;
 		//? Get actor for a

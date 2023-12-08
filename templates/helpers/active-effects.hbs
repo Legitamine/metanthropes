@@ -1,0 +1,49 @@
+<ol class="items-list effects-list">
+	{{#each effects as |section sid|}}
+		<li class="items-header flexrow" data-effect-type="{{section.type}}">
+			<h4 class="item-name effect-name flexrow">{{localize section.label}}</h4>
+			<div class="effect-type">Type</div>
+			<div class="effect-source">Source</div>
+			<div class="effect-source">Duration</div>
+			{{#if ../isNarrator}}
+				<div class="item-controls effect-controls flexrow">
+					<a class="effect-control" data-action="create" data-tooltip="Add Effect">
+						<i class="fas fa-plus"></i> Add
+					</a>
+				</div>
+			{{/if}}
+		</li>
+		<ol class="item-list">
+			{{#each section.effects as |effect|}}
+				<li class="item effect flexrow" data-effect-id="{{effect.id}}">
+					<div class="item-name effect-name flexrow">
+						<img class="item-image" src="{{effect.icon}}" />
+						<h4>
+							<div class="effect-control effect-edit style-view-properties"
+								data-action="edit"
+								data-tooltip="Click to open {{effect.label}}<br><br>Effect: {{stripHtml effect.description}}">
+								{{effect.label}}
+							</div>
+						</h4>
+					</div>
+					<div class="effect-type">{{effect.metaEffectType}}</div>
+					<div class="effect-source">{{effect.sourceName}}</div>
+					<div class="effect-duration">{{effect.duration.label}}</div>
+					{{#if ../../isNarrator}}
+						<div class="item-controls effect-controls flexrow">
+							<a class="effect-control" data-action="toggle"
+								data-tooltip="Toggle Effect">
+								<i
+									class="fas {{#if effect.disabled}}fa-check{{else}}fa-times{{/if}}"></i>
+							</a>
+							<a class="effect-control" data-action="delete"
+								data-tooltip="Remove Effect">
+								<i class="fa-duotone fa-trash"></i>
+							</a>
+						</div>
+					{{/if}}
+				</li>
+			{{/each}}
+		</ol>
+	{{/each}}
+</ol>
