@@ -4,15 +4,16 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 
-# Early Access v0.8.125 [2023-12-12]
+# Early Access v0.8.124 [2023-12-13]
 
 ## New Features:
 
--   Introducing the new Active Effects system, available in the Beta Testing mode. This new system will allow you to create custom effects that can be applied to Actors and Items. When setting a Status Effect to a Token, you are able to select between the 4 built-in Foundry Status Effects (Dead/Defeated, Blind, Invisible and Fly) and the 5 Metanthropes Movement Buffs and Conditions
+-   Introducing the new Active Effects system, available in Beta Testing mode. This new system will allow you to create custom effects that can be applied to Actors and Items. This feature is in active development and will be out of Beta Testing with Early Access v0.9
 
 ## Changed:
 
 -   All Actor Types (except Vehicles) can now have Possessions, and the Actors that can only use Strikes will not have any other Possession Categories available. Also, adding an Item to an actor that can't have that type of Item, will now display a warning in the console and not allow the Item to be added to the Actor (for example you are no longer able to add a Metapower to a Human anymore)
+-   Added Separators to more cleanly display the various different sections of the Item Sheets and in Chat Messages
 
 ## Fixed:
 

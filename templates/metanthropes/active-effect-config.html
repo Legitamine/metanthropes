@@ -109,6 +109,8 @@
 		<div class="form-group">
 			<label>{{ localize "EFFECT.DurationTurns" }}</label>
 			<div class="form-fields">
+				<label>Cycles</label>
+				<input type="number" name="flags.metanthropes.metaCycle" value="{{ flags.metanthropes.metaCycle }}" />
 				<label>{{ localize "COMBAT.Rounds" }}</label>
 				<input type="number" name="duration.rounds" value="{{ data.duration.rounds }}" />
 				<label>{{ localize "COMBAT.Turns" }}</label>
@@ -125,6 +127,8 @@
 		<div class="form-group">
 			<label>{{ localize "EFFECT.StartTurns" }}</label>
 			<div class="form-fields">
+				<label>Cycles</label>
+				<input type="number" name="flags.metanthropes.metaStartCycle" value="{{ flags.metanthropes.metaStartCycle }}" />
 				<label>{{ localize "COMBAT.Round" }}</label>
 				<input type="number" name="duration.startRound"
 					value="{{ data.duration.startRound }}" />

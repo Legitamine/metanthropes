@@ -3,6 +3,7 @@
 		<li class="items-header flexrow" data-effect-type="{{section.type}}">
 			<h4 class="item-name effect-name flexrow">{{localize section.label}}</h4>
 			<div class="effect-type">Type</div>
+			<div class="effect-type">Applies To</div>
 			<div class="effect-source">Source</div>
 			<div class="effect-source">Duration</div>
 			{{#if ../isNarrator}}
@@ -27,6 +28,7 @@
 						</h4>
 					</div>
 					<div class="effect-type">{{effect.flags.metanthropes.metaEffectType}}</div>
+					<div class="effect-application">{{effect.flags.metanthropes.metaEffectApplication}}</div>
 					<div class="effect-source">{{effect.sourceName}}</div>
 					<div class="effect-duration">{{effect.duration.label}}</div>
 					{{#if ../../isNarrator}}

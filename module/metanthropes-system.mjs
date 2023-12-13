@@ -69,7 +69,7 @@ Hooks.once("init", async function () {
 		createItemMacro,
 	};
 	//? Status Effects
-	const idsToKeep = ["dead", "invisible", "blind", "fly"];
+	const idsToKeep = [];
 	CONFIG.statusEffects = CONFIG.statusEffects.filter((item) => idsToKeep.includes(item.id));
 	const newStatusEffects = [
 		{
@@ -94,6 +94,54 @@ Hooks.once("init", async function () {
 			],
 			description: "<p>Fly</p>",
 			icon: "systems/metanthropes-system/artwork/status-effects/test6.svg",
+		},
+		{
+			id: "invisible",
+			name: "Invisible",
+			flags: {
+				metanthropes: {
+					metaEffectType: "Buff",
+					metaEffectApplication: "Cover",
+					metaCycle: null,
+					metaRound: null,
+					metaStartCycle: null,
+					metaStartRound: null,
+				},
+			},
+			description: "<p>Invisible</p>",
+			icon: "systems/metanthropes-system/artwork/status-effects/test7.svg",
+		},
+		{
+			id: "blind",
+			name: "Sense-Lost: Vision",
+			flags: {
+				metanthropes: {
+					metaEffectType: "Condition",
+					metaEffectApplication: "Cover",
+					metaCycle: null,
+					metaRound: null,
+					metaStartCycle: null,
+					metaStartRound: null,
+				},
+			},
+			description: "<p>Sense-Lost: Vision</p>",
+			icon: "systems/metanthropes-system/artwork/status-effects/test8.svg",
+		},
+		{
+			id: "dead",
+			name: "Dead",
+			flags: {
+				metanthropes: {
+					metaEffectType: "Condition",
+					metaEffectApplication: "Cover",
+					metaCycle: null,
+					metaRound: null,
+					metaStartCycle: null,
+					metaStartRound: null,
+				},
+			},
+			description: "<p>Dead</p>",
+			icon: "systems/metanthropes-system/artwork/status-effects/test9.svg",
 		},
 		{
 			id: "photokinetic",
