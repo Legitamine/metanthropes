@@ -104,6 +104,7 @@ export async function metaExtractNumberOfDice(value) {
  */
 export function metaSheetRefresh(actor) {
 	const sheet = actor.sheet;
+	//todo: make it so that it will only refresh if the sheet is not minimized etc
 	if (sheet && sheet.rendered) {
 		sheet.render(true);
 	}

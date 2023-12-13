@@ -587,54 +587,54 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		metaLog(3, "MetaRoll", "Duplicate Self Metapower Max Life:", duplicateMaxLife);
 	}
 	//* Apply Damage to Selected Targets
-	if (damageSelectedTargets && actionableTargets) {
-		metaLog(3, "MetaExecute", "Applying Damage to Selected Targets");
-		//? Apply damage to each targeted actor
-		for (let i = 0; i < targetedActors.length; i++) {
-			let targetedActor = targetedActors[i];
-			let targetedActorName = targetedActor.name;
-			let targetedActorCurrentLife = targetedActor.system.Vital.Life.value;
-			let targetedActorMaxLife = targetedActor.system.Vital.Life.max;
-			let targetedActorDamage = 0;
-			if (damageCosmicBase > 0) {
-				targetedActorDamage += damageCosmicBase;
-			}
-			if (damageCosmicDice > 0) {
-				targetedActorDamage += await metaRollDice(damageCosmicDice);
-			}
-			if (damageElementalBase > 0) {
-				targetedActorDamage += damageElementalBase;
-			}
-			if (damageElementalDice > 0) {
-				targetedActorDamage += await metaRollDice(damageElementalDice);
-			}
-			if (damageMaterialBase > 0) {
-				targetedActorDamage += damageMaterialBase;
-			}
-			if (damageMaterialDice > 0) {
-				targetedActorDamage += await metaRollDice(damageMaterialDice);
-			}
-			if (damagePsychicBase > 0) {
-				targetedActorDamage += damagePsychicBase;
-			}
-			if (damagePsychicDice > 0) {
-				targetedActorDamage += await metaRollDice(damagePsychicDice);
-			}
-			if (targetedActorDamage > 0) {
-				let targetedActorNewLife = targetedActorCurrentLife - targetedActorDamage;
-				if (targetedActorNewLife < 0) {
-					targetedActorNewLife = 0;
-				}
-				await targetedActor.update({ "data.system.Vital.Life.value": targetedActorNewLife });
-				let damageMessage = `${targetedActorName} takes ${targetedActorDamage} 💥 damage and has ${targetedActorNewLife} / ${targetedActorMaxLife} 💖 Life remaining.<br>`;
-				await ChatMessage.create({
-					user: game.user.id,
-					speaker: ChatMessage.getSpeaker({ actor: actor }),
-					content: damageMessage,
-				});
-			}
-		}
-	}
+	// if (damageSelectedTargets && actionableTargets) {
+	// 	metaLog(3, "MetaExecute", "Applying Damage to Selected Targets");
+	// 	//? Apply damage to each targeted actor
+	// 	for (let i = 0; i < targetedActors.length; i++) {
+	// 		let targetedActor = targetedActors[i];
+	// 		let targetedActorName = targetedActor.name;
+	// 		let targetedActorCurrentLife = targetedActor.system.Vital.Life.value;
+	// 		let targetedActorMaxLife = targetedActor.system.Vital.Life.max;
+	// 		let targetedActorDamage = 0;
+	// 		if (damageCosmicBase > 0) {
+	// 			targetedActorDamage += damageCosmicBase;
+	// 		}
+	// 		if (damageCosmicDice > 0) {
+	// 			targetedActorDamage += await metaRollDice(damageCosmicDice);
+	// 		}
+	// 		if (damageElementalBase > 0) {
+	// 			targetedActorDamage += damageElementalBase;
+	// 		}
+	// 		if (damageElementalDice > 0) {
+	// 			targetedActorDamage += await metaRollDice(damageElementalDice);
+	// 		}
+	// 		if (damageMaterialBase > 0) {
+	// 			targetedActorDamage += damageMaterialBase;
+	// 		}
+	// 		if (damageMaterialDice > 0) {
+	// 			targetedActorDamage += await metaRollDice(damageMaterialDice);
+	// 		}
+	// 		if (damagePsychicBase > 0) {
+	// 			targetedActorDamage += damagePsychicBase;
+	// 		}
+	// 		if (damagePsychicDice > 0) {
+	// 			targetedActorDamage += await metaRollDice(damagePsychicDice);
+	// 		}
+	// 		if (targetedActorDamage > 0) {
+	// 			let targetedActorNewLife = targetedActorCurrentLife - targetedActorDamage;
+	// 			if (targetedActorNewLife < 0) {
+	// 				targetedActorNewLife = 0;
+	// 			}
+	// 			await targetedActor.update({ "data.system.Vital.Life.value": targetedActorNewLife });
+	// 			let damageMessage = `${targetedActorName} takes ${targetedActorDamage} 💥 damage and has ${targetedActorNewLife} / ${targetedActorMaxLife} 💖 Life remaining.<br>`;
+	// 			await ChatMessage.create({
+	// 				user: game.user.id,
+	// 				speaker: ChatMessage.getSpeaker({ actor: actor }),
+	// 				content: damageMessage,
+	// 			});
+	// 		}
+	// 	}
+	// }
 	//? Refresh the actor sheet if it's open
 	metaSheetRefresh(actor);
 }
