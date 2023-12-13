@@ -189,6 +189,13 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		metaLog(2, "MetaExecute", "ERROR: cannot Execute action:", action);
 		return;
 	}
+	//* Targeting v1 variables
+	//? Setup a variable to check if we will be applying damage to the targeted actors later
+	let damageSelectedTargets = false;
+	//? Setup an array for targeted actors, this will be used later to apply effects to them
+	let targetedActors = [];
+	//? Setup a variable to know if we'll have to apply effects to the targeted actors
+	let actionableTargets = false;
 	//* Prepare content message constituents
 	if (executeRoll) {
 		//? check Area Effect
@@ -416,16 +423,32 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		contentMessage += `📏: ` + range + `<br>`;
 		if (areaEffectMessage) {
 			contentMessage += areaEffectMessage;
-			contentMessage += `<br>`;
+			contentMessage += `<hr />`;
 		} else {
-			contentMessage += `<br>`;
+			contentMessage += `<hr />`;
 		}
 		if (vsMessage) {
 			contentMessage += vsMessage;
-			contentMessage += `<br>`;
+			contentMessage += `<hr />`;
 		}
 		if (effectDescription) {
-			contentMessage += `${effectDescription}<br>`;
+			contentMessage += `${effectDescription}<hr />`;
+		}
+		//* Targeting v1
+		const betaTesting = await game.settings.get("metanthropes-system", "metaBetaTesting");
+		if (betaTesting) {
+			const manuallySelectedTargets = game.user.targets;
+			metaLog(3, "MetaExecute", "Manually Selected Targets:", manuallySelectedTargets);
+			//? Store targeted actors in an array
+			targetedActors = Array.from(manuallySelectedTargets).map((token) => token.actor);
+			//? Check if there are any targeted actors and set the actionableTargets variable accordingly
+			actionableTargets = targetedActors.length > 0;
+			//? Get the names of all targeted actors
+			const targetedActorNames = targetedActors.map((actor) => actor.name);
+			let allSelectedTargetsMessage = `Selected 🎯 Targets: ${targetedActorNames.join(", ")}`;
+			contentMessage += allSelectedTargetsMessage;
+			contentMessage += `<hr />`;
+			metaLog(3, "MetaExecute", "All Selected Targets Message:", allSelectedTargetsMessage);
 		}
 		if (damageCosmicMessage) {
 			contentMessage += damageCosmicMessage;
@@ -440,15 +463,16 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			contentMessage += damagePsychicMessage;
 		}
 		if (damageCosmicMessage || damageElementalMessage || damageMaterialMessage || damagePsychicMessage) {
-			contentMessage += `<br>`;
+			damageSelectedTargets = true;
+			contentMessage += `<hr />`;
 		}
 		if (healingMessage) {
 			contentMessage += healingMessage;
-			contentMessage += `<br>`;
+			contentMessage += `<hr />`;
 		}
 		if (specialMessage) {
 			contentMessage += specialMessage;
-			contentMessage += `<br>`;
+			contentMessage += `<hr />`;
 		}
 		if (buffsPermanentMessage) {
 			contentMessage += buffsPermanentMessage;
@@ -460,7 +484,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			contentMessage += buffsRemovedMessage;
 		}
 		if (buffsPermanent || buffsAppliedMessage || buffsRemovedMessage) {
-			contentMessage += `<br>`;
+			contentMessage += `<hr />`;
 		}
 		if (conditionsAppliedMessage) {
 			contentMessage += conditionsAppliedMessage;
@@ -469,7 +493,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			contentMessage += conditionsRemovedMessage;
 		}
 		if (conditionsAppliedMessage || conditionsRemovedMessage) {
-			contentMessage += `<br>`;
+			contentMessage += `<hr />`;
 		}
 		//? check if actor has enough destiny points to reroll
 		const currentDestiny = actor.system.Vital.Destiny.value;
@@ -533,8 +557,8 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 	//! the idea here being that if the flags are going to be added later, here we prevent them from remaining from previous successful activations
 	await actor.unsetFlag("metanthropes-system", "duplicateSelf");
 	//? Get the result of the last roll
-	let checkResult = await actor.getFlag("metanthropes-system", "lastrolled").MetaEvaluate;
 	metaLog(3, "MetaExecute", "Post Execution Actions");
+	let checkResult = await actor.getFlag("metanthropes-system", "lastrolled").MetaEvaluate;
 	//* Check for Duplicate Self Metapower Activation
 	if (
 		checkResult > 0 &&
@@ -544,10 +568,10 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			itemName === "Team" ||
 			itemName === "Squad" ||
 			itemName === "Unit")
-			) {
-				metaLog(3, "MetaRoll", "Duplicate Self Metapower Activation Detected");
-				let currentLife = actor.system.Vital.Life.value;
-				let duplicateMaxLife = 0;
+	) {
+		metaLog(3, "MetaRoll", "Duplicate Self Metapower Activation Detected");
+		let currentLife = actor.system.Vital.Life.value;
+		let duplicateMaxLife = 0;
 		if (itemName === "Clone") {
 			duplicateMaxLife = Math.ceil(currentLife * 0.1);
 		} else if (itemName === "Couple") {
@@ -562,21 +586,55 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		await actor.setFlag("metanthropes-system", "duplicateSelf", { maxLife: duplicateMaxLife });
 		metaLog(3, "MetaRoll", "Duplicate Self Metapower Max Life:", duplicateMaxLife);
 	}
+	//* Apply Damage to Selected Targets
+	if (damageSelectedTargets && actionableTargets) {
+		metaLog(3, "MetaExecute", "Applying Damage to Selected Targets");
+		//? Apply damage to each targeted actor
+		for (let i = 0; i < targetedActors.length; i++) {
+			let targetedActor = targetedActors[i];
+			let targetedActorName = targetedActor.name;
+			let targetedActorCurrentLife = targetedActor.system.Vital.Life.value;
+			let targetedActorMaxLife = targetedActor.system.Vital.Life.max;
+			let targetedActorDamage = 0;
+			if (damageCosmicBase > 0) {
+				targetedActorDamage += damageCosmicBase;
+			}
+			if (damageCosmicDice > 0) {
+				targetedActorDamage += await metaRollDice(damageCosmicDice);
+			}
+			if (damageElementalBase > 0) {
+				targetedActorDamage += damageElementalBase;
+			}
+			if (damageElementalDice > 0) {
+				targetedActorDamage += await metaRollDice(damageElementalDice);
+			}
+			if (damageMaterialBase > 0) {
+				targetedActorDamage += damageMaterialBase;
+			}
+			if (damageMaterialDice > 0) {
+				targetedActorDamage += await metaRollDice(damageMaterialDice);
+			}
+			if (damagePsychicBase > 0) {
+				targetedActorDamage += damagePsychicBase;
+			}
+			if (damagePsychicDice > 0) {
+				targetedActorDamage += await metaRollDice(damagePsychicDice);
+			}
+			if (targetedActorDamage > 0) {
+				let targetedActorNewLife = targetedActorCurrentLife - targetedActorDamage;
+				if (targetedActorNewLife < 0) {
+					targetedActorNewLife = 0;
+				}
+				await targetedActor.update({ "data.system.Vital.Life.value": targetedActorNewLife });
+				let damageMessage = `${targetedActorName} takes ${targetedActorDamage} 💥 damage and has ${targetedActorNewLife} / ${targetedActorMaxLife} 💖 Life remaining.<br>`;
+				await ChatMessage.create({
+					user: game.user.id,
+					speaker: ChatMessage.getSpeaker({ actor: actor }),
+					content: damageMessage,
+				});
+			}
+		}
+	}
 	//? Refresh the actor sheet if it's open
 	metaSheetRefresh(actor);
-	//* Targeting Tests
-	const betaTesting = await game.settings.get("metanthropes-system", "metaBetaTesting");
-	if (!betaTesting) return;
-	let targetingTargets = game.user.targets;
-	for (let token of targetingTargets) {
-		let targetedActor = token.actor;
-		let targetingChatMessage = {
-			user: game.user.id,
-			flavor: "We are targeting",
-			speaker: ChatMessage.getSpeaker({ actor: actor }),
-			content: targetedActor.name,
-			flags: { "metanthropes-system": { actoruuid: actor.uuid } },
-		};
-		ChatMessage.create(targetingChatMessage);
-	}
 }

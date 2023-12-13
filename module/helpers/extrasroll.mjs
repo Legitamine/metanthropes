@@ -195,19 +195,19 @@ export async function HungerRoll(actor, hungerLevel) {
 	}
 	const hungerRoll = await new Roll("1d100").evaluate({ async: true });
 	const hungerRollResult = hungerRoll.total;
-	hungerMessage = `Rolls to beat Hunger 💀 Condition Level ${hungerLevel} and gets a result of ${hungerRollResult} (needs ${hungerTarget} or less).<br><br>`;
+	hungerMessage = `Rolls to beat Hunger 💀 Condition Level ${hungerLevel} and gets a result of ${hungerRollResult} (needed ${hungerTarget} or less).<br><br>`;
 	if (hungerRollResult > hungerTarget) {
-		hungerMessage += `It is a 🟥 Failure!<br><br>${actor.name} is too hungry and can't act!<br><br>`;
+		hungerMessage += `It is a 🟥 Failure!<br><br>${actor.name} is too hungry and can't act!`;
 		//? Button to re-roll Hunger using destiny
 		const currentDestiny = Number(actor.system.Vital.Destiny.value);
-		hungerMessage += `${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+		hungerMessage += `<hr />${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 		if (currentDestiny > 0) {
 			hungerMessage += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button hunger-reroll" 
 			data-actoruuid="${actor.uuid}" data-hunger-level="${hungerLevel}"
 			>Spend 🤞 Destiny to reroll</button><br></div><br>`;
 		}
 	} else {
-		hungerMessage += `It is a 🟩 Success!<br><br>${actor.name} has overcome Hunger!<br><br>`;
+		hungerMessage += `It is a 🟩 Success!<hr />${actor.name} has overcome Hunger!<br><br>`;
 		await actor.setFlag("metanthropes-system", "hungerRollResult", true);
 		const MetaRollBeforeHungerCheck = await actor.getFlag("metanthropes-system", "MetaRollBeforeHungerCheck");
 		metaLog(
@@ -289,19 +289,19 @@ export async function CoverRoll(actor, coverType, coverValue) {
 	}
 	const coverRoll = await new Roll("1d100").evaluate({ async: true });
 	const coverRollResult = coverRoll.total;
-	coverMessage = `Rolls to find ${coverType} Cover, with ${coverValue}% and gets a result of ${coverRollResult} (needs ${coverTarget} or less).<br><br>`;
+	coverMessage = `Rolls to find ${coverType} Cover, with ${coverValue}% and gets a result of ${coverRollResult} (needed ${coverTarget} or less).<br><br>`;
 	if (coverRollResult > coverTarget) {
-		coverMessage += `It is a 🟥 Failure!<br><br>${actor.name} can't find Cover!<br><br>`;
+		coverMessage += `It is a 🟥 Failure!<br><br>${actor.name} can't find Cover!`;
 		//? Button to re-roll Cover using destiny
 		const currentDestiny = Number(actor.system.Vital.Destiny.value);
-		coverMessage += `${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+		coverMessage += `<hr />${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 		if (currentDestiny > 0) {
 			coverMessage += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button cover-reroll" 
 			data-actoruuid="${actor.uuid}" data-cover-value="${coverValue}" data-type="${coverType}"
 			>Spend 🤞 Destiny to reroll</button><br></div><br>`;
 		}
 	} else {
-		coverMessage += `It is a 🟩 Success!<br><br>${actor.name} found ${coverType} Cover!<br><br>`;
+		coverMessage += `It is a 🟩 Success!<hr />${actor.name} found ${coverType} Cover!<br><br>`;
 	}
 	coverRoll.toMessage({
 		speaker: ChatMessage.getSpeaker({ actor: actor }),

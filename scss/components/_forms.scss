@@ -1,3 +1,8 @@
+//? Primary shadow color for active tabs
+.tabs .item.active {
+	text-shadow: 0 0 10px $c-purple;
+}
+
 .item-form {
 	font-family: $font-primary;
 }

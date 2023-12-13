@@ -5,7 +5,8 @@ import { metaLog } from "../helpers/metahelpers.mjs";
  * @returns {Promise<void>}
  */
 export function metaMigrateData() {
-	metaLog(3, "metaMigrateData", "Started");
+	//metaLog(3, "metaMigrateData", "Started");
+	metaLog(3, "metaMigrateData", "No Migration Needed");
 	//	const migrationVersion = game.settings.get("metanthropes-system", "migrationVersion");
 	//	const isNewerVersion = foundry.utils.isNewerVersion;
 	//	if (!isNewerVersion(game.system.version, migrationVersion)) return;
@@ -14,7 +15,7 @@ export function metaMigrateData() {
 	//	if (isNewerVersion("0.8.21", migrationVersion)) _metaTemplateChanges();
 	//	//	game.settings.set("metanthropes-system", "migrationVersion", game.system.version);
 	//_metaMigrateItems();
-	metaLog(3, "metaMigrateData", "Finished");
+	//metaLog(3, "metaMigrateData", "Finished");
 }
 //* Handle template deprecations
 function _metaTemplateChanges() {

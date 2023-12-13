@@ -1,13 +1,7 @@
 {
 	"id": "metanthropes-system",
-	"title": "Metanthropes",
-	"description": "Metanthropes RPG System for FoundryVTT",
-	"version": "0.8.95",
-	"compatibility": {
-		"minimum": "11",
-		"verified": "11.315",
-		"maximum": "11"
-	},
+	"title": "Metanthropes Early Access",
+	"description": "Metanthropes RPG Early Access System for FoundryVTT",
 	"authors": [
 		{
 			"name": "qp",
@@ -20,9 +14,26 @@
 			}
 		}
 	],
+	"url": "https://github.com/legitamine/metanthropes-system",
+	"license": "https://github.com/legitamine/metanthropes-system/blob/main/LICENSE.txt",
+	"readme": "https://github.com/legitamine/metanthropes-system/blob/main/readme.md",
+	"bugs": "https://gitub.com/legitamine/metanthropes-system/issues",
+	"changelog": "https://github.com/legitamine/metanthropes-system/blob/main/changelog.md",
+	"media": [
+		{
+			"type": "setup",
+			"url": "systems/metanthropes-system/artwork/ui/cover/cover.jpg",
+			"thumbnail": "systems/metanthropes-system/artwork/ui/cover/cover.jpg"
+		}
+	],
+	"version": "0.8.127",
+	"compatibility": {
+		"minimum": 11,
+		"verified": "11.315"
+	},
 	"esmodules": ["module/metanthropes-system.mjs"],
 	"styles": ["css/metanthropes-system.css"],
-	"background": "systems/metanthropes-system/artwork/ui/cover/cover.jpg",
+	"languages": [],
 	"packs": [
 		{
 			"label": "Premade Protagonists",
@@ -133,14 +144,12 @@
 			"flags": {}
 		}
 	],
+	"packfolders": [],
+	"socket": false,
+	"background": "systems/metanthropes-system/artwork/ui/cover/cover.jpg",
 	"gridDistance": 2,
 	"gridUnits": "m",
 	"primaryTokenAttribute": "Vital.Destiny.value",
 	"secondaryTokenAttribute": "Vital.Life.value",
-	"url": "https://github.com/legitamine/metanthropes-system",
-	"manifest": "https://github.com/legitamine/metanthropes-system/releases/latest/download/system.json",
-	"license": "https://github.com/legitamine/metanthropes-system/blob/main/LICENSE.txt",
-	"readme": "https://github.com/legitamine/metanthropes-system/blob/main/readme.md",
-	"changelog": "https://github.com/legitamine/metanthropes-system/blob/main/changelog.md",
-	"bugs": "https://gitub.com/legitamine/metanthropes-system/issues"
+	"manifest": "https://github.com/legitamine/metanthropes-system/releases/latest/download/system.json"
 }

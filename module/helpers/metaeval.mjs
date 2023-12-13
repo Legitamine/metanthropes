@@ -128,9 +128,9 @@ export async function MetaEvaluate(
 	//? Create the message to be printed to chat - remember: Penalties and Reductions are Negative, Bonus and Pain are Positive
 	const needToRoll = statScore + bonus + penalty + multiAction + perkReduction + aimingReduction + customReduction - (pain * 10);
 	let needToRollMessage = ``;
-	if (needToRoll <= 1) needToRollMessage = `(needs Critical Success)`;
-	else if (needToRoll >= 100) needToRollMessage = `(needs no Critical Failure)`;
-	else needToRollMessage = `(needs ${needToRoll} or less)`;
+	if (needToRoll <= 1) needToRollMessage = `(needed Critical Success)`;
+	else if (needToRoll >= 100) needToRollMessage = `(needed no Critical Failure)`;
+	else needToRollMessage = `(needed ${needToRoll} or less)`;
 	let message = null;
 	if (action === "StatRoll") {
 		message = `Attempts a Stat Roll with ${stat} score of ${statScore}%`;
@@ -193,22 +193,22 @@ export async function MetaEvaluate(
 	//? if we have levels of success or failure, add them to the message
 	if (levelsOfSuccess > 0) {
 		if (levelsOfSuccess === 1) {
-			message += `, accumulating: ${levelsOfSuccess} * ✔️ Level of Success.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+			message += `, accumulating: ${levelsOfSuccess} * ✔️ Level of Success.<hr />${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 			resultLevel = levelsOfSuccess;
 		} else {
-			message += `, accumulating: ${levelsOfSuccess} * ✔️ Levels of Success.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+			message += `, accumulating: ${levelsOfSuccess} * ✔️ Levels of Success.<hr />${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 			resultLevel = levelsOfSuccess;
 		}
 	} else if (levelsOfFailure > 0) {
 		if (levelsOfFailure === 1) {
-			message += `, accumulating: ${levelsOfFailure} * ❌ Level of Failure.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+			message += `, accumulating: ${levelsOfFailure} * ❌ Level of Failure.<hr />${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 			resultLevel = -levelsOfFailure;
 		} else {
-			message += `, accumulating: ${levelsOfFailure} * ❌ Levels of Failure.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+			message += `, accumulating: ${levelsOfFailure} * ❌ Levels of Failure.<hr />${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 			resultLevel = -levelsOfFailure;
 		}
 	} else {
-		message += `.<br><br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+		message += `.<hr />${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 	}
 	//? Buttons to Re-Roll MetaEvaluate results - only adds the button to message, if it's not a Critical and only if they have enough Destiny for needed reroll.
 	//* The buttons are hidden for everyone except the Player of the Actor and the GM

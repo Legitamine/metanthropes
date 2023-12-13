@@ -1,10 +1,12 @@
+//? Import metaLog helper
+import { metaLog } from "../helpers/metahelpers.mjs";
 /**
- * 
+ *
  * Manage Active Effect instances through the Actor Sheet via effect control buttons.
- * 
+ *
  * @param {MouseEvent} event      The left-click event on the effect control
  * @param {Actor|Item} owner      The owning document which manages this effect
- * 
+ *
  */
 export function onManageActiveEffect(event, owner) {
 	event.preventDefault();
@@ -15,11 +17,21 @@ export function onManageActiveEffect(event, owner) {
 		case "create":
 			return owner.createEmbeddedDocuments("ActiveEffect", [
 				{
-					label: "New Effect",
-					icon: "icons/svg/aura.svg",
+					name: "New Effect",
+					icon: "systems/metanthropes-system/artwork/status-effects/test.svg",
 					origin: owner.uuid,
 					"duration.rounds": li.dataset.effectType === "temporary" ? 1 : undefined,
 					disabled: li.dataset.effectType === "inactive",
+					flags: {
+						metanthropes: {
+							metaEffectType: "Undefined",
+							metaEffectApplication: "Undefined",
+							metaCycle: null,
+							metaRound: null,
+							metaStartCycle: null,
+							metaStartRound: null,
+						},
+					},
 				},
 			]);
 		case "edit":
@@ -32,24 +44,24 @@ export function onManageActiveEffect(event, owner) {
 }
 
 /**
- * 
+ *
  * Prepare the data structure for Active Effects which are currently applied to an Actor or Item.
- * 
+ *
  * @param {ActiveEffect[]} effects    The array of Active Effect instances to prepare sheet data for
  * @return {object}                   Data for rendering
- * 
+ *
  */
 export function prepareActiveEffectCategories(effects) {
-	// Define effect header categories
+	//? Define effect header categories
 	const categories = {
 		temporary: {
 			type: "temporary",
 			label: "Temporary Effects",
 			effects: [],
 		},
-		passive: {
-			type: "passive",
-			label: "Passive Effects",
+		permanent: {
+			type: "permanent",
+			label: "Permanent Effects",
 			effects: [],
 		},
 		inactive: {
@@ -59,12 +71,14 @@ export function prepareActiveEffectCategories(effects) {
 		},
 	};
 
-	// Iterate over active effects, classifying them into categories
+	//? Iterate over active effects, classifying them into categories
 	for (let e of effects) {
-		e._getSourceName(); // Trigger a lookup for the source name
+		//? Fix for v11 deprecation
+		//e._getSourceName(); // Trigger a lookup for the source name
+		//!^ was that step needed?
 		if (e.disabled) categories.inactive.effects.push(e);
 		else if (e.isTemporary) categories.temporary.effects.push(e);
-		else categories.passive.effects.push(e);
+		else categories.permanent.effects.push(e);
 	}
 	return categories;
 }

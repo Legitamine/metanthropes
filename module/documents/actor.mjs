@@ -294,23 +294,43 @@ export class MetanthropesActor extends Actor {
 			this.system.Vital.Life.Initial = 50;
 		}
 		//? for Protagonists set the metanthropes-logo as default icon for metapower, if no metapower is selected
+		//! note that this will be applied to the actors once, when they are created or when the world loads
 		if (this.hasEnterMeta) {
 			if (
 				!this.primeimg ||
-				this.primeimg == `systems/metanthropes-system/artwork/ui/logos/metanthropes-logo.webp` ||
-				this.primeimg == `systems/metanthropes-system/artwork/metanthropes-logo.webp`
+				this.primeimg == `systems/metanthropes-system/artwork/ui/logos/metanthropes-logo.webp`
 			) {
-				metaLog(3, "MetanthropesActor", "prepareBaseData", "Updating Prime Metapower Image for:", this.name);
 				//? for Protagonists without a prime metapower defined, make it the metanthropes-logo
 				if (!this.system.entermeta.primemetapower.value) {
 					this.primeimg = `systems/metanthropes-system/artwork/ui/logos/metanthropes-logo.webp`;
 				} else {
-					//? for Protagonists with a prime metapower defined, make it their respective metapower icon
 					const primemetapowerimage = this.system.entermeta.primemetapower.value;
-					this.primeimg = `systems/metanthropes-system/artwork/metapowers/${primemetapowerimage}.webp`;
+					//? Proceed if Prime Metapower icon is not the correct one
+					if (
+						!(this.primeimg == `systems/metanthropes-system/artwork/metapowers/${primemetapowerimage}.webp`)
+					) {
+						//? for Protagonists with a prime metapower defined, make it their respective metapower icon
+						this.primeimg = `systems/metanthropes-system/artwork/metapowers/${primemetapowerimage}.webp`;
+						metaLog(
+							3,
+							"MetanthropesActor",
+							"prepareBaseData",
+							"Updating Prime Metapower Image for:",
+							this.name
+						);
+					} else {
+						return;
+					}
 				}
 			}
 		}
+		const actorData = this;
+		this._prepareBaseCharacteristicsData(actorData);
+		if (actorData.name.includes("Duplicate")) {
+			this._prepareBaseDuplicateData(actorData);
+		}
+		this._prepareBaseMovementData(actorData);
+		this._prepareBaseVitalData(actorData);
 	}
 	/** @override */
 	prepareDerivedData() {
@@ -321,6 +341,7 @@ export class MetanthropesActor extends Actor {
 		//* available both inside and outside of character sheets (such as if an actor
 		//* is queried and has a roll executed directly from it).
 		//* This function is called after prepareBaseData() and prepareEmbeddedDocuments().
+		//! Note that if any values are to be affected by an Active Effect, then they should be calculated in the BaseData step, not here, otherwise they will be overwritten here
 		const actorData = this;
 		this._prepareDerivedCharacteristicsData(actorData);
 		if (actorData.name.includes("Duplicate")) {
@@ -328,6 +349,7 @@ export class MetanthropesActor extends Actor {
 		}
 		this._prepareDerivedMovementData(actorData);
 		this._prepareDerivedVitalData(actorData);
+		//! Should we bring back _prepare__DuplicateData in this step or is ok with Base?
 		//? Check to see if this actor has been Progressed
 		//todo Deprecate this after we finalize the Progression system (v0.9)
 		const progressionFlag = this.getFlag("metanthropes-system", "Progression");
@@ -353,51 +375,24 @@ export class MetanthropesActor extends Actor {
 		this._prepareDerivedCharacteristicsXPData(actorData);
 		this._prepareDerivedPerkXPData(actorData);
 	}
-	_prepareDerivedDuplicateData(actorData) {
+	//* Characteristics & Stats
+	_prepareBaseCharacteristicsData(actorData) {
+		if (actorData.type == "Vehicle") return;
 		const systemData = actorData.system;
-		//? Remove all Conditions and Buffs
-		systemData.Characteristics.Body.Condition.Current = 0;
-		systemData.Characteristics.Body.Buff.Current = 0;
-		systemData.Characteristics.Mind.Condition.Current = 0;
-		systemData.Characteristics.Mind.Buff.Current = 0;
-		systemData.Characteristics.Soul.Condition.Current = 0;
-		systemData.Characteristics.Soul.Buff.Current = 0;
-		systemData.Characteristics.Body.Stats.Endurance.Condition.Current = 0;
-		systemData.Characteristics.Body.Stats.Endurance.Buff.Current = 0;
-		systemData.Characteristics.Body.Stats.Reflexes.Condition.Current = 0;
-		systemData.Characteristics.Body.Stats.Reflexes.Buff.Current = 0;
-		systemData.Characteristics.Body.Stats.Power.Condition.Current = 0;
-		systemData.Characteristics.Body.Stats.Power.Buff.Current = 0;
-		systemData.Characteristics.Mind.Stats.Creativity.Condition.Current = 0;
-		systemData.Characteristics.Mind.Stats.Creativity.Buff.Current = 0;
-		systemData.Characteristics.Mind.Stats.Manipulation.Condition.Current = 0;
-		systemData.Characteristics.Mind.Stats.Manipulation.Buff.Current = 0;
-		systemData.Characteristics.Mind.Stats.Perception.Condition.Current = 0;
-		systemData.Characteristics.Mind.Stats.Perception.Buff.Current = 0;
-		systemData.Characteristics.Soul.Stats.Consciousness.Condition.Current = 0;
-		systemData.Characteristics.Soul.Stats.Consciousness.Buff.Current = 0;
-		systemData.Characteristics.Soul.Stats.Awareness.Condition.Current = 0;
-		systemData.Characteristics.Soul.Stats.Awareness.Buff.Current = 0;
-		systemData.Characteristics.Soul.Stats.Willpower.Condition.Current = 0;
-		systemData.Characteristics.Soul.Stats.Willpower.Buff.Current = 0;
-		systemData.Characteristics.Body.CoreConditions.Asphyxiation = 0;
-		systemData.Characteristics.Body.CoreConditions.Bleeding = 0;
-		systemData.Characteristics.Body.CoreConditions.Diseased = 0;
-		systemData.Characteristics.Body.CoreConditions.Maimed = 0;
-		systemData.Characteristics.Mind.CoreConditions.Fatigue = 0;
-		systemData.Characteristics.Mind.CoreConditions.Hunger = 0;
-		systemData.Characteristics.Mind.CoreConditions.Pain = 0;
-		systemData.Characteristics.Mind.CoreConditions["Sense-Lost"] = 0;
-		systemData.Characteristics.Soul.CoreConditions.Amnesia = 0;
-		systemData.Characteristics.Soul.CoreConditions.Probed = 0;
-		systemData.Characteristics.Soul.CoreConditions.Infiltrated = 0;
-		systemData.Characteristics.Soul.CoreConditions.Unconscious = 0;
-		systemData.physical.size.Buffs.enlarged.value = 0;
-		systemData.physical.size.Conditions.shrunken.value = 0;
-		systemData.physical.weight.Buffs.lightened.value = 0;
-		systemData.physical.weight.Conditions.encumbered.value = 0;
-		systemData.physical.speed.Buffs.accelerated.value = 0;
-		systemData.physical.speed.Conditions.slowed.value = 0;
+		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
+			//? Calculate the Base score for this Characteristic (Initial + Progressed)
+			parseInt((CharValue.Base = Number(CharValue.Initial) + Number(Number(CharValue.Progressed) * 5)));
+			//? Calculate the Current score for this Characteristic (Base + Buff - Condition)
+			parseInt((CharValue.Current = Number(CharValue.Base)));
+			for (const [StatKey, StatScore] of Object.entries(CharValue.Stats)) {
+				//? Calculate the Base score for this Stat (Initial + Progressed)
+				parseInt((StatScore.Base = Number(StatScore.Initial) + Number(Number(StatScore.Progressed) * 5)));
+				//? Calculate the Current score for this Stat (Base + Buff - Condition)
+				parseInt((StatScore.Current = Number(StatScore.Base)));
+				//? Calculate the Roll score for this Stat (Current + Characteristic + ifCharacteristicBecomesZeroPenalty)
+				parseInt((StatScore.Roll = Number(StatScore.Current) + Number(CharValue.Current)));
+			}
+		}
 	}
 	_prepareDerivedCharacteristicsData(actorData) {
 		if (actorData.type == "Vehicle") return;
@@ -422,36 +417,36 @@ export class MetanthropesActor extends Actor {
 				metaLog(
 					1,
 					"MetanthropesActor",
-					"_prepareDerivedCharacteristicsData",
+					"_prepareBaseCharacteristicsData",
 					this.name + "'s",
 					CharKey,
 					"has dropped to 0!"
 				);
 			}
-			for (const [StatKey, StatValue] of Object.entries(CharValue.Stats)) {
+			for (const [StatKey, StatScore] of Object.entries(CharValue.Stats)) {
 				//? Calculate the Base score for this Stat (Initial + Progressed)
-				parseInt((StatValue.Base = Number(StatValue.Initial) + Number(Number(StatValue.Progressed) * 5)));
+				parseInt((StatScore.Base = Number(StatScore.Initial) + Number(Number(StatScore.Progressed) * 5)));
 				//? Calculate the Current score for this Stat (Base + Buff - Condition)
 				parseInt(
-					(StatValue.Current =
-						Number(StatValue.Base) +
-						Number(Number(StatValue.Buff.Current) * 5) -
-						Number(Number(StatValue.Condition.Current) * 5))
+					(StatScore.Current =
+						Number(StatScore.Base) +
+						Number(Number(StatScore.Buff.Current) * 5) -
+						Number(Number(StatScore.Condition.Current) * 5))
 				);
 				//? Calculate the Roll score for this Stat (Current + Characteristic + ifCharacteristicBecomesZeroPenalty)
 				parseInt(
-					(StatValue.Roll =
-						Number(StatValue.Current) +
+					(StatScore.Roll =
+						Number(StatScore.Current) +
 						Number(CharValue.Current) +
 						Number(ifCharacteristicBecomesZeroPenalty))
 				);
 				//? Determine if the Stat has dropped to 0
-				if (StatValue.Roll <= 0) {
-					StatValue.Roll = 0;
+				if (StatScore.Roll <= 0) {
+					StatScore.Roll = 0;
 					metaLog(
 						1,
 						"MetanthropesActor",
-						"_prepareDerivedCharacteristicsData",
+						"_prepareBaseCharacteristicsData",
 						this.name + "'s",
 						StatKey,
 						"has dropped to 0!"
@@ -460,6 +455,250 @@ export class MetanthropesActor extends Actor {
 			}
 		}
 	}
+	//* Movement
+	_prepareBaseMovementData(actorData) {
+		//todo when implementing vehicles, we'll have to revise how movement is calcualated, right now Vehicles don't have Characteristics and so they can't have movement either as it's tied to the Wobbly Calculation - perhaps just skip that for vehicles? We'll see exactly how, when it's time to implement Vehicles
+		if (actorData.type == "Vehicle") return;
+		const systemData = actorData.system;
+		//? first we will calculate the current values from buffs and conditions, then we take their modifiers and calculate the movement value
+		const speedInitial = Number(systemData.physical.speed.initial);
+		const weightInitial = Number(systemData.physical.weight.initial);
+		const sizeInitial = Number(systemData.physical.size.initial);
+		const sizeCurrent = sizeInitial;
+		const weightCurrent = weightInitial;
+		const speedCurrent = speedInitial;
+		systemData.physical.size.value = sizeCurrent;
+		systemData.physical.weight.value = weightCurrent;
+		systemData.physical.speed.value = speedCurrent;
+		//todo: would the below consts be better placed in some global scope or inside the CONST or CONFIG ones?
+		const speedModifiers = {
+			0: 0,
+			1: 0,
+			2: 0,
+			3: 0,
+			4: 0,
+			5: 1,
+			6: 2,
+			7: 4,
+			8: 6,
+			9: 8,
+			10: 10,
+			11: 20,
+			12: 50,
+			13: 100,
+			14: 250,
+			15: 500,
+			16: 1000,
+			17: 2000,
+			18: 5000,
+			19: 10000,
+			20: 20000,
+		};
+		const weightModifiers = {
+			0: 200,
+			1: 100,
+			2: 50,
+			3: 20,
+			4: 10,
+			5: 5,
+			6: 4,
+			7: 3,
+			8: 2,
+			9: 1.5,
+			10: 1,
+			11: 0.8,
+			12: 0.6,
+			13: 0.4,
+			14: 0.2,
+			15: 0.1,
+			16: 0.02,
+			17: 0.01,
+			18: 0.002,
+			19: 0.001,
+			20: 0.0002,
+		};
+		const sizeModifiers = {
+			0: 0.0002,
+			1: 0.001,
+			2: 0.002,
+			3: 0.01,
+			4: 0.02,
+			5: 0.1,
+			6: 0.2,
+			7: 0.4,
+			8: 0.6,
+			9: 0.8,
+			10: 1,
+			11: 2,
+			12: 3,
+			13: 9,
+			14: 27,
+			15: 81,
+			16: 243,
+			17: 729,
+			18: 2187,
+			19: 6561,
+			20: 19683,
+		};
+		//? movement value is always rounded up
+		const movementValue = Math.ceil(
+			speedModifiers[speedCurrent] * weightModifiers[weightCurrent] * sizeModifiers[sizeCurrent]
+		);
+		systemData.physical.movement.value = movementValue;
+		systemData.physical.movement.additional = movementValue;
+		systemData.physical.movement.sprint = movementValue * 5;
+	}
+	_prepareDerivedMovementData(actorData) {
+		//todo when implementing vehicles, we'll have to revise how movement is calcualated, right now Vehicles don't have Characteristics and so they can't have movement either as it's tied to the Wobbly Calculation - perhaps just skip that for vehicles? We'll see exactly how, when it's time to implement Vehicles
+		if (actorData.type == "Vehicle") return;
+		const systemData = actorData.system;
+		//? first we will calculate the current values from buffs and conditions, then we take their modifiers and calculate the movement value
+		const speedInitial = Number(systemData.physical.speed.initial);
+		const weightInitial = Number(systemData.physical.weight.initial);
+		const sizeInitial = Number(systemData.physical.size.initial);
+		const speedBuff = Number(systemData.physical.speed.Buffs.accelerated.value);
+		const speedCondition = Number(systemData.physical.speed.Conditions.slowed.value);
+		const weightBuff = Number(systemData.physical.weight.Buffs.lightened.value);
+		const weightCondition = Number(systemData.physical.weight.Conditions.encumbered.value);
+		const sizeBuff = Number(systemData.physical.size.Buffs.enlarged.value);
+		const sizeCondition = Number(systemData.physical.size.Conditions.shrunken.value);
+		const sizeCurrent = sizeInitial + sizeBuff - sizeCondition;
+		const weightCurrent = weightInitial - weightBuff + weightCondition;
+		const speedCurrent = speedInitial + speedBuff - speedCondition;
+		systemData.physical.size.value = sizeCurrent;
+		systemData.physical.weight.value = weightCurrent;
+		systemData.physical.speed.value = speedCurrent;
+		//todo: would the below consts be better placed in some global scope or inside the CONST or CONFIG ones?
+		const speedModifiers = {
+			0: 0,
+			1: 0,
+			2: 0,
+			3: 0,
+			4: 0,
+			5: 1,
+			6: 2,
+			7: 4,
+			8: 6,
+			9: 8,
+			10: 10,
+			11: 20,
+			12: 50,
+			13: 100,
+			14: 250,
+			15: 500,
+			16: 1000,
+			17: 2000,
+			18: 5000,
+			19: 10000,
+			20: 20000,
+		};
+		const weightModifiers = {
+			0: 200,
+			1: 100,
+			2: 50,
+			3: 20,
+			4: 10,
+			5: 5,
+			6: 4,
+			7: 3,
+			8: 2,
+			9: 1.5,
+			10: 1,
+			11: 0.8,
+			12: 0.6,
+			13: 0.4,
+			14: 0.2,
+			15: 0.1,
+			16: 0.02,
+			17: 0.01,
+			18: 0.002,
+			19: 0.001,
+			20: 0.0002,
+		};
+		const sizeModifiers = {
+			0: 0.0002,
+			1: 0.001,
+			2: 0.002,
+			3: 0.01,
+			4: 0.02,
+			5: 0.1,
+			6: 0.2,
+			7: 0.4,
+			8: 0.6,
+			9: 0.8,
+			10: 1,
+			11: 2,
+			12: 3,
+			13: 9,
+			14: 27,
+			15: 81,
+			16: 243,
+			17: 729,
+			18: 2187,
+			19: 6561,
+			20: 19683,
+		};
+		//? in addition to the modifiers, Wobbly also affects final movemement value
+		const wobblyModifier = Number(systemData.Characteristics.Mind.Stats.Creativity.Condition.Current);
+		//? movement value is always rounded up
+		const movementValue = Math.ceil(
+			speedModifiers[speedCurrent] * weightModifiers[weightCurrent] * sizeModifiers[sizeCurrent] - wobblyModifier
+		);
+		systemData.physical.movement.value = movementValue;
+		systemData.physical.movement.additional = movementValue;
+		systemData.physical.movement.sprint = movementValue * 5;
+	}
+	//* Vital
+	_prepareBaseVitalData(actorData) {
+		if (actorData.type == "Vehicle") return;
+		const systemData = actorData.system;
+		//? Placeholder intentionally left blank
+	}
+	_prepareDerivedVitalData(actorData) {
+		if (actorData.type == "Vehicle") return;
+		const systemData = actorData.system;
+		if (!this.name.includes("Duplicate")) {
+			//? Apply Max Life according to Body + Endurance
+			parseInt(
+				(systemData.Vital.Life.max =
+					Number(systemData.Vital.Life.Initial) +
+					Number(systemData.Characteristics.Body.Stats.Endurance.Roll))
+			);
+			//? If current Life is higher than max Life, set current Life to max Life
+			if (systemData.Vital.Life.value > systemData.Vital.Life.max) {
+				parseInt((systemData.Vital.Life.value = Number(systemData.Vital.Life.max)));
+			}
+		} else {
+			//? Check if the actor has activated Duplicate Self Metapower
+			const duplicateSelfActivated = this.getFlag("metanthropes-system", "duplicateSelf");
+			//? Check if the actor has activated Duplicate Self Metapower
+			if (!duplicateSelfActivated) {
+				ui.notifications.error(
+					this.type +
+						" " +
+						this.name +
+						" hasn't activated Duplicate Self Metapower and should not be duplicated!"
+				);
+				metaLog(
+					2,
+					"MetanthropesActor",
+					"_prepareBaseVitalData",
+					this.name,
+					"hasn't activated Duplicate Self Metapower and should not be duplicated!"
+				);
+				return;
+			} else {
+				//? Apply Max Life for Duplicates from the Duplicate Self Metapower Activation value
+				const duplicateMaxLife = Number(this.getFlag("metanthropes-system", "duplicateSelf").maxLife);
+				parseInt((systemData.Vital.Life.max = duplicateMaxLife));
+				const duplicateCurrentLife = systemData.Vital.Life.value;
+				if (duplicateCurrentLife > duplicateMaxLife) {
+					parseInt((systemData.Vital.Life.value = duplicateMaxLife));
+				}
+			}
+		}
+	}
+	//* XP
 	_prepareDerivedCharacteristicsXPData(actorData) {
 		if (actorData.type == "Vehicle") return;
 		const systemData = actorData.system;
@@ -482,14 +721,14 @@ export class MetanthropesActor extends Actor {
 			if (progressionCount > 0) {
 				experienceSpent += characteristicExperienceSpent;
 			}
-			for (const [StatKey, StatValue] of Object.entries(CharValue.Stats)) {
+			for (const [StatKey, StatScore] of Object.entries(CharValue.Stats)) {
 				//? Calculate the progression count based on the characteristic's progressed value
-				progressionCount = Number(StatValue.Progressed);
+				progressionCount = Number(StatScore.Progressed);
 				//? Calculate the experience spent on this characteristic
 				statExperienceSpent = 0;
 				for (let i = 0; i < progressionCount; i++) {
 					statExperienceSpent += Number(
-						(Number(StatValue.Initial) + Number(CharValue.Base) + Number(i * 5)) * 3
+						(Number(StatScore.Initial) + Number(CharValue.Base) + Number(i * 5)) * 3
 					);
 				}
 				//? Add the experience spent on this characteristic to the total experience spent, only if Progressed is >0
@@ -586,170 +825,58 @@ export class MetanthropesActor extends Actor {
 			//! ui.notifications.info(this.name + "'s Stored Experience is Negative!");
 		}
 	}
-	_prepareDerivedMovementData(actorData) {
-		//! this section needs to be updated with camelCase
-		//todo when implementing vehicles, we'll have to revise how movement is calcualated, right now Vehicles don't have Characteristics and so they can't have movement either as it's tied to the Wobbly Calculation - perhaps just skip that for vehicles? We'll see exactly how, when it's time to implement Vehicles
-		if (actorData.type == "Vehicle") return;
+	//* Duplicates
+	_prepareBaseDuplicateData(actorData) {
 		const systemData = actorData.system;
-		//? first we will calculate the current values from buffs and conditions, then we take their modifiers and calculate the movement value
-		const speedinitial = Number(systemData.physical.speed.initial);
-		const weightinitial = Number(systemData.physical.weight.initial);
-		const sizeinitial = Number(systemData.physical.size.initial);
-		const speedbuff = Number(systemData.physical.speed.Buffs.accelerated.value);
-		const speedcondition = Number(systemData.physical.speed.Conditions.slowed.value);
-		const weightbuff = Number(systemData.physical.weight.Buffs.lightened.value);
-		const weightcondition = Number(systemData.physical.weight.Conditions.encumbered.value);
-		const sizebuff = Number(systemData.physical.size.Buffs.enlarged.value);
-		const sizecondition = Number(systemData.physical.size.Conditions.shrunken.value);
-		const sizecurrent = sizeinitial + sizebuff - sizecondition;
-		const weightcurrent = weightinitial - weightbuff + weightcondition;
-		const speedcurrent = speedinitial + speedbuff - speedcondition;
-		systemData.physical.size.value = sizecurrent;
-		systemData.physical.weight.value = weightcurrent;
-		systemData.physical.speed.value = speedcurrent;
-		const speedModifiers = {
-			0: 0,
-			1: 0,
-			2: 0,
-			3: 0,
-			4: 0,
-			5: 1,
-			6: 2,
-			7: 4,
-			8: 6,
-			9: 8,
-			10: 10,
-			11: 20,
-			12: 50,
-			13: 100,
-			14: 250,
-			15: 500,
-			16: 1000,
-			17: 2000,
-			18: 5000,
-			19: 10000,
-			20: 20000,
-		};
-		const weightModifiers = {
-			0: 200,
-			1: 100,
-			2: 50,
-			3: 20,
-			4: 10,
-			5: 5,
-			6: 4,
-			7: 3,
-			8: 2,
-			9: 1.5,
-			10: 1,
-			11: 0.8,
-			12: 0.6,
-			13: 0.4,
-			14: 0.2,
-			15: 0.1,
-			16: 0.02,
-			17: 0.01,
-			18: 0.002,
-			19: 0.001,
-			20: 0.0002,
-		};
-		const sizeModifiers = {
-			0: 0.0002,
-			1: 0.001,
-			2: 0.002,
-			3: 0.01,
-			4: 0.02,
-			5: 0.1,
-			6: 0.2,
-			7: 0.4,
-			8: 0.6,
-			9: 0.8,
-			10: 1,
-			11: 2,
-			12: 3,
-			13: 9,
-			14: 27,
-			15: 81,
-			16: 243,
-			17: 729,
-			18: 2187,
-			19: 6561,
-			20: 19683,
-		};
-		//? in addition to the modifiers, Wobbly also affects final movemement value
-		const wobblyModifier = Number(systemData.Characteristics.Mind.Stats.Creativity.Condition.Current);
-		//? movement value is always rounded up
-		const movementvalue = Math.ceil(
-			speedModifiers[speedcurrent] * weightModifiers[weightcurrent] * sizeModifiers[sizecurrent] - wobblyModifier
-		);
-		systemData.physical.movement.value = movementvalue;
-		systemData.physical.movement.additional = movementvalue;
-		systemData.physical.movement.sprint = movementvalue * 5;
-		metaLog(
-			3,
-			"MetanthropesActor",
-			"_prepareDerivedMovementData",
-			this.name + "'s",
-			"Movement:",
-			movementvalue,
-			"Additional:",
-			movementvalue,
-			"Sprint:",
-			movementvalue * 5
-		);
+		//? Placeholder left intentionally blank
 	}
-	_prepareDerivedVitalData(actorData) {
-		if (actorData.type == "Vehicle") return;
+	_prepareDerivedDuplicateData(actorData) {
 		const systemData = actorData.system;
-		if (!this.name.includes("Duplicate")) {
-			//? Apply Max Life according to Body + Endurance
-			parseInt(
-				(systemData.Vital.Life.max =
-					Number(systemData.Vital.Life.Initial) +
-					Number(systemData.Characteristics.Body.Stats.Endurance.Roll))
-			);
-			//? If current Life is higher than max Life, set current Life to max Life
-			if (systemData.Vital.Life.value > systemData.Vital.Life.max) {
-				parseInt((systemData.Vital.Life.value = Number(systemData.Vital.Life.max)));
-			}
-		} else {
-			//? Apply Max Life for Duplicates from the Duplicate Self Metapower Activation value
-			const duplicateSelfActivated = this.getFlag("metanthropes-system", "duplicateSelf");
-			//? Check if the actor has activated Duplicate Self Metapower
-			if (!duplicateSelfActivated) {
-				ui.notifications.error(
-					this.type +
-						" " +
-						this.name +
-						" hasn't activated Duplicate Self Metapower and should not be duplicated!"
-				);
-				metaLog(
-					2,
-					"MetanthropesActor",
-					"_prepareDerivedVitalData",
-					this.name,
-					"hasn't activated Duplicate Self Metapower and should not be duplicated!"
-				);
-				return;
-			} else {
-				const duplicateMaxLife = Number(this.getFlag("metanthropes-system", "duplicateSelf").maxLife);
-				parseInt((systemData.Vital.Life.max = duplicateMaxLife));
-				const duplicateCurrentLife = systemData.Vital.Life.value;
-				if (duplicateCurrentLife > duplicateMaxLife) {
-					parseInt((systemData.Vital.Life.value = duplicateMaxLife));
-				}
-			}
-		}
-		metaLog(
-			3,
-			"MetanthropesActor",
-			"_prepareDerivedVitalData",
-			this.name + "'s",
-			"New Life Maximum:",
-			systemData.Vital.Life.max
-		);
+		//? Remove all Conditions and Buffs
+		systemData.Characteristics.Body.Condition.Current = 0;
+		systemData.Characteristics.Body.Buff.Current = 0;
+		systemData.Characteristics.Mind.Condition.Current = 0;
+		systemData.Characteristics.Mind.Buff.Current = 0;
+		systemData.Characteristics.Soul.Condition.Current = 0;
+		systemData.Characteristics.Soul.Buff.Current = 0;
+		systemData.Characteristics.Body.Stats.Endurance.Condition.Current = 0;
+		systemData.Characteristics.Body.Stats.Endurance.Buff.Current = 0;
+		systemData.Characteristics.Body.Stats.Reflexes.Condition.Current = 0;
+		systemData.Characteristics.Body.Stats.Reflexes.Buff.Current = 0;
+		systemData.Characteristics.Body.Stats.Power.Condition.Current = 0;
+		systemData.Characteristics.Body.Stats.Power.Buff.Current = 0;
+		systemData.Characteristics.Mind.Stats.Creativity.Condition.Current = 0;
+		systemData.Characteristics.Mind.Stats.Creativity.Buff.Current = 0;
+		systemData.Characteristics.Mind.Stats.Manipulation.Condition.Current = 0;
+		systemData.Characteristics.Mind.Stats.Manipulation.Buff.Current = 0;
+		systemData.Characteristics.Mind.Stats.Perception.Condition.Current = 0;
+		systemData.Characteristics.Mind.Stats.Perception.Buff.Current = 0;
+		systemData.Characteristics.Soul.Stats.Consciousness.Condition.Current = 0;
+		systemData.Characteristics.Soul.Stats.Consciousness.Buff.Current = 0;
+		systemData.Characteristics.Soul.Stats.Awareness.Condition.Current = 0;
+		systemData.Characteristics.Soul.Stats.Awareness.Buff.Current = 0;
+		systemData.Characteristics.Soul.Stats.Willpower.Condition.Current = 0;
+		systemData.Characteristics.Soul.Stats.Willpower.Buff.Current = 0;
+		systemData.Characteristics.Body.CoreConditions.Asphyxiation = 0;
+		systemData.Characteristics.Body.CoreConditions.Bleeding = 0;
+		systemData.Characteristics.Body.CoreConditions.Diseased = 0;
+		systemData.Characteristics.Body.CoreConditions.Maimed = 0;
+		systemData.Characteristics.Mind.CoreConditions.Fatigue = 0;
+		systemData.Characteristics.Mind.CoreConditions.Hunger = 0;
+		systemData.Characteristics.Mind.CoreConditions.Pain = 0;
+		systemData.Characteristics.Mind.CoreConditions["Sense-Lost"] = 0;
+		systemData.Characteristics.Soul.CoreConditions.Amnesia = 0;
+		systemData.Characteristics.Soul.CoreConditions.Probed = 0;
+		systemData.Characteristics.Soul.CoreConditions.Infiltrated = 0;
+		systemData.Characteristics.Soul.CoreConditions.Unconscious = 0;
+		systemData.physical.size.Buffs.enlarged.value = 0;
+		systemData.physical.size.Conditions.shrunken.value = 0;
+		systemData.physical.weight.Buffs.lightened.value = 0;
+		systemData.physical.weight.Conditions.encumbered.value = 0;
+		systemData.physical.speed.Buffs.accelerated.value = 0;
+		systemData.physical.speed.Conditions.slowed.value = 0;
 	}
-	//* Calculate the Scores used in Progression
+	//* Progression
 	_prepareCharacteristicsProgression(actorData) {
 		if (actorData.type == "Vehicle") return;
 		metaLog(3, "MetanthropesActorProgression", "_prepareCharacteristicsProgression", "actorData:", actorData);
@@ -759,14 +886,14 @@ export class MetanthropesActor extends Actor {
 			parseInt(
 				(CharValue.ProgressionBase = Number(CharValue.Initial) + Number(Number(CharValue.Progressed) * 5))
 			);
-			for (const [StatKey, StatValue] of Object.entries(CharValue.Stats)) {
+			for (const [StatKey, StatScore] of Object.entries(CharValue.Stats)) {
 				//? Calculate the Base score for this Stat (Initial + Progressed)
 				parseInt(
-					(StatValue.ProgressionBase = Number(StatValue.Initial) + Number(Number(StatValue.Progressed) * 5))
+					(StatScore.ProgressionBase = Number(StatScore.Initial) + Number(Number(StatScore.Progressed) * 5))
 				);
 				//? Calculate the Score used for Progression for this Stat (Base + Characteristic_Base)
 				parseInt(
-					(StatValue.ProgressionRoll = Number(StatValue.ProgressionBase) + Number(CharValue.ProgressionBase))
+					(StatScore.ProgressionRoll = Number(StatScore.ProgressionBase) + Number(CharValue.ProgressionBase))
 				);
 			}
 		}
@@ -798,7 +925,7 @@ export class MetanthropesActor extends Actor {
 		return Boolean(this.system.entermeta && this.system.entermeta.primemetapower);
 	}
 	get hasPossessions() {
-		return !["Animal", "MetaTherion", "Animated-Plant"].includes(this.type);
+		return Boolean(!this.type.includes("Vehicle"));
 	}
 	get isSynthetic() {
 		return Boolean(this.system.Synthetic);
@@ -812,14 +939,14 @@ export class MetanthropesActor extends Actor {
 		const charBody = this.system.Characteristics.Body;
 		const charMind = this.system.Characteristics.Mind;
 		const charSoul = this.system.Characteristics.Soul;
-		const charBodyStatValues =
+		const charBodyStatScores =
 			charBody.Stats.Power.Initial + charBody.Stats.Reflexes.Initial + charBody.Stats.Endurance.Initial;
-		const charMindStatValues =
+		const charMindStatScores =
 			charMind.Stats.Creativity.Initial + charMind.Stats.Perception.Initial + charMind.Stats.Manipulation.Initial;
-		const charSoulStatValues =
+		const charSoulStatScores =
 			charSoul.Stats.Consciousness.Initial + charSoul.Stats.Willpower.Initial + charSoul.Stats.Awareness.Initial;
-		const charStatValues = charBodyStatValues + charMindStatValues + charSoulStatValues;
-		return Boolean(this.name.includes("New Actor") || charStatValues <= 20);
+		const charStatScores = charBodyStatScores + charMindStatScores + charSoulStatScores;
+		return Boolean(this.name.includes("New Actor") || charStatScores <= 20);
 	}
 	get isDuplicate() {
 		return Boolean(this.name.includes("Duplicate"));
@@ -833,5 +960,10 @@ export class MetanthropesActor extends Actor {
 		} else {
 			return false;
 		}
+	}
+	get canOnlyHaveStrikes() {
+		return Boolean(
+			this.type.includes("Animal") || this.type.includes("Animated-Plant") || this.type.includes("MetaTherion")
+		);
 	}
 }

@@ -20,10 +20,12 @@ import { MetaCombatant } from "./metanthropes/combatant.mjs";
 //? Import document classes
 import { MetanthropesActor } from "./documents/actor.mjs";
 import { MetanthropesItem } from "./documents/item.mjs";
+import { MetanthropesActiveEffect } from "./documents/active-effect.mjs";
 //? Import sheet classes
 import { MetanthropesActorSheet } from "./sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
 import { MetanthropesActorProgressionSheet } from "./sheets/actor-progression-sheet.mjs";
+import { MetanthropesActiveEffectSheet } from "./sheets/active-effect-sheet.mjs";
 //? Pre-load Handlebars templates
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 //? Import helpers
@@ -66,8 +68,206 @@ Hooks.once("init", async function () {
 		rollItemMacro,
 		createItemMacro,
 	};
+	//? Status Effects
+	const idsToKeep = [];
+	CONFIG.statusEffects = CONFIG.statusEffects.filter((item) => idsToKeep.includes(item.id));
+	const newStatusEffects = [
+		{
+			id: "fly",
+			name: "Fly",
+			flags: {
+				metanthropes: {
+					metaEffectType: "Buff",
+					metaEffectApplication: "Movement",
+					metaCycle: null,
+					metaRound: null,
+					metaStartCycle: null,
+					metaStartRound: null,
+				},
+			},
+			changes: [
+				{
+					key: "system.physical.movement.Buffs.fly.value",
+					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+					value: true,
+				},
+			],
+			description: "<p>Fly</p>",
+			icon: "systems/metanthropes-system/artwork/status-effects/test6.svg",
+		},
+		{
+			id: "invisible",
+			name: "Invisible",
+			flags: {
+				metanthropes: {
+					metaEffectType: "Buff",
+					metaEffectApplication: "Cover",
+					metaCycle: null,
+					metaRound: null,
+					metaStartCycle: null,
+					metaStartRound: null,
+				},
+			},
+			description: "<p>Invisible</p>",
+			icon: "systems/metanthropes-system/artwork/status-effects/test7.svg",
+		},
+		{
+			id: "blind",
+			name: "Sense-Lost: Vision",
+			flags: {
+				metanthropes: {
+					metaEffectType: "Condition",
+					metaEffectApplication: "Cover",
+					metaCycle: null,
+					metaRound: null,
+					metaStartCycle: null,
+					metaStartRound: null,
+				},
+			},
+			description: "<p>Sense-Lost: Vision</p>",
+			icon: "systems/metanthropes-system/artwork/status-effects/test8.svg",
+		},
+		{
+			id: "dead",
+			name: "Dead",
+			flags: {
+				metanthropes: {
+					metaEffectType: "Condition",
+					metaEffectApplication: "Cover",
+					metaCycle: null,
+					metaRound: null,
+					metaStartCycle: null,
+					metaStartRound: null,
+				},
+			},
+			description: "<p>Dead</p>",
+			icon: "systems/metanthropes-system/artwork/status-effects/test9.svg",
+		},
+		{
+			id: "photokinetic",
+			name: "Photokinetic",
+			flags: {
+				metanthropes: {
+					metaEffectType: "Buff",
+					metaEffectApplication: "Movement",
+					metaCycle: null,
+					metaRound: null,
+					metaStartCycle: null,
+					metaStartRound: null,
+				},
+			},
+			changes: [
+				{
+					key: "system.physical.movement.Buffs.photokinetic.value",
+					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+					value: true,
+				},
+			],
+			description: "<p>Photokinetic</p>",
+			icon: "systems/metanthropes-system/artwork/status-effects/test1.svg",
+		},
+		{
+			id: "wallwalk",
+			name: "Wall Walk",
+			flags: {
+				metanthropes: {
+					metaEffectType: "Buff",
+					metaEffectApplication: "Movement",
+					metaCycle: null,
+					metaRound: null,
+					metaStartCycle: null,
+					metaStartRound: null,
+				},
+			},
+			changes: [
+				{
+					key: "system.physical.movement.Buffs.walk-wall.value",
+					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+					value: true,
+				},
+			],
+			description: "<p>Wall Walk</p>",
+			icon: "systems/metanthropes-system/artwork/status-effects/test2.svg",
+		},
+		{
+			id: "wavewalk",
+			name: "Wave Walk",
+			flags: {
+				metanthropes: {
+					metaEffectType: "Buff",
+					metaEffectApplication: "Movement",
+					metaCycle: null,
+					metaRound: null,
+					metaStartCycle: null,
+					metaStartRound: null,
+				},
+			},
+			changes: [
+				{
+					key: "system.physical.movement.Buffs.walk-wave.value",
+					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+					value: true,
+				},
+			],
+			description: "<p>Wave Walk</p>",
+			icon: "systems/metanthropes-system/artwork/status-effects/test3.svg",
+		},
+		{
+			id: "knockeddown",
+			name: "Knocked Down",
+			flags: {
+				metanthropes: {
+					metaEffectType: "Condition",
+					metaEffectApplication: "Movement",
+					metaCycle: null,
+					metaRound: null,
+					metaStartCycle: null,
+					metaStartRound: null,
+				},
+			},
+			changes: [
+				{
+					key: "system.physical.movement.Conditions.knockdown.value",
+					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+					value: true,
+				},
+			],
+			description: "<p>Knocked Down</p>",
+			icon: "systems/metanthropes-system/artwork/status-effects/test4.svg",
+		},
+		{
+			id: "immobilized",
+			name: "Immobilized",
+			flags: {
+				metanthropes: {
+					metaEffectType: "Condition",
+					metaEffectApplication: "Movement",
+					metaCycle: null,
+					metaRound: null,
+					metaStartCycle: null,
+					metaStartRound: null,
+				},
+			},
+			changes: [
+				{
+					key: "system.physical.movement.Conditions.immobilized.value",
+					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+					value: true,
+				},
+				{
+					key: "system.physical.movement.value",
+					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+					value: 0,
+				},
+			],
+			description: "<p>Immobilized</p>",
+			icon: "systems/metanthropes-system/artwork/status-effects/test5.svg",
+		},
+	];
+	CONFIG.statusEffects.push(...newStatusEffects);
+	console.log("Metanthropes | Status Effects", CONFIG.statusEffects);
 	//? Metanthropes Initiative System
-	//! should I remove this?
+	//! should I remove this? - removing it seems to break initiative, as we are 'highjacking' the formula method for metainitiative rolls
 	CONFIG.Combat.initiative = {
 		formula: "1d100 + @RollStats.Reflexes",
 		decimals: 2,
@@ -75,14 +275,17 @@ Hooks.once("init", async function () {
 	//? Metanthropes Combat System
 	CONFIG.Combat.documentClass = MetanthropesCombat;
 	//? setup custom combatant
+	//! CONFIG.Combatant.documentClass = MetaCombatant; instead?
 	CONFIG.Actor.entityClass = MetaCombatant;
 	//? setup custom combat tracker
 	CONFIG.ui.combat = MetaCombatTracker;
 	//? time in seconds for Round Duration
-	// CONFIG.time.roundTime = 120;
-	//? Define custom Entity classes.
+	//todo: confirm default round time
+	//CONFIG.time.roundTime = 120;
+	//? Define custom document classes.
 	CONFIG.Actor.documentClass = MetanthropesActor;
 	CONFIG.Item.documentClass = MetanthropesItem;
+	CONFIG.ActiveEffect.documentClass = MetanthropesActiveEffect;
 	//? Register sheet application classes instead of defaults.
 	Actors.unregisterSheet("core", ActorSheet);
 	Actors.registerSheet("metanthropes", MetanthropesActorSheet, {
@@ -95,8 +298,12 @@ Hooks.once("init", async function () {
 	Items.registerSheet("metanthropes", MetanthropesItemSheet, {
 		makeDefault: true,
 	});
+	DocumentSheetConfig.registerSheet(ActiveEffect, "metanthropes", MetanthropesActiveEffectSheet, {
+		makeDefault: true,
+	});
 	//* System Settings
 	//? Migration Script Required
+	//! unused
 	game.settings.register("metanthropes-system", "migrationVersion", {
 		name: "Last Migration Performed",
 		hint: `
@@ -425,6 +632,8 @@ Hooks.on("renderChatMessage", async (message, html) => {
 //* New Actor Event Listener
 Hooks.on("createActor", async (actor) => {
 	if (
+		//todo: this should be updated to check for Humanoid once actor v4 template changes are done
+		//? currently ExtraD and ExtraT are also considered Humanoids based on the system.humanoids being assigned to them via the template
 		actor.name.includes("New") &&
 		actor.type !== "Vehicle" &&
 		actor.type !== "Animal" &&
@@ -468,11 +677,13 @@ Hooks.on("createActor", async (actor) => {
 		metaLog(3, "New Actor Event Listener", "Removed Effects from Duplicate", actor.name);
 	}
 });
-//* Hook to add header buttons on the Actor and Item sheets
+//* Hook to add header buttons on the Actor, Item & Effect sheets
 //? from TyphonJS (Michael) on Discord
 //? In system entry point. You may have to get specific for particular sheets as some don't invoke hooks for the whole hierarchy.
 Hooks.on(`getActorSheetHeaderButtons`, metaLogDocument);
 Hooks.on(`getItemSheetHeaderButtons`, metaLogDocument);
+Hooks.on(`getActiveEffectConfigHeaderButtons`, metaLogDocument);
+Hooks.on(`getActiveEffectSheetHeaderButtons`, metaLogDocument);
 //* Customize Pause Logo
 Hooks.on("renderPause", (app, html, options) => {
 	if (options.paused) {

@@ -1,19 +1,24 @@
-<form autocomplete="off">
+<form class="metanthropes {{cssClass}}" autocomplete="off">
 
 	<!-- Effect Header -->
 	<header class="sheet-header">
-		<img class="effect-icon" src="{{ data.icon }}" data-edit="icon">
+		<img class="effect-img" src="{{ data.icon }}" data-edit="icon" style="border:none">
 		<h1 class="effect-title">
 			<input name="name" type="text" value="{{data.name}}" placeholder="{{ localize 'Name' }}" />
 		</h1>
 	</header>
 
 	<!-- Effect Configuration Tabs -->
-	<nav class="sheet-tabs tabs" aria-role="{{localize 'SHEETS.FormNavLabel'}}">
-		<a class="item" data-tab="details"><i class="fas fa-book"></i> {{localize "EFFECT.TabDetails"}}</a>
-		<a class="item" data-tab="duration"><i class="fas fa-clock"></i> {{localize "EFFECT.TabDuration"}}</a>
-		<a class="item" data-tab="effects"><i class="fas fa-cogs"></i> {{localize "EFFECT.TabEffects"}}</a>
-	</nav>
+	<div class="layout-container-nav style-container-nav">
+		<nav class="style-container-nav-children tabs" aria-role="{{localize 'SHEETS.FormNavLabel'}}">
+			<a class="item" data-tab="details"><i class="fas fa-book"></i>
+				{{localize "EFFECT.TabDetails"}}</a>
+			<a class="item" data-tab="duration">⏳
+				{{localize "EFFECT.TabDuration"}}</a>
+			<a class="item" data-tab="effects"><i class="fas fa-cogs"></i>
+				{{localize "EFFECT.TabEffects"}}</a>
+		</nav>
+	</div>
 
 	<!-- Details Tab -->
 	<section class="tab" data-tab="details">
@@ -24,9 +29,41 @@
 			</div>
 		</div>
 
+		<div class="form-group">
+			<label>Effect Type</label>
+			<div class="form-fields">
+				<select name="flags.metanthropes.metaEffectType" type="text" data-dtype="String">
+					{{#each metaEffectTypeOptions as |option|}}
+						<option value="{{option}}"
+							{{#if (eq option ../metaEffectType)}}selected{{/if}}>
+							{{option}}
+						</option>
+					{{/each}}
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label>Effect Application</label>
+			<div class="form-fields">
+				<select name="flags.metanthropes.metaEffectApplication" type="text" data-dtype="String">
+					{{#each metaEffectApplicationOptions as |option|}}
+						<option value="{{option}}"
+							{{#if (eq option ../metaEffectApplication)}}selected{{/if}}>
+							{{option}}
+						</option>
+					{{/each}}
+				</select>
+			</div>
+		</div>
+
 		<div class="form-group stacked">
 			<label>{{ localize "EFFECT.Description" }}</label>
-			{{editor descriptionHTML target="description" button=false editable=editable engine="prosemirror" collaborate=false}}
+			{{#if isNarrator}}
+				{{editor descriptionHTML target="description" button=true editable=editable engine="prosemirror" collaborate=false}}
+			{{else}}
+				{{editor descriptionHTML target="description" button=false editable=false engine="prosemirror" collaborate=false}}
+			{{/if}}
 		</div>
 
 		<div class="form-group">
@@ -72,6 +109,8 @@
 		<div class="form-group">
 			<label>{{ localize "EFFECT.DurationTurns" }}</label>
 			<div class="form-fields">
+				<label>Cycles</label>
+				<input type="number" name="flags.metanthropes.metaCycle" value="{{ flags.metanthropes.metaCycle }}" />
 				<label>{{ localize "COMBAT.Rounds" }}</label>
 				<input type="number" name="duration.rounds" value="{{ data.duration.rounds }}" />
 				<label>{{ localize "COMBAT.Turns" }}</label>
@@ -88,6 +127,8 @@
 		<div class="form-group">
 			<label>{{ localize "EFFECT.StartTurns" }}</label>
 			<div class="form-fields">
+				<label>Cycles</label>
+				<input type="number" name="flags.metanthropes.metaStartCycle" value="{{ flags.metanthropes.metaStartCycle }}" />
 				<label>{{ localize "COMBAT.Round" }}</label>
 				<input type="number" name="duration.startRound"
 					value="{{ data.duration.startRound }}" />
@@ -110,6 +151,17 @@
 		<ol class="changes-list">
 			{{#each data.changes as |change i|}}
 				<li class="effect-change flexrow" data-index="{{i}}">
+					<div class="predefined">
+						<select name="changes.{{i}}.predefinedKeyMode"
+							class="predefined-key-mode">
+							<option value="custom">Custom</option>
+							{{#each ../predefinedKeys as |predefined|}}
+								<option value="{{predefined.key}}|{{predefined.mode}}">
+									{{predefined.label}}
+								</option>
+							{{/each}}
+						</select>
+					</div>
 					<div class="key">
 						<input type="text" name="changes.{{i}}.key" value="{{change.key}}" />
 					</div>
@@ -122,16 +174,19 @@
 						<input type="text" name="changes.{{i}}.value"
 							value="{{change.value}}" />
 					</div>
-					<div class="effect-controls">
-						<a class="effect-control" data-action="delete"><i
-								class="fas fa-trash"></i></a>
-					</div>
+					{{#if ../isNarrator}}
+						<div class="effect-controls">
+							<a class="effect-control" data-action="delete"><i
+									class="fas fa-trash"></i></a>
+						</div>
+					{{/if}}
 				</li>
 			{{/each}}
 		</ol>
 	</section>
-
-	<footer class="sheet-footer">
-		<button type="submit"><i class="fas fa-save"></i> {{localize submitText}}</button>
-	</footer>
+	{{#if isNarrator}}
+		<footer class="sheet-footer">
+			<button type="submit"><i class="fas fa-save"></i> {{localize submitText}}</button>
+		</footer>
+	{{/if}}
 </form>
