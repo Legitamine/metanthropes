@@ -26,7 +26,7 @@
 			"thumbnail": "systems/metanthropes-system/artwork/ui/cover/cover.jpg"
 		}
 	],
-	"version": "0.8.126",
+	"version": "0.8.127",
 	"compatibility": {
 		"minimum": 11,
 		"verified": "11.315"
