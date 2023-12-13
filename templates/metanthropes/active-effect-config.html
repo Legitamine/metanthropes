@@ -10,11 +10,10 @@
 
 	<!-- Effect Configuration Tabs -->
 	<div class="layout-container-nav style-container-nav">
-		<nav class="style-container-nav-children tabs"
-			aria-role="{{localize 'SHEETS.FormNavLabel'}}">
-			<a class="item" data-tab="details"><i class="fas fa-book"></i>test
+		<nav class="style-container-nav-children tabs" aria-role="{{localize 'SHEETS.FormNavLabel'}}">
+			<a class="item" data-tab="details"><i class="fas fa-book"></i>
 				{{localize "EFFECT.TabDetails"}}</a>
-			<a class="item" data-tab="duration">⏳ 
+			<a class="item" data-tab="duration">⏳
 				{{localize "EFFECT.TabDuration"}}</a>
 			<a class="item" data-tab="effects"><i class="fas fa-cogs"></i>
 				{{localize "EFFECT.TabEffects"}}</a>
@@ -33,6 +32,14 @@
 		<div class="form-group">
 			<label>Effect Type</label>
 			<div class="form-fields">
+				<select name="flags.metanthropes.metaEffectType" type="text" data-dtype="String">
+					{{#each metaEffectTypeOptions as |option|}}
+						<option value="{{option}}"
+							{{#if (eq option ../metaEffectType)}}selected{{/if}}>
+							{{option}}
+						</option>
+					{{/each}}
+				</select>
 				{{metaEffectType}}
 			</div>
 		</div>
@@ -123,6 +130,17 @@
 		<ol class="changes-list">
 			{{#each data.changes as |change i|}}
 				<li class="effect-change flexrow" data-index="{{i}}">
+					<div class="predefined">
+						<select name="changes.{{i}}.predefinedKeyMode"
+							class="predefined-key-mode">
+							<option value="custom">Custom</option>
+							{{#each ../predefinedKeys as |predefined|}}
+								<option value="{{predefined.key}}|{{predefined.mode}}">
+									{{predefined.label}}
+								</option>
+							{{/each}}
+						</select>
+					</div>
 					<div class="key">
 						<input type="text" name="changes.{{i}}.key" value="{{change.key}}" />
 					</div>
@@ -136,10 +154,10 @@
 							value="{{change.value}}" />
 					</div>
 					{{#if ../isNarrator}}
-					<div class="effect-controls">
-						<a class="effect-control" data-action="delete"><i
-								class="fas fa-trash"></i></a>
-					</div>
+						<div class="effect-controls">
+							<a class="effect-control" data-action="delete"><i
+									class="fas fa-trash"></i></a>
+						</div>
 					{{/if}}
 				</li>
 			{{/each}}

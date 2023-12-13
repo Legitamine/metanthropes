@@ -1457,6 +1457,9 @@ h3 {
 .metanthropes .effects .item .effect-controls {
   border: none;
 }
+.metanthropes .tabs .item.active {
+  text-shadow: 0 0 10px #7d0f81;
+}
 .metanthropes .item-form {
   font-family: "nasalization", sans-serif;
 }

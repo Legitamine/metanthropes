@@ -9,16 +9,19 @@ import { metaLog } from "../helpers/metahelpers.mjs";
  *
  */
 export class MetanthropesCombat extends Combat {
-	//? adding the concept of Cycles & Rounds to the Combat system
+	/** @override */
 	prepareDerivedData() {
 		super.prepareDerivedData();
+		//? adding the concept of Cycles & Rounds to the Combat system
 		let cycle = this.getFlag("metanthropes-system", "cycle") || 1;
 		let cycleRound = this.getFlag("metanthropes-system", "cycleRound") || 1;
 		//? embed the Cycle and Round values into the Combat document for use in the Combat Tracker
 		this.cycle = cycle;
 		this.cycleRound = cycleRound;
+		//todo: I need to better understand why the result is 1/1 when the world is loaded and then on the second pass it gets the right numbers
 		metaLog(3, "Combat", "prepareDerivedData", "Cycle:", cycle, "Round:", cycleRound);
 	}
+	/** @override */
 	_sortCombatants(a, b) {
 		//todo: review an error when a combat is not active? requires investigation in a clean world
 		//todo: do we need a check here to proceed only if certain conditions are met like is the combat active?
@@ -40,10 +43,15 @@ export class MetanthropesCombat extends Combat {
 		} else {
 			bActor = b.token.actor;
 		}
-		//? sort by initiative first, then sort by statScore if the initiative is the same
+		//? Check if we have a valid actor for both combatants
+		if (!aActor || !bActor) {
+			metaLog(4, "Combat", "_sortCombatants has Invalid Actors", "aActor:", aActor, "bActor:", bActor);
+			return;
+		}
+		//? Prep the statScore values
 		let aStatScore = null;
 		let bStatScore = null;
-		//? first check to see if we have a perfect tie
+		//? Proceed only if actors are valid AND NOT Duplicate or Animated
 		if (
 			a.initiative &&
 			b.initiative &&
@@ -54,11 +62,13 @@ export class MetanthropesCombat extends Combat {
 		) {
 			aStatScore = aActor.getFlag("metanthropes-system", "lastrolled")?.InitiativeStatScore ?? -Infinity;
 			bStatScore = bActor.getFlag("metanthropes-system", "lastrolled")?.InitiativeStatScore ?? -Infinity;
+			//? Check to see if we have a perfect tie
 			if (ia === ib && aStatScore === bStatScore) {
 				//todo: award 1 Destiny and re-roll initiative if tied both in Initiative and statScore
 				metaLog(4, "Combat", "_sortCombatants", "Perfect Tie between combatants:", a.name, "and:", b.name);
 			}
 		}
+		//? We will sort by initiative first, then sort by statScore if the initiative is the same
 		return ib - ia || (aStatScore > bStatScore ? -1 : 1);
 	}
 	/**

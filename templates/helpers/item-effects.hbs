@@ -188,4 +188,19 @@
 			</div>
 		{{/if}}
 	{{/if}}
+	<div>
+		<h3>Active Effects</h3>
+		{{#if betaTesting}}
+			<div>
+				<br>
+				{{> "systems/metanthropes-system/templates/helpers/active-effects.hbs"}}
+			</div>
+		{{else}}
+			<div>
+				<br>
+				<p>Additional Active Effects are available in Beta Testing</p>
+				<br>
+			</div>
+		{{/if}}
+	</div>
 </div><br>

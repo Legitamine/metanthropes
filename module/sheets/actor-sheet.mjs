@@ -19,7 +19,6 @@ import { prepareActiveEffectCategories, onManageActiveEffect } from "../metanthr
  */
 export class MetanthropesActorSheet extends ActorSheet {
 	/** @override */
-	//todo Decide on the opening tab
 	static get defaultOptions() {
 		const options = super.defaultOptions;
 		return mergeObject(options, {
@@ -74,10 +73,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		context.flags = actorData.flags;
 		//? Prepare items - this will produce .Metapowers and .Possessions where applicable
 		//todo break it down to metapowers and possessions so I can get better filtering by actor.type (?)
-		//todo for Duplicates, perhaps skipping thi step will remove all Metapowers and Possessions from the sheet? How do I keep the strike?
-		if (actorData.type !== "Animal") {
-			this._prepareItems(context);
-		}
+		this._prepareItems(actorData, context);
 		//? This will create the .RollStats object under .system that is used by Handlebars in the actor sheet for rolling
 		this.actor.getRollData();
 		//? Provide a boolean for if 'Beta Testing of New Features' is enabled
@@ -96,39 +92,83 @@ export class MetanthropesActorSheet extends ActorSheet {
 		return context;
 	}
 	//* Prepare items
-	_prepareItems(context) {
-		//? Initialize containers.
-		const Possessions = {
-			Strike: [],
-			Weapon: [],
-			Armor: [],
-			Gadget: [],
-			Drug: [],
+	_prepareItems(actorData, context) {
+		//? Continue only if the actor is not a Vehicle
+		if (actorData.type === "Vehicle") return;
+		//? Define allowed categories for each actor type
+		const allowedCategories = {
+			Animal: ["Strike"],
+			MetaTherion: ["Strike"],
+			"Animated-Plant": ["Strike"],
+			default: ["Strike", "Weapon", "Armor", "Gadget", "Drug"],
 		};
-		const Metapowers = {
+		//? Initialize Containers
+		let Possessions = {};
+		let Metapowers = {};
+		//? Define the categories allowed for the current actor type
+		const currentAllowedCategories = allowedCategories[actorData.type] || allowedCategories["default"];
+		//? Setup Possessions and Metapowers based on the actor type
+		if (actorData.type === "Animal" || actorData.type === "MetaTherion" || actorData.type === "Animated-Plant") {
+			Possessions = {
+				Strike: [],
+			};
+		} else {
+			Possessions = {
+				Strike: [],
+				Weapon: [],
+				Armor: [],
+				Gadget: [],
+				Drug: [],
+			};
+		}
+		Metapowers = {
 			1: [],
 			2: [],
 			3: [],
 			4: [],
 			5: [],
 		};
-		//? Iterate through items, allocating to containers
-		for (let i of context.items) {
-			//! Why do I need this line?
-			i.img = i.img || DEFAULT_TOKEN;
-			//? Append to Possessions.
-			if (i.type === "Possession") {
-				if (i.system.Category.value != undefined) {
-					Possessions[i.system.Category.value].push(i);
+		//? Iterate through items, allocating to containers or deleting if no container for the item exists
+		for (let i = 0; i < context.items.length; i++) {
+			let item = context.items[i];
+			//? Handle Possessions
+			if (item.type === "Possession") {
+				//? Check if the item's category is allowed
+				if (item.system.Category.value && currentAllowedCategories.includes(item.system.Category.value)) {
+					Possessions[item.system.Category.value].push(item);
+				} else {
+					//? Remove the item from the actor if its category is not allowed
+					metaLog(2, "MetanthropesActorSheet _prepareItems", "Invalid Category for Possession:", item.name);
+					return;
+					//actorData.deleteEmbeddedDocuments("Item", [item.id]);
+					//actorData.items.splice(i, 1);
+					//? Adjust the index after removal
+					//i--;
 				}
 			}
-			//? Append to Metapowers.
-			else if (i.type === "Metapower") {
-				if (i.system.Level.value != undefined) {
-					Metapowers[i.system.Level.value].push(i);
+			//? Handle Metapowers
+			else if (item.type === "Metapower") {
+				if (item.system.Level.value != undefined) {
+					Metapowers[item.system.Level.value].push(item);
 				}
 			}
 		}
+		// for (let i of context.items) {
+		// 	//! Why do I need this line?
+		// 	// i.img = i.img || DEFAULT_TOKEN;
+		// 	//? Append to Possessions.
+		// 	if (i.type === "Possession") {
+		// 		if (i.system.Category.value != undefined) {
+		// 			Possessions[i.system.Category.value].push(i);
+		// 		}
+		// 	}
+		// 	//? Append to Metapowers.
+		// 	else if (i.type === "Metapower") {
+		// 		if (i.system.Level.value != undefined) {
+		// 			Metapowers[i.system.Level.value].push(i);
+		// 		}
+		// 	}
+		// }
 		//? Assign and return
 		context.Possessions = Possessions;
 		context.Metapowers = Metapowers;

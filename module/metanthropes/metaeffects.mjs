@@ -10,7 +10,6 @@ import { metaLog } from "../helpers/metahelpers.mjs";
  */
 export function onManageActiveEffect(event, owner) {
 	event.preventDefault();
-	metaLog(3, "MetaEffects | onManageActiveEffect", { event, owner });
 	const a = event.currentTarget;
 	const li = a.closest("li");
 	const effect = li.dataset.effectId ? owner.effects.get(li.dataset.effectId) : null;
@@ -18,11 +17,20 @@ export function onManageActiveEffect(event, owner) {
 		case "create":
 			return owner.createEmbeddedDocuments("ActiveEffect", [
 				{
-					label: "New Effect",
-					icon: "icons/svg/aura.svg",
+					name: "New Effect",
+					icon: "systems/metanthropes-system/artwork/status-effects/test.svg",
 					origin: owner.uuid,
 					"duration.rounds": li.dataset.effectType === "temporary" ? 1 : undefined,
 					disabled: li.dataset.effectType === "inactive",
+					flags: {
+						metanthropes: {
+							metaEffectType: "Undefined",
+							metaCycle: 1,
+							metaRound: 1,
+							metaStartCycle: 1,
+							metaStartRound: 1,
+						},
+					},
 				},
 			]);
 		case "edit":
@@ -43,8 +51,7 @@ export function onManageActiveEffect(event, owner) {
  *
  */
 export function prepareActiveEffectCategories(effects) {
-	metaLog(3, "MetaEffects | prepareActiveEffectCategories", { effects });
-	// Define effect header categories
+	//? Define effect header categories
 	const categories = {
 		temporary: {
 			type: "temporary",
@@ -63,9 +70,11 @@ export function prepareActiveEffectCategories(effects) {
 		},
 	};
 
-	// Iterate over active effects, classifying them into categories
+	//? Iterate over active effects, classifying them into categories
 	for (let e of effects) {
-		e._getSourceName(); // Trigger a lookup for the source name
+		//? Fix for v11 deprecation
+		//e._getSourceName(); // Trigger a lookup for the source name
+		//!^ was that step needed?
 		if (e.disabled) categories.inactive.effects.push(e);
 		else if (e.isTemporary) categories.temporary.effects.push(e);
 		else categories.permanent.effects.push(e);

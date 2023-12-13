@@ -294,23 +294,43 @@ export class MetanthropesActor extends Actor {
 			this.system.Vital.Life.Initial = 50;
 		}
 		//? for Protagonists set the metanthropes-logo as default icon for metapower, if no metapower is selected
+		//! note that this will be applied to the actors once, when they are created or when the world loads
 		if (this.hasEnterMeta) {
 			if (
 				!this.primeimg ||
-				this.primeimg == `systems/metanthropes-system/artwork/ui/logos/metanthropes-logo.webp` ||
-				this.primeimg == `systems/metanthropes-system/artwork/metanthropes-logo.webp`
+				this.primeimg == `systems/metanthropes-system/artwork/ui/logos/metanthropes-logo.webp`
 			) {
-				metaLog(3, "MetanthropesActor", "prepareBaseData", "Updating Prime Metapower Image for:", this.name);
 				//? for Protagonists without a prime metapower defined, make it the metanthropes-logo
 				if (!this.system.entermeta.primemetapower.value) {
 					this.primeimg = `systems/metanthropes-system/artwork/ui/logos/metanthropes-logo.webp`;
 				} else {
-					//? for Protagonists with a prime metapower defined, make it their respective metapower icon
 					const primemetapowerimage = this.system.entermeta.primemetapower.value;
-					this.primeimg = `systems/metanthropes-system/artwork/metapowers/${primemetapowerimage}.webp`;
+					//? Proceed if Prime Metapower icon is not the correct one
+					if (
+						!(this.primeimg == `systems/metanthropes-system/artwork/metapowers/${primemetapowerimage}.webp`)
+					) {
+						//? for Protagonists with a prime metapower defined, make it their respective metapower icon
+						this.primeimg = `systems/metanthropes-system/artwork/metapowers/${primemetapowerimage}.webp`;
+						metaLog(
+							3,
+							"MetanthropesActor",
+							"prepareBaseData",
+							"Updating Prime Metapower Image for:",
+							this.name
+						);
+					} else {
+						return;
+					}
 				}
 			}
 		}
+		const actorData = this;
+		this._prepareBaseCharacteristicsData(actorData);
+		if (actorData.name.includes("Duplicate")) {
+			this._prepareBaseDuplicateData(actorData);
+		}
+		this._prepareBaseMovementData(actorData);
+		this._prepareBaseVitalData(actorData);
 	}
 	/** @override */
 	prepareDerivedData() {
@@ -321,13 +341,9 @@ export class MetanthropesActor extends Actor {
 		//* available both inside and outside of character sheets (such as if an actor
 		//* is queried and has a roll executed directly from it).
 		//* This function is called after prepareBaseData() and prepareEmbeddedDocuments().
+		//! Note that if any values are to be affected by an Active Effect, then they should be calculated in the BaseData step, not here, otherwise they will be overwritten here
 		const actorData = this;
-		this._prepareDerivedCharacteristicsData(actorData);
-		if (actorData.name.includes("Duplicate")) {
-			this._prepareDerivedDuplicateData(actorData);
-		}
-		this._prepareDerivedMovementData(actorData);
-		this._prepareDerivedVitalData(actorData);
+		//! Should we bring back _prepare__DuplicateData in this step or is ok with Base?
 		//? Check to see if this actor has been Progressed
 		//todo Deprecate this after we finalize the Progression system (v0.9)
 		const progressionFlag = this.getFlag("metanthropes-system", "Progression");
@@ -353,7 +369,7 @@ export class MetanthropesActor extends Actor {
 		this._prepareDerivedCharacteristicsXPData(actorData);
 		this._prepareDerivedPerkXPData(actorData);
 	}
-	_prepareDerivedDuplicateData(actorData) {
+	_prepareBaseDuplicateData(actorData) {
 		const systemData = actorData.system;
 		//? Remove all Conditions and Buffs
 		systemData.Characteristics.Body.Condition.Current = 0;
@@ -399,7 +415,7 @@ export class MetanthropesActor extends Actor {
 		systemData.physical.speed.Buffs.accelerated.value = 0;
 		systemData.physical.speed.Conditions.slowed.value = 0;
 	}
-	_prepareDerivedCharacteristicsData(actorData) {
+	_prepareBaseCharacteristicsData(actorData) {
 		if (actorData.type == "Vehicle") return;
 		const systemData = actorData.system;
 		let ifCharacteristicBecomesZeroPenalty;
@@ -422,36 +438,36 @@ export class MetanthropesActor extends Actor {
 				metaLog(
 					1,
 					"MetanthropesActor",
-					"_prepareDerivedCharacteristicsData",
+					"_prepareBaseCharacteristicsData",
 					this.name + "'s",
 					CharKey,
 					"has dropped to 0!"
 				);
 			}
-			for (const [StatKey, StatValue] of Object.entries(CharValue.Stats)) {
+			for (const [StatKey, StatScore] of Object.entries(CharValue.Stats)) {
 				//? Calculate the Base score for this Stat (Initial + Progressed)
-				parseInt((StatValue.Base = Number(StatValue.Initial) + Number(Number(StatValue.Progressed) * 5)));
+				parseInt((StatScore.Base = Number(StatScore.Initial) + Number(Number(StatScore.Progressed) * 5)));
 				//? Calculate the Current score for this Stat (Base + Buff - Condition)
 				parseInt(
-					(StatValue.Current =
-						Number(StatValue.Base) +
-						Number(Number(StatValue.Buff.Current) * 5) -
-						Number(Number(StatValue.Condition.Current) * 5))
+					(StatScore.Current =
+						Number(StatScore.Base) +
+						Number(Number(StatScore.Buff.Current) * 5) -
+						Number(Number(StatScore.Condition.Current) * 5))
 				);
 				//? Calculate the Roll score for this Stat (Current + Characteristic + ifCharacteristicBecomesZeroPenalty)
 				parseInt(
-					(StatValue.Roll =
-						Number(StatValue.Current) +
+					(StatScore.Roll =
+						Number(StatScore.Current) +
 						Number(CharValue.Current) +
 						Number(ifCharacteristicBecomesZeroPenalty))
 				);
 				//? Determine if the Stat has dropped to 0
-				if (StatValue.Roll <= 0) {
-					StatValue.Roll = 0;
+				if (StatScore.Roll <= 0) {
+					StatScore.Roll = 0;
 					metaLog(
 						1,
 						"MetanthropesActor",
-						"_prepareDerivedCharacteristicsData",
+						"_prepareBaseCharacteristicsData",
 						this.name + "'s",
 						StatKey,
 						"has dropped to 0!"
@@ -482,14 +498,14 @@ export class MetanthropesActor extends Actor {
 			if (progressionCount > 0) {
 				experienceSpent += characteristicExperienceSpent;
 			}
-			for (const [StatKey, StatValue] of Object.entries(CharValue.Stats)) {
+			for (const [StatKey, StatScore] of Object.entries(CharValue.Stats)) {
 				//? Calculate the progression count based on the characteristic's progressed value
-				progressionCount = Number(StatValue.Progressed);
+				progressionCount = Number(StatScore.Progressed);
 				//? Calculate the experience spent on this characteristic
 				statExperienceSpent = 0;
 				for (let i = 0; i < progressionCount; i++) {
 					statExperienceSpent += Number(
-						(Number(StatValue.Initial) + Number(CharValue.Base) + Number(i * 5)) * 3
+						(Number(StatScore.Initial) + Number(CharValue.Base) + Number(i * 5)) * 3
 					);
 				}
 				//? Add the experience spent on this characteristic to the total experience spent, only if Progressed is >0
@@ -586,27 +602,27 @@ export class MetanthropesActor extends Actor {
 			//! ui.notifications.info(this.name + "'s Stored Experience is Negative!");
 		}
 	}
-	_prepareDerivedMovementData(actorData) {
-		//! this section needs to be updated with camelCase
+	_prepareBaseMovementData(actorData) {
 		//todo when implementing vehicles, we'll have to revise how movement is calcualated, right now Vehicles don't have Characteristics and so they can't have movement either as it's tied to the Wobbly Calculation - perhaps just skip that for vehicles? We'll see exactly how, when it's time to implement Vehicles
 		if (actorData.type == "Vehicle") return;
 		const systemData = actorData.system;
 		//? first we will calculate the current values from buffs and conditions, then we take their modifiers and calculate the movement value
-		const speedinitial = Number(systemData.physical.speed.initial);
-		const weightinitial = Number(systemData.physical.weight.initial);
-		const sizeinitial = Number(systemData.physical.size.initial);
-		const speedbuff = Number(systemData.physical.speed.Buffs.accelerated.value);
-		const speedcondition = Number(systemData.physical.speed.Conditions.slowed.value);
-		const weightbuff = Number(systemData.physical.weight.Buffs.lightened.value);
-		const weightcondition = Number(systemData.physical.weight.Conditions.encumbered.value);
-		const sizebuff = Number(systemData.physical.size.Buffs.enlarged.value);
-		const sizecondition = Number(systemData.physical.size.Conditions.shrunken.value);
-		const sizecurrent = sizeinitial + sizebuff - sizecondition;
-		const weightcurrent = weightinitial - weightbuff + weightcondition;
-		const speedcurrent = speedinitial + speedbuff - speedcondition;
-		systemData.physical.size.value = sizecurrent;
-		systemData.physical.weight.value = weightcurrent;
-		systemData.physical.speed.value = speedcurrent;
+		const speedInitial = Number(systemData.physical.speed.initial);
+		const weightInitial = Number(systemData.physical.weight.initial);
+		const sizeInitial = Number(systemData.physical.size.initial);
+		const speedBuff = Number(systemData.physical.speed.Buffs.accelerated.value);
+		const speedCondition = Number(systemData.physical.speed.Conditions.slowed.value);
+		const weightBuff = Number(systemData.physical.weight.Buffs.lightened.value);
+		const weightCondition = Number(systemData.physical.weight.Conditions.encumbered.value);
+		const sizeBuff = Number(systemData.physical.size.Buffs.enlarged.value);
+		const sizeCondition = Number(systemData.physical.size.Conditions.shrunken.value);
+		const sizeCurrent = sizeInitial + sizeBuff - sizeCondition;
+		const weightCurrent = weightInitial - weightBuff + weightCondition;
+		const speedCurrent = speedInitial + speedBuff - speedCondition;
+		systemData.physical.size.value = sizeCurrent;
+		systemData.physical.weight.value = weightCurrent;
+		systemData.physical.speed.value = speedCurrent;
+		//todo: would the below consts be better placed in some global scope or inside the CONST or CONFIG ones?
 		const speedModifiers = {
 			0: 0,
 			1: 0,
@@ -679,26 +695,14 @@ export class MetanthropesActor extends Actor {
 		//? in addition to the modifiers, Wobbly also affects final movemement value
 		const wobblyModifier = Number(systemData.Characteristics.Mind.Stats.Creativity.Condition.Current);
 		//? movement value is always rounded up
-		const movementvalue = Math.ceil(
-			speedModifiers[speedcurrent] * weightModifiers[weightcurrent] * sizeModifiers[sizecurrent] - wobblyModifier
+		const movementValue = Math.ceil(
+			speedModifiers[speedCurrent] * weightModifiers[weightCurrent] * sizeModifiers[sizeCurrent] - wobblyModifier
 		);
-		systemData.physical.movement.value = movementvalue;
-		systemData.physical.movement.additional = movementvalue;
-		systemData.physical.movement.sprint = movementvalue * 5;
-		metaLog(
-			3,
-			"MetanthropesActor",
-			"_prepareDerivedMovementData",
-			this.name + "'s",
-			"Movement:",
-			movementvalue,
-			"Additional:",
-			movementvalue,
-			"Sprint:",
-			movementvalue * 5
-		);
+		systemData.physical.movement.value = movementValue;
+		systemData.physical.movement.additional = movementValue;
+		systemData.physical.movement.sprint = movementValue * 5;
 	}
-	_prepareDerivedVitalData(actorData) {
+	_prepareBaseVitalData(actorData) {
 		if (actorData.type == "Vehicle") return;
 		const systemData = actorData.system;
 		if (!this.name.includes("Duplicate")) {
@@ -713,7 +717,7 @@ export class MetanthropesActor extends Actor {
 				parseInt((systemData.Vital.Life.value = Number(systemData.Vital.Life.max)));
 			}
 		} else {
-			//? Apply Max Life for Duplicates from the Duplicate Self Metapower Activation value
+			//? Check if the actor has activated Duplicate Self Metapower
 			const duplicateSelfActivated = this.getFlag("metanthropes-system", "duplicateSelf");
 			//? Check if the actor has activated Duplicate Self Metapower
 			if (!duplicateSelfActivated) {
@@ -726,12 +730,13 @@ export class MetanthropesActor extends Actor {
 				metaLog(
 					2,
 					"MetanthropesActor",
-					"_prepareDerivedVitalData",
+					"_prepareBaseVitalData",
 					this.name,
 					"hasn't activated Duplicate Self Metapower and should not be duplicated!"
 				);
 				return;
 			} else {
+				//? Apply Max Life for Duplicates from the Duplicate Self Metapower Activation value
 				const duplicateMaxLife = Number(this.getFlag("metanthropes-system", "duplicateSelf").maxLife);
 				parseInt((systemData.Vital.Life.max = duplicateMaxLife));
 				const duplicateCurrentLife = systemData.Vital.Life.value;
@@ -740,14 +745,6 @@ export class MetanthropesActor extends Actor {
 				}
 			}
 		}
-		metaLog(
-			3,
-			"MetanthropesActor",
-			"_prepareDerivedVitalData",
-			this.name + "'s",
-			"New Life Maximum:",
-			systemData.Vital.Life.max
-		);
 	}
 	//* Calculate the Scores used in Progression
 	_prepareCharacteristicsProgression(actorData) {
@@ -759,14 +756,14 @@ export class MetanthropesActor extends Actor {
 			parseInt(
 				(CharValue.ProgressionBase = Number(CharValue.Initial) + Number(Number(CharValue.Progressed) * 5))
 			);
-			for (const [StatKey, StatValue] of Object.entries(CharValue.Stats)) {
+			for (const [StatKey, StatScore] of Object.entries(CharValue.Stats)) {
 				//? Calculate the Base score for this Stat (Initial + Progressed)
 				parseInt(
-					(StatValue.ProgressionBase = Number(StatValue.Initial) + Number(Number(StatValue.Progressed) * 5))
+					(StatScore.ProgressionBase = Number(StatScore.Initial) + Number(Number(StatScore.Progressed) * 5))
 				);
 				//? Calculate the Score used for Progression for this Stat (Base + Characteristic_Base)
 				parseInt(
-					(StatValue.ProgressionRoll = Number(StatValue.ProgressionBase) + Number(CharValue.ProgressionBase))
+					(StatScore.ProgressionRoll = Number(StatScore.ProgressionBase) + Number(CharValue.ProgressionBase))
 				);
 			}
 		}
@@ -798,7 +795,7 @@ export class MetanthropesActor extends Actor {
 		return Boolean(this.system.entermeta && this.system.entermeta.primemetapower);
 	}
 	get hasPossessions() {
-		return !["Animal", "MetaTherion", "Animated-Plant"].includes(this.type);
+		return Boolean(!this.type.includes("Vehicle"));
 	}
 	get isSynthetic() {
 		return Boolean(this.system.Synthetic);
@@ -812,14 +809,14 @@ export class MetanthropesActor extends Actor {
 		const charBody = this.system.Characteristics.Body;
 		const charMind = this.system.Characteristics.Mind;
 		const charSoul = this.system.Characteristics.Soul;
-		const charBodyStatValues =
+		const charBodyStatScores =
 			charBody.Stats.Power.Initial + charBody.Stats.Reflexes.Initial + charBody.Stats.Endurance.Initial;
-		const charMindStatValues =
+		const charMindStatScores =
 			charMind.Stats.Creativity.Initial + charMind.Stats.Perception.Initial + charMind.Stats.Manipulation.Initial;
-		const charSoulStatValues =
+		const charSoulStatScores =
 			charSoul.Stats.Consciousness.Initial + charSoul.Stats.Willpower.Initial + charSoul.Stats.Awareness.Initial;
-		const charStatValues = charBodyStatValues + charMindStatValues + charSoulStatValues;
-		return Boolean(this.name.includes("New Actor") || charStatValues <= 20);
+		const charStatScores = charBodyStatScores + charMindStatScores + charSoulStatScores;
+		return Boolean(this.name.includes("New Actor") || charStatScores <= 20);
 	}
 	get isDuplicate() {
 		return Boolean(this.name.includes("Duplicate"));
@@ -833,5 +830,10 @@ export class MetanthropesActor extends Actor {
 		} else {
 			return false;
 		}
+	}
+	get canOnlyHaveStrikes() {
+		return Boolean(
+			this.type.includes("Animal") || this.type.includes("Animated-Plant") || this.type.includes("MetaTherion")
+		);
 	}
 }

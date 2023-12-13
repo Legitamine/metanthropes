@@ -21,12 +21,12 @@
 						<h4>
 							<div class="effect-control effect-edit style-view-properties"
 								data-action="edit"
-								data-tooltip="Click to open {{effect.label}}<br><br>Effect: {{stripHtml effect.description}}">
-								{{effect.label}}
+								data-tooltip="Click to open {{effect.name}}<br><br>Effect: {{stripHtml effect.description}}">
+								{{effect.name}}
 							</div>
 						</h4>
 					</div>
-					<div class="effect-type">{{effect.metaEffectType}}</div>
+					<div class="effect-type">{{effect.flags.metanthropes.metaEffectType}}</div>
 					<div class="effect-source">{{effect.sourceName}}</div>
 					<div class="effect-duration">{{effect.duration.label}}</div>
 					{{#if ../../isNarrator}}

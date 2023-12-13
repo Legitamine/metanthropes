@@ -128,9 +128,9 @@ export async function MetaEvaluate(
 	//? Create the message to be printed to chat - remember: Penalties and Reductions are Negative, Bonus and Pain are Positive
 	const needToRoll = statScore + bonus + penalty + multiAction + perkReduction + aimingReduction + customReduction - (pain * 10);
 	let needToRollMessage = ``;
-	if (needToRoll <= 1) needToRollMessage = `(needs Critical Success)`;
-	else if (needToRoll >= 100) needToRollMessage = `(needs no Critical Failure)`;
-	else needToRollMessage = `(needs ${needToRoll} or less)`;
+	if (needToRoll <= 1) needToRollMessage = `(needed Critical Success)`;
+	else if (needToRoll >= 100) needToRollMessage = `(needed no Critical Failure)`;
+	else needToRollMessage = `(needed ${needToRoll} or less)`;
 	let message = null;
 	if (action === "StatRoll") {
 		message = `Attempts a Stat Roll with ${stat} score of ${statScore}%`;

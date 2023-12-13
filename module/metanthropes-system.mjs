@@ -68,10 +68,93 @@ Hooks.once("init", async function () {
 		rollItemMacro,
 		createItemMacro,
 	};
-	//? Testing Status Effects
-	console.log("Metanthropes logging Status Effects", CONFIG.statusEffects);
-	CONFIG.statusEffects = [];
-	console.log("Metanthropes logging Special Status Effects", CONFIG.specialStatusEffects);
+	//? Status Effects
+	const idsToKeep = ["dead", "invisible", "blind", "fly"];
+	CONFIG.statusEffects = CONFIG.statusEffects.filter((item) => idsToKeep.includes(item.id));
+	const newStatusEffects = [
+		{
+			id: "photokinetic",
+			name: "Photokinetic",
+			metaEffectType: "Shift",
+			changes: [
+				{
+					key: "system.physical.movement.Buffs.photokinetic.value",
+					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+					value: true,
+				},
+			],
+			description: "<p>Photokinetic</p>",
+			icon: "systems/metanthropes-system/artwork/status-effects/test1.svg",
+		},
+		{
+			id: "wallwalk",
+			name: "Wall Walk",
+			metaEffectType: "Detection",
+			changes: [
+				{
+					key: "system.physical.movement.Buffs.walk-wall.value",
+					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+					value: true,
+				},
+			],
+			description: "<p>Wall Walk</p>",
+			icon: "systems/metanthropes-system/artwork/status-effects/test2.svg",
+		},
+		{
+			id: "wavewalk",
+			name: "Wave Walk",
+			metaEffectType: "Buff",
+			changes: [
+				{
+					key: "system.physical.movement.Buffs.walk-wave.value",
+					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+					value: true,
+				},
+			],
+			description: "<p>Wave Walk</p>",
+			icon: "systems/metanthropes-system/artwork/status-effects/test3.svg",
+		},
+		//! walk earth?
+		{
+			id: "knockeddown",
+			name: "Knocked Down",
+			metaEffectType: "Condition",
+			changes: [
+				{
+					key: "system.physical.movement.Conditions.knockdown.value",
+					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+					value: true,
+				},
+			],
+			description: "<p>Knocked Down</p>",
+			icon: "systems/metanthropes-system/artwork/status-effects/test4.svg",
+		},
+		{
+			id: "immobilized",
+			name: "Immobilized",
+			metaEffectType: "Immunity",
+			changes: [
+				{
+					key: "system.physical.movement.Conditions.immobilized.value",
+					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+					value: true,
+				},
+				{
+					key: "system.physical.movement.initial",
+					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+					value: 0,
+				},
+				{
+					key: "system.physical.movement.value",
+					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+					value: 0,
+				},
+			],
+			description: "<p>Immobilized</p>",
+			icon: "systems/metanthropes-system/artwork/status-effects/test5.svg",
+		},
+	];
+	CONFIG.statusEffects.push(...newStatusEffects);
 	//? Metanthropes Initiative System
 	//! should I remove this? - removing it seems to break initiative, as we are 'highjacking' the formula method for metainitiative rolls
 	CONFIG.Combat.initiative = {
@@ -88,10 +171,9 @@ Hooks.once("init", async function () {
 	//? time in seconds for Round Duration
 	//todo: confirm default round time
 	//CONFIG.time.roundTime = 120;
-	//? Define custom Entity classes.
+	//? Define custom document classes.
 	CONFIG.Actor.documentClass = MetanthropesActor;
 	CONFIG.Item.documentClass = MetanthropesItem;
-	//CONFIG.ActiveEffect.documentClass = metaActiveEffectConfig;
 	CONFIG.ActiveEffect.documentClass = MetanthropesActiveEffect;
 	//? Register sheet application classes instead of defaults.
 	Actors.unregisterSheet("core", ActorSheet);
@@ -105,7 +187,6 @@ Hooks.once("init", async function () {
 	Items.registerSheet("metanthropes", MetanthropesItemSheet, {
 		makeDefault: true,
 	});
-	//DocumentSheetConfig.unregisterSheet("core", ActiveEffectConfig);
 	DocumentSheetConfig.registerSheet(ActiveEffect, "metanthropes", MetanthropesActiveEffectSheet, {
 		makeDefault: true,
 	});
@@ -440,6 +521,8 @@ Hooks.on("renderChatMessage", async (message, html) => {
 //* New Actor Event Listener
 Hooks.on("createActor", async (actor) => {
 	if (
+		//todo: this should be updated to check for Humanoid once actor v4 template changes are done
+		//? currently ExtraD and ExtraT are also considered Humanoids based on the system.humanoids being assigned to them via the template
 		actor.name.includes("New") &&
 		actor.type !== "Vehicle" &&
 		actor.type !== "Animal" &&
@@ -483,11 +566,12 @@ Hooks.on("createActor", async (actor) => {
 		metaLog(3, "New Actor Event Listener", "Removed Effects from Duplicate", actor.name);
 	}
 });
-//* Hook to add header buttons on the Actor and Item sheets
+//* Hook to add header buttons on the Actor, Item & Effect sheets
 //? from TyphonJS (Michael) on Discord
 //? In system entry point. You may have to get specific for particular sheets as some don't invoke hooks for the whole hierarchy.
 Hooks.on(`getActorSheetHeaderButtons`, metaLogDocument);
 Hooks.on(`getItemSheetHeaderButtons`, metaLogDocument);
+Hooks.on(`getActiveEffectConfigHeaderButtons`, metaLogDocument);
 //* Customize Pause Logo
 Hooks.on("renderPause", (app, html, options) => {
 	if (options.paused) {

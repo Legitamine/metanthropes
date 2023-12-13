@@ -4,12 +4,22 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 
-# Early Access v0.8.100 [2023-12-08]
+# Early Access v0.8.125 [2023-12-12]
 
 ## New Features:
 
+-   Introducing the new Active Effects system, available in the Beta Testing mode. This new system will allow you to create custom effects that can be applied to Actors and Items. When setting a Status Effect to a Token, you are able to select between the 4 built-in Foundry Status Effects (Dead/Defeated, Blind, Invisible and Fly) and the 5 Metanthropes Movement Buffs and Conditions
+
 ## Changed:
--   Changed the 'New Actor' process to utilize the new Tooltips v2 for better readability during the creation of a new actor
+
+-   All Actor Types (except Vehicles) can now have Possessions, and the Actors that can only use Strikes will not have any other Possession Categories available. Also, adding an Item to an actor that can't have that type of Item, will now display a warning in the console and not allow the Item to be added to the Actor (for example you are no longer able to add a Metapower to a Human anymore)
+
+## Fixed:
+
+-   Fixed the logic in how Active Effects are being calculated, now they correctly take place after the Base Scores are calculated and not before. This ensures Active Effects will override any Base Scores if applicable
+-   Fixed an issue with the sorting of Combatants that triggered an error if you load a World with a Combat already in progress. Now it will correctly skip invalid Combatants during World initialization
+-   Optimized performance for the assignment of the icon for the Prime Metapowers for Actors, now it will only run at World Initialization and when an Actor is placed on the Canvas and not every time the Actor Sheet is rendered
+-   Fixed various minor typos and improved the code documentation
 
 # Closed Alpha v0.8.95 [2023-11-24]
 
@@ -72,7 +82,7 @@ Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 -   Removed the 'Sheet' Button from the Header of the Actor and Item sheets. This was used in development and no longer needed
 -   Removed the Close and Cancel buttons (as well as the ability to close the dialog with 'Esc') from the Roll New Actor process. You can still cancel the process, before you make your first roll. If any error is detected during the process, it will automatically reset itself and you can start over
 -   Added the word 'Spend' to re-rolling d10 button in the chat, to make it more clear that you are spending Destiny to reroll the dice
--   Changed the Chat message when Rolling Dice, by adding '(needs ## or lower)' in the result message, to indicate the Roll Result you need, in order to Succeed in this Roll. This takes into account all Bonuses, Penalties, Reductions and Pain that apply to the roll
+-   Changed the Chat message when Rolling Dice, by adding '(needed ## or lower)' in the result message, to indicate the Roll Result you need, in order to Succeed in the Roll. This takes into account all Bonuses, Penalties, Reductions and Pain that apply to the roll and it also works for Cover and Hunger Rolls
 -   Refactored the Actor Sheet, consolidated 11 sheets (per Type) into a single document that is dynamically created & rendered based on the Actor Type and features that Actor needs
 -   Added some validation logic to the 'New Actor' and the 'Finalize Premade Protagonist' processes, to ensure required values are set properly
 -   Added support for 3rd party Module [Hide Player UI](https://foundryvtt.com/packages/hide-player-ui) to conseal UI elements not used by players, great for the New Player Experience
