@@ -423,16 +423,16 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		contentMessage += `📏: ` + range + `<br>`;
 		if (areaEffectMessage) {
 			contentMessage += areaEffectMessage;
-			contentMessage += `<br>`;
+			contentMessage += `<hr />`;
 		} else {
-			contentMessage += `<br>`;
+			contentMessage += `<hr />`;
 		}
 		if (vsMessage) {
 			contentMessage += vsMessage;
-			contentMessage += `<br>`;
+			contentMessage += `<hr />`;
 		}
 		if (effectDescription) {
-			contentMessage += `${effectDescription}<br>`;
+			contentMessage += `${effectDescription}<hr />`;
 		}
 		//* Targeting v1
 		const betaTesting = await game.settings.get("metanthropes-system", "metaBetaTesting");
@@ -445,8 +445,9 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			actionableTargets = targetedActors.length > 0;
 			//? Get the names of all targeted actors
 			const targetedActorNames = targetedActors.map((actor) => actor.name);
-			let allSelectedTargetsMessage = `Selected 🎯 Targets: ${targetedActorNames.join(", ")}<br><br>`;
+			let allSelectedTargetsMessage = `Selected 🎯 Targets: ${targetedActorNames.join(", ")}`;
 			contentMessage += allSelectedTargetsMessage;
+			contentMessage += `<hr />`;
 			metaLog(3, "MetaExecute", "All Selected Targets Message:", allSelectedTargetsMessage);
 		}
 		if (damageCosmicMessage) {
@@ -463,15 +464,15 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		}
 		if (damageCosmicMessage || damageElementalMessage || damageMaterialMessage || damagePsychicMessage) {
 			damageSelectedTargets = true;
-			contentMessage += `<br>`;
+			contentMessage += `<hr />`;
 		}
 		if (healingMessage) {
 			contentMessage += healingMessage;
-			contentMessage += `<br>`;
+			contentMessage += `<hr />`;
 		}
 		if (specialMessage) {
 			contentMessage += specialMessage;
-			contentMessage += `<br>`;
+			contentMessage += `<hr />`;
 		}
 		if (buffsPermanentMessage) {
 			contentMessage += buffsPermanentMessage;
@@ -483,7 +484,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			contentMessage += buffsRemovedMessage;
 		}
 		if (buffsPermanent || buffsAppliedMessage || buffsRemovedMessage) {
-			contentMessage += `<br>`;
+			contentMessage += `<hr />`;
 		}
 		if (conditionsAppliedMessage) {
 			contentMessage += conditionsAppliedMessage;
@@ -492,7 +493,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			contentMessage += conditionsRemovedMessage;
 		}
 		if (conditionsAppliedMessage || conditionsRemovedMessage) {
-			contentMessage += `<br>`;
+			contentMessage += `<hr />`;
 		}
 		//? check if actor has enough destiny points to reroll
 		const currentDestiny = actor.system.Vital.Destiny.value;

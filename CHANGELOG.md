@@ -21,6 +21,10 @@ Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 -   Optimized performance for the assignment of the icon for the Prime Metapowers for Actors, now it will only run at World Initialization and when an Actor is placed on the Canvas and not every time the Actor Sheet is rendered
 -   Fixed various minor typos and improved the code documentation
 
+## Deprecated:
+
+-   Deprecated the 'Earth Walk' Buff as part of the Burgundy Rules Version. It will be removed with Early Access v0.9
+
 # Closed Alpha v0.8.95 [2023-11-24]
 
 ## Changed:

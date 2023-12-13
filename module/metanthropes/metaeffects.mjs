@@ -25,10 +25,11 @@ export function onManageActiveEffect(event, owner) {
 					flags: {
 						metanthropes: {
 							metaEffectType: "Undefined",
-							metaCycle: 1,
-							metaRound: 1,
-							metaStartCycle: 1,
-							metaStartRound: 1,
+							metaEffectApplication: "Undefined",
+							metaCycle: null,
+							metaRound: null,
+							metaStartCycle: null,
+							metaStartRound: null,
 						},
 					},
 				},

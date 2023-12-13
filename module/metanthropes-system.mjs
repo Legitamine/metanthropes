@@ -73,9 +73,41 @@ Hooks.once("init", async function () {
 	CONFIG.statusEffects = CONFIG.statusEffects.filter((item) => idsToKeep.includes(item.id));
 	const newStatusEffects = [
 		{
+			id: "fly",
+			name: "Fly",
+			flags: {
+				metanthropes: {
+					metaEffectType: "Buff",
+					metaEffectApplication: "Movement",
+					metaCycle: null,
+					metaRound: null,
+					metaStartCycle: null,
+					metaStartRound: null,
+				},
+			},
+			changes: [
+				{
+					key: "system.physical.movement.Buffs.fly.value",
+					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+					value: true,
+				},
+			],
+			description: "<p>Fly</p>",
+			icon: "systems/metanthropes-system/artwork/status-effects/test6.svg",
+		},
+		{
 			id: "photokinetic",
 			name: "Photokinetic",
-			metaEffectType: "Shift",
+			flags: {
+				metanthropes: {
+					metaEffectType: "Buff",
+					metaEffectApplication: "Movement",
+					metaCycle: null,
+					metaRound: null,
+					metaStartCycle: null,
+					metaStartRound: null,
+				},
+			},
 			changes: [
 				{
 					key: "system.physical.movement.Buffs.photokinetic.value",
@@ -89,7 +121,16 @@ Hooks.once("init", async function () {
 		{
 			id: "wallwalk",
 			name: "Wall Walk",
-			metaEffectType: "Detection",
+			flags: {
+				metanthropes: {
+					metaEffectType: "Buff",
+					metaEffectApplication: "Movement",
+					metaCycle: null,
+					metaRound: null,
+					metaStartCycle: null,
+					metaStartRound: null,
+				},
+			},
 			changes: [
 				{
 					key: "system.physical.movement.Buffs.walk-wall.value",
@@ -103,7 +144,16 @@ Hooks.once("init", async function () {
 		{
 			id: "wavewalk",
 			name: "Wave Walk",
-			metaEffectType: "Buff",
+			flags: {
+				metanthropes: {
+					metaEffectType: "Buff",
+					metaEffectApplication: "Movement",
+					metaCycle: null,
+					metaRound: null,
+					metaStartCycle: null,
+					metaStartRound: null,
+				},
+			},
 			changes: [
 				{
 					key: "system.physical.movement.Buffs.walk-wave.value",
@@ -114,11 +164,19 @@ Hooks.once("init", async function () {
 			description: "<p>Wave Walk</p>",
 			icon: "systems/metanthropes-system/artwork/status-effects/test3.svg",
 		},
-		//! walk earth?
 		{
 			id: "knockeddown",
 			name: "Knocked Down",
-			metaEffectType: "Condition",
+			flags: {
+				metanthropes: {
+					metaEffectType: "Condition",
+					metaEffectApplication: "Movement",
+					metaCycle: null,
+					metaRound: null,
+					metaStartCycle: null,
+					metaStartRound: null,
+				},
+			},
 			changes: [
 				{
 					key: "system.physical.movement.Conditions.knockdown.value",
@@ -132,17 +190,21 @@ Hooks.once("init", async function () {
 		{
 			id: "immobilized",
 			name: "Immobilized",
-			metaEffectType: "Immunity",
+			flags: {
+				metanthropes: {
+					metaEffectType: "Condition",
+					metaEffectApplication: "Movement",
+					metaCycle: null,
+					metaRound: null,
+					metaStartCycle: null,
+					metaStartRound: null,
+				},
+			},
 			changes: [
 				{
 					key: "system.physical.movement.Conditions.immobilized.value",
 					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
 					value: true,
-				},
-				{
-					key: "system.physical.movement.initial",
-					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
-					value: 0,
 				},
 				{
 					key: "system.physical.movement.value",
@@ -155,6 +217,7 @@ Hooks.once("init", async function () {
 		},
 	];
 	CONFIG.statusEffects.push(...newStatusEffects);
+	console.log("Metanthropes | Status Effects", CONFIG.statusEffects);
 	//? Metanthropes Initiative System
 	//! should I remove this? - removing it seems to break initiative, as we are 'highjacking' the formula method for metainitiative rolls
 	CONFIG.Combat.initiative = {
@@ -572,6 +635,7 @@ Hooks.on("createActor", async (actor) => {
 Hooks.on(`getActorSheetHeaderButtons`, metaLogDocument);
 Hooks.on(`getItemSheetHeaderButtons`, metaLogDocument);
 Hooks.on(`getActiveEffectConfigHeaderButtons`, metaLogDocument);
+Hooks.on(`getActiveEffectSheetHeaderButtons`, metaLogDocument);
 //* Customize Pause Logo
 Hooks.on("renderPause", (app, html, options) => {
 	if (options.paused) {

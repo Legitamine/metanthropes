@@ -15,7 +15,7 @@ export class MetanthropesActiveEffectSheet extends DocumentSheet {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ["sheet", "active-effect-sheet"],
 			template: "systems/metanthropes-system/templates/metanthropes/active-effect-config.html",
-			width: 580,
+			width: 600,
 			height: "auto",
 			sheetConfig: false,
 			sumbitOnChange: true,
@@ -41,7 +41,8 @@ export class MetanthropesActiveEffectSheet extends DocumentSheet {
 				hint: game.i18n.localize(`EFFECT.TransferHint${legacyTransfer ? "Legacy" : ""}`),
 			},
 		};
-		const metaEffectTypeOptions = ["Buff", "Condition", "Detection", "Immunity", "Shift", "Movement", "Resistance", "Cover"];
+		const metaEffectTypeOptions = ["Buff", "Condition", "Detection", "Immunity", "Shift"];
+		const metaEffectApplicationOptions = ["Characteristic", "Stat", "Perk", "Movement", "Resistance", "Cover"]
 		const predefinedKeys = [
 			{
 				key: "system.physical.resistances.cosmic.initial",
@@ -79,6 +80,7 @@ export class MetanthropesActiveEffectSheet extends DocumentSheet {
 			effect: this.object, // Backwards compatibility
 			data: this.object,
 			metaEffectType: metaFlags.metaEffectType,
+			metaEffectApplication: metaFlags.metaEffectApplication,
 			metaCycle: metaFlags.metaCycle,
 			metaRound: metaFlags.metaRound,
 			metaStartCycle: metaFlags.metaStartCycle,
@@ -93,6 +95,7 @@ export class MetanthropesActiveEffectSheet extends DocumentSheet {
 			}, {}),
 			predefinedKeys: predefinedKeys,
 			metaEffectTypeOptions: metaEffectTypeOptions,
+			metaEffectApplicationOptions: metaEffectApplicationOptions,
 		};
 		metaLog(4, "Metanthropes | Active Effect Sheet | getData, context, data", context, data);
 		return foundry.utils.mergeObject(context, data);

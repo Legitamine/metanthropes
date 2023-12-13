@@ -47,12 +47,6 @@
 								"dtype": "Boolean",
 								"label": "Wave Walk",
 								"value": false
-							},
-							"walk-earth": {
-								"type": "boolean",
-								"dtype": "Boolean",
-								"label": "Earth Walk",
-								"value": false
 							}
 						},
 						"Conditions": {

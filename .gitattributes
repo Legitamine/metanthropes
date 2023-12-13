@@ -45,6 +45,7 @@
 *.gif   binary
 *.webp  binary
 *.webm  binary
+*.svg   binary
 
 ###############################################################################
 # diff behavior for common document formats

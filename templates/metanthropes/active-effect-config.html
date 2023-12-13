@@ -40,13 +40,30 @@
 						</option>
 					{{/each}}
 				</select>
-				{{metaEffectType}}
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label>Effect Application</label>
+			<div class="form-fields">
+				<select name="flags.metanthropes.metaEffectApplication" type="text" data-dtype="String">
+					{{#each metaEffectApplicationOptions as |option|}}
+						<option value="{{option}}"
+							{{#if (eq option ../metaEffectApplication)}}selected{{/if}}>
+							{{option}}
+						</option>
+					{{/each}}
+				</select>
 			</div>
 		</div>
 
 		<div class="form-group stacked">
 			<label>{{ localize "EFFECT.Description" }}</label>
-			{{editor descriptionHTML target="description" button=false editable=editable}}
+			{{#if isNarrator}}
+				{{editor descriptionHTML target="description" button=true editable=editable engine="prosemirror" collaborate=false}}
+			{{else}}
+				{{editor descriptionHTML target="description" button=false editable=false engine="prosemirror" collaborate=false}}
+			{{/if}}
 		</div>
 
 		<div class="form-group">

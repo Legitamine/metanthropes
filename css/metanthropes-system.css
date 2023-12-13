@@ -1359,7 +1359,7 @@ h3 {
 }
 .metanthropes .items-header .item-name {
   font-weight: bold;
-  padding-left: 5px;
+  padding-left: 50px;
   text-align: left;
   display: flex;
 }
@@ -1387,6 +1387,7 @@ h3 {
 }
 .metanthropes .items-list .item-name h3,
 .metanthropes .items-list .item-name h4 {
+  padding-left: 15px;
   margin: 0;
   white-space: nowrap;
   overflow-x: hidden;
