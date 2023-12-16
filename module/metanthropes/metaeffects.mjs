@@ -73,9 +73,9 @@ export function prepareActiveEffectCategories(effects) {
 
 	//? Iterate over active effects, classifying them into categories
 	for (let e of effects) {
-		//? Fix for v11 deprecation
+		//? Fix for v11 deprecation error showing up
 		//e._getSourceName(); // Trigger a lookup for the source name
-		//!^ was that step needed?
+		//!^ was that step even needed?
 		if (e.disabled) categories.inactive.effects.push(e);
 		else if (e.isTemporary) categories.temporary.effects.push(e);
 		else categories.permanent.effects.push(e);
