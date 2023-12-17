@@ -35,7 +35,7 @@ jobs:
             - name: Pack Compendiums
               run: |
                   npm install -g @foundryvtt/foundryvtt-cli
-                  dir /home/runner/work/${{steps.id.outputs.prop}}
+                  dir /home/runner/work/${{steps.id.outputs.prop}}/${{steps.id.outputs.prop}}
                   mkdir -p /home/runner/work/${{steps.id.outputs.prop}}/Data
                   fvtt configure set dataPath "/home/runner/work/${{steps.id.outputs.prop}}/Data"
                   fvtt package workon "${{steps.id.outputs.prop}}" --type "System"
