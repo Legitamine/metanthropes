@@ -4,11 +4,15 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 
-# Early Access v0.8.128 [2023-12-13]
+# Early Access v0.8.145 [2023-12-17]
 
 ## New Features:
 
 -   Active Effects now automatically become Inactive, when their Duration is over, during Combat. The Effect will move from the 'Active Effects' to the 'Inactive Effects' category, so they can be easily re-activated by the Narrator, if needed
+
+## Changed:
+
+-   Compendiums are now built automatically when we release a new version of the System. Previously this had to be done manually and caused extra effort in making new releases that included changes to Compendiums, now the process takes fewer steps and it's less error-prone. This is a developer feature and won't affect the gameplay in any way
 
 # Early Access v0.8.128 [2023-12-13]
 

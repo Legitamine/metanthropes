@@ -49,17 +49,17 @@ jobs:
                   echo "Configure workon ${{steps.id.outputs.prop}} as a System"
                   fvtt package workon "${{steps.id.outputs.prop}}" --type "System"
                   echo "Packaging metapowers"
-                  fvtt package pack -n "metapowers" --in ./packs/metapowers/_source --out ./packs
+                  fvtt package pack -n "metapowers" --in ./src/packs/metapowers/_source --out ./packs
                   echo "Packaging narrator-toolkit"
-                  fvtt package pack -n "narrator-toolkit" --in ./packs/narrator-toolkit/_source --out ./packs
+                  fvtt package pack -n "narrator-toolkit" --in ./src/packs/narrator-toolkit/_source --out ./packs
                   echo "Packaging possessions"
-                  fvtt package pack -n "possessions" --in ./packs/possessions/_source --out ./packs
+                  fvtt package pack -n "possessions" --in ./src/packs/possessions/_source --out ./packs
                   echo "Packaging premade-antagonists"
-                  fvtt package pack -n "premade-antagonists" --in ./packs/premade-antagonists/_source --out ./packs
+                  fvtt package pack -n "premade-antagonists" --in ./src/packs/premade-antagonists/_source --out ./packs
                   echo "Packaging premade-protagonists"
-                  fvtt package pack -n "premade-protagonists" --in ./packs/premade-protagonists/_source --out ./packs
+                  fvtt package pack -n "premade-protagonists" --in ./src/packs/premade-protagonists/_source --out ./packs
                   echo "Packaging rollable-tables"
-                  fvtt package pack -n "rollable-tables" --in ./packs/rollable-tables/_source --out ./packs
+                  fvtt package pack -n "rollable-tables" --in ./src/packs/rollable-tables/_source --out ./packs
                   echo "Contents of Data directory post packaging"
                   dir /home/runner/work/${{steps.id.outputs.prop}}/Data
                   echo "Finished packaging Compendiums"
