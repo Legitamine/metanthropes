@@ -35,8 +35,14 @@ jobs:
             - name: Pack Compendiums
               run: |
                   npm install -g @foundryvtt/foundryvtt-cli
+                  echo "Contents of system/system"
                   dir /home/runner/work/${{steps.id.outputs.prop}}/${{steps.id.outputs.prop}}
+                  echo "Contents of how-to-play"
+                  dir /home/runner/work/${{steps.id.outputs.prop}}/${{steps.id.outputs.prop}}/packs/how-to-play
+                  echo "Create Data directory"
                   mkdir -p /home/runner/work/${{steps.id.outputs.prop}}/Data
+                  echo "Contents of Data directory"
+                  dir /home/runner/work/${{steps.id.outputs.prop}}/Data
                   fvtt configure set dataPath "/home/runner/work/${{steps.id.outputs.prop}}/Data"
                   fvtt package workon "${{steps.id.outputs.prop}}" --type "System"
                   fvtt package pack -n "how-to-play" --in ./packs/how-to-play/_source --out ./packs
