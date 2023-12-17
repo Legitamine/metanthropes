@@ -27,9 +27,7 @@ export function onManageActiveEffect(event, owner) {
 							metaEffectType: "Undefined",
 							metaEffectApplication: "Undefined",
 							metaCycle: null,
-							metaRound: null,
 							metaStartCycle: null,
-							metaStartRound: null,
 						},
 					},
 				},
@@ -56,7 +54,7 @@ export function prepareActiveEffectCategories(effects) {
 	const categories = {
 		temporary: {
 			type: "temporary",
-			label: "Temporary Effects",
+			label: "Active Effects",
 			effects: [],
 		},
 		permanent: {

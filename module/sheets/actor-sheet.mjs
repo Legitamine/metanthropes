@@ -25,7 +25,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			id: "metanthropes-actor-sheet",
 			classes: ["metanthropes", "sheet", "actor"], //? these are custom css classes that are used in the html file
 			width: 1012,
-			height: 913,
+			height: 930,
 			//! I don't understand why I can still drag when no item has .enablehotbar
 			dragDrop: [{ dragSelector: ".enablehotbar", dropSelector: null }],
 			tabs: [
@@ -54,7 +54,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			: `${this.actor.name} - ${this.actor.type}`;
 	}
 	/** @override */
-	getData(options = {}) {
+	async getData(options = {}) {
 		//* Retrieve the data structure from the base sheet. You can inspect or log
 		//* the context variable to see the structure, but some key properties for
 		//* sheets are the actor object, the data object, whether or not it's
@@ -63,11 +63,11 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//* The main difference is that values created here will only be available within this class and on the character sheet's HTML template.
 		//* If you were to use your browser's inspector to take a look at an actor's available data, you wouldn't see these values in the list, unlike those created in prepareData().
 		//? super.getData() will construct context.actor context.items and context.effects
-		const context = super.getData(options);
+		const context = await super.getData(options);
 		//* It uses Foundry's built in toObject() method and gives it the false parameter, which instructs Foundry to not just convert this to a plain object but to also run a deep clone on nested objects/arrays.
 		//* from https://foundryvtt.wiki/en/development/guides/SD-tutorial/SD07-Extending-the-ActorSheet-class
 		//? Use a safe clone of the actor data for further operations.
-		const actorData = this.actor.toObject(false);
+		const actorData = await this.actor.toObject(false);
 		//? Add the actor's system attributes and flages to the context for easier access.
 		context.system = actorData.system;
 		context.flags = actorData.flags;
@@ -77,17 +77,15 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//? This will create the .RollStats object under .system that is used by Handlebars in the actor sheet for rolling
 		this.actor.getRollData();
 		//? Provide a boolean for if 'Beta Testing of New Features' is enabled
-		context.betaTesting = game.settings.get("metanthropes-system", "metaBetaTesting");
+		context.betaTesting = await game.settings.get("metanthropes-system", "metaBetaTesting");
 		//? Provide a boolean for if 'Advanced Logging' is enabled
-		context.advancedLogging = game.settings.get("metanthropes-system", "metaAdvancedLogging");
+		context.advancedLogging = await game.settings.get("metanthropes-system", "metaAdvancedLogging");
 		//? Provide a combined boolean for if 'Beta Testing of New Features' and 'Advanced Logging' are enabled
 		context.advancedBetaTesting = context.betaTesting && context.advancedLogging;
 		//? Provide a boolean for if the user is a Narrator(GameMaster)
 		context.isNarrator = game.user.isGM;
 		//? Add the actor's active effects to the context for easier access.
 		if (context.betaTesting) context.effects = prepareActiveEffectCategories(this.actor.effects);
-		//? Change the default Tab to Summary for Narrators opening up Premade Actors
-		if (game.user.isGM && this.actor.isPremade) this._tabs[0].active = "cs-summary";
 		metaLog(3, "MetanthropesActorSheet", "getData", "this, context, options", this, context, options);
 		return context;
 	}

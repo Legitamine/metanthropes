@@ -325,46 +325,78 @@
 			{{/each}}
 		</div>
 	</div>
-</div>
-{{#if betaTesting}}
-	<div>
-		{{> "systems/metanthropes-system/templates/helpers/active-effects.hbs"}}
-	</div>
-{{else}}
-	<div class="meta-ui-responsive meta-ui-hide-at-minimum">
-		<div class="layout-container-grid1x3 style-container-physical">
-			<div data-tooltip="Immunity offers immunity to medical conditions and specific effects">
-				<p class="style-actorinfo-tier2">Immunities
-					<input name="system.physical.immunities.value" type="text"
-						value="{{system.physical.immunities.value}}" data-dtype="String"
-						placeholder="Immunities" />
-				</p>
-			</div>
-			<div data-tooltip="Detections allow a Character to perceive something others cannot">
-				<p class="style-actorinfo-tier2">Detections
-					<input name="system.physical.detections.value" type="text"
-						value="{{system.physical.detections.value}}" data-dtype="String"
-						placeholder="Detections" />
-				</p>
-			</div>
+	<div class="layout-container-grid3x1">
+		{{#each system.Characteristics}}
 			<div
-				data-tooltip="Shifts are Buffs which alter the physiology, biomass, shape, and form of the one who activates them. Multiple Shifts activated at the same target do not stack, and only the one with the highest numerical value is considered">
-				<p class="style-actorinfo-tier2">Shifts
-					<input name="system.physical.shifts.value" type="text"
-						value="{{system.physical.shifts.value}}" data-dtype="String"
-						placeholder="Shifts" />
+				class="layout-container-grid2x2 style-container-stats meta-ui-responsive meta-ui-hide-at-minimum">
+				{{#each CoreConditions}}
+					<div {{#if (gt this 0)}} class="style-cs-conditions" {{else}}
+						class="style-cs-conditions meta-ui-obscure" {{/if}}>
+						<p data-tooltip="{{@key}} Condition Level">💀 <label {{#if (gt this 0)}}
+								class="meta-ui-responsive meta-ui-hide-at-medium style-cs-conditions"
+								{{else}}
+								class="meta-ui-responsive meta-ui-hide-at-medium style-cs-conditions meta-ui-obscure"
+								{{/if}}
+								for="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}">{{@key}}</label>
+						</p>
+						<p data-tooltip="{{@key}} Condition Level">
+							<select {{#if (gt this 0)}} class="style-cs-conditions" {{else}}
+								class="style-cs-conditions meta-ui-obscure" {{/if}}
+								name="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}"
+								id="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}"
+								data-dtype="Number">
+								<option value="0" {{selected this 0}}>0</option>
+								<option value="1" {{selected this 1}}>1</option>
+								<option value="2" {{selected this 2}}>2</option>
+								<option value="3" {{selected this 3}}>3</option>
+								<option value="4" {{selected this 4}}>4</option>
+								<option value="5" {{selected this 5}}>5</option>
+							</select>
+						</p>
+					</div>
+				{{/each}}
+			</div>
+		{{/each}}
+	</div>
+	{{#if betaTesting}}
+		<div>
+			{{> "systems/metanthropes-system/templates/helpers/active-effects.hbs"}}
+		</div>
+	{{else}}
+		<div class="meta-ui-responsive meta-ui-hide-at-minimum">
+			<div class="layout-container-grid1x3 style-container-physical">
+				<div data-tooltip="Immunity offers immunity to medical conditions and specific effects">
+					<p class="style-actorinfo-tier2">Immunities
+						<input name="system.physical.immunities.value" type="text"
+							value="{{system.physical.immunities.value}}" data-dtype="String"
+							placeholder="Immunities" />
+					</p>
+				</div>
+				<div data-tooltip="Detections allow a Character to perceive something others cannot">
+					<p class="style-actorinfo-tier2">Detections
+						<input name="system.physical.detections.value" type="text"
+							value="{{system.physical.detections.value}}" data-dtype="String"
+							placeholder="Detections" />
+					</p>
+				</div>
+				<div
+					data-tooltip="Shifts are Buffs which alter the physiology, biomass, shape, and form of the one who activates them. Multiple Shifts activated at the same target do not stack, and only the one with the highest numerical value is considered">
+					<p class="style-actorinfo-tier2">Shifts
+						<input name="system.physical.shifts.value" type="text"
+							value="{{system.physical.shifts.value}}" data-dtype="String"
+							placeholder="Shifts" />
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="meta-ui-responsive meta-ui-hide-at-minimum">
+			<div class="layout-container-outer-tabs style-container-outer-tabs">
+				<br><br>
+				<p>
+				<div class="resource-label">EFFECTS are not fully supported yet. Additional
+					functionality is available in Beta Testing
+				</div>
 				</p>
 			</div>
 		</div>
-	</div>
-	<div class="meta-ui-responsive meta-ui-hide-at-minimum">
-		<div class="layout-container-outer-tabs style-container-outer-tabs">
-			<br><br>
-			<p>
-			<div class="resource-label">EFFECTS are not fully supported yet. Additional
-				functionality is available in Beta Testing
-			</div>
-			</p>
-		</div>
-	</div>
-{{/if}}
+	{{/if}}

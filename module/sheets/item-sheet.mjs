@@ -43,11 +43,11 @@ export class MetanthropesItemSheet extends ItemSheet {
 		return `${path}/item-${this.item.type}-sheet.hbs`;
 	}
 	/** @override */
-	getData(options = {}) {
+	async getData(options = {}) {
 		//! In the item getData we currently collect and store in .rollData the actor's roll data.
 		//! However it's never used from there - right??
 		//? Retrieve base data structure.
-		const context = super.getData(options);
+		const context = await super.getData(options);
 		//? Use a safe clone of the item data for further operations.
 		//! this is not the same as in actor??
 		const itemData = context.item;
@@ -62,9 +62,9 @@ export class MetanthropesItemSheet extends ItemSheet {
 		context.system = itemData.system;
 		context.flags = itemData.flags;
 		//? Provide a boolean for if 'Beta Testing of New Features' is enabled
-		context.betaTesting = game.settings.get("metanthropes-system", "metaBetaTesting");
+		context.betaTesting = await game.settings.get("metanthropes-system", "metaBetaTesting");
 		//? Provide a boolean for if 'Advanced Logging' is enabled
-		context.advancedLogging = game.settings.get("metanthropes-system", "metaAdvancedLogging");
+		context.advancedLogging = await game.settings.get("metanthropes-system", "metaAdvancedLogging");
 		//? Provide a combined boolean for if 'Beta Testing of New Features' and 'Advanced Logging' are enabled
 		context.advancedBetaTesting = context.betaTesting && context.advancedLogging;
 		//? Provide a boolean for if the user is a Narrator(GameMaster)

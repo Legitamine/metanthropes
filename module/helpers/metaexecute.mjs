@@ -441,14 +441,18 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			metaLog(3, "MetaExecute", "Manually Selected Targets:", manuallySelectedTargets);
 			//? Store targeted actors in an array
 			targetedActors = Array.from(manuallySelectedTargets).map((token) => token.actor);
+			metaLog(3, "MetaExecute", "Targeted Actors:", targetedActors);
 			//? Check if there are any targeted actors and set the actionableTargets variable accordingly
 			actionableTargets = targetedActors.length > 0;
-			//? Get the names of all targeted actors
-			const targetedActorNames = targetedActors.map((actor) => actor.name);
-			let allSelectedTargetsMessage = `Selected 🎯 Targets: ${targetedActorNames.join(", ")}`;
-			contentMessage += allSelectedTargetsMessage;
-			contentMessage += `<hr />`;
-			metaLog(3, "MetaExecute", "All Selected Targets Message:", allSelectedTargetsMessage);
+			metaLog(3, "MetaExecute", "Actionable Targets:", actionableTargets);
+			if (actionableTargets) {
+				//? Get the names of all targeted actors
+				const targetedActorNames = targetedActors.map((actor) => actor.name);
+				const allSelectedTargetsMessage = `Selected 🎯 Targets: ${targetedActorNames.join(", ")}`;
+				contentMessage += allSelectedTargetsMessage;
+				contentMessage += `<hr />`;
+				metaLog(3, "MetaExecute", "All Selected Targets Message:", allSelectedTargetsMessage);
+			}
 		}
 		if (damageCosmicMessage) {
 			contentMessage += damageCosmicMessage;

@@ -483,7 +483,7 @@ h3 {
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   -moz-column-gap: 3px;
        column-gap: 3px;
   row-gap: 3px;
@@ -556,6 +556,16 @@ h3 {
 .metanthropes .layout-container-grid3x1-cs {
   display: grid;
   grid-template-columns: 2.4fr 1.6fr 2.8fr;
+  -moz-column-gap: 1px;
+       column-gap: 1px;
+  padding: 0px;
+  margin: 0px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+}
+.metanthropes .layout-container-grid3x1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   -moz-column-gap: 1px;
        column-gap: 1px;
   padding: 0px;
