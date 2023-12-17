@@ -1,3 +1,4 @@
-2023/12/17-15:07:48.139 85c4 Recovering log #510
-2023/12/17-15:07:48.142 85c4 Delete type=0 #510
-2023/12/17-15:07:48.143 85c4 Delete type=3 #509
+2023/12/17-15:20:09.344 9050 Log #519: 0 ops saved to Table #520 OK
+2023/12/17-15:20:09.345 9050 Archiving F:\FoundryVTT\Data\systems\metanthropes-system\packs\narrator-notes/000519.log: OK
+2023/12/17-15:20:09.348 9050 Archiving F:\FoundryVTT\Data\systems\metanthropes-system\packs\narrator-notes/MANIFEST-000518: OK
+2023/12/17-15:20:09.349 9050 **** Repaired leveldb F:\FoundryVTT\Data\systems\metanthropes-system\packs\narrator-notes; recovered 0 files; 0 bytes. Some data may have been lost. ****

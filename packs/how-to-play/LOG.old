@@ -1,3 +1,4 @@
-2023/12/17-15:07:48.130 1784 Recovering log #508
-2023/12/17-15:07:48.133 1784 Delete type=0 #508
-2023/12/17-15:07:48.133 1784 Delete type=3 #507
+2023/12/17-15:20:09.333 5b4c Log #517: 0 ops saved to Table #518 OK
+2023/12/17-15:20:09.334 5b4c Archiving F:\FoundryVTT\Data\systems\metanthropes-system\packs\how-to-play/000517.log: OK
+2023/12/17-15:20:09.335 5b4c Archiving F:\FoundryVTT\Data\systems\metanthropes-system\packs\how-to-play/MANIFEST-000516: OK
+2023/12/17-15:20:09.336 5b4c **** Repaired leveldb F:\FoundryVTT\Data\systems\metanthropes-system\packs\how-to-play; recovered 0 files; 0 bytes. Some data may have been lost. ****

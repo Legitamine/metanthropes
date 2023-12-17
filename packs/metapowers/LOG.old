@@ -1,3 +1,5 @@
-2023/12/17-15:07:48.075 1784 Recovering log #515
-2023/12/17-15:07:48.078 1784 Delete type=0 #515
-2023/12/17-15:07:48.078 1784 Delete type=3 #514
+2023/12/17-15:20:09.307 3294 Log #524: 0 ops saved to Table #525 OK
+2023/12/17-15:20:09.307 3294 Archiving F:\FoundryVTT\Data\systems\metanthropes-system\packs\metapowers/000524.log: OK
+2023/12/17-15:20:09.308 3294 Table #399: 70 entries OK
+2023/12/17-15:20:09.309 3294 Archiving F:\FoundryVTT\Data\systems\metanthropes-system\packs\metapowers/MANIFEST-000523: OK
+2023/12/17-15:20:09.311 3294 **** Repaired leveldb F:\FoundryVTT\Data\systems\metanthropes-system\packs\metapowers; recovered 1 files; 232456 bytes. Some data may have been lost. ****
