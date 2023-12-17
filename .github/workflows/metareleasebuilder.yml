@@ -60,6 +60,8 @@ jobs:
                   fvtt package pack -n "premade-protagonists" --in ./packs/premade-protagonists/_source --out ./packs
                   echo "Packaging rollable-tables"
                   fvtt package pack -n "rollable-tables" --in ./packs/rollable-tables/_source --out ./packs
+                  echo "Contents of Data directory post packaging"
+                  dir /home/runner/work/${{steps.id.outputs.prop}}/Data
                   echo "Finished packaging Compendiums"
             # Foundry VTT CLI is supposed to help with packs, but I'm not sure how to use it yet
             # - name: Install Foundry CLI
