@@ -1,0 +1,26 @@
+{
+  "name": "Meta Intelligence",
+  "sorting": "a",
+  "folder": "czsmmtAwemx4ZV2a",
+  "type": "Item",
+  "_id": "YrtYH0JZxubPi6Mi",
+  "sort": 0,
+  "color": "#8e8989",
+  "flags": {
+    "df-qol": {
+      "colour": ""
+    },
+    "scene-packer": {
+      "hash": "37ac52e0ac60b43165c5c9281677a923063725a7"
+    }
+  },
+  "_stats": {
+    "systemId": "metanthropes-system",
+    "systemVersion": "0.8.85",
+    "coreVersion": "11.315",
+    "createdTime": 1698750129589,
+    "modifiedTime": 1700757762366,
+    "lastModifiedBy": "yjFY5zW9urDSuce5"
+  },
+  "_key": "!folders!YrtYH0JZxubPi6Mi"
+}

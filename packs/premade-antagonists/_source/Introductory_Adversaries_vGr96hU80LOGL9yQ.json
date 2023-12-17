@@ -1,0 +1,26 @@
+{
+  "name": "Introductory Adversaries",
+  "sorting": "a",
+  "folder": null,
+  "type": "Actor",
+  "_id": "vGr96hU80LOGL9yQ",
+  "sort": 100000,
+  "color": "#d90d0d",
+  "flags": {
+    "df-qol": {
+      "colour": ""
+    },
+    "scene-packer": {
+      "hash": "291d59dd414a5303d991277d58e113d0cfcd78a3"
+    }
+  },
+  "_stats": {
+    "systemId": "metanthropes-system",
+    "systemVersion": "0.8.85",
+    "coreVersion": "11.315",
+    "createdTime": 1698750685985,
+    "modifiedTime": 1700757399929,
+    "lastModifiedBy": "yjFY5zW9urDSuce5"
+  },
+  "_key": "!folders!vGr96hU80LOGL9yQ"
+}

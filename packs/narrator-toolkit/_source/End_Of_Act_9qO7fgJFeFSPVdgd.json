@@ -1,0 +1,34 @@
+{
+  "name": "End Of Act",
+  "type": "script",
+  "scope": "global",
+  "author": "U772esq9FbrkahYQ",
+  "img": "icons/svg/door-closed.svg",
+  "command": "//*Narrator's Toolbox - End of Act*//\nif (!game.user.isGM) {\n\tui.notifications.warn(\"You must be a Narrator to use this macro.\");\n\treturn;\n}\nlet actors = game.actors.contents.filter((a) => a.type === \"Protagonist\");\nlet dialogContent = `<form>\n<div class=\"style-form\">To be used at the end of each Act, to reward free Perks and to change Arc & Regression<br><br></div>\n<div class=\"form-group\">\n\t<div>Protagonist</div>\n\t<div>Arc</div>\n\t<div>New Arc</div>\n\t<div>Regression</div>\n\t<div>New Regression</div>\n\t<div>Starting/Free Perks</div>\n\t<div>Award Perks</div>\n</div>`;\nfor (let actor of actors) {\n\tdialogContent += `<div class=\"form-group\">\n\t<label>${actor.name}</label>\n\t<div>${actor.system.Vital.arc.value}</div>\n\t<div><input type=\"text\" name=\"newArc-${actor.id}\" value=\"${actor.system.Vital.arc.value}\"></div>\n\t<div>${actor.system.entermeta.regression.value}</div>\n\t<div><input type=\"text\" name=\"newRegression-${actor.id}\" value=\"${actor.system.entermeta.regression.value}\"></div>\n\t<div>${actor.system.Perks.Details.Starting.value}</div>\n\t<div><input type=\"number\" name=\"awardPerks-${actor.id}\" value=\"0\"></div>\n\t</div>`;\n}\ndialogContent += `</form><br><br>`;\ndialogContent += `<div>Awarding Perks will be considered as Starting/Free Perks and won't require spending Experience<br><br></div>`;\nlet dialogOptions = {\n\twidth: 750,\n\theight: 520,\n\tresizable: true,\n};\nlet toolboxdialog = new Dialog(\n\t{\n\t\ttitle: \"Narrator's Toolbox - End of Act\",\n\t\tcontent: dialogContent,\n\t\tbuttons: {\n\t\t\tok: {\n\t\t\t\tlabel: \"Confirm\",\n\t\t\t\tcallback: async (html) => {\n\t\t\t\t\tfor (let actor of actors) {\n\t\t\t\t\t\tlet freePerks = parseInt(actor.system.Perks.Details.Starting.value);\n\t\t\t\t\t\tlet awardPerks = parseInt(html.find(`[name=\"awardPerks-${actor.id}\"]`).val());\n\t\t\t\t\t\tlet newFreePerks = freePerks + awardPerks;\n\t\t\t\t\t\tlet newArc = html.find(`[name=\"newArc-${actor.id}\"]`).val();\n\t\t\t\t\t\tlet newRegression = html.find(`[name=\"newRegression-${actor.id}\"]`).val();\n\t\t\t\t\t\tawait actor.update({\n\t\t\t\t\t\t\t\"system.Perks.Details.Starting.value\": newFreePerks,\n\t\t\t\t\t\t\t\"system.Vital.arc.value\": newArc,\n\t\t\t\t\t\t\t\"system.entermeta.regression.value\": newRegression,\n\t\t\t\t\t\t});\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t},\n\t\t\tcancel: {\n\t\t\t\tlabel: \"Cancel\",\n\t\t\t},\n\t\t},\n\t\tdefault: \"ok\",\n\t},\n\tdialogOptions\n);\ntoolboxdialog.render(true);",
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "U772esq9FbrkahYQ": 3
+  },
+  "flags": {
+    "advanced-macros": {
+      "runForSpecificUser": ""
+    },
+    "core": {},
+    "scene-packer": {
+      "sourceId": "Macro.ufCqQmKGCIRzRXJj",
+      "hash": "4ca60813ee3ae2bc21811ea0389b6138ec1784fb"
+    }
+  },
+  "_stats": {
+    "systemId": "metanthropes-system",
+    "systemVersion": "0.8.40",
+    "coreVersion": "11.313",
+    "createdTime": 1693073867664,
+    "modifiedTime": 1698678574333,
+    "lastModifiedBy": "yg1FtESHVZwL2lLZ"
+  },
+  "_id": "9qO7fgJFeFSPVdgd",
+  "sort": 100000,
+  "_key": "!macros!9qO7fgJFeFSPVdgd"
+}
