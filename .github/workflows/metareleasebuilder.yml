@@ -38,7 +38,15 @@ jobs:
                   mkdir -p /home/runner/work/${{steps.version.outputs.prop}}/Data
                   fvtt configure set dataPath "/home/runner/work/${{steps.version.outputs.prop}}/Data"
                   fvtt package workon "${{steps.version.outputs.prop}}" --type "System"
-                  fvtt package pack -n "introductory-scenes" --in ./packs/introductory-scenes/ --out ./packs
+                  fvtt package pack -n "how-to-play" --in ./packs/how-to-play/_source --out ./packs
+                  fvtt package pack -n "introductory-scenes" --in ./packs/introductory-scenes/_source --out ./packs
+                  fvtt package pack -n "metapowers" --in ./packs/metapowers/_source --out ./packs
+                  fvtt package pack -n "narrator-notes" --in ./packs/narrator-notes/_source --out ./packs
+                  fvtt package pack -n "narrator-toolkit" --in ./packs/narrator-toolkit/_source --out ./packs
+                  fvtt package pack -n "possessions" --in ./packs/possessions/_source --out ./packs
+                  fvtt package pack -n "premade-antagonists" --in ./packs/premade-antagonists/_source --out ./packs
+                  fvtt package pack -n "premade-protagonists" --in ./packs/premade-protagonists/_source --out ./packs
+                  fvtt package pack -n "rollable-tables" --in ./packs/rollable-tables/_source --out ./packs
             # Foundry VTT CLI is supposed to help with packs, but I'm not sure how to use it yet
             # - name: Install Foundry CLI
             #   run: npm install -g @foundry-vtt/cli

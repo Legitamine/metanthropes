@@ -1,0 +1,26 @@
+{
+  "name": "Ancestral Connection",
+  "sorting": "a",
+  "folder": "czsmmtAwemx4ZV2a",
+  "type": "Item",
+  "_id": "QCp6OKMn8tR8ZPaB",
+  "sort": -100000,
+  "color": "#908989",
+  "flags": {
+    "df-qol": {
+      "colour": ""
+    },
+    "scene-packer": {
+      "hash": "19e2fb0f42c84e671c0762f24ce501512f3b4fd7"
+    }
+  },
+  "_stats": {
+    "systemId": "metanthropes-system",
+    "systemVersion": "0.8.85",
+    "coreVersion": "11.315",
+    "createdTime": 1698346754261,
+    "modifiedTime": 1700757762366,
+    "lastModifiedBy": "yjFY5zW9urDSuce5"
+  },
+  "_key": "!folders!QCp6OKMn8tR8ZPaB"
+}

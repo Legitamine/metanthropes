@@ -1,0 +1,27 @@
+{
+  "name": "Controller",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "description": "",
+  "sort": 100000,
+  "color": "#dfea43",
+  "flags": {
+    "df-qol": {
+      "colour": "#4e4e4b"
+    },
+    "scene-packer": {
+      "hash": "4437887b740ee573ccd93b44ff04e36d3e995ea0"
+    }
+  },
+  "_stats": {
+    "systemId": "metanthropes-system",
+    "systemVersion": "0.8.85",
+    "coreVersion": "11.315",
+    "createdTime": 1693133098488,
+    "modifiedTime": 1700757685147,
+    "lastModifiedBy": "yjFY5zW9urDSuce5"
+  },
+  "_id": "2vml0QVxnc2qkSnD",
+  "_key": "!folders!2vml0QVxnc2qkSnD"
+}

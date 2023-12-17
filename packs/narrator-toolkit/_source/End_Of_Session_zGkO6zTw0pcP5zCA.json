@@ -1,0 +1,34 @@
+{
+  "name": "End Of Session",
+  "type": "script",
+  "scope": "global",
+  "author": "U772esq9FbrkahYQ",
+  "img": "icons/svg/door-secret-outline.svg",
+  "command": "//*Narrator's Toolbox - End of Session*//\nif (!game.user.isGM) {\n\tui.notifications.warn(\"You must be a Narrator to use this macro.\");\n\treturn;\n}\nlet actors = game.actors.contents.filter((a) => a.type === \"Protagonist\");\nlet dialogContent = `<form>\n<div class=\"style-form\">To be used at the end of each Session to award Experience<br><br></div>\n<div class=\"form-group style-form\">\n\t<div class=\"style-form\">Protagonist</div>\n\t<div class=\"style-form\">Sessions Played</div>\n\t<div class=\"style-form\">Arc</div>\n\t<div class=\"style-form\">Regression</div>\n\t<div class=\"style-form\">Total Experience</div>\n\t<div class=\"style-form\">Award Experience</div>\n</div>\t\n`;\nfor (let actor of actors) {\n\tdialogContent += `<div class=\"form-group\">\n\t\t\t<div class=\"style-form\">${actor.name}</div>\n\t\t\t<div class=\"style-form\">${actor.system.entermeta.sessions.value}</div>\n\t\t\t<div class=\"style-form\">${actor.system.Vital.arc.value}</div>\n\t\t\t<div class=\"style-form\">${actor.system.entermeta.regression.value}</div>\n\t\t\t<div class=\"style-form\">${actor.system.Vital.Experience.Total}</div>\n\t\t\t<div class=\"style-form\"><input type=\"number\" name=\"awardExperience-${actor.id}\" value=\"0\"></div>\n\t\t</div>`;\n}\ndialogContent += `</form><br><br>`;\ndialogContent += `<div class=\"style-form\">Confirming will also increase Session Played by +1 for each Protagonist</div><br><br>`;\nlet dialogOptions = {\n\twidth: 750,\n\theight: 520,\n\tresizable: true,\n};\nlet toolboxdialog = new Dialog(\n\t{\n\t\ttitle: \"Narrator's Toolbox - End of Session\",\n\t\tcontent: dialogContent,\n\t\tbuttons: {\n\t\t\tok: {\n\t\t\t\tlabel: \"Confirm\",\n\t\t\t\tcallback: async (html) => {\n\t\t\t\t\tfor (let actor of actors) {\n\t\t\t\t\t\tlet currentExperience = parseInt(actor.system.Vital.Experience.Total);\n\t\t\t\t\t\tlet awardExperience = parseInt(html.find(`[name=\"awardExperience-${actor.id}\"]`).val());\n\t\t\t\t\t\tlet newExperience = currentExperience + awardExperience;\n\t\t\t\t\t\tlet sessionsPlayed = parseInt(actor.system.entermeta.sessions.value);\n\t\t\t\t\t\tlet newSessionsPlayed = sessionsPlayed + 1;\n\t\t\t\t\t\tawait actor.update({\n\t\t\t\t\t\t\t\"system.Vital.Experience.Total\": newExperience,\n\t\t\t\t\t\t\t\"system.entermeta.sessions.value\": newSessionsPlayed,\n\t\t\t\t\t\t});\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t},\n\t\t\tcancel: {\n\t\t\t\tlabel: \"Cancel\",\n\t\t\t},\n\t\t},\n\t\tdefault: \"ok\",\n\t},\n\tdialogOptions\n);\ntoolboxdialog.render(true);",
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "U772esq9FbrkahYQ": 3
+  },
+  "flags": {
+    "advanced-macros": {
+      "runForSpecificUser": ""
+    },
+    "core": {},
+    "scene-packer": {
+      "sourceId": "Macro.muiNHq9AzrJsj9mr",
+      "hash": "914a0b852b6785a8db48ff9fbd275d4f453feff8"
+    }
+  },
+  "_stats": {
+    "systemId": "metanthropes-system",
+    "systemVersion": "0.8.40",
+    "coreVersion": "11.313",
+    "createdTime": 1693073949142,
+    "modifiedTime": 1698678190355,
+    "lastModifiedBy": "yg1FtESHVZwL2lLZ"
+  },
+  "_id": "zGkO6zTw0pcP5zCA",
+  "sort": 0,
+  "_key": "!macros!zGkO6zTw0pcP5zCA"
+}

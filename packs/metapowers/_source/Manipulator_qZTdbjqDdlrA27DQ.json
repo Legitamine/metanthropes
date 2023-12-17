@@ -1,0 +1,27 @@
+{
+  "name": "Manipulator",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "description": "",
+  "sort": 100000,
+  "color": "#ec2222",
+  "flags": {
+    "df-qol": {
+      "colour": ""
+    },
+    "scene-packer": {
+      "hash": "40ff1c73a0c88e129cba4b49429403565b746524"
+    }
+  },
+  "_stats": {
+    "systemId": "metanthropes-system",
+    "systemVersion": "0.8.85",
+    "coreVersion": "11.315",
+    "createdTime": 1693133104458,
+    "modifiedTime": 1700757746721,
+    "lastModifiedBy": "yjFY5zW9urDSuce5"
+  },
+  "_id": "qZTdbjqDdlrA27DQ",
+  "_key": "!folders!qZTdbjqDdlrA27DQ"
+}

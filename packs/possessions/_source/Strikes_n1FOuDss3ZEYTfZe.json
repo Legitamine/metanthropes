@@ -1,0 +1,26 @@
+{
+  "name": "Strikes",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "n1FOuDss3ZEYTfZe",
+  "sort": 100000,
+  "color": "#dbb997",
+  "flags": {
+    "df-qol": {
+      "colour": ""
+    },
+    "scene-packer": {
+      "hash": "e694e5ad3e2610507b393ce050563e991ecaecc6"
+    }
+  },
+  "_stats": {
+    "systemId": "metanthropes-system",
+    "systemVersion": "0.8.85",
+    "coreVersion": "11.315",
+    "createdTime": 1698749741524,
+    "modifiedTime": 1700754407608,
+    "lastModifiedBy": "yjFY5zW9urDSuce5"
+  },
+  "_key": "!folders!n1FOuDss3ZEYTfZe"
+}

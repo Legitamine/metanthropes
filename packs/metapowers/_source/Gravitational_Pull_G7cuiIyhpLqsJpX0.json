@@ -1,0 +1,477 @@
+{
+  "folder": "0ehTUuPWHnxh9WTq",
+  "name": "Gravitational Pull",
+  "type": "Metapower",
+  "img": "systems/metanthropes-system/artwork/metapowers/Control Gravity.webp",
+  "system": {
+    "Execution": {
+      "StatRolled": {
+        "type": "text",
+        "dtype": "String",
+        "label": "🎲",
+        "value": "Willpower",
+        "options": [
+          "Awareness",
+          "Consciousness",
+          "Creativity",
+          "Endurance",
+          "Manipulation",
+          "Perception",
+          "Power",
+          "Reflexes",
+          "Willpower"
+        ]
+      },
+      "ActionSlot": {
+        "type": "text",
+        "dtype": "String",
+        "label": "⏱ Activation",
+        "value": "Main Action",
+        "options": [
+          "Always Active",
+          "Reaction",
+          "Extra Action",
+          "Movement",
+          "Main Action",
+          "Focused Action: Full Turn",
+          "Focused Action: Cycle",
+          "Focused Action: 1d10 Cycles",
+          "Focused Action: Hour",
+          "Focused Action: 1d10 Hours"
+        ]
+      },
+      "Targets": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Number of 🎯 Targets",
+        "value": "1d10/2",
+        "options": [
+          "Self",
+          "One",
+          "1 or 2",
+          "1d10/2",
+          "1d10",
+          "2d10",
+          "5d10",
+          "10d10",
+          "All (Area)",
+          "Any (Area)"
+        ]
+      },
+      "TargetsEligibility": {
+        "label": "Eligible 🎯 Targets",
+        "value": [
+          "Perceptible"
+        ],
+        "selections": {
+          "Willing": "Willing",
+          "Detectable": "Detectable",
+          "Perceptible": "Perceptible",
+          "Visible": "Visible",
+          "Audible": "Audible",
+          "Odorous": "Odorous",
+          "Tangible": "Tangible",
+          "Taste-able": "Taste-able"
+        }
+      },
+      "TargetsType": {
+        "label": "Type of 🎯 Targets",
+        "value": [],
+        "selections": {
+          "Animal": "Animal",
+          "Human": "Human",
+          "Metanthrope": "Metanthrope",
+          "Extradimensional": "Extradimensional",
+          "Extraterrestrial": "Extraterrestrial",
+          "Metatherion": "Metatherion",
+          "Organism": "Organism",
+          "Dead": "Dead",
+          "Plant": "Plant",
+          "Object": "Object",
+          "Character": "Character",
+          "Metapowered": "Metapowered",
+          "Living": "Living"
+        }
+      },
+      "Duration": {
+        "type": "text",
+        "dtype": "String",
+        "label": "⏳ Duration",
+        "value": "Instantaneous",
+        "options": [
+          "Instantaneous",
+          "Round",
+          "One Cycle",
+          "1d10 Cycles",
+          "One Hour",
+          "1d10 Hours",
+          "One Day",
+          "1d10 Days",
+          "One Week",
+          "1d10 Weeks",
+          "One Month",
+          "1d10 Months",
+          "One Year",
+          "1d10 Years",
+          "Permanent"
+        ]
+      },
+      "Range": {
+        "type": "text",
+        "dtype": "String",
+        "label": "📏 Range",
+        "value": "Building [Area 3]",
+        "options": [
+          "Self [Area 0]",
+          "Hexagon [Area 1]",
+          "Room [Area 2]",
+          "Building [Area 3]",
+          "Square [Area 4]",
+          "Block [Area 5]",
+          "Neighborhood [Area 6]",
+          "District [Area 7]",
+          "Town [Area 8]",
+          "City [Area 9]",
+          "Region [Area 10]",
+          "Sector [Area 11]",
+          "Country [Area 12]",
+          "Zone [Area 13]",
+          "Continent [Area 14]",
+          "Hemisphere [Area 15]",
+          "Planet [Area 16]"
+        ]
+      },
+      "AreaEffect": {
+        "type": "text",
+        "dtype": "String",
+        "label": "🗺️ Area of Effect",
+        "value": "Building [Area 3]",
+        "options": [
+          "None",
+          "Hexagon [Area 1]",
+          "Room [Area 2]",
+          "Building [Area 3]",
+          "Square [Area 4]",
+          "Block [Area 5]",
+          "Neighborhood [Area 6]",
+          "District [Area 7]",
+          "Town [Area 8]",
+          "City [Area 9]",
+          "Region [Area 10]",
+          "Sector [Area 11]",
+          "Country [Area 12]",
+          "Zone [Area 13]",
+          "Continent [Area 14]",
+          "Hemisphere [Area 15]",
+          "Planet [Area 16]"
+        ]
+      },
+      "AreaType": {
+        "label": "🗺️ (Type)",
+        "value": [],
+        "selections": {
+          "None": "None",
+          "Aura": "Aura",
+          "Line": "Line",
+          "Burst": "Burst",
+          "Hemisphere": "Hemisphere",
+          "Sphere": "Sphere"
+        }
+      },
+      "AdditionalInfo": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Additional Information",
+        "value": "<p style=\"text-align: center;\"><em><abbr title=\"Targets\"><span class=\"ipsEmoji\"><abbr title=\"Targets\">🎯</abbr></span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\">target up to 1d10/2 targets of&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Weight\"><span class=\"ipsEmoji\"><abbr title=\"Weight\">⚖️</abbr></span></abbr>&nbsp;<abbr title=\"How heavy is an object or a Character, effects Movement and Grapple\"><abbr title=\"How heavy is an object or a Character, effects Movement and Grapple\">Weight</abbr></abbr>&nbsp;up to 10</span></em></p>\n<p style=\"text-align: center;\"><em><abbr title=\"Line, Burst, or Fill\"><abbr title=\"Line, Burst, or Fill\">Area Effect</abbr></abbr>: Sphere is additionally three Hexagons tall &amp; deep.</em></p>\n<p style=\"text-align: center;\"><img class=\"ipsImage_thumbnailed\" style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://content.invisioncic.com/e290497/monthly_2020_12/1247112289_AreaBuilding.png.bf42c35c6e61036a6502e938ef935b30.png\" alt=\"1247112289_AreaBuilding.png.bf42c35c6e61036a6502e938ef935b30.png\" width=\"300\" data-fileid=\"1207\" data-ratio=\"99.00\" data-src=\"//content.invisioncic.com/e290497/monthly_2020_12/1247112289_AreaBuilding.png.bf42c35c6e61036a6502e938ef935b30.png\" data-loaded=\"true\">&nbsp;&nbsp;&nbsp;<img class=\"ipsImage_thumbnailed\" style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://media.giphy.com/media/oCCLepEUjgEJ9mv5Ff/giphy.gif\" alt=\"giphy.gif\" width=\"338\" height=\"480\" data-ratio=\"142.01\" data-src=\"https://media.giphy.com/media/oCCLepEUjgEJ9mv5Ff/giphy.gif\" data-loaded=\"true\"></p>\n<p style=\"text-align: center;\"><a style=\"font-family: var(--font-primary); font-size: var(--font-size-14);\" title=\"Enlarge image\" href=\"https://content.invisioncic.com/e290497/monthly_2021_04/966926907_AreaRoom.png.9eb168313c990ec7bd723549fe5018ff.png\" data-fileid=\"1510\" data-wrappedlink=\"\" data-ipslightbox=\"\" data-ipslightbox-group=\"undefined\">&nbsp;</a></p>"
+      }
+    },
+    "Effects": {
+      "PermanentEffectDescription": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Permanent Effects",
+        "value": "<p><strong>Receive</strong><strong>&nbsp;</strong><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">🛡️</abbr></span></abbr><strong>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"A number that reduces incoming Damage of the same Energy Type\"><abbr title=\"A number that reduces incoming Damage of the same Energy Type\">Resistance</abbr></abbr>&nbsp;</span></strong><strong>10</strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;to&nbsp;</span></strong><strong>the&nbsp;</strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">Cosmic&nbsp;<abbr title=\"Cosmic, Elemental, Material or Psychic\"><abbr title=\"Cosmic, Elemental, Material or Psychic\">Energy Type</abbr></abbr>.</span></strong></p>"
+      },
+      "EffectDescription": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Effect",
+        "value": "<p style=\"text-align: justify;\"><strong><span lang=\"en-us\" xml:lang=\"en-us\"><span class=\"ipsEmoji\"><abbr title=\"Roll is Successful\">🟩</abbr></span></span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">:&nbsp;</span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">All targets found within the targeted&nbsp;</span></strong><strong><abbr title=\"Area Effects: Burst, Line, or FIll\"><span class=\"ipsEmoji\"><abbr title=\"Area Effects: Line, Burst, Aura, Hemisphere, or Sphere\">🗺️</abbr></span></abbr></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;area</span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">, receive the&nbsp;</span></strong><strong><abbr title=\"Condition\"><span class=\"ipsEmoji\"><abbr title=\"Condition\">💀</abbr></span></abbr></strong><strong>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\">Knocked Down and are moved up to seven Hexagons towards the epicenter of the&nbsp;<abbr title=\"Line, Burst, or Fill\"><abbr title=\"Line, Burst, Aura, Hemisphere, or Sphere\">Area Effect</abbr></abbr>. Any target can spend their&nbsp;<abbr title=\"One slot per Round as a response to another Character's Movement or Action\"><abbr title=\"One slot per Round as a response to another Character's Movement or Action\">Reaction</abbr></abbr>&nbsp;to attempt a Power roll, and if successful they ignore this effect.</span></strong></p>\n<p style=\"text-align: justify;\"><strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span></strong></p>\n<p style=\"text-align: justify;\"><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr>&nbsp;</span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">=&nbsp;</span></strong><abbr title=\"Targets\"><span class=\"ipsEmoji\"><abbr title=\"Targets\">🎯</abbr></span></abbr><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;+ 1</span></p>\n<p style=\"text-align: justify;\"><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr></span></strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><strong><span lang=\"en-us\" xml:lang=\"en-us\">=</span></strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><abbr title=\"Range\"><span class=\"ipsEmoji\"><abbr title=\"Range\">📏</abbr></span></abbr><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;+ 1 Area</span></p>\n<p style=\"text-align: justify;\"><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr>&nbsp;</span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">=</span></strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;Increase max<abbr title=\"Weight\"><span class=\"ipsEmoji\"><abbr title=\"Weight\">⚖️</abbr></span></abbr>&nbsp;by + 1</span>&nbsp;level</p>\n<p style=\"text-align: justify;\"><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\"><abbr title=\"Level of Failure\">❌</abbr></span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\"><abbr title=\"Level of Failure\">❌</abbr></span></abbr></span><strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span></strong><span lang=\"en-us\" xml:lang=\"en-us\">= Receive the&nbsp;</span><abbr title=\"Condition\"><span class=\"ipsEmoji\"><abbr title=\"Condition\">💀</abbr></span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\">Immobilized for&nbsp;</span>1<span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;<abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\"><abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\">Cycle</abbr></abbr></span></p>"
+      },
+      "VSStatRoll": {
+        "type": "text",
+        "dtype": "String",
+        "label": "🆚",
+        "options": [
+          "None",
+          "Awareness",
+          "Consciousness",
+          "Creativity",
+          "Endurance",
+          "Manipulation",
+          "Perception",
+          "Power",
+          "Reflexes",
+          "Willpower"
+        ],
+        "value": "None"
+      },
+      "Damage": {
+        "Cosmic": {
+          "label": "✨ Cosmic 💥 Damage",
+          "type": "number",
+          "dtype": "Number",
+          "Base": 0,
+          "Dice": 0
+        },
+        "Elemental": {
+          "label": "✨ Elemental 💥 Damage",
+          "type": "number",
+          "dtype": "Number",
+          "Base": 0,
+          "Dice": 0
+        },
+        "Material": {
+          "label": "✨ Material 💥 Damage",
+          "type": "number",
+          "dtype": "Number",
+          "Base": 0,
+          "Dice": 0
+        },
+        "Psychic": {
+          "label": "✨ Psychic 💥 Damage",
+          "type": "number",
+          "dtype": "Number",
+          "Base": 0,
+          "Dice": 0
+        }
+      },
+      "Healing": {
+        "label": "💞 Healing",
+        "type": "number",
+        "dtype": "Number",
+        "Base": 0,
+        "Dice": 0
+      },
+      "Special": {
+        "label": "Special",
+        "SpecialDiceName": {
+          "type": "text",
+          "dtype": "String",
+          "label": "Dice Name",
+          "value": "None"
+        },
+        "type": "number",
+        "dtype": "Number",
+        "isHalf": false,
+        "Base": 0,
+        "Dice": 0
+      },
+      "Conditions": {
+        "Applied": {
+          "label": "💀 ➕",
+          "type": "text",
+          "dtype": "String",
+          "value": "Knocked Down"
+        },
+        "Removed": {
+          "label": "💀 ➖",
+          "type": "text",
+          "dtype": "String",
+          "value": ""
+        }
+      },
+      "Buffs": {
+        "Permanent": {
+          "label": "🛡️ ♾️",
+          "type": "text",
+          "dtype": "String",
+          "value": "Cosmic Resistance 10"
+        },
+        "Applied": {
+          "label": "🛡️ ➕",
+          "type": "text",
+          "dtype": "String",
+          "value": ""
+        },
+        "Removed": {
+          "label": "🛡️ ➖",
+          "type": "text",
+          "dtype": "String",
+          "value": ""
+        }
+      },
+      "AdditionalInfo": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Effect Additional Information",
+        "value": "<p><span lang=\"en-us\" xml:lang=\"en-us\">The movement of all targets ends in case their trajectory encounters any obstacles, such as&nbsp;<abbr title=\"Natural landscapes and obstacles found in the Grid\">Terrain</abbr>&nbsp;or Characters.</span></p>"
+      }
+    },
+    "Results": {
+      "level00": {
+        "type": "text",
+        "dtype": "String",
+        "label": "🟩",
+        "value": null
+      },
+      "level01": {
+        "type": "text",
+        "dtype": "String",
+        "label": "1 * ✔️",
+        "value": null
+      },
+      "level02": {
+        "type": "text",
+        "dtype": "String",
+        "label": "2 * ✔️",
+        "value": null
+      },
+      "level03": {
+        "type": "text",
+        "dtype": "String",
+        "label": "3 * ✔️",
+        "value": null
+      },
+      "level04": {
+        "type": "text",
+        "dtype": "String",
+        "label": "4 * ✔️",
+        "value": null
+      },
+      "level05": {
+        "type": "text",
+        "dtype": "String",
+        "label": "5 * ✔️",
+        "value": null
+      },
+      "level06": {
+        "type": "text",
+        "dtype": "String",
+        "label": "6 * ✔️",
+        "value": null
+      },
+      "level07": {
+        "type": "text",
+        "dtype": "String",
+        "label": "7 * ✔️",
+        "value": null
+      },
+      "level08": {
+        "type": "text",
+        "dtype": "String",
+        "label": "8 * ✔️",
+        "value": null
+      },
+      "level09": {
+        "type": "text",
+        "dtype": "String",
+        "label": "9 * ✔️",
+        "value": null
+      },
+      "level10": {
+        "type": "text",
+        "dtype": "String",
+        "label": "10 * ✔️",
+        "value": null
+      },
+      "level11": {
+        "type": "text",
+        "dtype": "String",
+        "label": "11+ * ✔️",
+        "value": null
+      },
+      "AdditionalInfo": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Results Additional Information",
+        "value": null
+      }
+    },
+    "MetapowerName": {
+      "type": "text",
+      "dtype": "String",
+      "label": "Ⓜ️",
+      "value": "Control Gravity"
+    },
+    "Description": {
+      "type": "text",
+      "dtype": "String",
+      "label": "Metapower Description",
+      "value": "<p align=\"center\"><em><span lang=\"en-us\" xml:lang=\"en-us\">Gravitational Pull is a more focused technique within the Control Gravity arsenal. By creating a gravitational epicenter within a targeted area, you can cause an abrupt shift in the local gravitational forces. Individuals in proximity to the epicenter will be irresistibly drawn toward it, as if the very earth itself craves their presence. The strongest among them might resist the pull, but most will be inexorably drawn toward the epicenter's heart. Skillful Controllers can extend the reach of this effect, targeting additional, and heavier targets and even employing it from a distance. Yet, a mistimed attempt could result in the Controller inadvertently becoming the epicenter of the gravitational pull, briefly tethered to the ground.</span></em></p>\n<p>&nbsp;</p>"
+    },
+    "Classification": {
+      "type": "text",
+      "dtype": "String",
+      "label": "🔣",
+      "value": "Controller",
+      "options": [
+        "Aegis",
+        "Animator",
+        "Arbiter",
+        "Clairvoyant",
+        "Controller",
+        "Cosmonaut",
+        "Hammer",
+        "Kineticist",
+        "Manipulator",
+        "Utilitarian"
+      ]
+    },
+    "Level": {
+      "type": "number",
+      "dtype": "Number",
+      "label": "⏫",
+      "value": "2",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "EnergyType": {
+      "type": "text",
+      "dtype": "String",
+      "label": "✨",
+      "value": "Cosmic",
+      "options": [
+        "Cosmic",
+        "Elemental",
+        "Material",
+        "Psychic"
+      ]
+    },
+    "DestinyCost": {
+      "type": "number",
+      "dtype": "Number",
+      "label": "🤞",
+      "value": 0
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "yjFY5zW9urDSuce5": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.metanthropes-system.metapowers.Item.G7cuiIyhpLqsJpX0"
+    },
+    "scene-packer": {
+      "hash": "caa79478b8865e0a21b6c036d29d435b6a9e7b43"
+    }
+  },
+  "_stats": {
+    "systemId": "metanthropes-system",
+    "systemVersion": "0.8.85",
+    "coreVersion": "11.315",
+    "createdTime": 1693066222213,
+    "modifiedTime": 1700757685127,
+    "lastModifiedBy": "yjFY5zW9urDSuce5"
+  },
+  "_id": "G7cuiIyhpLqsJpX0",
+  "sort": 0,
+  "_key": "!items!G7cuiIyhpLqsJpX0"
+}

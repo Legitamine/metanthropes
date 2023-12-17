@@ -1,0 +1,475 @@
+{
+  "folder": "QCp6OKMn8tR8ZPaB",
+  "name": "Memory Infusion",
+  "type": "Metapower",
+  "img": "systems/metanthropes-system/artwork/metapowers/Ancestral Connection.webp",
+  "system": {
+    "Execution": {
+      "StatRolled": {
+        "type": "text",
+        "dtype": "String",
+        "label": "🎲",
+        "value": "Consciousness",
+        "options": [
+          "Awareness",
+          "Consciousness",
+          "Creativity",
+          "Endurance",
+          "Manipulation",
+          "Perception",
+          "Power",
+          "Reflexes",
+          "Willpower"
+        ]
+      },
+      "ActionSlot": {
+        "type": "text",
+        "dtype": "String",
+        "label": "⏱ Activation",
+        "value": "Extra Action",
+        "options": [
+          "Always Active",
+          "Reaction",
+          "Extra Action",
+          "Movement",
+          "Main Action",
+          "Focused Action: Full Turn",
+          "Focused Action: Cycle",
+          "Focused Action: 1d10 Cycles",
+          "Focused Action: Hour",
+          "Focused Action: 1d10 Hours"
+        ]
+      },
+      "Targets": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Number of 🎯 Targets",
+        "value": "Self",
+        "options": [
+          "Self",
+          "One",
+          "1 or 2",
+          "1d10/2",
+          "1d10",
+          "2d10",
+          "5d10",
+          "10d10",
+          "All (Area)",
+          "Any (Area)"
+        ]
+      },
+      "TargetsEligibility": {
+        "label": "Eligible 🎯 Targets",
+        "value": [],
+        "selections": {
+          "Willing": "Willing",
+          "Detectable": "Detectable",
+          "Perceptible": "Perceptible",
+          "Visible": "Visible",
+          "Audible": "Audible",
+          "Odorous": "Odorous",
+          "Tangible": "Tangible",
+          "Taste-able": "Taste-able"
+        }
+      },
+      "TargetsType": {
+        "label": "Type of 🎯 Targets",
+        "value": [],
+        "selections": {
+          "Animal": "Animal",
+          "Human": "Human",
+          "Metanthrope": "Metanthrope",
+          "Extradimensional": "Extradimensional",
+          "Extraterrestrial": "Extraterrestrial",
+          "Metatherion": "Metatherion",
+          "Organism": "Organism",
+          "Dead": "Dead",
+          "Plant": "Plant",
+          "Object": "Object",
+          "Character": "Character",
+          "Metapowered": "Metapowered",
+          "Living": "Living"
+        }
+      },
+      "Duration": {
+        "type": "text",
+        "dtype": "String",
+        "label": "⏳ Duration",
+        "value": "1d10 Cycles",
+        "options": [
+          "Instantaneous",
+          "Round",
+          "One Cycle",
+          "1d10 Cycles",
+          "One Hour",
+          "1d10 Hours",
+          "One Day",
+          "1d10 Days",
+          "One Week",
+          "1d10 Weeks",
+          "One Month",
+          "1d10 Months",
+          "One Year",
+          "1d10 Years",
+          "Permanent"
+        ]
+      },
+      "Range": {
+        "type": "text",
+        "dtype": "String",
+        "label": "📏 Range",
+        "value": "Self [Area 0]",
+        "options": [
+          "Self [Area 0]",
+          "Hexagon [Area 1]",
+          "Room [Area 2]",
+          "Building [Area 3]",
+          "Square [Area 4]",
+          "Block [Area 5]",
+          "Neighborhood [Area 6]",
+          "District [Area 7]",
+          "Town [Area 8]",
+          "City [Area 9]",
+          "Region [Area 10]",
+          "Sector [Area 11]",
+          "Country [Area 12]",
+          "Zone [Area 13]",
+          "Continent [Area 14]",
+          "Hemisphere [Area 15]",
+          "Planet [Area 16]"
+        ]
+      },
+      "AreaEffect": {
+        "type": "text",
+        "dtype": "String",
+        "label": "🗺️ Area of Effect",
+        "value": "None",
+        "options": [
+          "None",
+          "Hexagon [Area 1]",
+          "Room [Area 2]",
+          "Building [Area 3]",
+          "Square [Area 4]",
+          "Block [Area 5]",
+          "Neighborhood [Area 6]",
+          "District [Area 7]",
+          "Town [Area 8]",
+          "City [Area 9]",
+          "Region [Area 10]",
+          "Sector [Area 11]",
+          "Country [Area 12]",
+          "Zone [Area 13]",
+          "Continent [Area 14]",
+          "Hemisphere [Area 15]",
+          "Planet [Area 16]"
+        ]
+      },
+      "AreaType": {
+        "label": "🗺️ (Type)",
+        "value": [],
+        "selections": {
+          "None": "None",
+          "Aura": "Aura",
+          "Line": "Line",
+          "Burst": "Burst",
+          "Hemisphere": "Hemisphere",
+          "Sphere": "Sphere"
+        }
+      },
+      "AdditionalInfo": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Additional Information",
+        "value": null
+      }
+    },
+    "Effects": {
+      "PermanentEffectDescription": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Permanent Effects",
+        "value": null
+      },
+      "EffectDescription": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Effect",
+        "value": "<p style=\"text-align: justify;\"><strong><span lang=\"en-us\" xml:lang=\"en-us\"><span class=\"ipsEmoji\"><abbr title=\"Roll is Successful\">🟩</abbr></span></span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">:&nbsp;</span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">Receive any one&nbsp;<a href=\"https://www.metanthropes.com/perks/\" rel=\"\"><abbr title=\"Knowledge or Skill which complements a Character\"><abbr title=\"Knowledge or Skill which complements a Character\">Perk</abbr></abbr></a>: Skill, apart from the Skill: Expertise, of level equal to your level of Ancestral Connection.</span></strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Spent Level of Success\">&nbsp;<span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr></span></strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><strong><span lang=\"en-us\" xml:lang=\"en-us\">=&nbsp;</span></strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Duration\"><span class=\"ipsEmoji\"><abbr title=\"Duration\">⏳</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;+ 1d10&nbsp;<abbr title=\"Each Cycle is two subsequent Rounds, approximately 1 minute in-game\"><abbr title=\"Each Cycle is two subsequent Rounds, approximately 1 minute in-game\">Cycles</abbr></abbr></span></p>\n<p style=\"text-align: justify;\"><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr></span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">=</span></strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;Increase the&nbsp;<abbr title=\"Knowledge or Skill which complements a Character\"><abbr title=\"Knowledge or Skill which complements a Character\">Perk</abbr></abbr>&nbsp;level by + 1</span></p>\n<p style=\"text-align: justify;\"><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\"><abbr title=\"Level of Failure\">❌</abbr></span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\"><abbr title=\"Level of Failure\">❌</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">= Receive the&nbsp;</span><abbr title=\"Condition\"><span class=\"ipsEmoji\"><abbr title=\"Condition\">💀</abbr></span></abbr><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;<abbr title=\"Reduces Consciousness by -5% per level\"><abbr title=\"Reduces Consciousness by -5% per level\">Demented</abbr></abbr>&nbsp;2 for 1&nbsp;<abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\"><abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\">Cycle</abbr></abbr></span></p>"
+      },
+      "VSStatRoll": {
+        "type": "text",
+        "dtype": "String",
+        "label": "🆚",
+        "options": [
+          "None",
+          "Awareness",
+          "Consciousness",
+          "Creativity",
+          "Endurance",
+          "Manipulation",
+          "Perception",
+          "Power",
+          "Reflexes",
+          "Willpower"
+        ],
+        "value": "None"
+      },
+      "Damage": {
+        "Cosmic": {
+          "label": "✨ Cosmic 💥 Damage",
+          "type": "number",
+          "dtype": "Number",
+          "Base": 0,
+          "Dice": 0
+        },
+        "Elemental": {
+          "label": "✨ Elemental 💥 Damage",
+          "type": "number",
+          "dtype": "Number",
+          "Base": 0,
+          "Dice": 0
+        },
+        "Material": {
+          "label": "✨ Material 💥 Damage",
+          "type": "number",
+          "dtype": "Number",
+          "Base": 0,
+          "Dice": 0
+        },
+        "Psychic": {
+          "label": "✨ Psychic 💥 Damage",
+          "type": "number",
+          "dtype": "Number",
+          "Base": null,
+          "Dice": null
+        }
+      },
+      "Healing": {
+        "label": "💞 Healing",
+        "type": "number",
+        "dtype": "Number",
+        "Base": 0,
+        "Dice": 0
+      },
+      "Special": {
+        "label": "Special",
+        "SpecialDiceName": {
+          "type": "text",
+          "dtype": "String",
+          "label": "Dice Name",
+          "value": "None"
+        },
+        "type": "number",
+        "dtype": "Number",
+        "isHalf": false,
+        "Base": 0,
+        "Dice": 0
+      },
+      "Conditions": {
+        "Applied": {
+          "label": "💀 ➕",
+          "type": "text",
+          "dtype": "String",
+          "value": ""
+        },
+        "Removed": {
+          "label": "💀 ➖",
+          "type": "text",
+          "dtype": "String",
+          "value": ""
+        }
+      },
+      "Buffs": {
+        "Permanent": {
+          "label": "🛡️ ♾️",
+          "type": "text",
+          "dtype": "String",
+          "value": ""
+        },
+        "Applied": {
+          "label": "🛡️ ➕",
+          "type": "text",
+          "dtype": "String",
+          "value": ""
+        },
+        "Removed": {
+          "label": "🛡️ ➖",
+          "type": "text",
+          "dtype": "String",
+          "value": ""
+        }
+      },
+      "AdditionalInfo": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Effect Additional Information",
+        "value": "<p><span lang=\"en-us\" xml:lang=\"en-us\">You can have multiple Memory Infusion effects active simultaneously, one for each Skill.</span></p>"
+      }
+    },
+    "Results": {
+      "level00": {
+        "type": "text",
+        "dtype": "String",
+        "label": "🟩",
+        "value": null
+      },
+      "level01": {
+        "type": "text",
+        "dtype": "String",
+        "label": "1 * ✔️",
+        "value": null
+      },
+      "level02": {
+        "type": "text",
+        "dtype": "String",
+        "label": "2 * ✔️",
+        "value": null
+      },
+      "level03": {
+        "type": "text",
+        "dtype": "String",
+        "label": "3 * ✔️",
+        "value": null
+      },
+      "level04": {
+        "type": "text",
+        "dtype": "String",
+        "label": "4 * ✔️",
+        "value": null
+      },
+      "level05": {
+        "type": "text",
+        "dtype": "String",
+        "label": "5 * ✔️",
+        "value": null
+      },
+      "level06": {
+        "type": "text",
+        "dtype": "String",
+        "label": "6 * ✔️",
+        "value": null
+      },
+      "level07": {
+        "type": "text",
+        "dtype": "String",
+        "label": "7 * ✔️",
+        "value": null
+      },
+      "level08": {
+        "type": "text",
+        "dtype": "String",
+        "label": "8 * ✔️",
+        "value": null
+      },
+      "level09": {
+        "type": "text",
+        "dtype": "String",
+        "label": "9 * ✔️",
+        "value": null
+      },
+      "level10": {
+        "type": "text",
+        "dtype": "String",
+        "label": "10 * ✔️",
+        "value": null
+      },
+      "level11": {
+        "type": "text",
+        "dtype": "String",
+        "label": "11+ * ✔️",
+        "value": null
+      },
+      "AdditionalInfo": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Results Additional Information",
+        "value": null
+      }
+    },
+    "MetapowerName": {
+      "type": "text",
+      "dtype": "String",
+      "label": "Ⓜ️",
+      "value": "Ancestral Connection"
+    },
+    "Description": {
+      "type": "text",
+      "dtype": "String",
+      "label": "Metapower Description",
+      "value": "<p align=\"center\"><em><span lang=\"en-us\" xml:lang=\"en-us\">Memory Infusion extends a tantalizing proposition to the Utilitarian: the chance to be the torchbearer of ancestral skills. In fleeting seconds, wisdom cascades from generations long past, bestowing talents that span the spectrum of human endeavor. Proficiency in this art augments the flow of skill, enabling you to become a symphony of forgotten talents. Skilled&nbsp;activations can extend connection's time, and unlock skills at a higher level. Yet, a misstep might invite the symphony of memories to crescendo into a discordant cacophony, leaving you momentarily adrift in a sea of disjointed recollections.</span></em></p>"
+    },
+    "Classification": {
+      "type": "text",
+      "dtype": "String",
+      "label": "🔣",
+      "value": "Utilitarian",
+      "options": [
+        "Aegis",
+        "Animator",
+        "Arbiter",
+        "Clairvoyant",
+        "Controller",
+        "Cosmonaut",
+        "Hammer",
+        "Kineticist",
+        "Manipulator",
+        "Utilitarian"
+      ]
+    },
+    "Level": {
+      "type": "number",
+      "dtype": "Number",
+      "label": "⏫",
+      "value": "2",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "EnergyType": {
+      "type": "text",
+      "dtype": "String",
+      "label": "✨",
+      "value": "Psychic",
+      "options": [
+        "Cosmic",
+        "Elemental",
+        "Material",
+        "Psychic"
+      ]
+    },
+    "DestinyCost": {
+      "type": "number",
+      "dtype": "Number",
+      "label": "🤞",
+      "value": 0
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "yjFY5zW9urDSuce5": 3
+  },
+  "flags": {
+    "scene-packer": {
+      "hash": "1218bd0ade0211c4d7030ffa1ec71ae3f3baa8f7"
+    },
+    "core": {
+      "sourceId": "Compendium.metanthropes-system.metapowers.Item.pgJp90Ijm6YkM326"
+    }
+  },
+  "_stats": {
+    "systemId": "metanthropes-system",
+    "systemVersion": "0.8.85",
+    "coreVersion": "11.315",
+    "createdTime": 1693072229733,
+    "modifiedTime": 1700757762380,
+    "lastModifiedBy": "yjFY5zW9urDSuce5"
+  },
+  "_id": "pgJp90Ijm6YkM326",
+  "sort": 0,
+  "_key": "!items!pgJp90Ijm6YkM326"
+}

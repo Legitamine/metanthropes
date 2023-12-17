@@ -1,0 +1,480 @@
+{
+  "folder": "LNcaYpbg1Mu59l2t",
+  "name": "Telepathic Coercion",
+  "type": "Metapower",
+  "img": "systems/metanthropes-system/artwork/metapowers/Telepathy.webp",
+  "system": {
+    "Execution": {
+      "StatRolled": {
+        "type": "text",
+        "dtype": "String",
+        "label": "🎲",
+        "value": "Manipulation",
+        "options": [
+          "Awareness",
+          "Consciousness",
+          "Creativity",
+          "Endurance",
+          "Manipulation",
+          "Perception",
+          "Power",
+          "Reflexes",
+          "Willpower"
+        ]
+      },
+      "ActionSlot": {
+        "type": "text",
+        "dtype": "String",
+        "label": "⏱ Activation",
+        "value": "Focused Action: Full Turn",
+        "options": [
+          "Always Active",
+          "Reaction",
+          "Extra Action",
+          "Movement",
+          "Main Action",
+          "Focused Action: Full Turn",
+          "Focused Action: Cycle",
+          "Focused Action: 1d10 Cycles",
+          "Focused Action: Hour",
+          "Focused Action: 1d10 Hours"
+        ]
+      },
+      "Targets": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Number of 🎯 Targets",
+        "value": "One",
+        "options": [
+          "Self",
+          "One",
+          "1 or 2",
+          "1d10/2",
+          "1d10",
+          "2d10",
+          "5d10",
+          "10d10",
+          "All (Area)",
+          "Any (Area)"
+        ]
+      },
+      "TargetsEligibility": {
+        "label": "Eligible 🎯 Targets",
+        "value": [
+          "Detectable"
+        ],
+        "selections": {
+          "Willing": "Willing",
+          "Detectable": "Detectable",
+          "Perceptible": "Perceptible",
+          "Visible": "Visible",
+          "Audible": "Audible",
+          "Odorous": "Odorous",
+          "Tangible": "Tangible",
+          "Taste-able": "Taste-able"
+        }
+      },
+      "TargetsType": {
+        "label": "Type of 🎯 Targets",
+        "value": [
+          "Human",
+          "Metanthrope"
+        ],
+        "selections": {
+          "Animal": "Animal",
+          "Human": "Human",
+          "Metanthrope": "Metanthrope",
+          "Extradimensional": "Extradimensional",
+          "Extraterrestrial": "Extraterrestrial",
+          "Metatherion": "Metatherion",
+          "Organism": "Organism",
+          "Dead": "Dead",
+          "Plant": "Plant",
+          "Object": "Object",
+          "Character": "Character",
+          "Metapowered": "Metapowered",
+          "Living": "Living"
+        }
+      },
+      "Duration": {
+        "type": "text",
+        "dtype": "String",
+        "label": "⏳ Duration",
+        "value": "One Cycle",
+        "options": [
+          "Instantaneous",
+          "Round",
+          "One Cycle",
+          "1d10 Cycles",
+          "One Hour",
+          "1d10 Hours",
+          "One Day",
+          "1d10 Days",
+          "One Week",
+          "1d10 Weeks",
+          "One Month",
+          "1d10 Months",
+          "One Year",
+          "1d10 Years",
+          "Permanent"
+        ]
+      },
+      "Range": {
+        "type": "text",
+        "dtype": "String",
+        "label": "📏 Range",
+        "value": "Building [Area 3]",
+        "options": [
+          "Self [Area 0]",
+          "Hexagon [Area 1]",
+          "Room [Area 2]",
+          "Building [Area 3]",
+          "Square [Area 4]",
+          "Block [Area 5]",
+          "Neighborhood [Area 6]",
+          "District [Area 7]",
+          "Town [Area 8]",
+          "City [Area 9]",
+          "Region [Area 10]",
+          "Sector [Area 11]",
+          "Country [Area 12]",
+          "Zone [Area 13]",
+          "Continent [Area 14]",
+          "Hemisphere [Area 15]",
+          "Planet [Area 16]"
+        ]
+      },
+      "AreaEffect": {
+        "type": "text",
+        "dtype": "String",
+        "label": "🗺️ Area of Effect",
+        "value": "None",
+        "options": [
+          "None",
+          "Hexagon [Area 1]",
+          "Room [Area 2]",
+          "Building [Area 3]",
+          "Square [Area 4]",
+          "Block [Area 5]",
+          "Neighborhood [Area 6]",
+          "District [Area 7]",
+          "Town [Area 8]",
+          "City [Area 9]",
+          "Region [Area 10]",
+          "Sector [Area 11]",
+          "Country [Area 12]",
+          "Zone [Area 13]",
+          "Continent [Area 14]",
+          "Hemisphere [Area 15]",
+          "Planet [Area 16]"
+        ]
+      },
+      "AreaType": {
+        "label": "🗺️ (Type)",
+        "value": [],
+        "selections": {
+          "None": "None",
+          "Aura": "Aura",
+          "Line": "Line",
+          "Burst": "Burst",
+          "Hemisphere": "Hemisphere",
+          "Sphere": "Sphere"
+        }
+      },
+      "AdditionalInfo": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Additional Information",
+        "value": null
+      }
+    },
+    "Effects": {
+      "PermanentEffectDescription": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Permanent Effects",
+        "value": null
+      },
+      "EffectDescription": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Effect",
+        "value": "<p style=\"text-align: justify;\"><strong><span lang=\"en-us\" xml:lang=\"en-us\"><span class=\"ipsEmoji\"><abbr title=\"Roll is Successful\">🟩</abbr></span></span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">:&nbsp;</span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">Target receives the&nbsp;</span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Condition\"><span class=\"ipsEmoji\"><abbr title=\"Condition\">💀</abbr></span></abbr></span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;<abbr title=\"Controling another Character's actions, thoughts, feelings or behaviour\"><abbr title=\"Controling another Character's actions, thoughts, feelings or behaviour\">Infiltrated</abbr></abbr>&nbsp;3.&nbsp;You control the target&rsquo;s upcoming&nbsp;<abbr title=\"How much does a Character or a Vehicle move\"><abbr title=\"How much does a Character or a Vehicle move\">Movement</abbr></abbr>,&nbsp;<abbr title=\"One slot per Turn for most Activation rolls\">Main Actions</abbr>, and&nbsp;<abbr title=\"One slot per Turn for a complementary, supportive roll\">Extra Actions.</abbr>&nbsp;You can perceive through your target&rsquo;s senses and communicate using their bodies and voice.&nbsp;</span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">In case your target is a Metanthrope gain the&nbsp;</span><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">🛡️</abbr></span></abbr><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Additional layers and spectrums of detection\"><abbr title=\"Additional layers and spectrums of detection\">Detection</abbr></abbr>: Metapowers 3.&nbsp;Using their Metapowers applies a &ndash; 10%&nbsp;<abbr title=\"A reduction at a specific roll\"><abbr title=\"A decrease at a specific roll\">Penalty</abbr></abbr>&nbsp;on their&nbsp;<abbr title=\"Which part of my Turn does it take to activate this effect\"><abbr title=\"Which part of my Turn does it take to activate this effect\">Activation</abbr></abbr>&nbsp;rolls, for each level of the Metapower you wish you to use, unless you have the same level at the&nbsp;<abbr title=\"Knowledge or Skill which complements a Character\"><abbr title=\"Knowledge or Skill which complements a Character\">Perk</abbr></abbr>: Lore.</span></strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Spent Level of Success\">&nbsp;<span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr></span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">=&nbsp;</span></strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Duration\"><span class=\"ipsEmoji\"><abbr title=\"Duration\">⏳</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;+ 1&nbsp;<abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\"><abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\">Cycle</abbr></abbr></span></p>\n<p style=\"text-align: justify;\"><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr></span></strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><strong><span lang=\"en-us\" xml:lang=\"en-us\">=&nbsp;</span></strong><abbr title=\"Range\"><span class=\"ipsEmoji\"><abbr title=\"Range\">📏</abbr></span></abbr><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;+ 1 Area</span></p>\n<p style=\"text-align: justify;\"><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\"><abbr title=\"Level of Failure\">❌</abbr></span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\"><abbr title=\"Level of Failure\">❌</abbr></span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\"><abbr title=\"Level of Failure\">❌</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\">= Receive the&nbsp;</span><abbr title=\"Condition\"><span class=\"ipsEmoji\"><abbr title=\"Condition\">💀</abbr></span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Reduces Manipulation by -5% per level\"><abbr title=\"Reduces Manipulation by -5% per level\">Confused</abbr></abbr>&nbsp;3 for 1d10&nbsp;<abbr title=\"Each Cycle is two subsequent Rounds, approximately 1 minute in-game\"><abbr title=\"Each Cycle is two subsequent Rounds, approximately 1 minute in-game\">Cycles</abbr></abbr></span></p>"
+      },
+      "VSStatRoll": {
+        "type": "text",
+        "dtype": "String",
+        "label": "🆚",
+        "options": [
+          "None",
+          "Awareness",
+          "Consciousness",
+          "Creativity",
+          "Endurance",
+          "Manipulation",
+          "Perception",
+          "Power",
+          "Reflexes",
+          "Willpower"
+        ],
+        "value": "Willpower"
+      },
+      "Damage": {
+        "Cosmic": {
+          "label": "✨ Cosmic 💥 Damage",
+          "type": "number",
+          "dtype": "Number",
+          "Base": 0,
+          "Dice": 0
+        },
+        "Elemental": {
+          "label": "✨ Elemental 💥 Damage",
+          "type": "number",
+          "dtype": "Number",
+          "Base": 0,
+          "Dice": 0
+        },
+        "Material": {
+          "label": "✨ Material 💥 Damage",
+          "type": "number",
+          "dtype": "Number",
+          "Base": 0,
+          "Dice": 0
+        },
+        "Psychic": {
+          "label": "✨ Psychic 💥 Damage",
+          "type": "number",
+          "dtype": "Number",
+          "Base": 0,
+          "Dice": 0
+        }
+      },
+      "Healing": {
+        "label": "💞 Healing",
+        "type": "number",
+        "dtype": "Number",
+        "Base": 0,
+        "Dice": 0
+      },
+      "Special": {
+        "label": "Special",
+        "SpecialDiceName": {
+          "type": "text",
+          "dtype": "String",
+          "label": "Dice Name",
+          "value": "None"
+        },
+        "type": "number",
+        "dtype": "Number",
+        "isHalf": false,
+        "Base": 0,
+        "Dice": 0
+      },
+      "Conditions": {
+        "Applied": {
+          "label": "💀 ➕",
+          "type": "text",
+          "dtype": "String",
+          "value": "Infiltrated 3"
+        },
+        "Removed": {
+          "label": "💀 ➖",
+          "type": "text",
+          "dtype": "String",
+          "value": ""
+        }
+      },
+      "Buffs": {
+        "Permanent": {
+          "label": "🛡️ ♾️",
+          "type": "text",
+          "dtype": "String",
+          "value": ""
+        },
+        "Applied": {
+          "label": "🛡️ ➕",
+          "type": "text",
+          "dtype": "String",
+          "value": ""
+        },
+        "Removed": {
+          "label": "🛡️ ➖",
+          "type": "text",
+          "dtype": "String",
+          "value": ""
+        }
+      },
+      "AdditionalInfo": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Effect Additional Information",
+        "value": "<p style=\"text-align: justify;\"><span lang=\"en-us\" xml:lang=\"en-us\">With the&nbsp;</span><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">🛡️</abbr></span></abbr><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;<abbr title=\"Additional layers and spectrums of detection\"><abbr title=\"Additional layers and spectrums of detection\">Detection</abbr></abbr>: Metapowers 3 you become aware of any Metapowers your target has, of level up to level 3. You can use any Metapowers you are aware your target has.&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"How many Targets, and which type are effected\"><abbr title=\"How many Targets, and which type are effected\">Targets</abbr></abbr>&nbsp;which are aware that they are under the effect of Telepathy, or who are forced to do something they would never ordinary do may spend their&nbsp;<abbr title=\"One slot per Round as a response to another Character's Movement or Action\"><abbr title=\"One slot per Round as a response to another Character's Movement or Action\">Reaction</abbr></abbr>,&nbsp;at any time during any subsequent&nbsp;<abbr title=\"When all Characters have played their Turn in the Initiative order, approximately 30 seconds\"><abbr title=\"When all Characters have played their Turn in the Initiative order, approximately 30 seconds\">Round</abbr></abbr>&nbsp;after the first they were targeted by this effect, to repeat the initial&nbsp;<abbr title=\"A contested roll between two opposing parties\"><abbr title=\"A contested roll between two opposing parties\">VS</abbr></abbr>&nbsp;roll&nbsp;<em>(<abbr title=\"Additonal rolls which take no slot per Turn\"><abbr title=\"Additonal rolls which take no slot per Turn\">Free Roll</abbr></abbr>: Manipulation&nbsp;<abbr title=\"A contested roll between two opposing parties\"><abbr title=\"A contested roll between two opposing parties\">VS</abbr></abbr>&nbsp;the target&rsquo;s Willpower)</em>. Success on that roll indicates that they remove the&nbsp;<abbr title=\"Negative effect\"><abbr title=\"Negative effect\">Condition</abbr></abbr>: Infiltration 3 and become free of your control for that&nbsp;<abbr title=\"Whenever I play during an Action Scene\"><abbr title=\"Whenever I play during an Action Scene\">Turn</abbr></abbr>.&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\">While controlling another&nbsp;<abbr title=\"Any Character: NPC or Protagonist\"><abbr title=\"Any Character: NPC or Protagonist\">Character</abbr></abbr>, you can spend&nbsp;<abbr title=\"Resource which can be spent to reroll any dice, and activate powerful effects\"><abbr title=\"Resource which can be spent to reroll any dice, and activate powerful effects\">Destiny</abbr></abbr>&nbsp;on their behalf to repeat any rolls they attempt, but you cannot access their&nbsp;<abbr title=\"Resource which can be spent to reroll any dice, and activate powerful effects\"><abbr title=\"Resource which can be spent to reroll any dice, and activate powerful effects\">Destiny</abbr></abbr>&nbsp;pool.</span></p>"
+      }
+    },
+    "Results": {
+      "level00": {
+        "type": "text",
+        "dtype": "String",
+        "label": "🟩",
+        "value": null
+      },
+      "level01": {
+        "type": "text",
+        "dtype": "String",
+        "label": "1 * ✔️",
+        "value": null
+      },
+      "level02": {
+        "type": "text",
+        "dtype": "String",
+        "label": "2 * ✔️",
+        "value": null
+      },
+      "level03": {
+        "type": "text",
+        "dtype": "String",
+        "label": "3 * ✔️",
+        "value": null
+      },
+      "level04": {
+        "type": "text",
+        "dtype": "String",
+        "label": "4 * ✔️",
+        "value": null
+      },
+      "level05": {
+        "type": "text",
+        "dtype": "String",
+        "label": "5 * ✔️",
+        "value": null
+      },
+      "level06": {
+        "type": "text",
+        "dtype": "String",
+        "label": "6 * ✔️",
+        "value": null
+      },
+      "level07": {
+        "type": "text",
+        "dtype": "String",
+        "label": "7 * ✔️",
+        "value": null
+      },
+      "level08": {
+        "type": "text",
+        "dtype": "String",
+        "label": "8 * ✔️",
+        "value": null
+      },
+      "level09": {
+        "type": "text",
+        "dtype": "String",
+        "label": "9 * ✔️",
+        "value": null
+      },
+      "level10": {
+        "type": "text",
+        "dtype": "String",
+        "label": "10 * ✔️",
+        "value": null
+      },
+      "level11": {
+        "type": "text",
+        "dtype": "String",
+        "label": "11+ * ✔️",
+        "value": null
+      },
+      "AdditionalInfo": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Results Additional Information",
+        "value": null
+      }
+    },
+    "MetapowerName": {
+      "type": "text",
+      "dtype": "String",
+      "label": "Ⓜ️",
+      "value": "Telepathy"
+    },
+    "Description": {
+      "type": "text",
+      "dtype": "String",
+      "label": "Metapower Description",
+      "value": "<p align=\"center\"><em><span lang=\"en-us\" xml:lang=\"en-us\">Embarking on a more profound tier of Telepathy, Manipulators harness Telepathic Coercion, transcending the boundaries of individuality to commandeer another's consciousness. This profound bond bequeaths unbridled dominion over the victim's thoughts, actions, and even their sensory experiences. Through a temporary abandonment of their own consciousness, the Manipulator takes the reins of the victim's mental faculties, exploiting their abilities and employing them as an extension of their own intent. A symphony of minds entwined, this intricate dance transpires for a duration of one to several minutes, subject to the Manipulator's proficiency. However, a cataclysmic misstep in activation might plunge the Manipulator into a disorienting abyss of fragmented self-awareness, albeit for a fleeting moment.</span></em></p>"
+    },
+    "Classification": {
+      "type": "text",
+      "dtype": "String",
+      "label": "🔣",
+      "value": "Manipulator",
+      "options": [
+        "Aegis",
+        "Animator",
+        "Arbiter",
+        "Clairvoyant",
+        "Controller",
+        "Cosmonaut",
+        "Hammer",
+        "Kineticist",
+        "Manipulator",
+        "Utilitarian"
+      ]
+    },
+    "Level": {
+      "type": "number",
+      "dtype": "Number",
+      "label": "⏫",
+      "value": "3",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "EnergyType": {
+      "type": "text",
+      "dtype": "String",
+      "label": "✨",
+      "value": "Psychic",
+      "options": [
+        "Cosmic",
+        "Elemental",
+        "Material",
+        "Psychic"
+      ]
+    },
+    "DestinyCost": {
+      "type": "number",
+      "dtype": "Number",
+      "label": "🤞",
+      "value": 0
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "yjFY5zW9urDSuce5": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.metanthropes-system.metapowers.Item.cFhmujVZGqThKzaJ"
+    },
+    "scene-packer": {
+      "hash": "0c1b03aca80d62a555aa417f1cecf4a8601f05e3"
+    }
+  },
+  "_stats": {
+    "systemId": "metanthropes-system",
+    "systemVersion": "0.8.85",
+    "coreVersion": "11.315",
+    "createdTime": 1693071395459,
+    "modifiedTime": 1700757746706,
+    "lastModifiedBy": "yjFY5zW9urDSuce5"
+  },
+  "_id": "cFhmujVZGqThKzaJ",
+  "sort": 0,
+  "_key": "!items!cFhmujVZGqThKzaJ"
+}

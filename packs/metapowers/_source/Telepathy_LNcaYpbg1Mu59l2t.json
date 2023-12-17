@@ -1,0 +1,26 @@
+{
+  "name": "Telepathy",
+  "sorting": "a",
+  "folder": "qZTdbjqDdlrA27DQ",
+  "type": "Item",
+  "_id": "LNcaYpbg1Mu59l2t",
+  "sort": 0,
+  "color": "#c44327",
+  "flags": {
+    "df-qol": {
+      "colour": ""
+    },
+    "scene-packer": {
+      "hash": "03cb343fc964c8907f09e2f51b97b7e9b18d5cbd"
+    }
+  },
+  "_stats": {
+    "systemId": "metanthropes-system",
+    "systemVersion": "0.8.85",
+    "coreVersion": "11.315",
+    "createdTime": 1698750077215,
+    "modifiedTime": 1700757746693,
+    "lastModifiedBy": "yjFY5zW9urDSuce5"
+  },
+  "_key": "!folders!LNcaYpbg1Mu59l2t"
+}

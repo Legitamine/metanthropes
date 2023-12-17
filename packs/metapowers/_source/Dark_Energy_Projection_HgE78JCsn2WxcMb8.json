@@ -1,0 +1,26 @@
+{
+  "name": "Dark Energy Projection",
+  "sorting": "a",
+  "folder": "PErxzEVaQfDLYWcF",
+  "type": "Item",
+  "_id": "HgE78JCsn2WxcMb8",
+  "sort": 0,
+  "color": "#3542b7",
+  "flags": {
+    "df-qol": {
+      "colour": ""
+    },
+    "scene-packer": {
+      "hash": "942247d7f58310b226e7f6197ea8a7335e973dc2"
+    }
+  },
+  "_stats": {
+    "systemId": "metanthropes-system",
+    "systemVersion": "0.8.85",
+    "coreVersion": "11.315",
+    "createdTime": 1698750008207,
+    "modifiedTime": 1700757699010,
+    "lastModifiedBy": "yjFY5zW9urDSuce5"
+  },
+  "_key": "!folders!HgE78JCsn2WxcMb8"
+}

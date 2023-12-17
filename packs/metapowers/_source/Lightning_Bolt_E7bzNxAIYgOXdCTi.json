@@ -1,0 +1,477 @@
+{
+  "folder": "8IUqkZjgLC0Rcx8v",
+  "name": "Lightning Bolt",
+  "type": "Metapower",
+  "img": "systems/metanthropes-system/artwork/metapowers/Electrokinesis.webp",
+  "system": {
+    "Execution": {
+      "StatRolled": {
+        "type": "text",
+        "dtype": "String",
+        "label": "🎲",
+        "value": "Reflexes",
+        "options": [
+          "Awareness",
+          "Consciousness",
+          "Creativity",
+          "Endurance",
+          "Manipulation",
+          "Perception",
+          "Power",
+          "Reflexes",
+          "Willpower"
+        ]
+      },
+      "ActionSlot": {
+        "type": "text",
+        "dtype": "String",
+        "label": "⏱ Activation",
+        "value": "Main Action",
+        "options": [
+          "Always Active",
+          "Reaction",
+          "Extra Action",
+          "Movement",
+          "Main Action",
+          "Focused Action: Full Turn",
+          "Focused Action: Cycle",
+          "Focused Action: 1d10 Cycles",
+          "Focused Action: Hour",
+          "Focused Action: 1d10 Hours"
+        ]
+      },
+      "Targets": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Number of 🎯 Targets",
+        "value": "All (Area)",
+        "options": [
+          "Self",
+          "One",
+          "1 or 2",
+          "1d10/2",
+          "1d10",
+          "2d10",
+          "5d10",
+          "10d10",
+          "All (Area)",
+          "Any (Area)"
+        ]
+      },
+      "TargetsEligibility": {
+        "label": "Eligible 🎯 Targets",
+        "value": [],
+        "selections": {
+          "Willing": "Willing",
+          "Detectable": "Detectable",
+          "Perceptible": "Perceptible",
+          "Visible": "Visible",
+          "Audible": "Audible",
+          "Odorous": "Odorous",
+          "Tangible": "Tangible",
+          "Taste-able": "Taste-able"
+        }
+      },
+      "TargetsType": {
+        "label": "Type of 🎯 Targets",
+        "value": [],
+        "selections": {
+          "Animal": "Animal",
+          "Human": "Human",
+          "Metanthrope": "Metanthrope",
+          "Extradimensional": "Extradimensional",
+          "Extraterrestrial": "Extraterrestrial",
+          "Metatherion": "Metatherion",
+          "Organism": "Organism",
+          "Dead": "Dead",
+          "Plant": "Plant",
+          "Object": "Object",
+          "Character": "Character",
+          "Metapowered": "Metapowered",
+          "Living": "Living"
+        }
+      },
+      "Duration": {
+        "type": "text",
+        "dtype": "String",
+        "label": "⏳ Duration",
+        "value": "Instantaneous",
+        "options": [
+          "Instantaneous",
+          "Round",
+          "One Cycle",
+          "1d10 Cycles",
+          "One Hour",
+          "1d10 Hours",
+          "One Day",
+          "1d10 Days",
+          "One Week",
+          "1d10 Weeks",
+          "One Month",
+          "1d10 Months",
+          "One Year",
+          "1d10 Years",
+          "Permanent"
+        ]
+      },
+      "Range": {
+        "type": "text",
+        "dtype": "String",
+        "label": "📏 Range",
+        "value": "Building [Area 3]",
+        "options": [
+          "Self [Area 0]",
+          "Hexagon [Area 1]",
+          "Room [Area 2]",
+          "Building [Area 3]",
+          "Square [Area 4]",
+          "Block [Area 5]",
+          "Neighborhood [Area 6]",
+          "District [Area 7]",
+          "Town [Area 8]",
+          "City [Area 9]",
+          "Region [Area 10]",
+          "Sector [Area 11]",
+          "Country [Area 12]",
+          "Zone [Area 13]",
+          "Continent [Area 14]",
+          "Hemisphere [Area 15]",
+          "Planet [Area 16]"
+        ]
+      },
+      "AreaEffect": {
+        "type": "text",
+        "dtype": "String",
+        "label": "🗺️ Area of Effect",
+        "value": "Building [Area 3]",
+        "options": [
+          "None",
+          "Hexagon [Area 1]",
+          "Room [Area 2]",
+          "Building [Area 3]",
+          "Square [Area 4]",
+          "Block [Area 5]",
+          "Neighborhood [Area 6]",
+          "District [Area 7]",
+          "Town [Area 8]",
+          "City [Area 9]",
+          "Region [Area 10]",
+          "Sector [Area 11]",
+          "Country [Area 12]",
+          "Zone [Area 13]",
+          "Continent [Area 14]",
+          "Hemisphere [Area 15]",
+          "Planet [Area 16]"
+        ]
+      },
+      "AreaType": {
+        "label": "🗺️ (Type)",
+        "value": [
+          "Line"
+        ],
+        "selections": {
+          "None": "None",
+          "Aura": "Aura",
+          "Line": "Line",
+          "Burst": "Burst",
+          "Hemisphere": "Hemisphere",
+          "Sphere": "Sphere"
+        }
+      },
+      "AdditionalInfo": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Additional Information",
+        "value": "<p style=\"text-align: center;\"><em><abbr title=\"Line, Burst, or Fill\"><abbr title=\"Line, Burst, or Fill\">Area Effect</abbr></abbr>: Line possible placements on the&nbsp;<abbr title=\"Visual interpretation of the Terrain and the Characters upon it made out of Hexagons\"><abbr title=\"Visual interpretation of the Terrain and the Characters upon it made out of Hexagons\">Grid</abbr></abbr></em></p>\n<p><a title=\"Enlarge image\" href=\"https://media.giphy.com/media/MDs2xuiPMZT9JgGvpJ/giphy.gif\" data-fileid=\"undefined\" data-wrappedlink=\"\" data-ipslightbox=\"\" data-ipslightbox-group=\"undefined\"><img class=\"ipsImage_thumbnailed\" style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://media.giphy.com/media/MDs2xuiPMZT9JgGvpJ/giphy.gif\" alt=\"giphy.gif\" width=\"480\" height=\"448\" data-ratio=\"93.33\" data-src=\"https://media.giphy.com/media/MDs2xuiPMZT9JgGvpJ/giphy.gif\" data-loaded=\"true\"></a></p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>"
+      }
+    },
+    "Effects": {
+      "PermanentEffectDescription": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Permanent Effects",
+        "value": null
+      },
+      "EffectDescription": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Effect",
+        "value": "<p style=\"text-align: justify;\"><strong><span lang=\"en-us\" xml:lang=\"en-us\"><span class=\"ipsEmoji\"><abbr title=\"Roll is Successful\"><abbr title=\"Roll is Successful\">🟩</abbr></abbr></span></span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">:&nbsp;</span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"How many Targets, and which type are effected\"><abbr title=\"How many Targets, and which type are effected\">Targets</abbr></abbr>&nbsp;receive&nbsp;</span></strong><abbr title=\"Damage\"><span class=\"ipsEmoji\"><abbr title=\"Damage\">💥</abbr></span></abbr>&nbsp;<strong><span lang=\"en-us\" xml:lang=\"en-us\">4d10 + 44 Elemental&nbsp;<abbr title=\"Based on Energy Type, reduces Life\"><abbr title=\"Based on Energy Type, reduces Life\">Damage</abbr></abbr>&nbsp;plus the</span></strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><abbr title=\"Condition\"><span class=\"ipsEmoji\"><abbr title=\"Condition\">💀</abbr></span></abbr>&nbsp;<strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Each roll you make requires an additional ✔️ per level\"><abbr title=\"Each level reduces a ✔️ from all rolls\"><abbr title=\"Each level reduces a ✔️ from all rolls\">Pain</abbr></abbr></abbr>&nbsp;2 and&nbsp;<abbr title=\"Reduces Power by -5% per level\"><abbr title=\"Reduces Power by -5% per level\">Muscle Injury</abbr></abbr>&nbsp;2.</span></strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Spent Level of Success\">&nbsp;<span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr>&nbsp;=&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><abbr title=\"Damage\"><span class=\"ipsEmoji\"><abbr title=\"Damage\">💥</abbr></span></abbr><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;+ 1d10</span></p>\n<p style=\"text-align: justify;\"><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr><strong>&nbsp;</strong></span><strong><span lang=\"en-us\" xml:lang=\"en-us\">=&nbsp;</span></strong><span lang=\"en-us\" xml:lang=\"en-us\">Expand the&nbsp;</span><abbr title=\"Area Effects: Burst, Line, or FIll\"><span class=\"ipsEmoji\"><abbr title=\"Area Effects: Line, Burst, Aura, Hemisphere, or Sphere\"><abbr title=\"Area Effects: Line, Burst, Aura, Hemisphere, or Sphere\">🗺️</abbr></abbr></span></abbr><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;by one&nbsp;<abbr title=\"An area with width, length, and height of (2 meters, 6.5 ft)\"><abbr title=\"An area with width, length, and height of (2 meters, 6.5 ft)\">Hexagon</abbr></abbr></span></p>\n<p style=\"text-align: justify;\"><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;=&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\">Increase the</span>&nbsp;level of any of the&nbsp;<abbr title=\"Condition\"><span class=\"ipsEmoji\"><abbr title=\"Condition\">💀</abbr></span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\">by + 1</span></p>\n<p style=\"text-align: justify;\"><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\"><abbr title=\"Level of Failure\">❌</abbr></span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\"><abbr title=\"Level of Failure\">❌</abbr></span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\"><abbr title=\"Level of Failure\">❌</abbr></span></abbr><strong>&nbsp;</strong></span><span lang=\"en-us\" xml:lang=\"en-us\">= Receive the&nbsp;</span><abbr title=\"Damage\"><span class=\"ipsEmoji\"><abbr title=\"Damage\">💥</abbr></span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\">and the&nbsp;</span><abbr title=\"Condition\"><span class=\"ipsEmoji\"><abbr title=\"Condition\">💀</abbr></span></abbr></p>"
+      },
+      "VSStatRoll": {
+        "type": "text",
+        "dtype": "String",
+        "label": "🆚",
+        "options": [
+          "None",
+          "Awareness",
+          "Consciousness",
+          "Creativity",
+          "Endurance",
+          "Manipulation",
+          "Perception",
+          "Power",
+          "Reflexes",
+          "Willpower"
+        ],
+        "value": "None"
+      },
+      "Damage": {
+        "Cosmic": {
+          "label": "✨ Cosmic 💥 Damage",
+          "type": "number",
+          "dtype": "Number",
+          "Base": 0,
+          "Dice": 0
+        },
+        "Elemental": {
+          "label": "✨ Elemental 💥 Damage",
+          "type": "number",
+          "dtype": "Number",
+          "Base": 44,
+          "Dice": 4
+        },
+        "Material": {
+          "label": "✨ Material 💥 Damage",
+          "type": "number",
+          "dtype": "Number",
+          "Base": 0,
+          "Dice": 0
+        },
+        "Psychic": {
+          "label": "✨ Psychic 💥 Damage",
+          "type": "number",
+          "dtype": "Number",
+          "Base": 0,
+          "Dice": 0
+        }
+      },
+      "Healing": {
+        "label": "💞 Healing",
+        "type": "number",
+        "dtype": "Number",
+        "Base": 0,
+        "Dice": 0
+      },
+      "Special": {
+        "label": "Special",
+        "SpecialDiceName": {
+          "type": "text",
+          "dtype": "String",
+          "label": "Dice Name",
+          "value": "None"
+        },
+        "type": "number",
+        "dtype": "Number",
+        "isHalf": false,
+        "Base": 0,
+        "Dice": 0
+      },
+      "Conditions": {
+        "Applied": {
+          "label": "💀 ➕",
+          "type": "text",
+          "dtype": "String",
+          "value": "Pain 2,  Muscle Injury 2"
+        },
+        "Removed": {
+          "label": "💀 ➖",
+          "type": "text",
+          "dtype": "String",
+          "value": ""
+        }
+      },
+      "Buffs": {
+        "Permanent": {
+          "label": "🛡️ ♾️",
+          "type": "text",
+          "dtype": "String",
+          "value": ""
+        },
+        "Applied": {
+          "label": "🛡️ ➕",
+          "type": "text",
+          "dtype": "String",
+          "value": ""
+        },
+        "Removed": {
+          "label": "🛡️ ➖",
+          "type": "text",
+          "dtype": "String",
+          "value": ""
+        }
+      },
+      "AdditionalInfo": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Effect Additional Information",
+        "value": "<p><span lang=\"en-us\" xml:lang=\"en-us\">This effect has the Retracting Property allowing to reduce its&nbsp;</span><abbr title=\"Area Effects: Burst, Line, or FIll\"><span class=\"ipsEmoji\">🗺️</span></abbr><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;by any number of Hexagons as seen in the following picture</span>.</p>\n<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: center;\"><em>Retracting property of&nbsp;<abbr title=\"Line, Burst, or Fill\"><abbr title=\"Line, Burst, or Fill\">Area Effect</abbr></abbr>: Line</em></p>\n<p style=\"text-align: center;\"><strong><a title=\"Enlarge image\" href=\"https://media.giphy.com/media/RlUBK0bzcSGxij1lkP/giphy.gif\" data-fileid=\"undefined\" data-wrappedlink=\"\" data-ipslightbox=\"\" data-ipslightbox-group=\"undefined\"><img class=\"ipsImage_thumbnailed\" src=\"https://media.giphy.com/media/RlUBK0bzcSGxij1lkP/giphy.gif\" alt=\"giphy.gif\" width=\"476\" height=\"132\" data-ratio=\"27.73\" data-src=\"https://media.giphy.com/media/RlUBK0bzcSGxij1lkP/giphy.gif\" data-loaded=\"true\"></a></strong></p>\n<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: center;\"><em>Expanding property of&nbsp;<abbr title=\"Line, Burst, or Fill\"><abbr title=\"Line, Burst, or Fill\">Area Effect</abbr></abbr>: Line</em></p>\n<p><strong><a title=\"Enlarge image\" href=\"https://media.giphy.com/media/KcEuIrutoyLLB0uogl/giphy.gif\" data-fileid=\"undefined\" data-wrappedlink=\"\" data-ipslightbox=\"\" data-ipslightbox-group=\"undefined\"><img class=\"ipsImage_thumbnailed\" style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://media.giphy.com/media/KcEuIrutoyLLB0uogl/giphy.gif\" alt=\"giphy.gif\" width=\"476\" height=\"132\" data-ratio=\"27.73\" data-src=\"https://media.giphy.com/media/KcEuIrutoyLLB0uogl/giphy.gif\" data-loaded=\"true\"></a></strong></p>"
+      }
+    },
+    "Results": {
+      "level00": {
+        "type": "text",
+        "dtype": "String",
+        "label": "🟩",
+        "value": null
+      },
+      "level01": {
+        "type": "text",
+        "dtype": "String",
+        "label": "1 * ✔️",
+        "value": null
+      },
+      "level02": {
+        "type": "text",
+        "dtype": "String",
+        "label": "2 * ✔️",
+        "value": null
+      },
+      "level03": {
+        "type": "text",
+        "dtype": "String",
+        "label": "3 * ✔️",
+        "value": null
+      },
+      "level04": {
+        "type": "text",
+        "dtype": "String",
+        "label": "4 * ✔️",
+        "value": null
+      },
+      "level05": {
+        "type": "text",
+        "dtype": "String",
+        "label": "5 * ✔️",
+        "value": null
+      },
+      "level06": {
+        "type": "text",
+        "dtype": "String",
+        "label": "6 * ✔️",
+        "value": null
+      },
+      "level07": {
+        "type": "text",
+        "dtype": "String",
+        "label": "7 * ✔️",
+        "value": null
+      },
+      "level08": {
+        "type": "text",
+        "dtype": "String",
+        "label": "8 * ✔️",
+        "value": null
+      },
+      "level09": {
+        "type": "text",
+        "dtype": "String",
+        "label": "9 * ✔️",
+        "value": null
+      },
+      "level10": {
+        "type": "text",
+        "dtype": "String",
+        "label": "10 * ✔️",
+        "value": null
+      },
+      "level11": {
+        "type": "text",
+        "dtype": "String",
+        "label": "11+ * ✔️",
+        "value": null
+      },
+      "AdditionalInfo": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Results Additional Information",
+        "value": null
+      }
+    },
+    "MetapowerName": {
+      "type": "text",
+      "dtype": "String",
+      "label": "Ⓜ️",
+      "value": "Electrokinesis"
+    },
+    "Description": {
+      "type": "text",
+      "dtype": "String",
+      "label": "Metapower Description",
+      "value": "<p align=\"center\"><em><span lang=\"en-us\" xml:lang=\"en-us\">With the might of an impending storm, a surge of electrical power surges through you, illuminating your form with an otherworldly radiance. In a spectacular crescendo, a bolt of lightning arcs outward from your body, a testament to your mastery over the very elements. You're one with this magnificent discharge, able to manipulate its trajectory with the merest thought. This lightning bolt is both a weapon and an extension of your being, striking with pinpoint precision or expanding its reach like a celestial whip. While the potential for destruction is immense, improper control could lead to the bolt's vengeance turning upon you.</span></em></p>\n<p>&nbsp;</p>"
+    },
+    "Classification": {
+      "type": "text",
+      "dtype": "String",
+      "label": "🔣",
+      "value": "Kineticist",
+      "options": [
+        "Aegis",
+        "Animator",
+        "Arbiter",
+        "Clairvoyant",
+        "Controller",
+        "Cosmonaut",
+        "Hammer",
+        "Kineticist",
+        "Manipulator",
+        "Utilitarian"
+      ]
+    },
+    "Level": {
+      "type": "number",
+      "dtype": "Number",
+      "label": "⏫",
+      "value": "2",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "EnergyType": {
+      "type": "text",
+      "dtype": "String",
+      "label": "✨",
+      "value": "Elemental",
+      "options": [
+        "Cosmic",
+        "Elemental",
+        "Material",
+        "Psychic"
+      ]
+    },
+    "DestinyCost": {
+      "type": "number",
+      "dtype": "Number",
+      "label": "🤞",
+      "value": 0
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "yjFY5zW9urDSuce5": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.metanthropes-system.metapowers.Item.E7bzNxAIYgOXdCTi"
+    },
+    "scene-packer": {
+      "hash": "eca22a0e37908c714e17f8cda6f17676c9e4792d"
+    }
+  },
+  "_stats": {
+    "systemId": "metanthropes-system",
+    "systemVersion": "0.8.85",
+    "coreVersion": "11.315",
+    "createdTime": 1693070561830,
+    "modifiedTime": 1700757728435,
+    "lastModifiedBy": "yjFY5zW9urDSuce5"
+  },
+  "_id": "E7bzNxAIYgOXdCTi",
+  "sort": 0,
+  "_key": "!items!E7bzNxAIYgOXdCTi"
+}

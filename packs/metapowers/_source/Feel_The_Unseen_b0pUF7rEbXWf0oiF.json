@@ -1,0 +1,475 @@
+{
+  "folder": "UcDBUGawJ4jNDaeK",
+  "name": "Feel The Unseen",
+  "type": "Metapower",
+  "img": "systems/metanthropes-system/artwork/metapowers/6th Sense.webp",
+  "system": {
+    "Execution": {
+      "StatRolled": {
+        "type": "text",
+        "dtype": "String",
+        "label": "🎲",
+        "value": "Awareness",
+        "options": [
+          "Awareness",
+          "Consciousness",
+          "Creativity",
+          "Endurance",
+          "Manipulation",
+          "Perception",
+          "Power",
+          "Reflexes",
+          "Willpower"
+        ]
+      },
+      "ActionSlot": {
+        "type": "text",
+        "dtype": "String",
+        "label": "⏱ Activation",
+        "value": "Main Action",
+        "options": [
+          "Always Active",
+          "Reaction",
+          "Extra Action",
+          "Movement",
+          "Main Action",
+          "Focused Action: Full Turn",
+          "Focused Action: Cycle",
+          "Focused Action: 1d10 Cycles",
+          "Focused Action: Hour",
+          "Focused Action: 1d10 Hours"
+        ]
+      },
+      "Targets": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Number of 🎯 Targets",
+        "value": "All (Area)",
+        "options": [
+          "Self",
+          "One",
+          "1 or 2",
+          "1d10/2",
+          "1d10",
+          "2d10",
+          "5d10",
+          "10d10",
+          "All (Area)",
+          "Any (Area)"
+        ]
+      },
+      "TargetsEligibility": {
+        "label": "Eligible 🎯 Targets",
+        "value": [],
+        "selections": {
+          "Willing": "Willing",
+          "Detectable": "Detectable",
+          "Perceptible": "Perceptible",
+          "Visible": "Visible",
+          "Audible": "Audible",
+          "Odorous": "Odorous",
+          "Tangible": "Tangible",
+          "Taste-able": "Taste-able"
+        }
+      },
+      "TargetsType": {
+        "label": "Type of 🎯 Targets",
+        "value": [],
+        "selections": {
+          "Animal": "Animal",
+          "Human": "Human",
+          "Metanthrope": "Metanthrope",
+          "Extradimensional": "Extradimensional",
+          "Extraterrestrial": "Extraterrestrial",
+          "Metatherion": "Metatherion",
+          "Organism": "Organism",
+          "Dead": "Dead",
+          "Plant": "Plant",
+          "Object": "Object",
+          "Character": "Character",
+          "Metapowered": "Metapowered",
+          "Living": "Living"
+        }
+      },
+      "Duration": {
+        "type": "text",
+        "dtype": "String",
+        "label": "⏳ Duration",
+        "value": "One Cycle",
+        "options": [
+          "Instantaneous",
+          "Round",
+          "One Cycle",
+          "1d10 Cycles",
+          "One Hour",
+          "1d10 Hours",
+          "One Day",
+          "1d10 Days",
+          "One Week",
+          "1d10 Weeks",
+          "One Month",
+          "1d10 Months",
+          "One Year",
+          "1d10 Years",
+          "Permanent"
+        ]
+      },
+      "Range": {
+        "type": "text",
+        "dtype": "String",
+        "label": "📏 Range",
+        "value": "Square [Area 4]",
+        "options": [
+          "Self [Area 0]",
+          "Hexagon [Area 1]",
+          "Room [Area 2]",
+          "Building [Area 3]",
+          "Square [Area 4]",
+          "Block [Area 5]",
+          "Neighborhood [Area 6]",
+          "District [Area 7]",
+          "Town [Area 8]",
+          "City [Area 9]",
+          "Region [Area 10]",
+          "Sector [Area 11]",
+          "Country [Area 12]",
+          "Zone [Area 13]",
+          "Continent [Area 14]",
+          "Hemisphere [Area 15]",
+          "Planet [Area 16]"
+        ]
+      },
+      "AreaEffect": {
+        "type": "text",
+        "dtype": "String",
+        "label": "🗺️ Area of Effect",
+        "value": "None",
+        "options": [
+          "None",
+          "Hexagon [Area 1]",
+          "Room [Area 2]",
+          "Building [Area 3]",
+          "Square [Area 4]",
+          "Block [Area 5]",
+          "Neighborhood [Area 6]",
+          "District [Area 7]",
+          "Town [Area 8]",
+          "City [Area 9]",
+          "Region [Area 10]",
+          "Sector [Area 11]",
+          "Country [Area 12]",
+          "Zone [Area 13]",
+          "Continent [Area 14]",
+          "Hemisphere [Area 15]",
+          "Planet [Area 16]"
+        ]
+      },
+      "AreaType": {
+        "label": "🗺️ (Type)",
+        "value": [],
+        "selections": {
+          "None": "None",
+          "Aura": "Aura",
+          "Line": "Line",
+          "Burst": "Burst",
+          "Hemisphere": "Hemisphere",
+          "Sphere": "Sphere"
+        }
+      },
+      "AdditionalInfo": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Additional Information",
+        "value": null
+      }
+    },
+    "Effects": {
+      "PermanentEffectDescription": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Permanent Effects",
+        "value": null
+      },
+      "EffectDescription": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Effect",
+        "value": "<p style=\"text-align: justify;\"><strong><span lang=\"en-us\" xml:lang=\"en-us\"><span class=\"ipsEmoji\"><abbr title=\"Roll is Successful\"><abbr title=\"Roll is Successful\">🟩</abbr></abbr></span></span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">:&nbsp;</span></strong><strong>Receive the following&nbsp;</strong><strong><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">🛡️</abbr></span></abbr></strong><strong>:</strong><strong>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Additional layers and spectrums of detection\"><abbr title=\"Additional layers and spectrums of detection\">Detection</abbr></abbr>: Hidden&nbsp;<abbr title=\"Natural landscapes and obstacles found in the Grid\"><abbr title=\"Natural landscapes and obstacles found in the Grid\">Terrain</abbr></abbr>&nbsp;and&nbsp;</span></strong><strong><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">🛡️</abbr></span></abbr></strong><strong>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Additional layers and spectrums of detection\"><abbr title=\"Additional layers and spectrums of detection\">Detection</abbr></abbr>:&nbsp;<abbr title=\"Line, Burst, Fill, Hemisphere and Sphere\"><abbr title=\"Line, Burst, Aura, Hemisphere, and Sphere\"><abbr title=\"Line, Burst, Aura, Hemisphere, and Sphere\">Area Effects</abbr></abbr></abbr>.</span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;In addition, you can attempt to roll to find hidden&nbsp;<abbr title=\"Any NPCs or Protagonists\">Characters</abbr>&nbsp;with Awareness</span></strong><strong>&nbsp;rolls</strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;instead of Perception.</span></strong></p>\n<p style=\"text-align: justify;\"><strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span></strong></p>\n<p style=\"text-align: justify;\"><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Level of Success\">✔️</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\">=<strong>&nbsp;</strong>You additionally gain the&nbsp;</span><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">🛡️</abbr></span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Additional layers and spectrums of detection\"><abbr title=\"Additional layers and spectrums of detection\">Detection</abbr></abbr>: Invisibility</span></p>\n<p style=\"text-align: justify;\"><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Level of Success\">✔️</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Level of Success\">✔️</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\">= You additionally gain the&nbsp;</span><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">🛡️</abbr></span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Additional layers and spectrums of detection\"><abbr title=\"Additional layers and spectrums of detection\">Detection</abbr></abbr>: Psyche&nbsp;<abbr title=\"Negative effects\"><abbr title=\"Negative effects\">Conditions</abbr></abbr></span></p>\n<p style=\"text-align: justify;\"><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Level of Success\">✔️</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Level of Success\">✔️</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Level of Success\">✔️</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;=</span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;You additionally gain the&nbsp;</span><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">🛡️</abbr></span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Additional layers and spectrums of detection\"><abbr title=\"Additional layers and spectrums of detection\">Detection</abbr></abbr>:&nbsp;<abbr title=\"Probing or Infiltrating in the targeted area\">Area Invasion</abbr></span></p>\n<p style=\"text-align: justify;\"><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Level of Success\">✔️</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Level of Success\">✔️</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Level of Success\">✔️</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Level of Success\">✔️</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\">= You additionally gain the&nbsp;</span><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">🛡️</abbr></span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Additional layers and spectrums of detection\"><abbr title=\"Additional layers and spectrums of detection\">Detection</abbr></abbr>: Metanthropes and&nbsp;</span><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">🛡️</abbr></span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Additional layers and spectrums of detection\"><abbr title=\"Additional layers and spectrums of detection\">Detection</abbr></abbr>:&nbsp;&nbsp;Extradimensional</span></p>\n<p style=\"text-align: justify;\"><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Level of Success\">✔️</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Level of Success\">✔️</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Level of Success\">✔️</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Level of Success\">✔️</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Level of Success\">✔️</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\">= You additionally gain the&nbsp;</span><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">🛡️</abbr></span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Additional layers and spectrums of detection\"><abbr title=\"Additional layers and spectrums of detection\">Detection</abbr></abbr>: Psychic Energy</span></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\"><em><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;(Spending&nbsp;</span></em><em><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr></span></em><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><em><span lang=\"en-us\" xml:lang=\"en-us\">reduces the amount of<strong>&nbsp;</strong></span></em><em><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Level of Success\">✔️</abbr></span></abbr></span></em><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><em><span lang=\"en-us\" xml:lang=\"en-us\">accumulated)</span></em></p>\n<p style=\"text-align: justify;\"><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\">=&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Duration\"><span class=\"ipsEmoji\"><abbr title=\"Duration\">⏳</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\">+ 1&nbsp;<abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\"><abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\">Cycle</abbr></abbr></span></p>\n<p style=\"text-align: justify;\"><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">✅</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\">=&nbsp;</span><abbr title=\"Range\"><span class=\"ipsEmoji\"><abbr title=\"Range\">📏</abbr></span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\">+ 1 Area</span></p>\n<p style=\"text-align: justify;\"><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\"><abbr title=\"Level of Failure\">❌</abbr></span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\"><abbr title=\"Level of Failure\">❌</abbr></span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\"><abbr title=\"Level of Failure\">❌</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\">= Receive the&nbsp;</span><abbr title=\"Condition\"><span class=\"ipsEmoji\"><abbr title=\"Condition\">💀</abbr></span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Fail all rolls relying upon that sense\"><abbr title=\"Fail all rolls regarding that sense\">Sense Lost</abbr>:</abbr>&nbsp;Vision for&nbsp;</span>1<span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;<abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\"><abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\">Cycle</abbr></abbr></span></p>"
+      },
+      "VSStatRoll": {
+        "type": "text",
+        "dtype": "String",
+        "label": "🆚",
+        "options": [
+          "None",
+          "Awareness",
+          "Consciousness",
+          "Creativity",
+          "Endurance",
+          "Manipulation",
+          "Perception",
+          "Power",
+          "Reflexes",
+          "Willpower"
+        ],
+        "value": "None"
+      },
+      "Damage": {
+        "Cosmic": {
+          "label": "✨ Cosmic 💥 Damage",
+          "type": "number",
+          "dtype": "Number",
+          "Base": 0,
+          "Dice": 0
+        },
+        "Elemental": {
+          "label": "✨ Elemental 💥 Damage",
+          "type": "number",
+          "dtype": "Number",
+          "Base": 0,
+          "Dice": 0
+        },
+        "Material": {
+          "label": "✨ Material 💥 Damage",
+          "type": "number",
+          "dtype": "Number",
+          "Base": 0,
+          "Dice": 0
+        },
+        "Psychic": {
+          "label": "✨ Psychic 💥 Damage",
+          "type": "number",
+          "dtype": "Number",
+          "Base": 0,
+          "Dice": 0
+        }
+      },
+      "Healing": {
+        "label": "💞 Healing",
+        "type": "number",
+        "dtype": "Number",
+        "Base": 0,
+        "Dice": 0
+      },
+      "Special": {
+        "label": "Special",
+        "SpecialDiceName": {
+          "type": "text",
+          "dtype": "String",
+          "label": "Dice Name",
+          "value": "None"
+        },
+        "type": "number",
+        "dtype": "Number",
+        "isHalf": false,
+        "Base": 0,
+        "Dice": 0
+      },
+      "Conditions": {
+        "Applied": {
+          "label": "💀 ➕",
+          "type": "text",
+          "dtype": "String",
+          "value": ""
+        },
+        "Removed": {
+          "label": "💀 ➖",
+          "type": "text",
+          "dtype": "String",
+          "value": ""
+        }
+      },
+      "Buffs": {
+        "Permanent": {
+          "label": "🛡️ ♾️",
+          "type": "text",
+          "dtype": "String",
+          "value": ""
+        },
+        "Applied": {
+          "label": "🛡️ ➕",
+          "type": "text",
+          "dtype": "String",
+          "value": "Detection: Hidden Terrain, Detection: Area Effects"
+        },
+        "Removed": {
+          "label": "🛡️ ➖",
+          "type": "text",
+          "dtype": "String",
+          "value": ""
+        }
+      },
+      "AdditionalInfo": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Effect Additional Information",
+        "value": "<p style=\"text-align: justify;\"><span lang=\"en-us\" xml:lang=\"en-us\">With the&nbsp;&nbsp;With the&nbsp;&nbsp;</span><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">🛡️</abbr></span></abbr><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;<abbr title=\"Additional layers and spectrums of detection\"><abbr title=\"Additional layers and spectrums of detection\">Detection</abbr></abbr>: Hidden&nbsp;<abbr title=\"Natural landscapes and obstacles found in the Grid\"><abbr title=\"Natural landscapes and obstacles found in the Grid\">Terrain</abbr></abbr>&nbsp;you can detect any hidden locations on the terrain around you, such as: hidden passages, fake doors or walls, hollow ground, and anything similar within&nbsp;<abbr title=\"How far can an effect be applied\"><abbr title=\"How far can an effect be applied\">Range</abbr></abbr>. With the&nbsp;</span><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">🛡️</abbr></span></abbr><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;<abbr title=\"Additional layers and spectrums of detection\"><abbr title=\"Additional layers and spectrums of detection\">Detection</abbr></abbr>: Area Affects you can detect any&nbsp;<abbr title=\"Line, Burst, Fill, Hemisphere and Sphere\"><abbr title=\"Line, Burst, Aura, Hemisphere, and Sphere\"><abbr title=\"Line, Burst, Aura, Hemisphere, and Sphere\">Area Effects</abbr></abbr></abbr>&nbsp;on the&nbsp;<abbr title=\"Visual interpretation of the Terrain and the Characters upon it made out of Hexagons\"><abbr title=\"The Grid is the visual representation of an Action Scene as seen from a top-down view.\"><abbr title=\"The Grid is the visual representation of an Action Scene as seen from a top-down view.\">Grid</abbr></abbr></abbr>&nbsp;generated by&nbsp;<abbr title=\"Items, Vehicles, and Weapons\"><abbr title=\"Items, Vehicles, and Weapons\">Possessions</abbr></abbr>, Metapowers, and Combos&nbsp;of level up to your level of 6<sup>th</sup>&nbsp;Sense within&nbsp;<abbr title=\"How far can an effect be applied\"><abbr title=\"How far can an effect be applied\">Range</abbr></abbr>. With the&nbsp;</span><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">🛡️</abbr></span></abbr><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;<abbr title=\"Additional layers and spectrums of detection\"><abbr title=\"Additional layers and spectrums of detection\">Detection</abbr></abbr>: Invisibility you become aware of the location of any Invisible target within&nbsp;<abbr title=\"How far can an effect be applied\"><abbr title=\"How far can an effect be applied\">Range</abbr></abbr>&nbsp;of level up to your level of 6<sup>th</sup>&nbsp;Sense. With the&nbsp;</span><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">🛡️</abbr></span></abbr><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;<abbr title=\"Additional layers and spectrums of detection\"><abbr title=\"Additional layers and spectrums of detection\">Detection</abbr></abbr>: Psyche&nbsp;<abbr title=\"Negative effects\"><abbr title=\"Negative effects\">Conditions</abbr></abbr>&nbsp;you become aware of which targets that are Detectable by you have any&nbsp;<abbr title=\"Negative effects\"><abbr title=\"Negative effects\">Conditions</abbr></abbr>&nbsp;of the Mind and Soul, which are they, and of level up to your level of 6<sup>th</sup>&nbsp;Sense. With the&nbsp;</span><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">🛡️</abbr></span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Additional layers and spectrums of detection\"><abbr title=\"Additional layers and spectrums of detection\">Detection</abbr></abbr>:&nbsp;<abbr title=\"Probing or Infiltrating in the targeted area\">Area Invasion</abbr>&nbsp;you become aware of any Environment&nbsp;<abbr title=\"Negative effects\"><abbr title=\"Negative effects\">Conditions</abbr></abbr>:&nbsp;<abbr title=\"Effects which scry over Areas or Objects and offer information about them.\">Area Probed</abbr>&nbsp;and&nbsp;<abbr title=\"Effects which offer control over Objects, or create illusions upon areas.\">Area Infiltrated</abbr>&nbsp;within&nbsp;<abbr title=\"How far can an effect be applied\"><abbr title=\"How far can an effect be applied\">Range</abbr></abbr>&nbsp;of level up to your level of 6<sup>th</sup>&nbsp;Sense</span><span lang=\"en-us\" xml:lang=\"en-us\">.&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\">With the&nbsp;</span><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">🛡️</abbr></span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Additional layers and spectrums of detection\"><abbr title=\"Additional layers and spectrums of detection\">Detection</abbr></abbr>: Metanthropes you become aware of which targets that are Detectable by you have&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Targets\"><span class=\"ipsEmoji\"><abbr title=\"Targets\">🎯</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">: Metanthropes within&nbsp;<abbr title=\"How far can an effect be applied\"><abbr title=\"How far can an effect be applied\">Range</abbr></abbr>&nbsp;and with the&nbsp;</span><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">🛡️</abbr></span></abbr><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Additional layers and spectrums of detection\"><abbr title=\"Additional layers and spectrums of detection\">Detection</abbr></abbr>: Extradimensional you become aware of which targets that are Detectable by you have&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Targets\"><span class=\"ipsEmoji\"><abbr title=\"Targets\">🎯</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">: Extradimensional within&nbsp;<abbr title=\"How far can an effect be applied\"><abbr title=\"How far can an effect be applied\">Range</abbr></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">.&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\">With the&nbsp;</span><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">🛡️</abbr></span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Additional layers and spectrums of detection\"><abbr title=\"Additional layers and spectrums of detection\">Detection</abbr></abbr>: Psychic Energy you become aware of which targets that are Detectable by you have any Psychic&nbsp;<abbr title=\"A number that reduces incoming Damage of the same Energy Type\"><abbr title=\"A number that reduces incoming Damage of the same Energy Type\">Resistance</abbr></abbr>, how much is it, and if they have any&nbsp;<abbr title=\"Positive effects\"><abbr title=\"Positive effects\">Buffs</abbr></abbr>&nbsp;of the Psychic&nbsp;<abbr title=\"Cosmic, Elemental, Material or Psychic\"><abbr title=\"Cosmic, Elemental, Material or Psychic\">Energy Type</abbr></abbr>&nbsp;of level up to the level of your 6<sup>th</sup>&nbsp;Sense.</span></p>"
+      }
+    },
+    "Results": {
+      "level00": {
+        "type": "text",
+        "dtype": "String",
+        "label": "🟩",
+        "value": null
+      },
+      "level01": {
+        "type": "text",
+        "dtype": "String",
+        "label": "1 * ✔️",
+        "value": null
+      },
+      "level02": {
+        "type": "text",
+        "dtype": "String",
+        "label": "2 * ✔️",
+        "value": null
+      },
+      "level03": {
+        "type": "text",
+        "dtype": "String",
+        "label": "3 * ✔️",
+        "value": null
+      },
+      "level04": {
+        "type": "text",
+        "dtype": "String",
+        "label": "4 * ✔️",
+        "value": null
+      },
+      "level05": {
+        "type": "text",
+        "dtype": "String",
+        "label": "5 * ✔️",
+        "value": null
+      },
+      "level06": {
+        "type": "text",
+        "dtype": "String",
+        "label": "6 * ✔️",
+        "value": null
+      },
+      "level07": {
+        "type": "text",
+        "dtype": "String",
+        "label": "7 * ✔️",
+        "value": null
+      },
+      "level08": {
+        "type": "text",
+        "dtype": "String",
+        "label": "8 * ✔️",
+        "value": null
+      },
+      "level09": {
+        "type": "text",
+        "dtype": "String",
+        "label": "9 * ✔️",
+        "value": null
+      },
+      "level10": {
+        "type": "text",
+        "dtype": "String",
+        "label": "10 * ✔️",
+        "value": null
+      },
+      "level11": {
+        "type": "text",
+        "dtype": "String",
+        "label": "11+ * ✔️",
+        "value": null
+      },
+      "AdditionalInfo": {
+        "type": "text",
+        "dtype": "String",
+        "label": "Results Additional Information",
+        "value": null
+      }
+    },
+    "MetapowerName": {
+      "type": "text",
+      "dtype": "String",
+      "label": "Ⓜ️",
+      "value": "6th Sense"
+    },
+    "Description": {
+      "type": "text",
+      "dtype": "String",
+      "label": "Metapower Description",
+      "value": "<p align=\"center\"><em><span lang=\"en-us\" xml:lang=\"en-us\">Feel the Unseen empowers you to detect what others cannot perceive. You can uncover hidden areas, sense the presence of invisible entities and interdimensional beings, and detect when someone is shadowing you. Additionally, while Feel the Unseen is active, you gain insight into the psychic conditions of those around you, providing a glimpse into their souls. This remarkable ability warns you like a gut feeling of what lies hidden around you, causing unseen presences to brighten with colored auras. The extent of Feel the Unseen's capabilities depends on the skill of the Clairvoyant. Skillful attempts will reveal more secrets, as new colorful auras will be included in your mind's eye. However, careless attempts may temporarily blind you for a minute. With Feel the Unseen, you become a master of uncovering secrets and untangling the mysteries that surround you.</span></em></p>"
+    },
+    "Classification": {
+      "type": "text",
+      "dtype": "String",
+      "label": "🔣",
+      "value": "Clairvoyant",
+      "options": [
+        "Aegis",
+        "Animator",
+        "Arbiter",
+        "Clairvoyant",
+        "Controller",
+        "Cosmonaut",
+        "Hammer",
+        "Kineticist",
+        "Manipulator",
+        "Utilitarian"
+      ]
+    },
+    "Level": {
+      "type": "number",
+      "dtype": "Number",
+      "label": "⏫",
+      "value": "2",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "EnergyType": {
+      "type": "text",
+      "dtype": "String",
+      "label": "✨",
+      "value": "Psychic",
+      "options": [
+        "Cosmic",
+        "Elemental",
+        "Material",
+        "Psychic"
+      ]
+    },
+    "DestinyCost": {
+      "type": "number",
+      "dtype": "Number",
+      "label": "🤞",
+      "value": 0
+    }
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "yjFY5zW9urDSuce5": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "Compendium.metanthropes-system.metapowers.Item.b0pUF7rEbXWf0oiF"
+    },
+    "scene-packer": {
+      "hash": "6c6caa47cdd875caae5aedfbb10ad62b5c0baf08"
+    }
+  },
+  "_stats": {
+    "systemId": "metanthropes-system",
+    "systemVersion": "0.8.85",
+    "coreVersion": "11.315",
+    "createdTime": 1693065434495,
+    "modifiedTime": 1700757670663,
+    "lastModifiedBy": "yjFY5zW9urDSuce5"
+  },
+  "_id": "b0pUF7rEbXWf0oiF",
+  "sort": 0,
+  "_key": "!items!b0pUF7rEbXWf0oiF"
+}

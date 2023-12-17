@@ -1,0 +1,27 @@
+{
+  "name": "Utilitarian",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "description": "",
+  "sort": 100000,
+  "color": "#908989",
+  "flags": {
+    "df-qol": {
+      "colour": ""
+    },
+    "scene-packer": {
+      "hash": "07a793167ef06b231725077b5b83e4e6641686f1"
+    }
+  },
+  "_stats": {
+    "systemId": "metanthropes-system",
+    "systemVersion": "0.8.85",
+    "coreVersion": "11.315",
+    "createdTime": 1693133106301,
+    "modifiedTime": 1700757762401,
+    "lastModifiedBy": "yjFY5zW9urDSuce5"
+  },
+  "_id": "czsmmtAwemx4ZV2a",
+  "_key": "!folders!czsmmtAwemx4ZV2a"
+}
