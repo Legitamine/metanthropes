@@ -47,6 +47,9 @@
 *.webm  binary
 *.svg   binary
 
+# Audio Files
+*.ogg   binary
+
 ###############################################################################
 # diff behavior for common document formats
 # 

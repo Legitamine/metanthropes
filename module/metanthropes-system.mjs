@@ -342,7 +342,7 @@ Hooks.once("init", async function () {
 		This setting requires a reload (F5) to take effect.
 		`,
 		scope: "world", //? This specifies if it's a client-side setting
-		config: true, //? This makes the setting appear in the module configuration
+		config: false, //? This makes the setting appear in the module configuration
 		requiresReload: true, //? If true, a client reload (F5) is required to activate the setting
 		type: Boolean,
 		default: false,

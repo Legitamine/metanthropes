@@ -61,11 +61,6 @@ jobs:
                   echo "Contents of Data directory post packaging"
                   dir /home/runner/work/${{steps.id.outputs.prop}}/Data
                   echo "Finished packaging Compendiums"
-            # Foundry VTT CLI is supposed to help with packs, but I'm not sure how to use it yet
-            # - name: Install Foundry CLI
-            #   run: npm install -g @foundry-vtt/cli
-            # - name: Pack Compendium
-            #   run: foundry-cli pack --path /packs
             - name: Zip the compiled files
               uses: thedoctor0/zip-release@0.7.1
               with:
