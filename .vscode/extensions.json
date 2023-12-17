@@ -1,0 +1,12 @@
+{
+	"recommendations": [
+		"andrejunges.handlebars",
+		"aaron-bond.better-comments",
+		"itsmeadarsh.vsc-handlebars-ext",
+		"ecmel.vscode-html-css",
+		"oderwat.indent-rainbow",
+		"glenn2223.live-sass",
+		"esbenp.prettier-vscode",
+		"redhat.vscode-yaml"
+	]
+}
