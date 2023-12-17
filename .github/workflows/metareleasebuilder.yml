@@ -71,7 +71,7 @@ jobs:
               with:
                   type: "zip"
                   filename: "${{steps.id.outputs.prop}}.zip" # I need to make the name to match the release name / version name of the build --- oooor just name it metanthropes.zip and be done with it
-                  exclusions: "*.git* /*node_modules/* /*.vscode/* .npmignore .nvmrc gulpfile.js package-lock.json package.json /scss/* /sass/*"
+                  exclusions: "*.git* /*node_modules/* /*.vscode/* .npmignore .nvmrc gulpfile.js package-lock.json package.json /src/* /scss/* /sass/*"
             - name: Create GitHub Release
               uses: softprops/action-gh-release@v1
               with:
