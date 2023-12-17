@@ -13,4 +13,4 @@ jsconfig.json
 foundry
 
 # Compendiums
-packs/
+packs/*
