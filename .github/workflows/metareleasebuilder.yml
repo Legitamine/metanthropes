@@ -35,9 +35,9 @@ jobs:
             - name: Pack packs
               run: |
                   npm install -g @foundryvtt/foundryvtt-cli
-                  mkdir -p /home/runner/work/${{steps.version.outputs.prop}}/Data
-                  fvtt configure set dataPath "/home/runner/work/${{steps.version.outputs.prop}}/Data"
-                  fvtt package workon "${{steps.version.outputs.prop}}" --type "System"
+                  mkdir -p /home/runner/work/${{steps.id.outputs.prop}}/Data
+                  fvtt configure set dataPath "/home/runner/work/${{steps.id.outputs.prop}}/Data"
+                  fvtt package workon "${{steps.id.outputs.prop}}" --type "System"
                   fvtt package pack -n "how-to-play" --in ./packs/how-to-play/_source --out ./packs
                   fvtt package pack -n "introductory-scenes" --in ./packs/introductory-scenes/_source --out ./packs
                   fvtt package pack -n "metapowers" --in ./packs/metapowers/_source --out ./packs
