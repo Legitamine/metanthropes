@@ -39,18 +39,16 @@ jobs:
                   dir /home/runner/work/${{steps.id.outputs.prop}}/${{steps.id.outputs.prop}}
                   echo "Contents of packs"
                   dir /home/runner/work/${{steps.id.outputs.prop}}/${{steps.id.outputs.prop}}/packs
-                  echo "Contents of how-to-play"
-                  dir /home/runner/work/${{steps.id.outputs.prop}}/${{steps.id.outputs.prop}}/packs/how-to-play
                   echo "Create Data directory"
                   mkdir -p /home/runner/work/${{steps.id.outputs.prop}}/Data
                   echo "Contents of Data directory"
                   dir /home/runner/work/${{steps.id.outputs.prop}}/Data
                   fvtt configure set dataPath "/home/runner/work/${{steps.id.outputs.prop}}/Data"
                   fvtt package workon "${{steps.id.outputs.prop}}" --type "System"
-                  fvtt package pack -n "how-to-play" --in ./packs/how-to-play/_source --out ./packs
-                  fvtt package pack -n "introductory-scenes" --in ./packs/introductory-scenes/_source --out ./packs
+
+
                   fvtt package pack -n "metapowers" --in ./packs/metapowers/_source --out ./packs
-                  fvtt package pack -n "narrator-notes" --in ./packs/narrator-notes/_source --out ./packs
+
                   fvtt package pack -n "narrator-toolkit" --in ./packs/narrator-toolkit/_source --out ./packs
                   fvtt package pack -n "possessions" --in ./packs/possessions/_source --out ./packs
                   fvtt package pack -n "premade-antagonists" --in ./packs/premade-antagonists/_source --out ./packs
