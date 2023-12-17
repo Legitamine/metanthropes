@@ -1,5 +1,1 @@
-2023/12/17-15:20:09.279 5b4c Log #508: 0 ops saved to Table #509 OK
-2023/12/17-15:20:09.279 5b4c Archiving F:\FoundryVTT\Data\systems\metanthropes-system\packs\premade-antagonists/000508.log: OK
-2023/12/17-15:20:09.280 5b4c Table #383: 87 entries OK
-2023/12/17-15:20:09.282 5b4c Archiving F:\FoundryVTT\Data\systems\metanthropes-system\packs\premade-antagonists/MANIFEST-000507: OK
-2023/12/17-15:20:09.283 5b4c **** Repaired leveldb F:\FoundryVTT\Data\systems\metanthropes-system\packs\premade-antagonists; recovered 1 files; 516242 bytes. Some data may have been lost. ****
+2023/12/17-15:20:09.289 5b4c Delete type=3 #1

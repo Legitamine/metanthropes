@@ -1,5 +1,1 @@
-2023/12/17-15:20:09.373 5b4c Log #515: 0 ops saved to Table #516 OK
-2023/12/17-15:20:09.374 5b4c Archiving F:\FoundryVTT\Data\systems\metanthropes-system\packs\rollable-tables/000515.log: OK
-2023/12/17-15:20:09.374 5b4c Table #264: 9 entries OK
-2023/12/17-15:20:09.376 5b4c Archiving F:\FoundryVTT\Data\systems\metanthropes-system\packs\rollable-tables/MANIFEST-000514: OK
-2023/12/17-15:20:09.377 5b4c **** Repaired leveldb F:\FoundryVTT\Data\systems\metanthropes-system\packs\rollable-tables; recovered 1 files; 1401 bytes. Some data may have been lost. ****
+2023/12/17-15:20:09.381 5b4c Delete type=3 #1

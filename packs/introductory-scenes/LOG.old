@@ -1,4 +1,1 @@
-2023/12/17-15:20:09.359 3294 Log #515: 0 ops saved to Table #516 OK
-2023/12/17-15:20:09.360 3294 Archiving F:\FoundryVTT\Data\systems\metanthropes-system\packs\introductory-scenes/000515.log: OK
-2023/12/17-15:20:09.361 3294 Archiving F:\FoundryVTT\Data\systems\metanthropes-system\packs\introductory-scenes/MANIFEST-000514: OK
-2023/12/17-15:20:09.363 3294 **** Repaired leveldb F:\FoundryVTT\Data\systems\metanthropes-system\packs\introductory-scenes; recovered 0 files; 0 bytes. Some data may have been lost. ****
+2023/12/17-15:20:09.368 3294 Delete type=3 #1

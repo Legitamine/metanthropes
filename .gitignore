@@ -11,6 +11,3 @@ npm-debug.log
 *.lock
 jsconfig.json
 foundry
-
-# Compendiums
-packs/*/*
