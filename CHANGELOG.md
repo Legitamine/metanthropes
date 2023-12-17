@@ -4,7 +4,7 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 
-# Early Access v0.8.146 [2023-12-17]
+# Early Access v0.8.147 [2023-12-17]
 
 ## New Features:
 
@@ -12,6 +12,7 @@ Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 
 ## Changed:
 
+-   Core Conditions moved out of the Stats Tab and into the new Effects Tab, functionality remains the same
 -   Compendiums are now built automatically when we release a new version of the System. Previously this had to be done manually and caused extra effort in making new releases that included changes to Compendiums, now the process takes fewer steps and it's less error-prone. This is a developer feature and won't affect the gameplay in any way
 
 # Early Access v0.8.128 [2023-12-13]
