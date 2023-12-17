@@ -34,28 +34,33 @@ jobs:
                   value: "https://github.com/${{github.repository}}/releases/download/${{steps.version.outputs.prop}}/${{steps.id.outputs.prop}}.zip"
             - name: Pack Compendiums
               run: |
+                  echo "Installing Foundry VTT CLI"
                   npm install -g @foundryvtt/foundryvtt-cli
                   echo "Contents of system/system"
                   dir /home/runner/work/${{steps.id.outputs.prop}}/${{steps.id.outputs.prop}}
                   echo "Contents of packs"
                   dir /home/runner/work/${{steps.id.outputs.prop}}/${{steps.id.outputs.prop}}/packs
-                  echo "Contents of how-to-play"
-                  dir /home/runner/work/${{steps.id.outputs.prop}}/${{steps.id.outputs.prop}}/packs/how-to-play
                   echo "Create Data directory"
                   mkdir -p /home/runner/work/${{steps.id.outputs.prop}}/Data
                   echo "Contents of Data directory"
                   dir /home/runner/work/${{steps.id.outputs.prop}}/Data
+                  echo "Configuring dataPath"
                   fvtt configure set dataPath "/home/runner/work/${{steps.id.outputs.prop}}/Data"
+                  echo "Configure workon ${{steps.id.outputs.prop}} as a System"
                   fvtt package workon "${{steps.id.outputs.prop}}" --type "System"
-                  fvtt package pack -n "how-to-play" --in ./packs/how-to-play/_source --out ./packs
-                  fvtt package pack -n "introductory-scenes" --in ./packs/introductory-scenes/_source --out ./packs
+                  echo "Packaging metapowers"
                   fvtt package pack -n "metapowers" --in ./packs/metapowers/_source --out ./packs
-                  fvtt package pack -n "narrator-notes" --in ./packs/narrator-notes/_source --out ./packs
+                  echo "Packaging narrator-toolkit"
                   fvtt package pack -n "narrator-toolkit" --in ./packs/narrator-toolkit/_source --out ./packs
+                  echo "Packaging possessions"
                   fvtt package pack -n "possessions" --in ./packs/possessions/_source --out ./packs
+                  echo "Packaging premade-antagonists"
                   fvtt package pack -n "premade-antagonists" --in ./packs/premade-antagonists/_source --out ./packs
+                  echo "Packaging premade-protagonists"
                   fvtt package pack -n "premade-protagonists" --in ./packs/premade-protagonists/_source --out ./packs
+                  echo "Packaging rollable-tables"
                   fvtt package pack -n "rollable-tables" --in ./packs/rollable-tables/_source --out ./packs
+                  echo "Finished packaging Compendiums"
             # Foundry VTT CLI is supposed to help with packs, but I'm not sure how to use it yet
             # - name: Install Foundry CLI
             #   run: npm install -g @foundry-vtt/cli
