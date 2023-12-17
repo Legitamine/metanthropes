@@ -37,6 +37,8 @@ jobs:
                   npm install -g @foundryvtt/foundryvtt-cli
                   echo "Contents of system/system"
                   dir /home/runner/work/${{steps.id.outputs.prop}}/${{steps.id.outputs.prop}}
+                  echo "Contents of packs"
+                  dir /home/runner/work/${{steps.id.outputs.prop}}/${{steps.id.outputs.prop}}/packs
                   echo "Contents of how-to-play"
                   dir /home/runner/work/${{steps.id.outputs.prop}}/${{steps.id.outputs.prop}}/packs/how-to-play
                   echo "Create Data directory"
