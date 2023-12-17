@@ -32,9 +32,10 @@ jobs:
                   file: "./system.json"
                   field: "download"
                   value: "https://github.com/${{github.repository}}/releases/download/${{steps.version.outputs.prop}}/${{steps.id.outputs.prop}}.zip"
-            - name: Pack packs
+            - name: Pack Compendiums
               run: |
                   npm install -g @foundryvtt/foundryvtt-cli
+                  dir /home/runner/work
                   mkdir -p /home/runner/work/${{steps.id.outputs.prop}}/Data
                   fvtt configure set dataPath "/home/runner/work/${{steps.id.outputs.prop}}/Data"
                   fvtt package workon "${{steps.id.outputs.prop}}" --type "System"
