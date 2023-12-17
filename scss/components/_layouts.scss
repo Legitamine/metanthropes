@@ -26,7 +26,7 @@
 	display: grid;
 	grid-auto-flow: column;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr;
 	column-gap: 3px;
 	row-gap: 3px;
 	padding: $padding-zero;
@@ -97,6 +97,15 @@
 .layout-container-grid3x1-cs {
 	display: grid;
 	grid-template-columns: 2.4fr 1.6fr 2.8fr;
+	column-gap: 1px;
+	padding: $padding-zero;
+	margin: $margin-zero;
+	overflow: hidden;
+	overflow-wrap: break-word;
+}
+.layout-container-grid3x1 {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
 	column-gap: 1px;
 	padding: $padding-zero;
 	margin: $margin-zero;

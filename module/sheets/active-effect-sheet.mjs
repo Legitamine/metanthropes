@@ -41,8 +41,19 @@ export class MetanthropesActiveEffectSheet extends DocumentSheet {
 				hint: game.i18n.localize(`EFFECT.TransferHint${legacyTransfer ? "Legacy" : ""}`),
 			},
 		};
-		const metaEffectTypeOptions = ["Buff", "Condition", "Detection", "Immunity", "Shift"];
-		const metaEffectApplicationOptions = ["Characteristic", "Stat", "Perk", "Movement", "Resistance", "Cover"]
+		const metaEffectTypeOptions = ["Buff", "Condition"];
+		const metaEffectApplicationOptions = [
+			"Body",
+			"Mind",
+			"Soul",
+			"Movement",
+			"Action",
+			"Cover",
+			"Detection",
+			"Immunity",
+			"Resistance",
+			"Shift",
+		];
 		const predefinedKeys = [
 			{
 				key: "system.physical.resistances.cosmic.initial",
@@ -82,9 +93,7 @@ export class MetanthropesActiveEffectSheet extends DocumentSheet {
 			metaEffectType: metaFlags.metaEffectType,
 			metaEffectApplication: metaFlags.metaEffectApplication,
 			metaCycle: metaFlags.metaCycle,
-			metaRound: metaFlags.metaRound,
 			metaStartCycle: metaFlags.metaStartCycle,
-			metaStartRound: metaFlags.metaStartRound,
 			isActorEffect: this.object.parent.documentName === "Actor",
 			isItemEffect: this.object.parent.documentName === "Item",
 			isNarrator: game.user.isGM,

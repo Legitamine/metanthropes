@@ -14,12 +14,9 @@ export class MetanthropesCombat extends Combat {
 		super.prepareDerivedData();
 		//? adding the concept of Cycles & Rounds to the Combat system
 		let cycle = this.getFlag("metanthropes-system", "cycle") || 1;
-		let cycleRound = this.getFlag("metanthropes-system", "cycleRound") || 1;
 		//? embed the Cycle and Round values into the Combat document for use in the Combat Tracker
 		this.cycle = cycle;
-		this.cycleRound = cycleRound;
-		//todo: I need to better understand why the result is 1/1 when the world is loaded and then on the second pass it gets the right numbers
-		metaLog(3, "Combat", "prepareDerivedData", "Cycle:", cycle, "Round:", cycleRound);
+		metaLog(3, "Combat", "prepareDerivedData", "Cycle:", cycle, "Round:", this.round);
 	}
 	/** @override */
 	_sortCombatants(a, b) {
@@ -136,7 +133,7 @@ export class MetanthropesCombat extends Combat {
 	 */
 	async nextTurn() {
 		if (!this.started) return ui.notifications.warn("You must begin the encounter before progressing the turn!");
-		if (this.cycleRound === 1) {
+		if (this.round % 2 !== 0) {
 			//? Check if all combatants have an initiative value
 			for (let combatant of this.combatants) {
 				if (combatant.initiative === null || combatant.initiative === undefined) {
@@ -177,12 +174,31 @@ export class MetanthropesCombat extends Combat {
 		metaLog(3, "Combat", "nextRound", "Engaged");
 		if (!this.started)
 			return ui.notifications.warn("You must begin the encounter before progressing to the next Round!");
+		if (this.round % 2 !== 0) {
+			//? Check if all combatants have an initiative value
+			for (let combatant of this.combatants) {
+				if (combatant.initiative === null || combatant.initiative === undefined) {
+					ui.notifications.warn(
+						"All combatants must have rolled for Initiative before progressing the Turn!"
+					);
+					return;
+				}
+			}
+		}
+		//todo: we should not be calling super here cause it will cause a return and update of the combat document,
+		//todo: instead we should integrate what foundry does and replace as needed
 		await super.nextRound();
 		//* End of Round Effects
 		//? Iterate over Combatants
 		for (let combatant of this.combatants.values()) {
 			//? get the actor for the combatant
 			const actor = combatant.actor;
+			//* Active Effect Expiration
+			//? Fetch Active Effects with a duration of 'None' and toggle them off
+			let expiredEffects = [];
+			let effects = actor.effects.filter((e) => e.duration.label === "None");
+			expiredEffects.push(...effects);
+			await Promise.all(expiredEffects.map((e) => e.update({ disabled: true })));
 			//todo Core Conditions should be made into objects (vs arrays) in the template
 			//todo this will allow to have a single function that controls this, using .label and .effectdescr etc and simplify the code
 			//* Unconscious Condition
@@ -216,7 +232,7 @@ export class MetanthropesCombat extends Combat {
 				}
 				//? Create a chat message indicating the Unconscious effect
 				await ChatMessage.create({
-					content: `Is affected by the Unconscious Condition Level ${unconsciousLevel}, with the following effect:<br><br>${unconsciousEffect}<br><br>`,
+					content: `Is affected by the Unconscious Condition Level ${unconsciousLevel}, with the following effect:<br><br><p>${unconsciousEffect}</p><br><br>`,
 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 				});
 			}
@@ -251,7 +267,7 @@ export class MetanthropesCombat extends Combat {
 				}
 				//? Create a chat message indicating the Asphyxiation effect
 				await ChatMessage.create({
-					content: `Is affected by the Asphyxiation Condition Level ${asphyxiationLevel}, with the following effect:<br><br>${asphyxiationEffect}<br><br>`,
+					content: `Is affected by the Asphyxiation Condition Level ${asphyxiationLevel}, with the following effect:<br><br><p>${asphyxiationEffect}</p><br><br>`,
 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 				});
 			}
@@ -285,7 +301,7 @@ export class MetanthropesCombat extends Combat {
 				}
 				//? Create a chat message indicating the Unconscious effect
 				await ChatMessage.create({
-					content: `Is affected by the Fatigue Condition Level ${fatigueLevel}, with the following effect:<br><br>${fatigueEffect}<br><br>`,
+					content: `Is affected by the Fatigue Condition Level ${fatigueLevel}, with the following effect:<br><br><p>${fatigueEffect}</p><br><br>`,
 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 				});
 			}
@@ -305,39 +321,32 @@ export class MetanthropesCombat extends Combat {
 		//* Update the Cycle and Round values
 		//? Get the most recent Cycle and Round values from the Combat document
 		let cycle = (await this.getFlag("metanthropes-system", "cycle")) || 1;
-		let cycleRound = (await this.getFlag("metanthropes-system", "cycleRound")) || 1;
 		switch (this.round) {
 			case 1:
 				cycle = 1;
-				cycleRound = 1;
 				break;
 			case 2:
 				cycle = 1;
-				cycleRound = 2;
 				break;
 			case 3:
 				cycle = 2;
-				cycleRound = 1;
 				break;
 			default:
 				if (this.round > 2 && (this.round - 1) % 2 === 0) {
 					cycle++;
-					cycleRound = 1;
-				} else {
-					cycleRound = 2;
 				}
 				break;
 		}
+		//? Set cycle as part of Combat document
 		this.cycle = cycle;
-		this.cycleRound = cycleRound;
+		//? Set cycle as a flag in the Combat document
 		await this.setFlag("metanthropes-system", "cycle", cycle);
-		await this.setFlag("metanthropes-system", "cycleRound", cycleRound);
 		//? Reroll initiative for all combatants at the start of a new Cycle
-		if (cycle > 1 && cycleRound === 1) {
+		if (cycle > 1 && cycle % 2 !== 0) {
 			await this.resetAll();
 			this.setupTurns();
 			await ChatMessage.create({
-				content: `<br>New Cycle: ${cycle} Round: ${cycleRound}<br><br>Roll Inititiative!<br><br>`,
+				content: `<br>New Cycle: ${cycle} Round: ${this.round}<br><br>Roll Inititiative!<br><br>`,
 				speaker: {
 					alias: "Metanthropes Combat",
 				},
@@ -345,7 +354,7 @@ export class MetanthropesCombat extends Combat {
 		} else {
 			//? Create a chat message indicating the new Round
 			await ChatMessage.create({
-				content: `<br>Cycle: ${cycle} Round: ${cycleRound}<br><br>`,
+				content: `<br>Cycle: ${cycle} Round: ${this.round}<br><br>`,
 				speaker: {
 					alias: "Metanthropes Combat",
 				},
@@ -393,7 +402,7 @@ export class MetanthropesCombat extends Combat {
 			content: `<p>${game.i18n.localize("COMBAT.EndConfirmation")}</p>`,
 			yes: async () => {
 				const combatCycle = await this.getFlag("metanthropes-system", "cycle");
-				const combatRound = await this.getFlag("metanthropes-system", "cycleRound");
+				const combatRound = this.round;
 				const combatCycleMessage = `${combatCycle} Cycle${combatCycle === 1 ? "" : "s"}`;
 				const combatRoundMessage = `${combatRound} Round${combatRound === 1 ? "" : "s"}`;
 				await ChatMessage.create({

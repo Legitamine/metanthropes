@@ -2,7 +2,8 @@
 	class="meta-ui-responsive meta-ui-change-at-minimum layout-container-outer-charstats style-container-outer-charstats">
 	{{#each system.Characteristics}}
 		<div class="layout-container-stats style-container-stats meta-ui-responsive meta-ui-hide-at-minimum">
-			<div class="meta-ui-responsive style-cs-chars-label" data-tooltip="{{this.Title}}">{{@key}}</div>
+			<div class="meta-ui-responsive style-cs-chars-label" data-tooltip="{{this.Title}}">{{@key}}
+			</div>
 			<div class="meta-ui-responsive meta-ui-change-at-medium layout-container-grid3x1-cs">
 				<div class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium">
 					<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
@@ -104,7 +105,8 @@
 		</div>
 		{{#each Stats}}
 			<div class="layout-container-stats style-container-stats">
-				<div class="meta-ui-responsive style-cs-stats-label" data-tooltip="{{this.Title}}">{{@key}}
+				<div class="meta-ui-responsive style-cs-stats-label" data-tooltip="{{this.Title}}">
+					{{@key}}
 				</div>
 				<div class="meta-ui-responsive meta-ui-change-at-medium layout-container-grid3x1-cs">
 					<div class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium">
@@ -145,13 +147,15 @@
 							</p>
 						{{/if}}
 					</div>
-					<div class="meta-ui-responsive meta-ui-change-at-single-column style-cs-rolls" data-tooltip="Click to Roll<br><br>{{@key}}<br><br>Right-Click for Custom Roll"
+					<div class="meta-ui-responsive meta-ui-change-at-single-column style-cs-rolls"
+						data-tooltip="Click to Roll<br><br>{{@key}}<br><br>Right-Click for Custom Roll"
 						data-roll-type="StatRoll" data-stat="{{@key}}">
 						{{this.Roll}}
 					</div>
 					<div class="meta-ui-responsive meta-ui-hide-at-minimum">
 						{{#if (gt this.Buff.Current 0)}}
-							<p class="style-cs-buffs" data-tooltip="{{this.Buff.Name}} Buff Level">
+							<p class="style-cs-buffs"
+								data-tooltip="{{this.Buff.Name}} Buff Level">
 						{{else}}
 							<p class="style-cs-buffs meta-ui-obscure"
 								data-tooltip="{{this.Buff.Name}} Buff Level">
@@ -164,7 +168,8 @@
 						{{else}}
 							<p class="style-cs-buffs meta-ui-obscure">
 						{{/if}}
-						<select class="style-cs-buffs" data-tooltip="{{this.Buff.Name}} Buff Level"
+						<select class="style-cs-buffs"
+							data-tooltip="{{this.Buff.Name}} Buff Level"
 							name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current"
 							id="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current"
 							data-dtype="Number">
@@ -230,36 +235,5 @@
 				</div>
 			</div>
 		{{/each}}
-		<div class="layout-container-grid2x2 style-container-stats meta-ui-responsive meta-ui-hide-at-minimum">
-			{{#each CoreConditions}}
-				{{#if (gt this 0)}}
-					<div class="style-cs-conditions">
-				{{else}}
-					<div class="style-cs-conditions meta-ui-obscure">
-				{{/if}}
-				<p data-tooltip="{{@key}} Condition Level">💀 <label {{#if (gt this 0)}}
-						class="meta-ui-responsive meta-ui-hide-at-medium style-cs-conditions"
-						{{else}}
-						class="meta-ui-responsive meta-ui-hide-at-medium style-cs-conditions meta-ui-obscure"
-						{{/if}}
-						for="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}">{{@key}}</label>
-				</p>
-				<p data-tooltip="{{@key}} Condition Level">
-					<select {{#if (gt this 0)}} class="style-cs-conditions" {{else}}
-						class="style-cs-conditions meta-ui-obscure" {{/if}}
-						name="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}"
-						id="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}"
-						data-dtype="Number">
-						<option value="0" {{selected this 0}}>0</option>
-						<option value="1" {{selected this 1}}>1</option>
-						<option value="2" {{selected this 2}}>2</option>
-						<option value="3" {{selected this 3}}>3</option>
-						<option value="4" {{selected this 4}}>4</option>
-						<option value="5" {{selected this 5}}>5</option>
-					</select>
-				</p>
-		</div>
 	{{/each}}
-</div>
-{{/each}}
 </div>

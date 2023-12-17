@@ -32,6 +32,18 @@ jobs:
                   file: "./system.json"
                   field: "download"
                   value: "https://github.com/${{github.repository}}/releases/download/${{steps.version.outputs.prop}}/${{steps.id.outputs.prop}}.zip"
+            - name: Pack packs
+              run: |
+                  npm install -g @foundryvtt/foundryvtt-cli
+                  mkdir -p /home/runner/work/${{steps.version.outputs.prop}}/Data
+                  fvtt configure set dataPath "/home/runner/work/${{steps.version.outputs.prop}}/Data"
+                  fvtt package workon "${{steps.version.outputs.prop}}" --type "System"
+                  fvtt package pack -n "introductory-scenes" --in ./packs/introductory-scenes/_source --out ./packs
+            # Foundry VTT CLI is supposed to help with packs, but I'm not sure how to use it yet
+            # - name: Install Foundry CLI
+            #   run: npm install -g @foundry-vtt/cli
+            # - name: Pack Compendium
+            #   run: foundry-cli pack --path /packs
             - name: Zip the compiled files
               uses: thedoctor0/zip-release@0.7.1
               with:

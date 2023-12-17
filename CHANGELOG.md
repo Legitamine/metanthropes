@@ -8,6 +8,12 @@ Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 
 ## New Features:
 
+-   Active Effects now automatically become Inactive, when their Duration is over, during Combat. The Effect will move from the 'Active Effects' to the 'Inactive Effects' category, so they can be easily re-activated by the Narrator, if needed
+
+# Early Access v0.8.128 [2023-12-13]
+
+## New Features:
+
 -   Introducing the new Active Effects system, available in Beta Testing mode. This new system will allow you to create custom effects that can be applied to Actors and Items. This feature is in active development and will be out of Beta Testing with Early Access v0.9
 -   Added new Status Effects, available to Narrators via Right-Clicking a Token in the Canvas. This feature is in Early Access Final Testing and will be available to all players with Early Access v0.9
 -   Introducing the Targeting system. Now players are able to utilize the built-in Targeting functionality that Foundry VTT provides and the Target Names will be displayed as part of the Activation of a Metapower or Possession. This feature is in Early Access Final Testing and will be available to all players with Early Access v0.9

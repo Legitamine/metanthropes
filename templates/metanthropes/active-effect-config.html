@@ -11,23 +11,25 @@
 	<!-- Effect Configuration Tabs -->
 	<div class="layout-container-nav style-container-nav">
 		<nav class="style-container-nav-children tabs" aria-role="{{localize 'SHEETS.FormNavLabel'}}">
-			<a class="item" data-tab="details"><i class="fas fa-book"></i>
+			<a class="item" data-tab="details">📇
 				{{localize "EFFECT.TabDetails"}}</a>
 			<a class="item" data-tab="duration">⏳
 				{{localize "EFFECT.TabDuration"}}</a>
-			<a class="item" data-tab="effects"><i class="fas fa-cogs"></i>
+			<a class="item" data-tab="effects">⏰
 				{{localize "EFFECT.TabEffects"}}</a>
 		</nav>
 	</div>
 
 	<!-- Details Tab -->
 	<section class="tab" data-tab="details">
+		<!-- Tint 
 		<div class="form-group">
 			<label>{{ localize "EFFECT.IconTint" }}</label>
 			<div class="form-fields">
 				{{colorPicker name="tint" value=data.tint}}
 			</div>
 		</div>
+		-->
 
 		<div class="form-group">
 			<label>Effect Type</label>
@@ -56,7 +58,8 @@
 				</select>
 			</div>
 		</div>
-
+		<p>You must Select Type / Application & <i class="fas fa-save"></i> Submit Changes, before you Edit the ⏰ Effects</p>
+		<hr />
 		<div class="form-group stacked">
 			<label>{{ localize "EFFECT.Description" }}</label>
 			{{#if isNarrator}}
@@ -65,7 +68,7 @@
 				{{editor descriptionHTML target="description" button=false editable=false engine="prosemirror" collaborate=false}}
 			{{/if}}
 		</div>
-
+		<hr />
 		<div class="form-group">
 			<label>{{ localize "EFFECT.Disabled" }}</label>
 			<input type="checkbox" name="disabled" {{ checked data.disabled }} />
@@ -93,6 +96,7 @@
 
 	<!-- Duration Tab -->
 	<section class="tab" data-tab="duration">
+		<!-- Time Duration
 		<div class="form-group">
 			<label>{{ localize "EFFECT.DurationSecs" }}</label>
 			<div class="form-fields">
@@ -106,36 +110,53 @@
 			</div>
 		</div>
 		<hr />
+	-->
 		<div class="form-group">
-			<label>{{ localize "EFFECT.DurationTurns" }}</label>
+			<label>Effect Duration: </label>
 			<div class="form-fields">
-				<label>Cycles</label>
-				<input type="number" name="flags.metanthropes.metaCycle" value="{{ flags.metanthropes.metaCycle }}" />
-				<label>{{ localize "COMBAT.Rounds" }}</label>
+			<!--
+				<label>Cycle(s): </label>
+				<input type="number" name="flags.metanthropes.metaCycle"
+					value="{{ flags.metanthropes.metaCycle }}" />
+				/
+			-->
+				<label>Round(s): </label>
 				<input type="number" name="duration.rounds" value="{{ data.duration.rounds }}" />
-				<label>{{ localize "COMBAT.Turns" }}</label>
-				<input type="number" name="duration.turns" value="{{ data.duration.turns }}" />
 			</div>
 		</div>
-		<div class="form-group">
-			<label>{{ localize "EFFECT.Combat" }}</label>
-			<div class="form-fields">
-				<input type="text" name="duration.combat" value="{{ data.duration.combat }}" disabled />
+		{{#if data.duration.combat}}
+			<hr />
+			<div class="form-group">
+				<label data-tooltip="This is automatically filled-out during Combat">{{ localize "EFFECT.Combat" }}:
+				</label>
+				{{ data.duration.combat }}
+				<!-- 
+				<div class="form-fields">
+					<input type="text" name="duration.combat" value="{{ data.duration.combat }}" disabled />
+				</div>
+			-->
 			</div>
-		</div>
-
-		<div class="form-group">
-			<label>{{ localize "EFFECT.StartTurns" }}</label>
-			<div class="form-fields">
-				<label>Cycles</label>
-				<input type="number" name="flags.metanthropes.metaStartCycle" value="{{ flags.metanthropes.metaStartCycle }}" />
-				<label>{{ localize "COMBAT.Round" }}</label>
+			<hr />
+			<div class="form-group">
+				<label data-tooltip="This is automatically filled-out during Combat">Effect Started:
+				</label>
+				<div class="form-fields">
+					<label>Cycle: </label>
+					{{flags.metanthropes.metaStartCycle}}
+					<!--
+				<input type="number" name="flags.metanthropes.metaStartCycle"
+					value="{{ flags.metanthropes.metaStartCycle }}" />
+				-->
+					<label>{{ localize "COMBAT.Round" }}: </label>
+					{{data.duration.startRound}}
+					<!--
 				<input type="number" name="duration.startRound"
 					value="{{ data.duration.startRound }}" />
-				<label>{{ localize "COMBAT.Turn" }}</label>
-				<input type="number" name="duration.startTurn" value="{{ data.duration.startTurn }}" />
+				-->
+				</div>
 			</div>
-		</div>
+		{{/if}}
+
 	</section>
 
 	<!-- Effects Tab -->
