@@ -1,7 +1,7 @@
 {
 	"id": "metanthropes",
 	"title": "Metanthropes Early Access",
-	"description": "Metanthropes RPG Early Access System for Foundry VTT",
+	"description": "Metanthropes Early Access System for Foundry VTT",
 	"authors": [
 		{
 			"name": "qp",
@@ -26,7 +26,7 @@
 			"thumbnail": "systems/metanthropes/artwork/ui/cover/cover.jpg"
 		}
 	],
-	"version": "0.8.161",
+	"version": "0.9.002",
 	"compatibility": {
 		"minimum": 11,
 		"verified": "11.315"

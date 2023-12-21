@@ -1,5 +1,5 @@
 /**
- * Metanthropes RPG Official System for FoundryVTT
+ * Metanthropes Early Access System for Foundry VTT
  * Author: qp aka The Orchestrator
  *
  * Throughtout this project, I use the following syntax for comments:
@@ -71,30 +71,7 @@ Hooks.once("init", async function () {
 	//? Status Effects
 	const idsToKeep = [];
 	CONFIG.statusEffects = CONFIG.statusEffects.filter((item) => idsToKeep.includes(item.id));
-	const newStatusEffects = [
-		{
-			id: "fly",
-			name: "Fly",
-			flags: {
-				metanthropes: {
-					metaEffectType: "Buff",
-					metaEffectApplication: "Movement",
-					metaCycle: null,
-					metaRound: null,
-					metaStartCycle: null,
-					metaStartRound: null,
-				},
-			},
-			changes: [
-				{
-					key: "system.physical.movement.Buffs.fly.value",
-					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
-					value: true,
-				},
-			],
-			description: "<p>Fly</p>",
-			icon: "systems/metanthropes/artwork/status-effects/test6.svg",
-		},
+	const metaStatusEffects = [
 		{
 			id: "invisible",
 			name: "Invisible",
@@ -142,75 +119,6 @@ Hooks.once("init", async function () {
 			},
 			description: "<p>Dead</p>",
 			icon: "systems/metanthropes/artwork/status-effects/test9.svg",
-		},
-		{
-			id: "photokinetic",
-			name: "Photokinetic",
-			flags: {
-				metanthropes: {
-					metaEffectType: "Buff",
-					metaEffectApplication: "Movement",
-					metaCycle: null,
-					metaRound: null,
-					metaStartCycle: null,
-					metaStartRound: null,
-				},
-			},
-			changes: [
-				{
-					key: "system.physical.movement.Buffs.photokinetic.value",
-					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
-					value: true,
-				},
-			],
-			description: "<p>Photokinetic</p>",
-			icon: "systems/metanthropes/artwork/status-effects/test1.svg",
-		},
-		{
-			id: "wallwalk",
-			name: "Wall Walk",
-			flags: {
-				metanthropes: {
-					metaEffectType: "Buff",
-					metaEffectApplication: "Movement",
-					metaCycle: null,
-					metaRound: null,
-					metaStartCycle: null,
-					metaStartRound: null,
-				},
-			},
-			changes: [
-				{
-					key: "system.physical.movement.Buffs.walk-wall.value",
-					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
-					value: true,
-				},
-			],
-			description: "<p>Wall Walk</p>",
-			icon: "systems/metanthropes/artwork/status-effects/test2.svg",
-		},
-		{
-			id: "wavewalk",
-			name: "Wave Walk",
-			flags: {
-				metanthropes: {
-					metaEffectType: "Buff",
-					metaEffectApplication: "Movement",
-					metaCycle: null,
-					metaRound: null,
-					metaStartCycle: null,
-					metaStartRound: null,
-				},
-			},
-			changes: [
-				{
-					key: "system.physical.movement.Buffs.walk-wave.value",
-					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
-					value: true,
-				},
-			],
-			description: "<p>Wave Walk</p>",
-			icon: "systems/metanthropes/artwork/status-effects/test3.svg",
 		},
 		{
 			id: "knockeddown",
@@ -264,7 +172,7 @@ Hooks.once("init", async function () {
 			icon: "systems/metanthropes/artwork/status-effects/test5.svg",
 		},
 	];
-	CONFIG.statusEffects.push(...newStatusEffects);
+	CONFIG.statusEffects.push(...metaStatusEffects);
 	console.log("Metanthropes | Status Effects", CONFIG.statusEffects);
 	//? Metanthropes Initiative System
 	//! should I remove this? - removing it seems to break initiative, as we are 'highjacking' the formula method for metainitiative rolls
@@ -333,13 +241,43 @@ Hooks.once("init", async function () {
 			//? Do something when the setting is changed, if necessary
 		},
 	});
+	//? Conductor Module Settings
+	game.settings.register("metanthropes", "metaConductor", {
+		name: "Enable Conductor Features",
+		hint: `
+			Enable this setting to gain access to the Conductor Module Features.
+			`,
+		scope: "world", //? This specifies if it's a client-side setting
+		config: false, //? This makes the setting appear in the module configuration
+		requiresReload: true, //? If true, a client reload (F5) is required to activate the setting
+		type: Boolean,
+		default: false,
+		onChange: (value) => {
+			//? Do something when the setting is changed, if necessary
+		},
+	});
+	//? Orchestrator Module Settings
+	game.settings.register("metanthropes", "metaOrchestrator", {
+		name: "Enable Orchestrator Features",
+		hint: `
+			Enable this setting to gain access to the Orchestrator Module features.
+			`,
+		scope: "world", //? This specifies if it's a client-side setting
+		config: false, //? This makes the setting appear in the module configuration
+		requiresReload: true, //? If true, a client reload (F5) is required to activate the setting
+		type: Boolean,
+		default: false,
+		onChange: (value) => {
+			//? Do something when the setting is changed, if necessary
+		},
+	});
 	//? Beta Features Testing
 	game.settings.register("metanthropes", "metaBetaTesting", {
 		name: "Enable Beta Testing of New Features",
 		hint: `
 		Enable this setting to test New Features that are still in development.
-		These features may not be fully functional and will change during development.
-		This setting requires a reload (F5) to take effect.
+		These features may not be fully functional and are subject to change during development.
+		Make sure you backup your world before enabling this setting - just to be safe.
 		`,
 		scope: "world", //? This specifies if it's a client-side setting
 		config: false, //? This makes the setting appear in the module configuration

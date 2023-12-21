@@ -1,4 +1,4 @@
-name: Metanthropes Automated Build & Release
+name: Metanthropes System Automated Build & Release
 on:
     push:
         branches:
@@ -72,7 +72,7 @@ jobs:
               with:
                   type: "zip"
                   filename: "${{steps.id.outputs.prop}}.zip"
-                  exclusions: "*.git* /*node_modules/* /*.vscode/* .npmignore .nvmrc gulpfile.js package-lock.json package.json /src/* /scss/* /sass/*"
+                  exclusions: "*.git* /*node_modules/* /*.vscode/* .npmignore .nvmrc gulpfile.js package-lock.json package.json /src/* /scss/* /sass/* .cmd/*"
             - name: Create GitHub Release
               uses: softprops/action-gh-release@v1
               with:

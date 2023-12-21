@@ -332,16 +332,12 @@
 				{{#each CoreConditions}}
 					<div {{#if (gt this 0)}} class="style-cs-conditions" {{else}}
 						class="style-cs-conditions meta-ui-obscure" {{/if}}>
-						<p data-tooltip="{{@key}} Condition Level">💀 <label {{#if (gt this 0)}}
+						<p data-tooltip="{{@key}} Condition Level">💀 <label
 								class="meta-ui-responsive meta-ui-hide-at-medium style-cs-conditions"
-								{{else}}
-								class="meta-ui-responsive meta-ui-hide-at-medium style-cs-conditions meta-ui-obscure"
-								{{/if}}
 								for="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}">{{@key}}</label>
 						</p>
 						<p data-tooltip="{{@key}} Condition Level">
-							<select {{#if (gt this 0)}} class="style-cs-conditions" {{else}}
-								class="style-cs-conditions meta-ui-obscure" {{/if}}
+							<select class="style-cs-conditions"
 								name="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}"
 								id="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}"
 								data-dtype="Number">
