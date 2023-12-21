@@ -46,16 +46,10 @@ jobs:
                   fvtt configure set dataPath "/home/runner/work/${{steps.id.outputs.prop}}/Data"
                   echo "Configure workon ${{steps.id.outputs.prop}} as a System"
                   fvtt package workon "${{steps.id.outputs.prop}}" --type "System"
-                  echo "Packaging Introductory Scenes"
-                  fvtt package pack -n "introductory-scenes" --in ./src/packs/introductory-scenes --out ./packs
-                  echo "Packaging How to Play"
-                  fvtt package pack -n "how-to-play" --in ./src/packs/how-to-play --out ./packs
                   echo "Packaging metapowers"
                   fvtt package pack -n "metapowers" --in ./src/packs/metapowers --out ./packs
                   echo "Packaging narrator-toolkit"
                   fvtt package pack -n "narrator-toolkit" --in ./src/packs/narrator-toolkit --out ./packs
-                  echo "Packaging Narrator Notes"
-                  fvtt package pack -n "narrator-notes" --in ./src/packs/narrator-notes --out ./packs
                   echo "Packaging possessions"
                   fvtt package pack -n "possessions" --in ./src/packs/possessions --out ./packs
                   echo "Packaging premade-antagonists"

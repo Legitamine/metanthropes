@@ -26,7 +26,7 @@
 			"thumbnail": "systems/metanthropes/artwork/ui/cover/cover.jpg"
 		}
 	],
-	"version": "0.9.002",
+	"version": "0.9.004",
 	"compatibility": {
 		"minimum": 11,
 		"verified": "11.315"
@@ -89,42 +89,6 @@
 			"type": "Item",
 			"path": "packs/possessions",
 			"name": "possessions",
-			"ownership": {
-				"PLAYER": "NONE",
-				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
-		},
-		{
-			"label": "How to Play",
-			"system": "metanthropes",
-			"type": "JournalEntry",
-			"path": "packs/how-to-play",
-			"name": "how-to-play",
-			"ownership": {
-				"PLAYER": "OBSERVER",
-				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
-		},
-		{
-			"label": "Narrator Notes",
-			"system": "metanthropes",
-			"type": "JournalEntry",
-			"path": "packs/narrator-notes",
-			"name": "narrator-notes",
-			"ownership": {
-				"PLAYER": "NONE",
-				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
-		},
-		{
-			"label": "Introductory Scenes",
-			"system": "metanthropes",
-			"type": "Scene",
-			"path": "packs/introductory-scenes",
-			"name": "introductory-scenes",
 			"ownership": {
 				"PLAYER": "NONE",
 				"ASSISTANT": "OWNER"

@@ -241,11 +241,26 @@ Hooks.once("init", async function () {
 			//? Do something when the setting is changed, if necessary
 		},
 	});
-	//? Conductor Module Settings
-	game.settings.register("metanthropes", "metaConductor", {
-		name: "Enable Conductor Features",
+	//? Introductory Module Settings
+	game.settings.register("metanthropes", "metaIntroductory", {
+		name: "Enable Introductory Features",
 		hint: `
-			Enable this setting to gain access to the Conductor Module Features.
+				Enable this setting to gain access to the Introductory Module features.
+				`,
+		scope: "world", //? This specifies if it's a client-side setting
+		config: false, //? This makes the setting appear in the module configuration
+		requiresReload: true, //? If true, a client reload (F5) is required to activate the setting
+		type: Boolean,
+		default: false,
+		onChange: (value) => {
+			//? Do something when the setting is changed, if necessary
+		},
+	});
+	//? Core Module Settings
+	game.settings.register("metanthropes", "metaCore", {
+		name: "Enable Core Features",
+		hint: `
+			Enable this setting to gain access to the Core Module Features.
 			`,
 		scope: "world", //? This specifies if it's a client-side setting
 		config: false, //? This makes the setting appear in the module configuration
@@ -256,11 +271,11 @@ Hooks.once("init", async function () {
 			//? Do something when the setting is changed, if necessary
 		},
 	});
-	//? Orchestrator Module Settings
-	game.settings.register("metanthropes", "metaOrchestrator", {
+	//? Homebrew Module Settings
+	game.settings.register("metanthropes", "metaHomebrew", {
 		name: "Enable Orchestrator Features",
 		hint: `
-			Enable this setting to gain access to the Orchestrator Module features.
+			Enable this setting to gain access to the Homebrew Module features.
 			`,
 		scope: "world", //? This specifies if it's a client-side setting
 		config: false, //? This makes the setting appear in the module configuration
@@ -375,7 +390,7 @@ Hooks.once("ready", async function () {
 			publisher: "Metanthropes",
 			pack: "Masculine Tokens",
 			source: "data",
-			path: "systems/metanthropes/artwork/tokens/portraits/masculine",
+			path: "systems/metanthropes/artwork/portraits/protagonist/masculine",
 		});
 		//? Add Metanthropes Portraits (Feminine) Artwork to Moulinette
 		game.moulinette.sources.push({
@@ -383,7 +398,7 @@ Hooks.once("ready", async function () {
 			publisher: "Metanthropes",
 			pack: "Feminine Tokens",
 			source: "data",
-			path: "systems/metanthropes/artwork/tokens/portraits/feminine",
+			path: "systems/metanthropes/artwork/portraits/protagonist/feminine",
 		});
 		//? Add Metanthropes Music to Moulinette
 		game.moulinette.sources.push({
@@ -391,7 +406,7 @@ Hooks.once("ready", async function () {
 			publisher: "Metanthropes",
 			pack: "Music",
 			source: "data",
-			path: "systems/metanthropes/audio/music",
+			path: "modules/metanthropes-ost/audio/music",
 		});
 		//? Add Metanthropes Sound Effects to Moulinette
 		game.moulinette.sources.push({
@@ -399,7 +414,7 @@ Hooks.once("ready", async function () {
 			publisher: "Metanthropes",
 			pack: "Sound Effects",
 			source: "data",
-			path: "systems/metanthropes/audio/sound-effects",
+			path: "modules/metanthropes-ost/audio/sound-effects",
 		});
 		//* Free Content that we use in our closed Alpha Moulinette Integration
 		//? Add Dark Raven's Free Soundscapes to Moulinette (Free Module)
