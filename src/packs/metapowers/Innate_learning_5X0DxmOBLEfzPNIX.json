@@ -2,7 +2,7 @@
   "folder": "YrtYH0JZxubPi6Mi",
   "name": "Innate learning",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Meta Intelligence.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Meta Intelligence.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -457,11 +457,11 @@
       "hash": "471040b40b4a784e399ff8456e46ed24e2328e1b"
     },
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.5X0DxmOBLEfzPNIX"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.5X0DxmOBLEfzPNIX"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1698328804861,

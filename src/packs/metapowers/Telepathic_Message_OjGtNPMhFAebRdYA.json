@@ -2,7 +2,7 @@
   "folder": "LNcaYpbg1Mu59l2t",
   "name": "Telepathic Message",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Telepathy.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Telepathy.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -460,14 +460,14 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.OjGtNPMhFAebRdYA"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.OjGtNPMhFAebRdYA"
     },
     "scene-packer": {
       "hash": "a45c904116165337783a3ff35ab698f8247391d0"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693071395459,

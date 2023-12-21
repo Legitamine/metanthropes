@@ -93,7 +93,7 @@ Hooks.once("init", async function () {
 				},
 			],
 			description: "<p>Fly</p>",
-			icon: "systems/metanthropes-system/artwork/status-effects/test6.svg",
+			icon: "systems/metanthropes/artwork/status-effects/test6.svg",
 		},
 		{
 			id: "invisible",
@@ -109,7 +109,7 @@ Hooks.once("init", async function () {
 				},
 			},
 			description: "<p>Invisible</p>",
-			icon: "systems/metanthropes-system/artwork/status-effects/test7.svg",
+			icon: "systems/metanthropes/artwork/status-effects/test7.svg",
 		},
 		{
 			id: "blind",
@@ -125,7 +125,7 @@ Hooks.once("init", async function () {
 				},
 			},
 			description: "<p>Sense-Lost: Vision</p>",
-			icon: "systems/metanthropes-system/artwork/status-effects/test8.svg",
+			icon: "systems/metanthropes/artwork/status-effects/test8.svg",
 		},
 		{
 			id: "dead",
@@ -141,7 +141,7 @@ Hooks.once("init", async function () {
 				},
 			},
 			description: "<p>Dead</p>",
-			icon: "systems/metanthropes-system/artwork/status-effects/test9.svg",
+			icon: "systems/metanthropes/artwork/status-effects/test9.svg",
 		},
 		{
 			id: "photokinetic",
@@ -164,7 +164,7 @@ Hooks.once("init", async function () {
 				},
 			],
 			description: "<p>Photokinetic</p>",
-			icon: "systems/metanthropes-system/artwork/status-effects/test1.svg",
+			icon: "systems/metanthropes/artwork/status-effects/test1.svg",
 		},
 		{
 			id: "wallwalk",
@@ -187,7 +187,7 @@ Hooks.once("init", async function () {
 				},
 			],
 			description: "<p>Wall Walk</p>",
-			icon: "systems/metanthropes-system/artwork/status-effects/test2.svg",
+			icon: "systems/metanthropes/artwork/status-effects/test2.svg",
 		},
 		{
 			id: "wavewalk",
@@ -210,7 +210,7 @@ Hooks.once("init", async function () {
 				},
 			],
 			description: "<p>Wave Walk</p>",
-			icon: "systems/metanthropes-system/artwork/status-effects/test3.svg",
+			icon: "systems/metanthropes/artwork/status-effects/test3.svg",
 		},
 		{
 			id: "knockeddown",
@@ -233,7 +233,7 @@ Hooks.once("init", async function () {
 				},
 			],
 			description: "<p>Knocked Down</p>",
-			icon: "systems/metanthropes-system/artwork/status-effects/test4.svg",
+			icon: "systems/metanthropes/artwork/status-effects/test4.svg",
 		},
 		{
 			id: "immobilized",
@@ -261,7 +261,7 @@ Hooks.once("init", async function () {
 				},
 			],
 			description: "<p>Immobilized</p>",
-			icon: "systems/metanthropes-system/artwork/status-effects/test5.svg",
+			icon: "systems/metanthropes/artwork/status-effects/test5.svg",
 		},
 	];
 	CONFIG.statusEffects.push(...newStatusEffects);
@@ -304,7 +304,7 @@ Hooks.once("init", async function () {
 	//* System Settings
 	//? Migration Script Required
 	//! unused
-	game.settings.register("metanthropes-system", "migrationVersion", {
+	game.settings.register("metanthropes", "migrationVersion", {
 		name: "Last Migration Performed",
 		hint: `
 		This setting is used to keep track of the last migration script that was performed.
@@ -317,7 +317,7 @@ Hooks.once("init", async function () {
 		default: "0.8.20",
 	});
 	//? Advanced Logging
-	game.settings.register("metanthropes-system", "metaAdvancedLogging", {
+	game.settings.register("metanthropes", "metaAdvancedLogging", {
 		name: "Enable Advanced Logging",
 		hint: `
 		The Console helps you identify any issues or potential bugs in regards to Metanthropes System for Foundry VTT.
@@ -334,7 +334,7 @@ Hooks.once("init", async function () {
 		},
 	});
 	//? Beta Features Testing
-	game.settings.register("metanthropes-system", "metaBetaTesting", {
+	game.settings.register("metanthropes", "metaBetaTesting", {
 		name: "Enable Beta Testing of New Features",
 		hint: `
 		Enable this setting to test New Features that are still in development.
@@ -429,7 +429,7 @@ Hooks.once("ready", async function () {
 			publisher: "Metanthropes",
 			pack: "Metapowers",
 			source: "data",
-			path: "systems/metanthropes-system/artwork/metapowers",
+			path: "systems/metanthropes/artwork/metapowers",
 		});
 		//? Add Metanthropes Portraits (Masculine) Artwork to Moulinette
 		game.moulinette.sources.push({
@@ -437,7 +437,7 @@ Hooks.once("ready", async function () {
 			publisher: "Metanthropes",
 			pack: "Masculine Tokens",
 			source: "data",
-			path: "systems/metanthropes-system/artwork/tokens/portraits/masculine",
+			path: "systems/metanthropes/artwork/tokens/portraits/masculine",
 		});
 		//? Add Metanthropes Portraits (Feminine) Artwork to Moulinette
 		game.moulinette.sources.push({
@@ -445,7 +445,7 @@ Hooks.once("ready", async function () {
 			publisher: "Metanthropes",
 			pack: "Feminine Tokens",
 			source: "data",
-			path: "systems/metanthropes-system/artwork/tokens/portraits/feminine",
+			path: "systems/metanthropes/artwork/tokens/portraits/feminine",
 		});
 		//? Add Metanthropes Music to Moulinette
 		game.moulinette.sources.push({
@@ -453,7 +453,7 @@ Hooks.once("ready", async function () {
 			publisher: "Metanthropes",
 			pack: "Music",
 			source: "data",
-			path: "systems/metanthropes-system/audio/music",
+			path: "systems/metanthropes/audio/music",
 		});
 		//? Add Metanthropes Sound Effects to Moulinette
 		game.moulinette.sources.push({
@@ -461,7 +461,7 @@ Hooks.once("ready", async function () {
 			publisher: "Metanthropes",
 			pack: "Sound Effects",
 			source: "data",
-			path: "systems/metanthropes-system/audio/sound-effects",
+			path: "systems/metanthropes/audio/sound-effects",
 		});
 		//* Free Content that we use in our closed Alpha Moulinette Integration
 		//? Add Dark Raven's Free Soundscapes to Moulinette (Free Module)
@@ -584,13 +584,13 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 			return ranges;
 		}
 	}
-	dragRuler.registerSystem("metanthropes-system", MetanthropesSystemSpeedProvider);
+	dragRuler.registerSystem("metanthropes", MetanthropesSystemSpeedProvider);
 	metaLog(3, "Drag Ruler Integration Finished");
 });
 //* Chat Message Event Listeners
 Hooks.on("renderChatMessage", async (message, html) => {
 	//? Get the actor from the message - all our messages have the actoruuid flag set, so if it's not our message, return.
-	const actorUUID = await message.getFlag("metanthropes-system", "actoruuid");
+	const actorUUID = await message.getFlag("metanthropes", "actoruuid");
 	if (!actorUUID) return;
 	const actor = await fromUuid(actorUUID);
 	if (!actor) return;
@@ -644,7 +644,7 @@ Hooks.on("createActor", async (actor) => {
 	) {
 		//* New Humanoids get a Strike equipped by default
 		//? get the Strike Item from the Possessions Compendium
-		const possessionCompendium = await game.packs.get("metanthropes-system.possessions");
+		const possessionCompendium = await game.packs.get("metanthropes.possessions");
 		const possessionCompendiumIndex = await possessionCompendium.getIndex();
 		const strikeEntry = possessionCompendiumIndex.find((item) => item.name === "Strike");
 		if (strikeEntry) {
@@ -688,6 +688,6 @@ Hooks.on(`getActiveEffectSheetHeaderButtons`, metaLogDocument);
 Hooks.on("renderPause", (app, html, options) => {
 	if (options.paused) {
 		const img = html.find("img")[0];
-		img.src = "systems/metanthropes-system/artwork/ui/logos/metanthropes-logo.webp";
+		img.src = "systems/metanthropes/artwork/ui/logos/metanthropes-logo.webp";
 	}
 });

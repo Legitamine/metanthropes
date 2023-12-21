@@ -3,7 +3,7 @@
   "name": "Temporal Awareness",
   "type": "Metapower",
   "_id": "g19H1sh0lwK7H2Iy",
-  "img": "systems/metanthropes-system/artwork/metapowers/Time Bending.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Time Bending.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -459,11 +459,11 @@
       "hash": "4b7cddd664ff7c6f6e898da16efc0d929a633cc0"
     },
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.g19H1sh0lwK7H2Iy"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.g19H1sh0lwK7H2Iy"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693064901564,

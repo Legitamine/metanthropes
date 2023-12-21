@@ -2,7 +2,7 @@
   "folder": "3Q1PIkLd8sThQcJQ",
   "name": "Bend And Break",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Meta Strength.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Meta Strength.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -455,14 +455,14 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.udWxwPI6dH3q5CW1"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.udWxwPI6dH3q5CW1"
     },
     "scene-packer": {
       "hash": "ab281963c268074da1838bf3092021b364f8b068"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693070007701,

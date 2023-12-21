@@ -1,7 +1,7 @@
 {
-	"id": "metanthropes-system",
+	"id": "metanthropes",
 	"title": "Metanthropes Early Access",
-	"description": "Metanthropes RPG Early Access System for FoundryVTT",
+	"description": "Metanthropes RPG Early Access System for Foundry VTT",
 	"authors": [
 		{
 			"name": "qp",
@@ -14,30 +14,30 @@
 			}
 		}
 	],
-	"url": "https://github.com/legitamine/metanthropes-system",
-	"license": "https://github.com/legitamine/metanthropes-system/blob/main/LICENSE.txt",
-	"readme": "https://github.com/legitamine/metanthropes-system/blob/main/readme.md",
-	"bugs": "https://gitub.com/legitamine/metanthropes-system/issues",
-	"changelog": "https://github.com/legitamine/metanthropes-system/blob/main/changelog.md",
+	"url": "https://github.com/legitamine/metanthropes",
+	"license": "https://github.com/legitamine/metanthropes/blob/main/LICENSE.txt",
+	"readme": "https://github.com/legitamine/metanthropes/blob/main/readme.md",
+	"bugs": "https://gitub.com/legitamine/metanthropes/issues",
+	"changelog": "https://github.com/legitamine/metanthropes/blob/main/changelog.md",
 	"media": [
 		{
 			"type": "setup",
-			"url": "systems/metanthropes-system/artwork/ui/cover/cover.jpg",
-			"thumbnail": "systems/metanthropes-system/artwork/ui/cover/cover.jpg"
+			"url": "systems/metanthropes/artwork/ui/cover/cover.jpg",
+			"thumbnail": "systems/metanthropes/artwork/ui/cover/cover.jpg"
 		}
 	],
-	"version": "0.8.150",
+	"version": "0.8.160",
 	"compatibility": {
 		"minimum": 11,
 		"verified": "11.315"
 	},
-	"esmodules": ["module/metanthropes-system.mjs"],
-	"styles": ["css/metanthropes-system.css"],
+	"esmodules": ["module/metanthropes.mjs"],
+	"styles": ["css/metanthropes.css"],
 	"languages": [],
 	"packs": [
 		{
 			"label": "Premade Protagonists",
-			"system": "metanthropes-system",
+			"system": "metanthropes",
 			"type": "Actor",
 			"path": "packs/premade-protagonists",
 			"name": "premade-protagonists",
@@ -49,7 +49,7 @@
 		},
 		{
 			"label": "Premade Antagonists",
-			"system": "metanthropes-system",
+			"system": "metanthropes",
 			"type": "Actor",
 			"path": "packs/premade-antagonists",
 			"name": "premade-antagonists",
@@ -61,7 +61,7 @@
 		},
 		{
 			"label": "Narrator Toolkit",
-			"system": "metanthropes-system",
+			"system": "metanthropes",
 			"type": "Macro",
 			"path": "packs/narrator-toolkit",
 			"name": "narrator-toolkit",
@@ -73,7 +73,7 @@
 		},
 		{
 			"label": "Metapowers",
-			"system": "metanthropes-system",
+			"system": "metanthropes",
 			"type": "Item",
 			"path": "packs/metapowers",
 			"name": "metapowers",
@@ -85,7 +85,7 @@
 		},
 		{
 			"label": "Possessions",
-			"system": "metanthropes-system",
+			"system": "metanthropes",
 			"type": "Item",
 			"path": "packs/possessions",
 			"name": "possessions",
@@ -97,7 +97,7 @@
 		},
 		{
 			"label": "How to Play",
-			"system": "metanthropes-system",
+			"system": "metanthropes",
 			"type": "JournalEntry",
 			"path": "packs/how-to-play",
 			"name": "how-to-play",
@@ -109,7 +109,7 @@
 		},
 		{
 			"label": "Narrator Notes",
-			"system": "metanthropes-system",
+			"system": "metanthropes",
 			"type": "JournalEntry",
 			"path": "packs/narrator-notes",
 			"name": "narrator-notes",
@@ -121,7 +121,7 @@
 		},
 		{
 			"label": "Introductory Scenes",
-			"system": "metanthropes-system",
+			"system": "metanthropes",
 			"type": "Scene",
 			"path": "packs/introductory-scenes",
 			"name": "introductory-scenes",
@@ -133,7 +133,7 @@
 		},
 		{
 			"label": "Rollable Tables",
-			"system": "metanthropes-system",
+			"system": "metanthropes",
 			"type": "RollTable",
 			"path": "packs/rollable-tables",
 			"name": "rollable-tables",
@@ -146,10 +146,10 @@
 	],
 	"packfolders": [],
 	"socket": false,
-	"background": "systems/metanthropes-system/artwork/ui/cover/cover.jpg",
+	"background": "systems/metanthropes/artwork/ui/cover/cover.jpg",
 	"gridDistance": 2,
 	"gridUnits": "m",
 	"primaryTokenAttribute": "Vital.Destiny.value",
 	"secondaryTokenAttribute": "Vital.Life.value",
-	"manifest": "https://github.com/legitamine/metanthropes-system/releases/latest/download/system.json"
+	"manifest": "https://github.com/legitamine/metanthropes/releases/latest/download/system.json"
 }

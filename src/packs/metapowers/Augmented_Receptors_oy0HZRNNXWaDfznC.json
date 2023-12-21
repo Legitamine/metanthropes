@@ -2,7 +2,7 @@
   "folder": "YrtYH0JZxubPi6Mi",
   "name": "Augmented Receptors",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Meta Intelligence.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Meta Intelligence.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -457,11 +457,11 @@
       "hash": "26e4618809e047ad5d53712b9bfe6f43fb9ecbdc"
     },
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.oy0HZRNNXWaDfznC"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.oy0HZRNNXWaDfznC"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1698328851732,

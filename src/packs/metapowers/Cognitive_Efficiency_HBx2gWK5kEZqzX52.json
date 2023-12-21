@@ -1,7 +1,7 @@
 {
   "name": "Cognitive Efficiency",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Meta Intelligence.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Meta Intelligence.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -462,11 +462,11 @@
       "sourceId": "Item.HmfpDvKVsloVpWL8"
     },
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.HBx2gWK5kEZqzX52"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.HBx2gWK5kEZqzX52"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1697111210773,

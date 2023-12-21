@@ -12,7 +12,7 @@ import { metaFilePicker } from "../metanthropes/metaclasses.mjs";
  * @returns
  */
 export function metaLog(logType = 0, ...variables) {
-	const metaAdvancedLogging = game.settings.get("metanthropes-system", "metaAdvancedLogging");
+	const metaAdvancedLogging = game.settings.get("metanthropes", "metaAdvancedLogging");
 	if (!metaAdvancedLogging && logType > 2) {
 		return;
 	}
@@ -63,7 +63,7 @@ export function metaLog(logType = 0, ...variables) {
  */
 export function metaLogDocument(app, buttons) {
 	//? Will only run if the 'Enable Advanced Logging' setting is enabled
-	if (game.settings.get("metanthropes-system", "metaAdvancedLogging")) {
+	if (game.settings.get("metanthropes", "metaAdvancedLogging")) {
 		buttons.unshift({
 			icon: "fas fa-terminal",
 			class: "metalog-doc",
@@ -141,7 +141,7 @@ export async function metaIsMetapowerEquipped(actor, metapower) {
  */
 export async function metaChangePortrait(actor) {
 	//? Based on the actor's type, set the current directory
-	const baseDir = "systems/metanthropes-system/artwork/portraits/";
+	const baseDir = "systems/metanthropes/artwork/portraits/";
 	const actorType = actor.type.toLowerCase();
 	const currentDir = baseDir + actorType + "/";
 	const fp = new metaFilePicker({

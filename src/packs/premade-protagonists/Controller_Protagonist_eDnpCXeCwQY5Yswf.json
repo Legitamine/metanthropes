@@ -2,7 +2,7 @@
   "folder": null,
   "name": "Controller Protagonist",
   "type": "Protagonist",
-  "img": "systems/metanthropes-system/tokens/defaults/token-controller.webp",
+  "img": "systems/metanthropes/tokens/defaults/token-controller.webp",
   "system": {
     "physical": {
       "movement": {
@@ -899,7 +899,7 @@
     "appendNumber": false,
     "prependAdjective": false,
     "texture": {
-      "src": "systems/metanthropes-system/tokens/defaults/token-controller.webp",
+      "src": "systems/metanthropes/tokens/defaults/token-controller.webp",
       "scaleX": 0.73,
       "scaleY": 0.73,
       "offsetX": 0,
@@ -994,7 +994,7 @@
       "folder": "2vml0QVxnc2qkSnD",
       "name": "Ebb And Flow",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Control Gravity.png",
+      "img": "systems/metanthropes/artwork/metapowers/Control Gravity.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -1456,7 +1456,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1693066222213,
@@ -1471,7 +1471,7 @@
       "folder": "2vml0QVxnc2qkSnD",
       "name": "Ebb And Flow (Alt)",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Control Gravity.png",
+      "img": "systems/metanthropes/artwork/metapowers/Control Gravity.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -1933,7 +1933,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1693066222213,
@@ -1948,7 +1948,7 @@
       "folder": "2vml0QVxnc2qkSnD",
       "name": "Gravitational Anchor",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Control Gravity.png",
+      "img": "systems/metanthropes/artwork/metapowers/Control Gravity.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -2410,7 +2410,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1693066222213,
@@ -2425,7 +2425,7 @@
       "folder": "2vml0QVxnc2qkSnD",
       "name": "Gravitational Anchor (Alt)",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Control Gravity.png",
+      "img": "systems/metanthropes/artwork/metapowers/Control Gravity.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -2887,7 +2887,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1693066222213,
@@ -2902,7 +2902,7 @@
       "folder": "2vml0QVxnc2qkSnD",
       "name": "Gravitational Anchor [⏱️R]",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Control Gravity.png",
+      "img": "systems/metanthropes/artwork/metapowers/Control Gravity.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -3364,7 +3364,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1693066222213,
@@ -3379,7 +3379,7 @@
       "folder": "2vml0QVxnc2qkSnD",
       "name": "Gravitational Pull",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Control Gravity.png",
+      "img": "systems/metanthropes/artwork/metapowers/Control Gravity.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -3841,7 +3841,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1693066222213,
@@ -3856,7 +3856,7 @@
       "folder": "D0Cs7Mx3AGdugD84",
       "name": "Strike",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/fist.webp",
+      "img": "systems/metanthropes/artwork/possessions/fist.webp",
       "system": {
         "Material": {
           "Category": {
@@ -4368,7 +4368,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693121692159,
@@ -4386,7 +4386,7 @@
   ],
   "effects": [],
   "flags": {
-    "metanthropes-system": {
+    "metanthropes": {
       "previousrolled": {
         "rolld10": 2,
         "rolld10what": "Awareness",
@@ -4408,7 +4408,7 @@
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693062387759,

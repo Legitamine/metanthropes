@@ -1,7 +1,7 @@
 ![image](https://content.invisioncic.com/e290497/monthly_2022_12/01.jpg.10f501a62b5254cef6f04d9f87c8b52d.jpg)
 ![Foundry v11](https://img.shields.io/badge/foundry-v11-green)
 
-# Metanthropes RPG System for FoundryVTT
+# Metanthropes RPG Early Access System for Foundry VTT
 
 This is the official Metanthropes RPG system for Foundry VTT.
 
@@ -27,7 +27,7 @@ To get the best experience while playing Metanthropes RPG, we recommend to insta
 
 ## Planned Features
 
-You may read about our [planned features and milestones](https://github.com/Legitamine/metanthropes-system/projects?query=is%3Aopen) for this project and also check out the overall [roadmap for Metanthropes RPG](https://www.metanthropes.com/stratagem/projects/1-metanthropes-roadmap/)
+You may read about our [planned features and milestones](https://github.com/Legitamine/metanthropes/projects?query=is%3Aopen) for this project and also check out the overall [roadmap for Metanthropes RPG](https://www.metanthropes.com/stratagem/projects/1-metanthropes-roadmap/)
 
 Briefly, we are working torwards the following milestones:
 
@@ -37,8 +37,8 @@ Briefly, we are working torwards the following milestones:
 
 ## Latest Changes
 
-For the latest changes you may check out the [detailed Change Log](https://github.com/Legitamine/metanthropes-system/blob/main/CHANGELOG.md)
+For the latest changes you may check out the [detailed Change Log](https://github.com/Legitamine/metanthropes/blob/main/CHANGELOG.md)
 
-You can also view the archives of past releases, kept for posterity, [here](https://github.com/Legitamine/metanthropes-system/blob/main/CHANGELOGARCHIVES.md)
+You can also view the archives of past releases, kept for posterity, [here](https://github.com/Legitamine/metanthropes/blob/main/CHANGELOGARCHIVES.md)
 
 Our eternal gratitude goes to the amazing community of Foundry Developers <3

@@ -14,7 +14,7 @@ export class MetanthropesActiveEffectSheet extends DocumentSheet {
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
 			classes: ["sheet", "active-effect-sheet"],
-			template: "systems/metanthropes-system/templates/metanthropes/active-effect-config.html",
+			template: "systems/metanthropes/templates/metanthropes/active-effect-config.html",
 			width: 600,
 			height: "auto",
 			sheetConfig: false,

@@ -2,7 +2,7 @@
   "folder": "vGr96hU80LOGL9yQ",
   "name": "Agent",
   "type": "Human",
-  "img": "systems/metanthropes-system/artwork/portraits/human/agents/human-agent-1.webp",
+  "img": "systems/metanthropes/artwork/portraits/human/agents/human-agent-1.webp",
   "system": {
     "physical": {
       "movement": {
@@ -753,7 +753,7 @@
     "appendNumber": false,
     "prependAdjective": true,
     "texture": {
-      "src": "systems/metanthropes-system/artwork/portraits/human/agents/*",
+      "src": "systems/metanthropes/artwork/portraits/human/agents/*",
       "scaleX": 0.73,
       "scaleY": 0.73,
       "offsetX": 0,
@@ -865,7 +865,7 @@
       "folder": "D0Cs7Mx3AGdugD84",
       "name": "Beretta Pistol 9mm",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/pistol2.webp",
+      "img": "systems/metanthropes/artwork/possessions/pistol2.webp",
       "system": {
         "Material": {
           "Category": {
@@ -1377,7 +1377,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693122203962,
@@ -1396,7 +1396,7 @@
       "folder": "D0Cs7Mx3AGdugD84",
       "name": "MP5 SMG",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/pistol_heavy.webp",
+      "img": "systems/metanthropes/artwork/possessions/pistol_heavy.webp",
       "system": {
         "Material": {
           "Category": {
@@ -1908,7 +1908,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693122691433,
@@ -1927,7 +1927,7 @@
       "folder": "D0Cs7Mx3AGdugD84",
       "name": "MP5 SMG (light)",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/pistol.webp",
+      "img": "systems/metanthropes/artwork/possessions/pistol.webp",
       "system": {
         "Material": {
           "Category": {
@@ -2439,7 +2439,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693122691433,
@@ -2458,7 +2458,7 @@
       "folder": "D0Cs7Mx3AGdugD84",
       "name": "Strike",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/fist.webp",
+      "img": "systems/metanthropes/artwork/possessions/fist.webp",
       "system": {
         "Material": {
           "Category": {
@@ -2970,7 +2970,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693121692159,
@@ -2988,7 +2988,7 @@
   ],
   "effects": [],
   "flags": {
-    "metanthropes-system": {
+    "metanthropes": {
       "lastrolled": {
         "rolld10": 9,
         "rolld10what": "Consciousness",
@@ -2996,7 +2996,7 @@
       }
     },
     "core": {
-      "sourceId": "Compendium.metanthropes-system.premade-antagonists.Actor.Hl58fptzsIYxPsGR"
+      "sourceId": "Compendium.metanthropes.premade-antagonists.Actor.Hl58fptzsIYxPsGR"
     },
     "scene-packer": {
       "sourceId": "Actor.G9ZTlHcIm3JGWvAf",
@@ -3004,7 +3004,7 @@
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693127814701,

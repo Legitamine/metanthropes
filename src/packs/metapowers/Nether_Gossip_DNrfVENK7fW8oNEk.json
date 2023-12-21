@@ -3,7 +3,7 @@
   "name": "Nether Gossip",
   "type": "Metapower",
   "_id": "DNrfVENK7fW8oNEk",
-  "img": "systems/metanthropes-system/artwork/metapowers/Ancestral Connection.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Ancestral Connection.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -459,11 +459,11 @@
       "hash": "6624db15f7943aba5d7793721c48af8ae092878e"
     },
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.DNrfVENK7fW8oNEk"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.DNrfVENK7fW8oNEk"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693072229733,

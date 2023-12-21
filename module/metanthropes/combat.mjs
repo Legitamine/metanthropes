@@ -13,7 +13,7 @@ export class MetanthropesCombat extends Combat {
 	prepareDerivedData() {
 		super.prepareDerivedData();
 		//? adding the concept of Cycles & Rounds to the Combat system
-		let cycle = this.getFlag("metanthropes-system", "cycle") || 1;
+		let cycle = this.getFlag("metanthropes", "cycle") || 1;
 		//? embed the Cycle and Round values into the Combat document for use in the Combat Tracker
 		this.cycle = cycle;
 		metaLog(3, "Combat", "prepareDerivedData", "Cycle:", cycle, "Round:", this.round);
@@ -57,8 +57,8 @@ export class MetanthropesCombat extends Combat {
 			!aActor.type.includes("Animated") &&
 			!bActor.type.includes("Animated")
 		) {
-			aStatScore = aActor.getFlag("metanthropes-system", "lastrolled")?.InitiativeStatScore ?? -Infinity;
-			bStatScore = bActor.getFlag("metanthropes-system", "lastrolled")?.InitiativeStatScore ?? -Infinity;
+			aStatScore = aActor.getFlag("metanthropes", "lastrolled")?.InitiativeStatScore ?? -Infinity;
+			bStatScore = bActor.getFlag("metanthropes", "lastrolled")?.InitiativeStatScore ?? -Infinity;
 			//? Check to see if we have a perfect tie
 			if (ia === ib && aStatScore === bStatScore) {
 				//todo: award 1 Destiny and re-roll initiative if tied both in Initiative and statScore
@@ -92,7 +92,7 @@ export class MetanthropesCombat extends Combat {
 			//? Produce an initiative roll for the Combatant
 			metaLog(3, "Combat", "rollInitiative", "Engaging MetaInitiative for combatant:", combatant);
 			await MetaInitiative(combatant);
-			let initiativeResult = combatant.actor.getFlag("metanthropes-system", "lastrolled").Initiative;
+			let initiativeResult = combatant.actor.getFlag("metanthropes", "lastrolled").Initiative;
 			metaLog(
 				3,
 				"Combat",
@@ -320,7 +320,7 @@ export class MetanthropesCombat extends Combat {
 		}
 		//* Update the Cycle and Round values
 		//? Get the most recent Cycle and Round values from the Combat document
-		let cycle = (await this.getFlag("metanthropes-system", "cycle")) || 1;
+		let cycle = (await this.getFlag("metanthropes", "cycle")) || 1;
 		switch (this.round) {
 			case 1:
 				cycle = 1;
@@ -340,7 +340,7 @@ export class MetanthropesCombat extends Combat {
 		//? Set cycle as part of Combat document
 		this.cycle = cycle;
 		//? Set cycle as a flag in the Combat document
-		await this.setFlag("metanthropes-system", "cycle", cycle);
+		await this.setFlag("metanthropes", "cycle", cycle);
 		//? Reroll initiative for all combatants at the start of a new Cycle
 		if (cycle > 1 && cycle % 2 !== 0) {
 			await this.resetAll();
@@ -401,7 +401,7 @@ export class MetanthropesCombat extends Combat {
 			title: game.i18n.localize("COMBAT.EndTitle"),
 			content: `<p>${game.i18n.localize("COMBAT.EndConfirmation")}</p>`,
 			yes: async () => {
-				const combatCycle = await this.getFlag("metanthropes-system", "cycle");
+				const combatCycle = await this.getFlag("metanthropes", "cycle");
 				const combatRound = this.round;
 				const combatCycleMessage = `${combatCycle} Cycle${combatCycle === 1 ? "" : "s"}`;
 				const combatRoundMessage = `${combatRound} Round${combatRound === 1 ? "" : "s"}`;

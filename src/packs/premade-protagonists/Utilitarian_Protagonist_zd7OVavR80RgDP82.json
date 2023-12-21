@@ -1,7 +1,7 @@
 {
   "name": "Utilitarian Protagonist",
   "type": "Protagonist",
-  "img": "systems/metanthropes-system/tokens/defaults/token-utilitarian.webp",
+  "img": "systems/metanthropes/tokens/defaults/token-utilitarian.webp",
   "system": {
     "physical": {
       "movement": {
@@ -898,7 +898,7 @@
     "appendNumber": false,
     "prependAdjective": false,
     "texture": {
-      "src": "systems/metanthropes-system/tokens/defaults/token-utilitarian.webp",
+      "src": "systems/metanthropes/tokens/defaults/token-utilitarian.webp",
       "scaleX": 0.73,
       "scaleY": 0.73,
       "offsetX": 0,
@@ -993,7 +993,7 @@
       "folder": "czsmmtAwemx4ZV2a",
       "name": "Augmented Receptors",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Meta Intelligence.png",
+      "img": "systems/metanthropes/artwork/metapowers/Meta Intelligence.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -1452,7 +1452,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1698328851732,
@@ -1467,7 +1467,7 @@
       "folder": "czsmmtAwemx4ZV2a",
       "name": "Innate learning",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Meta Intelligence.png",
+      "img": "systems/metanthropes/artwork/metapowers/Meta Intelligence.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -1926,7 +1926,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1698328804861,
@@ -1941,7 +1941,7 @@
       "folder": "n1FOuDss3ZEYTfZe",
       "name": "Strike",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/fist.webp",
+      "img": "systems/metanthropes/artwork/possessions/fist.webp",
       "system": {
         "Material": {
           "Category": {
@@ -2446,7 +2446,7 @@
       "effects": [],
       "flags": {
         "core": {
-          "sourceId": "Compendium.metanthropes-system.possessions.Item.IVStG1CYXdhIRSjc"
+          "sourceId": "Compendium.metanthropes.possessions.Item.IVStG1CYXdhIRSjc"
         },
         "scene-packer": {
           "hash": "4bb27865a9e810148c92b5b04a9af1eb43ed60a9",
@@ -2454,7 +2454,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693121692159,
@@ -2473,7 +2473,7 @@
       "folder": "V8MkKENxwT9uwM85",
       "name": "Beretta Pistol 9mm",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/pistol2.webp",
+      "img": "systems/metanthropes/artwork/possessions/pistol2.webp",
       "system": {
         "Material": {
           "Category": {
@@ -2978,7 +2978,7 @@
       "effects": [],
       "flags": {
         "core": {
-          "sourceId": "Compendium.metanthropes-system.possessions.Item.barDZkcXyP4BWngY"
+          "sourceId": "Compendium.metanthropes.possessions.Item.barDZkcXyP4BWngY"
         },
         "scene-packer": {
           "hash": "42b94f50ac171e11727dfdb9e0139a239ea442cd",
@@ -2986,7 +2986,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693122203962,
@@ -3510,7 +3510,7 @@
       "effects": [],
       "flags": {
         "core": {
-          "sourceId": "Compendium.metanthropes-system.possessions.Item.TQVrS74iR3iVVxlE"
+          "sourceId": "Compendium.metanthropes.possessions.Item.TQVrS74iR3iVVxlE"
         },
         "scene-packer": {
           "hash": "3e20a18e0dbb4cf8a30d1b23e26a2d1891bb2ecf",
@@ -3518,7 +3518,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693121692159,
@@ -3537,7 +3537,7 @@
       "folder": "V8MkKENxwT9uwM85",
       "name": "MP5 SMG (light)",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/pistol.webp",
+      "img": "systems/metanthropes/artwork/possessions/pistol.webp",
       "system": {
         "Material": {
           "Category": {
@@ -4042,7 +4042,7 @@
       "effects": [],
       "flags": {
         "core": {
-          "sourceId": "Compendium.metanthropes-system.possessions.Item.CVg8HKyRc76KXO3W"
+          "sourceId": "Compendium.metanthropes.possessions.Item.CVg8HKyRc76KXO3W"
         },
         "scene-packer": {
           "hash": "99ceba721b8bc58f9d9a776fc379dd937ba81587",
@@ -4050,7 +4050,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693122691433,
@@ -4069,7 +4069,7 @@
       "folder": "YrtYH0JZxubPi6Mi",
       "name": "Cognitive Efficiency",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Meta Intelligence.png",
+      "img": "systems/metanthropes/artwork/metapowers/Meta Intelligence.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -4524,11 +4524,11 @@
           "hash": "aa23895649e7affa8aa2c7be2759d90235c01f8b"
         },
         "core": {
-          "sourceId": "Compendium.metanthropes-system.metapowers.Item.DUMyzw82gfw9CuVY"
+          "sourceId": "Compendium.metanthropes.metapowers.Item.DUMyzw82gfw9CuVY"
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1698328902065,
@@ -4551,7 +4551,7 @@
       "hash": "e5e966d8c2f5de77f3627a66e1924f381d6885a1",
       "sourceId": "Actor.UfQO2VNiXCgMQRMv"
     },
-    "metanthropes-system": {
+    "metanthropes": {
       "lastrolled": {
         "rolld10": 9,
         "rolld10what": "Destiny",
@@ -4561,7 +4561,7 @@
     "core": {}
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1698425623738,

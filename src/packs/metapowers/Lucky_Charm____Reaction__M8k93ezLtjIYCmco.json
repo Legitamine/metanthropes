@@ -2,7 +2,7 @@
   "folder": "LnEWJQKJX9K9UKIj",
   "name": "Lucky Charm (⏱️Reaction)",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Luck Bending.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Luck Bending.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -462,11 +462,11 @@
       "hash": "6e13a2a6d108c991d8aa808f1ccbc0efc59d142b"
     },
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.M8k93ezLtjIYCmco"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.M8k93ezLtjIYCmco"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1698328393016,

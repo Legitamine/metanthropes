@@ -2,7 +2,7 @@
   "folder": "V8MkKENxwT9uwM85",
   "name": "Beretta Pistol 9mm",
   "type": "Possession",
-  "img": "systems/metanthropes-system/artwork/possessions/pistol2.webp",
+  "img": "systems/metanthropes/artwork/possessions/pistol2.webp",
   "system": {
     "Material": {
       "Category": {
@@ -507,7 +507,7 @@
   "effects": [],
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.possessions.Item.barDZkcXyP4BWngY"
+      "sourceId": "Compendium.metanthropes.possessions.Item.barDZkcXyP4BWngY"
     },
     "scene-packer": {
       "hash": "8a2114009f61b9000d1490774607bda45d48ffb0",
@@ -515,7 +515,7 @@
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693122203962,

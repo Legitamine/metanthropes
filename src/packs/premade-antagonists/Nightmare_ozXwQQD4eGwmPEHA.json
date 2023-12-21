@@ -2,7 +2,7 @@
   "folder": "vGr96hU80LOGL9yQ",
   "name": "Nightmare",
   "type": "Extradimensional",
-  "img": "systems/metanthropes-system/artwork/portraits/extradimensional/spirits/extradimensional-spirit-3.webp",
+  "img": "systems/metanthropes/artwork/portraits/extradimensional/spirits/extradimensional-spirit-3.webp",
   "system": {
     "physical": {
       "movement": {
@@ -887,7 +887,7 @@
     "appendNumber": false,
     "prependAdjective": true,
     "texture": {
-      "src": "systems/metanthropes-system/artwork/portraits/extradimensional/spirits/*",
+      "src": "systems/metanthropes/artwork/portraits/extradimensional/spirits/*",
       "scaleX": 0.73,
       "scaleY": 0.73,
       "offsetX": 0,
@@ -999,7 +999,7 @@
       "folder": "D0Cs7Mx3AGdugD84",
       "name": "Strike",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/fist.webp",
+      "img": "systems/metanthropes/artwork/possessions/fist.webp",
       "system": {
         "Material": {
           "Category": {
@@ -1511,7 +1511,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693121692159,
@@ -1530,7 +1530,7 @@
       "folder": "e8bv0iBb5d2BdR44",
       "name": "Danger Sense",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/6th Sense.png",
+      "img": "systems/metanthropes/artwork/metapowers/6th Sense.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -1990,7 +1990,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693065434495,
@@ -2005,7 +2005,7 @@
       "folder": "e8bv0iBb5d2BdR44",
       "name": "Feel The Unseen",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/6th Sense.png",
+      "img": "systems/metanthropes/artwork/metapowers/6th Sense.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -2465,7 +2465,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693065434495,
@@ -2480,7 +2480,7 @@
       "folder": "e8bv0iBb5d2BdR44",
       "name": "Powerful Psyche",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/6th Sense.png",
+      "img": "systems/metanthropes/artwork/metapowers/6th Sense.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -2940,7 +2940,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693065434495,
@@ -2955,7 +2955,7 @@
       "folder": "qZTdbjqDdlrA27DQ",
       "name": "Mind Reading",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Telepathy.png",
+      "img": "systems/metanthropes/artwork/metapowers/Telepathy.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -3420,7 +3420,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693071395459,
@@ -3435,7 +3435,7 @@
       "folder": "qZTdbjqDdlrA27DQ",
       "name": "Telepathic Coercion",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Telepathy.png",
+      "img": "systems/metanthropes/artwork/metapowers/Telepathy.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -3900,7 +3900,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693071395459,
@@ -3915,7 +3915,7 @@
       "folder": "qZTdbjqDdlrA27DQ",
       "name": "Telepathic Message",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Telepathy.png",
+      "img": "systems/metanthropes/artwork/metapowers/Telepathy.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -4380,7 +4380,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693071395459,
@@ -4394,7 +4394,7 @@
   ],
   "effects": [],
   "flags": {
-    "metanthropes-system": {
+    "metanthropes": {
       "lastrolled": {
         "rolld10": 11,
         "rolld10what": "Willpower",
@@ -4402,7 +4402,7 @@
       }
     },
     "core": {
-      "sourceId": "Compendium.metanthropes-system.premade-antagonists.Actor.ozXwQQD4eGwmPEHA"
+      "sourceId": "Compendium.metanthropes.premade-antagonists.Actor.ozXwQQD4eGwmPEHA"
     },
     "scene-packer": {
       "sourceId": "Actor.M0mKjHgGORlZSY2u",
@@ -4410,7 +4410,7 @@
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693129043119,

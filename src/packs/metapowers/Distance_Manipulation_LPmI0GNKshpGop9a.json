@@ -2,7 +2,7 @@
   "folder": "HgE78JCsn2WxcMb8",
   "name": "Distance Manipulation",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Dark Energy Projection.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Dark Energy Projection.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -461,14 +461,14 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.LPmI0GNKshpGop9a"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.LPmI0GNKshpGop9a"
     },
     "scene-packer": {
       "hash": "966ccde61adf0fec25870db8a6e98e3b57d8b2a8"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693069325157,

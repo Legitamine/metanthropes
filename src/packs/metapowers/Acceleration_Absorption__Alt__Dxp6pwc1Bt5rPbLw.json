@@ -2,7 +2,7 @@
   "folder": "HgE78JCsn2WxcMb8",
   "name": "Acceleration Absorption [Alt]",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Dark Energy Projection.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Dark Energy Projection.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -457,14 +457,14 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.Dxp6pwc1Bt5rPbLw"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.Dxp6pwc1Bt5rPbLw"
     },
     "scene-packer": {
       "hash": "74f9698196e0794f1814d6d738fa3cc75cb4b78d"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693069325157,

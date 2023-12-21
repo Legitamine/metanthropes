@@ -2,7 +2,7 @@
   "folder": "V8MkKENxwT9uwM85",
   "name": "MP5 SMG",
   "type": "Possession",
-  "img": "systems/metanthropes-system/artwork/possessions/pistol_heavy.webp",
+  "img": "systems/metanthropes/artwork/possessions/pistol_heavy.webp",
   "system": {
     "Material": {
       "Category": {
@@ -507,7 +507,7 @@
   "effects": [],
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.possessions.Item.DvL4oAxTKhgBKSxy"
+      "sourceId": "Compendium.metanthropes.possessions.Item.DvL4oAxTKhgBKSxy"
     },
     "scene-packer": {
       "hash": "b870c0dde046936b8aa7aa967a67e4f9d8b3dfd3",
@@ -515,7 +515,7 @@
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693122691433,

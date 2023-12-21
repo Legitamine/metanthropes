@@ -30,7 +30,7 @@ export class MetanthropesActorProgressionSheet extends ActorSheet {
 	}
 	/** @override */
 	get template() {
-		return `systems/metanthropes-system/templates/progression/progression-sheet.hbs`;
+		return `systems/metanthropes/templates/progression/progression-sheet.hbs`;
 	}
 	/** @override */
 	get title() {
@@ -41,7 +41,7 @@ export class MetanthropesActorProgressionSheet extends ActorSheet {
 	/** @override */
 	async close(options = {}) {
 		await super.close(options);
-		await this.actor.setFlag("metanthropes-system", "Progression", { isProgressing: false });
+		await this.actor.setFlag("metanthropes", "Progression", { isProgressing: false });
 	}
 	/** @override */
 	getData(options = {}) {

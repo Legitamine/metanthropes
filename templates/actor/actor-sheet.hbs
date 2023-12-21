@@ -4,49 +4,49 @@
 {{/if}}
 --}}
 <form class="metanthropes {{cssClass}}" autocomplete="off">
-	{{> "systems/metanthropes-system/templates/helpers/actor-header.hbs"}}
+	{{> "systems/metanthropes/templates/helpers/actor-header.hbs"}}
 	<main>
 		<div class="layout-container-nav style-container-nav">
-			{{> "systems/metanthropes-system/templates/helpers/actor-navbar.hbs"}}
+			{{> "systems/metanthropes/templates/helpers/actor-navbar.hbs"}}
 		</div>
 		<section class="csnavtabs">
 			<div class="tab cs-summary" data-group="cs" data-tab="cs-summary">
-				{{> "systems/metanthropes-system/templates/helpers/actor-summary.hbs"}}
+				{{> "systems/metanthropes/templates/helpers/actor-summary.hbs"}}
 			</div>
 			{{#if actor.hasCharacteristics}}
 				<div class="tab cs-charstats" data-group="cs" data-tab="cs-charstats">
-					{{> "systems/metanthropes-system/templates/helpers/actor-charstats.hbs"}}
+					{{> "systems/metanthropes/templates/helpers/actor-charstats.hbs"}}
 				</div>
 			{{/if}}
 			{{#if actor.hasPerks}}
 				<div class="tab cs-perks" data-group="cs" data-tab="cs-perks">
 					<div class="layout-container-outer-tabs style-container-outer-tabs">
-						{{> "systems/metanthropes-system/templates/helpers/actor-perks.hbs"}}
+						{{> "systems/metanthropes/templates/helpers/actor-perks.hbs"}}
 					</div>
 				</div>
 			{{/if}}
 			{{#if actor.hasEnterMeta}}
 				<div class="tab cs-metapowers" data-group="cs" data-tab="cs-metapowers">
 					<div class="layout-container-outer-tabs style-container-outer-tabs">
-						{{> "systems/metanthropes-system/templates/helpers/actor-metapowers.hbs"}}
+						{{> "systems/metanthropes/templates/helpers/actor-metapowers.hbs"}}
 					</div>
 				</div>
 				<div class="tab cs-combos" data-group="cs" data-tab="cs-combos">
 					<div class="layout-container-outer-tabs style-container-outer-tabs">
-						{{> "systems/metanthropes-system/templates/helpers/actor-combos.hbs"}}
+						{{> "systems/metanthropes/templates/helpers/actor-combos.hbs"}}
 					</div>
 				</div>
 			{{/if}}
 			{{#if actor.hasPossessions}}
 				<div class="tab cs-possessions" data-group="cs" data-tab="cs-possessions">
 					<div class="layout-container-outer-tabs style-container-outer-tabs">
-						{{> "systems/metanthropes-system/templates/helpers/actor-possessions.hbs"}}
+						{{> "systems/metanthropes/templates/helpers/actor-possessions.hbs"}}
 					</div>
 				</div>
 			{{/if}}
 			<div class="tab cs-activeeffects" data-group="cs" data-tab="cs-active-effects">
 				<div class="layout-container-outer-tabs style-container-outer-tabs">
-					{{> "systems/metanthropes-system/templates/helpers/actor-active-effects.hbs"}}
+					{{> "systems/metanthropes/templates/helpers/actor-active-effects.hbs"}}
 				</div>
 			</div>
 		</section>

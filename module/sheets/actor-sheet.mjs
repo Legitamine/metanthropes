@@ -45,7 +45,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 	}
 	/** @override */
 	get template() {
-		return `systems/metanthropes-system/templates/actor/actor-sheet.hbs`;
+		return `systems/metanthropes/templates/actor/actor-sheet.hbs`;
 	}
 	/** @override */
 	get title() {
@@ -77,9 +77,9 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//? This will create the .RollStats object under .system that is used by Handlebars in the actor sheet for rolling
 		this.actor.getRollData();
 		//? Provide a boolean for if 'Beta Testing of New Features' is enabled
-		context.betaTesting = await game.settings.get("metanthropes-system", "metaBetaTesting");
+		context.betaTesting = await game.settings.get("metanthropes", "metaBetaTesting");
 		//? Provide a boolean for if 'Advanced Logging' is enabled
-		context.advancedLogging = await game.settings.get("metanthropes-system", "metaAdvancedLogging");
+		context.advancedLogging = await game.settings.get("metanthropes", "metaAdvancedLogging");
 		//? Provide a combined boolean for if 'Beta Testing of New Features' and 'Advanced Logging' are enabled
 		context.advancedBetaTesting = context.betaTesting && context.advancedLogging;
 		//? Provide a boolean for if the user is a Narrator(GameMaster)
@@ -194,7 +194,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			li.slideUp(200, () => this.render(false));
 		});
 		//? Active Effect management
-		if (game.settings.get("metanthropes-system", "metaBetaTesting"))
+		if (game.settings.get("metanthropes", "metaBetaTesting"))
 			html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
 		//? Roll Stat
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
@@ -621,7 +621,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 	async _onProgression(event) {
 		event.preventDefault();
 		//? Check if 'Beta Testing of New Features' is enabled
-		if (!game.settings.get("metanthropes-system", "metaBetaTesting")) {
+		if (!game.settings.get("metanthropes", "metaBetaTesting")) {
 			ui.notifications.warn("Progression is only available if Beta Testing of New Features is enabled");
 			return;
 		}
@@ -630,7 +630,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//? Set the Flags for the Progression Form
 		//! Note that this flag will remain set unless otherwise told to do so!
 		//todo do this properly with a promise!
-		metaProgressionActor.setFlag("metanthropes-system", "Progression", { isProgressing: true });
+		metaProgressionActor.setFlag("metanthropes", "Progression", { isProgressing: true });
 		//? Pass along the actor to the Progression Form
 		metaLog(
 			3,
@@ -643,7 +643,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			await MetaStartProgression(metaProgressionActor);
 		} catch (error) {
 			metaLog(2, "MetanthropesActorSheet", "_onProgression", "ERROR:", error);
-			metaProgressionActor.setFlag("metanthropes-system", "Progression", { isProgressing: false });
+			metaProgressionActor.setFlag("metanthropes", "Progression", { isProgressing: false });
 		}
 	}
 	async _onCoverRoll(event) {

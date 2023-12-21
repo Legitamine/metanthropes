@@ -2,7 +2,7 @@
   "folder": "3Q1PIkLd8sThQcJQ",
   "name": "Leap And Mount",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Meta Strength.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Meta Strength.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -455,14 +455,14 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.vz87fBbqlV1dvbnB"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.vz87fBbqlV1dvbnB"
     },
     "scene-packer": {
       "hash": "739880b459dab805fbe4a61b9c05b45f1b805f38"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693070007701,

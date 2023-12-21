@@ -2,7 +2,7 @@
   "folder": null,
   "name": "Manipulator Protagonist",
   "type": "Protagonist",
-  "img": "systems/metanthropes-system/tokens/defaults/token-manipulator.webp",
+  "img": "systems/metanthropes/tokens/defaults/token-manipulator.webp",
   "system": {
     "physical": {
       "movement": {
@@ -899,7 +899,7 @@
     "appendNumber": false,
     "prependAdjective": false,
     "texture": {
-      "src": "systems/metanthropes-system/tokens/defaults/token-manipulator.webp",
+      "src": "systems/metanthropes/tokens/defaults/token-manipulator.webp",
       "scaleX": 0.73,
       "scaleY": 0.73,
       "offsetX": 0,
@@ -994,7 +994,7 @@
       "folder": "qZTdbjqDdlrA27DQ",
       "name": "Mind Reading",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Telepathy.png",
+      "img": "systems/metanthropes/artwork/metapowers/Telepathy.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -1459,7 +1459,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1693071395459,
@@ -1474,7 +1474,7 @@
       "folder": "qZTdbjqDdlrA27DQ",
       "name": "Telepathic Coercion",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Telepathy.png",
+      "img": "systems/metanthropes/artwork/metapowers/Telepathy.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -1939,7 +1939,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1693071395459,
@@ -1954,7 +1954,7 @@
       "folder": "qZTdbjqDdlrA27DQ",
       "name": "Telepathic Message",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Telepathy.png",
+      "img": "systems/metanthropes/artwork/metapowers/Telepathy.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -2419,7 +2419,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1693071395459,
@@ -2434,7 +2434,7 @@
       "folder": "D0Cs7Mx3AGdugD84",
       "name": "Strike",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/fist.webp",
+      "img": "systems/metanthropes/artwork/possessions/fist.webp",
       "system": {
         "Material": {
           "Category": {
@@ -2946,7 +2946,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693121692159,
@@ -2964,7 +2964,7 @@
   ],
   "effects": [],
   "flags": {
-    "metanthropes-system": {
+    "metanthropes": {
       "previousrolled": {
         "rolld10": 2,
         "rolld10what": "Consciousness",
@@ -2986,7 +2986,7 @@
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693063267928,

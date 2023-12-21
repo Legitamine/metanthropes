@@ -64,7 +64,7 @@ export async function MetaInitiative(combatant) {
 		//? If the actor is not a Duplicate or Animated, MetaRoll for Initiative
 		metaLog(3, "MetaInitiative", "Engaging MetaRoll for:", actor.name + "'s", action, "with", initiativeStatRolled);
 		await MetaRoll(actor, action, initiativeStatRolled);
-		initiativeResult = await actor.getFlag("metanthropes-system", "lastrolled").Initiative;
+		initiativeResult = await actor.getFlag("metanthropes", "lastrolled").Initiative;
 	} else {
 		//? Logic for Duplicates & Animated
 		//? Duplicates from Duplicate Self Metapower get a -11 Initiative, this will ensure they always go last
@@ -73,7 +73,7 @@ export async function MetaInitiative(combatant) {
 		let normalizedScore = initiativeStatScore > 300 ? 100 : initiativeStatScore / 5;
 		const decimalPart = (100 - normalizedScore).toString().padStart(2, "0");
 		initiativeResult = parseFloat(`-11.${decimalPart}`);
-		await actor.setFlag("metanthropes-system", "lastrolled", { Initiative: initiativeResult });
+		await actor.setFlag("metanthropes", "lastrolled", { Initiative: initiativeResult });
 	}
 	//todo add Metapowers that affect Initiative results
 	//? Update the combatant with the new initiative score

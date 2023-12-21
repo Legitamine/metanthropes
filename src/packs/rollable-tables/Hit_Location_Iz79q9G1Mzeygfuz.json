@@ -8,7 +8,7 @@
   "sort": 100000,
   "flags": {},
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.70",
     "coreVersion": "11.315",
     "createdTime": 1700264652155,

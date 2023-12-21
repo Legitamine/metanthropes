@@ -2,7 +2,7 @@
   "folder": "LnEWJQKJX9K9UKIj",
   "name": "Beginner's Luck",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Luck Bending.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Luck Bending.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -457,11 +457,11 @@
       "hash": "8a819ef476d7bd59941ac0d99cf341d4ce78c1ab"
     },
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.rXJA1nzOjF9lfruV"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.rXJA1nzOjF9lfruV"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1698328259287,

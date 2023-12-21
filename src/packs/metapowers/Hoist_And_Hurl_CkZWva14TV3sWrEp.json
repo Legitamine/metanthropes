@@ -2,7 +2,7 @@
   "folder": "3Q1PIkLd8sThQcJQ",
   "name": "Hoist And Hurl",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Meta Strength.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Meta Strength.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -455,14 +455,14 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.CkZWva14TV3sWrEp"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.CkZWva14TV3sWrEp"
     },
     "scene-packer": {
       "hash": "ae77230e3d5d70042417ebb899d2cd3abf550437"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693070007701,

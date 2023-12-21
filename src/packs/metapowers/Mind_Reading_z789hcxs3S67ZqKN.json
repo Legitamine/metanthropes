@@ -2,7 +2,7 @@
   "folder": "LNcaYpbg1Mu59l2t",
   "name": "Mind Reading",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Telepathy.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Telepathy.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -460,14 +460,14 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.z789hcxs3S67ZqKN"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.z789hcxs3S67ZqKN"
     },
     "scene-packer": {
       "hash": "ebf11c84c7e1d2f14d0ee242331c924cb65836b3"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693071395459,

@@ -2,7 +2,7 @@
   "folder": "zWhey6yuASGvjvbo",
   "name": "Clone",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Duplicate Self.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Duplicate Self.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -455,14 +455,14 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.QHbPafWBFXsUOajs"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.QHbPafWBFXsUOajs"
     },
     "scene-packer": {
       "hash": "c91ff07dddb2e83dccd78548f22a9725a5f3510d"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693064277667,

@@ -2,7 +2,7 @@
   "folder": "P6uqQ2qEPDhtd3ZH",
   "name": "Niko Quint",
   "type": "Metanthrope",
-  "img": "systems/metanthropes-system/artwork/portraits/metanthrope/conductors/conductor-nikko.webp",
+  "img": "systems/metanthropes/artwork/portraits/metanthrope/conductors/conductor-nikko.webp",
   "system": {
     "physical": {
       "movement": {
@@ -887,7 +887,7 @@
     "appendNumber": false,
     "prependAdjective": false,
     "texture": {
-      "src": "systems/metanthropes-system/artwork/portraits/metanthrope/conductors/conductor-nikko.webp",
+      "src": "systems/metanthropes/artwork/portraits/metanthrope/conductors/conductor-nikko.webp",
       "scaleX": 0.73,
       "scaleY": 0.73,
       "offsetX": 0,
@@ -1000,7 +1000,7 @@
       "folder": "2vml0QVxnc2qkSnD",
       "name": "Ebb And Flow",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Control Gravity.png",
+      "img": "systems/metanthropes/artwork/metapowers/Control Gravity.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -1462,7 +1462,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693066222213,
@@ -1477,7 +1477,7 @@
       "folder": "2vml0QVxnc2qkSnD",
       "name": "Ebb And Flow (Alt)",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Control Gravity.png",
+      "img": "systems/metanthropes/artwork/metapowers/Control Gravity.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -1939,7 +1939,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693066222213,
@@ -1954,7 +1954,7 @@
       "folder": "2vml0QVxnc2qkSnD",
       "name": "Gravitational Anchor",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Control Gravity.png",
+      "img": "systems/metanthropes/artwork/metapowers/Control Gravity.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -2416,7 +2416,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693066222213,
@@ -2431,7 +2431,7 @@
       "folder": "2vml0QVxnc2qkSnD",
       "name": "Gravitational Anchor (Alt)",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Control Gravity.png",
+      "img": "systems/metanthropes/artwork/metapowers/Control Gravity.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -2893,7 +2893,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693066222213,
@@ -2908,7 +2908,7 @@
       "folder": "2vml0QVxnc2qkSnD",
       "name": "Gravitational Anchor [⏱️R]",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Control Gravity.png",
+      "img": "systems/metanthropes/artwork/metapowers/Control Gravity.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -3370,7 +3370,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693066222213,
@@ -3385,7 +3385,7 @@
       "folder": "2vml0QVxnc2qkSnD",
       "name": "Gravitational Pull",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Control Gravity.png",
+      "img": "systems/metanthropes/artwork/metapowers/Control Gravity.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -3847,7 +3847,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693066222213,
@@ -3862,7 +3862,7 @@
       "folder": "PErxzEVaQfDLYWcF",
       "name": "Acceleration Absorption",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Dark Energy Projection.png",
+      "img": "systems/metanthropes/artwork/metapowers/Dark Energy Projection.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -4326,7 +4326,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1697730966283,
@@ -4341,7 +4341,7 @@
       "folder": "PErxzEVaQfDLYWcF",
       "name": "Acceleration Absorption [Alt]",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Dark Energy Projection.png",
+      "img": "systems/metanthropes/artwork/metapowers/Dark Energy Projection.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -4803,7 +4803,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693069325157,
@@ -4818,7 +4818,7 @@
       "folder": "PErxzEVaQfDLYWcF",
       "name": "Distance Manipulation",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Dark Energy Projection.png",
+      "img": "systems/metanthropes/artwork/metapowers/Dark Energy Projection.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -5284,7 +5284,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693069325157,
@@ -5299,7 +5299,7 @@
       "folder": "PErxzEVaQfDLYWcF",
       "name": "Quintessence",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Dark Energy Projection.png",
+      "img": "systems/metanthropes/artwork/metapowers/Dark Energy Projection.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -5763,7 +5763,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693069325157,
@@ -5778,7 +5778,7 @@
       "folder": "czsmmtAwemx4ZV2a",
       "name": "Augmented Receptors",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Meta Intelligence.png",
+      "img": "systems/metanthropes/artwork/metapowers/Meta Intelligence.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -6237,7 +6237,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1698328851732,
@@ -6252,7 +6252,7 @@
       "folder": "czsmmtAwemx4ZV2a",
       "name": "Cognitive Efficiency",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Meta Intelligence.png",
+      "img": "systems/metanthropes/artwork/metapowers/Meta Intelligence.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -6711,7 +6711,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1698328902065,
@@ -6726,7 +6726,7 @@
       "folder": "czsmmtAwemx4ZV2a",
       "name": "Innate learning",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Meta Intelligence.png",
+      "img": "systems/metanthropes/artwork/metapowers/Meta Intelligence.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -7185,7 +7185,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1698328804861,
@@ -7200,7 +7200,7 @@
       "folder": "D0Cs7Mx3AGdugD84",
       "name": "Strike",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/fist.webp",
+      "img": "systems/metanthropes/artwork/possessions/fist.webp",
       "system": {
         "Material": {
           "Category": {
@@ -7712,7 +7712,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693121692159,
@@ -7734,7 +7734,7 @@
     "yjFY5zW9urDSuce5": 3
   },
   "flags": {
-    "metanthropes-system": {
+    "metanthropes": {
       "previousrolled": {
         "LastAction": "Metapower",
         "MetaEvaluate": 6,
@@ -7757,7 +7757,7 @@
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693123658037,

@@ -2,7 +2,7 @@
   "folder": "8IUqkZjgLC0Rcx8v",
   "name": "Jolt (Alt)",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Electrokinesis.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Electrokinesis.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -459,14 +459,14 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.a0WnEsesZsMOa4os"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.a0WnEsesZsMOa4os"
     },
     "scene-packer": {
       "hash": "ed43137b044d04f0f65aeb25fd8a48d847518f4b"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693070561830,

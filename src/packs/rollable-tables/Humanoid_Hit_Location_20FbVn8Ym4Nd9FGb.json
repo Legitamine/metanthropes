@@ -1,6 +1,6 @@
 {
   "name": "Humanoid Hit Location",
-  "img": "systems/metanthropes-system/artwork/rolltables/humanoid-hitbox.webp",
+  "img": "systems/metanthropes/artwork/rolltables/humanoid-hitbox.webp",
   "description": "<p style=\"text-align:center\">Random location on the human body.</p>",
   "results": [
     {
@@ -14,7 +14,7 @@
       "documentCollection": "",
       "_id": "atcfZ3uuu7z5YGkb",
       "text": "Left Leg",
-      "img": "systems/metanthropes-system/artwork/rolltables/humanoid-left-leg.webp",
+      "img": "systems/metanthropes/artwork/rolltables/humanoid-left-leg.webp",
       "documentId": null,
       "flags": {},
       "_key": "!tables.results!20FbVn8Ym4Nd9FGb.atcfZ3uuu7z5YGkb"
@@ -30,7 +30,7 @@
       "documentCollection": "",
       "_id": "YJF13455xnUOGPzN",
       "text": "Right Leg",
-      "img": "systems/metanthropes-system/artwork/rolltables/humanoid-right-leg.webp",
+      "img": "systems/metanthropes/artwork/rolltables/humanoid-right-leg.webp",
       "documentId": null,
       "flags": {},
       "_key": "!tables.results!20FbVn8Ym4Nd9FGb.YJF13455xnUOGPzN"
@@ -46,7 +46,7 @@
       "documentCollection": "",
       "_id": "PCZGqCBoBKBLUA69",
       "text": "Left Arm",
-      "img": "systems/metanthropes-system/artwork/rolltables/humanoid-left-arm.webp",
+      "img": "systems/metanthropes/artwork/rolltables/humanoid-left-arm.webp",
       "documentId": null,
       "flags": {},
       "_key": "!tables.results!20FbVn8Ym4Nd9FGb.PCZGqCBoBKBLUA69"
@@ -62,7 +62,7 @@
       "documentCollection": "",
       "_id": "wu39UguomjKHfhdH",
       "text": "Right Arm",
-      "img": "systems/metanthropes-system/artwork/rolltables/humanoid-right-arm.webp",
+      "img": "systems/metanthropes/artwork/rolltables/humanoid-right-arm.webp",
       "documentId": null,
       "flags": {},
       "_key": "!tables.results!20FbVn8Ym4Nd9FGb.wu39UguomjKHfhdH"
@@ -78,7 +78,7 @@
       "documentCollection": "",
       "_id": "jB1HLLguHhB8229d",
       "text": "Lower Torso",
-      "img": "systems/metanthropes-system/artwork/rolltables/humanoid-lower-torso.webp",
+      "img": "systems/metanthropes/artwork/rolltables/humanoid-lower-torso.webp",
       "documentId": null,
       "flags": {},
       "_key": "!tables.results!20FbVn8Ym4Nd9FGb.jB1HLLguHhB8229d"
@@ -94,7 +94,7 @@
       "documentCollection": "",
       "_id": "VDKdReNx0uVr3Sdt",
       "text": "Upper Torso",
-      "img": "systems/metanthropes-system/artwork/rolltables/humanoid-upper-torso.webp",
+      "img": "systems/metanthropes/artwork/rolltables/humanoid-upper-torso.webp",
       "documentId": null,
       "flags": {},
       "_key": "!tables.results!20FbVn8Ym4Nd9FGb.VDKdReNx0uVr3Sdt"
@@ -110,7 +110,7 @@
       "documentCollection": "",
       "_id": "QCo6C7M8lTx4aMo1",
       "text": "Head",
-      "img": "systems/metanthropes-system/artwork/rolltables/humanoid-head.webp",
+      "img": "systems/metanthropes/artwork/rolltables/humanoid-head.webp",
       "documentId": null,
       "flags": {},
       "_key": "!tables.results!20FbVn8Ym4Nd9FGb.QCo6C7M8lTx4aMo1"
@@ -126,11 +126,11 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.rollable-tables.RollTable.JwFzcb5ndJAyCWdd"
+      "sourceId": "Compendium.metanthropes.rollable-tables.RollTable.JwFzcb5ndJAyCWdd"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.70",
     "coreVersion": "11.315",
     "createdTime": 1681919285029,

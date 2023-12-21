@@ -126,7 +126,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 	let healingRerollButton = null;
 	let specialRerollButton = null;
 	//? Get the last rolled result
-	const rollResult = actor.getFlag("metanthropes-system", "lastrolled");
+	const rollResult = actor.getFlag("metanthropes", "lastrolled");
 	let executeRoll = null;
 	//? Gather specific data & set the flavor message based on the action
 	if (action === "Metapower") {
@@ -435,7 +435,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			contentMessage += `${effectDescription}<hr />`;
 		}
 		//* Targeting v1
-		const betaTesting = await game.settings.get("metanthropes-system", "metaBetaTesting");
+		const betaTesting = await game.settings.get("metanthropes", "metaBetaTesting");
 		if (betaTesting) {
 			const manuallySelectedTargets = game.user.targets;
 			metaLog(3, "MetaExecute", "Manually Selected Targets:", manuallySelectedTargets);
@@ -552,17 +552,17 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		flavor: flavorMessage,
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		content: contentMessage,
-		flags: { "metanthropes-system": { actoruuid: actor.uuid } },
+		flags: { "metanthropes": { actoruuid: actor.uuid } },
 	};
 	//? Send the message to chat
 	await ChatMessage.create(chatData);
 	//* Post Execution Actions
 	//? Clear all metapower related result flags (currently only from duplicateself)
 	//! the idea here being that if the flags are going to be added later, here we prevent them from remaining from previous successful activations
-	await actor.unsetFlag("metanthropes-system", "duplicateSelf");
+	await actor.unsetFlag("metanthropes", "duplicateSelf");
 	//? Get the result of the last roll
 	metaLog(3, "MetaExecute", "Post Execution Actions");
-	let checkResult = await actor.getFlag("metanthropes-system", "lastrolled").MetaEvaluate;
+	let checkResult = await actor.getFlag("metanthropes", "lastrolled").MetaEvaluate;
 	//* Check for Duplicate Self Metapower Activation
 	if (
 		checkResult > 0 &&
@@ -587,7 +587,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		} else if (itemName === "Unit") {
 			duplicateMaxLife = Math.ceil(currentLife * 0.5);
 		}
-		await actor.setFlag("metanthropes-system", "duplicateSelf", { maxLife: duplicateMaxLife });
+		await actor.setFlag("metanthropes", "duplicateSelf", { maxLife: duplicateMaxLife });
 		metaLog(3, "MetaRoll", "Duplicate Self Metapower Max Life:", duplicateMaxLife);
 	}
 	//* Apply Damage to Selected Targets

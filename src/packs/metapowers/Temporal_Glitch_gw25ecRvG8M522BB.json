@@ -2,7 +2,7 @@
   "folder": "gCPG6PTEX0c5ljcw",
   "name": "Temporal Glitch",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Time Bending.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Time Bending.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -457,14 +457,14 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.gw25ecRvG8M522BB"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.gw25ecRvG8M522BB"
     },
     "scene-packer": {
       "hash": "41f4b604cc13720fe366daa019c77baaa0cfea7a"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693064901564,

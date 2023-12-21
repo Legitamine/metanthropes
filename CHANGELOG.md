@@ -143,6 +143,6 @@ Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 
 ## Archives
 
-You may find the previous versions of the Changelog in the [Changelog Archives](https://github.com/Legitamine/metanthropes-system/blob/main/CHANGELOGARCHIVES.md)
+You may find the previous versions of the Changelog in the [Changelog Archives](https://github.com/Legitamine/metanthropes/blob/main/CHANGELOGARCHIVES.md)
 
 Our eternal gratitude goes to the amazing community of Foundry Developers <3

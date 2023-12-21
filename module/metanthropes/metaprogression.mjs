@@ -23,7 +23,7 @@ export async function MetaStartProgression(metaProgressionActor) {
 // 		//					//? Validate the experience values
 // 		//					this._validateAndStoreExperience(metaProgressionActor);
 // 		//					//? Set the flag so that the _prepareDerivedData methods for XP calculation are not called
-// 		//					await this.setFlag("metanthropes-system", "Progression", { hasProgressed: true });
+// 		//					await this.setFlag("metanthropes", "Progression", { hasProgressed: true });
 // 		//					//? If stored experience is not negative, update the actor
 // 		//					//	if (this.tempExperienceValues["system.Vital.Experience.Stored"] >= 0) {
 // 		//					//		await actorData.actor.update(this.tempExperienceValues);
@@ -115,7 +115,7 @@ export async function MetaStartProgression(metaProgressionActor) {
 // 			classes: ["metanthropes", "progression", "sheet", "actor"],
 // 			width: 1012,
 // 			height: 700,
-// 			template: "systems/metanthropes-system/templates/progression/progression-form.hbs",
+// 			template: "systems/metanthropes/templates/progression/progression-form.hbs",
 // 			tabs: [
 // 				{
 // 					navSelector: ".progressionnavselector",

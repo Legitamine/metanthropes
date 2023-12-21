@@ -2,7 +2,7 @@
   "folder": "8IUqkZjgLC0Rcx8v",
   "name": "Electric Field",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Electrokinesis.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Electrokinesis.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -458,14 +458,14 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.2xo9GRbvToNmEYK6"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.2xo9GRbvToNmEYK6"
     },
     "scene-packer": {
       "hash": "a9241e88023a01ca60d16c10cf07b382515c7792"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693070561830,
