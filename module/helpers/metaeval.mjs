@@ -251,12 +251,12 @@ export async function MetaEvaluate(
 	message += `<div><br></div>`;
 	//* Update actor flags with the results of the roll
 	//? Fetch the current state of the .lastrolled flag
-	let previousRolls = (await actor.getFlag("metanthropes-system", "lastrolled")) || {};
+	let previousRolls = (await actor.getFlag("metanthropes", "lastrolled")) || {};
 	//? Store the values into the .previousrolled flag
-	await actor.unsetFlag("metanthropes-system", "previousrolled");
-	await actor.setFlag("metanthropes-system", "previousrolled", previousRolls);
+	await actor.unsetFlag("metanthropes", "previousrolled");
+	await actor.setFlag("metanthropes", "previousrolled", previousRolls);
 	//? Prepare the new values for .lastrolled
-	await actor.unsetFlag("metanthropes-system", "lastrolled");
+	await actor.unsetFlag("metanthropes", "lastrolled");
 	let newRolls = {
 		LastAction: action,
 		MetaEvaluate: resultLevel,
@@ -287,7 +287,7 @@ export async function MetaEvaluate(
 			return;
 	}
 	//? Update the actor with the new .lastrolled values
-	await actor.setFlag("metanthropes-system", "lastrolled", newRolls);
+	await actor.setFlag("metanthropes", "lastrolled", newRolls);
 	//? Printing the results to chat, allowing Dice So Nice to do it's thing.
 	roll.toMessage({
 		speaker: ChatMessage.getSpeaker({
@@ -295,7 +295,7 @@ export async function MetaEvaluate(
 		}),
 		flavor: message,
 		rollMode: game.settings.get("core", "rollMode"),
-		flags: { "metanthropes-system": { actoruuid: actor.uuid } },
+		flags: { "metanthropes": { actoruuid: actor.uuid } },
 	});
 	metaLog(
 		3,

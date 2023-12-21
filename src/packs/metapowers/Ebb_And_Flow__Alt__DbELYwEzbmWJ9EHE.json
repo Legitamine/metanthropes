@@ -2,7 +2,7 @@
   "folder": "0ehTUuPWHnxh9WTq",
   "name": "Ebb And Flow (Alt)",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Control Gravity.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Control Gravity.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -457,14 +457,14 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.DbELYwEzbmWJ9EHE"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.DbELYwEzbmWJ9EHE"
     },
     "scene-packer": {
       "hash": "00b3f95efb73a568c24b3805802366aa568a8405"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693066222213,

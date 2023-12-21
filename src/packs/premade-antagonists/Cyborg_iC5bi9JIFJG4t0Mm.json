@@ -2,7 +2,7 @@
   "folder": "vGr96hU80LOGL9yQ",
   "name": "Cyborg",
   "type": "Artificial",
-  "img": "systems/metanthropes-system/artwork/portraits/artificial/cyborgs/artificial-cyborg-4.webp",
+  "img": "systems/metanthropes/artwork/portraits/artificial/cyborgs/artificial-cyborg-4.webp",
   "system": {
     "physical": {
       "movement": {
@@ -868,7 +868,7 @@
     "appendNumber": false,
     "prependAdjective": true,
     "texture": {
-      "src": "systems/metanthropes-system/artwork/portraits/artificial/cyborgs/*",
+      "src": "systems/metanthropes/artwork/portraits/artificial/cyborgs/*",
       "scaleX": 0.73,
       "scaleY": 0.73,
       "offsetX": 0,
@@ -980,7 +980,7 @@
       "folder": "FbxoC3xCVszvVSC1",
       "name": "Hoist And Hurl",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Meta Strength.png",
+      "img": "systems/metanthropes/artwork/metapowers/Meta Strength.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -1440,7 +1440,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693070007701,
@@ -1455,7 +1455,7 @@
       "folder": "FbxoC3xCVszvVSC1",
       "name": "Leap And Mount",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Meta Strength.png",
+      "img": "systems/metanthropes/artwork/metapowers/Meta Strength.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -1915,7 +1915,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693070007701,
@@ -1930,7 +1930,7 @@
       "folder": "D0Cs7Mx3AGdugD84",
       "name": "Beretta Pistol 9mm",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/pistol2.webp",
+      "img": "systems/metanthropes/artwork/possessions/pistol2.webp",
       "system": {
         "Material": {
           "Category": {
@@ -2442,7 +2442,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693122203962,
@@ -2461,7 +2461,7 @@
       "folder": "D0Cs7Mx3AGdugD84",
       "name": "Strike",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/fist.webp",
+      "img": "systems/metanthropes/artwork/possessions/fist.webp",
       "system": {
         "Material": {
           "Category": {
@@ -2973,7 +2973,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693121692159,
@@ -2992,7 +2992,7 @@
       "folder": "D0Cs7Mx3AGdugD84",
       "name": "MP5 SMG",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/pistol_heavy.webp",
+      "img": "systems/metanthropes/artwork/possessions/pistol_heavy.webp",
       "system": {
         "Material": {
           "Category": {
@@ -3504,7 +3504,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693122691433,
@@ -3523,7 +3523,7 @@
       "folder": "D0Cs7Mx3AGdugD84",
       "name": "MP5 SMG (light)",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/pistol.webp",
+      "img": "systems/metanthropes/artwork/possessions/pistol.webp",
       "system": {
         "Material": {
           "Category": {
@@ -4035,7 +4035,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693122691433,
@@ -4053,7 +4053,7 @@
   ],
   "effects": [],
   "flags": {
-    "metanthropes-system": {
+    "metanthropes": {
       "lastrolled": {
         "rolld10": 5,
         "rolld10what": "Awareness",
@@ -4061,7 +4061,7 @@
       }
     },
     "core": {
-      "sourceId": "Compendium.metanthropes-system.premade-antagonists.Actor.iC5bi9JIFJG4t0Mm"
+      "sourceId": "Compendium.metanthropes.premade-antagonists.Actor.iC5bi9JIFJG4t0Mm"
     },
     "scene-packer": {
       "sourceId": "Actor.2Prd2lBqHn5LskA9",
@@ -4069,7 +4069,7 @@
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693128600758,

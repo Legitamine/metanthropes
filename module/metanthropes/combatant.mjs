@@ -10,7 +10,7 @@ export class MetaCombatant extends Combatant {
 			await MetaInitiative(this);
 			metaLog(2, "MetaCombatant getInitiativeRoll", "this:", this);
 			//? Retrieve the initiative value from the actor's flags (assuming you have set the flag in MetaInitiative)
-			const initiativeData = this.actor.getFlag("metanthropes-system", "initiative");
+			const initiativeData = this.actor.getFlag("metanthropes", "initiative");
 			const initiativeValue = initiativeData.initiativeValue;
 			return initiativeValue.toString();
 		});

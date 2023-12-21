@@ -44,16 +44,16 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 	const hungerLevel = actor.system.Characteristics.Mind.CoreConditions.Hunger;
 	hungerCheck: if (hungerLevel > 0 && action !== "Initiative") {
 		//? Check if actor has already overcome hunger
-		const hungerRollResult = (await actor.getFlag("metanthropes-system", "hungerRollResult")) || false;
+		const hungerRollResult = (await actor.getFlag("metanthropes", "hungerRollResult")) || false;
 		if (hungerRollResult) {
 			//? If the flag exists, we clear it and resume running the rest of the checks
-			await actor.unsetFlag("metanthropes-system", "hungerRollResult");
+			await actor.unsetFlag("metanthropes", "hungerRollResult");
 			metaLog(3, "MetaRoll", "Hunger Check Passed, moving on");
 			//todo: perhaps I should minimize the sheet while the hunger check is happening?
 			break hungerCheck;
 		} else {
 			//? Engage the Hunger Roll
-			await actor.setFlag("metanthropes-system", "MetaRollBeforeHungerCheck", {
+			await actor.setFlag("metanthropes", "MetaRollBeforeHungerCheck", {
 				action: action,
 				stat: stat,
 				isCustomRoll: isCustomRoll,
@@ -251,7 +251,7 @@ export async function MetaRollCustomDialog(actor, action, stat, statScore, itemN
 		//? Title and Buttons for the Dialog
 		let dialogTitle = null;
 		let dialogButtonLabel = null;
-		const isBetaTesting = game.settings.get("metanthropes-system", "metaBetaTesting");
+		const isBetaTesting = game.settings.get("metanthropes", "metaBetaTesting");
 		if (action === "StatRoll") {
 			dialogTitle = `${actor.name}'s ${stat}`;
 			dialogButtonLabel = `Roll 📊 ${stat}`;

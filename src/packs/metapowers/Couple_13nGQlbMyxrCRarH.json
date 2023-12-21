@@ -2,7 +2,7 @@
   "folder": "zWhey6yuASGvjvbo",
   "name": "Couple",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Duplicate Self.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Duplicate Self.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -455,14 +455,14 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.13nGQlbMyxrCRarH"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.13nGQlbMyxrCRarH"
     },
     "scene-packer": {
       "hash": "2a00f59a5cbb4444eb9e6da021424f7ec8ee5c71"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693064277667,

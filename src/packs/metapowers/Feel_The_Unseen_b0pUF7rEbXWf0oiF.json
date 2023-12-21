@@ -2,7 +2,7 @@
   "folder": "UcDBUGawJ4jNDaeK",
   "name": "Feel The Unseen",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/6th Sense.webp",
+  "img": "systems/metanthropes/artwork/metapowers/6th Sense.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -455,14 +455,14 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.b0pUF7rEbXWf0oiF"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.b0pUF7rEbXWf0oiF"
     },
     "scene-packer": {
       "hash": "6c6caa47cdd875caae5aedfbb10ad62b5c0baf08"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693065434495,

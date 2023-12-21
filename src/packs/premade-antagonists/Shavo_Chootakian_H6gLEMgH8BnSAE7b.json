@@ -2,7 +2,7 @@
   "folder": "P6uqQ2qEPDhtd3ZH",
   "name": "Shavo Chootakian",
   "type": "Metanthrope",
-  "img": "systems/metanthropes-system/artwork/portraits/metanthrope/conductors/conductor-shavo.webp",
+  "img": "systems/metanthropes/artwork/portraits/metanthrope/conductors/conductor-shavo.webp",
   "system": {
     "physical": {
       "movement": {
@@ -887,7 +887,7 @@
     "appendNumber": false,
     "prependAdjective": false,
     "texture": {
-      "src": "systems/metanthropes-system/artwork/portraits/metanthrope/conductors/conductor-shavo.webp",
+      "src": "systems/metanthropes/artwork/portraits/metanthrope/conductors/conductor-shavo.webp",
       "scaleX": 0.73,
       "scaleY": 0.73,
       "offsetX": 0,
@@ -1000,7 +1000,7 @@
       "folder": "83ayCvVwOZuSgcKp",
       "name": "Miracle",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Life Restoration.png",
+      "img": "systems/metanthropes/artwork/metapowers/Life Restoration.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -1464,7 +1464,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693063744447,
@@ -1479,7 +1479,7 @@
       "folder": "83ayCvVwOZuSgcKp",
       "name": "Perpetual Healing",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Life Restoration.png",
+      "img": "systems/metanthropes/artwork/metapowers/Life Restoration.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -1943,7 +1943,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693063744447,
@@ -1958,7 +1958,7 @@
       "folder": "83ayCvVwOZuSgcKp",
       "name": "Touch Of Life",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Life Restoration.png",
+      "img": "systems/metanthropes/artwork/metapowers/Life Restoration.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -2422,7 +2422,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693063744447,
@@ -2437,7 +2437,7 @@
       "folder": "cGvojzNz268Tn8A3",
       "name": "Clone",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Duplicate Self.png",
+      "img": "systems/metanthropes/artwork/metapowers/Duplicate Self.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -2897,7 +2897,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693064277667,
@@ -2912,7 +2912,7 @@
       "folder": "cGvojzNz268Tn8A3",
       "name": "Couple",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Duplicate Self.png",
+      "img": "systems/metanthropes/artwork/metapowers/Duplicate Self.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -3372,7 +3372,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693064277667,
@@ -3387,7 +3387,7 @@
       "folder": "cGvojzNz268Tn8A3",
       "name": "Couple (Alt)",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Duplicate Self.png",
+      "img": "systems/metanthropes/artwork/metapowers/Duplicate Self.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -3847,7 +3847,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693064277667,
@@ -3862,7 +3862,7 @@
       "folder": "cGvojzNz268Tn8A3",
       "name": "Team",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Duplicate Self.png",
+      "img": "systems/metanthropes/artwork/metapowers/Duplicate Self.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -4322,7 +4322,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693064277667,
@@ -4337,7 +4337,7 @@
       "folder": "D0Cs7Mx3AGdugD84",
       "name": "Strike",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/fist.webp",
+      "img": "systems/metanthropes/artwork/possessions/fist.webp",
       "system": {
         "Material": {
           "Category": {
@@ -4849,7 +4849,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693121692159,
@@ -4871,7 +4871,7 @@
     "yjFY5zW9urDSuce5": 3
   },
   "flags": {
-    "metanthropes-system": {
+    "metanthropes": {
       "previousrolled": {
         "LastAction": "Metapower",
         "MetaEvaluate": 2,
@@ -4897,7 +4897,7 @@
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693122998646,

@@ -2,7 +2,7 @@
   "folder": "P2dV7CORcximmZog",
   "name": "Touch Of Life",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Life Restoration.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Life Restoration.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -459,14 +459,14 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.rBpDTQixgAsVjbH1"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.rBpDTQixgAsVjbH1"
     },
     "scene-packer": {
       "hash": "5bf5113f336691544ddd968f707fc0c46539c133"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693063744447,

@@ -2,7 +2,7 @@
   "folder": "QCp6OKMn8tR8ZPaB",
   "name": "Ancestral Tree",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Ancestral Connection.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Ancestral Connection.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -458,11 +458,11 @@
       "hash": "8b2a49f58fd859fa183bd686cd54b0c3fa344182"
     },
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.btC7YcCn4UwJjpQI"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.btC7YcCn4UwJjpQI"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693072229733,

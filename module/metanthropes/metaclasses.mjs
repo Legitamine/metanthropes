@@ -17,7 +17,7 @@ export class metaFilePicker extends FilePicker {
 	}
 	static get defaultOptions() {
 		return foundry.utils.mergeObject(super.defaultOptions, {
-			template: "systems/metanthropes-system/templates/metanthropes/filepicker.html",
+			template: "systems/metanthropes/templates/metanthropes/filepicker.html",
 			classes: ["filepicker"],
 			width: 520,
 			tabs: [{ navSelector: ".tabs" }],

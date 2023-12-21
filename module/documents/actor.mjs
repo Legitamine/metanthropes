@@ -34,9 +34,9 @@ export class MetanthropesActor extends Actor {
 		switch (data.type) {
 			case "Protagonist":
 				if (data.name.includes("New")) {
-					createData.img = "systems/metanthropes-system/tokens/defaults/token-hammer.webp";
+					createData.img = "systems/metanthropes/tokens/defaults/token-hammer.webp";
 					createData.prototypeToken.texture.src =
-						"systems/metanthropes-system/tokens/defaults/token-hammer.webp";
+						"systems/metanthropes/tokens/defaults/token-hammer.webp";
 				}
 				//? Splatter blood color for Protagonists
 				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
@@ -56,9 +56,9 @@ export class MetanthropesActor extends Actor {
 				break;
 			case "Metanthrope":
 				if (data.name.includes("New")) {
-					createData.img = "systems/metanthropes-system/tokens/defaults/token-utilitarian.webp";
+					createData.img = "systems/metanthropes/tokens/defaults/token-utilitarian.webp";
 					createData.prototypeToken.texture.src =
-						"systems/metanthropes-system/tokens/defaults/token-utilitarian.webp";
+						"systems/metanthropes/tokens/defaults/token-utilitarian.webp";
 				}
 				//? Splatter blood color for Metanthropes
 				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
@@ -75,9 +75,9 @@ export class MetanthropesActor extends Actor {
 				break;
 			case "Human":
 				if (data.name.includes("New")) {
-					createData.img = "systems/metanthropes-system/tokens/defaults/token-aegis.webp";
+					createData.img = "systems/metanthropes/tokens/defaults/token-aegis.webp";
 					createData.prototypeToken.texture.src =
-						"systems/metanthropes-system/tokens/defaults/token-aegis.webp";
+						"systems/metanthropes/tokens/defaults/token-aegis.webp";
 				}
 				//? Splatter blood color for Humans
 				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
@@ -94,9 +94,9 @@ export class MetanthropesActor extends Actor {
 				break;
 			case "Artificial":
 				if (data.name.includes("New")) {
-					createData.img = "systems/metanthropes-system/tokens/defaults/token-animator.webp";
+					createData.img = "systems/metanthropes/tokens/defaults/token-animator.webp";
 					createData.prototypeToken.texture.src =
-						"systems/metanthropes-system/tokens/defaults/token-animator.webp";
+						"systems/metanthropes/tokens/defaults/token-animator.webp";
 				}
 				//? Splatter blood color for Artificials
 				createData.prototypeToken.flags.splatter = { bloodColor: "#00BFFF" };
@@ -113,9 +113,9 @@ export class MetanthropesActor extends Actor {
 				break;
 			case "Animal":
 				if (data.name.includes("New")) {
-					createData.img = "systems/metanthropes-system/tokens/defaults/token-kineticist.webp";
+					createData.img = "systems/metanthropes/tokens/defaults/token-kineticist.webp";
 					createData.prototypeToken.texture.src =
-						"systems/metanthropes-system/tokens/defaults/token-kineticist.webp";
+						"systems/metanthropes/tokens/defaults/token-kineticist.webp";
 				}
 				//? Splatter blood color for Animals
 				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
@@ -132,9 +132,9 @@ export class MetanthropesActor extends Actor {
 				break;
 			case "Animated-Plant":
 				if (data.name.includes("New")) {
-					createData.img = "systems/metanthropes-system/tokens/defaults/token-clairvoyant.webp";
+					createData.img = "systems/metanthropes/tokens/defaults/token-clairvoyant.webp";
 					createData.prototypeToken.texture.src =
-						"systems/metanthropes-system/tokens/defaults/token-clairvoyant.webp";
+						"systems/metanthropes/tokens/defaults/token-clairvoyant.webp";
 				}
 				//? Splatter blood color for Animated-Plants
 				createData.prototypeToken.flags.splatter = { bloodColor: "#228B22" };
@@ -151,9 +151,9 @@ export class MetanthropesActor extends Actor {
 				break;
 			case "Animated-Cadaver":
 				if (data.name.includes("New")) {
-					createData.img = "systems/metanthropes-system/tokens/defaults/token-cosmonaut.webp";
+					createData.img = "systems/metanthropes/tokens/defaults/token-cosmonaut.webp";
 					createData.prototypeToken.texture.src =
-						"systems/metanthropes-system/tokens/defaults/token-cosmonaut.webp";
+						"systems/metanthropes/tokens/defaults/token-cosmonaut.webp";
 				}
 				//? Splatter blood color for Animated-Cadavers
 				createData.prototypeToken.flags.splatter = { bloodColor: "#006400" };
@@ -170,9 +170,9 @@ export class MetanthropesActor extends Actor {
 				break;
 			case "Extraterrestrial":
 				if (data.name.includes("New")) {
-					createData.img = "systems/metanthropes-system/tokens/defaults/token-arbiter.webp";
+					createData.img = "systems/metanthropes/tokens/defaults/token-arbiter.webp";
 					createData.prototypeToken.texture.src =
-						"systems/metanthropes-system/tokens/defaults/token-arbiter.webp";
+						"systems/metanthropes/tokens/defaults/token-arbiter.webp";
 				}
 				//? Splatter blood color for Extraterrestrials
 				createData.prototypeToken.flags.splatter = { bloodColor: "#800080" };
@@ -189,9 +189,9 @@ export class MetanthropesActor extends Actor {
 				break;
 			case "Extradimensional":
 				if (data.name.includes("New")) {
-					createData.img = "systems/metanthropes-system/tokens/defaults/token-pink.webp";
+					createData.img = "systems/metanthropes/tokens/defaults/token-pink.webp";
 					createData.prototypeToken.texture.src =
-						"systems/metanthropes-system/tokens/defaults/token-pink.webp";
+						"systems/metanthropes/tokens/defaults/token-pink.webp";
 				}
 				//? Splatter blood color for Extradimensionals
 				createData.prototypeToken.flags.splatter = { bloodColor: "#FF69B4" };
@@ -208,9 +208,9 @@ export class MetanthropesActor extends Actor {
 				break;
 			case "MetaTherion":
 				if (data.name.includes("New")) {
-					createData.img = "systems/metanthropes-system/tokens/defaults/token-manipulator.webp";
+					createData.img = "systems/metanthropes/tokens/defaults/token-manipulator.webp";
 					createData.prototypeToken.texture.src =
-						"systems/metanthropes-system/tokens/defaults/token-manipulator.webp";
+						"systems/metanthropes/tokens/defaults/token-manipulator.webp";
 				}
 				//? Splatter blood color for MetaTherions
 				createData.prototypeToken.flags.splatter = { bloodColor: "#FF1493" };
@@ -227,9 +227,9 @@ export class MetanthropesActor extends Actor {
 				break;
 			case "Vehicle":
 				if (data.name.includes("New")) {
-					createData.img = "systems/metanthropes-system/tokens/defaults/token-controller.webp";
+					createData.img = "systems/metanthropes/tokens/defaults/token-controller.webp";
 					createData.prototypeToken.texture.src =
-						"systems/metanthropes-system/tokens/defaults/token-controller.webp";
+						"systems/metanthropes/tokens/defaults/token-controller.webp";
 				}
 				//? Splatter blood color for Vehicles
 				createData.prototypeToken.flags.splatter = { bloodColor: "#808080" };
@@ -246,9 +246,9 @@ export class MetanthropesActor extends Actor {
 				break;
 			default:
 				if (data.name.includes("New")) {
-					createData.img = "systems/metanthropes-system/tokens/defaults/token-border.webp";
+					createData.img = "systems/metanthropes/tokens/defaults/token-border.webp";
 					createData.prototypeToken.texture.src =
-						"systems/metanthropes-system/tokens/defaults/token-border.webp";
+						"systems/metanthropes/tokens/defaults/token-border.webp";
 				}
 				break;
 		}
@@ -298,19 +298,19 @@ export class MetanthropesActor extends Actor {
 		if (this.hasEnterMeta) {
 			if (
 				!this.primeimg ||
-				this.primeimg == `systems/metanthropes-system/artwork/ui/logos/metanthropes-logo.webp`
+				this.primeimg == `systems/metanthropes/artwork/ui/logos/metanthropes-logo.webp`
 			) {
 				//? for Protagonists without a prime metapower defined, make it the metanthropes-logo
 				if (!this.system.entermeta.primemetapower.value) {
-					this.primeimg = `systems/metanthropes-system/artwork/ui/logos/metanthropes-logo.webp`;
+					this.primeimg = `systems/metanthropes/artwork/ui/logos/metanthropes-logo.webp`;
 				} else {
 					const primemetapowerimage = this.system.entermeta.primemetapower.value;
 					//? Proceed if Prime Metapower icon is not the correct one
 					if (
-						!(this.primeimg == `systems/metanthropes-system/artwork/metapowers/${primemetapowerimage}.webp`)
+						!(this.primeimg == `systems/metanthropes/artwork/metapowers/${primemetapowerimage}.webp`)
 					) {
 						//? for Protagonists with a prime metapower defined, make it their respective metapower icon
-						this.primeimg = `systems/metanthropes-system/artwork/metapowers/${primemetapowerimage}.webp`;
+						this.primeimg = `systems/metanthropes/artwork/metapowers/${primemetapowerimage}.webp`;
 						metaLog(
 							3,
 							"MetanthropesActor",
@@ -352,7 +352,7 @@ export class MetanthropesActor extends Actor {
 		//! Should we bring back _prepare__DuplicateData in this step or is ok with Base?
 		//? Check to see if this actor has been Progressed
 		//todo Deprecate this after we finalize the Progression system (v0.9)
-		const progressionFlag = this.getFlag("metanthropes-system", "Progression");
+		const progressionFlag = this.getFlag("metanthropes", "Progression");
 		const isProgressing =
 			progressionFlag && progressionFlag.isProgressing !== undefined ? progressionFlag.isProgressing : false;
 		if (isProgressing) {
@@ -670,7 +670,7 @@ export class MetanthropesActor extends Actor {
 			}
 		} else {
 			//? Check if the actor has activated Duplicate Self Metapower
-			const duplicateSelfActivated = this.getFlag("metanthropes-system", "duplicateSelf");
+			const duplicateSelfActivated = this.getFlag("metanthropes", "duplicateSelf");
 			//? Check if the actor has activated Duplicate Self Metapower
 			if (!duplicateSelfActivated) {
 				ui.notifications.error(
@@ -689,7 +689,7 @@ export class MetanthropesActor extends Actor {
 				return;
 			} else {
 				//? Apply Max Life for Duplicates from the Duplicate Self Metapower Activation value
-				const duplicateMaxLife = Number(this.getFlag("metanthropes-system", "duplicateSelf").maxLife);
+				const duplicateMaxLife = Number(this.getFlag("metanthropes", "duplicateSelf").maxLife);
 				parseInt((systemData.Vital.Life.max = duplicateMaxLife));
 				const duplicateCurrentLife = systemData.Vital.Life.value;
 				if (duplicateCurrentLife > duplicateMaxLife) {
@@ -956,7 +956,7 @@ export class MetanthropesActor extends Actor {
 	}
 	get isDuplicatingSelf() {
 		if (metaIsMetapowerEquipped(this, "Duplicate Self")) {
-			return Boolean(this.getFlag("metanthropes-system", "duplicateSelf"));
+			return Boolean(this.getFlag("metanthropes", "duplicateSelf"));
 		} else {
 			return false;
 		}

@@ -2,7 +2,7 @@
   "folder": "vGr96hU80LOGL9yQ",
   "name": "Civilian",
   "type": "Human",
-  "img": "systems/metanthropes-system/artwork/portraits/human/civilians/human-civilian-10.webp",
+  "img": "systems/metanthropes/artwork/portraits/human/civilians/human-civilian-10.webp",
   "system": {
     "physical": {
       "movement": {
@@ -753,7 +753,7 @@
     "appendNumber": false,
     "prependAdjective": true,
     "texture": {
-      "src": "systems/metanthropes-system/artwork/portraits/human/civilians/*",
+      "src": "systems/metanthropes/artwork/portraits/human/civilians/*",
       "scaleX": 0.73,
       "scaleY": 0.73,
       "offsetX": 0,
@@ -865,7 +865,7 @@
       "folder": "D0Cs7Mx3AGdugD84",
       "name": "Strike",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/fist.webp",
+      "img": "systems/metanthropes/artwork/possessions/fist.webp",
       "system": {
         "Material": {
           "Category": {
@@ -1377,7 +1377,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693121692159,
@@ -1395,7 +1395,7 @@
   ],
   "effects": [],
   "flags": {
-    "metanthropes-system": {
+    "metanthropes": {
       "lastrolled": {
         "rolld10": 9,
         "rolld10what": "Consciousness",
@@ -1403,7 +1403,7 @@
       }
     },
     "core": {
-      "sourceId": "Compendium.metanthropes-system.premade-antagonists.Actor.bk6WmDyL3wZVFICi"
+      "sourceId": "Compendium.metanthropes.premade-antagonists.Actor.bk6WmDyL3wZVFICi"
     },
     "scene-packer": {
       "sourceId": "Actor.mn8pSlyTSt8gDj6G",
@@ -1411,7 +1411,7 @@
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693128262970,

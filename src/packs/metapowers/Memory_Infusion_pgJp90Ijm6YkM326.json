@@ -2,7 +2,7 @@
   "folder": "QCp6OKMn8tR8ZPaB",
   "name": "Memory Infusion",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Ancestral Connection.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Ancestral Connection.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -458,11 +458,11 @@
       "hash": "1218bd0ade0211c4d7030ffa1ec71ae3f3baa8f7"
     },
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.pgJp90Ijm6YkM326"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.pgJp90Ijm6YkM326"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693072229733,

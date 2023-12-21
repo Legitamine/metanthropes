@@ -2,7 +2,7 @@
   "folder": "UcDBUGawJ4jNDaeK",
   "name": "Powerful Psyche",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/6th Sense.webp",
+  "img": "systems/metanthropes/artwork/metapowers/6th Sense.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -455,14 +455,14 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.Y9VbSNfUF0RGtHGe"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.Y9VbSNfUF0RGtHGe"
     },
     "scene-packer": {
       "hash": "6409fa019f37be3c01c50af424b385475f257bee"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693065434495,

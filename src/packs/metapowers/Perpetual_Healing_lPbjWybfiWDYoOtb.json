@@ -2,7 +2,7 @@
   "folder": "P2dV7CORcximmZog",
   "name": "Perpetual Healing",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Life Restoration.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Life Restoration.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -459,14 +459,14 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.lPbjWybfiWDYoOtb"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.lPbjWybfiWDYoOtb"
     },
     "scene-packer": {
       "hash": "7471ed4a7fd408dbbcf66c75d59eaf6077558055"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693063744447,

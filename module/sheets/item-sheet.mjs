@@ -39,7 +39,7 @@ export class MetanthropesItemSheet extends ItemSheet {
 	}
 	/** @override */
 	get template() {
-		const path = "systems/metanthropes-system/templates/item";
+		const path = "systems/metanthropes/templates/item";
 		return `${path}/item-${this.item.type}-sheet.hbs`;
 	}
 	/** @override */
@@ -62,9 +62,9 @@ export class MetanthropesItemSheet extends ItemSheet {
 		context.system = itemData.system;
 		context.flags = itemData.flags;
 		//? Provide a boolean for if 'Beta Testing of New Features' is enabled
-		context.betaTesting = await game.settings.get("metanthropes-system", "metaBetaTesting");
+		context.betaTesting = await game.settings.get("metanthropes", "metaBetaTesting");
 		//? Provide a boolean for if 'Advanced Logging' is enabled
-		context.advancedLogging = await game.settings.get("metanthropes-system", "metaAdvancedLogging");
+		context.advancedLogging = await game.settings.get("metanthropes", "metaAdvancedLogging");
 		//? Provide a combined boolean for if 'Beta Testing of New Features' and 'Advanced Logging' are enabled
 		context.advancedBetaTesting = context.betaTesting && context.advancedLogging;
 		//? Provide a boolean for if the user is a Narrator(GameMaster)
@@ -87,7 +87,7 @@ export class MetanthropesItemSheet extends ItemSheet {
 		//? Observers (non-owners) of the item sheet, should not be able to roll anything
 		if (!this.isEditable) return;
 		//? Active Effects
-		if (game.settings.get("metanthropes-system", "metaBetaTesting"))
+		if (game.settings.get("metanthropes", "metaBetaTesting"))
 			html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.document));
 		//? Roll Metapower
 		html.find(".style-mp-rolls").click(this._onRoll.bind(this));

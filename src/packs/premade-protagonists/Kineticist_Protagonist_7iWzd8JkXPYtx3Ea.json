@@ -2,7 +2,7 @@
   "folder": null,
   "name": "Kineticist Protagonist",
   "type": "Protagonist",
-  "img": "systems/metanthropes-system/tokens/defaults/token-kineticist.webp",
+  "img": "systems/metanthropes/tokens/defaults/token-kineticist.webp",
   "system": {
     "physical": {
       "movement": {
@@ -899,7 +899,7 @@
     "appendNumber": false,
     "prependAdjective": false,
     "texture": {
-      "src": "systems/metanthropes-system/tokens/defaults/token-kineticist.webp",
+      "src": "systems/metanthropes/tokens/defaults/token-kineticist.webp",
       "scaleX": 0.73,
       "scaleY": 0.73,
       "offsetX": 0,
@@ -994,7 +994,7 @@
       "folder": "LYYId6KygVHALnQb",
       "name": "Jolt",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Electrokinesis.png",
+      "img": "systems/metanthropes/artwork/metapowers/Electrokinesis.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -1458,7 +1458,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1693070561830,
@@ -1473,7 +1473,7 @@
       "folder": "LYYId6KygVHALnQb",
       "name": "Jolt (Alt)",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Electrokinesis.png",
+      "img": "systems/metanthropes/artwork/metapowers/Electrokinesis.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -1937,7 +1937,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1693070561830,
@@ -1952,7 +1952,7 @@
       "folder": "LYYId6KygVHALnQb",
       "name": "Lightning Bolt",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Electrokinesis.png",
+      "img": "systems/metanthropes/artwork/metapowers/Electrokinesis.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -2414,7 +2414,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1693070561830,
@@ -2429,7 +2429,7 @@
       "folder": "LYYId6KygVHALnQb",
       "name": "Electric Field",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Electrokinesis.png",
+      "img": "systems/metanthropes/artwork/metapowers/Electrokinesis.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -2892,7 +2892,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1693070561830,
@@ -2907,7 +2907,7 @@
       "folder": "D0Cs7Mx3AGdugD84",
       "name": "Strike",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/fist.webp",
+      "img": "systems/metanthropes/artwork/possessions/fist.webp",
       "system": {
         "Material": {
           "Category": {
@@ -3419,7 +3419,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693121692159,
@@ -3437,7 +3437,7 @@
   ],
   "effects": [],
   "flags": {
-    "metanthropes-system": {
+    "metanthropes": {
       "previousrolled": {
         "LastAction": "Metapower",
         "MetaEvaluate": 7,
@@ -3458,7 +3458,7 @@
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693063085037,

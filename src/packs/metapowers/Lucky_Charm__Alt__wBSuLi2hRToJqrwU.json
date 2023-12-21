@@ -2,7 +2,7 @@
   "folder": "LnEWJQKJX9K9UKIj",
   "name": "Lucky Charm [Alt]",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Luck Bending.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Luck Bending.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -462,11 +462,11 @@
       "hash": "2dd51cc80875a967ce19360e6718433923aac1ae"
     },
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.wBSuLi2hRToJqrwU"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.wBSuLi2hRToJqrwU"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1698328655641,

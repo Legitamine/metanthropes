@@ -7,13 +7,13 @@ import { metaLog } from "../helpers/metahelpers.mjs";
 export function metaMigrateData() {
 	//metaLog(3, "metaMigrateData", "Started");
 	metaLog(3, "metaMigrateData", "No Migration Needed");
-	//	const migrationVersion = game.settings.get("metanthropes-system", "migrationVersion");
+	//	const migrationVersion = game.settings.get("metanthropes", "migrationVersion");
 	//	const isNewerVersion = foundry.utils.isNewerVersion;
 	//	if (!isNewerVersion(game.system.version, migrationVersion)) return;
 	//	metaLog(0, "Migrating World to latest version");
 	//	// if (isNewerVersion("0.7.21", migrationVersion)) _metaMigrateItems();
 	//	if (isNewerVersion("0.8.21", migrationVersion)) _metaTemplateChanges();
-	//	//	game.settings.set("metanthropes-system", "migrationVersion", game.system.version);
+	//	//	game.settings.set("metanthropes", "migrationVersion", game.system.version);
 	//_metaMigrateItems();
 	//metaLog(3, "metaMigrateData", "Finished");
 }

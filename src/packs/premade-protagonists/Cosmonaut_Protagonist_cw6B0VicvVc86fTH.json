@@ -2,7 +2,7 @@
   "folder": null,
   "name": "Cosmonaut Protagonist",
   "type": "Protagonist",
-  "img": "systems/metanthropes-system/tokens/defaults/token-cosmonaut.webp",
+  "img": "systems/metanthropes/tokens/defaults/token-cosmonaut.webp",
   "system": {
     "physical": {
       "movement": {
@@ -899,7 +899,7 @@
     "appendNumber": false,
     "prependAdjective": false,
     "texture": {
-      "src": "systems/metanthropes-system/tokens/defaults/token-cosmonaut.webp",
+      "src": "systems/metanthropes/tokens/defaults/token-cosmonaut.webp",
       "scaleX": 0.73,
       "scaleY": 0.73,
       "offsetX": 0,
@@ -994,7 +994,7 @@
       "folder": "PErxzEVaQfDLYWcF",
       "name": "Acceleration Absorption",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Dark Energy Projection.png",
+      "img": "systems/metanthropes/artwork/metapowers/Dark Energy Projection.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -1458,7 +1458,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1697730966283,
@@ -1473,7 +1473,7 @@
       "folder": "PErxzEVaQfDLYWcF",
       "name": "Acceleration Absorption [Alt]",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Dark Energy Projection.png",
+      "img": "systems/metanthropes/artwork/metapowers/Dark Energy Projection.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -1935,7 +1935,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1693069325157,
@@ -1950,7 +1950,7 @@
       "folder": "PErxzEVaQfDLYWcF",
       "name": "Quintessence",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Dark Energy Projection.png",
+      "img": "systems/metanthropes/artwork/metapowers/Dark Energy Projection.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -2414,7 +2414,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1693069325157,
@@ -2429,7 +2429,7 @@
       "folder": "PErxzEVaQfDLYWcF",
       "name": "Distance Manipulation",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Dark Energy Projection.png",
+      "img": "systems/metanthropes/artwork/metapowers/Dark Energy Projection.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -2895,7 +2895,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1693069325157,
@@ -2910,7 +2910,7 @@
       "folder": "D0Cs7Mx3AGdugD84",
       "name": "Strike",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/fist.webp",
+      "img": "systems/metanthropes/artwork/possessions/fist.webp",
       "system": {
         "Material": {
           "Category": {
@@ -3422,7 +3422,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693121692159,
@@ -3441,7 +3441,7 @@
       "folder": "D0Cs7Mx3AGdugD84",
       "name": "Beretta Pistol 9mm",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/pistol2.webp",
+      "img": "systems/metanthropes/artwork/possessions/pistol2.webp",
       "system": {
         "Material": {
           "Category": {
@@ -3953,7 +3953,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693122203962,
@@ -3971,7 +3971,7 @@
   ],
   "effects": [],
   "flags": {
-    "metanthropes-system": {
+    "metanthropes": {
       "previousrolled": {
         "rolld10": 5,
         "rolld10what": "🎯 Targets",
@@ -3993,7 +3993,7 @@
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693062552293,

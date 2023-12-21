@@ -2,7 +2,7 @@
   "folder": "V8MkKENxwT9uwM85",
   "name": "MP5 SMG (light)",
   "type": "Possession",
-  "img": "systems/metanthropes-system/artwork/possessions/pistol.webp",
+  "img": "systems/metanthropes/artwork/possessions/pistol.webp",
   "system": {
     "Material": {
       "Category": {
@@ -507,7 +507,7 @@
   "effects": [],
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.possessions.Item.CVg8HKyRc76KXO3W"
+      "sourceId": "Compendium.metanthropes.possessions.Item.CVg8HKyRc76KXO3W"
     },
     "scene-packer": {
       "hash": "2ca9c51a3dea603ea3debff0cba23e8e38dc4609",
@@ -515,7 +515,7 @@
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693122691433,

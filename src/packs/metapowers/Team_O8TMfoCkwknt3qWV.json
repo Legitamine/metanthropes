@@ -2,7 +2,7 @@
   "folder": "zWhey6yuASGvjvbo",
   "name": "Team",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Duplicate Self.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Duplicate Self.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -455,14 +455,14 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.O8TMfoCkwknt3qWV"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.O8TMfoCkwknt3qWV"
     },
     "scene-packer": {
       "hash": "8a9e626003be0df2cc863b3689b71d8502b49b11"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693064277667,

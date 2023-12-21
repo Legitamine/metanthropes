@@ -30,7 +30,7 @@ export async function FinalizePremadeActor(actor) {
 			throw error;
 		});
 		await Rolld10(actor, "Destiny", false, 1);
-		const NewDestiny = await actor.getFlag("metanthropes-system", "lastrolled").rolld10;
+		const NewDestiny = await actor.getFlag("metanthropes", "lastrolled").rolld10;
 		await actor.update({
 			"system.Vital.Destiny.value": Number(NewDestiny),
 			"system.Vital.Destiny.max": Number(NewDestiny),
@@ -112,7 +112,7 @@ export async function NewStatRoll(actor, char, stat, dice) {
 				ok: {
 					label: `Confirm ${stat} 📊 Stat`,
 					callback: async () => {
-						let statScore = actor.getFlag("metanthropes-system", "lastrolled").rolld10;
+						let statScore = actor.getFlag("metanthropes", "lastrolled").rolld10;
 						await actor.update({
 							[`system.Characteristics.${char}.Stats.${stat}.Initial`]: Number(statScore),
 						});
@@ -161,7 +161,7 @@ export async function NewActorDestiny(actor) {
 						callback: async (html) => {
 							let destinydice = html.find('[name="startdestiny"]').val();
 							await Rolld10(actor, "Destiny", false, destinydice);
-							const NewDestiny = actor.getFlag("metanthropes-system", "lastrolled").rolld10;
+							const NewDestiny = actor.getFlag("metanthropes", "lastrolled").rolld10;
 							await actor.update({
 								"system.Vital.Destiny.value": Number(NewDestiny),
 								"system.Vital.Destiny.max": Number(NewDestiny),
@@ -234,7 +234,7 @@ export async function NewActorPrimeMetapower(actor) {
 			</div>
 			<div class="form-group">
 				<label for="primeMetapowerImg"></label>
-				<img id="primeMetapowerImg" src="systems/metanthropes-system/artwork/metapowers/6th Sense.webp" alt="Prime Metapower Image" style="border: none; z-index: 3;" height="256" width="256" />
+				<img id="primeMetapowerImg" src="systems/metanthropes/artwork/metapowers/6th Sense.webp" alt="Prime Metapower Image" style="border: none; z-index: 3;" height="256" width="256" />
 			</div>
 		</form>
 	</div>
@@ -256,7 +256,7 @@ export async function NewActorPrimeMetapower(actor) {
 							let primeMetapower = MetapowersList.find((m) => m.name === primeMetapowerName);
 							await actor.update({
 								"system.entermeta.primemetapower.value": primeMetapowerName,
-								primeimg: `systems/metanthropes-system/artwork/metapowers/${primeMetapowerName}.png`,
+								primeimg: `systems/metanthropes/artwork/metapowers/${primeMetapowerName}.png`,
 							});
 							metaLog(3, "NewActorPrimeMetapower", `New Prime Metapower:`, primeMetapowerName);
 							resolve();
@@ -297,7 +297,7 @@ export async function NewActorPrimeMetapower(actor) {
 						//? making sure the value is not empty before proceeding
 						if (primeMetapowerName) {
 							let primeMetapowerImg = html.find("#primeMetapowerImg")[0];
-							primeMetapowerImg.src = `systems/metanthropes-system/artwork/metapowers/${primeMetapowerName}.webp`;
+							primeMetapowerImg.src = `systems/metanthropes/artwork/metapowers/${primeMetapowerName}.webp`;
 						}
 					});
 				},

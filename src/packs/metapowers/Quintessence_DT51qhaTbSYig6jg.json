@@ -2,7 +2,7 @@
   "folder": "HgE78JCsn2WxcMb8",
   "name": "Quintessence",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Dark Energy Projection.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Dark Energy Projection.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -459,14 +459,14 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.DT51qhaTbSYig6jg"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.DT51qhaTbSYig6jg"
     },
     "scene-packer": {
       "hash": "ad7f9875fcd3fbd801f51d33d7f516367a9ba2c8"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693069325157,

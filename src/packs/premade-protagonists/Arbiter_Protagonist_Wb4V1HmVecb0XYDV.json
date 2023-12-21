@@ -1,7 +1,7 @@
 {
   "name": "Arbiter Protagonist",
   "type": "Protagonist",
-  "img": "systems/metanthropes-system/tokens/defaults/token-arbiter.webp",
+  "img": "systems/metanthropes/tokens/defaults/token-arbiter.webp",
   "system": {
     "physical": {
       "movement": {
@@ -898,7 +898,7 @@
     "appendNumber": false,
     "prependAdjective": false,
     "texture": {
-      "src": "systems/metanthropes-system/tokens/defaults/token-arbiter.webp",
+      "src": "systems/metanthropes/tokens/defaults/token-arbiter.webp",
       "scaleX": 0.73,
       "scaleY": 0.73,
       "offsetX": 0,
@@ -993,7 +993,7 @@
       "folder": "BijhZoN9eMOu70O5",
       "name": "Beginner's Luck",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Luck Bending.png",
+      "img": "systems/metanthropes/artwork/metapowers/Luck Bending.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -1452,7 +1452,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1698328259287,
@@ -1467,7 +1467,7 @@
       "folder": "BijhZoN9eMOu70O5",
       "name": "Lucky Charm",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Luck Bending.png",
+      "img": "systems/metanthropes/artwork/metapowers/Luck Bending.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -1931,7 +1931,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1698328393016,
@@ -1946,7 +1946,7 @@
       "folder": "BijhZoN9eMOu70O5",
       "name": "Lucky Charm (⏱️Reaction)",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Luck Bending.png",
+      "img": "systems/metanthropes/artwork/metapowers/Luck Bending.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -2410,7 +2410,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1698328393016,
@@ -2425,7 +2425,7 @@
       "folder": "BijhZoN9eMOu70O5",
       "name": "Lucky Charm [Alt]",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Luck Bending.png",
+      "img": "systems/metanthropes/artwork/metapowers/Luck Bending.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -2889,7 +2889,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1698328655641,
@@ -2904,7 +2904,7 @@
       "folder": "BijhZoN9eMOu70O5",
       "name": "Thaumaturgy",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Luck Bending.png",
+      "img": "systems/metanthropes/artwork/metapowers/Luck Bending.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -3368,7 +3368,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1698328698982,
@@ -3383,7 +3383,7 @@
       "folder": "BijhZoN9eMOu70O5",
       "name": "Thaumaturgy (⏱️R)",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Luck Bending.png",
+      "img": "systems/metanthropes/artwork/metapowers/Luck Bending.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -3847,7 +3847,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1698328698982,
@@ -3862,7 +3862,7 @@
       "folder": "BijhZoN9eMOu70O5",
       "name": "Thaumaturgy [Alt]",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Luck Bending.png",
+      "img": "systems/metanthropes/artwork/metapowers/Luck Bending.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -4325,7 +4325,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1698328748781,
@@ -4340,7 +4340,7 @@
       "folder": "D0Cs7Mx3AGdugD84",
       "name": "Strike",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/fist.webp",
+      "img": "systems/metanthropes/artwork/possessions/fist.webp",
       "system": {
         "Material": {
           "Category": {
@@ -4852,7 +4852,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693121692159,
@@ -4879,7 +4879,7 @@
       "hash": "4af84d9e39a366b8f79e672ddcddfc6a66f27004",
       "sourceId": "Actor.JeNQ9ZqYdd0vw7zG"
     },
-    "metanthropes-system": {
+    "metanthropes": {
       "lastrolled": {
         "rolld10": 3,
         "rolld10what": "Awareness",
@@ -4889,7 +4889,7 @@
     "core": {}
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1698426346621,

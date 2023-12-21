@@ -2,7 +2,7 @@
   "folder": "n1FOuDss3ZEYTfZe",
   "name": "Strike",
   "type": "Possession",
-  "img": "systems/metanthropes-system/artwork/possessions/fist.webp",
+  "img": "systems/metanthropes/artwork/possessions/fist.webp",
   "system": {
     "Material": {
       "Category": {
@@ -507,7 +507,7 @@
   "effects": [],
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.possessions.Item.IVStG1CYXdhIRSjc"
+      "sourceId": "Compendium.metanthropes.possessions.Item.IVStG1CYXdhIRSjc"
     },
     "scene-packer": {
       "hash": "56a408a818ee9ee5cfe19469e5a3dc141aed4655",
@@ -515,7 +515,7 @@
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693121692159,

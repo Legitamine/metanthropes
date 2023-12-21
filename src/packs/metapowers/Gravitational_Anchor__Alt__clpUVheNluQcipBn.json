@@ -2,7 +2,7 @@
   "folder": "0ehTUuPWHnxh9WTq",
   "name": "Gravitational Anchor (Alt)",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Control Gravity.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Control Gravity.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -457,14 +457,14 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.clpUVheNluQcipBn"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.clpUVheNluQcipBn"
     },
     "scene-packer": {
       "hash": "40272ce9654388b080c5903d069dfa89690d14ae"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693066222213,

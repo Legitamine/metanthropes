@@ -2,7 +2,7 @@
   "folder": "zWhey6yuASGvjvbo",
   "name": "Couple (Alt)",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Duplicate Self.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Duplicate Self.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -455,14 +455,14 @@
   },
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.i6UaESTYhWKkADmj"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.i6UaESTYhWKkADmj"
     },
     "scene-packer": {
       "hash": "2bd83f82437b389704f4f92a3d7cbfe17fc5786e"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693064277667,

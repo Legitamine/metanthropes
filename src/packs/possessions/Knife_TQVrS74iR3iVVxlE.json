@@ -507,7 +507,7 @@
   "effects": [],
   "flags": {
     "core": {
-      "sourceId": "Compendium.metanthropes-system.possessions.Item.TQVrS74iR3iVVxlE"
+      "sourceId": "Compendium.metanthropes.possessions.Item.TQVrS74iR3iVVxlE"
     },
     "scene-packer": {
       "hash": "c5e42e0e893f4557b7432f52de928750a05570ad",
@@ -515,7 +515,7 @@
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693121692159,

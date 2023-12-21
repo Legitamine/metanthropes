@@ -2,7 +2,7 @@
   "folder": "LnEWJQKJX9K9UKIj",
   "name": "Thaumaturgy (⏱️R)",
   "type": "Metapower",
-  "img": "systems/metanthropes-system/artwork/metapowers/Luck Bending.webp",
+  "img": "systems/metanthropes/artwork/metapowers/Luck Bending.webp",
   "system": {
     "Execution": {
       "StatRolled": {
@@ -462,11 +462,11 @@
       "hash": "7b0f66320a3d4d0acfebeb395e91c3961976af81"
     },
     "core": {
-      "sourceId": "Compendium.metanthropes-system.metapowers.Item.a6WA8NuQOPnJZSkX"
+      "sourceId": "Compendium.metanthropes.metapowers.Item.a6WA8NuQOPnJZSkX"
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1698328698982,

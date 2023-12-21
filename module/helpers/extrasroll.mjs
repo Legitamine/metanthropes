@@ -97,7 +97,7 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = null,
 		data-what="${what}" data-destiny-re-roll="${destinyReRoll}" data-dice="${dice}" data-base-number="${baseNumber}" data-is-half="${isHalf}">Spend 🤞 Destiny to reroll
 		</button><br><br></div>`;
 	}
-	await actor.setFlag("metanthropes-system", "lastrolled", {
+	await actor.setFlag("metanthropes", "lastrolled", {
 		rolld10: rollTotal,
 		rolld10what: what,
 		rolld10item: itemName,
@@ -107,7 +107,7 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = null,
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		flavor: message,
 		rollMode: game.settings.get("core", "rollMode"),
-		flags: { "metanthropes-system": { actoruuid: actor.uuid } },
+		flags: { "metanthropes": { actoruuid: actor.uuid } },
 	});
 	metaLog(3, "Rolld10", "Finished for:", actor.name + "'s", what);
 	//? Refresh the actor sheet if it's open
@@ -208,8 +208,8 @@ export async function HungerRoll(actor, hungerLevel) {
 		}
 	} else {
 		hungerMessage += `It is a 🟩 Success!<hr />${actor.name} has overcome Hunger!<br><br>`;
-		await actor.setFlag("metanthropes-system", "hungerRollResult", true);
-		const MetaRollBeforeHungerCheck = await actor.getFlag("metanthropes-system", "MetaRollBeforeHungerCheck");
+		await actor.setFlag("metanthropes", "hungerRollResult", true);
+		const MetaRollBeforeHungerCheck = await actor.getFlag("metanthropes", "MetaRollBeforeHungerCheck");
 		metaLog(
 			3,
 			"HungerRoll",
@@ -229,13 +229,13 @@ export async function HungerRoll(actor, hungerLevel) {
 			MetaRollBeforeHungerCheck.destinyCost,
 			MetaRollBeforeHungerCheck.itemName
 		);
-		await actor.unsetFlag("metanthropes-system", "MetaRollBeforeHungerCheck");
+		await actor.unsetFlag("metanthropes", "MetaRollBeforeHungerCheck");
 	}
 	hungerRoll.toMessage({
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		flavor: hungerMessage,
 		rollMode: game.settings.get("core", "rollMode"),
-		flags: { "metanthropes-system": { actoruuid: actor.uuid } },
+		flags: { "metanthropes": { actoruuid: actor.uuid } },
 	});
 }
 
@@ -307,7 +307,7 @@ export async function CoverRoll(actor, coverType, coverValue) {
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		flavor: coverMessage,
 		rollMode: game.settings.get("core", "rollMode"),
-		flags: { "metanthropes-system": { actoruuid: actor.uuid } },
+		flags: { "metanthropes": { actoruuid: actor.uuid } },
 	});
 }
 

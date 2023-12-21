@@ -2,7 +2,7 @@
   "folder": null,
   "name": "Hammer Protagonist",
   "type": "Protagonist",
-  "img": "systems/metanthropes-system/tokens/defaults/token-hammer.webp",
+  "img": "systems/metanthropes/tokens/defaults/token-hammer.webp",
   "system": {
     "physical": {
       "movement": {
@@ -899,7 +899,7 @@
     "appendNumber": false,
     "prependAdjective": false,
     "texture": {
-      "src": "systems/metanthropes-system/tokens/defaults/token-hammer.webp",
+      "src": "systems/metanthropes/tokens/defaults/token-hammer.webp",
       "scaleX": 0.73,
       "scaleY": 0.73,
       "offsetX": 0,
@@ -994,7 +994,7 @@
       "folder": "FbxoC3xCVszvVSC1",
       "name": "Bend And Break",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Meta Strength.png",
+      "img": "systems/metanthropes/artwork/metapowers/Meta Strength.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -1454,7 +1454,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1693070007701,
@@ -1469,7 +1469,7 @@
       "folder": "FbxoC3xCVszvVSC1",
       "name": "Hoist And Hurl",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Meta Strength.png",
+      "img": "systems/metanthropes/artwork/metapowers/Meta Strength.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -1929,7 +1929,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1693070007701,
@@ -1944,7 +1944,7 @@
       "folder": "FbxoC3xCVszvVSC1",
       "name": "Leap And Mount",
       "type": "Metapower",
-      "img": "systems/metanthropes-system/artwork/metapowers/Meta Strength.png",
+      "img": "systems/metanthropes/artwork/metapowers/Meta Strength.png",
       "system": {
         "Execution": {
           "StatRolled": {
@@ -2404,7 +2404,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.38",
         "coreVersion": "11.313",
         "createdTime": 1693070007701,
@@ -2419,7 +2419,7 @@
       "folder": "D0Cs7Mx3AGdugD84",
       "name": "Strike",
       "type": "Possession",
-      "img": "systems/metanthropes-system/artwork/possessions/fist.webp",
+      "img": "systems/metanthropes/artwork/possessions/fist.webp",
       "system": {
         "Material": {
           "Category": {
@@ -2931,7 +2931,7 @@
         }
       },
       "_stats": {
-        "systemId": "metanthropes-system",
+        "systemId": "metanthropes",
         "systemVersion": "0.8.40",
         "coreVersion": "11.313",
         "createdTime": 1693121692159,
@@ -2949,7 +2949,7 @@
   ],
   "effects": [],
   "flags": {
-    "metanthropes-system": {
+    "metanthropes": {
       "previousrolled": {
         "LastAction": "Possession",
         "MetaEvaluate": 4,
@@ -2972,7 +2972,7 @@
     }
   },
   "_stats": {
-    "systemId": "metanthropes-system",
+    "systemId": "metanthropes",
     "systemVersion": "0.8.85",
     "coreVersion": "11.315",
     "createdTime": 1693062931895,
