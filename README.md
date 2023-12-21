@@ -10,7 +10,7 @@ This is the official Metanthropes RPG system for Foundry VTT.
 
 ## Installation
 
-This is a work in progress and is not ready for general use. Installation instructions will be placed here when the system is ready. Please do not use this system for your games, unless you want to help playtest and know what you're doing. If so, please [join us on Discord](https://metanthropes.com/discord)
+This is a work in progress and is not ready for general use. Installation instructions will be placed here when the system is ready. Please do not use this System for your games, unless you want to help playtest and know what you're doing. If so, please [join us on Discord](https://metanthropes.com/discord)
 
 ## Supported Modules
 
@@ -41,4 +41,4 @@ For the latest changes you may check out the [detailed Change Log](https://githu
 
 You can also view the archives of past releases, kept for posterity, [here](https://github.com/Legitamine/metanthropes/blob/main/CHANGELOGARCHIVES.md)
 
-Our eternal gratitude goes to the amazing community of Foundry Developers <3
+Our eternal gratitude goes to the amazing community of FVTT Developers <3
