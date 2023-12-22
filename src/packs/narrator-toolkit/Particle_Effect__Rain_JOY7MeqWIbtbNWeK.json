@@ -1,0 +1,32 @@
+{
+  "type": "script",
+  "name": "Particle Effect: Rain",
+  "command": "FXMASTER.filters.setFilters([]);\n\nHooks.call('fxmaster.updateParticleEffects', []);\nHooks.call('fxmaster.updateParticleEffects', [{\"type\":\"rain\",\"options\":{\"scale\":1.3,\"direction\":85,\"speed\":0.3,\"lifetime\":2.9,\"density\":2,\"alpha\":0.7,\"tint\":{\"apply\":false,\"value\":\"#ffffff\"}}}]);",
+  "img": "modules/fxmaster/assets/particle-effects/icons/rain.png",
+  "author": "J1KP3PGwKTDhBF8s",
+  "scope": "global",
+  "folder": "1WSiFtmGFadAXMAm",
+  "ownership": {
+    "default": 0,
+    "U772esq9FbrkahYQ": 3,
+    "J1KP3PGwKTDhBF8s": 3
+  },
+  "flags": {
+    "scene-packer": {
+      "hash": "9ec939d788a42ea369ffa1b48240e0525cccb457",
+      "sourceId": "Macro.Rv9lPJl0bjTuu9FV"
+    },
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "metanthropes",
+    "systemVersion": "0.9.003",
+    "coreVersion": "11.315",
+    "createdTime": 1701949835931,
+    "modifiedTime": 1703176541949,
+    "lastModifiedBy": "J1KP3PGwKTDhBF8s"
+  },
+  "_id": "JOY7MeqWIbtbNWeK",
+  "sort": 200000,
+  "_key": "!macros!JOY7MeqWIbtbNWeK"
+}

@@ -1,0 +1,32 @@
+{
+  "name": "Play Gossip Whispers",
+  "type": "script",
+  "img": "icons/magic/perception/third-eye-blue-red.webp",
+  "command": "try {\n    const sound = await fromUuid(\"Playlist.gjyvpB2ROQcYr1M2.PlaylistSound.nc8ebZLnYPaSvuXi\");\n    if (sound) {\n        if (sound instanceof Playlist) {\n            sound.playAll();\n        } else {\n            if (!sound.playing)\n                sound.parent.playSound(sound);\n            else\n                sound.update({ playing: false, pausedTime: sound.sound.currentTime });\n        }\n    }\n} catch {}",
+  "author": "J1KP3PGwKTDhBF8s",
+  "scope": "global",
+  "folder": "xnytm8PnYsnfI0wy",
+  "ownership": {
+    "default": 0,
+    "U772esq9FbrkahYQ": 3,
+    "J1KP3PGwKTDhBF8s": 3
+  },
+  "flags": {
+    "scene-packer": {
+      "hash": "0eb90a75edfc51b1ca71bad912db640aeedf09c8",
+      "sourceId": "Macro.44nY5BZUpairYTDA"
+    },
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "metanthropes",
+    "systemVersion": "0.9.003",
+    "coreVersion": "11.315",
+    "createdTime": 1702754960191,
+    "modifiedTime": 1703176900586,
+    "lastModifiedBy": "J1KP3PGwKTDhBF8s"
+  },
+  "_id": "K8963R3EnQNQqsxi",
+  "sort": 400000,
+  "_key": "!macros!K8963R3EnQNQqsxi"
+}

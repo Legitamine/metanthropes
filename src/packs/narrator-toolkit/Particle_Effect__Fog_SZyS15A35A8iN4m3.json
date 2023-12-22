@@ -1,0 +1,32 @@
+{
+  "type": "script",
+  "name": "Particle Effect: Fog",
+  "command": "FXMASTER.filters.setFilters([]);\n\nHooks.call('fxmaster.updateParticleEffects', []);\nHooks.call('fxmaster.updateParticleEffects', [{\"type\":\"fog\",\"options\":{\"scale\":0.9,\"speed\":1,\"lifetime\":1,\"density\":0.08,\"alpha\":1,\"tint\":{\"apply\":false,\"value\":\"#ffffff\"}}}]);",
+  "img": "modules/fxmaster/assets/particle-effects/icons/fog.png",
+  "author": "J1KP3PGwKTDhBF8s",
+  "scope": "global",
+  "folder": "1WSiFtmGFadAXMAm",
+  "ownership": {
+    "default": 0,
+    "U772esq9FbrkahYQ": 3,
+    "J1KP3PGwKTDhBF8s": 3
+  },
+  "flags": {
+    "scene-packer": {
+      "hash": "3ad9fcf41bd0b4fcb887ce0cbf71a65c7db3528f",
+      "sourceId": "Macro.hYFXQNX1EPsKkW4B"
+    },
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "metanthropes",
+    "systemVersion": "0.9.003",
+    "coreVersion": "11.315",
+    "createdTime": 1702753729848,
+    "modifiedTime": 1703176541949,
+    "lastModifiedBy": "J1KP3PGwKTDhBF8s"
+  },
+  "_id": "SZyS15A35A8iN4m3",
+  "sort": 100000,
+  "_key": "!macros!SZyS15A35A8iN4m3"
+}
