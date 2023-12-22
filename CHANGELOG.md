@@ -4,19 +4,14 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 
-# Early Access v0.9.012 [2023-12-22]
+# Early Access v0.9.013 [2023-12-22]
 
-## New Features:
-
--   Added new Compendiums that include Player and Narrator Journal Notes for Introducing both Players and Narrators to the Metanthropes RPG System. These can be found in the Compendiums Tab of the Sidebar
--   Added new Narrator Toolkit Macros for the Astral, Nether and Aether Dimensions as well as new Macros to control Weather and Time of Day. These can be found in the Compendiums Tab of the Sidebar
--   Added a new Compendium that includes the 3 Introductory Scenes for the Metanthropes RPG System. These can be found in the Compendiums Tab of the Sidebar
-
-## Changed:
+## Breaking Changes:
 
 -   Renamed the id of the system to 'metanthropes'. This is a breaking change that will require worlds to adjust to the new id
--   Moved the ability to create your own Actors and Items to the 'metanthropes-conductor' module, as part of our Early Access release plan
--   Moved 'Beta Testing of New Features' to the 'metanthropes-orchestrator' module, as part of our Early Access release plan
+-   Moved content to the Metanthropes Introductory Module. This is a breaking change that will require worlds to adjust to the new module
+-   Moved the ability to create your own Actors and Items to the 'metanthropes-core' module, as part of our Early Access release plan
+-   Moved 'Beta Testing of New Features' to the 'metanthropes-homebrew' module, as part of our Early Access release plan
 
 # Early Access v0.8.150 [2023-12-17]
 
