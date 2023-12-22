@@ -1,0 +1,32 @@
+{
+  "name": "Clear All Visual Effects",
+  "type": "script",
+  "scope": "global",
+  "author": "J1KP3PGwKTDhBF8s",
+  "img": "icons/sundries/flags/banner-flag-white-mountain.webp",
+  "command": "FXMASTER.filters.setFilters([]);\n\nHooks.call('fxmaster.updateParticleEffects', []);",
+  "folder": "wPjBCf8k2mhlHwJt",
+  "ownership": {
+    "default": 0,
+    "U772esq9FbrkahYQ": 3,
+    "J1KP3PGwKTDhBF8s": 3
+  },
+  "flags": {
+    "scene-packer": {
+      "hash": "4a05bcb2a80d94c5c81178326b4126b928d7fa87",
+      "sourceId": "Macro.diZPBO08Q31yoJNm"
+    },
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "metanthropes",
+    "systemVersion": "0.9.003",
+    "coreVersion": "11.315",
+    "createdTime": 1701947025679,
+    "modifiedTime": 1703176713601,
+    "lastModifiedBy": "J1KP3PGwKTDhBF8s"
+  },
+  "_id": "lFlYDOiRks5O5ZHB",
+  "sort": 0,
+  "_key": "!macros!lFlYDOiRks5O5ZHB"
+}

@@ -1,0 +1,32 @@
+{
+  "type": "script",
+  "name": "Particle Effect: Birds",
+  "command": "FXMASTER.filters.setFilters([]);\n\nHooks.call('fxmaster.updateParticleEffects', []);\nHooks.call('fxmaster.updateParticleEffects', [{\"type\":\"birds\",\"options\":{\"scale\":1,\"speed\":1,\"lifetime\":3.3,\"density\":0.005,\"alpha\":0.9,\"tint\":{\"apply\":false,\"value\":\"#ffffff\"},\"animations\":[\"mixed\"]}}]);",
+  "img": "modules/fxmaster/assets/particle-effects/icons/crows.png",
+  "author": "J1KP3PGwKTDhBF8s",
+  "scope": "global",
+  "folder": "1WSiFtmGFadAXMAm",
+  "ownership": {
+    "default": 0,
+    "U772esq9FbrkahYQ": 3,
+    "J1KP3PGwKTDhBF8s": 3
+  },
+  "flags": {
+    "scene-packer": {
+      "hash": "90a53c2cf2780b807ca7f7912414bf172003e7ad",
+      "sourceId": "Macro.1tnkybgXRD6iWwXl"
+    },
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "metanthropes",
+    "systemVersion": "0.9.003",
+    "coreVersion": "11.315",
+    "createdTime": 1702753901365,
+    "modifiedTime": 1703176550117,
+    "lastModifiedBy": "J1KP3PGwKTDhBF8s"
+  },
+  "_id": "OzfBBNHBS2MTv1ic",
+  "sort": 0,
+  "_key": "!macros!OzfBBNHBS2MTv1ic"
+}

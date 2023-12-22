@@ -76,12 +76,14 @@ export class MetanthropesActorSheet extends ActorSheet {
 		this._prepareItems(actorData, context);
 		//? This will create the .RollStats object under .system that is used by Handlebars in the actor sheet for rolling
 		this.actor.getRollData();
+		//? Provide a boolean for if we are running with Introductory Features enabled
+		context.introductoryFeatures = await game.settings.get("metanthropes", "metaIntroductory");
+		//? Provide a boolean for if we are running with Core Features enabled
+		context.coreFeatures = await game.settings.get("metanthropes", "metaCore");
+		//? Provide a boolean for if we are running with Homebrew Features enabled
+		context.homebrewFeatures = await game.settings.get("metanthropes", "metaHomebrew");
 		//? Provide a boolean for if 'Beta Testing of New Features' is enabled
-		try {
-			context.betaTesting = await game.settings.get("metanthropes", "metaBetaTesting");
-		} catch (error) {
-			context.betaTesting = false;
-		}
+		context.betaTesting = await game.settings.get("metanthropes", "metaBetaTesting");
 		//? Provide a boolean for if 'Advanced Logging' is enabled
 		context.advancedLogging = await game.settings.get("metanthropes", "metaAdvancedLogging");
 		//? Provide a combined boolean for if 'Beta Testing of New Features' and 'Advanced Logging' are enabled

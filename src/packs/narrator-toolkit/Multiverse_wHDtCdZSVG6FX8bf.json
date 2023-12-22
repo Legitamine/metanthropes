@@ -1,0 +1,32 @@
+{
+  "type": "script",
+  "name": "Multiverse",
+  "command": "FXMASTER.filters.setFilters([]);\n\nHooks.call('fxmaster.updateParticleEffects', []);\nHooks.call('fxmaster.updateParticleEffects', [{\"type\":\"bubbles\",\"options\":{\"scale\":0.5,\"speed\":0.6,\"lifetime\":0.6,\"density\":0.33,\"alpha\":1,\"tint\":{\"apply\":true,\"value\":\"#fdd158\"}}}]);",
+  "img": "systems/metanthropes/artwork/ui/logos/metanthropes-logo.webp",
+  "author": "J1KP3PGwKTDhBF8s",
+  "scope": "global",
+  "folder": "cGoa6m32S0dL48c7",
+  "ownership": {
+    "default": 0,
+    "U772esq9FbrkahYQ": 3,
+    "J1KP3PGwKTDhBF8s": 3
+  },
+  "flags": {
+    "scene-packer": {
+      "hash": "769b6112607c0941b8f0aab09578fb37b5cb0d8b",
+      "sourceId": "Macro.NAV48zQ6F2Re0Fzr"
+    },
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "metanthropes",
+    "systemVersion": "0.9.003",
+    "coreVersion": "11.315",
+    "createdTime": 1701948791920,
+    "modifiedTime": 1703176635361,
+    "lastModifiedBy": "J1KP3PGwKTDhBF8s"
+  },
+  "_id": "wHDtCdZSVG6FX8bf",
+  "sort": 0,
+  "_key": "!macros!wHDtCdZSVG6FX8bf"
+}

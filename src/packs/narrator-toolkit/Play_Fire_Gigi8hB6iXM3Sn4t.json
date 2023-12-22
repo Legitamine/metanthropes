@@ -1,0 +1,32 @@
+{
+  "name": "Play Fire",
+  "type": "script",
+  "img": "icons/magic/fire/flame-burning-campfire-orange.webp",
+  "command": "try {\n    const sound = await fromUuid(\"Playlist.soZJNZX6s1AM0SrI.PlaylistSound.puZ53ZFtGZ8t6ait\");\n    if (sound) {\n        if (sound instanceof Playlist) {\n            sound.playAll();\n        } else {\n            if (!sound.playing)\n                sound.parent.playSound(sound);\n            else\n                sound.update({ playing: false, pausedTime: sound.sound.currentTime });\n        }\n    }\n} catch {}",
+  "author": "J1KP3PGwKTDhBF8s",
+  "scope": "global",
+  "folder": "xnytm8PnYsnfI0wy",
+  "ownership": {
+    "default": 0,
+    "U772esq9FbrkahYQ": 3,
+    "J1KP3PGwKTDhBF8s": 3
+  },
+  "flags": {
+    "scene-packer": {
+      "hash": "7678f08b5b153fe090bb713daa9a1f4691be83e1",
+      "sourceId": "Macro.R9g2IwKsKP1Ef38T"
+    },
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "metanthropes",
+    "systemVersion": "0.9.003",
+    "coreVersion": "11.315",
+    "createdTime": 1702755347509,
+    "modifiedTime": 1703176900586,
+    "lastModifiedBy": "J1KP3PGwKTDhBF8s"
+  },
+  "_id": "Gigi8hB6iXM3Sn4t",
+  "sort": 300000,
+  "_key": "!macros!Gigi8hB6iXM3Sn4t"
+}

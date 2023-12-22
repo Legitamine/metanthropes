@@ -1,0 +1,32 @@
+{
+  "name": "Play Thunderstorm Steady Rain Ambience",
+  "type": "script",
+  "img": "icons/magic/air/weather-clouds-rain.webp",
+  "command": "try {\n    const sound = await fromUuid(\"Playlist.soZJNZX6s1AM0SrI.PlaylistSound.592KFVPNsLC0nCEx\");\n    if (sound) {\n        if (sound instanceof Playlist) {\n            sound.playAll();\n        } else {\n            if (!sound.playing)\n                sound.parent.playSound(sound);\n            else\n                sound.update({ playing: false, pausedTime: sound.sound.currentTime });\n        }\n    }\n} catch {}",
+  "author": "J1KP3PGwKTDhBF8s",
+  "scope": "global",
+  "folder": "xnytm8PnYsnfI0wy",
+  "ownership": {
+    "default": 0,
+    "U772esq9FbrkahYQ": 3,
+    "J1KP3PGwKTDhBF8s": 3
+  },
+  "flags": {
+    "scene-packer": {
+      "hash": "deaecb069221b82200400e3600f4328a9807ca5b",
+      "sourceId": "Macro.FuQdn8btINPbqTPw"
+    },
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "metanthropes",
+    "systemVersion": "0.9.003",
+    "coreVersion": "11.315",
+    "createdTime": 1701870048245,
+    "modifiedTime": 1703176900586,
+    "lastModifiedBy": "J1KP3PGwKTDhBF8s"
+  },
+  "_id": "1AVOvvZm60vM0xpR",
+  "sort": 800000,
+  "_key": "!macros!1AVOvvZm60vM0xpR"
+}

@@ -273,7 +273,7 @@ Hooks.once("init", async function () {
 	});
 	//? Homebrew Module Settings
 	game.settings.register("metanthropes", "metaHomebrew", {
-		name: "Enable Orchestrator Features",
+		name: "Enable Homebrew Features",
 		hint: `
 			Enable this setting to gain access to the Homebrew Module features.
 			`,
