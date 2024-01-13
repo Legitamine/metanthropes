@@ -25,10 +25,11 @@ export async function FinalizePremadeActor(actor) {
 			metaLog(2, "Finalize Premade Protagonist", "Error at NewPremadeSummary:", error);
 			throw error;
 		});
-		await NewActorFinish(actor).catch((error) => {
-			metaLog(2, "Finalize Premade Protagonist", "Error at NewActorFinish:", error);
-			throw error;
-		});
+		//todo: review the finished action to change the portrait as the last step
+		// await NewActorFinish(actor).catch((error) => {
+			// metaLog(2, "Finalize Premade Protagonist", "Error at NewActorFinish:", error);
+			// throw error;
+		// });
 		await Rolld10(actor, "Destiny", false, 1);
 		const NewDestiny = await actor.getFlag("metanthropes", "lastrolled").rolld10;
 		await actor.update({
