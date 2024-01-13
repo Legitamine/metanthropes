@@ -4,7 +4,7 @@
 		<div class="resource-label">
 			<h3>{{system.Effects.PermanentEffectDescription.label}}</h3>
 		</div>
-		{{#if isNarrator}}
+		{{#if (and isNarrator homebrewFeatures)}}
 			<div class="layout-editor">
 				{{editor system.Effects.PermanentEffectDescription.value target="system.Effects.PermanentEffectDescription.value" button=true editable=true}}
 			</div>
@@ -20,7 +20,7 @@
 		<div class="resource-label">
 			<h3>{{system.Effects.EffectDescription.label}}</h3>
 		</div>
-		{{#if isNarrator}}
+		{{#if (and isNarrator homebrewFeatures)}}
 			<div class="layout-editor">
 				{{editor system.Effects.EffectDescription.value target="system.Effects.EffectDescription.value" button=true editable=true}}
 			</div>
@@ -182,12 +182,25 @@
 			{{/if}}
 		{{/each}}
 	</div>
+	{{! -- Sound Effects --}}
+	{{#if isNarrator}}
+		<div class="resource">
+			{{#each system.Effects.SFX}}
+				<div class="resource">
+					<label class="resource-label" data-tooltip="{{this.title}}">{{this.label}}:</label>
+					<input type="{{this.type}}" name="system.Effects.SFX.{{@key}}.value"
+						value="{{this.value}}" data-dtype="{{this.dtype}}" />
+				</div>
+			{{/each}}
+			<hr />
+		</div>
+	{{/if}}
 	{{! -- Effect Additional Info --}}
 	{{#if (or isNarrator (and system.Effects.AdditionalInfo.value (not (or (eq system.Effects.AdditionalInfo.value null) (eq system.Effects.AdditionalInfo.value 0) (eq system.Effects.AdditionalInfo.value "None")))))}}
 		<div>
 			<h3>{{system.Effects.AdditionalInfo.label}}</h3>
 		</div>
-		{{#if isNarrator}}
+		{{#if (and isNarrator homebrewFeatures)}}
 			<div class="layout-editor">
 				{{editor system.Effects.AdditionalInfo.value target="system.Effects.AdditionalInfo.value" button=true editable=true}}
 			</div>
@@ -208,7 +221,8 @@
 		{{else}}
 			<div>
 				<br>
-				<p>Additional Active Effects are available in Beta Testing</p>
+				<p>Active Effects are under development - Beta Testing of this feature is available via
+					the Homebrew Module</p>
 				<br>
 			</div>
 		{{/if}}

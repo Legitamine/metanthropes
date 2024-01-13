@@ -92,6 +92,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 		context.isNarrator = game.user.isGM;
 		//? Add the actor's active effects to the context for easier access.
 		if (context.betaTesting) context.effects = prepareActiveEffectCategories(this.actor.effects);
+		//? Calculate the actor's XP Spent
+		context.xpSpent = Number(actorData.system.Vital.Experience.Spent + actorData.system.Vital.Experience.Manual);
 		metaLog(3, "MetanthropesActorSheet", "getData", "this, context, options", this, context, options);
 		return context;
 	}

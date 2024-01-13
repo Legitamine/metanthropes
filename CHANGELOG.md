@@ -4,14 +4,24 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 
+# Early Access v0.9.024 [2024-01-13]
+
+## New Features:
+
+- Sound Effects for Items: A new section is available for Metapowers / Possessions under Item / Effects Tab (editable if you have the Homebrew Module) that allows you to define a SFX Compendium and a SFX Name to play an Audio File when activating/using this Item. This section is not visible to Players, only Narrators
+
+## Changed:
+
+- Changed the UI to not allow changes to the Progression of Actors, unless the 'metanthropes-core' Module is enabled
+
 # Early Access v0.9.013 [2023-12-22]
 
 ## Breaking Changes:
 
 -   Renamed the id of the system to 'metanthropes'. This is a breaking change that will require worlds to adjust to the new id
 -   Moved content to the Metanthropes Introductory Module. This is a breaking change that will require worlds to adjust to the new module
--   Moved the ability to create your own Actors and Items to the 'metanthropes-core' module, as part of our Early Access release plan
--   Moved 'Beta Testing of New Features' to the 'metanthropes-homebrew' module, as part of our Early Access release plan
+-   Moved the ability to create your own Actors, Scenes, Journals, Rollable Tables and Compendiums to the new 'metanthropes-core' module, as part of our Early Access release plan
+-   Moved the ability to create your own Items as well as the 'Beta Testing of New Features' to the new 'metanthropes-homebrew' module, as part of our Early Access release plan
 
 # Early Access v0.8.150 [2023-12-17]
 

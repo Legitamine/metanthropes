@@ -2,7 +2,7 @@
 	{{!-- To render inline rolls in a TinyMCE editor, you need to pass the parent actor's (if any) roll data to the rollData prop. --}}
 	{{#if (or isNarrator (and system.Description.value (not (or (eq system.Description.value null) (eq system.Description.value 0) (eq system.Description.value "None")))))}}
 		<h3>{{system.Description.label}}</h3>
-		{{#if isNarrator}}
+		{{#if (and isNarrator homebrewFeatures)}}
 			<div class="layout-editor">
 				{{editor system.Description.value target="system.Description.value" button=true editable=true}}
 			</div><br>

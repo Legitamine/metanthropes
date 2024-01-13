@@ -61,6 +61,12 @@ export class MetanthropesItemSheet extends ItemSheet {
 		//? Add the actor's data to context.data for easier access, as well as flags.
 		context.system = itemData.system;
 		context.flags = itemData.flags;
+		//? Provide a boolean for if we are running with Introductory Features enabled
+		context.introductoryFeatures = await game.settings.get("metanthropes", "metaIntroductory");
+		//? Provide a boolean for if we are running with Core Features enabled
+		context.coreFeatures = await game.settings.get("metanthropes", "metaCore");
+		//? Provide a boolean for if we are running with Homebrew Features enabled
+		context.homebrewFeatures = await game.settings.get("metanthropes", "metaHomebrew");
 		//? Provide a boolean for if 'Beta Testing of New Features' is enabled
 		context.betaTesting = await game.settings.get("metanthropes", "metaBetaTesting");
 		//? Provide a boolean for if 'Advanced Logging' is enabled
@@ -80,7 +86,8 @@ export class MetanthropesItemSheet extends ItemSheet {
 		//? Call the super class's activateListeners method to ensure any other listeners are set up
 		super.activateListeners(html);
 		//? Only Narrators are allowed to edit the item sheets
-		if (!game.user.isGM) {
+		const homebrewFeatures = game.settings.get("metanthropes", "metaHomebrew");
+		if (!game.user.isGM || !homebrewFeatures) {
 			html.find("input, textarea, select").attr("disabled", "disabled");
 		}
 		//* Everything below this point is only needed if the sheet is editable

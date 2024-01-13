@@ -61,10 +61,10 @@
 			<div class="style-labels-text">{{system.Vital.Experience.Label}}:
 				{{system.Vital.Experience.Total}}
 				Spent:
-				{{system.Vital.Experience.Spent}}
-				{{#if isNarrator}} + <input name="system.Vital.Experience.Manual" type="number"
-						value="{{system.Vital.Experience.Manual}}" data-dtype="Number"
-						placeholder="0" /> {{/if}}
+				{{#if (and isNarrator coreFeatures)}}{{system.Vital.Experience.Spent}} + <input name="system.Vital.Experience.Manual"
+						type="number" value="{{system.Vital.Experience.Manual}}"
+						data-dtype="Number" placeholder="0" />
+				{{else}}{{xpSpent}}{{/if}}
 				Stored:{{#if (gte system.Vital.Experience.Stored 0)}}
 					<span class="style-cs-positive">{{system.Vital.Experience.Stored}}</span>
 				{{else}}

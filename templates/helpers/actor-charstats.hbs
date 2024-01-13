@@ -10,7 +10,7 @@
 						data-tooltip="Initial Score">🏁
 						{{this.Initial}}
 					</p>
-					{{#if ../betaTesting}}
+					{{#if (or ../betaTesting (not ../coreFeatures))}}
 						<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
 							data-tooltip="Progression Level">📈
 							{{this.Progressed}}
@@ -114,7 +114,7 @@
 							data-tooltip="Initial Score">🏁
 							{{this.Initial}}
 						</p>
-						{{#if ../../betaTesting}}
+						{{#if (or ../../betaTesting (not ../../coreFeatures))}}
 							<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
 								data-tooltip="Progression Level">📈
 								{{this.Progressed}}

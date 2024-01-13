@@ -44,7 +44,7 @@
 		<div>
 			<h3>{{system.Execution.AdditionalInfo.label}}</h3>
 		</div>
-		{{#if isNarrator}}
+		{{#if (and isNarrator homebrewFeatures)}}
 			<div class="layout-editor">
 				{{editor system.Execution.AdditionalInfo.value target="system.Execution.AdditionalInfo.value" button=true editable=true}}
 			</div><br>
