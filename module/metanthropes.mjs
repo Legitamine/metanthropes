@@ -13,6 +13,17 @@
  *
  */
 //* Imports
+//? Import custom classes
+import {
+	MetaSidebar,
+	metaSceneDirectory,
+	metaActorDirectory,
+	metaItemDirectory,
+	metaJournalDirectory,
+	metaRollTableDirectory,
+	metaPlaylistDirectory,
+	metaCompendiumDirectory,
+} from "./metanthropes/metaclasses.mjs";
 //? Import Combat Modules
 import { MetanthropesCombat } from "./metanthropes/combat.mjs";
 import { MetaCombatTracker } from "./metanthropes/combattracker.mjs";
@@ -86,7 +97,7 @@ Hooks.once("init", async function () {
 				},
 			},
 			description: "<p>Invisible</p>",
-			icon: "systems/metanthropes/artwork/status-effects/test7.svg",
+			icon: "systems/metanthropes/artwork/status-effects/invisible.svg",
 		},
 		{
 			id: "blind",
@@ -102,7 +113,7 @@ Hooks.once("init", async function () {
 				},
 			},
 			description: "<p>Sense-Lost: Vision</p>",
-			icon: "systems/metanthropes/artwork/status-effects/test8.svg",
+			icon: "systems/metanthropes/artwork/status-effects/sense-lost-vision.svg",
 		},
 		{
 			id: "dead",
@@ -118,7 +129,7 @@ Hooks.once("init", async function () {
 				},
 			},
 			description: "<p>Dead</p>",
-			icon: "systems/metanthropes/artwork/status-effects/test9.svg",
+			icon: "systems/metanthropes/artwork/status-effects/dead.svg",
 		},
 		{
 			id: "knockeddown",
@@ -141,7 +152,7 @@ Hooks.once("init", async function () {
 				},
 			],
 			description: "<p>Knocked Down</p>",
-			icon: "systems/metanthropes/artwork/status-effects/test4.svg",
+			icon: "systems/metanthropes/artwork/status-effects/knocked-down.svg",
 		},
 		{
 			id: "immobilized",
@@ -169,11 +180,10 @@ Hooks.once("init", async function () {
 				},
 			],
 			description: "<p>Immobilized</p>",
-			icon: "systems/metanthropes/artwork/status-effects/test5.svg",
+			icon: "systems/metanthropes/artwork/status-effects/immobilized.svg",
 		},
 	];
 	CONFIG.statusEffects.push(...metaStatusEffects);
-	console.log("Metanthropes | Status Effects", CONFIG.statusEffects);
 	//? Metanthropes Initiative System
 	//! should I remove this? - removing it seems to break initiative, as we are 'highjacking' the formula method for metainitiative rolls
 	CONFIG.Combat.initiative = {
@@ -187,6 +197,17 @@ Hooks.once("init", async function () {
 	CONFIG.Actor.entityClass = MetaCombatant;
 	//? setup custom combat tracker
 	CONFIG.ui.combat = MetaCombatTracker;
+	//? replace sidebar
+	CONFIG.ui.sidebar = MetaSidebar;
+	//? Replace Sidebar Directories
+	CONFIG.ui.scenes = metaSceneDirectory;
+	CONFIG.ui.actors = metaActorDirectory;
+	CONFIG.ui.items = metaItemDirectory;
+	CONFIG.ui.journal = metaJournalDirectory;
+	CONFIG.ui.tables = metaRollTableDirectory;
+	CONFIG.ui.playlists = metaPlaylistDirectory;
+	CONFIG.ui.compendium = metaCompendiumDirectory;
+	console.log(CONFIG);
 	//? time in seconds for Round Duration
 	//todo: confirm default round time
 	//CONFIG.time.roundTime = 120;

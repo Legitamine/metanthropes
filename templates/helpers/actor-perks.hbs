@@ -6,7 +6,7 @@
 				Knowledge</h3>
 			{{#each system.Perks.Knowledge}}
 				<div class="perk-item">
-					{{#if ../betaTesting}}
+					{{#if (or ../betaTesting (not ../coreFeatures))}}
 						<div class="resource-label" data-tooltip="{{this.title}}">
 							{{this.label}}:
 							{{this.value}}
@@ -35,7 +35,7 @@
 				Skills</h3>
 			{{#each system.Perks.Skills}}
 				<div class="perk-item">
-					{{#if ../betaTesting}}
+					{{#if (or ../betaTesting (not ../coreFeatures))}}
 						<div class="resource-label" data-tooltip="{{this.title}}">
 							{{this.label}}:
 							{{this.value}}
@@ -71,8 +71,8 @@
 					<div>
 						<h3>{{this.label}}</h3>
 					</div>
-					{{#if ../betaTesting}}
-						{{#if ../isNarrator}}
+					{{#if (or ../betaTesting (not ../coreFeatures))}}
+						{{#if (and ../isNarrator ../coreFeatures)}}
 							<div class="layout-editor style-editor">
 								{{editor this.value target=(concat "system.Perks.Details." @key ".value") button=true editable=true}}
 							</div>

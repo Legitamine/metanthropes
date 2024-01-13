@@ -61,6 +61,9 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 	let areaEffect = metaItemData.system.Execution.AreaEffect.value;
 	let areaType = metaItemData.system.Execution.AreaType.value;
 	let vsRoll = metaItemData.system.Effects.VSStatRoll.value;
+	//? Sound Effect Data
+	const sfxCompendium = metaItemData.system.Effects.SFX.Compendium.value;
+	const sfxName = metaItemData.system.Effects.SFX.Name.value;
 	//? Gather all the effect data
 	let effectDescription = metaItemData.system.Effects.EffectDescription.value;
 	let damageCosmicBase = metaItemData.system.Effects.Damage.Cosmic.Base;
@@ -552,7 +555,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		flavor: flavorMessage,
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		content: contentMessage,
-		flags: { "metanthropes": { actoruuid: actor.uuid } },
+		flags: { metanthropes: { actoruuid: actor.uuid } },
 	};
 	//? Send the message to chat
 	await ChatMessage.create(chatData);
@@ -589,6 +592,33 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		}
 		await actor.setFlag("metanthropes", "duplicateSelf", { maxLife: duplicateMaxLife });
 		metaLog(3, "MetaRoll", "Duplicate Self Metapower Max Life:", duplicateMaxLife);
+	}
+	//* Visual Effects
+	//* Sound Effects
+	//? Get the Sound Effect Compendium
+	//todo: add a custom setting to use our sound engine (from metathropes-ost)
+	if (sfxCompendium === "metanthropes-ost") {
+		//todo: identify what I need to change to make it work with all similar compendiums, currently only supports metanthropes-ost
+		const sfxCompendiumToUse = await game.packs.get("metanthropes-ost.sound-effects");
+		if (sfxCompendiumToUse) {
+			const sfxCompendiumIndex = await sfxCompendiumToUse.getIndex();
+			//? Search for the Sound Effect within each playlist of the compendium
+			for (let entry of sfxCompendiumIndex) {
+				//? Load the full playlist document
+				let playlist = await sfxCompendiumToUse.getDocument(entry._id);
+				//? Search for the sound within the playlist
+				if (sfxName) {
+					let foundSound = playlist.sounds.find((sound) => sound.name === sfxName);
+					if (foundSound) {
+						//? Play the sound
+						metaLog(3, "MetaExecute", "Playing Sound Effect:", foundSound.name, "from Compendium:", sfxCompendium);
+						//todo: this should trigger after the chat message is rendered and the dice are rolled
+						AudioHelper.play({ src: foundSound.sound.src, volume: 0.8, autoplay: true, loop: false }, true);
+						break;
+					}
+				}
+			}
+		}
 	}
 	//* Apply Damage to Selected Targets
 	// if (damageSelectedTargets && actionableTargets) {

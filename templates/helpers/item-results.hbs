@@ -1,7 +1,7 @@
 <div class="tab results" data-group="primary" data-tab="results">
 	<div>
 		<div>{{system.ResultDescription.label}}:<br></div>
-		{{#if isNarrator}}
+		{{#if (and isNarrator homebrewFeatures)}}
 			<div class="layout-editor">
 				{{editor system.ResultDescription.value target="system.ResultDescription.value" button=true editable=true}}
 			</div>

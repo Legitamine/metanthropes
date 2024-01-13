@@ -1,119 +1,122 @@
 {
-	"id": "metanthropes",
-	"title": "Metanthropes Early Access",
-	"description": "Metanthropes Early Access System for Foundry VTT",
-	"authors": [
-		{
-			"name": "qp",
-			"url": "https://www.metanthropes.com/profile/2-qp/",
-			"email": "qp.wormholes@gmail.com",
-			"discord": "qp#8888",
-			"flags": {
-				"github": "legitamine",
-				"patreon": "legitamine"
-			}
-		}
-	],
-	"url": "https://github.com/legitamine/metanthropes",
-	"license": "https://github.com/legitamine/metanthropes/blob/main/LICENSE.txt",
-	"readme": "https://github.com/legitamine/metanthropes/blob/main/readme.md",
-	"bugs": "https://gitub.com/legitamine/metanthropes/issues",
-	"changelog": "https://github.com/legitamine/metanthropes/blob/main/changelog.md",
-	"media": [
-		{
-			"type": "setup",
-			"url": "systems/metanthropes/artwork/ui/cover/cover.jpg",
-			"thumbnail": "systems/metanthropes/artwork/ui/cover/cover.jpg"
-		}
-	],
-	"version": "0.9.013",
-	"compatibility": {
-		"minimum": 11,
-		"verified": "11.315"
-	},
-	"esmodules": ["module/metanthropes.mjs"],
-	"styles": ["css/metanthropes.css"],
-	"languages": [],
-	"packs": [
-		{
-			"label": "Premade Protagonists",
-			"system": "metanthropes",
-			"type": "Actor",
-			"path": "packs/premade-protagonists",
-			"name": "premade-protagonists",
-			"ownership": {
-				"PLAYER": "OBSERVER",
-				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
-		},
-		{
-			"label": "Premade Antagonists",
-			"system": "metanthropes",
-			"type": "Actor",
-			"path": "packs/premade-antagonists",
-			"name": "premade-antagonists",
-			"ownership": {
-				"PLAYER": "NONE",
-				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
-		},
-		{
-			"label": "Narrator Toolkit",
-			"system": "metanthropes",
-			"type": "Macro",
-			"path": "packs/narrator-toolkit",
-			"name": "narrator-toolkit",
-			"ownership": {
-				"PLAYER": "NONE",
-				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
-		},
-		{
-			"label": "Metapowers",
-			"system": "metanthropes",
-			"type": "Item",
-			"path": "packs/metapowers",
-			"name": "metapowers",
-			"ownership": {
-				"PLAYER": "NONE",
-				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
-		},
-		{
-			"label": "Possessions",
-			"system": "metanthropes",
-			"type": "Item",
-			"path": "packs/possessions",
-			"name": "possessions",
-			"ownership": {
-				"PLAYER": "NONE",
-				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
-		},
-		{
-			"label": "Rollable Tables",
-			"system": "metanthropes",
-			"type": "RollTable",
-			"path": "packs/rollable-tables",
-			"name": "rollable-tables",
-			"ownership": {
-				"PLAYER": "OBSERVER",
-				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
-		}
-	],
-	"packfolders": [],
-	"socket": false,
-	"background": "systems/metanthropes/artwork/ui/cover/cover.jpg",
-	"gridDistance": 2,
-	"gridUnits": "m",
-	"primaryTokenAttribute": "Vital.Destiny.value",
-	"secondaryTokenAttribute": "Vital.Life.value",
-	"manifest": "https://github.com/legitamine/metanthropes/releases/latest/download/system.json"
+  "id": "metanthropes",
+  "title": "Metanthropes Early Access",
+  "description": "Metanthropes Early Access System for Foundry VTT",
+  "authors": [
+    {
+      "name": "qp",
+      "url": "https://www.metanthropes.com/profile/2-qp/",
+      "email": "qp.wormholes@gmail.com",
+      "discord": "qp#8888",
+      "flags": {
+        "github": "legitamine",
+        "patreon": "legitamine"
+      }
+    }
+  ],
+  "url": "https://github.com/legitamine/metanthropes",
+  "license": "https://github.com/legitamine/metanthropes/blob/main/LICENSE.txt",
+  "readme": "https://github.com/legitamine/metanthropes/blob/main/readme.md",
+  "bugs": "https://gitub.com/legitamine/metanthropes/issues",
+  "changelog": "https://github.com/legitamine/metanthropes/blob/main/changelog.md",
+  "media": [
+    {
+      "type": "setup",
+      "url": "systems/metanthropes/artwork/ui/cover/cover.jpg",
+      "thumbnail": "systems/metanthropes/artwork/ui/cover/cover.jpg",
+      "loop": false,
+      "flags": {}
+    }
+  ],
+  "version": "0.9.024",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11.315"
+  },
+  "esmodules": [
+    "module/metanthropes.mjs"
+  ],
+  "styles": [
+    "css/metanthropes.css"
+  ],
+  "packs": [
+    {
+      "label": "Premade Protagonists",
+      "system": "metanthropes",
+      "type": "Actor",
+      "path": "packs/premade-protagonists",
+      "name": "premade-protagonists",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "label": "Premade Antagonists",
+      "system": "metanthropes",
+      "type": "Actor",
+      "path": "packs/premade-antagonists",
+      "name": "premade-antagonists",
+      "ownership": {
+        "PLAYER": "NONE",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "label": "Narrator Toolkit",
+      "system": "metanthropes",
+      "type": "Macro",
+      "path": "packs/narrator-toolkit",
+      "name": "narrator-toolkit",
+      "ownership": {
+        "PLAYER": "NONE",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "label": "Metapowers",
+      "system": "metanthropes",
+      "type": "Item",
+      "path": "packs/metapowers",
+      "name": "metapowers",
+      "ownership": {
+        "PLAYER": "NONE",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "label": "Possessions",
+      "system": "metanthropes",
+      "type": "Item",
+      "path": "packs/possessions",
+      "name": "possessions",
+      "ownership": {
+        "PLAYER": "NONE",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "label": "Rollable Tables",
+      "system": "metanthropes",
+      "type": "RollTable",
+      "path": "packs/rollable-tables",
+      "name": "rollable-tables",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    }
+  ],
+  "background": "systems/metanthropes/artwork/ui/cover/cover.jpg",
+  "gridDistance": 2,
+  "gridUnits": "m",
+  "primaryTokenAttribute": "Vital.Destiny.value",
+  "secondaryTokenAttribute": "Vital.Life.value",
+  "manifest": "https://github.com/legitamine/metanthropes/releases/latest/download/system.json"
 }

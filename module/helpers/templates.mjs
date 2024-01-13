@@ -34,5 +34,9 @@ export const preloadHandlebarsTemplates = async function () {
 		"systems/metanthropes/templates/progression/progression-overview.hbs",
 		"systems/metanthropes/templates/progression/progression-perks.hbs",
 		"systems/metanthropes/templates/progression/progression-metapowers.hbs",
+		//? Sidebar
+		"systems/metanthropes/templates/sidebar/sidebar.hbs",
+		"systems/metanthropes/templates/sidebar/document-directory.hbs",
+		"systems/metanthropes/templates/sidebar/compendium-directory.hbs",
 	]);
 };
