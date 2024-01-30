@@ -35,7 +35,6 @@ import { MetanthropesActiveEffect } from "./documents/active-effect.mjs";
 //? Import sheet classes
 import { MetanthropesActorSheet } from "./sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
-import { MetanthropesActorProgressionSheet } from "./sheets/actor-progression-sheet.mjs";
 import { MetanthropesActiveEffectSheet } from "./sheets/active-effect-sheet.mjs";
 //? Pre-load Handlebars templates
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
@@ -215,13 +214,10 @@ Hooks.once("init", async function () {
 	CONFIG.Actor.documentClass = MetanthropesActor;
 	CONFIG.Item.documentClass = MetanthropesItem;
 	CONFIG.ActiveEffect.documentClass = MetanthropesActiveEffect;
-	//? Register sheet application classes instead of defaults.
+	//? Register sheet application classes instead of default
 	Actors.unregisterSheet("core", ActorSheet);
 	Actors.registerSheet("metanthropes", MetanthropesActorSheet, {
 		makeDefault: true,
-	});
-	Actors.registerSheet("metanthropes", MetanthropesActorProgressionSheet, {
-		makeDefault: false,
 	});
 	Items.unregisterSheet("core", ItemSheet);
 	Items.registerSheet("metanthropes", MetanthropesItemSheet, {
@@ -325,7 +321,7 @@ Hooks.once("init", async function () {
 		},
 	});
 	//? Preload Handlebars templates.
-	metaLog(3, "Initialized Metanthropes System");
+	console.log("Metanthropes System | Initialized");
 	return preloadHandlebarsTemplates();
 });
 /**

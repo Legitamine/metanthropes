@@ -187,7 +187,8 @@
 		<div class="resource">
 			{{#each system.Effects.SFX}}
 				<div class="resource">
-					<label class="resource-label" data-tooltip="{{this.title}}">{{this.label}}:</label>
+					<label class="resource-label"
+						data-tooltip="{{this.title}}">{{this.label}}:</label>
 					<input type="{{this.type}}" name="system.Effects.SFX.{{@key}}.value"
 						value="{{this.value}}" data-dtype="{{this.dtype}}" />
 				</div>
@@ -219,11 +220,14 @@
 				{{> "systems/metanthropes/templates/helpers/active-effects.hbs"}}
 			</div>
 		{{else}}
-			<div>
-				<br>
-				<p>Active Effects are under development - Beta Testing of this feature is available via
-					the Homebrew Module</p>
-				<br>
+			<div class="resource-label" style="text-align:center">Item Active Effects are not fully supported
+				yet<br><br>Additional
+				functionality is available during Early Access, via the Beta Testing Feature of
+				the Metanthropes Homebrew Module
+				<br><br> If you would like to know more about upcoming releases, visit <a
+					href="https://www.metanthropes.com/stratagem/projects/1-metanthropes-roadmap/">our
+					roadmap on the
+					website</a>
 			</div>
 		{{/if}}
 	</div>

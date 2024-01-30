@@ -53,6 +53,32 @@ export function metaLog(logType = 0, ...variables) {
 }
 
 /**
+ * Helper function to import functionality from the Core Module
+ */
+
+export async function metaImportProgressionFromCoreModule() {
+	const metaCoreIsEnabled = await game.settings.get("metanthropes", "metaCore");
+	if (metaCoreIsEnabled) {
+		try {
+			const module = await import("../../../../modules/metanthropes-core/module/progression/metaprogression.mjs");
+			metaLog(3, "Metanthropes", "Meta Helpers", "Import Progression From Core Module", module);
+			return module.MetaStartProgression;
+		} catch (error) {
+			metaLog(
+				2,
+				"Metanthropes",
+				"Meta Helpers",
+				"Import Progression From Core Module",
+				"Error importing Metanthropes Core Module",
+				error
+			);
+			return undefined;
+		}
+	}
+	return undefined;
+}
+
+/**
  *
  * Helper function to print the currently open Document to the console
  * Kindly provided by TyphonJS(Michael) from the FoundryVTT Discord

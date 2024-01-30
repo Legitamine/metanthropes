@@ -29,11 +29,6 @@ export const preloadHandlebarsTemplates = async function () {
 		"systems/metanthropes/templates/item/item-possession-sheet.hbs",
 		//? Active Effect Sheet
 		"systems/metanthropes/templates/helpers/active-effects.hbs",
-		//? Actor Progression partials
-		"systems/metanthropes/templates/progression/progression-sheet.hbs",
-		"systems/metanthropes/templates/progression/progression-overview.hbs",
-		"systems/metanthropes/templates/progression/progression-perks.hbs",
-		"systems/metanthropes/templates/progression/progression-metapowers.hbs",
 		//? Sidebar
 		"systems/metanthropes/templates/sidebar/sidebar.hbs",
 		"systems/metanthropes/templates/sidebar/document-directory.hbs",
