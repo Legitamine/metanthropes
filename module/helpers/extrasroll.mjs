@@ -1,7 +1,7 @@
 import { metaLog, metaSheetRefresh, metaIsItemEquipped } from "../helpers/metahelpers.mjs";
 import { MetaRoll } from "../metanthropes/metaroll.mjs";
 /**
- * Rolld10 handles the rolling of d10 dice for a given actor and purpose.
+ * metaRolld10 handles the rolling of d10 dice for a given actor and purpose.
  *
  * This function determines the number of d10 dice to roll based on the provided parameters.
  * It checks for the presence of certain Metapowers that might affect the roll and then performs the roll.
@@ -19,12 +19,12 @@ import { MetaRoll } from "../metanthropes/metaroll.mjs";
  *
  * @example
  * Rolling an actor's Weapon Damage for 3 * d10:
- * Rolld10(actor, "Damage", true, 3, "Weapon Name");
+ * metaRolld10(actor, "Damage", true, 3, "Weapon Name");
  */
-export async function Rolld10(actor, what, destinyReRoll, dice, itemName = null, baseNumber = 0, isHalf = false) {
+export async function metaRolld10(actor, what, destinyReRoll, dice, itemName = null, baseNumber = 0, isHalf = false) {
 	metaLog(
 		3,
-		"Rolld10",
+		"metaRolld10",
 		"Engaged for:",
 		actor.name + "'s",
 		what,
@@ -44,7 +44,7 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = null,
 	//? Checking if actor has Metapowers that affect the explosive dice
 	//	if (await metaIsItemEquipped(actor, "Cognitive Efficiency")) {
 	//		explosiveDice = "x1x10";
-	//		metaLog(3, "Rolld10", "Using Alternative explosive dice:", explosiveDice);
+	//		metaLog(3, "metaRolld10", "Using Alternative explosive dice:", explosiveDice);
 	//	}
 	//? dice is the number of d10 to roll
 	let rolld10;
@@ -109,7 +109,7 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = null,
 		rollMode: game.settings.get("core", "rollMode"),
 		flags: { "metanthropes": { actoruuid: actor.uuid } },
 	});
-	metaLog(3, "Rolld10", "Finished for:", actor.name + "'s", what);
+	metaLog(3, "metaRolld10", "Finished for:", actor.name + "'s", what);
 	//? Refresh the actor sheet if it's open
 	metaSheetRefresh(actor);
 }
@@ -118,7 +118,7 @@ export async function Rolld10(actor, what, destinyReRoll, dice, itemName = null,
  * Rolld10ReRoll is triggered when the destiny re-roll button is clicked.
  *
  * This function handles the re-rolling of d10 dice for a given actor based on the provided event data.
- * It reduces the actor's Destiny value by 1 and then calls the Rolld10 function to perform the re-roll.
+ * It reduces the actor's Destiny value by 1 and then calls the metaRolld10 function to perform the re-roll.
  *
  * @param {Event} event - The event object associated with the button click.
  *
@@ -160,7 +160,7 @@ export async function Rolld10ReRoll(event) {
 			"d10/2?:",
 			isHalf
 		);
-		await Rolld10(actor, what, destinyReRoll, dice, itemName, baseNumber, isHalf);
+		await metaRolld10(actor, what, destinyReRoll, dice, itemName, baseNumber, isHalf);
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
 		metaLog(1, "Rolld10ReRoll", "Not enough Destiny to spend", "OR", "destinyReRoll is not allowed");
