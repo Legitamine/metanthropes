@@ -129,7 +129,9 @@
 			<a class="item style-cs-labels" data-tab="execution">Activation</a>
 			<a class="item style-cs-labels" data-tab="effects">Effects</a>
 			{{#if isNarrator}}
-				<a class="item style-cs-labels" data-tab="results">Results</a>
+				{{#if betaTesting}}
+					<a class="item style-cs-labels" data-tab="results">Results</a>
+				{{/if}}
 			{{/if}}
 		</nav>
 	</div>

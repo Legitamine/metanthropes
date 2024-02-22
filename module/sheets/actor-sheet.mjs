@@ -1,7 +1,8 @@
 //? Import Roll Handler
 import { HandleMetaRolls, handleCoverRolls } from "../helpers/metarollhandler.mjs";
 //? Import New Actor & Finalize Actor Logic
-import { NewActor, FinalizePremadeActor } from "../metanthropes/newactor.mjs";
+import { NewActor } from "../metanthropes/newactor.mjs";
+import { metaFinalizePremadeActor } from "../metanthropes/finalizepremade.mjs";
 //? Import meta helpers
 import { metaImportProgressionFromCoreModule, metaChangePortrait, metaLog } from "../helpers/metahelpers.mjs";
 //? Import Active Effect helpers
@@ -574,7 +575,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 	async _onFinalizePremadeActor(event) {
 		event.preventDefault();
 		const actor = this.actor;
-		await FinalizePremadeActor(actor);
+		await metaFinalizePremadeActor(actor);
 	}
 	//* Change the Player controling the Actor
 	async _onAssignActorPlayer(event) {

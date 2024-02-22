@@ -1,8 +1,8 @@
 import { metaRolld10 } from "../helpers/extrasroll.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
-import { metaActorControl } from "../metanthropes/metaactorcontrol.mjs";
+import { metaActorControl } from "../metanthropes/actorcontrol.mjs";
 //* Finalizes a Premade Protagonist
-export async function FinalizePremadeActor(actor) {
+export async function metaFinalizePremadeActor(actor) {
 	const playerName = game.user.name;
 	try {
 		await metaActorControl(actor).catch((error) => {
@@ -10,7 +10,7 @@ export async function FinalizePremadeActor(actor) {
 			throw error;
 		});
 		//todo: premade actor summary
-		await NewPremadeSummary(actor).catch((error) => {
+		await metaNewPremadeSummary(actor).catch((error) => {
 			metaLog(2, "Finalize Premade Protagonist", "Error at NewPremadeSummary:", error);
 			throw error;
 		});
@@ -33,7 +33,7 @@ export async function FinalizePremadeActor(actor) {
 	}
 }
 
-export async function NewPremadeSummary(actor) {
+export async function metaNewPremadeSummary(actor) {
 	const playerName = game.user.name;
 	const narratorName = game.users.activeGM.name;
 	let dialogContent = `
@@ -182,8 +182,6 @@ export async function NewPremadeSummary(actor) {
 				cancel: {
 					label: "Cancel",
 					callback: async () => {
-						//todo: thelw ontws na to kanw rename? giati?
-						await actor.update({ name: "Premade" });
 						reject();
 					},
 				},

@@ -115,7 +115,7 @@ export async function metaRolld10(actor, what, destinyReRoll, dice, itemName = n
 }
 
 /**
- * Rolld10ReRoll is triggered when the destiny re-roll button is clicked.
+ * metaRolld10ReRoll is triggered when the destiny re-roll button is clicked.
  *
  * This function handles the re-rolling of d10 dice for a given actor based on the provided event data.
  * It reduces the actor's Destiny value by 1 and then calls the metaRolld10 function to perform the re-roll.
@@ -127,7 +127,7 @@ export async function metaRolld10(actor, what, destinyReRoll, dice, itemName = n
  * @example
  * This function is not called directly, but rather via an event listener.
  */
-export async function Rolld10ReRoll(event) {
+export async function metaRolld10ReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
 	const actoruuid = button.dataset.actoruuid;
@@ -145,7 +145,7 @@ export async function Rolld10ReRoll(event) {
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		metaLog(
 			3,
-			"Rolld10ReRoll",
+			"metaRolld10ReRoll",
 			"Engaged for:",
 			actor.name + "'s",
 			what,
@@ -163,7 +163,7 @@ export async function Rolld10ReRoll(event) {
 		await metaRolld10(actor, what, destinyReRoll, dice, itemName, baseNumber, isHalf);
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
-		metaLog(1, "Rolld10ReRoll", "Not enough Destiny to spend", "OR", "destinyReRoll is not allowed");
+		metaLog(1, "metaRolld10ReRoll", "Not enough Destiny to spend", "OR", "destinyReRoll is not allowed");
 	}
 }
 

@@ -40,7 +40,7 @@ import { MetanthropesActiveEffectSheet } from "./sheets/active-effect-sheet.mjs"
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 //? Import helpers
 import { MetaEvaluateReRoll } from "./helpers/metaeval.mjs";
-import { Rolld10ReRoll, HungerReRoll, CoverReRoll } from "./helpers/extrasroll.mjs";
+import { metaRolld10ReRoll, HungerReRoll, CoverReRoll } from "./helpers/extrasroll.mjs";
 import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
 import { MetaExecute } from "./helpers/metaexecute.mjs";
 import { metaMigrateData } from "./metanthropes/metamigration.mjs";
@@ -206,7 +206,8 @@ Hooks.once("init", async function () {
 	CONFIG.ui.tables = metaRollTableDirectory;
 	CONFIG.ui.playlists = metaPlaylistDirectory;
 	CONFIG.ui.compendium = metaCompendiumDirectory;
-	console.log(CONFIG);
+	//? Uncomment for development
+	// console.log(CONFIG);
 	//? time in seconds for Round Duration
 	//todo: confirm default round time
 	//CONFIG.time.roundTime = 120;
@@ -321,7 +322,7 @@ Hooks.once("init", async function () {
 		},
 	});
 	//? Preload Handlebars templates.
-	console.log("Metanthropes System | Initialized");
+	console.log("Metanthropes | System | Initialized");
 	return preloadHandlebarsTemplates();
 });
 /**
@@ -592,7 +593,7 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		html.on("click", ".metanthropes-secondary-chat-button", function (event) {
 			const button = $(event.currentTarget);
 			if (button.hasClass("rolld10-reroll")) {
-				Rolld10ReRoll(event);
+				metaRolld10ReRoll(event);
 			}
 			//? Disable only the clicked secondary chat button
 			button.prop("disabled", true);
