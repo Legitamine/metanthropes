@@ -40,7 +40,7 @@ import { MetanthropesActiveEffectSheet } from "./sheets/active-effect-sheet.mjs"
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 //? Import helpers
 import { MetaEvaluateReRoll } from "./metarollers/metaeval.mjs";
-import { metaRolld10ReRoll, HungerReRoll, CoverReRoll } from "./metarollers/metarollextras.mjs";
+import { metaRolld10ReRoll, metaHungerReRoll, CoverReRoll } from "./metarollers/metarollextras.mjs";
 import { MetaInitiativeReRoll } from "./metarollers/metainitiative.mjs";
 import { MetaExecute } from "./metarollers/metaexecute.mjs";
 import { metaMigrateData } from "./metanthropes/metamigration.mjs";
@@ -582,7 +582,7 @@ Hooks.on("renderChatMessage", async (message, html) => {
 			} else if (button.hasClass("possession-use")) {
 				MetaExecute(event);
 			} else if (button.hasClass("hunger-reroll")) {
-				HungerReRoll(event);
+				metaHungerReRoll(event);
 			} else if (button.hasClass("cover-reroll")) {
 				CoverReRoll(event);
 			}

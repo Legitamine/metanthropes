@@ -168,9 +168,9 @@ export async function metaRolld10ReRoll(event) {
 }
 
 /**
- * HungerRoll handles the rolling a simple d100 to check if the actor can beat their Hunger effect.
+ * metaHungerRoll handles the rolling a simple d100 to check if the actor can beat their Hunger effect.
  */
-export async function HungerRoll(actor, hungerLevel) {
+export async function metaHungerRoll(actor, hungerLevel) {
 	let hungerTarget = 0;
 	let hungerEffect = 0; //! not needed???
 	let hungerMessage = null;
@@ -190,7 +190,7 @@ export async function HungerRoll(actor, hungerLevel) {
 		hungerEffect = 90;
 		hungerTarget = 10;
 	} else {
-		metaLog(5, "HungerRoll", "Hunger Level is not valid:", hungerLevel);
+		metaLog(5, "metaHungerRoll", "Hunger Level is not valid:", hungerLevel);
 		return;
 	}
 	const hungerRoll = await new Roll("1d100").evaluate({ async: true });
@@ -212,7 +212,7 @@ export async function HungerRoll(actor, hungerLevel) {
 		const MetaRollBeforeHungerCheck = await actor.getFlag("metanthropes", "MetaRollBeforeHungerCheck");
 		metaLog(
 			3,
-			"HungerRoll",
+			"metaHungerRoll",
 			"Engaging Metaroll with:",
 			actor,
 			MetaRollBeforeHungerCheck.action,
@@ -242,7 +242,7 @@ export async function HungerRoll(actor, hungerLevel) {
 /**
  * Hunger ReRoll
  */
-export async function HungerReRoll(event) {
+export async function metaHungerReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
 	const actoruuid = button.dataset.actoruuid;
@@ -252,10 +252,10 @@ export async function HungerReRoll(event) {
 	if (currentDestiny > 0) {
 		currentDestiny--;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-		HungerRoll(actor, hungerLevel);
+		metaHungerRoll(actor, hungerLevel);
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
-		metaLog(3, "HungerReRoll", "Not enough Destiny to spend");
+		metaLog(3, "metaHungerReRoll", "Not enough Destiny to spend");
 	}
 }
 

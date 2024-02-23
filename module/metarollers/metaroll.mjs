@@ -1,6 +1,6 @@
 import { MetaEvaluate } from "./metaeval.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
-import { HungerRoll } from "./metarollextras.mjs";
+import { metaHungerRoll } from "./metarollextras.mjs";
 /**
  * Handles rolling for Metanthropes
  *
@@ -61,7 +61,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 				itemName: itemName,
 			});
 			metaLog(3, "MetaRoll", "Hunger Check Failed, Engaging Hunger Roll");
-			await HungerRoll(actor, hungerLevel);
+			await metaHungerRoll(actor, hungerLevel);
 			return;
 		}
 	}
