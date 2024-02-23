@@ -1,10 +1,11 @@
 //? Import Roll Handler
-import { HandleMetaRolls, handleCoverRolls } from "../helpers/metarollhandler.mjs";
-//? Import New Actor & Finalize Actor Logic
-import { NewActor } from "../metanthropes/newactor.mjs";
+import { HandleMetaRolls, handleCoverRolls } from "../metarollers/metarollhandler.mjs";
+//? Import Finalize Actor Logic
 import { metaFinalizePremadeActor } from "../metanthropes/finalizepremade.mjs";
+//? Import functions from other modules
+import { metaImportFromModule } from "../helpers/metaimports.mjs";
 //? Import meta helpers
-import { metaImportProgressionFromCoreModule, metaChangePortrait, metaLog } from "../helpers/metahelpers.mjs";
+import { metaChangePortrait, metaLog } from "../helpers/metahelpers.mjs";
 //? Import Active Effect helpers
 import { prepareActiveEffectCategories, onManageActiveEffect } from "../metanthropes/metaeffects.mjs";
 /**
@@ -266,6 +267,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			onclick: () => this._onHeaderButtonClick("extended"),
 		});
 		//? Filters-out the Item Piles button for all actors besides Vehicles
+		//! doesn't work if Item Piles is set to only show the icons on the header
 		if (this.actor.type !== "Vehicle") buttons = buttons.filter((btn) => btn.label !== "Configure");
 		return buttons;
 	}
@@ -569,7 +571,23 @@ export class MetanthropesActorSheet extends ActorSheet {
 	async _onNewActor(event) {
 		event.preventDefault();
 		const actor = this.actor;
-		await NewActor(actor);
+
+		//? Load New Actor Logic from the Metanthropes Core Module
+		const metaNewActor = await metaImportFromModule(
+			"metanthropes-core",
+			"newactor",
+			"metanewactor",
+			"metaNewActor"
+		);
+		if (!metaNewActor) {
+			metaLog(2, "MetanthropesActorSheet", "_onNewActor", "New Actor function not available");
+			return;
+		}
+		try {
+			await metaNewActor(actor);
+		} catch (error) {
+			metaLog(2, "MetanthropesActorSheet", "_onNewActor", "ERROR:", error);
+		}
 	}
 	//* Finalize Premade Protagonist
 	async _onFinalizePremadeActor(event) {
@@ -635,7 +653,12 @@ export class MetanthropesActorSheet extends ActorSheet {
 			return;
 		}
 		//? Load Progression Logic from the Metanthropes Core Module
-		const metaProgressActor = await metaImportProgressionFromCoreModule();
+		const metaProgressActor = await metaImportFromModule(
+			"metanthropes-core",
+			"progression",
+			"metaprogression",
+			"metaStartProgression"
+		);
 		if (!metaProgressActor) {
 			metaLog(2, "MetanthropesActorSheet", "_onProgression", "Progression function not available");
 			return;

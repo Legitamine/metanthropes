@@ -1,5 +1,5 @@
 import { metaLog, metaSheetRefresh, metaIsItemEquipped } from "../helpers/metahelpers.mjs";
-import { MetaRoll } from "../metanthropes/metaroll.mjs";
+import { MetaRoll } from "./metaroll.mjs";
 /**
  * metaRolld10 handles the rolling of d10 dice for a given actor and purpose.
  *

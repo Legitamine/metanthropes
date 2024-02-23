@@ -1,4 +1,4 @@
-import { metaRolld10 } from "../helpers/extrasroll.mjs";
+import { metaRolld10 } from "../metarollers/metarollextras.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
 import { metaActorControl } from "../metanthropes/actorcontrol.mjs";
 //* Finalizes a Premade Protagonist

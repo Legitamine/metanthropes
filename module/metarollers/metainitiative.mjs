@@ -1,4 +1,4 @@
-import { MetaRoll } from "../metanthropes/metaroll.mjs";
+import { MetaRoll } from "./metaroll.mjs";
 import { metaLog, metaSheetRefresh } from "../helpers/metahelpers.mjs";
 
 /**

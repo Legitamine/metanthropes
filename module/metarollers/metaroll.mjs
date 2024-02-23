@@ -1,6 +1,6 @@
-import { MetaEvaluate } from "../helpers/metaeval.mjs";
+import { MetaEvaluate } from "./metaeval.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
-import { HungerRoll } from "../helpers/extrasroll.mjs";
+import { HungerRoll } from "./metarollextras.mjs";
 /**
  * Handles rolling for Metanthropes
  *

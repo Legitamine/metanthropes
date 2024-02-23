@@ -1,4 +1,4 @@
-import { MetaInitiative } from "../helpers/metainitiative.mjs";
+import { MetaInitiative } from "../metarollers/metainitiative.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
 
 /**

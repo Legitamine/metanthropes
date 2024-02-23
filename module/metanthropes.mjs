@@ -23,7 +23,7 @@ import {
 	metaRollTableDirectory,
 	metaPlaylistDirectory,
 	metaCompendiumDirectory,
-} from "./metanthropes/metaclasses.mjs";
+} from "./metaclasses/metaclasses.mjs";
 //? Import Combat Modules
 import { MetanthropesCombat } from "./metanthropes/combat.mjs";
 import { MetaCombatTracker } from "./metanthropes/combattracker.mjs";
@@ -39,10 +39,10 @@ import { MetanthropesActiveEffectSheet } from "./sheets/active-effect-sheet.mjs"
 //? Pre-load Handlebars templates
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 //? Import helpers
-import { MetaEvaluateReRoll } from "./helpers/metaeval.mjs";
-import { metaRolld10ReRoll, HungerReRoll, CoverReRoll } from "./helpers/extrasroll.mjs";
-import { MetaInitiativeReRoll } from "./helpers/metainitiative.mjs";
-import { MetaExecute } from "./helpers/metaexecute.mjs";
+import { MetaEvaluateReRoll } from "./metarollers/metaeval.mjs";
+import { metaRolld10ReRoll, HungerReRoll, CoverReRoll } from "./metarollers/metarollextras.mjs";
+import { MetaInitiativeReRoll } from "./metarollers/metainitiative.mjs";
+import { MetaExecute } from "./metarollers/metaexecute.mjs";
 import { metaMigrateData } from "./metanthropes/metamigration.mjs";
 import { metaLog, metaLogDocument } from "./helpers/metahelpers.mjs";
 //* Starting System

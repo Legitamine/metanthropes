@@ -1,4 +1,4 @@
-import { metaExtractNumberOfDice, metaLog, metaSheetRefresh, metaIsItemEquipped } from "./metahelpers.mjs";
+import { metaExtractNumberOfDice, metaLog, metaSheetRefresh, metaIsItemEquipped } from "../helpers/metahelpers.mjs";
 
 /**
  * MetaExecute handles the execution of Metapowers and Possessions for a given actor.

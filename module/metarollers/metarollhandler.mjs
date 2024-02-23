@@ -1,6 +1,6 @@
-import { MetaRoll } from "../metanthropes/metaroll.mjs";
+import { MetaRoll } from "./metaroll.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
-import { CoverRoll } from "../helpers/extrasroll.mjs";
+import { CoverRoll } from "./metarollextras.mjs";
 /**
  * HandleMetaRolls - A utility function to handle various types of meta rolls for the Metanthropes system.
  *

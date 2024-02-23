@@ -1,5 +1,5 @@
 //? Import Classes
-import { metaFilePicker } from "../metanthropes/metaclasses.mjs";
+import { metaFilePicker } from "../metaclasses/metaclasses.mjs";
 /**
  *
  * metaLog function controls how console logging happens.
@@ -54,6 +54,7 @@ export function metaLog(logType = 0, ...variables) {
 
 /**
  * Helper function to import functionality from the Core Module
+ * Deprecated in favor of metaImportFromModule
  */
 
 export async function metaImportProgressionFromCoreModule() {
