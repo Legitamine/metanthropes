@@ -1,5 +1,5 @@
 //? Import Roll Handler
-import { HandleMetaRolls, handleCoverRolls } from "../metarollers/metarollhandler.mjs";
+import { metaHandleRolls, handleCoverRolls } from "../metarollers/metarollhandler.mjs";
 //? Import Finalize Actor Logic
 import { metaFinalizePremadeActor } from "../metanthropes/finalizepremade.mjs";
 //? Import functions from other modules
@@ -561,11 +561,11 @@ export class MetanthropesActorSheet extends ActorSheet {
 	}
 	//* Handle Left-Click Rolls
 	async _onRoll(event) {
-		HandleMetaRolls(event, this, false);
+		metaHandleRolls(event, this, false);
 	}
 	//* Handle Right-Click Rolls
 	async _onCustomRoll(event) {
-		HandleMetaRolls(event, this, true);
+		metaHandleRolls(event, this, true);
 	}
 	//* New Actor Logic
 	async _onNewActor(event) {

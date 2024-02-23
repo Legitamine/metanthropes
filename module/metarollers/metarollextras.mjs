@@ -260,14 +260,14 @@ export async function metaHungerReRoll(event) {
 }
 
 /**
- * CoverRoll handles the rolling a simple d100 to check if the actor can find Cover.
+ * metaCoverRoll handles the rolling a simple d100 to check if the actor can find Cover.
  * 
  * @param {*} actor 
  * @param {*} coverType 
  * @param {*} coverValue 
  * @returns 
  */
-export async function CoverRoll(actor, coverType, coverValue) {
+export async function metaCoverRoll(actor, coverType, coverValue) {
 	let coverMessage = null;
 	let coverTarget = null;
 	if (coverValue === 0) {
@@ -284,7 +284,7 @@ export async function CoverRoll(actor, coverType, coverValue) {
 	} else if (coverValue === 90) {
 		coverTarget = 90;
 	} else {
-		metaLog(5, "CoverRoll", "Cover Value is not valid:", coverValue);
+		metaLog(5, "metaCoverRoll", "Cover Value is not valid:", coverValue);
 		return;
 	}
 	const coverRoll = await new Roll("1d100").evaluate({ async: true });
@@ -316,7 +316,7 @@ export async function CoverRoll(actor, coverType, coverValue) {
  * 
  * @param {*} event 
  */
-export async function CoverReRoll(event) {
+export async function metaCoverReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
 	const actoruuid = button.dataset.actoruuid;
@@ -327,9 +327,9 @@ export async function CoverReRoll(event) {
 	if (currentDestiny > 0) {
 		currentDestiny--;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-		CoverRoll(actor, coverType, coverValue);
+		metaCoverRoll(actor, coverType, coverValue);
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
-		metaLog(3, "CoverReRoll", "Not enough Destiny to spend");
+		metaLog(3, "metaCoverReRoll", "Not enough Destiny to spend");
 	}
 }

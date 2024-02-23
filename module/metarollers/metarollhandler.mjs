@@ -1,8 +1,8 @@
 import { MetaRoll } from "./metaroll.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
-import { CoverRoll } from "./metarollextras.mjs";
+import { metaCoverRoll } from "./metarollextras.mjs";
 /**
- * HandleMetaRolls - A utility function to handle various types of meta rolls for the Metanthropes system.
+ * metaHandleRolls - A utility function to handle various types of meta rolls for the Metanthropes system.
  *
  * This function is expected to be called via a button or click event in the actor or item sheet, not called directly.
  * This function processes the roll request based on the roll type specified in the dataset of the event target.
@@ -16,7 +16,7 @@ import { CoverRoll } from "./metarollextras.mjs";
  * @returns {void}
  *
  */
-export async function HandleMetaRolls(event, metaSheet, isCustomRoll = false) {
+export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 	event.preventDefault();
 	const element = event.currentTarget;
 	//? Disable the element for 3 seconds to prevent double-clicking
@@ -27,7 +27,7 @@ export async function HandleMetaRolls(event, metaSheet, isCustomRoll = false) {
 		element.disabled = false;
 	}, 3000);
 	const dataset = element.dataset;
-	metaLog(3, "HandleMetaRolls", "Engaged via right-click:", isCustomRoll);
+	metaLog(3, "metaHandleRolls", "Engaged via right-click:", isCustomRoll);
 	//? Handle all types of rolls here based on the rollType (data-roll-type)
 	if (dataset.rollType) {
 		const actor = metaSheet.actor;
@@ -37,14 +37,14 @@ export async function HandleMetaRolls(event, metaSheet, isCustomRoll = false) {
 		const itemName = dataset.itemName || null; //? Item Name is optional, so if it's not defined, set it to null
 		switch (dataset.rollType) {
 			case "StatRoll":
-				metaLog(3, "HandleMetaRolls", "Engaging MetaRoll for:", actor.name + "'s", action, "with", stat);
+				metaLog(3, "metaHandleRolls", "Engaging MetaRoll for:", actor.name + "'s", action, "with", stat);
 				await MetaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
-				metaLog(3, "HandleMetaRolls", "Finished Rolling for StatRoll");
+				metaLog(3, "metaHandleRolls", "Finished Rolling for StatRoll");
 				break;
 			case "Metapower":
 				metaLog(
 					3,
-					"HandleMetaRolls",
+					"metaHandleRolls",
 					"Engaging MetaRoll for:",
 					actor.name + "'s",
 					action,
@@ -56,12 +56,12 @@ export async function HandleMetaRolls(event, metaSheet, isCustomRoll = false) {
 					stat
 				);
 				await MetaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
-				metaLog(3, "HandleMetaRolls", "Finished Rolling for Metapower");
+				metaLog(3, "metaHandleRolls", "Finished Rolling for Metapower");
 				break;
 			case "Possession":
 				metaLog(
 					3,
-					"HandleMetaRolls",
+					"metaHandleRolls",
 					"Engaging MetaRoll for:",
 					actor.name + "'s",
 					action,
@@ -71,15 +71,15 @@ export async function HandleMetaRolls(event, metaSheet, isCustomRoll = false) {
 					stat
 				);
 				await MetaRoll(actor, action, stat, isCustomRoll, 0, itemName);
-				metaLog(3, "HandleMetaRolls", "Finished Rolling for Possession");
+				metaLog(3, "metaHandleRolls", "Finished Rolling for Possession");
 				break;
 			default:
-				metaLog(2, "HandleMetaRolls", "ERROR: not defined rollType", dataset.rollType);
+				metaLog(2, "metaHandleRolls", "ERROR: not defined rollType", dataset.rollType);
 				return;
 		}
 	}
 	//? After doing a meta roll, re-render the actor or item sheet.
-	metaLog(3, "HandleMetaRolls", "Finished, re-rendering the actor/item sheet");
+	metaLog(3, "metaHandleRolls", "Finished, re-rendering the actor/item sheet");
 	metaSheet.render(true);
 }
 /**
@@ -102,5 +102,5 @@ export async function handleCoverRolls(event, metaSheet) {
 	const actor = metaSheet.actor;
 	const coverType = dataset.type;
 	const coverValue = parseInt(dataset.coverValue);
-	CoverRoll(actor, coverType, coverValue);
+	metaCoverRoll(actor, coverType, coverValue);
 }

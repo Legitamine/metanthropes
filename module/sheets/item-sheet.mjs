@@ -1,5 +1,5 @@
 //? Import Roll Handler
-import { HandleMetaRolls } from "../metarollers/metarollhandler.mjs";
+import { metaHandleRolls } from "../metarollers/metarollhandler.mjs";
 //? Improt meta helpers
 import { metaLog } from "../helpers/metahelpers.mjs";
 //? Import Active Effect helpers
@@ -112,10 +112,10 @@ export class MetanthropesItemSheet extends ItemSheet {
 	}
 	//* Handle Left-Click Rolls
 	async _onRoll(event) {
-		HandleMetaRolls(event, this, false);
+		metaHandleRolls(event, this, false);
 	}
 	//* Handle Right-Click Rolls
 	async _onCustomRoll(event) {
-		HandleMetaRolls(event, this, true);
+		metaHandleRolls(event, this, true);
 	}
 }
