@@ -1,11 +1,11 @@
-import { MetaEvaluate } from "./metaeval.mjs";
+import { metaEvaluate } from "./metaeval.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
 import { metaHungerRoll } from "./metarollextras.mjs";
 /**
  * Handles rolling for Metanthropes
  *
  * This function checks various Core Conditions (e.g., unconsciousness, hunger, disease)
- * before proceeding with the roll. It then calls the MetaEvaluate function to
+ * before proceeding with the roll. It then calls the metaEvaluate function to
  * calculate the result of the roll.
  *
  * @param {Object} actor - The actor making the roll. Expected to be an Actor object.
@@ -72,7 +72,7 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 	//* Check for Bonuses
 	// space intentionally left blank
 	//* Check for Penalties
-	//? Pain is passed to MetaEvaluate
+	//? Pain is passed to metaEvaluate
 	const pain = actor.system.Characteristics.Mind.CoreConditions.Pain;
 	//? Check for Disease
 	let diseasePenalty = 0;
@@ -100,7 +100,7 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 		}
 	}
 	//? Check for Reduction due to Aiming
-	//* ready to call MetaEvaluate, but first we check if we have custom options
+	//* ready to call metaEvaluate, but first we check if we have custom options
 	let bonus = 0;
 	let penalty = 0;
 	let multiAction = 0;
@@ -135,7 +135,7 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 		metaLog(
 			3,
 			"metaRoll",
-			"Engaging MetaEvaluate for:",
+			"Engaging metaEvaluate for:",
 			actor.name + "'s Custom",
 			action,
 			"with",
@@ -160,7 +160,7 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 			"Item Name:",
 			itemName
 		);
-		await MetaEvaluate(
+		await metaEvaluate(
 			actor,
 			action,
 			stat,
@@ -180,7 +180,7 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 		metaLog(
 			3,
 			"metaRoll",
-			"Engaging MetaEvaluate for:",
+			"Engaging metaEvaluate for:",
 			actor.name + "'s",
 			action,
 			"with",
@@ -205,7 +205,7 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 			"Item Name:",
 			itemName
 		);
-		await MetaEvaluate(
+		await metaEvaluate(
 			actor,
 			action,
 			stat,

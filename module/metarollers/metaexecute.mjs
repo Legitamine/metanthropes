@@ -1,7 +1,7 @@
 import { metaExtractNumberOfDice, metaLog, metaSheetRefresh, metaIsItemEquipped } from "../helpers/metahelpers.mjs";
 
 /**
- * MetaExecute handles the execution of Metapowers and Possessions for a given actor.
+ * metaExecute handles the execution of Metapowers and Possessions for a given actor.
  *
  * This function determines the type of action (Metapower or Possession) and executes the corresponding logic.
  * It can be triggered either directly or from a button click event.
@@ -24,12 +24,12 @@ import { metaExtractNumberOfDice, metaLog, metaSheetRefresh, metaIsItemEquipped 
  * @returns {Promise<void>} A promise that resolves once the function completes its operations.
  *
  * @example
- * MetaExecute(null, actorUUID, "Metapower", "Danger Sense");
+ * metaExecute(null, actorUUID, "Metapower", "Danger Sense");
  */
-export async function MetaExecute(event, actorUUID, action, itemName, multiAction = 0) {
+export async function metaExecute(event, actorUUID, action, itemName, multiAction = 0) {
 	//? If we called this from a button click, get the data we need
 	if (event) {
-		metaLog(3, "MetaExecute", "Engaged via button click - Event:", event);
+		metaLog(3, "metaExecute", "Engaged via button click - Event:", event);
 		const button = event.target;
 		actorUUID = button.dataset.actoruuid;
 		action = button.dataset.action;
@@ -39,17 +39,14 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 	const actor = await fromUuid(actorUUID);
 	//? Checking if actor has Metapowers that affect the explosive dice
 	const explosiveDice = "x10";
-	//	if (await metaIsItemEquipped(actor, "Cognitive Efficiency")) {
-	//		explosiveDice = "x1x10";
-	//		metaLog(3, "MetaExecute", "Using Alternative explosive dice:", explosiveDice);
-	//	}
+	//todo: placeholder for custom explosive dice
 	//? Find the first item ()that matches itemName
 	let metaItemData = actor.items.find((item) => item.name === itemName);
 	if (!metaItemData) {
-		metaLog(2, "MetaExecute", "ERROR: Could not find any item named:", itemName);
+		metaLog(2, "metaExecute", "ERROR: Could not find any item named:", itemName);
 		return;
 	}
-	metaLog(3, "MetaExecute", "Engaged for", itemName);
+	metaLog(3, "metaExecute", "Engaged for", itemName);
 	//todo review which need to be const and which let by determining what can be changed by the spending of lvl of success
 	//? Gather all the execution data
 	let actionSlot = metaItemData.system.Execution.ActionSlot.value;
@@ -167,7 +164,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		} else {
 			executeRoll = true;
 			//? Use Possession
-			metaLog(3, "MetaExecute", "Using Possession:", itemName, "with Attack Type:", attackType);
+			metaLog(3, "metaExecute", "Using Possession:", itemName, "with Attack Type:", attackType);
 			if (attackType === "Melee") {
 				//todo: need to add size modifier to increase the base d10 dice pool for unarmed strikes only
 				flavorMessage = `Attacks with their ${itemName}<br><br>`;
@@ -189,7 +186,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			}
 		}
 	} else {
-		metaLog(2, "MetaExecute", "ERROR: cannot Execute action:", action);
+		metaLog(2, "metaExecute", "ERROR: cannot Execute action:", action);
 		return;
 	}
 	//* Targeting v1 variables
@@ -218,7 +215,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		//? finalize action slot
 		if (actionSlot.includes("Always Active")) {
 			//? always active return
-			metaLog(1, "MetaExecute", actor.name + "'s " + itemName, "is Always Active!");
+			metaLog(1, "metaExecute", actor.name + "'s " + itemName, "is Always Active!");
 			ui.notifications.info(actor.name + "'s " + itemName + " is Always Active!");
 			return;
 		} else if (actionSlot.includes("Focused")) {
@@ -441,20 +438,20 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 		const betaTesting = await game.settings.get("metanthropes", "metaBetaTesting");
 		if (betaTesting) {
 			const manuallySelectedTargets = game.user.targets;
-			metaLog(3, "MetaExecute", "Manually Selected Targets:", manuallySelectedTargets);
+			metaLog(3, "metaExecute", "Manually Selected Targets:", manuallySelectedTargets);
 			//? Store targeted actors in an array
 			targetedActors = Array.from(manuallySelectedTargets).map((token) => token.actor);
-			metaLog(3, "MetaExecute", "Targeted Actors:", targetedActors);
+			metaLog(3, "metaExecute", "Targeted Actors:", targetedActors);
 			//? Check if there are any targeted actors and set the actionableTargets variable accordingly
 			actionableTargets = targetedActors.length > 0;
-			metaLog(3, "MetaExecute", "Actionable Targets:", actionableTargets);
+			metaLog(3, "metaExecute", "Actionable Targets:", actionableTargets);
 			if (actionableTargets) {
 				//? Get the names of all targeted actors
 				const targetedActorNames = targetedActors.map((actor) => actor.name);
 				const allSelectedTargetsMessage = `Selected 🎯 Targets: ${targetedActorNames.join(", ")}`;
 				contentMessage += allSelectedTargetsMessage;
 				contentMessage += `<hr />`;
-				metaLog(3, "MetaExecute", "All Selected Targets Message:", allSelectedTargetsMessage);
+				metaLog(3, "metaExecute", "All Selected Targets Message:", allSelectedTargetsMessage);
 			}
 		}
 		if (damageCosmicMessage) {
@@ -611,7 +608,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 					let foundSound = playlist.sounds.find((sound) => sound.name === sfxName);
 					if (foundSound) {
 						//? Play the sound
-						metaLog(3, "MetaExecute", "Playing Sound Effect:", foundSound.name, "from Compendium:", sfxCompendium);
+						metaLog(3, "metaExecute", "Playing Sound Effect:", foundSound.name, "from Compendium:", sfxCompendium);
 						//todo: this should trigger after the chat message is rendered and the dice are rolled
 						AudioHelper.play({ src: foundSound.sound.src, volume: 0.8, autoplay: true, loop: false }, true);
 						break;
@@ -622,7 +619,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 	}
 	//* Apply Damage to Selected Targets
 	// if (damageSelectedTargets && actionableTargets) {
-	// 	metaLog(3, "MetaExecute", "Applying Damage to Selected Targets");
+	// 	metaLog(3, "metaExecute", "Applying Damage to Selected Targets");
 	// 	//? Apply damage to each targeted actor
 	// 	for (let i = 0; i < targetedActors.length; i++) {
 	// 		let targetedActor = targetedActors[i];

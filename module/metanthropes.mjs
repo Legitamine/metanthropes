@@ -39,7 +39,7 @@ import { MetanthropesActiveEffectSheet } from "./sheets/active-effect-sheet.mjs"
 //? Pre-load Handlebars templates
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 //? Import helpers
-import { MetaEvaluateReRoll } from "./metarollers/metaeval.mjs";
+import { metaEvaluateReRoll } from "./metarollers/metaeval.mjs";
 import { metaRolld10ReRoll, metaHungerReRoll, metaCoverReRoll } from "./metarollers/metarollextras.mjs";
 import { MetaInitiativeReRoll } from "./metarollers/metainitiative.mjs";
 import { MetaExecute } from "./metarollers/metaexecute.mjs";
@@ -574,7 +574,7 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		html.on("click", ".metanthropes-main-chat-button", function (event) {
 			const button = $(event.currentTarget);
 			if (button.hasClass("metaeval-reroll")) {
-				MetaEvaluateReRoll(event);
+				metaEvaluateReRoll(event);
 			} else if (button.hasClass("metainitiative-reroll")) {
 				MetaInitiativeReRoll(event);
 			} else if (button.hasClass("metapower-activate")) {

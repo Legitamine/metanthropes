@@ -1,7 +1,7 @@
-import { MetaExecute } from "./metaexecute.mjs";
+import { metaExecute } from "./metaexecute.mjs";
 import { metaLog, metaSheetRefresh } from "../helpers/metahelpers.mjs";
 /**
- * MetaEvaluate calculates the result of a roll, sets actor flags and prints it to chat
+ * metaEvaluate calculates the result of a roll, sets actor flags and prints it to chat
  *
  * This function calculates the results of a roll based on the provided parameters,
  * determines the levels of success or failure, checks for critical outcomes,
@@ -24,7 +24,7 @@ import { metaLog, metaSheetRefresh } from "../helpers/metahelpers.mjs";
  * @returns {Promise<void>} A promise that resolves once the function completes its operations.
  *
  */
-export async function MetaEvaluate(
+export async function metaEvaluate(
 	actor,
 	action,
 	stat,
@@ -41,7 +41,7 @@ export async function MetaEvaluate(
 ) {
 	metaLog(
 		3,
-		"MetaEvaluate",
+		"metaEvaluate",
 		"Engaged for:",
 		actor.name + "'s",
 		action,
@@ -169,22 +169,22 @@ export async function MetaEvaluate(
 	//? if we have Pain condition, our succesfull (only) results are lowered by an equal amount - in case of Criticals we ignore Pain
 	let painEffect = levelsOfSuccess - pain;
 	if (resultLevel > 0 && !criticalSuccess && pain > 0) {
-		metaLog(4, "MetaEvaluate", "Results are affected by Pain");
+		metaLog(4, "metaEvaluate", "Results are affected by Pain");
 		if (painEffect < 0) {
 			result = "Failure 🟥";
 			resultLevel = 0;
 			levelsOfFailure = 0;
 			levelsOfSuccess = 0;
 			message += `It was a Success, turned into a ${result}, because of Pain * ${pain}`;
-			metaLog(3, "MetaEvaluate", "Pain Effect should be <0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
+			metaLog(3, "metaEvaluate", "Pain Effect should be <0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
 		} else if (painEffect === 0) {
 			message += `It is still a ${result}, besides being affected by Pain * ${pain}`;
 			levelsOfSuccess = 0;
-			metaLog(3, "MetaEvaluate", "Pain Effect should be =0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
+			metaLog(3, "metaEvaluate", "Pain Effect should be =0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
 		} else if (painEffect > 0) {
 			message += `It is a ${result}, reduced by Pain * ${pain}`;
 			levelsOfSuccess = painEffect;
-			metaLog(3, "MetaEvaluate", "Pain Effect should be >0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
+			metaLog(3, "metaEvaluate", "Pain Effect should be >0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
 		}
 	} else {
 		//? Print the result of the roll
@@ -210,7 +210,7 @@ export async function MetaEvaluate(
 	} else {
 		message += `.<hr />${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 	}
-	//? Buttons to Re-Roll MetaEvaluate results - only adds the button to message, if it's not a Critical and only if they have enough Destiny for needed reroll.
+	//? Buttons to Re-Roll metaEvaluate results - only adds the button to message, if it's not a Critical and only if they have enough Destiny for needed reroll.
 	//* The buttons are hidden for everyone except the Player of the Actor and the GM
 	//? Define threshold of showing the button, to re-roll we need a minimum of 1 Destiny + the Destiny Cost of the Metapower (only applies to Metapowers with DestinyCost, otherwise it's 0)
 	const threshold = 1 + Number(destinyCost);
@@ -220,7 +220,7 @@ export async function MetaEvaluate(
 			message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button metainitiative-reroll" data-actoruuid="${actor.uuid}" data-action="${action}"
 				>Spend 🤞 Destiny to reroll</button><br></div>`;
 		} else {
-			//? Button to re-roll MetaEvaluate
+			//? Button to re-roll metaEvaluate
 			message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button metaeval-reroll" data-actoruuid="${actor.uuid}"
 				data-stat="${stat}" data-stat-score="${statScore}" data-multi-action="${multiAction}" data-perk-reduction="${perkReduction}"
 				data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}" data-destiny-cost="${destinyCost}" 
@@ -245,7 +245,7 @@ export async function MetaEvaluate(
 		if (!(action === "Initiative")) {
 			//? Set autoExecute to true if it's either a Critical Success or a Critical Failure, or if the actor doesn't have enough Destiny to reroll
 			autoExecute = true;
-			metaLog(3, "MetaEvaluate", "Auto-Execution Detected");
+			metaLog(3, "metaEvaluate", "Auto-Execution Detected");
 		}
 	}
 	message += `<div><br></div>`;
@@ -283,7 +283,7 @@ export async function MetaEvaluate(
 			newRolls.PossessionName = itemName;
 			break;
 		default:
-			metaLog(2, "MetaEvaluate", "Error: Action not recognized:", action);
+			metaLog(2, "metaEvaluate", "Error: Action not recognized:", action);
 			return;
 	}
 	//? Update the actor with the new .lastrolled values
@@ -299,7 +299,7 @@ export async function MetaEvaluate(
 	});
 	metaLog(
 		3,
-		"MetaEvaluate",
+		"metaEvaluate",
 		"Finished for:",
 		actor.name,
 		"Action:",
@@ -346,11 +346,11 @@ export async function MetaEvaluate(
 		await new Promise((resolve) => setTimeout(resolve, 5000));
 		//? Automatically execute the activation/use of the Metapower/Possession if it's a Critical Success/Failure or not enough destiny to reroll
 		if (action === "Metapower") {
-			metaLog(3, "MetaEvaluate", "Auto-Activating Metapower:", itemName);
-			MetaExecute(null, actor.uuid, action, itemName);
+			metaLog(3, "metaEvaluate", "Auto-Activating Metapower:", itemName);
+			metaExecute(null, actor.uuid, action, itemName);
 		} else if (action === "Possession") {
-			metaLog(3, "MetaEvaluate", "Auto-Using Possession:", itemName);
-			MetaExecute(null, actor.uuid, action, itemName, multiAction);
+			metaLog(3, "metaEvaluate", "Auto-Using Possession:", itemName);
+			metaExecute(null, actor.uuid, action, itemName, multiAction);
 		}
 	}
 }
@@ -359,7 +359,7 @@ export async function MetaEvaluate(
  * Handles the re-roll of a previously evaluated roll by spending Destiny.
  *
  * This function is called when the "Spend Destiny to reroll" button is clicked in the chat.
- * It reduces the actor's Destiny by 1 and then calls the MetaEvaluate function to
+ * It reduces the actor's Destiny by 1 and then calls the metaEvaluate function to
  * calculate the result of the re-roll.
  *
  * We assume that when this function is called, the actor already has enough destiny to spend on it, otherwise the button should not have been made visible to click on
@@ -371,7 +371,7 @@ export async function MetaEvaluate(
  * @example
  * This function is typically called via an event listener and not directly.
  */
-export async function MetaEvaluateReRoll(event) {
+export async function metaEvaluateReRoll(event) {
 	event.preventDefault();
 	//? Collect the data from the button
 	const button = event.target;
@@ -389,12 +389,12 @@ export async function MetaEvaluateReRoll(event) {
 	const action = button.dataset.action;
 	const itemName = button.dataset.itemName === "null" ? null : button.dataset.itemName;
 	const pain = parseInt(button.dataset.pain);
-	metaLog(3, "MetaEvaluateReRoll", "Engaged for:", actor.name + "'s", action, actorUUID);
+	metaLog(3, "metaEvaluateReRoll", "Engaged for:", actor.name + "'s", action, actorUUID);
 	//? Reduce Destiny by 1
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	currentDestiny--;
 	await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-	await MetaEvaluate(
+	await metaEvaluate(
 		actor,
 		action,
 		stat,
@@ -411,5 +411,5 @@ export async function MetaEvaluateReRoll(event) {
 	);
 	//? Refresh the actor sheet if it's open
 	metaSheetRefresh(actor);
-	metaLog(3, "MetaEvaluateReRoll", "Finished for:", actor.name + "'s", action, actorUUID);
+	metaLog(3, "metaEvaluateReRoll", "Finished for:", actor.name + "'s", action, actorUUID);
 }
