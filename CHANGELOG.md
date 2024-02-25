@@ -8,11 +8,12 @@ Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 
 ## Changed:
 - Cleaned up and improved the code documentation for the Early Access release. This is an on-going task with changes that won't affect the gameplay in any way, but will help other developers (and myself) when reviewing and making further changes to the code
+- Resizing the Actor sheet via the header buttons will not change the active tab anymore, to avoid confusion
 
 ## Fixed:
 - Multi-Actions are now available only for the Main Action activation slot, to make it more clear that this is a special action that can only be used instead of your Main Action
 
-# Early Access v0.9.025 [2024-01-13]
+# Closed Beta v0.9.025 [2024-01-13]
 
 ## New Features:
 
@@ -22,7 +23,7 @@ Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 
 - Changed the UI to not allow changes to the Progression of Actors, unless the 'metanthropes-core' Module is enabled
 
-# Early Access v0.9.013 [2023-12-22]
+# Closed Beta v0.9.013 [2023-12-22]
 
 ## Breaking Changes:
 
@@ -31,7 +32,7 @@ Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 -   Moved the ability to create your own Actors, Scenes, Journals, Rollable Tables and Compendiums to the new 'metanthropes-core' module, as part of our Early Access release plan
 -   Moved the ability to create your own Items as well as the 'Beta Testing of New Features' to the new 'metanthropes-homebrew' module, as part of our Early Access release plan
 
-# Early Access v0.8.150 [2023-12-17]
+# Closed Beta v0.8.150 [2023-12-17]
 
 ## New Features:
 
@@ -42,13 +43,13 @@ Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 -   Core Conditions moved out of the Stats Tab and into the new Effects Tab, functionality remains the same
 -   Compendiums are now built automatically when we release a new version of the System. Previously this had to be done manually and caused extra effort in making new releases that included changes to Compendiums, now the process takes fewer steps and it's less error-prone. This is a developer feature and won't affect the gameplay in any way
 
-# Early Access v0.8.128 [2023-12-13]
+# Closed Beta v0.8.128 [2023-12-13]
 
 ## New Features:
 
--   Introducing the new Active Effects system, available in Beta Testing mode. This new system will allow you to create custom effects that can be applied to Actors and Items. This feature is in active development and will be out of Beta Testing with Early Access v0.9
+-   Introducing the new Active Effects system, available in Beta Testing mode. This new system will allow you to create custom effects that can be applied to Actors and Items. This feature is in active development and will be out of Beta Testing during Early Access v0.9
 -   Added new Status Effects, available to Narrators via Right-Clicking a Token in the Canvas. This feature is in Early Access Final Testing and will be available to all players with Early Access v0.9
--   Introducing the Targeting system. Now players are able to utilize the built-in Targeting functionality that Foundry VTT provides and the Target Names will be displayed as part of the Activation of a Metapower or Possession. This feature is in Early Access Final Testing and will be available to all players with Early Access v0.9
+-   Introducing the Targeting system. Now players are able to utilize the built-in Targeting functionality that Foundry VTT provides and the Target Names will be displayed as part of the Activation of a Metapower or Possession. This feature is in Early Access Final Testing and will be available to all players during Early Access v0.9
 
 ## Changed:
 

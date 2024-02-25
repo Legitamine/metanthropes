@@ -1,7 +1,26 @@
 /**
  * Metanthropes Early Access System for Foundry VTT
  * Author: qp aka The Orchestrator
+ * Discord: qp#8888 ; q_._p
  *
+ *? The below notice is for developers & code reviewers taking a look at the codebase.
+ *! This project is a work in progress and is currently in the early stages of development.
+ * The few sections that have code provided to me by the FVTT Discord community, the contributors are credited in the comments.
+ * Once this project is out of Early Access, I will be sure to give proper credit all the folks who have helped me along the way.
+ *! Shoutout to the FoundryVTT Discord community, especially the #system-development channel and special thanks to the following people:
+ * - @TyphonJS (Michael) for the metaLogDocument function
+ * - @Zhell (zhell9201) for the overall help & guidance
+ * - @Mana (manaflower) for the overall help & CSS wizardry
+ * - @ChaosOS for the overall help & CLI guidance
+ * - @mxzf for the overall help & guidance and their amazing website of FVTT resources
+ *! Special shoutout to the code-wizard @aMUSiC who has guided me to avoid many pitfalls and who will be assisting with code-reviews post Early Access!
+ * If you would like to contribute to this project, please feel free to reach out to me.
+ *
+ * * Although I come with 20+ years of experience in IT, this is my very first code project & it started back in late Feb 2023 
+ * * I do understand that I have a long way to go as a developer, and I am committed to become better at it!
+ * * I have been using ChatGPT v4 as a tutor and teacher to help me learn how to code, especially during the early days, not so much since 2024.
+ * * I am eager to learn and improve my skills, so any constructive feedback is more than welcome.
+ * 
  * Throughtout this project, I use the following syntax for comments:
  ** //! Marks a special comment that stands out (in Red) for critical notes.
  ** //* Marks a comment that is used as a section header (in Green) for better visibility.
