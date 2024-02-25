@@ -4,6 +4,14 @@ These are the latest changes to the Metanthropes RPG System for Foundry VTT
 
 Based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format
 
+# Early Access v0.9.xxx [2024-02-xx]
+
+## Changed:
+- Cleaned up and improved the code documentation for the Early Access release. This is an on-going task with changes that won't affect the gameplay in any way, but will help other developers (and myself) when reviewing and making further changes to the code
+
+## Fixed:
+- Multi-Actions are now available only for the Main Action activation slot, to make it more clear that this is a special action that can only be used instead of your Main Action
+
 # Early Access v0.9.025 [2024-01-13]
 
 ## New Features:

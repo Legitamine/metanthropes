@@ -277,12 +277,10 @@ export class MetanthropesActorSheet extends ActorSheet {
 			case "singleColumn":
 				this.position.width = 200;
 				this.position.height = 900;
-				this._tabs[0].active = "cs-charstats";
 				break;
 			case "small":
 				this.position.width = 305;
 				this.position.height = 385;
-				this._tabs[0].active = "cs-charstats";
 				break;
 			case "medium":
 				this.position.width = 550;

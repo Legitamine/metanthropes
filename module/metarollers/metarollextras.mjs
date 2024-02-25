@@ -1,5 +1,5 @@
 import { metaLog, metaSheetRefresh, metaIsItemEquipped } from "../helpers/metahelpers.mjs";
-import { MetaRoll } from "./metaroll.mjs";
+import { metaRoll } from "./metaroll.mjs";
 /**
  * metaRolld10 handles the rolling of d10 dice for a given actor and purpose.
  *
@@ -213,7 +213,7 @@ export async function metaHungerRoll(actor, hungerLevel) {
 		metaLog(
 			3,
 			"metaHungerRoll",
-			"Engaging Metaroll with:",
+			"Engaging metaRoll with:",
 			actor,
 			MetaRollBeforeHungerCheck.action,
 			MetaRollBeforeHungerCheck.stat,
@@ -221,7 +221,7 @@ export async function metaHungerRoll(actor, hungerLevel) {
 			MetaRollBeforeHungerCheck.destinyCost,
 			MetaRollBeforeHungerCheck.itemName
 		);
-		MetaRoll(
+		metaRoll(
 			actor,
 			MetaRollBeforeHungerCheck.action,
 			MetaRollBeforeHungerCheck.stat,

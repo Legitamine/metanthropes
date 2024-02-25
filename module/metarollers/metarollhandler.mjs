@@ -1,4 +1,4 @@
-import { MetaRoll } from "./metaroll.mjs";
+import { metaRoll } from "./metaroll.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
 import { metaCoverRoll } from "./metarollextras.mjs";
 /**
@@ -7,7 +7,7 @@ import { metaCoverRoll } from "./metarollextras.mjs";
  * This function is expected to be called via a button or click event in the actor or item sheet, not called directly.
  * This function processes the roll request based on the roll type specified in the dataset of the event target.
  * It supports different roll types such as "StatRoll", "Metapower", and "Possession". Depending on the roll type,
- * it engages the MetaRoll function with the appropriate parameters.
+ * it engages the metaRoll function with the appropriate parameters.
  *
  * @param {Event} event - The triggering event, typically a button click.
  * @param {Object} metaSheet - The sheet (actor or item) from which the roll is initiated.
@@ -37,15 +37,15 @@ export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 		const itemName = dataset.itemName || null; //? Item Name is optional, so if it's not defined, set it to null
 		switch (dataset.rollType) {
 			case "StatRoll":
-				metaLog(3, "metaHandleRolls", "Engaging MetaRoll for:", actor.name + "'s", action, "with", stat);
-				await MetaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
+				metaLog(3, "metaHandleRolls", "Engaging metaRoll for:", actor.name + "'s", action, "with", stat);
+				await metaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
 				metaLog(3, "metaHandleRolls", "Finished Rolling for StatRoll");
 				break;
 			case "Metapower":
 				metaLog(
 					3,
 					"metaHandleRolls",
-					"Engaging MetaRoll for:",
+					"Engaging metaRoll for:",
 					actor.name + "'s",
 					action,
 					"Metapower:",
@@ -55,14 +55,14 @@ export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 					"with:",
 					stat
 				);
-				await MetaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
+				await metaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
 				metaLog(3, "metaHandleRolls", "Finished Rolling for Metapower");
 				break;
 			case "Possession":
 				metaLog(
 					3,
 					"metaHandleRolls",
-					"Engaging MetaRoll for:",
+					"Engaging metaRoll for:",
 					actor.name + "'s",
 					action,
 					"Possession:",
@@ -70,7 +70,7 @@ export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 					"with:",
 					stat
 				);
-				await MetaRoll(actor, action, stat, isCustomRoll, 0, itemName);
+				await metaRoll(actor, action, stat, isCustomRoll, 0, itemName);
 				metaLog(3, "metaHandleRolls", "Finished Rolling for Possession");
 				break;
 			default:

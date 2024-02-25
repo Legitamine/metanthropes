@@ -19,13 +19,13 @@ import { metaHungerRoll } from "./metarollextras.mjs";
  *
  * @example
  * Rolling a simple stat
- * MetaRoll(actor, "StatRoll", "Power");
+ * metaRoll(actor, "StatRoll", "Power");
  */
-export async function MetaRoll(actor, action, stat, isCustomRoll = false, destinyCost = 0, itemName = null) {
+export async function metaRoll(actor, action, stat, isCustomRoll = false, destinyCost = 0, itemName = null) {
 	//? Initialize the actor's RollStat array before proceeding
 	await actor.getRollData();
 	const statScore = actor.system.RollStats[stat];
-	metaLog(3, "MetaRoll", "Engaged for", actor.type + ":", actor.name + "'s", action, "with", stat);
+	metaLog(3, "metaRoll", "Engaged for", actor.type + ":", actor.name + "'s", action, "with", stat);
 	//* Go through a series of tests and checks before actually rolling the dice
 	//? Check if we are ok to do the roll stat-wise
 	if (statScore <= 0) {
@@ -48,7 +48,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		if (hungerRollResult) {
 			//? If the flag exists, we clear it and resume running the rest of the checks
 			await actor.unsetFlag("metanthropes", "hungerRollResult");
-			metaLog(3, "MetaRoll", "Hunger Check Passed, moving on");
+			metaLog(3, "metaRoll", "Hunger Check Passed, moving on");
 			//todo: perhaps I should minimize the sheet while the hunger check is happening?
 			break hungerCheck;
 		} else {
@@ -60,7 +60,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 				destinyCost: destinyCost,
 				itemName: itemName,
 			});
-			metaLog(3, "MetaRoll", "Hunger Check Failed, Engaging Hunger Roll");
+			metaLog(3, "metaRoll", "Hunger Check Failed, Engaging Hunger Roll");
 			await metaHungerRoll(actor, hungerLevel);
 			return;
 		}
@@ -88,14 +88,14 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 	let perkReduction = 0;
 	if (itemName && action === "Possession") {
 		const requiredPerk = actor.items.getName(itemName).system.RequiredPerk.value;
-		metaLog(3, "MetaRoll", "Required Perk for", itemName, "is", requiredPerk);
+		metaLog(3, "metaRoll", "Required Perk for", itemName, "is", requiredPerk);
 		if (requiredPerk !== "None") {
 			const requiredPerkLevel = actor.items.getName(itemName).system.RequiredPerkLevel.value;
 			const actorPerkLevel = actor.system.Perks.Skills[requiredPerk].value;
 			const levelDifference = requiredPerkLevel - actorPerkLevel;
 			if (levelDifference > 0) {
 				perkReduction = levelDifference * -10;
-				metaLog(2, "MetaRoll", "Perk Penalty for", actor.name, "is", perkReduction);
+				metaLog(2, "metaRoll", "Perk Penalty for", actor.name, "is", perkReduction);
 			}
 		}
 	}
@@ -107,8 +107,8 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 	let customReduction = 0;
 	let aimingReduction = 0;
 	if (isCustomRoll) {
-		metaLog(3, "MetaRoll", "Custom Roll Detected");
-		let { multiAction, bonus, customPenalty, customReduction, aimingReduction } = await MetaRollCustomDialog(
+		metaLog(3, "metaRoll", "Custom Roll Detected");
+		let { multiAction, bonus, customPenalty, customReduction, aimingReduction } = await metaRollCustomDialog(
 			actor,
 			action,
 			stat,
@@ -117,7 +117,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		);
 		metaLog(
 			3,
-			"MetaRoll",
+			"metaRoll",
 			"Custom Roll Values:",
 			multiAction,
 			bonus,
@@ -134,7 +134,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		}
 		metaLog(
 			3,
-			"MetaRoll",
+			"metaRoll",
 			"Engaging MetaEvaluate for:",
 			actor.name + "'s Custom",
 			action,
@@ -179,7 +179,7 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 		penalty = diseasePenalty;
 		metaLog(
 			3,
-			"MetaRoll",
+			"metaRoll",
 			"Engaging MetaEvaluate for:",
 			actor.name + "'s",
 			action,
@@ -223,14 +223,14 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
 	}
 	//* Post-Evaluate-roll actions
 	// intentionally left blank
-	metaLog(3, "MetaRoll", "Finished");
+	metaLog(3, "metaRoll", "Finished");
 }
 /**
  * Handles the dialog box for custom multi-actions and bonuses/penalties when rolling.
  *
  * This function is intended to be called when the user 'right-clicks' the roll button,
  * allowing for more complex roll configurations. It provides a dialog for the user to
- * select multi-actions, bonuses, and penalties, and then returns those values to the MetaRoll function.
+ * select multi-actions, bonuses, and penalties, and then returns those values to the metaRoll function.
  *
  * @param {Object} actor - The actor making the roll. Expected to be an Actor object.
  * @param {string} action - The type of action being performed (e.g., "StatRoll", "Initiative"). Expected to be a string.
@@ -241,9 +241,9 @@ export async function MetaRoll(actor, action, stat, isCustomRoll = false, destin
  * @returns {Promise<Object>} A promise that resolves with an object containing multiAction, bonus, and customPenalty values.
  *
  * @example
- * This function is intended to be called within the MetaRoll function and not used directly.
+ * This function is intended to be called within the metaRoll function and not used directly.
  */
-export async function MetaRollCustomDialog(actor, action, stat, statScore, itemName = null) {
+export async function metaRollCustomDialog(actor, action, stat, statScore, itemName = null) {
 	return new Promise((resolve) => {
 		//? calculate the max number of multi-actions possible based on the stat value
 		const maxMultiActions = Math.floor((statScore - 1) / 10);
@@ -263,13 +263,19 @@ export async function MetaRollCustomDialog(actor, action, stat, statScore, itemN
 			dialogButtonLabel = `Use 🛠️ ${itemName}`;
 		}
 		//? Create the Dialog content
-		let dialogContent = `
-			<div class="metanthropes layout-metaroll-dialog style-metaroll-dialog">
-				<p>Total number of Multi-Actions:	<select id="multiActionCount">
-					<option value="no">None</option>
-					${multiActionOptions.map((option) => `<option value="${option}">${option}</option>`).join("")}
-				</select></p>
+		let dialogContent = `<div class="metanthropes layout-metaroll-dialog style-metaroll-dialog">`;
+		//? Check if Multi-Actions are possible and add the option to the dialog
+		if (itemName) {
+			const actionSlot = actor.items.getName(itemName).system.Execution.ActionSlot.value;
+			if (actionSlot === "Main Action") {
+				dialogContent += `<p>Total number of Multi-Actions:	<select id="multiActionCount">
+						<option value="no">None</option>
+						${multiActionOptions.map((option) => `<option value="${option}">${option}</option>`).join("")}
+					</select></p>
 				`;
+			}
+		}
+		//? Check if we are in Beta Testing and add the Aiming Reduction option
 		if (action !== "StatRoll" && isBetaTesting) {
 			dialogContent += `
 				<div>
@@ -279,6 +285,7 @@ export async function MetaRollCustomDialog(actor, action, stat, statScore, itemN
 				</div>
 				`;
 		}
+		//? Add the Bonus, Penalty, and Custom Reduction options to the dialog
 		dialogContent += `
 					<div>
 					<br>
@@ -301,7 +308,7 @@ export async function MetaRollCustomDialog(actor, action, stat, statScore, itemN
 					callback: async (html) => {
 						//? collect multi-action value
 						let multiAction = html.find("#multiActionCount").val();
-						if (multiAction === "no") {
+						if (multiAction === "no" || multiAction == undefined || multiAction == null) {
 							multiAction = 0;
 						} else {
 							let selectedMultiActions = parseInt(html.find("#multiActionCount").val());
@@ -313,7 +320,7 @@ export async function MetaRollCustomDialog(actor, action, stat, statScore, itemN
 						//? Collect Reductions
 						let customReduction = -parseInt(html.find("#customReduction").val());
 						let aimingReduction = -parseInt(html.find("#aimingReduction").val()) || 0;
-						//? Return the data we collected to the MetaRoll function
+						//? Return the data we collected to the metaRoll function
 						resolve({ multiAction, bonus, customPenalty, customReduction, aimingReduction });
 					},
 				},

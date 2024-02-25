@@ -564,7 +564,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 	//! the idea here being that if the flags are going to be added later, here we prevent them from remaining from previous successful activations
 	await actor.unsetFlag("metanthropes", "duplicateSelf");
 	//? Get the result of the last roll
-	metaLog(3, "MetaExecute", "Post Execution Actions");
+	metaLog(3, "metaExecute", "Post Execution Actions");
 	let checkResult = await actor.getFlag("metanthropes", "lastrolled").MetaEvaluate;
 	//* Check for Duplicate Self Metapower Activation
 	if (
@@ -576,7 +576,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			itemName === "Squad" ||
 			itemName === "Unit")
 	) {
-		metaLog(3, "MetaRoll", "Duplicate Self Metapower Activation Detected");
+		metaLog(3, "metaExecute", "Duplicate Self Metapower Activation Detected");
 		let currentLife = actor.system.Vital.Life.value;
 		let duplicateMaxLife = 0;
 		if (itemName === "Clone") {
@@ -591,7 +591,7 @@ export async function MetaExecute(event, actorUUID, action, itemName, multiActio
 			duplicateMaxLife = Math.ceil(currentLife * 0.5);
 		}
 		await actor.setFlag("metanthropes", "duplicateSelf", { maxLife: duplicateMaxLife });
-		metaLog(3, "MetaRoll", "Duplicate Self Metapower Max Life:", duplicateMaxLife);
+		metaLog(3, "metaExecute", "Duplicate Self Metapower Max Life:", duplicateMaxLife);
 	}
 	//* Visual Effects
 	//* Sound Effects

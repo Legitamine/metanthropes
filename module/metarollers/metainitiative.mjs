@@ -1,11 +1,11 @@
-import { MetaRoll } from "./metaroll.mjs";
+import { metaRoll } from "./metaroll.mjs";
 import { metaLog, metaSheetRefresh } from "../helpers/metahelpers.mjs";
 
 /**
  * MetaInitiative handles Initiative rolls for a given combatant.
  *
  * This function determines the best stat to use for Initiative based on the combatant's Metapowers.
- * It then calls the MetaRoll function for that stat and updates the combatant's Initiative score with the result.
+ * It then calls the metaRoll function for that stat and updates the combatant's Initiative score with the result.
  * todo: I should manipulate here the Initiative result based on the combatant's Metapowers
  * todo: I need to figure out a way to kick combatants off the active encounter if it's their turn to play or to roll for initiative and are unconscious
  * The function works for both linked and unlinked actors.
@@ -56,14 +56,14 @@ export async function MetaInitiative(combatant) {
 	initiativeStats.sort((a, b) => b.score - a.score);
 	//? The initiativeStatRolled becomes the name of the stat with the highest score
 	initiativeStatRolled = initiativeStats[0].name;
-	//? Call MetaRoll
+	//? Call metaRoll
 	let action = "Initiative";
 	let initiativeResult;
 	//* Special Initiative Rules
 	if (!(actor.name.includes("Duplicate") || actor.type.includes("Animated"))) {
-		//? If the actor is not a Duplicate or Animated, MetaRoll for Initiative
-		metaLog(3, "MetaInitiative", "Engaging MetaRoll for:", actor.name + "'s", action, "with", initiativeStatRolled);
-		await MetaRoll(actor, action, initiativeStatRolled);
+		//? If the actor is not a Duplicate or Animated, metaRoll for Initiative
+		metaLog(3, "MetaInitiative", "Engaging metaRoll for:", actor.name + "'s", action, "with", initiativeStatRolled);
+		await metaRoll(actor, action, initiativeStatRolled);
 		initiativeResult = await actor.getFlag("metanthropes", "lastrolled").Initiative;
 	} else {
 		//? Logic for Duplicates & Animated
@@ -81,7 +81,7 @@ export async function MetaInitiative(combatant) {
 	metaLog(
 		3,
 		"MetaInitiative",
-		"MetaRoll Result for",
+		"metaRoll Result for",
 		actor.name + "'s Initiative with",
 		initiativeStatRolled,
 		"was:",
