@@ -1,31 +1,33 @@
 /**
  * Metanthropes Early Access System for Foundry VTT
- * Author: qp aka The Orchestrator
+ * Author: The Orchestrator (qp)
  * Discord: qp#8888 ; q_._p
  *
- *? The below notice is for developers & code reviewers taking a look at the codebase.
- *! This project is a work in progress and is currently in the early stages of development.
- * The few sections that have code provided to me by the FVTT Discord community, the contributors are credited in the comments.
- * Once this project is out of Early Access, I will be sure to give proper credit all the folks who have helped me along the way.
- *! Shoutout to the FoundryVTT Discord community, especially the #system-development channel and special thanks to the following people:
- * - @TyphonJS (Michael) for the metaLogDocument function
- * - @Zhell (zhell9201) for the overall help & guidance
- * - @Mana (manaflower) for the overall help & CSS wizardry
- * - @ChaosOS for the overall help & CLI guidance
- * - @mxzf for the overall help & guidance and their amazing website of FVTT resources
- *! Special shoutout to the code-wizard @aMUSiC who has guided me to avoid many pitfalls and who will be assisting with code-reviews post Early Access!
- * If you would like to contribute to this project, please feel free to reach out to me.
+ *? The below notice is for developers, code reviewers and anyone curious enough to take a look at the code.
  *
  * * Although I come with 20+ years of experience in IT, this is my very first code project & it started back in late Feb 2023 
  * * I do understand that I have a long way to go as a developer, and I am committed to become better at it!
- * * I have been using ChatGPT v4 as a tutor and teacher to help me learn how to code, especially during the early days, not so much since 2024.
- * * I am eager to learn and improve my skills, so any constructive feedback is more than welcome.
+ * * Disclaimer: I have been using the AI from GitHub Co-pilot witin VSCode as well as ChatGPT v4 as a tutor and teacher to help me learn how to code.
+ * * I am very eager to learn and improve my skills, so any constructive feedback is more than welcome.
+ * 
+ * ! This project is a work in progress - please forgive the excessive commenting and notes scattered throughout the code.
+ * It will be properly cleaned up by the time it's out of Early Access. All of the code contained in this project is my own work.
+ * In a couple of sections where code was provided to me by the FVTT Discord community, the contributors are credited in the comments.
+ *! Shoutout to the FoundryVTT Discord community, especially the #system-development channel and extra-special thanks to the following people:
+ * - @TyphonJS (Michael) for the code used in the metaLogDocument function
+ * - @Zhell (zhell9201) for the overall help, guidance & suggestions
+ * - @Mana (manaflower) for the overall help, guidance & CSS wizardry
+ * - @ChaosOS for the overall help & CLI guidance
+ * - @mxzf for the overall help & patience & guidance & the amazing website of FVTT resources
+ *! Special shoutout to the code-wizard & RL buddy @aMUSiC, who has guided me to avoid many pitfalls and who will be assisting with code-reviews post Early Access!
+ * If you would like to contribute to this project, please feel free to reach out to me.
  * 
  * Throughtout this project, I use the following syntax for comments:
  ** //! Marks a special comment that stands out (in Red) for critical notes.
  ** //* Marks a comment that is used as a section header (in Green) for better visibility.
- ** //? Marks a comment that is used for elaborating my intent (in Blue) for better readability.
+ ** //? Marks a comment that is used for sub-sections and for elaborating my intent (in Blue) for better readability.
  ** //todo Marks a comment that is used for marking (in Orange) potential optimization notes.
+ *** // comments without any special syntax are used for quick notes and explanations.
  *
  * To get automatic colloring for these comments in VSCode, you can use this extension:
  * aaron-bond.better-comments
@@ -61,7 +63,7 @@ import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 import { metaEvaluateReRoll } from "./metarollers/metaeval.mjs";
 import { metaRolld10ReRoll, metaHungerReRoll, metaCoverReRoll } from "./metarollers/metarollextras.mjs";
 import { MetaInitiativeReRoll } from "./metarollers/metainitiative.mjs";
-import { MetaExecute } from "./metarollers/metaexecute.mjs";
+import { metaExecute } from "./metarollers/metaexecute.mjs";
 import { metaMigrateData } from "./metanthropes/metamigration.mjs";
 import { metaLog, metaLogDocument } from "./helpers/metahelpers.mjs";
 //* Starting System
@@ -228,8 +230,8 @@ Hooks.once("init", async function () {
 	//? Uncomment for development
 	// console.log(CONFIG);
 	//? time in seconds for Round Duration
-	//todo: confirm default round time
-	//CONFIG.time.roundTime = 120;
+	//todo: review how we plan to handle 
+	//CONFIG.time.roundTime = 30;
 	//? Define custom document classes.
 	CONFIG.Actor.documentClass = MetanthropesActor;
 	CONFIG.Item.documentClass = MetanthropesItem;
@@ -255,9 +257,9 @@ Hooks.once("init", async function () {
 		This setting is used to keep track of the last migration script that was performed.
 		This setting is not visible in the UI and only used by the migration scripts.
 		`,
-		scope: "world", //? This specifies if it's a client-side setting
-		config: false, //? This makes the setting appear in the module configuration
-		requiresReload: false, //? If true, a client reload (F5) is required to activate the setting
+		scope: "world", // This specifies if it's a client-side setting
+		config: false, // This makes the setting appear in the module configuration
+		requiresReload: false, // If true, a client reload (F5) is required to activate the setting
 		type: String,
 		default: "0.8.20",
 	});
@@ -269,13 +271,13 @@ Hooks.once("init", async function () {
 		Enable this setting to see even more detailed logs in the Console.
 		You can press 'F12' in the Foundry Client or 'CTRL+SHIFT+i' in a Chrome-ium web browser to show the Console.
 		`,
-		scope: "client", //? This specifies if it's a client-side setting
-		config: true, //? This makes the setting appear in the module configuration
-		requiresReload: false, //? If true, a client reload (F5) is required to activate the setting
+		scope: "client", // This specifies if it's a client-side setting
+		config: true, // This makes the setting appear in the module configuration
+		requiresReload: false, // If true, a client reload (F5) is required to activate the setting
 		type: Boolean,
 		default: false,
 		onChange: (value) => {
-			//? Do something when the setting is changed, if necessary
+			// Do something when the setting is changed, if necessary
 		},
 	});
 	//? Introductory Module Settings
@@ -284,13 +286,13 @@ Hooks.once("init", async function () {
 		hint: `
 				Enable this setting to gain access to the Introductory Module features.
 				`,
-		scope: "world", //? This specifies if it's a client-side setting
-		config: false, //? This makes the setting appear in the module configuration
-		requiresReload: true, //? If true, a client reload (F5) is required to activate the setting
+		scope: "world", // This specifies if it's a client-side setting
+		config: false, // This makes the setting appear in the module configuration
+		requiresReload: true, // If true, a client reload (F5) is required to activate the setting
 		type: Boolean,
 		default: false,
 		onChange: (value) => {
-			//? Do something when the setting is changed, if necessary
+			// Do something when the setting is changed, if necessary
 		},
 	});
 	//? Core Module Settings
@@ -299,13 +301,13 @@ Hooks.once("init", async function () {
 		hint: `
 			Enable this setting to gain access to the Core Module Features.
 			`,
-		scope: "world", //? This specifies if it's a client-side setting
-		config: false, //? This makes the setting appear in the module configuration
-		requiresReload: true, //? If true, a client reload (F5) is required to activate the setting
+		scope: "world", // This specifies if it's a client-side setting
+		config: false, // This makes the setting appear in the module configuration
+		requiresReload: true, // If true, a client reload (F5) is required to activate the setting
 		type: Boolean,
 		default: false,
 		onChange: (value) => {
-			//? Do something when the setting is changed, if necessary
+			// Do something when the setting is changed, if necessary
 		},
 	});
 	//? Homebrew Module Settings
@@ -314,13 +316,13 @@ Hooks.once("init", async function () {
 		hint: `
 			Enable this setting to gain access to the Homebrew Module features.
 			`,
-		scope: "world", //? This specifies if it's a client-side setting
-		config: false, //? This makes the setting appear in the module configuration
-		requiresReload: true, //? If true, a client reload (F5) is required to activate the setting
+		scope: "world", // This specifies if it's a client-side setting
+		config: false, // This makes the setting appear in the module configuration
+		requiresReload: true, // If true, a client reload (F5) is required to activate the setting
 		type: Boolean,
 		default: false,
 		onChange: (value) => {
-			//? Do something when the setting is changed, if necessary
+			// Do something when the setting is changed, if necessary
 		},
 	});
 	//? Beta Features Testing
@@ -331,13 +333,13 @@ Hooks.once("init", async function () {
 		These features may not be fully functional and are subject to change during development.
 		Make sure you backup your world before enabling this setting - just to be safe.
 		`,
-		scope: "world", //? This specifies if it's a client-side setting
-		config: false, //? This makes the setting appear in the module configuration
-		requiresReload: true, //? If true, a client reload (F5) is required to activate the setting
+		scope: "world", // This specifies if it's a client-side setting
+		config: false, // This makes the setting appear in the module configuration
+		requiresReload: true, // If true, a client reload (F5) is required to activate the setting
 		type: Boolean,
 		default: false,
 		onChange: (value) => {
-			//? Do something when the setting is changed, if necessary
+			// Do something when the setting is changed, if necessary
 		},
 	});
 	//? Preload Handlebars templates.
@@ -437,23 +439,23 @@ Hooks.once("ready", async function () {
 			source: "data",
 			path: "systems/metanthropes/artwork/portraits/protagonist/feminine",
 		});
-		//? Add Metanthropes Music to Moulinette
-		game.moulinette.sources.push({
-			type: "sounds",
-			publisher: "Metanthropes",
-			pack: "Music",
-			source: "data",
-			path: "modules/metanthropes-ost/audio/music",
-		});
-		//? Add Metanthropes Sound Effects to Moulinette
-		game.moulinette.sources.push({
-			type: "sounds",
-			publisher: "Metanthropes",
-			pack: "Sound Effects",
-			source: "data",
-			path: "modules/metanthropes-ost/audio/sound-effects",
-		});
-		//* Free Content that we use in our closed Alpha Moulinette Integration
+		// //? Add Metanthropes Music to Moulinette
+		// game.moulinette.sources.push({
+		// 	type: "sounds",
+		// 	publisher: "Metanthropes",
+		// 	pack: "Music",
+		// 	source: "data",
+		// 	path: "modules/metanthropes-ost/audio/music",
+		// });
+		// //? Add Metanthropes Sound Effects to Moulinette
+		// game.moulinette.sources.push({
+		// 	type: "sounds",
+		// 	publisher: "Metanthropes",
+		// 	pack: "Sound Effects",
+		// 	source: "data",
+		// 	path: "modules/metanthropes-ost/audio/sound-effects",
+		// });
+		//* Free Content that we use in our Closed Alpha playtests
 		//? Add Dark Raven's Free Soundscapes to Moulinette (Free Module)
 		game.moulinette.sources.push({
 			type: "sounds",
@@ -597,9 +599,9 @@ Hooks.on("renderChatMessage", async (message, html) => {
 			} else if (button.hasClass("metainitiative-reroll")) {
 				MetaInitiativeReRoll(event);
 			} else if (button.hasClass("metapower-activate")) {
-				MetaExecute(event);
+				metaExecute(event);
 			} else if (button.hasClass("possession-use")) {
-				MetaExecute(event);
+				metaExecute(event);
 			} else if (button.hasClass("hunger-reroll")) {
 				metaHungerReRoll(event);
 			} else if (button.hasClass("cover-reroll")) {
