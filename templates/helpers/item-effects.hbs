@@ -183,7 +183,7 @@
 		{{/each}}
 	</div>
 	{{! -- Sound Effects --}}
-	{{#if isNarrator}}
+	{{#if (and isNarrator homebrewFeatures)}}
 		<div class="resource">
 			{{#each system.Effects.SFX}}
 				<div class="resource">

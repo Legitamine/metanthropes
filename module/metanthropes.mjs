@@ -7,19 +7,20 @@
  *
  * * Although I come with 20+ years of experience in IT, this is my very first code project & it started back in late Feb 2023 
  * * I do understand that I have a long way to go as a developer, and I am committed to become better at it!
- * * Disclaimer: I have been using the AI from GitHub Co-pilot witin VSCode as well as ChatGPT v4 as a tutor and teacher to help me learn how to code.
+ * * Disclaimer: I have been using the AI from GitHub Co-pilot within VSCode as well as ChatGPT v4 as a tutor and teacher to help me learn how to code.
  * * I am very eager to learn and improve my skills, so any constructive feedback is more than welcome.
  * 
  * ! This project is a work in progress - please forgive the excessive commenting and notes scattered throughout the code.
  * It will be properly cleaned up by the time it's out of Early Access. All of the code contained in this project is my own work.
- * In a couple of sections where code was provided to me by the FVTT Discord community, the contributors are credited in the comments.
- *! Shoutout to the FoundryVTT Discord community, especially the #system-development channel and extra-special thanks to the following people:
+ * In a couple of sections where code was provided to me by others in the FVTT Discord community, the contributors are credited in the comments.
+ * * Shoutout to the FoundryVTT Discord community, especially the #system-development channel and extra-special thanks to the following people:
  * - @TyphonJS (Michael) for the code used in the metaLogDocument function
  * - @Zhell (zhell9201) for the overall help, guidance & suggestions
  * - @Mana (manaflower) for the overall help, guidance & CSS wizardry
  * - @ChaosOS for the overall help & CLI guidance
  * - @mxzf for the overall help & patience & guidance & the amazing website of FVTT resources
- *! Special shoutout to the code-wizard & RL buddy @aMUSiC, who has guided me to avoid many pitfalls and who will be assisting with code-reviews post Early Access!
+ * - @asacolips for the Boilerplate code, without which I would have been completely lost and probably would have given up very early on
+ ** Special shoutout to the code-wizard & RL buddy @aMUSiC, who has guided me to avoid many pitfalls and who will be assisting with code-reviews post Early Access!
  * If you would like to contribute to this project, please feel free to reach out to me.
  * 
  * Throughtout this project, I use the following syntax for comments:
@@ -27,7 +28,7 @@
  ** //* Marks a comment that is used as a section header (in Green) for better visibility.
  ** //? Marks a comment that is used for sub-sections and for elaborating my intent (in Blue) for better readability.
  ** //todo Marks a comment that is used for marking (in Orange) potential optimization notes.
- *** // comments without any special syntax are used for quick notes and explanations.
+ *** // comments without any special syntax are used for quick notes and explanations of various options.
  *
  * To get automatic colloring for these comments in VSCode, you can use this extension:
  * aaron-bond.better-comments
@@ -62,7 +63,7 @@ import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 //? Import helpers
 import { metaEvaluateReRoll } from "./metarollers/metaeval.mjs";
 import { metaRolld10ReRoll, metaHungerReRoll, metaCoverReRoll } from "./metarollers/metarollextras.mjs";
-import { MetaInitiativeReRoll } from "./metarollers/metainitiative.mjs";
+import { metaInitiativeReRoll } from "./metarollers/metainitiative.mjs";
 import { metaExecute } from "./metarollers/metaexecute.mjs";
 import { metaMigrateData } from "./metanthropes/metamigration.mjs";
 import { metaLog, metaLogDocument } from "./helpers/metahelpers.mjs";
@@ -597,7 +598,7 @@ Hooks.on("renderChatMessage", async (message, html) => {
 			if (button.hasClass("metaeval-reroll")) {
 				metaEvaluateReRoll(event);
 			} else if (button.hasClass("metainitiative-reroll")) {
-				MetaInitiativeReRoll(event);
+				metaInitiativeReRoll(event);
 			} else if (button.hasClass("metapower-activate")) {
 				metaExecute(event);
 			} else if (button.hasClass("possession-use")) {

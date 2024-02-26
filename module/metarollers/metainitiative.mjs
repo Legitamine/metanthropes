@@ -2,7 +2,7 @@ import { metaRoll } from "./metaroll.mjs";
 import { metaLog, metaSheetRefresh } from "../helpers/metahelpers.mjs";
 
 /**
- * MetaInitiative handles Initiative rolls for a given combatant.
+ * metaInitiative handles Initiative rolls for a given combatant.
  *
  * This function determines the best stat to use for Initiative based on the combatant's Metapowers.
  * It then calls the metaRoll function for that stat and updates the combatant's Initiative score with the result.
@@ -15,10 +15,10 @@ import { metaLog, metaSheetRefresh } from "../helpers/metahelpers.mjs";
  * @returns {Promise<void>} A promise that resolves once the function completes its operations.
  *
  * @example
- * MetaInitiative(combatant);
+ * metaInitiative(combatant);
  */
-export async function MetaInitiative(combatant) {
-	metaLog(3, "MetaInitiative", "Engaged for combatant:", combatant);
+export async function metaInitiative(combatant) {
+	metaLog(3, "metaInitiative", "Engaged for combatant:", combatant);
 	//? Check to see if this is a linked actor
 	let actor = null;
 	if (combatant.token.actorLink) {
@@ -31,7 +31,7 @@ export async function MetaInitiative(combatant) {
 	}
 	//? Initialize the actor's RollStat array before proceeding
 	await actor.getRollData();
-	metaLog(3, "MetaInitiative", "Engaged for:", actor.name);
+	metaLog(3, "metaInitiative", "Engaged for:", actor.name);
 	//? Check for alternate Stat to use for Initiative
 	const reflexesStat = "Reflexes";
 	const awarenessStat = "Awareness";
@@ -62,7 +62,7 @@ export async function MetaInitiative(combatant) {
 	//* Special Initiative Rules
 	if (!(actor.name.includes("Duplicate") || actor.type.includes("Animated"))) {
 		//? If the actor is not a Duplicate or Animated, metaRoll for Initiative
-		metaLog(3, "MetaInitiative", "Engaging metaRoll for:", actor.name + "'s", action, "with", initiativeStatRolled);
+		metaLog(3, "metaInitiative", "Engaging metaRoll for:", actor.name + "'s", action, "with", initiativeStatRolled);
 		await metaRoll(actor, action, initiativeStatRolled);
 		initiativeResult = await actor.getFlag("metanthropes", "lastrolled").Initiative;
 	} else {
@@ -80,7 +80,7 @@ export async function MetaInitiative(combatant) {
 	await combatant.update({ initiative: initiativeResult });
 	metaLog(
 		3,
-		"MetaInitiative",
+		"metaInitiative",
 		"metaRoll Result for",
 		actor.name + "'s Initiative with",
 		initiativeStatRolled,
@@ -90,10 +90,10 @@ export async function MetaInitiative(combatant) {
 }
 
 /**
- * MetaInitiativeReRoll handles the re-roll of a previously evaluated Initiative roll by spending Destiny.
+ * metaInitiativeReRoll handles the re-roll of a previously evaluated Initiative roll by spending Destiny.
  *
  * This function is triggered when the "Spend Destiny to reroll" button is clicked in the chat.
- * It reduces the actor's Destiny by 1 and then calls the MetaInitiative function to recalculate the initiative.
+ * It reduces the actor's Destiny by 1 and then calls the metaInitiative function to recalculate the initiative.
  * The button is only visible to the owner of the actor or a GM.
  *
  * @param {Event} event - The event object from the button click.
@@ -103,20 +103,20 @@ export async function MetaInitiative(combatant) {
  * @example
  * This function is typically called via an event listener and not directly.
  */
-export async function MetaInitiativeReRoll(event) {
+export async function metaInitiativeReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
 	const actorUUID = button.dataset.actoruuid;
 	const action = button.dataset.action;
 	const actor = await fromUuid(actorUUID);
 	const combatant = game.combat.getCombatantByActor(actor);
-	metaLog(3, "MetaInitiativeReRoll", "Engaged for combatant:", combatant);
+	metaLog(3, "metaInitiativeReRoll", "Engaged for combatant:", combatant);
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	//? Reduce Destiny.value by 1
 	currentDestiny--;
 	await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-	metaLog(3, "MetaInitiativeReRoll", "Engaging MetaInitiative for:", actor.name);
-	await MetaInitiative(combatant);
+	metaLog(3, "metaInitiativeReRoll", "Engaging metaInitiative for:", actor.name);
+	await metaInitiative(combatant);
 	//? Refresh the actor sheet if it's open
 	metaSheetRefresh(actor);
 }

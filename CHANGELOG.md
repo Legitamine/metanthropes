@@ -4,7 +4,6 @@ These are the latest changes to the Metanthropes System for Foundry VTT
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
-
 ---
 
 ### Early Access Releases
@@ -15,12 +14,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ## Changed:
 
-- Cleaned up and improved the code documentation for the Early Access release. This is an on-going task with changes that won't affect the gameplay in any way, but will help other developers (and myself) when reviewing and making further changes to the code
-- Resizing the Actor sheet via the header buttons will not change the active tab anymore, to avoid confusion
+-   Cleaned up and improved the code documentation for the Early Access release. This is an on-going task with changes that won't affect the gameplay in any way, but will help other developers (and myself) when reviewing and making further changes to the code
+-   Resizing the Actor sheet via the header buttons will not change the active tab anymore, to avoid confusion
 
 ## Fixed:
 
-- Multi-Actions are now available only for the Main Action activation slot, to make it more clear that this is a special action that can only be used instead of your Main Action
+-   Multi-Actions are now available only for Metapowers & Possessions with 'Main Action' as their activation cost and also for Stat Rolls and won't be available with other types of rolls
 
 ---
 
@@ -32,11 +31,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ## New Features:
 
-- Sound Effects for Items: A new section is available for Metapowers / Possessions under Item / Effects Tab (editable if you have the Homebrew Module) that allows you to define a SFX Compendium and a SFX Name to play an Audio File when activating/using this Item. This section is not visible to Players, only Narrators
+-   Sound Effects for Items: A new section is available for Metapowers / Possessions under Item / Effects Tab (editable if you have the Homebrew Module) that allows you to define a SFX Compendium and a SFX Name to play an Audio File when activating/using this Item. This section is not visible to Players, only Narrators
 
 ## Changed:
 
-- Changed the UI to not allow changes to the Progression of Actors, unless the 'metanthropes-core' Module is enabled
+-   Changed the UI to not allow changes to the Progression of Actors, unless the 'metanthropes-core' Module is enabled
 
 # Closed Beta v0.9.013 [2023-12-22]
 
