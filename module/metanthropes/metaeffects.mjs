@@ -18,7 +18,7 @@ export function onManageActiveEffect(event, owner) {
 			return owner.createEmbeddedDocuments("ActiveEffect", [
 				{
 					name: "New Effect",
-					icon: "systems/metanthropes/artwork/status-effects/test.svg",
+					icon: "systems/metanthropes/artwork/status-effects/metanthropes-logo.svg",
 					origin: owner.uuid,
 					"duration.rounds": li.dataset.effectType === "temporary" ? 1 : undefined,
 					disabled: li.dataset.effectType === "inactive",
