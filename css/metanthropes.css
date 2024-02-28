@@ -70,7 +70,7 @@ footer {
 button {
   font-family: "nasalization", sans-serif;
   background-image: url("../artwork/ui/buttons/button-3dhex.webp");
-  background-size: contain;
+  background-size: cover;
   text-shadow: 1px 1px 1px blue, 0 0 0.2em red, 0 0 0.2em red;
   border: 2px groove #7d0f81;
   border-radius: 15px;
