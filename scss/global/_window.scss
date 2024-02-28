@@ -63,7 +63,7 @@ footer {
 button {
 	font-family: $font-primary;
 	background-image: url("../artwork/ui/buttons/button-3dhex.webp");
-	background-size: contain;
+	background-size: cover;
 	text-shadow: $s-button;
 	border: $border-groove;
 	border-radius: $border-radius;

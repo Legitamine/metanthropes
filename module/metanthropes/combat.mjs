@@ -330,6 +330,7 @@ export class MetanthropesCombat extends Combat {
 				break;
 			case 3:
 				cycle = 2;
+				console.log("case3");
 				break;
 			default:
 				if (this.round > 2 && (this.round - 1) % 2 === 0) {
@@ -342,7 +343,7 @@ export class MetanthropesCombat extends Combat {
 		//? Set cycle as a flag in the Combat document
 		await this.setFlag("metanthropes", "cycle", cycle);
 		//? Reroll initiative for all combatants at the start of a new Cycle
-		if (cycle > 1 && cycle % 2 !== 0) {
+		if (cycle > 1 && this.round % 2 !== 0) {
 			await this.resetAll();
 			this.setupTurns();
 			await ChatMessage.create({
