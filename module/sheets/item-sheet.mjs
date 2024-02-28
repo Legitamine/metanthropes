@@ -40,7 +40,8 @@ export class MetanthropesItemSheet extends ItemSheet {
 	/** @override */
 	get template() {
 		const path = "systems/metanthropes/templates/item";
-		return `${path}/item-${this.item.type}-sheet.hbs`;
+		const itemType = this.item.type.toLowerCase();
+		return `${path}/item-${itemType}-sheet.hbs`;
 	}
 	/** @override */
 	async getData(options = {}) {
