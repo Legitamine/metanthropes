@@ -74,7 +74,8 @@ export class MetanthropesItem extends Item {
 		//? Give Metapowers an image based on the Metapower Name
 		if (this.type === "Metapower") {
 			const mpname = this.system.MetapowerName.value;
-			const imgPath = `systems/metanthropes/artwork/metapowers/${mpname}.webp`;
+			const encodedMPName = encodeURIComponent(mpname);
+			const imgPath = `systems/metanthropes/artwork/metapowers/${encodedMPName}.webp`;
 			this.img = imgPath;
 		}
 	}
