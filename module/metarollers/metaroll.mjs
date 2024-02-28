@@ -282,15 +282,15 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 				`;
 		}
 		//? Check if we are in Beta Testing and add the Aiming Reduction option
-		if (action !== "StatRoll" && isBetaTesting) {
-			dialogContent += `
-				<div>
-					<br>
-					<span>Aiming Reduction: <input class="style-container-input-charstat"
-						type="number" id="aimingReduction" min="0" value="0">%</span><br>
-				</div>
-				`;
-		}
+		// if (action !== "StatRoll" && isBetaTesting) {
+		// 	dialogContent += `
+		// 		<div>
+		// 			<br>
+		// 			<span>Aiming Reduction: <input class="style-container-input-charstat"
+		// 				type="number" id="aimingReduction" min="0" value="0">%</span><br>
+		// 		</div>
+		// 		`;
+		// }
 		//? Add the Bonus, Penalty, and Custom Reduction options to the dialog
 		dialogContent += `
 					<div>
