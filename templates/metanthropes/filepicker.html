@@ -1,14 +1,14 @@
 <form class="standard-form {{ cssClass }}" autocomplete="off" enctype="multipart/form-data">
 	<header class="filepicker-header">
 
-		{{#if user.isGM}}
-			<nav class="tabs" aria-role="{{localize 'SHEETS.FormNavLabel'}}">
-				{{#each sources as |source id|}}
-					<a class="item" data-tab="{{id}}"><i class="{{source.icon}}"></i>
-						{{source.label}}</a>
-				{{/each}}
-			</nav>
-		{{/if}}
+
+		<nav class="tabs" aria-role="{{localize 'SHEETS.FormNavLabel'}}">
+			{{#each sources as |source id|}}
+				<a class="item" data-tab="{{id}}"><i class="{{source.icon}}"></i>
+					{{source.label}}</a>
+			{{/each}}
+		</nav>
+
 		<div class="form-group current-dir">
 
 			<button type="button" class="back" data-action="back" {{#unless canGoBack}}disabled{{/unless}}>
@@ -31,49 +31,46 @@
 				</button>
 			{{/if}}
 		</div>
-		{{#if user.isGM}}
-			<div class="form-group favorites">
-				<div class="label">
-					<span>{{ localize "FILES.FavoritesLabel" }} </span>
-					<a data-action="setFavorite"
-						data-tooltip="{{ localize "FILES.AddFavorite" }}"><i
-							class="fas fa-plus"></i></a>
-				</div>
-				<div class="paths">
-					{{#each favorites }}
-						<span class="path">
-							<a class="link" data-tooltip="{{ this.path }}"
-								data-source="{{ this.source }}"
-								data-path="{{ this.path }}"
-								data-action="goToFavorite">{{ this.label }}</a>
-							<a class="remove" data-tooltip="Remove from favorites"
-								data-source="{{ this.source }}"
-								data-path="{{ this.path }}"
-								data-action="removeFavorite"><i
-									class="fa-solid fa-trash"></i></a>
-						</span>
-					{{/each}}
-				</div>
+
+		<div class="form-group favorites">
+			<div class="label">
+				<span>{{ localize "FILES.FavoritesLabel" }} </span>
+				<a data-action="setFavorite" data-tooltip="{{ localize "FILES.AddFavorite" }}"><i
+						class="fas fa-plus"></i></a>
 			</div>
+			<div class="paths">
+				{{#each favorites }}
+					<span class="path">
+						<a class="link" data-tooltip="{{ this.path }}"
+							data-source="{{ this.source }}" data-path="{{ this.path }}"
+							data-action="goToFavorite">{{ this.label }}</a>
+						<a class="remove" data-tooltip="Remove from favorites"
+							data-source="{{ this.source }}" data-path="{{ this.path }}"
+							data-action="removeFavorite"><i
+								class="fa-solid fa-trash"></i></a>
+					</span>
+				{{/each}}
+			</div>
+		</div>
 
-			{{#if isS3}}
-				<div class="form-group bucket">
-					<label>{{ localize "FILES.S3Label" }}</label>
-					<select name="bucket">
-						{{#select source.bucket}}
-							{{#each source.buckets}}
-								<option value="{{this}}">{{this}}</option>
-							{{/each}}
-						{{/select}}
-					</select>
-				</div>
-			{{/if}}
-
-			<div class="form-group filter-dir">
-				<label>{{ localize "FILES.FilterLabel" }}</label>
-				<input type="search" name="filter" placeholder="{{ localize "FILES.Search" }}">
+		{{#if isS3}}
+			<div class="form-group bucket">
+				<label>{{ localize "FILES.S3Label" }}</label>
+				<select name="bucket">
+					{{#select source.bucket}}
+						{{#each source.buckets}}
+							<option value="{{this}}">{{this}}</option>
+						{{/each}}
+					{{/select}}
+				</select>
 			</div>
 		{{/if}}
+
+		<div class="form-group filter-dir">
+			<label>{{ localize "FILES.FilterLabel" }}</label>
+			<input type="search" name="filter" placeholder="{{ localize "FILES.Search" }}">
+		</div>
+
 		<div class="form-group">
 			<label>{{ localize "FILES.DisplayMode" }}</label>
 			<div class="form-fields display-modes">
