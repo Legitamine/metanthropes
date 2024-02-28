@@ -1,6 +1,6 @@
 # Changelog Archives
 
-Version 0.7.85 brought the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format to the Changelog. This file contains the changelog from previous versions of the system. It is only kept for posterity and nostalgia
+Version 0.7.85 brought the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format to the Changelog. This file contains the changelog from previous versions of the system
 
 ## Why not just delete it?
 

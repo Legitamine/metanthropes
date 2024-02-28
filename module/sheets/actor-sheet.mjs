@@ -1,9 +1,9 @@
 //? Import Roll Handler
-import { HandleMetaRolls, handleCoverRolls } from "../helpers/metarollhandler.mjs";
-//? Import New Actor & Finalize Actor Logic
-import { NewActor, FinalizePremadeActor } from "../metanthropes/newactor.mjs";
-//? Import Progression Sheet
-import { MetaStartProgression } from "../metanthropes/metaprogression.mjs";
+import { metaHandleRolls, handleCoverRolls } from "../metarollers/metarollhandler.mjs";
+//? Import Finalize Actor Logic
+import { metaFinalizePremadeActor } from "../metanthropes/finalizepremade.mjs";
+//? Import functions from other modules
+import { metaImportFromModule } from "../helpers/metaimports.mjs";
 //? Import meta helpers
 import { metaChangePortrait, metaLog } from "../helpers/metahelpers.mjs";
 //? Import Active Effect helpers
@@ -218,7 +218,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//? Finalize Premade Protagonist Button
 		html.find(".finalize-premade-actor").click(this._onFinalizePremadeActor.bind(this));
 		//? Change the Player controling the Actor
-		html.find(".change-actor-player").click(this._onChangeActorPlayer.bind(this));
+		html.find(".assign-actor-player").click(this._onAssignActorPlayer.bind(this));
 		//? Progression Form Button
 		html.find(".progression-form").click(this._onProgression.bind(this));
 		//? Roll Cover
@@ -267,6 +267,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			onclick: () => this._onHeaderButtonClick("extended"),
 		});
 		//? Filters-out the Item Piles button for all actors besides Vehicles
+		//! doesn't work if Item Piles is set to only show the icons on the header
 		if (this.actor.type !== "Vehicle") buttons = buttons.filter((btn) => btn.label !== "Configure");
 		return buttons;
 	}
@@ -276,12 +277,10 @@ export class MetanthropesActorSheet extends ActorSheet {
 			case "singleColumn":
 				this.position.width = 200;
 				this.position.height = 900;
-				this._tabs[0].active = "cs-charstats";
 				break;
 			case "small":
 				this.position.width = 305;
 				this.position.height = 385;
-				this._tabs[0].active = "cs-charstats";
 				break;
 			case "medium":
 				this.position.width = 550;
@@ -560,26 +559,42 @@ export class MetanthropesActorSheet extends ActorSheet {
 	}
 	//* Handle Left-Click Rolls
 	async _onRoll(event) {
-		HandleMetaRolls(event, this, false);
+		metaHandleRolls(event, this, false);
 	}
 	//* Handle Right-Click Rolls
 	async _onCustomRoll(event) {
-		HandleMetaRolls(event, this, true);
+		metaHandleRolls(event, this, true);
 	}
 	//* New Actor Logic
 	async _onNewActor(event) {
 		event.preventDefault();
 		const actor = this.actor;
-		await NewActor(actor);
+
+		//? Load New Actor Logic from the Metanthropes Core Module
+		const metaNewActor = await metaImportFromModule(
+			"metanthropes-core",
+			"newactor",
+			"metanewactor",
+			"metaNewActor"
+		);
+		if (!metaNewActor) {
+			metaLog(2, "MetanthropesActorSheet", "_onNewActor", "New Actor function not available");
+			return;
+		}
+		try {
+			await metaNewActor(actor);
+		} catch (error) {
+			metaLog(2, "MetanthropesActorSheet", "_onNewActor", "ERROR:", error);
+		}
 	}
 	//* Finalize Premade Protagonist
 	async _onFinalizePremadeActor(event) {
 		event.preventDefault();
 		const actor = this.actor;
-		await FinalizePremadeActor(actor);
+		await metaFinalizePremadeActor(actor);
 	}
 	//* Change the Player controling the Actor
-	async _onChangeActorPlayer(event) {
+	async _onAssignActorPlayer(event) {
 		event.preventDefault();
 		const actor = this.actor;
 		//? Present a dialog with values from the game.users object
@@ -590,14 +605,14 @@ export class MetanthropesActorSheet extends ActorSheet {
 		}
 		//? Create a new Dialog
 		const dialog = new Dialog({
-			title: "Change Player",
+			title: "Assign Player",
 			content: `
 			<form>
-				<div>Only Narrators (Gamemasters) and the chosen Player can see and click the Buttons in the Chat<br><br></div>
+				<div>Only Narrators (Gamemasters) and the assigned Player can see and click the Buttons in the Chat<br><br></div>
 				<div><p>You can add/remove players from the Settings - User Management<br><br> To manually change the Player's name, please use the 'Narrator Toolbox - Edit Protagonist Details' Macro<br><br></p></div>
 				<div><p>Current Player: ${actor.system.metaowner.value}</p><br></div>
 				<div class="form-group">
-					<label>New Player</label>
+					<label>Assign Player</label>
 					<select id="player" name="player">
 						${activePlayers.map((user) => `<option value="${user.name}">${user.name}</option>`)}
 					</select>
@@ -630,7 +645,20 @@ export class MetanthropesActorSheet extends ActorSheet {
 		event.preventDefault();
 		//? Check if 'Beta Testing of New Features' is enabled
 		if (!game.settings.get("metanthropes", "metaBetaTesting")) {
-			ui.notifications.warn("Progression is only available if Beta Testing of New Features is enabled");
+			ui.notifications.warn(
+				"Progression is in Beta Testing and only available with the Metanthropes Homebrew Module at this time"
+			);
+			return;
+		}
+		//? Load Progression Logic from the Metanthropes Core Module
+		const metaProgressActor = await metaImportFromModule(
+			"metanthropes-core",
+			"progression",
+			"metaprogression",
+			"metaStartProgression"
+		);
+		if (!metaProgressActor) {
+			metaLog(2, "MetanthropesActorSheet", "_onProgression", "Progression function not available");
 			return;
 		}
 		//? Get the actor for the Progression
@@ -648,7 +676,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			metaProgressionActor.name
 		);
 		try {
-			await MetaStartProgression(metaProgressionActor);
+			await metaProgressActor(metaProgressionActor);
 		} catch (error) {
 			metaLog(2, "MetanthropesActorSheet", "_onProgression", "ERROR:", error);
 			metaProgressionActor.setFlag("metanthropes", "Progression", { isProgressing: false });

@@ -6,7 +6,7 @@
 		{
 			"name": "qp",
 			"url": "https://www.metanthropes.com/profile/2-qp/",
-			"email": "qp.wormholes@gmail.com",
+			"email": "orchestrator@metanthropes.com",
 			"discord": "qp#8888",
 			"flags": {
 				"github": "legitamine",
@@ -28,7 +28,7 @@
 			"flags": {}
 		}
 	],
-	"version": "0.9.025",
+	"version": "0.9.082",
 	"compatibility": {
 		"minimum": "11",
 		"verified": "11.315"

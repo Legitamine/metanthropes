@@ -1,12 +1,12 @@
 ![image](https://content.invisioncic.com/e290497/monthly_2022_12/01.jpg.10f501a62b5254cef6f04d9f87c8b52d.jpg)
 ![Foundry v11](https://img.shields.io/badge/foundry-v11-green)
 
-# Metanthropes RPG Early Access System for Foundry VTT
+# Metanthropes Early Access System for Foundry VTT
 
-This is the official Metanthropes RPG system for Foundry VTT.
+This is the official Metanthropes System for Foundry VTT.
 
 -   This project is in no way affiliated with or supported by Foundry VTT.
--   For more information about Metanthropes RPG visit [our website](https://metanthropes.com)
+-   For more information about Metanthropes visit [our website](https://metanthropes.com)
 
 ## Installation
 
@@ -16,7 +16,7 @@ This is a work in progress and is not ready for general use. Installation instru
 
 This System aims to utilize the latest and best in Foundry VTT. Currently offers support for Foundry VTT version 11. Latest supported version is v11.315.
 
-To get the best experience while playing Metanthropes RPG, we recommend to install the following fully supported modules: (System suggested and required module automations & PRs are planned for v1.0)
+To get the best experience while playing Metanthropes, we recommend to install the following fully supported modules: (System suggested and required module automations & PRs are planned for v1.0)
 
 -   [Dice So Nice](https://foundryvtt.com/packages/dice-so-nice)
 -   [Drag Ruler](https://foundryvtt.com/packages/drag-ruler)
@@ -27,17 +27,19 @@ To get the best experience while playing Metanthropes RPG, we recommend to insta
 
 ## Planned Features
 
-You may read about our [planned features and milestones](https://github.com/Legitamine/metanthropes/projects?query=is%3Aopen) for this project and also check out the overall [roadmap for Metanthropes RPG](https://www.metanthropes.com/stratagem/projects/1-metanthropes-roadmap/)
 
 Briefly, we are working torwards the following milestones:
 
--   Officially Support the full Ruleset for Metanthropes RPG
--   Synchronize your Protagonist details with our website for off-line viewing and editing
--   Fully automate the Combat System and activation of Metapowers, including unique audio and visual effects
+-   Officially Support the full Ruleset for Metanthropes, including automating the vast majority of the game mechanics
+-   Make Combat as immersive as possible, with auto-applying damage/healing, targeting via measured templates and applying all types of effects to Actors
+-   Further automate the activation of Metapowers, including unique audio and visual effects
+-   Synchronize your Protagonist details with our website for off-line viewing and editing between Sessions, without having to open Foundry VTT
+
+For further info, check out our [planned features and milestones](https://github.com/Legitamine/metanthropes/projects?query=is%3Aopen) for this project and also check out the overall [roadmap for Metanthropes](https://www.metanthropes.com/stratagem/projects/1-metanthropes-roadmap/)
 
 ## Latest Changes
 
-For the latest changes you may check out the [detailed Change Log](https://github.com/Legitamine/metanthropes/blob/main/CHANGELOG.md)
+For the latest changes for each build you may check out the [detailed Change Log](https://github.com/Legitamine/metanthropes/blob/main/CHANGELOG.md)
 
 You can also view the archives of past releases, kept for posterity, [here](https://github.com/Legitamine/metanthropes/blob/main/CHANGELOGARCHIVES.md)
 

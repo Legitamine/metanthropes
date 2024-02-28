@@ -12,7 +12,7 @@
 		</div>
 	{{/if}}
 	{{! -- Buttons Section --}}
-	{{#if (or isNarrator actor.isPremade)}}
+	{{#if (or isNarrator actor.isPremade coreFeatures)}}
 		<div class="layout-tab-summary-buttons meta-ui-responsive meta-ui-hide-at-medium">
 			<div class="layout-container-grid1x3 style-container-physical">
 				{{#if actor.isPremade}}
@@ -21,9 +21,13 @@
 						Premade
 						{{actor.type}}</button>
 				{{/if}}
+				{{#if coreFeatures}}
+					<button class="progression-form" data-tooltip="Progress {{actor.type}}">Progress
+						📈</button>
+				{{/if}}
 				{{#if isNarrator}}
-					<button class="change-actor-player"
-						data-tooltip="The Player can see & click on the Re-Roll Buttons in Chat">Change
+					<button class="assign-actor-player"
+						data-tooltip="The Assigned Player can see & click the Buttons in Chat">Assign
 						Player</button>
 				{{/if}}
 			</div>

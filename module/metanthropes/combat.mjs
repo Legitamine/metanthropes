@@ -1,4 +1,4 @@
-import { MetaInitiative } from "../helpers/metainitiative.mjs";
+import { metaInitiative } from "../metarollers/metainitiative.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
 
 /**
@@ -90,14 +90,14 @@ export class MetanthropesCombat extends Combat {
 			const combatant = this.combatants.get(id);
 			if (!combatant?.isOwner) continue;
 			//? Produce an initiative roll for the Combatant
-			metaLog(3, "Combat", "rollInitiative", "Engaging MetaInitiative for combatant:", combatant);
-			await MetaInitiative(combatant);
+			metaLog(3, "Combat", "rollInitiative", "Engaging metaInitiative for combatant:", combatant);
+			await metaInitiative(combatant);
 			let initiativeResult = combatant.actor.getFlag("metanthropes", "lastrolled").Initiative;
 			metaLog(
 				3,
 				"Combat",
 				"rollInitiative",
-				"MetaInitiative result for combatant:",
+				"metaInitiative result for combatant:",
 				combatant,
 				"is:",
 				initiativeResult

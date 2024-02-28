@@ -1,5 +1,5 @@
 //? Import Classes
-import { metaFilePicker } from "../metanthropes/metaclasses.mjs";
+import { metaFilePicker } from "../metaclasses/metaclasses.mjs";
 /**
  *
  * metaLog function controls how console logging happens.
@@ -50,6 +50,33 @@ export function metaLog(logType = 0, ...variables) {
 		}
 	});
 	logFunction(logStrings.join(""), ...styles, ...logObjects);
+}
+
+/**
+ * Helper function to import functionality from the Core Module
+ * Deprecated in favor of metaImportFromModule
+ */
+
+export async function metaImportProgressionFromCoreModule() {
+	const metaCoreIsEnabled = await game.settings.get("metanthropes", "metaCore");
+	if (metaCoreIsEnabled) {
+		try {
+			const module = await import("../../../../modules/metanthropes-core/module/progression/metaprogression.mjs");
+			metaLog(3, "Metanthropes", "Meta Helpers", "Import Progression From Core Module", module);
+			return module.MetaStartProgression;
+		} catch (error) {
+			metaLog(
+				2,
+				"Metanthropes",
+				"Meta Helpers",
+				"Import Progression From Core Module",
+				"Error importing Metanthropes Core Module",
+				error
+			);
+			return undefined;
+		}
+	}
+	return undefined;
 }
 
 /**

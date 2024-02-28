@@ -127,14 +127,18 @@
 	<div class="layout-container-nav style-container-nav">
 		<nav class="style-container-nav-children itemnavselector tabs" data-group="primary">
 			<a class="item style-cs-labels" data-tab="description">Description</a>
-			{{#if isNarrator}}
-				<a class="item style-cs-labels" data-tab="material"
-					data-tooltip="Material Properties">🧱 Properties</a>
+			{{#if homebrewFeatures}}
+				{{#if isNarrator}}
+					<a class="item style-cs-labels" data-tab="material"
+						data-tooltip="Material Properties">🧱 Properties</a>
+				{{/if}}
 			{{/if}}
 			<a class="item style-cs-labels" data-tab="execution">Usage</a>
 			<a class="item style-cs-labels" data-tab="effects">Effects</a>
 			{{#if isNarrator}}
-				<a class="item style-cs-labels" data-tab="results">Results</a>
+				{{#if betaTesting}}
+					<a class="item style-cs-labels" data-tab="results">Results</a>
+				{{/if}}
 			{{/if}}
 		</nav>
 	</div>
