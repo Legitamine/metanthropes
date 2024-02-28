@@ -168,7 +168,13 @@ export async function metaIsMetapowerEquipped(actor, metapower) {
  */
 export async function metaChangePortrait(actor) {
 	//? Based on the actor's type, set the current directory
-	const baseDir = "systems/metanthropes/artwork/portraits/";
+	//? If using Metanthropes Introductory Module, change the current directory
+	const intro = game.settings.get("metanthropes", "metaIntroductory");
+	let baseDir = "systems/metanthropes/artwork/portraits/";
+	if (intro) {
+		baseDir = "modules/metanthropes-introductory/artwork/portraits"
+	}
+	//todo: if running in demo mode, return with a notification
 	const actorType = actor.type.toLowerCase();
 	const currentDir = baseDir + actorType + "/";
 	const fp = new metaFilePicker({
