@@ -1,4 +1,4 @@
-import { metaIsMetapowerEquipped, metaLog } from "../helpers/metahelpers.mjs";
+import { metaIsMetapowerEquipped, metaLog, metaTransformStringForStorage } from "../helpers/metahelpers.mjs";
 
 /**
  * The base Actor definition which defines common behavior of actors within the Metanthropes system.
@@ -305,15 +305,14 @@ export class MetanthropesActor extends Actor {
 					this.primeimg = `systems/metanthropes/artwork/ui/logos/metanthropes-logo.webp`;
 				} else {
 					//? Make the Prime Metapower Image, the one for the Actor according to their Metamorphosis
-					const primemetapowerimage = this.system.entermeta.primemetapower.value;
+					const primeMPName = this.system.entermeta.primemetapower.value;
 					//? Proceed if Prime Metapower icon is not the correct one
-					//! Special workaround for The Forge's CDN delivery method
-					const encodedPrimemetapowerimage = encodeURIComponent(primemetapowerimage);
+					const primeMPStorageName = metaTransformStringForStorage(primeMPName);
 					if (
-						!(this.primeimg == `systems/metanthropes/artwork/metapowers/${encodedPrimemetapowerimage}.webp`)
+						!(this.primeimg == `systems/metanthropes/artwork/metapowers/${primeMPStorageName}.webp`)
 					) {
 						//? for Protagonists with a prime metapower defined, make it their respective metapower icon
-						this.primeimg = `systems/metanthropes/artwork/metapowers/${encodedPrimemetapowerimage}.webp`;
+						this.primeimg = `systems/metanthropes/artwork/metapowers/${primeMPStorageName}.webp`;
 						metaLog(
 							3,
 							"MetanthropesActor",
