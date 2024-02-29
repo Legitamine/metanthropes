@@ -309,10 +309,10 @@ export class MetanthropesActor extends Actor {
 					//? Proceed if Prime Metapower icon is not the correct one
 					const primeMPStorageName = metaTransformStringForStorage(primeMPName);
 					if (
-						!(this.primeimg == `systems/metanthropes/artwork/metapowers/${primeMPStorageName}.webp`)
+						!(this.primeimg == `systems/metanthropes/artwork/metapowers/mp-${primeMPStorageName}.webp`)
 					) {
 						//? for Protagonists with a prime metapower defined, make it their respective metapower icon
-						this.primeimg = `systems/metanthropes/artwork/metapowers/${primeMPStorageName}.webp`;
+						this.primeimg = `systems/metanthropes/artwork/metapowers/mp-${primeMPStorageName}.webp`;
 						metaLog(
 							3,
 							"MetanthropesActor",
