@@ -1,32 +1,38 @@
 <nav class="style-container-nav-children csnavselector tabs" data-group="cs">
-	<a class="item style-cs-labels meta-ui-responsive meta-ui-hide-at-minimum" data-tab="cs-summary"><span
-			data-tooltip="Summary">✍️</span><span class="meta-ui-responsive meta-ui-hide-at-medium">
-			Summary</span></a>
+	<button class="meta-ui-responsive meta-ui-hide-at-minimum" data-tab="cs-summary">
+		<span data-tooltip="Summary">✍️</span>
+		<span class="meta-ui-responsive meta-ui-hide-at-medium">Summary</span>
+	</button>
 	{{#if actor.hasCharacteristics}}
-		<a class="item style-cs-labels" data-tab="cs-charstats"><span data-tooltip="Stats">📊</span><span
-				class="meta-ui-responsive meta-ui-hide-at-medium">
-				Stats</span></a>
+		<button data-tab="cs-charstats">
+			<span data-tooltip="Stats">📊</span>
+			<span class="meta-ui-responsive meta-ui-hide-at-medium">Stats</span>
+		</button>
 	{{/if}}
 	{{#if actor.hasPerks}}
-		<a class="item style-cs-labels meta-ui-responsive meta-ui-hide-at-minimum" data-tab="cs-perks"><span
-				data-tooltip="Perks">📚</span><span class="meta-ui-responsive meta-ui-hide-at-medium">
-				Perks</span></a>
+		<button class="meta-ui-responsive meta-ui-hide-at-minimum" data-tab="cs-perks">
+			<span data-tooltip="Perks">📚</span>
+			<span class="meta-ui-responsive meta-ui-hide-at-medium">Perks</span>
+		</button>
 	{{/if}}
 	{{#if actor.hasEnterMeta}}
-		<a class="item style-cs-labels" data-tab="cs-metapowers"><span data-tooltip="Metapowers">Ⓜ️</span><span
-				class="meta-ui-responsive meta-ui-hide-at-medium">
-				Metapowers</span></a>
-		<a class="item style-cs-labels" data-tab="cs-combos"><span data-tooltip="Combos">🔗</span><span
-				class="meta-ui-responsive meta-ui-hide-at-medium">
-				Combos</span></a>
+		<button data-tab="cs-metapowers">
+			<span data-tooltip="Metapowers">Ⓜ️</span>
+			<span class="meta-ui-responsive meta-ui-hide-at-medium">Metapowers</span>
+		</button>
+		<button data-tab="cs-combos">
+			<span data-tooltip="Combos">🔗</span>
+			<span class="meta-ui-responsive meta-ui-hide-at-medium">Combos</span>
+		</button>
 	{{/if}}
 	{{#if actor.hasPossessions}}
-		<a class="item style-cs-labels" data-tab="cs-possessions"><span
-				data-tooltip="Possessions">🛠️</span><span
-				class="meta-ui-responsive meta-ui-hide-at-medium">
-				Possessions</span></a>
+		<button data-tab="cs-possessions">
+			<span data-tooltip="Possessions">🛠️</span>
+			<span class="meta-ui-responsive meta-ui-hide-at-medium">Possessions</span>
+		</button>
 	{{/if}}
-	<a class="item style-cs-labels meta-ui-responsive meta-ui-hide-at-minimum" data-tab="cs-active-effects"><span
-			data-tooltip="Effects">⏰</span><span class="meta-ui-responsive meta-ui-hide-at-medium">
-			Effects</span></a>
+	<button class="meta-ui-responsive meta-ui-hide-at-minimum" data-tab="cs-active-effects">
+		<span data-tooltip="Effects">⏰</span>
+		<span class="meta-ui-responsive meta-ui-hide-at-medium">Effects</span>
+	</button>
 </nav>
