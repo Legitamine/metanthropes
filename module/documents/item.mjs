@@ -1,4 +1,4 @@
-import { metaLog } from "../helpers/metahelpers.mjs";
+import { metaLog, metaTransformStringForStorage } from "../helpers/metahelpers.mjs";
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -73,9 +73,9 @@ export class MetanthropesItem extends Item {
 		super.prepareData();
 		//? Give Metapowers an image based on the Metapower Name
 		if (this.type === "Metapower") {
-			const mpname = this.system.MetapowerName.value;
-			const encodedMPName = encodeURIComponent(mpname);
-			const imgPath = `systems/metanthropes/artwork/metapowers/${encodedMPName}.webp`;
+			const mpName = this.system.MetapowerName.value;
+			const mpNameForStorage = metaTransformStringForStorage(mpName);
+			const imgPath = `systems/metanthropes/artwork/metapowers/mp-${mpNameForStorage}.webp`;
 			this.img = imgPath;
 		}
 	}
