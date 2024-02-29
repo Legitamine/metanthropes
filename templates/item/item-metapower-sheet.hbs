@@ -125,12 +125,12 @@
 	{{!-- Sheet Tab Navigation --}}
 	<div class="layout-container-nav style-container-nav">
 		<nav class="style-container-nav-children itemnavselector tabs" data-group="primary">
-			<a class="item style-cs-labels" data-tab="description">Description</a>
-			<a class="item style-cs-labels" data-tab="execution">Activation</a>
-			<a class="item style-cs-labels" data-tab="effects">Effects</a>
+			<button data-tab="description">Description</button>
+			<button data-tab="execution">Activation</button>
+			<button data-tab="effects">Effects</button>
 			{{#if isNarrator}}
 				{{#if betaTesting}}
-					<a class="item style-cs-labels" data-tab="results">Results</a>
+					<button data-tab="results">Results</button>
 				{{/if}}
 			{{/if}}
 		</nav>
