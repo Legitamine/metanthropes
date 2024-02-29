@@ -172,7 +172,7 @@ export async function metaChangePortrait(actor) {
 	const intro = game.settings.get("metanthropes", "metaIntroductory");
 	let baseDir = "systems/metanthropes/artwork/portraits/";
 	if (intro) {
-		baseDir = "modules/metanthropes-introductory/artwork/portraits"
+		baseDir = "modules/metanthropes-introductory/artwork/portraits/"
 	}
 	//todo: if running in demo mode, return with a notification
 	const actorType = actor.type.toLowerCase();
