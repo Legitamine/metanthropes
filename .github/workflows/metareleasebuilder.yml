@@ -46,18 +46,10 @@ jobs:
                   fvtt configure set dataPath "/home/runner/work/${{steps.id.outputs.prop}}/Data"
                   echo "Configure workon ${{steps.id.outputs.prop}} as a System"
                   fvtt package workon "${{steps.id.outputs.prop}}" --type "System"
-                  echo "Packaging metapowers"
-                  fvtt package pack -n "metapowers" --in ./src/packs/metapowers --out ./packs
-                  echo "Packaging narrator-toolkit"
-                  fvtt package pack -n "narrator-toolkit" --in ./src/packs/narrator-toolkit --out ./packs
-                  echo "Packaging possessions"
-                  fvtt package pack -n "possessions" --in ./src/packs/possessions --out ./packs
-                  echo "Packaging premade-antagonists"
-                  fvtt package pack -n "premade-antagonists" --in ./src/packs/premade-antagonists --out ./packs
-                  echo "Packaging premade-protagonists"
-                  fvtt package pack -n "premade-protagonists" --in ./src/packs/premade-protagonists --out ./packs
-                  echo "Packaging rollable-tables"
-                  fvtt package pack -n "rollable-tables" --in ./src/packs/rollable-tables --out ./packs
+                  echo "Packaging Welcome"
+                  fvtt package pack -n "welcome" --in ./src/packs/welcome --out ./packs
+                  echo "Packaging Demo"
+                  fvtt package pack -n "demo" --in ./src/packs/demo --out ./packs 
                   echo "Contents of Data directory post packaging"
                   dir /home/runner/work/${{steps.id.outputs.prop}}/Data
                   echo "Finished packaging Compendiums"
