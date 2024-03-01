@@ -5,20 +5,21 @@ form {
 		border: $border-groove;
 		border-radius: $border-radius;
 		color: $c-white;
+		opacity: 0.8;
 		&.active {
 			border: $border-activated;
-			background-image: url("../artwork/ui/buttons/button-active.webp");
+			opacity: 1;
 		}
 		&:hover {
 			outline: none;
 			border: $border-activated;
-			background-image: url("../artwork/ui/buttons/button-active.webp");
 			box-shadow: 0 0 5px $c-purple;
+			opacity: 1;
 		}
 		&:focus {
 			outline: none;
-			background-image: url("../artwork/ui/buttons/button-active.webp");
 			box-shadow: 0 0 5px $c-purple;
+			opacity: 1;
 		}
 	}
 }

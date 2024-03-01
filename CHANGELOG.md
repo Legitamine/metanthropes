@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 ## Changed:
 
 -   Cleaned up and improved the code documentation for the Early Access release. This is an on-going task with changes that won't affect the gameplay in any way, but will help other developers (and myself) when reviewing and making further changes to the code
+-   Improved the graphics & fonts for the Character Sheet, Buttons and Chat. All design elements are subject to change throughout Early Access, as we finalize the UI & UX
 -   Resizing the Actor sheet via the header buttons will not change the active tab anymore, to avoid confusion
 
 ## Fixed:

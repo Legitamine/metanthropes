@@ -5,11 +5,11 @@
  *
  *? The below notice is for developers, code reviewers and anyone curious enough to take a look at the code.
  *
- * * Although I come with 20+ years of experience in IT, this is my very first code project & it started back in late Feb 2023 
+ * * Although I come with 20+ years of experience in IT, this is my very first code project & it started back in late Feb 2023
  * * I do understand that I have a long way to go as a developer, and I am committed to become better at it!
  * * Disclaimer: I have been using the AI from GitHub Co-pilot within VSCode as well as ChatGPT v4 as a tutor and teacher to help me learn how to code.
  * * I am very eager to learn and improve my skills, so any constructive feedback is more than welcome.
- * 
+ *
  * ! This project is a work in progress - please forgive the excessive commenting and notes scattered throughout the code.
  * It will be properly cleaned up by the time it's out of Early Access. All of the code contained in this project is my own work.
  * In a couple of sections where code was provided to me by others in the FVTT Discord community, the contributors are credited in the comments.
@@ -22,7 +22,7 @@
  * - @asacolips for the Boilerplate code, without which I would have been completely lost and probably would have given up very early on
  ** Special shoutout to the code-wizard & RL buddy @aMUSiC, who has guided me to avoid many pitfalls and who will be assisting with code-reviews post Early Access!
  * If you would like to contribute to this project, please feel free to reach out to me.
- * 
+ *
  * Throughtout this project, I use the following syntax for comments:
  ** //! Marks a special comment that stands out (in Red) for critical notes.
  ** //* Marks a comment that is used as a section header (in Green) for better visibility.
@@ -231,7 +231,7 @@ Hooks.once("init", async function () {
 	//? Uncomment for development
 	// console.log(CONFIG);
 	//? time in seconds for Round Duration
-	//todo: review how we plan to handle 
+	//todo: review how we plan to handle
 	//CONFIG.time.roundTime = 30;
 	//? Define custom document classes.
 	CONFIG.Actor.documentClass = MetanthropesActor;
@@ -342,6 +342,18 @@ Hooks.once("init", async function () {
 		onChange: (value) => {
 			// Do something when the setting is changed, if necessary
 		},
+	});
+	//? Welcome Screen
+	game.settings.register("metanthropes", "metaWelcome", {
+		name: "Enable Welcome Screen",
+		hint: `
+		Enable this setting to display the Welcome Screen when the World loads.
+		`,
+		scope: "world",
+		config: true,
+		requiresReload: true,
+		type: Boolean,
+		default: true,
 	});
 	//? Preload Handlebars templates.
 	console.log("Metanthropes | System | Initialized");
@@ -547,6 +559,12 @@ Hooks.once("ready", async function () {
 		});
 	}
 	//? Done Loading Metanthropes System
+	//? Display Welcome Screen
+	const welcome = game.settings.get("metanthropes", "metaWelcome");
+	if (welcome) {
+		const entry = await fromUuid("Compendium.metanthropes.welcome.JournalEntry.ksmNWJ711DeJQVpY");
+		entry.sheet.render(true);
+	}
 	metaLog(3, "Finished Loading Metanthropes System");
 	game.togglePause(false);
 });

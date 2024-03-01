@@ -28,7 +28,7 @@
 			"flags": {}
 		}
 	],
-	"version": "0.9.124",
+	"version": "0.9.127",
 	"compatibility": {
 		"minimum": "11",
 		"verified": "11.315"
@@ -36,6 +36,30 @@
 	"esmodules": ["module/metanthropes.mjs"],
 	"styles": ["css/metanthropes.css"],
 	"packs": [
+		{
+			"label": "Demo",
+			"system": "metanthropes",
+			"type": "Adventure",
+			"path": "packs/demo",
+			"name": "demo",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			},
+			"flags": {}
+		},
+		{
+			"label": "Welcome",
+			"system": "metanthropes",
+			"type": "JournalEntry",
+			"path": "packs/welcome",
+			"name": "welcome",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			},
+			"flags": {}
+		},
 		{
 			"label": "Premade Protagonists",
 			"system": "metanthropes",

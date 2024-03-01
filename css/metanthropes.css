@@ -1,4 +1,16 @@
 @import url("https://use.typekit.net/gld0tkk.css");
+.sheet.journal-entry .journal-entry-content {
+  position: relative;
+  background: none;
+  background-image: url("../artwork/ui/window/background.webp");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-origin: border-box;
+  background-clip: border-box;
+}
+
 .combat-sidebar li.combatant .roll {
   display: block;
   width: 40px;
@@ -76,18 +88,22 @@ button {
   border: 2px groove #7d0f81;
   border-radius: 15px;
   color: #fff;
+  opacity: 0.8;
 }
 button.active {
   border: 2px groove #fff;
+  opacity: 1;
 }
 button:hover {
   outline: none;
   border: 2px groove #fff;
   box-shadow: 0 0 5px #7d0f81;
+  opacity: 1;
 }
 button:focus {
   outline: none;
   box-shadow: 0 0 5px #7d0f81;
+  opacity: 1;
 }
 
 select {
@@ -1025,6 +1041,7 @@ h3 {
 }
 .metanthropes .style-container-nav-children {
   align-items: center;
+  white-space: nowrap;
   font-size: 1rem;
   font-weight: 600;
   color: #000;
@@ -1499,21 +1516,22 @@ h3 {
   border: 2px groove #7d0f81;
   border-radius: 15px;
   color: #fff;
+  opacity: 0.8;
 }
 .metanthropes form button.active {
   border: 2px groove #fff;
-  background-image: url("../artwork/ui/buttons/button-active.webp");
+  opacity: 1;
 }
 .metanthropes form button:hover {
   outline: none;
   border: 2px groove #fff;
-  background-image: url("../artwork/ui/buttons/button-active.webp");
   box-shadow: 0 0 5px #7d0f81;
+  opacity: 1;
 }
 .metanthropes form button:focus {
   outline: none;
-  background-image: url("../artwork/ui/buttons/button-active.webp");
   box-shadow: 0 0 5px #7d0f81;
+  opacity: 1;
 }
 .metanthropes .tabs .item.active {
   text-shadow: 0 0 10px #7d0f81;
