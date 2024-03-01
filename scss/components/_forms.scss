@@ -1,3 +1,27 @@
+form button {
+	background-image: url("../artwork/ui/buttons/button.webp");
+	text-shadow: $s-button;
+	border: $border-groove;
+	border-radius: $border-radius;
+	color: $c-white;
+	opacity: 0.8;
+	&.active {
+		border: $border-activated;
+		opacity: 1;
+	}
+	&:hover {
+		outline: none;
+		border: $border-activated;
+		box-shadow: 0 0 5px $c-purple;
+		opacity: 1;
+	}
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 5px $c-purple;
+		opacity: 1;
+	}
+}
+
 form {
 	button {
 		background-image: url("../artwork/ui/buttons/button.webp");

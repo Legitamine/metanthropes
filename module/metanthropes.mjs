@@ -558,15 +558,16 @@ Hooks.once("ready", async function () {
 			path: "modules/coriolis-kbender-ai-art-pack/tokens",
 		});
 	}
-	//? Done Loading Metanthropes System
 	//? Display Welcome Screen
 	const welcome = game.settings.get("metanthropes", "metaWelcome");
 	if (welcome) {
-		const entry = await fromUuid("Compendium.metanthropes.welcome.JournalEntry.ksmNWJ711DeJQVpY");
+		const entry = await fromUuid("Compendium.metanthropes.welcome.JournalEntry.eukfRGaM1MEJZGyO");
 		entry.sheet.render(true);
 	}
-	metaLog(3, "Finished Loading Metanthropes System");
+	//? Un-pause the World
 	game.togglePause(false);
+	//? Done Loading Metanthropes System
+	metaLog(3, "Finished Loading Metanthropes System");
 });
 //* Drag Ruler Integration
 Hooks.once("dragRuler.ready", (SpeedProvider) => {

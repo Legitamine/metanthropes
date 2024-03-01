@@ -10,17 +10,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ---
 
-# Early Access v0.9.xxx [2024-02-xx]
+# Early Access v0.9.xxx [2024-03-01]
+
+## Added:
+
+-   Added a new Welcome Screen with some basic guidance on how to use our first Early Acccess Demo
+-   Added a Demo Adventure Type Compendium that includes 4 Actors and a Sample Scene. These 4 Actors come with 7.700 XP to showcase 4 different example builds of what a Metanthrope Protagonist could look like after a Saga (20hours campaign)
+-   Added initial support for installing & running the System on The Forge
 
 ## Changed:
 
+-   Improved some of the graphics & typography for the Character & Item Sheets, Buttons and Chat. All design elements are subject to change throughout Early Access, as we come closer to finalizing the UI & UX
 -   Cleaned up and improved the code documentation for the Early Access release. This is an on-going task with changes that won't affect the gameplay in any way, but will help other developers (and myself) when reviewing and making further changes to the code
--   Improved the graphics & fonts for the Character Sheet, Buttons and Chat. All design elements are subject to change throughout Early Access, as we finalize the UI & UX
--   Resizing the Actor sheet via the header buttons will not change the active tab anymore, to avoid confusion
 
 ## Fixed:
 
--   Multi-Actions are now available only for Metapowers & Possessions with 'Main Action' as their activation cost and also for Stat Rolls and won't be available with other types of rolls
+-   Multi-Actions are now available only for Metapowers & Possessions with 'Main Action' as their activation cost & for Stat Rolls and won't be available with other types of rolls
+-   Resizing the Actor sheet via the header buttons will not change the active tab anymore, to avoid confusion
+-   Various Minor Fixes in the UI & UX
 
 ---
 

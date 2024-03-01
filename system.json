@@ -28,7 +28,7 @@
 			"flags": {}
 		}
 	],
-	"version": "0.9.127",
+	"version": "0.9.142",
 	"compatibility": {
 		"minimum": "11",
 		"verified": "11.315"
@@ -54,78 +54,6 @@
 			"type": "JournalEntry",
 			"path": "packs/welcome",
 			"name": "welcome",
-			"ownership": {
-				"PLAYER": "OBSERVER",
-				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
-		},
-		{
-			"label": "Premade Protagonists",
-			"system": "metanthropes",
-			"type": "Actor",
-			"path": "packs/premade-protagonists",
-			"name": "premade-protagonists",
-			"ownership": {
-				"PLAYER": "OBSERVER",
-				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
-		},
-		{
-			"label": "Premade Antagonists",
-			"system": "metanthropes",
-			"type": "Actor",
-			"path": "packs/premade-antagonists",
-			"name": "premade-antagonists",
-			"ownership": {
-				"PLAYER": "NONE",
-				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
-		},
-		{
-			"label": "Narrator Toolkit",
-			"system": "metanthropes",
-			"type": "Macro",
-			"path": "packs/narrator-toolkit",
-			"name": "narrator-toolkit",
-			"ownership": {
-				"PLAYER": "NONE",
-				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
-		},
-		{
-			"label": "Metapowers",
-			"system": "metanthropes",
-			"type": "Item",
-			"path": "packs/metapowers",
-			"name": "metapowers",
-			"ownership": {
-				"PLAYER": "NONE",
-				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
-		},
-		{
-			"label": "Possessions",
-			"system": "metanthropes",
-			"type": "Item",
-			"path": "packs/possessions",
-			"name": "possessions",
-			"ownership": {
-				"PLAYER": "NONE",
-				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
-		},
-		{
-			"label": "Rollable Tables",
-			"system": "metanthropes",
-			"type": "RollTable",
-			"path": "packs/rollable-tables",
-			"name": "rollable-tables",
 			"ownership": {
 				"PLAYER": "OBSERVER",
 				"ASSISTANT": "OWNER"

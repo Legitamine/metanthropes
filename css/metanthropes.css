@@ -11,6 +11,30 @@
   background-clip: border-box;
 }
 
+form button {
+  background-image: url("../artwork/ui/buttons/button.webp");
+  text-shadow: 1px 1px 1px blue, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
+  border: 2px groove #7d0f81;
+  border-radius: 15px;
+  color: #fff;
+  opacity: 0.8;
+}
+form button.active {
+  border: 2px groove #fff;
+  opacity: 1;
+}
+form button:hover {
+  outline: none;
+  border: 2px groove #fff;
+  box-shadow: 0 0 5px #7d0f81;
+  opacity: 1;
+}
+form button:focus {
+  outline: none;
+  box-shadow: 0 0 5px #7d0f81;
+  opacity: 1;
+}
+
 .combat-sidebar li.combatant .roll {
   display: block;
   width: 40px;
@@ -77,6 +101,42 @@ header {
 footer {
   margin: 1px;
   padding: 1px;
+}
+
+.dialog .dialog-buttons button {
+  font-family: "orator-std", monospace;
+  text-transform: uppercase;
+  background: none;
+  background-image: url("../artwork/ui/buttons/button.webp");
+  background-size: cover;
+  text-shadow: 1px 1px 1px blue, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
+  border: 2px groove #7d0f81;
+  border-radius: 15px;
+  color: #fff;
+  opacity: 0.8;
+}
+.dialog .dialog-buttons button.active {
+  border: 2px groove #fff;
+  opacity: 1;
+}
+.dialog .dialog-buttons button:hover {
+  outline: none;
+  border: 2px groove #fff;
+  box-shadow: 0 0 5px #7d0f81;
+  opacity: 1;
+}
+.dialog .dialog-buttons button:focus {
+  outline: none;
+  box-shadow: 0 0 5px #7d0f81;
+  opacity: 1;
+}
+.dialog .dialog-buttons button.default {
+  outline: none;
+  background: none;
+  background-image: url("../artwork/ui/buttons/button.webp");
+  border: 2px groove #fff;
+  box-shadow: 0 0 5px #7d0f81;
+  opacity: 1;
 }
 
 button {
@@ -1138,9 +1198,8 @@ h3 {
 }
 .metanthropes .style-cs-chars-label {
   opacity: 1;
-  font-family: "nasalization", sans-serif;
+  font-family: "orator-std", monospace;
   font-size: 1.6rem;
-  font-weight: bold;
   color: #000;
   text-transform: uppercase;
   justify-content: center;
@@ -1155,6 +1214,7 @@ h3 {
   font-family: "orator-std", monospace;
   font-size: 1.6rem;
   color: #000;
+  font-weight: bold;
   text-transform: uppercase;
   justify-content: center;
   justify-self: center;
@@ -1177,7 +1237,7 @@ h3 {
 }
 .metanthropes .style-cs-chars-value {
   opacity: 1;
-  font-family: "nasalization", sans-serif;
+  font-family: "orator-std", monospace;
   font-size: 1.6rem;
   color: #000;
   justify-content: center;
@@ -1509,6 +1569,29 @@ h3 {
 }
 .metanthropes .effects .item .effect-controls {
   border: none;
+}
+.metanthropes form button {
+  background-image: url("../artwork/ui/buttons/button.webp");
+  text-shadow: 1px 1px 1px blue, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
+  border: 2px groove #7d0f81;
+  border-radius: 15px;
+  color: #fff;
+  opacity: 0.8;
+}
+.metanthropes form button.active {
+  border: 2px groove #fff;
+  opacity: 1;
+}
+.metanthropes form button:hover {
+  outline: none;
+  border: 2px groove #fff;
+  box-shadow: 0 0 5px #7d0f81;
+  opacity: 1;
+}
+.metanthropes form button:focus {
+  outline: none;
+  box-shadow: 0 0 5px #7d0f81;
+  opacity: 1;
 }
 .metanthropes form button {
   background-image: url("../artwork/ui/buttons/button.webp");
