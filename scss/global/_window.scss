@@ -1,3 +1,42 @@
+//journal
+.sheet.journal-entry .journal-entry-content {
+	position: relative;
+	background: none;
+	background-image: url("../artwork/ui/window/background.webp");
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-origin: border-box;
+	background-clip: border-box;
+}
+
+form {
+	button {
+		background-image: url("../artwork/ui/buttons/button.webp");
+		text-shadow: $s-button;
+		border: $border-groove;
+		border-radius: $border-radius;
+		color: $c-white;
+		opacity: 0.8;
+		&.active {
+			border: $border-activated;
+			opacity: 1;
+		}
+		&:hover {
+			outline: none;
+			border: $border-activated;
+			box-shadow: 0 0 5px $c-purple;
+			opacity: 1;
+		}
+		&:focus {
+			outline: none;
+			box-shadow: 0 0 5px $c-purple;
+			opacity: 1;
+		}
+	}
+}
+
 //the below two will change the default D20 in the initiative tracker icon to our custom dice
 .combat-sidebar li.combatant .roll {
 	display: block;
@@ -59,6 +98,42 @@ footer {
 	margin: $margin-sm;
 	padding: $padding-sm;
 }
+//form buttons
+.dialog .dialog-buttons button {
+	font-family: $font-title;
+	text-transform: uppercase;
+	background: none;
+	background-image: url("../artwork/ui/buttons/button.webp");
+	background-size: cover;
+	text-shadow: $s-button;
+	border: $border-groove;
+	border-radius: $border-radius;
+	color: $c-white;
+	opacity: 0.8;
+	&.active {
+		border: $border-activated;
+		opacity: 1;
+	}
+	&:hover {
+		outline: none;
+		border: $border-activated;
+		box-shadow: 0 0 5px $c-purple;
+		opacity: 1;
+	}
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 5px $c-purple;
+		opacity: 1;
+	}
+	&.default {
+		outline: none;
+		background: none;
+		background-image: url("../artwork/ui/buttons/button.webp");
+		border: $border-activated;
+		box-shadow: 0 0 5px $c-purple;
+		opacity: 1;
+	}
+}
 // this changes the font for buttons of Foundry UI
 button {
 	font-family: $font-title;
@@ -69,17 +144,21 @@ button {
 	border: $border-groove;
 	border-radius: $border-radius;
 	color: $c-white;
+	opacity: 0.8;
 	&.active {
 		border: $border-activated;
+		opacity: 1;
 	}
 	&:hover {
 		outline: none;
 		border: $border-activated;
 		box-shadow: 0 0 5px $c-purple;
+		opacity: 1;
 	}
 	&:focus {
 		outline: none;
 		box-shadow: 0 0 5px $c-purple;
+		opacity: 1;
 	}
 }
 select {

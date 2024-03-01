@@ -168,6 +168,7 @@
 }
 .style-container-nav-children {
 	align-items: center;
+	white-space: nowrap;
 	font-size: 1rem;
 	font-weight: 600;
 	color: $c-black;
@@ -268,9 +269,8 @@
 //styles for character sheet elements: style-cs-*
 .style-cs-chars-label {
 	opacity: 1;
-	font-family: $font-primary;
+	font-family: $font-title;
 	font-size: 1.6rem;
-	font-weight: bold;
 	color: $c-black;
 	text-transform: uppercase;
 	justify-content: center;
@@ -285,6 +285,7 @@
 	font-family: $font-title;
 	font-size: 1.6rem;
 	color: $c-black;
+	font-weight: bold;
 	text-transform: uppercase;
 	justify-content: center;
 	justify-self: center;
@@ -307,7 +308,7 @@
 }
 .style-cs-chars-value {
 	opacity: 1;
-	font-family: $font-primary;
+	font-family: $font-title;
 	font-size: 1.6rem;
 	color: $c-black;
 	justify-content: center;

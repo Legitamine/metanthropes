@@ -21,18 +21,10 @@ fvtt configure set dataPath "F:/FoundryVTT/"
 fvtt package workon "metanthropes" --type "System"
 @echo Unpacking Compendiums
 @echo ---------------------
-@echo Metapowers
-fvtt package unpack "metapowers" --out "F:/FoundryVTT/Data/systems/metanthropes/src/packs/metapowers"
-@echo Narrator's Toolkit
-fvtt package unpack "narrator-toolkit" --out "F:/FoundryVTT/Data/systems/metanthropes/src/packs/narrator-toolkit"
-@echo Possessions
-fvtt package unpack "possessions" --out "F:/FoundryVTT/Data/systems/metanthropes/src/packs/possessions"
-@echo Premade Protagonists
-fvtt package unpack "premade-protagonists" --out "F:/FoundryVTT/Data/systems/metanthropes/src/packs/premade-protagonists"
-@echo Premade NPCs
-fvtt package unpack "premade-antagonists" --out "F:/FoundryVTT/Data/systems/metanthropes/src/packs/premade-antagonists"
-@echo Rollable Tables
-fvtt package unpack "rollable-tables" --out "F:/FoundryVTT/Data/systems/metanthropes/src/packs/rollable-tables"
+@echo Welcome
+fvtt package unpack "welcome" --out "F:/FoundryVTT/Data/systems/metanthropes/src/packs/welcome"
+@echo Demo
+fvtt package unpack "demo" --out "F:/FoundryVTT/Data/systems/metanthropes/src/packs/demo"
 @echo
 @echo
 @echo Finished Unpacking Compendiums
