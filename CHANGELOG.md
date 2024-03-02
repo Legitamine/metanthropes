@@ -10,12 +10,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ---
 
-# Early Access v0.9.xxx [2024-03-01]
+# Early Access v0.9.143 [2024-03-01]
 
 ## Added:
 
 -   Added a new Welcome Screen with some basic guidance on how to use our first Early Acccess Demo
--   Added a Demo Adventure Type Compendium that includes 4 Actors and a Sample Scene. These 4 Actors come with 7.700 XP to showcase 4 different example builds of what a Metanthrope Protagonist could look like after a Saga (20hours campaign)
+-   Added a Demo Adventure Type Compendium that includes 4 Actors and a Sample Scene
 -   Added initial support for installing & running the System on The Forge
 
 ## Changed:
