@@ -148,8 +148,11 @@
 						{{/if}}
 					</div>
 					<div class="meta-ui-responsive meta-ui-change-at-single-column style-cs-rolls"
-						data-tooltip="Click to Roll<br><br>{{@key}}<br><br>Right-Click for Custom Roll"
-						data-roll-type="StatRoll" data-stat="{{@key}}">
+						data-tooltip="Click to Roll<br><br>{{@key}}<br><br>Right-Click for Custom Roll
+						{{#if ../../affectedByDisease}}<br><br>Result will be affected by 💀 Disease{{/if}}
+						{{#if ../../affectedByPain}}<br>Result will be affected by 💀 Pain{{/if}}
+						{{#if ../../affectedByHunger}}<br>Need to overcome 💀 Hunger{{/if}}
+						" data-roll-type="StatRoll" data-stat="{{@key}}">
 						{{this.Roll}}
 					</div>
 					<div class="meta-ui-responsive meta-ui-hide-at-minimum">

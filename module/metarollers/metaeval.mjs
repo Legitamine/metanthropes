@@ -1,5 +1,5 @@
 import { metaExecute } from "./metaexecute.mjs";
-import { metaLog, metaSheetRefresh } from "../helpers/metahelpers.mjs";
+import { metaLog } from "../helpers/metahelpers.mjs";
 /**
  * metaEvaluate calculates the result of a roll, sets actor flags and prints it to chat
  *
@@ -166,6 +166,8 @@ export async function metaEvaluate(
 		message += `, a Reduction of ${aimingReduction}% due to Aiming at a specific body part`;
 	}
 	message += ` and the result is ${rollResult} ${needToRollMessage}.<br><br>`;
+	//? The final message section needs to be bold
+	message += `<span style="font-weight: bold;">`
 	//? if we have Pain condition, our succesfull (only) results are lowered by an equal amount - in case of Criticals we ignore Pain
 	let painEffect = levelsOfSuccess - pain;
 	if (resultLevel > 0 && !criticalSuccess && pain > 0) {
@@ -193,23 +195,27 @@ export async function metaEvaluate(
 	//? if we have levels of success or failure, add them to the message
 	if (levelsOfSuccess > 0) {
 		if (levelsOfSuccess === 1) {
-			message += `, accumulating: ${levelsOfSuccess} * ✔️ Level of Success.<hr />${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+			message += `, accumulating: ${levelsOfSuccess} * ✔️ Level of Success.`;
 			resultLevel = levelsOfSuccess;
 		} else {
-			message += `, accumulating: ${levelsOfSuccess} * ✔️ Levels of Success.<hr />${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+			message += `, accumulating: ${levelsOfSuccess} * ✔️ Levels of Success.`;
 			resultLevel = levelsOfSuccess;
 		}
 	} else if (levelsOfFailure > 0) {
 		if (levelsOfFailure === 1) {
-			message += `, accumulating: ${levelsOfFailure} * ❌ Level of Failure.<hr />${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+			message += `, accumulating: ${levelsOfFailure} * ❌ Level of Failure.`;
 			resultLevel = -levelsOfFailure;
 		} else {
-			message += `, accumulating: ${levelsOfFailure} * ❌ Levels of Failure.<hr />${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+			message += `, accumulating: ${levelsOfFailure} * ❌ Levels of Failure.`;
 			resultLevel = -levelsOfFailure;
 		}
 	} else {
-		message += `.<hr />${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+		message += `.`;
 	}
+	//? Bold text stops here
+	message += `</span>`;
+	//? Adding remaining Destiny message
+	message += `<hr />${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
 	//? Buttons to Re-Roll metaEvaluate results - only adds the button to message, if it's not a Critical and only if they have enough Destiny for needed reroll.
 	//* The buttons are hidden for everyone except the Player of the Actor and the GM
 	//? Define threshold of showing the button, to re-roll we need a minimum of 1 Destiny + the Destiny Cost of the Metapower (only applies to Metapowers with DestinyCost, otherwise it's 0)
@@ -409,7 +415,5 @@ export async function metaEvaluateReRoll(event) {
 		destinyCost,
 		itemName
 	);
-	//? Refresh the actor sheet if it's open
-	metaSheetRefresh(actor);
 	metaLog(3, "metaEvaluateReRoll", "Finished for:", actor.name + "'s", action, actorUUID);
 }

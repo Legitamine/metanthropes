@@ -49,7 +49,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<blockquote><p>Metanthropes are ordinary people, endowed with extraordinary Metapowers, tethered to human passions.</p><p></p><p>Embark on a journey across new Dimensions, where enigmatic Spirits await and Factions of Metanthropes from diverse Timelines, beckon.</p><p></p><p>As the shadow of Multiversal threats looms, will you harness these powers to change the world? Destiny awaits.</p></blockquote><p></p><p>Metanthropes is a brand <strong>new d100-based game system</strong> with <strong>classless leveling</strong> where players develop <strong>Metapowers</strong> which empower them with unique, metaphysical gifts that transform them into something extraordinary.</p>",
+        "content": "<p style=\"text-align:center\"></p><img src=\"systems/metanthropes/artwork/ui/cover/metanthropes.png\" class=\" centered\" /><p style=\"text-align:center\"></p><p>Metanthropes is a brand <strong>new d100-based, setting-flexible game system</strong> with <strong>classless leveling</strong> where players develop <strong>Metapowers</strong> which empower them with unique, metaphysical gifts that transform them into something extraordinary.</p>",
         "markdown": ""
       },
       "video": {
@@ -65,11 +65,11 @@
       "flags": {},
       "_stats": {
         "systemId": "metanthropes",
-        "systemVersion": "0.9.124",
+        "systemVersion": "0.9.143",
         "coreVersion": "11.315",
         "createdTime": 1709252883977,
-        "modifiedTime": 1709254999840,
-        "lastModifiedBy": "MB9UTmmrdD2T8iaY"
+        "modifiedTime": 1709481707630,
+        "lastModifiedBy": "3IqRUDDVG8kDd6mW"
       },
       "_key": "!journal.pages!eukfRGaM1MEJZGyO.qpyKoZ2MUXqM3WcM"
     },
@@ -304,10 +304,10 @@
   },
   "_stats": {
     "systemId": "metanthropes",
-    "systemVersion": "0.9.132",
+    "systemVersion": "0.9.143",
     "coreVersion": "11.315",
     "createdTime": 1709252399200,
-    "modifiedTime": 1709322430578,
+    "modifiedTime": 1709481707630,
     "lastModifiedBy": "3IqRUDDVG8kDd6mW"
   },
   "_id": "eukfRGaM1MEJZGyO",

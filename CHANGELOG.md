@@ -10,6 +10,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ---
 
+# Early Access v0.9.157 [2024-03-03]
+
+## Added:
+
+-   Added more information on the tooltips for Rolls that informs you if the Roll Result will be affected by Disease, Pain or Hunger Conditions. This new functionality is not included in the Item Sheet at this time
+
+## Changed:
+
+-   The Welcome Journal will now be included and imported when using the built-in Demo adventure to populate a new World
+-   The resulting effect of a Roll, will now be displayed with Bold text in Chat for better clarity
+-   Permanent Buffs gained by Metapowers & Possessions will now not show up in the Chat message, however they are still visible in the respective Item Sheet
+
+## Fixed:
+
+-   Finaly fixed a long-standing known issue, where the Stat Scores shown in the Metapowers & Possessions tabs would not update properly
+
 # Early Access v0.9.143 [2024-03-01]
 
 ## Added:
