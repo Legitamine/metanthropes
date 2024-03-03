@@ -1,4 +1,4 @@
-import { metaExtractNumberOfDice, metaLog, metaSheetRefresh, metaIsItemEquipped } from "../helpers/metahelpers.mjs";
+import { metaExtractNumberOfDice, metaLog } from "../helpers/metahelpers.mjs";
 
 /**
  * metaExecute handles the execution of Metapowers and Possessions for a given actor.
@@ -400,9 +400,10 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			<br></div>`;
 			}
 		}
-		if (buffsPermanent) {
-			buffsPermanentMessage = `🛡️ ♾️: ` + buffsPermanent + `<br>`;
-		}
+		//? Removed Permanent Buffs showing until further notice
+		// if (buffsPermanent) {
+		// 	buffsPermanentMessage = `🛡️ ♾️: ` + buffsPermanent + `<br>`;
+		// }
 		if (buffsApplied) {
 			buffsAppliedMessage = `🛡️ ➕: ` + buffsApplied + `<br>`;
 		}
@@ -478,16 +479,17 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			contentMessage += specialMessage;
 			contentMessage += `<hr />`;
 		}
-		if (buffsPermanentMessage) {
-			contentMessage += buffsPermanentMessage;
-		}
+		// if (buffsPermanentMessage) {
+		// 	contentMessage += buffsPermanentMessage;
+		// }
 		if (buffsAppliedMessage) {
 			contentMessage += buffsAppliedMessage;
 		}
 		if (buffsRemovedMessage) {
 			contentMessage += buffsRemovedMessage;
 		}
-		if (buffsPermanent || buffsAppliedMessage || buffsRemovedMessage) {
+		//if (buffsPermanent || buffsAppliedMessage || buffsRemovedMessage) {
+		if (buffsAppliedMessage || buffsRemovedMessage) {
 			contentMessage += `<hr />`;
 		}
 		if (conditionsAppliedMessage) {
@@ -666,6 +668,6 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	// 		}
 	// 	}
 	// }
-	//? Refresh the actor sheet if it's open
-	metaSheetRefresh(actor);
+	//? metaExecute Finished
+	metaLog(3, "metaExecute", "Finished");
 }

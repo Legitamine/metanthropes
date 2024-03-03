@@ -223,6 +223,7 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 	}
 	//* Post-Evaluate-roll actions
 	// intentionally left blank
+	//? metaRoll Finished
 	metaLog(3, "metaRoll", "Finished");
 }
 /**

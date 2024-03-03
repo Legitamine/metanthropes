@@ -31,9 +31,11 @@
 							data-item-name="{{item.name}}"
 							data-stat="{{item.system.Execution.StatRolled.value}}"
 							data-destiny-cost="{{item.system.DestinyCost.value}}"
-							src="{{item.img}}"
-							data-tooltip="Click to Activate<br><br>{{item.system.MetapowerName.value}} - {{item.name}}<br><br>Right Click for Custom Roll"
-							width="50" height="50" style="border: none" />
+							src="{{item.img}}" data-tooltip="Click to Activate<br><br>{{item.system.MetapowerName.value}} - {{item.name}}<br><br>Right Click for Custom Roll
+							{{#if ../../affectedByDisease}}<br><br>Result will be affected by 💀 Disease{{/if}}
+							{{#if ../../affectedByPain}}<br>Result will be affected by 💀 Pain{{/if}}
+							{{#if ../../affectedByHunger}}<br>Need to overcome 💀 Hunger{{/if}}" width="50" height="50"
+							style="border: none" />
 					</div>
 					<h4>
 						<div class="item-control item-edit style-view-properties"
@@ -45,7 +47,7 @@
 				<div class="item-statroll item-prop meta-ui-responsive meta-ui-hide-at-minimum">
 					<span class="meta-ui-responsive meta-ui-hide-at-medium">{{item.system.Execution.StatRolled.value}}:
 					</span>
-					{{lookup ../../system.RollStats item.system.Execution.StatRolled.value}}
+					{{lookup ../../actor.system.RollStats item.system.Execution.StatRolled.value}}
 				</div>
 				<div class="item-vsroll item-prop meta-ui-responsive meta-ui-extra-fields">
 					{{item.system.Effects.VSStatRoll.value}}

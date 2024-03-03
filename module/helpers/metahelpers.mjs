@@ -124,17 +124,26 @@ export async function metaExtractNumberOfDice(value) {
 
 /**
  *
- * Helper function to refresh the actor sheet
+ * Helper function to refresh the actor or item sheet
  * This is needed to ensure the Stat Scores display correctly in the Metapowers and Possessions tabs of the actor sheet
  *
- * @param {*} actor
+ * @param {*} sheet actor or item
  */
-export function metaSheetRefresh(actor) {
-	const sheet = actor.sheet;
-	//todo: make it so that it will only refresh if the sheet is not minimized etc
-	if (sheet && sheet.rendered) {
-		sheet.render(true);
+//! Is this function needed? now that we used a different lookup method for the Current Score vs refreshing the sheet, it should be deprecated?
+export async function metaSheetRefresh(sheet) {
+	metaLog(3, "metaSheetRefresh", "Engaged for", "Sheet", sheet);
+	//todo: make it so that it will only refresh if the sheet is not minimized etc || test!
+	if (sheet.rendered && !sheet._minimized) {
+		metaLog(3, "metaSheet", "updating the roll data for the actor");
+		const actor = sheet.actor;
+		await actor.getRollData();
+		metaLog(3, "metaSheet", "done");
 	}
+	//if (sheet.rendered) {
+	//	metaLog(3, "metaSheetRefresh", "Refreshing Sheet");
+	//	sheet.render(true);
+	//}
+	metaLog(3, "metaSheetRefresh", "Finished");
 }
 
 /**

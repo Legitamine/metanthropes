@@ -94,6 +94,12 @@ export class MetanthropesActorSheet extends ActorSheet {
 		if (context.betaTesting) context.effects = prepareActiveEffectCategories(this.actor.effects);
 		//? Calculate the actor's XP Spent
 		context.xpSpent = Number(actorData.system.Vital.Experience.Spent + actorData.system.Vital.Experience.Manual);
+		//? Flag if actor is affected by Disease
+		context.affectedByDisease = this.actor.isDiseased;
+		//? Flag if actor is affected by Pain
+		context.affectedByPain = this.actor.isInPain;
+		//? Flag if actor is affected by Hunger
+		context.affectedByHunger = this.actor.isHungry;
 		metaLog(3, "MetanthropesActorSheet", "getData", "this, context, options", this, context, options);
 		return context;
 	}

@@ -78,17 +78,16 @@ export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 				return;
 		}
 	}
-	//? After doing a meta roll, re-render the actor or item sheet.
-	metaLog(3, "metaHandleRolls", "Finished, re-rendering the actor/item sheet");
-	metaSheet.render(true);
+	//? Finished
+	metaLog(3, "metaHandleRolls");
 }
 /**
  * HandleCoverRolls - A utility function to handle cover rolls for the Metanthropes system.
  * This Function is called via a button or click event in the actor sheet, not called directly.
  * todo This should be called directly at a later milestone when integrating with the Targeting & Aiming system
- * 
- * @param {*} event 
- * @param {*} metaSheet 
+ *
+ * @param {*} event
+ * @param {*} metaSheet
  */
 export async function handleCoverRolls(event, metaSheet) {
 	event.preventDefault();
