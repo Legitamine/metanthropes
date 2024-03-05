@@ -192,7 +192,6 @@ h3 {
   font-family: "nasalization", sans-serif;
   text-align: center;
   color: #fff;
-  background-color: rgba(129, 129, 129, 0.3725490196);
   text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
 }
 
@@ -957,6 +956,13 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.metanthropes h3 {
+  font-family: "nasalization", sans-serif;
+  text-align: center;
+  color: #fff;
+  background-color: rgba(129, 129, 129, 0.3725490196);
+  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
 }
 .metanthropes .style-container-outer-charstats {
   opacity: 1;
