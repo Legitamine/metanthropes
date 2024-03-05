@@ -106,9 +106,9 @@
 .layout-container-grid3x1 {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	column-gap: 1px;
+	column-gap: 3px;
 	padding: $padding-zero;
-	margin: $margin-zero;
+	margin: $margin-md;
 	overflow: hidden;
 	overflow-wrap: break-word;
 }
@@ -139,9 +139,9 @@
 .layout-container-physical {
 	display: grid;
 	grid-template-columns: 0.9fr 1.5fr 1fr;
-	column-gap: 1px;
+	column-gap: 3px;
 	padding: $padding-zero;
-	margin: $margin-zero;
+	margin: $margin-md;
 	overflow: hidden;
 	overflow-wrap: break-word;
 }
@@ -318,49 +318,58 @@
 }
 .layout-tab-summary-prime {
 	border: $border-style-solid;
+	overflow: hidden;
 	border-radius: $border-radius;
 	grid-area: prime;
 }
 .layout-tab-summary-gender {
 	border: $border-style-solid;
+	overflow: hidden;
 	border-radius: $border-radius;
 	grid-area: gender;
 }
 .layout-tab-summary-entermeta {
 	border: $border-style-solid;
 	border-radius: $border-radius;
+	overflow: hidden;
 	grid-area: entermeta;
 }
 .layout-tab-summary-physical {
 	border: $border-style-solid;
 	border-radius: $border-radius;
+	overflow: hidden;
 	grid-area: physical;
 }
 .layout-tab-summary-narrator {
 	border: $border-style-solid;
 	border-radius: $border-radius;
+	overflow: hidden;
 	grid-area: narrator;
 }
 .layout-tab-summary-actor {
 	border: $border-style-solid;
 	border-radius: $border-radius;
+	overflow: hidden;
 	grid-area: actor;
 }
 .layout-tab-summary-saga {
 	border: $border-style-solid;
 	border-radius: $border-radius;
+	overflow: hidden;
 	grid-area: saga;
 }
 .layout-tab-summary-coalition {
 	border: $border-style-solid;
 	border-radius: $border-radius;
+	overflow: hidden;
 	grid-area: coalition;
 }
 .layout-tab-perks-container {
-	margin: $margin-md;
-	padding: $padding-md;
+	margin: $margin-lg;
+	padding: $padding-zero;
 	border: $border-style-solid;
 	border-radius: $border-radius;
+	overflow: hidden;
 }
 .editor {
 	min-height: 80px;

@@ -10,6 +10,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ---
 
+# Early Access v0.9.175 [2024-03-05]
+
+## Changed:
+
+-   Improved the Sheet UI with some changes to the fonts and overall layout for more clarity
+-   Improved the Welcome Screen layout
+
 # Early Access v0.9.157 [2024-03-03]
 
 ## Added:

@@ -269,14 +269,14 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 		if (itemName) {
 			const actionSlot = actor.items.getName(itemName).system.Execution.ActionSlot.value;
 			if (actionSlot === "Main Action") {
-				dialogContent += `<p>Total number of Multi-Actions:	<select id="multiActionCount">
+				dialogContent += `<p class="style-centered-paragraph">Total number of Multi-Actions:	<select id="multiActionCount">
 						<option value="no">None</option>
 						${multiActionOptions.map((option) => `<option value="${option}">${option}</option>`).join("")}
 					</select></p><br>
 				`;
 			}
 		} else if (action === "StatRoll") {
-			dialogContent += `<p>Total number of Multi-Actions:	<select id="multiActionCount">
+			dialogContent += `<p class="style-centered-paragraph">Total number of Multi-Actions:	<select id="multiActionCount">
 						<option value="no">None</option>
 						${multiActionOptions.map((option) => `<option value="${option}">${option}</option>`).join("")}
 					</select></p><br>
@@ -295,12 +295,12 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 		//? Add the Bonus, Penalty, and Custom Reduction options to the dialog
 		dialogContent += `
 					<div>
-						<p><span class="style-cs-buffs">Bonus: <input class="style-cs-buffs style-container-input-charstat"
+						<p class="style-centered-paragraph"><span class="style-cs-buffs">Bonus: <input class="style-cs-buffs style-container-input-charstat"
 						type="number" id="bonus" min="0" value="0">%</span>
 						<span class="style-cs-conditions">Penalty: <input class="style-cs-conditions style-container-input-charstat"
 						type="number" id="penalty" min="0" value="0">%</span><br></p>
 						</div><br>
-						<p class="style-cs-conditions">Reduction: <input class="style-cs-conditions style-container-input-charstat"
+						<p class="style-centered-paragraph style-cs-conditions">Reduction: <input class="style-cs-conditions style-container-input-charstat"
 						type="number" id="customReduction" min="0" value="0">%</p>
 			</div>
 			`;

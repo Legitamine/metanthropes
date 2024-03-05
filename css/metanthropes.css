@@ -13,7 +13,7 @@
 
 form button {
   background-image: url("../artwork/ui/buttons/button.webp");
-  text-shadow: 1px 1px 1px blue, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
+  text-shadow: 1px 1px 1px #7d0f81, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
   border: 2px groove #7d0f81;
   border-radius: 15px;
   color: #fff;
@@ -103,13 +103,16 @@ footer {
   padding: 1px;
 }
 
+a:hover {
+  text-shadow: 0 0 8px #7d0f81;
+}
+
 .dialog .dialog-buttons button {
-  font-family: "orator-std", monospace;
-  text-transform: uppercase;
+  font-family: "nasalization", sans-serif;
   background: none;
   background-image: url("../artwork/ui/buttons/button.webp");
   background-size: cover;
-  text-shadow: 1px 1px 1px blue, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
+  text-shadow: 1px 1px 1px #7d0f81, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
   border: 2px groove #7d0f81;
   border-radius: 15px;
   color: #fff;
@@ -140,11 +143,10 @@ footer {
 }
 
 button {
-  font-family: "orator-std", monospace;
-  text-transform: uppercase;
+  font-family: "nasalization", sans-serif;
   background-image: url("../artwork/ui/buttons/button.webp");
   background-size: cover;
-  text-shadow: 1px 1px 1px blue, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
+  text-shadow: 1px 1px 1px #7d0f81, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
   border: 2px groove #7d0f81;
   border-radius: 15px;
   color: #fff;
@@ -183,13 +185,15 @@ p {
   font-family: "montserrat", sans-serif;
   margin: 1px;
   padding: 1px;
-  text-align: center;
-  font-size: 16px;
+  text-align: left;
 }
 
 h3 {
   font-family: "nasalization", sans-serif;
   text-align: center;
+  color: #fff;
+  background-color: rgba(129, 129, 129, 0.3725490196);
+  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
 }
 
 .chat-message .table-draw .table-results .table-result img.result-image {
@@ -210,7 +214,7 @@ h3 {
 }
 
 .window-app {
-  font-family: "orator-std", monospace;
+  font-family: "nasalization", sans-serif;
   margin: 1px;
   padding: 1px;
 }
@@ -278,7 +282,7 @@ h3 {
 .chat-message .message-header .whisper-to,
 .chat-message .message-content {
   font-family: "montserrat", sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   color: #000;
 }
@@ -657,10 +661,10 @@ h3 {
 .metanthropes .layout-container-grid3x1 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  -moz-column-gap: 1px;
-       column-gap: 1px;
+  -moz-column-gap: 3px;
+       column-gap: 3px;
   padding: 0px;
-  margin: 0px;
+  margin: 3px;
   overflow: hidden;
   overflow-wrap: break-word;
 }
@@ -693,10 +697,10 @@ h3 {
 .metanthropes .layout-container-physical {
   display: grid;
   grid-template-columns: 0.9fr 1.5fr 1fr;
-  -moz-column-gap: 1px;
-       column-gap: 1px;
+  -moz-column-gap: 3px;
+       column-gap: 3px;
   padding: 0px;
-  margin: 0px;
+  margin: 3px;
   overflow: hidden;
   overflow-wrap: break-word;
 }
@@ -857,49 +861,58 @@ h3 {
 }
 .metanthropes .layout-tab-summary-prime {
   border: 1px solid #7d0f81;
+  overflow: hidden;
   border-radius: 15px;
   grid-area: prime;
 }
 .metanthropes .layout-tab-summary-gender {
   border: 1px solid #7d0f81;
+  overflow: hidden;
   border-radius: 15px;
   grid-area: gender;
 }
 .metanthropes .layout-tab-summary-entermeta {
   border: 1px solid #7d0f81;
   border-radius: 15px;
+  overflow: hidden;
   grid-area: entermeta;
 }
 .metanthropes .layout-tab-summary-physical {
   border: 1px solid #7d0f81;
   border-radius: 15px;
+  overflow: hidden;
   grid-area: physical;
 }
 .metanthropes .layout-tab-summary-narrator {
   border: 1px solid #7d0f81;
   border-radius: 15px;
+  overflow: hidden;
   grid-area: narrator;
 }
 .metanthropes .layout-tab-summary-actor {
   border: 1px solid #7d0f81;
   border-radius: 15px;
+  overflow: hidden;
   grid-area: actor;
 }
 .metanthropes .layout-tab-summary-saga {
   border: 1px solid #7d0f81;
   border-radius: 15px;
+  overflow: hidden;
   grid-area: saga;
 }
 .metanthropes .layout-tab-summary-coalition {
   border: 1px solid #7d0f81;
   border-radius: 15px;
+  overflow: hidden;
   grid-area: coalition;
 }
 .metanthropes .layout-tab-perks-container {
-  margin: 3px;
-  padding: 3px;
+  margin: 6px;
+  padding: 0px;
   border: 1px solid #7d0f81;
   border-radius: 15px;
+  overflow: hidden;
 }
 .metanthropes .editor {
   min-height: 80px;
@@ -984,6 +997,7 @@ h3 {
   justify-self: center;
   align-items: center;
   align-self: center;
+  white-space: nowrap;
 }
 .metanthropes .style-container-actorinfo {
   opacity: 1;
@@ -1092,7 +1106,7 @@ h3 {
   border-radius: 15px;
 }
 .metanthropes .style-container-nav {
-  font-family: "orator-std", monospace;
+  font-family: "nasalization", sans-serif;
   text-transform: uppercase;
   padding: 3px;
   margin: 3px;
@@ -1150,7 +1164,7 @@ h3 {
 }
 .metanthropes .style-actorinfo-tier1 {
   opacity: 1;
-  font-family: "orator-std", monospace;
+  font-family: "nasalization", sans-serif;
   font-size: 1.6rem;
   color: #000;
   justify-content: center;
@@ -1198,7 +1212,7 @@ h3 {
 }
 .metanthropes .style-cs-chars-label {
   opacity: 1;
-  font-family: "orator-std", monospace;
+  font-family: "nasalization", sans-serif;
   font-size: 1.6rem;
   color: #000;
   text-transform: uppercase;
@@ -1211,7 +1225,7 @@ h3 {
 }
 .metanthropes .style-cs-stats-label {
   opacity: 1;
-  font-family: "orator-std", monospace;
+  font-family: "nasalization", sans-serif;
   font-size: 1.6rem;
   color: #000;
   font-weight: bold;
@@ -1237,7 +1251,7 @@ h3 {
 }
 .metanthropes .style-cs-chars-value {
   opacity: 1;
-  font-family: "orator-std", monospace;
+  font-family: "nasalization", sans-serif;
   font-size: 1.6rem;
   color: #000;
   justify-content: center;
@@ -1249,7 +1263,7 @@ h3 {
 }
 .metanthropes .style-cs-stats-value {
   opacity: 1;
-  font-family: "orator-std", monospace;
+  font-family: "nasalization", sans-serif;
   font-size: 2.4rem;
   color: #000;
   font-weight: bold;
@@ -1296,6 +1310,28 @@ h3 {
   padding: 3px;
   margin: 0px;
 }
+.metanthropes .style-cs-header-positive {
+  opacity: 1;
+  font-family: "nasalization", sans-serif;
+  color: #267114;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
+  padding: 1px;
+  margin: 1px;
+}
+.metanthropes .style-cs-header-negative {
+  opacity: 1;
+  font-family: "nasalization", sans-serif;
+  color: #ab1616;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
+  padding: 1px;
+  margin: 1px;
+}
 .metanthropes .style-cs-positive {
   opacity: 1;
   font-family: "montserrat", sans-serif;
@@ -1320,12 +1356,12 @@ h3 {
 }
 .metanthropes .meta-cover-roll:hover {
   cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
-  color: #7d0f81;
-  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em blue, 0 0 0.2em blue;
+  color: #fff;
+  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
 }
 .metanthropes .style-cs-rolls {
   opacity: 1;
-  font-family: "orator-std", monospace;
+  font-family: "nasalization", sans-serif;
   font-size: 2.4rem;
   color: #000;
   font-weight: bold;
@@ -1339,12 +1375,12 @@ h3 {
 }
 .metanthropes .style-cs-rolls:hover {
   cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
-  color: #7d0f81;
-  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em blue, 0 0 0.2em blue;
+  color: #fff;
+  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
 }
 .metanthropes .style-cs-rolls-single-column {
   opacity: 1;
-  font-family: "orator-std", monospace;
+  font-family: "nasalization", sans-serif;
   font-size: 2rem;
   color: #000;
   font-weight: bold;
@@ -1358,12 +1394,12 @@ h3 {
 }
 .metanthropes .style-cs-rolls-single-column:hover {
   cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
-  color: #7d0f81;
-  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em blue, 0 0 0.2em blue;
+  color: #fff;
+  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
 }
 .metanthropes .style-mp-rolls {
   opacity: 1;
-  font-family: "orator-std", monospace;
+  font-family: "nasalization", sans-serif;
   font-size: 14px;
   color: #000;
   justify-items: center;
@@ -1374,12 +1410,12 @@ h3 {
 }
 .metanthropes .style-mp-rolls:hover {
   cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
-  color: #7d0f81;
-  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em blue, 0 0 0.2em blue;
+  color: #fff;
+  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
 }
 .metanthropes .style-pos-rolls {
   opacity: 1;
-  font-family: "orator-std", monospace;
+  font-family: "nasalization", sans-serif;
   font-size: 14px;
   color: #000;
   justify-items: center;
@@ -1390,13 +1426,13 @@ h3 {
 }
 .metanthropes .style-pos-rolls:hover {
   cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
-  color: #7d0f81;
-  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em blue, 0 0 0.2em blue;
+  color: #fff;
+  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
 }
 .metanthropes .style-view-properties:hover {
   cursor: help;
-  color: #7d0f81;
-  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em blue, 0 0 0.2em blue;
+  color: #fff;
+  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
 }
 .metanthropes .style-editor {
   opacity: 1;
@@ -1454,6 +1490,9 @@ h3 {
      object-fit: contain;
   border: none;
   border-radius: 15px;
+}
+.metanthropes .style-centered-paragraph {
+  text-align: center;
 }
 .metanthropes .items-header {
   margin: 1px;
@@ -1572,7 +1611,7 @@ h3 {
 }
 .metanthropes form button {
   background-image: url("../artwork/ui/buttons/button.webp");
-  text-shadow: 1px 1px 1px blue, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
+  text-shadow: 1px 1px 1px #7d0f81, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
   border: 2px groove #7d0f81;
   border-radius: 15px;
   color: #fff;
@@ -1595,7 +1634,7 @@ h3 {
 }
 .metanthropes form button {
   background-image: url("../artwork/ui/buttons/button.webp");
-  text-shadow: 1px 1px 1px blue, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
+  text-shadow: 1px 1px 1px #7d0f81, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
   border: 2px groove #7d0f81;
   border-radius: 15px;
   color: #fff;

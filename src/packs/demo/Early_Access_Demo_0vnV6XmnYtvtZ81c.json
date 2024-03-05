@@ -6403,14 +6403,16 @@
       "flags": {
         "metanthropes": {
           "previousrolled": {
-            "rolld10": 8,
-            "rolld10what": "Awareness",
-            "rolld10item": null
+            "LastAction": "Metapower",
+            "MetaEvaluate": -3,
+            "Metapower": -3,
+            "StatRolled": "Reflexes",
+            "MetapowerName": "Camouflage"
           },
           "lastrolled": {
             "LastAction": "Metapower",
-            "MetaEvaluate": -10,
-            "Metapower": -10,
+            "MetaEvaluate": 4,
+            "Metapower": 4,
             "StatRolled": "Reflexes",
             "MetapowerName": "Camouflage"
           }
@@ -6418,10 +6420,10 @@
       },
       "_stats": {
         "systemId": "metanthropes",
-        "systemVersion": "0.9.127",
+        "systemVersion": "0.9.157",
         "coreVersion": "11.315",
         "createdTime": 1709294475845,
-        "modifiedTime": 1709306211107,
+        "modifiedTime": 1709589412684,
         "lastModifiedBy": "3IqRUDDVG8kDd6mW"
       }
     },
@@ -6754,7 +6756,7 @@
             "CoreConditions": {
               "Bleeding": 0,
               "Asphyxiation": 0,
-              "Diseased": 0,
+              "Diseased": 2,
               "Maimed": 0
             },
             "Stats": {
@@ -6825,7 +6827,7 @@
             "CoreConditions": {
               "Fatigue": 0,
               "Hunger": 0,
-              "Pain": 0,
+              "Pain": 2,
               "Sense-Lost": 0
             },
             "Stats": {
@@ -23221,27 +23223,25 @@
       "flags": {
         "metanthropes": {
           "previousrolled": {
-            "LastAction": "Metapower",
-            "MetaEvaluate": 1,
-            "Metapower": 1,
-            "StatRolled": "Reflexes",
-            "MetapowerName": "Flamethrower [Alt]"
+            "LastAction": "StatRoll",
+            "MetaEvaluate": -2,
+            "StatRoll": -2,
+            "StatRolled": "Creativity"
           },
           "lastrolled": {
-            "LastAction": "Possession",
-            "MetaEvaluate": -1,
-            "Possession": -1,
-            "StatRolled": "Creativity",
-            "PossessionName": "Hallucinogen"
+            "LastAction": "StatRoll",
+            "MetaEvaluate": 0,
+            "StatRoll": 0,
+            "StatRolled": "Manipulation"
           }
         }
       },
       "_stats": {
         "systemId": "metanthropes",
-        "systemVersion": "0.9.132",
+        "systemVersion": "0.9.157",
         "coreVersion": "11.315",
         "createdTime": 1709293878273,
-        "modifiedTime": 1709322277212,
+        "modifiedTime": 1709589416163,
         "lastModifiedBy": "3IqRUDDVG8kDd6mW"
       }
     },
@@ -33208,26 +33208,29 @@
         "metanthropes": {
           "previousrolled": {
             "LastAction": "Metapower",
-            "MetaEvaluate": 4,
-            "Metapower": 4,
+            "MetaEvaluate": -1,
+            "Metapower": -1,
             "StatRolled": "Endurance",
-            "MetapowerName": "Refresh"
+            "MetapowerName": "Revive"
           },
           "lastrolled": {
             "LastAction": "Metapower",
-            "MetaEvaluate": 2,
-            "Metapower": 2,
+            "MetaEvaluate": 5,
+            "Metapower": 5,
             "StatRolled": "Endurance",
-            "MetapowerName": "Refresh"
+            "MetapowerName": "Revive",
+            "rolld10": 172,
+            "rolld10what": "💞 Healing",
+            "rolld10item": "Revive"
           }
         }
       },
       "_stats": {
         "systemId": "metanthropes",
-        "systemVersion": "0.9.132",
+        "systemVersion": "0.9.157",
         "coreVersion": "11.315",
         "createdTime": 1709294236055,
-        "modifiedTime": 1709322303480,
+        "modifiedTime": 1709589419959,
         "lastModifiedBy": "3IqRUDDVG8kDd6mW"
       }
     },
@@ -33532,13 +33535,13 @@
             "type": "number",
             "label": "❤️ Life",
             "Initial": 100,
-            "value": "141",
+            "value": 141,
             "max": 0
           },
           "Destiny": {
             "type": "number",
             "label": "🤞 Destiny",
-            "value": "12",
+            "value": 12,
             "max": "12"
           }
         },
@@ -41723,27 +41726,27 @@
         "metanthropes": {
           "previousrolled": {
             "LastAction": "Metapower",
-            "MetaEvaluate": 4,
-            "Metapower": 4,
+            "MetaEvaluate": 3,
+            "Metapower": 3,
             "StatRolled": "Perception",
-            "MetapowerName": "Temporal Warping"
+            "MetapowerName": "Temporal Glitch"
           },
           "lastrolled": {
             "LastAction": "Metapower",
-            "MetaEvaluate": 4,
-            "Metapower": 4,
+            "MetaEvaluate": 8,
+            "Metapower": 8,
             "StatRolled": "Perception",
-            "MetapowerName": "Temporal Warping [Alt]"
+            "MetapowerName": "Temporal Glitch"
           }
         }
       },
       "_stats": {
         "systemId": "metanthropes",
-        "systemVersion": "0.9.127",
+        "systemVersion": "0.9.157",
         "coreVersion": "11.315",
         "createdTime": 1709293455212,
-        "modifiedTime": 1709306141482,
-        "lastModifiedBy": "ohw06RRyY2ihIttd"
+        "modifiedTime": 1709589423528,
+        "lastModifiedBy": "3IqRUDDVG8kDd6mW"
       }
     }
   ],
@@ -41751,11 +41754,11 @@
   "items": [],
   "journal": [
     {
-      "name": "Welcome",
+      "name": "Welcome Metanthrope",
       "pages": [
         {
           "sort": -100000,
-          "name": "Welcome to Metanthropes",
+          "name": "Early Access Demo",
           "type": "text",
           "_id": "wN4ADnCGR1UfGOBO",
           "title": {
@@ -41765,7 +41768,7 @@
           "image": {},
           "text": {
             "format": 1,
-            "content": "<h3>This is an Early Access Demo</h3><p></p><p>The Metanthropes System is in active development and expected to be out of Early Access later in 2024</p><p></p><p>Gain <strong>Early Access</strong> to our <strong>Premium Modules</strong> &amp; support us in unlocking <strong>stretch goals for</strong> <strong>more maps and original artwork</strong> for our first <a href=\"https://www.kickstarter.com/projects/legitamine/metanthropes-introductory-zine?ref=62swzj\" title=\"Fully Funded - ending in a few days!\">Kickstarter that is live until March 12th, 2024!</a></p><p></p><h3>Import Adventure to begin</h3><p></p><p>Click on the following link and select the 'Import Adventure' button</p><p></p><p>@UUID[Compendium.metanthropes.demo.Adventure.0vnV6XmnYtvtZ81c]{Early Access Demo}</p><p></p><p>The Demo comes with 4 Metanthrope Protagonist Actors, each with a different example build, to showcase a small glimpse of the <strong>500+ unique abilities</strong> that come with the <strong>Core Module.</strong></p><p></p><h3>Showcase</h3><p></p><p>Some features to try out in this Early Access Demo:</p><p></p><ul><li><p><strong>Responsive Character Sheet</strong>: Resize your Character Sheet and have it alter the amount of information displayed based on the available window width. Use <strong>the</strong> <strong>header buttons</strong> for some pre-configured layouts.</p></li><li><p><strong>Informational Tooltips</strong>: The majority of the UI has informational tooltips that will explain and showcase available options when you mouse over</p></li><li><p><strong>Roll Stats</strong>: Click on the <strong>Stats Page</strong> of your Character Sheet and click on any of the <strong>Stat Scores</strong> to roll that Stat, taking into account all Buffs, Conditions and Effects applied to your results. <strong>Right Click to Customize</strong> the Roll circumstances.</p></li><li><p><strong>Re-Roll with Destiny</strong>: Click on the '<strong>Spend Destiny to Reroll</strong>' button on the Chat to automatically deduct a <strong>Destiny Point</strong> and reroll the last roll, keeping all previous Bonuses and Penalties.</p></li><li><p><strong>Activate Metapowers</strong>: From the <strong>Metapowers Page</strong> of your Character Sheet, click (or right-click) on the <strong>Metapower Icon</strong> to roll and then click on the '<strong>Activate Metapower</strong>' button on the Chat to roll the effects for that Metapower. Click on the Name of that Metapower instead, to see more information in a separate sheet.</p></li></ul><p></p><h3>Coming Soon™</h3><p></p><p>These features are currently in development and will be part of the Metanthropes System later in 2024</p><p></p><ul><li><p><strong>Accumulating Levels of Success</strong>: Metapowers &amp; Possessions will increase the impact of the activated effects, based on the total Accumulated Levels of Success</p></li><li><p><strong>Spending Levels of Success</strong>: Following a successful activation, you will be able to spend your Accumulated Levels of Success to drastically increase the impact of your Metapowers</p></li><li><p><strong>Automated Damage, Healing &amp; Active Effects</strong>: Activating Metapowers and using Possessions will apply the damage or healing automatically to the selected targets and also apply or remove Buffs, Conditions and Active Effects as required.</p></li><li><p><strong>Use of Measured Templates</strong>: Leverage Foundry's Measured Templates feature to help with auto-targeting within the area of effect of a Metapower or Possession.</p></li><li><p><strong>Automated Audio &amp; Visual Effects</strong>: Activating Metapowers and using Possessions will trigger Visual &amp; Audio effects</p></li><li><p><strong>Official 3rd Party Module Support</strong>: We will be officially supporting the best 3rd Party Modules from the amazing community of Foundry Developers</p></li><li><p><strong>Leverage v12 Features</strong>: Leverage the upcoming features of Foundry VTT v12 such as Scene Regions for the activation of certain Metapower effects</p></li></ul><p></p><blockquote><p>To disable this Welcome Screen, please disable the setting from the Game Settings -&gt; Configure Settings -&gt; Metanthropes Early Access options</p></blockquote><p></p>",
+            "content": "<p></p><p>The Metanthropes System is in active development and expected to be out of Early Access later in 2024</p><p></p><p>Gain <strong>Early Access</strong> to our <strong>Premium Modules</strong> &amp; support us in unlocking <strong>stretch goals for</strong> <strong>more maps and original artwork</strong> for our first <a href=\"https://www.kickstarter.com/projects/legitamine/metanthropes-introductory-zine?ref=62swzj\" title=\"Fully Funded - ending in a few days!\">Kickstarter that is live until March 12th, 2024!</a></p><p></p><h3>Import Adventure to begin</h3><p></p><p>Click on the following link and select the 'Import Adventure' button</p><p></p><hr /><p style=\"text-align:center\"></p><p style=\"text-align:center\"><span style=\"font-size:2rem\"><span style=\"font-family:Bruno Ace\">@UUID[Compendium.metanthropes.demo.Adventure.0vnV6XmnYtvtZ81c]{Early Access Demo}</span></span></p><p></p><hr /><p></p><p>The Demo comes with 4 Metanthrope Protagonist Actors, each with a different example build, to showcase a small glimpse of the <strong>500+ unique abilities</strong> that come with the <strong>Core Module.</strong></p><p></p><p></p><blockquote><p>To disable this Welcome Screen, please disable the setting from the Game Settings -&gt; Configure Settings -&gt; Metanthropes Early Access options</p></blockquote><p></p>",
             "markdown": ""
           },
           "video": {
@@ -41781,10 +41784,10 @@
           "flags": {},
           "_stats": {
             "systemId": "metanthropes",
-            "systemVersion": "0.9.132",
+            "systemVersion": "0.9.157",
             "coreVersion": "11.315",
             "createdTime": 1709252409413,
-            "modifiedTime": 1709321778692,
+            "modifiedTime": 1709590683554,
             "lastModifiedBy": "3IqRUDDVG8kDd6mW"
           }
         },
@@ -41835,7 +41838,7 @@
           "image": {},
           "text": {
             "format": 1,
-            "content": "<p>As part of our first Kickstarter campaign, we are offering Early Access to <strong>three groundbreaking modules for Foundry VTT</strong>: the Introductory, Core, and Homebrew Premium Content Modules.</p><p></p><p>The <strong>Introductory Module</strong> includes an amazing new map, 20 pre-made Actors, 10 Metapowers covering levels 1-3, 5 pre-made Possessions, 2 pre-made Scenes, Journals, Rollable tables, and Narrator toolkit macros.</p><p></p><p>Additional <strong>original artwork &amp; battle-map</strong> will be unlocked for the <strong>Introductory Module</strong>, if we reach our stretch goals <strong>by March 12th!</strong></p><p></p><p>The <strong>Core Module</strong> bumps up support for <strong>500+</strong> unique abilities with 100 Metapowers covering levels 1-5 and 50 pre-made Possessions</p><p></p><p>The <strong>Homebrew Module</strong> adds enhanced support for creating your homebrew content and <strong>customizing system rules</strong>.</p><p></p><p>Back us on <a href=\"https://www.kickstarter.com/projects/legitamine/metanthropes-introductory-zine?ref=62swzj\" title=\"Fully Funded &amp; Ending Soon!\">Kickstarter until the 12th of March 2024</a>, take advantage of the lowest prices we'll ever offer and gain Early Access for all 3 Premium Foundry Modules and gain access to more content on <a href=\"https://metanthropes.com\" title=\"Join our Community &amp; Unlock Content\">metanthropes.com</a></p>",
+            "content": "<p>As part of our first Kickstarter campaign, we are offering Early Access to <strong>three groundbreaking modules for Foundry VTT</strong>: the Introductory, Core, and Homebrew Premium Content Modules.</p><p></p><img src=\"systems/metanthropes/artwork/ui/cover/premium-modules.png\" /><p></p><p>The <strong>Introductory Module</strong> includes an amazing new map, 20 pre-made Actors, 10 Metapowers covering levels 1-3, 5 pre-made Possessions, 2 pre-made Scenes, Journals, Rollable tables, and Narrator toolkit macros.</p><p></p><p>Additional <strong>original artwork &amp; battle-map</strong> will be unlocked for the <strong>Introductory Module</strong>, if we reach our stretch goals <strong>by March 12th!</strong></p><p></p><p>The <strong>Core Module</strong> bumps up support for <strong>500+</strong> unique abilities with 100 Metapowers covering levels 1-5 and 50 pre-made Possessions</p><p></p><p>The <strong>Homebrew Module</strong> adds enhanced support for creating your homebrew content and <strong>customizing system rules</strong>.</p><p></p><p>Back us on <a href=\"https://www.kickstarter.com/projects/legitamine/metanthropes-introductory-zine?ref=62swzj\" title=\"Fully Funded &amp; Ending Soon!\">Kickstarter until the 12th of March 2024</a>, take advantage of the lowest prices we'll ever offer and gain Early Access for all 3 Premium Foundry Modules and gain access to more content on <a href=\"https://metanthropes.com/\" title=\"Join our Community &amp; Unlock Content\">metanthropes.com</a></p>",
             "markdown": ""
           },
           "video": {
@@ -41851,10 +41854,10 @@
           "flags": {},
           "_stats": {
             "systemId": "metanthropes",
-            "systemVersion": "0.9.132",
+            "systemVersion": "0.9.157",
             "coreVersion": "11.315",
             "createdTime": 1709253094030,
-            "modifiedTime": 1709322430578,
+            "modifiedTime": 1709590908693,
             "lastModifiedBy": "3IqRUDDVG8kDd6mW"
           }
         },
@@ -41886,10 +41889,10 @@
           "flags": {},
           "_stats": {
             "systemId": "metanthropes",
-            "systemVersion": "0.9.143",
+            "systemVersion": "0.9.132",
             "coreVersion": "11.315",
             "createdTime": 1709254841254,
-            "modifiedTime": 1709481848916,
+            "modifiedTime": 1709322088034,
             "lastModifiedBy": "3IqRUDDVG8kDd6mW"
           }
         },
@@ -42036,6 +42039,40 @@
             "modifiedTime": 1709322428959,
             "lastModifiedBy": "3IqRUDDVG8kDd6mW"
           }
+        },
+        {
+          "sort": 278125,
+          "name": "Demo",
+          "type": "text",
+          "_id": "KsC6pX1iuifXOtC0",
+          "title": {
+            "show": true,
+            "level": 1
+          },
+          "image": {},
+          "text": {
+            "format": 1,
+            "content": "<p></p><h3>Showcase</h3><p></p><p>Some features to try out in this Early Access Demo:</p><p></p><ul><li><p><strong>Responsive Character Sheet</strong>: Resize your Character Sheet and have it alter the amount of information displayed based on the available window width. Use <strong>the</strong> <strong>header buttons</strong> for some pre-configured layouts.</p></li><li><p><strong>Informational Tooltips</strong>: The majority of the UI has informational tooltips that will explain and showcase available options when you mouse over</p></li><li><p><strong>Roll Stats</strong>: Click on the <strong>Stats Page</strong> of your Character Sheet and click on any of the <strong>Stat Scores</strong> to roll that Stat, taking into account all Buffs, Conditions and Effects applied to your results. <strong>Right Click to Customize</strong> the Roll circumstances.</p></li><li><p><strong>Re-Roll with Destiny</strong>: Click on the '<strong>Spend Destiny to Reroll</strong>' button on the Chat to automatically deduct a <strong>Destiny Point</strong> and reroll the last roll, keeping all previous Bonuses and Penalties.</p></li><li><p><strong>Activate Metapowers</strong>: From the <strong>Metapowers Page</strong> of your Character Sheet, click (or right-click) on the <strong>Metapower Icon</strong> to roll and then click on the '<strong>Activate Metapower</strong>' button on the Chat to roll the effects for that Metapower. Click on the Name of that Metapower instead, to see more information in a separate sheet.</p></li></ul><p></p><h3>Coming Soon™</h3><p></p><p>These features are currently in development and will be part of the Metanthropes System soon™</p><p></p><ul><li><p><strong>Accumulating Levels of Success</strong>: Metapowers &amp; Possessions will increase the impact of the activated effects, based on the total Accumulated Levels of Success</p></li><li><p><strong>Spending Levels of Success</strong>: Following a successful activation, you will be able to spend your Accumulated Levels of Success to drastically increase the impact of your Metapowers</p></li><li><p><strong>Automated Damage, Healing &amp; Active Effects</strong>: Activating Metapowers and using Possessions will apply the damage or healing automatically to the selected targets and also apply or remove Buffs, Conditions and Active Effects as required.</p></li><li><p><strong>Use of Measured Templates</strong>: Leverage Foundry's Measured Templates feature to help with auto-targeting within the area of effect of a Metapower or Possession.</p></li><li><p><strong>Automated Audio &amp; Visual Effects</strong>: Activating Metapowers and using Possessions will trigger Visual &amp; Audio effects</p></li><li><p><strong>Official 3rd Party Module Support</strong>: We will be officially supporting the best 3rd Party Modules from the amazing community of Foundry Developers</p></li><li><p><strong>Leverage v12 Features</strong>: Leverage the upcoming features of Foundry VTT v12 such as Scene Regions for the activation of certain Metapower effects</p></li></ul>"
+          },
+          "video": {
+            "controls": true,
+            "volume": 0.5
+          },
+          "src": null,
+          "system": {},
+          "ownership": {
+            "default": -1,
+            "3IqRUDDVG8kDd6mW": 3
+          },
+          "flags": {},
+          "_stats": {
+            "systemId": "metanthropes",
+            "systemVersion": "0.9.157",
+            "coreVersion": "11.315",
+            "createdTime": 1709589788597,
+            "modifiedTime": 1709589873287,
+            "lastModifiedBy": "3IqRUDDVG8kDd6mW"
+          }
         }
       ],
       "folder": null,
@@ -42050,10 +42087,10 @@
       },
       "_stats": {
         "systemId": "metanthropes",
-        "systemVersion": "0.9.143",
+        "systemVersion": "0.9.157",
         "coreVersion": "11.315",
         "createdTime": 1709252399200,
-        "modifiedTime": 1709481746955,
+        "modifiedTime": 1709590379413,
         "lastModifiedBy": "3IqRUDDVG8kDd6mW"
       },
       "_id": "eukfRGaM1MEJZGyO",
@@ -42067,7 +42104,7 @@
       "navOrder": 0,
       "navName": "",
       "background": {
-        "src": "systems/metanthropes/artwork/ui/cover/cover.jpg",
+        "src": "systems/metanthropes/artwork/ui/cover/canvas-cover.jpg",
         "scaleX": 1,
         "scaleY": 1,
         "offsetX": 0,
@@ -42075,8 +42112,8 @@
         "rotation": 0
       },
       "foregroundElevation": 8,
-      "width": 1920,
-      "height": 1080,
+      "width": 3889,
+      "height": 2222,
       "padding": 0.25,
       "initial": {
         "x": null,
@@ -42173,8 +42210,8 @@
             }
           },
           "actorId": "EQWSijMtFzgJLMD9",
-          "x": 1675,
-          "y": 607,
+          "x": 3625,
+          "y": 1300,
           "hidden": false,
           "_id": "XReobTfrYWgYnevU",
           "delta": {
@@ -42264,8 +42301,8 @@
             }
           },
           "actorId": "R4rrh3MyLhMaqQ9N",
-          "x": 1875,
-          "y": 607,
+          "x": 3825,
+          "y": 1300,
           "hidden": false,
           "_id": "fryvunzghv4AKarL",
           "delta": {
@@ -42355,8 +42392,8 @@
             }
           },
           "actorId": "dSFP3CBDuNXW1KeG",
-          "x": 2075,
-          "y": 607,
+          "x": 4025,
+          "y": 1300,
           "hidden": false,
           "_id": "hf9EZwNoSrLDBqVQ",
           "delta": {
@@ -42446,8 +42483,8 @@
             }
           },
           "actorId": "8N1CVCKerdCaT83N",
-          "x": 2275,
-          "y": 607,
+          "x": 4225,
+          "y": 1300,
           "hidden": false,
           "_id": "lCQTowUh0Cofehyf",
           "delta": {
@@ -42471,10 +42508,10 @@
           "entryId": "J5FiUiNKqHOsTG5P",
           "pageId": null,
           "text": "",
-          "x": 2000,
-          "y": 664,
+          "x": 4051,
+          "y": 1366,
           "global": true,
-          "iconSize": 40,
+          "iconSize": 82,
           "texture": {
             "tint": null,
             "src": "icons/svg/book.svg",
@@ -42505,10 +42542,10 @@
           "sound": 20,
           "move": 20,
           "c": [
-            500,
-            300,
-            2420,
-            300
+            1013,
+            617,
+            4902,
+            617
           ],
           "_id": "Vrwdq1fEzFxFKT4V",
           "threshold": {
@@ -42528,10 +42565,10 @@
           "sound": 20,
           "move": 20,
           "c": [
-            2420,
-            300,
-            2420,
-            1380
+            4902,
+            617,
+            4902,
+            2839
           ],
           "_id": "5ixUY4emc7psIFNY",
           "threshold": {
@@ -42551,10 +42588,10 @@
           "sound": 20,
           "move": 20,
           "c": [
-            2420,
-            1380,
-            500,
-            1380
+            4902,
+            2839,
+            1013,
+            2839
           ],
           "_id": "FWosuUpBqOicVB4g",
           "threshold": {
@@ -42574,10 +42611,10 @@
           "sound": 20,
           "move": 20,
           "c": [
-            500,
-            1380,
-            500,
-            300
+            1013,
+            2839,
+            1013,
+            617
           ],
           "_id": "WwcQGMSH99iG9ztn",
           "threshold": {
@@ -42591,7 +42628,7 @@
       ],
       "playlist": null,
       "playlistSound": null,
-      "journal": "J5FiUiNKqHOsTG5P",
+      "journal": null,
       "journalEntryPage": null,
       "folder": null,
       "ownership": {
@@ -42626,14 +42663,14 @@
       },
       "_stats": {
         "systemId": "metanthropes",
-        "systemVersion": "0.9.127",
+        "systemVersion": "0.9.157",
         "coreVersion": "11.315",
         "createdTime": 1693129397384,
-        "modifiedTime": 1709306423740,
+        "modifiedTime": 1709589453792,
         "lastModifiedBy": "3IqRUDDVG8kDd6mW"
       },
       "foreground": null,
-      "thumb": "worlds/cleansystem/assets/scenes/HJ7VBfsFwNpnZOZ9-thumb.webp",
+      "thumb": "worlds/the-composer-build/assets/scenes/HJ7VBfsFwNpnZOZ9-thumb.webp",
       "fogOverlay": null,
       "fogExploredColor": null,
       "fogUnexploredColor": null,
@@ -42653,10 +42690,10 @@
   "flags": {},
   "_stats": {
     "systemId": "metanthropes",
-    "systemVersion": "0.9.143",
+    "systemVersion": "0.9.157",
     "coreVersion": "11.315",
     "createdTime": 1709287652201,
-    "modifiedTime": 1709481851410,
+    "modifiedTime": 1709591188988,
     "lastModifiedBy": "3IqRUDDVG8kDd6mW"
   },
   "_key": "!adventures!0vnV6XmnYtvtZ81c"

@@ -46,6 +46,7 @@
 	justify-self: center;
 	align-items: center;
 	align-self: center;
+	white-space: nowrap;
 }
 .style-container-actorinfo {
 	opacity: 1;
@@ -159,7 +160,7 @@
 }
 //nav container styling
 .style-container-nav {
-	font-family: $font-title;
+	font-family: $font-primary; //or
 	text-transform: uppercase;
 	padding: $padding-md;
 	margin: $margin-md;
@@ -220,7 +221,7 @@
 }
 .style-actorinfo-tier1 {
 	opacity: 1;
-	font-family: $font-title;
+	font-family: $font-primary; //or
 	font-size: 1.6rem;
 	color: $c-black;
 	justify-content: center;
@@ -269,7 +270,7 @@
 //styles for character sheet elements: style-cs-*
 .style-cs-chars-label {
 	opacity: 1;
-	font-family: $font-title;
+	font-family: $font-primary; //or
 	font-size: 1.6rem;
 	color: $c-black;
 	text-transform: uppercase;
@@ -282,7 +283,7 @@
 }
 .style-cs-stats-label {
 	opacity: 1;
-	font-family: $font-title;
+	font-family: $font-primary; //or
 	font-size: 1.6rem;
 	color: $c-black;
 	font-weight: bold;
@@ -308,7 +309,7 @@
 }
 .style-cs-chars-value {
 	opacity: 1;
-	font-family: $font-title;
+	font-family: $font-primary; //or
 	font-size: 1.6rem;
 	color: $c-black;
 	justify-content: center;
@@ -320,7 +321,7 @@
 }
 .style-cs-stats-value {
 	opacity: 1;
-	font-family: $font-title;
+	font-family: $font-primary; //or
 	font-size: 2.4rem;
 	color: $c-black;
 	font-weight: bold;
@@ -367,6 +368,28 @@
 	padding: $padding-md;
 	margin: $margin-zero;
 }
+.style-cs-header-positive {
+	opacity: 1;
+	font-family: $font-primary;
+	color: $c-green;
+	justify-content: center;
+	justify-self: center;
+	align-items: center;
+	align-self: center;
+	padding: $padding-sm;
+	margin: $margin-sm;
+}
+.style-cs-header-negative {
+	opacity: 1;
+	font-family: $font-primary;
+	color: $c-red;
+	justify-content: center;
+	justify-self: center;
+	align-items: center;
+	align-self: center;
+	padding: $padding-sm;
+	margin: $margin-sm;
+}
 .style-cs-positive {
 	opacity: 1;
 	font-family: $font-secondary;
@@ -392,13 +415,13 @@
 .meta-cover-roll {
 	&:hover {
 		cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
-		color: $c-purple;
+		color: $c-white;
 		text-shadow: $s-outline;
 	}
 }
 .style-cs-rolls {
 	opacity: 1;
-	font-family: $font-title;
+	font-family: $font-primary; //or
 	font-size: 2.4rem;
 	color: $c-black;
 	font-weight: bold;
@@ -411,13 +434,13 @@
 	margin: $margin-md;
 	&:hover {
 		cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
-		color: $c-purple;
+		color: $c-white;
 		text-shadow: $s-outline;
 	}
 }
 .style-cs-rolls-single-column {
 	opacity: 1;
-	font-family: $font-title;
+	font-family: $font-primary; //or
 	font-size: 2rem;
 	color: $c-black;
 	font-weight: bold;
@@ -430,13 +453,13 @@
 	margin: $margin-zero;
 	&:hover {
 		cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
-		color: $c-purple;
+		color: $c-white;
 		text-shadow: $s-outline;
 	}
 }
 .style-mp-rolls {
 	opacity: 1;
-	font-family: $font-title;
+	font-family: $font-primary; //or
 	font-size: 14px;
 	color: $c-black;
 	justify-items: center;
@@ -446,13 +469,13 @@
 	margin: $margin-zero;
 	&:hover {
 		cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
-		color: $c-purple;
+		color: $c-white;
 		text-shadow: $s-outline;
 	}
 }
 .style-pos-rolls {
 	opacity: 1;
-	font-family: $font-title;
+	font-family: $font-primary; //or
 	font-size: 14px;
 	color: $c-black;
 	justify-items: center;
@@ -462,14 +485,14 @@
 	margin: $margin-zero;
 	&:hover {
 		cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
-		color: $c-purple;
+		color: $c-white;
 		text-shadow: $s-outline;
 	}
 }
 .style-view-properties {
 	&:hover {
 		cursor: help;
-		color: $c-purple;
+		color: $c-white;
 		text-shadow: $s-outline;
 	}
 }
@@ -530,4 +553,8 @@
 	object-fit: contain;
 	border: none;
 	border-radius: 15px;
+}
+
+.style-centered-paragraph {
+	text-align: center;
 }
