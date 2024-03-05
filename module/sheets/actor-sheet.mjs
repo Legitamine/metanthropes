@@ -25,7 +25,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			id: "metanthropes-actor-sheet",
 			classes: ["metanthropes", "sheet", "actor"], //? these are custom css classes that are used in the html file
 			width: 1012,
-			height: 930,
+			height: 935,
 			//! I don't understand why I can still drag when no item has .enablehotbar
 			dragDrop: [{ dragSelector: ".enablehotbar", dropSelector: null }],
 			tabs: [
@@ -282,23 +282,23 @@ export class MetanthropesActorSheet extends ActorSheet {
 		switch (size) {
 			case "singleColumn":
 				this.position.width = 200;
-				this.position.height = 900;
+				this.position.height = 920;
 				break;
 			case "small":
 				this.position.width = 305;
-				this.position.height = 385;
+				this.position.height = 390;
 				break;
 			case "medium":
 				this.position.width = 550;
-				this.position.height = 900;
+				this.position.height = 745;
 				break;
 			case "extended":
 				this.position.width = 1400;
-				this.position.height = 940;
+				this.position.height = 935;
 				break;
 			default:
 				this.position.width = 1012;
-				this.position.height = 913;
+				this.position.height = 935;
 				break;
 		}
 		await this.maximize();

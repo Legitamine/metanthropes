@@ -7,7 +7,8 @@ $c-tan: #444;
 //qp green & purple
 $c-green: #267114;
 $c-purple: #7d0f81;
-$s-outline: 1px 1px 2px $c-purple, 0 0 1em blue, 0 0 0.2em blue;
-$s-button: 1px 1px 1px blue, 0 0 0.2em $c-purple, 0 0 0.2em $c-purple;
+$s-outline: 1px 1px 2px $c-purple, 0 0 1em $c-purple, 0 0 0.2em $c-purple;
+$s-button: 1px 1px 1px $c-purple, 0 0 0.2em $c-purple, 0 0 0.2em $c-purple;
+$s-shadow: 0 0 8px $c-purple;
 $c-red: #ab1616;
 $c-background:#8181815f;

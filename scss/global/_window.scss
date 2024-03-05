@@ -98,10 +98,15 @@ footer {
 	margin: $margin-sm;
 	padding: $padding-sm;
 }
+a {
+	&:hover {
+		text-shadow: $s-shadow;
+	}
+}
 //form buttons
 .dialog .dialog-buttons button {
-	font-family: $font-title;
-	text-transform: uppercase;
+	font-family: $font-primary; //or
+	//text-transform: uppercase;
 	background: none;
 	background-image: url("../artwork/ui/buttons/button.webp");
 	background-size: cover;
@@ -136,8 +141,8 @@ footer {
 }
 // this changes the font for buttons of Foundry UI
 button {
-	font-family: $font-title;
-	text-transform: uppercase;
+	font-family: $font-primary; //or
+	//text-transform: uppercase;
 	background-image: url("../artwork/ui/buttons/button.webp");
 	background-size: cover;
 	text-shadow: $s-button;
@@ -176,12 +181,15 @@ p {
 	font-family: $font-secondary;
 	margin: $margin-sm;
 	padding: $padding-sm;
-	text-align: center;
-	font-size: 16px;
+	text-align: left;
+	//font-size: 16px;
 }
 h3 {
 	font-family: $font-primary;
 	text-align: center;
+	color: $c-white;
+	background-color: $c-background;
+	text-shadow: $s-outline;
 }
 //? rolltable results
 .chat-message .table-draw .table-results .table-result img.result-image {
@@ -200,7 +208,7 @@ h3 {
 }
 // this changes the font in most title-elements of Foundry UI
 .window-app {
-	font-family: $font-title;
+	font-family: $font-primary; //or
 	margin: $padding-sm;
 	padding: $padding-sm;
 }
@@ -265,7 +273,7 @@ h3 {
 .chat-message .message-header .whisper-to,
 .chat-message .message-content {
 	font-family: $font-secondary;
-	font-size: 15px;
+	font-size: 14px;
 	font-weight: 500;
 	color: $c-black;
 }

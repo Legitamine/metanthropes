@@ -72,9 +72,9 @@
 					{{/if}}
 				</span>
 			</div>
-			<hr />
 		{{/if}}
 	{{/each}}
+	<hr />
 	{{! -- Effect Healing --}}
 	{{#if (or isNarrator (or (and system.Effects.Healing.Base (not (or (eq system.Effects.Healing.Base null) (eq system.Effects.Healing.Base 0)))) (and system.Effects.Healing.Dice (not (or (eq system.Effects.Healing.Dice null) (eq system.Effects.Healing.Dice 0))))))}}
 		<div class="resource">
@@ -160,9 +160,9 @@
 						{{this.value}}
 					{{/if}}
 				</div>
-				<hr />
 			{{/if}}
 		{{/each}}
+		<hr />
 	</div>
 	{{! -- Effect Conditions --}}
 	<div class="resource">
@@ -178,9 +178,9 @@
 						{{this.value}}
 					{{/if}}
 				</div>
-				<hr />
 			{{/if}}
 		{{/each}}
+		<hr />
 	</div>
 	{{! -- Sound Effects --}}
 	{{#if (and isNarrator homebrewFeatures)}}

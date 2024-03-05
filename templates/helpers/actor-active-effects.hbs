@@ -328,15 +328,15 @@
 	<div class="layout-container-grid3x1">
 		{{#each system.Characteristics}}
 			<div
-				class="layout-container-grid2x2 style-container-stats meta-ui-responsive meta-ui-hide-at-minimum">
+				class="layout-container-grid2x2 style-container-stats meta-ui-responsive meta-ui-hide-at-minimum style-centered-paragraph">
 				{{#each CoreConditions}}
 					<div {{#if (gt this 0)}} class="style-cs-conditions" {{else}}
 						class="style-cs-conditions meta-ui-obscure" {{/if}}>
-						<p data-tooltip="{{@key}} Condition Level">💀 <label
+						<p class="style-centered-paragraph" data-tooltip="{{@key}} Condition Level">💀 <label
 								class="meta-ui-responsive meta-ui-hide-at-medium style-cs-conditions"
 								for="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}">{{@key}}</label>
 						</p>
-						<p data-tooltip="{{@key}} Condition Level">
+						<p class="style-centered-paragraph" data-tooltip="{{@key}} Condition Level">
 							<select class="style-cs-conditions"
 								name="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}"
 								id="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}"
@@ -362,14 +362,14 @@
 		<div class="meta-ui-responsive meta-ui-hide-at-minimum">
 			<div class="layout-container-grid1x3 style-container-physical">
 				<div data-tooltip="Immunity offers immunity to medical conditions and specific effects">
-					<p class="style-actorinfo-tier2">Immunities
+					<p class="style-actorinfo-tier2 style-centered-paragraph">Immunities
 						<input name="system.physical.immunities.value" type="text"
 							value="{{system.physical.immunities.value}}" data-dtype="String"
 							placeholder="Immunities" />
 					</p>
 				</div>
 				<div data-tooltip="Detections allow a Character to perceive something others cannot">
-					<p class="style-actorinfo-tier2">Detections
+					<p class="style-actorinfo-tier2 style-centered-paragraph">Detections
 						<input name="system.physical.detections.value" type="text"
 							value="{{system.physical.detections.value}}" data-dtype="String"
 							placeholder="Detections" />
@@ -377,7 +377,7 @@
 				</div>
 				<div
 					data-tooltip="Shifts are Buffs which alter the physiology, biomass, shape, and form of the one who activates them. Multiple Shifts activated at the same target do not stack, and only the one with the highest numerical value is considered">
-					<p class="style-actorinfo-tier2">Shifts
+					<p class="style-actorinfo-tier2 style-centered-paragraph">Shifts
 						<input name="system.physical.shifts.value" type="text"
 							value="{{system.physical.shifts.value}}" data-dtype="String"
 							placeholder="Shifts" />
@@ -391,7 +391,7 @@
 				<div class="resource-label" style="text-align:center">Actor Active Effects are not fully
 					supported
 					yet<br></div>
-				<p>
+				<p class="style-centered-paragraph">
 					<br>This is a
 					placeholder for future capabilities<br><br>Additional
 					functionality is available during Early Access, via the Beta Testing Feature of
