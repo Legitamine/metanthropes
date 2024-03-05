@@ -1,4 +1,11 @@
 //Styles used in Metanthropes RPG Sheets
+h3 {
+	font-family: $font-primary;
+	text-align: center;
+	color: $c-white;
+	background-color: $c-background;
+	text-shadow: $s-outline;
+}
 //containers and borders
 //characteristics and stats styling and borders
 .style-container-outer-charstats {

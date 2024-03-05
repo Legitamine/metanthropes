@@ -1,4 +1,4 @@
-![image](https://content.invisioncic.com/e290497/monthly_2024_03/cover.jpg.d5439c1256cefe2182be28887feb2467.jpg)
+![image](https://content.invisioncic.com/e290497/monthly_2024_03/cover.jpg.aed69af5b8a962be534cd738b6e6dc68.jpg)
 ![Foundry v11](https://img.shields.io/badge/foundry-v11-green)
 
 # Metanthropes Early Access System for Foundry VTT
