@@ -7,6 +7,16 @@
 				{{#if isMetaCreationAllowed}}
 					<button class="create-document create-entry"><i class="{{sidebarIcon}}"></i>
 						{{localize 'SIDEBAR.Create' type=label}}</button>
+				{{else}}
+					{{#if (eq this.tabName "items")}}
+						<button class="not-operational" data-tooltip="Creating {{this.tabName}}
+						requires the Metanthropes Homebrew Module"><i class="{{sidebarIcon}}"></i>
+							{{localize 'SIDEBAR.Create' type=label}}</button>
+					{{else}}
+						<button class="not-operational" data-tooltip="Creating {{this.tabName}}
+						requires the Metanthropes Core Module"><i class="{{sidebarIcon}}"></i>
+							{{localize 'SIDEBAR.Create' type=label}}</button>
+					{{/if}}
 				{{/if}}
 			{{/if}}
 			{{#if canCreateFolder }}
@@ -31,7 +41,7 @@
 	<!-- Directories List -->
 	<ol class="directory-list">
 		{{~#each tree.children}}
-			{{> (lookup @root "folderPartial") node=this folder=this.folder}}
+			{{> "systems/metanthropes/templates/sidebar/folder-partial.hbs" tab=(lookup @root "tabName") node=this folder=this.folder}}
 		{{/each}}
 		{{#each tree.entries}}
 			{{> (lookup @root "entryPartial")}}

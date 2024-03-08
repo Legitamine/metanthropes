@@ -10,6 +10,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ---
 
+# Early Access v0.9.182 [2024-03-05]
+
+## Changed:
+
+-   The Sidebar buttons to Create Actors, Scenes, Journals, Rolltables and Compendiums are now unhidden and a tooltip exists to highlight that this functionality requires the Metanthropes Core Module
+-   The Sidebar button to Create Items is now unhidden and a tooltip exists to highlight that this functionality requires the Metanthropes Homebrew Module
+
+## Fixed:
+
+-   The Sidebar buttons that appear when creating subfolders, now properly follow the same behavior as the main Sidebar button behavior, showing a tooltip with the required Metanthropes Module to enable this functionality.
+
 # Early Access v0.9.176 [2024-03-05]
 
 ## Changed:

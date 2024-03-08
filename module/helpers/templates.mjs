@@ -33,5 +33,6 @@ export const preloadHandlebarsTemplates = async function () {
 		"systems/metanthropes/templates/sidebar/sidebar.hbs",
 		"systems/metanthropes/templates/sidebar/document-directory.hbs",
 		"systems/metanthropes/templates/sidebar/compendium-directory.hbs",
+		"systems/metanthropes/templates/sidebar/folder-partial.hbs",
 	]);
 };
