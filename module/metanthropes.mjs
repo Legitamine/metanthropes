@@ -559,7 +559,7 @@ Hooks.once("ready", async function () {
 		});
 	}
 	//? Display Welcome Screen
-	const welcome = game.settings.get("metanthropes", "metaWelcome");
+	const welcome = await game.settings.get("metanthropes", "metaWelcome");
 	if (welcome) {
 		const entry = await fromUuid("Compendium.metanthropes.welcome.JournalEntry.dP9LgZVr6QDQrI4K");
 		entry.sheet.render(true);
