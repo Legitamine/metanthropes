@@ -10,6 +10,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ---
 
+# Early Access v0.9.189 [2024-03-22]
+
+## Changed:
+
+-   Removed references in the Welcome Screen for the Introductory Zine Kickstarter
+
+## Fixed:
+
+-   Fixed the Create Compendium Button that was changed in the previous release
+-   Fixed the Pyrokinesis Example Build Actor to not have any negative Condition Levels
+
 # Early Access v0.9.183 [2024-03-05]
 
 ## Changed:

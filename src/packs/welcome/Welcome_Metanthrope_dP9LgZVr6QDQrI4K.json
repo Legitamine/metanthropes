@@ -13,7 +13,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p></p><p>The Metanthropes System is in active development and expected to be out of Early Access later in 2024</p><p></p><p>Gain <strong>Early Access</strong> to our <strong>Premium Modules</strong> &amp; support us in unlocking <strong>stretch goals for</strong> <strong>more maps and original artwork</strong> for our first <a href=\"https://www.kickstarter.com/projects/legitamine/metanthropes-introductory-zine?ref=62swzj\" title=\"Fully Funded - ending in a few days!\">Kickstarter that is live until March 12th, 2024!</a></p><p></p><h3>Import Adventure to begin</h3><p></p><p>Click on the following link and select the 'Import Adventure' button</p><p></p><hr /><p style=\"text-align:center\"></p><p style=\"text-align:center\"><span style=\"font-size:2rem\"><span style=\"font-family:Bruno Ace\">@UUID[Compendium.metanthropes.demo.Adventure.0vnV6XmnYtvtZ81c]{Early Access Demo}</span></span></p><p></p><hr /><p></p><p>The Demo comes with 4 Metanthrope Protagonist Actors, each with a different example build, to showcase a small glimpse of the <strong>500+ unique abilities</strong> that come with the <strong>Core Module.</strong></p><p></p><p></p><blockquote><p>To disable this Welcome Screen, please disable the setting from the Game Settings -&gt; Configure Settings -&gt; Metanthropes Early Access options</p></blockquote><p></p>",
+        "content": "<p></p><p>The Metanthropes System is in active development and expected to be out of Early Access later in 2024</p><p></p><h3>Import Adventure to begin</h3><p></p><p>Click on the following link and select the 'Import Adventure' button</p><p></p><hr /><p style=\"text-align:center\"></p><p style=\"text-align:center\"><span style=\"font-size:2rem\"><span style=\"font-family:Bruno Ace\">@UUID[Compendium.metanthropes.demo.Adventure.0vnV6XmnYtvtZ81c]{Early Access Demo}</span></span></p><p></p><hr /><p></p><p>The Demo comes with 4 Metanthrope Protagonist Actors, each with a different example build, to showcase a small glimpse of the <strong>500+ unique abilities</strong> that come with the <strong>Core Module.</strong></p><p></p><p></p><blockquote><p>To disable this Welcome Screen, please disable the setting from the Game Settings -&gt; Configure Settings -&gt; Metanthropes Early Access options</p></blockquote><p></p>",
         "markdown": ""
       },
       "video": {
@@ -29,10 +29,10 @@
       "flags": {},
       "_stats": {
         "systemId": "metanthropes",
-        "systemVersion": "0.9.157",
+        "systemVersion": "0.9.186",
         "coreVersion": "11.315",
         "createdTime": 1709252409413,
-        "modifiedTime": 1709590683554,
+        "modifiedTime": 1711106941993,
         "lastModifiedBy": "3IqRUDDVG8kDd6mW"
       },
       "_key": "!journal.pages!dP9LgZVr6QDQrI4K.wN4ADnCGR1UfGOBO"
@@ -72,78 +72,6 @@
         "lastModifiedBy": "3IqRUDDVG8kDd6mW"
       },
       "_key": "!journal.pages!dP9LgZVr6QDQrI4K.qpyKoZ2MUXqM3WcM"
-    },
-    {
-      "sort": 281250,
-      "name": "Premium Modules",
-      "type": "text",
-      "_id": "SEPSddOR2AHfjrPA",
-      "title": {
-        "show": true,
-        "level": 1
-      },
-      "image": {},
-      "text": {
-        "format": 1,
-        "content": "<p>As part of our first Kickstarter campaign, we are offering Early Access to <strong>three groundbreaking modules for Foundry VTT</strong>: the Introductory, Core, and Homebrew Premium Content Modules.</p><p></p><img src=\"systems/metanthropes/artwork/ui/cover/premium-modules.png\" /><p></p><p>The <strong>Introductory Module</strong> includes an amazing new map, 20 pre-made Actors, 10 Metapowers covering levels 1-3, 5 pre-made Possessions, 2 pre-made Scenes, Journals, Rollable tables, and Narrator toolkit macros.</p><p></p><p>Additional <strong>original artwork &amp; battle-map</strong> will be unlocked for the <strong>Introductory Module</strong>, if we reach our stretch goals <strong>by March 12th!</strong></p><p></p><p>The <strong>Core Module</strong> bumps up support for <strong>500+</strong> unique abilities with 100 Metapowers covering levels 1-5 and 50 pre-made Possessions</p><p></p><p>The <strong>Homebrew Module</strong> adds enhanced support for creating your homebrew content and <strong>customizing system rules</strong>.</p><p></p><p>Back us on <a href=\"https://www.kickstarter.com/projects/legitamine/metanthropes-introductory-zine?ref=62swzj\" title=\"Fully Funded &amp; Ending Soon!\">Kickstarter until the 12th of March 2024</a>, take advantage of the lowest prices we'll ever offer and gain Early Access for all 3 Premium Foundry Modules and gain access to more content on <a href=\"https://metanthropes.com/\" title=\"Join our Community &amp; Unlock Content\">metanthropes.com</a></p>",
-        "markdown": ""
-      },
-      "video": {
-        "controls": true,
-        "volume": 0.5
-      },
-      "src": null,
-      "system": {},
-      "ownership": {
-        "default": -1,
-        "MB9UTmmrdD2T8iaY": 3
-      },
-      "flags": {},
-      "_stats": {
-        "systemId": "metanthropes",
-        "systemVersion": "0.9.157",
-        "coreVersion": "11.315",
-        "createdTime": 1709253094030,
-        "modifiedTime": 1709590908693,
-        "lastModifiedBy": "3IqRUDDVG8kDd6mW"
-      },
-      "_key": "!journal.pages!dP9LgZVr6QDQrI4K.SEPSddOR2AHfjrPA"
-    },
-    {
-      "sort": 500000,
-      "name": "Ending Soon on Kickstarter!",
-      "type": "text",
-      "_id": "77XY1JQ6CCosi0Ta",
-      "title": {
-        "show": true,
-        "level": 1
-      },
-      "image": {},
-      "text": {
-        "format": 1,
-        "content": "<img src=\"systems/metanthropes/artwork/ui/cover/kickstarter-poster.png\" alt=\"Fully Funded Kickstarter Ending Soon\" /><p>Fully Funded Kickstarter Ending March 12th!</p><p></p><p><a href=\"https://www.kickstarter.com/projects/legitamine/metanthropes-introductory-zine?ref=62swzj\" title=\"Live until the 12th March 2024\">Metanthropes Introductory Zine on Kickstarter</a></p>",
-        "markdown": ""
-      },
-      "video": {
-        "controls": true,
-        "volume": 0.5
-      },
-      "src": null,
-      "system": {},
-      "ownership": {
-        "default": -1,
-        "MB9UTmmrdD2T8iaY": 3
-      },
-      "flags": {},
-      "_stats": {
-        "systemId": "metanthropes",
-        "systemVersion": "0.9.132",
-        "coreVersion": "11.315",
-        "createdTime": 1709254841254,
-        "modifiedTime": 1709322088034,
-        "lastModifiedBy": "3IqRUDDVG8kDd6mW"
-      },
-      "_key": "!journal.pages!dP9LgZVr6QDQrI4K.77XY1JQ6CCosi0Ta"
     },
     {
       "sort": 350000,
@@ -187,7 +115,7 @@
       "_id": "3CBe0nGd409K6PVr",
       "title": {
         "show": true,
-        "level": 2
+        "level": 1
       },
       "image": {},
       "text": {
@@ -211,11 +139,11 @@
       "flags": {},
       "_stats": {
         "systemId": "metanthropes",
-        "systemVersion": "0.9.127",
+        "systemVersion": "0.9.186",
         "coreVersion": "11.315",
         "createdTime": 1709318575896,
-        "modifiedTime": 1709318734080,
-        "lastModifiedBy": "5zNOC79Hz3jZdfNj"
+        "modifiedTime": 1711106990076,
+        "lastModifiedBy": "3IqRUDDVG8kDd6mW"
       },
       "_key": "!journal.pages!dP9LgZVr6QDQrI4K.3CBe0nGd409K6PVr"
     },
@@ -226,7 +154,7 @@
       "_id": "KoSAS1R3fBLoCmMy",
       "title": {
         "show": true,
-        "level": 3
+        "level": 1
       },
       "image": {},
       "text": {
@@ -246,52 +174,13 @@
       "flags": {},
       "_stats": {
         "systemId": "metanthropes",
-        "systemVersion": "0.9.132",
+        "systemVersion": "0.9.186",
         "coreVersion": "11.315",
         "createdTime": 1709321310577,
-        "modifiedTime": 1709321406612,
+        "modifiedTime": 1711106997962,
         "lastModifiedBy": "3IqRUDDVG8kDd6mW"
       },
       "_key": "!journal.pages!dP9LgZVr6QDQrI4K.KoSAS1R3fBLoCmMy"
-    },
-    {
-      "sort": 287500,
-      "name": "Opera Battlemap",
-      "type": "video",
-      "_id": "Jc4BjMpiI3f6RrCt",
-      "title": {
-        "show": true,
-        "level": 2
-      },
-      "image": {},
-      "text": {
-        "format": 1
-      },
-      "video": {
-        "controls": true,
-        "volume": 0.8,
-        "loop": false,
-        "autoplay": false,
-        "timestamp": 0,
-        "width": null,
-        "height": null
-      },
-      "src": "https://www.youtube.com/watch?v=p8FzO1EXS8o",
-      "system": {},
-      "ownership": {
-        "default": -1,
-        "3IqRUDDVG8kDd6mW": 3
-      },
-      "flags": {},
-      "_stats": {
-        "systemId": "metanthropes",
-        "systemVersion": "0.9.132",
-        "coreVersion": "11.315",
-        "createdTime": 1709322398949,
-        "modifiedTime": 1709322428959,
-        "lastModifiedBy": "3IqRUDDVG8kDd6mW"
-      },
-      "_key": "!journal.pages!dP9LgZVr6QDQrI4K.Jc4BjMpiI3f6RrCt"
     },
     {
       "sort": 278125,
@@ -339,10 +228,10 @@
   },
   "_stats": {
     "systemId": "metanthropes",
-    "systemVersion": "0.9.157",
+    "systemVersion": "0.9.186",
     "coreVersion": "11.315",
     "createdTime": 1709252399200,
-    "modifiedTime": 1709591424407,
+    "modifiedTime": 1711107012753,
     "lastModifiedBy": "3IqRUDDVG8kDd6mW"
   },
   "_id": "dP9LgZVr6QDQrI4K",
