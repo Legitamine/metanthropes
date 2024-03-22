@@ -7,6 +7,10 @@
 				{{#if isMetaCreationAllowed}}
 					<button class="create-entry"><i class="{{sidebarIcon}}"></i>
 						{{localize 'SIDEBAR.Create' type=label}}</button>
+				{{else}}
+					<button class="not-operational" data-tooltip="Creating {{this.tabName}}
+						requires the Metanthropes Core Module"><i class="{{sidebarIcon}}"></i>
+						{{localize 'SIDEBAR.Create' type=label}}</button>
 				{{/if}}
 			{{/if}}
 			{{#if canCreateFolder}}
