@@ -49,7 +49,9 @@ jobs:
                   echo "Packaging Welcome"
                   fvtt package pack -n "welcome" --in ./src/packs/welcome --out ./packs
                   echo "Packaging Demo"
-                  fvtt package pack -n "demo" --in ./src/packs/demo --out ./packs 
+                  fvtt package pack -n "demo" --in ./src/packs/demo --out ./packs
+                  echo "Packaging rollable-tables"
+                  fvtt package pack -n "rollable-tables" --in ./src/packs/rollable-tables --out ./packs 
                   echo "Contents of Data directory post packaging"
                   dir /home/runner/work/${{steps.id.outputs.prop}}/Data
                   echo "Finished packaging Compendiums"
