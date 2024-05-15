@@ -28,7 +28,7 @@
 			"flags": {}
 		}
 	],
-	"version": "0.9.432",
+	"version": "0.9.521",
 	"compatibility": {
 		"minimum": "11",
 		"verified": "11.315"
@@ -42,6 +42,18 @@
 			"type": "Adventure",
 			"path": "packs/demo",
 			"name": "demo",
+			"ownership": {
+				"PLAYER": "NONE",
+				"ASSISTANT": "OWNER"
+			},
+			"flags": {}
+		},
+		{
+			"label": "Install Demo",
+			"system": "metanthropes",
+			"type": "JournalEntry",
+			"path": "packs/install-demo",
+			"name": "install-demo",
 			"ownership": {
 				"PLAYER": "NONE",
 				"ASSISTANT": "OWNER"

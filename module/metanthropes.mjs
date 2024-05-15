@@ -356,6 +356,21 @@ Hooks.once("init", async function () {
 		type: Boolean,
 		default: true,
 	});
+	//? Display Demo Install Guide
+	game.settings.register("metanthropes", "metaInstall", {
+		name: "Show Demo Installation Guide",
+		hint: `
+		Enable to show the System Demo Installation Guide on the next startup.
+		`,
+		scope: "world", //? This specifies if it's a client-side setting
+		config: true, //? This makes the setting appear in the module configuration
+		requiresReload: false, //? If true, a client reload (F5) is required to activate the setting
+		type: Boolean,
+		default: true,
+		onChange: (value) => {
+			//? Do something when the setting is changed, if necessary
+		},
+	});
 	//? Un-pause on World load
 	game.settings.register("metanthropes", "metaPause", {
 		name: "Un-pause the World after initialization",
@@ -576,8 +591,17 @@ Hooks.once("ready", async function () {
 	if (welcome) {
 		const systemWelcome = await fromUuid("Compendium.metanthropes.welcome.JournalEntry.dP9LgZVr6QDQrI4K");
 		systemWelcome.sheet.render(true);
-		//? Done Loading Metanthropes System
 	}
+	//? Display Demo Installation Guide
+	const installGuide = await game.settings.get("metanthropes", "metaInstall");
+	if (installGuide) {
+		const metaInstall = await fromUuid(
+			"Compendium.metanthropes.install-demo.JournalEntry.JmtVua0R0mi439qA"
+		);
+		metaInstall.sheet.render(true);
+		game.settings.set("metanthropes", "metaInstall", false);
+	}
+	//? Done Loading Metanthropes System
 	metaLog(0, "System", "Initialized");
 	//? Un-pause the World
 	const metaPause = await game.settings.get("metanthropes", "metaPause");
