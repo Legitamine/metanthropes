@@ -10,23 +10,42 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ---
 
+# Early Access v0.9.524 [2024-05-18]
+
+## Added:
+
+-   Initial support for [Metanthropes: Introductory - Early Access](https://www.metanthropes.com/store/product/6-introductory-early-access/)
+-   Special popup for Narrators (Gamemasters) when the World loads for the very first time, to help them install the Demo Content that comes with the System. This will only show once but can also be accessed via the Compendiums tab or re-enabled from the Settings.
+-   Added a Setting to control if the World is automatically un-paused after loading. This setting is enabled by default.
+-   Included the Humanoid Hit Location Rollable Table as a Compendium. This Rollable Table will be used automatically in later builds by the Combat system and can also be used manually by Narrators & Players.
+
+## Changed:
+
+-   Updated the Welcome page that shows up when the World loads. You can control it from the Settings.
+-   Changed the UI for the Actor Summary tab to accommodate the upcoming Portait and Token image changes.
+-   First pass of re-structuring the Compendiums, this is a work in process to be completed in later builds.
+
+## Fixes:
+
+-   Various minor Actor Sheet UI fixes and optimizations
+
 # Early Access v0.9.189 [2024-03-22]
 
 ## Changed:
 
--   Removed references in the Welcome Screen for the Introductory Zine Kickstarter
+-   Removed references in the Welcome Screen for the Introductory Zine Kickstarter.
 
 ## Fixed:
 
--   Fixed the Create Compendium Button that was changed in the previous release
--   Fixed the Pyrokinesis Example Build Actor to not have any negative Condition Levels
+-   Fixed the Create Compendium Button that was changed in the previous release.
+-   Fixed the Pyrokinesis Example Build Actor to not have any negative Condition Levels.
 
 # Early Access v0.9.183 [2024-03-05]
 
 ## Changed:
 
--   The Sidebar buttons to Create Actors, Scenes, Journals, Rolltables and Compendiums are now unhidden and a tooltip exists to highlight that this functionality requires the Metanthropes Core Module
--   The Sidebar button to Create Items is now unhidden and a tooltip exists to highlight that this functionality requires the Metanthropes Homebrew Module
+-   The Sidebar buttons to Create Actors, Scenes, Journals, Rolltables and Compendiums are now unhidden and a tooltip exists to highlight that this functionality requires the Metanthropes Core Module.
+-   The Sidebar button to Create Items is now unhidden and a tooltip exists to highlight that this functionality requires the Metanthropes Homebrew Module.
 
 ## Fixed:
 
@@ -36,43 +55,43 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ## Changed:
 
--   Improved the Sheet UI with some changes to the fonts and overall layout for more clarity
--   Improved the Welcome Screen layout
+-   Improved the Sheet UI with some changes to the fonts and overall layout for more clarity.
+-   Improved the Welcome Screen layout.
 
 # Early Access v0.9.157 [2024-03-03]
 
 ## Added:
 
--   Added more information on the tooltips for Rolls that informs you if the Roll Result will be affected by Disease, Pain or Hunger Conditions. This new functionality is not included in the Item Sheet at this time
+-   Added more information on the tooltips for Rolls that informs you if the Roll Result will be affected by Disease, Pain or Hunger Conditions. This new functionality is not included in the Item Sheet at this time.
 
 ## Changed:
 
--   The Welcome Journal will now be included and imported when using the built-in Demo adventure to populate a new World
--   The resulting effect of a Roll, will now be displayed with Bold text in Chat for better clarity
--   Permanent Buffs gained by Metapowers & Possessions will now not show up in the Chat message, however they are still visible in the respective Item Sheet
+-   The Welcome Journal will now be included and imported when using the built-in Demo adventure to populate a new World.
+-   The resulting effect of a Roll, will now be displayed with Bold text in Chat for better clarity.
+-   Permanent Buffs gained by Metapowers & Possessions will now not show up in the Chat message, however they are still visible in the respective Item Sheet.
 
 ## Fixed:
 
--   Finaly fixed a long-standing known issue, where the Stat Scores shown in the Metapowers & Possessions tabs would not update properly
+-   Finaly fixed a long-standing known issue, where the Stat Scores shown in the Metapowers & Possessions tabs would not update properly.
 
 # Early Access v0.9.143 [2024-03-01]
 
 ## Added:
 
--   Added a new Welcome Screen with some basic guidance on how to use our first Early Acccess Demo
--   Added a Demo Adventure Type Compendium that includes 4 Actors and a Sample Scene
--   Added initial support for installing & running the System on The Forge
+-   Added a new Welcome Screen with some basic guidance on how to use our first Early Acccess Demo.
+-   Added a Demo Adventure Type Compendium that includes 4 Actors and a Sample Scene.
+-   Added initial support for installing & running the System on The Forge.
 
 ## Changed:
 
--   Improved some of the graphics & typography for the Character & Item Sheets, Buttons and Chat. All design elements are subject to change throughout Early Access, as we come closer to finalizing the UI & UX
--   Cleaned up and improved the code documentation for the Early Access release. This is an on-going task with changes that won't affect the gameplay in any way, but will help other developers (and myself) when reviewing and making further changes to the code
+-   Improved some of the graphics & typography for the Character & Item Sheets, Buttons and Chat. All design elements are subject to change throughout Early Access, as we come closer to finalizing the UI & UX.
+-   Cleaned up and improved the code documentation for the Early Access release. This is an on-going task with changes that won't affect the gameplay in any way, but will help other developers (and myself) when reviewing and making further changes to the code.
 
 ## Fixed:
 
--   Multi-Actions are now available only for Metapowers & Possessions with 'Main Action' as their activation cost & for Stat Rolls and won't be available with other types of rolls
+-   Multi-Actions are now available only for Metapowers & Possessions with 'Main Action' as their activation cost & for Stat Rolls and won't be available with other types of rolls.
 -   Resizing the Actor sheet via the header buttons will not change the active tab anymore, to avoid confusion
--   Various Minor Fixes in the UI & UX
+-   Various Minor Fixes in the UI & UX.
 
 ---
 
@@ -84,39 +103,39 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ## New Features:
 
--   Sound Effects for Items: A new section is available for Metapowers / Possessions under Item / Effects Tab (editable if you have the Homebrew Module) that allows you to define a SFX Compendium and a SFX Name to play an Audio File when activating/using this Item. This section is not visible to Players, only Narrators
+-   Sound Effects for Items: A new section is available for Metapowers / Possessions under Item / Effects Tab (editable if you have the Homebrew Module) that allows you to define a SFX Compendium and a SFX Name to play an Audio File when activating/using this Item. This section is not visible to Players, only Narrators.
 
 ## Changed:
 
--   Changed the UI to not allow changes to the Progression of Actors, unless the 'metanthropes-core' Module is enabled
+-   Changed the UI to not allow changes to the Progression of Actors, unless the 'metanthropes-core' Module is enabled.
 
 # Closed Beta v0.9.013 [2023-12-22]
 
 ## Breaking Changes:
 
--   Renamed the id of the system to 'metanthropes'. This is a breaking change that will require worlds to adjust to the new id
--   Moved content to the Metanthropes Introductory Module. This is a breaking change that will require worlds to adjust to the new module
--   Moved the ability to create your own Actors, Scenes, Journals, Rollable Tables and Compendiums to the new 'metanthropes-core' module, as part of our Early Access release plan
--   Moved the ability to create your own Items as well as the 'Beta Testing of New Features' to the new 'metanthropes-homebrew' module, as part of our Early Access release plan
+-   Renamed the id of the system to 'metanthropes'. This is a breaking change that will require worlds to adjust to the new id.
+-   Moved content to the Metanthropes Introductory Module. This is a breaking change that will require worlds to adjust to the new module.
+-   Moved the ability to create your own Actors, Scenes, Journals, Rollable Tables and Compendiums to the new 'metanthropes-core' module, as part of our Early Access release plan.
+-   Moved the ability to create your own Items as well as the 'Beta Testing of New Features' to the new 'metanthropes-homebrew' module, as part of our Early Access release plan.
 
 # Closed Beta v0.8.150 [2023-12-17]
 
 ## New Features:
 
--   Active Effects now automatically become Inactive, when their Duration is over, during Combat. The Effect will move from the 'Active Effects' to the 'Inactive Effects' category, so they can be easily re-activated by the Narrator, if needed
+-   Active Effects now automatically become Inactive, when their Duration is over, during Combat. The Effect will move from the 'Active Effects' to the 'Inactive Effects' category, so they can be easily re-activated by the Narrator, if needed.
 
 ## Changed:
 
--   Core Conditions moved out of the Stats Tab and into the new Effects Tab, functionality remains the same
--   Compendiums are now built automatically when we release a new version of the System. Previously this had to be done manually and caused extra effort in making new releases that included changes to Compendiums, now the process takes fewer steps and it's less error-prone. This is a developer feature and won't affect the gameplay in any way
+-   Core Conditions moved out of the Stats Tab and into the new Effects Tab, functionality remains the same.
+-   Compendiums are now built automatically when we release a new version of the System. Previously this had to be done manually and caused extra effort in making new releases that included changes to Compendiums, now the process takes fewer steps and it's less error-prone. This is a developer feature and won't affect the gameplay in any way.
 
 # Closed Beta v0.8.128 [2023-12-13]
 
 ## New Features:
 
--   Introducing the new Active Effects system, available in Beta Testing mode. This new system will allow you to create custom effects that can be applied to Actors and Items. This feature is in active development and will be out of Beta Testing during Early Access v0.9
+-   Introducing the new Active Effects system, available in Beta Testing mode. This new system will allow you to create custom effects that can be applied to Actors and Items. This feature is in active development and will be out of Beta Testing during Early Access v0.9.
 -   Added new Status Effects, available to Narrators via Right-Clicking a Token in the Canvas. This feature is in Early Access Final Testing and will be available to all players with Early Access v0.9
--   Introducing the Targeting system. Now players are able to utilize the built-in Targeting functionality that Foundry VTT provides and the Target Names will be displayed as part of the Activation of a Metapower or Possession. This feature is in Early Access Final Testing and will be available to all players during Early Access v0.9
+-   Introducing the Targeting system. Now players are able to utilize the built-in Targeting functionality that Foundry VTT provides and the Target Names will be displayed as part of the Activation of a Metapower or Possession. This feature is in Early Access Final Testing and will be available to all players during Early Access v0.9.
 
 ## Changed:
 
