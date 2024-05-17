@@ -784,6 +784,15 @@ h3 {
   padding: 6px;
   margin: 1px;
 }
+.metanthropes .layout-container-summary-images {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  -moz-column-gap: 6px;
+       column-gap: 6px;
+  padding: 6px;
+  margin: 1px;
+}
 .metanthropes .layout-container-summary-controls {
   display: flex;
   padding: 6px;
