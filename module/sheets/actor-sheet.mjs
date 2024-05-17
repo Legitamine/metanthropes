@@ -232,6 +232,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//? Change Portrait
 		html.find(".meta-change-portrait").click(this._onChangePortrait.bind(this));
 		//!? Drag events for macros !??
+		//todo:review how we use this
 		if (this.actor.isOwner) {
 			let handler = (ev) => this._onDragStart(ev);
 			html.find("li.item").each((i, li) => {
@@ -599,7 +600,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		const actor = this.actor;
 		await metaFinalizePremadeActor(actor);
 	}
-	//* Change the Player controling the Actor
+	//* Change the Player controling the Actor - this will enable seeing the buttons in chat and also give OWNER permission to the document
 	async _onAssignActorPlayer(event) {
 		event.preventDefault();
 		const actor = this.actor;
@@ -614,13 +615,19 @@ export class MetanthropesActorSheet extends ActorSheet {
 			title: "Assign Player",
 			content: `
 			<form>
-				<div>Only Narrators (Gamemasters) and the assigned Player can see and click the Buttons in the Chat<br><br></div>
+				<div>When you assign this Actor to a Player, they get the Owner permission on the Actor document & are able to see & interact with the buttons in the chat.<br></div>
+				<div><br>Only Narrators (Gamemasters) and the assigned Player can see and click the Buttons in the Chat<br><br></div>
 				<div><p>You can add/remove players from the Settings - User Management<br><br> To manually change the Player's name, please use the 'Narrator Toolbox - Edit Protagonist Details' Macro<br><br></p></div>
 				<div><p>Current Player: ${actor.system.metaowner.value}</p><br></div>
 				<div class="form-group">
 					<label>Assign Player</label>
 					<select id="player" name="player">
-						${activePlayers.map((user) => `<option value="${user.name}">${user.name}</option>`)}
+						${activePlayers
+							.map(
+								(user) =>
+									`<option value="${user.name}" data-playerid="${user._id}">${user.name}</option>`
+							)
+							.join("")}
 					</select>
 				</div>
 			</form>
@@ -630,9 +637,17 @@ export class MetanthropesActorSheet extends ActorSheet {
 					label: "Confirm",
 					callback: async (html) => {
 						//? Get the selected player
-						const selectedPlayer = html.find("#player")[0].value;
-						//? Change the actor's player
-						await actor.update({ "system.metaowner.value": selectedPlayer });
+						const selectedPlayerElement = html.find("#player")[0];
+						const selectedPlayer = selectedPlayerElement.value;
+						const selectedPlayerID =
+							selectedPlayerElement.options[selectedPlayerElement.selectedIndex].getAttribute(
+								"data-playerid"
+							);
+						//? Give that player OWNER permission on the actor document and set the metaowner value to that player
+						await actor.update({
+							"system.metaowner.value": selectedPlayer,
+							permission: { [selectedPlayerID]: 3 },
+						});
 						//? Close the dialog
 						dialog.close();
 					},

@@ -25,6 +25,8 @@ fvtt package workon "metanthropes" --type "System"
 fvtt package unpack "welcome" --out "F:/FoundryVTT/Data/systems/metanthropes/src/packs/welcome"
 @echo Demo
 fvtt package unpack "demo" --out "F:/FoundryVTT/Data/systems/metanthropes/src/packs/demo"
+@echo Rollable Tables
+fvtt package unpack "rollable-tables" --out "F:/FoundryVTT/Data/systems/metanthropes/src/packs/rollable-tables"
 @echo
 @echo
 @echo Finished Unpacking Compendiums

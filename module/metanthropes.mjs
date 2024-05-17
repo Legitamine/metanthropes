@@ -1,14 +1,14 @@
 /**
- * Metanthropes Early Access System for Foundry VTT
+ * Metanthropes - Early Access for Foundry VTT
  * Author: The Orchestrator (qp)
  * Discord: qp#8888 ; q_._p
  *
  *? The below notice is for developers, code reviewers and anyone curious enough to take a look at the code.
  *
- * * Although I come with 20+ years of experience in IT, this is my very first code project & it started back in late Feb 2023
+ * * Although I come with 20+ years of experience in IT as a Systems Engineer, this is my very first code project & it started back in late Feb 2023
  * * I do understand that I have a long way to go as a developer, and I am committed to become better at it!
  * * Disclaimer: I have been using the AI from GitHub Co-pilot within VSCode as well as ChatGPT v4 as a tutor and teacher to help me learn how to code.
- * * I am very eager to learn and improve my skills, so any constructive feedback is more than welcome.
+ * * I am very eager to learn and improve my skills, so any constructive feedback is more than welcome!
  *
  * ! This project is a work in progress - please forgive the excessive commenting and notes scattered throughout the code.
  * It will be properly cleaned up by the time it's out of Early Access. All of the code contained in this project is my own work.
@@ -21,7 +21,7 @@
  * - @mxzf for the overall help & patience & guidance & the amazing website of FVTT resources
  * - @asacolips for the Boilerplate code, without which I would have been completely lost and probably would have given up very early on
  ** Special shoutout to the code-wizard & RL buddy @aMUSiC, who has guided me to avoid many pitfalls and who will be assisting with code-reviews post Early Access!
- * If you would like to contribute to this project, please feel free to reach out to me.
+ * If you would like to contribute to this project, please feel free to reach out to me via Discord
  *
  * Throughtout this project, I use the following syntax for comments:
  ** //! Marks a special comment that stands out (in Red) for critical notes.
@@ -283,10 +283,10 @@ Hooks.once("init", async function () {
 	});
 	//? Introductory Module Settings
 	game.settings.register("metanthropes", "metaIntroductory", {
-		name: "Enable Introductory Features",
+		name: "Enable Metanthropes: Introductory",
 		hint: `
-				Enable this setting to gain access to the Introductory Module features.
-				`,
+			Enable this setting to gain access to the Metanthropes: Introductory features.
+			`,
 		scope: "world", // This specifies if it's a client-side setting
 		config: false, // This makes the setting appear in the module configuration
 		requiresReload: true, // If true, a client reload (F5) is required to activate the setting
@@ -298,9 +298,9 @@ Hooks.once("init", async function () {
 	});
 	//? Core Module Settings
 	game.settings.register("metanthropes", "metaCore", {
-		name: "Enable Core Features",
+		name: "Enable Metanthropes: Core",
 		hint: `
-			Enable this setting to gain access to the Core Module Features.
+			Enable this setting to gain access to the Metanthropes: Core features.
 			`,
 		scope: "world", // This specifies if it's a client-side setting
 		config: false, // This makes the setting appear in the module configuration
@@ -313,9 +313,9 @@ Hooks.once("init", async function () {
 	});
 	//? Homebrew Module Settings
 	game.settings.register("metanthropes", "metaHomebrew", {
-		name: "Enable Homebrew Features",
+		name: "Enable Metanthropes: Homebrew",
 		hint: `
-			Enable this setting to gain access to the Homebrew Module features.
+			Enable this setting to gain access to the Metanthropes: Homebrew features.
 			`,
 		scope: "world", // This specifies if it's a client-side setting
 		config: false, // This makes the setting appear in the module configuration
@@ -326,6 +326,7 @@ Hooks.once("init", async function () {
 			// Do something when the setting is changed, if necessary
 		},
 	});
+	//todo: investigate the 'registerMenu' to define a settings submenu
 	//? Beta Features Testing
 	game.settings.register("metanthropes", "metaBetaTesting", {
 		name: "Enable Beta Testing of New Features",
@@ -345,18 +346,44 @@ Hooks.once("init", async function () {
 	});
 	//? Welcome Screen
 	game.settings.register("metanthropes", "metaWelcome", {
-		name: "Enable Welcome Screen",
+		name: "Show Welcome Screen",
 		hint: `
-		Enable this setting to display the Welcome Screen when the World loads.
+		Enable this setting to display the Metanthropes Welcome Screen when the World loads.
 		`,
 		scope: "world",
 		config: true,
-		requiresReload: true,
+		requiresReload: false,
+		type: Boolean,
+		default: true,
+	});
+	//? Display Demo Install Guide
+	game.settings.register("metanthropes", "metaInstall", {
+		name: "Show Demo Installation Guide",
+		hint: `
+		Enable to show the System Demo Installation Guide on the next startup.
+		`,
+		scope: "world", //? This specifies if it's a client-side setting
+		config: true, //? This makes the setting appear in the module configuration
+		requiresReload: false, //? If true, a client reload (F5) is required to activate the setting
+		type: Boolean,
+		default: true,
+		onChange: (value) => {
+			//? Do something when the setting is changed, if necessary
+		},
+	});
+	//? Un-pause on World load
+	game.settings.register("metanthropes", "metaPause", {
+		name: "Un-pause the World after initialization",
+		hint: `
+		Enable this setting to automatically un-pause the World after initializing the System and Modules.
+		`,
+		scope: "world",
+		config: true,
+		requiresReload: false,
 		type: Boolean,
 		default: true,
 	});
 	//? Preload Handlebars templates.
-	console.log("Metanthropes | System | Initialized");
 	return preloadHandlebarsTemplates();
 });
 /**
@@ -420,11 +447,12 @@ function rollItemMacro(itemUuid) {
 //* Ready Hook
 Hooks.once("ready", async function () {
 	//? Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-	Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
+	//todo: review if we would want this type of functionality
+	//Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
 	//* Migration section
-	metaLog(3, "Starting Migration");
-	metaMigrateData();
-	metaLog(3, "Finished Migration");
+	metaLog(3, "System", "Starting Migration");
+	await metaMigrateData();
+	metaLog(3, "System", "Finished Migration");
 	//* Add support for Moulinette
 	if (game.moulinette) {
 		//* Metanthropes Content Moulinette Integration
@@ -561,13 +589,26 @@ Hooks.once("ready", async function () {
 	//? Display Welcome Screen
 	const welcome = await game.settings.get("metanthropes", "metaWelcome");
 	if (welcome) {
-		const entry = await fromUuid("Compendium.metanthropes.welcome.JournalEntry.dP9LgZVr6QDQrI4K");
-		entry.sheet.render(true);
+		const systemWelcome = await fromUuid("Compendium.metanthropes.welcome.JournalEntry.dP9LgZVr6QDQrI4K");
+		systemWelcome.sheet.render(true);
 	}
-	//? Un-pause the World
-	game.togglePause(false);
+	//? Display Demo Installation Guide
+	const installGuide = await game.settings.get("metanthropes", "metaInstall");
+	if (installGuide) {
+		const metaInstall = await fromUuid(
+			"Compendium.metanthropes.install-demo.JournalEntry.JmtVua0R0mi439qA"
+		);
+		metaInstall.sheet.render(true);
+		game.settings.set("metanthropes", "metaInstall", false);
+	}
 	//? Done Loading Metanthropes System
-	metaLog(3, "Finished Loading Metanthropes System");
+	metaLog(0, "System", "Initialized");
+	//? Un-pause the World
+	const metaPause = await game.settings.get("metanthropes", "metaPause");
+	if (metaPause) {
+		metaLog(0, "System", "Un-pausing the World after initialization");
+		game.togglePause(false);
+	}
 });
 //* Drag Ruler Integration
 Hooks.once("dragRuler.ready", (SpeedProvider) => {
@@ -643,28 +684,6 @@ Hooks.on("renderChatMessage", async (message, html) => {
 });
 //* New Actor Event Listener
 Hooks.on("createActor", async (actor) => {
-	if (
-		//todo: this should be updated to check for Humanoid once actor v4 template changes are done
-		//? currently ExtraD and ExtraT are also considered Humanoids based on the system.humanoids being assigned to them via the template
-		actor.name.includes("New") &&
-		actor.type !== "Vehicle" &&
-		actor.type !== "Animal" &&
-		actor.type !== "MetaTherion" &&
-		actor.type !== "Animated-Plant" &&
-		actor.type !== "Extradimensional" &&
-		actor.type !== "Extraterrestrial"
-	) {
-		//* New Humanoids get a Strike equipped by default
-		//? get the Strike Item from the Possessions Compendium
-		const possessionCompendium = await game.packs.get("metanthropes.possessions");
-		const possessionCompendiumIndex = await possessionCompendium.getIndex();
-		const strikeEntry = possessionCompendiumIndex.find((item) => item.name === "Strike");
-		if (strikeEntry) {
-			const strikeItem = await possessionCompendium.getDocument(strikeEntry._id);
-			await actor.createEmbeddedDocuments("Item", [strikeItem]);
-			metaLog(3, "New Actor Event Listener", "Gave 'Strike' to:", actor.name);
-		}
-	}
 	//* Duplicate Self Metapower Activation Detection - Rename to Duplicate & Remove Items & Effects from Duplicates
 	if (actor.name.includes("Copy") && actor.isDuplicatingSelf) {
 		const newName = actor.name.replace("Copy", "Duplicate");

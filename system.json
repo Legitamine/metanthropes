@@ -1,7 +1,7 @@
 {
 	"id": "metanthropes",
-	"title": "Metanthropes Early Access",
-	"description": "Metanthropes Early Access System for Foundry VTT",
+	"title": "Metanthropes - Early Access",
+	"description": "Metanthropes System for Foundry VTT by Legitamine Games - Early Access",
 	"authors": [
 		{
 			"name": "qp",
@@ -28,10 +28,11 @@
 			"flags": {}
 		}
 	],
-	"version": "0.9.189",
+	"version": "0.9.524",
 	"compatibility": {
 		"minimum": "11",
-		"verified": "11.315"
+		"verified": "11.315",
+		"maximum": "12"
 	},
 	"esmodules": ["module/metanthropes.mjs"],
 	"styles": ["css/metanthropes.css"],
@@ -42,8 +43,22 @@
 			"type": "Adventure",
 			"path": "packs/demo",
 			"name": "demo",
+			"banner": "systems/metanthropes/artwork/ui/cover/compendium-header.webp",
 			"ownership": {
-				"PLAYER": "OBSERVER",
+				"PLAYER": "NONE",
+				"ASSISTANT": "OWNER"
+			},
+			"flags": {}
+		},
+		{
+			"label": "Install Demo",
+			"system": "metanthropes",
+			"type": "JournalEntry",
+			"path": "packs/install-demo",
+			"name": "install-demo",
+			"banner": "systems/metanthropes/artwork/ui/cover/compendium-header.webp",
+			"ownership": {
+				"PLAYER": "NONE",
 				"ASSISTANT": "OWNER"
 			},
 			"flags": {}
@@ -54,6 +69,20 @@
 			"type": "JournalEntry",
 			"path": "packs/welcome",
 			"name": "welcome",
+			"banner": "systems/metanthropes/artwork/ui/cover/compendium-header.webp",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			},
+			"flags": {}
+		},
+		{
+			"label": "Rollable Tables",
+			"system": "metanthropes",
+			"type": "RollTable",
+			"path": "packs/rollable-tables",
+			"name": "rollable-tables",
+			"banner": "systems/metanthropes/artwork/ui/cover/compendium-header.webp",
 			"ownership": {
 				"PLAYER": "OBSERVER",
 				"ASSISTANT": "OWNER"
