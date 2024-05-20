@@ -356,11 +356,11 @@ Hooks.once("init", async function () {
 		type: Boolean,
 		default: true,
 	});
-	//? Display Demo Install Guide
+	//? Display System Install Guide
 	game.settings.register("metanthropes", "metaInstall", {
-		name: "Show Demo Installation Guide",
+		name: "Show System Installation Guide",
 		hint: `
-		Enable to show the System Demo Installation Guide on the next startup.
+		Enable to show the System Installation Guide on the next startup.
 		`,
 		scope: "world", //? This specifies if it's a client-side setting
 		config: true, //? This makes the setting appear in the module configuration
@@ -596,7 +596,7 @@ Hooks.once("ready", async function () {
 	const installGuide = await game.settings.get("metanthropes", "metaInstall");
 	if (installGuide) {
 		const metaInstall = await fromUuid(
-			"Compendium.metanthropes.install-demo.JournalEntry.JmtVua0R0mi439qA"
+			"Compendium.metanthropes.install-system.JournalEntry.LtDAG4iDlxFwGo8N"
 		);
 		metaInstall.sheet.render(true);
 		game.settings.set("metanthropes", "metaInstall", false);

@@ -10,6 +10,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ---
 
+# Early Access v0.9.552 [2024-05-20]
+
+# Changed:
+
+-   Second pass of re-structuring the Compendiums is complete, now you will see a 'Metanthropes' Folder in the Compendiums Tab and all our content will be from now on placed within this structure, to reduce clutter and improve usability.
+
+# Fixed:
+
+-   Fixed an issue that was causing the Installation Guide journal that was introduced in the previous build to not work as intended.
+
 # Early Access v0.9.524 [2024-05-18]
 
 ## Added:
