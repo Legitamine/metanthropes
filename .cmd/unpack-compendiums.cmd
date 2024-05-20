@@ -25,6 +25,9 @@ call fvtt package unpack "welcome" --out "F:/FoundryVTT/Data/systems/metanthrope
 @echo System
 @echo ------
 call fvtt package unpack "system" --out "F:/FoundryVTT/Data/systems/metanthropes/src/packs/system"
+@echo Demo
+@echo ----
+call fvtt package unpack "demo" --out "F:/FoundryVTT/Data/systems/metanthropes/src/packs/demo"
 @echo Installation Guide
 @echo ------------------
 call fvtt package unpack "install-system" --out "F:/FoundryVTT/Data/systems/metanthropes/src/packs/install-system"
