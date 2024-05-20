@@ -49,7 +49,7 @@ You can also view the archives of past releases, kept for posterity, [here](http
 
 Our eternal gratitude goes to the amazing community of FVTT Developers <3
 
-Shoutout especially to the #system-development channel and extra-special thanks to the following people:
+Shoutout especially to the #system-development channel on the FVTT Discord server & extra-special thanks to the following people:
  - @TyphonJS (Michael) for the code used in the metaLogDocument function
  - @Zhell (zhell9201) for the overall help, guidance & suggestions
  - @Mana (manaflower) for the overall help, guidance & CSS wizardry

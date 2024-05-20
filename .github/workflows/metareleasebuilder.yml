@@ -48,10 +48,10 @@ jobs:
                   fvtt package workon "${{steps.id.outputs.prop}}" --type "System"
                   echo "Packaging Welcome"
                   fvtt package pack -n "welcome" --in ./src/packs/welcome --out ./packs
-                  echo "Packaging Demo"
+                  echo "Packaging System"
                   fvtt package pack -n "demo" --in ./src/packs/demo --out ./packs
-                  echo "Packaging rollable-tables"
-                  fvtt package pack -n "rollable-tables" --in ./src/packs/rollable-tables --out ./packs 
+                  fvtt package pack -n "system" --in ./src/packs/system --out ./packs
+                  fvtt package pack -n "install-system" --in ./src/packs/install-system --out ./packs
                   echo "Contents of Data directory post packaging"
                   dir /home/runner/work/${{steps.id.outputs.prop}}/Data
                   echo "Finished packaging Compendiums"

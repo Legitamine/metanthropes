@@ -28,7 +28,7 @@
 			"flags": {}
 		}
 	],
-	"version": "0.9.524",
+	"version": "0.9.552",
 	"compatibility": {
 		"minimum": "11",
 		"verified": "11.315",
@@ -51,11 +51,24 @@
 			"flags": {}
 		},
 		{
-			"label": "Install Demo",
+			"label": "System",
+			"system": "metanthropes",
+			"type": "Adventure",
+			"path": "packs/system",
+			"name": "system",
+			"banner": "systems/metanthropes/artwork/ui/cover/compendium-header.webp",
+			"ownership": {
+				"PLAYER": "NONE",
+				"ASSISTANT": "OWNER"
+			},
+			"flags": {}
+		},
+		{
+			"label": "Install System",
 			"system": "metanthropes",
 			"type": "JournalEntry",
-			"path": "packs/install-demo",
-			"name": "install-demo",
+			"path": "packs/install-system",
+			"name": "install-system",
 			"banner": "systems/metanthropes/artwork/ui/cover/compendium-header.webp",
 			"ownership": {
 				"PLAYER": "NONE",
@@ -75,19 +88,31 @@
 				"ASSISTANT": "OWNER"
 			},
 			"flags": {}
-		},
+		}
+	],
+	"packFolders": [
 		{
-			"label": "Rollable Tables",
-			"system": "metanthropes",
-			"type": "RollTable",
-			"path": "packs/rollable-tables",
-			"name": "rollable-tables",
-			"banner": "systems/metanthropes/artwork/ui/cover/compendium-header.webp",
-			"ownership": {
-				"PLAYER": "OBSERVER",
-				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
+			"name": "Metanthropes",
+			"sorting": "a",
+			"color": "#7d0f81",
+			"packs": ["welcome"],
+			"folders": [
+				{
+					"name": "Installation",
+					"sorting": "a",
+					"color": "#7d0f81",
+					"packs": ["install-system"],
+					"folders": [
+						{
+						"name": "System",
+						"sorting": "a",
+						"color": "#7d0f81",
+						"packs": ["demo", "system"],
+						"folders": []
+						}
+					]
+				}
+			]
 		}
 	],
 	"background": "systems/metanthropes/artwork/ui/cover/cover.jpg",
