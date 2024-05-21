@@ -28,7 +28,7 @@
 			"flags": {}
 		}
 	],
-	"version": "0.9.552",
+	"version": "0.9.560",
 	"compatibility": {
 		"minimum": "11",
 		"verified": "11.315",
@@ -104,7 +104,7 @@
 					"packs": ["install-system"],
 					"folders": [
 						{
-						"name": "System",
+						"name": "Content",
 						"sorting": "a",
 						"color": "#7d0f81",
 						"packs": ["demo", "system"],
