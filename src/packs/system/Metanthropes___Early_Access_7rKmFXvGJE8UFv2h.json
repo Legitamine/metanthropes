@@ -193,12 +193,46 @@
             "modifiedTime": 1716220499257,
             "lastModifiedBy": "3IqRUDDVG8kDd6mW"
           }
+        },
+        {
+          "sort": 378125,
+          "name": "Premium Content for Foundry VTT",
+          "type": "text",
+          "_id": "PVX603XcfLXOOLKT",
+          "title": {
+            "show": true,
+            "level": 1
+          },
+          "image": {},
+          "text": {
+            "format": 1,
+            "content": "<p>Following <a href=\"https://www.kickstarter.com/projects/legitamine/metanthropes-introductory-zine\">our first KickStarter</a>, we are ramping up development of our Premium Content for Foundry VTT. </p><p></p><p>We are very excited to announce that we will be providing <strong>all KickStarter backers with their activation keys by the end of May 2024!</strong> </p><p></p><p>If you missed out on our first KickStarter, you can now find <strong>Metanthropes Premium Content for Foundry VTT </strong><a href=\"https://metanthropes.com/store\"><strong>available for purchase on our website</strong></a><strong>!</strong></p><p></p><p>We are currently offering 3 Premium Modules for Foundry VTT:</p><ul><li><p><strong>Metanthropes: Introductory</strong> is a one-shot story with an amazing Opera map, premade Actors &amp; Journals, to help new players learn how to play the game and to introduce them to the setting of Metanthropes. This module is expected to be <strong>out of Early Access by July 2024.</strong></p></li><li><p><strong>Metanthropes: Core</strong> is the way the game is meant to be played, allowing for Character progression &amp; providing access to over 500 unique abilities for your Protagonists. This module is expected to be <strong>out of Early Access later in 2024.</strong></p></li><li><p><strong>Metanthropes: Homebrew</strong> allows you to tinker with the game rules, customize the Core content to your liking &amp; create your own. This module is expected to be <strong>out of Early Access by the end of 2024.</strong></p></li></ul><p></p><p>If you would be interested to support us during this early stage of development, we kindly offer a <strong>20% discount to all Early Access products</strong> &amp; you can also take advantage of our <strong>bundled offerings for additional discounts!</strong></p>"
+          },
+          "video": {
+            "controls": true,
+            "volume": 0.5
+          },
+          "src": null,
+          "system": {},
+          "ownership": {
+            "default": -1,
+            "TDjJpWtoCRIimJbB": 3
+          },
+          "flags": {},
+          "_stats": {
+            "systemId": "metanthropes",
+            "systemVersion": "0.9.552",
+            "coreVersion": "11.315",
+            "createdTime": 1716294710685,
+            "modifiedTime": 1716296377114,
+            "lastModifiedBy": "TDjJpWtoCRIimJbB"
+          }
         }
       ],
-      "folder": "aQRnJ2L84iJimFTm",
+      "folder": "G29x72NKEHX1FPy4",
       "ownership": {
         "default": 0,
-        "sb29LdJ2TZ8a4o0g": 3
+        "TDjJpWtoCRIimJbB": 3
       },
       "flags": {
         "core": {
@@ -207,11 +241,11 @@
       },
       "_stats": {
         "systemId": "metanthropes",
-        "systemVersion": "0.9.524",
+        "systemVersion": "0.9.552",
         "coreVersion": "11.315",
         "createdTime": 1709252399200,
-        "modifiedTime": 1716224172660,
-        "lastModifiedBy": "sb29LdJ2TZ8a4o0g"
+        "modifiedTime": 1716297195360,
+        "lastModifiedBy": "TDjJpWtoCRIimJbB"
       },
       "_id": "dP9LgZVr6QDQrI4K",
       "sort": 0
@@ -336,7 +370,8 @@
       "folder": "Iz79q9G1Mzeygfuz",
       "ownership": {
         "default": 0,
-        "sb29LdJ2TZ8a4o0g": 3
+        "sb29LdJ2TZ8a4o0g": 3,
+        "TDjJpWtoCRIimJbB": 3
       },
       "flags": {
         "core": {
@@ -345,11 +380,11 @@
       },
       "_stats": {
         "systemId": "metanthropes",
-        "systemVersion": "0.9.524",
+        "systemVersion": "0.9.552",
         "coreVersion": "11.315",
         "createdTime": 1681919285029,
-        "modifiedTime": 1716223431946,
-        "lastModifiedBy": "sb29LdJ2TZ8a4o0g"
+        "modifiedTime": 1716293719594,
+        "lastModifiedBy": "TDjJpWtoCRIimJbB"
       },
       "_id": "z4Yf0BLg957bRJ07",
       "sort": 0
@@ -370,11 +405,11 @@
       "flags": {},
       "_stats": {
         "systemId": "metanthropes",
-        "systemVersion": "0.9.524",
+        "systemVersion": "0.9.552",
         "coreVersion": "11.315",
         "createdTime": 1716223431932,
-        "modifiedTime": 1716223444088,
-        "lastModifiedBy": "sb29LdJ2TZ8a4o0g"
+        "modifiedTime": 1716293719599,
+        "lastModifiedBy": "TDjJpWtoCRIimJbB"
       }
     },
     {
@@ -401,11 +436,11 @@
   "flags": {},
   "_stats": {
     "systemId": "metanthropes",
-    "systemVersion": "0.9.524",
+    "systemVersion": "0.9.552",
     "coreVersion": "11.315",
     "createdTime": 1716223475127,
-    "modifiedTime": 1716224189983,
-    "lastModifiedBy": "sb29LdJ2TZ8a4o0g"
+    "modifiedTime": 1716297238890,
+    "lastModifiedBy": "TDjJpWtoCRIimJbB"
   },
   "_key": "!adventures!7rKmFXvGJE8UFv2h"
 }

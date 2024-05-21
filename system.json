@@ -22,13 +22,13 @@
 	"media": [
 		{
 			"type": "setup",
-			"url": "systems/metanthropes/artwork/ui/cover/cover.jpg",
+			"url": "https://content.invisioncic.com/e290497/monthly_2024_03/new-cover.jpg.266c89d776592f674fd3a4133d3fb813.jpg",
 			"thumbnail": "systems/metanthropes/artwork/ui/cover/cover.jpg",
 			"loop": false,
 			"flags": {}
 		}
 	],
-	"version": "0.9.552",
+	"version": "0.9.587",
 	"compatibility": {
 		"minimum": "11",
 		"verified": "11.315",
@@ -104,7 +104,7 @@
 					"packs": ["install-system"],
 					"folders": [
 						{
-						"name": "System",
+						"name": "Content",
 						"sorting": "a",
 						"color": "#7d0f81",
 						"packs": ["demo", "system"],
