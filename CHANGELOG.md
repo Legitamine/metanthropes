@@ -12,19 +12,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ---
 
-# Early Access v0.9.560 [2024-05-21]
+# Early Access v0.9.587 [2024-05-21]
 
 # Added:
 
 -   Initial Support for all Metanthropes Premium Modules. Their versions will now follow the build version of Metanthropes System for which they will from on also depend upon & require, in order to install & update.
 -   Metanthropes: Introductory added a new Installation Guide, Early Access content included, however it is still missing many of the original artwork planned to be available later during the Summer of 2024.
 -   Metanthropes: Core added a new Installation Guide, initial content added, mainly for testing purposes.
--   Metanthropes: Homebrew added a new Installation Guide and barebone content, mainly for testing purposes, and now the Beta Testing of New features setting will enable Status Effects, Character Progression, Targeting and application of damage - although kindly note that all these features are not working as intended and are subject to change during Summer as we develop them further.
+-   Metanthropes: Homebrew added a new Installation Guide and barebone content, mainly for testing purposes
 
 # Changed:
 
--   Final pass for the Compendium restructuring, for both the System and all the Premium Modules. This new structure will now become the foundation for content that will added later to the game.
-
+-   Final pass for the Compendium restructuring, for both the System and all the Premium Modules. This new structure will now become the foundation for content that will added to the game as we progress through the Early Access milestones.
 
 # Early Access v0.9.552 [2024-05-20]
 
