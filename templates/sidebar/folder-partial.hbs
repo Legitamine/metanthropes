@@ -15,14 +15,16 @@
 					<i class="fas fa-plus"></i>
 				</a>
 			{{else}}
-				{{#if (eq tab "items")}}
-				<!-- adding a non functional class here breaks the ui - had to keep create-button class for the icon to show up properly-->
-					<a class="create-button" data-tooltip="Creating {{tab}} requires the Metanthropes Homebrew Module">
+				{{#if (or (eq tab "items") (eq tab "compendium"))}}
+					<!-- adding a non functional class here breaks the ui - had to keep create-button class for the icon to show up properly-->
+					<a class="create-button"
+						data-tooltip="Creating {{tab}} requires the Metanthropes Homebrew Module">
 						<i class="{{@root.sidebarIcon}}"></i>
 						<i class="fas fa-plus"></i>
 					</a>
 				{{else}}
-					<a class="create-button" data-tooltip="Creating {{tab}} requires the Metanthropes Core Module">
+					<a class="create-button"
+						data-tooltip="Creating {{tab}} requires the Metanthropes Core Module">
 						<i class="{{@root.sidebarIcon}}"></i>
 						<i class="fas fa-plus"></i>
 					</a>
