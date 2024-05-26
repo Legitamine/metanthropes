@@ -10,6 +10,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ### Early Access Releases
 
+# Early Access v0.9.589 [2024-05-26]
+
+# Added:
+
+-   Initial testing for Foundry V12 started. The System will allow running in V12, however, we do not officially support V12 for running games and is only for testing purposes. V12 will bring a plethora of much wanted features such as Scene Regions that we plan to utilize fully for Metapower activations, so more features that utilize and require V12 will be coming soon.
+
+# Changed:
+
+-   The 'Assign Player' button in the Actor Character Sheet, Summary Tab, now does not require a Player to be active (connected to the game) in order to be assigned an Actor.
+-   The logic behind the 'Finalize Premade Actor' button on the Actor Summary Tab, is no longer tied to the 'Assign Player' logic. Narrators should use the 'Assign Player' button and Players can then use the 'Finalize Actor' button.
+-   Changed the tooltip text on the Create Actor and Create Item / Compendium buttons, to better clarify that during Early Access, these features are available for testing in the Core and Homebrew modules respectively.
+-   Re-enabled the creation of Journals & Playlists.
+
+# Known-Issues:
+
+-   You are not currently able to change the Actor's Portrait Image via tha Character Sheet, this functionality will be re-enabled when we introduce the new Portrait Images that will come with the Metanthropes: Introductory Module.
+
 ---
 
 # Early Access v0.9.587 [2024-05-21]

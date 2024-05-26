@@ -8,13 +8,13 @@
 					<button class="create-document create-entry"><i class="{{sidebarIcon}}"></i>
 						{{localize 'SIDEBAR.Create' type=label}}</button>
 				{{else}}
-					{{#if (eq this.tabName "items")}}
-						<button class="not-operational" data-tooltip="Creating {{this.tabName}}
-						requires the Metanthropes Homebrew Module"><i class="{{sidebarIcon}}"></i>
+					{{#if (or (eq this.tabName "compendium") (eq this.tabName "items"))}}
+						<button class="not-operational" data-tooltip="Creating {{this.tabName}},
+						during Early Access, requires the Metanthropes Homebrew Module"><i class="{{sidebarIcon}}"></i>
 							{{localize 'SIDEBAR.Create' type=label}}</button>
 					{{else}}
-						<button class="not-operational" data-tooltip="Creating {{this.tabName}}
-						requires the Metanthropes Core Module"><i class="{{sidebarIcon}}"></i>
+						<button class="not-operational" data-tooltip="Creating {{this.tabName}},
+						during Early Access, requires the Metanthropes Core Module"><i class="{{sidebarIcon}}"></i>
 							{{localize 'SIDEBAR.Create' type=label}}</button>
 					{{/if}}
 				{{/if}}

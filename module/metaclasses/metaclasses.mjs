@@ -274,7 +274,7 @@ export class MetaSidebar extends Sidebar {
 			compendium: {
 				tooltip: "SIDEBAR.TabCompendium",
 				icon: "fas fa-atlas",
-				isCreationAllowed: isMetaCore,
+				isCreationAllowed: isMetaHomebrew,
 			},
 			settings: {
 				tooltip: "SIDEBAR.TabSettings",
@@ -312,7 +312,8 @@ export class metaDocumentDirectory extends DocumentDirectory {
 	}
 	get isMetaCreationAllowed() {
 		if (this.tabName === "items") return this.isMetaHomebrew;
-		else return this.isMetaCore;
+		else if (this.tabName === "actors") return this.isMetaCore;
+		else return true;
 	}
 	/**
 	 * @override
@@ -1652,7 +1653,7 @@ export class metaCompendiumDirectory extends DirectoryApplicationMixin(SidebarTa
 		return Boolean(game.settings.get("metanthropes", "metaHomebrew"));
 	}
 	get isMetaCreationAllowed() {
-		return this.isMetaCore;
+		return this.isMetaHomebrew;
 	}
 
 	/**
@@ -1860,9 +1861,15 @@ export class metaCompendiumDirectory extends DirectoryApplicationMixin(SidebarTa
 		event.stopPropagation();
 		const li = event.currentTarget.closest(".directory-item");
 		const targetFolderId = li ? li.dataset.folderId : null;
-		const types = CONST.COMPENDIUM_DOCUMENT_TYPES.map((documentName) => {
-			return { value: documentName, label: game.i18n.localize(getDocumentClass(documentName).metadata.label) };
-		});
+		//? Added an exclusion of Cards as a valid Compendium type
+		const types = CONST.COMPENDIUM_DOCUMENT_TYPES.filter((documentName) => documentName !== "Cards").map(
+			(documentName) => {
+				return {
+					value: documentName,
+					label: game.i18n.localize(getDocumentClass(documentName).metadata.label),
+				};
+			}
+		);
 		game.i18n.sortObjects(types, "label");
 		const folders = this.collection._formatFolderSelectOptions();
 		const html = await renderTemplate("templates/sidebar/compendium-create.html", {

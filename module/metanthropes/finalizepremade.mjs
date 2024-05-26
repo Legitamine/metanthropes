@@ -1,14 +1,15 @@
 import { metaRolld10 } from "../metarollers/metarollextras.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
-import { metaActorControl } from "../metanthropes/actorcontrol.mjs";
+// import { metaActorControl } from "../metanthropes/actorcontrol.mjs";
 //* Finalizes a Premade Protagonist
 export async function metaFinalizePremadeActor(actor) {
 	const playerName = game.user.name;
 	try {
-		await metaActorControl(actor).catch((error) => {
-			metaLog(2, "Finalize Premade Protagonist", "Error at metaActorControl:", error);
-			throw error;
-		});
+		//! A player needs to be Assigned first (via the Summary Tab button or manually) before they can Finalize Premade Actor
+		// await metaActorControl(actor).catch((error) => {
+		// 	metaLog(2, "Finalize Premade Protagonist", "Error at metaActorControl:", error);
+		// 	throw error;
+		// });
 		//todo: premade actor summary
 		await metaNewPremadeSummary(actor).catch((error) => {
 			metaLog(2, "Finalize Premade Protagonist", "Error at NewPremadeSummary:", error);

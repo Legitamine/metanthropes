@@ -27,7 +27,7 @@
 				{{/if}}
 				{{#if isNarrator}}
 					<button class="assign-actor-player"
-						data-tooltip="The Assigned Player can see & click the Buttons in Chat">Assign
+						data-tooltip="The Assigned Player gains ownership of this Actor and can see & click on the Chat Buttons">Assign
 						Player</button>
 				{{/if}}
 			</div>
@@ -76,17 +76,16 @@
 		<div class="layout-container-summary-images">
 			<div class="layout-tab-summary-portrait-container">
 				<img src="{{actor.img}}" data-tooltip="{{actor.name}}'s Portrait Image"
-					alt="{{actor.name}}'s Portrait Image"
-					class="style-tab-summary-portrait" />
+					alt="{{actor.name}}'s Portrait Image" class="style-tab-summary-portrait" />
 			</div>
 			<div class="layout-tab-summary-portrait-container">
 				{{#if actor.isToken}}
 					<img src="{{actor.token.texture.src}}"
 						data-tooltip="{{actor.name}}'s Token Image"
-						alt="{{actor.name}}'s Token Image"
-						class="style-tab-summary-portrait" />
+						alt="{{actor.name}}'s Token Image" class="style-tab-summary-portrait" />
 				{{else}}
-					<img src="{{actor.prototypeToken.texture.src}}" data-tooltip="{{actor.name}}'s Token Image"
+					<img src="{{actor.prototypeToken.texture.src}}"
+						data-tooltip="{{actor.name}}'s Token Image"
 						alt="{{actor.name}}'s Token Image"
 						class="style-tab-summary-portrait <!--meta-change-portrait-->" />
 				{{/if}}

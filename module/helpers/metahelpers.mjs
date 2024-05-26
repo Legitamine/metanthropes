@@ -67,7 +67,6 @@ export async function metaImportProgressionFromCoreModule() {
 		} catch (error) {
 			metaLog(
 				2,
-				"Metanthropes",
 				"Meta Helpers",
 				"Import Progression From Core Module",
 				"Error importing Metanthropes Core Module",
