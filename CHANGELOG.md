@@ -10,6 +10,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ### Early Access Releases
 
+# Early Access v0.9.592 [2024-05-27]
+
+# Changed:
+
+-   Changed the Chat message to display the results in a more clear manner, having the final result start in a new line and removed the '\*' that followed the number for Success/Failure and Destiny.
+-   Metanthropes: Introductory Module has updated Journals with a few minor fixes & typos and updated the Premade Protagonists with the correct Backgrounds, Narrator Notes and Possessions.
+
+# Fixed:
+
+-   Fixed an issue that was causing NaN error to appear when entering null values in the custom roll options for Bonus, Penalty and Reduction.
+
+# Known-Issues:
+
+- Metanthropes: Introductory imported scenes do not have the correct thumbnail and instead seem to be empty. To fix, right-click on the Scene and select 'Generate Thumbnail Image'.
+
 # Early Access v0.9.589 [2024-05-26]
 
 # Added:

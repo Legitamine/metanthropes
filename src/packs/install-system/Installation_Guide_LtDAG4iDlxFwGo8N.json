@@ -29,10 +29,12 @@
       "_stats": {
         "systemId": "metanthropes",
         "systemVersion": "0.9.524",
-        "coreVersion": "11.315",
+        "coreVersion": "12.324",
         "createdTime": 1715775200030,
         "modifiedTime": 1716224057763,
-        "lastModifiedBy": "sb29LdJ2TZ8a4o0g"
+        "lastModifiedBy": "sb29LdJ2TZ8a4o0g",
+        "compendiumSource": null,
+        "duplicateSource": null
       },
       "_key": "!journal.pages!LtDAG4iDlxFwGo8N.JQb8rTs2tgsnKJbP"
     }
@@ -49,10 +51,12 @@
   "_stats": {
     "systemId": "metanthropes",
     "systemVersion": "0.9.524",
-    "coreVersion": "11.315",
+    "coreVersion": "12.324",
     "createdTime": 1715775190987,
     "modifiedTime": 1716224057763,
-    "lastModifiedBy": "sb29LdJ2TZ8a4o0g"
+    "lastModifiedBy": "sb29LdJ2TZ8a4o0g",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_id": "LtDAG4iDlxFwGo8N",
   "sort": 0,

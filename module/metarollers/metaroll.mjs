@@ -115,6 +115,12 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 			statScore,
 			itemName
 		);
+		//? Check to see if null or undefined values were entered and change to 0 instead
+		multiAction = multiAction || 0;
+		bonus = bonus || 0;
+		customPenalty = customPenalty || 0;
+		customReduction = customReduction || 0;
+		aimingReduction = aimingReduction || 0;
 		metaLog(
 			3,
 			"metaRoll",
