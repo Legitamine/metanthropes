@@ -402,12 +402,12 @@ export class MetanthropesCombat extends Combat {
 			title: game.i18n.localize("COMBAT.EndTitle"),
 			content: `<p>${game.i18n.localize("COMBAT.EndConfirmation")}</p>`,
 			yes: async () => {
-				const combatCycle = await this.getFlag("metanthropes", "cycle");
+				const combatCycle = await this.getFlag("metanthropes", "cycle") || 1;
 				const combatRound = this.round;
 				const combatCycleMessage = `${combatCycle} Cycle${combatCycle === 1 ? "" : "s"}`;
 				const combatRoundMessage = `${combatRound} Round${combatRound === 1 ? "" : "s"}`;
 				await ChatMessage.create({
-					content: `<br>Combat Encounter Ended after ${combatCycleMessage} and ${combatRoundMessage}!<br><br>`,
+					content: `<br>Combat Encounter Ended after:<br><br>${combatCycleMessage} and ${combatRoundMessage}!<br><br>`,
 					speaker: { alias: "Metanthropes Combat" },
 				});
 				//? End the combat

@@ -10,6 +10,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ### Early Access Releases
 
+# Early Access v0.9.xxx [2024-05-xx]
+
+# Fixed:
+
+-   When Combat ends during the first Round of the first Cycle, it will now display the appropriate message in Chat.
+
 # Early Access v0.9.592 [2024-05-27]
 
 # Changed:
@@ -23,7 +29,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 # Known-Issues:
 
-- Metanthropes: Introductory imported scenes do not have the correct thumbnail and instead seem to be empty. To fix, right-click on the Scene and select 'Generate Thumbnail Image'.
+-   Metanthropes: Introductory imported scenes do not have the correct thumbnail and instead seem to be empty. To fix, right-click on the Scene and select 'Generate Thumbnail Image'.
 
 # Early Access v0.9.589 [2024-05-26]
 
