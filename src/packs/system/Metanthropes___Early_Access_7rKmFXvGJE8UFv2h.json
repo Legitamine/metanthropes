@@ -40,10 +40,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.524",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709252883977,
             "modifiedTime": 1715965692080,
-            "lastModifiedBy": "3IqRUDDVG8kDd6mW"
+            "lastModifiedBy": "3IqRUDDVG8kDd6mW",
+            "compendiumSource": null,
+            "duplicateSource": null
           }
         },
         {
@@ -78,10 +80,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.186",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709318575896,
             "modifiedTime": 1711106990076,
-            "lastModifiedBy": "3IqRUDDVG8kDd6mW"
+            "lastModifiedBy": "3IqRUDDVG8kDd6mW",
+            "compendiumSource": null,
+            "duplicateSource": null
           }
         },
         {
@@ -112,10 +116,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.524",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709589788597,
             "modifiedTime": 1716223732054,
-            "lastModifiedBy": "sb29LdJ2TZ8a4o0g"
+            "lastModifiedBy": "sb29LdJ2TZ8a4o0g",
+            "compendiumSource": null,
+            "duplicateSource": null
           }
         },
         {
@@ -150,10 +156,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.524",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1715966852461,
             "modifiedTime": 1715966902308,
-            "lastModifiedBy": "3IqRUDDVG8kDd6mW"
+            "lastModifiedBy": "3IqRUDDVG8kDd6mW",
+            "compendiumSource": null,
+            "duplicateSource": null
           }
         },
         {
@@ -188,10 +196,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.524",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1716220483784,
             "modifiedTime": 1716220499257,
-            "lastModifiedBy": "3IqRUDDVG8kDd6mW"
+            "lastModifiedBy": "3IqRUDDVG8kDd6mW",
+            "compendiumSource": null,
+            "duplicateSource": null
           }
         },
         {
@@ -222,10 +232,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.552",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1716294710685,
             "modifiedTime": 1716296377114,
-            "lastModifiedBy": "TDjJpWtoCRIimJbB"
+            "lastModifiedBy": "TDjJpWtoCRIimJbB",
+            "compendiumSource": null,
+            "duplicateSource": null
           }
         }
       ],
@@ -242,10 +254,12 @@
       "_stats": {
         "systemId": "metanthropes",
         "systemVersion": "0.9.552",
-        "coreVersion": "11.315",
+        "coreVersion": "12.324",
         "createdTime": 1709252399200,
         "modifiedTime": 1716297195360,
-        "lastModifiedBy": "TDjJpWtoCRIimJbB"
+        "lastModifiedBy": "TDjJpWtoCRIimJbB",
+        "compendiumSource": "Compendium.metanthropes.welcome.JournalEntry.dP9LgZVr6QDQrI4K",
+        "duplicateSource": null
       },
       "_id": "dP9LgZVr6QDQrI4K",
       "sort": 0
@@ -259,7 +273,7 @@
       "description": "<p style=\"text-align:center\">Random location on the human body.</p>",
       "results": [
         {
-          "type": 0,
+          "type": "text",
           "weight": 20,
           "range": [
             1,
@@ -274,7 +288,7 @@
           "flags": {}
         },
         {
-          "type": 0,
+          "type": "text",
           "weight": 20,
           "range": [
             21,
@@ -289,7 +303,7 @@
           "flags": {}
         },
         {
-          "type": 0,
+          "type": "text",
           "weight": 15,
           "range": [
             41,
@@ -304,7 +318,7 @@
           "flags": {}
         },
         {
-          "type": 0,
+          "type": "text",
           "weight": 15,
           "range": [
             56,
@@ -319,7 +333,7 @@
           "flags": {}
         },
         {
-          "type": 0,
+          "type": "text",
           "weight": 10,
           "range": [
             71,
@@ -334,7 +348,7 @@
           "flags": {}
         },
         {
-          "type": 0,
+          "type": "text",
           "weight": 15,
           "range": [
             81,
@@ -349,7 +363,7 @@
           "flags": {}
         },
         {
-          "type": 0,
+          "type": "text",
           "weight": 5,
           "range": [
             96,
@@ -381,10 +395,12 @@
       "_stats": {
         "systemId": "metanthropes",
         "systemVersion": "0.9.552",
-        "coreVersion": "11.315",
+        "coreVersion": "12.324",
         "createdTime": 1681919285029,
         "modifiedTime": 1716293719594,
-        "lastModifiedBy": "TDjJpWtoCRIimJbB"
+        "lastModifiedBy": "TDjJpWtoCRIimJbB",
+        "compendiumSource": "Compendium.metanthropes.rollable-tables.RollTable.20FbVn8Ym4Nd9FGb",
+        "duplicateSource": null
       },
       "_id": "z4Yf0BLg957bRJ07",
       "sort": 0
@@ -406,11 +422,14 @@
       "_stats": {
         "systemId": "metanthropes",
         "systemVersion": "0.9.552",
-        "coreVersion": "11.315",
+        "coreVersion": "12.324",
         "createdTime": 1716223431932,
         "modifiedTime": 1716293719599,
-        "lastModifiedBy": "TDjJpWtoCRIimJbB"
-      }
+        "lastModifiedBy": "TDjJpWtoCRIimJbB",
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "description": ""
     },
     {
       "name": "Hit Location",
@@ -424,11 +443,14 @@
       "_stats": {
         "systemId": "metanthropes",
         "systemVersion": "0.9.524",
-        "coreVersion": "11.315",
+        "coreVersion": "12.324",
         "createdTime": 1700264652155,
         "modifiedTime": 1716223431942,
-        "lastModifiedBy": "sb29LdJ2TZ8a4o0g"
-      }
+        "lastModifiedBy": "sb29LdJ2TZ8a4o0g",
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "description": ""
     }
   ],
   "_id": "7rKmFXvGJE8UFv2h",
@@ -437,10 +459,12 @@
   "_stats": {
     "systemId": "metanthropes",
     "systemVersion": "0.9.552",
-    "coreVersion": "11.315",
+    "coreVersion": "12.324",
     "createdTime": 1716223475127,
     "modifiedTime": 1716297238890,
-    "lastModifiedBy": "TDjJpWtoCRIimJbB"
+    "lastModifiedBy": "TDjJpWtoCRIimJbB",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_key": "!adventures!7rKmFXvGJE8UFv2h"
 }

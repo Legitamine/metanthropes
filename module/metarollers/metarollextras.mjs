@@ -92,7 +92,7 @@ export async function metaRolld10(actor, what, destinyReRoll, dice, itemName = n
 	//? if destinyReRoll is true, allow rerolling the result by spending 1 Destiny Point
 	let currentDestiny = Number(actor.system.Vital.Destiny.value);
 	if (destinyReRoll && currentDestiny > 0) {
-		message += `<br>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>
+		message += `<br>${actor.name} has ${currentDestiny} 🤞 Destiny remaining.<br>
 		<div class="hide-button hidden"><br><button class="metanthropes-secondary-chat-button rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 		data-what="${what}" data-destiny-re-roll="${destinyReRoll}" data-dice="${dice}" data-base-number="${baseNumber}" data-is-half="${isHalf}">Spend 🤞 Destiny to reroll
 		</button><br><br></div>`;
@@ -200,7 +200,7 @@ export async function metaHungerRoll(actor, hungerLevel) {
 		hungerMessage += `It is a 🟥 Failure!<br><br>${actor.name} is too hungry and can't act!`;
 		//? Button to re-roll Hunger using destiny
 		const currentDestiny = Number(actor.system.Vital.Destiny.value);
-		hungerMessage += `<hr />${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+		hungerMessage += `<hr />${actor.name} has ${currentDestiny} 🤞 Destiny remaining.<br>`;
 		if (currentDestiny > 0) {
 			hungerMessage += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button hunger-reroll" 
 			data-actoruuid="${actor.uuid}" data-hunger-level="${hungerLevel}"
@@ -294,7 +294,7 @@ export async function metaCoverRoll(actor, coverType, coverValue) {
 		coverMessage += `It is a 🟥 Failure!<br><br>${actor.name} can't find Cover!`;
 		//? Button to re-roll Cover using destiny
 		const currentDestiny = Number(actor.system.Vital.Destiny.value);
-		coverMessage += `<hr />${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+		coverMessage += `<hr />${actor.name} has ${currentDestiny} 🤞 Destiny remaining.<br>`;
 		if (currentDestiny > 0) {
 			coverMessage += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button cover-reroll" 
 			data-actoruuid="${actor.uuid}" data-cover-value="${coverValue}" data-type="${coverType}"

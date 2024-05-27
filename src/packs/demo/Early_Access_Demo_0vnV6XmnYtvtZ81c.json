@@ -905,7 +905,12 @@
           "scaleY": 0.73,
           "offsetX": 0,
           "offsetY": 0,
-          "rotation": 0
+          "rotation": 0,
+          "anchorX": 0.5,
+          "anchorY": 0.5,
+          "fit": "contain",
+          "tint": "#ffffff",
+          "alphaThreshold": 0.75
         },
         "width": 1,
         "height": 1,
@@ -940,7 +945,10 @@
           "darkness": {
             "min": 0,
             "max": 1
-          }
+          },
+          "negative": false,
+          "priority": 0,
+          "color": null
         },
         "sight": {
           "enabled": true,
@@ -950,7 +958,8 @@
           "attenuation": 0.1,
           "brightness": 0,
           "saturation": 0,
-          "contrast": 0
+          "contrast": 0,
+          "color": null
         },
         "detectionModes": [],
         "flags": {
@@ -965,7 +974,23 @@
             "include": "include"
           }
         },
-        "randomImg": false
+        "randomImg": false,
+        "hexagonalShape": 0,
+        "occludable": {
+          "radius": 0
+        },
+        "ring": {
+          "enabled": false,
+          "colors": {
+            "ring": null,
+            "background": null
+          },
+          "effects": 1,
+          "subject": {
+            "scale": 1,
+            "texture": null
+          }
+        }
       },
       "items": [
         {
@@ -1448,10 +1473,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709295160704,
             "modifiedTime": 1709304662687,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.xkR4NEbPTEDFxXmE",
+            "duplicateSource": null
           },
           "_id": "BHXiG4FYgufjOF0a"
         },
@@ -1935,10 +1962,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709295160704,
             "modifiedTime": 1709304663449,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.WZqBvHPEUFabNRsl",
+            "duplicateSource": null
           },
           "_id": "CKyK3gJBoV3YCirF"
         },
@@ -2423,10 +2452,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709295160704,
             "modifiedTime": 1709304664221,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.1klh7louDLxSXd30",
+            "duplicateSource": null
           }
         },
         {
@@ -2910,10 +2941,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709301031541,
             "modifiedTime": 1709304668666,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.LqGNfF8VWangRRyO",
+            "duplicateSource": null
           }
         },
         {
@@ -3396,10 +3429,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709301031541,
             "modifiedTime": 1709304669399,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.OWU9RZQ0zkqHQt2X",
+            "duplicateSource": null
           },
           "_id": "94NPczlo11JC98Lm"
         },
@@ -3887,10 +3922,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709302159899,
             "modifiedTime": 1709304672876,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.SlHtYLzkCpT8swci",
+            "duplicateSource": null
           },
           "_id": "aBaJD7utawlCjiIJ"
         },
@@ -4378,10 +4415,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709302159899,
             "modifiedTime": 1709304673617,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.lfmBLUEWklIHFO8T",
+            "duplicateSource": null
           },
           "_id": "RCux0Uwx8173DwJK"
         },
@@ -4870,10 +4909,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709302159899,
             "modifiedTime": 1709304674406,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.umHh41UMSUGDirIp",
+            "duplicateSource": null
           }
         },
         {
@@ -5356,10 +5397,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709301221942,
             "modifiedTime": 1709304678142,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.rtrtvumNBtmSW9iL",
+            "duplicateSource": null
           },
           "_id": "5XZPV7ignWO6bKgB"
         },
@@ -5844,10 +5887,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709301221942,
             "modifiedTime": 1709304679347,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.wypJ4VNxOcgdYjWN",
+            "duplicateSource": null
           }
         },
         {
@@ -6386,10 +6431,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709300750605,
             "modifiedTime": 1709305801283,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.O9tWrHwO26sxZnnK",
+            "duplicateSource": null
           }
         }
       ],
@@ -6422,10 +6469,12 @@
       "_stats": {
         "systemId": "metanthropes",
         "systemVersion": "0.9.552",
-        "coreVersion": "11.315",
+        "coreVersion": "12.324",
         "createdTime": 1709294475845,
         "modifiedTime": 1716233317751,
-        "lastModifiedBy": "F0ZXUMehd6qxarRo"
+        "lastModifiedBy": "F0ZXUMehd6qxarRo",
+        "compendiumSource": null,
+        "duplicateSource": null
       }
     },
     {
@@ -7328,7 +7377,12 @@
           "scaleY": 0.73,
           "offsetX": 0,
           "offsetY": 0,
-          "rotation": 0
+          "rotation": 0,
+          "anchorX": 0.5,
+          "anchorY": 0.5,
+          "fit": "contain",
+          "tint": "#ffffff",
+          "alphaThreshold": 0.75
         },
         "width": 1,
         "height": 1,
@@ -7363,7 +7417,10 @@
           "darkness": {
             "min": 0,
             "max": 1
-          }
+          },
+          "negative": false,
+          "priority": 0,
+          "color": null
         },
         "sight": {
           "enabled": true,
@@ -7373,7 +7430,8 @@
           "attenuation": 0.1,
           "brightness": 0,
           "saturation": 0,
-          "contrast": 0
+          "contrast": 0,
+          "color": null
         },
         "detectionModes": [],
         "flags": {
@@ -7388,7 +7446,23 @@
             "include": "include"
           }
         },
-        "randomImg": false
+        "randomImg": false,
+        "hexagonalShape": 0,
+        "occludable": {
+          "radius": 0
+        },
+        "ring": {
+          "enabled": false,
+          "colors": {
+            "ring": null,
+            "background": null
+          },
+          "effects": 1,
+          "subject": {
+            "scale": 1,
+            "texture": null
+          }
+        }
       },
       "items": [
         {
@@ -7871,10 +7945,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709298059679,
             "modifiedTime": 1709304691592,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.1J7X2omF9yjiEgEn",
+            "duplicateSource": null
           },
           "_id": "bE2mdOTL0WFC6ZXj"
         },
@@ -8358,10 +8434,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709298059679,
             "modifiedTime": 1709304692264,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.1J7X2omF9yjiEgEn",
+            "duplicateSource": null
           },
           "_id": "N6gO8irR0MXMIdMu"
         },
@@ -8846,10 +8924,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709298059679,
             "modifiedTime": 1709304696369,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.1J7X2omF9yjiEgEn",
+            "duplicateSource": null
           }
         },
         {
@@ -9332,10 +9412,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709298059679,
             "modifiedTime": 1709304697123,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.1FLjWYc0IJp7EiG1",
+            "duplicateSource": null
           },
           "_id": "R6284098Rk6gs62u"
         },
@@ -9819,10 +9901,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709298059679,
             "modifiedTime": 1709304698079,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.yPeNq1edYbS5Db7C",
+            "duplicateSource": null
           },
           "_id": "Bs6kDqgNHEx6W864"
         },
@@ -10306,10 +10390,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709299034030,
             "modifiedTime": 1709304704440,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.5hmrONnR9QVBjvcN",
+            "duplicateSource": null
           },
           "_id": "gJy1xzuFkqQARDVw"
         },
@@ -10793,10 +10879,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709299034030,
             "modifiedTime": 1709304705087,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.5hmrONnR9QVBjvcN",
+            "duplicateSource": null
           },
           "_id": "ijT1GzPfV0Khs5jY"
         },
@@ -11280,10 +11368,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709299034030,
             "modifiedTime": 1709304706024,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.5hmrONnR9QVBjvcN",
+            "duplicateSource": null
           },
           "_id": "jkwr21RHAkxBKRKW"
         },
@@ -11767,10 +11857,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709299034030,
             "modifiedTime": 1709304706819,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.5hmrONnR9QVBjvcN",
+            "duplicateSource": null
           },
           "_id": "AGxD3TquJ38R26gT"
         },
@@ -12254,10 +12346,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709299034030,
             "modifiedTime": 1709304707483,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.5hmrONnR9QVBjvcN",
+            "duplicateSource": null
           },
           "_id": "8SeblExfNce6vc6l"
         },
@@ -12741,10 +12835,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709299034030,
             "modifiedTime": 1709304708230,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.5hmrONnR9QVBjvcN",
+            "duplicateSource": null
           },
           "_id": "3zaPWanagB6TV1os"
         },
@@ -13228,10 +13324,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709299034030,
             "modifiedTime": 1709304709127,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.5hmrONnR9QVBjvcN",
+            "duplicateSource": null
           },
           "_id": "OczreZPxNRto0okR"
         },
@@ -13715,10 +13813,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709299034030,
             "modifiedTime": 1709304709950,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.5hmrONnR9QVBjvcN",
+            "duplicateSource": null
           },
           "_id": "Z05tKVgCzifM8ZJA"
         },
@@ -14202,10 +14302,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709299034030,
             "modifiedTime": 1709304710892,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.5hmrONnR9QVBjvcN",
+            "duplicateSource": null
           },
           "_id": "GBSe2h19kTnwzhmq"
         },
@@ -14690,10 +14792,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709299034030,
             "modifiedTime": 1709304712528,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.5hmrONnR9QVBjvcN",
+            "duplicateSource": null
           }
         },
         {
@@ -15176,10 +15280,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709299034030,
             "modifiedTime": 1709304713444,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.RMS5UkUCgLhvjEF9",
+            "duplicateSource": null
           },
           "_id": "JQP3fbowEf2X1aB2"
         },
@@ -15663,10 +15769,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709299034030,
             "modifiedTime": 1709304714221,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.idwus2EI7nl6sdfn",
+            "duplicateSource": null
           },
           "_id": "onzQ6hTk3BxL51Ch"
         },
@@ -16152,10 +16260,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709295515592,
             "modifiedTime": 1709304720903,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.EIfjoQE4xLFclRQ0",
+            "duplicateSource": null
           },
           "_id": "5p0kN30Y6srzNro7"
         },
@@ -16642,10 +16752,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709295515592,
             "modifiedTime": 1709304725267,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.u4B4a1Mb9LbAOQ5X",
+            "duplicateSource": null
           }
         },
         {
@@ -17130,10 +17242,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709295515592,
             "modifiedTime": 1709304726864,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.u4B4a1Mb9LbAOQ5X",
+            "duplicateSource": null
           },
           "_id": "pITr2rtP6b2IWi64"
         },
@@ -17619,10 +17733,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709295515592,
             "modifiedTime": 1709304728513,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.WNnrqFSZNDURB0Wj",
+            "duplicateSource": null
           },
           "_id": "1BtklJPo44kuDr7a"
         },
@@ -18106,10 +18222,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709304778541,
             "modifiedTime": 1709305300014,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.OgoEtT5ng1Fh8Mgu",
+            "duplicateSource": null
           },
           "_id": "ukHx7dcUTJaWtTJm"
         },
@@ -18593,10 +18711,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709304778541,
             "modifiedTime": 1709305302279,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.pHEsfQlFM76P11y1",
+            "duplicateSource": null
           },
           "_id": "o5kNb2gDZDUV0TiD"
         },
@@ -19080,10 +19200,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709304778541,
             "modifiedTime": 1709305303398,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.mVkf5ygs5QS7LWJ5",
+            "duplicateSource": null
           },
           "_id": "yp3wV0tyEgZhTuAT"
         },
@@ -19568,10 +19690,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709304778541,
             "modifiedTime": 1709305304387,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.NEn0k4CbnD7NXe8a",
+            "duplicateSource": null
           }
         },
         {
@@ -20054,10 +20178,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709304778541,
             "modifiedTime": 1709305305230,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.9YkogbqpRDva5Ltn",
+            "duplicateSource": null
           },
           "_id": "YzDqWmtq05ZSHFof"
         },
@@ -20541,10 +20667,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709304778541,
             "modifiedTime": 1709305306107,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.FwmMv8vi0EomR7hN",
+            "duplicateSource": null
           },
           "_id": "HTTU7ustbDhFdO6c"
         },
@@ -21028,10 +21156,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709304778541,
             "modifiedTime": 1709305307323,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.9ee4SmKDfI9R7scf",
+            "duplicateSource": null
           },
           "_id": "vjDdKvsVotFyhMDq"
         },
@@ -21575,10 +21705,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709299600511,
             "modifiedTime": 1709305812096,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.j2Tb9VMCoBSXg1vz",
+            "duplicateSource": null
           }
         },
         {
@@ -22120,10 +22252,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709299600511,
             "modifiedTime": 1709305816988,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.IEknNVHJXm8LuItF",
+            "duplicateSource": null
           },
           "_id": "pmTmlg0uu7Xxfj2d"
         },
@@ -22663,10 +22797,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709300750605,
             "modifiedTime": 1709305818006,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.O9tWrHwO26sxZnnK",
+            "duplicateSource": null
           }
         },
         {
@@ -23207,10 +23343,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709299995703,
             "modifiedTime": 1709305818884,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.Mw9p82GpGDg1buC5",
+            "duplicateSource": null
           }
         }
       ],
@@ -23242,10 +23380,12 @@
       "_stats": {
         "systemId": "metanthropes",
         "systemVersion": "0.9.552",
-        "coreVersion": "11.315",
+        "coreVersion": "12.324",
         "createdTime": 1709293878273,
         "modifiedTime": 1716233317751,
-        "lastModifiedBy": "F0ZXUMehd6qxarRo"
+        "lastModifiedBy": "F0ZXUMehd6qxarRo",
+        "compendiumSource": null,
+        "duplicateSource": null
       }
     },
     {
@@ -24148,7 +24288,12 @@
           "scaleY": 0.73,
           "offsetX": 0,
           "offsetY": 0,
-          "rotation": 0
+          "rotation": 0,
+          "anchorX": 0.5,
+          "anchorY": 0.5,
+          "fit": "contain",
+          "tint": "#ffffff",
+          "alphaThreshold": 0.75
         },
         "width": 1,
         "height": 1,
@@ -24183,7 +24328,10 @@
           "darkness": {
             "min": 0,
             "max": 1
-          }
+          },
+          "negative": false,
+          "priority": 0,
+          "color": null
         },
         "sight": {
           "enabled": true,
@@ -24193,7 +24341,8 @@
           "attenuation": 0.1,
           "brightness": 0,
           "saturation": 0,
-          "contrast": 0
+          "contrast": 0,
+          "color": null
         },
         "detectionModes": [],
         "flags": {
@@ -24208,7 +24357,23 @@
             "include": "include"
           }
         },
-        "randomImg": false
+        "randomImg": false,
+        "hexagonalShape": 0,
+        "occludable": {
+          "radius": 0
+        },
+        "ring": {
+          "enabled": false,
+          "colors": {
+            "ring": null,
+            "background": null
+          },
+          "effects": 1,
+          "subject": {
+            "scale": 1,
+            "texture": null
+          }
+        }
       },
       "items": [
         {
@@ -24692,10 +24857,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709295385679,
             "modifiedTime": 1709304787519,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.Uh6xuTjaYyUtB1ll",
+            "duplicateSource": null
           }
         },
         {
@@ -25178,10 +25345,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709295385679,
             "modifiedTime": 1709304788269,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.VO9CbsUsu97vC0A2",
+            "duplicateSource": null
           },
           "_id": "7SdDAOe3c32eBrQX"
         },
@@ -25665,10 +25834,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709295385679,
             "modifiedTime": 1709304789060,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.DmbPL3fM4C4Yb5qQ",
+            "duplicateSource": null
           },
           "_id": "IFNvkK723rgDqhce"
         },
@@ -26152,10 +26323,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709295385679,
             "modifiedTime": 1709304789912,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.AswwYgVkD5qUxjHX",
+            "duplicateSource": null
           },
           "_id": "lgC66LalfjAfDHYi"
         },
@@ -26639,10 +26812,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709295385679,
             "modifiedTime": 1709304791156,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.yLiKvxkvtBkgKcG3",
+            "duplicateSource": null
           },
           "_id": "lYqBqNPJ1h6IPaDa"
         },
@@ -27126,10 +27301,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709295385679,
             "modifiedTime": 1709304793323,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.J7uVqToaC0u5l8KZ",
+            "duplicateSource": null
           },
           "_id": "DjAMTuSCOPM730p3"
         },
@@ -27613,10 +27790,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709295385679,
             "modifiedTime": 1709304794251,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.ZP8meObkG1TXNRTY",
+            "duplicateSource": null
           },
           "_id": "tTmo9o6vZ7L1xiqQ"
         },
@@ -28100,10 +28279,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709295385679,
             "modifiedTime": 1709304795862,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.8fvhAQmH2zN6XOgH",
+            "duplicateSource": null
           },
           "_id": "ovaQ56Yl89vXSfh6"
         },
@@ -28587,10 +28768,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709295385679,
             "modifiedTime": 1709304796660,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.3laCNOOfCR1IL3Rm",
+            "duplicateSource": null
           },
           "_id": "9YbITj1hoygFIfC9"
         },
@@ -29074,10 +29257,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709295385679,
             "modifiedTime": 1709304797969,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.gd5JryEqxv8l5yMs",
+            "duplicateSource": null
           },
           "_id": "Ph3grPBy6atNBUyz"
         },
@@ -29561,10 +29746,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709297433539,
             "modifiedTime": 1709304803348,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.S7K1exOVhvMZHOhC",
+            "duplicateSource": null
           },
           "_id": "x6M1aVogKsNIhQl0"
         },
@@ -30049,10 +30236,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709297433539,
             "modifiedTime": 1709304804128,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.jqh9oR3TgumCDAnX",
+            "duplicateSource": null
           }
         },
         {
@@ -30535,10 +30724,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709297782422,
             "modifiedTime": 1709304806788,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.N6dan0EvC5AOqEn3",
+            "duplicateSource": null
           },
           "_id": "DvuwDZfkcSNIE635"
         },
@@ -31023,10 +31214,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709297782422,
             "modifiedTime": 1709304807756,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.CX3JbYD0lFRv5QF8",
+            "duplicateSource": null
           }
         },
         {
@@ -31565,10 +31758,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709300750605,
             "modifiedTime": 1709305830952,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.O9tWrHwO26sxZnnK",
+            "duplicateSource": null
           }
         },
         {
@@ -32106,10 +32301,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709300750605,
             "modifiedTime": 1709305832309,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.KJ7JGZyKJ5rgofYw",
+            "duplicateSource": null
           },
           "_id": "IYdfIFPpmkvKOB3j"
         },
@@ -32648,10 +32845,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709300750605,
             "modifiedTime": 1709305833427,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.cxHtqJyqQZOKH15n",
+            "duplicateSource": null
           },
           "_id": "WGMPfJO8uFptZM7z"
         },
@@ -33192,10 +33391,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709299995703,
             "modifiedTime": 1709305853548,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.NxaW6NGfRRVnkGRH",
+            "duplicateSource": null
           },
           "_id": "QytLzXkJ2NjobjqX"
         }
@@ -33232,10 +33433,12 @@
       "_stats": {
         "systemId": "metanthropes",
         "systemVersion": "0.9.552",
-        "coreVersion": "11.315",
+        "coreVersion": "12.324",
         "createdTime": 1709294236055,
         "modifiedTime": 1716233317751,
-        "lastModifiedBy": "F0ZXUMehd6qxarRo"
+        "lastModifiedBy": "F0ZXUMehd6qxarRo",
+        "compendiumSource": null,
+        "duplicateSource": null
       }
     },
     {
@@ -34138,7 +34341,12 @@
           "scaleY": 0.73,
           "offsetX": 0,
           "offsetY": 0,
-          "rotation": 0
+          "rotation": 0,
+          "anchorX": 0.5,
+          "anchorY": 0.5,
+          "fit": "contain",
+          "tint": "#ffffff",
+          "alphaThreshold": 0.75
         },
         "width": 1,
         "height": 1,
@@ -34173,7 +34381,10 @@
           "darkness": {
             "min": 0,
             "max": 1
-          }
+          },
+          "negative": false,
+          "priority": 0,
+          "color": null
         },
         "sight": {
           "enabled": true,
@@ -34183,7 +34394,8 @@
           "attenuation": 0.1,
           "brightness": 0,
           "saturation": 0,
-          "contrast": 0
+          "contrast": 0,
+          "color": null
         },
         "detectionModes": [],
         "flags": {
@@ -34198,7 +34410,23 @@
             "include": "include"
           }
         },
-        "randomImg": false
+        "randomImg": false,
+        "hexagonalShape": 0,
+        "occludable": {
+          "radius": 0
+        },
+        "ring": {
+          "enabled": false,
+          "colors": {
+            "ring": null,
+            "background": null
+          },
+          "effects": 1,
+          "subject": {
+            "scale": 1,
+            "texture": null
+          }
+        }
       },
       "items": [
         {
@@ -34687,10 +34915,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1693064901564,
             "modifiedTime": 1709304819572,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Compendium.metanthropes.metapowers.Item.E2OzzWzHYOP4FKUB",
+            "duplicateSource": null
           },
           "sort": 500000,
           "_id": "3lIqIW0qQZHK2faJ"
@@ -35178,10 +35408,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1693064901564,
             "modifiedTime": 1709304820610,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Compendium.metanthropes.metapowers.Item.g19H1sh0lwK7H2Iy",
+            "duplicateSource": null
           },
           "_id": "VuAOIT15MR6ZCKCo",
           "sort": 100000
@@ -35671,10 +35903,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1693064901564,
             "modifiedTime": 1709304821728,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Compendium.metanthropes.metapowers.Item.gw25ecRvG8M522BB",
+            "duplicateSource": null
           },
           "_id": "4jxyHaq510MvCk67",
           "sort": 200000
@@ -36164,10 +36398,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1693064901564,
             "modifiedTime": 1709304823325,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Compendium.metanthropes.metapowers.Item.e84xvzBV4PiXIXNP",
+            "duplicateSource": null
           },
           "_id": "7tUgrr6DZfEy5uTJ",
           "sort": 300000
@@ -36658,10 +36894,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1693064901564,
             "modifiedTime": 1709304824114,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Compendium.metanthropes.metapowers.Item.9y4Bpe88Rsqyj2Ro",
+            "duplicateSource": null
           },
           "_id": "dkWhc5cekywd7AL1",
           "sort": 400000
@@ -37152,10 +37390,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1693064901564,
             "modifiedTime": 1709304824875,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Compendium.metanthropes.metapowers.Item.E2OzzWzHYOP4FKUB",
+            "duplicateSource": null
           },
           "_id": "6aWaCfY1RIZHP5vk",
           "sort": 500000
@@ -37644,10 +37884,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709302918142,
             "modifiedTime": 1709304832102,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.mTR17b7iIWFR798P",
+            "duplicateSource": null
           },
           "_id": "7Jdz1mo563bc2OnC"
         },
@@ -38136,10 +38378,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709302918142,
             "modifiedTime": 1709304832923,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.haCYcyTqXsvOzP8t",
+            "duplicateSource": null
           }
         },
         {
@@ -38622,10 +38866,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709302918142,
             "modifiedTime": 1709304833820,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.oDGNX7jAWtnP7t6v",
+            "duplicateSource": null
           },
           "_id": "Ew6QAJmozNaLoY0M"
         },
@@ -39109,10 +39355,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709303375108,
             "modifiedTime": 1709304844214,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.YfXQ47cbCCbnt6dV",
+            "duplicateSource": null
           },
           "_id": "oYTMfe7Ghqb7gzhL"
         },
@@ -39596,10 +39844,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709303375108,
             "modifiedTime": 1709304845175,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.FjBmT5bCxk8jCkNI",
+            "duplicateSource": null
           },
           "_id": "y8bRWRydh58GaEdZ"
         },
@@ -40084,10 +40334,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709303375108,
             "modifiedTime": 1709304846201,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.2ak33ECINmN9xh4N",
+            "duplicateSource": null
           }
         },
         {
@@ -40626,10 +40878,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709300750605,
             "modifiedTime": 1709305862212,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.O9tWrHwO26sxZnnK",
+            "duplicateSource": null
           }
         },
         {
@@ -41170,10 +41424,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709300467197,
             "modifiedTime": 1709305863458,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.8WsH7qILWyMb9gq1",
+            "duplicateSource": null
           }
         },
         {
@@ -41712,10 +41968,12 @@
           "_stats": {
             "systemId": "metanthropes",
             "systemVersion": "0.9.127",
-            "coreVersion": "11.315",
+            "coreVersion": "12.324",
             "createdTime": 1709300309348,
             "modifiedTime": 1709305864136,
-            "lastModifiedBy": "ohw06RRyY2ihIttd"
+            "lastModifiedBy": "ohw06RRyY2ihIttd",
+            "compendiumSource": "Item.cyd7sYgAWRm7EToF",
+            "duplicateSource": null
           }
         }
       ],
@@ -41748,10 +42006,12 @@
       "_stats": {
         "systemId": "metanthropes",
         "systemVersion": "0.9.552",
-        "coreVersion": "11.315",
+        "coreVersion": "12.324",
         "createdTime": 1709293455212,
         "modifiedTime": 1716233317751,
-        "lastModifiedBy": "F0ZXUMehd6qxarRo"
+        "lastModifiedBy": "F0ZXUMehd6qxarRo",
+        "compendiumSource": null,
+        "duplicateSource": null
       }
     }
   ],
@@ -41770,7 +42030,12 @@
         "scaleY": 1,
         "offsetX": 0,
         "offsetY": 0,
-        "rotation": 0
+        "rotation": 0,
+        "anchorX": 0,
+        "anchorY": 0,
+        "fit": "fill",
+        "tint": "#ffffff",
+        "alphaThreshold": 0
       },
       "foregroundElevation": 8,
       "width": 3889,
@@ -41786,16 +42051,13 @@
         "type": 2,
         "size": 50,
         "color": "#ffffff",
-        "alpha": 0.1,
+        "alpha": 0.19,
         "distance": 2,
-        "units": "meters"
+        "units": "meters",
+        "style": "solidLines",
+        "thickness": 1
       },
       "tokenVision": false,
-      "fogExploration": true,
-      "fogReset": 1693129397382,
-      "globalLight": true,
-      "globalLightThreshold": null,
-      "darkness": 0,
       "drawings": [],
       "tokens": [
         {
@@ -41810,7 +42072,12 @@
             "scaleY": 0.73,
             "offsetX": 0,
             "offsetY": 0,
-            "rotation": 0
+            "rotation": 0,
+            "anchorX": 0.5,
+            "anchorY": 0.5,
+            "fit": "contain",
+            "tint": "#ffffff",
+            "alphaThreshold": 0.75
           },
           "width": 1,
           "height": 1,
@@ -41845,7 +42112,10 @@
             "darkness": {
               "min": 0,
               "max": 1
-            }
+            },
+            "negative": false,
+            "priority": 0,
+            "color": null
           },
           "sight": {
             "enabled": true,
@@ -41855,7 +42125,8 @@
             "attenuation": 0.1,
             "brightness": 0,
             "saturation": 0,
-            "contrast": 0
+            "contrast": 0,
+            "color": null
           },
           "detectionModes": [],
           "flags": {
@@ -41887,7 +42158,25 @@
             "ownership": null
           },
           "elevation": 0,
-          "effects": []
+          "hexagonalShape": 0,
+          "sort": 0,
+          "locked": false,
+          "occludable": {
+            "radius": 0
+          },
+          "ring": {
+            "enabled": false,
+            "colors": {
+              "ring": null,
+              "background": null
+            },
+            "effects": 1,
+            "subject": {
+              "scale": 1,
+              "texture": null
+            }
+          },
+          "_regions": []
         },
         {
           "name": "Pyrokinesis Example Build",
@@ -41901,7 +42190,12 @@
             "scaleY": 0.73,
             "offsetX": 0,
             "offsetY": 0,
-            "rotation": 0
+            "rotation": 0,
+            "anchorX": 0.5,
+            "anchorY": 0.5,
+            "fit": "contain",
+            "tint": "#ffffff",
+            "alphaThreshold": 0.75
           },
           "width": 1,
           "height": 1,
@@ -41936,7 +42230,10 @@
             "darkness": {
               "min": 0,
               "max": 1
-            }
+            },
+            "negative": false,
+            "priority": 0,
+            "color": null
           },
           "sight": {
             "enabled": true,
@@ -41946,7 +42243,8 @@
             "attenuation": 0.1,
             "brightness": 0,
             "saturation": 0,
-            "contrast": 0
+            "contrast": 0,
+            "color": null
           },
           "detectionModes": [],
           "flags": {
@@ -41978,7 +42276,25 @@
             "ownership": null
           },
           "elevation": 0,
-          "effects": []
+          "hexagonalShape": 0,
+          "sort": 0,
+          "locked": false,
+          "occludable": {
+            "radius": 0
+          },
+          "ring": {
+            "enabled": false,
+            "colors": {
+              "ring": null,
+              "background": null
+            },
+            "effects": 1,
+            "subject": {
+              "scale": 1,
+              "texture": null
+            }
+          },
+          "_regions": []
         },
         {
           "name": "Regeneration Example Build",
@@ -41992,7 +42308,12 @@
             "scaleY": 0.73,
             "offsetX": 0,
             "offsetY": 0,
-            "rotation": 0
+            "rotation": 0,
+            "anchorX": 0.5,
+            "anchorY": 0.5,
+            "fit": "contain",
+            "tint": "#ffffff",
+            "alphaThreshold": 0.75
           },
           "width": 1,
           "height": 1,
@@ -42027,7 +42348,10 @@
             "darkness": {
               "min": 0,
               "max": 1
-            }
+            },
+            "negative": false,
+            "priority": 0,
+            "color": null
           },
           "sight": {
             "enabled": true,
@@ -42037,7 +42361,8 @@
             "attenuation": 0.1,
             "brightness": 0,
             "saturation": 0,
-            "contrast": 0
+            "contrast": 0,
+            "color": null
           },
           "detectionModes": [],
           "flags": {
@@ -42069,7 +42394,25 @@
             "ownership": null
           },
           "elevation": 0,
-          "effects": []
+          "hexagonalShape": 0,
+          "sort": 0,
+          "locked": false,
+          "occludable": {
+            "radius": 0
+          },
+          "ring": {
+            "enabled": false,
+            "colors": {
+              "ring": null,
+              "background": null
+            },
+            "effects": 1,
+            "subject": {
+              "scale": 1,
+              "texture": null
+            }
+          },
+          "_regions": []
         },
         {
           "name": "Time Bending Example Build",
@@ -42083,7 +42426,12 @@
             "scaleY": 0.73,
             "offsetX": 0,
             "offsetY": 0,
-            "rotation": 0
+            "rotation": 0,
+            "anchorX": 0.5,
+            "anchorY": 0.5,
+            "fit": "contain",
+            "tint": "#ffffff",
+            "alphaThreshold": 0.75
           },
           "width": 1,
           "height": 1,
@@ -42118,7 +42466,10 @@
             "darkness": {
               "min": 0,
               "max": 1
-            }
+            },
+            "negative": false,
+            "priority": 0,
+            "color": null
           },
           "sight": {
             "enabled": true,
@@ -42128,7 +42479,8 @@
             "attenuation": 0.1,
             "brightness": 0,
             "saturation": 0,
-            "contrast": 0
+            "contrast": 0,
+            "color": null
           },
           "detectionModes": [],
           "flags": {
@@ -42160,7 +42512,25 @@
             "ownership": null
           },
           "elevation": 0,
-          "effects": []
+          "hexagonalShape": 0,
+          "sort": 0,
+          "locked": false,
+          "occludable": {
+            "radius": 0
+          },
+          "ring": {
+            "enabled": false,
+            "colors": {
+              "ring": null,
+              "background": null
+            },
+            "effects": 1,
+            "subject": {
+              "scale": 1,
+              "texture": null
+            }
+          },
+          "_regions": []
         }
       ],
       "lights": [],
@@ -42174,20 +42544,26 @@
           "global": true,
           "iconSize": 82,
           "texture": {
-            "tint": null,
+            "tint": "#ffffff",
             "src": "icons/svg/book.svg",
             "scaleX": 1,
             "scaleY": 1,
             "offsetX": 0,
             "offsetY": 0,
-            "rotation": 0
+            "rotation": 0,
+            "anchorX": 0.5,
+            "anchorY": 0.5,
+            "fit": "contain",
+            "alphaThreshold": 0
           },
           "fontFamily": "Signika",
           "fontSize": 32,
-          "textColor": "#FFFFFF",
+          "textColor": "#ffffff",
           "textAnchor": 1,
           "_id": "n5HINQQoHUeHQJ7Z",
-          "flags": {}
+          "flags": {},
+          "elevation": 0,
+          "sort": 0
         }
       ],
       "sounds": [],
@@ -42326,20 +42702,63 @@
       "_stats": {
         "systemId": "metanthropes",
         "systemVersion": "0.9.552",
-        "coreVersion": "11.315",
+        "coreVersion": "12.324",
         "createdTime": 1693129397384,
         "modifiedTime": 1716233317922,
-        "lastModifiedBy": "F0ZXUMehd6qxarRo"
+        "lastModifiedBy": "F0ZXUMehd6qxarRo",
+        "compendiumSource": "Compendium.metanthropes-introductory.introductory-scenes.Scene.x9ipvE8V4Lvxsw49",
+        "duplicateSource": null
       },
       "foreground": null,
       "thumb": "worlds/the-composer-build/assets/scenes/HJ7VBfsFwNpnZOZ9-thumb.webp",
-      "fogOverlay": null,
-      "fogExploredColor": null,
-      "fogUnexploredColor": null,
       "weather": "",
       "active": true,
       "_id": "HJ7VBfsFwNpnZOZ9",
-      "sort": 0
+      "sort": 0,
+      "fog": {
+        "exploration": true,
+        "reset": 1693129397382,
+        "overlay": null,
+        "colors": {
+          "explored": null,
+          "unexplored": null
+        }
+      },
+      "environment": {
+        "globalLight": {
+          "enabled": true,
+          "darkness": {
+            "max": 1,
+            "min": 0
+          },
+          "alpha": 0.5,
+          "bright": false,
+          "color": null,
+          "coloration": 1,
+          "luminosity": 0.5,
+          "saturation": 0,
+          "contrast": 0,
+          "shadows": 0
+        },
+        "darknessLevel": 0,
+        "darknessLock": false,
+        "cycle": true,
+        "base": {
+          "hue": 0,
+          "intensity": 0,
+          "luminosity": 0,
+          "saturation": 0,
+          "shadows": 0
+        },
+        "dark": {
+          "hue": 0.7138888888888889,
+          "intensity": 0,
+          "luminosity": -0.25,
+          "saturation": 0,
+          "shadows": 0
+        }
+      },
+      "regions": []
     }
   ],
   "tables": [],
@@ -42353,10 +42772,12 @@
   "_stats": {
     "systemId": "metanthropes",
     "systemVersion": "0.9.552",
-    "coreVersion": "11.315",
+    "coreVersion": "12.324",
     "createdTime": 1709287652201,
     "modifiedTime": 1716233379086,
-    "lastModifiedBy": "F0ZXUMehd6qxarRo"
+    "lastModifiedBy": "F0ZXUMehd6qxarRo",
+    "compendiumSource": null,
+    "duplicateSource": null
   },
   "_key": "!adventures!0vnV6XmnYtvtZ81c"
 }

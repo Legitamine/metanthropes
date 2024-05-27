@@ -67,6 +67,12 @@ export async function metaEvaluate(
 		"Item Name:",
 		itemName
 	);
+	//? Evaluate if any of the custom dialog options have returned null or undefined and set them to 0 instead
+	bonus = bonus || 0;
+	penalty = penalty || 0;
+	multiAction = multiAction || 0;
+	aimingReduction = aimingReduction || 0;
+	customReduction = customReduction || 0;
 	//? evaluate the result of the roll
 	let result = null;
 	let resultLevel = null;
@@ -109,7 +115,7 @@ export async function metaEvaluate(
 	}
 	//? check for critical success or failure
 	if (criticalSuccess) {
-		result = `🟩 Critical Success 🟩, rewarding ${actor.name} with +1 * 🤞 Destiny`;
+		result = `🟩 Critical Success 🟩, rewarding ${actor.name} with +1 🤞 Destiny`;
 		currentDestiny++;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfSuccess = 10;
@@ -119,14 +125,15 @@ export async function metaEvaluate(
 		}
 	}
 	if (criticalFailure) {
-		result = `🟥 Critical Failure 🟥, rewarding ${actor.name} with +1 * 🤞 Destiny`;
+		result = `🟥 Critical Failure 🟥, rewarding ${actor.name} with +1 🤞 Destiny`;
 		currentDestiny++;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 		levelsOfFailure = 10;
 		levelsOfSuccess = 0;
 	}
 	//? Create the message to be printed to chat - remember: Penalties and Reductions are Negative, Bonus and Pain are Positive
-	const needToRoll = statScore + bonus + penalty + multiAction + perkReduction + aimingReduction + customReduction - (pain * 10);
+	const needToRoll =
+		statScore + bonus + penalty + multiAction + perkReduction + aimingReduction + customReduction - pain * 10;
 	let needToRollMessage = ``;
 	if (needToRoll <= 1) needToRollMessage = `(needed Critical Success)`;
 	else if (needToRoll >= 100) needToRollMessage = `(needed no Critical Failure)`;
@@ -138,7 +145,7 @@ export async function metaEvaluate(
 		message = `Rolls for Initiative with ${stat} score of ${statScore}%`;
 	} else if (action === "Metapower") {
 		if (Number(destinyCost) > 0) {
-			message = `Spends ${destinyCost} * 🤞 Destiny and rolls to activate the Ⓜ️ Metapower: ${itemName} with ${stat} score of ${statScore}%`;
+			message = `Spends ${destinyCost} 🤞 Destiny and rolls to activate the Ⓜ️ Metapower: ${itemName} with ${stat} score of ${statScore}%`;
 		} else {
 			message = `Rolls to activate the Ⓜ️ Metapower: ${itemName} with ${stat} score of ${statScore}%`;
 		}
@@ -167,7 +174,7 @@ export async function metaEvaluate(
 	}
 	message += ` and the result is ${rollResult} ${needToRollMessage}.<br><br>`;
 	//? The final message section needs to be bold
-	message += `<span style="font-weight: bold;">`
+	message += `<span style="font-weight: bold;">`;
 	//? if we have Pain condition, our succesfull (only) results are lowered by an equal amount - in case of Criticals we ignore Pain
 	let painEffect = levelsOfSuccess - pain;
 	if (resultLevel > 0 && !criticalSuccess && pain > 0) {
@@ -177,14 +184,14 @@ export async function metaEvaluate(
 			resultLevel = 0;
 			levelsOfFailure = 0;
 			levelsOfSuccess = 0;
-			message += `It was a Success, turned into a ${result}, because of Pain * ${pain}`;
+			message += `It was a Success, turned into a ${result}, because of Pain ${pain}`;
 			metaLog(3, "metaEvaluate", "Pain Effect should be <0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
 		} else if (painEffect === 0) {
-			message += `It is still a ${result}, besides being affected by Pain * ${pain}`;
+			message += `It is still a ${result}, besides being affected by Pain ${pain}`;
 			levelsOfSuccess = 0;
 			metaLog(3, "metaEvaluate", "Pain Effect should be =0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
 		} else if (painEffect > 0) {
-			message += `It is a ${result}, reduced by Pain * ${pain}`;
+			message += `It is a ${result}, reduced by Pain ${pain}`;
 			levelsOfSuccess = painEffect;
 			metaLog(3, "metaEvaluate", "Pain Effect should be >0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
 		}
@@ -195,18 +202,18 @@ export async function metaEvaluate(
 	//? if we have levels of success or failure, add them to the message
 	if (levelsOfSuccess > 0) {
 		if (levelsOfSuccess === 1) {
-			message += `, accumulating: ${levelsOfSuccess} * ✔️ Level of Success.`;
+			message += `, accumulating:<br>${levelsOfSuccess} ✔️ Level of Success.`;
 			resultLevel = levelsOfSuccess;
 		} else {
-			message += `, accumulating: ${levelsOfSuccess} * ✔️ Levels of Success.`;
+			message += `, accumulating:<br>${levelsOfSuccess} ✔️ Levels of Success.`;
 			resultLevel = levelsOfSuccess;
 		}
 	} else if (levelsOfFailure > 0) {
 		if (levelsOfFailure === 1) {
-			message += `, accumulating: ${levelsOfFailure} * ❌ Level of Failure.`;
+			message += `, accumulating:<br>${levelsOfFailure} ❌ Level of Failure.`;
 			resultLevel = -levelsOfFailure;
 		} else {
-			message += `, accumulating: ${levelsOfFailure} * ❌ Levels of Failure.`;
+			message += `, accumulating:<br>${levelsOfFailure} ❌ Levels of Failure.`;
 			resultLevel = -levelsOfFailure;
 		}
 	} else {
@@ -215,7 +222,7 @@ export async function metaEvaluate(
 	//? Bold text stops here
 	message += `</span>`;
 	//? Adding remaining Destiny message
-	message += `<hr />${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br>`;
+	message += `<hr />${actor.name} has ${currentDestiny} 🤞 Destiny remaining.<br>`;
 	//? Buttons to Re-Roll metaEvaluate results - only adds the button to message, if it's not a Critical and only if they have enough Destiny for needed reroll.
 	//* The buttons are hidden for everyone except the Player of the Actor and the GM
 	//? Define threshold of showing the button, to re-roll we need a minimum of 1 Destiny + the Destiny Cost of the Metapower (only applies to Metapowers with DestinyCost, otherwise it's 0)
@@ -301,7 +308,7 @@ export async function metaEvaluate(
 		}),
 		flavor: message,
 		rollMode: game.settings.get("core", "rollMode"),
-		flags: { "metanthropes": { actoruuid: actor.uuid } },
+		flags: { metanthropes: { actoruuid: actor.uuid } },
 	});
 	metaLog(
 		3,

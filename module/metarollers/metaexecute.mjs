@@ -503,7 +503,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		}
 		//? check if actor has enough destiny points to reroll
 		const currentDestiny = actor.system.Vital.Destiny.value;
-		contentMessage += `<div>${actor.name} has ${currentDestiny} * 🤞 Destiny remaining.<br></div>`;
+		contentMessage += `<div>${actor.name} has ${currentDestiny} 🤞 Destiny remaining.<br></div>`;
 		if (currentDestiny > 0) {
 			let destinyRerollButtonMessage = false;
 			//? add destiny reroll buttons
