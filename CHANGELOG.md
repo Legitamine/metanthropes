@@ -12,9 +12,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 # Early Access v0.9.xxx [2024-05-xx]
 
+# Added:
+
+-   Metanthropes: Introductory Module now comes with new artwork for the various Actors. Each Actor comes with a distinct Portrait & Token Image.
+
+# Changed:
+
+-   The 'Finalize Premade Actor' button on the Summary Tab now checks if the user is a Narrator (Gamemaster) and displays a warning, as Narrators should not do this themselves. Instead, Narrators should use the 'Assign Player' button to give the Actor to a Player and have the Player click on the 'Finalize Premade Actor' instead.
+
 # Fixed:
 
 -   When Combat ends during the first Round of the first Cycle, it will now display the appropriate message in Chat.
+-   Various minor fixes & optimization for the Finalize Premade actor process.
 
 # Early Access v0.9.592 [2024-05-27]
 
