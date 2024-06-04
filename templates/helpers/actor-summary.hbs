@@ -75,21 +75,22 @@
 	<div class="layout-tab-summary-portrait meta-ui-responsive meta-ui-hide-at-medium">
 		<div class="layout-container-summary-images">
 			<div class="layout-tab-summary-portrait-container">
-				<img src="{{actor.img}}" data-tooltip="{{actor.name}}'s Portrait Image"
-					alt="{{actor.name}}'s Portrait Image" class="style-tab-summary-portrait" />
+				<img src="{{actor.img}}" data-tooltip="Click to change {{actor.name}}'s Portrait Image. The top-down Token image is applied accordingly."
+					alt="{{actor.name}}'s Portrait Image" class="style-tab-summary-portrait meta-change-portrait" />
 			</div>
-			<div class="layout-tab-summary-portrait-container">
+			{{!-- remove token customizer/display for now --}}
+			{{!-- <div class="layout-tab-summary-portrait-container">
 				{{#if actor.isToken}}
 					<img src="{{actor.token.texture.src}}"
 						data-tooltip="{{actor.name}}'s Token Image"
-						alt="{{actor.name}}'s Token Image" class="style-tab-summary-portrait" />
+						alt="{{actor.name}}'s Token Image" class="style-tab-summary-token meta-change-token" />
 				{{else}}
 					<img src="{{actor.prototypeToken.texture.src}}"
 						data-tooltip="{{actor.name}}'s Token Image"
 						alt="{{actor.name}}'s Token Image"
-						class="style-tab-summary-portrait <!--meta-change-portrait-->" />
+						class="style-tab-summary-token meta-change-token" />
 				{{/if}}
-			</div>
+			</div> --}}
 		</div>
 	</div>
 	{{! -- Gender Section --}}

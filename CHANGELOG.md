@@ -10,20 +10,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ### Early Access Releases
 
-# Early Access v0.9.xxx [2024-05-xx]
+# Early Access v0.9.xxx [2024-06-xx]
 
 # Added:
 
 -   Metanthropes: Introductory Module now comes with new artwork for the various Actors. Each Actor comes with a distinct Portrait & Token Image.
+-   Metanthropes: Introductory Journals have been updated with handy links to macros to help with the flow during a session. This is ongoing process and jounrals, macros and effects will be improved throughout Early Access. Give us your feedback on what you'd like to see added.
+-   Metanthropes: Core has a couple more Possessions and Metapowers
 
 # Changed:
 
+-   Metanthropes: Introductory updated the premade Antagonists with proper stats, perks, possessions and abilities.
+-   Re-introduced a way to change an Actor's portrait image, by clicking on the Actor Portrait Image within the Summary Tab. The selection will open at a folder that's configured as the default for that particular actor type. Once an image is selected, the respective top-down Token image will be applied to that Actor's Tokens throughout scenes.
 -   The 'Finalize Premade Actor' button on the Summary Tab now checks if the user is a Narrator (Gamemaster) and displays a warning, as Narrators should not do this themselves. Instead, Narrators should use the 'Assign Player' button to give the Actor to a Player and have the Player click on the 'Finalize Premade Actor' instead.
+-   The customized file picker window for selecting Actor Images has changed the default layout for the new image dimensions.
 
 # Fixed:
 
--   When Combat ends during the first Round of the first Cycle, it will now display the appropriate message in Chat.
+-   Fixed a known issue for Metanthropes: Introductory; Scenes now display the correct thumbnail after importing from the adventure compendium. Scenes now open at a specific position by default.
+-   When Combat ends during the first Round of the first Cycle, it will now display the appropriate message in Chat. Made the chat message start at a new line for the results.
 -   Various minor fixes & optimization for the Finalize Premade actor process.
+-   Cleaned up the majority of the change Actor Image process code, we are not releasing the Token Image process update as a separate capability at this time, let us know if more control over Token image with ex. wildcard support is desired.
 
 # Early Access v0.9.592 [2024-05-27]
 

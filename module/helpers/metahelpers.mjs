@@ -1,5 +1,3 @@
-//? Import Classes
-import { metaFilePicker } from "../metaclasses/metaclasses.mjs";
 /**
  *
  * metaLog function controls how console logging happens.
@@ -161,72 +159,6 @@ export async function metaIsMetapowerEquipped(actor, metapower) {
 	const equippedItems = actor.items;
 	const isMetapowerEquipped = equippedItems.some((item) => item.system.MetapowerName === metapower);
 	return isMetapowerEquipped;
-}
-
-/**
- *
- * Helper function to change the portrait of an actor
- * Presents a metaFilePicker Image browser to the user to select the image
- * The browser opens up at a specific folder based on the actor type
- * This function places the selected image as the actor.img and the actor.prototypeToken.texture.src
- * todo: configure a logic to handle non-linked tokens that will have wildcards in prototypeToken.texture.src
- *
- * @param {*} actor - Object of the actor
- *
- */
-export async function metaChangePortrait(actor) {
-	//? Based on the actor's type, set the current directory
-	//? If using Metanthropes Introductory Module, change the current directory
-	const intro = game.settings.get("metanthropes", "metaIntroductory");
-	let baseDir = "systems/metanthropes/artwork/portraits/";
-	if (intro) {
-		baseDir = "modules/metanthropes-introductory/artwork/portraits/";
-	}
-	//todo: if running in demo mode, return with a notification
-	const actorType = actor.type.toLowerCase();
-	const currentDir = baseDir + actorType + "/";
-	const fp = new metaFilePicker({
-		resource: "data",
-		current: currentDir,
-		displayMode: "tiles",
-		callback: async (selection) => {
-			await actor.update({ img: selection });
-			const prototype = actor.prototypeToken || false;
-			if (prototype) {
-				//? Update Iterate over all scenes
-				for (const scene of game.scenes) {
-					let tokensToUpdate = [];
-					//? Find tokens that represent the actor
-					for (const token of scene.tokens.contents) {
-						if (token.actorId === actor.id) {
-							tokensToUpdate.push({ _id: token.id, "texture.src": selection });
-						}
-					}
-					//? Update the tokens
-					if (tokensToUpdate.length > 0) {
-						try {
-							await scene.updateEmbeddedDocuments("Token", tokensToUpdate);
-						} catch (error) {
-							metaLog(
-								2,
-								"metaChangePortrait",
-								"Error updating token:",
-								error,
-								"tokens to update:",
-								tokensToUpdate
-							);
-						}
-					}
-				}
-				await actor.update({ "prototypeToken.texture.src": selection });
-			} else {
-				//? Update only the current token if this was called from the canvas instead of the sidebar
-				const token = actor.token;
-				await token.update({ "texture.src": selection });
-			}
-		},
-	});
-	return fp.browse();
 }
 
 /**

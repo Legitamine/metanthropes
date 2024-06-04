@@ -16,8 +16,8 @@ export class MetanthropesActor extends Actor {
 		//? Configure Display Bars & Name Visibility
 		if (!data.prototypeToken)
 			mergeObject(createData, {
-				"prototypeToken.bar1": { attribute: "Vital.Destiny" },
-				"prototypeToken.bar2": { attribute: "Vital.Life" },
+				"prototypeToken.bar1": { attribute: "Vital.Life" },
+				"prototypeToken.bar2": { attribute: "Vital.Destiny" },
 				//* values from https://foundryvtt.com/api/enums/foundry.CONST.TOKEN_DISPLAY_MODES.html
 				//? this is controlled via the new actor process - the below are used as a fall-back setting
 				//todo double-check how this affects the visible bars for NPCs / Protagonists & make sure it fits the desired behavior
@@ -265,8 +265,8 @@ export class MetanthropesActor extends Actor {
 		//? Make the size of the token reflect a typical humanoid relative to the grid
 		createData.prototypeToken.height = 1;
 		createData.prototypeToken.width = 1;
-		createData.prototypeToken.texture.scaleX = 0.73;
-		createData.prototypeToken.texture.scaleY = 0.73;
+		createData.prototypeToken.texture.scaleX = 0.6;
+		createData.prototypeToken.texture.scaleY = 0.6;
 		this.updateSource(createData);
 	}
 	/** @override */
@@ -285,6 +285,9 @@ export class MetanthropesActor extends Actor {
 		//? Setting Humans to have starting life of 50 instead of 100
 		if (this.type === "Human") {
 			this.system.Vital.Life.Initial = 50;
+		}
+		if (this.type === "Extraterrestrial") {
+			this.system.Vital.Life.Initial = 150;
 		}
 		//? for Protagonists set the metanthropes-logo as default icon for metapower, if no metapower is selected
 		//! note that this will be applied to the actors once, when they are created or when the world loads

@@ -1,5 +1,6 @@
 //? Import Helpers
-import { metaLog, metaChangePortrait } from "../helpers/metahelpers.mjs";
+import { metaLog } from "../helpers/metahelpers.mjs";
+import { metaChangeActorImage } from "../helpers/metaimagehandler.mjs";
 /**
  *
  * Helper class to extend the FilePicker class for a custom MetaDialog usage
@@ -10,6 +11,7 @@ import { metaLog, metaChangePortrait } from "../helpers/metahelpers.mjs";
  * @param {*} buttons
  */
 export class metaFilePicker extends FilePicker {
+	//todo: clean up the z-index tryouts
 	/** @override */
 	constructor(options = {}) {
 		super(options);
@@ -41,33 +43,6 @@ export class metaFilePicker extends FilePicker {
 			return this;
 		} else return super.render(force, options);
 	}
-	//* custom function to be called via the New Actor/Finalize process
-	//todo this is similar to actor-sheet function, should consolidate
-	// async onSelectPortrait(selection, actorUuid) {
-	// 	const actor = await fromUuid(actorUuid);
-	// 	const path = selection;
-	// 	//? Update the Actor image + Prototype token image
-	// 	//todo need to evaluate how this works with non-linked tokens & actors
-	// 	await actor.update({ img: path });
-	// 	const prototype = actor.prototypeToken || false;
-	// 	if (prototype) {
-	// 		await actor.update({ "prototypeToken.texture.src": path });
-	// 	}
-	// 	//? Update Iterate over all scenes
-	// 	for (const scene of game.scenes) {
-	// 		let tokensToUpdate = [];
-	// 		//? Find tokens that represent the actor
-	// 		for (const token of scene.tokens.contents) {
-	// 			if (token.actorId === actor.id) {
-	// 				tokensToUpdate.push({ _id: token.id, "texture.src": path });
-	// 			}
-	// 		}
-	// 		//? Update the token images
-	// 		if (tokensToUpdate.length > 0) {
-	// 			await scene.updateEmbeddedDocuments("Token", tokensToUpdate);
-	// 		}
-	// 	}
-	// }
 }
 
 /**
@@ -89,7 +64,7 @@ export class MetaDialog extends Dialog {
 		const dataset = event.currentTarget.dataset;
 		const actorUUID = dataset.actoruuid;
 		const actor = await fromUuid(actorUUID);
-		await metaChangePortrait(actor);
+		await metaChangeActorImage(actor);
 		this.render();
 	}
 	/**
