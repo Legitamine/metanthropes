@@ -16,19 +16,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 -   Metanthropes: Introductory Module now comes with new artwork for the various Actors. Each Actor comes with a distinct Portrait & Token Image.
 -   Metanthropes: Introductory Journals have been updated with handy links to macros to help with the flow during a session. This is ongoing process and jounrals, macros and effects will be improved throughout Early Access. Give us your feedback on what you'd like to see added.
--   Metanthropes: Core has a couple more Possessions and Metapowers
+-   Metanthropes: Introductory has improved the lighting of The Opera Scene, depending of the story progression. We won't spend too much effort here in later iterations, until v12 support comes along and that brings us the capability to apply our envisioned special effects, but this crude approximation will do for this stage of Early Access development.
+-   Metanthropes: Core has a few more Possessions and Metapowers.
+-   Metanthropes: Homebrew now comes with Targeting v1, by enabling the 'Beta Testing of New Features' option in the Settings. Once enabled, when an Actor has targeted any Tokens, they will be mentioned within the Chat message on Metapower & Possession Activations/Uses.
 
 # Changed:
 
--   Metanthropes: Introductory updated the premade Antagonists with proper stats, perks, possessions and abilities.
+-   Metanthropes: Introductory updated all the included Actors with proper Stats, Perks, Possessions and Metapowers.
+-   Metanthropes: Introductory 'End of Scene' Macro has been updated to show only the non-premade Protagonists in the World, in order to assign them Destiny points.
 -   Re-introduced a way to change an Actor's portrait image, by clicking on the Actor Portrait Image within the Summary Tab. The selection will open at a folder that's configured as the default for that particular actor type. Once an image is selected, the respective top-down Token image will be applied to that Actor's Tokens throughout scenes.
 -   The 'Finalize Premade Actor' button on the Summary Tab now checks if the user is a Narrator (Gamemaster) and displays a warning, as Narrators should not do this themselves. Instead, Narrators should use the 'Assign Player' button to give the Actor to a Player and have the Player click on the 'Finalize Premade Actor' instead.
 -   The customized file picker window for selecting Actor Images has changed the default layout for the new image dimensions.
+-   Updated the metaExecute() function to also do the Targeting and Damage/Healing activation. This functionality is in a proof-of-concept stage currenlty and only available for Beta Testing via the Homebrew Module.
 
 # Fixed:
 
--   Fixed a known issue for Metanthropes: Introductory; Scenes now display the correct thumbnail after importing from the adventure compendium. Scenes now open at a specific position by default.
--   When Combat ends during the first Round of the first Cycle, it will now display the appropriate message in Chat. Made the chat message start at a new line for the results.
+-   Fixed a known issue for Metanthropes: Introductory; Scenes now display the correct thumbnail after importing from the adventure compendium. Scenes now also open at a specific position relative to the map dimensions by default.
+-   When Combat ends during the first Round of the first Cycle, it will now display the appropriate message in Chat. Made the chat message start at a new line for the results, making it more clear to notice.
 -   Various minor fixes & optimization for the Finalize Premade actor process.
 -   Cleaned up the majority of the change Actor Image process code, we are not releasing the Token Image process update as a separate capability at this time, let us know if more control over Token image with ex. wildcard support is desired.
 

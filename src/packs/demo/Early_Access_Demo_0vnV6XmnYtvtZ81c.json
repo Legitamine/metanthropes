@@ -42702,7 +42702,7 @@
       "_stats": {
         "systemId": "metanthropes",
         "systemVersion": "0.9.552",
-        "coreVersion": "12.324",
+        "coreVersion": "12.325",
         "createdTime": 1693129397384,
         "modifiedTime": 1716233317922,
         "lastModifiedBy": "F0ZXUMehd6qxarRo",
@@ -42735,7 +42735,7 @@
           "bright": false,
           "color": null,
           "coloration": 1,
-          "luminosity": 0.5,
+          "luminosity": 0,
           "saturation": 0,
           "contrast": 0,
           "shadows": 0
@@ -42772,7 +42772,7 @@
   "_stats": {
     "systemId": "metanthropes",
     "systemVersion": "0.9.552",
-    "coreVersion": "12.324",
+    "coreVersion": "12.325",
     "createdTime": 1709287652201,
     "modifiedTime": 1716233379086,
     "lastModifiedBy": "F0ZXUMehd6qxarRo",
