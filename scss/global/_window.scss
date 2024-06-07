@@ -295,14 +295,14 @@ h3 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 167px;
-	height: 290px;
+	width: 163px;
+	height: 100px;
 }
 .filepicker .tiles-list li img {
 	transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
 	z-index: 3;
 	&:hover {
-		transform: scale(1.6); // translateY(40px);
+		transform: scale(1.6) translateY(10px);
 		z-index: 4;
 	}
 }

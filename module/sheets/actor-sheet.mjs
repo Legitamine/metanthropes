@@ -5,7 +5,9 @@ import { metaFinalizePremadeActor } from "../metanthropes/finalizepremade.mjs";
 //? Import functions from other modules
 import { metaImportFromModule } from "../helpers/metaimports.mjs";
 //? Import meta helpers
-import { metaChangePortrait, metaLog } from "../helpers/metahelpers.mjs";
+import { metaLog } from "../helpers/metahelpers.mjs";
+//? Import Change Actor Image
+import { metaChangeActorImage, metaChangeTokenImage } from "../helpers/metaimagehandler.mjs";
 //? Import Active Effect helpers
 import { prepareActiveEffectCategories, onManageActiveEffect } from "../metanthropes/metaeffects.mjs";
 /**
@@ -229,8 +231,10 @@ export class MetanthropesActorSheet extends ActorSheet {
 		html.find(".progression-form").click(this._onProgression.bind(this));
 		//? Roll Cover
 		html.find(".meta-cover-roll").click(this._onCoverRoll.bind(this));
-		//? Change Portrait
+		//? Change Portrait Image
 		html.find(".meta-change-portrait").click(this._onChangePortrait.bind(this));
+		//? Change Token Image
+		html.find(".meta-change-token").click(this._onChangeToken.bind(this));
 		//!? Drag events for macros !??
 		//todo:review how we use this
 		if (this.actor.isOwner) {
@@ -622,12 +626,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 				<div class="form-group">
 					<label>Assign Player</label>
 					<select id="player" name="player">
-						${gameUsers
-							.map(
-								(user) =>
-									`<option value="${user.name}" data-playerid="${user._id}">${user.name}</option>`
-							)
-							.join("")}
+						${gameUsers.map((user) => `<option value="${user.name}" data-playerid="${user._id}">${user.name}</option>`).join("")}
 					</select>
 				</div>
 			</form>
@@ -710,6 +709,12 @@ export class MetanthropesActorSheet extends ActorSheet {
 		event.preventDefault();
 		const actorUUID = this.actor.uuid;
 		const actor = await fromUuid(actorUUID);
-		metaChangePortrait(actor);
+		metaChangeActorImage(actor);
+	}
+	async _onChangeToken(event) {
+		event.preventDefault();
+		const actorUUID = this.actor.uuid;
+		const actor = await fromUuid(actorUUID);
+		metaChangeTokenImage(actor);
 	}
 }

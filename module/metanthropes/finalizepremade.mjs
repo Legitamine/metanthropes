@@ -1,39 +1,51 @@
 import { metaRolld10 } from "../metarollers/metarollextras.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
-// import { metaActorControl } from "../metanthropes/actorcontrol.mjs";
-//* Finalizes a Premade Protagonist
+/**
+ * metaFinalizePremadeActor helps players finalize the details about their actor and rolls their starting destiny for them
+ * It calls metaNewPremadeSummary() and metaRolld10() functions and sets the new destiny for the player
+ * This needs to be run by a player, not by a Narrator (Gamemaster) on behalf of their player
+ * 
+ * @param {*} actor 
+*/
+//* Finalizes a Premade Actor for a Player
 export async function metaFinalizePremadeActor(actor) {
 	const playerName = game.user.name;
 	try {
-		//! A player needs to be Assigned first (via the Summary Tab button or manually) before they can Finalize Premade Actor
-		// await metaActorControl(actor).catch((error) => {
-		// 	metaLog(2, "Finalize Premade Protagonist", "Error at metaActorControl:", error);
-		// 	throw error;
-		// });
-		//todo: premade actor summary
+		if (game.user.isGM) {
+			metaLog(4, "metaFinalizePremadeActor", playerName, "is a Narrator");
+			ui.notifications.warn("Narrators should not run 'Finalize Premade Actor' themselves, instead use 'Assign Player' and have your Player click on the 'Finalize Premade'");
+		}
 		await metaNewPremadeSummary(actor).catch((error) => {
-			metaLog(2, "Finalize Premade Protagonist", "Error at NewPremadeSummary:", error);
+			metaLog(2, "metaFinalizePremadeActor", "Error from calling metaNewPremadeSummary:", error);
 			throw error;
 		});
 		//todo: review the finished action to change the portrait as the last step
 		// await NewActorFinish(actor).catch((error) => {
-			// metaLog(2, "Finalize Premade Protagonist", "Error at NewActorFinish:", error);
-			// throw error;
+		// metaLog(2, "Finalize Premade Protagonist", "Error at NewActorFinish:", error);
+		// throw error;
 		// });
 		await metaRolld10(actor, "Destiny", false, 1);
-		const NewDestiny = await actor.getFlag("metanthropes", "lastrolled").rolld10;
+		const newDestiny = await actor.getFlag("metanthropes", "lastrolled").rolld10;
 		await actor.update({
-			"system.Vital.Destiny.value": Number(NewDestiny),
-			"system.Vital.Destiny.max": Number(NewDestiny),
+			"system.Vital.Destiny.value": Number(newDestiny),
+			"system.Vital.Destiny.max": Number(newDestiny),
 		});
-		metaLog(3, "Finalize Premade Protagonist", `${playerName}'s ${actor.type} Starting Destiny:`, NewDestiny);
+		metaLog(3, "metaFinalizePremadeActor", `${playerName}'s ${actor.type} Starting Destiny:`, newDestiny);
 	} catch (error) {
-		metaLog(2, "Finalize Premade Protagonist", "Error:", error);
+		metaLog(2, "metaFinalizePremadeActor", "Error:", error);
 	} finally {
 		//intentionaly left blank for future use
 	}
 }
-
+/**
+ * metaNewPremadeSummary is a dialog that helps players fill-out information for a premade actor's summary
+ * It updates the various Summary fields and also renames any Tokens already placed in the canvas that will be controlled by this actor to the new name.
+ * It needs to be run by the player, as it also sets the metaowner value to the player name
+ * 
+ * @param {*} actor 
+ * @returns 
+ */
+//* Update Summary & Token Names for Premade Actors
 export async function metaNewPremadeSummary(actor) {
 	const playerName = game.user.name;
 	const narratorName = game.users.activeGM.name;
@@ -134,8 +146,8 @@ export async function metaNewPremadeSummary(actor) {
 										} catch (error) {
 											metaLog(
 												2,
-												"metaChangePortrait",
-												"Error updating token:",
+												"metaNewPremadeSummary",
+												"Error updating token name:",
 												error,
 												"tokens to update:",
 												tokensToUpdate
@@ -149,7 +161,7 @@ export async function metaNewPremadeSummary(actor) {
 								await token.update({ name: actorname });
 							}
 						} catch (error) {
-							metaLog(2, "NewPremadeSummary", "Error in updating actor data", error);
+							metaLog(2, "metaNewPremadeSummary", "Error in updating actor data", error);
 							reject(error);
 							return;
 						} finally {
@@ -157,7 +169,7 @@ export async function metaNewPremadeSummary(actor) {
 						}
 						metaLog(
 							3,
-							"NewActorSummary",
+							"metaNewPremadeSummary",
 							`New ${actor.type}'s Name:`,
 							actorname,
 							"Age:",

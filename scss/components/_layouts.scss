@@ -147,7 +147,7 @@
 }
 .layout-container-actorinfo {
 	display: grid;
-	grid-template-columns: 0.4fr 0.7fr 1.7fr 0.5fr 0.8fr;
+	grid-template-columns: 0.3fr 0.6fr 1.6fr 0.7fr 0.6fr;
 	column-gap: 1px;
 	padding: $padding-sm;
 	margin: $margin-md;
@@ -224,7 +224,7 @@
 }
 .layout-container-summary-images {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	justify-content: space-evenly;
 	column-gap: 6px;
 	padding: $padding-lg;
@@ -251,12 +251,12 @@
 	overflow-y: auto;
 }
 .layout-container-actorinfo-details {
-	justify-content: center;
+	display: flex;
+	flex-direction: column;
 	justify-self: center;
-	align-items: center;
 	align-self: center;
-	padding: $padding-sm;
-	margin: $margin-md;
+	padding: $padding-md;
+	margin: $margin-sm;
 }
 .layout-editor {
 	display: flex;
@@ -313,11 +313,6 @@
 	grid-area: buttons;
 }
 .layout-tab-summary-portrait {
-	//	//? Ensures that portait Images used retain the correct aspect ratio
-	//	width: 100%;
-	//	height: auto;
-	//	max-height: 300px;
-	//	object-fit: contain;
 	//? Styling for the portrait container
 	border: $border-style-solid;
 	border-radius: $border-radius;

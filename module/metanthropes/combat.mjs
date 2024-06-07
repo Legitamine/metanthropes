@@ -12,11 +12,9 @@ export class MetanthropesCombat extends Combat {
 	/** @override */
 	prepareDerivedData() {
 		super.prepareDerivedData();
-		//? adding the concept of Cycles & Rounds to the Combat system
-		let cycle = this.getFlag("metanthropes", "cycle") || 1;
-		//? embed the Cycle and Round values into the Combat document for use in the Combat Tracker
-		this.cycle = cycle;
-		metaLog(3, "Combat", "prepareDerivedData", "Cycle:", cycle, "Round:", this.round);
+		//? embed the Cycle concept into the Combat document for use in the Combat Tracker
+		const metaCycle = this.getFlag("metanthropes", "cycle");
+		if (metaCycle) this.cycle = metaCycle;
 	}
 	/** @override */
 	_sortCombatants(a, b) {
@@ -83,6 +81,7 @@ export class MetanthropesCombat extends Combat {
 		metaLog(3, "Combat", "rollInitiative", "Engaged");
 		//? Structure input data
 		ids = typeof ids === "string" ? [ids] : ids;
+		//const currentId = this.combatant?.id;
 		//? Iterate over Combatants, performing an initiative roll for each
 		const updates = [];
 		for (let [i, id] of ids.entries()) {
@@ -107,6 +106,10 @@ export class MetanthropesCombat extends Combat {
 		if (!updates.length) return this;
 		//? Update multiple combatants
 		await this.updateEmbeddedDocuments("Combatant", updates);
+		// //? Ensure the turn order remains with the same combatant
+		// if (updateTurn && currentId) {
+		// 	await this.update({ turn: this.turns.findIndex((t) => t.id === currentId) });
+		// }
 		return this;
 	}
 	/**
@@ -118,7 +121,6 @@ export class MetanthropesCombat extends Combat {
 	 * @returns {Promise<Combat>}
 	 */
 	async previousTurn() {
-		metaLog(3, "Combat", "previousTurn", "Engaged");
 		if (!this.started)
 			return ui.notifications.warn("You must begin the encounter before reversing to previous turn!");
 		super.previousTurn();
@@ -149,14 +151,13 @@ export class MetanthropesCombat extends Combat {
 	/**
 	 * Return to the previous Round in the combat encounter
 	 * Checks to see if the combat has been started before reversing the Round
-	 * todo: need to review the Cycle / Round assignment when reversing
+	 * todo: need to review the Cycle / Round assignment when revering
 	 *
 	 * @override
 	 *
 	 * @returns {Promise<Combat>}
 	 */
 	async previousRound() {
-		metaLog(3, "Combat", "previousRound", "Engaged");
 		if (!this.started)
 			return ui.notifications.warn("You must begin the encounter before reversing to previous Round!");
 		super.previousRound();
@@ -172,23 +173,181 @@ export class MetanthropesCombat extends Combat {
 	 */
 	async nextRound() {
 		metaLog(3, "Combat", "nextRound", "Engaged");
-		if (!this.started)
-			return ui.notifications.warn("You must begin the encounter before progressing to the next Round!");
+		if (!this.started) {
+			metaLog(3, "Combat", "nextRound", "Did not Run", "Combat has not started");
+			ui.notifications.warn("You must begin the encounter before progressing to the next Round!");
+			return;
+		}
 		if (this.round % 2 !== 0) {
 			//? Check if all combatants have an initiative value
 			for (let combatant of this.combatants) {
 				if (combatant.initiative === null || combatant.initiative === undefined) {
 					ui.notifications.warn(
-						"All combatants must have rolled for Initiative before progressing the Turn!"
+						"All combatants must have rolled for Initiative before progressing the Round!"
 					);
+					metaLog(3, "Combat", "nextRound", "Did not Run", "Combatants without Initiative");
 					return;
 				}
 			}
 		}
 		//todo: we should not be calling super here cause it will cause a return and update of the combat document,
 		//todo: instead we should integrate what foundry does and replace as needed
-		await super.nextRound();
-		//* End of Round Effects
+		//!await super.nextRound();
+		let turn = this.turn === null ? null : 0; // Preserve the fact that it's no-one's turn currently.
+		if (this.settings.skipDefeated && turn !== null) {
+			turn = this.turns.findIndex((t) => !t.isDefeated);
+			if (turn === -1) {
+				ui.notifications.warn("COMBAT.NoneRemaining", { localize: true });
+				turn = 0;
+			}
+		}
+		let advanceTime = Math.max(this.turns.length - this.turn, 0) * CONFIG.time.turnTime;
+		advanceTime += CONFIG.time.roundTime;
+		let nextRound = this.round + 1;
+		//* Add Cycle
+		let nextCycle = Math.ceil(nextRound / 2);
+		this.cycle = nextCycle;
+		await this.setFlag("metanthropes", "cycle", nextCycle);
+		// Update the document, passing data through a hook first
+		const updateData = { cycle: nextCycle, round: nextRound, turn };
+		const updateOptions = { direction: 1, worldTime: { delta: advanceTime } };
+		Hooks.callAll("combatRound", this, updateData, updateOptions);
+		metaLog(3, "Combat", "nextRound", "Finished");
+		return this.update(updateData, updateOptions);
+	}
+	/**
+	 * Show a chat message when Combat Begins
+	 * Also ensures that all Combatants have rolled for initiative before starting the Encounter
+	 *
+	 * @override
+	 *
+	 * @returns {Promise<Combat>}
+	 */
+	async startCombat() {
+		//? Check if Combat is already active
+		if (this.started) return ui.notifications.warn("Combat Encounter has already started!");
+		//? Check if all combatants have an initiative value
+		for (let combatant of this.combatants) {
+			if (combatant.initiative === null || combatant.initiative === undefined) {
+				ui.notifications.warn(
+					"All Combatants must have rolled for Initiative before starting Combat Encounter!"
+				);
+				return;
+			}
+		}
+		//? Update Flags with Cycle
+		await this.setFlag("metanthropes", "cycle", 1);
+		//? Create Chat Message
+		await ChatMessage.create({
+			content: `<br>Combat Encounter Begins!<br><br>`,
+			speaker: { alias: "Metanthropes Combat" },
+		});
+		return super.startCombat();
+	}
+	/**
+	 * Show a chat message when Combat Ends
+	 *
+	 * @override
+	 *
+	 * @returns {Promise<Combat>}
+	 */
+	async endCombat() {
+		return Dialog.confirm({
+			title: game.i18n.localize("COMBAT.EndTitle"),
+			content: `<p>${game.i18n.localize("COMBAT.EndConfirmation")}</p>`,
+			yes: async () => {
+				const combatCycle = this.cycle ?? 0;
+				const combatRound = this.round;
+				const combatCycleMessage = `${combatCycle} Cycle${combatCycle === 1 ? "" : "s"}`;
+				const combatRoundMessage = `${combatRound} Round${combatRound === 1 ? "" : "s"}`;
+				await ChatMessage.create({
+					content: `<br>Combat Encounter Ended after:<br><br>${combatRoundMessage} and ${combatCycleMessage}!<br><br>`,
+					speaker: { alias: "Metanthropes Combat" },
+				});
+				//? End the combat
+				this.delete();
+			},
+		});
+	}
+	/**
+	 * Metanthropes Combat
+	 * Having to override this due to having to reset initiative between rounds and seems
+	 * this is the only way to do this cleanly
+	 *
+	 * Manage the execution of Combat lifecycle events.
+	 * This method orchestrates the execution of four events in the following order, as applicable:
+	 * 1. End Turn
+	 * 2. End Round
+	 * 	- here we add a step to go through the end of round effects
+	 * 3. Begin Round
+	 * 	- here we add a step to metaCycles() before we begin the round
+	 * 4. Begin Turn
+	 * Each lifecycle event is an async method, and each is awaited before proceeding.
+	 * @returns {Promise<void>}
+	 * @protected
+	 */
+	async _manageTurnEvents() {
+		if (!this.started) return;
+		// Gamemaster handling only
+		if (game.users.activeGM?.isSelf) {
+			const advanceRound = this.current.round > (this.previous.round ?? -1);
+			const advanceTurn = advanceRound || this.current.turn > (this.previous.turn ?? -1);
+			const changeCombatant = this.current.combatantId !== this.previous.combatantId;
+			if (!(advanceTurn || advanceRound || changeCombatant)) return;
+			// Conclude the prior Combatant turn
+			const prior = this.combatants.get(this.previous.combatantId);
+			if ((advanceTurn || changeCombatant) && prior) await this._onEndTurn(prior);
+			// Conclude the prior round
+			if (advanceRound && this.previous.round !== null) {
+				//* End of Round Effects
+				await this.metaApplyEndOfRoundEffects();
+				//* Continue concluding the prior round
+				await this._onEndRound();
+			}
+			// Begin the new round
+			if (advanceRound) {
+				await this._onStartRound();
+				//* Cycles concept
+				if (this.round > 2 && this.round % 2 !== 0) {
+					await this.metaNewCycle();
+				} else {
+					await ChatMessage.create({
+						content: `<br>Round: ${this.round} - Cycle: ${this.cycle}<br><br>`,
+						speaker: {
+							alias: "Metanthropes Combat",
+						},
+					});
+				}
+			}
+			// Begin a new Combatant turn
+			const next = this.combatant;
+			if ((advanceTurn || changeCombatant) && next) await this._onStartTurn(this.combatant);
+		}
+		// Hooks handled by all clients
+		Hooks.callAll("combatTurnChange", this, this.previous, this.current);
+	}
+	/**
+	 * metaNewCycle does two things.
+	 * It resets the Initiative for all Combatants
+	 * It prints a Chat message for the new  Cycle/Round
+	 *
+	 */
+	async metaNewCycle() {
+		//? Reroll initiative for all combatants at the start of a new Cycle
+		await this.resetAll();
+		//? Create a chat message indicating the new Cycle and a new Initiative Roll
+		await ChatMessage.create({
+			content: `<br>Round: ${this.round} - Cycle: ${this.cycle}<br><br>New Cycle!<br><br>Roll Inititiative!<br><br>`,
+			speaker: {
+				alias: "Metanthropes Combat",
+			},
+		});
+	}
+	/**
+	 * metaApplyEndOfRoundEffects is a crude proof of concept for applying various effects at the end of each combat round
+	 *
+	 */
+	async metaApplyEndOfRoundEffects() {
 		//? Iterate over Combatants
 		for (let combatant of this.combatants.values()) {
 			//? get the actor for the combatant
@@ -318,101 +477,5 @@ export class MetanthropesCombat extends Combat {
 				});
 			}
 		}
-		//* Update the Cycle and Round values
-		//? Get the most recent Cycle and Round values from the Combat document
-		let cycle = (await this.getFlag("metanthropes", "cycle")) || 1;
-		switch (this.round) {
-			case 1:
-				cycle = 1;
-				break;
-			case 2:
-				cycle = 1;
-				break;
-			case 3:
-				cycle = 2;
-				console.log("case3");
-				break;
-			default:
-				if (this.round > 2 && (this.round - 1) % 2 === 0) {
-					cycle++;
-				}
-				break;
-		}
-		//? Set cycle as part of Combat document
-		this.cycle = cycle;
-		//? Set cycle as a flag in the Combat document
-		await this.setFlag("metanthropes", "cycle", cycle);
-		//? Reroll initiative for all combatants at the start of a new Cycle
-		if (cycle > 1 && this.round % 2 !== 0) {
-			await this.resetAll();
-			this.setupTurns();
-			await ChatMessage.create({
-				content: `<br>New Cycle: ${cycle} Round: ${this.round}<br><br>Roll Inititiative!<br><br>`,
-				speaker: {
-					alias: "Metanthropes Combat",
-				},
-			});
-		} else {
-			//? Create a chat message indicating the new Round
-			await ChatMessage.create({
-				content: `<br>Cycle: ${cycle} Round: ${this.round}<br><br>`,
-				speaker: {
-					alias: "Metanthropes Combat",
-				},
-			});
-		}
-		metaLog(3, "Combat", "nextRound", "Finished");
-		return this;
-	}
-	/**
-	 * Show a chat message when Combat Begins
-	 * Also ensures that all Combatants have rolled for initiative before starting the Encounter
-	 *
-	 * @override
-	 *
-	 * @returns {Promise<Combat>}
-	 */
-	async startCombat() {
-		//? Check if Combat is already active
-		if (this.started) return ui.notifications.warn("Combat Encounter has already started!");
-		//? Check if all combatants have an initiative value
-		for (let combatant of this.combatants) {
-			if (combatant.initiative === null || combatant.initiative === undefined) {
-				ui.notifications.warn(
-					"All combatants must have rolled for Initiative before starting Combat Encounter!"
-				);
-				return;
-			}
-		}
-		await ChatMessage.create({
-			content: `<br>Combat Encounter Begins!<br><br>`,
-			speaker: { alias: "Metanthropes Combat" },
-		});
-		return super.startCombat();
-	}
-	/**
-	 * Show a chat message when Combat Ends
-	 *
-	 * @override
-	 *
-	 * @returns {Promise<Combat>}
-	 */
-	async endCombat() {
-		return Dialog.confirm({
-			title: game.i18n.localize("COMBAT.EndTitle"),
-			content: `<p>${game.i18n.localize("COMBAT.EndConfirmation")}</p>`,
-			yes: async () => {
-				const combatCycle = await this.getFlag("metanthropes", "cycle");
-				const combatRound = this.round;
-				const combatCycleMessage = `${combatCycle} Cycle${combatCycle === 1 ? "" : "s"}`;
-				const combatRoundMessage = `${combatRound} Round${combatRound === 1 ? "" : "s"}`;
-				await ChatMessage.create({
-					content: `<br>Combat Encounter Ended after ${combatCycleMessage} and ${combatRoundMessage}!<br><br>`,
-					speaker: { alias: "Metanthropes Combat" },
-				});
-				//? End the combat
-				this.delete();
-			},
-		});
 	}
 }

@@ -12,7 +12,8 @@
 						<i class="fas fa-caret-left"></i>
 					</a>
 					<h4 class="encounter">{{localize "COMBAT.Encounter"}} {{currentIndex}} /
-						{{combatCount}}</h4>
+						{{combatCount}}
+					</h4>
 					<a class="combat-button combat-cycle" data-tooltip="COMBAT.EncounterNext"
 						{{#if nextId}}data-document-id="{{nextId}}" {{else}}disabled{{/if}}>
 						<i class="fas fa-caret-right"></i>
@@ -37,8 +38,8 @@
 			{{/if}}
 			{{#if combatCount}}
 				{{#if combat.round}}
-					<h3 class="encounter-title noborder">Cycle {{combat.cycle}} Round
-						{{combat.round}}</h3>
+					<h3 class="encounter-title noborder">Round {{combat.round}} Cycle
+						{{combat.cycle}}</h3>
 				{{else}}
 					<h3 class="encounter-title noborder">{{localize 'COMBAT.NotStarted'}}</h3>
 				{{/if}}
