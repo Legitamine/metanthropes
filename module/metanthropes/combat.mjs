@@ -13,7 +13,7 @@ export class MetanthropesCombat extends Combat {
 	prepareDerivedData() {
 		super.prepareDerivedData();
 		//? embed the Cycle concept into the Combat document for use in the Combat Tracker
-		const metaCycle = this.getFlag("metanthropes", "cycle");
+		const metaCycle = this.getFlag("metanthropes", "cycle") ?? 1;
 		if (metaCycle) this.cycle = metaCycle;
 	}
 	/** @override */
@@ -207,7 +207,7 @@ export class MetanthropesCombat extends Combat {
 		//* Add Cycle
 		let nextCycle = Math.ceil(nextRound / 2);
 		this.cycle = nextCycle;
-		await this.setFlag("metanthropes", "cycle", nextCycle);
+		//! await this.setFlag("metanthropes", "cycle", nextCycle);
 		// Update the document, passing data through a hook first
 		const updateData = { cycle: nextCycle, round: nextRound, turn };
 		const updateOptions = { direction: 1, worldTime: { delta: advanceTime } };
@@ -300,7 +300,7 @@ export class MetanthropesCombat extends Combat {
 			// Conclude the prior round
 			if (advanceRound && this.previous.round !== null) {
 				//* End of Round Effects
-				await this.metaApplyEndOfRoundEffects();
+				if (this.round > 1) await this.metaApplyEndOfRoundEffects();
 				//* Continue concluding the prior round
 				await this._onEndRound();
 			}

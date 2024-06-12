@@ -10,6 +10,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ### Early Access Releases
 
+# Early Access v0.9.637 [2024-06-12]
+
+# Fixed:
+
+-   Hotfixed an issue that caused Combat to break when more than 2 Combatants with Core Conditions triggered the end of Round effect application. This is a temporary solution and will be addressed properly in the next release. Causes the Cycle counter to not update properly.
+
+# Known Issues:
+
+-   Combat Cycles won't update properly and display 'Cycles 1' in Chat & Combat Tracker.
+
 # Early Access v0.9.635 [2024-06-08]
 
 # Added:
