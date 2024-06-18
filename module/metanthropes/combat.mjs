@@ -2,7 +2,7 @@ import { metaInitiative } from "../metarollers/metainitiative.mjs";
 import { metaLog } from "../helpers/metahelpers.mjs";
 
 /**
- * Metanthropes Combat Class
+ * Metanthropes Action Scene Class
  * Extends the base Combat class to implement additional Metanthropes-specific Combat features
  *
  * @extends {Combat}
@@ -14,6 +14,7 @@ export class MetanthropesCombat extends Combat {
 		super.prepareDerivedData();
 		//? embed the Cycle concept into the Combat document for use in the Combat Tracker
 		const metaCycle = this.getFlag("metanthropes", "cycle") ?? 1;
+		//todo is this really needed?
 		if (metaCycle) this.cycle = metaCycle;
 	}
 	/** @override */
@@ -207,7 +208,7 @@ export class MetanthropesCombat extends Combat {
 		//* Add Cycle
 		let nextCycle = Math.ceil(nextRound / 2);
 		this.cycle = nextCycle;
-		//! await this.setFlag("metanthropes", "cycle", nextCycle);
+		await this.setFlag("metanthropes", "cycle", nextCycle);
 		// Update the document, passing data through a hook first
 		const updateData = { cycle: nextCycle, round: nextRound, turn };
 		const updateOptions = { direction: 1, worldTime: { delta: advanceTime } };
@@ -240,7 +241,7 @@ export class MetanthropesCombat extends Combat {
 		//? Create Chat Message
 		await ChatMessage.create({
 			content: `<br>Combat Encounter Begins!<br><br>`,
-			speaker: { alias: "Metanthropes Combat" },
+			speaker: { alias: "Metanthropes Action Scene" },
 		});
 		return super.startCombat();
 	}
@@ -262,7 +263,7 @@ export class MetanthropesCombat extends Combat {
 				const combatRoundMessage = `${combatRound} Round${combatRound === 1 ? "" : "s"}`;
 				await ChatMessage.create({
 					content: `<br>Combat Encounter Ended after:<br><br>${combatRoundMessage} and ${combatCycleMessage}!<br><br>`,
-					speaker: { alias: "Metanthropes Combat" },
+					speaker: { alias: "Metanthropes Action Scene" },
 				});
 				//? End the combat
 				this.delete();
@@ -270,7 +271,7 @@ export class MetanthropesCombat extends Combat {
 		});
 	}
 	/**
-	 * Metanthropes Combat
+	 * Metanthropes Action Scene
 	 * Having to override this due to having to reset initiative between rounds and seems
 	 * this is the only way to do this cleanly
 	 *
@@ -299,22 +300,23 @@ export class MetanthropesCombat extends Combat {
 			if ((advanceTurn || changeCombatant) && prior) await this._onEndTurn(prior);
 			// Conclude the prior round
 			if (advanceRound && this.previous.round !== null) {
-				//* End of Round Effects
-				if (this.round > 1) await this.metaApplyEndOfRoundEffects();
 				//* Continue concluding the prior round
 				await this._onEndRound();
 			}
 			// Begin the new round
 			if (advanceRound) {
 				await this._onStartRound();
+				//* End of Round Effects
+				if (this.round >= 1) await this.metaApplyEndOfRoundEffects();
 				//* Cycles concept
+				//? Check if we need to re-roll initiative or not
 				if (this.round > 2 && this.round % 2 !== 0) {
 					await this.metaNewCycle();
 				} else {
 					await ChatMessage.create({
 						content: `<br>Round: ${this.round} - Cycle: ${this.cycle}<br><br>`,
 						speaker: {
-							alias: "Metanthropes Combat",
+							alias: "Metanthropes Action Scene",
 						},
 					});
 				}
@@ -339,7 +341,7 @@ export class MetanthropesCombat extends Combat {
 		await ChatMessage.create({
 			content: `<br>Round: ${this.round} - Cycle: ${this.cycle}<br><br>New Cycle!<br><br>Roll Inititiative!<br><br>`,
 			speaker: {
-				alias: "Metanthropes Combat",
+				alias: "Metanthropes Action Scene",
 			},
 		});
 	}
@@ -348,133 +350,146 @@ export class MetanthropesCombat extends Combat {
 	 *
 	 */
 	async metaApplyEndOfRoundEffects() {
-		//? Iterate over Combatants
-		for (let combatant of this.combatants.values()) {
-			//? get the actor for the combatant
-			const actor = combatant.actor;
-			//* Active Effect Expiration
-			//? Fetch Active Effects with a duration of 'None' and toggle them off
-			let expiredEffects = [];
-			let effects = actor.effects.filter((e) => e.duration.label === "None");
-			expiredEffects.push(...effects);
-			await Promise.all(expiredEffects.map((e) => e.update({ disabled: true })));
-			//todo Core Conditions should be made into objects (vs arrays) in the template
-			//todo this will allow to have a single function that controls this, using .label and .effectdescr etc and simplify the code
-			//* Unconscious Condition
-			const unconsciousLevel = actor.system.Characteristics.Soul.CoreConditions.Unconscious;
-			if (unconsciousLevel > 0) {
-				let unconsciousEffect = "";
-				switch (unconsciousLevel) {
-					case 1:
-						unconsciousEffect =
-							"The Character enters a semi-awake state of narcolepsy, and possibly might fall asleep standing for a few seconds. A Character who is sleeping or has passed out, cannot attempt any Actions or Movement, and neither is aware of their surroundings.The Character can attempt to awake in case of something moves them a bit, or in case of any loud noises. At the end of each Round, the unconscious Character attempting to wake up might attempt an Endurance roll (Free Roll), and if successful they wake up.";
-						break;
-					case 2:
-						unconsciousEffect =
-							"The Character slowly loses their standing and falls asleep for some minutes. The Character further receives the Condition: Knocked Down. A Character who is sleeping or has passed out, cannot attempt any Actions or Movement, and neither is aware of their surroundings. The Character can attempt to awake in case of something heavily shakes them, or in case of hearing loud noises from up close. At the end of each Round, the unconscious Character attempting to wake up might attempt an Endurance roll (Free Roll), and if successful they wake up.";
-						break;
-					case 3:
-						unconsciousEffect =
-							"The Character slowly loses their standing and falls into a deep, passed-out sleep for some hours. A Character who is sleeping or has passed out, cannot attempt any Actions or Movement, and neither is aware of their surroundings. The Character further receives the Condition: Knocked Down. The Character can attempt to awake in case of free-falling, or in case of hearing extremely loud noises from up close. At the end of each Round, the unconscious Character attempting to wake up might attempt an Endurance roll (Free Roll), and if successful they wake up.";
-						break;
-					case 4:
-						unconsciousEffect =
-							"The Character collapses into a comatose state for days. A Character who is sleeping or has passed out, cannot attempt any Actions or Movement, and neither is aware of their surroundings. The Character further receives the Condition: Knocked Down. The Character must spend 1 * 🤞 Destiny to attempt to be awakened from the coma. At the end of each Round, the unconscious Character attempting to wake up might attempt an Endurance roll (Free Roll), and if successful they wake up.";
-						break;
-					case 5:
-						unconsciousEffect =
-							"The Character collapses into a deep coma for an unknown amount of time. A Character who is sleeping or has passed out, cannot attempt any Actions or Movement, and neither is aware of their surroundings. The Character further receives the Condition: Knocked Down. The Character must spend 2 * 🤞 Destiny to attempt to be awakened from the coma. At the end of each Round, the unconscious Character attempting to wake up might attempt an Endurance roll (Free Roll), and if successful they wake up.";
-						break;
-					default:
-						metaLog(2, "Combat", "nextRound", "Unconscious Level is out of bounds:", unconsciousLevel);
-						break;
+		if (this.previous.round >= 1) {
+			//? Announce the End of Round effects
+			await ChatMessage.create({
+				content: `Applying End of Round ${this.previous.round} Effects.<br><br>`,
+				speaker: ChatMessage.getSpeaker({ alias: "Metanthropes Action Scene" }),
+			});
+			//? Iterate over Combatants
+			for (let combatant of this.combatants.values()) {
+				//? get the actor for the combatant
+				const actor = combatant.actor;
+				//* Active Effect Expiration
+				//? Fetch Active Effects with a duration of 'None' and toggle them off
+				let expiredEffects = [];
+				let effects = actor.effects.filter((e) => e.duration.label === "None");
+				expiredEffects.push(...effects);
+				await Promise.all(expiredEffects.map((e) => e.update({ disabled: true })));
+				//todo Core Conditions should be made into objects (vs arrays) in the template
+				//todo this will allow to have a single function that controls this, using .label and .effectdescr etc and simplify the code
+				//* Unconscious Condition
+				const unconsciousLevel = actor.system.Characteristics.Soul.CoreConditions.Unconscious;
+				if (unconsciousLevel > 0) {
+					let unconsciousEffect = "";
+					switch (unconsciousLevel) {
+						case 1:
+							unconsciousEffect =
+								"The Character enters a semi-awake state of narcolepsy, and possibly might fall asleep standing for a few seconds. A Character who is sleeping or has passed out, cannot attempt any Actions or Movement, and neither is aware of their surroundings.The Character can attempt to awake in case of something moves them a bit, or in case of any loud noises. At the end of each Round, the unconscious Character attempting to wake up might attempt an Endurance roll (Free Roll), and if successful they wake up.";
+							break;
+						case 2:
+							unconsciousEffect =
+								"The Character slowly loses their standing and falls asleep for some minutes. The Character further receives the Condition: Knocked Down. A Character who is sleeping or has passed out, cannot attempt any Actions or Movement, and neither is aware of their surroundings. The Character can attempt to awake in case of something heavily shakes them, or in case of hearing loud noises from up close. At the end of each Round, the unconscious Character attempting to wake up might attempt an Endurance roll (Free Roll), and if successful they wake up.";
+							break;
+						case 3:
+							unconsciousEffect =
+								"The Character slowly loses their standing and falls into a deep, passed-out sleep for some hours. A Character who is sleeping or has passed out, cannot attempt any Actions or Movement, and neither is aware of their surroundings. The Character further receives the Condition: Knocked Down. The Character can attempt to awake in case of free-falling, or in case of hearing extremely loud noises from up close. At the end of each Round, the unconscious Character attempting to wake up might attempt an Endurance roll (Free Roll), and if successful they wake up.";
+							break;
+						case 4:
+							unconsciousEffect =
+								"The Character collapses into a comatose state for days. A Character who is sleeping or has passed out, cannot attempt any Actions or Movement, and neither is aware of their surroundings. The Character further receives the Condition: Knocked Down. The Character must spend 1 * 🤞 Destiny to attempt to be awakened from the coma. At the end of each Round, the unconscious Character attempting to wake up might attempt an Endurance roll (Free Roll), and if successful they wake up.";
+							break;
+						case 5:
+							unconsciousEffect =
+								"The Character collapses into a deep coma for an unknown amount of time. A Character who is sleeping or has passed out, cannot attempt any Actions or Movement, and neither is aware of their surroundings. The Character further receives the Condition: Knocked Down. The Character must spend 2 * 🤞 Destiny to attempt to be awakened from the coma. At the end of each Round, the unconscious Character attempting to wake up might attempt an Endurance roll (Free Roll), and if successful they wake up.";
+							break;
+						default:
+							metaLog(2, "Combat", "nextRound", "Unconscious Level is out of bounds:", unconsciousLevel);
+							break;
+					}
+					//? Create a chat message indicating the Unconscious effect
+					await ChatMessage.create({
+						content: `Is affected by the Unconscious Condition Level ${unconsciousLevel}, with the following effect:<br><br><p>${unconsciousEffect}</p><br><br>`,
+						speaker: ChatMessage.getSpeaker({ actor: actor }),
+					});
 				}
-				//? Create a chat message indicating the Unconscious effect
-				await ChatMessage.create({
-					content: `Is affected by the Unconscious Condition Level ${unconsciousLevel}, with the following effect:<br><br><p>${unconsciousEffect}</p><br><br>`,
-					speaker: ChatMessage.getSpeaker({ actor: actor }),
-				});
-			}
-			//* Asphyxiation Condition
-			const asphyxiationLevel = actor.system.Characteristics.Body.CoreConditions.Asphyxiation;
-			if (asphyxiationLevel > 0) {
-				let asphyxiationEffect = "";
-				switch (asphyxiationLevel) {
-					case 1:
-						asphyxiationEffect =
-							"A Character who cannot breathe oxygen is asphyxiating. At Asphyxiation 1 the Character has trouble breathing. The Character collapse into the floor for a couple of minutes. At the end of each Round, the asphyxiating Character must attempt an Endurance roll (Free Roll). Failure on that roll causes the Character to increase the Condition to Asphyxiation 2.";
-						break;
-					case 2:
-						asphyxiationEffect =
-							"A Character who cannot breathe oxygen is asphyxiating. At Asphyxiation 2 the Character's brain is not being properly oxygenized. The Character may enter a comatose state for days. At the end of each Round, the asphyxiating Character must attempt an Endurance roll (Free Roll). Failure on that roll causes the Character to receive the Conditions: Knocked Down and Unconscious 2, up until the Character receives oxygen again.";
-						break;
-					case 3:
-						asphyxiationEffect =
-							"A Character who cannot breathe oxygen is asphyxiating. At Asphyxiation 3 the Character will being chocking and gasping for air. The Character may enter a comatose state for days. At the end of each Round, the asphyxiating Character must attempt an Endurance roll (Free Roll). Failure on that roll causes the Character to receive 2 Elemental Damage and the Conditions: Confused 2, Disoriented 2, Knocked Down and Unconscious 3, up until the Character receives oxygen again.";
-						break;
-					case 4:
-						asphyxiationEffect =
-							"A Character who cannot breathe oxygen is asphyxiating. At Asphyxiation 4 the Character is suffocating. The Character may enter a comatose state for days. At the end of each Round, the asphyxiating Character must attempt an Endurance roll (Free Roll). Failure on that roll causes the Character to receive 4d10 + 40 Psychic Damage the Conditions: Knocked Down and Unconscious 4, up until the Character receives oxygen again.";
-						break;
-					case 5:
-						asphyxiationEffect =
-							"A Character who cannot breathe oxygen is asphyxiating. At Asphyxiation 4 the Character is receiving brain damage due to lack of oxygen. The Character may enter a comatose state for days. At the end of each Round, the asphyxiating Character must attempt an Endurance roll (Free Roll). Failure on that roll causes the Character to receive 6d10 + 60 Psychic Damage the Conditions: Disconnected 4, Knocked Down and Unconscious 4, up until the Character receives oxygen again.";
-						break;
-					default:
-						metaLog(2, "Combat", "nextRound", "Asphyxiation Level is out of bounds:", asphyxiationLevel);
-						break;
+				//* Asphyxiation Condition
+				const asphyxiationLevel = actor.system.Characteristics.Body.CoreConditions.Asphyxiation;
+				if (asphyxiationLevel > 0) {
+					let asphyxiationEffect = "";
+					switch (asphyxiationLevel) {
+						case 1:
+							asphyxiationEffect =
+								"A Character who cannot breathe oxygen is asphyxiating. At Asphyxiation 1 the Character has trouble breathing. The Character collapse into the floor for a couple of minutes. At the end of each Round, the asphyxiating Character must attempt an Endurance roll (Free Roll). Failure on that roll causes the Character to increase the Condition to Asphyxiation 2.";
+							break;
+						case 2:
+							asphyxiationEffect =
+								"A Character who cannot breathe oxygen is asphyxiating. At Asphyxiation 2 the Character's brain is not being properly oxygenized. The Character may enter a comatose state for days. At the end of each Round, the asphyxiating Character must attempt an Endurance roll (Free Roll). Failure on that roll causes the Character to receive the Conditions: Knocked Down and Unconscious 2, up until the Character receives oxygen again.";
+							break;
+						case 3:
+							asphyxiationEffect =
+								"A Character who cannot breathe oxygen is asphyxiating. At Asphyxiation 3 the Character will being chocking and gasping for air. The Character may enter a comatose state for days. At the end of each Round, the asphyxiating Character must attempt an Endurance roll (Free Roll). Failure on that roll causes the Character to receive 2 Elemental Damage and the Conditions: Confused 2, Disoriented 2, Knocked Down and Unconscious 3, up until the Character receives oxygen again.";
+							break;
+						case 4:
+							asphyxiationEffect =
+								"A Character who cannot breathe oxygen is asphyxiating. At Asphyxiation 4 the Character is suffocating. The Character may enter a comatose state for days. At the end of each Round, the asphyxiating Character must attempt an Endurance roll (Free Roll). Failure on that roll causes the Character to receive 4d10 + 40 Psychic Damage the Conditions: Knocked Down and Unconscious 4, up until the Character receives oxygen again.";
+							break;
+						case 5:
+							asphyxiationEffect =
+								"A Character who cannot breathe oxygen is asphyxiating. At Asphyxiation 4 the Character is receiving brain damage due to lack of oxygen. The Character may enter a comatose state for days. At the end of each Round, the asphyxiating Character must attempt an Endurance roll (Free Roll). Failure on that roll causes the Character to receive 6d10 + 60 Psychic Damage the Conditions: Disconnected 4, Knocked Down and Unconscious 4, up until the Character receives oxygen again.";
+							break;
+						default:
+							metaLog(
+								2,
+								"Combat",
+								"nextRound",
+								"Asphyxiation Level is out of bounds:",
+								asphyxiationLevel
+							);
+							break;
+					}
+					//? Create a chat message indicating the Asphyxiation effect
+					await ChatMessage.create({
+						content: `Is affected by the Asphyxiation Condition Level ${asphyxiationLevel}, with the following effect:<br><br><p>${asphyxiationEffect}</p><br><br>`,
+						speaker: ChatMessage.getSpeaker({ actor: actor }),
+					});
 				}
-				//? Create a chat message indicating the Asphyxiation effect
-				await ChatMessage.create({
-					content: `Is affected by the Asphyxiation Condition Level ${asphyxiationLevel}, with the following effect:<br><br><p>${asphyxiationEffect}</p><br><br>`,
-					speaker: ChatMessage.getSpeaker({ actor: actor }),
-				});
-			}
-			//* Fatigue Condition
-			const fatigueLevel = actor.system.Characteristics.Mind.CoreConditions.Fatigue;
-			if (fatigueLevel > 0) {
-				let fatigueEffect = "";
-				switch (fatigueLevel) {
-					case 1:
-						fatigueEffect = "You are tired, you cannot attempt any Focused Actions until you rest.";
-						break;
-					case 2:
-						fatigueEffect =
-							"You are worn out, you cannot attempt any Focused Actions or Extra Actions until you rest.";
-						break;
-					case 3:
-						fatigueEffect =
-							"You are weary, you cannot attempt any Focused Actions, Extra Actions or Reactions until you rest.";
-						break;
-					case 4:
-						fatigueEffect =
-							"You are exhausted, you cannot attempt any Focused Actions, Extra Actions, Reactions or Movement until you rest. You can still forgo your Main Action slot to gain another Movement.";
-						break;
-					case 5:
-						fatigueEffect =
-							"You are collapsing, you cannot attempt any Focused Actions, Extra Actions, Reactions, Movement or Main Actions until you rest. You can only utter a few words and crawl 1 Hexagon per Turn.";
-						break;
-					default:
-						metaLog(2, "Combat", "nextRound", "Fatigue Level is out of bounds:", fatigueLevel);
-						break;
+				//* Fatigue Condition
+				const fatigueLevel = actor.system.Characteristics.Mind.CoreConditions.Fatigue;
+				if (fatigueLevel > 0) {
+					let fatigueEffect = "";
+					switch (fatigueLevel) {
+						case 1:
+							fatigueEffect = "You are tired, you cannot attempt any Focused Actions until you rest.";
+							break;
+						case 2:
+							fatigueEffect =
+								"You are worn out, you cannot attempt any Focused Actions or Extra Actions until you rest.";
+							break;
+						case 3:
+							fatigueEffect =
+								"You are weary, you cannot attempt any Focused Actions, Extra Actions or Reactions until you rest.";
+							break;
+						case 4:
+							fatigueEffect =
+								"You are exhausted, you cannot attempt any Focused Actions, Extra Actions, Reactions or Movement until you rest. You can still forgo your Main Action slot to gain another Movement.";
+							break;
+						case 5:
+							fatigueEffect =
+								"You are collapsing, you cannot attempt any Focused Actions, Extra Actions, Reactions, Movement or Main Actions until you rest. You can only utter a few words and crawl 1 Hexagon per Turn.";
+							break;
+						default:
+							metaLog(2, "Combat", "nextRound", "Fatigue Level is out of bounds:", fatigueLevel);
+							break;
+					}
+					//? Create a chat message indicating the Unconscious effect
+					await ChatMessage.create({
+						content: `Is affected by the Fatigue Condition Level ${fatigueLevel}, with the following effect:<br><br><p>${fatigueEffect}</p><br><br>`,
+						speaker: ChatMessage.getSpeaker({ actor: actor }),
+					});
 				}
-				//? Create a chat message indicating the Unconscious effect
-				await ChatMessage.create({
-					content: `Is affected by the Fatigue Condition Level ${fatigueLevel}, with the following effect:<br><br><p>${fatigueEffect}</p><br><br>`,
-					speaker: ChatMessage.getSpeaker({ actor: actor }),
-				});
-			}
-			//* Bleeding Condition
-			const bleedingLevel = actor.system.Characteristics.Body.CoreConditions.Bleeding;
-			if (bleedingLevel > 0) {
-				const currentLife = actor.system.Vital.Life.value;
-				const newLife = Number(currentLife) - Number(bleedingLevel);
-				await actor.update({ "system.Vital.Life.value": newLife });
-				//? Create a chat message indicating the Bleeding effect
-				await ChatMessage.create({
-					content: `Lost ${bleedingLevel} ❤️ Life due to Bleeding Condition ${bleedingLevel}.<br><br>`,
-					speaker: ChatMessage.getSpeaker({ actor: actor }),
-				});
+				//* Bleeding Condition
+				const bleedingLevel = actor.system.Characteristics.Body.CoreConditions.Bleeding;
+				if (bleedingLevel > 0) {
+					const currentLife = actor.system.Vital.Life.value;
+					const newLife = Number(currentLife) - Number(bleedingLevel);
+					await actor.update({ "system.Vital.Life.value": newLife });
+					//? Create a chat message indicating the Bleeding effect
+					await ChatMessage.create({
+						content: `Lost ${bleedingLevel} ❤️ Life due to Bleeding Condition ${bleedingLevel}.<br><br>`,
+						speaker: ChatMessage.getSpeaker({ actor: actor }),
+					});
+				}
 			}
 		}
 	}

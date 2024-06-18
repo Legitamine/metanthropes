@@ -10,6 +10,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ### Early Access Releases
 
+# Early Access v0.9.6xx [2024-06-xx]
+
+# Changed:
+
+-   Changed the Combat Chat message to be from 'Metanthropes Action Scene' instead of 'Metanthropes Combat'. Added a Chat message when the End of Round effects are triggered and applied, this should help clarify the order of things in Chat.
+
+# Fixed:
+
+-   Properly fixed the Combat issue mentioned in the previous build, as well as the known issue with the display of Cycles. Cycles are now properly updated and displayed in Chat & Combat Tracker.
+
 # Early Access v0.9.637 [2024-06-12]
 
 # Fixed:
@@ -26,7 +36,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 -   Metanthropes: Introductory Module now comes with new artwork for the various Actors. Each Actor comes with a distinct Portrait & top-down Token Image.
 -   Metanthropes: Introductory Journals have been updated with handy links to macros to help with the flow during a session. This is ongoing process and Journals, Macros and various effects will be improved throughout Early Access. Give us your feedback on what you'd like to see added to help with the flow of the session.
--   Metanthropes: Introductory has improved the lighting of The Opera Scene, depending of the story progression. We won't spend too much effort here, until v12 support comes along, and that will bring the capability to apply our envisioned special effects, but this crude approximation will do for this stage of Early Access development and v11 capabilities.
+-   Metanthropes: Introductory has improved the lighting of The Opera Scene, depending on the story progression. We won't spend too much effort here, until v12 support comes along, and that will bring the capability to apply our envisioned special effects, but this crude approximation will do for this stage of Early Access development and v11 capabilities.
 -   Metanthropes: Core has a few more Possessions and Metapowers.
 -   Metanthropes: Homebrew now comes with Targeting v1, by enabling the 'Beta Testing of New Features' option in the Settings. Once enabled, when an Actor has targeted any Tokens, they will be mentioned within the Chat message on Metapower & Possession Activations/Uses.
 
