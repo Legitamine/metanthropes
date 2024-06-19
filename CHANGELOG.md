@@ -12,6 +12,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 # Early Access v0.9.6xx [2024-06-xx]
 
+# Added:
+
+- Metanthropes: Introductory has 4 new Actor Portraits (& accompanying Top-down Token Images) for the Protagonists & Humans.
+
 # Changed:
 
 -   Changed the Combat Chat message to be from 'Metanthropes Action Scene' instead of 'Metanthropes Combat'. Added a Chat message when the End of Round effects are triggered and applied, this should help clarify the order of things in Chat.
