@@ -1,6 +1,6 @@
 # Latest Changes
 
-These are the latest changes to the Metanthropes System for Foundry VTT.
+These are the latest changes of the Metanthropes System for Foundry VTT.
 
 Included in these notes, is also the changelog for all the Premium Modules for Foundry VTT by Legitamine Games.
 
@@ -10,19 +10,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ### Early Access Releases
 
-# Early Access v0.9.6xx [2024-06-xx]
+# Early Access v0.9.xxx [2024-06-xx]
 
 # Added:
 
-- Metanthropes: Introductory has 4 new Actor Portraits (& accompanying Top-down Token Images) for the Protagonists & Humans.
+-   Metanthropes: Introductory has 4 new Actor Portraits (& accompanying Top-down Token Images) for the Protagonists & Humans.
+-   Metanthropes: Homebrew now enables you to define a custom name for your ruleset, which is displayed in Chat when a Homebrew rule applies.
+-   Metanthropes: Homebrew has a new setting to change the Life loss per Bleeding Condition level.
 
 # Changed:
 
--   Changed the Combat Chat message to be from 'Metanthropes Action Scene' instead of 'Metanthropes Combat'. Added a Chat message when the End of Round effects are triggered and applied, this should help clarify the order of things in Chat.
+-   When applying End of Round effects during Combat, now a single Chat message informs of all affected combatants during the end of round message, instead of each individual Actor & Condition, minimizing the number of new chat messages to one.
+-   The Combat Tracker no longer displays the current Cycle, instead, the current Cycle is displayed in the Chat message at the start of every Round.
+-   Changed the Combat Chat message to be from 'Metanthropes Action Scene' instead of 'Metanthropes Combat'.
 
 # Fixed:
 
--   Properly fixed the Combat issue mentioned in the previous build, as well as the known issue with the display of Cycles. Cycles are now properly updated and displayed in Chat & Combat Tracker.
+-   Properly fixed the Combat issue mentioned in the previous build.
 
 # Early Access v0.9.637 [2024-06-12]
 

@@ -66,7 +66,7 @@ export async function metaInitiative(combatant) {
 		await metaRoll(actor, action, initiativeStatRolled);
 		initiativeResult = await actor.getFlag("metanthropes", "lastrolled").Initiative;
 	} else {
-		//? Logic for Duplicates & Animated
+		//* Logic for Duplicates & Animated
 		//? Duplicates from Duplicate Self Metapower get a -11 Initiative, this will ensure they always go last
 		//? We account for multiple Actors (Duplicates/Animated), to ensure proper order based on their Reflexes score
 		const initiativeStatScore = initiativeStats[0].score;
@@ -78,6 +78,9 @@ export async function metaInitiative(combatant) {
 	//todo add Metapowers that affect Initiative results
 	//? Update the combatant with the new initiative score
 	await combatant.update({ initiative: initiativeResult });
+	//? Ensure the turn order is reset after rolling Initiative
+	await game.combat.update({ turn: null });
+	await game.combat.setupTurns();
 	metaLog(
 		3,
 		"metaInitiative",
