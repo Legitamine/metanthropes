@@ -217,7 +217,7 @@ Hooks.once("init", async function () {
 	//! CONFIG.Combatant.documentClass = MetaCombatant; instead?
 	CONFIG.Actor.entityClass = MetaCombatant;
 	//? setup custom combat tracker
-	CONFIG.ui.combat = MetaCombatTracker;
+	//CONFIG.ui.combat = MetaCombatTracker;
 	//? replace sidebar
 	CONFIG.ui.sidebar = MetaSidebar;
 	//? Replace Sidebar Directories

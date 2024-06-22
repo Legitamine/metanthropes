@@ -1,6 +1,6 @@
 # Latest Changes
 
-These are the latest changes to the Metanthropes System for Foundry VTT.
+These are the latest changes of the Metanthropes System for Foundry VTT.
 
 Included in these notes, is also the changelog for all the Premium Modules for Foundry VTT by Legitamine Games.
 
@@ -9,6 +9,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 ---
 
 ### Early Access Releases
+
+# Early Access v0.9.744 [2024-06-22]
+
+# Added:
+
+-   Metanthropes: Introductory has 4 new Actor Portraits (& accompanying Top-down Token Images) for the Protagonists & Humans.
+-   Metanthropes: Core now comes with an additional Journal that helps navigate new players to create their Protagonists.
+-   Metanthropes: Core now has 7 new Rollable tables to help with creating new Actors. Integration & automations with the Roll new Actor process are planned for later builds.
+-   Metanthropes: Homebrew now enables you to define a custom ruleset name, which is displayed in Chat when a Homebrew rule applies.
+-   Metanthropes: Homebrew has a new setting to change the Life loss per Bleeding Condition level.
+
+# Changed:
+
+-   Metanthropes: Core when rolling for a new Actor, you can now set a base value for starting Destiny, besides a number of dice. The default has changed from 3d10 to 8 + 2d10, giving a more consistent starting Destiny (minimum 10 Destiny points) when creating new Actors.
+-   Metanthropes: Core will now skip changing the Actor's portrait during the Roll New Actor process. A new process that will include selecting the Actor's portrait will come in later builds with the new UI.
+-   When applying End of Round effects during Combat, now a single Chat message informs of all affected combatants during the end of round message, instead of each individual Actor & Condition, minimizing the number of new chat messages to one.
+-   The Combat Tracker no longer displays the current Cycle, instead, the current Cycle is displayed in the Chat message at the start of every Round.
+-   Changed the Combat Chat message to be from 'Metanthropes Action Scene' instead of 'Metanthropes Combat'.
+
+# Fixed:
+
+-   Properly fixed the Combat issues mentioned in the previous builds.
+
+# Known Issue:
+
+-   During an Action Scene, when asked to roll for initiative, if an Actor moves it will cause to re-apply the end-of-round effects. This will be addressed when we implement the Movement restrictions during combat, that will come in a later build.
 
 # Early Access v0.9.637 [2024-06-12]
 
@@ -26,7 +52,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 -   Metanthropes: Introductory Module now comes with new artwork for the various Actors. Each Actor comes with a distinct Portrait & top-down Token Image.
 -   Metanthropes: Introductory Journals have been updated with handy links to macros to help with the flow during a session. This is ongoing process and Journals, Macros and various effects will be improved throughout Early Access. Give us your feedback on what you'd like to see added to help with the flow of the session.
--   Metanthropes: Introductory has improved the lighting of The Opera Scene, depending of the story progression. We won't spend too much effort here, until v12 support comes along, and that will bring the capability to apply our envisioned special effects, but this crude approximation will do for this stage of Early Access development and v11 capabilities.
+-   Metanthropes: Introductory has improved the lighting of The Opera Scene, depending on the story progression. We won't spend too much effort here, until v12 support comes along, and that will bring the capability to apply our envisioned special effects, but this crude approximation will do for this stage of Early Access development and v11 capabilities.
 -   Metanthropes: Core has a few more Possessions and Metapowers.
 -   Metanthropes: Homebrew now comes with Targeting v1, by enabling the 'Beta Testing of New Features' option in the Settings. Once enabled, when an Actor has targeted any Tokens, they will be mentioned within the Chat message on Metapower & Possession Activations/Uses.
 
