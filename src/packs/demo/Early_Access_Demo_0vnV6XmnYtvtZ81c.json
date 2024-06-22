@@ -6405,33 +6405,13 @@
         "F0ZXUMehd6qxarRo": 3,
         "gaWoeXg7uJWoAsCP": 3
       },
-      "flags": {
-        "metanthropes": {
-          "previousrolled": {
-            "LastAction": "Metapower",
-            "MetaEvaluate": 2,
-            "Metapower": 2,
-            "StatRolled": "Consciousness",
-            "MetapowerName": "Ancestral Tree"
-          },
-          "lastrolled": {
-            "LastAction": "Possession",
-            "MetaEvaluate": -2,
-            "Possession": -2,
-            "StatRolled": "Power",
-            "PossessionName": "Strike"
-          }
-        },
-        "core": {
-          "sourceId": "Actor.EQWSijMtFzgJLMD9"
-        }
-      },
+      "flags": {},
       "_stats": {
         "systemId": "metanthropes",
-        "systemVersion": "0.9.592",
+        "systemVersion": "0.9.637",
         "coreVersion": "11.315",
         "createdTime": 1709294475845,
-        "modifiedTime": 1717794478372,
+        "modifiedTime": 1719069929170,
         "lastModifiedBy": "gaWoeXg7uJWoAsCP"
       }
     },
@@ -23233,32 +23213,13 @@
         "F0ZXUMehd6qxarRo": 3,
         "gaWoeXg7uJWoAsCP": 3
       },
-      "flags": {
-        "metanthropes": {
-          "previousrolled": {
-            "LastAction": "StatRoll",
-            "MetaEvaluate": 0,
-            "StatRoll": 0,
-            "StatRolled": "Manipulation"
-          },
-          "lastrolled": {
-            "LastAction": "Initiative",
-            "MetaEvaluate": 0.5,
-            "Initiative": 0.5,
-            "InitiativeStat": "Reflexes",
-            "InitiativeStatScore": 109
-          }
-        },
-        "core": {
-          "sourceId": "Actor.R4rrh3MyLhMaqQ9N"
-        }
-      },
+      "flags": {},
       "_stats": {
         "systemId": "metanthropes",
-        "systemVersion": "0.9.592",
+        "systemVersion": "0.9.637",
         "coreVersion": "11.315",
         "createdTime": 1709293878273,
-        "modifiedTime": 1717794486277,
+        "modifiedTime": 1719069929386,
         "lastModifiedBy": "gaWoeXg7uJWoAsCP"
       }
     },
@@ -33226,36 +33187,13 @@
         "F0ZXUMehd6qxarRo": 3,
         "gaWoeXg7uJWoAsCP": 3
       },
-      "flags": {
-        "metanthropes": {
-          "previousrolled": {
-            "LastAction": "Metapower",
-            "MetaEvaluate": 5,
-            "Metapower": 5,
-            "StatRolled": "Endurance",
-            "MetapowerName": "Revive",
-            "rolld10": 172,
-            "rolld10what": "💞 Healing",
-            "rolld10item": "Revive"
-          },
-          "lastrolled": {
-            "LastAction": "Initiative",
-            "MetaEvaluate": -4,
-            "Initiative": -4,
-            "InitiativeStat": "Reflexes",
-            "InitiativeStatScore": 48
-          }
-        },
-        "core": {
-          "sourceId": "Actor.dSFP3CBDuNXW1KeG"
-        }
-      },
+      "flags": {},
       "_stats": {
         "systemId": "metanthropes",
-        "systemVersion": "0.9.592",
+        "systemVersion": "0.9.637",
         "coreVersion": "11.315",
         "createdTime": 1709294236055,
-        "modifiedTime": 1717794495132,
+        "modifiedTime": 1719069929419,
         "lastModifiedBy": "gaWoeXg7uJWoAsCP"
       }
     },
@@ -41752,33 +41690,13 @@
         "F0ZXUMehd6qxarRo": 3,
         "gaWoeXg7uJWoAsCP": 3
       },
-      "flags": {
-        "metanthropes": {
-          "previousrolled": {
-            "LastAction": "Metapower",
-            "MetaEvaluate": 8,
-            "Metapower": 8,
-            "StatRolled": "Perception",
-            "MetapowerName": "Temporal Glitch"
-          },
-          "lastrolled": {
-            "LastAction": "Initiative",
-            "MetaEvaluate": 7,
-            "Initiative": 7,
-            "InitiativeStat": "Perception",
-            "InitiativeStatScore": 98
-          }
-        },
-        "core": {
-          "sourceId": "Actor.8N1CVCKerdCaT83N"
-        }
-      },
+      "flags": {},
       "_stats": {
         "systemId": "metanthropes",
-        "systemVersion": "0.9.592",
+        "systemVersion": "0.9.637",
         "coreVersion": "11.315",
         "createdTime": 1709293455212,
-        "modifiedTime": 1717789828696,
+        "modifiedTime": 1719069929507,
         "lastModifiedBy": "gaWoeXg7uJWoAsCP"
       }
     }
@@ -42229,100 +42147,7 @@
       "sounds": [],
       "templates": [],
       "tiles": [],
-      "walls": [
-        {
-          "dir": 0,
-          "door": 0,
-          "ds": 0,
-          "light": 20,
-          "sight": 20,
-          "sound": 20,
-          "move": 20,
-          "c": [
-            1013,
-            617,
-            4902,
-            617
-          ],
-          "_id": "Vrwdq1fEzFxFKT4V",
-          "threshold": {
-            "light": null,
-            "sight": null,
-            "sound": null,
-            "attenuation": false
-          },
-          "flags": {}
-        },
-        {
-          "dir": 0,
-          "door": 0,
-          "ds": 0,
-          "light": 20,
-          "sight": 20,
-          "sound": 20,
-          "move": 20,
-          "c": [
-            4902,
-            617,
-            4902,
-            2839
-          ],
-          "_id": "5ixUY4emc7psIFNY",
-          "threshold": {
-            "light": null,
-            "sight": null,
-            "sound": null,
-            "attenuation": false
-          },
-          "flags": {}
-        },
-        {
-          "dir": 0,
-          "door": 0,
-          "ds": 0,
-          "light": 20,
-          "sight": 20,
-          "sound": 20,
-          "move": 20,
-          "c": [
-            4902,
-            2839,
-            1013,
-            2839
-          ],
-          "_id": "FWosuUpBqOicVB4g",
-          "threshold": {
-            "light": null,
-            "sight": null,
-            "sound": null,
-            "attenuation": false
-          },
-          "flags": {}
-        },
-        {
-          "dir": 0,
-          "door": 0,
-          "ds": 0,
-          "light": 20,
-          "sight": 20,
-          "sound": 20,
-          "move": 20,
-          "c": [
-            1013,
-            2839,
-            1013,
-            617
-          ],
-          "_id": "WwcQGMSH99iG9ztn",
-          "threshold": {
-            "light": null,
-            "sight": null,
-            "sound": null,
-            "attenuation": false
-          },
-          "flags": {}
-        }
-      ],
+      "walls": [],
       "playlist": null,
       "playlistSound": null,
       "journal": null,
@@ -42366,16 +42191,16 @@
       },
       "_stats": {
         "systemId": "metanthropes",
-        "systemVersion": "0.9.592",
+        "systemVersion": "0.9.637",
         "coreVersion": "11.315",
         "createdTime": 1693129397384,
-        "modifiedTime": 1717795154870,
+        "modifiedTime": 1719069908905,
         "lastModifiedBy": "gaWoeXg7uJWoAsCP"
       },
       "foreground": null,
       "thumb": "systems/metanthropes/artwork/ui/scenes/demo-thumb.webp",
       "weather": "",
-      "active": true,
+      "active": false,
       "_id": "HJ7VBfsFwNpnZOZ9",
       "sort": 0,
       "fogExploration": true,
@@ -42398,10 +42223,10 @@
   "flags": {},
   "_stats": {
     "systemId": "metanthropes",
-    "systemVersion": "0.9.592",
+    "systemVersion": "0.9.637",
     "coreVersion": "11.315",
     "createdTime": 1709287652201,
-    "modifiedTime": 1717795187590,
+    "modifiedTime": 1719072341458,
     "lastModifiedBy": "gaWoeXg7uJWoAsCP"
   },
   "_key": "!adventures!0vnV6XmnYtvtZ81c"

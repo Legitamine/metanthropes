@@ -332,7 +332,7 @@ export class MetanthropesCombat extends Combat {
 				const unconsciousLevel = actor.system.Characteristics.Soul.CoreConditions.Unconscious;
 				if (unconsciousLevel > 0) {
 					const unconsciousEffects = [
-						"The Character enters a semi-awake state of narcolepsy, and possibly might fall asleep standing for a few seconds...",
+						"The Character enters a semi-awake state of narcolepsy, @UUID[Compendium.metanthropes-introductory.introductory.Adventure.YdClwNoSYgTmG6Y5]{Install Introductory}",
 						"The Character slowly loses their standing and falls asleep for some minutes...",
 						"The Character slowly loses their standing and falls into a deep, passed-out sleep for some hours...",
 						"The Character collapses into a comatose state for days...",
