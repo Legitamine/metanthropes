@@ -10,6 +10,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ### Early Access Releases
 
+# Early Access v0.9.xxx [2024-07-]
+
+# Added:
+
+-   Metanthropes: Core now comes with a new Compendium that includes all the 100 Metapowers of the game, for a total of more than 500 unique abilities. The Compendium is available for Narrators to use in order to add Metapowers to Actors; Players can see the Compendium but can't add Metapowers to Actors directly from it.
+-   Metanthropes: Core now comes with an API to allow other Modules and the Metanthropes System to interact with the new functionality that is enabled by this Module. The API is in early development and will be further expanded in future builds.
+
+# Fixed:
+
+-   Metanthropes: Core will now apply the correct default Actor Portrait and Token image to new Actors, based on their type, unless that actor is created from the Duplicate Self Metapower Activation, in which case, the Duplicate Actors will keep the original Actor's Portrait and Token image.
+
 # Early Access v0.9.744 [2024-06-22]
 
 # Added:

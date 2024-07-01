@@ -580,22 +580,18 @@ export class MetanthropesActorSheet extends ActorSheet {
 	async _onNewActor(event) {
 		event.preventDefault();
 		const actor = this.actor;
-
-		//? Load New Actor Logic from the Metanthropes Core Module
-		const metaNewActor = await metaImportFromModule(
-			"metanthropes-core",
-			"newactor",
-			"metanewactor",
-			"metaNewActor"
-		);
-		if (!metaNewActor) {
-			metaLog(2, "MetanthropesActorSheet", "_onNewActor", "New Actor function not available");
-			return;
-		}
-		try {
-			await metaNewActor(actor);
-		} catch (error) {
-			metaLog(2, "MetanthropesActorSheet", "_onNewActor", "ERROR:", error);
+		//* Imports from Premium Module API
+		const coreModule = game.modules.get("metanthropes-core");
+		if (coreModule && coreModule?.active) {
+			const api = coreModule.api;
+			try {
+				metaLog(3, "_onNewActor", "Core Module API Available, calling metaNewActor");
+				await api.metaNewActor(actor);
+			} catch (error) {
+				metaLog(2, "_onNewActor", "Core Module API Error:", error);
+			}
+		} else {
+			metaLog(2, "_onNewActor", "Core Module Not Active");
 		}
 	}
 	//* Finalize Premade Protagonist
@@ -661,6 +657,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		dialog.render(true);
 	}
 	//* Progression
+	//todo needs to be converted to use the API like the _onNewActor function
 	async _onProgression(event) {
 		event.preventDefault();
 		//? Check if 'Beta Testing of New Features' is enabled
