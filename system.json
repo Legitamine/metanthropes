@@ -28,7 +28,7 @@
 			"flags": {}
 		}
 	],
-	"version": "0.9.749",
+	"version": "0.10.001",
 	"compatibility": {
 		"minimum": "11",
 		"verified": "11.315",
@@ -118,7 +118,7 @@
 	"background": "systems/metanthropes/artwork/ui/cover/cover.jpg",
 	"gridDistance": 2,
 	"gridUnits": "m",
-	"primaryTokenAttribute": "Vital.Destiny.value",
-	"secondaryTokenAttribute": "Vital.Life.value",
+	"primaryTokenAttribute": "Vital.Destiny",
+	"secondaryTokenAttribute": "Vital.Life",
 	"manifest": "https://github.com/legitamine/metanthropes/releases/latest/download/system.json"
 }
