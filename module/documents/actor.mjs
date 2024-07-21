@@ -264,10 +264,12 @@ export class MetanthropesActor extends Actor {
 			}
 		}
 		//? Make the size of the token reflect a typical humanoid relative to the grid
-		createData.prototypeToken.height = 1;
-		createData.prototypeToken.width = 1;
-		createData.prototypeToken.texture.scaleX = 0.6;
-		createData.prototypeToken.texture.scaleY = 0.6;
+		if (data.type == "Protagonist" || data.type == "Metanthrope" || data.type == "Human") {
+			createData.prototypeToken.height = 1;
+			createData.prototypeToken.width = 1;
+			createData.prototypeToken.texture.scaleX = 0.6;
+			createData.prototypeToken.texture.scaleY = 0.6;
+		}
 		this.updateSource(createData);
 	}
 	/** @override */

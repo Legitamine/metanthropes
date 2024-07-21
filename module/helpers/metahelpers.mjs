@@ -162,7 +162,6 @@ export async function metaIsMetapowerEquipped(actor, metapower) {
 }
 
 /**
- * ! confirm usage
  * Helper function to check if an item with a given name is equipped by an actor
  * Returns true/false
  *
