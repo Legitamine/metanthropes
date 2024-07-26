@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ### Early Access Releases
 
-# Early Access v0.10.004 [2024-07-21]
+# Early Access v0.10.142 [2024-07-26]
 
 # Added:
 
@@ -26,7 +26,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 -   Metanthropes: Core will now apply the correct default Actor Portrait and Token image to new Actors, based on their type, unless that actor is created from the Duplicate Self Metapower Activation, in which case, the Duplicate Actors will keep the original Actor's Portrait and Token image.
 -   Metanthropes: Core will now correctly give the 'Strike' Possession to new Humanoid Actors, when they are created, as intended.
 -   Metanthropes: Introductory will now correctly import the Phytomorphic Antagonist as a 3x3 scale Token when placed on the grid, as intended.
--   Action Scenes will now store in a flag the last time the end of round effects were applied, to prevent re-applying for the same round.
+-   Various fixes for Action Scenes and the tracking of effects during Combat.
 
 # Early Access v0.9.744 [2024-06-22]
 
