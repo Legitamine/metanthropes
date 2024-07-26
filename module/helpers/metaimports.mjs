@@ -28,19 +28,14 @@ const metaModuleConfig = {
  */
 export async function metaImportFromModule(moduleId, folderName, fileName, exportName) {
 	if (!metaModuleConfig[moduleId]) {
-		metaLog(
-			2,
-			"metaImportFromModule",
-			"metaModuleConfig",
-			`Module identifier '${moduleId}' not found in configuration.`
-		);
+		metaLog(2, "metaImportFromModule", "metaModuleConfig", `Module '${moduleId}' not found in configuration.`);
 		return undefined;
 	}
 	const { path, settingKey } = metaModuleConfig[moduleId];
 	const isModuleEnabled = await game.settings.get("metanthropes", settingKey);
 	if (isModuleEnabled) {
+		const modulePath = `${path}/${folderName}/${fileName}.mjs`;
 		try {
-			const modulePath = `${path}/${folderName}/${fileName}.mjs`;
 			const module = await import(modulePath);
 			metaLog(3, "metaImportFromModule", `Import ${exportName} From ${moduleId}`, module);
 			return module[exportName];
@@ -48,7 +43,7 @@ export async function metaImportFromModule(moduleId, folderName, fileName, expor
 			metaLog(
 				2,
 				"metaImportFromModule",
-				`Error importing ${exportName} from module with path ${modulePath}`,
+				`Error importing '${exportName}' from path '${modulePath}'`,
 				error
 			);
 			return undefined;
