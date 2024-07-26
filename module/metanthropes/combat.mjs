@@ -216,7 +216,7 @@ export class MetanthropesCombat extends Combat {
 			ui.notifications.warn("You must begin the encounter before progressing to the next Round!");
 			return;
 		}
-		//? Cycle concept
+		//* Cycle concept
 		const nextRound = this.round + 1;
 		//? Reset Initiative if we are heading into a new Cycle
 		if (nextRound % 2 !== 0) {
@@ -236,8 +236,9 @@ export class MetanthropesCombat extends Combat {
 		// Update the document, passing data through a hook first
 		const updateData = { round: nextRound, turn };
 		const updateOptions = { advanceTime, direction: 1 };
+		metaLog(3, "Combat", "nextRound", "Finished, updating Combat");
+		this.setFlag("metanthropes", "applyEffectsForRound", this.round);
 		Hooks.callAll("combatRound", this, updateData, updateOptions);
-		metaLog(3, "Combat", "nextRound", "Finished");
 		return this.update(updateData, updateOptions);
 	}
 	/**
@@ -249,13 +250,38 @@ export class MetanthropesCombat extends Combat {
 	 * @protected
 	 */
 	async _onEndRound() {
-		metaLog(4, "Combat", "_onEndRound", "Previous Round:", this.previous.round, "Current Round:", this.round);
+		metaLog(4, "Combat", "_onEndRound", "Engaged for end of Round:", this.previous.round);
 		//* Apply End of Round Effects
-		if (this.previous.round >= 1) {
-			metaLog(3, "Combat", "_onEndRound", "Applying End of Round", this.round, "Effects");
+		//? Need to check that previous.round is at least 1 before going further
+		if (this.previous.round < 1) return await super._onEndRound();
+		//? Read the flag for the last round where effects were applied
+		const applyEffectsForRound = (await this.getFlag("metanthropes", "applyEffectsForRound")) ?? 0;
+		if (!applyEffectsForRound) metaLog(5, "Combat", "_onEndRound", "No apply Effects For Round Flag Found");
+		metaLog(
+			3,
+			"Combat",
+			"_onEndRound",
+			"Apply Effects for Round:",
+			applyEffectsForRound,
+			"while this is for Round:",
+			this.round
+		);
+		if (Number(applyEffectsForRound) < this.round) {
+			metaLog(3, "Combat", "_onEndRound", "Applying End of Round:", this.previous.round, "Effects");
 			await this.metaApplyEndOfRoundEffects();
+			metaLog(3, "Combat", "_onEndRound", "Finished applying end of Round", this.previous.round, "Effects");
+		} else {
+			metaLog(
+				5,
+				"Combat",
+				"_onEndRound",
+				"End of Round Effects already applied for Round:",
+				applyEffectsForRound,
+				"while this is for Round:",
+				this.round
+			);
 		}
-		metaLog(4, "Combat", "_onEndRound", "Finished, calling super._onEndRound");
+		metaLog(3, "Combat", "_onEndRound", "Finished");
 		await super._onEndRound();
 	}
 	/**
@@ -267,24 +293,14 @@ export class MetanthropesCombat extends Combat {
 	 * @protected
 	 */
 	async _onStartRound() {
-		metaLog(
-			4,
-			"Combat",
-			"_onStartRound",
-			"Previous Round",
-			this.previous.round,
-			"Current Round",
-			this.current.round,
-			"This Round:",
-			this.round
-		);
+		metaLog(4, "Combat", "_onStartRound", "Engaged for new Round:", this.round);
 		//* Add Cycle
 		const nextCycle = Math.ceil(this.round / 2);
 		if (this.round > 2 && this.round % 2 !== 0) {
 			//? Create a chat message indicating the new Cycle and a new Initiative Roll
 			metaLog(3, "Combat", "_onStartRound", "Initiative Reset for Round:", this.round);
 			await ChatMessage.create({
-				content: `New Round & New Cycle!<br><br>Round: ${this.round} - Cycle: ${nextCycle}<br><br>Roll Inititiative!<br><br>`,
+				content: `New Round & New Cycle!<br><br>Round: ${this.round} - Cycle: ${nextCycle}<br><br>Roll for Inititiative!<br><br>`,
 				speaker: {
 					alias: "Metanthropes Action Scene",
 				},
@@ -292,6 +308,8 @@ export class MetanthropesCombat extends Combat {
 			await this.setupTurns();
 		} else {
 			if (this.round === 1) {
+				if (this.previous.round !== 0)
+					return metaLog(5, "Combat", "_onStartRound", "First Round did not have a Previous Round of 0");
 				metaLog(3, "Combat", "_onStartRound", "First Round:", this.round);
 				await ChatMessage.create({
 					content: `Round: ${this.round} - Cycle: ${nextCycle}<br><br>`,
@@ -309,7 +327,7 @@ export class MetanthropesCombat extends Combat {
 				});
 			}
 		}
-		metaLog(4, "Combat", "_onStartRound", "Finished, calling super._onStartRound");
+		metaLog(4, "Combat", "_onStartRound", "Finished for Round:", this.round);
 		await super._onStartRound();
 	}
 	/**
@@ -317,105 +335,106 @@ export class MetanthropesCombat extends Combat {
 	 *
 	 */
 	async metaApplyEndOfRoundEffects() {
-		if (this.previous.round >= 1) {
-			//? Accumulate messages for the chat
-			let chatContent = `Round ${this.previous.round} concluded.<br><br>Applying End of Round Effects.<br><br>`;
-			//? Iterate over Combatants
-			for (let combatant of this.combatants.values()) {
-				//? Get the actor for the combatant
-				const actor = combatant.actor;
-				let combatantMessage = `<b>${actor.name}</b>:<br>`;
-				//* Active Effect Expiration
-				let expiredEffects = actor.effects.filter((e) => e.duration.label === "None");
-				await Promise.all(expiredEffects.map((e) => e.update({ disabled: true })));
-				//* Unconscious Condition
-				const unconsciousLevel = actor.system.Characteristics.Soul.CoreConditions.Unconscious;
-				if (unconsciousLevel > 0) {
-					const unconsciousEffects = [
-						"The Character enters a semi-awake state of narcolepsy, @UUID[Compendium.metanthropes-introductory.introductory.Adventure.YdClwNoSYgTmG6Y5]{Install Introductory}",
-						"The Character slowly loses their standing and falls asleep for some minutes...",
-						"The Character slowly loses their standing and falls into a deep, passed-out sleep for some hours...",
-						"The Character collapses into a comatose state for days...",
-						"The Character collapses into a deep coma for an unknown amount of time...",
-					];
-					if (unconsciousLevel > 0 && unconsciousLevel <= 5) {
-						combatantMessage += `Unconscious Level ${unconsciousLevel}: ${
-							unconsciousEffects[unconsciousLevel - 1]
-						}<br>`;
-					} else {
-						metaLog(2, "Combat", "nextRound", "Unconscious Level is out of bounds:", unconsciousLevel);
-					}
-				}
-				//* Asphyxiation Condition
-				const asphyxiationLevel = actor.system.Characteristics.Body.CoreConditions.Asphyxiation;
-				if (asphyxiationLevel > 0) {
-					const asphyxiationEffects = [
-						"At Asphyxiation 1 the Character has trouble breathing. The Character collapse into the floor for a couple of minutes...",
-						"At Asphyxiation 2 the Character's brain is not being properly oxygenized...",
-						"At Asphyxiation 3 the Character will being chocking and gasping for air...",
-						"At Asphyxiation 4 the Character is suffocating...",
-						"At Asphyxiation 5 the Character is receiving brain damage due to lack of oxygen...",
-					];
-					if (asphyxiationLevel > 0 && asphyxiationLevel <= 5) {
-						combatantMessage += `Asphyxiation Level ${asphyxiationLevel}: ${
-							asphyxiationEffects[asphyxiationLevel - 1]
-						}<br>`;
-					} else {
-						metaLog(2, "Combat", "nextRound", "Asphyxiation Level is out of bounds:", asphyxiationLevel);
-					}
-				}
-				//* Fatigue Condition
-				const fatigueLevel = actor.system.Characteristics.Mind.CoreConditions.Fatigue;
-				if (fatigueLevel > 0) {
-					const fatigueEffects = [
-						"You are tired, you cannot attempt any Focused Actions until you rest.",
-						"You are worn out, you cannot attempt any Focused Actions or Extra Actions until you rest.",
-						"You are weary, you cannot attempt any Focused Actions, Extra Actions or Reactions until you rest.",
-						"You are exhausted, you cannot attempt any Focused Actions, Extra Actions, Reactions or Movement until you rest...",
-						"You are collapsing, you cannot attempt any Focused Actions, Extra Actions, Reactions, Movement or Main Actions until you rest...",
-					];
-					if (fatigueLevel > 0 && fatigueLevel <= 5) {
-						combatantMessage += `Fatigue Level ${fatigueLevel}: ${fatigueEffects[fatigueLevel - 1]}<br>`;
-					} else {
-						metaLog(2, "Combat", "nextRound", "Fatigue Level is out of bounds:", fatigueLevel);
-					}
-				}
-				//* Bleeding Condition
-				const bleedingLevel = actor.system.Characteristics.Body.CoreConditions.Bleeding;
-				if (bleedingLevel > 0) {
-					const currentLife = actor.system.Vital.Life.value;
-					let lifeLoss;
-					let newLife;
-					const metaHomebrew = await game.settings.get("metanthropes", "metaHomebrew");
-					if (metaHomebrew) {
-						const homebrewBleeding =
-							(await game.settings.get("metanthropes-homebrew", "metaBleeding")) ?? 1;
-						const homebrewName =
-							(await game.settings.get("metanthropes-homebrew", "metaHomebrewName")) ?? "error - Homebrew Name not defined properly";
-						lifeLoss = Number(bleedingLevel) * Number(homebrewBleeding);
-						newLife = Number(currentLife) - lifeLoss;
-						if (homebrewBleeding !== 1)
-							combatantMessage += `Lost ${lifeLoss} ❤️ Life due to ${homebrewName} for Bleeding Condition ${bleedingLevel}.<br>`;
-						else
-							combatantMessage += `Lost ${lifeLoss} ❤️ Life due to Bleeding Condition ${bleedingLevel}.<br>`;
-					} else {
-						lifeLoss = Number(bleedingLevel);
-						newLife = Number(currentLife) - lifeLoss;
-						combatantMessage += `Lost ${lifeLoss} ❤️ Life due to Bleeding Condition ${bleedingLevel}.<br>`;
-					}
-					await actor.update({ "system.Vital.Life.value": newLife });
-				}
-				//? Add combatant message to the overall chat content if there are any effects
-				if (combatantMessage !== `<b>${actor.name}</b>:<br>`) {
-					chatContent += `${combatantMessage}<br>`;
+		//? Check if we are past the first round
+		if (this.previous.round < 1) return;
+		metaLog(3, "Combat", "metaApplyEndOfRoundEffects", "Engaged for Round:", this.previous.round);
+		//? Accumulate messages for the chat
+		let chatContent = `Round ${this.previous.round} concluded.<br><br>Applying End of Round Effects.<br><br>`;
+		//? Iterate over Combatants
+		for (let combatant of this.combatants.values()) {
+			//? Get the actor for the combatant
+			const actor = combatant.actor;
+			let combatantMessage = `<b>${actor.name}</b>:<br>`;
+			//* Active Effect Expiration
+			let expiredEffects = actor.effects.filter((e) => e.duration.label === "None");
+			await Promise.all(expiredEffects.map((e) => e.update({ disabled: true })));
+			//* Unconscious Condition
+			const unconsciousLevel = actor.system.Characteristics.Soul.CoreConditions.Unconscious;
+			if (unconsciousLevel > 0) {
+				const unconsciousEffects = [
+					"The Character enters a semi-awake state of narcolepsy, @UUID[Compendium.metanthropes-introductory.introductory.Adventure.YdClwNoSYgTmG6Y5]{Install Introductory}",
+					"The Character slowly loses their standing and falls asleep for some minutes...",
+					"The Character slowly loses their standing and falls into a deep, passed-out sleep for some hours...",
+					"The Character collapses into a comatose state for days...",
+					"The Character collapses into a deep coma for an unknown amount of time...",
+				];
+				if (unconsciousLevel > 0 && unconsciousLevel <= 5) {
+					combatantMessage += `Unconscious Level ${unconsciousLevel}: ${
+						unconsciousEffects[unconsciousLevel - 1]
+					}<br>`;
+				} else {
+					metaLog(2, "Combat", "nextRound", "Unconscious Level is out of bounds:", unconsciousLevel);
 				}
 			}
-			//? Create the chat message
-			await ChatMessage.create({
-				content: chatContent,
-				speaker: ChatMessage.getSpeaker({ alias: "Metanthropes Action Scene" }),
-			});
+			//* Asphyxiation Condition
+			const asphyxiationLevel = actor.system.Characteristics.Body.CoreConditions.Asphyxiation;
+			if (asphyxiationLevel > 0) {
+				const asphyxiationEffects = [
+					"At Asphyxiation 1 the Character has trouble breathing. The Character collapse into the floor for a couple of minutes...",
+					"At Asphyxiation 2 the Character's brain is not being properly oxygenized...",
+					"At Asphyxiation 3 the Character will being chocking and gasping for air...",
+					"At Asphyxiation 4 the Character is suffocating...",
+					"At Asphyxiation 5 the Character is receiving brain damage due to lack of oxygen...",
+				];
+				if (asphyxiationLevel > 0 && asphyxiationLevel <= 5) {
+					combatantMessage += `Asphyxiation Level ${asphyxiationLevel}: ${
+						asphyxiationEffects[asphyxiationLevel - 1]
+					}<br>`;
+				} else {
+					metaLog(2, "Combat", "nextRound", "Asphyxiation Level is out of bounds:", asphyxiationLevel);
+				}
+			}
+			//* Fatigue Condition
+			const fatigueLevel = actor.system.Characteristics.Mind.CoreConditions.Fatigue;
+			if (fatigueLevel > 0) {
+				const fatigueEffects = [
+					"You are tired, you cannot attempt any Focused Actions until you rest.",
+					"You are worn out, you cannot attempt any Focused Actions or Extra Actions until you rest.",
+					"You are weary, you cannot attempt any Focused Actions, Extra Actions or Reactions until you rest.",
+					"You are exhausted, you cannot attempt any Focused Actions, Extra Actions, Reactions or Movement until you rest...",
+					"You are collapsing, you cannot attempt any Focused Actions, Extra Actions, Reactions, Movement or Main Actions until you rest...",
+				];
+				if (fatigueLevel > 0 && fatigueLevel <= 5) {
+					combatantMessage += `Fatigue Level ${fatigueLevel}: ${fatigueEffects[fatigueLevel - 1]}<br>`;
+				} else {
+					metaLog(2, "Combat", "nextRound", "Fatigue Level is out of bounds:", fatigueLevel);
+				}
+			}
+			//* Bleeding Condition
+			const bleedingLevel = actor.system.Characteristics.Body.CoreConditions.Bleeding;
+			if (bleedingLevel > 0) {
+				const currentLife = actor.system.Vital.Life.value;
+				let lifeLoss;
+				let newLife;
+				const metaHomebrew = await game.settings.get("metanthropes", "metaHomebrew");
+				if (metaHomebrew) {
+					const homebrewBleeding = (await game.settings.get("metanthropes-homebrew", "metaBleeding")) ?? 1;
+					const homebrewName =
+						(await game.settings.get("metanthropes-homebrew", "metaHomebrewName")) ??
+						"Error: Custom Homebrew Name not defined properly, please fix in the Settings";
+					lifeLoss = Number(bleedingLevel) * Number(homebrewBleeding);
+					newLife = Number(currentLife) - lifeLoss;
+					if (homebrewBleeding !== 1)
+						combatantMessage += `Lost ${lifeLoss} ❤️ Life due to ${homebrewName} for Bleeding Condition ${bleedingLevel}.<br>`;
+					else combatantMessage += `Lost ${lifeLoss} ❤️ Life due to Bleeding Condition ${bleedingLevel}.<br>`;
+				} else {
+					lifeLoss = Number(bleedingLevel);
+					newLife = Number(currentLife) - lifeLoss;
+					combatantMessage += `Lost ${lifeLoss} ❤️ Life due to Bleeding Condition ${bleedingLevel}.<br>`;
+				}
+				await actor.update({ "system.Vital.Life.value": newLife });
+			}
+			//? Add combatant message to the overall chat content if there are any effects
+			if (combatantMessage !== `<b>${actor.name}</b>:<br>`) {
+				chatContent += `${combatantMessage}<br>`;
+			}
 		}
+		//? Create the chat message
+		await ChatMessage.create({
+			content: chatContent,
+			speaker: ChatMessage.getSpeaker({ alias: "Metanthropes Action Scene" }),
+		});
+		metaLog(3, "Combat", "metaApplyEndOfRoundEffects", "Finished applying effects for Round:", this.previous.round);
 	}
 	//todo Keeping this until we finalize the Journal text
 	// async metaApplyEndOfRoundEffects() {
