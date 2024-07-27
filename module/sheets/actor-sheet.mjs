@@ -104,7 +104,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 		context.affectedByHunger = this.actor.isHungry;
 		//? Flag for Tokenizer Support
 		context.tokenizer = game.modules.get("vtta-tokenizer")?.active;
-		metaLog(3, "MetanthropesActorSheet", "getData", "tokenizer", context.tokenizer);
 		metaLog(3, "MetanthropesActorSheet", "getData", "this, context, options", this, context, options);
 		return context;
 	}
