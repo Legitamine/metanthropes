@@ -10,6 +10,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ### Early Access Releases
 
+# Early Access v0.10.145 [2024-07-27]
+
+# Added:
+
+-   Initial support for the [Tokenizer Module](https://foundryvtt.com/packages/vtta-tokenizer/). If Tokenizer is enabled, it will replace the default Actor image change process and UI.
+
+# Changed:
+
+-   Removed a test message that showed in Chat when Beta Testing of New Features was enabled and the Actor targeted a Token, while Activating a Metapower or Using a Possession.
+
 # Early Access v0.10.142 [2024-07-26]
 
 # Added:
