@@ -75,7 +75,7 @@
 	<div class="layout-tab-summary-portrait meta-ui-responsive meta-ui-hide-at-medium">
 		<div class="layout-container-summary-images">
 			<div class="layout-tab-summary-portrait-container">
-				<img src="{{actor.img}}" data-tooltip="Click to change {{actor.name}}'s Portrait Image. The top-down Token image is applied accordingly."
+				<img src="{{actor.img}}" {{#if tokenizer}}data-edit="img"{{/if}} data-tooltip="Click to change {{actor.name}}'s Portrait Image. The top-down Token image is applied accordingly."
 					alt="{{actor.name}}'s Portrait Image" class="style-tab-summary-portrait meta-change-portrait" />
 			</div>
 			{{!-- remove token customizer/display for now --}}
