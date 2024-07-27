@@ -18,7 +18,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 # Changed:
 
--   Removed a test message that showed in Chat when Beta Testing of New Features was enabled and the Actor targeted a Token, while Activating a Metapower or Using a Possession.
+-   Removed a test message that showed in Chat when Beta Testing of New Features was enabled and the Actor targeted a Token, while Activating a Metapower, or Using a Possession.
+
+# Known Issues:
+
+-   Metanthropes: Core new 100 Metapowers Journal, takes a few seconds to open the page when you click on one of the 10 Classifications. While it will load after a few seconds, it might give the impression that the page is empty, as there is no progress bar visible while the information loads. We will address the performance of this Journal in the near future.
 
 # Early Access v0.10.142 [2024-07-26]
 
