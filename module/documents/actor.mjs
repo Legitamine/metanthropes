@@ -34,7 +34,7 @@ export class MetanthropesActor extends Actor {
 		switch (data.type) {
 			case "Protagonist":
 				if (!data.flags?.metanthropes?.duplicateSelf) {
-					metaLog(0, "MetanthropesActor", "_preCreate", "Creating Protagonist Token from data", data);
+					metaLog(3, "MetanthropesActor", "_preCreate", "Creating Protagonist Token from data", data);
 					createData.img = "systems/metanthropes/tokens/defaults/token-hammer.webp";
 					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-hammer.webp";
 				}

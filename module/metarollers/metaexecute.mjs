@@ -547,6 +547,77 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			}
 		}
 	}
+	//* Apply Damage to Selected Targets (requires Targeting V1 & Beta Testing enabled)
+	//todo: removing this for now, until we revisit the chat message and create our custom class, as we cannot pass along the proper dmg/healing values to the application from the inline rolls.
+	// if (betaTesting) {
+	// 	if (damageSelectedTargets && actionableTargets) {
+	// 		metaLog(3, "metaExecute", "Applying Damage to Selected Targets");
+	// 		//? Apply damage to each targeted actor
+	// 		for (let i = 0; i < targetedActors.length; i++) {
+	// 			let targetedActor = targetedActors[i];
+	// 			let targetedActorName = targetedActor.name;
+	// 			let targetedActorCurrentLife = targetedActor.system.Vital.Life.value;
+	// 			let targetedActorMaxLife = targetedActor.system.Vital.Life.max;
+	// 			let targetedActorResistanceCosmic = targetedActor.system.physical.resistances.cosmic.initial;
+	// 			let targetedActorResistanceElemental = targetedActor.system.physical.resistances.elemental.initial;
+	// 			let targetedActorResistanceMaterial = targetedActor.system.physical.resistances.material.initial;
+	// 			let targetedActorResistancePsychic = targetedActor.system.physical.resistances.psychic.initial;
+	// 			let targetedActorDamage = 0;
+	// 			let targetedActorHealing = 0;
+	// 			let targetedActorMessageDamage = null;
+	// 			let targetedActorMessageHealing = null;
+	// 			//? Check for Damage & Resistances
+	// 			if (damageBaseCosmic > 0 || damageDiceCosmic > 0) {
+	// 				targetedActorDamage += targetedActorResistanceCosmic - damageBaseCosmic - damageDiceCosmic;
+	// 				targetedActorMessageDamage += `Beta Testing: ${targetedActorName} takes ${targetedActorDamage} Cosmic 💥 Damage.<br>`;
+	// 			}
+	// 			if (damageBaseElemental > 0 || damageDiceElemental > 0) {
+	// 				targetedActorDamage += targetedActorResistanceElemental - damageBaseElemental - damageDiceElemental;
+	// 				targetedActorMessageDamage += `Beta Testing: ${targetedActorName} takes ${targetedActorDamage} Elemental 💥 Damage.<br>`;
+	// 			}
+	// 			if (damageBaseMaterial > 0 || damageDiceMaterial > 0) {
+	// 				targetedActorDamage += targetedActorResistanceMaterial - damageBaseMaterial - damageDiceMaterial;
+	// 				targetedActorMessageDamage += `Beta Testing: ${targetedActorName} takes ${targetedActorDamage} Material 💥 Damage.<br>`;
+	// 			}
+	// 			if (damageBasePsychic > 0 || damageDicePsychic > 0) {
+	// 				targetedActorDamage += targetedActorResistancePsychic - damageBasePsychic - damageDicePsychic;
+	// 				targetedActorMessageDamage += `Beta Testing: ${targetedActorName} takes ${targetedActorDamage} Psychic 💥 Damage.<br>`;
+	// 			}
+	// 			//? Check for Healing
+	// 			if (healingBase > 0 || healingDice > 0) {
+	// 				targetedActorHealing += healingBase + healingDice;
+	// 				targetedActorMessageHealing = `Beta Testing: ${targetedActorName} receives ${targetedActorHealing} 💞 Healing.<br>`;
+	// 			}
+	// 			//? Prep Message
+	// 			if (targetedActorDamage > 0) {
+	// 				let targetedActorNewLife = targetedActorCurrentLife - targetedActorDamage;
+	// 				if (targetedActorNewLife < 0) {
+	// 					targetedActorNewLife = 0;
+	// 				}
+	// 				await targetedActor.update({ "system.Vital.Life.value": targetedActorNewLife });
+	// 				contentMessage += targetedActorMessageDamage;
+	// 			}
+	// 			if (targetedActorHealing > 0) {
+	// 				let targetedActorNewLife = targetedActorCurrentLife + targetedActorHealing;
+	// 				if (targetedActorNewLife > targetedActorMaxLife) {
+	// 					targetedActorNewLife = targetedActorMaxLife;
+	// 				}
+	// 				await targetedActor.update({ "system.Vital.Life.value": targetedActorNewLife });
+	// 				contentMessage += targetedActorMessageHealing;
+	// 			}
+	// 			const targetedActorFinalLifeCurrent = await targetedActor.system.Vital.Life.value;
+	// 			const targetedActorFinalLifeMax = await targetedActor.system.Vital.Life.max;
+	// 			metaLog(3, "metaExecute", "Beta Testing Damage Application", targetedActorName, targetedActorDamage, targetedActorHealing);
+	// 			contentMessage += `Beta Testing (Damage/Healing applicationt test, please ignore): ${targetedActorName} has ${targetedActorFinalLifeCurrent}/${targetedActorFinalLifeMax} ❤️ Life remaining.<br>`;
+	// 			// await ChatMessage.create({
+	// 			// 	user: game.user.id,
+	// 			// 	speaker: ChatMessage.getSpeaker({ actor: actor }),
+	// 			// 	content: contentMessage,
+	// 			// });
+	// 		}
+	// 	}
+	// }
+	//* Send Chat Message
 	//? prepare the Chat message
 	let chatData = {
 		user: game.user.id,
@@ -622,74 +693,6 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 						break;
 					}
 				}
-			}
-		}
-	}
-	//* Apply Damage to Selected Targets (requires Targeting V1 & Beta Testing enabled)
-	if (betaTesting) {
-		if (damageSelectedTargets && actionableTargets) {
-			metaLog(3, "metaExecute", "Applying Damage to Selected Targets");
-			//? Apply damage to each targeted actor
-			for (let i = 0; i < targetedActors.length; i++) {
-				let targetedActor = targetedActors[i];
-				let targetedActorName = targetedActor.name;
-				let targetedActorCurrentLife = targetedActor.system.Vital.Life.value;
-				let targetedActorMaxLife = targetedActor.system.Vital.Life.max;
-				let targetedActorResistanceCosmic = targetedActor.system.physical.resistances.cosmic.initial;
-				let targetedActorResistanceElemental = targetedActor.system.physical.resistances.elemental.initial;
-				let targetedActorResistanceMaterial = targetedActor.system.physical.resistances.material.initial;
-				let targetedActorResistancePsychic = targetedActor.system.physical.resistances.psychic.initial;
-				let targetedActorDamage = 0;
-				let targetedActorHealing = 0;
-				let targetedActorMessageDamage = null;
-				let targetedActorMessageHealing = null;
-				//? Check for Damage & Resistances
-				if (damageBaseCosmic > 0 || damageDiceCosmic > 0) {
-					targetedActorDamage += targetedActorResistanceCosmic - damageBaseCosmic - damageDiceCosmic;
-					targetedActorMessageDamage += `Beta Testing: ${targetedActorName} takes ${targetedActorDamage} Cosmic 💥 Damage.<br>`;
-				}
-				if (damageBaseElemental > 0 || damageDiceElemental > 0) {
-					targetedActorDamage += targetedActorResistanceElemental - damageBaseElemental - damageDiceElemental;
-					targetedActorMessageDamage += `Beta Testing: ${targetedActorName} takes ${targetedActorDamage} Elemental 💥 Damage.<br>`;
-				}
-				if (damageBaseMaterial > 0 || damageDiceMaterial > 0) {
-					targetedActorDamage += targetedActorResistanceMaterial - damageBaseMaterial - damageDiceMaterial;
-					targetedActorMessageDamage += `Beta Testing: ${targetedActorName} takes ${targetedActorDamage} Material 💥 Damage.<br>`;
-				}
-				if (damageBasePsychic > 0 || damageDicePsychic > 0) {
-					targetedActorDamage += targetedActorResistancePsychic - damageBasePsychic - damageDicePsychic;
-					targetedActorMessageDamage += `Beta Testing: ${targetedActorName} takes ${targetedActorDamage} Psychic 💥 Damage.<br>`;
-				}
-				//? Check for Healing
-				if (healingBase > 0 || healingDice > 0) {
-					targetedActorHealing += healingBase + healingDice;
-					targetedActorMessageHealing = `Beta Testing: ${targetedActorName} receives ${targetedActorHealing} 💞 Healing.<br>`;
-				}
-				//? Prep Message
-				if (targetedActorDamage > 0) {
-					let targetedActorNewLife = targetedActorCurrentLife - targetedActorDamage;
-					if (targetedActorNewLife < 0) {
-						targetedActorNewLife = 0;
-					}
-					await targetedActor.update({ "system.Vital.Life.value": targetedActorNewLife });
-					contentMessage += targetedActorMessageDamage;
-				}
-				if (targetedActorHealing > 0) {
-					let targetedActorNewLife = targetedActorCurrentLife + targetedActorHealing;
-					if (targetedActorNewLife > targetedActorMaxLife) {
-						targetedActorNewLife = targetedActorMaxLife;
-					}
-					await targetedActor.update({ "system.Vital.Life.value": targetedActorNewLife });
-					contentMessage += targetedActorMessageHealing;
-				}
-				const targetedActorFinalLifeCurrent = await actor.system.Vital.Life.value;
-				const targetedActorFinalLifeMax = await actor.system.Vital.Life.max;
-				contentMessage += `Beta Testing: ${targetedActorName} has ${targetedActorFinalLifeCurrent} / ${targetedActorFinalLifeMax}.<br>`;
-				await ChatMessage.create({
-					user: game.user.id,
-					speaker: ChatMessage.getSpeaker({ actor: actor }),
-					content: contentMessage,
-				});
 			}
 		}
 	}
