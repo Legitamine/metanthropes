@@ -344,12 +344,13 @@ export class MetanthropesCombat extends Combat {
 		for (let combatant of this.combatants.values()) {
 			//? Get the actor for the combatant
 			const actor = combatant.actor;
+			const chars = actor.system.Characteristics;
 			let combatantMessage = `<b>${actor.name}</b>:<br>`;
 			//* Active Effect Expiration
 			let expiredEffects = actor.effects.filter((e) => e.duration.label === "None");
 			await Promise.all(expiredEffects.map((e) => e.update({ disabled: true })));
 			//* Unconscious Condition
-			const unconsciousLevel = actor.system.Characteristics.Soul.CoreConditions.Unconscious;
+			const unconsciousLevel = chars.Soul.CoreConditions.Unconscious;
 			if (unconsciousLevel > 0) {
 				const unconsciousEffects = [
 					"The Character enters a semi-awake state of narcolepsy, @UUID[Compendium.metanthropes-introductory.introductory.Adventure.YdClwNoSYgTmG6Y5]{Install Introductory}",
@@ -367,7 +368,7 @@ export class MetanthropesCombat extends Combat {
 				}
 			}
 			//* Asphyxiation Condition
-			const asphyxiationLevel = actor.system.Characteristics.Body.CoreConditions.Asphyxiation;
+			const asphyxiationLevel = chars.Body.CoreConditions.Asphyxiation;
 			if (asphyxiationLevel > 0) {
 				const asphyxiationEffects = [
 					"At Asphyxiation 1 the Character has trouble breathing. The Character collapse into the floor for a couple of minutes...",
@@ -385,7 +386,7 @@ export class MetanthropesCombat extends Combat {
 				}
 			}
 			//* Fatigue Condition
-			const fatigueLevel = actor.system.Characteristics.Mind.CoreConditions.Fatigue;
+			const fatigueLevel = chars.Mind.CoreConditions.Fatigue;
 			if (fatigueLevel > 0) {
 				const fatigueEffects = [
 					"You are tired, you cannot attempt any Focused Actions until you rest.",
@@ -394,14 +395,14 @@ export class MetanthropesCombat extends Combat {
 					"You are exhausted, you cannot attempt any Focused Actions, Extra Actions, Reactions or Movement until you rest...",
 					"You are collapsing, you cannot attempt any Focused Actions, Extra Actions, Reactions, Movement or Main Actions until you rest...",
 				];
-				if (fatigueLevel > 0 && fatigueLevel <= 5) {
+				if (fatigueLevel <= 5) {
 					combatantMessage += `Fatigue Level ${fatigueLevel}: ${fatigueEffects[fatigueLevel - 1]}<br>`;
 				} else {
 					metaLog(2, "Combat", "nextRound", "Fatigue Level is out of bounds:", fatigueLevel);
 				}
 			}
 			//* Bleeding Condition
-			const bleedingLevel = actor.system.Characteristics.Body.CoreConditions.Bleeding;
+			const bleedingLevel = chars.Body.CoreConditions.Bleeding;
 			if (bleedingLevel > 0) {
 				const currentLife = actor.system.Vital.Life.value;
 				let lifeLoss;
@@ -436,7 +437,7 @@ export class MetanthropesCombat extends Combat {
 		});
 		metaLog(3, "Combat", "metaApplyEndOfRoundEffects", "Finished applying effects for Round:", this.previous.round);
 	}
-	//todo Keeping this until we finalize the Journal text
+	//Todo: Keeping this until we finalize the Journal text
 	// async metaApplyEndOfRoundEffects() {
 	// 	if (this.previous.round >= 1) {
 	// 		//? Announce the End of Round effects
