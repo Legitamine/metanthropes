@@ -22,7 +22,8 @@
 			"oderwat.indent-rainbow",
 			"glenn2223.live-sass",
 			"esbenp.prettier-vscode",
-			"redhat.vscode-yaml"
+			"redhat.vscode-yaml",
+			"lokalise.i18n-ally"
 		]
 	}
 }

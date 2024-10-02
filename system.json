@@ -14,11 +14,19 @@
 			}
 		}
 	],
+	"flags": {
+		"hotReload": {
+			"extensions": ["css", "html", "hbs", "json"],
+			"paths": ["css", "lang", "templates"]
+		}
+	},
+	"manifest": "https://github.com/legitamine/metanthropes/releases/latest/download/system.json",
 	"url": "https://github.com/legitamine/metanthropes",
 	"license": "https://github.com/legitamine/metanthropes/blob/main/LICENSE.txt",
 	"readme": "https://github.com/legitamine/metanthropes/blob/main/readme.md",
 	"bugs": "https://gitub.com/legitamine/metanthropes/issues",
 	"changelog": "https://github.com/legitamine/metanthropes/blob/main/changelog.md",
+	"background": "systems/metanthropes/artwork/ui/cover/cover.jpg",
 	"media": [
 		{
 			"type": "setup",
@@ -36,6 +44,13 @@
 	},
 	"esmodules": ["module/metanthropes.mjs"],
 	"styles": ["css/metanthropes.css"],
+	"languages": [
+		{
+			"lang": "en",
+			"name": "English",
+			"path": "lang/en.json"
+		}
+	],
 	"packs": [
 		{
 			"label": "Demo",
@@ -115,12 +130,16 @@
 			]
 		}
 	],
-	"background": "systems/metanthropes/artwork/ui/cover/cover.jpg",
 	"primaryTokenAttribute": "Vital.Destiny",
 	"secondaryTokenAttribute": "Vital.Life",
-	"manifest": "https://github.com/legitamine/metanthropes/releases/latest/download/system.json",
 	"grid": {
+		"type": 2,
+		"size": 170,
+		"color": "#ffffff",
+		"alpha": 0.2,
 		"distance": 2,
-		"units": "m"
+		"units": "m",
+		"style": "dottedLines",
+		"thickness": 1
 	}
 }

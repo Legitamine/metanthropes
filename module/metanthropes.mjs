@@ -67,6 +67,7 @@ import { metaInitiativeReRoll } from "./metarollers/metainitiative.mjs";
 import { metaExecute } from "./metarollers/metaexecute.mjs";
 import { metaMigrateData } from "./metanthropes/metamigration.mjs";
 import { metaLog, metaLogDocument } from "./helpers/metahelpers.mjs";
+import { METANTHROPES } from "./helpers/config.mjs";
 //* Starting System
 //* Handlebars helpers
 //? Selected Helper
@@ -93,6 +94,8 @@ Handlebars.registerHelper("stripHtml", function (htmlString) {
 });
 //* System Initialization.
 Hooks.once("init", async function () {
+	//? add our custom constants
+	CONFIG.METANTHROPES = METANTHROPES;
 	//? add our classes so they are more easily accessible
 	game.metanthropes = {
 		MetanthropesActor,

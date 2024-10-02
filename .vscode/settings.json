@@ -1,4 +1,4 @@
 {
-	"i18n-ally.localesPaths": ["en.json", "foundry"],
+	"i18n-ally.localesPaths": ["lang", "foundry"],
 	"i18n-ally.keystyle": "nested"
 }

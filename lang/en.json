@@ -1,0 +1,57 @@
+{
+	"METANTHROPES": {
+		"CHARS": {
+			"BODY": {
+				"LABEL": "Body",
+				"HINT": "body text"
+			},
+			"MIND": {
+				"LABEL": "Mind",
+				"HINT": "mind text"
+			},
+			"SOUL": {
+				"LABEL": "Soul",
+				"HINT": "soul text"
+			}
+		},
+		"STATS": {
+			"ENDURANCE": {
+				"LABEL": "Endurance",
+				"HINT": "endurance text"
+			},
+			"POWER": {
+				"LABEL": "Power",
+				"HINT": "power text"
+			},
+			"REFLEXES": {
+				"LABEL": "Reflexes",
+				"HINT": "reflexes text"
+			},
+			"CREATIVITY": {
+				"LABEL": "Creativity",
+				"HINT": "creativity text"
+			},
+			"MANIPULATION": {
+				"LABEL": "Manipulation",
+				"HINT": "manipulation text"
+			},
+			"PERCEPTION": {
+				"LABEL": "Perception",
+				"HINT": "perception text"
+			},
+			"AWARENESS": {
+				"LABEL": "Awareness",
+				"HINT": "awareness text"
+			},
+			"WILLPOWER": {
+				"LABEL": "Willpower",
+				"HINT": "willpower text"
+			},
+			"CONSCIOUSNESS": {
+				"LABEL": "Consciousness",
+				"HINT": "consciousness text"
+			}
+		}
+	},
+	"TYPES": {}
+}
