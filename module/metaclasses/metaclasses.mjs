@@ -750,11 +750,11 @@ export class metaPlaylistDirectory extends metaDocumentDirectory {
 		return foundry.utils.mergeObject(data, {
 			playingSounds: this._playingSoundsData,
 			showPlaying: this._playingSoundsData.length > 0,
-			playlistModifier: AudioHelper.volumeToInput(game.settings.get("core", "globalPlaylistVolume")),
+			playlistModifier: foundry.audio.AudioHelper.volumeToInput(game.settings.get("core", "globalPlaylistVolume")),
 			playlistTooltip: PlaylistDirectory.volumeToTooltip(game.settings.get("core", "globalPlaylistVolume")),
-			ambientModifier: AudioHelper.volumeToInput(game.settings.get("core", "globalAmbientVolume")),
+			ambientModifier: foundry.audio.AudioHelper.volumeToInput(game.settings.get("core", "globalAmbientVolume")),
 			ambientTooltip: PlaylistDirectory.volumeToTooltip(game.settings.get("core", "globalAmbientVolume")),
-			interfaceModifier: AudioHelper.volumeToInput(game.settings.get("core", "globalInterfaceVolume")),
+			interfaceModifier: foundry.audio.AudioHelper.volumeToInput(game.settings.get("core", "globalInterfaceVolume")),
 			interfaceTooltip: PlaylistDirectory.volumeToTooltip(game.settings.get("core", "globalInterfaceVolume")),
 			volumeExpanded: this._volumeExpanded,
 			currentlyPlaying: {
@@ -774,7 +774,7 @@ export class metaPlaylistDirectory extends metaDocumentDirectory {
 	 */
 	static volumeToTooltip(volume) {
 		return game.i18n.format("PLAYLIST.VolumeTooltip", {
-			volume: Math.round(AudioHelper.volumeToInput(volume) * 100),
+			volume: Math.round(foundry.audio.AudioHelper.volumeToInput(volume) * 100),
 		});
 	}
 
@@ -829,7 +829,7 @@ export class metaPlaylistDirectory extends metaDocumentDirectory {
 			if (sound.sound && !sound.sound.failed && (sound.playing || s.pausedTime)) {
 				s.isPaused = !sound.playing && s.pausedTime;
 				s.pauseIcon = this._getPauseIcon(sound);
-				s.lvolume = AudioHelper.volumeToInput(s.volume);
+				s.lvolume = foundry.audio.AudioHelper.volumeToInput(s.volume);
 				s.volumeTooltip = this.constructor.volumeToTooltip(s.volume);
 				s.currentTime = this._formatTimestamp(sound.playing ? sound.sound.currentTime : s.pausedTime);
 				s.durationTime = this._formatTimestamp(sound.sound.duration);
@@ -961,7 +961,7 @@ export class metaPlaylistDirectory extends metaDocumentDirectory {
 	_onGlobalVolume(event) {
 		event.preventDefault();
 		const slider = event.currentTarget;
-		const volume = AudioHelper.inputToVolume(slider.value);
+		const volume = foundry.audio.AudioHelper.inputToVolume(slider.value);
 		const tooltip = PlaylistDirectory.volumeToTooltip(volume);
 		slider.setAttribute("data-tooltip", tooltip);
 		game.tooltip.activate(slider, { text: tooltip });
@@ -1125,7 +1125,7 @@ export class metaPlaylistDirectory extends metaDocumentDirectory {
 		const playlistSound = playlist.sounds.get(li.dataset.soundId);
 
 		// Get the desired target volume
-		const volume = AudioHelper.inputToVolume(slider.value);
+		const volume = foundry.audio.AudioHelper.inputToVolume(slider.value);
 		if (volume === playlistSound.volume) return;
 
 		// Immediately apply a local adjustment

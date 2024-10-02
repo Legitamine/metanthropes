@@ -10,6 +10,10 @@ import { metaLog } from "../helpers/metahelpers.mjs";
 import { metaChangeActorImage, metaChangeTokenImage } from "../helpers/metaimagehandler.mjs";
 //? Import Active Effect helpers
 import { prepareActiveEffectCategories, onManageActiveEffect } from "../metanthropes/metaeffects.mjs";
+//? Import GreenSock Animation Platform
+import gsap, { TextPlugin, Draggable as Dragger } from "/scripts/greensock/esm/all.js";
+//? Register Draggable for GreenSock
+gsap.registerPlugin(TextPlugin, Dragger);
 /**
  * MetanthropesActorSheet - An Actor Sheet for Metanthropes actors.
  *
@@ -23,7 +27,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
 		const options = super.defaultOptions;
-		return mergeObject(options, {
+		return foundry.utils.mergeObject(options, {
 			id: "metanthropes-actor-sheet",
 			classes: ["metanthropes", "sheet", "actor"], //? these are custom css classes that are used in the html file
 			width: 1012,
@@ -662,6 +666,12 @@ export class MetanthropesActorSheet extends ActorSheet {
 	//todo needs to be converted to use the API like the _onNewActor function
 	async _onProgression(event) {
 		event.preventDefault();
+		//! POC for GSAP Animation
+		gsap.to('button.progression-form', {
+			duration: 3,
+			text: "Progressing...",
+			ease: "none",
+		});
 		//? Check if 'Beta Testing of New Features' is enabled
 		if (!game.settings.get("metanthropes", "metaBetaTesting")) {
 			ui.notifications.warn(

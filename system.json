@@ -42,7 +42,10 @@
 		"verified": "12.331",
 		"maximum": "13"
 	},
-	"esmodules": ["module/metanthropes.mjs"],
+	"esmodules": [
+		"greensock/esm/all.js",
+		"module/metanthropes.mjs"
+	],
 	"styles": ["css/metanthropes.css"],
 	"languages": [
 		{
