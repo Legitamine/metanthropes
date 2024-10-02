@@ -134,12 +134,8 @@
 	"secondaryTokenAttribute": "Vital.Life",
 	"grid": {
 		"type": 2,
-		"size": 170,
-		"color": "#ffffff",
 		"alpha": 0.2,
 		"distance": 2,
-		"units": "m",
-		"style": "dottedLines",
-		"thickness": 1
+		"units": "m"
 	}
 }
