@@ -16,7 +16,7 @@ import { prepareActiveEffectCategories, onManageActiveEffect } from "../metanthr
 export class MetanthropesItemSheet extends ItemSheet {
 	/** @override */
 	static get defaultOptions() {
-		return mergeObject(super.defaultOptions, {
+		return foundry.utils.mergeObject(super.defaultOptions, {
 			id: "metanthropes-item-sheet",
 			classes: ["metanthropes", "item", "sheet"],
 			width: 860,

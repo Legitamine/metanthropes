@@ -53,5 +53,25 @@
 			}
 		}
 	},
-	"TYPES": {}
+	"TYPES": {
+		"Actor": {
+			"Protagonist": "Protagonist",
+			"Metanthrope": "Metanthrope",
+			"Human": "Human",
+			"Vehicle": "Vehicle",
+			"Animal": "Animal",
+			"Artificial": "Artificial",
+			"Extradimensional": "Extradimensional",
+			"Extraterrestrial": "Extraterrestrial",
+			"Animated-Cadaver": "Animated-Cadaver",
+			"Animated-Plant": "Animated-Plant",
+			"MetaTherion": "Metatherion"
+		},
+		"Item":{
+			"Metapower": "Metapower",
+			"Possession": "Possession",
+			"Combo": "Combo",
+			"Object": "Object"
+		}
+	}
 }
