@@ -42,10 +42,7 @@
 		"verified": "12.331",
 		"maximum": "13"
 	},
-	"esmodules": [
-		"greensock/esm/all.js",
-		"module/metanthropes.mjs"
-	],
+	"esmodules": ["greensock/esm/all.js", "module/metanthropes.mjs"],
 	"styles": ["css/metanthropes.css"],
 	"languages": [
 		{
@@ -133,6 +130,13 @@
 			]
 		}
 	],
+	"documentTypes": {
+		"Actor": {
+			"base": {
+				"htmlFields": ["physical.description"]
+			}
+		}
+	},
 	"primaryTokenAttribute": "Vital.Destiny",
 	"secondaryTokenAttribute": "Vital.Life",
 	"grid": {

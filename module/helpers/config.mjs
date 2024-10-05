@@ -1,12 +1,12 @@
-export const METANTHROPES = {};
+export const Metanthropes = {};
 
-METANTHROPES.chars = {
+Metanthropes.chars = {
 	body: 'METANTHROPES.CHARS.BODY.LABEL',
 	mind: 'METANTHROPES.CHARS.MIND.LABEL',
 	soul: 'METANTHROPES.CHARS.SOUL.LABEL',
 };
 
-METANTHROPES.stats = {
+Metanthropes.stats = {
 	endurance: 'METANTHROPES.STATS.ENDURANCE.LABEL',
 	power: 'METANTHROPES.STATS.POWER.LABEL',
 	reflexes: 'METANTHROPES.STATS.REFLEXES.LABEL',
@@ -16,4 +16,76 @@ METANTHROPES.stats = {
 	awareness: 'METANTHROPES.STATS.AWARENESS.LABEL',
 	willpower: 'METANTHROPES.STATS.WILLPOWER.LABEL',
 	consciousness: 'METANTHROPES.STATS.CONSIOUSNESS.LABEL',
+};
+
+Metanthropes.movement = {
+	speedModifiers: {
+		0: 0,
+		1: 0,
+		2: 0,
+		3: 0,
+		4: 0,
+		5: 1,
+		6: 2,
+		7: 4,
+		8: 6,
+		9: 8,
+		10: 10,
+		11: 20,
+		12: 50,
+		13: 100,
+		14: 250,
+		15: 500,
+		16: 1000,
+		17: 2000,
+		18: 5000,
+		19: 10000,
+		20: 20000,
+	},
+	weightModifiers: {
+		0: 200,
+		1: 100,
+		2: 50,
+		3: 20,
+		4: 10,
+		5: 5,
+		6: 4,
+		7: 3,
+		8: 2,
+		9: 1.5,
+		10: 1,
+		11: 0.8,
+		12: 0.6,
+		13: 0.4,
+		14: 0.2,
+		15: 0.1,
+		16: 0.02,
+		17: 0.01,
+		18: 0.002,
+		19: 0.001,
+		20: 0.0002,
+	},
+	sizeModifiers: {
+		0: 0.0002,
+		1: 0.001,
+		2: 0.002,
+		3: 0.01,
+		4: 0.02,
+		5: 0.1,
+		6: 0.2,
+		7: 0.4,
+		8: 0.6,
+		9: 0.8,
+		10: 1,
+		11: 2,
+		12: 3,
+		13: 9,
+		14: 27,
+		15: 81,
+		16: 243,
+		17: 729,
+		18: 2187,
+		19: 6561,
+		20: 19683,
+	}
 };

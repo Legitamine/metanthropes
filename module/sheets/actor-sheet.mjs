@@ -667,7 +667,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 	async _onProgression(event) {
 		event.preventDefault();
 		//! POC for GSAP Animation
-		gsap.to('button.progression-form', {
+		gsap.to("button.progression-form", {
 			duration: 3,
 			text: "Progressing...",
 			ease: "none",

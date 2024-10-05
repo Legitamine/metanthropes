@@ -67,7 +67,11 @@ import { metaInitiativeReRoll } from "./metarollers/metainitiative.mjs";
 import { metaExecute } from "./metarollers/metaexecute.mjs";
 import { metaMigrateData } from "./metanthropes/metamigration.mjs";
 import { metaLog, metaLogDocument } from "./helpers/metahelpers.mjs";
-import { METANTHROPES } from "./helpers/config.mjs";
+import { Metanthropes } from "./helpers/config.mjs";
+//? Import Data Models
+import * as models from "./models/_data-models.mjs";
+//? Import AppV2 Sheets
+import { MetanthropesActorSheetV2 } from "./sheets/actor-sheet-v2.mjs";
 //* Starting System
 //* Handlebars helpers
 //? Selected Helper
@@ -94,8 +98,8 @@ Handlebars.registerHelper("stripHtml", function (htmlString) {
 });
 //* System Initialization.
 Hooks.once("init", async function () {
-	//? add our custom constants
-	CONFIG.METANTHROPES = METANTHROPES;
+	//? Configure Metanthropes Variables
+	CONFIG.Metanthropes = Metanthropes;
 	//? add our classes so they are more easily accessible
 	game.metanthropes = {
 		MetanthropesActor,
@@ -212,6 +216,12 @@ Hooks.once("init", async function () {
 		formula: "1d100 + @RollStats.Reflexes",
 		decimals: 2,
 	};
+	//? Register Data Models
+	CONFIG.Actor.dataModels = {
+		base: models.MetanthropesActorBase,
+	};
+	//? Configure Active Effect Legacy Transferral
+	CONFIG.ActiveEffect.legacyTransferral = false;
 	//? Metanthropes Combat System
 	CONFIG.Combat.documentClass = MetanthropesCombat;
 	//? setup custom combatant
@@ -242,6 +252,10 @@ Hooks.once("init", async function () {
 	Actors.unregisterSheet("core", ActorSheet);
 	Actors.registerSheet("metanthropes", MetanthropesActorSheet, {
 		makeDefault: true,
+	});
+	Actors.registerSheet("metanthropes", MetanthropesActorSheetV2, {
+		makeDefault: false,
+		label: "METANTHROPES.SHEET.ACTOR.LABEL",
 	});
 	Items.unregisterSheet("core", ItemSheet);
 	Items.registerSheet("metanthropes", MetanthropesItemSheet, {

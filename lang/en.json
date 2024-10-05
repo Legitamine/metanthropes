@@ -1,55 +1,107 @@
 {
 	"METANTHROPES": {
+		"SHEET": {
+			"ACTOR": {
+				"LABEL": "Metanthropes Actor Sheet V2"
+			}
+		},
+		"ACTOR": {
+			"BASE": {
+				"life": {
+					"value": {
+						"label": "Life",
+						"emoji": "❤️",
+						"hint": "Current ❤️ Life"
+					},
+					"starting": {
+						"label": "Starting",
+						"emoji": "❤️",
+						"hint": "Starting ❤️ Life"
+					},
+					"max": {
+						"label": "Maximum",
+						"emoji": "❤️",
+						"hint": "Maximum ❤️ Life"
+					}
+				},
+				"physical": {
+					"description": {
+						"label": "Physical Description",
+						"hint": "The physical description of this Actor."
+					},
+					"height": {
+						"label": "Height",
+						"suffix": "m",
+						"hint": "The physical height of this Actor.",
+						"suffixHint": "Meters"
+					},
+					"weight": {
+						"label": "Weight",
+						"suffix": "Kg",
+						"hint": "The physical weight of this Actor.",
+						"suffixHint": "Kilograms"
+					},
+					"age": {
+						"label": "Age",
+						"hint": "The physical age of this Actor."
+					},
+					"pob": {
+						"label": "Place of Birth",
+						"hint": "The physical place of birth of this Actor."
+					}
+				}
+			}
+		},
 		"CHARS": {
 			"BODY": {
 				"LABEL": "Body",
-				"HINT": "body text"
+				"HINT": "Body is the Characteristic which defines a Character's constitution, physical prowess, and physique."
 			},
 			"MIND": {
 				"LABEL": "Mind",
-				"HINT": "mind text"
+				"HINT": "Mind is the Characteristic which defines a Character's brainpower, problem solving and innovative thoughts."
 			},
 			"SOUL": {
 				"LABEL": "Soul",
-				"HINT": "soul text"
+				"HINT": "Soul is the Characteristic which defines a Character's conviction, spiritual prowess, and mettle."
 			}
 		},
 		"STATS": {
 			"ENDURANCE": {
 				"LABEL": "Endurance",
-				"HINT": "endurance text"
+				"HINT": "Endurance determines a Character's stamina, health, and vigor."
 			},
 			"POWER": {
 				"LABEL": "Power",
-				"HINT": "power text"
+				"HINT": "Power determines a Character's strength, striking effectiveness, and physical explosiveness."
 			},
 			"REFLEXES": {
 				"LABEL": "Reflexes",
-				"HINT": "reflexes text"
+				"HINT": "Reflexes determines a Character's agility, motor skills and balance."
 			},
 			"CREATIVITY": {
 				"LABEL": "Creativity",
-				"HINT": "creativity text"
+				"HINT": "Creativity determines a Character's imagination, expression, and handiwork."
 			},
 			"MANIPULATION": {
 				"LABEL": "Manipulation",
-				"HINT": "manipulation text"
+				"HINT": "Manipulation determines a Character's persuasiveness, charisma, and social engineering skills."
 			},
 			"PERCEPTION": {
 				"LABEL": "Perception",
-				"HINT": "perception text"
+				"HINT": "Perception determines a Character's observatory, evaluative and calculative capabilities."
 			},
 			"AWARENESS": {
 				"LABEL": "Awareness",
-				"HINT": "awareness text"
+				"HINT": "Awareness determines a Character's empathy, intuition, and instinctual responses."
 			},
 			"WILLPOWER": {
 				"LABEL": "Willpower",
-				"HINT": "willpower text"
+				"HINT": "Willpower determines a Character's courage, discipline, and confidence."
 			},
 			"CONSCIOUSNESS": {
 				"LABEL": "Consciousness",
-				"HINT": "consciousness text"
+				"HINT": "Consciousness determines a Character's recollection, subconscious processing, and sanity."
 			}
 		}
 	},
@@ -67,7 +119,7 @@
 			"Animated-Plant": "Animated-Plant",
 			"MetaTherion": "Metatherion"
 		},
-		"Item":{
+		"Item": {
 			"Metapower": "Metapower",
 			"Possession": "Possession",
 			"Combo": "Combo",
