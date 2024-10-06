@@ -15,7 +15,7 @@ export class MetanthropesActor extends Actor {
 		let defaultToken = game.settings.get("core", "defaultToken");
 		//? Configure Display Bars & Name Visibility
 		if (!data.prototypeToken)
-			mergeObject(createData, {
+			foundry.utils.mergeObject(createData, {
 				"prototypeToken.bar1": { attribute: "Vital.Life" },
 				"prototypeToken.bar2": { attribute: "Vital.Destiny" },
 				//* values from https://foundryvtt.com/api/enums/foundry.CONST.TOKEN_DISPLAY_MODES.html

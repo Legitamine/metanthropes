@@ -11,7 +11,7 @@
 					"value": {
 						"label": "Life",
 						"emoji": "❤️",
-						"hint": "Current ❤️ Life"
+						"hint": "Life represents a Character's overall health, vitality, and will to live."
 					},
 					"starting": {
 						"label": "Starting",
@@ -21,7 +21,7 @@
 					"max": {
 						"label": "Maximum",
 						"emoji": "❤️",
-						"hint": "Maximum ❤️ Life"
+						"hint": "Metanthrope Characters have a maximum Life total of 100 + their Endurance score and also gain an additional +25 Life for every 5.000 Total EXP they have accumulated"
 					}
 				},
 				"physical": {

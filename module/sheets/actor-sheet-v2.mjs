@@ -27,6 +27,7 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 		form: {
 			submitOnChange: true,
 		},
+		resizable: true,
 	};
 
 	/** @override */
