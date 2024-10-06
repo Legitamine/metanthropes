@@ -14,7 +14,7 @@
 			"Animated-Plant",
 			"MetaTherion"
 		],
-		"htmlFields": ["physical.description"],
+		"htmlFields": ["physical.description", "species.description"],
 		"templates": {
 			"physical": {
 				"physical": {

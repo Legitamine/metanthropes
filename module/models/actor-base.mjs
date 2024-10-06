@@ -5,6 +5,7 @@ export default class MetanthropesActorBase extends foundry.abstract.TypeDataMode
 		const fields = foundry.data.fields;
 		const requiredInteger = { required: true, nullable: false, integer: true };
 		const requiredNumber = { required: true, nullable: false };
+		const requiredString = { required: true, nullable: false };
 		const statScore = {required: true, nullable: false, integer: true, min: 0, initial: 1};
 		const schema = {};
 		//* All Beings
@@ -54,9 +55,19 @@ export default class MetanthropesActorBase extends foundry.abstract.TypeDataMode
 		//* Shift
 		schema.shift;
 		//* Species
-		schema.species;
+		schema.species = new fields.SchemaField({
+			description: new fields.HTMLField(),
+			name: new fields.StringField(),
+			origin: new fields.StringField(),
+			metaType: new fields.StringField(), // Metapowered or Non-Metapowered
+			majorType: new fields.StringField(), // Organism, Artificial, ET, ED
+			minorType: new fields.StringField(), // Humanoid, Spirit, Anima, Animal, Incarnation etc <- or is that the name?
+			
+
+		});
 		//* Notes
 		schema.notes;
+		
 		//* Intellectual Beings
 		//* EXP
 		schema.exp;
@@ -66,6 +77,7 @@ export default class MetanthropesActorBase extends foundry.abstract.TypeDataMode
 		schema.stats;
 		//* Perks
 		schema.perks;
+		
 		//* Sentient Beings
 		//* Destiny
 		schema.destiny;
