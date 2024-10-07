@@ -49,9 +49,9 @@ export async function metaRolld10(actor, what, destinyReRoll, dice, itemName = n
 	//? dice is the number of d10 to roll
 	let rolld10;
 	if (baseNumber > 0) {
-		rolld10 = await new Roll(`${dice}d10${explosiveDice}+${baseNumber}`).evaluate({ async: true });
+		rolld10 = await new Roll(`${dice}d10${explosiveDice}+${baseNumber}`).evaluate();
 	} else {
-		rolld10 = await new Roll(`${dice}d10${explosiveDice}`).evaluate({ async: true });
+		rolld10 = await new Roll(`${dice}d10${explosiveDice}`).evaluate();
 	}
 	if (isHalf) {
 		rollTotal = Math.ceil(rolld10.total / 2);
@@ -193,7 +193,7 @@ export async function metaHungerRoll(actor, hungerLevel) {
 		metaLog(5, "metaHungerRoll", "Hunger Level is not valid:", hungerLevel);
 		return;
 	}
-	const hungerRoll = await new Roll("1d100").evaluate({ async: true });
+	const hungerRoll = await new Roll("1d100").evaluate();
 	const hungerRollResult = hungerRoll.total;
 	hungerMessage = `Rolls to beat Hunger 💀 Condition Level ${hungerLevel} and gets a result of ${hungerRollResult} (needed ${hungerTarget} or less).<br><br>`;
 	if (hungerRollResult > hungerTarget) {
@@ -287,7 +287,7 @@ export async function metaCoverRoll(actor, coverType, coverValue) {
 		metaLog(5, "metaCoverRoll", "Cover Value is not valid:", coverValue);
 		return;
 	}
-	const coverRoll = await new Roll("1d100").evaluate({ async: true });
+	const coverRoll = await new Roll("1d100").evaluate();
 	const coverRollResult = coverRoll.total;
 	coverMessage = `Rolls to find ${coverType} Cover, with ${coverValue}% and gets a result of ${coverRollResult} (needed ${coverTarget} or less).<br><br>`;
 	if (coverRollResult > coverTarget) {

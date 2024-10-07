@@ -77,7 +77,7 @@ export async function metaEvaluate(
 	let result = null;
 	let resultLevel = null;
 	let autoExecute = false;
-	const roll = await new Roll("1d100").evaluate({ async: true });
+	const roll = await new Roll("1d100").evaluate();
 	const rollResult = roll.total;
 	let levelsOfSuccess = Math.floor(
 		(statScore + bonus + penalty + multiAction + perkReduction + aimingReduction + customReduction - rollResult) /

@@ -130,13 +130,6 @@
 			]
 		}
 	],
-	"documentTypes": {
-		"Actor": {
-			"base": {
-				"htmlFields": ["physical.description"]
-			}
-		}
-	},
 	"primaryTokenAttribute": "Vital.Destiny",
 	"secondaryTokenAttribute": "Vital.Life",
 	"grid": {
@@ -144,5 +137,12 @@
 		"alpha": 0.2,
 		"distance": 2,
 		"units": "m"
+	},
+	"documentTypes": {
+		"Actor": {
+			"testv12": {
+				"htmlFields": ["physical.description"]
+			}
+		}
 	}
 }
