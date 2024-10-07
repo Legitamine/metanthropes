@@ -3,39 +3,22 @@
  * Author: The Orchestrator (qp)
  * Discord: qp#8888 ; q_._p
  *
- *? The below notice is for developers, code reviewers and anyone curious enough to take a look at the code.
- *
- * * Although I come with 20+ years of experience in IT as a Systems Engineer, this is my very first code project & it started back in late Feb 2023
- * * I do understand that I have a long way to go as a developer, and I am committed to become better at it!
- * * Disclaimer: I have been using the AI from GitHub Co-pilot within VSCode as well as ChatGPT v4 as a tutor and teacher to help me learn how to code.
- * * I am very eager to learn and improve my skills, so any constructive feedback is more than welcome!
- *
- * ! This project is a work in progress - please forgive the excessive commenting and notes scattered throughout the code.
- * It will be properly cleaned up by the time it's out of Early Access. All of the code contained in this project is my own work.
- * In a couple of sections where code was provided to me by others in the FVTT Discord community, the contributors are credited in the comments.
- * * Shoutout to the FoundryVTT Discord community, especially the #system-development channel and extra-special thanks to the following people:
- * - @TyphonJS (Michael) for the code used in the metaLogDocument function
- * - @Zhell (zhell9201) for the overall help, guidance & suggestions
- * - @Mana (manaflower) for the overall help, guidance & CSS wizardry
- * - @ChaosOS for the overall help & CLI guidance
- * - @mxzf for the overall help & patience & guidance & the amazing website of FVTT resources
- * - @asacolips for the Boilerplate code, without which I would have been completely lost and probably would have given up very early on
- ** Special shoutout to the code-wizard & RL buddy @aMUSiC, who has guided me to avoid many pitfalls and who will be assisting with code-reviews post Early Access!
  * If you would like to contribute to this project, please feel free to reach out to me via Discord
  *
  * Throughtout this project, I use the following syntax for comments:
- ** //! Marks a special comment that stands out (in Red) for critical notes.
- ** //* Marks a comment that is used as a section header (in Green) for better visibility.
+ ** //! Marks a special comment that stands out (in Red) for critical notes/issues.
+ ** //* Marks a comment that is used as a section header (in Green) for better section visibility.
  ** //? Marks a comment that is used for sub-sections and for elaborating my intent (in Blue) for better readability.
  ** //todo Marks a comment that is used for marking (in Orange) potential optimization notes.
- *** // comments without any special syntax are used for quick notes and explanations of various options.
+ *** // comments without any special syntax are used for quick clarification of specific options.
  *
  * To get automatic colloring for these comments in VSCode, you can use this extension:
  * aaron-bond.better-comments
  *
  */
+
 //* Imports
-//? Import custom classes
+//? Custom classes
 import {
 	MetaSidebar,
 	metaSceneDirectory,
@@ -46,21 +29,21 @@ import {
 	metaPlaylistDirectory,
 	metaCompendiumDirectory,
 } from "./metaclasses/metaclasses.mjs";
-//? Import Combat Modules
+//? Combat Modules
 import { MetanthropesCombat } from "./metanthropes/combat.mjs";
 import { MetaCombatTracker } from "./metanthropes/combattracker.mjs";
 import { MetaCombatant } from "./metanthropes/combatant.mjs";
-//? Import document classes
+//? Document classes
 import { MetanthropesActor } from "./documents/actor.mjs";
 import { MetanthropesItem } from "./documents/item.mjs";
 import { MetanthropesActiveEffect } from "./documents/active-effect.mjs";
-//? Import sheet classes
+//? Sheet classes
 import { MetanthropesActorSheet } from "./sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
 import { MetanthropesActiveEffectSheet } from "./sheets/active-effect-sheet.mjs";
-//? Pre-load Handlebars templates
+//? Handlebars templates
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
-//? Import helpers
+//? Helpers
 import { metaEvaluateReRoll } from "./metarollers/metaeval.mjs";
 import { metaRolld10ReRoll, metaHungerReRoll, metaCoverReRoll } from "./metarollers/metarollextras.mjs";
 import { metaInitiativeReRoll } from "./metarollers/metainitiative.mjs";
@@ -68,35 +51,18 @@ import { metaExecute } from "./metarollers/metaexecute.mjs";
 import { metaMigrateData } from "./metanthropes/metamigration.mjs";
 import { metaLog, metaLogDocument } from "./helpers/metahelpers.mjs";
 import { Metanthropes } from "./config/config.mjs";
-//? Import Data Models
+//? Data Models
 import * as models from "./models/_data-models.mjs";
-//? Import AppV2 Sheets
+//? AppV2 Sheets
 import { MetanthropesActorSheetV2 } from "./sheets/actor-sheet-v2.mjs";
 //? Register Game Settings
 import { metaRegisterGameSettings } from "./config/settings.mjs";
-//* Handlebars helpers
-//? Selected Helper
-//! Foundry includes its own select helper, it requires a different template schema though.
-//todo Deprecate all remaining uses of this custom helper and use the built-in one instead.
-Handlebars.registerHelper("selected", function (option, value) {
-	return option === value ? "selected" : "";
-});
-//? Used to join an array into a single string with a space between each item ex: {{join this.value ', '}}
-Handlebars.registerHelper("join", function (array, separator) {
-	return array.join(separator);
-});
-//? Used to check if a value is an array
-Handlebars.registerHelper("isArray", function (value) {
-	return Array.isArray(value);
-});
-//? HTML Stripper Helper (for an Item's Effect as a tooltip)
-//! Built-in data-tooltip could replace this (requires investigation)
-//todo I should review usage case with data-tooltip as it can have HTML as input
-Handlebars.registerHelper("stripHtml", function (htmlString) {
-	if (!htmlString) return "";
-	const strippedString = htmlString.replace(/<\/?[^>]+(>|$)/g, "");
-	return new Handlebars.SafeString(strippedString);
-});
+//? Handlebars Helpers
+import { metaRegisterHandlebarHelpers } from "./config/handlebar-helpers.mjs";
+
+//* Register Handlebars Helpers
+metaRegisterHandlebarHelpers();
+
 //* System Initialization.
 Hooks.once("init", async function () {
 	//? Configure Metanthropes Variables
@@ -270,6 +236,7 @@ Hooks.once("init", async function () {
 	//? Preload Handlebars templates.
 	return preloadHandlebarsTemplates();
 });
+
 //* Ready Hook
 Hooks.once("ready", async function () {
 	//? Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
@@ -434,6 +401,7 @@ Hooks.once("ready", async function () {
 		game.togglePause(false);
 	}
 });
+
 //* Drag Ruler Integration
 Hooks.once("dragRuler.ready", (SpeedProvider) => {
 	metaLog(3, "Drag Ruler Integration Started");
@@ -464,6 +432,7 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 	dragRuler.registerSystem("metanthropes", MetanthropesSystemSpeedProvider);
 	metaLog(3, "Drag Ruler Integration Finished");
 });
+
 //* Chat Message Event Listeners
 Hooks.on("renderChatMessage", async (message, html) => {
 	//? Get the actor from the message - all our messages have the actoruuid flag set, so if it's not our message, return.
@@ -506,6 +475,7 @@ Hooks.on("renderChatMessage", async (message, html) => {
 		});
 	}
 });
+
 //* New Actor Event Listener
 Hooks.on("createActor", async (actor) => {
 	//* Duplicate Self Metapower Activation Detection - Rename to Duplicate & Remove Items & Effects from Duplicates
@@ -532,6 +502,7 @@ Hooks.on("createActor", async (actor) => {
 		metaLog(3, "New Actor Event Listener", "Removed Effects from Duplicate", actor.name);
 	}
 });
+
 //* Hook to add header buttons on the Actor, Item & Effect sheets
 //? from TyphonJS (Michael) on Discord
 //? In system entry point. You may have to get specific for particular sheets as some don't invoke hooks for the whole hierarchy.
@@ -539,6 +510,7 @@ Hooks.on(`getActorSheetHeaderButtons`, metaLogDocument);
 Hooks.on(`getItemSheetHeaderButtons`, metaLogDocument);
 Hooks.on(`getActiveEffectConfigHeaderButtons`, metaLogDocument);
 Hooks.on(`getActiveEffectSheetHeaderButtons`, metaLogDocument);
+
 //* Customize Pause Logo
 Hooks.on("renderPause", (app, html, options) => {
 	if (options.paused) {
