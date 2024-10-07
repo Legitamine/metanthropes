@@ -33,7 +33,7 @@ export class MetanthropesActor extends Actor {
 		if (!createData.prototypeToken.flags) createData.prototypeToken.flags = {};
 		switch (data.type) {
 			case "Protagonist":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
+				if (!data.flags?.metanthropes?.duplicateSelf && createData.img === "icons/svg/mystery-man.svg") {
 					metaLog(3, "MetanthropesActor", "_preCreate", "Creating Protagonist Token from data", data);
 					createData.img = "systems/metanthropes/tokens/defaults/token-hammer.webp";
 					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-hammer.webp";
@@ -55,7 +55,7 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 30;
 				break;
 			case "Metanthrope":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
+				if (!data.flags?.metanthropes?.duplicateSelf && createData.img === "icons/svg/mystery-man.svg") {
 					createData.img = "systems/metanthropes/tokens/defaults/token-utilitarian.webp";
 					createData.prototypeToken.texture.src =
 						"systems/metanthropes/tokens/defaults/token-utilitarian.webp";
@@ -74,7 +74,7 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Human":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
+				if (!data.flags?.metanthropes?.duplicateSelf && createData.img === "icons/svg/mystery-man.svg") {
 					createData.img = "systems/metanthropes/tokens/defaults/token-aegis.webp";
 					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-aegis.webp";
 				}
@@ -92,7 +92,7 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Artificial":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
+				if (!data.flags?.metanthropes?.duplicateSelf && createData.img === "icons/svg/mystery-man.svg") {
 					createData.img = "systems/metanthropes/tokens/defaults/token-animator.webp";
 					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-animator.webp";
 				}
@@ -110,7 +110,7 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Animal":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
+				if (!data.flags?.metanthropes?.duplicateSelf && createData.img === "icons/svg/mystery-man.svg") {
 					createData.img = "systems/metanthropes/tokens/defaults/token-kineticist.webp";
 					createData.prototypeToken.texture.src =
 						"systems/metanthropes/tokens/defaults/token-kineticist.webp";
@@ -129,7 +129,7 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Animated-Plant":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
+				if (!data.flags?.metanthropes?.duplicateSelf && createData.img === "icons/svg/mystery-man.svg") {
 					createData.img = "systems/metanthropes/tokens/defaults/token-clairvoyant.webp";
 					createData.prototypeToken.texture.src =
 						"systems/metanthropes/tokens/defaults/token-clairvoyant.webp";
@@ -148,7 +148,7 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Animated-Cadaver":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
+				if (!data.flags?.metanthropes?.duplicateSelf && createData.img === "icons/svg/mystery-man.svg") {
 					createData.img = "systems/metanthropes/tokens/defaults/token-cosmonaut.webp";
 					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-cosmonaut.webp";
 				}
@@ -166,7 +166,7 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Extraterrestrial":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
+				if (!data.flags?.metanthropes?.duplicateSelf && createData.img === "icons/svg/mystery-man.svg") {
 					createData.img = "systems/metanthropes/tokens/defaults/token-arbiter.webp";
 					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-arbiter.webp";
 				}
@@ -184,7 +184,7 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Extradimensional":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
+				if (!data.flags?.metanthropes?.duplicateSelf && createData.img === "icons/svg/mystery-man.svg") {
 					createData.img = "systems/metanthropes/tokens/defaults/token-pink.webp";
 					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-pink.webp";
 				}
@@ -202,7 +202,7 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "MetaTherion":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
+				if (!data.flags?.metanthropes?.duplicateSelf && createData.img === "icons/svg/mystery-man.svg") {
 					createData.img = "systems/metanthropes/tokens/defaults/token-manipulator.webp";
 					createData.prototypeToken.texture.src =
 						"systems/metanthropes/tokens/defaults/token-manipulator.webp";
@@ -221,7 +221,7 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Vehicle":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
+				if (!data.flags?.metanthropes?.duplicateSelf && createData.img === "icons/svg/mystery-man.svg") {
 					createData.img = "systems/metanthropes/tokens/defaults/token-controller.webp";
 					createData.prototypeToken.texture.src =
 						"systems/metanthropes/tokens/defaults/token-controller.webp";
@@ -240,7 +240,7 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			default:
-				if (!data.flags?.metanthropes?.duplicateSelf) {
+				if (!data.flags?.metanthropes?.duplicateSelf && createData.img === "icons/svg/mystery-man.svg") {
 					createData.img = "systems/metanthropes/tokens/defaults/token-border.webp";
 					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-border.webp";
 				}
