@@ -1128,12 +1128,16 @@ h3 {
 }
 .metanthropes .style-container-nav-children {
   align-items: center;
+  justify-content: center;
   white-space: nowrap;
   font-size: 1rem;
   font-weight: 600;
   color: #000;
   padding: 1px;
   margin: 1px;
+}
+.metanthropes .style-container-nav-children .meta-emoji {
+  font-size: 0.8rem;
 }
 .metanthropes .style-container-input-charstat {
   min-width: 2ch;

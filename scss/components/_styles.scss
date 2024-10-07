@@ -174,13 +174,18 @@ h3 {
 }
 .style-container-nav-children {
 	align-items: center;
+	justify-content: center;
 	white-space: nowrap;
 	font-size: 1rem;
 	font-weight: 600;
 	color: $c-black;
 	padding: $padding-sm;
 	margin: $margin-sm;
+	.meta-emoji {
+		font-size: 0.8rem;
+	}
 }
+
 //input containers styling
 .style-container-input-charstat {
 	min-width: 2ch;
