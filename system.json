@@ -136,7 +136,8 @@
 		"type": 2,
 		"alpha": 0.2,
 		"distance": 2,
-		"units": "m"
+		"units": "m",
+		"diagonals": 0
 	},
 	"documentTypes": {
 		"Actor": {

@@ -50,13 +50,15 @@ import { metaInitiativeReRoll } from "./metarollers/metainitiative.mjs";
 import { metaExecute } from "./metarollers/metaexecute.mjs";
 import { metaMigrateData } from "./metanthropes/metamigration.mjs";
 import { metaLog, metaLogDocument } from "./helpers/metahelpers.mjs";
-import { Metanthropes } from "./config/config.mjs";
+//? System Configuration
+import { SYSTEM } from "./config/system.mjs";
 //? Data Models
 import * as models from "./models/_data-models.mjs";
 //? AppV2 Sheets
 import { MetanthropesActorSheetV2 } from "./sheets/actor-sheet-v2.mjs";
 //? Register Game Settings
 import { metaRegisterGameSettings } from "./config/settings.mjs";
+import { metaRegisterStatusEffects } from "./config/status-effects.mjs";
 //? Handlebars Helpers
 import { metaRegisterHandlebarHelpers } from "./config/handlebar-helpers.mjs";
 
@@ -65,139 +67,46 @@ metaRegisterHandlebarHelpers();
 
 //* System Initialization.
 Hooks.once("init", async function () {
-	//? Configure Metanthropes Variables
-	CONFIG.Metanthropes = Metanthropes;
-	//? add our classes so they are more easily accessible
+
+	//? Configure System
+	globalThis.SYSTEM = SYSTEM;
+	
 	game.metanthropes = {
 		MetanthropesActor,
 		MetanthropesItem,
 	};
-	//? Status Effects
-	const idsToKeep = [];
-	CONFIG.statusEffects = CONFIG.statusEffects.filter((item) => idsToKeep.includes(item.id));
-	const metaStatusEffects = [
-		{
-			id: "invisible",
-			name: "Invisible",
-			flags: {
-				metanthropes: {
-					metaEffectType: "Buff",
-					metaEffectApplication: "Cover",
-					metaCycle: null,
-					metaRound: null,
-					metaStartCycle: null,
-					metaStartRound: null,
-				},
-			},
-			description: "<p>Invisible</p>",
-			icon: "systems/metanthropes/artwork/status-effects/invisible.svg",
-		},
-		{
-			id: "blind",
-			name: "Sense-Lost: Vision",
-			flags: {
-				metanthropes: {
-					metaEffectType: "Condition",
-					metaEffectApplication: "Cover",
-					metaCycle: null,
-					metaRound: null,
-					metaStartCycle: null,
-					metaStartRound: null,
-				},
-			},
-			description: "<p>Sense-Lost: Vision</p>",
-			icon: "systems/metanthropes/artwork/status-effects/sense-lost-vision.svg",
-		},
-		{
-			id: "dead",
-			name: "Dead",
-			flags: {
-				metanthropes: {
-					metaEffectType: "Condition",
-					metaEffectApplication: "Cover",
-					metaCycle: null,
-					metaRound: null,
-					metaStartCycle: null,
-					metaStartRound: null,
-				},
-			},
-			description: "<p>Dead</p>",
-			icon: "systems/metanthropes/artwork/status-effects/dead.svg",
-		},
-		{
-			id: "knockeddown",
-			name: "Knocked Down",
-			flags: {
-				metanthropes: {
-					metaEffectType: "Condition",
-					metaEffectApplication: "Movement",
-					metaCycle: null,
-					metaRound: null,
-					metaStartCycle: null,
-					metaStartRound: null,
-				},
-			},
-			changes: [
-				{
-					key: "system.physical.movement.Conditions.knockdown.value",
-					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
-					value: true,
-				},
-			],
-			description: "<p>Knocked Down</p>",
-			icon: "systems/metanthropes/artwork/status-effects/knocked-down.svg",
-		},
-		{
-			id: "immobilized",
-			name: "Immobilized",
-			flags: {
-				metanthropes: {
-					metaEffectType: "Condition",
-					metaEffectApplication: "Movement",
-					metaCycle: null,
-					metaRound: null,
-					metaStartCycle: null,
-					metaStartRound: null,
-				},
-			},
-			changes: [
-				{
-					key: "system.physical.movement.Conditions.immobilized.value",
-					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
-					value: true,
-				},
-				{
-					key: "system.physical.movement.value",
-					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
-					value: 0,
-				},
-			],
-			description: "<p>Immobilized</p>",
-			icon: "systems/metanthropes/artwork/status-effects/immobilized.svg",
-		},
-	];
-	CONFIG.statusEffects.push(...metaStatusEffects);
+
+	//? Register Status Effects
+	metaRegisterStatusEffects();
+
 	//? Metanthropes Initiative System
 	//! should I remove this? - removing it seems to break initiative, as we are 'highjacking' the formula method for metainitiative rolls
 	CONFIG.Combat.initiative = {
 		formula: "1d100 + @RollStats.Reflexes",
 		decimals: 2,
 	};
+
 	//? Register Data Models
 	CONFIG.Actor.dataModels = {
 		base: models.MetanthropesActorBase,
 	};
+
 	//? Configure Active Effect Legacy Transferral
 	CONFIG.ActiveEffect.legacyTransferral = false;
+	
 	//? Metanthropes Combat System
 	CONFIG.Combat.documentClass = MetanthropesCombat;
+	
 	//? setup custom combatant
 	//! CONFIG.Combatant.documentClass = MetaCombatant; instead?
 	CONFIG.Actor.entityClass = MetaCombatant;
+	
 	//? setup custom combat tracker
 	//CONFIG.ui.combat = MetaCombatTracker;
+	
 	//? replace sidebar
 	CONFIG.ui.sidebar = MetaSidebar;
+	
 	//? Replace Sidebar Directories
 	CONFIG.ui.scenes = metaSceneDirectory;
 	CONFIG.ui.actors = metaActorDirectory;
@@ -206,33 +115,39 @@ Hooks.once("init", async function () {
 	CONFIG.ui.tables = metaRollTableDirectory;
 	CONFIG.ui.playlists = metaPlaylistDirectory;
 	CONFIG.ui.compendium = metaCompendiumDirectory;
-	//? Uncomment for development
-	// console.log(CONFIG);
+	
 	//? time in seconds for Round Duration
 	//todo: review how we plan to handle
 	//CONFIG.time.roundTime = 30;
+	
 	//? Define custom document classes.
 	CONFIG.Actor.documentClass = MetanthropesActor;
 	CONFIG.Item.documentClass = MetanthropesItem;
 	CONFIG.ActiveEffect.documentClass = MetanthropesActiveEffect;
+	
 	//? Register sheet application classes instead of default
 	Actors.unregisterSheet("core", ActorSheet);
 	Actors.registerSheet("metanthropes", MetanthropesActorSheet, {
 		makeDefault: true,
 	});
+
 	Actors.registerSheet("metanthropes", MetanthropesActorSheetV2, {
 		makeDefault: false,
 		label: "METANTHROPES.SHEET.ACTOR.LABEL",
 	});
+
 	Items.unregisterSheet("core", ItemSheet);
 	Items.registerSheet("metanthropes", MetanthropesItemSheet, {
 		makeDefault: true,
 	});
+
 	DocumentSheetConfig.registerSheet(ActiveEffect, "metanthropes", MetanthropesActiveEffectSheet, {
 		makeDefault: true,
 	});
-	//* System Settings
+
+	//? Register System Settings
 	metaRegisterGameSettings(game.settings);
+	
 	//? Preload Handlebars templates.
 	return preloadHandlebarsTemplates();
 });

@@ -1,24 +1,4 @@
-export const Metanthropes = {};
-
-Metanthropes.chars = {
-	body: 'METANTHROPES.CHARS.BODY.LABEL',
-	mind: 'METANTHROPES.CHARS.MIND.LABEL',
-	soul: 'METANTHROPES.CHARS.SOUL.LABEL',
-};
-
-Metanthropes.stats = {
-	endurance: 'METANTHROPES.STATS.ENDURANCE.LABEL',
-	power: 'METANTHROPES.STATS.POWER.LABEL',
-	reflexes: 'METANTHROPES.STATS.REFLEXES.LABEL',
-	creativity: 'METANTHROPES.STATS.CREATIVITY.LABEL',
-	manipulation: 'METANTHROPES.STATS.MANIPULATION.LABEL',
-	perception: 'METANTHROPES.STATS.PERCEPTION.LABEL',
-	awareness: 'METANTHROPES.STATS.AWARENESS.LABEL',
-	willpower: 'METANTHROPES.STATS.WILLPOWER.LABEL',
-	consciousness: 'METANTHROPES.STATS.CONSIOUSNESS.LABEL',
-};
-
-Metanthropes.movement = {
+export const MOVEMENT = {
 	speedModifiers: {
 		0: 0,
 		1: 0,
