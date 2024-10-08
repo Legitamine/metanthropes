@@ -27,13 +27,13 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 		form: {
 			submitOnChange: true,
 		},
-		resizable: true,
+		resizable: true, //! not working!
 	};
 
 	/** @override */
 	static PARTS = {
 		header: {
-			template: "systems/metanthropes/templates/helpers/actor-header.hbs",
+			template: "systems/metanthropes/templates/sheets/partials/actor-header.hbs",
 		},
 		tabs: {
 			template: "systems/metanthropes/templates/helpers/actor-navbar.hbs",
@@ -61,6 +61,8 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 	/** @override */
 	async _prepareContext(options) {
 		const context = {
+			//!? is narrator
+			isNarrator: game.user.isGM,
 			// Validates both permissions and compendium status
 			editable: this.isEditable,
 			owner: this.document.isOwner,
@@ -75,7 +77,7 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 			tabs: this._getTabs(options.parts),
 			// Necessary for formInput and formFields helpers
 			fields: this.document.schema.fields,
-			//systemFields: this.document.system.schema.fields,
+			//!systemFields: this.document.system.schema.fields,
 		};
 
 		this._prepareItems(context);
@@ -711,4 +713,12 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 			}
 		}
 	}
+}
+
+export class MetanthropesNPCActorSheet extends MetanthropesActorSheetV2 {
+	static DEFAULT_OPTIONS = {
+		actor: {
+			type: "testv12",
+		},
+	};
 }

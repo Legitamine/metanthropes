@@ -44,17 +44,17 @@
 		<div>
 			<div class="style-labels-text"
 				data-tooltip="METANTHROPES.ACTOR.BASE.life.value.hint">
-				<span>❤️</span><span class="meta-ui-responsive meta-ui-hide-at-minimum">
+				<span>{{localize "METANTHROPES.ACTOR.BASE.life.emoji"}}</span><span class="meta-ui-responsive meta-ui-hide-at-minimum">
 					{{#if actor.isSynthetic}}
 						Durability
 					{{else}}
-						Life
+						{{localize "METANTHROPES.ACTOR.BASE.life.label"}}
 					{{/if}}
 				</span>
-				{{#if isNarrator}}<input name="system.Vital.Life.value" type="number"
-						value="{{system.Vital.Life.value}}" data-dtype="Number" />
-				{{else}}{{system.Vital.Life.value}}{{/if}}<span
-					class="meta-ui-responsive meta-ui-hide-at-minimum" data-tooltip="METANTHROPES.ACTOR.BASE.life.max.hint">/{{system.Vital.Life.max}}</span>
+				{{#if isNarrator}}<input name="system.life.value" type="number"
+						value="{{system.life.value}}" data-dtype="Number" />
+				{{else}}{{system.life.value}}{{/if}}<span
+					class="meta-ui-responsive meta-ui-hide-at-minimum" data-tooltip="METANTHROPES.ACTOR.BASE.life.max.hint">/{{system.life.max}}</span>
 			</div>
 		</div>
 		<div class="meta-ui-responsive meta-ui-hide-at-medium">

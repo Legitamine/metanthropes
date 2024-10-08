@@ -65,10 +65,26 @@ import { metaRegisterHandlebarHelpers } from "./config/handlebar-helpers.mjs";
 //* Register Handlebars Helpers
 metaRegisterHandlebarHelpers();
 
+//* Global Scope for Metanthropes
+globalThis.metanthropes = {
+	documents: {
+		MetanthropesActor,
+		MetanthropesItem,
+	},
+	applications: {
+		MetanthropesActorSheet,
+		MetanthropesItemSheet,
+		MetanthropesActiveEffectSheet,
+		MetanthropesActorSheetV2,
+	},
+	models,
+};
+
 //* System Initialization.
 Hooks.once("init", async function () {
 	//? Configure System
 	globalThis.SYSTEM = SYSTEM;
+
 
 	//? Expose the API
 	game.system.api = {
@@ -78,6 +94,7 @@ Hooks.once("init", async function () {
 	};
 
 	//? Register custom classes
+	//! still required?
 	game.metanthropes = {
 		MetanthropesActor,
 		MetanthropesItem,
@@ -95,7 +112,7 @@ Hooks.once("init", async function () {
 
 	//? Register Data Models
 	CONFIG.Actor.dataModels = {
-		base: models.MetanthropesActorBase,
+		testv12: models.MetanthropesActorNPC,
 	};
 
 	//? Configure Active Effect Legacy Transferral

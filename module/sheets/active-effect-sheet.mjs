@@ -25,7 +25,7 @@ export class MetanthropesActiveEffectSheet extends DocumentSheet {
 
 	/** @override */
 	async getData(options = {}) {
-		game.system.api.utils.metaLog(4, "Metanthropes | Active Effect Sheet | getData, this", this);
+		game.system.api.utils.metaLog(3, "Metanthropes | Active Effect Sheet | getData, this", this);
 		const context = await super.getData(options);
 		const metaFlags = this.object.flags.metanthropes;
 		context.descriptionHTML = await TextEditor.enrichHTML(this.object.description, {
@@ -104,7 +104,7 @@ export class MetanthropesActiveEffectSheet extends DocumentSheet {
 			metaEffectTypeOptions: metaEffectTypeOptions,
 			metaEffectApplicationOptions: metaEffectApplicationOptions,
 		};
-		game.system.api.utils.metaLog(4, "Metanthropes | Active Effect Sheet | getData, context, data", context, data);
+		game.system.api.utils.metaLog(3, "Metanthropes | Active Effect Sheet | getData, context, data", context, data);
 		return foundry.utils.mergeObject(context, data);
 	}
 

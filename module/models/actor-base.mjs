@@ -3,8 +3,9 @@ export default class MetanthropesActorBase extends foundry.abstract.TypeDataMode
 
 	static defineSchema() {
 		const fields = foundry.data.fields;
+		const lifeScore = { required: true, nullable: false, integer: true, positive: true };
 		const requiredInteger = { required: true, nullable: false, integer: true };
-		const requiredNumber = { required: true, nullable: false };
+		const requiredNumber = { required: true, nullable: false, integer: false };
 		const requiredString = { required: true, nullable: false };
 		const statScore = {required: true, nullable: false, integer: true, min: 0, initial: 1};
 		const schema = {};
@@ -12,16 +13,16 @@ export default class MetanthropesActorBase extends foundry.abstract.TypeDataMode
 		//* Life
 		schema.life = new fields.SchemaField({
 			value: new fields.NumberField({
-				...requiredInteger,
+				...lifeScore,
 				initial: 10,
 				min: 0,
 			}),
 			starting: new fields.NumberField({
-				...requiredInteger,
+				...lifeScore,
 				initial: 10,
 			}),
 			max: new fields.NumberField({
-				...requiredInteger,
+				...lifeScore,
 				initial: 10,
 			}),
 		});
@@ -108,7 +109,8 @@ export default class MetanthropesActorBase extends foundry.abstract.TypeDataMode
 
 	//? Base Life Data preparation
 	_prepareBaseLifeData() {
-		
+		game.system.api.metaLog(3, "datamodel prepareBaseLifeData", this);
+		life.max = this.life.value;
 	}
 
 	//? Base Characteristics Data preparation
