@@ -1,5 +1,3 @@
-//? Import metaLog helper
-import { metaLog } from "../helpers/metahelpers.mjs";
 /**
  * Metanthropes Active Effect Sheet
  * This is based off the default ActiveEffect, instead of overriding it

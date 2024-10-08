@@ -1,5 +1,3 @@
-//? Import metaLog helper
-import { metaLog } from "../helpers/metahelpers.mjs";
 /**
  *
  * Metanthropes Active Effect Sheet
@@ -27,7 +25,7 @@ export class MetanthropesActiveEffectSheet extends DocumentSheet {
 
 	/** @override */
 	async getData(options = {}) {
-		metaLog(4, "Metanthropes | Active Effect Sheet | getData, this", this);
+		game.system.api.utils.metaLog(4, "Metanthropes | Active Effect Sheet | getData, this", this);
 		const context = await super.getData(options);
 		const metaFlags = this.object.flags.metanthropes;
 		context.descriptionHTML = await TextEditor.enrichHTML(this.object.description, {
@@ -106,7 +104,7 @@ export class MetanthropesActiveEffectSheet extends DocumentSheet {
 			metaEffectTypeOptions: metaEffectTypeOptions,
 			metaEffectApplicationOptions: metaEffectApplicationOptions,
 		};
-		metaLog(4, "Metanthropes | Active Effect Sheet | getData, context, data", context, data);
+		game.system.api.utils.metaLog(4, "Metanthropes | Active Effect Sheet | getData, context, data", context, data);
 		return foundry.utils.mergeObject(context, data);
 	}
 
@@ -181,7 +179,7 @@ export class MetanthropesActiveEffectSheet extends DocumentSheet {
 	_getSubmitData(updateData = {}) {
 		const fd = new FormDataExtended(this.form, { editors: this.editors });
 		let data = foundry.utils.expandObject(fd.object);
-		metaLog(3, "Metanthropes | Active Effect Sheet | _getSubmitData, data, updateData", fd, data, updateData);
+		game.system.api.utils.metaLog(3, "Metanthropes | Active Effect Sheet | _getSubmitData, data, updateData", fd, data, updateData);
 		if (updateData) foundry.utils.mergeObject(data, updateData);
 		data.changes = Array.from(Object.values(data.changes || {}));
 		return data;

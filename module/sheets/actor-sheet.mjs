@@ -2,10 +2,6 @@
 import { metaHandleRolls, handleCoverRolls } from "../metarollers/metarollhandler.mjs";
 //? Import Finalize Actor Logic
 import { metaFinalizePremadeActor } from "../metanthropes/finalizepremade.mjs";
-//? Import functions from other modules
-import { metaImportFromModule } from "../helpers/metaimports.mjs";
-//? Import meta helpers
-import { metaLog } from "../helpers/metahelpers.mjs";
 //? Import Change Actor Image
 import { metaChangeActorImage, metaChangeTokenImage } from "../helpers/metaimagehandler.mjs";
 //? Import Active Effect helpers
@@ -108,7 +104,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		context.affectedByHunger = this.actor.isHungry;
 		//? Flag for Tokenizer Support
 		context.tokenizer = game.modules.get("vtta-tokenizer")?.active;
-		metaLog(3, "MetanthropesActorSheet", "getData", "this, context, options", this, context, options);
+		game.system.api.utils.metaLog(3, "MetanthropesActorSheet", "getData", "this, context, options", this, context, options);
 		return context;
 	}
 	//* Prepare items
@@ -158,7 +154,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 					Possessions[item.system.Category.value].push(item);
 				} else {
 					//? Remove the item from the actor if its category is not allowed
-					metaLog(2, "MetanthropesActorSheet _prepareItems", "Invalid Category for Possession:", item.name);
+					game.system.api.utils.metaLog(2, "MetanthropesActorSheet _prepareItems", "Invalid Category for Possession:", item.name);
 					return;
 					//actorData.deleteEmbeddedDocuments("Item", [item.id]);
 					//actorData.items.splice(i, 1);
@@ -314,7 +310,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		}
 		await this.maximize();
 		this.render(true);
-		metaLog(3, "MetanthropesActorSheet _onHeaderButtonClick", size);
+		game.system.api.utils.metaLog(3, "MetanthropesActorSheet _onHeaderButtonClick", size);
 	}
 	//? Render the sheet
 	/**
@@ -591,13 +587,13 @@ export class MetanthropesActorSheet extends ActorSheet {
 		if (coreModule && coreModule?.active) {
 			const api = coreModule.api;
 			try {
-				metaLog(3, "_onNewActor", "Core Module API Available, calling metaNewActor");
+				game.system.api.utils.metaLog(3, "_onNewActor", "Core Module API Available, calling metaNewActor");
 				await api.metaNewActor(actor);
 			} catch (error) {
-				metaLog(2, "_onNewActor", "Core Module API Error:", error);
+				game.system.api.utils.metaLog(2, "_onNewActor", "Core Module API Error:", error);
 			}
 		} else {
-			metaLog(2, "_onNewActor", "Core Module Not Active");
+			game.system.api.utils.metaLog(2, "_onNewActor", "Core Module Not Active");
 		}
 	}
 	//* Finalize Premade Protagonist
@@ -679,15 +675,15 @@ export class MetanthropesActorSheet extends ActorSheet {
 			);
 			return;
 		}
-		//? Load Progression Logic from the Metanthropes Core Module
-		const metaProgressActor = await metaImportFromModule(
-			"metanthropes-core",
-			"progression",
-			"metaprogression",
-			"metaStartProgression"
-		);
+		// //? Load Progression Logic from the Metanthropes Core Module
+		// const metaProgressActor = await metaImportFromModule(
+		// 	"metanthropes-core",
+		// 	"progression",
+		// 	"metaprogression",
+		// 	"metaStartProgression"
+		// );
 		if (!metaProgressActor) {
-			metaLog(2, "MetanthropesActorSheet", "_onProgression", "Progression function not available");
+			game.system.api.utils.metaLog(2, "MetanthropesActorSheet", "_onProgression", "Progression function not available");
 			return;
 		}
 		//? Get the actor for the Progression
@@ -697,7 +693,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//todo do this properly with a promise!
 		metaProgressionActor.setFlag("metanthropes", "Progression", { isProgressing: true });
 		//? Pass along the actor to the Progression Form
-		metaLog(
+		game.system.api.utils.metaLog(
 			3,
 			"MetanthropesActorSheet",
 			"_onProgression",
@@ -707,7 +703,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		try {
 			await metaProgressActor(metaProgressionActor);
 		} catch (error) {
-			metaLog(2, "MetanthropesActorSheet", "_onProgression", "ERROR:", error);
+			game.system.api.utils.metaLog(2, "MetanthropesActorSheet", "_onProgression", "ERROR:", error);
 			metaProgressionActor.setFlag("metanthropes", "Progression", { isProgressing: false });
 		}
 	}

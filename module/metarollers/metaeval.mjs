@@ -1,5 +1,4 @@
 import { metaExecute } from "./metaexecute.mjs";
-import { metaLog } from "../helpers/metahelpers.mjs";
 /**
  * metaEvaluate calculates the result of a roll, sets actor flags and prints it to chat
  *
@@ -39,7 +38,7 @@ export async function metaEvaluate(
 	destinyCost = 0,
 	itemName = null
 ) {
-	metaLog(
+	game.system.api.utils.metaLog(
 		3,
 		"metaEvaluate",
 		"Engaged for:",
@@ -178,22 +177,22 @@ export async function metaEvaluate(
 	//? if we have Pain condition, our succesfull (only) results are lowered by an equal amount - in case of Criticals we ignore Pain
 	let painEffect = levelsOfSuccess - pain;
 	if (resultLevel > 0 && !criticalSuccess && pain > 0) {
-		metaLog(4, "metaEvaluate", "Results are affected by Pain");
+		game.system.api.utils.metaLog(4, "metaEvaluate", "Results are affected by Pain");
 		if (painEffect < 0) {
 			result = "Failure 🟥";
 			resultLevel = 0;
 			levelsOfFailure = 0;
 			levelsOfSuccess = 0;
 			message += `It was a Success, turned into a ${result}, because of Pain ${pain}`;
-			metaLog(3, "metaEvaluate", "Pain Effect should be <0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
+			game.system.api.utils.metaLog(3, "metaEvaluate", "Pain Effect should be <0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
 		} else if (painEffect === 0) {
 			message += `It is still a ${result}, besides being affected by Pain ${pain}`;
 			levelsOfSuccess = 0;
-			metaLog(3, "metaEvaluate", "Pain Effect should be =0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
+			game.system.api.utils.metaLog(3, "metaEvaluate", "Pain Effect should be =0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
 		} else if (painEffect > 0) {
 			message += `It is a ${result}, reduced by Pain ${pain}`;
 			levelsOfSuccess = painEffect;
-			metaLog(3, "metaEvaluate", "Pain Effect should be >0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
+			game.system.api.utils.metaLog(3, "metaEvaluate", "Pain Effect should be >0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
 		}
 	} else {
 		//? Print the result of the roll
@@ -258,7 +257,7 @@ export async function metaEvaluate(
 		if (!(action === "Initiative")) {
 			//? Set autoExecute to true if it's either a Critical Success or a Critical Failure, or if the actor doesn't have enough Destiny to reroll
 			autoExecute = true;
-			metaLog(3, "metaEvaluate", "Auto-Execution Detected");
+			game.system.api.utils.metaLog(3, "metaEvaluate", "Auto-Execution Detected");
 		}
 	}
 	message += `<div><br></div>`;
@@ -296,7 +295,7 @@ export async function metaEvaluate(
 			newRolls.PossessionName = itemName;
 			break;
 		default:
-			metaLog(2, "metaEvaluate", "Error: Action not recognized:", action);
+			game.system.api.utils.metaLog(2, "metaEvaluate", "Error: Action not recognized:", action);
 			return;
 	}
 	//? Update the actor with the new .lastrolled values
@@ -310,7 +309,7 @@ export async function metaEvaluate(
 		rollMode: game.settings.get("core", "rollMode"),
 		flags: { metanthropes: { actoruuid: actor.uuid } },
 	});
-	metaLog(
+	game.system.api.utils.metaLog(
 		3,
 		"metaEvaluate",
 		"Finished for:",
@@ -359,10 +358,10 @@ export async function metaEvaluate(
 		await new Promise((resolve) => setTimeout(resolve, 5000));
 		//? Automatically execute the activation/use of the Metapower/Possession if it's a Critical Success/Failure or not enough destiny to reroll
 		if (action === "Metapower") {
-			metaLog(3, "metaEvaluate", "Auto-Activating Metapower:", itemName);
+			game.system.api.utils.metaLog(3, "metaEvaluate", "Auto-Activating Metapower:", itemName);
 			metaExecute(null, actor.uuid, action, itemName);
 		} else if (action === "Possession") {
-			metaLog(3, "metaEvaluate", "Auto-Using Possession:", itemName);
+			game.system.api.utils.metaLog(3, "metaEvaluate", "Auto-Using Possession:", itemName);
 			metaExecute(null, actor.uuid, action, itemName, multiAction);
 		}
 	}
@@ -402,7 +401,7 @@ export async function metaEvaluateReRoll(event) {
 	const action = button.dataset.action;
 	const itemName = button.dataset.itemName === "null" ? null : button.dataset.itemName;
 	const pain = parseInt(button.dataset.pain);
-	metaLog(3, "metaEvaluateReRoll", "Engaged for:", actor.name + "'s", action, actorUUID);
+	game.system.api.utils.metaLog(3, "metaEvaluateReRoll", "Engaged for:", actor.name + "'s", action, actorUUID);
 	//? Reduce Destiny by 1
 	let currentDestiny = actor.system.Vital.Destiny.value;
 	currentDestiny--;
@@ -422,5 +421,5 @@ export async function metaEvaluateReRoll(event) {
 		destinyCost,
 		itemName
 	);
-	metaLog(3, "metaEvaluateReRoll", "Finished for:", actor.name + "'s", action, actorUUID);
+	game.system.api.utils.metaLog(3, "metaEvaluateReRoll", "Finished for:", actor.name + "'s", action, actorUUID);
 }

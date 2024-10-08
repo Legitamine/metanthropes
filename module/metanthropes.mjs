@@ -67,10 +67,17 @@ metaRegisterHandlebarHelpers();
 
 //* System Initialization.
 Hooks.once("init", async function () {
-
 	//? Configure System
 	globalThis.SYSTEM = SYSTEM;
-	
+
+	//? Expose the API
+	game.system.api = {
+		utils: {
+			metaLog,
+		},
+	};
+
+	//? Register custom classes
 	game.metanthropes = {
 		MetanthropesActor,
 		MetanthropesItem,
@@ -93,20 +100,20 @@ Hooks.once("init", async function () {
 
 	//? Configure Active Effect Legacy Transferral
 	CONFIG.ActiveEffect.legacyTransferral = false;
-	
+
 	//? Metanthropes Combat System
 	CONFIG.Combat.documentClass = MetanthropesCombat;
-	
+
 	//? setup custom combatant
 	//! CONFIG.Combatant.documentClass = MetaCombatant; instead?
 	CONFIG.Actor.entityClass = MetaCombatant;
-	
+
 	//? setup custom combat tracker
 	//CONFIG.ui.combat = MetaCombatTracker;
-	
+
 	//? replace sidebar
 	CONFIG.ui.sidebar = MetaSidebar;
-	
+
 	//? Replace Sidebar Directories
 	CONFIG.ui.scenes = metaSceneDirectory;
 	CONFIG.ui.actors = metaActorDirectory;
@@ -115,16 +122,16 @@ Hooks.once("init", async function () {
 	CONFIG.ui.tables = metaRollTableDirectory;
 	CONFIG.ui.playlists = metaPlaylistDirectory;
 	CONFIG.ui.compendium = metaCompendiumDirectory;
-	
+
 	//? time in seconds for Round Duration
 	//todo: review how we plan to handle
 	//CONFIG.time.roundTime = 30;
-	
+
 	//? Define custom document classes.
 	CONFIG.Actor.documentClass = MetanthropesActor;
 	CONFIG.Item.documentClass = MetanthropesItem;
 	CONFIG.ActiveEffect.documentClass = MetanthropesActiveEffect;
-	
+
 	//? Register sheet application classes instead of default
 	Actors.unregisterSheet("core", ActorSheet);
 	Actors.registerSheet("metanthropes", MetanthropesActorSheet, {
@@ -147,21 +154,18 @@ Hooks.once("init", async function () {
 
 	//? Register System Settings
 	metaRegisterGameSettings(game.settings);
-	
+
 	//? Preload Handlebars templates.
 	return preloadHandlebarsTemplates();
 });
 
 //* Ready Hook
 Hooks.once("ready", async function () {
-	//? Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-	//todo: review if we would want this type of functionality
-	//Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
-	//* Migration section
-	metaLog(3, "System", "Starting Migration");
+	//? Migration section
+	game.system.api.utils.metaLog(3, "System", "Starting Migration");
 	await metaMigrateData();
-	metaLog(3, "System", "Finished Migration");
-	//* Add support for Moulinette
+	game.system.api.utils.metaLog(3, "System", "Finished Migration");
+	//? Add support for Moulinette
 	if (game.moulinette) {
 		//* Metanthropes Content Moulinette Integration
 		//? Add Metanthropes Metapowers Artwork to Moulinette
@@ -171,127 +175,6 @@ Hooks.once("ready", async function () {
 			pack: "Metapowers",
 			source: "data",
 			path: "systems/metanthropes/artwork/metapowers",
-		});
-		//? Add Metanthropes Portraits (Masculine) Artwork to Moulinette
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "Metanthropes",
-			pack: "Masculine Tokens",
-			source: "data",
-			path: "systems/metanthropes/artwork/portraits/protagonist/masculine",
-		});
-		//? Add Metanthropes Portraits (Feminine) Artwork to Moulinette
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "Metanthropes",
-			pack: "Feminine Tokens",
-			source: "data",
-			path: "systems/metanthropes/artwork/portraits/protagonist/feminine",
-		});
-		// //? Add Metanthropes Music to Moulinette
-		// game.moulinette.sources.push({
-		// 	type: "sounds",
-		// 	publisher: "Metanthropes",
-		// 	pack: "Music",
-		// 	source: "data",
-		// 	path: "modules/metanthropes-ost/audio/music",
-		// });
-		// //? Add Metanthropes Sound Effects to Moulinette
-		// game.moulinette.sources.push({
-		// 	type: "sounds",
-		// 	publisher: "Metanthropes",
-		// 	pack: "Sound Effects",
-		// 	source: "data",
-		// 	path: "modules/metanthropes-ost/audio/sound-effects",
-		// });
-		//* Free Content that we use in our Closed Alpha playtests
-		//? Add Dark Raven's Free Soundscapes to Moulinette (Free Module)
-		game.moulinette.sources.push({
-			type: "sounds",
-			publisher: "Dark Raven",
-			pack: "Free Soundscapes Module",
-			source: "data",
-			path: "modules/darkraven-games-soundscapes-free/audio",
-		});
-		//? Add Fragmaps' Free Images to Moulinette (Free Module)
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "Fragmaps",
-			pack: "Fragmaps Free Images",
-			source: "data",
-			path: "modules/fragmaps-free/images",
-		});
-		//? Add Fragmaps' Free Tiles to Moulinette (Free Module)
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "Fragmaps",
-			pack: "Fragmaps Free Tiles",
-			source: "data",
-			path: "modules/fragmaps-free/images/tiles",
-		});
-		//? Add Ivan Duch's Free Music Packs to Moulinette (Free Module)
-		game.moulinette.sources.push({
-			type: "sounds",
-			publisher: "Ivan Duch",
-			pack: "Free Music Packs",
-			source: "data",
-			path: "modules/ivan-duch-music-packs/audio",
-		});
-		//? Add Michael Ghelfi's Free Ambience to Moulinette (Free Module)
-		game.moulinette.sources.push({
-			type: "sounds",
-			publisher: "Michael Ghelfi",
-			pack: "Free Ambience",
-			source: "data",
-			path: "modules/michaelghelfi/ambience",
-		});
-		//? Add Michael Ghelfi's Free Music to Moulinette (Free Module)
-		game.moulinette.sources.push({
-			type: "sounds",
-			publisher: "Michael Ghelfi",
-			pack: "Free Music",
-			source: "data",
-			path: "modules/michaelghelfi/music",
-		});
-		//? Add Hologrounds' Free Audio to Moulinette (Free Module)
-		game.moulinette.sources.push({
-			type: "sounds",
-			publisher: "Hologrounds Free",
-			pack: "Audio",
-			source: "data",
-			path: "modules/hologrounds-free-module/audio",
-		});
-		//? Add Hologrounds' Free Maps to Moulinette (Free Module)
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "Hologrounds Free",
-			pack: "Maps",
-			source: "data",
-			path: "modules/hologrounds-free-module/maps",
-		});
-		//? Add Miska's Free Maps to Moulinette (Free Module)
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "Miska Free",
-			pack: "Maps",
-			source: "data",
-			path: "modules/miskasmaps/maps",
-		});
-		//? Add Coriolis' AI Portraits Art Pack to Moulinette (Free Module)
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "Coriolis",
-			pack: "AI Portraits",
-			source: "data",
-			path: "modules/coriolis-kbender-ai-art-pack/portraits",
-		});
-		//? Add Coriolis' AI Tokens Art Pack to Moulinette (Free Module)
-		game.moulinette.sources.push({
-			type: "images",
-			publisher: "Coriolis",
-			pack: "AI Tokens",
-			source: "data",
-			path: "modules/coriolis-kbender-ai-art-pack/tokens",
 		});
 	}
 	//? Display Welcome Screen
@@ -308,18 +191,18 @@ Hooks.once("ready", async function () {
 		game.settings.set("metanthropes", "metaInstall", false);
 	}
 	//? Done Loading Metanthropes System
-	metaLog(0, "System", "Initialized");
+	game.system.api.utils.metaLog(0, "System", "Initialized");
 	//? Un-pause the World
 	const metaPause = await game.settings.get("metanthropes", "metaPause");
 	if (metaPause) {
-		metaLog(0, "System", "Un-pausing the World after initialization");
+		game.system.api.utils.metaLog(0, "System", "Un-pausing the World after initialization");
 		game.togglePause(false);
 	}
 });
 
 //* Drag Ruler Integration
 Hooks.once("dragRuler.ready", (SpeedProvider) => {
-	metaLog(3, "Drag Ruler Integration Started");
+	game.system.api.utils.metaLog(3, "Drag Ruler Integration Started");
 	class MetanthropesSystemSpeedProvider extends SpeedProvider {
 		get colors() {
 			return [
@@ -345,7 +228,7 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
 		}
 	}
 	dragRuler.registerSystem("metanthropes", MetanthropesSystemSpeedProvider);
-	metaLog(3, "Drag Ruler Integration Finished");
+	game.system.api.utils.metaLog(3, "Drag Ruler Integration Finished");
 });
 
 //* Chat Message Event Listeners
@@ -408,13 +291,13 @@ Hooks.on("createActor", async (actor) => {
 			"Item",
 			itemsToDelete.map((item) => item.id)
 		);
-		metaLog(3, "New Actor Event Listener", "Removed Items from Duplicate", actor.name);
+		game.system.api.utils.metaLog(3, "New Actor Event Listener", "Removed Items from Duplicate", actor.name);
 		const effectsToDelete = actor.effects.filter((effect) => effect.label !== "Duplicate");
 		await actor.deleteEmbeddedDocuments(
 			"ActiveEffect",
 			effectsToDelete.map((effect) => effect.id)
 		);
-		metaLog(3, "New Actor Event Listener", "Removed Effects from Duplicate", actor.name);
+		game.system.api.utils.metaLog(3, "New Actor Event Listener", "Removed Effects from Duplicate", actor.name);
 	}
 });
 

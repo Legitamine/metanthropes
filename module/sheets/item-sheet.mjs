@@ -1,7 +1,5 @@
 //? Import Roll Handler
 import { metaHandleRolls } from "../metarollers/metarollhandler.mjs";
-//? Improt meta helpers
-import { metaLog } from "../helpers/metahelpers.mjs";
 //? Import Active Effect helpers
 import { prepareActiveEffectCategories, onManageActiveEffect } from "../metanthropes/metaeffects.mjs";
 /**
@@ -78,7 +76,7 @@ export class MetanthropesItemSheet extends ItemSheet {
 		context.isNarrator = game.user.isGM;
 		//? Prepare Active Effects
 		if (context.betaTesting) context.effects = prepareActiveEffectCategories(this.document.effects);
-		metaLog(3, "MetanthropesItemSheet getData results", "this, context, options", this, context, options);
+		game.system.api.utils.metaLog(3, "MetanthropesItemSheet getData results", "this, context, options", this, context, options);
 		return context;
 	}
 	//* Clickable stuff on the item sheets

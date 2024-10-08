@@ -1,4 +1,4 @@
-import { metaLog, metaTransformStringForStorage } from "../helpers/metahelpers.mjs";
+import { metaTransformStringForStorage } from "../helpers/metahelpers.mjs";
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -21,7 +21,7 @@ export class MetanthropesItem extends Item {
 			(this.type === "Metapower" || this.type === "Combo") &&
 			!this.parent.hasEnterMeta
 		) {
-			metaLog(
+			game.system.api.utils.metaLog(
 				4,
 				"MetaItem _preCreate",
 				"No Metapowers allowed:",
@@ -34,7 +34,7 @@ export class MetanthropesItem extends Item {
 			return false;
 		}
 		if (this.parent instanceof Actor && this.type === "Possession" && !this.parent.hasPossessions) {
-			metaLog(
+			game.system.api.utils.metaLog(
 				4,
 				"MetaItem _preCreate",
 				"No Possessions allowed:",
@@ -54,7 +54,7 @@ export class MetanthropesItem extends Item {
 			this.parent.canOnlyHaveStrikes
 		) {
 			//? Only allow Non-Strike Possessions to actors that can have them
-			metaLog(
+			game.system.api.utils.metaLog(
 				4,
 				"MetaItem _preCreate",
 				"Non-Strike Possession",
@@ -88,12 +88,12 @@ export class MetanthropesItem extends Item {
 	getRollData() {
 		//! Is this being used?
 		//? If present, return the actor's roll data.
-		metaLog(5, "MetaItem getRollData", "Engaged - !!! THIS SHOULD NOT HAPPEN !!!");
+		game.system.api.utils.metaLog(5, "MetaItem getRollData", "Engaged - !!! THIS SHOULD NOT HAPPEN !!!");
 		if (!this.actor) return null;
 		const rollData = this.actor.getRollData();
 		//? Grab the item's system data as well.
 		rollData.item = foundry.utils.deepClone(this.system);
-		metaLog(5, "MetaItem getRollData", "rollData:", rollData);
+		game.system.api.utils.metaLog(5, "MetaItem getRollData", "rollData:", rollData);
 		return rollData;
 	}
 }

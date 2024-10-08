@@ -1,5 +1,4 @@
 //? Import Helpers
-import { metaLog } from "../helpers/metahelpers.mjs";
 import { metaChangeActorImage } from "../helpers/metaimagehandler.mjs";
 /**
  *
