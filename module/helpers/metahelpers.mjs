@@ -1,9 +1,12 @@
 /**
- *
- * metaLog function controls how console logging happens.
+ * * metaLog function controls how console logging happens.
+ * 
+ * ? It is accessible via game.system.api.utils.metaLog()
+ * example: game.system.api.utils.metaLog(3, "name of the function", "description of the log", "variable1", variable1, "variable2", variable2);
+ * 
  * metaLog 0 (console.log), 1 (console.warn), 2 (console.error) show up in the console by default
  * metaLog 3 (console.log), 4 (console.warn), 5 (console.error) show up in the console if the advanced logging setting is enabled in the system settings
- * metaLog advanced logging is disabled by default and is designed to be used for troubleshooting and debugging
+ * Advanced logging is disabled by default and is designed to be used for troubleshooting and debugging
  *
  * @param {Number} logType
  * @param  {...any} variables
