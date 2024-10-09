@@ -3,21 +3,26 @@
 
 # Metanthropes
 
-Metanthropes (from Greek, translates to ‘beyond-human’) is a new, easy to learn, classless, setting-flexible, d100 system, featuring over 500 unique abilities, called Metapowers: unique, metaphysical gifts that transform ordinary humans into something extraordinary.
+**Metanthropes** - comes from Greek *'Μετα-Άνθρωπος' **'Beyond-Human'*** - is a new, easy to learn, classless, setting-flexible, d100 system. 
 
-This System is the official Metanthropes System for Foundry VTT. It is available, free of charge, for all Foundry VTT users. It includes demo content, to check out some example Metanthrope builds and playtest.
+Metanthropes features **over 500 unique abilities**, called **Metapowers**: unique, metaphysical gifts that transform ordinary humans into something extraordinary.
+
+This System is the official Metanthropes System for Foundry VTT. It is available, free of charge, for all Foundry VTT users. It includes demo content, to check out some example Metanthrope builds and playtest. It also comes with Journals to help you learn how to play.
+
+A list of Premium Modules for Foundry VTT is available [on our store](https://metanthropes.com/store). Take advantage of the **Early Access discount (-20%)** and the available bundles & start your Metanthropes journey today!
 
 - To learn more about Metanthropes, visit [our website.](https://metanthropes.com)
 - We would love to hear your opinion and feedback! Join our community [on Discord!](https://metanthropes.com/discord)
 
 ## Early Access
 
-Metanthropes is in Early Access - although fully functional, it does not fully represent the envisioned scope of the project.
+Metanthropes is in **Early Access** - although fully functional, it does not fully represent the envisioned scope of the project.
 
 Early Access is considered stable enough to run Sagas (Campaigns), as well as to playtest new features. We offer support to all Narrators [via our Discord!](https://metanthropes.com/discord). 
 
+- Beta Testing of New Features is available for owners of the [Premium Module Metanthropes: Homebrew](https://www.metanthropes.com/store/product/8-homebrew-early-access/).
 - Check out the roadmap section below, for more information on upcoming builds. 
-- Join the discussion and help us prioritize the features, that are most important to your playgroup!
+- Join the discussion and help us prioritize upcoming features, that are most important to your playgroup!
 
 ## Installation
 
@@ -79,5 +84,8 @@ Shoutout especially to the #system-development channel on the FVTT Discord serve
 
 Special shoutouts and huge thanks to the lovely community of Metanthropes, for their continued support and feedback:
  - @MB & party for amazing feedback and suggestions, and for being the first to contribute specific code suggestions for the project!
- - @RXOliver and the gang over at the THC Discord for the playtesting and suggestions!
- - Finally a special shoutout to my buddy @aMUSiC, who has guided me to avoid many pitfalls and for code-review assistance & overall mentoring!!
+ - @RXOliver and the gang over at the THC Discord for playtesting, feedback and suggestions!
+ - Our close friends, who have been instrumental in shaping Metanthropes since its infancy, back in 2014! For the game we deserve!!
+ - Finally a special shoutout to my buddy @aMUSiC, who has guided me to avoid many pitfalls, for code-review assistance & overall mentoring!!
+
+Metanthropes is a registered trademark of Legitamine Games. All rights reserved.
