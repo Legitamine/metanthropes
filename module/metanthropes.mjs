@@ -17,33 +17,21 @@
  *
  */
 
-//* Imports
-//? Custom classes
-import {
-	MetaSidebar,
-	metaSceneDirectory,
-	metaActorDirectory,
-	metaItemDirectory,
-	metaJournalDirectory,
-	metaRollTableDirectory,
-	metaPlaylistDirectory,
-	metaCompendiumDirectory,
-} from "./metaclasses/metaclasses.mjs";
-//? Combat Modules
-import { MetanthropesCombat } from "./metanthropes/combat.mjs";
-import { MetaCombatTracker } from "./metanthropes/combattracker.mjs";
-import { MetaCombatant } from "./metanthropes/combatant.mjs";
-//? Document classes
+//* System Configuration
+import { SYSTEM } from "./config/system.mjs";
+//* Data Models
+import * as models from "./models/_data-models.mjs";
+//* Documents
 import { MetanthropesActor } from "./documents/actor.mjs";
 import { MetanthropesItem } from "./documents/item.mjs";
 import { MetanthropesActiveEffect } from "./documents/active-effect.mjs";
-//? Sheet classes
+//* Sheets
 import { MetanthropesActorSheet } from "./sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
 import { MetanthropesActiveEffectSheet } from "./sheets/active-effect-sheet.mjs";
-//? Handlebars templates
-import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
-//? Helpers
+//* AppV2 Sheets
+import { MetanthropesNPCActorSheet, MetanthropesActorSheetV2 } from "./sheets/actor-sheet-v2.mjs";
+//* Dice Rollers
 import { metaEvaluate, metaEvaluateReRoll } from "./metarollers/metaeval.mjs";
 import {
 	metaRolld10,
@@ -54,20 +42,33 @@ import {
 	metaCoverReRoll,
 } from "./metarollers/metarollextras.mjs";
 import { metaInitiative, metaInitiativeReRoll } from "./metarollers/metainitiative.mjs";
-import { metaExecute } from "./metarollers/metaexecute.mjs";
+//* Combat
+import { MetanthropesCombat } from "./metanthropes/combat.mjs";
+import { MetaCombatTracker } from "./metanthropes/combattracker.mjs";
+import { MetaCombatant } from "./metanthropes/combatant.mjs";
+//* Utilities
 import { metaMigrateData } from "./metanthropes/metamigration.mjs";
 import { metaLog } from "./helpers/metahelpers.mjs";
-//? System Configuration
-import { SYSTEM } from "./config/system.mjs";
-//? Data Models
-import * as models from "./models/_data-models.mjs";
-//? AppV2 Sheets
-import { MetanthropesNPCActorSheet, MetanthropesActorSheetV2 } from "./sheets/actor-sheet-v2.mjs";
-//? Register Game Settings
+//* Game Settings
 import { metaRegisterGameSettings } from "./config/settings.mjs";
 import { metaRegisterStatusEffects } from "./config/status-effects.mjs";
-//? Handlebars Helpers
+//* Other Functions
+import { metaExecute } from "./metarollers/metaexecute.mjs";
+//* Handlebar Helpers
 import { metaRegisterHandlebarHelpers } from "./config/handlebar-helpers.mjs";
+//* Handlebar Templates
+import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
+//* Custom UI
+import {
+	MetaSidebar,
+	metaSceneDirectory,
+	metaActorDirectory,
+	metaItemDirectory,
+	metaJournalDirectory,
+	metaRollTableDirectory,
+	metaPlaylistDirectory,
+	metaCompendiumDirectory,
+} from "./metaclasses/metaclasses.mjs";
 
 //* Register Handlebars Helpers
 metaRegisterHandlebarHelpers();

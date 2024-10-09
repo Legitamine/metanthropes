@@ -17,7 +17,7 @@
 	"flags": {
 		"hotReload": {
 			"extensions": ["css", "html", "hbs", "json"],
-			"paths": ["css", "lang", "templates"]
+			"paths": ["styles/metanthropes.css", "lang/en.json", "templates"]
 		}
 	},
 	"manifest": "https://github.com/legitamine/metanthropes/releases/latest/download/system.json",
@@ -43,7 +43,7 @@
 		"maximum": "13"
 	},
 	"esmodules": ["greensock/esm/all.js", "module/metanthropes.mjs"],
-	"styles": ["css/metanthropes.css"],
+	"styles": ["styles/metanthropes.css"],
 	"languages": [
 		{
 			"lang": "en",

@@ -1481,8 +1481,7 @@ h3 {
   border-radius: 50%;
 }
 .metanthropes .style-tab-header-portrait {
-  max-height: -moz-fit-content;
-  max-height: fit-content;
+  max-height: 100px;
   width: auto;
   -o-object-fit: contain;
      object-fit: contain;
