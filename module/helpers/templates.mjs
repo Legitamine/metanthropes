@@ -34,7 +34,5 @@ export const preloadHandlebarsTemplates = async function () {
 		"systems/metanthropes/templates/sidebar/document-directory.hbs",
 		"systems/metanthropes/templates/sidebar/compendium-directory.hbs",
 		"systems/metanthropes/templates/sidebar/folder-partial.hbs",
-		//! should not be required anymore? AppV2 partials
-		//"systems/metanthropes/templates/sheets/partials/actor-header.hbs",
 	]);
 };

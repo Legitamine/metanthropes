@@ -109,8 +109,8 @@ export default class MetanthropesActorBase extends foundry.abstract.TypeDataMode
 
 	//? Base Life Data preparation
 	_prepareBaseLifeData() {
-		game.system.api.metaLog(3, "datamodel prepareBaseLifeData", this);
-		life.max = this.life.value;
+		metanthropes.utils.metaLog(3, "datamodel prepareBaseLifeData", this);
+		this.life.max = this.life.value;
 	}
 
 	//? Base Characteristics Data preparation
@@ -120,6 +120,21 @@ export default class MetanthropesActorBase extends foundry.abstract.TypeDataMode
 
 	//? Base Movement Data preparation
 	_prepareBaseMovementData() {
+		
+	}
+
+	//? Derived Life Data preparation
+	_prepareDerivedLifeData() {
+		
+	}
+
+	//? Derived Characteristics Data preparation
+	_prepareDerivedCharacteristicsData() {
+		
+	}
+
+	//? Derived Movement Data preparation
+	_prepareDerivedMovementData() {
 		
 	}
 

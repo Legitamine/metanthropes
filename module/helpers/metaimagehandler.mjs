@@ -97,7 +97,7 @@ async function metaUpdateTokenImage(actor, selection, useWildcard) {
 			try {
 				await scene.updateEmbeddedDocuments("Token", tokensToUpdate);
 			} catch (error) {
-				game.system.api.utils.metaLog(2, "metaUpdateTokenImage", "Error updating token:", error, "tokens to update:", tokensToUpdate);
+				metanthropes.utils.metaLog(2, "metaUpdateTokenImage", "Error updating token:", error, "tokens to update:", tokensToUpdate);
 			}
 		}
 	}
@@ -129,7 +129,7 @@ async function metaUpdateTokenImage(actor, selection, useWildcard) {
 // 	let imageDir = null;
 // 	let finalDir = baseDir + imageDir + "/";
 // 	if (image !== "portrait" || image !== "token") {
-// 		game.system.api.utils.metaLog(5, "metaChangeActorImage", "Error for image type of:", image, " - no such image type defined");
+// 		metanthropes.utils.metaLog(5, "metaChangeActorImage", "Error for image type of:", image, " - no such image type defined");
 // 		return;
 // 	}
 // 	if (image === "portrait") {
@@ -170,7 +170,7 @@ async function metaUpdateTokenImage(actor, selection, useWildcard) {
 // 						try {
 // 							await scene.updateEmbeddedDocuments("Token", tokensToUpdate);
 // 						} catch (error) {
-// 							game.system.api.utils.metaLog(
+// 							metanthropes.utils.metaLog(
 // 								2,
 // 								"metaChangePortrait",
 // 								"Error updating token:",

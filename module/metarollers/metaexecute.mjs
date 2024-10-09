@@ -29,7 +29,7 @@ import { metaExtractNumberOfDice } from "../helpers/metahelpers.mjs";
 export async function metaExecute(event, actorUUID, action, itemName, multiAction = 0) {
 	//? If we called this from a button click, get the data we need
 	if (event) {
-		game.system.api.utils.metaLog(3, "metaExecute", "Engaged via button click - Event:", event);
+		metanthropes.utils.metaLog(3, "metaExecute", "Engaged via button click - Event:", event);
 		const button = event.target;
 		actorUUID = button.dataset.actoruuid;
 		action = button.dataset.action;
@@ -45,10 +45,10 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	//? Find the first item ()that matches itemName
 	let metaItemData = actor.items.find((item) => item.name === itemName);
 	if (!metaItemData) {
-		game.system.api.utils.metaLog(2, "metaExecute", "ERROR: Could not find any item named:", itemName);
+		metanthropes.utils.metaLog(2, "metaExecute", "ERROR: Could not find any item named:", itemName);
 		return;
 	}
-	game.system.api.utils.metaLog(3, "metaExecute", "Engaged for", itemName);
+	metanthropes.utils.metaLog(3, "metaExecute", "Engaged for", itemName);
 	//todo review which need to be const and which let by determining what can be changed by the spending of lvl of success
 	//? Gather all the execution data
 	let actionSlot = metaItemData.system.Execution.ActionSlot.value;
@@ -166,7 +166,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		} else {
 			executeRoll = true;
 			//? Use Possession
-			game.system.api.utils.metaLog(3, "metaExecute", "Using Possession:", itemName, "with Attack Type:", attackType);
+			metanthropes.utils.metaLog(3, "metaExecute", "Using Possession:", itemName, "with Attack Type:", attackType);
 			if (attackType === "Melee") {
 				//todo: need to add size modifier to increase the base d10 dice pool for unarmed strikes only
 				flavorMessage = `Attacks with their ${itemName}<br><br>`;
@@ -188,7 +188,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			}
 		}
 	} else {
-		game.system.api.utils.metaLog(2, "metaExecute", "ERROR: cannot Execute action:", action);
+		metanthropes.utils.metaLog(2, "metaExecute", "ERROR: cannot Execute action:", action);
 		return;
 	}
 	//* Targeting v1 variables
@@ -217,7 +217,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		//? finalize action slot
 		if (actionSlot.includes("Always Active")) {
 			//? always active return
-			game.system.api.utils.metaLog(1, "metaExecute", actor.name + "'s " + itemName, "is Always Active!");
+			metanthropes.utils.metaLog(1, "metaExecute", actor.name + "'s " + itemName, "is Always Active!");
 			ui.notifications.info(actor.name + "'s " + itemName + " is Always Active!");
 			return;
 		} else if (actionSlot.includes("Focused")) {
@@ -440,13 +440,13 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		//* Targeting v1 - requires beta Testing from Homebrew Module enabled
 		if (betaTesting) {
 			const manuallySelectedTargets = game.user.targets;
-			game.system.api.utils.metaLog(3, "metaExecute", "Manually Selected Targets:", manuallySelectedTargets);
+			metanthropes.utils.metaLog(3, "metaExecute", "Manually Selected Targets:", manuallySelectedTargets);
 			//? Store targeted actors in an array
 			targetedActors = Array.from(manuallySelectedTargets).map((token) => token.actor);
-			game.system.api.utils.metaLog(3, "metaExecute", "Targeted Actors:", targetedActors);
+			metanthropes.utils.metaLog(3, "metaExecute", "Targeted Actors:", targetedActors);
 			//? Check if there are any targeted actors and set the actionableTargets variable accordingly
 			actionableTargets = targetedActors.length > 0;
-			game.system.api.utils.metaLog(3, "metaExecute", "Actionable Targets:", actionableTargets);
+			metanthropes.utils.metaLog(3, "metaExecute", "Actionable Targets:", actionableTargets);
 			if (actionableTargets) {
 				//? Get the names of all targeted actors
 				const targetedActorNames = targetedActors.map((actor) => actor.name);
@@ -455,7 +455,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				)}`;
 				contentMessage += allSelectedTargetsMessage;
 				contentMessage += `<hr />`;
-				game.system.api.utils.metaLog(3, "metaExecute", "All Selected Targets Message:", allSelectedTargetsMessage);
+				metanthropes.utils.metaLog(3, "metaExecute", "All Selected Targets Message:", allSelectedTargetsMessage);
 			}
 		}
 		if (damageCosmicMessage) {
@@ -551,7 +551,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	//todo: removing this for now, until we revisit the chat message and create our custom class, as we cannot pass along the proper dmg/healing values to the application from the inline rolls.
 	// if (betaTesting) {
 	// 	if (damageSelectedTargets && actionableTargets) {
-	// 		game.system.api.utils.metaLog(3, "metaExecute", "Applying Damage to Selected Targets");
+	// 		metanthropes.utils.metaLog(3, "metaExecute", "Applying Damage to Selected Targets");
 	// 		//? Apply damage to each targeted actor
 	// 		for (let i = 0; i < targetedActors.length; i++) {
 	// 			let targetedActor = targetedActors[i];
@@ -607,7 +607,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	// 			}
 	// 			const targetedActorFinalLifeCurrent = await targetedActor.system.Vital.Life.value;
 	// 			const targetedActorFinalLifeMax = await targetedActor.system.Vital.Life.max;
-	// 			game.system.api.utils.metaLog(3, "metaExecute", "Beta Testing Damage Application", targetedActorName, targetedActorDamage, targetedActorHealing);
+	// 			metanthropes.utils.metaLog(3, "metaExecute", "Beta Testing Damage Application", targetedActorName, targetedActorDamage, targetedActorHealing);
 	// 			contentMessage += `Beta Testing (Damage/Healing applicationt test, please ignore): ${targetedActorName} has ${targetedActorFinalLifeCurrent}/${targetedActorFinalLifeMax} ❤️ Life remaining.<br>`;
 	// 			// await ChatMessage.create({
 	// 			// 	user: game.user.id,
@@ -633,7 +633,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	//! the idea here being that if the flags are going to be added later, here we prevent them from remaining from previous successful activations
 	await actor.unsetFlag("metanthropes", "duplicateSelf");
 	//? Get the result of the last roll
-	game.system.api.utils.metaLog(3, "metaExecute", "Post Execution Actions");
+	metanthropes.utils.metaLog(3, "metaExecute", "Post Execution Actions");
 	let checkResult = await actor.getFlag("metanthropes", "lastrolled").MetaEvaluate;
 	//* Check for Duplicate Self Metapower Activation
 	if (
@@ -645,7 +645,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			itemName === "Squad" ||
 			itemName === "Unit")
 	) {
-		game.system.api.utils.metaLog(3, "metaExecute", "Duplicate Self Metapower Activation Detected");
+		metanthropes.utils.metaLog(3, "metaExecute", "Duplicate Self Metapower Activation Detected");
 		let currentLife = actor.system.Vital.Life.value;
 		let duplicateMaxLife = 0;
 		if (itemName === "Clone") {
@@ -660,7 +660,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			duplicateMaxLife = Math.ceil(currentLife * 0.5);
 		}
 		await actor.setFlag("metanthropes", "duplicateSelf", { maxLife: duplicateMaxLife });
-		game.system.api.utils.metaLog(3, "metaExecute", "Duplicate Self Metapower Max Life:", duplicateMaxLife);
+		metanthropes.utils.metaLog(3, "metaExecute", "Duplicate Self Metapower Max Life:", duplicateMaxLife);
 	}
 	//* Visual Effects
 	//* Sound Effects
@@ -680,7 +680,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 					let foundSound = playlist.sounds.find((sound) => sound.name === sfxName);
 					if (foundSound) {
 						//? Play the sound
-						game.system.api.utils.metaLog(
+						metanthropes.utils.metaLog(
 							3,
 							"metaExecute",
 							"Playing Sound Effect:",
@@ -697,5 +697,5 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		}
 	}
 	//? metaExecute Finished
-	game.system.api.utils.metaLog(3, "metaExecute", "Finished");
+	metanthropes.utils.metaLog(3, "metaExecute", "Finished");
 }

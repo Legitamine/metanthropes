@@ -1,8 +1,8 @@
 /**
  * * metaLog function controls how console logging happens.
  * 
- * ? It is accessible via game.system.api.utils.metaLog()
- * example: game.system.api.utils.metaLog(3, "name of the function", "description of the log", "variable1", variable1, "variable2", variable2);
+ * ? It is accessible via metanthropes.utils.metaLog()
+ * example: metanthropes.utils.metaLog(3, "name of the function", "description of the log", "variable1", variable1, "variable2", variable2);
  * 
  * metaLog 0 (console.log), 1 (console.warn), 2 (console.error) show up in the console by default
  * metaLog 3 (console.log), 4 (console.warn), 5 (console.error) show up in the console if the advanced logging setting is enabled in the system settings

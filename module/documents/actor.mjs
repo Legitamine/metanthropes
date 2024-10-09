@@ -35,9 +35,15 @@ export class MetanthropesActor extends Actor {
 			case "Protagonist":
 				if (
 					!data.flags?.metanthropes?.duplicateSelf &&
-					(createData.img === "icons/svg/mystery-man.svg" || !createData.img)
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
 				) {
-					game.system.api.utils.metaLog(3, "MetanthropesActor", "_preCreate", "Creating Protagonist Token from data", data);
+					metanthropes.utils.metaLog(
+						3,
+						"MetanthropesActor",
+						"_preCreate",
+						"Creating Protagonist Token from data",
+						data
+					);
 					createData.img = "systems/metanthropes/tokens/defaults/token-hammer.webp";
 					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-hammer.webp";
 				}
@@ -60,7 +66,7 @@ export class MetanthropesActor extends Actor {
 			case "Metanthrope":
 				if (
 					!data.flags?.metanthropes?.duplicateSelf &&
-					(createData.img === "icons/svg/mystery-man.svg" || !createData.img)
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
 				) {
 					createData.img = "systems/metanthropes/tokens/defaults/token-utilitarian.webp";
 					createData.prototypeToken.texture.src =
@@ -82,7 +88,7 @@ export class MetanthropesActor extends Actor {
 			case "Human":
 				if (
 					!data.flags?.metanthropes?.duplicateSelf &&
-					(createData.img === "icons/svg/mystery-man.svg" || !createData.img)
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
 				) {
 					createData.img = "systems/metanthropes/tokens/defaults/token-aegis.webp";
 					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-aegis.webp";
@@ -103,7 +109,7 @@ export class MetanthropesActor extends Actor {
 			case "Artificial":
 				if (
 					!data.flags?.metanthropes?.duplicateSelf &&
-					(createData.img === "icons/svg/mystery-man.svg" || !createData.img)
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
 				) {
 					createData.img = "systems/metanthropes/tokens/defaults/token-animator.webp";
 					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-animator.webp";
@@ -124,7 +130,7 @@ export class MetanthropesActor extends Actor {
 			case "Animal":
 				if (
 					!data.flags?.metanthropes?.duplicateSelf &&
-					(createData.img === "icons/svg/mystery-man.svg" || !createData.img)
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
 				) {
 					createData.img = "systems/metanthropes/tokens/defaults/token-kineticist.webp";
 					createData.prototypeToken.texture.src =
@@ -146,7 +152,7 @@ export class MetanthropesActor extends Actor {
 			case "Animated-Plant":
 				if (
 					!data.flags?.metanthropes?.duplicateSelf &&
-					(createData.img === "icons/svg/mystery-man.svg" || !createData.img)
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
 				) {
 					createData.img = "systems/metanthropes/tokens/defaults/token-clairvoyant.webp";
 					createData.prototypeToken.texture.src =
@@ -168,7 +174,7 @@ export class MetanthropesActor extends Actor {
 			case "Animated-Cadaver":
 				if (
 					!data.flags?.metanthropes?.duplicateSelf &&
-					(createData.img === "icons/svg/mystery-man.svg" || !createData.img)
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
 				) {
 					createData.img = "systems/metanthropes/tokens/defaults/token-cosmonaut.webp";
 					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-cosmonaut.webp";
@@ -189,7 +195,7 @@ export class MetanthropesActor extends Actor {
 			case "Extraterrestrial":
 				if (
 					!data.flags?.metanthropes?.duplicateSelf &&
-					(createData.img === "icons/svg/mystery-man.svg" || !createData.img)
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
 				) {
 					createData.img = "systems/metanthropes/tokens/defaults/token-arbiter.webp";
 					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-arbiter.webp";
@@ -210,7 +216,7 @@ export class MetanthropesActor extends Actor {
 			case "Extradimensional":
 				if (
 					!data.flags?.metanthropes?.duplicateSelf &&
-					(createData.img === "icons/svg/mystery-man.svg" || !createData.img)
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
 				) {
 					createData.img = "systems/metanthropes/tokens/defaults/token-pink.webp";
 					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-pink.webp";
@@ -231,7 +237,7 @@ export class MetanthropesActor extends Actor {
 			case "MetaTherion":
 				if (
 					!data.flags?.metanthropes?.duplicateSelf &&
-					(createData.img === "icons/svg/mystery-man.svg" || !createData.img)
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
 				) {
 					createData.img = "systems/metanthropes/tokens/defaults/token-manipulator.webp";
 					createData.prototypeToken.texture.src =
@@ -253,7 +259,7 @@ export class MetanthropesActor extends Actor {
 			case "Vehicle":
 				if (
 					!data.flags?.metanthropes?.duplicateSelf &&
-					(createData.img === "icons/svg/mystery-man.svg" || !createData.img)
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
 				) {
 					createData.img = "systems/metanthropes/tokens/defaults/token-controller.webp";
 					createData.prototypeToken.texture.src =
@@ -275,7 +281,7 @@ export class MetanthropesActor extends Actor {
 			default:
 				if (
 					!data.flags?.metanthropes?.duplicateSelf &&
-					(createData.img === "icons/svg/mystery-man.svg" || !createData.img)
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
 				) {
 					createData.img = "systems/metanthropes/tokens/defaults/token-border.webp";
 					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-border.webp";
@@ -345,7 +351,7 @@ export class MetanthropesActor extends Actor {
 					if (!(this.primeimg == `systems/metanthropes/artwork/metapowers/mp-${primeMPStorageName}.webp`)) {
 						//? for Protagonists with a prime metapower defined, make it their respective metapower icon
 						this.primeimg = `systems/metanthropes/artwork/metapowers/mp-${primeMPStorageName}.webp`;
-						game.system.api.utils.metaLog(
+						metanthropes.utils.metaLog(
 							3,
 							"MetanthropesActor",
 							"prepareBaseData",
@@ -396,7 +402,7 @@ export class MetanthropesActor extends Actor {
 		const hasProgressed =
 			progressionFlag && progressionFlag.hasProgressed !== undefined ? progressionFlag.hasProgressed : false;
 		if (hasProgressed) {
-			game.system.api.utils.metaLog(
+			metanthropes.utils.metaLog(
 				4,
 				"MetanthropesActor",
 				"_prepareDerivedCharacteristicsXPData",
@@ -448,7 +454,7 @@ export class MetanthropesActor extends Actor {
 			if (CharValue.Current <= 0) {
 				ifCharacteristicBecomesZeroPenalty = CharValue.Current;
 				CharValue.Current = 0;
-				game.system.api.utils.metaLog(
+				metanthropes.utils.metaLog(
 					1,
 					"MetanthropesActor",
 					"_prepareBaseCharacteristicsData",
@@ -477,7 +483,7 @@ export class MetanthropesActor extends Actor {
 				//? Determine if the Stat has dropped to 0
 				if (StatScore.Roll <= 0) {
 					StatScore.Roll = 0;
-					game.system.api.utils.metaLog(
+					metanthropes.utils.metaLog(
 						1,
 						"MetanthropesActor",
 						"_prepareBaseCharacteristicsData",
@@ -713,7 +719,7 @@ export class MetanthropesActor extends Actor {
 						this.name +
 						" hasn't activated Duplicate Self Metapower and should not be duplicated!"
 				);
-				game.system.api.utils.metaLog(
+				metanthropes.utils.metaLog(
 					2,
 					"MetanthropesActor",
 					"_prepareBaseVitalData",
@@ -820,7 +826,7 @@ export class MetanthropesActor extends Actor {
 		if (experienceSpent < startingPerks * 100) {
 			// clog("Metanthropes | Actor Prep |", this.name, "has not spent enough XP on starting perks!");
 			// clog("Metanthropes | Actor Prep |", this.name, "has spent", experienceSpent, "XP on perks");
-			game.system.api.utils.metaLog(
+			metanthropes.utils.metaLog(
 				2,
 				"MetanthropesActor",
 				"_prepareDerivedPerkXPData",
@@ -848,7 +854,7 @@ export class MetanthropesActor extends Actor {
 			))
 		);
 		if (systemData.Vital.Experience.Stored < 0) {
-			game.system.api.utils.metaLog(
+			metanthropes.utils.metaLog(
 				2,
 				"MetanthropesActor",
 				"_prepareDerivedPerkXPData",
@@ -913,7 +919,13 @@ export class MetanthropesActor extends Actor {
 	//* Progression
 	_prepareCharacteristicsProgression(actorData) {
 		if (actorData.type == "Vehicle") return;
-		game.system.api.utils.metaLog(3, "MetanthropesActorProgression", "_prepareCharacteristicsProgression", "actorData:", actorData);
+		metanthropes.utils.metaLog(
+			3,
+			"MetanthropesActorProgression",
+			"_prepareCharacteristicsProgression",
+			"actorData:",
+			actorData
+		);
 		const systemData = actorData.system;
 		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
 			//? Calculate the Base score for this Characteristic (Initial + Progressed)
@@ -938,7 +950,7 @@ export class MetanthropesActor extends Actor {
 		if (this.type == "Vehicle") return;
 		const data = super.getRollData();
 		if (!data.Characteristics) {
-			game.system.api.utils.metaLog(2, "MetanthropesActor", "getRollData", this.name, "has no Characteristics!");
+			metanthropes.utils.metaLog(2, "MetanthropesActor", "getRollData", this.name, "has no Characteristics!");
 			return;
 		}
 		data.RollStats = {};

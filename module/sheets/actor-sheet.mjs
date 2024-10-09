@@ -104,7 +104,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		context.affectedByHunger = this.actor.isHungry;
 		//? Flag for Tokenizer Support
 		context.tokenizer = game.modules.get("vtta-tokenizer")?.active;
-		game.system.api.utils.metaLog(3, "MetanthropesActorSheet", "getData", "this, context, options", this, context, options);
+		metanthropes.utils.metaLog(3, "MetanthropesActorSheet", "getData", "this, context, options", this, context, options);
 		return context;
 	}
 	//* Prepare items
@@ -154,7 +154,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 					Possessions[item.system.Category.value].push(item);
 				} else {
 					//? Remove the item from the actor if its category is not allowed
-					game.system.api.utils.metaLog(2, "MetanthropesActorSheet _prepareItems", "Invalid Category for Possession:", item.name);
+					metanthropes.utils.metaLog(2, "MetanthropesActorSheet _prepareItems", "Invalid Category for Possession:", item.name);
 					return;
 					//actorData.deleteEmbeddedDocuments("Item", [item.id]);
 					//actorData.items.splice(i, 1);
@@ -310,7 +310,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		}
 		await this.maximize();
 		this.render(true);
-		game.system.api.utils.metaLog(3, "MetanthropesActorSheet _onHeaderButtonClick", size);
+		metanthropes.utils.metaLog(3, "MetanthropesActorSheet _onHeaderButtonClick", size);
 	}
 	//? Render the sheet
 	/**
@@ -587,13 +587,13 @@ export class MetanthropesActorSheet extends ActorSheet {
 		if (coreModule && coreModule?.active) {
 			const api = coreModule.api;
 			try {
-				game.system.api.utils.metaLog(3, "_onNewActor", "Core Module API Available, calling metaNewActor");
+				metanthropes.utils.metaLog(3, "_onNewActor", "Core Module API Available, calling metaNewActor");
 				await api.metaNewActor(actor);
 			} catch (error) {
-				game.system.api.utils.metaLog(2, "_onNewActor", "Core Module API Error:", error);
+				metanthropes.utils.metaLog(2, "_onNewActor", "Core Module API Error:", error);
 			}
 		} else {
-			game.system.api.utils.metaLog(2, "_onNewActor", "Core Module Not Active");
+			metanthropes.utils.metaLog(2, "_onNewActor", "Core Module Not Active");
 		}
 	}
 	//* Finalize Premade Protagonist
@@ -683,7 +683,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		// 	"metaStartProgression"
 		// );
 		if (!metaProgressActor) {
-			game.system.api.utils.metaLog(2, "MetanthropesActorSheet", "_onProgression", "Progression function not available");
+			metanthropes.utils.metaLog(2, "MetanthropesActorSheet", "_onProgression", "Progression function not available");
 			return;
 		}
 		//? Get the actor for the Progression
@@ -693,7 +693,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//todo do this properly with a promise!
 		metaProgressionActor.setFlag("metanthropes", "Progression", { isProgressing: true });
 		//? Pass along the actor to the Progression Form
-		game.system.api.utils.metaLog(
+		metanthropes.utils.metaLog(
 			3,
 			"MetanthropesActorSheet",
 			"_onProgression",
@@ -703,7 +703,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		try {
 			await metaProgressActor(metaProgressionActor);
 		} catch (error) {
-			game.system.api.utils.metaLog(2, "MetanthropesActorSheet", "_onProgression", "ERROR:", error);
+			metanthropes.utils.metaLog(2, "MetanthropesActorSheet", "_onProgression", "ERROR:", error);
 			metaProgressionActor.setFlag("metanthropes", "Progression", { isProgressing: false });
 		}
 	}

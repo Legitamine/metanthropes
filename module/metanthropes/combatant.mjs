@@ -4,10 +4,10 @@ import { metaInitiative } from "../metarollers/metainitiative.mjs";
 //todo investigate - does the formula in system.json and metanthropes.mjs have an effect here? for v0.9 combat overhaul
 export class MetaCombatant extends Combatant {
 	getInitiativeRoll(formula) {
-		game.system.api.utils.metaLog(2, "MetaCombatant getInitiativeRoll", "Engaged");
+		metanthropes.utils.metaLog(2, "MetaCombatant getInitiativeRoll", "Engaged");
 		const roll = new Roll(async () => {
 			await metaInitiative(this);
-			game.system.api.utils.metaLog(2, "MetaCombatant getInitiativeRoll", "this:", this);
+			metanthropes.utils.metaLog(2, "MetaCombatant getInitiativeRoll", "this:", this);
 			//? Retrieve the initiative value from the actor's flags (assuming you have set the flag in metaInitiative)
 			const initiativeData = this.actor.getFlag("metanthropes", "initiative");
 			const initiativeValue = initiativeData.initiativeValue;

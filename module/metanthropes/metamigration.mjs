@@ -3,17 +3,17 @@
  * @returns {Promise<void>}
  */
 export function metaMigrateData() {
-	//game.system.api.utils.metaLog(3, "metaMigrateData", "Started");
-	game.system.api.utils.metaLog(3, "metaMigrateData", "No Migration Needed");
+	//metanthropes.utils.metaLog(3, "metaMigrateData", "Started");
+	metanthropes.utils.metaLog(3, "metaMigrateData", "No Migration Needed");
 	//	const migrationVersion = game.settings.get("metanthropes", "migrationVersion");
 	//	const isNewerVersion = foundry.utils.isNewerVersion;
 	//	if (!isNewerVersion(game.system.version, migrationVersion)) return;
-	//	game.system.api.utils.metaLog(0, "Migrating World to latest version");
+	//	metanthropes.utils.metaLog(0, "Migrating World to latest version");
 	//	// if (isNewerVersion("0.7.21", migrationVersion)) _metaMigrateItems();
 	//	if (isNewerVersion("0.8.21", migrationVersion)) _metaTemplateChanges();
 	//	//	game.settings.set("metanthropes", "migrationVersion", game.system.version);
 	//_metaMigrateItems();
-	//game.system.api.utils.metaLog(3, "metaMigrateData", "Finished");
+	//metanthropes.utils.metaLog(3, "metaMigrateData", "Finished");
 }
 //* Handle template deprecations
 function _metaTemplateChanges() {
@@ -34,7 +34,7 @@ function _metaTemplateChanges() {
 				Character: "Character",
 				Metapowered: "Metapowered",
 			};
-			game.system.api.utils.metaLog(
+			metanthropes.utils.metaLog(
 				3,
 				`metaMigrateData`,
 				`_metaTemplateChanges`,
@@ -45,7 +45,7 @@ function _metaTemplateChanges() {
 		}
 		if (item.system.Execution.TargetsType.value === "Living") {
 			item.update({ "system.Execution.TargetsType.value": "Organism" });
-			game.system.api.utils.metaLog(3, `metaMigrateData`, `_metaTemplateChanges`, `Migrated Item:`, item.name);
+			metanthropes.utils.metaLog(3, `metaMigrateData`, `_metaTemplateChanges`, `Migrated Item:`, item.name);
 		}
 	}
 }
@@ -60,19 +60,19 @@ async function _metaIsNewerVersion(version, oldVersion) {
 //* Helper function to migrate Items
 async function _metaMigrateItems() {
 	const currentVersion = await game.system.data.version;
-	game.system.api.utils.metaLog(3, `metaMigrateData`, `_metaMigrateItems`, `Migrating Items to version`, currentVersion);
+	metanthropes.utils.metaLog(3, `metaMigrateData`, `_metaMigrateItems`, `Migrating Items to version`, currentVersion);
 	const worldItems = await game.items.contents;
 	for (let item of worldItems) {
 		if (item.system.Effects.EffectDescription.label === "Effect Description") {
-			game.system.api.utils.metaLog(4, `metaMigrateData`, `_metaMigrateItems`, `Migrating Item:`, item.name, item);
+			metanthropes.utils.metaLog(4, `metaMigrateData`, `_metaMigrateItems`, `Migrating Item:`, item.name, item);
 			await item.update({ "system.Effects.EffectDescription.label": "Effect" });
 		}
 		if (item.system.Effects.PermanentEffectDescription.label === "Permanent Effect") {
-			game.system.api.utils.metaLog(4, `metaMigrateData`, `_metaMigrateItems`, `Migrating Item:`, item.name, item);
+			metanthropes.utils.metaLog(4, `metaMigrateData`, `_metaMigrateItems`, `Migrating Item:`, item.name, item);
 			await item.update({ "system.Effects.PermanentEffectDescription.label": "Permanent Effects" });
 		}
 		if (item.system.Execution.AreaEffectType) {
-			game.system.api.utils.metaLog(4, `metaMigrateData`, `_metaMigrateItems`, `Migrating Item:`, item.name, item);
+			metanthropes.utils.metaLog(4, `metaMigrateData`, `_metaMigrateItems`, `Migrating Item:`, item.name, item);
 			await item.update({ "system.Execution.-=AreaEffectType": null });
 		}
 	}
@@ -84,12 +84,12 @@ async function _metaInvalidData() {
 	//? Retrieve the data for an invalid document
 	//! this is giving an error
 	const invalidActorIds = Array.from(game.actors._invalidActorIds) || null;
-	game.system.api.utils.metaLog(3, "metaMigrateData", "_metaInvalidData", "Invalid Actor IDs:", invalidActorIds);
+	metanthropes.utils.metaLog(3, "metaMigrateData", "_metaInvalidData", "Invalid Actor IDs:", invalidActorIds);
 	const invalidId = await game.actors._invalidActorIds.first();
-	game.system.api.utils.metaLog(3, "metaMigrateData", "_metaInvalidData", "Invalid Actor ID:", invalidId);
+	metanthropes.utils.metaLog(3, "metaMigrateData", "_metaInvalidData", "Invalid Actor ID:", invalidId);
 	const invalidActor = await game.actors.getInvalid(invalidId);
-	game.system.api.utils.metaLog(3, "metaMigrateData", "_metaInvalidData", "Invalid Actor:", invalidActor);
-	game.system.api.utils.metaLog(3, "metaMigrateData", "_metaInvalidData", "Invalid Actor:", invalidActor);
+	metanthropes.utils.metaLog(3, "metaMigrateData", "_metaInvalidData", "Invalid Actor:", invalidActor);
+	metanthropes.utils.metaLog(3, "metaMigrateData", "_metaInvalidData", "Invalid Actor:", invalidActor);
 	//* Other methods
 	// //? Correct an invalid document
 	// await invalidActor.update(correctedData);

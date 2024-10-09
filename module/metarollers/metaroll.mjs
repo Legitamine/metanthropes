@@ -24,7 +24,7 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 	//? Initialize the actor's RollStat array before proceeding
 	await actor.getRollData();
 	const statScore = actor.system.RollStats[stat];
-	game.system.api.utils.metaLog(3, "metaRoll", "Engaged for", actor.type + ":", actor.name + "'s", action, "with", stat);
+	metanthropes.utils.metaLog(3, "metaRoll", "Engaged for", actor.type + ":", actor.name + "'s", action, "with", stat);
 	//* Go through a series of tests and checks before actually rolling the dice
 	//? Check if we are ok to do the roll stat-wise
 	if (statScore <= 0) {
@@ -47,7 +47,7 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 		if (hungerRollResult) {
 			//? If the flag exists, we clear it and resume running the rest of the checks
 			await actor.unsetFlag("metanthropes", "hungerRollResult");
-			game.system.api.utils.metaLog(3, "metaRoll", "Hunger Check Passed, moving on");
+			metanthropes.utils.metaLog(3, "metaRoll", "Hunger Check Passed, moving on");
 			//todo: perhaps I should minimize the sheet while the hunger check is happening?
 			break hungerCheck;
 		} else {
@@ -59,7 +59,7 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 				destinyCost: destinyCost,
 				itemName: itemName,
 			});
-			game.system.api.utils.metaLog(3, "metaRoll", "Hunger Check Failed, Engaging Hunger Roll");
+			metanthropes.utils.metaLog(3, "metaRoll", "Hunger Check Failed, Engaging Hunger Roll");
 			await metaHungerRoll(actor, hungerLevel);
 			return;
 		}
@@ -87,14 +87,14 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 	let perkReduction = 0;
 	if (itemName && action === "Possession") {
 		const requiredPerk = actor.items.getName(itemName).system.RequiredPerk.value;
-		game.system.api.utils.metaLog(3, "metaRoll", "Required Perk for", itemName, "is", requiredPerk);
+		metanthropes.utils.metaLog(3, "metaRoll", "Required Perk for", itemName, "is", requiredPerk);
 		if (requiredPerk !== "None") {
 			const requiredPerkLevel = actor.items.getName(itemName).system.RequiredPerkLevel.value;
 			const actorPerkLevel = actor.system.Perks.Skills[requiredPerk].value;
 			const levelDifference = requiredPerkLevel - actorPerkLevel;
 			if (levelDifference > 0) {
 				perkReduction = levelDifference * -10;
-				game.system.api.utils.metaLog(2, "metaRoll", "Perk Penalty for", actor.name, "is", perkReduction);
+				metanthropes.utils.metaLog(2, "metaRoll", "Perk Penalty for", actor.name, "is", perkReduction);
 			}
 		}
 	}
@@ -106,7 +106,7 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 	let customReduction = 0;
 	let aimingReduction = 0;
 	if (isCustomRoll) {
-		game.system.api.utils.metaLog(3, "metaRoll", "Custom Roll Detected");
+		metanthropes.utils.metaLog(3, "metaRoll", "Custom Roll Detected");
 		let { multiAction, bonus, customPenalty, customReduction, aimingReduction } = await metaRollCustomDialog(
 			actor,
 			action,
@@ -120,7 +120,7 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 		customPenalty = customPenalty || 0;
 		customReduction = customReduction || 0;
 		aimingReduction = aimingReduction || 0;
-		game.system.api.utils.metaLog(
+		metanthropes.utils.metaLog(
 			3,
 			"metaRoll",
 			"Custom Roll Values:",
@@ -137,7 +137,7 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 		} else {
 			penalty = diseasePenalty;
 		}
-		game.system.api.utils.metaLog(
+		metanthropes.utils.metaLog(
 			3,
 			"metaRoll",
 			"Engaging metaEvaluate for:",
@@ -182,7 +182,7 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 		);
 	} else {
 		penalty = diseasePenalty;
-		game.system.api.utils.metaLog(
+		metanthropes.utils.metaLog(
 			3,
 			"metaRoll",
 			"Engaging metaEvaluate for:",
@@ -229,7 +229,7 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 	//* Post-Evaluate-roll actions
 	// intentionally left blank
 	//? metaRoll Finished
-	game.system.api.utils.metaLog(3, "metaRoll", "Finished");
+	metanthropes.utils.metaLog(3, "metaRoll", "Finished");
 }
 /**
  * Handles the dialog box for custom multi-actions and bonuses/penalties when rolling.

@@ -11,16 +11,16 @@ export async function metaFinalizePremadeActor(actor) {
 	const playerName = game.user.name;
 	try {
 		if (game.user.isGM) {
-			game.system.api.utils.metaLog(4, "metaFinalizePremadeActor", playerName, "is a Narrator");
+			metanthropes.utils.metaLog(4, "metaFinalizePremadeActor", playerName, "is a Narrator");
 			ui.notifications.warn("Narrators should not run 'Finalize Premade Actor' themselves, instead use 'Assign Player' and have your Player click on the 'Finalize Premade'");
 		}
 		await metaNewPremadeSummary(actor).catch((error) => {
-			game.system.api.utils.metaLog(2, "metaFinalizePremadeActor", "Error from calling metaNewPremadeSummary:", error);
+			metanthropes.utils.metaLog(2, "metaFinalizePremadeActor", "Error from calling metaNewPremadeSummary:", error);
 			throw error;
 		});
 		//todo: review the finished action to change the portrait as the last step
 		// await NewActorFinish(actor).catch((error) => {
-		// game.system.api.utils.metaLog(2, "Finalize Premade Protagonist", "Error at NewActorFinish:", error);
+		// metanthropes.utils.metaLog(2, "Finalize Premade Protagonist", "Error at NewActorFinish:", error);
 		// throw error;
 		// });
 		await metaRolld10(actor, "Destiny", false, 1);
@@ -29,9 +29,9 @@ export async function metaFinalizePremadeActor(actor) {
 			"system.Vital.Destiny.value": Number(newDestiny),
 			"system.Vital.Destiny.max": Number(newDestiny),
 		});
-		game.system.api.utils.metaLog(3, "metaFinalizePremadeActor", `${playerName}'s ${actor.type} Starting Destiny:`, newDestiny);
+		metanthropes.utils.metaLog(3, "metaFinalizePremadeActor", `${playerName}'s ${actor.type} Starting Destiny:`, newDestiny);
 	} catch (error) {
-		game.system.api.utils.metaLog(2, "metaFinalizePremadeActor", "Error:", error);
+		metanthropes.utils.metaLog(2, "metaFinalizePremadeActor", "Error:", error);
 	} finally {
 		//intentionaly left blank for future use
 	}
@@ -143,7 +143,7 @@ export async function metaNewPremadeSummary(actor) {
 										try {
 											await scene.updateEmbeddedDocuments("Token", tokensToUpdate);
 										} catch (error) {
-											game.system.api.utils.metaLog(
+											metanthropes.utils.metaLog(
 												2,
 												"metaNewPremadeSummary",
 												"Error updating token name:",
@@ -160,13 +160,13 @@ export async function metaNewPremadeSummary(actor) {
 								await token.update({ name: actorname });
 							}
 						} catch (error) {
-							game.system.api.utils.metaLog(2, "metaNewPremadeSummary", "Error in updating actor data", error);
+							metanthropes.utils.metaLog(2, "metaNewPremadeSummary", "Error in updating actor data", error);
 							reject(error);
 							return;
 						} finally {
 							//intentionally left blank
 						}
-						game.system.api.utils.metaLog(
+						metanthropes.utils.metaLog(
 							3,
 							"metaNewPremadeSummary",
 							`New ${actor.type}'s Name:`,

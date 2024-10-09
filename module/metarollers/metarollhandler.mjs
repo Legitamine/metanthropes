@@ -26,7 +26,7 @@ export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 		element.disabled = false;
 	}, 3000);
 	const dataset = element.dataset;
-	game.system.api.utils.metaLog(3, "metaHandleRolls", "Engaged via right-click:", isCustomRoll);
+	metanthropes.utils.metaLog(3, "metaHandleRolls", "Engaged via right-click:", isCustomRoll);
 	//? Handle all types of rolls here based on the rollType (data-roll-type)
 	if (dataset.rollType) {
 		const actor = metaSheet.actor;
@@ -36,12 +36,12 @@ export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 		const itemName = dataset.itemName || null; //? Item Name is optional, so if it's not defined, set it to null
 		switch (dataset.rollType) {
 			case "StatRoll":
-				game.system.api.utils.metaLog(3, "metaHandleRolls", "Engaging metaRoll for:", actor.name + "'s", action, "with", stat);
+				metanthropes.utils.metaLog(3, "metaHandleRolls", "Engaging metaRoll for:", actor.name + "'s", action, "with", stat);
 				await metaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
-				game.system.api.utils.metaLog(3, "metaHandleRolls", "Finished Rolling for StatRoll");
+				metanthropes.utils.metaLog(3, "metaHandleRolls", "Finished Rolling for StatRoll");
 				break;
 			case "Metapower":
-				game.system.api.utils.metaLog(
+				metanthropes.utils.metaLog(
 					3,
 					"metaHandleRolls",
 					"Engaging metaRoll for:",
@@ -55,10 +55,10 @@ export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 					stat
 				);
 				await metaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
-				game.system.api.utils.metaLog(3, "metaHandleRolls", "Finished Rolling for Metapower");
+				metanthropes.utils.metaLog(3, "metaHandleRolls", "Finished Rolling for Metapower");
 				break;
 			case "Possession":
-				game.system.api.utils.metaLog(
+				metanthropes.utils.metaLog(
 					3,
 					"metaHandleRolls",
 					"Engaging metaRoll for:",
@@ -70,15 +70,15 @@ export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 					stat
 				);
 				await metaRoll(actor, action, stat, isCustomRoll, 0, itemName);
-				game.system.api.utils.metaLog(3, "metaHandleRolls", "Finished Rolling for Possession");
+				metanthropes.utils.metaLog(3, "metaHandleRolls", "Finished Rolling for Possession");
 				break;
 			default:
-				game.system.api.utils.metaLog(2, "metaHandleRolls", "ERROR: not defined rollType", dataset.rollType);
+				metanthropes.utils.metaLog(2, "metaHandleRolls", "ERROR: not defined rollType", dataset.rollType);
 				return;
 		}
 	}
 	//? Finished
-	game.system.api.utils.metaLog(3, "metaHandleRolls");
+	metanthropes.utils.metaLog(3, "metaHandleRolls");
 }
 /**
  * HandleCoverRolls - A utility function to handle cover rolls for the Metanthropes system.

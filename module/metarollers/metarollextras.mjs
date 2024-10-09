@@ -22,7 +22,7 @@ import { metaRoll } from "./metaroll.mjs";
  * metaRolld10(actor, "Damage", true, 3, "Weapon Name");
  */
 export async function metaRolld10(actor, what, destinyReRoll, dice, itemName = null, baseNumber = 0, isHalf = false) {
-	game.system.api.utils.metaLog(
+	metanthropes.utils.metaLog(
 		3,
 		"metaRolld10",
 		"Engaged for:",
@@ -44,7 +44,7 @@ export async function metaRolld10(actor, what, destinyReRoll, dice, itemName = n
 	//? Checking if actor has Metapowers that affect the explosive dice
 	//	if (await metaIsItemEquipped(actor, "Cognitive Efficiency")) {
 	//		explosiveDice = "x1x10";
-	//		game.system.api.utils.metaLog(3, "metaRolld10", "Using Alternative explosive dice:", explosiveDice);
+	//		metanthropes.utils.metaLog(3, "metaRolld10", "Using Alternative explosive dice:", explosiveDice);
 	//	}
 	//? dice is the number of d10 to roll
 	let rolld10;
@@ -109,7 +109,7 @@ export async function metaRolld10(actor, what, destinyReRoll, dice, itemName = n
 		rollMode: game.settings.get("core", "rollMode"),
 		flags: { "metanthropes": { actoruuid: actor.uuid } },
 	});
-	game.system.api.utils.metaLog(3, "metaRolld10", "Finished for:", actor.name + "'s", what);
+	metanthropes.utils.metaLog(3, "metaRolld10", "Finished for:", actor.name + "'s", what);
 	//? Refresh the actor sheet if it's open
 	metaSheetRefresh(actor);
 }
@@ -143,7 +143,7 @@ export async function metaRolld10ReRoll(event) {
 	if (currentDestiny > 0 && destinyReRoll) {
 		currentDestiny--;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-		game.system.api.utils.metaLog(
+		metanthropes.utils.metaLog(
 			3,
 			"metaRolld10ReRoll",
 			"Engaged for:",
@@ -163,7 +163,7 @@ export async function metaRolld10ReRoll(event) {
 		await metaRolld10(actor, what, destinyReRoll, dice, itemName, baseNumber, isHalf);
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
-		game.system.api.utils.metaLog(1, "metaRolld10ReRoll", "Not enough Destiny to spend", "OR", "destinyReRoll is not allowed");
+		metanthropes.utils.metaLog(1, "metaRolld10ReRoll", "Not enough Destiny to spend", "OR", "destinyReRoll is not allowed");
 	}
 }
 
@@ -190,7 +190,7 @@ export async function metaHungerRoll(actor, hungerLevel) {
 		hungerEffect = 90;
 		hungerTarget = 10;
 	} else {
-		game.system.api.utils.metaLog(5, "metaHungerRoll", "Hunger Level is not valid:", hungerLevel);
+		metanthropes.utils.metaLog(5, "metaHungerRoll", "Hunger Level is not valid:", hungerLevel);
 		return;
 	}
 	const hungerRoll = await new Roll("1d100").evaluate();
@@ -210,7 +210,7 @@ export async function metaHungerRoll(actor, hungerLevel) {
 		hungerMessage += `It is a 🟩 Success!<hr />${actor.name} has overcome Hunger!<br><br>`;
 		await actor.setFlag("metanthropes", "hungerRollResult", true);
 		const MetaRollBeforeHungerCheck = await actor.getFlag("metanthropes", "MetaRollBeforeHungerCheck");
-		game.system.api.utils.metaLog(
+		metanthropes.utils.metaLog(
 			3,
 			"metaHungerRoll",
 			"Engaging metaRoll with:",
@@ -255,7 +255,7 @@ export async function metaHungerReRoll(event) {
 		metaHungerRoll(actor, hungerLevel);
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
-		game.system.api.utils.metaLog(3, "metaHungerReRoll", "Not enough Destiny to spend");
+		metanthropes.utils.metaLog(3, "metaHungerReRoll", "Not enough Destiny to spend");
 	}
 }
 
@@ -284,7 +284,7 @@ export async function metaCoverRoll(actor, coverType, coverValue) {
 	} else if (coverValue === 90) {
 		coverTarget = 90;
 	} else {
-		game.system.api.utils.metaLog(5, "metaCoverRoll", "Cover Value is not valid:", coverValue);
+		metanthropes.utils.metaLog(5, "metaCoverRoll", "Cover Value is not valid:", coverValue);
 		return;
 	}
 	const coverRoll = await new Roll("1d100").evaluate();
@@ -330,6 +330,6 @@ export async function metaCoverReRoll(event) {
 		metaCoverRoll(actor, coverType, coverValue);
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
-		game.system.api.utils.metaLog(3, "metaCoverReRoll", "Not enough Destiny to spend");
+		metanthropes.utils.metaLog(3, "metaCoverReRoll", "Not enough Destiny to spend");
 	}
 }

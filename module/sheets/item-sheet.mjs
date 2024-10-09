@@ -76,7 +76,7 @@ export class MetanthropesItemSheet extends ItemSheet {
 		context.isNarrator = game.user.isGM;
 		//? Prepare Active Effects
 		if (context.betaTesting) context.effects = prepareActiveEffectCategories(this.document.effects);
-		game.system.api.utils.metaLog(3, "MetanthropesItemSheet getData results", "this, context, options", this, context, options);
+		metanthropes.utils.metaLog(3, "MetanthropesItemSheet getData results", "this, context, options", this, context, options);
 		return context;
 	}
 	//* Clickable stuff on the item sheets
