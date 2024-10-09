@@ -130,6 +130,7 @@
 			]
 		}
 	],
+	"socket": true,
 	"primaryTokenAttribute": "Vital.Destiny",
 	"secondaryTokenAttribute": "Vital.Life",
 	"grid": {
