@@ -1,6 +1,6 @@
 {
   "name": "Metanthropes - Early Access",
-  "img": "systems/metanthropes/artwork/ui/cover/cover.jpg",
+  "img": "systems/metanthropes/assets/artwork/cover/cover.jpg",
   "caption": "Metanthropes System: Early Access Content",
   "sort": 0,
   "description": "<p>When you import this adventure, you will configure your world with the Early Access content for the Metanthropes System.</p><p>This currently includes the Welcome Journal &amp; the Roll-able Tables for the Humanoid Hit Location.</p><p>The included content will expand further during Early Access.</p>",
@@ -23,7 +23,7 @@
           "image": {},
           "text": {
             "format": 1,
-            "content": "<p>Metanthropes is a brand <strong>new d100-based, setting-flexible game system</strong> with <strong>classless leveling</strong> where players develop <strong>Metapowers</strong> which empower them with unique, metaphysical gifts that transform them into something extraordinary.</p><p></p><img src=\"systems/metanthropes/artwork/ui/cover/metanthropes.png\" class=\" centered\" /><p style=\"text-align:center\"></p>",
+            "content": "<p>Metanthropes is a brand <strong>new d100-based, setting-flexible game system</strong> with <strong>classless leveling</strong> where players develop <strong>Metapowers</strong> which empower them with unique, metaphysical gifts that transform them into something extraordinary.</p><p></p><img src=\"systems/metanthropes/assets/artwork/cover/metanthropes.png\" class=\" centered\" /><p style=\"text-align:center\"></p>",
             "markdown": ""
           },
           "video": {
@@ -257,7 +257,7 @@
   "tables": [
     {
       "name": "Humanoid Hit Location",
-      "img": "systems/metanthropes/artwork/rolltables/humanoid-hitbox.webp",
+      "img": "systems/metanthropes/assets/artwork/rolltables/humanoid-hitbox.webp",
       "description": "<p style=\"text-align:center\">Random location on the human body.</p>",
       "results": [
         {
@@ -271,7 +271,7 @@
           "documentCollection": "",
           "_id": "atcfZ3uuu7z5YGkb",
           "text": "Left Leg",
-          "img": "systems/metanthropes/artwork/rolltables/humanoid-left-leg.webp",
+          "img": "systems/metanthropes/assets/artwork/rolltables/humanoid-left-leg.webp",
           "documentId": null,
           "flags": {}
         },
@@ -286,7 +286,7 @@
           "documentCollection": "",
           "_id": "YJF13455xnUOGPzN",
           "text": "Right Leg",
-          "img": "systems/metanthropes/artwork/rolltables/humanoid-right-leg.webp",
+          "img": "systems/metanthropes/assets/artwork/rolltables/humanoid-right-leg.webp",
           "documentId": null,
           "flags": {}
         },
@@ -301,7 +301,7 @@
           "documentCollection": "",
           "_id": "PCZGqCBoBKBLUA69",
           "text": "Left Arm",
-          "img": "systems/metanthropes/artwork/rolltables/humanoid-left-arm.webp",
+          "img": "systems/metanthropes/assets/artwork/rolltables/humanoid-left-arm.webp",
           "documentId": null,
           "flags": {}
         },
@@ -316,7 +316,7 @@
           "documentCollection": "",
           "_id": "wu39UguomjKHfhdH",
           "text": "Right Arm",
-          "img": "systems/metanthropes/artwork/rolltables/humanoid-right-arm.webp",
+          "img": "systems/metanthropes/assets/artwork/rolltables/humanoid-right-arm.webp",
           "documentId": null,
           "flags": {}
         },
@@ -331,7 +331,7 @@
           "documentCollection": "",
           "_id": "jB1HLLguHhB8229d",
           "text": "Lower Torso",
-          "img": "systems/metanthropes/artwork/rolltables/humanoid-lower-torso.webp",
+          "img": "systems/metanthropes/assets/artwork/rolltables/humanoid-lower-torso.webp",
           "documentId": null,
           "flags": {}
         },
@@ -346,7 +346,7 @@
           "documentCollection": "",
           "_id": "VDKdReNx0uVr3Sdt",
           "text": "Upper Torso",
-          "img": "systems/metanthropes/artwork/rolltables/humanoid-upper-torso.webp",
+          "img": "systems/metanthropes/assets/artwork/rolltables/humanoid-upper-torso.webp",
           "documentId": null,
           "flags": {}
         },
@@ -361,7 +361,7 @@
           "documentCollection": "",
           "_id": "QCo6C7M8lTx4aMo1",
           "text": "Head",
-          "img": "systems/metanthropes/artwork/rolltables/humanoid-head.webp",
+          "img": "systems/metanthropes/assets/artwork/rolltables/humanoid-head.webp",
           "documentId": null,
           "flags": {}
         }

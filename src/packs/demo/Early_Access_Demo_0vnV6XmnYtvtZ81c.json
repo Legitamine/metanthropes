@@ -1,6 +1,6 @@
 {
   "name": "Early Access Demo",
-  "img": "systems/metanthropes/artwork/ui/cover/cover.jpg",
+  "img": "systems/metanthropes/assets/artwork/cover/cover.jpg",
   "caption": "Metanthropes System - Early Access Demo",
   "sort": 0,
   "description": "<p>Metanthropes System - Early Access Demo includes 4 premade Actors, each with their own example build and a sample scene, to showcase some of the System features and capabilities.</p>",
@@ -9,7 +9,7 @@
       "name": "Ancestral Connection Example Build",
       "type": "Protagonist",
       "_id": "EQWSijMtFzgJLMD9",
-      "img": "systems/metanthropes/tokens/defaults/token-utilitarian.webp",
+      "img": "systems/metanthropes/assets/tokens/token-utilitarian.webp",
       "system": {
         "physical": {
           "movement": {
@@ -900,7 +900,7 @@
         "appendNumber": false,
         "prependAdjective": false,
         "texture": {
-          "src": "systems/metanthropes/tokens/defaults/token-utilitarian.webp",
+          "src": "systems/metanthropes/assets/tokens/token-utilitarian.webp",
           "scaleX": 0.6,
           "scaleY": 0.6,
           "offsetX": 0,
@@ -975,7 +975,7 @@
           "folder": "8xtdJuxYH5262icG",
           "name": "Camouflage",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-invisibility.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-invisibility.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -1463,7 +1463,7 @@
           "folder": "8xtdJuxYH5262icG",
           "name": "Glitch",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-invisibility.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-invisibility.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -1951,7 +1951,7 @@
           "folder": "vbM2Uhb6qGw8k7Z8",
           "name": "Normalization",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-warp-reality.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-warp-reality.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -2444,7 +2444,7 @@
           "folder": "vbM2Uhb6qGw8k7Z8",
           "name": "Reality Check",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-warp-reality.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-warp-reality.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -2932,7 +2932,7 @@
           "folder": "meszlOWEGxto0BTx",
           "name": "Unveil The Mask",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-cognition.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-cognition.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -3424,7 +3424,7 @@
           "folder": "meszlOWEGxto0BTx",
           "name": "Pick The Brain",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-cognition.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-cognition.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -3916,7 +3916,7 @@
           "folder": "meszlOWEGxto0BTx",
           "name": "Get The Message",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-cognition.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-cognition.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -4407,7 +4407,7 @@
         {
           "name": "Ancestral Tree",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-ancestral-connection.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-ancestral-connection.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -4895,7 +4895,7 @@
         {
           "name": "Memory Infusion",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-ancestral-connection.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-ancestral-connection.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -5383,7 +5383,7 @@
         {
           "name": "Nether Gossip",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-ancestral-connection.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-ancestral-connection.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -5872,7 +5872,7 @@
           "folder": "31KRnTy3bu1vpJSb",
           "name": "Strike",
           "type": "Possession",
-          "img": "systems/metanthropes/artwork/possessions/fist.svg",
+          "img": "systems/metanthropes/assets/artwork/possessions/fist.svg",
           "system": {
             "Material": {
               "Category": {
@@ -6456,7 +6456,7 @@
       "name": "Pyrokinesis Example Build",
       "type": "Protagonist",
       "_id": "R4rrh3MyLhMaqQ9N",
-      "img": "systems/metanthropes/tokens/defaults/token-manipulator.webp",
+      "img": "systems/metanthropes/assets/tokens/token-manipulator.webp",
       "system": {
         "physical": {
           "movement": {
@@ -7347,7 +7347,7 @@
         "appendNumber": false,
         "prependAdjective": false,
         "texture": {
-          "src": "systems/metanthropes/tokens/defaults/token-manipulator.webp",
+          "src": "systems/metanthropes/assets/tokens/token-manipulator.webp",
           "scaleX": 0.6,
           "scaleY": 0.6,
           "offsetX": 0,
@@ -7422,7 +7422,7 @@
           "folder": "3Nm0ovPof51TIa9P",
           "name": "Hallucinogen",
           "type": "Possession",
-          "img": "systems/metanthropes/artwork/possessions/test-tube-held.svg",
+          "img": "systems/metanthropes/assets/artwork/possessions/test-tube-held.svg",
           "system": {
             "Material": {
               "Category": {
@@ -7970,7 +7970,7 @@
           "folder": "3Nm0ovPof51TIa9P",
           "name": "Medicinal Plants",
           "type": "Possession",
-          "img": "systems/metanthropes/artwork/possessions/herbs-bundle.svg",
+          "img": "systems/metanthropes/assets/artwork/possessions/herbs-bundle.svg",
           "system": {
             "Material": {
               "Category": {
@@ -8518,7 +8518,7 @@
           "folder": "3Nm0ovPof51TIa9P",
           "name": "Knife",
           "type": "Possession",
-          "img": "systems/metanthropes/artwork/possessions/butterfly-knife.svg",
+          "img": "systems/metanthropes/assets/artwork/possessions/butterfly-knife.svg",
           "system": {
             "Material": {
               "Category": {
@@ -9063,7 +9063,7 @@
         {
           "name": "Fly",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-flight.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-flight.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -9551,7 +9551,7 @@
         {
           "name": "Levitate",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-flight.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-flight.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -10039,7 +10039,7 @@
         {
           "name": "Levitate (⏱️E)",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-flight.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-flight.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -10527,7 +10527,7 @@
         {
           "name": "Levitate [Alt]",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-flight.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-flight.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -11016,7 +11016,7 @@
           "folder": "5023JpIIA6Jq2Jnm",
           "name": "Meta Alertness",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-reflexes.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-reflexes.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -11504,7 +11504,7 @@
           "folder": "5023JpIIA6Jq2Jnm",
           "name": "Meta Aim",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-reflexes.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-reflexes.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -11992,7 +11992,7 @@
           "folder": "5023JpIIA6Jq2Jnm",
           "name": "Meta Aim (⏱E)",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-reflexes.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-reflexes.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -12480,7 +12480,7 @@
           "folder": "5023JpIIA6Jq2Jnm",
           "name": "Meta Aim (⏱M)",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-reflexes.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-reflexes.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -12968,7 +12968,7 @@
           "folder": "5023JpIIA6Jq2Jnm",
           "name": "Meta Evade",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-reflexes.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-reflexes.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -13456,7 +13456,7 @@
           "folder": "5023JpIIA6Jq2Jnm",
           "name": "Meta Evade (⏱E)",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-reflexes.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-reflexes.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -13944,7 +13944,7 @@
           "folder": "5023JpIIA6Jq2Jnm",
           "name": "Meta Evade (⏱M)",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-reflexes.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-reflexes.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -14431,7 +14431,7 @@
         {
           "name": "Self-Sustenance",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-constitution.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-constitution.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -14919,7 +14919,7 @@
         {
           "name": "Self-Sustenance (⏱E)",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-constitution.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-constitution.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -15407,7 +15407,7 @@
         {
           "name": "Self-Sustenance (⏱R)",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-constitution.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-constitution.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -15895,7 +15895,7 @@
         {
           "name": "Meta Stamina",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-constitution.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-constitution.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -16383,7 +16383,7 @@
         {
           "name": "Meta Stamina (⏱E)",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-constitution.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-constitution.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -16871,7 +16871,7 @@
         {
           "name": "Meta Stamina (⏱R)",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-constitution.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-constitution.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -17359,7 +17359,7 @@
         {
           "name": "Meta Stamina [Alt]",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-constitution.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-constitution.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -17847,7 +17847,7 @@
         {
           "name": "Meta Tolerance",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-constitution.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-constitution.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -18335,7 +18335,7 @@
         {
           "name": "Meta Tolerance (⏱E)",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-constitution.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-constitution.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -18823,7 +18823,7 @@
         {
           "name": "Meta Tolerance (⏱R)",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-constitution.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-constitution.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -19311,7 +19311,7 @@
         {
           "name": "Meta Tolerance [Alt]",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-constitution.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-constitution.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -19799,7 +19799,7 @@
         {
           "name": "Flamethrower",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-pyrokinesis.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-pyrokinesis.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -20289,7 +20289,7 @@
         {
           "name": "Flamethrower [Alt]",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-pyrokinesis.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-pyrokinesis.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -20779,7 +20779,7 @@
         {
           "name": "Ring of Fire",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-pyrokinesis.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-pyrokinesis.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -21269,7 +21269,7 @@
         {
           "name": "Fire Wall",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-pyrokinesis.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-pyrokinesis.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -21760,7 +21760,7 @@
           "folder": "31KRnTy3bu1vpJSb",
           "name": "Strike",
           "type": "Possession",
-          "img": "systems/metanthropes/artwork/possessions/fist.svg",
+          "img": "systems/metanthropes/assets/artwork/possessions/fist.svg",
           "system": {
             "Material": {
               "Category": {
@@ -22328,7 +22328,7 @@
       "name": "Regeneration Example Build",
       "type": "Protagonist",
       "_id": "dSFP3CBDuNXW1KeG",
-      "img": "systems/metanthropes/tokens/defaults/token-kineticist.webp",
+      "img": "systems/metanthropes/assets/tokens/token-kineticist.webp",
       "system": {
         "physical": {
           "movement": {
@@ -23219,7 +23219,7 @@
         "appendNumber": false,
         "prependAdjective": false,
         "texture": {
-          "src": "systems/metanthropes/tokens/defaults/token-kineticist.webp",
+          "src": "systems/metanthropes/assets/tokens/token-kineticist.webp",
           "scaleX": 0.6,
           "scaleY": 0.6,
           "offsetX": 0,
@@ -23293,7 +23293,7 @@
         {
           "name": "Grow",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-sizeshift.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-sizeshift.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -23781,7 +23781,7 @@
           "name": "Shorten",
           "type": "Metapower",
           "_id": "cDwU9TEvUThLBI7w",
-          "img": "systems/metanthropes/artwork/metapowers/mp-sizeshift.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-sizeshift.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -24267,7 +24267,7 @@
         {
           "name": "Animal Might",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-animal-powers.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-animal-powers.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -24755,7 +24755,7 @@
           "name": "Animal Senses",
           "type": "Metapower",
           "_id": "wf1qCVa4MzBE36Bz",
-          "img": "systems/metanthropes/artwork/metapowers/mp-animal-powers.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-animal-powers.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -25242,7 +25242,7 @@
           "folder": "hPknOBbVpNXl1GD9",
           "name": "Grown Strike",
           "type": "Possession",
-          "img": "systems/metanthropes/artwork/possessions/giant.svg",
+          "img": "systems/metanthropes/assets/artwork/possessions/giant.svg",
           "system": {
             "Material": {
               "Category": {
@@ -25786,7 +25786,7 @@
           "folder": "3Nm0ovPof51TIa9P",
           "name": "Hand Axe",
           "type": "Possession",
-          "img": "systems/metanthropes/artwork/possessions/axe-in-stump.svg",
+          "img": "systems/metanthropes/assets/artwork/possessions/axe-in-stump.svg",
           "system": {
             "Material": {
               "Category": {
@@ -26331,7 +26331,7 @@
         {
           "name": "Refresh",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-regeneration.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-regeneration.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -26819,7 +26819,7 @@
         {
           "name": "Revitalize",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-regeneration.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-regeneration.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -27307,7 +27307,7 @@
         {
           "name": "Reinvigorate",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-regeneration.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-regeneration.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -27795,7 +27795,7 @@
         {
           "name": "Reinvigorate (⏱E)",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-regeneration.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-regeneration.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -28283,7 +28283,7 @@
         {
           "name": "Regrow",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-regeneration.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-regeneration.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -28771,7 +28771,7 @@
         {
           "name": "Regrow (⏱E)",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-regeneration.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-regeneration.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -29259,7 +29259,7 @@
         {
           "name": "Regrow (⏱R)",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-regeneration.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-regeneration.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -29747,7 +29747,7 @@
         {
           "name": "Revive",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-regeneration.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-regeneration.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -30235,7 +30235,7 @@
         {
           "name": "Revive (⏱E)",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-regeneration.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-regeneration.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -30723,7 +30723,7 @@
         {
           "name": "Revive (⏱R)",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-regeneration.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-regeneration.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -31212,7 +31212,7 @@
           "folder": "31KRnTy3bu1vpJSb",
           "name": "Strike",
           "type": "Possession",
-          "img": "systems/metanthropes/artwork/possessions/fist.svg",
+          "img": "systems/metanthropes/assets/artwork/possessions/fist.svg",
           "system": {
             "Material": {
               "Category": {
@@ -31796,7 +31796,7 @@
       "name": "Time Bending Example Build",
       "type": "Protagonist",
       "_id": "8N1CVCKerdCaT83N",
-      "img": "systems/metanthropes/tokens/defaults/token-arbiter.webp",
+      "img": "systems/metanthropes/assets/tokens/token-arbiter.webp",
       "system": {
         "physical": {
           "movement": {
@@ -32687,7 +32687,7 @@
         "appendNumber": false,
         "prependAdjective": false,
         "texture": {
-          "src": "systems/metanthropes/tokens/defaults/token-arbiter.webp",
+          "src": "systems/metanthropes/assets/tokens/token-arbiter.webp",
           "scaleX": 0.6,
           "scaleY": 0.6,
           "offsetX": 0,
@@ -32762,7 +32762,7 @@
           "folder": "3Nm0ovPof51TIa9P",
           "name": "C4 Plastic Explosive",
           "type": "Possession",
-          "img": "systems/metanthropes/artwork/possessions/mine-explosion.svg",
+          "img": "systems/metanthropes/assets/artwork/possessions/mine-explosion.svg",
           "system": {
             "Material": {
               "Category": {
@@ -33308,7 +33308,7 @@
           "folder": "3Nm0ovPof51TIa9P",
           "name": "Double Barrel Shotgun",
           "type": "Possession",
-          "img": "systems/metanthropes/artwork/possessions/sawed-off-shotgun.svg",
+          "img": "systems/metanthropes/assets/artwork/possessions/sawed-off-shotgun.svg",
           "system": {
             "Material": {
               "Category": {
@@ -33852,7 +33852,7 @@
           "folder": "3Nm0ovPof51TIa9P",
           "name": "Strike",
           "type": "Possession",
-          "img": "systems/metanthropes/artwork/possessions/fist.svg",
+          "img": "systems/metanthropes/assets/artwork/possessions/fist.svg",
           "system": {
             "Material": {
               "Category": {
@@ -34396,7 +34396,7 @@
           "folder": "qoiM2S6cTbdIY6hL",
           "name": "Lighten",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-light-projection.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-light-projection.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -34888,7 +34888,7 @@
           "folder": "qoiM2S6cTbdIY6hL",
           "name": "Darken",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-light-projection.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-light-projection.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -35380,7 +35380,7 @@
           "folder": "qoiM2S6cTbdIY6hL",
           "name": "Photokinetic Movement",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-light-projection.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-light-projection.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -35868,7 +35868,7 @@
           "folder": "qoiM2S6cTbdIY6hL",
           "name": "Photokinetic Movement (⏱️M)",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-light-projection.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-light-projection.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -36356,7 +36356,7 @@
           "folder": "DJOBIePsnu9U70Q1",
           "name": "Freeze Time",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-time-bending.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-time-bending.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -36848,7 +36848,7 @@
           "folder": "DJOBIePsnu9U70Q1",
           "name": "Temporal Awareness",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-time-bending.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-time-bending.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -37340,7 +37340,7 @@
           "folder": "DJOBIePsnu9U70Q1",
           "name": "Temporal Glitch",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-time-bending.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-time-bending.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -37834,7 +37834,7 @@
           "folder": "DJOBIePsnu9U70Q1",
           "name": "Temporal Glitch [Alt]",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-time-bending.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-time-bending.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -38328,7 +38328,7 @@
           "folder": "DJOBIePsnu9U70Q1",
           "name": "Temporal Warping",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-time-bending.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-time-bending.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -38823,7 +38823,7 @@
           "folder": "DJOBIePsnu9U70Q1",
           "name": "Temporal Warping [Alt]",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-time-bending.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-time-bending.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -39318,7 +39318,7 @@
           "folder": "fVzXPSv7N1IHAxWQ",
           "name": "Zoom-In",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-vision.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-vision.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -39806,7 +39806,7 @@
           "folder": "fVzXPSv7N1IHAxWQ",
           "name": "Thermal Vision",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-vision.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-vision.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -40294,7 +40294,7 @@
           "folder": "fVzXPSv7N1IHAxWQ",
           "name": "Microscope",
           "type": "Metapower",
-          "img": "systems/metanthropes/artwork/metapowers/mp-meta-vision.webp",
+          "img": "systems/metanthropes/assets/artwork/metapowers/mp-meta-vision.webp",
           "system": {
             "Execution": {
               "StatRolled": {
@@ -40813,7 +40813,7 @@
       "navOrder": 0,
       "navName": "",
       "background": {
-        "src": "systems/metanthropes/artwork/ui/cover/canvas-cover.jpg",
+        "src": "systems/metanthropes/assets/artwork/cover/canvas-cover.jpg",
         "scaleX": 1,
         "scaleY": 1,
         "offsetX": 0,
@@ -40849,7 +40849,7 @@
           "appendNumber": false,
           "prependAdjective": false,
           "texture": {
-            "src": "systems/metanthropes/tokens/defaults/token-utilitarian.webp",
+            "src": "systems/metanthropes/assets/tokens/token-utilitarian.webp",
             "scaleX": 0.6,
             "scaleY": 0.6,
             "offsetX": 0,
@@ -40943,7 +40943,7 @@
           "appendNumber": false,
           "prependAdjective": false,
           "texture": {
-            "src": "systems/metanthropes/tokens/defaults/token-manipulator.webp",
+            "src": "systems/metanthropes/assets/tokens/token-manipulator.webp",
             "scaleX": 0.6,
             "scaleY": 0.6,
             "offsetX": 0,
@@ -41037,7 +41037,7 @@
           "appendNumber": false,
           "prependAdjective": false,
           "texture": {
-            "src": "systems/metanthropes/tokens/defaults/token-kineticist.webp",
+            "src": "systems/metanthropes/assets/tokens/token-kineticist.webp",
             "scaleX": 0.6,
             "scaleY": 0.6,
             "offsetX": 0,
@@ -41131,7 +41131,7 @@
           "appendNumber": false,
           "prependAdjective": false,
           "texture": {
-            "src": "systems/metanthropes/tokens/defaults/token-arbiter.webp",
+            "src": "systems/metanthropes/assets/tokens/token-arbiter.webp",
             "scaleX": 0.6,
             "scaleY": 0.6,
             "offsetX": 0,
@@ -41300,7 +41300,7 @@
         "lastModifiedBy": "gaWoeXg7uJWoAsCP"
       },
       "foreground": null,
-      "thumb": "systems/metanthropes/artwork/ui/scenes/demo-thumb.webp",
+      "thumb": "systems/metanthropes/assets/artwork/ui/scenes/demo-thumb.webp",
       "weather": "",
       "active": false,
       "_id": "HJ7VBfsFwNpnZOZ9",
