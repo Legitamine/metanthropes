@@ -44,12 +44,12 @@ import {
 } from "./dice/metarollextras.mjs";
 import { metaInitiative, metaInitiativeReRoll } from "./dice/metainitiative.mjs";
 //* Combat
-import { MetanthropesCombat } from "./metanthropes/combat.mjs";
-import { MetaCombatTracker } from "./metanthropes/combattracker.mjs";
-import { MetaCombatant } from "./metanthropes/combatant.mjs";
+import { MetanthropesCombat } from "./combat/combat.mjs";
+import { MetaCombatTracker } from "./combat/combattracker.mjs";
+import { MetaCombatant } from "./combat/combatant.mjs";
 //* Utilities
 import { metaExtractNumberOfDice } from "./utils/dice-tools.mjs";
-import { metaMigrateData } from "./metanthropes/metamigration.mjs";
+import { metaMigrateData } from "./utils/migration.mjs";
 import { metaLog } from "./utils/log-tools.mjs";
 //* Game Settings
 import { metaRegisterGameSettings } from "./config/settings.mjs";

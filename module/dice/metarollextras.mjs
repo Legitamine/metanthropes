@@ -1,4 +1,4 @@
-import { metaSheetRefresh, metaIsItemEquipped } from "../helpers/metahelpers.mjs";
+import { metaSheetRefresh } from "../helpers/metahelpers.mjs";
 /**
  * metaRolld10 handles the rolling of d10 dice for a given actor and purpose.
  *
