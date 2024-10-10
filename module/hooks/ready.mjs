@@ -14,7 +14,7 @@ Hooks.once("ready", async function () {
 			publisher: "Metanthropes",
 			pack: "Metapowers",
 			source: "data",
-			path: "systems/metanthropes/artwork/metapowers",
+			path: "systems/metanthropes/assets/artwork/metapowers",
 		});
 	}
 
