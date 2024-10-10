@@ -1,4 +1,3 @@
-import { metaRolld10 } from "../metarollers/metarollextras.mjs";
 /**
  * metaFinalizePremadeActor helps players finalize the details about their actor and rolls their starting destiny for them
  * It calls metaNewPremadeSummary() and metaRolld10() functions and sets the new destiny for the player
@@ -23,7 +22,7 @@ export async function metaFinalizePremadeActor(actor) {
 		// metanthropes.utils.metaLog(2, "Finalize Premade Protagonist", "Error at NewActorFinish:", error);
 		// throw error;
 		// });
-		await metaRolld10(actor, "Destiny", false, 1);
+		await metanthropes.dice.metaRolld10(actor, "Destiny", false, 1);
 		const newDestiny = await actor.getFlag("metanthropes", "lastrolled").rolld10;
 		await actor.update({
 			"system.Vital.Destiny.value": Number(newDestiny),

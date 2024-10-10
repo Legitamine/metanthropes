@@ -1,5 +1,3 @@
-import { metaInitiative } from "../metarollers/metainitiative.mjs";
-
 /**
  * Metanthropes Action Scene Class
  * Extends the base Combat class to implement additional Metanthropes-specific Combat features
@@ -86,7 +84,7 @@ export class MetanthropesCombat extends Combat {
 			if (!combatant?.isOwner) continue;
 			//? Produce an initiative roll for the Combatant
 			metanthropes.utils.metaLog(3, "Combat", "rollInitiative", "Engaging metaInitiative for combatant:", combatant);
-			await metaInitiative(combatant);
+			await metanthropes.dice.metaInitiative(combatant);
 			let initiativeResult = combatant.actor.getFlag("metanthropes", "lastrolled").Initiative;
 			metanthropes.utils.metaLog(
 				3,

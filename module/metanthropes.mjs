@@ -47,6 +47,7 @@ import { MetanthropesCombat } from "./metanthropes/combat.mjs";
 import { MetaCombatTracker } from "./metanthropes/combattracker.mjs";
 import { MetaCombatant } from "./metanthropes/combatant.mjs";
 //* Utilities
+import { metaExtractNumberOfDice } from "../helpers/metahelpers.mjs";
 import { metaMigrateData } from "./metanthropes/metamigration.mjs";
 import { metaLog } from "./helpers/metahelpers.mjs";
 //* Game Settings
@@ -125,6 +126,7 @@ globalThis.metanthropes = {
 	utils: {
 		metaLog,
 		metaMigrateData,
+		metaExtractNumberOfDice,
 		metaRegisterGameSettings,
 		metaRegisterStatusEffects,
 		preloadHandlebarsTemplates,
