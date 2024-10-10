@@ -32,6 +32,7 @@ import { MetanthropesActiveEffectSheet } from "./sheets/active-effect-sheet.mjs"
 //* AppV2 Sheets
 import { MetanthropesNPCActorSheet, MetanthropesActorSheetV2 } from "./sheets/actor-sheet-v2.mjs";
 //* Dice Rollers
+import { metaRoll } from "./metarollers/metaroll.mjs";
 import { metaEvaluate, metaEvaluateReRoll } from "./metarollers/metaeval.mjs";
 import {
 	metaRolld10,
@@ -47,7 +48,7 @@ import { MetanthropesCombat } from "./metanthropes/combat.mjs";
 import { MetaCombatTracker } from "./metanthropes/combattracker.mjs";
 import { MetaCombatant } from "./metanthropes/combatant.mjs";
 //* Utilities
-import { metaExtractNumberOfDice } from "../helpers/metahelpers.mjs";
+import { metaExtractNumberOfDice } from "./helpers/metahelpers.mjs";
 import { metaMigrateData } from "./metanthropes/metamigration.mjs";
 import { metaLog } from "./helpers/metahelpers.mjs";
 //* Game Settings
@@ -94,6 +95,7 @@ globalThis.metanthropes = {
 		MetaCombatant,
 	},
 	dice: {
+		metaRoll,
 		metaEvaluate,
 		metaEvaluateReRoll,
 		metaRolld10,
