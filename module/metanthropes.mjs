@@ -32,8 +32,8 @@ import { MetanthropesActiveEffectSheet } from "./sheets/active-effect-sheet.mjs"
 //* AppV2 Sheets
 import { MetanthropesNPCActorSheet, MetanthropesActorSheetV2 } from "./sheets/actor-sheet-v2.mjs";
 //* Dice Rollers
-import { metaRoll } from "./metarollers/metaroll.mjs";
-import { metaEvaluate, metaEvaluateReRoll } from "./metarollers/metaeval.mjs";
+import { metaRoll } from "./dice/metaroll.mjs";
+import { metaEvaluate, metaEvaluateReRoll } from "./dice/metaeval.mjs";
 import {
 	metaRolld10,
 	metaRolld10ReRoll,
@@ -41,21 +41,21 @@ import {
 	metaHungerReRoll,
 	metaCoverRoll,
 	metaCoverReRoll,
-} from "./metarollers/metarollextras.mjs";
-import { metaInitiative, metaInitiativeReRoll } from "./metarollers/metainitiative.mjs";
+} from "./dice/metarollextras.mjs";
+import { metaInitiative, metaInitiativeReRoll } from "./dice/metainitiative.mjs";
 //* Combat
 import { MetanthropesCombat } from "./metanthropes/combat.mjs";
 import { MetaCombatTracker } from "./metanthropes/combattracker.mjs";
 import { MetaCombatant } from "./metanthropes/combatant.mjs";
 //* Utilities
-import { metaExtractNumberOfDice } from "./helpers/metahelpers.mjs";
+import { metaExtractNumberOfDice } from "./utils/dice-tools.mjs";
 import { metaMigrateData } from "./metanthropes/metamigration.mjs";
-import { metaLog } from "./helpers/metahelpers.mjs";
+import { metaLog } from "./utils/log-tools.mjs";
 //* Game Settings
 import { metaRegisterGameSettings } from "./config/settings.mjs";
 import { metaRegisterStatusEffects } from "./config/status-effects.mjs";
 //* Other Functions
-import { metaExecute } from "./metarollers/metaexecute.mjs";
+import { metaExecute } from "./dice/metaexecute.mjs";
 //* Handlebar Helpers
 import { metaRegisterHandlebarHelpers } from "./config/handlebar-helpers.mjs";
 //* Handlebar Templates
@@ -70,7 +70,7 @@ import {
 	metaRollTableDirectory,
 	metaPlaylistDirectory,
 	metaCompendiumDirectory,
-} from "./metaclasses/metaclasses.mjs";
+} from "./ui/custom.mjs";
 
 //* Register Handlebars Helpers
 metaRegisterHandlebarHelpers();

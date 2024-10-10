@@ -1,5 +1,5 @@
 //? Import Roll Handler
-import { metaHandleRolls } from "../metarollers/metarollhandler.mjs";
+import { metaHandleRolls } from "../dice/metarollhandler.mjs";
 //? Import Active Effect helpers
 import { prepareActiveEffectCategories, onManageActiveEffect } from "../metanthropes/metaeffects.mjs";
 /**
