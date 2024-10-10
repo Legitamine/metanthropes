@@ -1,5 +1,3 @@
-//? Import metaLog helper
-import { metaLog } from "../helpers/metahelpers.mjs";
 /**
  *
  * Manage Active Effect instances through the Actor Sheet via effect control buttons.

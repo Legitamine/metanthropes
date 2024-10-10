@@ -1,5 +1,3 @@
-import { metaLog } from "../helpers/metahelpers.mjs";
-
 /**
  * 
  * MetanthropesActorProgressionSheet extends ActorSheet and is used for the Progression tab of the Actor sheet.
@@ -64,7 +62,7 @@ export class MetanthropesActorProgressionSheet extends ActorSheet {
 		// context.effects = prepareActiveEffectCategories(this.actor.effects);
 		//? Provide a boolean for if the user is a Narrator(GameMaster)
 		context.isGM = game.user.isGM;
-		metaLog(4, "MetanthropesActorProgressionSheet getData", "this, context, options", this, context, options);
+		metanthropes.utils.metaLog(4, "MetanthropesActorProgressionSheet getData", "this, context, options", this, context, options);
 		return context;
 	}
 	//* Activate listeners
@@ -153,10 +151,10 @@ export class MetanthropesActorProgressionSheet extends ActorSheet {
 	//* Handle changes from Overview tab
 	_onOverviewProgressionChange(event) {
 		event.preventDefault();
-		metaLog(3, "MetanthropesProgressionForm", "_onOverviewProgressionChange(event):", event);
+		metanthropes.utils.metaLog(3, "MetanthropesProgressionForm", "_onOverviewProgressionChange(event):", event);
 		//? Extract actor data from the form, using our custom function
 		const actorData = metaExtractFormData(event.currentTarget.form);
-		metaLog(3, "MetanthropesProgressionForm", "_onOverviewProgressionChange", "actorData:", actorData);
+		metanthropes.utils.metaLog(3, "MetanthropesProgressionForm", "_onOverviewProgressionChange", "actorData:", actorData);
 		//? Use a method similar to _prepareDerivedCharacteristicsData to recalculate experience
 		this._recalculateOverviewExperience(actorData);
 		//? Update the displayed values in the dialog
@@ -165,17 +163,17 @@ export class MetanthropesActorProgressionSheet extends ActorSheet {
 	//* Handle changes from Perks tab
 	_onPerkProgressionChange(event) {
 		event.preventDefault();
-		metaLog(3, "MetanthropesProgressionForm", "_onPerkProgressionChange(event)", event);
+		metanthropes.utils.metaLog(3, "MetanthropesProgressionForm", "_onPerkProgressionChange(event)", event);
 		//	//? Extract actor data from the form, using our custom function and merge it with the existing progress
 		//	const progressionFormData = metaExtractFormData(event.currentTarget.form);
-		//	metaLog(3, "MetanthropesProgressionForm", "_onPerkProgressionChange", "progressionFormData:", progressionFormData);
+		//	metanthropes.utils.metaLog(3, "MetanthropesProgressionForm", "_onPerkProgressionChange", "progressionFormData:", progressionFormData);
 		//	//? Adjust the keys in progressionFormData to remove the "actor." prefix
 		//	const adjustedFormData = {};
 		//	for (const [key, value] of Object.entries(progressionFormData)) {
 		//		const adjustedKey = key.startsWith("actor.") ? key.slice(6) : key;
 		//		adjustedFormData[adjustedKey] = value;
 		//	}
-		//	metaLog(4, "MetaProgression", "_onPerkProgressionChange", "adjustedFormData:", adjustedFormData);
+		//	metanthropes.utils.metaLog(4, "MetaProgression", "_onPerkProgressionChange", "adjustedFormData:", adjustedFormData);
 		//const progressionActorData = this.data.progressionActorData;
 		//const mergedData = mergeObject(progressionActorData, adjustedFormData, { overwrite: true, recursive: true });
 		//this.data.progressionActorData = mergedData
@@ -186,7 +184,7 @@ export class MetanthropesActorProgressionSheet extends ActorSheet {
 	}
 	//* Handle changes from Overview tab
 	_recalculateOverviewExperience(actorData) {
-		metaLog(4, "MetantropesProgressionForm", "_recalculateOverviewExperience", "actorData:", actorData);
+		metanthropes.utils.metaLog(4, "MetantropesProgressionForm", "_recalculateOverviewExperience", "actorData:", actorData);
 		const systemData = actorData.system;
 		let experienceSpent = 0;
 		let characteristicExperienceSpent = 0;
@@ -238,7 +236,7 @@ export class MetanthropesActorProgressionSheet extends ActorSheet {
 	}
 	_recalculatePerksExperience(progressionActorPerkData) {
 		const progressionActor = progressionActorPerkData;
-		metaLog(
+		metanthropes.utils.metaLog(
 			5,
 			"MetantropesProgressionForm",
 			"_recalculatePerksExperience",
@@ -246,7 +244,7 @@ export class MetanthropesActorProgressionSheet extends ActorSheet {
 			progressionActorPerkData
 		);
 		const systemData = progressionActorPerkData.system;
-		metaLog(
+		metanthropes.utils.metaLog(
 			5,
 			"MetantropesProgressionForm",
 			"_recalculatePerksExperience",
@@ -279,7 +277,7 @@ export class MetanthropesActorProgressionSheet extends ActorSheet {
 		//? Calculate total Experience Spent Progressing Perks & Characteristics & Stats
 		//? test if we have spent enough xp on the starting perks
 		if (experienceSpent < startingPerks * 100) {
-			metaLog(
+			metanthropes.utils.metaLog(
 				2,
 				"MetantropesProgressionForm",
 				"_recalculatePerksExperience",
@@ -314,7 +312,7 @@ export class MetanthropesActorProgressionSheet extends ActorSheet {
 	}
 	//* Recalculate the total Experience spent and stored
 	_validateAndStoreExperience(progressionActorData) {
-		metaLog(
+		metanthropes.utils.metaLog(
 			5,
 			"MetantropesProgressionForm",
 			"_validateAndStoreExperience",
@@ -338,6 +336,6 @@ export class MetanthropesActorProgressionSheet extends ActorSheet {
 		//	}
 	}
 	_resetProgression() {
-		metaLog(3, "MetantropesProgressionForm", "_resetProgression", "Reseting Progression");
+		metanthropes.utils.metaLog(3, "MetantropesProgressionForm", "_resetProgression", "Reseting Progression");
 	}
 }

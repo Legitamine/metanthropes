@@ -1,15 +1,15 @@
 //? Import Roll Handler
-import { metaHandleRolls, handleCoverRolls } from "../metarollers/metarollhandler.mjs";
+import { metaHandleRolls, handleCoverRolls } from "../dice/metarollhandler.mjs";
 //? Import Finalize Actor Logic
 import { metaFinalizePremadeActor } from "../metanthropes/finalizepremade.mjs";
-//? Import functions from other modules
-import { metaImportFromModule } from "../helpers/metaimports.mjs";
-//? Import meta helpers
-import { metaLog } from "../helpers/metahelpers.mjs";
 //? Import Change Actor Image
 import { metaChangeActorImage, metaChangeTokenImage } from "../helpers/metaimagehandler.mjs";
 //? Import Active Effect helpers
 import { prepareActiveEffectCategories, onManageActiveEffect } from "../metanthropes/metaeffects.mjs";
+//? Import GreenSock Animation Platform
+import gsap, { TextPlugin, Draggable as Dragger } from "/scripts/greensock/esm/all.js";
+//? Register Draggable for GreenSock
+gsap.registerPlugin(TextPlugin, Dragger);
 /**
  * MetanthropesActorSheet - An Actor Sheet for Metanthropes actors.
  *
@@ -23,7 +23,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
 		const options = super.defaultOptions;
-		return mergeObject(options, {
+		return foundry.utils.mergeObject(options, {
 			id: "metanthropes-actor-sheet",
 			classes: ["metanthropes", "sheet", "actor"], //? these are custom css classes that are used in the html file
 			width: 1012,
@@ -104,7 +104,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		context.affectedByHunger = this.actor.isHungry;
 		//? Flag for Tokenizer Support
 		context.tokenizer = game.modules.get("vtta-tokenizer")?.active;
-		metaLog(3, "MetanthropesActorSheet", "getData", "this, context, options", this, context, options);
+		metanthropes.utils.metaLog(3, "MetanthropesActorSheet", "getData", "this, context, options", this, context, options);
 		return context;
 	}
 	//* Prepare items
@@ -154,7 +154,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 					Possessions[item.system.Category.value].push(item);
 				} else {
 					//? Remove the item from the actor if its category is not allowed
-					metaLog(2, "MetanthropesActorSheet _prepareItems", "Invalid Category for Possession:", item.name);
+					metanthropes.utils.metaLog(2, "MetanthropesActorSheet _prepareItems", "Invalid Category for Possession:", item.name);
 					return;
 					//actorData.deleteEmbeddedDocuments("Item", [item.id]);
 					//actorData.items.splice(i, 1);
@@ -310,7 +310,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		}
 		await this.maximize();
 		this.render(true);
-		metaLog(3, "MetanthropesActorSheet _onHeaderButtonClick", size);
+		metanthropes.utils.metaLog(3, "MetanthropesActorSheet _onHeaderButtonClick", size);
 	}
 	//? Render the sheet
 	/**
@@ -587,13 +587,13 @@ export class MetanthropesActorSheet extends ActorSheet {
 		if (coreModule && coreModule?.active) {
 			const api = coreModule.api;
 			try {
-				metaLog(3, "_onNewActor", "Core Module API Available, calling metaNewActor");
+				metanthropes.utils.metaLog(3, "_onNewActor", "Core Module API Available, calling metaNewActor");
 				await api.metaNewActor(actor);
 			} catch (error) {
-				metaLog(2, "_onNewActor", "Core Module API Error:", error);
+				metanthropes.utils.metaLog(2, "_onNewActor", "Core Module API Error:", error);
 			}
 		} else {
-			metaLog(2, "_onNewActor", "Core Module Not Active");
+			metanthropes.utils.metaLog(2, "_onNewActor", "Core Module Not Active");
 		}
 	}
 	//* Finalize Premade Protagonist
@@ -662,6 +662,12 @@ export class MetanthropesActorSheet extends ActorSheet {
 	//todo needs to be converted to use the API like the _onNewActor function
 	async _onProgression(event) {
 		event.preventDefault();
+		//! POC for GSAP Animation
+		gsap.to("button.progression-form", {
+			duration: 3,
+			text: "Progressing...",
+			ease: "none",
+		});
 		//? Check if 'Beta Testing of New Features' is enabled
 		if (!game.settings.get("metanthropes", "metaBetaTesting")) {
 			ui.notifications.warn(
@@ -669,15 +675,15 @@ export class MetanthropesActorSheet extends ActorSheet {
 			);
 			return;
 		}
-		//? Load Progression Logic from the Metanthropes Core Module
-		const metaProgressActor = await metaImportFromModule(
-			"metanthropes-core",
-			"progression",
-			"metaprogression",
-			"metaStartProgression"
-		);
+		// //? Load Progression Logic from the Metanthropes Core Module
+		// const metaProgressActor = await metaImportFromModule(
+		// 	"metanthropes-core",
+		// 	"progression",
+		// 	"metaprogression",
+		// 	"metaStartProgression"
+		// );
 		if (!metaProgressActor) {
-			metaLog(2, "MetanthropesActorSheet", "_onProgression", "Progression function not available");
+			metanthropes.utils.metaLog(2, "MetanthropesActorSheet", "_onProgression", "Progression function not available");
 			return;
 		}
 		//? Get the actor for the Progression
@@ -687,7 +693,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//todo do this properly with a promise!
 		metaProgressionActor.setFlag("metanthropes", "Progression", { isProgressing: true });
 		//? Pass along the actor to the Progression Form
-		metaLog(
+		metanthropes.utils.metaLog(
 			3,
 			"MetanthropesActorSheet",
 			"_onProgression",
@@ -697,7 +703,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		try {
 			await metaProgressActor(metaProgressionActor);
 		} catch (error) {
-			metaLog(2, "MetanthropesActorSheet", "_onProgression", "ERROR:", error);
+			metanthropes.utils.metaLog(2, "MetanthropesActorSheet", "_onProgression", "ERROR:", error);
 			metaProgressionActor.setFlag("metanthropes", "Progression", { isProgressing: false });
 		}
 	}

@@ -1,7 +1,5 @@
 //? Import Roll Handler
-import { metaHandleRolls } from "../metarollers/metarollhandler.mjs";
-//? Improt meta helpers
-import { metaLog } from "../helpers/metahelpers.mjs";
+import { metaHandleRolls } from "../dice/metarollhandler.mjs";
 //? Import Active Effect helpers
 import { prepareActiveEffectCategories, onManageActiveEffect } from "../metanthropes/metaeffects.mjs";
 /**
@@ -16,7 +14,7 @@ import { prepareActiveEffectCategories, onManageActiveEffect } from "../metanthr
 export class MetanthropesItemSheet extends ItemSheet {
 	/** @override */
 	static get defaultOptions() {
-		return mergeObject(super.defaultOptions, {
+		return foundry.utils.mergeObject(super.defaultOptions, {
 			id: "metanthropes-item-sheet",
 			classes: ["metanthropes", "item", "sheet"],
 			width: 860,
@@ -78,7 +76,7 @@ export class MetanthropesItemSheet extends ItemSheet {
 		context.isNarrator = game.user.isGM;
 		//? Prepare Active Effects
 		if (context.betaTesting) context.effects = prepareActiveEffectCategories(this.document.effects);
-		metaLog(3, "MetanthropesItemSheet getData results", "this, context, options", this, context, options);
+		metanthropes.utils.metaLog(3, "MetanthropesItemSheet getData results", "this, context, options", this, context, options);
 		return context;
 	}
 	//* Clickable stuff on the item sheets

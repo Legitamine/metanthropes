@@ -1,6 +1,7 @@
 {
 	"Actor": {
 		"types": [
+			"testv12",
 			"Protagonist",
 			"Metanthrope",
 			"Human",
@@ -13,6 +14,7 @@
 			"Animated-Plant",
 			"MetaTherion"
 		],
+		"htmlFields": ["physical.description", "species.description"],
 		"templates": {
 			"physical": {
 				"physical": {
@@ -1065,6 +1067,9 @@
 				"label": "Secret Narrator Notes",
 				"value": "<p>This is my favorite Vehicle. Secret Narrator Notes section is only visible to Narrators</p>"
 			}
+		},
+		"testv12": {
+			
 		}
 	},
 	"Item": {

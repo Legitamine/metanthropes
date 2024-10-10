@@ -1,5 +1,4 @@
-import { metaLog, metaSheetRefresh, metaIsItemEquipped } from "../helpers/metahelpers.mjs";
-import { metaRoll } from "./metaroll.mjs";
+import { metaSheetRefresh } from "../helpers/metahelpers.mjs";
 /**
  * metaRolld10 handles the rolling of d10 dice for a given actor and purpose.
  *
@@ -19,10 +18,10 @@ import { metaRoll } from "./metaroll.mjs";
  *
  * @example
  * Rolling an actor's Weapon Damage for 3 * d10:
- * metaRolld10(actor, "Damage", true, 3, "Weapon Name");
+ * metanthropes.dice.metaRolld10(actor, "Damage", true, 3, "Weapon Name");
  */
 export async function metaRolld10(actor, what, destinyReRoll, dice, itemName = null, baseNumber = 0, isHalf = false) {
-	metaLog(
+	metanthropes.utils.metaLog(
 		3,
 		"metaRolld10",
 		"Engaged for:",
@@ -44,14 +43,14 @@ export async function metaRolld10(actor, what, destinyReRoll, dice, itemName = n
 	//? Checking if actor has Metapowers that affect the explosive dice
 	//	if (await metaIsItemEquipped(actor, "Cognitive Efficiency")) {
 	//		explosiveDice = "x1x10";
-	//		metaLog(3, "metaRolld10", "Using Alternative explosive dice:", explosiveDice);
+	//		metanthropes.utils.metaLog(3, "metaRolld10", "Using Alternative explosive dice:", explosiveDice);
 	//	}
 	//? dice is the number of d10 to roll
 	let rolld10;
 	if (baseNumber > 0) {
-		rolld10 = await new Roll(`${dice}d10${explosiveDice}+${baseNumber}`).evaluate({ async: true });
+		rolld10 = await new Roll(`${dice}d10${explosiveDice}+${baseNumber}`).evaluate();
 	} else {
-		rolld10 = await new Roll(`${dice}d10${explosiveDice}`).evaluate({ async: true });
+		rolld10 = await new Roll(`${dice}d10${explosiveDice}`).evaluate();
 	}
 	if (isHalf) {
 		rollTotal = Math.ceil(rolld10.total / 2);
@@ -109,7 +108,7 @@ export async function metaRolld10(actor, what, destinyReRoll, dice, itemName = n
 		rollMode: game.settings.get("core", "rollMode"),
 		flags: { "metanthropes": { actoruuid: actor.uuid } },
 	});
-	metaLog(3, "metaRolld10", "Finished for:", actor.name + "'s", what);
+	metanthropes.utils.metaLog(3, "metaRolld10", "Finished for:", actor.name + "'s", what);
 	//? Refresh the actor sheet if it's open
 	metaSheetRefresh(actor);
 }
@@ -143,7 +142,7 @@ export async function metaRolld10ReRoll(event) {
 	if (currentDestiny > 0 && destinyReRoll) {
 		currentDestiny--;
 		await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
-		metaLog(
+		metanthropes.utils.metaLog(
 			3,
 			"metaRolld10ReRoll",
 			"Engaged for:",
@@ -160,10 +159,10 @@ export async function metaRolld10ReRoll(event) {
 			"d10/2?:",
 			isHalf
 		);
-		await metaRolld10(actor, what, destinyReRoll, dice, itemName, baseNumber, isHalf);
+		await metanthropes.dice.metaRolld10(actor, what, destinyReRoll, dice, itemName, baseNumber, isHalf);
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
-		metaLog(1, "metaRolld10ReRoll", "Not enough Destiny to spend", "OR", "destinyReRoll is not allowed");
+		metanthropes.utils.metaLog(1, "metaRolld10ReRoll", "Not enough Destiny to spend", "OR", "destinyReRoll is not allowed");
 	}
 }
 
@@ -190,10 +189,10 @@ export async function metaHungerRoll(actor, hungerLevel) {
 		hungerEffect = 90;
 		hungerTarget = 10;
 	} else {
-		metaLog(5, "metaHungerRoll", "Hunger Level is not valid:", hungerLevel);
+		metanthropes.utils.metaLog(5, "metaHungerRoll", "Hunger Level is not valid:", hungerLevel);
 		return;
 	}
-	const hungerRoll = await new Roll("1d100").evaluate({ async: true });
+	const hungerRoll = await new Roll("1d100").evaluate();
 	const hungerRollResult = hungerRoll.total;
 	hungerMessage = `Rolls to beat Hunger 💀 Condition Level ${hungerLevel} and gets a result of ${hungerRollResult} (needed ${hungerTarget} or less).<br><br>`;
 	if (hungerRollResult > hungerTarget) {
@@ -210,7 +209,7 @@ export async function metaHungerRoll(actor, hungerLevel) {
 		hungerMessage += `It is a 🟩 Success!<hr />${actor.name} has overcome Hunger!<br><br>`;
 		await actor.setFlag("metanthropes", "hungerRollResult", true);
 		const MetaRollBeforeHungerCheck = await actor.getFlag("metanthropes", "MetaRollBeforeHungerCheck");
-		metaLog(
+		metanthropes.utils.metaLog(
 			3,
 			"metaHungerRoll",
 			"Engaging metaRoll with:",
@@ -221,7 +220,7 @@ export async function metaHungerRoll(actor, hungerLevel) {
 			MetaRollBeforeHungerCheck.destinyCost,
 			MetaRollBeforeHungerCheck.itemName
 		);
-		metaRoll(
+		metanthropes.dice.metaRoll(
 			actor,
 			MetaRollBeforeHungerCheck.action,
 			MetaRollBeforeHungerCheck.stat,
@@ -255,7 +254,7 @@ export async function metaHungerReRoll(event) {
 		metaHungerRoll(actor, hungerLevel);
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
-		metaLog(3, "metaHungerReRoll", "Not enough Destiny to spend");
+		metanthropes.utils.metaLog(3, "metaHungerReRoll", "Not enough Destiny to spend");
 	}
 }
 
@@ -284,10 +283,10 @@ export async function metaCoverRoll(actor, coverType, coverValue) {
 	} else if (coverValue === 90) {
 		coverTarget = 90;
 	} else {
-		metaLog(5, "metaCoverRoll", "Cover Value is not valid:", coverValue);
+		metanthropes.utils.metaLog(5, "metaCoverRoll", "Cover Value is not valid:", coverValue);
 		return;
 	}
-	const coverRoll = await new Roll("1d100").evaluate({ async: true });
+	const coverRoll = await new Roll("1d100").evaluate();
 	const coverRollResult = coverRoll.total;
 	coverMessage = `Rolls to find ${coverType} Cover, with ${coverValue}% and gets a result of ${coverRollResult} (needed ${coverTarget} or less).<br><br>`;
 	if (coverRollResult > coverTarget) {
@@ -330,6 +329,6 @@ export async function metaCoverReRoll(event) {
 		metaCoverRoll(actor, coverType, coverValue);
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
-		metaLog(3, "metaCoverReRoll", "Not enough Destiny to spend");
+		metanthropes.utils.metaLog(3, "metaCoverReRoll", "Not enough Destiny to spend");
 	}
 }

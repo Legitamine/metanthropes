@@ -2,6 +2,34 @@
 	"id": "metanthropes",
 	"title": "Metanthropes - Early Access",
 	"description": "Metanthropes System for Foundry VTT by Legitamine Games - Early Access",
+	"version": "1.0.0",
+	"compatibility": {
+		"minimum": "12",
+		"verified": "12.331",
+		"maximum": "13"
+	},
+	"relationships": {
+		"requires": [
+			{
+				"id": "dice-so-nice",
+				"type": "module",
+				"manifest": "https://gitlab.com/riccisi/foundryvtt-dice-so-nice/-/raw/master/module/module.json",
+				"compatibility": {
+					"minimum": "5.1.2",
+					"verified": "5.1.2"
+				}
+			},
+			{
+				"id": "combat-tracker-dock",
+				"type": "module",
+				"manifest": "https://github.com/theripper93/combat-tracker-dock/releases/latest/download/module.json",
+				"compatibility": {
+					"minimum": "3.1.2",
+					"verified": "3.1.2"
+				}
+			}
+		]
+	},
 	"authors": [
 		{
 			"name": "qp",
@@ -10,15 +38,24 @@
 			"discord": "qp#8888",
 			"flags": {
 				"github": "legitamine",
-				"patreon": "legitamine" 
+				"patreon": "legitamine"
 			}
 		}
 	],
-	"url": "https://github.com/legitamine/metanthropes",
-	"license": "https://github.com/legitamine/metanthropes/blob/main/LICENSE.txt",
-	"readme": "https://github.com/legitamine/metanthropes/blob/main/readme.md",
-	"bugs": "https://gitub.com/legitamine/metanthropes/issues",
-	"changelog": "https://github.com/legitamine/metanthropes/blob/main/changelog.md",
+	"flags": {
+		"hotReload": {
+			"extensions": ["css", "html", "hbs", "json"],
+			"paths": ["styles/metanthropes.css", "lang/en.json", "templates"]
+		}
+	},
+	"languages": [
+		{
+			"lang": "en",
+			"name": "English",
+			"path": "lang/en.json",
+			"flags": {}
+		}
+	],
 	"media": [
 		{
 			"type": "setup",
@@ -28,66 +65,56 @@
 			"flags": {}
 		}
 	],
-	"version": "0.10.145",
-	"compatibility": {
-		"minimum": "11",
-		"verified": "11.315",
-		"maximum": "12"
-	},
-	"esmodules": ["module/metanthropes.mjs"],
-	"styles": ["css/metanthropes.css"],
+	"esmodules": ["greensock/esm/all.js", "module/metanthropes.mjs"],
+	"styles": ["styles/metanthropes.css"],
 	"packs": [
 		{
-			"label": "Demo",
-			"system": "metanthropes",
-			"type": "Adventure",
-			"path": "packs/demo",
 			"name": "demo",
+			"label": "Demo",
 			"banner": "systems/metanthropes/artwork/ui/cover/compendium-header.webp",
-			"ownership": {
-				"PLAYER": "NONE",
-				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
-		},
-		{
-			"label": "System",
-			"system": "metanthropes",
+			"path": "packs/demo",
 			"type": "Adventure",
-			"path": "packs/system",
+			"system": "metanthropes",
+			"ownership": {
+				"PLAYER": "NONE",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
 			"name": "system",
+			"label": "System",
 			"banner": "systems/metanthropes/artwork/ui/cover/compendium-header.webp",
+			"path": "packs/system",
+			"type": "Adventure",
+			"system": "metanthropes",
 			"ownership": {
 				"PLAYER": "NONE",
 				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
+			}
 		},
 		{
-			"label": "Install System",
-			"system": "metanthropes",
-			"type": "JournalEntry",
-			"path": "packs/install-system",
 			"name": "install-system",
+			"label": "Install System",
 			"banner": "systems/metanthropes/artwork/ui/cover/compendium-header.webp",
+			"path": "packs/install-system",
+			"type": "JournalEntry",
+			"system": "metanthropes",
 			"ownership": {
 				"PLAYER": "NONE",
 				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
+			}
 		},
 		{
-			"label": "Welcome",
-			"system": "metanthropes",
-			"type": "JournalEntry",
-			"path": "packs/welcome",
 			"name": "welcome",
+			"label": "Welcome",
 			"banner": "systems/metanthropes/artwork/ui/cover/compendium-header.webp",
+			"path": "packs/welcome",
+			"type": "JournalEntry",
+			"system": "metanthropes",
 			"ownership": {
 				"PLAYER": "OBSERVER",
 				"ASSISTANT": "OWNER"
-			},
-			"flags": {}
+			}
 		}
 	],
 	"packFolders": [
@@ -104,21 +131,39 @@
 					"packs": ["install-system"],
 					"folders": [
 						{
-						"name": "Content",
-						"sorting": "a",
-						"color": "#7d0f81",
-						"packs": ["demo", "system"],
-						"folders": []
+							"name": "Content",
+							"sorting": "a",
+							"color": "#7d0f81",
+							"packs": ["demo", "system"],
+							"folders": []
 						}
 					]
 				}
 			]
 		}
 	],
+	"changelog": "https://github.com/legitamine/metanthropes/blob/main/changelog.md",
+	"manifest": "https://github.com/legitamine/metanthropes/releases/latest/download/system.json",
+	"url": "https://github.com/legitamine/metanthropes",
+	"license": "https://github.com/legitamine/metanthropes/blob/main/LICENSE.txt",
+	"readme": "https://github.com/legitamine/metanthropes/blob/main/readme.md",
+	"bugs": "https://gitub.com/legitamine/metanthropes/issues",
 	"background": "systems/metanthropes/artwork/ui/cover/cover.jpg",
-	"gridDistance": 2,
-	"gridUnits": "m",
+	"socket": true,
 	"primaryTokenAttribute": "Vital.Destiny",
 	"secondaryTokenAttribute": "Vital.Life",
-	"manifest": "https://github.com/legitamine/metanthropes/releases/latest/download/system.json"
+	"grid": {
+		"type": 2,
+		"alpha": 0.2,
+		"distance": 2,
+		"units": "m",
+		"diagonals": 0
+	},
+	"documentTypes": {
+		"Actor": {
+			"testv12": {
+				"htmlFields": ["physical.description"]
+			}
+		}
+	}
 }

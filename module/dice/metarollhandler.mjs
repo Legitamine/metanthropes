@@ -1,6 +1,3 @@
-import { metaRoll } from "./metaroll.mjs";
-import { metaLog } from "../helpers/metahelpers.mjs";
-import { metaCoverRoll } from "./metarollextras.mjs";
 /**
  * metaHandleRolls - A utility function to handle various types of meta rolls for the Metanthropes system.
  *
@@ -27,7 +24,7 @@ export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 		element.disabled = false;
 	}, 3000);
 	const dataset = element.dataset;
-	metaLog(3, "metaHandleRolls", "Engaged via right-click:", isCustomRoll);
+	metanthropes.utils.metaLog(3, "metaHandleRolls", "Engaged via right-click:", isCustomRoll);
 	//? Handle all types of rolls here based on the rollType (data-roll-type)
 	if (dataset.rollType) {
 		const actor = metaSheet.actor;
@@ -37,12 +34,12 @@ export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 		const itemName = dataset.itemName || null; //? Item Name is optional, so if it's not defined, set it to null
 		switch (dataset.rollType) {
 			case "StatRoll":
-				metaLog(3, "metaHandleRolls", "Engaging metaRoll for:", actor.name + "'s", action, "with", stat);
-				await metaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
-				metaLog(3, "metaHandleRolls", "Finished Rolling for StatRoll");
+				metanthropes.utils.metaLog(3, "metaHandleRolls", "Engaging metaRoll for:", actor.name + "'s", action, "with", stat);
+				await metanthropes.dice.metaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
+				metanthropes.utils.metaLog(3, "metaHandleRolls", "Finished Rolling for StatRoll");
 				break;
 			case "Metapower":
-				metaLog(
+				metanthropes.utils.metaLog(
 					3,
 					"metaHandleRolls",
 					"Engaging metaRoll for:",
@@ -55,11 +52,11 @@ export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 					"with:",
 					stat
 				);
-				await metaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
-				metaLog(3, "metaHandleRolls", "Finished Rolling for Metapower");
+				await metanthropes.dice.metaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
+				metanthropes.utils.metaLog(3, "metaHandleRolls", "Finished Rolling for Metapower");
 				break;
 			case "Possession":
-				metaLog(
+				metanthropes.utils.metaLog(
 					3,
 					"metaHandleRolls",
 					"Engaging metaRoll for:",
@@ -70,16 +67,16 @@ export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 					"with:",
 					stat
 				);
-				await metaRoll(actor, action, stat, isCustomRoll, 0, itemName);
-				metaLog(3, "metaHandleRolls", "Finished Rolling for Possession");
+				await metanthropes.dice.metaRoll(actor, action, stat, isCustomRoll, 0, itemName);
+				metanthropes.utils.metaLog(3, "metaHandleRolls", "Finished Rolling for Possession");
 				break;
 			default:
-				metaLog(2, "metaHandleRolls", "ERROR: not defined rollType", dataset.rollType);
+				metanthropes.utils.metaLog(2, "metaHandleRolls", "ERROR: not defined rollType", dataset.rollType);
 				return;
 		}
 	}
 	//? Finished
-	metaLog(3, "metaHandleRolls");
+	metanthropes.utils.metaLog(3, "metaHandleRolls");
 }
 /**
  * HandleCoverRolls - A utility function to handle cover rolls for the Metanthropes system.
@@ -101,5 +98,5 @@ export async function handleCoverRolls(event, metaSheet) {
 	const actor = metaSheet.actor;
 	const coverType = dataset.type;
 	const coverValue = parseInt(dataset.coverValue);
-	metaCoverRoll(actor, coverType, coverValue);
+	metanthropes.dice.metaCoverRoll(actor, coverType, coverValue);
 }
