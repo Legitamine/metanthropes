@@ -7,4 +7,10 @@ export default class MetanthropesItemBase extends foundry.abstract.TypeDataModel
 
 		return schema;
 	}
+
+	prepareBaseData() {}
+
+	prepareDerivedData() {
+		console.log(this.parent);
+	}
 }

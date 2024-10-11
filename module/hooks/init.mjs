@@ -68,6 +68,11 @@ Hooks.once("init", async function () {
 		makeDefault: true,
 	});
 
+	Items.registerSheet("metanthropes", metanthropes.applications.MetanthropesItemSheetV2, {
+		makeDefault: false,
+		label: "METANTHROPES.SHEET.ITEM.LABEL",
+	});
+
 	DocumentSheetConfig.registerSheet(
 		ActiveEffect,
 		"metanthropes",
@@ -77,9 +82,9 @@ Hooks.once("init", async function () {
 		}
 	);
 
-	//? Register System Settings
+	//* Register System Settings
 	metanthropes.utils.metaRegisterGameSettings(game.settings);
 
-	//? Preload Handlebars templates.
+	//* Preload Handlebars templates.
 	return metanthropes.utils.preloadHandlebarsTemplates();
 });
