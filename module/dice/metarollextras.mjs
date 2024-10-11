@@ -1,5 +1,4 @@
-import { metaSheetRefresh, metaIsItemEquipped } from "../helpers/metahelpers.mjs";
-import { metaRoll } from "./metaroll.mjs";
+import { metaSheetRefresh } from "../helpers/metahelpers.mjs";
 /**
  * metaRolld10 handles the rolling of d10 dice for a given actor and purpose.
  *
@@ -19,7 +18,7 @@ import { metaRoll } from "./metaroll.mjs";
  *
  * @example
  * Rolling an actor's Weapon Damage for 3 * d10:
- * metaRolld10(actor, "Damage", true, 3, "Weapon Name");
+ * metanthropes.dice.metaRolld10(actor, "Damage", true, 3, "Weapon Name");
  */
 export async function metaRolld10(actor, what, destinyReRoll, dice, itemName = null, baseNumber = 0, isHalf = false) {
 	metanthropes.utils.metaLog(
@@ -160,7 +159,7 @@ export async function metaRolld10ReRoll(event) {
 			"d10/2?:",
 			isHalf
 		);
-		await metaRolld10(actor, what, destinyReRoll, dice, itemName, baseNumber, isHalf);
+		await metanthropes.dice.metaRolld10(actor, what, destinyReRoll, dice, itemName, baseNumber, isHalf);
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
 		metanthropes.utils.metaLog(1, "metaRolld10ReRoll", "Not enough Destiny to spend", "OR", "destinyReRoll is not allowed");
@@ -221,7 +220,7 @@ export async function metaHungerRoll(actor, hungerLevel) {
 			MetaRollBeforeHungerCheck.destinyCost,
 			MetaRollBeforeHungerCheck.itemName
 		);
-		metaRoll(
+		metanthropes.dice.metaRoll(
 			actor,
 			MetaRollBeforeHungerCheck.action,
 			MetaRollBeforeHungerCheck.stat,

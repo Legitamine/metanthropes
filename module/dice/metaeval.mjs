@@ -1,4 +1,3 @@
-import { metaExecute } from "./metaexecute.mjs";
 /**
  * metaEvaluate calculates the result of a roll, sets actor flags and prints it to chat
  *
@@ -359,10 +358,10 @@ export async function metaEvaluate(
 		//? Automatically execute the activation/use of the Metapower/Possession if it's a Critical Success/Failure or not enough destiny to reroll
 		if (action === "Metapower") {
 			metanthropes.utils.metaLog(3, "metaEvaluate", "Auto-Activating Metapower:", itemName);
-			metaExecute(null, actor.uuid, action, itemName);
+			metanthropes.metapowers.metaExecute(null, actor.uuid, action, itemName);
 		} else if (action === "Possession") {
 			metanthropes.utils.metaLog(3, "metaEvaluate", "Auto-Using Possession:", itemName);
-			metaExecute(null, actor.uuid, action, itemName, multiAction);
+			metanthropes.possessions.metaExecute(null, actor.uuid, action, itemName, multiAction);
 		}
 	}
 }

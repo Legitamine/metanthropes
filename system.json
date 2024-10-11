@@ -9,7 +9,7 @@
 		"maximum": "13"
 	},
 	"relationships": {
-		"recommends": [
+		"requires": [
 			{
 				"id": "dice-so-nice",
 				"type": "module",

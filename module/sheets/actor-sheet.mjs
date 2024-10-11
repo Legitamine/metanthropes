@@ -1,5 +1,5 @@
 //? Import Roll Handler
-import { metaHandleRolls, handleCoverRolls } from "../metarollers/metarollhandler.mjs";
+import { metaHandleRolls, handleCoverRolls } from "../dice/metarollhandler.mjs";
 //? Import Finalize Actor Logic
 import { metaFinalizePremadeActor } from "../metanthropes/finalizepremade.mjs";
 //? Import Change Actor Image

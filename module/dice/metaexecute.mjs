@@ -1,5 +1,3 @@
-import { metaExtractNumberOfDice } from "../helpers/metahelpers.mjs";
-
 /**
  * metaExecute handles the execution of Metapowers and Possessions for a given actor.
  *
@@ -260,7 +258,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			<br></div>`;
 			} else {
 				//? all other rolls
-				targetsNumberDice = await metaExtractNumberOfDice(targetsNumber);
+				targetsNumberDice = await metanthropes.utils.metaExtractNumberOfDice(targetsNumber);
 				targetsNumberDiceMessage = `[[${targetsNumberDice}d10${explosiveDice}]]`;
 				targetsMessage = `🎯: ${targetsNumberDiceMessage}`;
 				targetsRerollButton = `<div class="hide-button hidden"><br>

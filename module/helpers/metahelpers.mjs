@@ -1,59 +1,4 @@
 /**
- * * metaLog function controls how console logging happens.
- * 
- * ? It is accessible via metanthropes.utils.metaLog()
- * example: metanthropes.utils.metaLog(3, "name of the function", "description of the log", "variable1", variable1, "variable2", variable2);
- * 
- * metaLog 0 (console.log), 1 (console.warn), 2 (console.error) show up in the console by default
- * metaLog 3 (console.log), 4 (console.warn), 5 (console.error) show up in the console if the advanced logging setting is enabled in the system settings
- * Advanced logging is disabled by default and is designed to be used for troubleshooting and debugging
- *
- * @param {Number} logType
- * @param  {...any} variables
- * @returns
- */
-export function metaLog(logType = 0, ...variables) {
-	const metaAdvancedLogging = game.settings.get("metanthropes", "metaAdvancedLogging");
-	if (!metaAdvancedLogging && logType > 2) {
-		return;
-	}
-	let logFunction = console.log;
-	let logMessage = `%cMetanthropes | `;
-	let logStyle = "background-color: #5C16C5; color: #fff";
-	let altLogStyle = "background-color: #00695c; color: #fff";
-	switch (logType) {
-		case 1:
-		case 4:
-			logFunction = console.warn;
-			break;
-		case 2:
-		case 5:
-			logFunction = console.error;
-			break;
-	}
-	let styles = [logStyle];
-	let logStrings = [logMessage];
-	let logObjects = [];
-	variables.forEach((variable, index) => {
-		if (variable !== null && variable !== undefined) {
-			let style = index % 2 === 0 ? logStyle : altLogStyle;
-			if (typeof variable === "object") {
-				logStrings.push("%c[See Below the Object returned]");
-				logObjects.push(variable);
-			} else {
-				logStrings.push(`%c${variable}`);
-			}
-			styles.push(style);
-			if (index !== variables.length - 1) {
-				logStrings.push("%c | ");
-				styles.push(logStyle);
-			}
-		}
-	});
-	logFunction(logStrings.join(""), ...styles, ...logObjects);
-}
-
-/**
  * Helper function to import functionality from the Core Module
  * Deprecated in favor of metaImportFromModule
  */
@@ -63,10 +8,10 @@ export async function metaImportProgressionFromCoreModule() {
 	if (metaCoreIsEnabled) {
 		try {
 			const module = await import("../../../../modules/metanthropes-core/module/progression/metaprogression.mjs");
-			metaLog(3, "Metanthropes", "Meta Helpers", "Import Progression From Core Module", module);
+			metanthropes.utils.metaLog(3, "Metanthropes", "Meta Helpers", "Import Progression From Core Module", module);
 			return module.MetaStartProgression;
 		} catch (error) {
-			metaLog(
+			metanthropes.utils.metaLog(
 				2,
 				"Meta Helpers",
 				"Import Progression From Core Module",
@@ -81,49 +26,6 @@ export async function metaImportProgressionFromCoreModule() {
 
 /**
  *
- * Helper function to print the currently open Document to the console
- * Kindly provided by TyphonJS(Michael) from the FoundryVTT Discord
- * Inspired by a similar functionality from DevMode (https://foundryvtt.com/packages/_dev-mode)
- *
- * @param {*} app
- * @param {*} buttons
- */
-export function metaLogDocument(app, buttons) {
-	//? Will only run if the 'Enable Advanced Logging' setting is enabled
-	if (game.settings.get("metanthropes", "metaAdvancedLogging")) {
-		buttons.unshift({
-			icon: "fas fa-terminal",
-			class: "metalog-doc",
-			onclick: async () => {
-				const uuid = app?.object?.uuid;
-				if (typeof uuid === "string") {
-					const doc = await globalThis.fromUuid(uuid);
-					if (doc) {
-						console.log(doc);
-					}
-				}
-			},
-		});
-	}
-}
-
-/**
- *
- * Helper function to extract the number of d10 dice from a given value
- *
- * @param {String} value
- * @returns integer
- */
-export async function metaExtractNumberOfDice(value) {
-	const match = value.match(/^(\d+)d10$/);
-	if (match) {
-		return parseInt(match[1], 10); // Convert the captured string to an integer
-	}
-	return null; // Return null if the string doesn't match the expected format
-}
-
-/**
- *
  * Helper function to refresh the actor or item sheet
  * This is needed to ensure the Stat Scores display correctly in the Metapowers and Possessions tabs of the actor sheet
  *
@@ -131,19 +33,19 @@ export async function metaExtractNumberOfDice(value) {
  */
 //! Is this function needed? now that we used a different lookup method for the Current Score vs refreshing the sheet, it should be deprecated?
 export async function metaSheetRefresh(sheet) {
-	metaLog(3, "metaSheetRefresh", "Engaged for", "Sheet", sheet);
+	metanthropes.utils.metaLog(3, "metaSheetRefresh", "Engaged for", "Sheet", sheet);
 	//todo: make it so that it will only refresh if the sheet is not minimized etc || test!
 	if (sheet.rendered && !sheet._minimized) {
-		metaLog(3, "metaSheet", "updating the roll data for the actor");
+		metanthropes.utils.metaLog(3, "metaSheet", "updating the roll data for the actor");
 		const actor = sheet.actor;
 		await actor.getRollData();
-		metaLog(3, "metaSheet", "done");
+		metanthropes.utils.metaLog(3, "metaSheet", "done");
 	}
 	//if (sheet.rendered) {
 	//	metaLog(3, "metaSheetRefresh", "Refreshing Sheet");
 	//	sheet.render(true);
 	//}
-	metaLog(3, "metaSheetRefresh", "Finished");
+	metanthropes.utils.metaLog(3, "metaSheetRefresh", "Finished");
 }
 
 /**

@@ -1,4 +1,3 @@
-import { metaRoll } from "./metaroll.mjs";
 import { metaSheetRefresh } from "../helpers/metahelpers.mjs";
 
 /**
@@ -63,7 +62,7 @@ export async function metaInitiative(combatant) {
 	if (!(actor.name.includes("Duplicate") || actor.type.includes("Animated"))) {
 		//? If the actor is not a Duplicate or Animated, metaRoll for Initiative
 		metanthropes.utils.metaLog(3, "metaInitiative", "Engaging metaRoll for:", actor.name + "'s", action, "with", initiativeStatRolled);
-		await metaRoll(actor, action, initiativeStatRolled);
+		await metanthropes.dice.metaRoll(actor, action, initiativeStatRolled);
 		initiativeResult = await actor.getFlag("metanthropes", "lastrolled").Initiative;
 	} else {
 		//* Logic for Duplicates & Animated
