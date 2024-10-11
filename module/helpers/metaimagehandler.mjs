@@ -29,7 +29,7 @@ export async function metaChangeTokenImage(actor, useWildcard = false) {
  */
 async function metaUpdateImage(actor, imageDir, changeBoth, useWildcard) {
 	// Define the base directory
-	let baseDir = "systems/metanthropes/artwork/actors/";
+	let baseDir = "systems/metanthropes/assets/";
 
 	// If using Metanthropes Introductory Module, change the base directory
 	const intro = game.settings.get("metanthropes", "metaIntroductory");
