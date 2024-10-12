@@ -1,11 +1,7 @@
-//? Import Roll Handler
-import { metaHandleRolls, handleCoverRolls } from "../dice/metarollhandler.mjs";
 //? Import Finalize Actor Logic
 import { metaFinalizePremadeActor } from "../metanthropes/finalizepremade.mjs";
 //? Import Change Actor Image
 import { metaChangeActorImage, metaChangeTokenImage } from "../helpers/metaimagehandler.mjs";
-//? Import Active Effect helpers
-import { prepareActiveEffectCategories, onManageActiveEffect } from "../metanthropes/metaeffects.mjs";
 //? Import GreenSock Animation Platform
 import gsap, { TextPlugin, Draggable as Dragger } from "/scripts/greensock/esm/all.js";
 //? Register Draggable for GreenSock
@@ -93,7 +89,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//? Provide a boolean for if the user is a Narrator(GameMaster)
 		context.isNarrator = game.user.isGM;
 		//? Add the actor's active effects to the context for easier access.
-		if (context.betaTesting) context.effects = prepareActiveEffectCategories(this.actor.effects);
+		if (context.betaTesting) context.effects = metanthropes.utils.prepareActiveEffectCategories(this.actor.effects);
 		//? Calculate the actor's XP Spent
 		context.xpSpent = Number(actorData.system.Vital.Experience.Spent + actorData.system.Vital.Experience.Manual);
 		//? Flag if actor is affected by Disease
@@ -213,7 +209,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		});
 		//? Active Effect management
 		if (game.settings.get("metanthropes", "metaBetaTesting"))
-			html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.actor));
+			html.find(".effect-control").click((ev) => metanthropes.utils.onManageActiveEffect(ev, this.actor));
 		//? Roll Stat
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
 		html.find(".style-cs-rolls").on("contextmenu", this._onCustomRoll.bind(this));
@@ -572,11 +568,11 @@ export class MetanthropesActorSheet extends ActorSheet {
 	}
 	//* Handle Left-Click Rolls
 	async _onRoll(event) {
-		metaHandleRolls(event, this, false);
+		metanthropes.dice.metaHandleRolls(event, this, false);
 	}
 	//* Handle Right-Click Rolls
 	async _onCustomRoll(event) {
-		metaHandleRolls(event, this, true);
+		metanthropes.dice.metaHandleRolls(event, this, true);
 	}
 	//* New Actor Logic
 	async _onNewActor(event) {
@@ -708,7 +704,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		}
 	}
 	async _onCoverRoll(event) {
-		handleCoverRolls(event, this);
+		metanthropes.dice.handleCoverRolls(event, this);
 	}
 	async _onChangePortrait(event) {
 		event.preventDefault();

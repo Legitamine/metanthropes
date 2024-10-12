@@ -1073,7 +1073,7 @@
 		}
 	},
 	"Item": {
-		"types": ["Metapower", "Possession", "Combo", "Object"],
+		"types": ["Metapower", "Possession", "Combo", "Object", "species"],
 		"templates": {
 			"material": {
 				"Material": {

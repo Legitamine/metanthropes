@@ -16,6 +16,9 @@ Hooks.once("init", async function () {
 	CONFIG.Actor.dataModels = {
 		testv12: metanthropes.models.MetanthropesActorNPC,
 	};
+	CONFIG.Item.dataModels = {
+		species: metanthropes.models.MetanthropesItemSpecies,
+	};
 
 	//* Configure Active Effect Legacy Transferral
 	CONFIG.ActiveEffect.legacyTransferral = false;
@@ -65,13 +68,23 @@ Hooks.once("init", async function () {
 		makeDefault: true,
 	});
 
-	DocumentSheetConfig.registerSheet(ActiveEffect, "metanthropes", metanthropes.applications.MetanthropesActiveEffectSheet, {
-		makeDefault: true,
+	Items.registerSheet("metanthropes", metanthropes.applications.MetanthropesItemSheetV2, {
+		makeDefault: false,
+		label: "METANTHROPES.SHEET.ITEM.LABEL",
 	});
 
-	//? Register System Settings
+	DocumentSheetConfig.registerSheet(
+		ActiveEffect,
+		"metanthropes",
+		metanthropes.applications.MetanthropesActiveEffectSheet,
+		{
+			makeDefault: true,
+		}
+	);
+
+	//* Register System Settings
 	metanthropes.utils.metaRegisterGameSettings(game.settings);
 
-	//? Preload Handlebars templates.
+	//* Preload Handlebars templates.
 	return metanthropes.utils.preloadHandlebarsTemplates();
 });
