@@ -12,7 +12,7 @@
  ** //todo Marks a comment that is used for marking (in Orange) potential optimization notes.
  *** // comments without any special syntax are used for quick clarification of specific options.
  *
- * To get automatic colloring for these comments in VSCode, you can use this extension:
+ * To get automatic coloring for these comments in VSCode, you can use this extension:
  * aaron-bond.better-comments
  *
  */
