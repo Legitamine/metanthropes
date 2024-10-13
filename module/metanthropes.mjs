@@ -55,7 +55,7 @@ import { metaExtractNumberOfDice } from "./utils/dice-tools.mjs";
 import { metaMigrateData } from "./utils/migration.mjs";
 import { metaLog } from "./utils/log-tools.mjs";
 //* Game Settings
-import { metaRegisterGameSettings } from "./config/settings.mjs";
+import { metaRegisterGameSettings } from "./utils/register-game-settings.mjs";
 import { metaRegisterStatusEffects } from "./config/status-effects.mjs";
 //* Other Functions
 import { metaExecute } from "./dice/metaexecute.mjs";
