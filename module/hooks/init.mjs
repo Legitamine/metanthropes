@@ -1,3 +1,5 @@
+import { settings } from "../config/settings.mjs";
+
 Hooks.once("init", async function () {
 	//* Configure System
 	globalThis.SYSTEM = metanthropes.system;
@@ -65,13 +67,18 @@ Hooks.once("init", async function () {
 		makeDefault: true,
 	});
 
-	DocumentSheetConfig.registerSheet(ActiveEffect, "metanthropes", metanthropes.applications.MetanthropesActiveEffectSheet, {
-		makeDefault: true,
-	});
+	DocumentSheetConfig.registerSheet(
+		ActiveEffect,
+		"metanthropes",
+		metanthropes.applications.MetanthropesActiveEffectSheet,
+		{
+			makeDefault: true,
+		}
+	);
 
-	//? Register System Settings
-	metanthropes.utils.metaRegisterGameSettings(game.settings);
+	//* Register System Settings
+	metanthropes.utils.metaRegisterGameSettings(settings);
 
-	//? Preload Handlebars templates.
+	//* Preload Handlebars templates.
 	return metanthropes.utils.preloadHandlebarsTemplates();
 });
