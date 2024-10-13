@@ -27,7 +27,7 @@ export function metaRegisterStatusEffects() {
 				},
 			},
 			description: "<p>Invisible</p>",
-			img: "systems/metanthropes/artwork/status-effects/invisible.svg",
+			img: "systems/metanthropes/assets/artwork/status-effects/invisible.svg",
 		},
 
 		//* Sense-Lost: Vision
@@ -45,7 +45,7 @@ export function metaRegisterStatusEffects() {
 				},
 			},
 			description: "<p>Sense-Lost: Vision</p>",
-			img: "systems/metanthropes/artwork/status-effects/sense-lost-vision.svg",
+			img: "systems/metanthropes/assets/artwork/status-effects/sense-lost-vision.svg",
 		},
 
 		//* Dead
@@ -63,7 +63,7 @@ export function metaRegisterStatusEffects() {
 				},
 			},
 			description: "<p>Dead</p>",
-			img: "systems/metanthropes/artwork/status-effects/dead.svg",
+			img: "systems/metanthropes/assets/artwork/status-effects/dead.svg",
 		},
 
 		//* Knocked Down
@@ -88,7 +88,7 @@ export function metaRegisterStatusEffects() {
 				},
 			],
 			description: "<p>Knocked Down</p>",
-			img: "systems/metanthropes/artwork/status-effects/knocked-down.svg",
+			img: "systems/metanthropes/assets/artwork/status-effects/knocked-down.svg",
 		},
 
 		//* Immobilized
@@ -118,7 +118,7 @@ export function metaRegisterStatusEffects() {
 				},
 			],
 			description: "<p>Immobilized</p>",
-			img: "systems/metanthropes/artwork/status-effects/immobilized.svg",
+			img: "systems/metanthropes/assets/artwork/status-effects/immobilized.svg",
 		},
 	];
 

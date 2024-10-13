@@ -1,7 +1,5 @@
 //? Import Roll Handler
 import { metaHandleRolls } from "../dice/metarollhandler.mjs";
-//? Import Active Effect helpers
-import { prepareActiveEffectCategories, onManageActiveEffect } from "../metanthropes/metaeffects.mjs";
 /**
  * MetanthropesItemSheet - An Item Sheet for Metanthropes items.
  *
@@ -75,7 +73,7 @@ export class MetanthropesItemSheet extends ItemSheet {
 		//? Provide a boolean for if the user is a Narrator(GameMaster)
 		context.isNarrator = game.user.isGM;
 		//? Prepare Active Effects
-		if (context.betaTesting) context.effects = prepareActiveEffectCategories(this.document.effects);
+		if (context.betaTesting) context.effects = metanthropes.utils.prepareActiveEffectCategories(this.document.effects);
 		metanthropes.utils.metaLog(3, "MetanthropesItemSheet getData results", "this, context, options", this, context, options);
 		return context;
 	}
@@ -94,7 +92,7 @@ export class MetanthropesItemSheet extends ItemSheet {
 		if (!this.isEditable) return;
 		//? Active Effects
 		if (game.settings.get("metanthropes", "metaBetaTesting"))
-			html.find(".effect-control").click((ev) => onManageActiveEffect(ev, this.document));
+			html.find(".effect-control").click((ev) => metanthropes.utils.onManageActiveEffect(ev, this.document));
 		//? Roll Metapower
 		html.find(".style-mp-rolls").click(this._onRoll.bind(this));
 		html.find(".style-mp-rolls").on("contextmenu", this._onCustomRoll.bind(this));
@@ -111,10 +109,10 @@ export class MetanthropesItemSheet extends ItemSheet {
 	}
 	//* Handle Left-Click Rolls
 	async _onRoll(event) {
-		metaHandleRolls(event, this, false);
+		metanthropes.utils.metaHandleRolls(event, this, false);
 	}
 	//* Handle Right-Click Rolls
 	async _onCustomRoll(event) {
-		metaHandleRolls(event, this, true);
+		metanthropes.utils.metaHandleRolls(event, this, true);
 	}
 }

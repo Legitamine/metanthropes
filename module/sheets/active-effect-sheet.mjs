@@ -1,7 +1,8 @@
 /**
  *
  * Metanthropes Active Effect Sheet
- * Extends the DocumentSheet instead of overriding the ActiveEffectConfig class
+ *!!!! Extends the DocumentSheet instead of overriding the ActiveEffectConfig class
+ *todo missing the new active effect from status effect feature
  * Based off ActiveEffectConfig from the core Foundry VTT system
  *
  * @extends {DocumentSheet}

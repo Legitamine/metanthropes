@@ -12,7 +12,7 @@
  ** //todo Marks a comment that is used for marking (in Orange) potential optimization notes.
  *** // comments without any special syntax are used for quick clarification of specific options.
  *
- * To get automatic colloring for these comments in VSCode, you can use this extension:
+ * To get automatic coloring for these comments in VSCode, you can use this extension:
  * aaron-bond.better-comments
  *
  */
@@ -31,6 +31,7 @@ import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
 import { MetanthropesActiveEffectSheet } from "./sheets/active-effect-sheet.mjs";
 //* AppV2 Sheets
 import { MetanthropesNPCActorSheet, MetanthropesActorSheetV2 } from "./sheets/actor-sheet-v2.mjs";
+import { MetanthropesItemSheetV2 } from "./sheets/item-sheet-v2.mjs";
 //* Dice Rollers
 import { metaRoll } from "./dice/metaroll.mjs";
 import { metaEvaluate, metaEvaluateReRoll } from "./dice/metaeval.mjs";
@@ -42,12 +43,14 @@ import {
 	metaCoverRoll,
 	metaCoverReRoll,
 } from "./dice/metarollextras.mjs";
+import { handleCoverRolls, metaHandleRolls } from "./dice/metarollhandler.mjs";
 import { metaInitiative, metaInitiativeReRoll } from "./dice/metainitiative.mjs";
 //* Combat
 import { MetanthropesCombat } from "./combat/combat.mjs";
 import { MetaCombatTracker } from "./combat/combattracker.mjs";
 import { MetaCombatant } from "./combat/combatant.mjs";
 //* Utilities
+import { prepareActiveEffectCategories, onManageActiveEffect } from "./utils/active-effect-tools.mjs";
 import { metaExtractNumberOfDice } from "./utils/dice-tools.mjs";
 import { metaMigrateData } from "./utils/migration.mjs";
 import { metaLog } from "./utils/log-tools.mjs";
@@ -88,6 +91,7 @@ globalThis.metanthropes = {
 		MetanthropesActiveEffectSheet,
 		MetanthropesActorSheetV2,
 		MetanthropesNPCActorSheet,
+		MetanthropesItemSheetV2
 	},
 	combat: {
 		MetanthropesCombat,
@@ -106,6 +110,8 @@ globalThis.metanthropes = {
 		metaHungerReRoll,
 		metaCoverRoll,
 		metaCoverReRoll,
+		metaHandleRolls,
+		handleCoverRolls,
 	},
 	metapowers: {
 		metaExecute,
@@ -131,6 +137,8 @@ globalThis.metanthropes = {
 		metaExtractNumberOfDice,
 		metaRegisterGameSettings,
 		metaRegisterStatusEffects,
+		onManageActiveEffect,
+		prepareActiveEffectCategories,
 		preloadHandlebarsTemplates,
 	},
 };
@@ -143,3 +151,5 @@ import "./hooks/create-actor.mjs";
 import "./hooks/pause.mjs";
 import "./hooks/supported-modules.mjs";
 import "./hooks/other.mjs";
+
+

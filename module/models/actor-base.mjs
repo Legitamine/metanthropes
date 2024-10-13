@@ -1,3 +1,5 @@
+import MetanthropesItemSpecies from "./item-species.mjs";
+
 export default class MetanthropesActorBase extends foundry.abstract.TypeDataModel {
 	static LOCALIZATION_PREFIXES = ["METANTHROPES.ACTOR.BASE"];
 
@@ -7,10 +9,10 @@ export default class MetanthropesActorBase extends foundry.abstract.TypeDataMode
 		const requiredInteger = { required: true, nullable: false, integer: true };
 		const requiredNumber = { required: true, nullable: false, integer: false };
 		const requiredString = { required: true, nullable: false };
-		const statScore = {required: true, nullable: false, integer: true, min: 0, initial: 1};
+		const statScore = { required: true, nullable: false, integer: true, min: 0, initial: 1 };
 		const schema = {};
 		//* All Beings
-		//* Life
+		//todo * Life move to resources.life
 		schema.life = new fields.SchemaField({
 			value: new fields.NumberField({
 				...lifeScore,
@@ -56,19 +58,23 @@ export default class MetanthropesActorBase extends foundry.abstract.TypeDataMode
 		//* Shift
 		schema.shift;
 		//* Species
-		schema.species = new fields.SchemaField({
-			description: new fields.HTMLField(),
-			name: new fields.StringField(),
-			origin: new fields.StringField(),
-			metaType: new fields.StringField(), // Metapowered or Non-Metapowered
-			majorType: new fields.StringField(), // Organism, Artificial, ET, ED
-			minorType: new fields.StringField(), // Humanoid, Spirit, Anima, Animal, Incarnation etc <- or is that the name?
-			
-
-		});
+		schema.species = new fields.SchemaField(
+			{
+				name: new fields.StringField({ blank: false }),
+				img: new fields.StringField(),
+				...MetanthropesItemSpecies.defineSchema(),
+			},
+			{
+				required: true,
+				nullable: true,
+				initial: null,
+			}
+		);
 		//* Notes
-		schema.notes;
-		
+		schema.notes = new fields.SchemaField({
+			metaOwner: new fields.StringField(),
+		});
+
 		//* Intellectual Beings
 		//* EXP
 		schema.exp;
@@ -78,7 +84,7 @@ export default class MetanthropesActorBase extends foundry.abstract.TypeDataMode
 		schema.stats;
 		//* Perks
 		schema.perks;
-		
+
 		//* Sentient Beings
 		//* Destiny
 		schema.destiny;
@@ -89,7 +95,7 @@ export default class MetanthropesActorBase extends foundry.abstract.TypeDataMode
 		//* Political Beings
 		schema.politics;
 		//
-		
+
 		return schema;
 	}
 
@@ -105,6 +111,8 @@ export default class MetanthropesActorBase extends foundry.abstract.TypeDataMode
 		this._prepareDerivedLifeData();
 		this._prepareDerivedCharacteristicsData();
 		this._prepareDerivedMovementData();
+
+		console.log(this);
 	}
 
 	//? Base Life Data preparation
@@ -114,28 +122,17 @@ export default class MetanthropesActorBase extends foundry.abstract.TypeDataMode
 	}
 
 	//? Base Characteristics Data preparation
-	_prepareBaseCharacteristicsData() {
-		
-	}
+	_prepareBaseCharacteristicsData() {}
 
 	//? Base Movement Data preparation
-	_prepareBaseMovementData() {
-		
-	}
+	_prepareBaseMovementData() {}
 
 	//? Derived Life Data preparation
-	_prepareDerivedLifeData() {
-		
-	}
+	_prepareDerivedLifeData() {}
 
 	//? Derived Characteristics Data preparation
-	_prepareDerivedCharacteristicsData() {
-		
-	}
+	_prepareDerivedCharacteristicsData() {}
 
 	//? Derived Movement Data preparation
-	_prepareDerivedMovementData() {
-		
-	}
-
+	_prepareDerivedMovementData() {}
 }

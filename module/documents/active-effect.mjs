@@ -1,7 +1,7 @@
 /**
  * Metanthropes Active Effect Sheet
- * This is based off the default ActiveEffect, instead of overriding it
- *
+ * !!!!!!This is based off the default ActiveEffect, instead of overriding it
+ * todo refactor this to utilize the v12 feature of Active Effect subtypes instead of doing the ninja stuff we've been doing here
  * The client-side ActiveEffect document which extends the common BaseActiveEffect model.
  * Each ActiveEffect belongs to the effects collection of its parent Document.
  * Each ActiveEffect contains a ActiveEffectData object which provides its source data.
@@ -14,8 +14,8 @@
  *
  * @property {ActiveEffectDuration} duration        Expanded effect duration data.
  */
-// export class MetanthropesActiveEffect extends ClientDocumentMixin(foundry.documents.BaseActiveEffect) {
-export class MetanthropesActiveEffect extends ActiveEffect {
+export class MetanthropesActiveEffect extends ClientDocumentMixin(foundry.documents.BaseActiveEffect) {
+//!!!!export class MetanthropesActiveEffect extends ActiveEffect {
 	/** @override */
 	/**
 	 * Compute derived data related to active effect duration.

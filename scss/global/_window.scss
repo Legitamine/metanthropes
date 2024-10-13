@@ -2,7 +2,7 @@
 .sheet.journal-entry .journal-entry-content {
 	position: relative;
 	background: none;
-	background-image: url("../artwork/ui/window/background.webp");
+	background-image: url("../assets/artwork/ui/window/background.webp");
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -13,7 +13,7 @@
 
 form {
 	button {
-		background-image: url("../artwork/ui/buttons/button.webp");
+		background-image: url("../assets/artwork/ui/buttons/button.webp");
 		text-shadow: $s-button;
 		border: $border-groove;
 		border-radius: $border-radius;
@@ -42,12 +42,12 @@ form {
 	display: block;
 	width: 40px;
 	height: var(--sidebar-item-height);
-	background: url("../artwork/ui/dice/d100roll-white.webp") no-repeat 50% 50%;
+	background: url("../assets/artwork/ui/dice/d100roll-white.webp") no-repeat 50% 50%;
 	background-size: 42px;
 	margin: 0 0.5em;
 }
 .combat-sidebar li.combatant .roll:hover {
-	background-image: url("../artwork/ui/dice/d100roll-white-selected.webp");
+	background-image: url("../assets/artwork/ui/dice/d100roll-white-selected.webp");
 }
 // this changes the input fields in Foundry UI
 .metanthropes input[type="text"] {
@@ -83,7 +83,7 @@ main {
 }
 body {
 	font-family: $font-secondary;
-	background-image: url("../artwork/ui/canvas/bg-canvas.webp");
+	background-image: url("../assets/artwork/ui/canvas/bg-canvas.webp");
 	background-size: auto auto;
 	background-attachment: local;
 	background-repeat: repeat;
@@ -108,7 +108,7 @@ a {
 	font-family: $font-primary; //or
 	//text-transform: uppercase;
 	background: none;
-	background-image: url("../artwork/ui/buttons/button.webp");
+	background-image: url("../assets/artwork/ui/buttons/button.webp");
 	background-size: cover;
 	text-shadow: $s-button;
 	border: $border-groove;
@@ -133,7 +133,7 @@ a {
 	&.default {
 		outline: none;
 		background: none;
-		background-image: url("../artwork/ui/buttons/button.webp");
+		background-image: url("../assets/artwork/ui/buttons/button.webp");
 		border: $border-activated;
 		box-shadow: 0 0 5px $c-purple;
 		opacity: 1;
@@ -143,7 +143,7 @@ a {
 button {
 	font-family: $font-primary; //or
 	//text-transform: uppercase;
-	background-image: url("../artwork/ui/buttons/button.webp");
+	background-image: url("../assets/artwork/ui/buttons/button.webp");
 	background-size: cover;
 	text-shadow: $s-button;
 	border: $border-groove;
@@ -224,7 +224,7 @@ h3 {
 
 .window-app .window-content {
 	position: relative;
-	background-image: url("../artwork/ui/window/background.webp");
+	background-image: url("../assets/artwork/ui/window/background.webp");
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -242,7 +242,7 @@ h3 {
 		transform: translate(-50%, -50%);
 		width: 55%;
 		height: 55%;
-		background-image: url("../artwork/ui/window/logo.webp");
+		background-image: url("../assets/artwork/ui/window/logo.webp");
 		background-position: center;
 		background-size: contain;
 		background-repeat: no-repeat;
@@ -257,12 +257,12 @@ h3 {
 .chat-message,
 .chat-message.whisper,
 .chat-message.blind {
-	background-image: url("../artwork/ui/chat/chat-results.webp");
+	background-image: url("../assets/artwork/ui/chat/chat-results.webp");
 	background-size: cover;
 	//opacity: 0.75;
 }
 #chat-form textarea {
-	background-image: url("../artwork/ui/chat/chat-box.webp");
+	background-image: url("../assets/artwork/ui/chat/chat-box.webp");
 }
 .directory .directory-header .header-search input {
 	background-color: $c-background;

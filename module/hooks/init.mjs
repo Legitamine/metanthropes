@@ -18,6 +18,9 @@ Hooks.once("init", async function () {
 	CONFIG.Actor.dataModels = {
 		testv12: metanthropes.models.MetanthropesActorNPC,
 	};
+	CONFIG.Item.dataModels = {
+		species: metanthropes.models.MetanthropesItemSpecies,
+	};
 
 	//* Configure Active Effect Legacy Transferral
 	CONFIG.ActiveEffect.legacyTransferral = false;
@@ -65,6 +68,11 @@ Hooks.once("init", async function () {
 	Items.unregisterSheet("core", ItemSheet);
 	Items.registerSheet("metanthropes", metanthropes.applications.MetanthropesItemSheet, {
 		makeDefault: true,
+	});
+
+	Items.registerSheet("metanthropes", metanthropes.applications.MetanthropesItemSheetV2, {
+		makeDefault: false,
+		label: "METANTHROPES.SHEET.ITEM.LABEL",
 	});
 
 	DocumentSheetConfig.registerSheet(

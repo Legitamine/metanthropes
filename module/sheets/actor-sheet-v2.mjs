@@ -27,7 +27,9 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 		form: {
 			submitOnChange: true,
 		},
-		resizable: true, //! not working!
+		window: {
+			resizable: true,
+		},
 	};
 
 	/** @override */
@@ -79,8 +81,10 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 			fields: this.document.schema.fields,
 			//!systemFields: this.document.system.schema.fields,
 		};
-
+		
 		this._prepareItems(context);
+
+		console.log(this);
 
 		return context;
 	}
