@@ -1,3 +1,5 @@
+import { settings } from "../config/settings.mjs";
+
 Hooks.once("init", async function () {
 	//* Configure System
 	globalThis.SYSTEM = metanthropes.system;
@@ -83,7 +85,7 @@ Hooks.once("init", async function () {
 	);
 
 	//* Register System Settings
-	metanthropes.utils.metaRegisterGameSettings(game.settings);
+	metanthropes.utils.metaRegisterGameSettings(settings);
 
 	//* Preload Handlebars templates.
 	return metanthropes.utils.preloadHandlebarsTemplates();
