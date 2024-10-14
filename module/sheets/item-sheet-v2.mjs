@@ -8,6 +8,10 @@ export class MetanthropesItemSheetV2 extends api.HandlebarsApplicationMixin(shee
 
 	static DEFAULT_OPTIONS = {
 		classes: ["metanthropes", "sheet", "item"],
+		position: {
+			width: 860,
+			height: 860,
+		},
 		actions: {
 			onEditImage: this._onEditImage,
 			viewDoc: this._viewEffect,

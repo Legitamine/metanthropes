@@ -52,7 +52,7 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 		// Control which parts show based on document subtype
 		switch (this.document.type) {
 			case "testv12":
-				options.parts.push("features", "gear", "spells", "effects");
+				options.parts.push("effects");
 				break;
 			case "npc":
 				options.parts.push("gear", "effects");
@@ -74,7 +74,7 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 			// Add the actor's data to context.data for easier access, as well as flags.
 			system: this.actor.system,
 			flags: this.actor.flags,
-			// Adding a pointer to CONFIG.METANTHROPES
+			//! needed? Adding a pointer to CONFIG.METANTHROPES
 			config: CONFIG.Metanthropes,
 			tabs: this._getTabs(options.parts),
 			// Necessary for formInput and formFields helpers

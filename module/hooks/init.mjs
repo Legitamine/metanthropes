@@ -36,14 +36,14 @@ Hooks.once("init", async function () {
 	//CONFIG.ui.combat = metanthropes.combat.MetaCombatTracker;
 
 	//* Replace UI
-	CONFIG.ui.sidebar = metanthropes.ui.MetaSidebar;
-	CONFIG.ui.scenes = metanthropes.ui.metaSceneDirectory;
-	CONFIG.ui.actors = metanthropes.ui.metaActorDirectory;
-	CONFIG.ui.items = metanthropes.ui.metaItemDirectory;
-	CONFIG.ui.journal = metanthropes.ui.metaJournalDirectory;
-	CONFIG.ui.tables = metanthropes.ui.metaRollTableDirectory;
-	CONFIG.ui.playlists = metanthropes.ui.metaPlaylistDirectory;
-	CONFIG.ui.compendium = metanthropes.ui.metaCompendiumDirectory;
+	// CONFIG.ui.sidebar = metanthropes.ui.MetaSidebar;
+	// CONFIG.ui.scenes = metanthropes.ui.metaSceneDirectory;
+	// CONFIG.ui.actors = metanthropes.ui.metaActorDirectory;
+	// CONFIG.ui.items = metanthropes.ui.metaItemDirectory;
+	// CONFIG.ui.journal = metanthropes.ui.metaJournalDirectory;
+	// CONFIG.ui.tables = metanthropes.ui.metaRollTableDirectory;
+	// CONFIG.ui.playlists = metanthropes.ui.metaPlaylistDirectory;
+	// CONFIG.ui.compendium = metanthropes.ui.metaCompendiumDirectory;
 
 	//* time in seconds for Round Duration
 	//todo: review how we plan to handle
