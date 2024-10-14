@@ -8,11 +8,7 @@
 		}
 	],
 	"settings": {
-		"githubPullRequests.ignoredPullRequestBranches": ["stable"],
-		"docwriter.style": "JSDoc",
-		"i18n-ally.localesPaths": [
-			"lang"
-		],
+		"i18n-ally.localesPaths": ["lang"],
 		"i18n-ally.keystyle": "nested"
 	},
 	"extensions": {

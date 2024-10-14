@@ -91,7 +91,7 @@ globalThis.metanthropes = {
 		MetanthropesActiveEffectSheet,
 		MetanthropesActorSheetV2,
 		MetanthropesNPCActorSheet,
-		MetanthropesItemSheetV2
+		MetanthropesItemSheetV2,
 	},
 	combat: {
 		MetanthropesCombat,
@@ -151,5 +151,3 @@ import "./hooks/create-actor.mjs";
 import "./hooks/pause.mjs";
 import "./hooks/supported-modules.mjs";
 import "./hooks/other.mjs";
-
-

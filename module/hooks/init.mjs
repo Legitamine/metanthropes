@@ -87,6 +87,9 @@ Hooks.once("init", async function () {
 	//* Register System Settings
 	metanthropes.utils.metaRegisterGameSettings(settings);
 
+	//* Finished Initializing the Metanthropes System
+	metanthropes.utils.metaLog(0, "System", "Initialized");
+
 	//* Preload Handlebars templates.
 	return metanthropes.utils.preloadHandlebarsTemplates();
 });
