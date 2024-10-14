@@ -109,9 +109,9 @@ export const settings = [
 		hint: `
 		Enable to show the System Installation Guide on the next startup.
 		`,
-		scope: "world", //? This specifies if it's a client-side setting
-		config: true, //? This makes the setting appear in the module configuration
-		requiresReload: false, //? If true, a client reload (F5) is required to activate the setting
+		scope: "world",
+		config: true,
+		requiresReload: false,
 		type: Boolean,
 		default: true,
 		onChange: null,
