@@ -1,4 +1,4 @@
-import { metaSheetRefresh } from "../helpers/metahelpers.mjs";
+import { metaSheetRefresh } from "../../helpers/metahelpers.mjs";
 
 /**
  * metaInitiative handles Initiative rolls for a given combatant.

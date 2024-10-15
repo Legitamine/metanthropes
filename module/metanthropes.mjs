@@ -25,29 +25,26 @@ import * as models from "./models/_data-models.mjs";
 import { MetanthropesActor } from "./documents/actor.mjs";
 import { MetanthropesItem } from "./documents/item.mjs";
 import { MetanthropesActiveEffect } from "./documents/active-effect.mjs";
+import { MetanthropesCombat } from "./documents/combat.mjs";
 //* Sheets
-import { MetanthropesActorSheet } from "./sheets/actor-sheet.mjs";
-import { MetanthropesItemSheet } from "./sheets/item-sheet.mjs";
-import { MetanthropesActiveEffectSheet } from "./sheets/active-effect-sheet.mjs";
+import { MetanthropesActorSheet } from "./ui/sheets/actor-sheet.mjs";
+import { MetanthropesItemSheet } from "./ui/sheets/item-sheet.mjs";
+import { MetanthropesActiveEffectSheet } from "./ui/sheets/active-effect-sheet.mjs";
 //* AppV2 Sheets
-import { MetanthropesNPCActorSheet, MetanthropesActorSheetV2 } from "./sheets/actor-sheet-v2.mjs";
-import { MetanthropesItemSheetV2 } from "./sheets/item-sheet-v2.mjs";
+import { MetanthropesNPCActorSheet, MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
+import { MetanthropesItemSheetV2 } from "./ui/sheets/item-sheet-v2.mjs";
 //* Dice Rollers
-import { metaRoll } from "./dice/metaroll.mjs";
-import { metaEvaluate, metaEvaluateReRoll } from "./dice/metaeval.mjs";
-import {
-	metaRolld10,
-	metaRolld10ReRoll,
-	metaHungerRoll,
-	metaHungerReRoll,
-	metaCoverRoll,
-	metaCoverReRoll,
-} from "./dice/metarollextras.mjs";
-import { handleCoverRolls, metaHandleRolls } from "./dice/metarollhandler.mjs";
-import { metaInitiative, metaInitiativeReRoll } from "./dice/metainitiative.mjs";
+import { metaEvaluate, metaEvaluateReRoll } from "./api/dice/meta-evaluate.mjs";
+import { metaRolld10, metaRolld10ReRoll } from "./api/dice/meta-rolld10.mjs";
+import { metaHungerRoll, metaHungerReRoll } from "./api/dice/meta-hunger-roll.mjs";
+import { metaCoverRoll, metaCoverReRoll } from "./api/dice/meta-cover-roll.mjs";
+import { handleCoverRolls, metaHandleRolls } from "./api/dice/meta-handle-rolls.mjs";
+import { metaInitiative, metaInitiativeReRoll } from "./api/dice/meta-initiative.mjs";
+import { metaRoll } from "./api/dice/meta-roll.mjs";
+import { metaExecute } from "./api/dice/meta-execute.mjs";
+//* Logic
+import { metaFinalizePremadeActor } from "./api/logic/finalize-premade.mjs";
 //* Combat
-import { MetanthropesCombat } from "./combat/combat.mjs";
-import { MetaCombatTracker } from "./combat/combattracker.mjs";
 import { MetaCombatant } from "./combat/combatant.mjs";
 //* Utilities
 import { prepareActiveEffectCategories, onManageActiveEffect } from "./utils/active-effect-tools.mjs";
@@ -57,23 +54,10 @@ import { metaLog } from "./utils/log-tools.mjs";
 //* Game Settings
 import { metaRegisterGameSettings } from "./utils/register-game-settings.mjs";
 import { metaRegisterStatusEffects } from "./config/status-effects.mjs";
-//* Other Functions
-import { metaExecute } from "./dice/metaexecute.mjs";
 //* Handlebar Helpers
 import { metaRegisterHandlebarHelpers } from "./config/handlebar-helpers.mjs";
 //* Handlebar Templates
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
-//* Custom UI
-import {
-	MetaSidebar,
-	metaSceneDirectory,
-	metaActorDirectory,
-	metaItemDirectory,
-	metaJournalDirectory,
-	metaRollTableDirectory,
-	metaPlaylistDirectory,
-	metaCompendiumDirectory,
-} from "./ui/custom.mjs";
 
 //* Register Handlebars Helpers
 metaRegisterHandlebarHelpers();
@@ -84,6 +68,7 @@ globalThis.metanthropes = {
 		MetanthropesActor,
 		MetanthropesItem,
 		MetanthropesActiveEffect,
+		MetanthropesCombat,
 	},
 	applications: {
 		MetanthropesActorSheet,
@@ -94,8 +79,6 @@ globalThis.metanthropes = {
 		MetanthropesItemSheetV2,
 	},
 	combat: {
-		MetanthropesCombat,
-		MetaCombatTracker,
 		MetaCombatant,
 	},
 	dice: {
@@ -113,6 +96,9 @@ globalThis.metanthropes = {
 		metaHandleRolls,
 		handleCoverRolls,
 	},
+	logic: {
+		metaFinalizePremadeActor,
+	},
 	metapowers: {
 		metaExecute,
 	},
@@ -121,16 +107,6 @@ globalThis.metanthropes = {
 		metaExecute,
 	},
 	system: SYSTEM,
-	ui: {
-		MetaSidebar,
-		metaSceneDirectory,
-		metaActorDirectory,
-		metaItemDirectory,
-		metaJournalDirectory,
-		metaRollTableDirectory,
-		metaPlaylistDirectory,
-		metaCompendiumDirectory,
-	},
 	utils: {
 		metaLog,
 		metaMigrateData,

@@ -4,16 +4,6 @@ Hooks.once("init", async function () {
 	//* Configure System
 	globalThis.SYSTEM = metanthropes.system;
 
-	//* Register Status Effects
-	metanthropes.utils.metaRegisterStatusEffects();
-
-	//* Metanthropes Initiative System
-	//! should I remove this? - removing it seems to break initiative, as we are 'highjacking' the formula method for metainitiative rolls
-	CONFIG.Combat.initiative = {
-		formula: "1d100 + @RollStats.Reflexes",
-		decimals: 2,
-	};
-
 	//* Register Data Models
 	CONFIG.Actor.dataModels = {
 		testv12: metanthropes.models.MetanthropesActorNPC,
@@ -22,37 +12,11 @@ Hooks.once("init", async function () {
 		species: metanthropes.models.MetanthropesItemSpecies,
 	};
 
-	//* Configure Active Effect Legacy Transferral
-	CONFIG.ActiveEffect.legacyTransferral = false;
-
-	//* Metanthropes Combat System
-	CONFIG.Combat.documentClass = metanthropes.combat.MetanthropesCombat;
-
-	//* setup custom combatant
-	//! CONFIG.Combatant.documentClass = MetaCombatant; instead?
-	CONFIG.Actor.entityClass = metanthropes.combat.MetaCombatant;
-
-	//* setup custom combat tracker
-	//CONFIG.ui.combat = metanthropes.combat.MetaCombatTracker;
-
-	//* Replace UI
-	// CONFIG.ui.sidebar = metanthropes.ui.MetaSidebar;
-	// CONFIG.ui.scenes = metanthropes.ui.metaSceneDirectory;
-	// CONFIG.ui.actors = metanthropes.ui.metaActorDirectory;
-	// CONFIG.ui.items = metanthropes.ui.metaItemDirectory;
-	// CONFIG.ui.journal = metanthropes.ui.metaJournalDirectory;
-	// CONFIG.ui.tables = metanthropes.ui.metaRollTableDirectory;
-	// CONFIG.ui.playlists = metanthropes.ui.metaPlaylistDirectory;
-	// CONFIG.ui.compendium = metanthropes.ui.metaCompendiumDirectory;
-
-	//* time in seconds for Round Duration
-	//todo: review how we plan to handle
-	//CONFIG.time.roundTime = 30;
-
 	//* Register Document Classes
 	CONFIG.Actor.documentClass = metanthropes.documents.MetanthropesActor;
 	CONFIG.Item.documentClass = metanthropes.documents.MetanthropesItem;
 	CONFIG.ActiveEffect.documentClass = metanthropes.documents.MetanthropesActiveEffect;
+	CONFIG.Combat.documentClass = metanthropes.documents.MetanthropesCombat;
 
 	//* Register Application Sheets
 	Actors.unregisterSheet("core", ActorSheet);
@@ -84,8 +48,29 @@ Hooks.once("init", async function () {
 		}
 	);
 
+	//* Metanthropes Initiative System
+	//todo: revisit as part of Combat v12
+	CONFIG.Combat.initiative = {
+		formula: "1d100 + @RollStats.Reflexes",
+		decimals: 2,
+	};
+
+	//* setup custom combatant
+	//todo test for v12: CONFIG.Combatant.documentClass = metanthropes.combat.MetaCombatant;
+	CONFIG.Actor.entityClass = metanthropes.combat.MetaCombatant;
+
+	//* Round Duration (in seconds)
+	CONFIG.time.roundTime = 30;
+
+	//* Configure Active Effect Legacy Transferral
+	//todo: required for v12?
+	CONFIG.ActiveEffect.legacyTransferral = false;
+
 	//* Register System Settings
 	metanthropes.utils.metaRegisterGameSettings(settings);
+
+	//* Register Status Effects
+	metanthropes.utils.metaRegisterStatusEffects();
 
 	//* Finished Initializing the Metanthropes System
 	metanthropes.utils.metaLog(0, "System", "Initialized");

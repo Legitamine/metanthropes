@@ -23,6 +23,7 @@ Hooks.once("ready", async function () {
 	if (welcome) {
 		const systemWelcome = await fromUuid("Compendium.metanthropes.welcome.JournalEntry.dP9LgZVr6QDQrI4K");
 		systemWelcome.sheet.render(true);
+		game.settings.set("metanthropes", "metaWelcome", false);
 	}
 
 	//* Display Demo Installation Guide
