@@ -1,4 +1,4 @@
-name: Metanthropes System Automated Build & Release
+name: Metanthropes System Automated Build for Testing
 on:
     push:
         branches:

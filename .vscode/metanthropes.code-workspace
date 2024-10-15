@@ -8,11 +8,7 @@
 		}
 	],
 	"settings": {
-		"githubPullRequests.ignoredPullRequestBranches": ["stable"],
-		"docwriter.style": "JSDoc",
-		"i18n-ally.localesPaths": [
-			"lang"
-		],
+		"i18n-ally.localesPaths": ["lang"],
 		"i18n-ally.keystyle": "nested"
 	},
 	"extensions": {
@@ -23,7 +19,6 @@
 			"esbenp.prettier-vscode",
 			"redhat.vscode-yaml",
 			"lokalise.i18n-ally",
-			"me-dutour-mathieu.vscode-github-actions",
 			"sibiraj-s.vscode-scss-formatter",
 			"christian-kohler.path-intellisense",
 			"zignd.html-css-class-completion",

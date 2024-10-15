@@ -1,7 +1,5 @@
-//? Import Finalize Actor Logic
-import { metaFinalizePremadeActor } from "../metanthropes/finalizepremade.mjs";
-//? Import Change Actor Image
-import { metaChangeActorImage, metaChangeTokenImage } from "../helpers/metaimagehandler.mjs";
+//todo: deprecate this for v12
+import { metaChangeActorImage, metaChangeTokenImage } from "../../helpers/metaimagehandler.mjs";
 //? Import GreenSock Animation Platform
 import gsap, { TextPlugin, Draggable as Dragger } from "/scripts/greensock/esm/all.js";
 //? Register Draggable for GreenSock
@@ -596,7 +594,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 	async _onFinalizePremadeActor(event) {
 		event.preventDefault();
 		const actor = this.actor;
-		await metaFinalizePremadeActor(actor);
+		await metanthropes.logic.metaFinalizePremadeActor(actor);
 	}
 	//* Change the Player controling the Actor - this will enable seeing the buttons in chat and also give OWNER permission to the document
 	async _onAssignActorPlayer(event) {
