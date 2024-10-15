@@ -1,9 +1,9 @@
 Hooks.once("ready", async function () {
-	//* Migration 
+	//* Migration
 	metanthropes.utils.metaLog(3, "System", "Starting Migration");
 	await metanthropes.utils.metaMigrateData();
 	metanthropes.utils.metaLog(3, "System", "Finished Migration");
-	
+
 	//* Add support for Moulinette
 	//todo should be moved to supported-modules instead
 	if (game.moulinette) {
@@ -23,6 +23,7 @@ Hooks.once("ready", async function () {
 	if (welcome) {
 		const systemWelcome = await fromUuid("Compendium.metanthropes.welcome.JournalEntry.dP9LgZVr6QDQrI4K");
 		systemWelcome.sheet.render(true);
+		game.settings.set("metanthropes", "metaWelcome", false);
 	}
 
 	//* Display Demo Installation Guide
@@ -41,5 +42,5 @@ Hooks.once("ready", async function () {
 	}
 
 	//* Finished Loading Metanthropes System
-	metanthropes.utils.metaLog(0, "System", "Initialized");
+	metanthropes.utils.metaLog(0, "System", "Ready");
 });

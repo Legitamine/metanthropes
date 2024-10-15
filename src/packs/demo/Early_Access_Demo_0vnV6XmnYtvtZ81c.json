@@ -1,6 +1,6 @@
 {
   "name": "Early Access Demo",
-  "img": "systems/metanthropes/assets/artwork/cover/cover.jpg",
+  "img": "systems/metanthropes/assets/cover/cover.jpg",
   "caption": "Metanthropes System - Early Access Demo",
   "sort": 0,
   "description": "<p>Metanthropes System - Early Access Demo includes 4 premade Actors, each with their own example build and a sample scene, to showcase some of the System features and capabilities.</p>",
@@ -9,7 +9,7 @@
       "name": "Ancestral Connection Example Build",
       "type": "Protagonist",
       "_id": "EQWSijMtFzgJLMD9",
-      "img": "systems/metanthropes/assets/tokens/token-utilitarian.webp",
+      "img": "systems/metanthropes/assets/artwork/classifications/utilitarian.webp",
       "system": {
         "physical": {
           "movement": {
@@ -900,7 +900,7 @@
         "appendNumber": false,
         "prependAdjective": false,
         "texture": {
-          "src": "systems/metanthropes/assets/tokens/token-utilitarian.webp",
+          "src": "systems/metanthropes/assets/artwork/classifications/utilitarian.webp",
           "scaleX": 0.6,
           "scaleY": 0.6,
           "offsetX": 0,
@@ -6456,7 +6456,7 @@
       "name": "Pyrokinesis Example Build",
       "type": "Protagonist",
       "_id": "R4rrh3MyLhMaqQ9N",
-      "img": "systems/metanthropes/assets/tokens/token-manipulator.webp",
+      "img": "systems/metanthropes/assets/artwork/classifications/manipulator.webp",
       "system": {
         "physical": {
           "movement": {
@@ -7347,7 +7347,7 @@
         "appendNumber": false,
         "prependAdjective": false,
         "texture": {
-          "src": "systems/metanthropes/assets/tokens/token-manipulator.webp",
+          "src": "systems/metanthropes/assets/artwork/classifications/manipulator.webp",
           "scaleX": 0.6,
           "scaleY": 0.6,
           "offsetX": 0,
@@ -22328,7 +22328,7 @@
       "name": "Regeneration Example Build",
       "type": "Protagonist",
       "_id": "dSFP3CBDuNXW1KeG",
-      "img": "systems/metanthropes/assets/tokens/token-kineticist.webp",
+      "img": "systems/metanthropes/assets/artwork/classifications/kineticist.webp",
       "system": {
         "physical": {
           "movement": {
@@ -23219,7 +23219,7 @@
         "appendNumber": false,
         "prependAdjective": false,
         "texture": {
-          "src": "systems/metanthropes/assets/tokens/token-kineticist.webp",
+          "src": "systems/metanthropes/assets/artwork/classifications/kineticist.webp",
           "scaleX": 0.6,
           "scaleY": 0.6,
           "offsetX": 0,
@@ -31796,7 +31796,7 @@
       "name": "Time Bending Example Build",
       "type": "Protagonist",
       "_id": "8N1CVCKerdCaT83N",
-      "img": "systems/metanthropes/assets/tokens/token-arbiter.webp",
+      "img": "systems/metanthropes/assets/artwork/classifications/arbiter.webp",
       "system": {
         "physical": {
           "movement": {
@@ -32687,7 +32687,7 @@
         "appendNumber": false,
         "prependAdjective": false,
         "texture": {
-          "src": "systems/metanthropes/assets/tokens/token-arbiter.webp",
+          "src": "systems/metanthropes/assets/artwork/classifications/arbiter.webp",
           "scaleX": 0.6,
           "scaleY": 0.6,
           "offsetX": 0,
@@ -40813,7 +40813,7 @@
       "navOrder": 0,
       "navName": "",
       "background": {
-        "src": "systems/metanthropes/assets/artwork/cover/canvas-cover.jpg",
+        "src": "systems/metanthropes/assets/maps/welcome.jpg",
         "scaleX": 1,
         "scaleY": 1,
         "offsetX": 0,
@@ -40849,7 +40849,7 @@
           "appendNumber": false,
           "prependAdjective": false,
           "texture": {
-            "src": "systems/metanthropes/assets/tokens/token-utilitarian.webp",
+            "src": "systems/metanthropes/assets/artwork/classifications/utilitarian.webp",
             "scaleX": 0.6,
             "scaleY": 0.6,
             "offsetX": 0,
@@ -40943,7 +40943,7 @@
           "appendNumber": false,
           "prependAdjective": false,
           "texture": {
-            "src": "systems/metanthropes/assets/tokens/token-manipulator.webp",
+            "src": "systems/metanthropes/assets/artwork/classifications/manipulator.webp",
             "scaleX": 0.6,
             "scaleY": 0.6,
             "offsetX": 0,
@@ -41037,7 +41037,7 @@
           "appendNumber": false,
           "prependAdjective": false,
           "texture": {
-            "src": "systems/metanthropes/assets/tokens/token-kineticist.webp",
+            "src": "systems/metanthropes/assets/artwork/classifications/kineticist.webp",
             "scaleX": 0.6,
             "scaleY": 0.6,
             "offsetX": 0,
@@ -41131,7 +41131,7 @@
           "appendNumber": false,
           "prependAdjective": false,
           "texture": {
-            "src": "systems/metanthropes/assets/tokens/token-arbiter.webp",
+            "src": "systems/metanthropes/assets/artwork/classifications/arbiter.webp",
             "scaleX": 0.6,
             "scaleY": 0.6,
             "offsetX": 0,

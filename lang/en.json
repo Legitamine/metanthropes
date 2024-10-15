@@ -102,6 +102,22 @@
 				"LABEL": "Consciousness",
 				"HINT": "Consciousness determines a Character's recollection, subconscious processing, and sanity."
 			}
+		},
+		"MOVEMENT": {
+			"LABEL": "Movement",
+			"HINT": "blah",
+			"SPEED": {
+				"LABEL": "Speed",
+				"HINT": "blah"
+			},
+			"WEIGHT": {
+				"LABEL": "Weight",
+				"HINT": "blah"
+			},
+			"SIZE": {
+				"LABEL": "Size",
+				"HINT": "blah"
+			}
 		}
 	},
 	"TYPES": {

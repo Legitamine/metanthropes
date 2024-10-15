@@ -5,27 +5,25 @@ export default class MetanthropesActorBase extends foundry.abstract.TypeDataMode
 
 	static defineSchema() {
 		const fields = foundry.data.fields;
-		const lifeScore = { required: true, nullable: false, integer: true, positive: true };
-		const requiredInteger = { required: true, nullable: false, integer: true };
-		const requiredNumber = { required: true, nullable: false, integer: false };
+		const effectLevel = { required: true, nullable: false, integer: true, min: 0, max: 10, initial: 0 };
+		const lifeScore = { required: true, nullable: false, integer: true, min: 0, initial: 0 };
+		const actionsAvailable = { required: true, nullable: false, integer: true, min: 0, initial: 0 };
+		const requiredInteger = { required: true, nullable: false, integer: true, min: 0, initial: 0 };
+		const requiredNumber = { required: true, nullable: false, integer: false, min: 0, initial: 0 };
 		const requiredString = { required: true, nullable: false };
 		const statScore = { required: true, nullable: false, integer: true, min: 0, initial: 1 };
 		const schema = {};
-		//* All Beings
-		//todo * Life move to resources.life
-		schema.life = new fields.SchemaField({
-			value: new fields.NumberField({
-				...lifeScore,
-				initial: 10,
-				min: 0,
+		//* Resources
+		schema.resources = new fields.SchemaField({
+			life: new fields.SchemaField({
+				value: new fields.NumberField({ ...lifeScore }),
+				max: new fields.NumberField({ ...lifeScore }),
 			}),
-			starting: new fields.NumberField({
-				...lifeScore,
-				initial: 10,
-			}),
-			max: new fields.NumberField({
-				...lifeScore,
-				initial: 10,
+			actions: new fields.SchemaField({
+				main: new fields.NumberField({ ...actionsAvailable }),
+				extra: new fields.NumberField({ ...actionsAvailable }),
+				reaction: new fields.NumberField({ ...actionsAvailable }),
+				movement: new fields.NumberField({ ...actionsAvailable }),
 			}),
 		});
 		//* Physical
@@ -46,7 +44,26 @@ export default class MetanthropesActorBase extends foundry.abstract.TypeDataMode
 			pob: new fields.StringField(),
 		});
 		//* Movement
-		schema.movement;
+		schema.movement = new fields.SchemaField({
+			value: new fields.NumberField({ ...effectLevel }),
+			buff: new fields.NumberField({ ...effectLevel }),
+			condition: new fields.NumberField({ ...effectLevel }),
+			speed: new fields.SchemaField({
+				value: new fields.NumberField({ ...effectLevel }),
+				buff: new fields.NumberField({ ...effectLevel }),
+				condition: new fields.NumberField({ ...effectLevel }),
+			}),
+			weight: new fields.SchemaField({
+				value: new fields.NumberField({ ...effectLevel }),
+				buff: new fields.NumberField({ ...effectLevel }),
+				condition: new fields.NumberField({ ...effectLevel }),
+			}),
+			size: new fields.SchemaField({
+				value: new fields.NumberField({ ...effectLevel }),
+				buff: new fields.NumberField({ ...effectLevel }),
+				condition: new fields.NumberField({ ...effectLevel }),
+			}),
+		});
 		//* Cover
 		schema.cover;
 		//* Vision
@@ -118,14 +135,16 @@ export default class MetanthropesActorBase extends foundry.abstract.TypeDataMode
 	//? Base Life Data preparation
 	_prepareBaseLifeData() {
 		metanthropes.utils.metaLog(3, "datamodel prepareBaseLifeData", this);
-		this.life.max = this.life.value;
+		this.resources.life.max = this.resources.life.value;
 	}
 
 	//? Base Characteristics Data preparation
 	_prepareBaseCharacteristicsData() {}
 
 	//? Base Movement Data preparation
-	_prepareBaseMovementData() {}
+	_prepareBaseMovementData() {
+		this.movement.value = this.movement.size.value + this.movement.speed.value + this.movement.weight.value;
+	}
 
 	//? Derived Life Data preparation
 	_prepareDerivedLifeData() {}

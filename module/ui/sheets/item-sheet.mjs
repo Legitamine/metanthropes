@@ -1,5 +1,3 @@
-//? Import Roll Handler
-import { metaHandleRolls } from "../dice/metarollhandler.mjs";
 /**
  * MetanthropesItemSheet - An Item Sheet for Metanthropes items.
  *
@@ -109,10 +107,10 @@ export class MetanthropesItemSheet extends ItemSheet {
 	}
 	//* Handle Left-Click Rolls
 	async _onRoll(event) {
-		metanthropes.utils.metaHandleRolls(event, this, false);
+		metanthropes.dice.metaHandleRolls(event, this, false);
 	}
 	//* Handle Right-Click Rolls
 	async _onCustomRoll(event) {
-		metanthropes.utils.metaHandleRolls(event, this, true);
+		metanthropes.dice.metaHandleRolls(event, this, true);
 	}
 }

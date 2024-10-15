@@ -60,7 +60,7 @@
 		{
 			"type": "setup",
 			"url": "https://content.invisioncic.com/e290497/monthly_2024_03/new-cover.jpg.266c89d776592f674fd3a4133d3fb813.jpg",
-			"thumbnail": "systems/metanthropes/assets/artwork/cover/cover.jpg",
+			"thumbnail": "systems/metanthropes/assets/cover/cover.jpg",
 			"loop": false,
 			"flags": {}
 		}
@@ -71,7 +71,7 @@
 		{
 			"name": "demo",
 			"label": "Demo",
-			"banner": "systems/metanthropes/assets/artwork/cover/compendium-header.webp",
+			"banner": "systems/metanthropes/assets/cover/compendium-header.webp",
 			"path": "packs/demo",
 			"type": "Adventure",
 			"system": "metanthropes",
@@ -83,7 +83,7 @@
 		{
 			"name": "system",
 			"label": "System",
-			"banner": "systems/metanthropes/assets/artwork/cover/compendium-header.webp",
+			"banner": "systems/metanthropes/assets/cover/compendium-header.webp",
 			"path": "packs/system",
 			"type": "Adventure",
 			"system": "metanthropes",
@@ -95,7 +95,7 @@
 		{
 			"name": "install-system",
 			"label": "Install System",
-			"banner": "systems/metanthropes/assets/artwork/cover/compendium-header.webp",
+			"banner": "systems/metanthropes/assets/cover/compendium-header.webp",
 			"path": "packs/install-system",
 			"type": "JournalEntry",
 			"system": "metanthropes",
@@ -107,7 +107,7 @@
 		{
 			"name": "welcome",
 			"label": "Welcome",
-			"banner": "systems/metanthropes/assets/artwork/cover/compendium-header.webp",
+			"banner": "systems/metanthropes/assets/cover/compendium-header.webp",
 			"path": "packs/welcome",
 			"type": "JournalEntry",
 			"system": "metanthropes",
@@ -148,7 +148,7 @@
 	"license": "https://github.com/legitamine/metanthropes/blob/main/LICENSE.txt",
 	"readme": "https://github.com/legitamine/metanthropes/blob/main/readme.md",
 	"bugs": "https://gitub.com/legitamine/metanthropes/issues",
-	"background": "systems/metanthropes/assets/artwork/cover/cover.jpg",
+	"background": "systems/metanthropes/assets/cover/cover.jpg",
 	"socket": true,
 	"primaryTokenAttribute": "Vital.Destiny",
 	"secondaryTokenAttribute": "Vital.Life",
