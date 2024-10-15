@@ -1,6 +1,8 @@
 import { settings } from "../config/settings.mjs";
 
 Hooks.once("init", async function () {
+	console.log(metanthropes.system.ASCII);
+
 	//* Configure System
 	globalThis.SYSTEM = metanthropes.system;
 
