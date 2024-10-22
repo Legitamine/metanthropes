@@ -44,8 +44,6 @@ import { metaRoll } from "./api/dice/meta-roll.mjs";
 import { metaExecute } from "./api/dice/meta-execute.mjs";
 //* Logic
 import { metaFinalizePremadeActor } from "./api/logic/finalize-premade.mjs";
-//* Combat
-import { MetaCombatant } from "./combat/combatant.mjs";
 //* Utilities
 import { prepareActiveEffectCategories, onManageActiveEffect } from "./api/utils/active-effect-tools.mjs";
 import { metaExtractNumberOfDice } from "./api/utils/dice-tools.mjs";
@@ -77,9 +75,6 @@ globalThis.metanthropes = {
 		MetanthropesActorSheetV2,
 		MetanthropesNPCActorSheet,
 		MetanthropesItemSheetV2,
-	},
-	combat: {
-		MetaCombatant,
 	},
 	dice: {
 		metaRoll,
