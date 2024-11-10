@@ -2,6 +2,8 @@ import MetanthropesItemBase from "./item-base.mjs";
 
 export default class MetanthropesItemSpecies extends MetanthropesItemBase {
 	//todo figure out static LOCALIZATION_PREFIXES = []; with inheritance?
+	// design it in a way that we plan for future sections to be augmented/overwritten by sub classes
+	// mark sections properly as private or protected etc
 
 	static defineSchema() {
 		const fields = foundry.data.fields;
@@ -20,6 +22,7 @@ export default class MetanthropesItemSpecies extends MetanthropesItemBase {
 		});
 		schema.gender = new fields.StringField({ ...nonRequiredString }); // combine with pronoun below?
 		schema.genderPronoun = new fields.StringField({ ...nonRequiredString });
+		//todo need to think around target types, targeting and creating a 
 		schema.metaType = new fields.StringField(); // Metapowered or Non-Metapowered - this is not here
 		schema.majorType = new fields.StringField(); // Organism, Artificial, ET, ED
 		schema.minorType = new fields.StringField(); // Humanoid, Spirit, Anima, Animal, Incarnation etc <- or is that the name?
