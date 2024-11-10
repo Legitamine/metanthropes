@@ -1,6 +1,8 @@
 import { settings } from "../config/settings.mjs";
 
 Hooks.once("init", async function () {
+	console.log(metanthropes.system.ASCII);
+
 	//* Configure System
 	globalThis.SYSTEM = metanthropes.system;
 
@@ -54,10 +56,6 @@ Hooks.once("init", async function () {
 		formula: "1d100 + @RollStats.Reflexes",
 		decimals: 2,
 	};
-
-	//* setup custom combatant
-	//todo test for v12: CONFIG.Combatant.documentClass = metanthropes.combat.MetaCombatant;
-	CONFIG.Actor.entityClass = metanthropes.combat.MetaCombatant;
 
 	//* Round Duration (in seconds)
 	CONFIG.time.roundTime = 30;

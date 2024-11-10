@@ -44,15 +44,13 @@ import { metaRoll } from "./api/dice/meta-roll.mjs";
 import { metaExecute } from "./api/dice/meta-execute.mjs";
 //* Logic
 import { metaFinalizePremadeActor } from "./api/logic/finalize-premade.mjs";
-//* Combat
-import { MetaCombatant } from "./combat/combatant.mjs";
 //* Utilities
-import { prepareActiveEffectCategories, onManageActiveEffect } from "./utils/active-effect-tools.mjs";
-import { metaExtractNumberOfDice } from "./utils/dice-tools.mjs";
-import { metaMigrateData } from "./utils/migration.mjs";
-import { metaLog } from "./utils/log-tools.mjs";
+import { prepareActiveEffectCategories, onManageActiveEffect } from "./api/utils/active-effect-tools.mjs";
+import { metaExtractNumberOfDice } from "./api/utils/dice-tools.mjs";
+import { metaMigrateData } from "./api/utils/migration.mjs";
+import { metaLog, metaLogDocument } from "./api/utils/log-tools.mjs";
 //* Game Settings
-import { metaRegisterGameSettings } from "./utils/register-game-settings.mjs";
+import { metaRegisterGameSettings } from "./api/utils/register-game-settings.mjs";
 import { metaRegisterStatusEffects } from "./config/status-effects.mjs";
 //* Handlebar Helpers
 import { metaRegisterHandlebarHelpers } from "./config/handlebar-helpers.mjs";
@@ -77,9 +75,6 @@ globalThis.metanthropes = {
 		MetanthropesActorSheetV2,
 		MetanthropesNPCActorSheet,
 		MetanthropesItemSheetV2,
-	},
-	combat: {
-		MetaCombatant,
 	},
 	dice: {
 		metaRoll,
@@ -109,6 +104,7 @@ globalThis.metanthropes = {
 	system: SYSTEM,
 	utils: {
 		metaLog,
+		metaLogDocument,
 		metaMigrateData,
 		metaExtractNumberOfDice,
 		metaRegisterGameSettings,
