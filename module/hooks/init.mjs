@@ -57,10 +57,6 @@ Hooks.once("init", async function () {
 		decimals: 2,
 	};
 
-	//* setup custom combatant
-	//todo test for v12: CONFIG.Combatant.documentClass = metanthropes.combat.MetaCombatant;
-	CONFIG.Actor.entityClass = metanthropes.combat.MetaCombatant;
-
 	//* Round Duration (in seconds)
 	CONFIG.time.roundTime = 30;
 

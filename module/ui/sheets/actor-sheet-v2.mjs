@@ -79,7 +79,8 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 			tabs: this._getTabs(options.parts),
 			// Necessary for formInput and formFields helpers
 			fields: this.document.schema.fields,
-			//!systemFields: this.document.system.schema.fields,
+			systemFields: this.document.system.schema.fields,
+			blah: this.document.system.schema.fields.resources.fields,
 		};
 		
 		this._prepareItems(context);
