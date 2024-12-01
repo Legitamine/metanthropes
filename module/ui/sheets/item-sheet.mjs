@@ -81,6 +81,7 @@ export class MetanthropesItemSheet extends ItemSheet {
 		//? Call the super class's activateListeners method to ensure any other listeners are set up
 		super.activateListeners(html);
 		//? Only Narrators with the Homebrew Module are allowed to edit the item sheets
+		//todo this will change to include the author so that narrators can edit their own items, while protecting official items being edited without homebrew
 		const homebrewFeatures = game.settings.get("metanthropes", "metaHomebrew");
 		if (!game.user.isGM || !homebrewFeatures) {
 			html.find("input, textarea, select").attr("disabled", "disabled");

@@ -98,7 +98,15 @@ export class MetanthropesActorSheet extends ActorSheet {
 		context.affectedByHunger = this.actor.isHungry;
 		//? Flag for Tokenizer Support
 		context.tokenizer = game.modules.get("vtta-tokenizer")?.active;
-		metanthropes.utils.metaLog(3, "MetanthropesActorSheet", "getData", "this, context, options", this, context, options);
+		metanthropes.utils.metaLog(
+			3,
+			"MetanthropesActorSheet",
+			"getData",
+			"this, context, options",
+			this,
+			context,
+			options
+		);
 		return context;
 	}
 	//* Prepare items
@@ -115,6 +123,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//? Initialize Containers
 		let Possessions = {};
 		let Metapowers = {};
+		let Actions = {};
 		//? Define the categories allowed for the current actor type
 		const currentAllowedCategories = allowedCategories[actorData.type] || allowedCategories["default"];
 		//? Setup Possessions and Metapowers based on the actor type
@@ -138,6 +147,13 @@ export class MetanthropesActorSheet extends ActorSheet {
 			4: [],
 			5: [],
 		};
+		Actions = {
+			Reaction: [],
+			"Focused Action": [],
+			"Main Action": [],
+			"Extra Action": [],
+			Movement: [],
+		};
 		//? Iterate through items, allocating to containers or deleting if no container for the item exists
 		for (let i = 0; i < context.items.length; i++) {
 			let item = context.items[i];
@@ -146,9 +162,29 @@ export class MetanthropesActorSheet extends ActorSheet {
 				//? Check if the item's category is allowed
 				if (item.system.Category.value && currentAllowedCategories.includes(item.system.Category.value)) {
 					Possessions[item.system.Category.value].push(item);
+					if (item.system.Execution.ActionSlot.value === "Reaction") {
+						Actions.Reaction.push(item);
+					}
+					if (item.system.Execution.ActionSlot.value.includes("Focused Action")) {
+						Actions["Focused Action"].push(item);
+					}
+					if (item.system.Execution.ActionSlot.value === "Main Action") {
+						Actions["Main Action"].push(item);
+					}
+					if (item.system.Execution.ActionSlot.value === "Extra Action") {
+						Actions["Extra Action"].push(item);
+					}
+					if (item.system.Execution.ActionSlot.value === "Movement") {
+						Actions.Movement.push(item);
+					}
 				} else {
 					//? Remove the item from the actor if its category is not allowed
-					metanthropes.utils.metaLog(2, "MetanthropesActorSheet _prepareItems", "Invalid Category for Possession:", item.name);
+					metanthropes.utils.metaLog(
+						2,
+						"MetanthropesActorSheet _prepareItems",
+						"Invalid Category for Possession:",
+						item.name
+					);
 					return;
 					//actorData.deleteEmbeddedDocuments("Item", [item.id]);
 					//actorData.items.splice(i, 1);
@@ -160,7 +196,25 @@ export class MetanthropesActorSheet extends ActorSheet {
 			else if (item.type === "Metapower") {
 				if (item.system.Level.value != undefined) {
 					Metapowers[item.system.Level.value].push(item);
+					if (item.system.Execution.ActionSlot.value === "Reaction") {
+						Actions.Reaction.push(item);
+					}
+					if (item.system.Execution.ActionSlot.value.includes("Focused Action")) {
+						Actions["Focused Action"].push(item);
+					}
+					if (item.system.Execution.ActionSlot.value === "Main Action") {
+						Actions["Main Action"].push(item);
+					}
+					if (item.system.Execution.ActionSlot.value === "Extra Action") {
+						Actions["Extra Action"].push(item);
+					}
+					if (item.system.Execution.ActionSlot.value === "Movement") {
+						Actions.Movement.push(item);
+					}
 				}
+			}
+			for (let action in Actions) {
+				Actions[action] = metanthropes.utils.metaSortActions(Actions[action]);
 			}
 		}
 		// for (let i of context.items) {
@@ -182,6 +236,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//? Assign and return
 		context.Possessions = Possessions;
 		context.Metapowers = Metapowers;
+		context.Actions = Actions;
 	}
 	//* activate listeners for clickable stuff on the actor sheet!
 	activateListeners(html) {
@@ -677,7 +732,12 @@ export class MetanthropesActorSheet extends ActorSheet {
 		// 	"metaStartProgression"
 		// );
 		if (!metaProgressActor) {
-			metanthropes.utils.metaLog(2, "MetanthropesActorSheet", "_onProgression", "Progression function not available");
+			metanthropes.utils.metaLog(
+				2,
+				"MetanthropesActorSheet",
+				"_onProgression",
+				"Progression function not available"
+			);
 			return;
 		}
 		//? Get the actor for the Progression

@@ -15,6 +15,7 @@ export const preloadHandlebarsTemplates = async function () {
 		"systems/metanthropes/templates/helpers/actor-combos.hbs",
 		"systems/metanthropes/templates/helpers/actor-possessions.hbs",
 		"systems/metanthropes/templates/helpers/actor-active-effects.hbs",
+		"systems/metanthropes/templates/helpers/actor-actions.hbs",
 		//? Actor Sheet
 		"systems/metanthropes/templates/actor/actor-sheet.hbs",
 		//? Item partials

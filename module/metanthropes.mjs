@@ -49,6 +49,7 @@ import { prepareActiveEffectCategories, onManageActiveEffect } from "./api/utils
 import { metaExtractNumberOfDice } from "./api/utils/dice-tools.mjs";
 import { metaMigrateData } from "./api/utils/migration.mjs";
 import { metaLog, metaLogDocument } from "./api/utils/log-tools.mjs";
+import { metaSortActions } from "./api/utils/sort-actions.mjs";
 //* Game Settings
 import { metaRegisterGameSettings } from "./api/utils/register-game-settings.mjs";
 import { metaRegisterStatusEffects } from "./config/status-effects.mjs";
@@ -112,6 +113,7 @@ globalThis.metanthropes = {
 		onManageActiveEffect,
 		prepareActiveEffectCategories,
 		preloadHandlebarsTemplates,
+		metaSortActions,
 	},
 };
 
