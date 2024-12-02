@@ -111,6 +111,12 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	let conditionsRemovedMessage;
 	let flavorMessage;
 	let contentMessage = ``;
+	//? Prep Damage/Healing Roll Results
+	let cosmicDamageRollResult;
+	let elementalDamageRollResult;
+	let materialDamageRollResult;
+	let psychicDamageRollResult;
+	let healingRollResult;
 	//? Prep dice holding variables
 	let actionSlotDice;
 	let targetsNumberDice;
@@ -164,7 +170,14 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		} else {
 			executeRoll = true;
 			//? Use Possession
-			metanthropes.utils.metaLog(3, "metaExecute", "Using Possession:", itemName, "with Attack Type:", attackType);
+			metanthropes.utils.metaLog(
+				3,
+				"metaExecute",
+				"Using Possession:",
+				itemName,
+				"with Attack Type:",
+				attackType
+			);
 			if (attackType === "Melee") {
 				//todo: need to add size modifier to increase the base d10 dice pool for unarmed strikes only
 				flavorMessage = `Attacks with their ${itemName}<br><br>`;
@@ -190,8 +203,9 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		return;
 	}
 	//* Targeting v1 variables
-	//? Setup a variable to check if we will be applying damage to the targeted actors later
+	//? Setup a variable to check if we will be applying damage/healing to the targeted actors later
 	let damageSelectedTargets = false;
+	let healSelectedTargets = false;
 	//? Setup an array for targeted actors, this will be used later to apply effects to them
 	let targetedActors = [];
 	//? Setup a variable to know if we'll have to apply effects to the targeted actors
@@ -294,80 +308,100 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			durationMessage = `⏳: ` + duration + `<br>`;
 		}
 		//* effect message
-		if (damageBaseCosmic > 0 && damageDiceCosmic > 0) {
-			damageCosmicMessage = `💥: [[${damageDiceCosmic}d10${explosiveDice}+${damageBaseCosmic}[Cosmic]]]<br>`;
-			damageCosmicRerollButton = `<div class="hide-button hidden"><br>
-			<button class="metanthropes-secondary-chat-button cosmic-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Cosmic 💥 Damage" data-dice="${damageDiceCosmic}" data-destiny-re-roll="true" data-base-number="${damageBaseCosmic}">
-			Spend 🤞 to reroll Cosmic 💥</button>
-			<br></div>`;
-		} else if (damageBaseCosmic > 0) {
-			damageCosmicMessage = `💥: [[${damageBaseCosmic}[Cosmic]]]<br>`;
-		} else if (damageDiceCosmic > 0) {
-			damageCosmicMessage = `💥: [[${damageDiceCosmic}d10${explosiveDice}[Cosmic]]]<br>`;
-			damageCosmicRerollButton = `<div class="hide-button hidden"><br>
-			<button class="metanthropes-secondary-chat-button cosmic-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Cosmic 💥 Damage" data-dice="${damageDiceCosmic}" data-destiny-re-roll="true">
-			Spend 🤞 to reroll Cosmic 💥</button>
-			<br></div>`;
+		if (damageBaseCosmic > 0 || damageDiceCosmic > 0) {
+			const cosmicDamageRoll = await metanthropes.dice.metaRolld10(
+				actor,
+				"Cosmic 💥 Damage",
+				true,
+				damageDiceCosmic,
+				itemName,
+				damageBaseCosmic,
+				false,
+				true
+			);
+			cosmicDamageRollResult = cosmicDamageRoll.dataset.total;
+			damageCosmicRerollButton = `<span class="hide-button hidden"><button class="metanthropes-secondary-chat-button cosmic-damage rolld10-reroll chat-button-anchor"
+			data-tooltip="Spend 🤞 Destiny to reroll Cosmic 💥 Damage"
+			data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+			data-what="Cosmic 💥 Damage" data-dice="${damageDiceCosmic}"
+			data-destiny-re-roll="true" data-base-number="${damageBaseCosmic}"> 🤞 </button></span>`;
+			damageCosmicMessage = `${cosmicDamageRoll.outerHTML} ${damageCosmicRerollButton}<br>`;
 		}
-		if (damageBaseElemental > 0 && damageDiceElemental > 0) {
-			damageElementalMessage = `💥: [[${damageDiceElemental}d10${explosiveDice}+${damageBaseElemental}[Elemental]]]<br>`;
-			damageElementalRerollButton = `<div class="hide-button hidden"><br>
-			<button class="metanthropes-secondary-chat-button elemental-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Elemental 💥 Damage" data-dice="${damageDiceElemental}" data-destiny-re-roll="true" data-base-number="${damageBaseElemental}">
-			Spend 🤞 to reroll Elemental 💥</button>
-			<br></div>`;
-		} else if (damageBaseElemental > 0) {
-			damageElementalMessage = `💥: [[${damageBaseElemental}[Elemental]]]<br>`;
-		} else if (damageDiceElemental > 0) {
-			damageElementalMessage = `💥: [[${damageDiceElemental}d10${explosiveDice}[Elemental]]]<br>`;
-			damageElementalRerollButton = `<div class="hide-button hidden"><br>
-			<button class="metanthropes-secondary-chat-button elemental-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Elemental 💥 Damage" data-dice="${damageDiceElemental}" data-destiny-re-roll="true">
-			Spend 🤞 to reroll Elemental 💥</button>
-			<br></div>`;
+		if (damageBaseElemental > 0 || damageDiceElemental > 0) {
+			const elementalDamageRoll = await metanthropes.dice.metaRolld10(
+				actor,
+				"Elemental 💥 Damage",
+				true,
+				damageDiceElemental,
+				itemName,
+				damageBaseElemental,
+				false,
+				true
+			);
+			elementalDamageRollResult = elementalDamageRoll.dataset.total;
+			damageElementalRerollButton = `<span class="hide-button hidden"><button class="metanthropes-secondary-chat-button elemental-damage rolld10-reroll chat-button-anchor"
+			data-tooltip="Spend 🤞 Destiny to reroll Elemental 💥 Damage"
+			data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+			data-what="Elemental 💥 Damage" data-dice="${damageDiceElemental}"
+			data-destiny-re-roll="true" data-base-number="${damageBaseElemental}"> 🤞 </button></span>`;
+			damageElementalMessage = `${elementalDamageRoll.outerHTML} ${damageElementalRerollButton}<br>`;
 		}
-		if (damageBaseMaterial > 0 && damageDiceMaterial > 0) {
-			damageMaterialMessage = `💥: [[${damageDiceMaterial}d10${explosiveDice}+${damageBaseMaterial}[Material]]]<br>`;
-			damageMaterialRerollButton = `<div class="hide-button hidden"><br>
-			<button class="metanthropes-secondary-chat-button material-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Material 💥 Damage" data-dice="${damageDiceMaterial}" data-destiny-re-roll="true" data-base-number="${damageBaseMaterial}">
-			Spend 🤞 to reroll Material 💥</button>
-			<br></div>`;
-		} else if (damageBaseMaterial > 0) {
-			damageMaterialMessage = `💥: [[${damageBaseMaterial}[Material]]]<br>`;
-		} else if (damageDiceMaterial > 0) {
-			damageMaterialMessage = `💥: [[${damageDiceMaterial}d10${explosiveDice}[Material]]]<br>`;
-			damageMaterialRerollButton = `<div class="hide-button hidden"><br>
-			<button class="metanthropes-secondary-chat-button material-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Material 💥 Damage" data-dice="${damageDiceMaterial}" data-destiny-re-roll="true">
-			Spend 🤞 to reroll Material 💥</button>
-			<br></div>`;
+		if (damageBaseMaterial > 0 || damageDiceMaterial > 0) {
+			const materialDamageRoll = await metanthropes.dice.metaRolld10(
+				actor,
+				"Material 💥 Damage",
+				true,
+				damageDiceMaterial,
+				itemName,
+				damageBaseMaterial,
+				false,
+				true
+			);
+			materialDamageRollResult = materialDamageRoll.dataset.total;
+			damageMaterialRerollButton = `<span class="hide-button hidden"><button class="metanthropes-secondary-chat-button material-damage rolld10-reroll chat-button-anchor"
+			data-tooltip="Spend 🤞 Destiny to reroll Material 💥 Damage"
+			data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+			data-what="Material 💥 Damage" data-dice="${damageDiceMaterial}"
+			data-destiny-re-roll="true" data-base-number="${damageBaseMaterial}"> 🤞 </button></span>`;
+			damageMaterialMessage = `${materialDamageRoll.outerHTML} ${damageMaterialRerollButton}<br>`;
 		}
-		if (damageBasePsychic > 0 && damageDicePsychic > 0) {
-			damagePsychicMessage = `💥: [[${damageDicePsychic}d10${explosiveDice}+${damageBasePsychic}[Psychic]]]<br>`;
-			damagePsychicRerollButton = `<div class="hide-button hidden"><br>
-			<button class="metanthropes-secondary-chat-button psychic-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Psychic 💥 Damage" data-dice="${damageDicePsychic}" data-destiny-re-roll="true" data-base-number="${damageBasePsychic}">
-			Spend 🤞 to reroll Psychic 💥</button>
-			<br></div>`;
-		} else if (damageBasePsychic > 0) {
-			damagePsychicMessage = `💥: [[${damageBasePsychic}[Psychic]]]<br>`;
-		} else if (damageDicePsychic > 0) {
-			damagePsychicMessage = `💥: [[${damageDicePsychic}d10${explosiveDice}[Psychic]]]<br>`;
-			damagePsychicRerollButton = `<div class="hide-button hidden"><br>
-			<button class="metanthropes-secondary-chat-button psychic-damage rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="Psychic 💥 Damage" data-dice="${damageDicePsychic}" data-destiny-re-roll="true">
-			Spend 🤞 to reroll Psychic 💥</button>
-			<br></div>`;
+		if (damageBasePsychic > 0 || damageDicePsychic > 0) {
+			const psychicDamageRoll = await metanthropes.dice.metaRolld10(
+				actor,
+				"Psychic 💥 Damage",
+				true,
+				damageDicePsychic,
+				itemName,
+				damageBasePsychic,
+				false,
+				true
+			);
+			psychicDamageRollResult = psychicDamageRoll.dataset.total;
+			damagePsychicRerollButton = `<span class="hide-button hidden"><button class="metanthropes-secondary-chat-button psychic-damage rolld10-reroll chat-button-anchor"
+			data-tooltip="Spend 🤞 Destiny to reroll Psychic 💥 Damage"
+			data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+			data-what="Psychic 💥 Damage" data-dice="${damageDicePsychic}"
+			data-destiny-re-roll="true" data-base-number="${damageBasePsychic}"> 🤞 </button></span>`;
+			damagePsychicMessage = `${psychicDamageRoll.outerHTML} ${damagePsychicRerollButton}<br>`;
 		}
-		if (healingBase > 0 && healingDice > 0) {
-			healingMessage = `💞: [[${healingDice}d10${explosiveDice}+${healingBase}[Healing]]]<br>`;
-			healingRerollButton = `<div class="hide-button hidden"><br>
-			<button class="metanthropes-secondary-chat-button healing rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="💞 Healing" data-dice="${healingDice}" data-destiny-re-roll="true" data-base-number="${healingBase}">
-			Spend 🤞 to reroll 💞 Healing</button>
-			<br></div>`;
-		} else if (healingBase > 0) {
-			healingMessage = `💞: [[${healingBase}[Healing]]]<br>`;
-		} else if (healingDice > 0) {
-			healingMessage = `💞: [[${healingDice}d10${explosiveDice}[Healing]]]<br>`;
-			healingRerollButton = `<div class="hide-button hidden"><br>
-			<button class="metanthropes-secondary-chat-button healing rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="💞 Healing" data-dice="${healingDice}" data-destiny-re-roll="true">
-			Spend 🤞 to reroll 💞 Healing</button>
-			<br></div>`;
+		if (healingBase > 0 || healingDice > 0) {
+			const healingRoll = await metanthropes.dice.metaRolld10(
+				actor,
+				"💞 Healing",
+				true,
+				healingDice,
+				itemName,
+				healingBase,
+				false,
+				true
+			);
+			healingRollResult = healingRoll.dataset.total;
+			healingRerollButton = `<span class="hide-button hidden"><button class="metanthropes-secondary-chat-button healing rolld10-reroll chat-button-anchor"
+			data-tooltip="Spend 🤞 Destiny to reroll 💞 Healing"
+			data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+			data-what="💞 Healing" data-dice="${healingDice}"
+			data-destiny-re-roll="true" data-base-number="${healingBase}"> 🤞 </button></span>`;
+			healingMessage = `${healingRoll.outerHTML} ${healingRerollButton}<br>`;
 		}
 		if (specialBase > 0 && specialDice > 0) {
 			if (!specialIsHalf) {
@@ -438,13 +472,11 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		//* Targeting v1 - requires beta Testing from Homebrew Module enabled
 		if (betaTesting) {
 			const manuallySelectedTargets = game.user.targets;
-			metanthropes.utils.metaLog(3, "metaExecute", "Manually Selected Targets:", manuallySelectedTargets);
 			//? Store targeted actors in an array
 			targetedActors = Array.from(manuallySelectedTargets).map((token) => token.actor);
 			metanthropes.utils.metaLog(3, "metaExecute", "Targeted Actors:", targetedActors);
 			//? Check if there are any targeted actors and set the actionableTargets variable accordingly
 			actionableTargets = targetedActors.length > 0;
-			metanthropes.utils.metaLog(3, "metaExecute", "Actionable Targets:", actionableTargets);
 			if (actionableTargets) {
 				//? Get the names of all targeted actors
 				const targetedActorNames = targetedActors.map((actor) => actor.name);
@@ -453,8 +485,14 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				)}`;
 				contentMessage += allSelectedTargetsMessage;
 				contentMessage += `<hr />`;
-				metanthropes.utils.metaLog(3, "metaExecute", "All Selected Targets Message:", allSelectedTargetsMessage);
+				metanthropes.utils.metaLog(3, "metaExecute", allSelectedTargetsMessage);
 			}
+		}
+		if (
+			(damageCosmicMessage || damageElementalMessage || damageMaterialMessage || damagePsychicMessage) &&
+			betaTesting
+		) {
+			contentMessage += `Beta Testing: Applying 💥 Damage to Selected 🎯 Target(s):<br>`;
 		}
 		if (damageCosmicMessage) {
 			contentMessage += damageCosmicMessage;
@@ -473,6 +511,8 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			contentMessage += `<hr />`;
 		}
 		if (healingMessage) {
+			healSelectedTargets = true;
+			contentMessage += `Beta Testing: Applying 💞 Healing to Selected 🎯 Target(s):<br>`;
 			contentMessage += healingMessage;
 			contentMessage += `<hr />`;
 		}
@@ -516,26 +556,6 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				contentMessage += durationRerollButton;
 				destinyRerollButtonMessage = true;
 			}
-			if (damageCosmicRerollButton) {
-				contentMessage += damageCosmicRerollButton;
-				destinyRerollButtonMessage = true;
-			}
-			if (damageElementalRerollButton) {
-				contentMessage += damageElementalRerollButton;
-				destinyRerollButtonMessage = true;
-			}
-			if (damageMaterialRerollButton) {
-				contentMessage += damageMaterialRerollButton;
-				destinyRerollButtonMessage = true;
-			}
-			if (damagePsychicRerollButton) {
-				contentMessage += damagePsychicRerollButton;
-				destinyRerollButtonMessage = true;
-			}
-			if (healingRerollButton) {
-				contentMessage += healingRerollButton;
-				destinyRerollButtonMessage = true;
-			}
 			if (specialRerollButton) {
 				contentMessage += specialRerollButton;
 				destinyRerollButtonMessage = true;
@@ -545,76 +565,50 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			}
 		}
 	}
-	//* Apply Damage to Selected Targets (requires Targeting V1 & Beta Testing enabled)
-	//todo: removing this for now, until we revisit the chat message and create our custom class, as we cannot pass along the proper dmg/healing values to the application from the inline rolls.
-	// if (betaTesting) {
-	// 	if (damageSelectedTargets && actionableTargets) {
-	// 		metanthropes.utils.metaLog(3, "metaExecute", "Applying Damage to Selected Targets");
-	// 		//? Apply damage to each targeted actor
-	// 		for (let i = 0; i < targetedActors.length; i++) {
-	// 			let targetedActor = targetedActors[i];
-	// 			let targetedActorName = targetedActor.name;
-	// 			let targetedActorCurrentLife = targetedActor.system.Vital.Life.value;
-	// 			let targetedActorMaxLife = targetedActor.system.Vital.Life.max;
-	// 			let targetedActorResistanceCosmic = targetedActor.system.physical.resistances.cosmic.initial;
-	// 			let targetedActorResistanceElemental = targetedActor.system.physical.resistances.elemental.initial;
-	// 			let targetedActorResistanceMaterial = targetedActor.system.physical.resistances.material.initial;
-	// 			let targetedActorResistancePsychic = targetedActor.system.physical.resistances.psychic.initial;
-	// 			let targetedActorDamage = 0;
-	// 			let targetedActorHealing = 0;
-	// 			let targetedActorMessageDamage = null;
-	// 			let targetedActorMessageHealing = null;
-	// 			//? Check for Damage & Resistances
-	// 			if (damageBaseCosmic > 0 || damageDiceCosmic > 0) {
-	// 				targetedActorDamage += targetedActorResistanceCosmic - damageBaseCosmic - damageDiceCosmic;
-	// 				targetedActorMessageDamage += `Beta Testing: ${targetedActorName} takes ${targetedActorDamage} Cosmic 💥 Damage.<br>`;
-	// 			}
-	// 			if (damageBaseElemental > 0 || damageDiceElemental > 0) {
-	// 				targetedActorDamage += targetedActorResistanceElemental - damageBaseElemental - damageDiceElemental;
-	// 				targetedActorMessageDamage += `Beta Testing: ${targetedActorName} takes ${targetedActorDamage} Elemental 💥 Damage.<br>`;
-	// 			}
-	// 			if (damageBaseMaterial > 0 || damageDiceMaterial > 0) {
-	// 				targetedActorDamage += targetedActorResistanceMaterial - damageBaseMaterial - damageDiceMaterial;
-	// 				targetedActorMessageDamage += `Beta Testing: ${targetedActorName} takes ${targetedActorDamage} Material 💥 Damage.<br>`;
-	// 			}
-	// 			if (damageBasePsychic > 0 || damageDicePsychic > 0) {
-	// 				targetedActorDamage += targetedActorResistancePsychic - damageBasePsychic - damageDicePsychic;
-	// 				targetedActorMessageDamage += `Beta Testing: ${targetedActorName} takes ${targetedActorDamage} Psychic 💥 Damage.<br>`;
-	// 			}
-	// 			//? Check for Healing
-	// 			if (healingBase > 0 || healingDice > 0) {
-	// 				targetedActorHealing += healingBase + healingDice;
-	// 				targetedActorMessageHealing = `Beta Testing: ${targetedActorName} receives ${targetedActorHealing} 💞 Healing.<br>`;
-	// 			}
-	// 			//? Prep Message
-	// 			if (targetedActorDamage > 0) {
-	// 				let targetedActorNewLife = targetedActorCurrentLife - targetedActorDamage;
-	// 				if (targetedActorNewLife < 0) {
-	// 					targetedActorNewLife = 0;
-	// 				}
-	// 				await targetedActor.update({ "system.Vital.Life.value": targetedActorNewLife });
-	// 				contentMessage += targetedActorMessageDamage;
-	// 			}
-	// 			if (targetedActorHealing > 0) {
-	// 				let targetedActorNewLife = targetedActorCurrentLife + targetedActorHealing;
-	// 				if (targetedActorNewLife > targetedActorMaxLife) {
-	// 					targetedActorNewLife = targetedActorMaxLife;
-	// 				}
-	// 				await targetedActor.update({ "system.Vital.Life.value": targetedActorNewLife });
-	// 				contentMessage += targetedActorMessageHealing;
-	// 			}
-	// 			const targetedActorFinalLifeCurrent = await targetedActor.system.Vital.Life.value;
-	// 			const targetedActorFinalLifeMax = await targetedActor.system.Vital.Life.max;
-	// 			metanthropes.utils.metaLog(3, "metaExecute", "Beta Testing Damage Application", targetedActorName, targetedActorDamage, targetedActorHealing);
-	// 			contentMessage += `Beta Testing (Damage/Healing applicationt test, please ignore): ${targetedActorName} has ${targetedActorFinalLifeCurrent}/${targetedActorFinalLifeMax} ❤️ Life remaining.<br>`;
-	// 			// await ChatMessage.create({
-	// 			// 	user: game.user.id,
-	// 			// 	speaker: ChatMessage.getSpeaker({ actor: actor }),
-	// 			// 	content: contentMessage,
-	// 			// });
-	// 		}
-	// 	}
-	// }
+	//* Apply Damage to Selected Targets (requires Beta Testing enabled)
+	if (betaTesting) {
+		if (damageSelectedTargets && actionableTargets) {
+			metanthropes.utils.metaLog(3, "metaExecute", "Applying Damage to Selected Targets");
+			for (let i = 0; i < targetedActors.length; i++) {
+				const targetedActor = targetedActors[i];
+				targetedActor.applyDamage(
+					cosmicDamageRollResult,
+					elementalDamageRollResult,
+					materialDamageRollResult,
+					psychicDamageRollResult
+				);
+				metanthropes.utils.metaLog(
+					3,
+					"metaExecute",
+					"Beta Testing Damage Application",
+					targetedActor.name,
+					"Cosmic:",
+					cosmicDamageRollResult,
+					"Elemental:",
+					elementalDamageRollResult,
+					"Material:",
+					materialDamageRollResult,
+					"Psychic:",
+					psychicDamageRollResult
+				);
+			}
+		}
+		if (healSelectedTargets && actionableTargets) {
+			metanthropes.utils.metaLog(3, "metaExecute", "Applying Healing to Selected Targets");
+			for (let i = 0; i < targetedActors.length; i++) {
+				const targetedActor = targetedActors[i];
+				targetedActor.applyHealing(healingRollResult);
+				metanthropes.utils.metaLog(
+					3,
+					"metaExecute",
+					"Beta Testing Healing Application",
+					targetedActor.name,
+					"Healing:",
+					healingRollResult
+				);
+			}
+		}
+	}
 	//* Send Chat Message
 	//? prepare the Chat message
 	let chatData = {

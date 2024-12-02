@@ -13,6 +13,7 @@ import { metaSheetRefresh } from "../../helpers/metahelpers.mjs";
  * @param {string} [itemName=""] - The name of the item associated with the roll, if any. Expected to be a string.
  * @param {number} [baseNumber=0] - A fixed number to add to the roll result, if any. Expected to be a positive number.
  * @param {boolean} [isHalf=false] - Determines if the roll result should be halved. Expected to be a boolean.
+ * @param {boolean} [anchor=false] - Determines if the roll result should be prepared to be injected into a chat message. Expected to be a boolean.
  *
  * @returns {Promise<void>} A promise that resolves once the function completes its operations.
  *
@@ -20,7 +21,16 @@ import { metaSheetRefresh } from "../../helpers/metahelpers.mjs";
  * Rolling an actor's Weapon Damage for 3 * d10:
  * metanthropes.dice.metaRolld10(actor, "Damage", true, 3, "Weapon Name");
  */
-export async function metaRolld10(actor, what, destinyReRoll, dice, itemName = null, baseNumber = 0, isHalf = false) {
+export async function metaRolld10(
+	actor,
+	what,
+	destinyReRoll,
+	dice,
+	itemName = null,
+	baseNumber = 0,
+	isHalf = false,
+	anchor = false
+) {
 	metanthropes.utils.metaLog(
 		3,
 		"metaRolld10",
@@ -36,7 +46,9 @@ export async function metaRolld10(actor, what, destinyReRoll, dice, itemName = n
 		"Base:",
 		baseNumber,
 		"d10/2?:",
-		isHalf
+		isHalf,
+		"Anchor?:",
+		anchor
 	);
 	let rollTotal;
 	const explosiveDice = "x10";
@@ -102,12 +114,28 @@ export async function metaRolld10(actor, what, destinyReRoll, dice, itemName = n
 		rolld10item: itemName,
 	});
 	//? Print message to chat
-	rolld10.toMessage({
-		speaker: ChatMessage.getSpeaker({ actor: actor }),
-		flavor: message,
-		rollMode: game.settings.get("core", "rollMode"),
-		flags: { "metanthropes": { actoruuid: actor.uuid } },
-	});
+	if (!anchor) {
+		rolld10.toMessage({
+			speaker: ChatMessage.getSpeaker({ actor: actor }),
+			flavor: message,
+			rollMode: game.settings.get("core", "rollMode"),
+			flags: { metanthropes: { actoruuid: actor.uuid } },
+		});
+	} else {
+		return rolld10.toAnchor({
+			label: what,
+			dataset: {
+				total: rollTotal,
+				actoruuid: actor.uuid,
+				item: itemName,
+				what: what,
+				destinyReRoll: destinyReRoll,
+				dice: dice,
+				baseNumber: baseNumber,
+				isHalf: isHalf,
+			},
+		});
+	}
 	metanthropes.utils.metaLog(3, "metaRolld10", "Finished for:", actor.name + "'s", what);
 	//? Refresh the actor sheet if it's open
 	metaSheetRefresh(actor);
@@ -162,6 +190,12 @@ export async function metaRolld10ReRoll(event) {
 		await metanthropes.dice.metaRolld10(actor, what, destinyReRoll, dice, itemName, baseNumber, isHalf);
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
-		metanthropes.utils.metaLog(1, "metaRolld10ReRoll", "Not enough Destiny to spend", "OR", "destinyReRoll is not allowed");
+		metanthropes.utils.metaLog(
+			1,
+			"metaRolld10ReRoll",
+			"Not enough Destiny to spend",
+			"OR",
+			"destinyReRoll is not allowed"
+		);
 	}
 }

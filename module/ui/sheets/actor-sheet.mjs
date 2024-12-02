@@ -98,15 +98,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 		context.affectedByHunger = this.actor.isHungry;
 		//? Flag for Tokenizer Support
 		context.tokenizer = game.modules.get("vtta-tokenizer")?.active;
-		metanthropes.utils.metaLog(
-			3,
-			"MetanthropesActorSheet",
-			"getData",
-			"this, context, options",
-			this,
-			context,
-			options
-		);
 		return context;
 	}
 	//* Prepare items
@@ -286,6 +277,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 		html.find(".meta-change-portrait").click(this._onChangePortrait.bind(this));
 		//? Change Token Image
 		html.find(".meta-change-token").click(this._onChangeToken.bind(this));
+		//? Undo last Life change button
+		html.find(".undo-last-life-change").click(this._onUndoLastLifeChange.bind(this));
 		//!? Drag events for macros !??
 		//todo:review how we use this
 		if (this.actor.isOwner) {
@@ -626,6 +619,12 @@ export class MetanthropesActorSheet extends ActorSheet {
 	//* Handle Right-Click Rolls
 	async _onCustomRoll(event) {
 		metanthropes.dice.metaHandleRolls(event, this, true);
+	}
+	//* Handle undoing the last life change
+	async _onUndoLastLifeChange(event) {
+		event.preventDefault();
+		const actor = this.actor;
+		await actor.undoLastLifeChange();
 	}
 	//* New Actor Logic
 	async _onNewActor(event) {

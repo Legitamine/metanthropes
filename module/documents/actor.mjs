@@ -69,8 +69,7 @@ export class MetanthropesActor extends Actor {
 					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
 				) {
 					createData.img = "systems/metanthropes/assets/tokens/token-utilitarian.webp";
-					createData.prototypeToken.texture.src =
-						"systems/metanthropes/assets/tokens/token-utilitarian.webp";
+					createData.prototypeToken.texture.src = "systems/metanthropes/assets/tokens/token-utilitarian.webp";
 				}
 				//? Splatter blood color for Metanthropes
 				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
@@ -133,8 +132,7 @@ export class MetanthropesActor extends Actor {
 					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
 				) {
 					createData.img = "systems/metanthropes/assets/tokens/token-kineticist.webp";
-					createData.prototypeToken.texture.src =
-						"systems/metanthropes/assets/tokens/token-kineticist.webp";
+					createData.prototypeToken.texture.src = "systems/metanthropes/assets/tokens/token-kineticist.webp";
 				}
 				//? Splatter blood color for Animals
 				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
@@ -155,8 +153,7 @@ export class MetanthropesActor extends Actor {
 					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
 				) {
 					createData.img = "systems/metanthropes/assets/tokens/token-clairvoyant.webp";
-					createData.prototypeToken.texture.src =
-						"systems/metanthropes/assets/tokens/token-clairvoyant.webp";
+					createData.prototypeToken.texture.src = "systems/metanthropes/assets/tokens/token-clairvoyant.webp";
 				}
 				//? Splatter blood color for Animated-Plants
 				createData.prototypeToken.flags.splatter = { bloodColor: "#228B22" };
@@ -240,8 +237,7 @@ export class MetanthropesActor extends Actor {
 					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
 				) {
 					createData.img = "systems/metanthropes/assets/tokens/token-manipulator.webp";
-					createData.prototypeToken.texture.src =
-						"systems/metanthropes/assets/tokens/token-manipulator.webp";
+					createData.prototypeToken.texture.src = "systems/metanthropes/assets/tokens/token-manipulator.webp";
 				}
 				//? Splatter blood color for MetaTherions
 				createData.prototypeToken.flags.splatter = { bloodColor: "#FF1493" };
@@ -262,8 +258,7 @@ export class MetanthropesActor extends Actor {
 					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
 				) {
 					createData.img = "systems/metanthropes/assets/tokens/token-controller.webp";
-					createData.prototypeToken.texture.src =
-						"systems/metanthropes/assets/tokens/token-controller.webp";
+					createData.prototypeToken.texture.src = "systems/metanthropes/assets/tokens/token-controller.webp";
 				}
 				//? Splatter blood color for Vehicles
 				createData.prototypeToken.flags.splatter = { bloodColor: "#808080" };
@@ -348,7 +343,12 @@ export class MetanthropesActor extends Actor {
 					const primeMPName = this.system.entermeta.primemetapower.value;
 					//? Proceed if Prime Metapower icon is not the correct one
 					const primeMPStorageName = metaTransformStringForStorage(primeMPName);
-					if (!(this.primeimg == `systems/metanthropes/assets/artwork/metapowers/mp-${primeMPStorageName}.webp`)) {
+					if (
+						!(
+							this.primeimg ==
+							`systems/metanthropes/assets/artwork/metapowers/mp-${primeMPStorageName}.webp`
+						)
+					) {
 						//? for Protagonists with a prime metapower defined, make it their respective metapower icon
 						this.primeimg = `systems/metanthropes/assets/artwork/metapowers/mp-${primeMPStorageName}.webp`;
 						metanthropes.utils.metaLog(
@@ -944,7 +944,7 @@ export class MetanthropesActor extends Actor {
 			}
 		}
 	}
-	//* Getters
+	//* Functions
 	/** @override */
 	getRollData() {
 		if (this.type == "Vehicle") return;
@@ -961,6 +961,68 @@ export class MetanthropesActor extends Actor {
 		}
 		return data;
 	}
+	/**
+	 * applyDamage - Apply Damage to the Actor
+	 * each parameter below is expected to be a positive number
+	 * @param {*} cosmic
+	 * @param {*} elemental
+	 * @param {*} material
+	 * @param {*} psychic
+	 */
+	applyDamage(cosmic = 0, elemental = 0, material = 0, psychic = 0) {
+		const currentLife = this.system.Vital.Life.value;
+		const cosmicResistance = Number(this.system.physical.resistances.cosmic.initial);
+		const elementalResistance = Number(this.system.physical.resistances.elemental.initial);
+		const materialResistance = Number(this.system.physical.resistances.material.initial);
+		const psychicResistance = Number(this.system.physical.resistances.psychic.initial);
+		const cosmicDamage = cosmic - cosmicResistance;
+		const elementalDamage = elemental - elementalResistance;
+		const materialDamage = material - materialResistance;
+		const psychicDamage = psychic - psychicResistance;
+		const totalDamage =
+			(cosmicDamage > 0 ? cosmicDamage : 0) +
+			(elementalDamage > 0 ? elementalDamage : 0) +
+			(materialDamage > 0 ? materialDamage : 0) +
+			(psychicDamage > 0 ? psychicDamage : 0);
+		if (totalDamage > 0) {
+			const newLife = Number(currentLife) - Number(totalDamage);
+			//todo confirm we don't allow negative life
+			if (newLife < 0) {
+				this.update({
+					"flags.metanthropes.previousLife": currentLife,
+					"system.Vital.Life.value": 0,
+				});
+			} else {
+				this.update({
+					"flags.metanthropes.previousLife": currentLife,
+					"system.Vital.Life.value": Number(newLife),
+				});
+			}
+		}
+	}
+	applyHealing(healing = 0) {
+		const currentLife = this.system.Vital.Life.value;
+		const maxLife = this.system.Vital.Life.max;
+		const newLife = Number(currentLife) + Number(healing);
+		if (newLife > maxLife) {
+			this.update({
+				"flags.metanthropes.previousLife": currentLife,
+				"system.Vital.Life.value": Number(maxLife),
+			});
+		} else {
+			this.update({
+				"flags.metanthropes.previousLife": currentLife,
+				"system.Vital.Life.value": Number(newLife),
+			});
+		}
+	}
+	undoLastLifeChange() {
+		const previousLife = this.getFlag("metanthropes", "previousLife");
+		this.update({
+			"system.Vital.Life.value": Number(previousLife),
+		});
+	}
+	//* Getters
 	get hasCharacteristics() {
 		return Boolean(this.system.Characteristics);
 	}

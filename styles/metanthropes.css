@@ -21,6 +21,7 @@ form button {
 }
 form button.active {
   border: 2px groove #fff;
+  box-shadow: 0 0 5px #7d0f81;
   opacity: 1;
 }
 form button:hover {
@@ -152,8 +153,12 @@ button {
   color: #fff;
   opacity: 0.8;
 }
+button.chat-button-anchor {
+  width: auto;
+}
 button.active {
   border: 2px groove #fff;
+  box-shadow: 0 0 5px #7d0f81;
   opacity: 1;
 }
 button:hover {
@@ -1656,29 +1661,7 @@ h3 {
 }
 .metanthropes form button.active {
   border: 2px groove #fff;
-  opacity: 1;
-}
-.metanthropes form button:hover {
-  outline: none;
-  border: 2px groove #fff;
   box-shadow: 0 0 5px #7d0f81;
-  opacity: 1;
-}
-.metanthropes form button:focus {
-  outline: none;
-  box-shadow: 0 0 5px #7d0f81;
-  opacity: 1;
-}
-.metanthropes form button {
-  background-image: url("../assets/artwork/ui/buttons/button.webp");
-  text-shadow: 1px 1px 1px #7d0f81, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
-  border: 2px groove #7d0f81;
-  border-radius: 15px;
-  color: #fff;
-  opacity: 0.8;
-}
-.metanthropes form button.active {
-  border: 2px groove #fff;
   opacity: 1;
 }
 .metanthropes form button:hover {
