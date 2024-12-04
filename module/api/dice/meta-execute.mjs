@@ -65,7 +65,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	const damageDiceCosmic = metaItemData.system.Effects.Damage.Cosmic.Dice;
 	const damageBaseElemental = metaItemData.system.Effects.Damage.Elemental.Base;
 	const damageDiceElemental = metaItemData.system.Effects.Damage.Elemental.Dice;
-	const damageBaseMaterial = metaItemData.system.Effects.Damage.Material.Base;
+	let damageBaseMaterial = metaItemData.system.Effects.Damage.Material.Base;
 	const damageDiceMaterial = metaItemData.system.Effects.Damage.Material.Dice;
 	const damageBasePsychic = metaItemData.system.Effects.Damage.Psychic.Base;
 	const damageDicePsychic = metaItemData.system.Effects.Damage.Psychic.Dice;
