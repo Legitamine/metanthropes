@@ -45,7 +45,7 @@ export async function metaSheetRefresh(sheet) {
 	//	metaLog(3, "metaSheetRefresh", "Refreshing Sheet");
 	//	sheet.render(true);
 	//}
-	metanthropes.utils.metaLog(3, "metaSheetRefresh", "Finished");
+	metanthropes.utils.metaLog(3, "metaSheetRefresh", "!!! DEPRECATED - SHOULD NOT BE USED !!!");
 }
 
 /**
