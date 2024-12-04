@@ -83,7 +83,7 @@ export class MetanthropesCombat extends Combat {
 			const combatant = this.combatants.get(id);
 			if (!combatant?.isOwner) continue;
 			//? Produce an initiative roll for the Combatant
-			metanthropes.utils.metaLog(3, "Combat", "rollInitiative", "Engaging metaInitiative for combatant:", combatant);
+			metanthropes.utils.metaLog(3, "Combat", "rollInitiative", "Engaging metaInitiative for combatant:", combatant.name);
 			await metanthropes.dice.metaInitiative(combatant);
 			let initiativeResult = combatant.actor.getFlag("metanthropes", "lastrolled").Initiative;
 			metanthropes.utils.metaLog(

@@ -1,7 +1,7 @@
 {
 	"id": "metanthropes",
-	"title": "Metanthropes - Early Access",
-	"description": "Metanthropes System for Foundry VTT by Legitamine Games - Early Access",
+	"title": "Metanthropes",
+	"description": "Metanthropes System for Foundry VTT by Legitamine Games",
 	"version": "1.0.0",
 	"compatibility": {
 		"minimum": "12",

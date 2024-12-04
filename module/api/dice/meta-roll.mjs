@@ -11,6 +11,7 @@
  * @param {Boolean} isCustomRoll - Whether the roll is custom or not. Expected to be a boolean.
  * @param {Number} destinyCost - The destiny cost of the action. Expected to be a positive number.
  * @param {String} itemName - The name of the Metapower, Possession or Combo being used. Expected to be a string.
+ * @param {String} messageId - The message ID of the chat message for the reroll, if any. Expected to be a string.
  *
  * @returns {Promise<void>} A promise that resolves once the function completes its operations.
  *
@@ -18,7 +19,7 @@
  * Rolling a simple stat
  * metaRoll(actor, "StatRoll", "Power");
  */
-export async function metaRoll(actor, action, stat, isCustomRoll = false, destinyCost = 0, itemName = null) {
+export async function metaRoll(actor, action, stat, isCustomRoll = false, destinyCost = 0, itemName = null, messageId = null) {
 	//? Initialize the actor's RollStat array before proceeding
 	await actor.getRollData();
 	const statScore = actor.system.RollStats[stat];
@@ -161,7 +162,9 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 			"Destiny Cost:",
 			destinyCost,
 			"Item Name:",
-			itemName
+			itemName,
+			"Message ID:",
+			messageId
 		);
 		await metanthropes.dice.metaEvaluate(
 			actor,
@@ -176,7 +179,8 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 			penalty,
 			pain,
 			destinyCost,
-			itemName
+			itemName,
+			messageId
 		);
 	} else {
 		penalty = diseasePenalty;
@@ -206,7 +210,9 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 			"Destiny Cost:",
 			destinyCost,
 			"Item Name:",
-			itemName
+			itemName,
+			"Message ID:",
+			messageId
 		);
 		await metanthropes.dice.metaEvaluate(
 			actor,
@@ -221,7 +227,8 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 			penalty,
 			pain,
 			destinyCost,
-			itemName
+			itemName,
+			messageId
 		);
 	}
 	//* Post-Evaluate-roll actions

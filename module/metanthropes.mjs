@@ -44,6 +44,9 @@ import { metaRoll } from "./api/dice/meta-roll.mjs";
 import { metaExecute } from "./api/dice/meta-execute.mjs";
 //* Logic
 import { metaFinalizePremadeActor } from "./api/logic/finalize-premade.mjs";
+import { metaApplyDamage } from "./api/logic/apply-damage.mjs";
+import { metaApplyHealing } from "./api/logic/apply-healing.mjs";
+import { metaAssignActorToPlayer } from "./api/logic/assign-actor-to-player.mjs";
 //* Utilities
 import { prepareActiveEffectCategories, onManageActiveEffect } from "./api/utils/active-effect-tools.mjs";
 import { metaExtractNumberOfDice } from "./api/utils/dice-tools.mjs";
@@ -94,6 +97,9 @@ globalThis.metanthropes = {
 	},
 	logic: {
 		metaFinalizePremadeActor,
+		metaApplyDamage,
+		metaApplyHealing,
+		metaAssignActorToPlayer,
 	},
 	metapowers: {
 		metaExecute,

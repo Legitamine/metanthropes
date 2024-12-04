@@ -75,8 +75,6 @@ export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 				return;
 		}
 	}
-	//? Finished
-	metanthropes.utils.metaLog(3, "metaHandleRolls");
 }
 /**
  * HandleCoverRolls - A utility function to handle cover rolls for the Metanthropes system.

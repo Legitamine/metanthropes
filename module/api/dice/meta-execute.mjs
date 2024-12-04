@@ -27,7 +27,6 @@
 export async function metaExecute(event, actorUUID, action, itemName, multiAction = 0) {
 	//? If we called this from a button click, get the data we need
 	if (event) {
-		metanthropes.utils.metaLog(3, "metaExecute", "Engaged via button click - Event:", event);
 		const button = event.target;
 		actorUUID = button.dataset.actoruuid;
 		action = button.dataset.action;
@@ -41,47 +40,46 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	const explosiveDice = "x10";
 	//todo: placeholder for custom explosive dice
 	//? Find the first item ()that matches itemName
-	let metaItemData = actor.items.find((item) => item.name === itemName);
+	const metaItemData = actor.items.find((item) => item.name === itemName);
 	if (!metaItemData) {
 		metanthropes.utils.metaLog(2, "metaExecute", "ERROR: Could not find any item named:", itemName);
 		return;
 	}
 	metanthropes.utils.metaLog(3, "metaExecute", "Engaged for", itemName);
-	//todo review which need to be const and which let by determining what can be changed by the spending of lvl of success
 	//? Gather all the execution data
-	let actionSlot = metaItemData.system.Execution.ActionSlot.value;
-	let targetsNumber = metaItemData.system.Execution.Targets.value;
-	let targetsEligible = metaItemData.system.Execution.TargetsEligibility.value;
-	let targetsType = metaItemData.system.Execution.TargetsType.value;
-	let duration = metaItemData.system.Execution.Duration.value;
-	let range = metaItemData.system.Execution.Range.value;
-	let areaEffect = metaItemData.system.Execution.AreaEffect.value;
-	let areaType = metaItemData.system.Execution.AreaType.value;
-	let vsRoll = metaItemData.system.Effects.VSStatRoll.value;
+	const actionSlot = metaItemData.system.Execution.ActionSlot.value;
+	const targetsNumber = metaItemData.system.Execution.Targets.value;
+	const targetsEligible = metaItemData.system.Execution.TargetsEligibility.value;
+	const targetsType = metaItemData.system.Execution.TargetsType.value;
+	const duration = metaItemData.system.Execution.Duration.value;
+	const range = metaItemData.system.Execution.Range.value;
+	const areaEffect = metaItemData.system.Execution.AreaEffect.value;
+	const areaType = metaItemData.system.Execution.AreaType.value;
+	const vsRoll = metaItemData.system.Effects.VSStatRoll.value;
 	//? Sound Effect Data
 	const sfxCompendium = metaItemData.system.Effects.SFX.Compendium.value;
 	const sfxName = metaItemData.system.Effects.SFX.Name.value;
 	//? Gather all the effect data
-	let effectDescription = metaItemData.system.Effects.EffectDescription.value;
-	let damageBaseCosmic = metaItemData.system.Effects.Damage.Cosmic.Base;
-	let damageDiceCosmic = metaItemData.system.Effects.Damage.Cosmic.Dice;
-	let damageBaseElemental = metaItemData.system.Effects.Damage.Elemental.Base;
-	let damageDiceElemental = metaItemData.system.Effects.Damage.Elemental.Dice;
-	let damageBaseMaterial = metaItemData.system.Effects.Damage.Material.Base;
-	let damageDiceMaterial = metaItemData.system.Effects.Damage.Material.Dice;
-	let damageBasePsychic = metaItemData.system.Effects.Damage.Psychic.Base;
-	let damageDicePsychic = metaItemData.system.Effects.Damage.Psychic.Dice;
-	let healingBase = metaItemData.system.Effects.Healing.Base;
-	let healingDice = metaItemData.system.Effects.Healing.Dice;
-	let specialName = metaItemData.system.Effects.Special.SpecialDiceName.value;
-	let specialBase = metaItemData.system.Effects.Special.Base;
-	let specialDice = metaItemData.system.Effects.Special.Dice;
-	let specialIsHalf = metaItemData.system.Effects.Special.isHalf;
-	let buffsPermanent = metaItemData.system.Effects.Buffs.Permanent.value;
-	let buffsApplied = metaItemData.system.Effects.Buffs.Applied.value;
-	let buffsRemoved = metaItemData.system.Effects.Buffs.Removed.value;
-	let conditionsApplied = metaItemData.system.Effects.Conditions.Applied.value;
-	let conditionsRemoved = metaItemData.system.Effects.Conditions.Removed.value;
+	const effectDescription = metaItemData.system.Effects.EffectDescription.value;
+	const damageBaseCosmic = metaItemData.system.Effects.Damage.Cosmic.Base;
+	const damageDiceCosmic = metaItemData.system.Effects.Damage.Cosmic.Dice;
+	const damageBaseElemental = metaItemData.system.Effects.Damage.Elemental.Base;
+	const damageDiceElemental = metaItemData.system.Effects.Damage.Elemental.Dice;
+	const damageBaseMaterial = metaItemData.system.Effects.Damage.Material.Base;
+	const damageDiceMaterial = metaItemData.system.Effects.Damage.Material.Dice;
+	const damageBasePsychic = metaItemData.system.Effects.Damage.Psychic.Base;
+	const damageDicePsychic = metaItemData.system.Effects.Damage.Psychic.Dice;
+	const healingBase = metaItemData.system.Effects.Healing.Base;
+	const healingDice = metaItemData.system.Effects.Healing.Dice;
+	const specialName = metaItemData.system.Effects.Special.SpecialDiceName.value;
+	const specialBase = metaItemData.system.Effects.Special.Base;
+	const specialDice = metaItemData.system.Effects.Special.Dice;
+	const specialIsHalf = metaItemData.system.Effects.Special.isHalf;
+	const buffsPermanent = metaItemData.system.Effects.Buffs.Permanent.value;
+	const buffsApplied = metaItemData.system.Effects.Buffs.Applied.value;
+	const buffsRemoved = metaItemData.system.Effects.Buffs.Removed.value;
+	const conditionsApplied = metaItemData.system.Effects.Conditions.Applied.value;
+	const conditionsRemoved = metaItemData.system.Effects.Conditions.Removed.value;
 	//? Prep possession required variables
 	let powerScore;
 	let category;
@@ -121,15 +119,14 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	let actionSlotDice;
 	let targetsNumberDice;
 	let durationDice;
-	//? Prep chat message buttons
+	//? Prep chat message buttons & params
 	let actionSlotRerollButton = null;
 	let targetsRerollButton = null;
 	let durationRerollButton = null;
-	let damageCosmicRerollButton = null;
-	let damageElementalRerollButton = null;
-	let damageMaterialRerollButton = null;
-	let damagePsychicRerollButton = null;
-	let healingRerollButton = null;
+	let cosmicDamageRollParams = null;
+	let elementalDamageRollParams = null;
+	let materialDamageRollParams = null;
+	let psychicDamageRollParams = null;
 	let specialRerollButton = null;
 	//? Get the last rolled result
 	const rollResult = actor.getFlag("metanthropes", "lastrolled");
@@ -211,6 +208,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	//? Setup a variable to know if we'll have to apply effects to the targeted actors
 	let actionableTargets = false;
 	//* Prepare content message constituents
+	//! the true meta-execute logic
 	if (executeRoll) {
 		//? check Area Effect
 		if (areaEffect !== "None") {
@@ -240,7 +238,9 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				actionSlotDice = 1;
 				actionSlotMessage += `Focused Action: [[1d10${explosiveDice}]] Cycles<br>`;
 				actionSlotRerollButton = `<div class="hide-button hidden"><br>
-				<button class="metanthropes-secondary-chat-button action-slot rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${actionSlotDice}" data-what="⏱ Activation" data-destiny-re-roll="true">
+				<button class="metanthropes-secondary-chat-button action-slot rolld10-reroll"
+				data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${actionSlotDice}"
+				data-what="⏱ Activation" data-destiny-re-roll="true" data-reroll="true" data-reroll-counter="0">
 				Spend 🤞 to reroll ⏱ Activation</button>
 				<br></div>`;
 			} else if (actionSlot.includes("1d10 Hours")) {
@@ -248,7 +248,9 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				actionSlotDice = 1;
 				actionSlotMessage += `Focused Action: [[1d10${explosiveDice}]] Hours<br>`;
 				actionSlotRerollButton = `<div class="hide-button hidden"><br>
-				<button class="metanthropes-secondary-chat-button action-slot rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${actionSlotDice}" data-what="⏱ Activation" data-destiny-re-roll="true">
+				<button class="metanthropes-secondary-chat-button action-slot rolld10-reroll"
+				data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${actionSlotDice}"
+				data-what="⏱ Activation" data-destiny-re-roll="true" data-reroll="true" data-reroll-counter="0">
 				Spend 🤞 to reroll ⏱ Activation</button>
 				<br></div>`;
 			} else {
@@ -267,16 +269,19 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				targetsMessage = `🎯: ${targetsNumberDiceMessage}`;
 				targetsNumberDice = 1;
 				targetsRerollButton = `<div class="hide-button hidden"><br>
-			<button class="metanthropes-secondary-chat-button targets rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${targetsNumberDice}" data-what="🎯 Targets" data-is-half="true" data-destiny-re-roll="true">
-			Spend 🤞 to reroll 🎯 Targets</button>
-			<br></div>`;
+			<button class="metanthropes-secondary-chat-button targets rolld10-reroll"
+			data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${targetsNumberDice}"
+			data-what="🎯 Targets" data-is-half="true" data-destiny-re-roll="true" data-reroll="true"
+			data-reroll-counter="0">Spend 🤞 to reroll 🎯 Targets</button><br></div>`;
 			} else {
 				//? all other rolls
 				targetsNumberDice = await metanthropes.utils.metaExtractNumberOfDice(targetsNumber);
 				targetsNumberDiceMessage = `[[${targetsNumberDice}d10${explosiveDice}]]`;
 				targetsMessage = `🎯: ${targetsNumberDiceMessage}`;
 				targetsRerollButton = `<div class="hide-button hidden"><br>
-			<button class="metanthropes-secondary-chat-button targets rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${targetsNumberDice}" data-what="🎯 Targets" data-destiny-re-roll="true">
+			<button class="metanthropes-secondary-chat-button targets rolld10-reroll"
+			data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${targetsNumberDice}"
+			data-what="🎯 Targets" data-destiny-re-roll="true" data-reroll="true" data-reroll-counter="0">
 			Spend 🤞 to reroll 🎯 Targets</button>
 			<br></div>`;
 			}
@@ -300,7 +305,9 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			durationDice = 1;
 			durationMessage = `⏳: [[1d10${explosiveDice}]] ` + durationDiceMessage[1] + `<br>`;
 			durationRerollButton = `<div class="hide-button hidden"><br>
-			<button class="metanthropes-secondary-chat-button duration rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${durationDice}" data-what="⏳ Duration" data-destiny-re-roll="true">
+			<button class="metanthropes-secondary-chat-button duration rolld10-reroll"
+			data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${durationDice}"
+			data-what="⏳ Duration" data-destiny-re-roll="true" data-reroll="true" data-reroll-counter="0">
 			Spend 🤞 to reroll ⏳ Duration</button>
 			<br></div>`;
 		} else {
@@ -317,15 +324,14 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				itemName,
 				damageBaseCosmic,
 				false,
-				true
+				true,
+				false,
+				0,
+				null
 			);
 			cosmicDamageRollResult = cosmicDamageRoll.dataset.total;
-			damageCosmicRerollButton = `<span class="hide-button hidden"><button class="metanthropes-secondary-chat-button cosmic-damage rolld10-reroll chat-button-anchor"
-			data-tooltip="Spend 🤞 Destiny to reroll Cosmic 💥 Damage"
-			data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
-			data-what="Cosmic 💥 Damage" data-dice="${damageDiceCosmic}"
-			data-destiny-re-roll="true" data-base-number="${damageBaseCosmic}"> 🤞 </button></span>`;
-			damageCosmicMessage = `${cosmicDamageRoll.outerHTML} ${damageCosmicRerollButton}<br>`;
+			cosmicDamageRollParams = `data-cosmic-damage-dice="${damageDiceCosmic}" data-cosmic-damage-base="${damageBaseCosmic}"`;
+			damageCosmicMessage = `${cosmicDamageRoll.outerHTML}<br>`;
 		}
 		if (damageBaseElemental > 0 || damageDiceElemental > 0) {
 			const elementalDamageRoll = await metanthropes.dice.metaRolld10(
@@ -336,15 +342,14 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				itemName,
 				damageBaseElemental,
 				false,
-				true
+				true,
+				false,
+				0,
+				null
 			);
 			elementalDamageRollResult = elementalDamageRoll.dataset.total;
-			damageElementalRerollButton = `<span class="hide-button hidden"><button class="metanthropes-secondary-chat-button elemental-damage rolld10-reroll chat-button-anchor"
-			data-tooltip="Spend 🤞 Destiny to reroll Elemental 💥 Damage"
-			data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
-			data-what="Elemental 💥 Damage" data-dice="${damageDiceElemental}"
-			data-destiny-re-roll="true" data-base-number="${damageBaseElemental}"> 🤞 </button></span>`;
-			damageElementalMessage = `${elementalDamageRoll.outerHTML} ${damageElementalRerollButton}<br>`;
+			elementalDamageRollParams = `data-elemental-damage-dice="${damageDiceElemental}" data-elemental-damage-base="${damageBaseElemental}"`;
+			damageElementalMessage = `${elementalDamageRoll.outerHTML}<br>`;
 		}
 		if (damageBaseMaterial > 0 || damageDiceMaterial > 0) {
 			const materialDamageRoll = await metanthropes.dice.metaRolld10(
@@ -355,15 +360,14 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				itemName,
 				damageBaseMaterial,
 				false,
-				true
+				true,
+				false,
+				0,
+				null
 			);
 			materialDamageRollResult = materialDamageRoll.dataset.total;
-			damageMaterialRerollButton = `<span class="hide-button hidden"><button class="metanthropes-secondary-chat-button material-damage rolld10-reroll chat-button-anchor"
-			data-tooltip="Spend 🤞 Destiny to reroll Material 💥 Damage"
-			data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
-			data-what="Material 💥 Damage" data-dice="${damageDiceMaterial}"
-			data-destiny-re-roll="true" data-base-number="${damageBaseMaterial}"> 🤞 </button></span>`;
-			damageMaterialMessage = `${materialDamageRoll.outerHTML} ${damageMaterialRerollButton}<br>`;
+			materialDamageRollParams = `data-material-damage-dice="${damageDiceMaterial}" data-material-damage-base="${damageBaseMaterial}"`;
+			damageMaterialMessage = `${materialDamageRoll.outerHTML}<br>`;
 		}
 		if (damageBasePsychic > 0 || damageDicePsychic > 0) {
 			const psychicDamageRoll = await metanthropes.dice.metaRolld10(
@@ -374,15 +378,14 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				itemName,
 				damageBasePsychic,
 				false,
-				true
+				true,
+				false,
+				0,
+				null
 			);
 			psychicDamageRollResult = psychicDamageRoll.dataset.total;
-			damagePsychicRerollButton = `<span class="hide-button hidden"><button class="metanthropes-secondary-chat-button psychic-damage rolld10-reroll chat-button-anchor"
-			data-tooltip="Spend 🤞 Destiny to reroll Psychic 💥 Damage"
-			data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
-			data-what="Psychic 💥 Damage" data-dice="${damageDicePsychic}"
-			data-destiny-re-roll="true" data-base-number="${damageBasePsychic}"> 🤞 </button></span>`;
-			damagePsychicMessage = `${psychicDamageRoll.outerHTML} ${damagePsychicRerollButton}<br>`;
+			psychicDamageRollParams = `data-psychic-damage-dice="${damageDicePsychic}" data-psychic-damage-base="${damageBasePsychic}"`;
+			damagePsychicMessage = `${psychicDamageRoll.outerHTML}<br>`;
 		}
 		if (healingBase > 0 || healingDice > 0) {
 			const healingRoll = await metanthropes.dice.metaRolld10(
@@ -393,27 +396,31 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				itemName,
 				healingBase,
 				false,
-				true
+				true,
+				false,
+				0,
+				null
 			);
 			healingRollResult = healingRoll.dataset.total;
-			healingRerollButton = `<span class="hide-button hidden"><button class="metanthropes-secondary-chat-button healing rolld10-reroll chat-button-anchor"
-			data-tooltip="Spend 🤞 Destiny to reroll 💞 Healing"
-			data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
-			data-what="💞 Healing" data-dice="${healingDice}"
-			data-destiny-re-roll="true" data-base-number="${healingBase}"> 🤞 </button></span>`;
-			healingMessage = `${healingRoll.outerHTML} ${healingRerollButton}<br>`;
+			healingMessage = `${healingRoll.outerHTML}<br>`;
 		}
 		if (specialBase > 0 && specialDice > 0) {
 			if (!specialIsHalf) {
 				specialMessage = `${specialName}: [[${specialDice}d10${explosiveDice}+${specialBase}]]<br>`;
 				specialRerollButton = `<div class="hide-button hidden"><br>
-			<button class="metanthropes-secondary-chat-button special rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="${specialName}" data-dice="${specialDice}" data-destiny-re-roll="true" data-base-number="${specialBase}">
+			<button class="metanthropes-secondary-chat-button special rolld10-reroll"
+			data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="${specialName}"
+			data-dice="${specialDice}" data-destiny-re-roll="true" data-base-number="${specialBase}"
+			data-reroll="true" data-reroll-counter="0">
 			Spend 🤞 to reroll ${specialName}</button>
 			<br></div>`;
 			} else if (specialIsHalf) {
 				specialMessage = `${specialName}: [[ceil(${specialDice}d10${explosiveDice}/2)+${specialBase}]]<br>`;
 				specialRerollButton = `<div class="hide-button hidden"><br>
-			<button class="metanthropes-secondary-chat-button special rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="${specialName}" data-dice="${specialDice}" data-destiny-re-roll="true" data-base-number="${specialBase}" data-is-half="true">
+			<button class="metanthropes-secondary-chat-button special rolld10-reroll" data-actoruuid="${actor.uuid}"
+			data-item-name="${itemName}" data-what="${specialName}" data-dice="${specialDice}"
+			data-destiny-re-roll="true" data-base-number="${specialBase}" data-is-half="true"
+			data-reroll="true" data-reroll-counter="0">
 			Spend 🤞 to reroll ${specialName}</button>
 			<br></div>`;
 			}
@@ -423,13 +430,17 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			if (!specialIsHalf) {
 				specialMessage = `${specialName}: [[${specialDice}d10${explosiveDice}]]<br>`;
 				specialRerollButton = `<div class="hide-button hidden"><br>
-			<button class="metanthropes-secondary-chat-button special rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="${specialName}" data-dice="${specialDice}" data-destiny-re-roll="true">
+			<button class="metanthropes-secondary-chat-button special rolld10-reroll" data-actoruuid="${actor.uuid}"
+			data-item-name="${itemName}" data-what="${specialName}" data-dice="${specialDice}"
+			data-destiny-re-roll="true" data-reroll="true" data-reroll-counter="0">
 			Spend 🤞 to reroll ${specialName}</button>
 			<br></div>`;
 			} else if (specialIsHalf) {
 				specialMessage = `${specialName}: [[ceil(${specialDice}d10${explosiveDice}/2)]]<br>`;
 				specialRerollButton = `<div class="hide-button hidden"><br>
-			<button class="metanthropes-secondary-chat-button special rolld10-reroll" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="${specialName}" data-dice="${specialDice}" data-destiny-re-roll="true" data-is-half="true">
+			<button class="metanthropes-secondary-chat-button special rolld10-reroll" data-actoruuid="${actor.uuid}"
+			data-item-name="${itemName}" data-what="${specialName}" data-dice="${specialDice}"
+			data-destiny-re-roll="true" data-is-half="true" data-reroll="true" data-reroll-counter="0">
 			Spend 🤞 to reroll ${specialName}</button>
 			<br></div>`;
 			}
@@ -508,12 +519,21 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		}
 		if (damageCosmicMessage || damageElementalMessage || damageMaterialMessage || damagePsychicMessage) {
 			damageSelectedTargets = true;
+			//rerol button
 			contentMessage += `<hr />`;
 		}
 		if (healingMessage) {
 			healSelectedTargets = true;
 			contentMessage += `Beta Testing: Applying 💞 Healing to Selected 🎯 Target(s):<br>`;
+			const healingRerollButton = `<div class="hide-button hidden">
+			<button class="metanthropes-secondary-chat-button healing rolld10-reroll chat-button-anchor"
+			data-tooltip="Spend 🤞 Destiny to reroll 💞 Healing" data-targets="${targetedActors}"
+			data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+			data-what="💞 Healing" data-anchor="true" data-reroll="false" data-reroll-counter="0" data-message-id="null"
+			data-destiny-re-roll="true" data-dice="${healingDice}" data-base-number="${healingBase}">Spend 🤞 to Reroll 💞 Healing</button></div>`;
 			contentMessage += healingMessage;
+			contentMessage += `<br>`;
+			contentMessage += healingRerollButton;
 			contentMessage += `<hr />`;
 		}
 		if (specialMessage) {
@@ -539,9 +559,8 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			contentMessage += `<hr />`;
 		}
 		//? check if actor has enough destiny points to reroll
-		const currentDestiny = actor.system.Vital.Destiny.value;
-		contentMessage += `<div>${actor.name} has ${currentDestiny} 🤞 Destiny remaining.<br></div>`;
-		if (currentDestiny > 0) {
+		contentMessage += `<div>${actor.name} has ${actor.currentDestiny} 🤞 Destiny remaining.<br></div>`;
+		if (actor.currentDestiny > 0) {
 			let destinyRerollButtonMessage = false;
 			//? add destiny reroll buttons
 			if (actionSlotRerollButton) {
@@ -565,50 +584,6 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			}
 		}
 	}
-	//* Apply Damage to Selected Targets (requires Beta Testing enabled)
-	if (betaTesting) {
-		if (damageSelectedTargets && actionableTargets) {
-			metanthropes.utils.metaLog(3, "metaExecute", "Applying Damage to Selected Targets");
-			for (let i = 0; i < targetedActors.length; i++) {
-				const targetedActor = targetedActors[i];
-				targetedActor.applyDamage(
-					cosmicDamageRollResult,
-					elementalDamageRollResult,
-					materialDamageRollResult,
-					psychicDamageRollResult
-				);
-				metanthropes.utils.metaLog(
-					3,
-					"metaExecute",
-					"Beta Testing Damage Application",
-					targetedActor.name,
-					"Cosmic:",
-					cosmicDamageRollResult,
-					"Elemental:",
-					elementalDamageRollResult,
-					"Material:",
-					materialDamageRollResult,
-					"Psychic:",
-					psychicDamageRollResult
-				);
-			}
-		}
-		if (healSelectedTargets && actionableTargets) {
-			metanthropes.utils.metaLog(3, "metaExecute", "Applying Healing to Selected Targets");
-			for (let i = 0; i < targetedActors.length; i++) {
-				const targetedActor = targetedActors[i];
-				targetedActor.applyHealing(healingRollResult);
-				metanthropes.utils.metaLog(
-					3,
-					"metaExecute",
-					"Beta Testing Healing Application",
-					targetedActor.name,
-					"Healing:",
-					healingRollResult
-				);
-			}
-		}
-	}
 	//* Send Chat Message
 	//? prepare the Chat message
 	let chatData = {
@@ -619,13 +594,14 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		flags: { metanthropes: { actoruuid: actor.uuid } },
 	};
 	//? Send the message to chat
+	//await new Dialog ({title: "test", flavor: flavorMessage, content: contentMessage, buttons: {ok: {label: "OK"}}}).render(true);
 	await ChatMessage.create(chatData);
 	//* Post Execution Actions
+	metanthropes.utils.metaLog(3, "metaExecute", "Post Execution Actions");
 	//? Clear all metapower related result flags (currently only from duplicateself)
 	//! the idea here being that if the flags are going to be added later, here we prevent them from remaining from previous successful activations
 	await actor.unsetFlag("metanthropes", "duplicateSelf");
 	//? Get the result of the last roll
-	metanthropes.utils.metaLog(3, "metaExecute", "Post Execution Actions");
 	let checkResult = await actor.getFlag("metanthropes", "lastrolled").MetaEvaluate;
 	//* Check for Duplicate Self Metapower Activation
 	if (
@@ -681,12 +657,29 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 							sfxCompendium
 						);
 						//todo: this should trigger after the chat message is rendered and the dice are rolled
-						AudioHelper.play({ src: foundSound.sound.src, volume: 0.8, autoplay: true, loop: false }, true);
+						await AudioHelper.play(
+							{ src: foundSound.sound.src, volume: 0.8, autoplay: true, loop: false },
+							true
+						);
 						break;
 					}
 				}
 			}
 		}
+	}
+	//* Apply Damage to Selected Targets (requires Beta Testing enabled)
+	if (betaTesting && damageSelectedTargets && actionableTargets) {
+		await metanthropes.logic.metaApplyDamage(
+			targetedActors,
+			cosmicDamageRollResult,
+			elementalDamageRollResult,
+			materialDamageRollResult,
+			psychicDamageRollResult
+		);
+	}
+	//* Apply Healing to Selected Targets (requires Beta Testing enabled)
+	if (betaTesting && healSelectedTargets && actionableTargets) {
+		await metanthropes.logic.metaApplyHealing(targetedActors, healingRollResult);
 	}
 	//? metaExecute Finished
 	metanthropes.utils.metaLog(3, "metaExecute", "Finished");
