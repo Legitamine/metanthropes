@@ -98,7 +98,6 @@ export class MetanthropesActorSheet extends ActorSheet {
 		context.affectedByHunger = this.actor.isHungry;
 		//? Flag for Tokenizer Support
 		context.tokenizer = game.modules.get("vtta-tokenizer")?.active;
-		metanthropes.utils.metaLog(3, "MetanthropesActorSheet", "getData", "this, context, options", this, context, options);
 		return context;
 	}
 	//* Prepare items
@@ -115,6 +114,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//? Initialize Containers
 		let Possessions = {};
 		let Metapowers = {};
+		let Actions = {};
 		//? Define the categories allowed for the current actor type
 		const currentAllowedCategories = allowedCategories[actorData.type] || allowedCategories["default"];
 		//? Setup Possessions and Metapowers based on the actor type
@@ -138,6 +138,13 @@ export class MetanthropesActorSheet extends ActorSheet {
 			4: [],
 			5: [],
 		};
+		Actions = {
+			"Main Action": [],
+			"Extra Action": [],
+			Movement: [],
+			Reaction: [],
+			"Focused Action": [],
+		};
 		//? Iterate through items, allocating to containers or deleting if no container for the item exists
 		for (let i = 0; i < context.items.length; i++) {
 			let item = context.items[i];
@@ -146,9 +153,29 @@ export class MetanthropesActorSheet extends ActorSheet {
 				//? Check if the item's category is allowed
 				if (item.system.Category.value && currentAllowedCategories.includes(item.system.Category.value)) {
 					Possessions[item.system.Category.value].push(item);
+					if (item.system.Execution.ActionSlot.value === "Reaction") {
+						Actions.Reaction.push(item);
+					}
+					if (item.system.Execution.ActionSlot.value.includes("Focused Action")) {
+						Actions["Focused Action"].push(item);
+					}
+					if (item.system.Execution.ActionSlot.value === "Main Action") {
+						Actions["Main Action"].push(item);
+					}
+					if (item.system.Execution.ActionSlot.value === "Extra Action") {
+						Actions["Extra Action"].push(item);
+					}
+					if (item.system.Execution.ActionSlot.value === "Movement") {
+						Actions.Movement.push(item);
+					}
 				} else {
 					//? Remove the item from the actor if its category is not allowed
-					metanthropes.utils.metaLog(2, "MetanthropesActorSheet _prepareItems", "Invalid Category for Possession:", item.name);
+					metanthropes.utils.metaLog(
+						2,
+						"MetanthropesActorSheet _prepareItems",
+						"Invalid Category for Possession:",
+						item.name
+					);
 					return;
 					//actorData.deleteEmbeddedDocuments("Item", [item.id]);
 					//actorData.items.splice(i, 1);
@@ -160,7 +187,25 @@ export class MetanthropesActorSheet extends ActorSheet {
 			else if (item.type === "Metapower") {
 				if (item.system.Level.value != undefined) {
 					Metapowers[item.system.Level.value].push(item);
+					if (item.system.Execution.ActionSlot.value === "Reaction") {
+						Actions.Reaction.push(item);
+					}
+					if (item.system.Execution.ActionSlot.value.includes("Focused Action")) {
+						Actions["Focused Action"].push(item);
+					}
+					if (item.system.Execution.ActionSlot.value === "Main Action") {
+						Actions["Main Action"].push(item);
+					}
+					if (item.system.Execution.ActionSlot.value === "Extra Action") {
+						Actions["Extra Action"].push(item);
+					}
+					if (item.system.Execution.ActionSlot.value === "Movement") {
+						Actions.Movement.push(item);
+					}
 				}
+			}
+			for (let action in Actions) {
+				Actions[action] = metanthropes.utils.metaSortActions(Actions[action]);
 			}
 		}
 		// for (let i of context.items) {
@@ -182,6 +227,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 		//? Assign and return
 		context.Possessions = Possessions;
 		context.Metapowers = Metapowers;
+		context.Actions = Actions;
 	}
 	//* activate listeners for clickable stuff on the actor sheet!
 	activateListeners(html) {
@@ -231,6 +277,8 @@ export class MetanthropesActorSheet extends ActorSheet {
 		html.find(".meta-change-portrait").click(this._onChangePortrait.bind(this));
 		//? Change Token Image
 		html.find(".meta-change-token").click(this._onChangeToken.bind(this));
+		//? Undo last Life change button
+		html.find(".undo-last-life-change").click(this._onUndoLastLifeChange.bind(this));
 		//!? Drag events for macros !??
 		//todo:review how we use this
 		if (this.actor.isOwner) {
@@ -572,6 +620,12 @@ export class MetanthropesActorSheet extends ActorSheet {
 	async _onCustomRoll(event) {
 		metanthropes.dice.metaHandleRolls(event, this, true);
 	}
+	//* Handle undoing the last life change
+	async _onUndoLastLifeChange(event) {
+		event.preventDefault();
+		const actor = this.actor;
+		await actor.undoLastLifeChange();
+	}
 	//* New Actor Logic
 	async _onNewActor(event) {
 		event.preventDefault();
@@ -600,57 +654,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 	async _onAssignActorPlayer(event) {
 		event.preventDefault();
 		const actor = this.actor;
-		//? Present a dialog with values from the game.users object
-		const gameUsers = game.users;
-		if (gameUsers.length === 0) {
-			ui.notifications.warn("There are no configured users to choose from");
-			return;
-		}
-		//? Create a new Dialog
-		const dialog = new Dialog({
-			title: "Assign Player",
-			content: `
-			<form>
-				<div>When you assign this Actor to a Player, they get the Owner permission on the Actor document & are able to see & interact with the buttons in the chat.<br></div>
-				<div><br>Only Narrators (Gamemasters) and the assigned Player can see and click the Buttons in the Chat<br><br></div>
-				<div><p>You can add/remove Players from the Settings - User Management<br><br> To manually change the Player's name, please use the 'Narrator Toolbox - Edit Protagonist Details' Macro<br><br></p></div>
-				<div><p>Current Player: ${actor.system.metaowner.value}</p><br></div>
-				<div class="form-group">
-					<label>Assign Player</label>
-					<select id="player" name="player">
-						${gameUsers.map((user) => `<option value="${user.name}" data-playerid="${user._id}">${user.name}</option>`).join("")}
-					</select>
-				</div>
-			</form>
-			`,
-			buttons: {
-				select: {
-					label: "Confirm",
-					callback: async (html) => {
-						//? Get the selected player
-						const selectedPlayerElement = html.find("#player")[0];
-						const selectedPlayer = selectedPlayerElement.value;
-						const selectedPlayerID =
-							selectedPlayerElement.options[selectedPlayerElement.selectedIndex].getAttribute(
-								"data-playerid"
-							);
-						//? Give that player OWNER permission on the actor document and set the metaowner value to that player
-						await actor.update({
-							"system.metaowner.value": selectedPlayer,
-							permission: { [selectedPlayerID]: 3 },
-						});
-						//? Close the dialog
-						dialog.close();
-					},
-				},
-				cancel: {
-					label: "Cancel",
-				},
-			},
-			default: "select",
-		});
-		//? Render the dialog
-		dialog.render(true);
+		metanthropes.logic.metaAssignActorToPlayer(actor);
 	}
 	//* Progression
 	//todo needs to be converted to use the API like the _onNewActor function
@@ -677,7 +681,12 @@ export class MetanthropesActorSheet extends ActorSheet {
 		// 	"metaStartProgression"
 		// );
 		if (!metaProgressActor) {
-			metanthropes.utils.metaLog(2, "MetanthropesActorSheet", "_onProgression", "Progression function not available");
+			metanthropes.utils.metaLog(
+				2,
+				"MetanthropesActorSheet",
+				"_onProgression",
+				"Progression function not available"
+			);
 			return;
 		}
 		//? Get the actor for the Progression

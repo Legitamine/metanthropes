@@ -10,14 +10,15 @@ import { metaSheetRefresh } from "../../helpers/metahelpers.mjs";
  * The function works for both linked and unlinked actors.
  *
  * @param {Object} combatant - The combatant making the initiative roll.
+ * @param {string} [messageId=null] - The message ID of the chat message for the reroll, if any.
  *
  * @returns {Promise<void>} A promise that resolves once the function completes its operations.
  *
  * @example
  * metaInitiative(combatant);
  */
-export async function metaInitiative(combatant) {
-	metanthropes.utils.metaLog(3, "metaInitiative", "Engaged for combatant:", combatant);
+export async function metaInitiative(combatant, messageId = null) {
+	metanthropes.utils.metaLog(3, "metaInitiative", "Engaged for combatant:", combatant.name);
 	//? Check to see if this is a linked actor
 	let actor = null;
 	if (combatant.token.actorLink) {
@@ -61,8 +62,18 @@ export async function metaInitiative(combatant) {
 	//* Special Initiative Rules
 	if (!(actor.name.includes("Duplicate") || actor.type.includes("Animated"))) {
 		//? If the actor is not a Duplicate or Animated, metaRoll for Initiative
-		metanthropes.utils.metaLog(3, "metaInitiative", "Engaging metaRoll for:", actor.name + "'s", action, "with", initiativeStatRolled);
-		await metanthropes.dice.metaRoll(actor, action, initiativeStatRolled);
+		metanthropes.utils.metaLog(
+			3,
+			"metaInitiative",
+			"Engaging metaRoll for:",
+			actor.name + "'s",
+			action,
+			"with",
+			initiativeStatRolled,
+			"Message ID:",
+			messageId
+		);
+		await metanthropes.dice.metaRoll(actor, action, initiativeStatRolled, false, 0, null, messageId);
 		initiativeResult = await actor.getFlag("metanthropes", "lastrolled").Initiative;
 	} else {
 		//* Logic for Duplicates & Animated
@@ -108,6 +119,18 @@ export async function metaInitiative(combatant) {
 export async function metaInitiativeReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
+	//? Traverse up the DOM to find the parent <li> element with the data-message-id attribute
+	const messageElement = button.closest("li.chat-message");
+	if (!messageElement) {
+		ui.notifications.warn("Could not find the chat message element.");
+		return;
+	}
+	//? Retrieve the message ID from the data-message-id attribute
+	const messageId = messageElement.dataset.messageId;
+	if (!messageId) {
+		ui.notifications.warn("Could not retrieve the message ID.");
+		return;
+	}
 	const actorUUID = button.dataset.actoruuid;
 	const action = button.dataset.action;
 	const actor = await fromUuid(actorUUID);
@@ -118,7 +141,7 @@ export async function metaInitiativeReRoll(event) {
 	currentDestiny--;
 	await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
 	metanthropes.utils.metaLog(3, "metaInitiativeReRoll", "Engaging metaInitiative for:", actor.name);
-	await metaInitiative(combatant);
+	await metaInitiative(combatant, messageId);
 	//? Refresh the actor sheet if it's open
 	metaSheetRefresh(actor);
 }
