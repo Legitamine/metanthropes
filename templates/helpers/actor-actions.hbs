@@ -1,33 +1,39 @@
 <ol class="items-list">
 	{{#each Actions as |Actions Action|}}
-		<li class="item-list flexrow items-header">
-			<div class="item-name"
-				data-tooltip="Action Slot: Which part of my turn does it take to activate this Metapower or use this Possession">⏱: {{Action}}
-			</div>
-			<div class="item-statroll meta-ui-responsive meta-ui-hide-at-minimum"
-				data-tooltip="Stat Rolled to activate this Action">🎲</div>
-			<div class="item-targets meta-ui-responsive meta-ui-hide-at-medium"
-				data-tooltip="The Number of Targets of this Action">🎯</div>
-			<div class="item-duration meta-ui-responsive meta-ui-hide-at-medium"
-				data-tooltip="The Duration of this Action">⏳</div>
-			<div class="item-range meta-ui-responsive meta-ui-extra-fields" data-tooltip="The Range of this Action">
-				📏</div>
-			<div class="item-area meta-ui-responsive meta-ui-extra-fields"
-				data-tooltip="The Area of Effect Range of this Action">🗺️</div>
-			{{#if ../isNarrator}}
-				<div class="item-controls meta-ui-responsive meta-ui-hide-at-medium"><i class="fa-duotone fa-gears"></i>
-				</div>
-			{{/if}}
-		</li>
-		{{#each Actions as |item id|}}
-			<li class="item flexrow" data-item-id="{{item._id}}">
-				<div class="item-name flexrow">
-					<div class="item-image">
-						{{#if (eq item.type "Metapower")}}
-							<img class="style-mp-rolls" data-roll-type="Metapower" data-item-name="{{item.name}}"
-								data-stat="{{item.system.Execution.StatRolled.value}}"
-								data-destiny-cost="{{item.system.DestinyCost.value}}" src="{{item.img}}"
-								data-tooltip="Click to Activate, {{item.system.Execution.ActionSlot.value}}<br><br>{{item.system.MetapowerName.value}} ⏫{{item.system.Level.value}} : {{item.name}}
+		<details open>
+			<summary>
+				<li class="item-list flexrow items-header">
+					<div class="item-name"
+						data-tooltip="Action Slot: Which part of my turn does it take to activate this Metapower or use this Possession">
+						⏱: {{Action}}
+					</div>
+					<div class="item-statroll meta-ui-responsive meta-ui-hide-at-minimum"
+						data-tooltip="Stat Rolled to activate this Action">🎲</div>
+					<div class="item-targets meta-ui-responsive meta-ui-hide-at-medium"
+						data-tooltip="The Number of Targets of this Action">🎯</div>
+					<div class="item-duration meta-ui-responsive meta-ui-hide-at-medium"
+						data-tooltip="The Duration of this Action">⏳</div>
+					<div class="item-range meta-ui-responsive meta-ui-extra-fields"
+						data-tooltip="The Range of this Action">
+						📏</div>
+					<div class="item-area meta-ui-responsive meta-ui-extra-fields"
+						data-tooltip="The Area of Effect Range of this Action">🗺️</div>
+					{{#if ../isNarrator}}
+						<div class="item-controls meta-ui-responsive meta-ui-hide-at-medium"><i
+								class="fa-duotone fa-gears"></i>
+						</div>
+					{{/if}}
+				</li>
+			</summary>
+			{{#each Actions as |item id|}}
+				<li class="item flexrow" data-item-id="{{item._id}}">
+					<div class="item-name flexrow">
+						<div class="item-image">
+							{{#if (eq item.type "Metapower")}}
+								<img class="style-mp-rolls" data-roll-type="Metapower" data-item-name="{{item.name}}"
+									data-stat="{{item.system.Execution.StatRolled.value}}"
+									data-destiny-cost="{{item.system.DestinyCost.value}}" src="{{item.img}}"
+									data-tooltip="Click to Activate, {{item.system.Execution.ActionSlot.value}}<br><br>{{item.system.MetapowerName.value}} ⏫{{item.system.Level.value}} : {{item.name}}
 								{{#if isFocusedAction}}<br>⏱: {{item.system.Execution.ActionSlot.value}}{{/if}}
 								{{#if (not (eq item.system.Effects.VSStatRoll.value "None"))}}<br>🆚: {{item.system.Effects.VSStatRoll.value}}{{/if}}
 								{{#if (gt item.system.DestinyCost.value 0)}}<br>🤞: {{item.system.DestinyCost.value}}{{/if}}
@@ -35,52 +41,53 @@
 							{{#if ../../affectedByDisease}}<br><br>Result will be affected by 💀 Disease{{/if}}
 							{{#if ../../affectedByPain}}<br>Result will be affected by 💀 Pain{{/if}}
 							{{#if ../../affectedByHunger}}<br>Need to overcome 💀 Hunger{{/if}}" width="50" height="50"
-								style="border: none" />
-						{{/if}}
-						{{#if (eq item.type "Possession")}}
-							<img class="style-pos-rolls" data-roll-type="Possession"
-								data-stat="{{item.system.Execution.StatRolled.value}}" data-item-name="{{item.name}}"
-								src="{{item.img}}"
-								data-tooltip="Click to Use, {{item.system.Execution.ActionSlot.value}}<br><br>{{item.name}}
+									style="border: none" />
+							{{/if}}
+							{{#if (eq item.type "Possession")}}
+								<img class="style-pos-rolls" data-roll-type="Possession"
+									data-stat="{{item.system.Execution.StatRolled.value}}"
+									data-item-name="{{item.name}}" src="{{item.img}}" data-tooltip="Click to Use, {{item.system.Execution.ActionSlot.value}}<br><br>{{item.name}}
 								{{#if isFocusedAction}}<br>⏱: {{item.system.Execution.ActionSlot.value}}{{/if}}
 								<br><br>Right-Click for Custom Roll
 							{{#if ../../affectedByDisease}}<br><br>Result will be affected by 💀 Disease{{/if}}
 							{{#if ../../affectedByPain}}<br>Result will be affected by 💀 Pain{{/if}}
 							{{#if ../../affectedByHunger}}<br>Need to overcome 💀 Hunger{{/if}}" width="50" height="50"
-								style="border: none" />
-						{{/if}}
-					</div>
-					<h4>
-						<div class="item-control item-edit style-view-properties"
-							data-tooltip="Click to open {{item.name}}<br><br>Effect: {{stripHtml item.system.Effects.EffectDescription.value}}">
-							{{item.name}}
+									style="border: none" />
+							{{/if}}
 						</div>
-					</h4>
-				</div>
-				<div class="item-statroll item-prop meta-ui-responsive meta-ui-hide-at-minimum">
-					<span class="meta-ui-responsive meta-ui-hide-at-medium">{{item.system.Execution.StatRolled.value}}:
-					</span>
-					{{lookup ../../actor.system.RollStats item.system.Execution.StatRolled.value}}
-				</div>
-				<div class="item-targets item-prop meta-ui-responsive meta-ui-hide-at-medium">
-					{{item.system.Execution.Targets.value}}
-				</div>
-				<div class="item-duration item-prop meta-ui-responsive meta-ui-hide-at-medium">
-					{{item.system.Execution.Duration.value}}
-				</div>
-				<div class="item-range item-prop meta-ui-responsive meta-ui-extra-fields">
-					{{item.system.Execution.Range.value}}
-				</div>
-				<div class="item-area item-prop meta-ui-responsive meta-ui-extra-fields">
-					{{item.system.Execution.AreaEffect.value}}
-				</div>
-				{{#if ../../isNarrator}}
-					<div class="item-controls meta-ui-responsive meta-ui-hide-at-medium">
-						<a class="item-control item-delete" data-tooltip="Remove Metapower"><i
-								class="fa-duotone fa-trash"></i></a>
+						<h4>
+							<div class="item-control item-edit style-view-properties"
+								data-tooltip="Click to open {{item.name}}<br><br>Effect: {{stripHtml item.system.Effects.EffectDescription.value}}">
+								{{item.name}}
+							</div>
+						</h4>
 					</div>
-				{{/if}}
-			</li>
-		{{/each}}
+					<div class="item-statroll item-prop meta-ui-responsive meta-ui-hide-at-minimum">
+						<span
+							class="meta-ui-responsive meta-ui-hide-at-medium">{{item.system.Execution.StatRolled.value}}:
+						</span>
+						{{lookup ../../actor.system.RollStats item.system.Execution.StatRolled.value}}
+					</div>
+					<div class="item-targets item-prop meta-ui-responsive meta-ui-hide-at-medium">
+						{{item.system.Execution.Targets.value}}
+					</div>
+					<div class="item-duration item-prop meta-ui-responsive meta-ui-hide-at-medium">
+						{{item.system.Execution.Duration.value}}
+					</div>
+					<div class="item-range item-prop meta-ui-responsive meta-ui-extra-fields">
+						{{item.system.Execution.Range.value}}
+					</div>
+					<div class="item-area item-prop meta-ui-responsive meta-ui-extra-fields">
+						{{item.system.Execution.AreaEffect.value}}
+					</div>
+					{{#if ../../isNarrator}}
+						<div class="item-controls meta-ui-responsive meta-ui-hide-at-medium">
+							<a class="item-control item-delete" data-tooltip="Remove Metapower"><i
+									class="fa-duotone fa-trash"></i></a>
+						</div>
+					{{/if}}
+				</li>
+			{{/each}}
+		</details>
 	{{/each}}
 </ol>
