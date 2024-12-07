@@ -1446,6 +1446,36 @@
 							"value": null
 						}
 					},
+					"VFX": {
+						"Animations": {
+							"label": "🎥 Visual Animations Library/Database",
+							"title": "This will be used by Sequencer",
+							"type": "text",
+							"dtype": "String",
+							"value": "metanthropes-vfx"
+						},
+						"SMacro": {
+							"label": "🎥 Sequencer Macro",
+							"title": "Enter Sequencer Macro",
+							"type": "text",
+							"dtype": "String",
+							"value": null
+						},
+						"Sprites": {
+							"label": "✨ Sprite Effects Library/Database",
+							"title": "This will be used by TokenFX",
+							"type": "text",
+							"dtype": "String",
+							"value": "metanthropes-tfx"
+						},
+						"TMacro": {
+							"label": "✨ TokenFX Macro",
+							"title": "Enter TokenFX Macro",
+							"type": "text",
+							"dtype": "String",
+							"value": null
+						}
+					},
 					"AdditionalInfo": {
 						"type": "text",
 						"dtype": "String",

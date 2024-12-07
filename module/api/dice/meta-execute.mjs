@@ -59,6 +59,11 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	//? Sound Effect Data
 	const sfxCompendium = metaItemData.system.Effects.SFX.Compendium.value;
 	const sfxName = metaItemData.system.Effects.SFX.Name.value;
+	//? Visual Effect Data
+	const vfxAnimations = metaItemData.system.Effects.VFX.Animations.value;
+	const vfxSMacro = metaItemData.system.Effects.VFX.SMacro.value;
+	const vfxSprites = metaItemData.system.Effects.VFX.Sprites.value;
+	const vfxTMacro = metaItemData.system.Effects.VFX.TMacro.value;
 	//? Gather all the effect data
 	const effectDescription = metaItemData.system.Effects.EffectDescription.value;
 	const damageBaseCosmic = metaItemData.system.Effects.Damage.Cosmic.Base;
@@ -631,6 +636,13 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		metanthropes.utils.metaLog(3, "metaExecute", "Duplicate Self Metapower Max Life:", duplicateMaxLife);
 	}
 	//* Visual Effects
+	//? Get the Visual Animations Library
+if (vfxAnimations) {
+	//? read the Sequencer macro script
+}
+if (vfxSprites) {
+	//? read the TokenFX macro script
+}
 	//* Sound Effects
 	//? Get the Sound Effect Compendium
 	//todo: add a custom setting to use our sound engine (from metathropes-ost)

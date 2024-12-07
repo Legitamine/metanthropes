@@ -182,20 +182,6 @@
 		{{/each}}
 		<hr />
 	</div>
-	{{! -- Sound Effects --}}
-	{{#if (and isNarrator homebrewFeatures)}}
-		<div class="resource">
-			{{#each system.Effects.SFX}}
-				<div class="resource">
-					<label class="resource-label"
-						data-tooltip="{{this.title}}">{{this.label}}:</label>
-					<input type="{{this.type}}" name="system.Effects.SFX.{{@key}}.value"
-						value="{{this.value}}" data-dtype="{{this.dtype}}" />
-				</div>
-			{{/each}}
-			<hr />
-		</div>
-	{{/if}}
 	{{! -- Effect Additional Info --}}
 	{{#if (or isNarrator (and system.Effects.AdditionalInfo.value (not (or (eq system.Effects.AdditionalInfo.value null) (eq system.Effects.AdditionalInfo.value 0) (eq system.Effects.AdditionalInfo.value "None")))))}}
 		<div>
