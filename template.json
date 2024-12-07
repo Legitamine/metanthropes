@@ -1436,7 +1436,7 @@
 							"title": "The id of the Compendium that has the desired SFX",
 							"type": "text",
 							"dtype": "String",
-							"value": "metanthropes-ost"
+							"value": null
 						},
 						"Name": {
 							"label": "🔊 Sound Effect Name",
@@ -1447,30 +1447,16 @@
 						}
 					},
 					"VFX": {
-						"Animations": {
-							"label": "🎥 Visual Animations Library/Database",
-							"title": "This will be used by Sequencer",
-							"type": "text",
-							"dtype": "String",
-							"value": "metanthropes-vfx"
-						},
-						"SMacro": {
-							"label": "🎥 Sequencer Macro",
-							"title": "Enter Sequencer Macro",
+						"Self": {
+							"label": "🎥 Macro Document ID for VFX that apply to the Actor who is Activating/Using this Item",
+							"title": "Expects a valid Document ID for a TokenFX/Sequencer macro",
 							"type": "text",
 							"dtype": "String",
 							"value": null
 						},
-						"Sprites": {
-							"label": "✨ Sprite Effects Library/Database",
-							"title": "This will be used by TokenFX",
-							"type": "text",
-							"dtype": "String",
-							"value": "metanthropes-tfx"
-						},
-						"TMacro": {
-							"label": "✨ TokenFX Macro",
-							"title": "Enter TokenFX Macro",
+						"Target": {
+							"label": "🎥 Macro Document ID for VFX that apply on the Target(s) for this Item",
+							"title": "Expects a valid Document ID for a TokenFX/Sequencer macro",
 							"type": "text",
 							"dtype": "String",
 							"value": null

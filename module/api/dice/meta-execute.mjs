@@ -1,3 +1,5 @@
+import { metaLog } from "../utils/log-tools.mjs";
+
 /**
  * metaExecute handles the execution of Metapowers and Possessions for a given actor.
  *
@@ -60,10 +62,8 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	const sfxCompendium = metaItemData.system.Effects.SFX.Compendium.value;
 	const sfxName = metaItemData.system.Effects.SFX.Name.value;
 	//? Visual Effect Data
-	const vfxAnimations = metaItemData.system.Effects.VFX.Animations.value;
-	const vfxSMacro = metaItemData.system.Effects.VFX.SMacro.value;
-	const vfxSprites = metaItemData.system.Effects.VFX.Sprites.value;
-	const vfxTMacro = metaItemData.system.Effects.VFX.TMacro.value;
+	const selfVFX = metaItemData.system.Effects.VFX.Self.value;
+	const targetVFX = metaItemData.system.Effects.VFX.Target.value;
 	//? Gather all the effect data
 	const effectDescription = metaItemData.system.Effects.EffectDescription.value;
 	const damageBaseCosmic = metaItemData.system.Effects.Damage.Cosmic.Base;
@@ -636,13 +636,32 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		metanthropes.utils.metaLog(3, "metaExecute", "Duplicate Self Metapower Max Life:", duplicateMaxLife);
 	}
 	//* Visual Effects
-	//? Get the Visual Animations Library
-if (vfxAnimations) {
-	//? read the Sequencer macro script
-}
-if (vfxSprites) {
-	//? read the TokenFX macro script
-}
+	if (selfVFX) {
+		metanthropes.utils.metaLog(3, "metaExecute", "Executing SelfVFX Macro:", selfVFX);
+		try {
+			const macro = await fromUuid(selfVFX);
+			if (!(macro instanceof Macro)) {
+				metanthropes.utils.metaLog(2, `The UUID does not point to a Macro document: ${selfVFX}`);
+				return;
+			}
+			macro.execute();
+		} catch (error) {
+			metanthropes.utils.metaLog(2, `Error executing VFX macro for item ${item.name}:`, error);
+		}
+	}
+	if (targetVFX) {
+		metanthropes.utils.metaLog(3, "metaExecute", "Executing targetVFX Macro:", targetVFX);
+		try {
+			const macro = await fromUuid(targetVFX);
+			if (!(macro instanceof Macro)) {
+				metanthropes.utils.metaLog(2, `The UUID does not point to a Macro document: ${targetVFX}`);
+				return;
+			}
+			macro.execute();
+		} catch (error) {
+			metanthropes.utils.metaLog(2, `Error executing VFX macro for item ${item.name}:`, error);
+		}
+	}
 	//* Sound Effects
 	//? Get the Sound Effect Compendium
 	//todo: add a custom setting to use our sound engine (from metathropes-ost)
