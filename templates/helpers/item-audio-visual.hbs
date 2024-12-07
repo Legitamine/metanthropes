@@ -1,0 +1,31 @@
+<div class="tab audio-visual" data-group="primary" data-tab="audio-visual">
+	{{! -- Sound Effects --}}
+	{{#if (and isNarrator homebrewFeatures)}}
+		<div class="resource">
+			{{#each system.Effects.SFX}}
+				<div class="resource">
+					<label class="resource-label" data-tooltip="{{this.title}}">{{this.label}}:</label>
+					<input type="{{this.type}}" name="system.Effects.SFX.{{@key}}.value" value="{{this.value}}"
+						data-dtype="{{this.dtype}}" />
+				</div>
+			{{/each}}
+			<hr />
+		</div>
+	{{/if}}
+	{{! -- Visual Effects --}}
+	{{#if (and isNarrator homebrewFeatures)}}
+		<div class="resource">
+			{{#each system.Effects.VFX}}
+				<div class="resource">
+					<label class="resource-label" data-tooltip="{{this.title}}">{{this.label}}:<br>
+						{{!-- {{{TextEditor this.value target=(concat "system.Effects.VFX." @key ".value") button=true editable=editable}}} --}}
+						<input type="{{this.type}}" name="system.Effects.VFX.{{@key}}.value" value="{{this.value}}"
+						data-dtype="{{this.dtype}}" />
+						{{!-- <textarea class="macro-code-editor" data-key="system.Effects.VFX.{{@key}}.value" placeholder="Enter Macro code here...">{{this.value}}</textarea> --}}
+					</label>
+				</div>
+			{{/each}}
+			<hr />
+		</div>
+	{{/if}}
+</div>

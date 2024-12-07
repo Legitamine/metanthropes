@@ -140,6 +140,10 @@ a {
 		opacity: 1;
 	}
 }
+dialog::backdrop{
+	background: #fff5;
+	backdrop-filter: blur(4px);
+}
 // this changes the font for buttons of Foundry UI
 button {
 	font-family: $font-primary; //or

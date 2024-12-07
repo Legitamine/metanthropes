@@ -1436,11 +1436,27 @@
 							"title": "The id of the Compendium that has the desired SFX",
 							"type": "text",
 							"dtype": "String",
-							"value": "metanthropes-ost"
+							"value": null
 						},
 						"Name": {
 							"label": "🔊 Sound Effect Name",
 							"title": "Type the name of the Sound Effect, exactly as seen in the Compendium's Playlist",
+							"type": "text",
+							"dtype": "String",
+							"value": null
+						}
+					},
+					"VFX": {
+						"Self": {
+							"label": "🎥 Macro Document ID for VFX that apply to the Actor who is Activating/Using this Item",
+							"title": "Expects a valid Document ID for a TokenFX/Sequencer macro",
+							"type": "text",
+							"dtype": "String",
+							"value": null
+						},
+						"Target": {
+							"label": "🎥 Macro Document ID for VFX that apply on the Target(s) for this Item",
+							"title": "Expects a valid Document ID for a TokenFX/Sequencer macro",
 							"type": "text",
 							"dtype": "String",
 							"value": null

@@ -14,3 +14,24 @@
 	text-align: center;
 	padding: 0 2px; // to align with the header border
 }
+
+summary {
+	display: grid; //essentially hides the markers
+	font-weight: bold;
+}
+
+summary:hover {
+	cursor: pointer;
+	//border: 1px solid $c-purple;
+	border-radius: 15px;
+	background: rgba(99, 53, 99, 0.5);
+	transition: background-color 0.3s;
+}
+
+summary::marker {
+	font-size: 1.5em;
+	content: "🔽";
+}
+[open] summary::marker {
+	content: "🔼";
+}
