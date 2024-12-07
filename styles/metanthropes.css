@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://use.typekit.net/gld0tkk.css");
 .sheet.journal-entry .journal-entry-content {
   position: relative;
@@ -141,6 +142,12 @@ a:hover {
   border: 2px groove #fff;
   box-shadow: 0 0 5px #7d0f81;
   opacity: 1;
+}
+
+dialog::backdrop {
+  background: rgba(255, 255, 255, 0.3333333333);
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
 }
 
 button {
@@ -1650,6 +1657,23 @@ h3 {
 }
 .metanthropes .effects .item .effect-controls {
   border: none;
+}
+.metanthropes summary {
+  display: grid;
+  font-weight: bold;
+}
+.metanthropes summary:hover {
+  cursor: pointer;
+  border-radius: 15px;
+  background: rgba(99, 53, 99, 0.5);
+  transition: background-color 0.3s;
+}
+.metanthropes summary::marker {
+  font-size: 1.5em;
+  content: "🔽";
+}
+.metanthropes [open] summary::marker {
+  content: "🔼";
 }
 .metanthropes form button {
   background-image: url("../assets/artwork/ui/buttons/button.webp");
