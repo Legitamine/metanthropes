@@ -1068,9 +1068,7 @@
 				"value": "<p>This is my favorite Vehicle. Secret Narrator Notes section is only visible to Narrators</p>"
 			}
 		},
-		"testv12": {
-			
-		}
+		"testv12": {}
 	},
 	"Item": {
 		"types": ["Metapower", "Possession", "Combo", "Object", "species"],
@@ -1431,32 +1429,18 @@
 						}
 					},
 					"SFX": {
-						"Compendium": {
-							"label": "🔊 Sound Effect Compendium",
-							"title": "The id of the Compendium that has the desired SFX",
-							"type": "text",
-							"dtype": "String",
-							"value": null
-						},
-						"Name": {
-							"label": "🔊 Sound Effect Name",
-							"title": "Type the name of the Sound Effect, exactly as seen in the Compendium's Playlist",
+						"PlaylistSoundID": {
+							"label": "🔊 Playlist Sound Document ID",
+							"title": "Expects a valid Document ID for a Playlist Sound Effect that plays when this Item is Activated/Used",
 							"type": "text",
 							"dtype": "String",
 							"value": null
 						}
 					},
 					"VFX": {
-						"Self": {
-							"label": "🎥 Macro Document ID for VFX that apply to the Actor who is Activating/Using this Item",
-							"title": "Expects a valid Document ID for a TokenFX/Sequencer macro",
-							"type": "text",
-							"dtype": "String",
-							"value": null
-						},
-						"Target": {
-							"label": "🎥 Macro Document ID for VFX that apply on the Target(s) for this Item",
-							"title": "Expects a valid Document ID for a TokenFX/Sequencer macro",
+						"MacroID": {
+							"label": "🎥 Macro Document ID",
+							"title": "Expects a valid Document ID for a TokenFX or Sequencer macro for VFX that runs when this Item is Activated/Used",
 							"type": "text",
 							"dtype": "String",
 							"value": null

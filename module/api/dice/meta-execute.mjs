@@ -7,13 +7,7 @@ import { metaLog } from "../utils/log-tools.mjs";
  * It can be triggered either directly or from a button click event.
  * The function checks for Metapowers that affect explosive d10 dice and applies the corresponding logic.
  * It also constructs and sends a chat message detailing the execution results.
- *
- * todo: Ensure all necessary data fields are available and handle any missing data gracefully.
- * ! need a new field to track fixed numbers to be added to the roll rollResults
- * todo na skeftw tin xrisi twn flags kai pws ta diavazw - ti xreiazomai pragmatika?
- * todo mazi me ta activations (lvls) na skeftw kai ta usage (lvls antistoixa)
- * todo episis upcoming combos!
- * !todo utilize existing levels of success and spent levels of success
+ * todo: this function is currently in the process of being refactored, along with all other dice functions
  *
  * @param {Event} [event] - The button click event, if the function was triggered by a button click. Expected to be null if the function is called directly.
  * @param {string} actorUUID - The UUID of the actor performing the action. Expected to be a string.
@@ -59,11 +53,9 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	const areaType = metaItemData.system.Execution.AreaType.value;
 	const vsRoll = metaItemData.system.Effects.VSStatRoll.value;
 	//? Sound Effect Data
-	const sfxCompendium = metaItemData.system.Effects.SFX.Compendium.value;
-	const sfxName = metaItemData.system.Effects.SFX.Name.value;
+	const sfx = metaItemData.system.Effects.SFX.PlaylistSoundID.value;
 	//? Visual Effect Data
-	const selfVFX = metaItemData.system.Effects.VFX.Self.value;
-	const targetVFX = metaItemData.system.Effects.VFX.Target.value;
+	const vfx = metaItemData.system.Effects.VFX.MacroID.value;
 	//? Gather all the effect data
 	const effectDescription = metaItemData.system.Effects.EffectDescription.value;
 	const damageBaseCosmic = metaItemData.system.Effects.Damage.Cosmic.Base;
@@ -636,67 +628,12 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		metanthropes.utils.metaLog(3, "metaExecute", "Duplicate Self Metapower Max Life:", duplicateMaxLife);
 	}
 	//* Visual Effects
-	if (selfVFX) {
-		metanthropes.utils.metaLog(3, "metaExecute", "Executing SelfVFX Macro:", selfVFX);
-		try {
-			const macro = await fromUuid(selfVFX);
-			if (!(macro instanceof Macro)) {
-				metanthropes.utils.metaLog(2, `The UUID does not point to a Macro document: ${selfVFX}`);
-				return;
-			}
-			macro.execute();
-		} catch (error) {
-			metanthropes.utils.metaLog(2, `Error executing VFX macro for item ${item.name}:`, error);
-		}
-	}
-	if (targetVFX) {
-		metanthropes.utils.metaLog(3, "metaExecute", "Executing targetVFX Macro:", targetVFX);
-		try {
-			const macro = await fromUuid(targetVFX);
-			if (!(macro instanceof Macro)) {
-				metanthropes.utils.metaLog(2, `The UUID does not point to a Macro document: ${targetVFX}`);
-				return;
-			}
-			macro.execute();
-		} catch (error) {
-			metanthropes.utils.metaLog(2, `Error executing VFX macro for item ${item.name}:`, error);
-		}
+	if (vfx) {
+		await metanthropes.utils.metaRunMacro(vfx);
 	}
 	//* Sound Effects
-	//? Get the Sound Effect Compendium
-	//todo: add a custom setting to use our sound engine (from metathropes-ost)
-	if (sfxCompendium === "metanthropes-ost") {
-		//todo: identify what I need to change to make it work with all similar compendiums, currently only supports metanthropes-ost
-		const sfxCompendiumToUse = await game.packs.get("metanthropes-ost.sound-effects");
-		if (sfxCompendiumToUse) {
-			const sfxCompendiumIndex = await sfxCompendiumToUse.getIndex();
-			//? Search for the Sound Effect within each playlist of the compendium
-			for (let entry of sfxCompendiumIndex) {
-				//? Load the full playlist document
-				let playlist = await sfxCompendiumToUse.getDocument(entry._id);
-				//? Search for the sound within the playlist
-				if (sfxName) {
-					let foundSound = playlist.sounds.find((sound) => sound.name === sfxName);
-					if (foundSound) {
-						//? Play the sound
-						metanthropes.utils.metaLog(
-							3,
-							"metaExecute",
-							"Playing Sound Effect:",
-							foundSound.name,
-							"from Compendium:",
-							sfxCompendium
-						);
-						//todo: this should trigger after the chat message is rendered and the dice are rolled
-						await AudioHelper.play(
-							{ src: foundSound.sound.src, volume: 0.8, autoplay: true, loop: false },
-							true
-						);
-						break;
-					}
-				}
-			}
-		}
+	if (sfx) {
+		await metanthropes.audio.metaPlaySoundEffect(sfx);
 	}
 	//* Apply Damage to Selected Targets (requires Beta Testing enabled)
 	if (betaTesting && damageSelectedTargets && actionableTargets) {

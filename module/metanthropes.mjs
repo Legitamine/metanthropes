@@ -33,6 +33,8 @@ import { MetanthropesActiveEffectSheet } from "./ui/sheets/active-effect-sheet.m
 //* AppV2 Sheets
 import { MetanthropesNPCActorSheet, MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
 import { MetanthropesItemSheetV2 } from "./ui/sheets/item-sheet-v2.mjs";
+//* Audio
+import { metaPlaySoundEffect } from "./api/audio/play-sound-effect.mjs";
 //* Dice Rollers
 import { metaEvaluate, metaEvaluateReRoll } from "./api/dice/meta-evaluate.mjs";
 import { metaRolld10, metaRolld10ReRoll } from "./api/dice/meta-rolld10.mjs";
@@ -53,6 +55,7 @@ import { metaExtractNumberOfDice } from "./api/utils/dice-tools.mjs";
 import { metaMigrateData } from "./api/utils/migration.mjs";
 import { metaLog, metaLogDocument } from "./api/utils/log-tools.mjs";
 import { metaSortActions } from "./api/utils/sort-actions.mjs";
+import { metaRunMacro } from "./api/utils/run-macro.mjs";
 //* Game Settings
 import { metaRegisterGameSettings } from "./api/utils/register-game-settings.mjs";
 import { metaRegisterStatusEffects } from "./config/status-effects.mjs";
@@ -95,6 +98,9 @@ globalThis.metanthropes = {
 		metaHandleRolls,
 		handleCoverRolls,
 	},
+	audio: {
+		metaPlaySoundEffect,
+	},
 	logic: {
 		metaFinalizePremadeActor,
 		metaApplyDamage,
@@ -120,6 +126,7 @@ globalThis.metanthropes = {
 		prepareActiveEffectCategories,
 		preloadHandlebarsTemplates,
 		metaSortActions,
+		metaRunMacro,
 	},
 };
 

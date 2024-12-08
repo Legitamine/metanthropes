@@ -139,11 +139,11 @@ export class MetanthropesActorSheet extends ActorSheet {
 			5: [],
 		};
 		Actions = {
-			"Main Action": [],
-			"Extra Action": [],
+			Main: [],
+			Extra: [],
 			Movement: [],
 			Reaction: [],
-			"Focused Action": [],
+			Focused: [],
 		};
 		//? Iterate through items, allocating to containers or deleting if no container for the item exists
 		for (let i = 0; i < context.items.length; i++) {
@@ -156,14 +156,15 @@ export class MetanthropesActorSheet extends ActorSheet {
 					if (item.system.Execution.ActionSlot.value === "Reaction") {
 						Actions.Reaction.push(item);
 					}
+					//? There are various types of Focused Actions, so we need to grab all of them
 					if (item.system.Execution.ActionSlot.value.includes("Focused Action")) {
-						Actions["Focused Action"].push(item);
+						Actions.Focused.push(item);
 					}
 					if (item.system.Execution.ActionSlot.value === "Main Action") {
-						Actions["Main Action"].push(item);
+						Actions.Main.push(item);
 					}
 					if (item.system.Execution.ActionSlot.value === "Extra Action") {
-						Actions["Extra Action"].push(item);
+						Actions.Extra.push(item);
 					}
 					if (item.system.Execution.ActionSlot.value === "Movement") {
 						Actions.Movement.push(item);
