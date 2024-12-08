@@ -447,10 +447,10 @@ export class MetanthropesActor extends Actor {
 	/**
 	 * applyDamage - Apply Damage to the Actor
 	 * each parameter below is expected to be a positive number
-	 * @param {*} cosmic
-	 * @param {*} elemental
-	 * @param {*} material
-	 * @param {*} psychic
+	 * @param {number} cosmic
+	 * @param {number} elemental
+	 * @param {number} material
+	 * @param {number} psychic
 	 */
 	async applyDamage(cosmic = 0, elemental = 0, material = 0, psychic = 0) {
 		const currentLife = Number(this.system.Vital.Life.value);
@@ -523,6 +523,14 @@ export class MetanthropesActor extends Actor {
 			);
 		}
 	}
+	
+	/**
+	 * applyDestinyChange - Apply Destiny Change to the Actor
+	 *
+	 * @async
+	 * @param {number} destiny
+	 * @returns {*}
+	 */
 	async applyDestinyChange(destiny) {
 		const currentDestiny = this.system.Vital.Destiny.value;
 		const maxDestiny = this.system.Vital.Destiny.max;
