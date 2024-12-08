@@ -18,7 +18,7 @@ import { metaSheetRefresh } from "../../helpers/metahelpers.mjs";
  * @example
  * metaInitiative(combatant);
  */
-export async function metaInitiative(combatant, messageId = null) {
+export async function metaInitiative(combatant, messageId = null, reroll, rerollCounter) {
 	metanthropes.utils.metaLog(3, "metaInitiative", "Engaged for combatant:", combatant.name);
 	//? Check to see if this is a linked actor
 	let actor = null;
@@ -74,7 +74,7 @@ export async function metaInitiative(combatant, messageId = null) {
 			"Message ID:",
 			messageId
 		);
-		await metanthropes.dice.metaRoll(actor, action, initiativeStatRolled, false, 0, null, messageId);
+		await metanthropes.dice.metaRoll(actor, action, initiativeStatRolled, false, 0, null, messageId, reroll, rerollCounter);
 		initiativeResult = await actor.getFlag("metanthropes", "lastrolled").Initiative;
 	} else {
 		//* Logic for Duplicates & Animated
@@ -134,15 +134,14 @@ export async function metaInitiativeReRoll(event) {
 	}
 	const actorUUID = button.dataset.actoruuid;
 	const action = button.dataset.action;
+	const reroll = button.dataset.reroll;
+	const rerollCounter = button.dataset.rerollCounter;
 	const actor = await fromUuid(actorUUID);
 	const combatant = game.combat.getCombatantByActor(actor);
-	metanthropes.utils.metaLog(3, "metaInitiativeReRoll", "Engaged for combatant:", combatant);
-	let currentDestiny = actor.system.Vital.Destiny.value;
-	//? Reduce Destiny.value by 1
-	currentDestiny--;
-	await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
+	metanthropes.utils.metaLog(3, "metaInitiativeReRoll", "Engaged for combatant:", combatant.name);
+	actor.applyDestinyChange(-1);
 	metanthropes.utils.metaLog(3, "metaInitiativeReRoll", "Engaging metaInitiative for:", actor.name);
-	await metaInitiative(combatant, messageId);
-	//? Refresh the actor sheet if it's open
-	metaSheetRefresh(actor);
+	await metaInitiative(combatant, messageId, reroll, rerollCounter);
+	// //? Refresh the actor sheet if it's open
+	// metaSheetRefresh(actor);
 }

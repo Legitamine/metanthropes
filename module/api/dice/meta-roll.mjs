@@ -19,7 +19,7 @@
  * Rolling a simple stat
  * metaRoll(actor, "StatRoll", "Power");
  */
-export async function metaRoll(actor, action, stat, isCustomRoll = false, destinyCost = 0, itemName = null, messageId = null) {
+export async function metaRoll(actor, action, stat, isCustomRoll = false, destinyCost = 0, itemName = null, messageId = null, reroll = false, rerollCounter = 0) {
 	//? Initialize the actor's RollStat array before proceeding
 	await actor.getRollData();
 	const statScore = actor.system.RollStats[stat];
@@ -180,40 +180,12 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 			pain,
 			destinyCost,
 			itemName,
-			messageId
+			messageId,
+			reroll,
+			rerollCounter
 		);
 	} else {
 		penalty = diseasePenalty;
-		metanthropes.utils.metaLog(
-			3,
-			"metaRoll",
-			"Engaging metaEvaluate for:",
-			actor.name + "'s",
-			action,
-			"with",
-			stat,
-			statScore,
-			"Multi-Action:",
-			multiAction,
-			"Perk Reduction:",
-			perkReduction,
-			"Aiming Reduction:",
-			aimingReduction,
-			"Custom Reduction:",
-			customReduction,
-			"Bonus:",
-			bonus,
-			"Penalty:",
-			penalty,
-			"Pain:",
-			pain,
-			"Destiny Cost:",
-			destinyCost,
-			"Item Name:",
-			itemName,
-			"Message ID:",
-			messageId
-		);
 		await metanthropes.dice.metaEvaluate(
 			actor,
 			action,
@@ -228,7 +200,9 @@ export async function metaRoll(actor, action, stat, isCustomRoll = false, destin
 			pain,
 			destinyCost,
 			itemName,
-			messageId
+			messageId,
+			reroll,
+			rerollCounter
 		);
 	}
 	//* Post-Evaluate-roll actions
