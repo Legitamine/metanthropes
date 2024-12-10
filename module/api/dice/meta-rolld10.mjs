@@ -238,7 +238,7 @@ export async function metaRolld10ReRoll(event) {
 	const baseNumber = parseInt(button.dataset.baseNumber) ?? 0;
 	const isHalf = button.dataset.isHalf === "true" ? true : false;
 	const anchor = button.dataset.anchor === "true" ? true : false;
-	const reroll = button.dataset.reroll === "true" ? true : false;
+	let reroll = button.dataset.reroll === "true" ? true : false;
 	const rerollCounter = parseInt(button.dataset.rerollCounter) ?? 0;
 	const actor = await fromUuid(actoruuid);
 	const targets = button.dataset.targets ?? null;
@@ -246,6 +246,7 @@ export async function metaRolld10ReRoll(event) {
 	if (actor.currentDestiny > 0 && destinyReRoll) {
 		await actor.applyDestinyChange(-1);
 		if (targets) {
+			//todo it's not being applied at as no ui to trigger it properly (should be fixed with the roll orchestrator)
 			for (let i = 0; i < targets.length; i++) {
 				const targetedActor = targets[i];
 				await targetedActor.undoLastLifeChange();
@@ -268,6 +269,7 @@ export async function metaRolld10ReRoll(event) {
 			//! apo to button kanw retrieve to message kai vriskw apo ekei kapoy to list me ta targeted actors
 			//todo gia kathe ena actor kanw to rollback life kai meta kanw apply to new type of damage/healing
 			// prepei na kanw account gia kathe ena type of damage, mias kai ta kanw total up otan kanw apply
+			reroll = true;
 			metanthropes.dice.metaRolld10(
 				actor,
 				what,
