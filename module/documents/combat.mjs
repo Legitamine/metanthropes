@@ -17,6 +17,7 @@ export class MetanthropesCombat extends Combat {
 		const ia = Number.isNumeric(a.initiative) ? a.initiative : -Infinity;
 		const ib = Number.isNumeric(b.initiative) ? b.initiative : -Infinity;
 		//? Get actor for a
+		//todo: should simply change to let aActor = a.actor; utilizing the getter of the combatant
 		let aActor = null;
 		if (a.token.actorLink) {
 			const actorId = a.actorId;
@@ -34,7 +35,15 @@ export class MetanthropesCombat extends Combat {
 		}
 		//? Check if we have a valid actor for both combatants
 		if (!aActor || !bActor) {
-			metanthropes.utils.metaLog(4, "Combat", "_sortCombatants has Invalid Actors", "aActor:", aActor, "bActor:", bActor);
+			metanthropes.utils.metaLog(
+				4,
+				"Combat",
+				"_sortCombatants has Invalid Actors",
+				"aActor:",
+				aActor,
+				"bActor:",
+				bActor
+			);
 			return;
 		}
 		//? Prep the statScore values
@@ -54,7 +63,20 @@ export class MetanthropesCombat extends Combat {
 			//? Check to see if we have a perfect tie
 			if (ia === ib && aStatScore === bStatScore) {
 				//todo: award 1 Destiny and re-roll initiative if tied both in Initiative and statScore
-				metanthropes.utils.metaLog(4, "Combat", "_sortCombatants", "Perfect Tie between combatants:", a.name, "and:", b.name);
+				metanthropes.utils.metaLog(
+					1,
+					"Combat",
+					"_sortCombatants",
+					"'Perfect Tie' between combatants:",
+					a.name,
+					"and:",
+					b.name
+				);
+				//ui.notifications.warn(`'Perfect Tie' between combatants: ${a.name} & ${b.name}`);
+				//a.combat.rollInitiative([a._id, b._id]);
+				//todo: want to set the a.inititaive value
+				//aActor.applyDestinyChange(1);
+				//bActor.applyDestinyChange(1);
 			}
 		}
 		//? We will sort by initiative first, then sort by statScore if the initiative is the same
@@ -83,7 +105,13 @@ export class MetanthropesCombat extends Combat {
 			const combatant = this.combatants.get(id);
 			if (!combatant?.isOwner) continue;
 			//? Produce an initiative roll for the Combatant
-			metanthropes.utils.metaLog(3, "Combat", "rollInitiative", "Engaging metaInitiative for combatant:", combatant);
+			metanthropes.utils.metaLog(
+				3,
+				"Combat",
+				"rollInitiative",
+				"Engaging metaInitiative for combatant:",
+				combatant.name
+			);
 			await metanthropes.dice.metaInitiative(combatant);
 			let initiativeResult = combatant.actor.getFlag("metanthropes", "lastrolled").Initiative;
 			metanthropes.utils.metaLog(
@@ -91,8 +119,7 @@ export class MetanthropesCombat extends Combat {
 				"Combat",
 				"rollInitiative",
 				"metaInitiative result for combatant:",
-				combatant,
-				"is:",
+				combatant.name,
 				initiativeResult
 			);
 			updates.push({ _id: id, initiative: initiativeResult });
@@ -253,7 +280,8 @@ export class MetanthropesCombat extends Combat {
 		if (this.previous.round < 1) return await super._onEndRound();
 		//? Read the flag for the last round where effects were applied
 		const applyEffectsForRound = (await this.getFlag("metanthropes", "applyEffectsForRound")) ?? 0;
-		if (!applyEffectsForRound) metanthropes.utils.metaLog(5, "Combat", "_onEndRound", "No apply Effects For Round Flag Found");
+		if (!applyEffectsForRound)
+			metanthropes.utils.metaLog(5, "Combat", "_onEndRound", "No apply Effects For Round Flag Found");
 		metanthropes.utils.metaLog(
 			3,
 			"Combat",
@@ -264,9 +292,23 @@ export class MetanthropesCombat extends Combat {
 			this.round
 		);
 		if (Number(applyEffectsForRound) < this.round) {
-			metanthropes.utils.metaLog(3, "Combat", "_onEndRound", "Applying End of Round:", this.previous.round, "Effects");
+			metanthropes.utils.metaLog(
+				3,
+				"Combat",
+				"_onEndRound",
+				"Applying End of Round:",
+				this.previous.round,
+				"Effects"
+			);
 			await this.metaApplyEndOfRoundEffects();
-			metanthropes.utils.metaLog(3, "Combat", "_onEndRound", "Finished applying end of Round", this.previous.round, "Effects");
+			metanthropes.utils.metaLog(
+				3,
+				"Combat",
+				"_onEndRound",
+				"Finished applying end of Round",
+				this.previous.round,
+				"Effects"
+			);
 		} else {
 			metanthropes.utils.metaLog(
 				5,
@@ -306,7 +348,12 @@ export class MetanthropesCombat extends Combat {
 		} else {
 			if (this.round === 1) {
 				if (this.previous.round !== 0)
-					return metanthropes.utils.metaLog(5, "Combat", "_onStartRound", "First Round did not have a Previous Round of 0");
+					return metanthropes.utils.metaLog(
+						5,
+						"Combat",
+						"_onStartRound",
+						"First Round did not have a Previous Round of 0"
+					);
 				metanthropes.utils.metaLog(3, "Combat", "_onStartRound", "First Round:", this.round);
 				await ChatMessage.create({
 					content: `Round: ${this.round} - Cycle: ${nextCycle}<br><br>`,
@@ -334,7 +381,13 @@ export class MetanthropesCombat extends Combat {
 	async metaApplyEndOfRoundEffects() {
 		//? Check if we are past the first round
 		if (this.previous.round < 1) return;
-		metanthropes.utils.metaLog(3, "Combat", "metaApplyEndOfRoundEffects", "Engaged for Round:", this.previous.round);
+		metanthropes.utils.metaLog(
+			3,
+			"Combat",
+			"metaApplyEndOfRoundEffects",
+			"Engaged for Round:",
+			this.previous.round
+		);
 		//? Accumulate messages for the chat
 		let chatContent = `Round ${this.previous.round} concluded.<br><br>Applying End of Round Effects.<br><br>`;
 		//? Iterate over Combatants
@@ -361,7 +414,13 @@ export class MetanthropesCombat extends Combat {
 						unconsciousEffects[unconsciousLevel - 1]
 					}<br>`;
 				} else {
-					metanthropes.utils.metaLog(2, "Combat", "nextRound", "Unconscious Level is out of bounds:", unconsciousLevel);
+					metanthropes.utils.metaLog(
+						2,
+						"Combat",
+						"nextRound",
+						"Unconscious Level is out of bounds:",
+						unconsciousLevel
+					);
 				}
 			}
 			//* Asphyxiation Condition
@@ -379,7 +438,13 @@ export class MetanthropesCombat extends Combat {
 						asphyxiationEffects[asphyxiationLevel - 1]
 					}<br>`;
 				} else {
-					metanthropes.utils.metaLog(2, "Combat", "nextRound", "Asphyxiation Level is out of bounds:", asphyxiationLevel);
+					metanthropes.utils.metaLog(
+						2,
+						"Combat",
+						"nextRound",
+						"Asphyxiation Level is out of bounds:",
+						asphyxiationLevel
+					);
 				}
 			}
 			//* Fatigue Condition
@@ -395,7 +460,13 @@ export class MetanthropesCombat extends Combat {
 				if (fatigueLevel <= 5) {
 					combatantMessage += `Fatigue Level ${fatigueLevel}: ${fatigueEffects[fatigueLevel - 1]}<br>`;
 				} else {
-					metanthropes.utils.metaLog(2, "Combat", "nextRound", "Fatigue Level is out of bounds:", fatigueLevel);
+					metanthropes.utils.metaLog(
+						2,
+						"Combat",
+						"nextRound",
+						"Fatigue Level is out of bounds:",
+						fatigueLevel
+					);
 				}
 			}
 			//* Bleeding Condition
@@ -432,7 +503,13 @@ export class MetanthropesCombat extends Combat {
 			content: chatContent,
 			speaker: ChatMessage.getSpeaker({ alias: "Metanthropes Action Scene" }),
 		});
-		metanthropes.utils.metaLog(3, "Combat", "metaApplyEndOfRoundEffects", "Finished applying effects for Round:", this.previous.round);
+		metanthropes.utils.metaLog(
+			3,
+			"Combat",
+			"metaApplyEndOfRoundEffects",
+			"Finished applying effects for Round:",
+			this.previous.round
+		);
 	}
 	//Todo: Keeping this until we finalize the Journal text
 	// async metaApplyEndOfRoundEffects() {

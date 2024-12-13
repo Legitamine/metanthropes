@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://use.typekit.net/gld0tkk.css");
 .sheet.journal-entry .journal-entry-content {
   position: relative;
@@ -21,6 +22,7 @@ form button {
 }
 form button.active {
   border: 2px groove #fff;
+  box-shadow: 0 0 5px #7d0f81;
   opacity: 1;
 }
 form button:hover {
@@ -142,6 +144,12 @@ a:hover {
   opacity: 1;
 }
 
+dialog::backdrop {
+  background: rgba(255, 255, 255, 0.3333333333);
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+}
+
 button {
   font-family: "nasalization", sans-serif;
   background-image: url("../assets/artwork/ui/buttons/button.webp");
@@ -152,8 +160,12 @@ button {
   color: #fff;
   opacity: 0.8;
 }
+button.chat-button-anchor {
+  width: auto;
+}
 button.active {
   border: 2px groove #fff;
+  box-shadow: 0 0 5px #7d0f81;
   opacity: 1;
 }
 button:hover {
@@ -1646,6 +1658,23 @@ h3 {
 .metanthropes .effects .item .effect-controls {
   border: none;
 }
+.metanthropes summary {
+  display: grid;
+  font-weight: bold;
+}
+.metanthropes summary:hover {
+  cursor: pointer;
+  border-radius: 15px;
+  background: rgba(99, 53, 99, 0.5);
+  transition: background-color 0.3s;
+}
+.metanthropes summary::marker {
+  font-size: 1.5em;
+  content: "🔽";
+}
+.metanthropes [open] summary::marker {
+  content: "🔼";
+}
 .metanthropes form button {
   background-image: url("../assets/artwork/ui/buttons/button.webp");
   text-shadow: 1px 1px 1px #7d0f81, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
@@ -1679,6 +1708,7 @@ h3 {
 }
 .metanthropes form button.active {
   border: 2px groove #fff;
+  box-shadow: 0 0 5px #7d0f81;
   opacity: 1;
 }
 .metanthropes form button:hover {
@@ -1762,6 +1792,7 @@ h3 {
   font-family: "nasalization", sans-serif;
   font-size: 0.9rem;
   color: #000;
+  width: 100%;
   justify-content: center;
   justify-self: center;
   align-items: center;

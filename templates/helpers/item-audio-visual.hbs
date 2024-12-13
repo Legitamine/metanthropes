@@ -1,0 +1,42 @@
+<div class="tab audio-visual" data-group="primary" data-tab="audio-visual">
+	{{! -- Sound Effects --}}
+	<h3>Sound Effects</h3>
+	{{#if (and isNarrator homebrewFeatures)}}
+		<div class="resource">
+			{{#each system.Effects.SFX}}
+				<div class="resource">
+					<label class="resource-label" data-tooltip="{{this.title}}">{{this.label}}:</label>
+					<input type="{{this.type}}" name="system.Effects.SFX.{{@key}}.value" value="{{this.value}}"
+						data-dtype="{{this.dtype}}" />
+				</div>
+			{{/each}}
+		</div>
+	{{else}}
+		<div>
+			<p>
+				This section is only available to Narrators and requires Metanthropes: Homebrew during Early Access.
+			</p>
+		</div>
+	{{/if}}
+	<br><br>
+	{{! -- Visual Effects --}}
+	<h3>Visual Effects</h3>
+	{{#if (and isNarrator homebrewFeatures)}}
+		<div class="resource">
+			{{#each system.Effects.VFX}}
+				<div class="resource">
+					<label class="resource-label" data-tooltip="{{this.title}}">{{this.label}}:<br>
+						<input type="{{this.type}}" name="system.Effects.VFX.{{@key}}.value" value="{{this.value}}"
+							data-dtype="{{this.dtype}}" />
+					</label>
+				</div>
+			{{/each}}
+		</div>
+	{{else}}
+		<div>
+			<p>
+				This section is only available to Narrators and requires Metanthropes: Homebrew during Early Access.
+			</p>
+		</div>
+	{{/if}}
+</div>

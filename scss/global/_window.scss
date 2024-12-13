@@ -21,6 +21,7 @@ form {
 		opacity: 0.8;
 		&.active {
 			border: $border-activated;
+			box-shadow: 0 0 5px $c-purple;
 			opacity: 1;
 		}
 		&:hover {
@@ -139,6 +140,10 @@ a {
 		opacity: 1;
 	}
 }
+dialog::backdrop{
+	background: #fff5;
+	backdrop-filter: blur(4px);
+}
 // this changes the font for buttons of Foundry UI
 button {
 	font-family: $font-primary; //or
@@ -150,8 +155,12 @@ button {
 	border-radius: $border-radius;
 	color: $c-white;
 	opacity: 0.8;
+	&.chat-button-anchor {
+		width: auto;
+	}
 	&.active {
 		border: $border-activated;
+		box-shadow: 0 0 5px $c-purple;
 		opacity: 1;
 	}
 	&:hover {
