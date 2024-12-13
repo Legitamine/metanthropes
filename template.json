@@ -1,7 +1,6 @@
 {
 	"Actor": {
 		"types": [
-			"testv12",
 			"Protagonist",
 			"Metanthrope",
 			"Human",

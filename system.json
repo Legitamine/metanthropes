@@ -1,8 +1,8 @@
 {
 	"id": "metanthropes",
-	"title": "Metanthropes",
-	"description": "Metanthropes System for Foundry VTT by Legitamine Games",
-	"version": "1.0.0",
+	"title": "Metanthropes - Early Access",
+	"description": "Metanthropes System for Foundry VTT by Legitamine Games - Early Access",
+	"version": "0.12.0",
 	"compatibility": {
 		"minimum": "12",
 		"verified": "12.331",
@@ -17,15 +17,6 @@
 				"compatibility": {
 					"minimum": "5.1.2",
 					"verified": "5.1.2"
-				}
-			},
-			{
-				"id": "combat-tracker-dock",
-				"type": "module",
-				"manifest": "https://github.com/theripper93/combat-tracker-dock/releases/latest/download/module.json",
-				"compatibility": {
-					"minimum": "3.1.2",
-					"verified": "3.1.2"
 				}
 			}
 		]
