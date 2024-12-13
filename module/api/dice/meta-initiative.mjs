@@ -5,19 +5,21 @@ import { metaSheetRefresh } from "../../helpers/metahelpers.mjs";
  *
  * This function determines the best stat to use for Initiative based on the combatant's Metapowers.
  * It then calls the metaRoll function for that stat and updates the combatant's Initiative score with the result.
+ * !asxeto: sto initiative den ekane reroll to dice so nice
  * todo: I should manipulate here the Initiative result based on the combatant's Metapowers
  * todo: I need to figure out a way to kick combatants off the active encounter if it's their turn to play or to roll for initiative and are unconscious
  * The function works for both linked and unlinked actors.
  *
  * @param {Object} combatant - The combatant making the initiative roll.
+ * @param {string} [messageId=null] - The message ID of the chat message for the reroll, if any.
  *
  * @returns {Promise<void>} A promise that resolves once the function completes its operations.
  *
  * @example
  * metaInitiative(combatant);
  */
-export async function metaInitiative(combatant) {
-	metanthropes.utils.metaLog(3, "metaInitiative", "Engaged for combatant:", combatant);
+export async function metaInitiative(combatant, messageId = null, reroll, rerollCounter) {
+	metanthropes.utils.metaLog(3, "metaInitiative", "Engaged for combatant:", combatant.name);
 	//? Check to see if this is a linked actor
 	let actor = null;
 	if (combatant.token.actorLink) {
@@ -61,8 +63,18 @@ export async function metaInitiative(combatant) {
 	//* Special Initiative Rules
 	if (!(actor.name.includes("Duplicate") || actor.type.includes("Animated"))) {
 		//? If the actor is not a Duplicate or Animated, metaRoll for Initiative
-		metanthropes.utils.metaLog(3, "metaInitiative", "Engaging metaRoll for:", actor.name + "'s", action, "with", initiativeStatRolled);
-		await metanthropes.dice.metaRoll(actor, action, initiativeStatRolled);
+		metanthropes.utils.metaLog(
+			3,
+			"metaInitiative",
+			"Engaging metaRoll for:",
+			actor.name + "'s",
+			action,
+			"with",
+			initiativeStatRolled,
+			"Message ID:",
+			messageId
+		);
+		await metanthropes.dice.metaRoll(actor, action, initiativeStatRolled, false, 0, null, messageId, reroll, rerollCounter);
 		initiativeResult = await actor.getFlag("metanthropes", "lastrolled").Initiative;
 	} else {
 		//* Logic for Duplicates & Animated
@@ -108,17 +120,28 @@ export async function metaInitiative(combatant) {
 export async function metaInitiativeReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
+	//? Traverse up the DOM to find the parent <li> element with the data-message-id attribute
+	const messageElement = button.closest("li.chat-message");
+	if (!messageElement) {
+		ui.notifications.warn("Could not find the chat message element.");
+		return;
+	}
+	//? Retrieve the message ID from the data-message-id attribute
+	const messageId = messageElement.dataset.messageId;
+	if (!messageId) {
+		ui.notifications.warn("Could not retrieve the message ID.");
+		return;
+	}
 	const actorUUID = button.dataset.actoruuid;
 	const action = button.dataset.action;
+	const reroll = button.dataset.reroll;
+	const rerollCounter = button.dataset.rerollCounter;
 	const actor = await fromUuid(actorUUID);
 	const combatant = game.combat.getCombatantByActor(actor);
-	metanthropes.utils.metaLog(3, "metaInitiativeReRoll", "Engaged for combatant:", combatant);
-	let currentDestiny = actor.system.Vital.Destiny.value;
-	//? Reduce Destiny.value by 1
-	currentDestiny--;
-	await actor.update({ "system.Vital.Destiny.value": Number(currentDestiny) });
+	metanthropes.utils.metaLog(3, "metaInitiativeReRoll", "Engaged for combatant:", combatant.name);
+	actor.applyDestinyChange(-1);
 	metanthropes.utils.metaLog(3, "metaInitiativeReRoll", "Engaging metaInitiative for:", actor.name);
-	await metaInitiative(combatant);
-	//? Refresh the actor sheet if it's open
-	metaSheetRefresh(actor);
+	await metaInitiative(combatant, messageId, reroll, rerollCounter);
+	// //? Refresh the actor sheet if it's open
+	// metaSheetRefresh(actor);
 }

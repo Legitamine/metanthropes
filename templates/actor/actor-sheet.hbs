@@ -5,10 +5,7 @@
 --}}
 <form class="metanthropes {{cssClass}}" autocomplete="off">
 	{{> "systems/metanthropes/templates/helpers/actor-header.hbs"}}
-	<main>
-		<div class="layout-container-nav style-container-nav">
-			{{> "systems/metanthropes/templates/helpers/actor-navbar.hbs"}}
-		</div>
+	<main class="scrollable">
 		<section class="csnavtabs">
 			<div class="tab cs-summary" data-group="cs" data-tab="cs-summary">
 				{{> "systems/metanthropes/templates/helpers/actor-summary.hbs"}}
@@ -25,15 +22,15 @@
 					</div>
 				</div>
 			{{/if}}
+			<div class="tab cs-actions" data-group="cs" data-tab="cs-actions">
+				<div class="layout-container-outer-tabs style-container-outer-tabs">
+					{{> "systems/metanthropes/templates/helpers/actor-actions.hbs"}}
+				</div>
+			</div>
 			{{#if actor.hasEnterMeta}}
 				<div class="tab cs-metapowers" data-group="cs" data-tab="cs-metapowers">
 					<div class="layout-container-outer-tabs style-container-outer-tabs">
 						{{> "systems/metanthropes/templates/helpers/actor-metapowers.hbs"}}
-					</div>
-				</div>
-				<div class="tab cs-combos" data-group="cs" data-tab="cs-combos">
-					<div class="layout-container-outer-tabs style-container-outer-tabs">
-						{{> "systems/metanthropes/templates/helpers/actor-combos.hbs"}}
 					</div>
 				</div>
 			{{/if}}
