@@ -1,22 +1,9 @@
-//? Import metaLog helper
-import { metaLog } from "../helpers/metahelpers.mjs";
 /**
- * Metanthropes Active Effect Sheet
- * This is based off the default ActiveEffect, instead of overriding it
- *
- * The client-side ActiveEffect document which extends the common BaseActiveEffect model.
- * Each ActiveEffect belongs to the effects collection of its parent Document.
- * Each ActiveEffect contains a ActiveEffectData object which provides its source data.
- *
- * @extends documents.BaseActiveEffect
- * @mixes ClientDocumentMixin
- *
- * @see {@link documents.Actor}                     The Actor document which contains ActiveEffect embedded documents
- * @see {@link documents.Item}                      The Item document which contains ActiveEffect embedded documents
- *
- * @property {ActiveEffectDuration} duration        Expanded effect duration data.
+ * Metanthropes Active Effect Document
+ * todo refactor this to utilize the v12 feature of Active Effect subtypes instead of doing the ninja stuff we've been doing here
+ * @extends {ActiveEffect}
+ * 
  */
-// export class MetanthropesActiveEffect extends ClientDocumentMixin(foundry.documents.BaseActiveEffect) {
 export class MetanthropesActiveEffect extends ActiveEffect {
 	/** @override */
 	/**

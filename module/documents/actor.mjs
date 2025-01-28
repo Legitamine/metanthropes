@@ -1,4 +1,4 @@
-import { metaIsMetapowerEquipped, metaLog, metaTransformStringForStorage } from "../helpers/metahelpers.mjs";
+import { metaIsMetapowerEquipped, metaTransformStringForStorage } from "../helpers/metahelpers.mjs";
 
 /**
  * The base Actor definition which defines common behavior of actors within the Metanthropes system.
@@ -12,10 +12,12 @@ export class MetanthropesActor extends Actor {
 	async _preCreate(data, options, user) {
 		await super._preCreate(data, options, user);
 		let createData = {};
+		//! v13 has a new way of handling this, needs investigation
+		//! workaround is to not set any of these defauls at this step
 		let defaultToken = game.settings.get("core", "defaultToken");
 		//? Configure Display Bars & Name Visibility
 		if (!data.prototypeToken)
-			mergeObject(createData, {
+			foundry.utils.mergeObject(createData, {
 				"prototypeToken.bar1": { attribute: "Vital.Life" },
 				"prototypeToken.bar2": { attribute: "Vital.Destiny" },
 				//* values from https://foundryvtt.com/api/enums/foundry.CONST.TOKEN_DISPLAY_MODES.html
@@ -33,10 +35,20 @@ export class MetanthropesActor extends Actor {
 		if (!createData.prototypeToken.flags) createData.prototypeToken.flags = {};
 		switch (data.type) {
 			case "Protagonist":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
-					metaLog(3, "MetanthropesActor", "_preCreate", "Creating Protagonist Token from data", data);
-					createData.img = "systems/metanthropes/tokens/defaults/token-hammer.webp";
-					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-hammer.webp";
+				if (
+					!data.flags?.metanthropes?.duplicateSelf &&
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
+				) {
+					metanthropes.utils.metaLog(
+						3,
+						"MetanthropesActor",
+						"_preCreate",
+						"Creating Protagonist Token from data",
+						data
+					);
+					createData.img = "systems/metanthropes/assets/artwork/classifications/hammer.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes/assets/artwork/classifications/hammer.webp";
 				}
 				//? Splatter blood color for Protagonists
 				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
@@ -55,10 +67,13 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 30;
 				break;
 			case "Metanthrope":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
-					createData.img = "systems/metanthropes/tokens/defaults/token-utilitarian.webp";
+				if (
+					!data.flags?.metanthropes?.duplicateSelf &&
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
+				) {
+					createData.img = "systems/metanthropes/assets/artwork/classifications/utilitarian.webp";
 					createData.prototypeToken.texture.src =
-						"systems/metanthropes/tokens/defaults/token-utilitarian.webp";
+						"systems/metanthropes/assets/artwork/classifications/utilitarian.webp";
 				}
 				//? Splatter blood color for Metanthropes
 				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
@@ -74,9 +89,13 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Human":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
-					createData.img = "systems/metanthropes/tokens/defaults/token-aegis.webp";
-					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-aegis.webp";
+				if (
+					!data.flags?.metanthropes?.duplicateSelf &&
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
+				) {
+					createData.img = "systems/metanthropes/assets/artwork/classifications/aegis.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes/assets/artwork/classifications/aegis.webp";
 				}
 				//? Splatter blood color for Humans
 				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
@@ -92,9 +111,13 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Artificial":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
-					createData.img = "systems/metanthropes/tokens/defaults/token-animator.webp";
-					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-animator.webp";
+				if (
+					!data.flags?.metanthropes?.duplicateSelf &&
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
+				) {
+					createData.img = "systems/metanthropes/assets/artwork/classifications/animator.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes/assets/artwork/classifications/animator.webp";
 				}
 				//? Splatter blood color for Artificials
 				createData.prototypeToken.flags.splatter = { bloodColor: "#00BFFF" };
@@ -110,10 +133,13 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Animal":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
-					createData.img = "systems/metanthropes/tokens/defaults/token-kineticist.webp";
+				if (
+					!data.flags?.metanthropes?.duplicateSelf &&
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
+				) {
+					createData.img = "systems/metanthropes/assets/artwork/classifications/kineticist.webp";
 					createData.prototypeToken.texture.src =
-						"systems/metanthropes/tokens/defaults/token-kineticist.webp";
+						"systems/metanthropes/assets/artwork/classifications/kineticist.webp";
 				}
 				//? Splatter blood color for Animals
 				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
@@ -129,10 +155,13 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Animated-Plant":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
-					createData.img = "systems/metanthropes/tokens/defaults/token-clairvoyant.webp";
+				if (
+					!data.flags?.metanthropes?.duplicateSelf &&
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
+				) {
+					createData.img = "systems/metanthropes/assets/artwork/classifications/clairvoyant.webp";
 					createData.prototypeToken.texture.src =
-						"systems/metanthropes/tokens/defaults/token-clairvoyant.webp";
+						"systems/metanthropes/assets/artwork/classifications/clairvoyant.webp";
 				}
 				//? Splatter blood color for Animated-Plants
 				createData.prototypeToken.flags.splatter = { bloodColor: "#228B22" };
@@ -148,9 +177,13 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Animated-Cadaver":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
-					createData.img = "systems/metanthropes/tokens/defaults/token-cosmonaut.webp";
-					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-cosmonaut.webp";
+				if (
+					!data.flags?.metanthropes?.duplicateSelf &&
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
+				) {
+					createData.img = "systems/metanthropes/assets/artwork/classifications/cosmonaut.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes/assets/artwork/classifications/cosmonaut.webp";
 				}
 				//? Splatter blood color for Animated-Cadavers
 				createData.prototypeToken.flags.splatter = { bloodColor: "#006400" };
@@ -166,9 +199,13 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Extraterrestrial":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
-					createData.img = "systems/metanthropes/tokens/defaults/token-arbiter.webp";
-					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-arbiter.webp";
+				if (
+					!data.flags?.metanthropes?.duplicateSelf &&
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
+				) {
+					createData.img = "systems/metanthropes/assets/artwork/classifications/arbiter.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes/assets/artwork/classifications/arbiter.webp";
 				}
 				//? Splatter blood color for Extraterrestrials
 				createData.prototypeToken.flags.splatter = { bloodColor: "#800080" };
@@ -184,9 +221,13 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Extradimensional":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
-					createData.img = "systems/metanthropes/tokens/defaults/token-pink.webp";
-					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-pink.webp";
+				if (
+					!data.flags?.metanthropes?.duplicateSelf &&
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
+				) {
+					createData.img = "systems/metanthropes/assets/artwork/classifications/pink.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes/assets/artwork/classifications/pink.webp";
 				}
 				//? Splatter blood color for Extradimensionals
 				createData.prototypeToken.flags.splatter = { bloodColor: "#FF69B4" };
@@ -202,10 +243,13 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "MetaTherion":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
-					createData.img = "systems/metanthropes/tokens/defaults/token-manipulator.webp";
+				if (
+					!data.flags?.metanthropes?.duplicateSelf &&
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
+				) {
+					createData.img = "systems/metanthropes/assets/artwork/classifications/manipulator.webp";
 					createData.prototypeToken.texture.src =
-						"systems/metanthropes/tokens/defaults/token-manipulator.webp";
+						"systems/metanthropes/assets/artwork/classifications/manipulator.webp";
 				}
 				//? Splatter blood color for MetaTherions
 				createData.prototypeToken.flags.splatter = { bloodColor: "#FF1493" };
@@ -221,10 +265,13 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Vehicle":
-				if (!data.flags?.metanthropes?.duplicateSelf) {
-					createData.img = "systems/metanthropes/tokens/defaults/token-controller.webp";
+				if (
+					!data.flags?.metanthropes?.duplicateSelf &&
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
+				) {
+					createData.img = "systems/metanthropes/assets/artwork/classifications/controller.webp";
 					createData.prototypeToken.texture.src =
-						"systems/metanthropes/tokens/defaults/token-controller.webp";
+						"systems/metanthropes/assets/artwork/classifications/controller.webp";
 				}
 				//? Splatter blood color for Vehicles
 				createData.prototypeToken.flags.splatter = { bloodColor: "#808080" };
@@ -240,9 +287,13 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.displayBars = 20;
 				break;
 			default:
-				if (!data.flags?.metanthropes?.duplicateSelf) {
-					createData.img = "systems/metanthropes/tokens/defaults/token-border.webp";
-					createData.prototypeToken.texture.src = "systems/metanthropes/tokens/defaults/token-border.webp";
+				if (
+					!data.flags?.metanthropes?.duplicateSelf &&
+					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
+				) {
+					createData.img = "systems/metanthropes/assets/artwork/classifications/pink.webp";
+					createData.prototypeToken.texture.src =
+						"systems/metanthropes/assets/artwork/classifications/pink.webp";
 				}
 				break;
 		}
@@ -267,8 +318,8 @@ export class MetanthropesActor extends Actor {
 		if (data.type == "Protagonist" || data.type == "Metanthrope" || data.type == "Human") {
 			createData.prototypeToken.height = 1;
 			createData.prototypeToken.width = 1;
-			createData.prototypeToken.texture.scaleX = 0.6;
-			createData.prototypeToken.texture.scaleY = 0.6;
+			createData.prototypeToken.texture.scaleX = 0.5;
+			createData.prototypeToken.texture.scaleY = 0.5;
 		}
 		this.updateSource(createData);
 	}
@@ -285,6 +336,8 @@ export class MetanthropesActor extends Actor {
 	prepareBaseData() {
 		//* Data modifications in this step occur before processing embedded
 		//* documents or derived data.
+		const actorData = this;
+		if (actorData.type == "testv12") return;
 		//? Setting Humans to have starting life of 50 instead of 100
 		if (this.type === "Human") {
 			this.system.Vital.Life.Initial = 50;
@@ -295,19 +348,24 @@ export class MetanthropesActor extends Actor {
 		//? for Protagonists set the metanthropes-logo as default icon for metapower, if no metapower is selected
 		//! note that this will be applied to the actors once, when they are created or when the world loads
 		if (this.hasEnterMeta) {
-			if (!this.primeimg || this.primeimg == `systems/metanthropes/artwork/ui/logos/metanthropes-logo.webp`) {
+			if (!this.primeimg || this.primeimg == `systems/metanthropes/assets/logos/metanthropes-logo.webp`) {
 				//? for Protagonists without a prime metapower defined, make it the metanthropes-logo
 				if (!this.system.entermeta.primemetapower.value) {
-					this.primeimg = `systems/metanthropes/artwork/ui/logos/metanthropes-logo.webp`;
+					this.primeimg = `systems/metanthropes/assets/logos/metanthropes-logo.webp`;
 				} else {
 					//? Make the Prime Metapower Image, the one for the Actor according to their Metamorphosis
 					const primeMPName = this.system.entermeta.primemetapower.value;
 					//? Proceed if Prime Metapower icon is not the correct one
 					const primeMPStorageName = metaTransformStringForStorage(primeMPName);
-					if (!(this.primeimg == `systems/metanthropes/artwork/metapowers/mp-${primeMPStorageName}.webp`)) {
+					if (
+						!(
+							this.primeimg ==
+							`systems/metanthropes/assets/artwork/metapowers/mp-${primeMPStorageName}.webp`
+						)
+					) {
 						//? for Protagonists with a prime metapower defined, make it their respective metapower icon
-						this.primeimg = `systems/metanthropes/artwork/metapowers/mp-${primeMPStorageName}.webp`;
-						metaLog(
+						this.primeimg = `systems/metanthropes/assets/artwork/metapowers/mp-${primeMPStorageName}.webp`;
+						metanthropes.utils.metaLog(
 							3,
 							"MetanthropesActor",
 							"prepareBaseData",
@@ -320,7 +378,6 @@ export class MetanthropesActor extends Actor {
 				}
 			}
 		}
-		const actorData = this;
 		this._prepareBaseCharacteristicsData(actorData);
 		if (actorData.name.includes("Duplicate")) {
 			this._prepareBaseDuplicateData(actorData);
@@ -339,6 +396,7 @@ export class MetanthropesActor extends Actor {
 		//* This function is called after prepareBaseData() and prepareEmbeddedDocuments().
 		//! Note that if any values are to be affected by an Active Effect, then they should be calculated in the BaseData step, not here, otherwise they will be overwritten here
 		const actorData = this;
+		if (actorData.type == "testv12") return;
 		this._prepareDerivedCharacteristicsData(actorData);
 		if (actorData.name.includes("Duplicate")) {
 			this._prepareDerivedDuplicateData(actorData);
@@ -358,7 +416,7 @@ export class MetanthropesActor extends Actor {
 		const hasProgressed =
 			progressionFlag && progressionFlag.hasProgressed !== undefined ? progressionFlag.hasProgressed : false;
 		if (hasProgressed) {
-			metaLog(
+			metanthropes.utils.metaLog(
 				4,
 				"MetanthropesActor",
 				"_prepareDerivedCharacteristicsXPData",
@@ -371,6 +429,199 @@ export class MetanthropesActor extends Actor {
 		this._prepareDerivedCharacteristicsXPData(actorData);
 		this._prepareDerivedPerkXPData(actorData);
 	}
+	//* Actor Methods
+	/** @override */
+	getRollData() {
+		if (this.type == "Vehicle") return;
+		const data = super.getRollData();
+		if (!data.Characteristics) {
+			metanthropes.utils.metaLog(2, "MetanthropesActor", "getRollData", this.name, "has no Characteristics!");
+			return;
+		}
+		data.RollStats = {};
+		for (let [char, charName] of Object.entries(data.Characteristics)) {
+			for (let [stat, statName] of Object.entries(charName.Stats)) {
+				data.RollStats[stat] = statName.Roll;
+			}
+		}
+		return data;
+	}
+	/**
+	 * applyDamage - Apply Damage to the Actor
+	 * each parameter below is expected to be a positive number
+	 * @param {number} cosmic
+	 * @param {number} elemental
+	 * @param {number} material
+	 * @param {number} psychic
+	 */
+	async applyDamage(cosmic = 0, elemental = 0, material = 0, psychic = 0) {
+		const currentLife = Number(this.system.Vital.Life.value);
+		const cosmicResistance = Number(this.system.physical.resistances.cosmic.initial);
+		const elementalResistance = Number(this.system.physical.resistances.elemental.initial);
+		const materialResistance = Number(this.system.physical.resistances.material.initial);
+		const psychicResistance = Number(this.system.physical.resistances.psychic.initial);
+		const cosmicDamage = Number(cosmic) - cosmicResistance;
+		const elementalDamage = Number(elemental) - elementalResistance;
+		const materialDamage = Number(material) - materialResistance;
+		const psychicDamage = Number(psychic) - psychicResistance;
+		const totalDamage =
+			(cosmicDamage > 0 ? cosmicDamage : 0) +
+			(elementalDamage > 0 ? elementalDamage : 0) +
+			(materialDamage > 0 ? materialDamage : 0) +
+			(psychicDamage > 0 ? psychicDamage : 0);
+		if (totalDamage > 0) {
+			const newLife = currentLife - totalDamage;
+			//todo confirm we don't allow negative life
+			let updateData = {};
+			if (newLife < 0) {
+				updateData["flags.metanthropes.previousLife"] = currentLife;
+				updateData["system.Vital.Life.value"] = 0;
+			} else {
+				updateData["flags.metanthropes.previousLife"] = currentLife;
+				updateData["system.Vital.Life.value"] = Number(newLife);
+			}
+			await this.update({ ...updateData });
+		}
+	}
+	/**
+	 * applyHealing - Apply Healing to the Actor
+	 * @param {*} healing - Expected positive number
+	 *
+	 * @param {number} [healing=0]
+	 */
+	async applyHealing(healing) {
+		const currentLife = this.system.Vital.Life.value;
+		const maxLife = this.system.Vital.Life.max;
+		const newLife = Number(currentLife) + Number(healing);
+		let updateData = {};
+		if (newLife > maxLife) {
+			updateData["flags.metanthropes.previousLife"] = currentLife;
+			updateData["system.Vital.Life.value"] = Number(maxLife);
+		} else {
+			updateData["flags.metanthropes.previousLife"] = currentLife;
+			updateData["system.Vital.Life.value"] = Number(newLife);
+		}
+		await this.update({ ...updateData });
+	}
+	/**
+	 * undoLastLifeChange - Restores the value stored in the previousLife flag
+	 * This is expected to trigger for the actor when destiny is spent to re-roll damage, before applying the new damage
+	 */
+	async undoLastLifeChange() {
+		const previousLife = Number(this.getFlag("metanthropes", "previousLife"));
+		if (!previousLife) return ui.notifications.warn("No previous Life value to restore!");
+		if (previousLife > 0) {
+			await this.update({
+				"system.Vital.Life.value": Number(previousLife),
+				"flags.metanthropes.previousLife": null,
+			});
+			metanthropes.utils.metaLog(
+				3,
+				"MetanthropesActor",
+				"undoLastLifeChange",
+				this.name,
+				"Restored Life to:",
+				previousLife
+			);
+		}
+	}
+	
+	/**
+	 * applyDestinyChange - Apply Destiny Change to the Actor
+	 *
+	 * @async
+	 * @param {number} destiny
+	 * @returns {*}
+	 */
+	async applyDestinyChange(destiny) {
+		const currentDestiny = this.system.Vital.Destiny.value;
+		const maxDestiny = this.system.Vital.Destiny.max;
+		const newDestiny = Number(currentDestiny) + Number(destiny);
+		let updateData = {};
+		if (newDestiny > maxDestiny) {
+			updateData["system.Vital.Destiny.value"] = newDestiny;
+			updateData["system.Vital.Destiny.max"] = newDestiny;
+		} else {
+			updateData["system.Vital.Destiny.value"] = newDestiny;
+		}
+		await this.update({ ...updateData });
+		metanthropes.utils.metaLog(
+			3,
+			"MetanthropesActor",
+			"applyDestinyChange",
+			this.name,
+			"Destiny changed by:",
+			destiny
+		);
+	}
+	//* Getters
+	get hasCharacteristics() {
+		return Boolean(this.system.Characteristics);
+	}
+	get hasPerks() {
+		return Boolean(this.system.Perks);
+	}
+	get hasEnterMeta() {
+		return Boolean(this.system.entermeta && this.system.entermeta.primemetapower);
+	}
+	get hasPossessions() {
+		return Boolean(!this.type.includes("Vehicle"));
+	}
+	get isSynthetic() {
+		return Boolean(this.system.Synthetic);
+	}
+	get isPremade() {
+		return Boolean(this.name.includes("Premade") || this.name.includes(this.type));
+	}
+	get isNewActor() {
+		if (this.type === "Vehicle" && this.name.includes("New Actor")) return true;
+		if (!this.hasCharacteristics) return false;
+		const charBody = this.system.Characteristics.Body;
+		const charMind = this.system.Characteristics.Mind;
+		const charSoul = this.system.Characteristics.Soul;
+		const charBodyStatScores =
+			charBody.Stats.Power.Initial + charBody.Stats.Reflexes.Initial + charBody.Stats.Endurance.Initial;
+		const charMindStatScores =
+			charMind.Stats.Creativity.Initial + charMind.Stats.Perception.Initial + charMind.Stats.Manipulation.Initial;
+		const charSoulStatScores =
+			charSoul.Stats.Consciousness.Initial + charSoul.Stats.Willpower.Initial + charSoul.Stats.Awareness.Initial;
+		const charStatScores = charBodyStatScores + charMindStatScores + charSoulStatScores;
+		return Boolean(this.name.includes("New Actor") || charStatScores <= 20);
+	}
+	get isDuplicate() {
+		return Boolean(this.name.includes("Duplicate"));
+	}
+	get isHumanoid() {
+		return Boolean(this.system.humanoids);
+	}
+	get isDuplicatingSelf() {
+		if (metaIsMetapowerEquipped(this, "Duplicate Self")) {
+			return Boolean(this.getFlag("metanthropes", "duplicateSelf"));
+		} else {
+			return false;
+		}
+	}
+	get canOnlyHaveStrikes() {
+		return Boolean(
+			this.type.includes("Animal") || this.type.includes("Animated-Plant") || this.type.includes("MetaTherion")
+		);
+	}
+	get isDiseased() {
+		const diseased = this.system.Characteristics.Body.CoreConditions.Diseased;
+		return Boolean(diseased > 0);
+	}
+	get isInPain() {
+		const pain = this.system.Characteristics.Mind.CoreConditions.Pain;
+		return Boolean(pain > 0);
+	}
+	get isHungry() {
+		const hunger = this.system.Characteristics.Mind.CoreConditions.Hunger;
+		return Boolean(hunger > 0);
+	}
+	get currentDestiny() {
+		return Number(this.system.Vital.Destiny.value);
+	}
+	//! To be deprecated with Data Models !//
 	//* Characteristics & Stats
 	_prepareBaseCharacteristicsData(actorData) {
 		if (actorData.type == "Vehicle") return;
@@ -410,7 +661,7 @@ export class MetanthropesActor extends Actor {
 			if (CharValue.Current <= 0) {
 				ifCharacteristicBecomesZeroPenalty = CharValue.Current;
 				CharValue.Current = 0;
-				metaLog(
+				metanthropes.utils.metaLog(
 					1,
 					"MetanthropesActor",
 					"_prepareBaseCharacteristicsData",
@@ -439,7 +690,7 @@ export class MetanthropesActor extends Actor {
 				//? Determine if the Stat has dropped to 0
 				if (StatScore.Roll <= 0) {
 					StatScore.Roll = 0;
-					metaLog(
+					metanthropes.utils.metaLog(
 						1,
 						"MetanthropesActor",
 						"_prepareBaseCharacteristicsData",
@@ -675,7 +926,7 @@ export class MetanthropesActor extends Actor {
 						this.name +
 						" hasn't activated Duplicate Self Metapower and should not be duplicated!"
 				);
-				metaLog(
+				metanthropes.utils.metaLog(
 					2,
 					"MetanthropesActor",
 					"_prepareBaseVitalData",
@@ -782,7 +1033,7 @@ export class MetanthropesActor extends Actor {
 		if (experienceSpent < startingPerks * 100) {
 			// clog("Metanthropes | Actor Prep |", this.name, "has not spent enough XP on starting perks!");
 			// clog("Metanthropes | Actor Prep |", this.name, "has spent", experienceSpent, "XP on perks");
-			metaLog(
+			metanthropes.utils.metaLog(
 				2,
 				"MetanthropesActor",
 				"_prepareDerivedPerkXPData",
@@ -810,7 +1061,7 @@ export class MetanthropesActor extends Actor {
 			))
 		);
 		if (systemData.Vital.Experience.Stored < 0) {
-			metaLog(
+			metanthropes.utils.metaLog(
 				2,
 				"MetanthropesActor",
 				"_prepareDerivedPerkXPData",
@@ -875,7 +1126,13 @@ export class MetanthropesActor extends Actor {
 	//* Progression
 	_prepareCharacteristicsProgression(actorData) {
 		if (actorData.type == "Vehicle") return;
-		metaLog(3, "MetanthropesActorProgression", "_prepareCharacteristicsProgression", "actorData:", actorData);
+		metanthropes.utils.metaLog(
+			3,
+			"MetanthropesActorProgression",
+			"_prepareCharacteristicsProgression",
+			"actorData:",
+			actorData
+		);
 		const systemData = actorData.system;
 		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
 			//? Calculate the Base score for this Characteristic (Initial + Progressed)
@@ -893,85 +1150,5 @@ export class MetanthropesActor extends Actor {
 				);
 			}
 		}
-	}
-	//* Getters
-	/** @override */
-	getRollData() {
-		if (this.type == "Vehicle") return;
-		const data = super.getRollData();
-		if (!data.Characteristics) {
-			metaLog(2, "MetanthropesActor", "getRollData", this.name, "has no Characteristics!");
-			return;
-		}
-		data.RollStats = {};
-		for (let [char, charName] of Object.entries(data.Characteristics)) {
-			for (let [stat, statName] of Object.entries(charName.Stats)) {
-				data.RollStats[stat] = statName.Roll;
-			}
-		}
-		return data;
-	}
-	get hasCharacteristics() {
-		return Boolean(this.system.Characteristics);
-	}
-	get hasPerks() {
-		return Boolean(this.system.Perks);
-	}
-	get hasEnterMeta() {
-		return Boolean(this.system.entermeta && this.system.entermeta.primemetapower);
-	}
-	get hasPossessions() {
-		return Boolean(!this.type.includes("Vehicle"));
-	}
-	get isSynthetic() {
-		return Boolean(this.system.Synthetic);
-	}
-	get isPremade() {
-		return Boolean(this.name.includes("Premade") || this.name.includes(this.type));
-	}
-	get isNewActor() {
-		if (this.type === "Vehicle" && this.name.includes("New Actor")) return true;
-		if (!this.hasCharacteristics) return false;
-		const charBody = this.system.Characteristics.Body;
-		const charMind = this.system.Characteristics.Mind;
-		const charSoul = this.system.Characteristics.Soul;
-		const charBodyStatScores =
-			charBody.Stats.Power.Initial + charBody.Stats.Reflexes.Initial + charBody.Stats.Endurance.Initial;
-		const charMindStatScores =
-			charMind.Stats.Creativity.Initial + charMind.Stats.Perception.Initial + charMind.Stats.Manipulation.Initial;
-		const charSoulStatScores =
-			charSoul.Stats.Consciousness.Initial + charSoul.Stats.Willpower.Initial + charSoul.Stats.Awareness.Initial;
-		const charStatScores = charBodyStatScores + charMindStatScores + charSoulStatScores;
-		return Boolean(this.name.includes("New Actor") || charStatScores <= 20);
-	}
-	get isDuplicate() {
-		return Boolean(this.name.includes("Duplicate"));
-	}
-	get isHumanoid() {
-		return Boolean(this.system.humanoids);
-	}
-	get isDuplicatingSelf() {
-		if (metaIsMetapowerEquipped(this, "Duplicate Self")) {
-			return Boolean(this.getFlag("metanthropes", "duplicateSelf"));
-		} else {
-			return false;
-		}
-	}
-	get canOnlyHaveStrikes() {
-		return Boolean(
-			this.type.includes("Animal") || this.type.includes("Animated-Plant") || this.type.includes("MetaTherion")
-		);
-	}
-	get isDiseased() {
-		const diseased = this.system.Characteristics.Body.CoreConditions.Diseased;
-		return Boolean(diseased > 0);
-	}
-	get isInPain() {
-		const pain = this.system.Characteristics.Mind.CoreConditions.Pain;
-		return Boolean(pain > 0);
-	}
-	get isHungry() {
-		const hunger = this.system.Characteristics.Mind.CoreConditions.Hunger;
-		return Boolean(hunger > 0);
 	}
 }

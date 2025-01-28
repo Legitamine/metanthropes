@@ -1,4 +1,3 @@
-import { metaLog } from "../helpers/metahelpers.mjs";
 import { metaFilePicker } from "../metaclasses/metaclasses.mjs";
 
 /**
@@ -29,13 +28,12 @@ export async function metaChangeTokenImage(actor, useWildcard = false) {
  * @param {boolean} useWildcard - Flag to determine if a wildcard image path should be used
  */
 async function metaUpdateImage(actor, imageDir, changeBoth, useWildcard) {
-	// Define the base directory
-	let baseDir = "systems/metanthropes/artwork/actors/";
+	let baseDir = "systems/metanthropes/assets/artwork/actors/";
 
-	// If using Metanthropes Introductory Module, change the base directory
+	//? If using the Metanthropes: Introductory Module features, change the base directory
 	const intro = game.settings.get("metanthropes", "metaIntroductory");
 	if (intro) {
-		baseDir = "modules/metanthropes-introductory/artwork/actors/";
+		baseDir = "modules/metanthropes-introductory/assets/artwork/actors/";
 	}
 
 	// Set the final directory based on the actor type
@@ -98,7 +96,7 @@ async function metaUpdateTokenImage(actor, selection, useWildcard) {
 			try {
 				await scene.updateEmbeddedDocuments("Token", tokensToUpdate);
 			} catch (error) {
-				metaLog(2, "metaUpdateTokenImage", "Error updating token:", error, "tokens to update:", tokensToUpdate);
+				metanthropes.utils.metaLog(2, "metaUpdateTokenImage", "Error updating token:", error, "tokens to update:", tokensToUpdate);
 			}
 		}
 	}
@@ -130,7 +128,7 @@ async function metaUpdateTokenImage(actor, selection, useWildcard) {
 // 	let imageDir = null;
 // 	let finalDir = baseDir + imageDir + "/";
 // 	if (image !== "portrait" || image !== "token") {
-// 		metaLog(5, "metaChangeActorImage", "Error for image type of:", image, " - no such image type defined");
+// 		metanthropes.utils.metaLog(5, "metaChangeActorImage", "Error for image type of:", image, " - no such image type defined");
 // 		return;
 // 	}
 // 	if (image === "portrait") {
@@ -171,7 +169,7 @@ async function metaUpdateTokenImage(actor, selection, useWildcard) {
 // 						try {
 // 							await scene.updateEmbeddedDocuments("Token", tokensToUpdate);
 // 						} catch (error) {
-// 							metaLog(
+// 							metanthropes.utils.metaLog(
 // 								2,
 // 								"metaChangePortrait",
 // 								"Error updating token:",

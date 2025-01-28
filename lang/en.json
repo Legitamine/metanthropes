@@ -1,0 +1,164 @@
+{
+	"METANTHROPES": {
+		"SHEET": {
+			"ACTOR": {
+				"LABEL": "Metanthropes Actor Sheet V2"
+			}
+		},
+		"ACTOR": {
+			"BASE": {
+				"FIELDS": {
+					"resources": {
+						"life": {
+							"label": "Life",
+							"hint": "Life represents a Character's overall health, vitality, and will to live.",
+							"value": {
+								"label": "Current",
+								"hint": "Life represents a Character's overall health, vitality, and will to live."
+							},
+							"max": {
+								"label": "Maximum",
+								"hint": "Metanthrope Characters have a maximum Life total of 100 + their Endurance score and also gain an additional +25 Life for every 5.000 Total EXP they have accumulated"
+							}
+						},
+						"actions": {
+							"label": "Actions",
+							"hint": "Actions represent a Character's ability to perform tasks, combat maneuvers, and other actions."
+						}
+					}
+				},
+				"life": {
+					"label": "Life",
+					"emoji": "❤️",
+					"value": {
+						"label": "Current",
+						"hint": "Life represents a Character's overall health, vitality, and will to live."
+					},
+					"starting": {
+						"label": "Starting",
+						"hint": "Starting ❤️ Life"
+					},
+					"max": {
+						"label": "Maximum",
+						"hint": "Metanthrope Characters have a maximum Life total of 100 + their Endurance score and also gain an additional +25 Life for every 5.000 Total EXP they have accumulated"
+					}
+				},
+				"physical": {
+					"description": {
+						"label": "Physical Description",
+						"hint": "The physical description of this Actor."
+					},
+					"height": {
+						"label": "Height",
+						"suffix": "m",
+						"hint": "The physical height of this Actor.",
+						"suffixHint": "Meters"
+					},
+					"weight": {
+						"label": "Weight",
+						"suffix": "Kg",
+						"hint": "The physical weight of this Actor.",
+						"suffixHint": "Kilograms"
+					},
+					"age": {
+						"label": "Age",
+						"hint": "The physical age of this Actor."
+					},
+					"pob": {
+						"label": "Place of Birth",
+						"hint": "The physical place of birth of this Actor."
+					}
+				}
+			}
+		},
+		"CHARS": {
+			"BODY": {
+				"LABEL": "Body",
+				"HINT": "Body is the Characteristic which defines a Character's constitution, physical prowess, and physique."
+			},
+			"MIND": {
+				"LABEL": "Mind",
+				"HINT": "Mind is the Characteristic which defines a Character's brainpower, problem solving and innovative thoughts."
+			},
+			"SOUL": {
+				"LABEL": "Soul",
+				"HINT": "Soul is the Characteristic which defines a Character's conviction, spiritual prowess, and mettle."
+			}
+		},
+		"STATS": {
+			"ENDURANCE": {
+				"LABEL": "Endurance",
+				"HINT": "Endurance determines a Character's stamina, health, and vigor."
+			},
+			"POWER": {
+				"LABEL": "Power",
+				"HINT": "Power determines a Character's strength, striking effectiveness, and physical explosiveness."
+			},
+			"REFLEXES": {
+				"LABEL": "Reflexes",
+				"HINT": "Reflexes determines a Character's agility, motor skills and balance."
+			},
+			"CREATIVITY": {
+				"LABEL": "Creativity",
+				"HINT": "Creativity determines a Character's imagination, expression, and handiwork."
+			},
+			"MANIPULATION": {
+				"LABEL": "Manipulation",
+				"HINT": "Manipulation determines a Character's persuasiveness, charisma, and social engineering skills."
+			},
+			"PERCEPTION": {
+				"LABEL": "Perception",
+				"HINT": "Perception determines a Character's observatory, evaluative and calculative capabilities."
+			},
+			"AWARENESS": {
+				"LABEL": "Awareness",
+				"HINT": "Awareness determines a Character's empathy, intuition, and instinctual responses."
+			},
+			"WILLPOWER": {
+				"LABEL": "Willpower",
+				"HINT": "Willpower determines a Character's courage, discipline, and confidence."
+			},
+			"CONSCIOUSNESS": {
+				"LABEL": "Consciousness",
+				"HINT": "Consciousness determines a Character's recollection, subconscious processing, and sanity."
+			}
+		},
+		"MOVEMENT": {
+			"LABEL": "Movement",
+			"HINT": "blah",
+			"SPEED": {
+				"LABEL": "Speed",
+				"HINT": "blah"
+			},
+			"WEIGHT": {
+				"LABEL": "Weight",
+				"HINT": "blah"
+			},
+			"SIZE": {
+				"LABEL": "Size",
+				"HINT": "blah"
+			}
+		}
+	},
+	"TYPES": {
+		"Actor": {
+			"Protagonist": "Protagonist",
+			"Metanthrope": "Metanthrope",
+			"Human": "Human",
+			"Vehicle": "Vehicle",
+			"Animal": "Animal",
+			"Artificial": "Artificial",
+			"Extradimensional": "Extradimensional",
+			"Extraterrestrial": "Extraterrestrial",
+			"Animated-Cadaver": "Animated-Cadaver",
+			"Animated-Plant": "Animated-Plant",
+			"MetaTherion": "Metatherion"
+		},
+		"Item": {
+			"Metapower": "Metapower",
+			"Possession": "Possession",
+			"Combo": "Combo",
+			"Object": "Object"
+		}
+	}
+}

@@ -182,20 +182,6 @@
 		{{/each}}
 		<hr />
 	</div>
-	{{! -- Sound Effects --}}
-	{{#if (and isNarrator homebrewFeatures)}}
-		<div class="resource">
-			{{#each system.Effects.SFX}}
-				<div class="resource">
-					<label class="resource-label"
-						data-tooltip="{{this.title}}">{{this.label}}:</label>
-					<input type="{{this.type}}" name="system.Effects.SFX.{{@key}}.value"
-						value="{{this.value}}" data-dtype="{{this.dtype}}" />
-				</div>
-			{{/each}}
-			<hr />
-		</div>
-	{{/if}}
 	{{! -- Effect Additional Info --}}
 	{{#if (or isNarrator (and system.Effects.AdditionalInfo.value (not (or (eq system.Effects.AdditionalInfo.value null) (eq system.Effects.AdditionalInfo.value 0) (eq system.Effects.AdditionalInfo.value "None")))))}}
 		<div>
@@ -220,19 +206,21 @@
 				{{> "systems/metanthropes/templates/helpers/active-effects.hbs"}}
 			</div>
 		{{else}}
-			<div class="resource-label" style="text-align:center">Item Active Effects are not fully
+			<div class="resource-label" style="text-align:center">- Item Active Effects are not fully
 				supported
-				yet<br>
+				yet -<br>
 			</div>
 			<br>
-			<p>Additional
-				functionality is available during Early Access, via the Beta Testing Feature of
-				the Metanthropes Homebrew Module
-				<br><br> If you would like to know more about upcoming releases, visit <a
-					href="https://www.metanthropes.com/stratagem/projects/1-metanthropes-roadmap/">our
-					roadmap on the
-					website</a>
-			</p>
+			<p class="style-centered-paragraph">
+					<br>- This is a
+					placeholder for future capabilities -<br><br>Additional
+					functionality is available, during Early Access, via the Beta Testing Feature,<br>
+					available with the <a href="https://www.metanthropes.com/store/product/8-homebrew-fvtt-module/">Metanthropes: Homebrew</a> Premium Module for Foundry VTT.
+					<br><br> If you would like to know more about upcoming releases, visit <a
+						href="https://www.metanthropes.com/roadmap/">the
+						roadmap on our
+						website.</a>
+				</p>
 		{{/if}}
 	</div>
 </div><br>

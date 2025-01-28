@@ -1,5 +1,5 @@
 form button {
-	background-image: url("../artwork/ui/buttons/button.webp");
+	background-image: url("../assets/artwork/ui/buttons/button.webp");
 	text-shadow: $s-button;
 	border: $border-groove;
 	border-radius: $border-radius;
@@ -24,7 +24,7 @@ form button {
 
 form {
 	button {
-		background-image: url("../artwork/ui/buttons/button.webp");
+		background-image: url("../assets/artwork/ui/buttons/button.webp");
 		text-shadow: $s-button;
 		border: $border-groove;
 		border-radius: $border-radius;
@@ -32,6 +32,7 @@ form {
 		opacity: 0.8;
 		&.active {
 			border: $border-activated;
+			box-shadow: 0 0 5px $c-purple;
 			opacity: 1;
 		}
 		&:hover {
@@ -132,6 +133,7 @@ form {
 	font-family: $font-primary;
 	font-size: 0.9rem;
 	color: $c-black;
+	width: 100%;
 	justify-content: center;
 	justify-self: center;
 	align-items: center;

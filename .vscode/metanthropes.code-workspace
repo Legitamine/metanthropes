@@ -4,28 +4,27 @@
 			"path": ".."
 		},
 		{
-			"path": "../../../../Foundry Virtual Tabletop/resources/app"
-		},
-		{
-			"path": "D:/FoundryDev/V11/code/resources/app"
+			"path": "D:/FoundryDev/Playtest/code/resources/app"
 		}
 	],
 	"settings": {
-		"githubPullRequests.ignoredPullRequestBranches": [
-			"stable"
-		],
-		"docwriter.style": "JSDoc"
+		"i18n-ally.localesPaths": ["lang"],
+		"i18n-ally.keystyle": "nested"
 	},
 	"extensions": {
 		"recommendations": [
-			"andrejunges.handlebars",
 			"aaron-bond.better-comments",
-			"itsmeadarsh.vsc-handlebars-ext",
-			"ecmel.vscode-html-css",
 			"oderwat.indent-rainbow",
 			"glenn2223.live-sass",
 			"esbenp.prettier-vscode",
-			"redhat.vscode-yaml"
+			"redhat.vscode-yaml",
+			"lokalise.i18n-ally",
+			"sibiraj-s.vscode-scss-formatter",
+			"christian-kohler.path-intellisense",
+			"zignd.html-css-class-completion",
+			"ecmel.vscode-html-css",
+			"github.vscode-github-actions",
+			"donjayamanne.githistory"
 		]
 	}
 }

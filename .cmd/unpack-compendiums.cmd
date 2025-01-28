@@ -12,8 +12,8 @@ pause
 call npm install -g @foundryvtt/foundryvtt-cli
 @echo Configuring FoundryVTT CLI to use the correct install path
 @echo ----------------------------------------------------------
-call fvtt configure set installPath "F:/FoundryVTT/Foundry Virtual Tabletop"
-call fvtt configure set dataPath "F:/FoundryVTT/"
+call fvtt configure set installPath "D:/FoundryDev/V12/code"
+call fvtt configure set dataPath "D:/FoundryDev/V12/data"
 @echo Configuring FoundryVTT CLI for our use case
 @echo --------------------------------------------
 call fvtt package workon "metanthropes" --type "System"
@@ -21,16 +21,16 @@ call fvtt package workon "metanthropes" --type "System"
 @echo ---------------------------------------------
 @echo Welcome
 @echo -------
-call fvtt package unpack "welcome" --out "F:/FoundryVTT/Data/systems/metanthropes/src/packs/welcome"
+call fvtt package unpack "welcome" --out "D:/FoundryDev/legitamine/metanthropes/src/packs/welcome"
 @echo System
 @echo ------
-call fvtt package unpack "system" --out "F:/FoundryVTT/Data/systems/metanthropes/src/packs/system"
-@echo Demo
-@echo ----
-call fvtt package unpack "demo" --out "F:/FoundryVTT/Data/systems/metanthropes/src/packs/demo"
-@echo Installation Guide
-@echo ------------------
-call fvtt package unpack "install-system" --out "F:/FoundryVTT/Data/systems/metanthropes/src/packs/install-system"
+call fvtt package unpack "system" --out "D:/FoundryDev/legitamine/metanthropes/src/packs/system"
+@echo Rolltables
+@echo ----------
+call fvtt package unpack "rolltables" --out "D:/FoundryDev/legitamine/metanthropes/src/packs/rolltables"
+@echo Toolkit
+@echo -------
+call fvtt package unpack "toolkit" --out "D:/FoundryDev/legitamine/metanthropes/src/packs/toolkit"
 @echo -------------------------------
 @echo Finished Unpacking Compendiums
 @echo -------------------------------

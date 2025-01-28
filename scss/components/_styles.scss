@@ -160,7 +160,7 @@ h3 {
 	border: $border-style-solid;
 	border-radius: $border-radius;
 	border-style: dotted;
-	border-image: url(../artwork/ui/borders/border.webp) 5 / 10px round;
+	border-image: url(../assets/artwork/ui/borders/border.webp) 5 / 10px round;
 	border-radius: $border-radius;
 }
 //nav container styling
@@ -174,13 +174,18 @@ h3 {
 }
 .style-container-nav-children {
 	align-items: center;
+	justify-content: center;
 	white-space: nowrap;
 	font-size: 1rem;
 	font-weight: 600;
 	color: $c-black;
 	padding: $padding-sm;
 	margin: $margin-sm;
+	.meta-emoji {
+		font-size: 0.8rem;
+	}
 }
+
 //input containers styling
 .style-container-input-charstat {
 	min-width: 2ch;
@@ -419,7 +424,7 @@ h3 {
 }
 .meta-cover-roll {
 	&:hover {
-		cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
+		cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
 		color: $c-white;
 		text-shadow: $s-outline;
 	}
@@ -438,7 +443,7 @@ h3 {
 	padding: $padding-md;
 	margin: $margin-md;
 	&:hover {
-		cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
+		cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
 		color: $c-white;
 		text-shadow: $s-outline;
 	}
@@ -457,7 +462,7 @@ h3 {
 	padding: $padding-zero;
 	margin: $margin-zero;
 	&:hover {
-		cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
+		cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
 		color: $c-white;
 		text-shadow: $s-outline;
 	}
@@ -473,7 +478,7 @@ h3 {
 	padding: $padding-zero;
 	margin: $margin-zero;
 	&:hover {
-		cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
+		cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
 		color: $c-white;
 		text-shadow: $s-outline;
 	}
@@ -489,7 +494,7 @@ h3 {
 	padding: $padding-zero;
 	margin: $margin-zero;
 	&:hover {
-		cursor: url(../artwork/ui/dice/d100roll-black-small.webp), pointer;
+		cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
 		color: $c-white;
 		text-shadow: $s-outline;
 	}
@@ -533,7 +538,7 @@ h3 {
 }
 
 .style-tab-header-portrait {
-	max-height: fit-content;
+	max-height: 100px;
 	width: auto;
 	object-fit: contain;
 	border: none;

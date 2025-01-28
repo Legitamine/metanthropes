@@ -1,0 +1,7 @@
+2024/12/23-00:17:39.954 aa2c Recovering log #41
+2024/12/23-00:17:39.957 aa2c Delete type=0 #41
+2024/12/23-00:17:39.957 aa2c Delete type=3 #39
+2024/12/23-00:37:00.871 2820 Level-0 table #47: started
+2024/12/23-00:37:00.872 2820 Level-0 table #47: 0 bytes OK
+2024/12/23-00:37:00.872 2820 Delete type=0 #45
+2024/12/23-00:37:00.874 2820 Manual compaction at level-0 from '!journal!LtDAG4iDlxFwGo8N' @ 72057594037927935 : 1 .. '!journal.pages!LtDAG4iDlxFwGo8N.JQb8rTs2tgsnKJbP' @ 0 : 0; will stop at (end)

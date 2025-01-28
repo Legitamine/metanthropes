@@ -18,5 +18,9 @@
 	@import "components/items";
 	@import "components/effects";
 	@import "components/forms";
+	//!todo!
 	z-index: 3;
+	//changes to the selection elements default color
+	accent-color: $c-purple;
+	caret-color: $c-purple;
 }

@@ -1,0 +1,86 @@
+<header>
+	<div class="layout-container-actorinfo style-container-actorinfo meta-ui-responsive meta-ui-hide-at-medium">
+		<div class="layout-container-actorinfo-details">
+			<img class="style-tab-header-logo"
+				src="systems/metanthropes/assets/logos/metanthropes-logo-rotating.gif"
+				alt="Metanthropes" data-tooltip="Metanthropes {{actor.type}}" />
+		</div>
+		<div class="layout-container-actorinfo-details">
+			<div class="style-actorinfo-tier3">
+				Player
+			</div>
+			<div class="style-actorinfo-tier2">
+				{{system.metaowner.value}}
+			</div>
+		</div>
+		{{#if actor.isNewActor}}
+			<div>
+				<button class="new-actor" data-tooltip="Roll New {{actor.type}}">Roll New
+					{{actor.type}}</button>
+			</div>
+		{{else}}
+			<div class="layout-container-actorinfo-details">
+				<div class="style-actorinfo-tier2">
+					{{actor.type}} ({{system.humanoids.genderpronoun.value}})
+				</div>
+				<div class="style-actorinfo-tier1">
+					{{actor.name}}
+				</div>
+			</div>
+		{{/if}}
+		<div class="layout-container-actorinfo-details">
+			<img class="style-tab-header-portrait" src="{{actor.img}}" alt="{{actor.name}}'s Portrait Image"
+				data-tooltip="{{actor.name}}" />
+		</div>
+		<div>
+			{{#if system.entermeta}}
+				<img class="style-tab-header-prime" src="{{actor.primeimg}}"
+					alt="{{system.entermeta.primemetapower.value}}"
+					data-tooltip="Prime Ⓜ️ Metapower: {{system.entermeta.primemetapower.value}}" />
+			{{/if}}
+		</div>
+	</div>
+	<div class="layout-container-vitals style-container-vitals">
+		<div>
+			<div class="style-labels-text">
+				<span>{{localize "METANTHROPES.ACTOR.BASE.life.emoji"}}</span><span class="meta-ui-responsive meta-ui-hide-at-minimum">
+					{{#if actor.isSynthetic}}
+						Durability
+					{{else}}
+						{{localize "METANTHROPES.ACTOR.BASE.life.label"}}
+					{{/if}}
+				</span>
+				{{#if isNarrator}}{{formGroup blah.life.fields.value value=system.resources.life.value}}
+				{{else}}{{system.resources.life.value}}{{/if}}<span
+					class="meta-ui-responsive meta-ui-hide-at-minimum" data-tooltip="METANTHROPES.ACTOR.BASE.life.max.hint">/{{system.life.max}}</span>
+			</div>
+		</div>
+		<div class="meta-ui-responsive meta-ui-hide-at-medium">
+			<div class="style-labels-text">{{system.Vital.Experience.Label}}:
+				{{system.Vital.Experience.Total}}
+				Spent:
+				{{#if (and isNarrator coreFeatures)}}{{system.Vital.Experience.Spent}} + <input name="system.Vital.Experience.Manual"
+						type="number" value="{{system.Vital.Experience.Manual}}"
+						data-dtype="Number" placeholder="0" />
+				{{else}}{{xpSpent}}{{/if}}
+				Stored:{{#if (gte system.Vital.Experience.Stored 0)}}
+					<span class="style-cs-header-positive">{{system.Vital.Experience.Stored}}</span>
+				{{else}}
+					<span class="style-cs-header-negative">{{system.Vital.Experience.Stored}}</span>
+				{{/if}}
+			</div>
+		</div>
+		<div class="meta-ui-responsive meta-ui-hide-at-medium">
+		</div>
+		<div>
+			<div class="style-labels-text"
+				data-tooltip="Destiny (🤞) is a resource which Players can spend to reroll any roll with an undesirable outcome, activate powerful Metapowered effects, and even save their Protagonists from dying">
+				<span>🤞</span><span class="meta-ui-responsive meta-ui-hide-at-minimum"> Destiny
+				</span>{{#if isNarrator}}<input name="system.Vital.Destiny.value" type="number"
+						value="{{system.Vital.Destiny.value}}" data-dtype="Number" />
+				{{else}}{{system.Vital.Destiny.value}}{{/if}}<span
+					class="meta-ui-responsive meta-ui-hide-at-minimum">/{{system.Vital.Destiny.max}}</span>
+			</div>
+		</div>
+	</div>
+</header>
