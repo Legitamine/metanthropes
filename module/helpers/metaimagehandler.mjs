@@ -28,13 +28,12 @@ export async function metaChangeTokenImage(actor, useWildcard = false) {
  * @param {boolean} useWildcard - Flag to determine if a wildcard image path should be used
  */
 async function metaUpdateImage(actor, imageDir, changeBoth, useWildcard) {
-	// Define the base directory
-	let baseDir = "systems/metanthropes/assets/";
+	let baseDir = "systems/metanthropes/assets/artwork/actors/";
 
-	// If using Metanthropes Introductory Module, change the base directory
+	//? If using the Metanthropes: Introductory Module features, change the base directory
 	const intro = game.settings.get("metanthropes", "metaIntroductory");
 	if (intro) {
-		baseDir = "modules/metanthropes-introductory/artwork/actors/";
+		baseDir = "modules/metanthropes-introductory/assets/artwork/actors/";
 	}
 
 	// Set the final directory based on the actor type

@@ -152,6 +152,12 @@ dialog::backdrop {
 
 button {
   font-family: "nasalization", sans-serif;
+  justify-self: center;
+  align-self: center;
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
   background-image: url("../assets/artwork/ui/buttons/button.webp");
   background-size: cover;
   text-shadow: 1px 1px 1px #7d0f81, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
@@ -178,6 +184,19 @@ button:focus {
   outline: none;
   box-shadow: 0 0 5px #7d0f81;
   opacity: 1;
+}
+
+button::before {
+  font: var(--fa-font-solid);
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  justify-self: center;
+  align-self: center;
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
 }
 
 select {
@@ -537,6 +556,8 @@ h3 {
 
 .metanthropes {
   z-index: 3;
+  accent-color: #7d0f81;
+  caret-color: #7d0f81;
 }
 .metanthropes .chat-message .message-header .flavor-text .metanthropes .hide-button .meta-ui-hidden {
   display: none !important;

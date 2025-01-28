@@ -1,0 +1,29 @@
+{
+  "name": "Session Tools",
+  "sorting": "a",
+  "folder": null,
+  "type": "Macro",
+  "_id": "Be0XZnvUS3q7JTev",
+  "sort": 100000,
+  "color": "#7d0f81",
+  "flags": {
+    "df-qol": {
+      "colour": ""
+    },
+    "scene-packer": {
+      "hash": "a4203d0795caa64455ca9d85df331b02f56771ee"
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "metanthropes",
+    "systemVersion": "0.12.0",
+    "createdTime": 1736084732809,
+    "modifiedTime": 1736084732825,
+    "lastModifiedBy": "kF9zOdNs2UiqaJVn"
+  },
+  "description": "",
+  "_key": "!folders!Be0XZnvUS3q7JTev"
+}

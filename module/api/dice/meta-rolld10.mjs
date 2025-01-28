@@ -152,6 +152,8 @@ export async function metaRolld10(
 			}
 			const updatedRoll = await rolld10.toJSON();
 			const renderedRoll = await rolld10.render();
+			//? Call Dice So Nice to show the roll, assumes the module is active
+			game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
 			chatMessage.update({
 				flavor: message,
 				rolls: updatedRoll,
@@ -159,8 +161,6 @@ export async function metaRolld10(
 				rollMode: game.settings.get("core", "rollMode"),
 				flags: { metanthropes: { actoruuid: actor.uuid } },
 			});
-			//? Call Dice So Nice to show the roll, assumes the module is active
-			game.dice3d.showForRoll(rolld10, game.user, true, chatMessage);
 		}
 	} else {
 		if (!reroll) {
@@ -188,13 +188,13 @@ export async function metaRolld10(
 			}
 			const updatedRoll = await rolld10.toJSON();
 			const renderedRoll = await rolld10.render();
+			//? Call Dice So Nice to show the roll, assumes the module is active
+			game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
 			chatMessage.update({
 				rolls: updatedRoll,
 				rollMode: game.settings.get("core", "rollMode"),
 				flags: { metanthropes: { actoruuid: actor.uuid } },
 			});
-			//? Call Dice So Nice to show the roll, assumes the module is active
-			game.dice3d.showForRoll(rolld10, game.user, true, chatMessage);
 		}
 	}
 	metanthropes.utils.metaLog(3, "metaRolld10", "Finished for:", actor.name + "'s", what);

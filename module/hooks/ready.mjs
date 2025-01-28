@@ -21,15 +21,15 @@ Hooks.once("ready", async function () {
 	//* Display Welcome Screen
 	const welcome = await game.settings.get("metanthropes", "metaWelcome");
 	if (welcome) {
-		const systemWelcome = await fromUuid("Compendium.metanthropes.welcome.JournalEntry.dP9LgZVr6QDQrI4K");
+		const systemWelcome = await fromUuid("Compendium.metanthropes.welcome.JournalEntry.5zynXjK4RTiGzcxQ");
 		systemWelcome.sheet.render(true);
 		game.settings.set("metanthropes", "metaWelcome", false);
 	}
 
-	//* Display Demo Installation Guide
+	//* Display System Installation Guide
 	const installGuide = await game.settings.get("metanthropes", "metaInstall");
 	if (installGuide) {
-		const metaInstall = await fromUuid("Compendium.metanthropes.install-system.JournalEntry.LtDAG4iDlxFwGo8N");
+		const metaInstall = await fromUuid("Compendium.metanthropes.system.Adventure.7rKmFXvGJE8UFv2h");
 		metaInstall.sheet.render(true);
 		game.settings.set("metanthropes", "metaInstall", false);
 	}
