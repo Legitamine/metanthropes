@@ -33,6 +33,8 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 - Fixed many minor issues and typos.
 
 ## Known Issues:
+- [Introductory] Lobby Scene is missing it's thumbnail.
+- [Introductory] In the Overture Journal, page 5, the link to open the 'Action Scenes' Journal requires that the System Installation Adventure has been added to the World; if it's not installed, the link will be broken/unavailable. This will be addressed when we introduce the System Journals as a separate compendium in the next release.
 - [Homebrew] When Beta-Testing is enabled, Damage & Healing will apply to targeted actors when you Activate Metapowers or use Possessions, however you are not able to re-roll damage/healing results using Destiny. This will be addressed in a hotfix build soon™.
 - [Core] Opening a Metapower from the 100 Metapowers Journal doesn't allow switching tabs. See [#303](https://github.com/Legitamine/metanthropes/issues/303)
 
