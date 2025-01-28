@@ -121,7 +121,7 @@ export async function metaEvaluate(
 	}
 	//? check for critical success or failure
 	if (criticalSuccess) {
-		result = `🟩 Critical Success 🟩, rewarding ${actor.name} with +1 🤞 Destiny`;
+		result = `<i class="fa-duotone fa-solid fa-square fa-beat-fade" style="--fa-primary-color: #35e704; --fa-secondary-color: #37ff00; --fa-secondary-opacity: 0.9;"></i> Critical Success <i class="fa-duotone fa-solid fa-square fa-beat-fade" style="--fa-primary-color: #35e704; --fa-secondary-color: #37ff00; --fa-secondary-opacity: 0.9;"></i>, rewarding ${actor.name} with +1 🤞 Destiny`;
 		await actor.applyDestinyChange(1);
 		levelsOfSuccess = 10;
 		levelsOfFailure = 0;
@@ -130,7 +130,7 @@ export async function metaEvaluate(
 		}
 	}
 	if (criticalFailure) {
-		result = `🟥 Critical Failure 🟥, rewarding ${actor.name} with +1 🤞 Destiny`;
+		result = `<i class="fa-duotone fa-solid fa-square fa-beat-fade" style="--fa-primary-color: #e70404; --fa-secondary-color: #ff0040; --fa-secondary-opacity: 0.9;"></i> Critical Failure <i class="fa-duotone fa-solid fa-square fa-beat-fade" style="--fa-primary-color: #e70404; --fa-secondary-color: #ff0040; --fa-secondary-opacity: 0.9;"></i>, rewarding ${actor.name} with +1 🤞 Destiny`;
 		await actor.applyDestinyChange(1);
 		levelsOfFailure = 10;
 		levelsOfSuccess = 0;
@@ -401,6 +401,8 @@ export async function metaEvaluate(
 		}
 		const updatedRoll = await roll.toJSON();
 		const renderedRoll = await roll.render();
+		//? Call Dice So Nice to show the roll, assumes the module is active
+		game.dice3d.showForRoll(roll, game.user, true, null, false, messageId);
 		chatMessage.update({
 			flavor: message,
 			rolls: updatedRoll,
@@ -408,14 +410,10 @@ export async function metaEvaluate(
 			rollMode: game.settings.get("core", "rollMode"),
 			flags: { metanthropes: { actoruuid: actor.uuid } },
 		});
-		//? Call Dice So Nice to show the roll, assumes the module is active
-		game.dice3d.showForRoll(roll, game.user, true, chatMessage);
 	}
 	//* If autoExecute is true, we execute the Metapower or Possession
 	if (autoExecute) {
 		//? wait for 5 seconds to ensure the chat messages display in the proper order and animations clear out
-		//todo Ideally I'd like to integrate with Dice So Nice api to figure out when the animation has finished
-		//todo look at https://gitlab.com/riccisi/foundryvtt-dice-so-nice/-/wikis/API/Hooks#dicesonicerollcomplete
 		await new Promise((resolve) => setTimeout(resolve, 5000));
 		//? Automatically execute the activation/use of the Metapower/Possession if it's a Critical Success/Failure or not enough destiny to reroll
 		if (action === "Metapower") {

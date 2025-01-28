@@ -106,8 +106,10 @@ a {
 }
 //form buttons
 .dialog .dialog-buttons button {
-	font-family: $font-primary; //or
-	//text-transform: uppercase;
+	font-family: $font-primary;
+	// text-transform: uppercase;
+	// justify-content: center;
+	// align-items: center;
 	background: none;
 	background-image: url("../assets/artwork/ui/buttons/button.webp");
 	background-size: cover;
@@ -140,14 +142,20 @@ a {
 		opacity: 1;
 	}
 }
-dialog::backdrop{
+dialog::backdrop {
 	background: #fff5;
 	backdrop-filter: blur(4px);
 }
 // this changes the font for buttons of Foundry UI
 button {
-	font-family: $font-primary; //or
-	//text-transform: uppercase;
+	font-family: $font-primary;
+	// text-transform: uppercase;
+	justify-self: center;
+	align-self: center;
+	justify-items: center;
+	align-items: center;
+	justify-content: center;
+	align-content: center;
 	background-image: url("../assets/artwork/ui/buttons/button.webp");
 	background-size: cover;
 	text-shadow: $s-button;
@@ -175,6 +183,20 @@ button {
 		opacity: 1;
 	}
 }
+
+button::before {
+	font: var(--fa-font-solid);
+	display: inline-block;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	justify-self: center;
+	align-self: center;
+	justify-items: center;
+	align-items: center;
+	justify-content: center;
+	align-content: center;
+}
+
 select {
 	font-family: $font-secondary;
 	border: $border-style-dotted;

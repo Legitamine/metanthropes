@@ -1,11 +1,9 @@
 {
 	"Actor": {
 		"types": [
-			"testv12",
 			"Protagonist",
 			"Metanthrope",
 			"Human",
-			"Vehicle",
 			"Animal",
 			"Artificial",
 			"Extradimensional",
@@ -1071,7 +1069,7 @@
 		"testv12": {}
 	},
 	"Item": {
-		"types": ["Metapower", "Possession", "Combo", "Object", "species"],
+		"types": ["Metapower", "Possession"],
 		"templates": {
 			"material": {
 				"Material": {

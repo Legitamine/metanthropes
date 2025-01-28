@@ -1,0 +1,43 @@
+{
+  "name": "Edit Protagonist Stats",
+  "type": "script",
+  "scope": "global",
+  "author": "kF9zOdNs2UiqaJVn",
+  "img": "icons/svg/d10-grey.svg",
+  "command": "//*Narrator's Toolbox - Edit Protagonist Stats*//\n//? This macro allows the Narrator to edit a Protagonist's Stats\n//? If you'd like to edit another Actor type, change the \"Protagonist\" in the filter on line 8\nif (!game.user.isGM) {\n\tui.notifications.warn(\"You must be a Narrator to use this macro.\");\n\treturn;\n}\nlet actors = game.actors.contents.filter((a) => a.type === \"Protagonist\");\nlet dialogContent = `<form>\n<div class=\"style-form\">To be used to edit a Protagonists's Initial Stat Scores, and Initial Characteristic Scores to custom values<br><br></div>`;\ndialogContent += `<div class=\"form-group style-form\">\n<div class=\"style-form\">Protagonist Name</div>\n<div class=\"style-form\">BODY</div>\n<div class=\"style-form\">Endurance</div>\n<div class=\"style-form\">Power</div>\n<div class=\"style-form\">Reflexes</div>\n<div class=\"style-form\">MIND</div>\n<div class=\"style-form\">Creativity</div>\n<div class=\"style-form\">Manipulation</div>\n<div class=\"style-form\">Perception</div>\n<div class=\"style-form\">SOUL</div>\n<div class=\"style-form\">Awareness</div>\n<div class=\"style-form\">Consciousness</div>\n<div class=\"style-form\">Willpower</div>\n</div>\n`;\nfor (let actor of actors) {\n\tdialogContent += `<div class=\"form-group\">\n\t\t<div class=\"style-form\">${actor.name}</div>\n\t\t<div class=\"style-form\"><input type=\"number\" name=\"newBody-${actor.id}\" value=\"${actor.system.Characteristics.Body.Initial}\"></div>\n\t\t<div class=\"style-form\"><input type=\"number\" name=\"newEndurance-${actor.id}\" value=\"${actor.system.Characteristics.Body.Stats.Endurance.Initial}\"></div>\n\t\t<div class=\"style-form\"><input type=\"number\" name=\"newPower-${actor.id}\" value=\"${actor.system.Characteristics.Body.Stats.Power.Initial}\"></div>\n\t\t<div class=\"style-form\"><input type=\"number\" name=\"newReflexes-${actor.id}\" value=\"${actor.system.Characteristics.Body.Stats.Reflexes.Initial}\"></div>\n\t\t<div class=\"style-form\"><input type=\"number\" name=\"newMind-${actor.id}\" value=\"${actor.system.Characteristics.Mind.Initial}\"></div>\n\t\t<div class=\"style-form\"><input type=\"number\" name=\"newCreativity-${actor.id}\" value=\"${actor.system.Characteristics.Mind.Stats.Creativity.Initial}\"></div>\n\t\t<div class=\"style-form\"><input type=\"number\" name=\"newManipulation-${actor.id}\" value=\"${actor.system.Characteristics.Mind.Stats.Manipulation.Initial}\"></div>\n\t\t<div class=\"style-form\"><input type=\"number\" name=\"newPerception-${actor.id}\" value=\"${actor.system.Characteristics.Mind.Stats.Perception.Initial}\"></div>\n\t\t<div class=\"style-form\"><input type=\"number\" name=\"newSoul-${actor.id}\" value=\"${actor.system.Characteristics.Soul.Initial}\"></div>\n\t\t<div class=\"style-form\"><input type=\"number\" name=\"newAwareness-${actor.id}\" value=\"${actor.system.Characteristics.Soul.Stats.Awareness.Initial}\"></div>\n\t\t<div class=\"style-form\"><input type=\"number\" name=\"newConsciousness-${actor.id}\" value=\"${actor.system.Characteristics.Soul.Stats.Consciousness.Initial}\"></div>\n\t\t<div class=\"style-form\"><input type=\"number\" name=\"newWillpower-${actor.id}\" value=\"${actor.system.Characteristics.Soul.Stats.Willpower.Initial}\"></div>\n\t\t</div>`;\n}\ndialogContent += `</form><br><br>`;\ndialogContent += `<div>Confirming will set the Protagonists' Current Life to their Max Life</div><br><br>`;\nlet dialogOptions = {\n\twidth: 1250,\n\theight: 720,\n\tresizable: true,\n};\nlet toolboxdialog = new Dialog(\n\t{\n\t\ttitle: \"Narrator's Toolbox - Edit Protagonist Stats\",\n\t\tcontent: dialogContent,\n\t\tbuttons: {\n\t\t\tok: {\n\t\t\t\tlabel: \"Confirm\",\n\t\t\t\tcallback: async (html) => {\n\t\t\t\t\tfor (let actor of actors) {\n\t\t\t\t\t\tlet newBody = parseInt(html.find(`[name=\"newBody-${actor.id}\"]`).val());\n\t\t\t\t\t\tlet newEndurance = parseInt(html.find(`[name=\"newEndurance-${actor.id}\"]`).val());\n\t\t\t\t\t\tlet newPower = parseInt(html.find(`[name=\"newPower-${actor.id}\"]`).val());\n\t\t\t\t\t\tlet newReflexes = parseInt(html.find(`[name=\"newReflexes-${actor.id}\"]`).val());\n\t\t\t\t\t\tlet newMind = parseInt(html.find(`[name=\"newMind-${actor.id}\"]`).val());\n\t\t\t\t\t\tlet newCreativity = parseInt(html.find(`[name=\"newCreativity-${actor.id}\"]`).val());\n\t\t\t\t\t\tlet newManipulation = parseInt(html.find(`[name=\"newManipulation-${actor.id}\"]`).val());\n\t\t\t\t\t\tlet newPerception = parseInt(html.find(`[name=\"newPerception-${actor.id}\"]`).val());\n\t\t\t\t\t\tlet newSoul = parseInt(html.find(`[name=\"newSoul-${actor.id}\"]`).val());\n\t\t\t\t\t\tlet newAwareness = parseInt(html.find(`[name=\"newAwareness-${actor.id}\"]`).val());\n\t\t\t\t\t\tlet newConsciousness = parseInt(html.find(`[name=\"newConsciousness-${actor.id}\"]`).val());\n\t\t\t\t\t\tlet newWillpower = parseInt(html.find(`[name=\"newWillpower-${actor.id}\"]`).val());\n\t\t\t\t\t\tawait actor.update({\n\t\t\t\t\t\t\t\"system.Characteristics.Body.Initial\": newBody,\n\t\t\t\t\t\t\t\"system.Characteristics.Body.Stats.Endurance.Initial\": newEndurance,\n\t\t\t\t\t\t\t\"system.Characteristics.Body.Stats.Power.Initial\": newPower,\n\t\t\t\t\t\t\t\"system.Characteristics.Body.Stats.Reflexes.Initial\": newReflexes,\n\t\t\t\t\t\t\t\"system.Characteristics.Mind.Initial\": newMind,\n\t\t\t\t\t\t\t\"system.Characteristics.Mind.Stats.Creativity.Initial\": newCreativity,\n\t\t\t\t\t\t\t\"system.Characteristics.Mind.Stats.Manipulation.Initial\": newManipulation,\n\t\t\t\t\t\t\t\"system.Characteristics.Mind.Stats.Perception.Initial\": newPerception,\n\t\t\t\t\t\t\t\"system.Characteristics.Soul.Initial\": newSoul,\n\t\t\t\t\t\t\t\"system.Characteristics.Soul.Stats.Awareness.Initial\": newAwareness,\n\t\t\t\t\t\t\t\"system.Characteristics.Soul.Stats.Consciousness.Initial\": newConsciousness,\n\t\t\t\t\t\t\t\"system.Characteristics.Soul.Stats.Willpower.Initial\": newWillpower,\n\t\t\t\t\t\t});\n\t\t\t\t\t\t//? Set Current Life = Max Life\n\t\t\t\t\t\tlet maxlife = await actor.system.Vital.Life.max;\n\t\t\t\t\t\tawait actor.update({ \"system.Vital.Life.value\": Number(maxlife) });\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t},\n\t\t\tcancel: {\n\t\t\t\tlabel: \"Cancel\",\n\t\t\t},\n\t\t},\n\t\tdefault: \"ok\",\n\t},\n\tdialogOptions\n);\ntoolboxdialog.render(true);",
+  "folder": "x6e1SRPC5BcqOrNc",
+  "ownership": {
+    "default": 0,
+    "3IqRUDDVG8kDd6mW": 3,
+    "TnmSvbMxMd0fQgCE": 3,
+    "MXmDyHQbVNXPVxrV": 3,
+    "gaWoeXg7uJWoAsCP": 3,
+    "E1nZXRNcwWMtogk0": 3,
+    "kF9zOdNs2UiqaJVn": 3
+  },
+  "flags": {
+    "advanced-macros": {
+      "runForSpecificUser": ""
+    },
+    "core": {
+      "sourceId": "Compendium.metanthropes-introductory.narrator-toolkit.Macro.mMzmRMWob4GpnAtv"
+    },
+    "scene-packer": {
+      "sourceId": "Macro.b0kkGVpJ3A3gV1W4",
+      "hash": "2a771d7569c9543de7531ed4465880b76a04963d"
+    }
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.metanthropes-introductory.narrator-toolkit.Macro.mMzmRMWob4GpnAtv",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "metanthropes",
+    "systemVersion": "0.12.0",
+    "createdTime": 1736084730827,
+    "modifiedTime": 1736084730827,
+    "lastModifiedBy": "kF9zOdNs2UiqaJVn"
+  },
+  "_id": "eWUnNMh9eD3WSV5w",
+  "sort": 0,
+  "_key": "!macros!eWUnNMh9eD3WSV5w"
+}
