@@ -1,0 +1,185 @@
+{
+  "name": "Arc",
+  "description": "<p>Roll d10 for a Random Arc</p>",
+  "results": [
+    {
+      "type": "text",
+      "text": "Architect",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_id": "iiPtmcIzrpqNr9cF",
+      "documentId": null,
+      "flags": {},
+      "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_key": "!tables.results!D30zVqrKKsaVo0U0.iiPtmcIzrpqNr9cF"
+    },
+    {
+      "type": "text",
+      "text": "Autocrat",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_id": "sJeU8Fqt78xEjTGs",
+      "documentId": null,
+      "flags": {},
+      "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_key": "!tables.results!D30zVqrKKsaVo0U0.sJeU8Fqt78xEjTGs"
+    },
+    {
+      "type": "text",
+      "text": "Catalyst",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_id": "CkdeRXWKe8MQWsjk",
+      "documentId": null,
+      "flags": {},
+      "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_key": "!tables.results!D30zVqrKKsaVo0U0.CkdeRXWKe8MQWsjk"
+    },
+    {
+      "type": "text",
+      "text": "Harmonizer",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_id": "Pii9itPF1IQQnDgu",
+      "documentId": null,
+      "flags": {},
+      "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_key": "!tables.results!D30zVqrKKsaVo0U0.Pii9itPF1IQQnDgu"
+    },
+    {
+      "type": "text",
+      "text": "Herald",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_id": "NPdlEB2noatDBYG5",
+      "documentId": null,
+      "flags": {},
+      "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_key": "!tables.results!D30zVqrKKsaVo0U0.NPdlEB2noatDBYG5"
+    },
+    {
+      "type": "text",
+      "text": "Investigator",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_id": "BaW3mIKgGpvRWWi1",
+      "documentId": null,
+      "flags": {},
+      "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_key": "!tables.results!D30zVqrKKsaVo0U0.BaW3mIKgGpvRWWi1"
+    },
+    {
+      "type": "text",
+      "text": "Naturalist",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_id": "e9JirHgzwGaOuyvZ",
+      "documentId": null,
+      "flags": {},
+      "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_key": "!tables.results!D30zVqrKKsaVo0U0.e9JirHgzwGaOuyvZ"
+    },
+    {
+      "type": "text",
+      "text": "Predator",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_id": "jFsz34pWn46u9Rdc",
+      "documentId": null,
+      "flags": {},
+      "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_key": "!tables.results!D30zVqrKKsaVo0U0.jFsz34pWn46u9Rdc"
+    },
+    {
+      "type": "text",
+      "text": "Protector",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_id": "YJHSeTPBGBWGejGQ",
+      "documentId": null,
+      "flags": {},
+      "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_key": "!tables.results!D30zVqrKKsaVo0U0.YJHSeTPBGBWGejGQ"
+    },
+    {
+      "type": "text",
+      "text": "Wayfarer",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_id": "KarceBF1ghJY0zZV",
+      "documentId": null,
+      "flags": {},
+      "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_key": "!tables.results!D30zVqrKKsaVo0U0.KarceBF1ghJY0zZV"
+    }
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "img": "systems/metanthropes/assets/logos/metanthropes-logo-rotating.gif",
+  "_id": "D30zVqrKKsaVo0U0",
+  "folder": "rtz0diWbAzufQG7A",
+  "sort": 100000,
+  "ownership": {
+    "default": 2,
+    "OaMMdVPBuFh81lm0": 3,
+    "E1nZXRNcwWMtogk0": 3,
+    "kF9zOdNs2UiqaJVn": 3
+  },
+  "flags": {
+    "core": {
+      "sourceId": "RollTable.D30zVqrKKsaVo0U0"
+    }
+  },
+  "_stats": {
+    "compendiumSource": "RollTable.D30zVqrKKsaVo0U0",
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "metanthropes",
+    "systemVersion": "0.12.0",
+    "createdTime": 1736082815596,
+    "modifiedTime": 1736082815596,
+    "lastModifiedBy": "kF9zOdNs2UiqaJVn"
+  },
+  "formula": "1d10",
+  "_key": "!tables!D30zVqrKKsaVo0U0"
+}

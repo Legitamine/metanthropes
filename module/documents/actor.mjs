@@ -12,6 +12,8 @@ export class MetanthropesActor extends Actor {
 	async _preCreate(data, options, user) {
 		await super._preCreate(data, options, user);
 		let createData = {};
+		//! v13 has a new way of handling this, needs investigation
+		//! workaround is to not set any of these defauls at this step
 		let defaultToken = game.settings.get("core", "defaultToken");
 		//? Configure Display Bars & Name Visibility
 		if (!data.prototypeToken)
@@ -316,8 +318,8 @@ export class MetanthropesActor extends Actor {
 		if (data.type == "Protagonist" || data.type == "Metanthrope" || data.type == "Human") {
 			createData.prototypeToken.height = 1;
 			createData.prototypeToken.width = 1;
-			createData.prototypeToken.texture.scaleX = 0.6;
-			createData.prototypeToken.texture.scaleY = 0.6;
+			createData.prototypeToken.texture.scaleX = 0.5;
+			createData.prototypeToken.texture.scaleY = 0.5;
 		}
 		this.updateSource(createData);
 	}

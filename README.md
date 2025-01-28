@@ -16,7 +16,7 @@ A list of Premium Modules for Foundry VTT is available [on our store](https://me
 
 ## Early Access
 
-Metanthropes is in **Early Access** - although fully functional, it does not fully represent the envisioned scope of the project.
+Metanthropes is in **Early Access** - although functional, it does not fully represent the envisioned scope of the project.
 
 Early Access is considered stable enough to run Sagas (Campaigns), as well as to playtest new features. We offer support to all Narrators [via our Discord!](https://metanthropes.com/discord). 
 
@@ -42,7 +42,7 @@ Metanthropes aims to utilize the latest and best that the amazing Foundry VTT pl
 Metanthropes has a list of 3rd Party Modules, that will be automatically recommended during installation. We suggest you install these Modules, to get the best experience while playing Metanthropes:
 
 -   [Dice So Nice](https://foundryvtt.com/packages/dice-so-nice)
--   [Carousel Combat Tracker](https://foundryvtt.com/packages/combat-tracker-dock) (PR is on the works!)
+-   More officially supported modules will be added to the list, as we continue to develop the System. Please share your suggestions and recommendations with us!
 
 ## Additional Recommended Modules
 
@@ -57,12 +57,12 @@ We love to hear about cool modules that enhance your Metanthropes experience!
 
 Briefly, we are working torwards the following milestones:
 
--   Officially Support the full Ruleset for Metanthropes, including automating the vast majority of the game mechanics. With Metanthropes v1.0 are in the process of restructuring the codebase to support the full ruleset. We expect to have this milestone completed by the end of 2024.
--   Make Combat as immersive as possible, with auto-applying damage/healing, targeting via measured templates and controlling all types of effects to Actors. Although the majority of automations is planned for the v1.0 release, some features have been pushed back to align with the release of Foundry VTT version 13+.
+-   Officially support the complete Rules for Metanthropes, including automating the vast majority of the game mechanics.
+-   Make Combat as immersive as possible, with auto-applying damage/healing, targeting via measured templates and controlling all types of effects to Actors. Although the majority of automations is planned for v1, some features have been pushed back to align with the release of Foundry VTT version 13+.
 -   Fully automate the activation of Metapowers, including unique audio and visual effects.
--   Synchronize your Protagonist details with our website, for off-line viewing and editing between Sessions, without having to open Foundry VTT.
+-   Synchronize your Protagonist details with our website, for off-line viewing and more.
 
-For further info, check out our [planned features and milestones on GitHub](https://github.com/Legitamine/metanthropes/projects?query=is%3Aopen) and also check out the overall [roadmap for Metanthropes on our website](https://www.metanthropes.com/stratagem/projects/1-metanthropes-roadmap/).
+For further info, check out our [planned features and milestones on GitHub](https://github.com/Legitamine/metanthropes/projects?query=is%3Aopen) and also check out the overall [roadmap for Metanthropes on our website](https://www.metanthropes.com/roadmap/).
 
 ## Latest Changes
 
@@ -79,8 +79,8 @@ Shoutout especially to the #system-development channel on the FVTT Discord serve
  - @Zhell (zhell9201) for the overall help, guidance & suggestions.
  - @Mana (manaflower) for the overall help, guidance & CSS wizardry.
  - @mxzf for the overall help & patience & guidance & the amazing website of FVTT resources!
- - @ChaosOS for the overall help & CLI guidance and for the many contributions to the Wiki!
- - @asacolips for the Boilerplate code, without which, I would have been completely lost and probably would have given up very early on!!
+ - @ChaosOS for the overall help & CLI guidance and for the many contributions to the Wiki & boilerplate!
+ - @asacolips for the Boilerplate, without which, I would have been completely lost and probably would have given up very early on!!
 
 Special shoutouts and huge thanks to the lovely community of Metanthropes, for their continued support and feedback:
  - @MB & party for amazing feedback and suggestions, and for being the first to contribute specific code suggestions for the project!

@@ -16,8 +16,8 @@ export async function metaAssignActorToPlayer(actor) {
 	<form>
 		<div>When you assign this Actor to a Player, they get the Owner permission on the Actor document & are able to see & interact with the buttons in the chat.<br></div>
 		<div><br>Only Narrators (Gamemasters) and the assigned Player can see and click the Buttons in the Chat<br><br></div>
-		<div><p>You can add/remove Players from the Settings - User Management<br><br> To manually change the Player's name, please use the 'Narrator Toolbox - Edit Protagonist Details' Macro<br><br></p></div>
-		<div><p>Current Player: ${actor.system.metaowner.value}</p><br></div>
+		<div><p>You can add/remove Players from the Settings - User Management<br><br>To manually change the Player's name, please use the 'Narrator Toolbox - Edit Protagonist Details' Macro<br><br></p></div>
+		<div>Current Player: ${actor.system.metaowner.value}<br><br></div>
 		<div class="form-group">
 			<label>Assign Player</label>
 			<select id="player" name="player">

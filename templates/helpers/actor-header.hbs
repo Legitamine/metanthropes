@@ -42,7 +42,7 @@
 	<div class="layout-container-vitals style-container-vitals">
 		<div>
 			<span>
-				{{#if isNarrator}}<button class="chat-button-anchor undo-last-life-change"
+				{{#if (and isNarrator betaTesting)}}<button class="chat-button-anchor undo-last-life-change"
 						data-tooltip="Undo last Life change">↶</button>{{/if}}
 				<span class="style-labels-text" data-tooltip="METANTHROPES.ACTOR.BASE.life.value.hint">
 					<span>{{localize "METANTHROPES.ACTOR.BASE.life.emoji"}}</span><span

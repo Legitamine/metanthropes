@@ -1,12 +1,12 @@
 {
 	"id": "metanthropes",
-	"title": "Metanthropes - Early Access",
-	"description": "Metanthropes System for Foundry VTT by Legitamine Games - Early Access",
+	"title": "Metanthropes",
+	"description": "Metanthropes TTRPG System for Foundry VTT by Legitamine Games",
 	"version": "0.12.0",
 	"compatibility": {
 		"minimum": "12",
 		"verified": "12.331",
-		"maximum": "13"
+		"maximum": "12"
 	},
 	"relationships": {
 		"requires": [
@@ -16,7 +16,7 @@
 				"manifest": "https://gitlab.com/riccisi/foundryvtt-dice-so-nice/-/raw/master/module/module.json",
 				"compatibility": {
 					"minimum": "5.1.2",
-					"verified": "5.1.2"
+					"verified": "5.1.4"
 				}
 			}
 		]
@@ -60,18 +60,6 @@
 	"styles": ["styles/metanthropes.css"],
 	"packs": [
 		{
-			"name": "demo",
-			"label": "Demo",
-			"banner": "systems/metanthropes/assets/cover/compendium-header.webp",
-			"path": "packs/demo",
-			"type": "Adventure",
-			"system": "metanthropes",
-			"ownership": {
-				"PLAYER": "NONE",
-				"ASSISTANT": "OWNER"
-			}
-		},
-		{
 			"name": "system",
 			"label": "System",
 			"banner": "systems/metanthropes/assets/cover/compendium-header.webp",
@@ -84,23 +72,35 @@
 			}
 		},
 		{
-			"name": "install-system",
-			"label": "Install System",
-			"banner": "systems/metanthropes/assets/cover/compendium-header.webp",
-			"path": "packs/install-system",
-			"type": "JournalEntry",
-			"system": "metanthropes",
-			"ownership": {
-				"PLAYER": "NONE",
-				"ASSISTANT": "OWNER"
-			}
-		},
-		{
 			"name": "welcome",
 			"label": "Welcome",
 			"banner": "systems/metanthropes/assets/cover/compendium-header.webp",
 			"path": "packs/welcome",
 			"type": "JournalEntry",
+			"system": "metanthropes",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
+			"name": "rolltables",
+			"label": "Rollable Tables",
+			"banner": "systems/metanthropes/assets/cover/compendium-header.webp",
+			"path": "packs/rolltables",
+			"type": "RollTable",
+			"system": "metanthropes",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
+			"name": "toolkit",
+			"label": "Narrator Toolkit",
+			"banner": "systems/metanthropes/assets/cover/compendium-header.webp",
+			"path": "packs/toolkit",
+			"type": "Macro",
 			"system": "metanthropes",
 			"ownership": {
 				"PLAYER": "OBSERVER",
@@ -119,16 +119,22 @@
 					"name": "Installation",
 					"sorting": "a",
 					"color": "#7d0f81",
-					"packs": ["install-system"],
-					"folders": [
-						{
-							"name": "Content",
-							"sorting": "a",
-							"color": "#7d0f81",
-							"packs": ["demo", "system"],
-							"folders": []
-						}
-					]
+					"packs": ["system"],
+					"folders": []
+				},
+				{
+					"name": "Rollable Tables",
+					"sorting": "a",
+					"color": "#7d0f81",
+					"packs": ["rolltables"],
+					"folders": []
+				},
+				{
+					"name": "Macros",
+					"sorting": "a",
+					"color": "#7d0f81",
+					"packs": ["toolkit"],
+					"folders": []
 				}
 			]
 		}
@@ -149,12 +155,5 @@
 		"distance": 2,
 		"units": "m",
 		"diagonals": 0
-	},
-	"documentTypes": {
-		"Actor": {
-			"testv12": {
-				"htmlFields": ["physical.description"]
-			}
-		}
 	}
 }
