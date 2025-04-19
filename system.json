@@ -2,7 +2,7 @@
 	"id": "metanthropes",
 	"title": "Metanthropes",
 	"description": "Metanthropes TTRPG System for Foundry VTT by Legitamine Games",
-	"version": "0.12.2",
+	"version": "0.12.3",
 	"compatibility": {
 		"minimum": "12",
 		"verified": "12.331",
@@ -139,12 +139,12 @@
 			]
 		}
 	],
-	"changelog": "https://github.com/legitamine/metanthropes/blob/main/changelog.md",
+	"changelog": "https://github.com/Legitamine/metanthropes/blob/main/CHANGELOG.md",
 	"manifest": "https://github.com/legitamine/metanthropes/releases/latest/download/system.json",
 	"url": "https://github.com/legitamine/metanthropes",
-	"license": "https://github.com/legitamine/metanthropes/blob/main/LICENSE.txt",
-	"readme": "https://github.com/legitamine/metanthropes/blob/main/readme.md",
-	"bugs": "https://gitub.com/legitamine/metanthropes/issues",
+	"license": "https://github.com/legitamine/metanthropes/blob/main/LICENSE",
+	"readme": "https://github.com/Legitamine/metanthropes/blob/main/README.md",
+	"bugs": "https://github.com/Legitamine/metanthropes/issues",
 	"background": "systems/metanthropes/assets/cover/cover.jpg",
 	"socket": true,
 	"primaryTokenAttribute": "Vital.Destiny",

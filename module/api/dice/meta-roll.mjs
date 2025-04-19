@@ -239,13 +239,13 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 		const isBetaTesting = game.settings.get("metanthropes", "metaBetaTesting");
 		if (action === "StatRoll") {
 			dialogTitle = `${actor.name}'s ${stat}`;
-			dialogButtonLabel = `Roll 📊 ${stat}`;
+			dialogButtonLabel = `Roll <i class="fa-duotone fa-solid fa-chart-simple"></i> ${stat}`;
 		} else if (action === "Metapower") {
 			dialogTitle = `${actor.name}'s Metapower`;
 			dialogButtonLabel = `Activate Ⓜ️ ${itemName}`;
 		} else if (action === "Possession") {
 			dialogTitle = `${actor.name}'s Possession`;
-			dialogButtonLabel = `Use 🛠️ ${itemName}`;
+			dialogButtonLabel = `Use <i class="fa-duotone fa-solid fa-backpack"></i> ${itemName}`;
 		}
 		//? Create the Dialog content
 		let dialogContent = `<div class="metanthropes layout-metaroll-dialog style-metaroll-dialog">`;

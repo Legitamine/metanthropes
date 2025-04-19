@@ -73,20 +73,19 @@ form button:focus {
 }
 
 section {
-  font-family: "nasalization", sans-serif;
   margin: 1px;
   padding: 1px;
 }
 
 main {
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   margin: 1px;
   padding: 1px;
   box-sizing: border-box;
 }
 
 body {
-  font-family: "montserrat", sans-serif;
+  font-family: "roboto", sans-serif;
   background-image: url("../assets/artwork/ui/canvas/bg-canvas.webp");
   background-size: auto auto;
   background-attachment: local;
@@ -110,7 +109,7 @@ a:hover {
 }
 
 .dialog .dialog-buttons button {
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   background: none;
   background-image: url("../assets/artwork/ui/buttons/button.webp");
   background-size: cover;
@@ -151,7 +150,7 @@ dialog::backdrop {
 }
 
 button {
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   justify-self: center;
   align-self: center;
   justify-items: center;
@@ -200,27 +199,27 @@ button::before {
 }
 
 select {
-  font-family: "montserrat", sans-serif;
+  font-family: "roboto", sans-serif;
   border: 1px dotted #7d0f81;
   border-radius: 15px;
 }
 
 option {
   background-color: rgba(129, 129, 129, 0.3725490196);
-  font-family: "montserrat", sans-serif;
+  font-family: "roboto", sans-serif;
   border: 1px dotted #7d0f81;
   border-radius: 15px;
 }
 
 p {
-  font-family: "montserrat", sans-serif;
+  font-family: "roboto", sans-serif;
   margin: 1px;
   padding: 1px;
   text-align: left;
 }
 
 h3 {
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   text-align: center;
   color: #fff;
   text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
@@ -244,19 +243,16 @@ h3 {
 }
 
 .window-app {
-  font-family: "nasalization", sans-serif;
   margin: 1px;
   padding: 1px;
 }
 
 .window-content {
-  font-family: "nasalization", sans-serif;
   padding: 3px;
   margin: 3px;
 }
 
 .dialog-content {
-  font-family: "nasalization", sans-serif;
   padding: 3px;
   margin: 3px;
 }
@@ -311,7 +307,7 @@ h3 {
 .chat-message .message-header .flavor-text,
 .chat-message .message-header .whisper-to,
 .chat-message .message-content {
-  font-family: "montserrat", sans-serif;
+  font-family: "roboto", sans-serif;
   font-size: 14px;
   font-weight: 500;
   color: #000;
@@ -868,7 +864,7 @@ h3 {
   padding: 1px;
   margin: 1px;
   overflow-y: auto;
-  font-family: "montserrat", sans-serif;
+  font-family: "roboto", sans-serif;
   font-size: var(--font-size-14);
   font-weight: 500;
   color: #000;
@@ -1000,7 +996,7 @@ h3 {
   align-items: center;
 }
 .metanthropes h3 {
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   text-align: center;
   color: #fff;
   background-color: rgba(129, 129, 129, 0.3725490196);
@@ -1152,7 +1148,7 @@ h3 {
   border-radius: 15px;
 }
 .metanthropes .style-container-nav {
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   text-transform: uppercase;
   padding: 3px;
   margin: 3px;
@@ -1194,7 +1190,7 @@ h3 {
 }
 .metanthropes .style-labels-number {
   opacity: 1;
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   font-size: 1rem;
   color: #000;
   padding: 1px;
@@ -1202,7 +1198,7 @@ h3 {
 }
 .metanthropes .style-labels-text {
   opacity: 1;
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   font-size: 1rem;
   color: #000;
   justify-content: center;
@@ -1214,7 +1210,7 @@ h3 {
 }
 .metanthropes .style-actorinfo-tier1 {
   opacity: 1;
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   font-size: 1.6rem;
   color: #000;
   justify-content: center;
@@ -1226,7 +1222,7 @@ h3 {
 }
 .metanthropes .style-actorinfo-tier2 {
   opacity: 0.8;
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   font-size: 1rem;
   color: #000;
   justify-content: center;
@@ -1238,7 +1234,7 @@ h3 {
 }
 .metanthropes .style-actorinfo-tier3 {
   opacity: 0.5;
-  font-family: "montserrat", sans-serif;
+  font-family: "roboto", sans-serif;
   font-size: 0.6rem;
   color: #000;
   justify-content: center;
@@ -1250,7 +1246,7 @@ h3 {
 }
 .metanthropes .style-labels-secondary {
   opacity: 1;
-  font-family: "montserrat", sans-serif;
+  font-family: "roboto", sans-serif;
   font-size: 1rem;
   color: #000;
   justify-content: center;
@@ -1262,7 +1258,7 @@ h3 {
 }
 .metanthropes .style-cs-chars-label {
   opacity: 1;
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   font-size: 1.6rem;
   color: #000;
   text-transform: uppercase;
@@ -1275,7 +1271,7 @@ h3 {
 }
 .metanthropes .style-cs-stats-label {
   opacity: 1;
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   font-size: 1.6rem;
   color: #000;
   font-weight: bold;
@@ -1289,7 +1285,7 @@ h3 {
 }
 .metanthropes .style-cs-labels {
   opacity: 1;
-  font-family: "montserrat", sans-serif;
+  font-family: "roboto", sans-serif;
   font-size: 1rem;
   color: #000;
   justify-content: center;
@@ -1301,7 +1297,7 @@ h3 {
 }
 .metanthropes .style-cs-chars-value {
   opacity: 1;
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   font-size: 1.6rem;
   color: #000;
   justify-content: center;
@@ -1313,7 +1309,7 @@ h3 {
 }
 .metanthropes .style-cs-stats-value {
   opacity: 1;
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   font-size: 2.4rem;
   color: #000;
   font-weight: bold;
@@ -1326,7 +1322,7 @@ h3 {
 }
 .metanthropes .style-cs-values {
   opacity: 1;
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   font-size: 0.8rem;
   color: #000;
   justify-content: center;
@@ -1338,7 +1334,7 @@ h3 {
 }
 .metanthropes .style-cs-buffs {
   opacity: 1;
-  font-family: "montserrat", sans-serif;
+  font-family: "roboto", sans-serif;
   font-size: 0.8rem;
   color: #267114;
   justify-content: center;
@@ -1350,7 +1346,7 @@ h3 {
 }
 .metanthropes .style-cs-conditions {
   opacity: 1;
-  font-family: "montserrat", sans-serif;
+  font-family: "roboto", sans-serif;
   font-size: 0.8rem;
   color: #ab1616;
   justify-content: center;
@@ -1362,7 +1358,7 @@ h3 {
 }
 .metanthropes .style-cs-header-positive {
   opacity: 1;
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   color: #267114;
   justify-content: center;
   justify-self: center;
@@ -1373,7 +1369,7 @@ h3 {
 }
 .metanthropes .style-cs-header-negative {
   opacity: 1;
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   color: #ab1616;
   justify-content: center;
   justify-self: center;
@@ -1384,7 +1380,7 @@ h3 {
 }
 .metanthropes .style-cs-positive {
   opacity: 1;
-  font-family: "montserrat", sans-serif;
+  font-family: "roboto", sans-serif;
   color: #267114;
   justify-content: center;
   justify-self: center;
@@ -1395,7 +1391,7 @@ h3 {
 }
 .metanthropes .style-cs-negative {
   opacity: 1;
-  font-family: "montserrat", sans-serif;
+  font-family: "roboto", sans-serif;
   color: #ab1616;
   justify-content: center;
   justify-self: center;
@@ -1411,7 +1407,7 @@ h3 {
 }
 .metanthropes .style-cs-rolls {
   opacity: 1;
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   font-size: 2.4rem;
   color: #000;
   font-weight: bold;
@@ -1430,7 +1426,7 @@ h3 {
 }
 .metanthropes .style-cs-rolls-single-column {
   opacity: 1;
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   font-size: 2rem;
   color: #000;
   font-weight: bold;
@@ -1449,7 +1445,7 @@ h3 {
 }
 .metanthropes .style-mp-rolls {
   opacity: 1;
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   font-size: 14px;
   color: #000;
   justify-items: center;
@@ -1465,7 +1461,7 @@ h3 {
 }
 .metanthropes .style-pos-rolls {
   opacity: 1;
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   font-size: 14px;
   color: #000;
   justify-items: center;
@@ -1486,7 +1482,7 @@ h3 {
 }
 .metanthropes .style-editor {
   opacity: 1;
-  font-family: "montserrat", sans-serif;
+  font-family: "roboto", sans-serif;
   font-size: 1rem;
   color: #000;
   padding: 3px;
@@ -1584,7 +1580,7 @@ h3 {
   display: flex;
 }
 .metanthropes .items-list {
-  font-family: "montserrat", sans-serif;
+  font-family: "roboto", sans-serif;
   list-style: none;
   margin: 1px;
   padding: 1px;
@@ -1747,7 +1743,7 @@ h3 {
   text-shadow: 0 0 10px #7d0f81;
 }
 .metanthropes .item-form {
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
 }
 .metanthropes .sheet-header {
   flex: 0 auto;
@@ -1799,7 +1795,7 @@ h3 {
   overflow-y: auto;
 }
 .metanthropes .resource {
-  font-family: "montserrat", sans-serif;
+  font-family: "roboto", sans-serif;
   font-size: 0.9rem;
   color: #000;
   justify-content: center;
@@ -1810,7 +1806,7 @@ h3 {
   margin: 1px;
 }
 .metanthropes .resource-label {
-  font-family: "nasalization", sans-serif;
+  font-family: "Metanthropes", sans-serif;
   font-size: 0.9rem;
   color: #000;
   width: 100%;

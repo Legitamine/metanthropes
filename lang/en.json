@@ -29,14 +29,14 @@
 				},
 				"life": {
 					"label": "Life",
-					"emoji": "❤️",
+					"emoji": "<i class=\"fa-duotone fa-solid fa-heart\"></i>",
 					"value": {
 						"label": "Current",
 						"hint": "Life represents a Character's overall health, vitality, and will to live."
 					},
 					"starting": {
 						"label": "Starting",
-						"hint": "Starting ❤️ Life"
+						"hint": "Starting <i class=\"fa-duotone fa-solid fa-heart\"></i> Life"
 					},
 					"max": {
 						"label": "Maximum",
