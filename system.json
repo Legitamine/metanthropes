@@ -4,12 +4,12 @@
 	"description": "Metanthropes TTRPG System for Foundry VTT by Legitamine Games",
 	"version": "0.13.0",
 	"compatibility": {
-		"minimum": "13",
+		"minimum": "12",
 		"verified": "13.340",
 		"maximum": "13"
 	},
 	"relationships": {
-		"requires": [
+		"recommends": [
 			{
 				"id": "dice-so-nice",
 				"type": "module",

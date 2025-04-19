@@ -401,8 +401,9 @@ export async function metaEvaluate(
 		}
 		const updatedRoll = await roll.toJSON();
 		const renderedRoll = await roll.render();
-		//? Call Dice So Nice to show the roll, assumes the module is active
-		game.dice3d.showForRoll(roll, game.user, true, null, false, messageId);
+		if (game.dice3d) {
+			game.dice3d.showForRoll(roll, game.user, true, null, false, messageId);
+		}
 		chatMessage.update({
 			flavor: message,
 			rolls: updatedRoll,
