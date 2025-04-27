@@ -8,6 +8,12 @@ jobs:
         name: Metanthropes Automated Builder
         runs-on: ubuntu-latest
         steps:
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+            - name: Install SCSS Compiler
+              run: npm install -g sass
             - name: Checkout the master branch
               uses: actions/checkout@v3
             - name: Get Product Name
@@ -55,6 +61,11 @@ jobs:
                   echo "Contents of Data directory post packaging"
                   dir /home/runner/work/${{steps.id.outputs.prop}}/Data
                   echo "Finished packaging Compendiums"
+            - name: Compile SCSS to CSS
+              run: |
+                  sass scss/metantrhopes.scss styles/metanthropes.css
+                  sass scss/themes/theme-light.scss styles/metanthropes-light.css
+                  sass scss/themes/theme-dark.scss styles/metanthropes-dark.css
             - name: Zip the compiled files
               uses: thedoctor0/zip-release@0.7.1
               with:

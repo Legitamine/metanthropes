@@ -1,26 +1,38 @@
-// Add custom fonts by visiting and search https://fonts.google.com
-// The below imports Nasalization from Adobe Fonts.
+//* Fonts
+//? Nasalization
 @import url("https://use.typekit.net/gld0tkk.css");
-// Import utilities.
-@import "utils/typography";
+//? Roboto
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+//* Utilities
 @import "utils/colors";
+@import "utils/typography";
 @import "utils/mixins";
 @import "utils/variables";
-//* Global styles */
-@import "global/window";
-@import "global/grid";
-@import "global/flex";
-//* Styles limited to metanthropes sheets */
-.metanthropes {
-	@import "components/responsive";
-	@import "components/layouts";
-	@import "components/styles";
-	@import "components/items";
-	@import "components/effects";
-	@import "components/forms";
-	//!todo!
-	z-index: 3;
-	//changes to the selection elements default color
-	accent-color: $c-purple;
-	caret-color: $c-purple;
+
+//* Global Styles
+@layer system {
+	@import "global/window";
+	@import "global/apps";
+	@import "global/buttons";
+	@import "global/chat";
+	@import "global/dice";
+	@import "global/journal";
+	@import "global/sheet";
+}
+//* Metanthropes-Specific Components
+@layer system {
+	.metanthropes {
+		@import "components/responsive";
+		@import "components/layouts";
+		@import "components/styles";
+		@import "components/items";
+		@import "components/effects";
+		@import "components/forms";
+		//!todo!
+		z-index: 3;
+		//changes to the selection elements default color
+		accent-color: $c-purple;
+		caret-color: $c-purple;
+	}
 }

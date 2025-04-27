@@ -58,6 +58,22 @@
 	],
 	"esmodules": ["greensock/esm/all.js", "module/metanthropes.mjs"],
 	"styles": ["styles/metanthropes.css"],
+	"themes": [
+		{
+			"id": "metanthropes-light",
+			"title": "Metanthropes Light Theme",
+			"type": "theme",
+			"styles": ["styles/metanthropes-light.css"],
+			"description": "A light UI theme for Metanthropes"
+		},
+		{
+			"id": "metanthropes-dark",
+			"title": "Metanthropes Dark Theme",
+			"type": "theme",
+			"styles": ["styles/metanthropes-dark.css"],
+			"description": "A dark UI theme for Metanthropes"
+		}
+	],
 	"packs": [
 		{
 			"name": "system",

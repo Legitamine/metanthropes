@@ -1,0 +1,20 @@
+{
+	"name": "metanthropes-devtools",
+	"version": "1.0.0",
+	"description": "Development tools for Metanthropes System for Foundry VTT",
+	"scripts": {
+		"dev:systemcss": "sass --watch scss/metanthropes.scss styles/metanthropes.css",
+		"dev:themescss": "npm-run-all --parallel dev:light dev:dark",
+		"dev:light": "sass --watch scss/themes/theme-light.scss styles/metanthropes-light.css",
+		"dev:dark": "sass --watch scss/themes/theme-dark.scss styles/metanthropes-dark.css",
+		"dev:css": "npm-run-all --parallel dev:systemcss dev:themescss",
+		"dev:all": "npm run dev:css",
+		"build:scss": "sass scss/metanthropes.scss styles/metanthropes.css",
+		"build:themes": "sass scss/themes/theme-light.scss styles/metanthropes-light.css && sass scss/themes/theme-dark.scss styles/metanthropes-dark.css",
+		"build:all": "npm run build:scss && npm run build:themes"
+	},
+	"devDependencies": {
+		"npm-run-all": "^4.1.5",
+		"sass": "^1.69.5"
+	}
+}

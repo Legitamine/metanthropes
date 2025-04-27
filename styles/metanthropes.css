@@ -1,1824 +1,1466 @@
 @charset "UTF-8";
 @import url("https://use.typekit.net/gld0tkk.css");
-.sheet.journal-entry .journal-entry-content {
-  position: relative;
-  background: none;
-  background-image: url("../assets/artwork/ui/window/background.webp");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-origin: border-box;
-  background-clip: border-box;
-}
-
-form button {
-  background-image: url("../assets/artwork/ui/buttons/button.webp");
-  text-shadow: 1px 1px 1px #7d0f81, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
-  border: 2px groove #7d0f81;
-  border-radius: 15px;
-  color: #fff;
-  opacity: 0.8;
-}
-form button.active {
-  border: 2px groove #fff;
-  box-shadow: 0 0 5px #7d0f81;
-  opacity: 1;
-}
-form button:hover {
-  outline: none;
-  border: 2px groove #fff;
-  box-shadow: 0 0 5px #7d0f81;
-  opacity: 1;
-}
-form button:focus {
-  outline: none;
-  box-shadow: 0 0 5px #7d0f81;
-  opacity: 1;
-}
-
-.combat-sidebar li.combatant .roll {
-  display: block;
-  width: 40px;
-  height: var(--sidebar-item-height);
-  background: url("../assets/artwork/ui/dice/d100roll-white.webp") no-repeat 50% 50%;
-  background-size: 42px;
-  margin: 0 0.5em;
-}
-
-.combat-sidebar li.combatant .roll:hover {
-  background-image: url("../assets/artwork/ui/dice/d100roll-white-selected.webp");
-}
-
-.metanthropes input[type=text] {
-  min-width: 8ch;
-  max-width: 22ch;
-  margin: 1px;
-  padding: 3px 3px 3px 6px;
-  border: 1px dashed #7d0f81;
-  border-radius: 15px;
-  justify-content: center;
-  align-items: center;
-}
-
-.metanthropes input[type=number] {
-  min-width: 3ch;
-  max-width: 5ch;
-  margin: 1px;
-  padding: 3px 3px 3px 6px;
-  border: 1px dashed #7d0f81;
-  border-radius: 15px;
-  justify-content: center;
-  align-items: center;
-}
-
-section {
-  font-family: "nasalization", sans-serif;
-  margin: 1px;
-  padding: 1px;
-}
-
-main {
-  font-family: "nasalization", sans-serif;
-  margin: 1px;
-  padding: 1px;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "montserrat", sans-serif;
-  background-image: url("../assets/artwork/ui/canvas/bg-canvas.webp");
-  background-size: auto auto;
-  background-attachment: local;
-  background-repeat: repeat;
-  background-origin: border-box;
-  background-clip: border-box;
-}
-
-header {
-  margin: 1px;
-  padding: 1px;
-}
-
-footer {
-  margin: 1px;
-  padding: 1px;
-}
-
-a:hover {
-  text-shadow: 0 0 8px #7d0f81;
-}
-
-.dialog .dialog-buttons button {
-  font-family: "nasalization", sans-serif;
-  background: none;
-  background-image: url("../assets/artwork/ui/buttons/button.webp");
-  background-size: cover;
-  text-shadow: 1px 1px 1px #7d0f81, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
-  border: 2px groove #7d0f81;
-  border-radius: 15px;
-  color: #fff;
-  opacity: 0.8;
-}
-.dialog .dialog-buttons button.active {
-  border: 2px groove #fff;
-  opacity: 1;
-}
-.dialog .dialog-buttons button:hover {
-  outline: none;
-  border: 2px groove #fff;
-  box-shadow: 0 0 5px #7d0f81;
-  opacity: 1;
-}
-.dialog .dialog-buttons button:focus {
-  outline: none;
-  box-shadow: 0 0 5px #7d0f81;
-  opacity: 1;
-}
-.dialog .dialog-buttons button.default {
-  outline: none;
-  background: none;
-  background-image: url("../assets/artwork/ui/buttons/button.webp");
-  border: 2px groove #fff;
-  box-shadow: 0 0 5px #7d0f81;
-  opacity: 1;
-}
-
-dialog::backdrop {
-  background: rgba(255, 255, 255, 0.3333333333);
-  -webkit-backdrop-filter: blur(4px);
-          backdrop-filter: blur(4px);
-}
-
-button {
-  font-family: "nasalization", sans-serif;
-  justify-self: center;
-  align-self: center;
-  justify-items: center;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  background-image: url("../assets/artwork/ui/buttons/button.webp");
-  background-size: cover;
-  text-shadow: 1px 1px 1px #7d0f81, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
-  border: 2px groove #7d0f81;
-  border-radius: 15px;
-  color: #fff;
-  opacity: 0.8;
-}
-button.chat-button-anchor {
-  width: auto;
-}
-button.active {
-  border: 2px groove #fff;
-  box-shadow: 0 0 5px #7d0f81;
-  opacity: 1;
-}
-button:hover {
-  outline: none;
-  border: 2px groove #fff;
-  box-shadow: 0 0 5px #7d0f81;
-  opacity: 1;
-}
-button:focus {
-  outline: none;
-  box-shadow: 0 0 5px #7d0f81;
-  opacity: 1;
-}
-
-button::before {
-  font: var(--fa-font-solid);
-  display: inline-block;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  justify-self: center;
-  align-self: center;
-  justify-items: center;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-}
-
-select {
-  font-family: "montserrat", sans-serif;
-  border: 1px dotted #7d0f81;
-  border-radius: 15px;
-}
-
-option {
-  background-color: rgba(129, 129, 129, 0.3725490196);
-  font-family: "montserrat", sans-serif;
-  border: 1px dotted #7d0f81;
-  border-radius: 15px;
-}
-
-p {
-  font-family: "montserrat", sans-serif;
-  margin: 1px;
-  padding: 1px;
-  text-align: left;
-}
-
-h3 {
-  font-family: "nasalization", sans-serif;
-  text-align: center;
-  color: #fff;
-  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
-}
-
-.chat-message .table-draw .table-results .table-result img.result-image {
-  width: 100%;
-  max-height: 150px;
-  height: auto;
-  -o-object-fit: contain;
-     object-fit: contain;
-  border: none;
-  align-self: center;
-  text-align: center;
-  margin: 1px;
-  padding: 1px;
-}
-
-.chat-message .table-draw .table-results .table-result {
-  flex-direction: column;
-}
-
-.window-app {
-  font-family: "nasalization", sans-serif;
-  margin: 1px;
-  padding: 1px;
-}
-
-.window-content {
-  font-family: "nasalization", sans-serif;
-  padding: 3px;
-  margin: 3px;
-}
-
-.dialog-content {
-  font-family: "nasalization", sans-serif;
-  padding: 3px;
-  margin: 3px;
-}
-
-.window-app .window-content {
-  position: relative;
-  background-image: url("../assets/artwork/ui/window/background.webp");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-origin: border-box;
-  background-clip: border-box;
-  z-index: 1;
-}
-.window-app .window-content::before {
-  pointer-events: none;
-  content: "";
-  display: inline-block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 55%;
-  height: 55%;
-  background-image: url("../assets/artwork/ui/window/logo.webp");
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-origin: padding-box;
-  background-clip: content-box;
-  z-index: 2;
-  filter: blur(1px);
-  opacity: 0.5;
-}
-
-.chat-message,
-.chat-message.whisper,
-.chat-message.blind {
-  background-image: url("../assets/artwork/ui/chat/chat-results.webp");
-  background-size: cover;
-}
-
-#chat-form textarea {
-  background-image: url("../assets/artwork/ui/chat/chat-box.webp");
-}
-
-.directory .directory-header .header-search input {
-  background-color: rgba(129, 129, 129, 0.3725490196);
-}
-
-.chat-message .message-header .flavor-text,
-.chat-message .message-header .whisper-to,
-.chat-message .message-content {
-  font-family: "montserrat", sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #000;
-}
-
-.fa-solid.fa-dice-d20:before,
-.fas.fa-dice-d20:before {
-  content: "\f6cd";
-}
-
-.far.fa-dice-d20:before {
-  content: "\f6cd";
-}
-
-.filepicker .tiles-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  width: 508px;
-}
-
-.filepicker .tiles-list li {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 163px;
-  height: 100px;
-}
-
-.filepicker .tiles-list li img {
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
-  z-index: 3;
-}
-.filepicker .tiles-list li img:hover {
-  transform: scale(1.6) translateY(10px);
-  z-index: 4;
-}
-
-.window-app .window-resizable-handle {
-  z-index: 4;
-}
-
-.sheet.journal-entry .journal-entry-content {
-  z-index: 3;
-}
-
-.image-popout figure {
-  z-index: 3;
-}
-
-.grid,
-.grid-2col {
-  display: grid;
-  grid-column: span 2/span 2;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin: 10px 0;
-  padding: 0;
-}
-
-.grid-3col {
-  grid-column: span 3/span 3;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.grid-4col {
-  grid-column: span 4/span 4;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.grid-5col {
-  grid-column: span 5/span 5;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
-
-.grid-6col {
-  grid-column: span 6/span 6;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-}
-
-.grid-7col {
-  grid-column: span 7/span 7;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-}
-
-.grid-8col {
-  grid-column: span 8/span 8;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
-}
-
-.grid-9col {
-  grid-column: span 9/span 9;
-  grid-template-columns: repeat(9, minmax(0, 1fr));
-}
-
-.grid-10col {
-  grid-column: span 10/span 10;
-  grid-template-columns: repeat(10, minmax(0, 1fr));
-}
-
-.grid-11col {
-  grid-column: span 11/span 11;
-  grid-template-columns: repeat(11, minmax(0, 1fr));
-}
-
-.grid-12col {
-  grid-column: span 12/span 12;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-}
-
-.grid-start-2 {
-  grid-column-start: 2;
-}
-
-.grid-start-3 {
-  grid-column-start: 3;
-}
-
-.grid-start-4 {
-  grid-column-start: 4;
-}
-
-.grid-start-5 {
-  grid-column-start: 5;
-}
-
-.grid-start-6 {
-  grid-column-start: 6;
-}
-
-.grid-start-7 {
-  grid-column-start: 7;
-}
-
-.grid-start-8 {
-  grid-column-start: 8;
-}
-
-.grid-start-9 {
-  grid-column-start: 9;
-}
-
-.grid-start-10 {
-  grid-column-start: 10;
-}
-
-.grid-start-11 {
-  grid-column-start: 11;
-}
-
-.grid-start-12 {
-  grid-column-start: 12;
-}
-
-.grid-span-2 {
-  grid-column-end: span 2;
-}
-
-.grid-span-3 {
-  grid-column-end: span 3;
-}
-
-.grid-span-4 {
-  grid-column-end: span 4;
-}
-
-.grid-span-5 {
-  grid-column-end: span 5;
-}
-
-.grid-span-6 {
-  grid-column-end: span 6;
-}
-
-.grid-span-7 {
-  grid-column-end: span 7;
-}
-
-.grid-span-8 {
-  grid-column-end: span 8;
-}
-
-.grid-span-9 {
-  grid-column-end: span 9;
-}
-
-.grid-span-10 {
-  grid-column-end: span 10;
-}
-
-.grid-span-11 {
-  grid-column-end: span 11;
-}
-
-.grid-span-12 {
-  grid-column-end: span 12;
-}
-
-.flex-group-center,
-.flex-group-left,
-.flex-group-right {
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.flex-group-left {
-  justify-content: flex-start;
-  text-align: left;
-}
-
-.flex-group-right {
-  justify-content: flex-end;
-  text-align: right;
-}
-
-.flexshrink {
-  flex: 0;
-}
-
-.flex-between {
-  justify-content: space-between;
-}
-
-.flexlarge {
-  flex: 2;
-}
-
-.align-left {
-  justify-content: flex-start;
-  text-align: left;
-}
-
-.align-right {
-  justify-content: flex-end;
-  text-align: right;
-}
-
-.align-center {
-  justify-content: center;
-  text-align: center;
-}
-
-.metanthropes {
-  z-index: 3;
-  accent-color: #7d0f81;
-  caret-color: #7d0f81;
-}
-.metanthropes .chat-message .message-header .flavor-text .metanthropes .hide-button .meta-ui-hidden {
-  display: none !important;
-}
-.metanthropes .hide-button .meta-ui-hidden {
-  display: none !important;
-}
-.metanthropes .meta-ui-hidden {
-  display: none !important;
-}
-.metanthropes .meta-ui-medium-font {
-  font-size: 0.9rem !important;
-}
-.metanthropes .meta-ui-small-font {
-  font-size: 0.55rem !important;
-}
-.metanthropes .meta-ui-single-column-font {
-  font-size: 0.8rem !important;
-}
-.metanthropes .meta-ui-obscure {
-  opacity: 0.5 !important;
-}
-.metanthropes .meta-ui-obscure:hover {
-  opacity: 1 !important;
-}
-.metanthropes .layout-container-grid3x4 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  -moz-column-gap: 6px;
-       column-gap: 6px;
-  row-gap: 3px;
-  padding: 1px;
-  margin: 1px;
-  overflow: hidden;
-}
-.metanthropes .layout-container-grid3x4-cs {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  -moz-column-gap: 3px;
-       column-gap: 3px;
-  row-gap: 3px;
-  padding: 1px;
-  margin: 1px;
-  overflow: hidden;
-}
-.metanthropes .layout-container-outer-charstats {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  -moz-column-gap: 3px;
-       column-gap: 3px;
-  row-gap: 3px;
-  padding: 0px;
-  margin: 0px;
-  overflow: hidden;
-}
-.metanthropes .layout-container-outer-charstats-minimum {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  -moz-column-gap: 3px;
-       column-gap: 3px;
-  row-gap: 3px;
-  padding: 0px;
-  margin: 0px;
-  overflow: hidden;
-}
-.metanthropes .layout-container-outer-charstats-single-column {
-  display: grid;
-  padding: 0px;
-  margin: 0px;
-  overflow: hidden;
-}
-.metanthropes .layout-container-outer-charstatsprogression {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  -moz-column-gap: 3px;
-       column-gap: 3px;
-  row-gap: 3px;
-  padding: 0px;
-  margin: 0px;
-  overflow: hidden;
-}
-.metanthropes .layout-container-grid3x2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 3fr 1fr;
-  -moz-column-gap: 6px;
-       column-gap: 6px;
-  row-gap: 3px;
-  padding: 1px;
-  margin: 1px;
-  overflow: hidden;
-}
-.metanthropes .layout-container-grid4x1 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  -moz-column-gap: 1px;
-       column-gap: 1px;
-  padding: 1px;
-  margin: 1px;
-  overflow: hidden;
-}
-.metanthropes .layout-container-grid2x2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  -moz-column-gap: 3px;
-       column-gap: 3px;
-  row-gap: 3px;
-  padding: 1px;
-  margin: 1px;
-  overflow: hidden;
-  overflow-wrap: break-word;
-}
-.metanthropes .layout-container-grid3x1-cs {
-  display: grid;
-  grid-template-columns: 2.4fr 1.6fr 2.8fr;
-  -moz-column-gap: 1px;
-       column-gap: 1px;
-  padding: 0px;
-  margin: 0px;
-  overflow: hidden;
-  overflow-wrap: break-word;
-}
-.metanthropes .layout-container-grid3x1 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  -moz-column-gap: 3px;
-       column-gap: 3px;
-  padding: 0px;
-  margin: 3px;
-  overflow: hidden;
-  overflow-wrap: break-word;
-}
-.metanthropes .layout-container-grid2x1-cs {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  -moz-column-gap: 3px;
-       column-gap: 3px;
-  padding: 0px;
-  margin: 0px;
-  overflow: hidden;
-  overflow-wrap: break-word;
-  justify-content: space-evenly;
-  justify-self: stretch;
-}
-.metanthropes .layout-container-grid1x1-cs {
-  display: grid;
-  grid-template-columns: 1fr;
-  -moz-column-gap: 3px;
-       column-gap: 3px;
-  padding: 1px;
-  margin: 1px;
-  overflow: hidden;
-  overflow-wrap: break-word;
-  align-items: center;
-  align-self: center;
-  justify-content: space-evenly;
-  justify-self: stretch;
-}
-.metanthropes .layout-container-physical {
-  display: grid;
-  grid-template-columns: 0.9fr 1.5fr 1fr;
-  -moz-column-gap: 3px;
-       column-gap: 3px;
-  padding: 0px;
-  margin: 3px;
-  overflow: hidden;
-  overflow-wrap: break-word;
-}
-.metanthropes .layout-container-actorinfo {
-  display: grid;
-  grid-template-columns: 0.3fr 0.6fr 1.6fr 0.7fr 0.6fr;
-  -moz-column-gap: 1px;
-       column-gap: 1px;
-  padding: 1px;
-  margin: 3px;
-  overflow: hidden;
-  overflow-wrap: break-word;
-}
-.metanthropes .layout-container-progressionheader {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  -moz-column-gap: 1px;
-       column-gap: 1px;
-  padding: 1px;
-  margin: 3px;
-  overflow: hidden;
-  overflow-wrap: break-word;
-}
-.metanthropes .layout-container-chars {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 1fr 2fr 1fr;
-  -moz-column-gap: 3px;
-       column-gap: 3px;
-  row-gap: 3px;
-  padding: 1px;
-  margin: 1px;
-  overflow: hidden;
-}
-.metanthropes .layout-container-stats {
-  display: flex;
-  flex-flow: row;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  padding: 1px;
-  margin: 1px;
-  overflow: hidden;
-  overflow-wrap: break-word;
-}
-.metanthropes .layout-container-grid1x3 {
-  display: flex;
-  flex-flow: row;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  -moz-column-gap: 6px;
-       column-gap: 6px;
-  padding: 1px;
-  margin: 1px;
-  overflow: hidden;
-}
-.metanthropes .layout-container-vitals {
-  display: flex;
-  flex-flow: row;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  -moz-column-gap: 6px;
-       column-gap: 6px;
-  padding: 1px;
-  margin: 3px;
-  overflow: hidden;
-}
-.metanthropes .layout-container-small {
-  display: flex;
-  flex-direction: column;
-  padding: 1px;
-  margin: 1px;
-}
-.metanthropes .layout-container-outer-tabs {
-  display: flex;
-  flex-direction: column;
-  padding: 0px;
-  margin: 0px;
-}
-.metanthropes .layout-container-summary {
-  display: flex;
-  flex-direction: column;
-  padding: 6px;
-  margin: 1px;
-}
-.metanthropes .layout-container-summary-images {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  -moz-column-gap: 6px;
-       column-gap: 6px;
-  padding: 6px;
-  margin: 1px;
-}
-.metanthropes .layout-container-summary-controls {
-  display: flex;
-  padding: 6px;
-  margin: 1px;
-}
-.metanthropes .layout-container-nav {
-  display: block;
-}
-.metanthropes .layout-metaroll-dialog {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  justify-self: stretch;
-  align-self: auto;
-  padding: 6px;
-  margin: 6px;
-  overflow-y: auto;
-}
-.metanthropes .layout-container-actorinfo-details {
-  display: flex;
-  flex-direction: column;
-  justify-self: center;
-  align-self: center;
-  padding: 3px;
-  margin: 1px;
-}
-.metanthropes .layout-editor {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  justify-self: stretch;
-  justify-items: center;
-  align-self: auto;
-  align-items: stretch;
-  align-content: space-between;
-  min-height: 80px;
-  max-height: 500px;
-  height: auto;
-  padding: 1px;
-  margin: 1px;
-  overflow-y: auto;
-  font-family: "montserrat", sans-serif;
-  font-size: var(--font-size-14);
-  font-weight: 500;
-  color: #000;
-}
-.metanthropes .layout-tab-summary {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto auto auto auto auto auto;
-  grid-template-areas: "narratorSecret narratorSecret" "buttons buttons" "portrait prime" "portrait gender" "entermeta physical" "narrator actor" "saga coalition";
-  gap: 3px;
-}
-.metanthropes .layout-tab-summary-at-medium {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto auto auto auto auto auto auto;
-  grid-template-areas: "prime" "gender" "actor" "saga" "coalition";
-  gap: 3px;
-}
-.metanthropes .layout-tab-summary-narrator-secret {
-  grid-area: narratorSecret;
-  border: 1px solid #7d0f81;
-  border-radius: 15px;
-}
-.metanthropes .layout-tab-summary-buttons {
-  grid-area: buttons;
-}
-.metanthropes .layout-tab-summary-portrait {
-  border: 1px solid #7d0f81;
-  border-radius: 15px;
-  grid-area: portrait;
-}
-.metanthropes .layout-tab-summary-prime {
-  border: 1px solid #7d0f81;
-  overflow: hidden;
-  border-radius: 15px;
-  grid-area: prime;
-}
-.metanthropes .layout-tab-summary-gender {
-  border: 1px solid #7d0f81;
-  overflow: hidden;
-  border-radius: 15px;
-  grid-area: gender;
-}
-.metanthropes .layout-tab-summary-entermeta {
-  border: 1px solid #7d0f81;
-  border-radius: 15px;
-  overflow: hidden;
-  grid-area: entermeta;
-}
-.metanthropes .layout-tab-summary-physical {
-  border: 1px solid #7d0f81;
-  border-radius: 15px;
-  overflow: hidden;
-  grid-area: physical;
-}
-.metanthropes .layout-tab-summary-narrator {
-  border: 1px solid #7d0f81;
-  border-radius: 15px;
-  overflow: hidden;
-  grid-area: narrator;
-}
-.metanthropes .layout-tab-summary-actor {
-  border: 1px solid #7d0f81;
-  border-radius: 15px;
-  overflow: hidden;
-  grid-area: actor;
-}
-.metanthropes .layout-tab-summary-saga {
-  border: 1px solid #7d0f81;
-  border-radius: 15px;
-  overflow: hidden;
-  grid-area: saga;
-}
-.metanthropes .layout-tab-summary-coalition {
-  border: 1px solid #7d0f81;
-  border-radius: 15px;
-  overflow: hidden;
-  grid-area: coalition;
-}
-.metanthropes .layout-tab-perks-container {
-  margin: 6px;
-  padding: 0px 0px 5px 0px;
-  border: 1px solid #7d0f81;
-  border-radius: 15px;
-  overflow: hidden;
-}
-.metanthropes .editor {
-  min-height: 80px;
-  height: auto;
-  max-height: 500px;
-  overflow-y: auto;
-}
-.metanthropes .editor-content .ProseMirror {
-  min-height: 80px;
-  height: auto;
-  max-height: 500px;
-  overflow-y: auto;
-}
-.metanthropes .sheet-header .metapower-img {
-  flex: 0 0 160px;
-  height: 160px;
-  width: 160px;
-  margin-right: 6px;
-}
-.metanthropes .sheet-header .possession-img {
-  flex: 0 0 160px;
-  height: 160px;
-  width: 160px;
-  margin-right: 6px;
-}
-.metanthropes .sheet-header .effect-img {
-  flex: 0 0 80px;
-  height: 80px;
-  width: 80px;
-  margin-right: 6px;
-}
-.metanthropes .perk-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.metanthropes .perk-item .resource-label {
-  margin-right: 10px;
-}
-.metanthropes .layout-tab-summary-portrait-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.metanthropes h3 {
-  font-family: "nasalization", sans-serif;
-  text-align: center;
-  color: #fff;
-  background-color: rgba(129, 129, 129, 0.3725490196);
-  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
-}
-.metanthropes .style-container-outer-charstats {
-  opacity: 1;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-}
-.metanthropes .style-container-outer-charstatsprogression {
-  opacity: 1;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-}
-.metanthropes .style-container-grid3x2 {
-  opacity: 1;
-  border: 1px dotted #7d0f81;
-  border-radius: 15px;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-}
-.metanthropes .style-container-physical {
-  opacity: 1;
-  border: 1px solid #7d0f81;
-  border-radius: 15px;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-}
-.metanthropes .style-container-noborder {
-  opacity: 1;
-  border: none;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  white-space: nowrap;
-}
-.metanthropes .style-container-actorinfo {
-  opacity: 1;
-  border: 1px solid #7d0f81;
-  border-radius: 15px;
-  justify-content: stretch;
-  align-items: center;
-}
-.metanthropes .style-container-progressionheader {
-  opacity: 1;
-  border: 1px solid #7d0f81;
-  border-radius: 15px;
-  justify-content: stretch;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-}
-.metanthropes .style-container-grid4x1 {
-  opacity: 1;
-  border: 1px solid #7d0f81;
-  border-radius: 15px;
-  justify-content: stretch;
-  justify-self: center;
-  align-items: stretch;
-  align-self: center;
-}
-.metanthropes .style-container-chars {
-  opacity: 1;
-  border: 1px solid #7d0f81;
-  border-radius: 15px;
-  justify-content: center;
-  justify-self: stretch;
-  align-items: center;
-  align-self: stretch;
-}
-.metanthropes .style-container-stats {
-  opacity: 1;
-  border: 1px solid #7d0f81;
-  border-radius: 15px;
-  justify-content: center;
-  justify-self: stretch;
-  align-items: stretch;
-  align-self: stretch;
-}
-.metanthropes .style-container-grid1x3 {
-  opacity: 1;
-  border: 1px solid #7d0f81;
-  border-radius: 15px;
-  justify-content: center;
-  justify-self: stretch;
-  align-items: center;
-  align-self: stretch;
-}
-.metanthropes .style-container-vitals {
-  opacity: 1;
-  border: 1px solid #7d0f81;
-  border-radius: 15px;
-  justify-content: space-evenly;
-  justify-self: space-around;
-  justify-items: stretch;
-  align-items: center;
-  align-self: stretch;
-}
-.metanthropes .style-container-small {
-  opacity: 1;
-  border: 1px solid #7d0f81;
-  border-radius: 15px;
-  justify-content: center;
-  justify-self: stretch;
-  align-items: center;
-  align-self: stretch;
-}
-.metanthropes .style-container-outer-tabs {
-  opacity: 1;
-  justify-content: center;
-  justify-self: stretch;
-  align-items: stretch;
-  align-self: stretch;
-}
-.metanthropes .style-container-summary {
-  opacity: 1;
-  border: 1px solid #7d0f81;
-  border-radius: 15px;
-  justify-content: center;
-  justify-self: stretch;
-  align-items: stretch;
-  align-self: stretch;
-}
-.metanthropes .style-container-summary-controls {
-  opacity: 1;
-  border: 1px solid #7d0f81;
-  border-radius: 15px;
-  justify-content: space-evenly;
-  justify-self: stretch;
-  align-items: center;
-  align-self: stretch;
-}
-.metanthropes .style-container-border {
-  border: 1px solid #7d0f81;
-  border-radius: 15px;
-  border-style: dotted;
-  -o-border-image: url(../assets/artwork/ui/borders/border.webp) 5/10px round;
-     border-image: url(../assets/artwork/ui/borders/border.webp) 5/10px round;
-  border-radius: 15px;
-}
-.metanthropes .style-container-nav {
-  font-family: "nasalization", sans-serif;
-  text-transform: uppercase;
-  padding: 3px;
-  margin: 3px;
-  justify-content: space-around;
-  align-content: space-around;
-}
-.metanthropes .style-container-nav-children {
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #000;
-  padding: 1px;
-  margin: 1px;
-}
-.metanthropes .style-container-nav-children .meta-emoji {
-  font-size: 0.8rem;
-}
-.metanthropes .style-container-input-charstat {
-  min-width: 2ch;
-  max-width: 4ch;
-  margin: 1px;
-  padding: 3px 3px 3px 6px;
-  border: 1px dashed #7d0f81;
-  border-radius: 15px;
-  justify-content: center;
-  align-items: center;
-}
-.metanthropes .style-container-input-longtext {
-  min-width: 16ch;
-  max-width: 90ch;
-  margin: 1px;
-  padding: 3px 3px 3px 6px;
-  border: 1px dashed #7d0f81;
-  border-radius: 15px;
-  justify-content: center;
-  align-items: center;
-}
-.metanthropes .style-labels-number {
-  opacity: 1;
-  font-family: "nasalization", sans-serif;
-  font-size: 1rem;
-  color: #000;
-  padding: 1px;
-  margin: 1px;
-}
-.metanthropes .style-labels-text {
-  opacity: 1;
-  font-family: "nasalization", sans-serif;
-  font-size: 1rem;
-  color: #000;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  padding: 1px;
-  margin: 1px;
-}
-.metanthropes .style-actorinfo-tier1 {
-  opacity: 1;
-  font-family: "nasalization", sans-serif;
-  font-size: 1.6rem;
-  color: #000;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  padding: 1px;
-  margin: 0px;
-}
-.metanthropes .style-actorinfo-tier2 {
-  opacity: 0.8;
-  font-family: "nasalization", sans-serif;
-  font-size: 1rem;
-  color: #000;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  padding: 0px;
-  margin: 0px;
-}
-.metanthropes .style-actorinfo-tier3 {
-  opacity: 0.5;
-  font-family: "montserrat", sans-serif;
-  font-size: 0.6rem;
-  color: #000;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  padding: 0px;
-  margin: 0px;
-}
-.metanthropes .style-labels-secondary {
-  opacity: 1;
-  font-family: "montserrat", sans-serif;
-  font-size: 1rem;
-  color: #000;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  padding: 1px;
-  margin: 1px;
-}
-.metanthropes .style-cs-chars-label {
-  opacity: 1;
-  font-family: "nasalization", sans-serif;
-  font-size: 1.6rem;
-  color: #000;
-  text-transform: uppercase;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  padding: 1px;
-  margin: 1px;
-}
-.metanthropes .style-cs-stats-label {
-  opacity: 1;
-  font-family: "nasalization", sans-serif;
-  font-size: 1.6rem;
-  color: #000;
-  font-weight: bold;
-  text-transform: uppercase;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  padding: 1px;
-  margin: 1px;
-}
-.metanthropes .style-cs-labels {
-  opacity: 1;
-  font-family: "montserrat", sans-serif;
-  font-size: 1rem;
-  color: #000;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  padding: 1px;
-  margin: 1px;
-}
-.metanthropes .style-cs-chars-value {
-  opacity: 1;
-  font-family: "nasalization", sans-serif;
-  font-size: 1.6rem;
-  color: #000;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  padding: 1px;
-  margin: 1px;
-}
-.metanthropes .style-cs-stats-value {
-  opacity: 1;
-  font-family: "nasalization", sans-serif;
-  font-size: 2.4rem;
-  color: #000;
-  font-weight: bold;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  padding: 1px;
-  margin: 1px;
-}
-.metanthropes .style-cs-values {
-  opacity: 1;
-  font-family: "nasalization", sans-serif;
-  font-size: 0.8rem;
-  color: #000;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  padding: 1px;
-  margin: 1px;
-}
-.metanthropes .style-cs-buffs {
-  opacity: 1;
-  font-family: "montserrat", sans-serif;
-  font-size: 0.8rem;
-  color: #267114;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  padding: 3px;
-  margin: 0px;
-}
-.metanthropes .style-cs-conditions {
-  opacity: 1;
-  font-family: "montserrat", sans-serif;
-  font-size: 0.8rem;
-  color: #ab1616;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  padding: 3px;
-  margin: 0px;
-}
-.metanthropes .style-cs-header-positive {
-  opacity: 1;
-  font-family: "nasalization", sans-serif;
-  color: #267114;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  padding: 1px;
-  margin: 1px;
-}
-.metanthropes .style-cs-header-negative {
-  opacity: 1;
-  font-family: "nasalization", sans-serif;
-  color: #ab1616;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  padding: 1px;
-  margin: 1px;
-}
-.metanthropes .style-cs-positive {
-  opacity: 1;
-  font-family: "montserrat", sans-serif;
-  color: #267114;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  padding: 1px;
-  margin: 1px;
-}
-.metanthropes .style-cs-negative {
-  opacity: 1;
-  font-family: "montserrat", sans-serif;
-  color: #ab1616;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  padding: 1px;
-  margin: 1px;
-}
-.metanthropes .meta-cover-roll:hover {
-  cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
-  color: #fff;
-  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
-}
-.metanthropes .style-cs-rolls {
-  opacity: 1;
-  font-family: "nasalization", sans-serif;
-  font-size: 2.4rem;
-  color: #000;
-  font-weight: bold;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  align-content: center;
-  padding: 3px;
-  margin: 3px;
-}
-.metanthropes .style-cs-rolls:hover {
-  cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
-  color: #fff;
-  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
-}
-.metanthropes .style-cs-rolls-single-column {
-  opacity: 1;
-  font-family: "nasalization", sans-serif;
-  font-size: 2rem;
-  color: #000;
-  font-weight: bold;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  align-content: center;
-  padding: 0px;
-  margin: 0px;
-}
-.metanthropes .style-cs-rolls-single-column:hover {
-  cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
-  color: #fff;
-  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
-}
-.metanthropes .style-mp-rolls {
-  opacity: 1;
-  font-family: "nasalization", sans-serif;
-  font-size: 14px;
-  color: #000;
-  justify-items: center;
-  align-self: center;
-  text-align: center;
-  padding: 0px;
-  margin: 0px;
-}
-.metanthropes .style-mp-rolls:hover {
-  cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
-  color: #fff;
-  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
-}
-.metanthropes .style-pos-rolls {
-  opacity: 1;
-  font-family: "nasalization", sans-serif;
-  font-size: 14px;
-  color: #000;
-  justify-items: center;
-  align-self: center;
-  text-align: center;
-  padding: 0px;
-  margin: 0px;
-}
-.metanthropes .style-pos-rolls:hover {
-  cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
-  color: #fff;
-  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
-}
-.metanthropes .style-view-properties:hover {
-  cursor: help;
-  color: #fff;
-  text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
-}
-.metanthropes .style-editor {
-  opacity: 1;
-  font-family: "montserrat", sans-serif;
-  font-size: 1rem;
-  color: #000;
-  padding: 3px;
-  margin: 3px;
-  min-height: 70px;
-  height: auto;
-  max-height: 800px;
-  overflow-y: auto;
-}
-.metanthropes .editor-content {
-  min-height: 50px;
-}
-.metanthropes .style-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.metanthropes .style-tab-header-logo {
-  max-height: 85px;
-  width: auto;
-  -o-object-fit: contain;
-     object-fit: contain;
-  border: none;
-  scale: 1;
-  border-radius: 50%;
-}
-.metanthropes .style-tab-header-portrait {
-  max-height: 100px;
-  width: auto;
-  -o-object-fit: contain;
-     object-fit: contain;
-  border: none;
-  border-radius: 15px;
-}
-.metanthropes .style-tab-header-prime {
-  max-height: 100px;
-  width: auto;
-  -o-object-fit: contain;
-     object-fit: contain;
-  border: none;
-  border-radius: 0px;
-}
-.metanthropes .style-tab-summary-portrait {
-  max-height: 300px;
-  width: auto;
-  -o-object-fit: contain;
-     object-fit: contain;
-  border: none;
-  border-radius: 15px;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
-}
-.metanthropes .style-tab-summary-portrait:hover {
-  transform: scale(1.5) translateX(40px);
-}
-.metanthropes .style-tab-summary-token {
-  max-height: 300px;
-  width: auto;
-  -o-object-fit: contain;
-     object-fit: contain;
-  border: none;
-  border-radius: 15px;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
-}
-.metanthropes .style-tab-summary-token:hover {
-  transform: scale(1.5) translateX(40px);
-}
-.metanthropes .style-dialog-portrait {
-  max-height: 300px;
-  width: auto;
-  -o-object-fit: contain;
-     object-fit: contain;
-  border: none;
-  border-radius: 15px;
-}
-.metanthropes .style-centered-paragraph {
-  text-align: center;
-}
-.metanthropes .items-header {
-  margin: 1px;
-  padding: 1px;
-  align-items: center;
-  background: rgba(129, 129, 129, 0.3725490196);
-  border: 2px groove #7d0f81;
-  border-radius: 15px;
-  font-weight: bold;
-}
-.metanthropes .items-header > * {
-  font-size: 14px;
-  text-align: center;
-}
-.metanthropes .items-header .item-name {
-  font-weight: bold;
-  padding-left: 50px;
-  text-align: left;
-  display: flex;
-}
-.metanthropes .items-list {
-  font-family: "montserrat", sans-serif;
-  list-style: none;
-  margin: 1px;
-  padding: 1px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  color: #000;
-}
-.metanthropes .items-list .item-list {
-  list-style: none;
-  margin: 1px;
-  padding: 1px;
-}
-.metanthropes .items-list .item-name {
-  flex: 2;
-  margin: 0;
-  overflow: hidden;
-  font-size: 16px;
-  text-align: left;
-  align-items: center;
-  display: flex;
-}
-.metanthropes .items-list .item-name h3,
-.metanthropes .items-list .item-name h4 {
-  padding-left: 15px;
-  margin: 0;
-  white-space: nowrap;
-  overflow-x: hidden;
-  font-weight: 600;
-}
-.metanthropes .items-list .item-controls {
-  display: flex;
-  flex: 0 0 80px;
-  justify-content: center;
-}
-.metanthropes .items-list .item-controls a {
-  font-size: 14px;
-  text-align: center;
-  margin: 0 6px;
-}
-.metanthropes .items-list .item {
-  align-items: center;
-  text-align: center;
-  padding: 0 2px;
-}
-.metanthropes .items-list .item .item-name {
-  color: #000;
-}
-.metanthropes .items-list .item .item-name .item-image {
-  flex: 0 0 50px;
-  height: 50px;
-  width: 50px;
-  border: none;
-  margin-right: 5px;
-}
-.metanthropes .items-list .item-prop {
-  text-align: center;
-  font-size: 14px;
-}
-.metanthropes .items-list .items-header {
-  height: 36px;
-  margin: 1px;
-  padding: 1px;
-  align-items: center;
-  background: rgba(129, 129, 129, 0.3725490196);
-  border: 2px groove #7d0f81;
-  font-weight: bold;
-}
-.metanthropes .items-list .items-header > * {
-  font-size: 16px;
-  text-align: center;
-}
-.metanthropes .items-list .items-header .item-name {
-  padding-left: 5px;
-  text-align: left;
-}
-.metanthropes .item-formula {
-  flex: 0 0 200px;
-  padding: 0 8px;
-}
-.metanthropes .effects .item {
-  text-align: center;
-  padding: 0 2px;
-}
-.metanthropes .effects .item .effect-source,
-.metanthropes .effects .item .effect-duration,
-.metanthropes .effects .item .effect-controls {
-  text-align: center;
-  border-left: 1px solid #b0a765;
-  border-right: 1px solid #b0a765;
-  font-size: 12px;
-}
-.metanthropes .effects .item .effect-controls {
-  border: none;
-}
-.metanthropes summary {
-  display: grid;
-  font-weight: bold;
-}
-.metanthropes summary:hover {
-  cursor: pointer;
-  border-radius: 15px;
-  background: rgba(99, 53, 99, 0.5);
-  transition: background-color 0.3s;
-}
-.metanthropes summary::marker {
-  font-size: 1.5em;
-  content: "🔽";
-}
-.metanthropes [open] summary::marker {
-  content: "🔼";
-}
-.metanthropes form button {
-  background-image: url("../assets/artwork/ui/buttons/button.webp");
-  text-shadow: 1px 1px 1px #7d0f81, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
-  border: 2px groove #7d0f81;
-  border-radius: 15px;
-  color: #fff;
-  opacity: 0.8;
-}
-.metanthropes form button.active {
-  border: 2px groove #fff;
-  opacity: 1;
-}
-.metanthropes form button:hover {
-  outline: none;
-  border: 2px groove #fff;
-  box-shadow: 0 0 5px #7d0f81;
-  opacity: 1;
-}
-.metanthropes form button:focus {
-  outline: none;
-  box-shadow: 0 0 5px #7d0f81;
-  opacity: 1;
-}
-.metanthropes form button {
-  background-image: url("../assets/artwork/ui/buttons/button.webp");
-  text-shadow: 1px 1px 1px #7d0f81, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
-  border: 2px groove #7d0f81;
-  border-radius: 15px;
-  color: #fff;
-  opacity: 0.8;
-}
-.metanthropes form button.active {
-  border: 2px groove #fff;
-  box-shadow: 0 0 5px #7d0f81;
-  opacity: 1;
-}
-.metanthropes form button:hover {
-  outline: none;
-  border: 2px groove #fff;
-  box-shadow: 0 0 5px #7d0f81;
-  opacity: 1;
-}
-.metanthropes form button:focus {
-  outline: none;
-  box-shadow: 0 0 5px #7d0f81;
-  opacity: 1;
-}
-.metanthropes .tabs .item.active {
-  text-shadow: 0 0 10px #7d0f81;
-}
-.metanthropes .item-form {
-  font-family: "nasalization", sans-serif;
-}
-.metanthropes .sheet-header {
-  flex: 0 auto;
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  margin-bottom: 10px;
-}
-.metanthropes .sheet-header .profile-img {
-  flex: 0 0 100px;
-  height: 100px;
-  margin-right: 10px;
-}
-.metanthropes .sheet-header .header-fields {
-  flex: 1;
-}
-.metanthropes .sheet-header h1.charname {
-  height: 50px;
-  padding: 0px;
-  margin: 5px 0;
-  border-bottom: 0;
-}
-.metanthropes .sheet-header h1.charname input {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-}
-.metanthropes .sheet-tabs {
-  flex: 0;
-}
-.metanthropes .sheet-body,
-.metanthropes .sheet-body .tab,
-.metanthropes .sheet-body .tab .editor {
-  height: 100%;
-}
-.metanthropes .tox .tox-editor-container {
-  min-height: 80px;
-  height: auto;
-  max-height: 500px;
-  overflow-y: auto;
-}
-.metanthropes .tox .tox-edit-area {
-  padding: 0 8px;
-  min-height: 80px;
-  height: auto;
-  max-height: 500px;
-  overflow-y: auto;
-}
-.metanthropes .resource {
-  font-family: "montserrat", sans-serif;
-  font-size: 0.9rem;
-  color: #000;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
-  font-weight: 500;
-  padding: 1px;
-  margin: 1px;
-}
-.metanthropes .resource-label {
-  font-family: "nasalization", sans-serif;
-  font-size: 0.9rem;
-  color: #000;
-  width: 100%;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  align-self: center;
-  font-weight: 700;
-  padding: 1px;
-  margin: 1px;
-}
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@layer system {
+  .metanthropes input[type=text] {
+    min-width: 8ch;
+    max-width: 22ch;
+    margin: 1px;
+    padding: 3px 3px 3px 6px;
+    border: 1px dashed #7d0f81;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+  }
+  .metanthropes input[type=number] {
+    min-width: 3ch;
+    max-width: 5ch;
+    margin: 1px;
+    padding: 3px 3px 3px 6px;
+    border: 1px dashed #7d0f81;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+  }
+  section {
+    font-family: "nasalization", sans-serif;
+    margin: 1px;
+    padding: 1px;
+  }
+  main {
+    font-family: "nasalization", sans-serif;
+    margin: 1px;
+    padding: 1px;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: "Roboto", sans-serif;
+    background-image: url("../assets/artwork/ui/canvas/bg-canvas.webp");
+    background-size: auto auto;
+    background-attachment: local;
+    background-repeat: repeat;
+    background-origin: border-box;
+    background-clip: border-box;
+  }
+  header {
+    margin: 1px;
+    padding: 1px;
+  }
+  footer {
+    margin: 1px;
+    padding: 1px;
+  }
+  a:hover {
+    text-shadow: 0 0 8px #7d0f81;
+  }
+  dialog::backdrop {
+    background: rgba(255, 255, 255, 0.3333333333);
+    backdrop-filter: blur(4px);
+  }
+  select {
+    font-family: "Roboto", sans-serif;
+    border: 1px dotted #7d0f81;
+    border-radius: 15px;
+  }
+  option {
+    background-color: rgba(129, 129, 129, 0.3725490196);
+    font-family: "Roboto", sans-serif;
+    border: 1px dotted #7d0f81;
+    border-radius: 15px;
+  }
+  p {
+    font-family: "Roboto", sans-serif;
+    margin: 1px;
+    padding: 1px;
+    text-align: left;
+  }
+  h3 {
+    font-family: "nasalization", sans-serif;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
+  }
+  .window-app {
+    font-family: "nasalization", sans-serif;
+    margin: 1px;
+    padding: 1px;
+  }
+  .window-content {
+    font-family: "nasalization", sans-serif;
+    padding: 3px;
+    margin: 3px;
+  }
+  .dialog-content {
+    font-family: "nasalization", sans-serif;
+    padding: 3px;
+    margin: 3px;
+  }
+  .window-app .window-content {
+    position: relative;
+    background-image: url("../assets/artwork/ui/window/background.webp");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-origin: border-box;
+    background-clip: border-box;
+    z-index: 1;
+  }
+  .window-app .window-content::before {
+    pointer-events: none;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 55%;
+    height: 55%;
+    background-image: url("../assets/artwork/ui/window/logo.webp");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-origin: padding-box;
+    background-clip: content-box;
+    z-index: 2;
+    filter: blur(1px);
+    opacity: 0.5;
+  }
+  .directory .directory-header .header-search input {
+    background-color: rgba(129, 129, 129, 0.3725490196);
+  }
+  .filepicker .tiles-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 508px;
+  }
+  .filepicker .tiles-list li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 163px;
+    height: 100px;
+  }
+  .filepicker .tiles-list li img {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+    z-index: 3;
+  }
+  .filepicker .tiles-list li img:hover {
+    transform: scale(1.6) translateY(10px);
+    z-index: 4;
+  }
+  button,
+  form button,
+  a.button,
+  .dialog .dialog-buttons button {
+    font-family: "nasalization", sans-serif;
+    background-image: url("../assets/artwork/ui/buttons/button.webp");
+    background-size: cover;
+    text-shadow: 1px 1px 1px #7d0f81, 0 0 0.2em #7d0f81, 0 0 0.2em #7d0f81;
+    border: 2px groove #7d0f81;
+    border-radius: 15px;
+    color: #fff;
+    opacity: 0.7;
+  }
+  button.active,
+  form button.active,
+  a.button.active,
+  .dialog .dialog-buttons button.active {
+    border: 2px groove #fff;
+    box-shadow: 0 0 5px #7d0f81;
+    opacity: 1;
+  }
+  button:hover, button:focus,
+  form button:hover,
+  form button:focus,
+  a.button:hover,
+  a.button:focus,
+  .dialog .dialog-buttons button:hover,
+  .dialog .dialog-buttons button:focus {
+    outline: none;
+    border: 2px groove #fff;
+    box-shadow: 0 0 5px #7d0f81;
+    opacity: 1;
+  }
+  .dialog .dialog-buttons button.default {
+    background: none;
+    background-image: url("../assets/artwork/ui/buttons/button.webp");
+    border: 2px groove #fff;
+    box-shadow: 0 0 5px #7d0f81;
+    opacity: 1;
+  }
+  button.chat-button-anchor {
+    width: auto;
+  }
+  button::before {
+    font: var(--fa-font-solid);
+    display: inline-block;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    justify-self: center;
+    align-self: center;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+  }
+  .chat-message,
+  .chat-message.whisper,
+  .chat-message.blind {
+    background-image: url("../assets/artwork/ui/chat/chat-results.webp");
+    background-size: cover;
+  }
+  #chat-form textarea {
+    background-image: url("../assets/artwork/ui/chat/chat-box.webp");
+  }
+  .chat-message .message-header .flavor-text,
+  .chat-message .message-header .whisper-to,
+  .chat-message .message-content {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+  }
+  .chat-message .table-draw .table-results .table-result img.result-image {
+    width: 100%;
+    max-height: 150px;
+    height: auto;
+    object-fit: contain;
+    border: none;
+    align-self: center;
+    text-align: center;
+    margin: 1px;
+    padding: 1px;
+  }
+  .chat-message .table-draw .table-results .table-result {
+    flex-direction: column;
+  }
+  .combat-sidebar li.combatant .roll {
+    display: block;
+    width: 40px;
+    height: var(--sidebar-item-height);
+    background: url("../assets/artwork/ui/dice/d100roll-white.webp") no-repeat 50% 50%;
+    background-size: 42px;
+    margin: 0 0.5em;
+  }
+  .combat-sidebar li.combatant .roll:hover {
+    background-image: url("../assets/artwork/ui/dice/d100roll-white-selected.webp");
+  }
+  .fa-solid.fa-dice-d20:before,
+  .fas.fa-dice-d20:before {
+    content: "\f6cd";
+  }
+  .far.fa-dice-d20:before {
+    content: "\f6cd";
+  }
+  .sheet.journal-entry .journal-entry-content {
+    position: relative;
+    background: none;
+    background-image: url("../assets/artwork/ui/window/background.webp");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-origin: border-box;
+    background-clip: border-box;
+  }
+  .sheet-header {
+    flex: 0 auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+  }
+  .sheet-header .profile-img {
+    flex: 0 0 100px;
+    height: 100px;
+    margin-right: 10px;
+  }
+  .sheet-header .header-fields {
+    flex: 1;
+  }
+  .sheet-header h1.charname {
+    height: 50px;
+    padding: 0px;
+    margin: 5px 0;
+    border-bottom: 0;
+  }
+  .sheet-header h1.charname input {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+  .sheet-tabs {
+    flex: 0;
+  }
+  .sheet-body,
+  .sheet-body .tab,
+  .sheet-body .tab .editor {
+    height: 100%;
+  }
+}
+@layer system {
+  .metanthropes {
+    z-index: 3;
+    accent-color: #7d0f81;
+    caret-color: #7d0f81;
+  }
+  .metanthropes .chat-message .message-header .flavor-text .metanthropes .hide-button .meta-ui-hidden {
+    display: none !important;
+  }
+  .metanthropes .hide-button .meta-ui-hidden {
+    display: none !important;
+  }
+  .metanthropes .meta-ui-hidden {
+    display: none !important;
+  }
+  .metanthropes .meta-ui-medium-font {
+    font-size: 0.9rem !important;
+  }
+  .metanthropes .meta-ui-small-font {
+    font-size: 0.55rem !important;
+  }
+  .metanthropes .meta-ui-single-column-font {
+    font-size: 0.8rem !important;
+  }
+  .metanthropes .meta-ui-obscure {
+    opacity: 0.5 !important;
+  }
+  .metanthropes .meta-ui-obscure:hover {
+    opacity: 1 !important;
+  }
+  .metanthropes .layout-container-grid3x4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    column-gap: 6px;
+    row-gap: 3px;
+    padding: 1px;
+    margin: 1px;
+    overflow: hidden;
+  }
+  .metanthropes .layout-container-grid3x4-cs {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    column-gap: 3px;
+    row-gap: 3px;
+    padding: 1px;
+    margin: 1px;
+    overflow: hidden;
+  }
+  .metanthropes .layout-container-outer-charstats {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    column-gap: 3px;
+    row-gap: 3px;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+  }
+  .metanthropes .layout-container-outer-charstats-minimum {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    column-gap: 3px;
+    row-gap: 3px;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+  }
+  .metanthropes .layout-container-outer-charstats-single-column {
+    display: grid;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+  }
+  .metanthropes .layout-container-outer-charstatsprogression {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    column-gap: 3px;
+    row-gap: 3px;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+  }
+  .metanthropes .layout-container-grid3x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 3fr 1fr;
+    column-gap: 6px;
+    row-gap: 3px;
+    padding: 1px;
+    margin: 1px;
+    overflow: hidden;
+  }
+  .metanthropes .layout-container-grid4x1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 1px;
+    padding: 1px;
+    margin: 1px;
+    overflow: hidden;
+  }
+  .metanthropes .layout-container-grid2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 3px;
+    row-gap: 3px;
+    padding: 1px;
+    margin: 1px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+  }
+  .metanthropes .layout-container-grid3x1-cs {
+    display: grid;
+    grid-template-columns: 2.4fr 1.6fr 2.8fr;
+    column-gap: 1px;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+  }
+  .metanthropes .layout-container-grid3x1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 3px;
+    padding: 0px;
+    margin: 3px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+  }
+  .metanthropes .layout-container-grid2x1-cs {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    column-gap: 3px;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    justify-content: space-evenly;
+    justify-self: stretch;
+  }
+  .metanthropes .layout-container-grid1x1-cs {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 3px;
+    padding: 1px;
+    margin: 1px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    align-items: center;
+    align-self: center;
+    justify-content: space-evenly;
+    justify-self: stretch;
+  }
+  .metanthropes .layout-container-physical {
+    display: grid;
+    grid-template-columns: 0.9fr 1.5fr 1fr;
+    column-gap: 3px;
+    padding: 0px;
+    margin: 3px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+  }
+  .metanthropes .layout-container-actorinfo {
+    display: grid;
+    grid-template-columns: 0.3fr 0.6fr 1.6fr 0.7fr 0.6fr;
+    column-gap: 1px;
+    padding: 1px;
+    margin: 3px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+  }
+  .metanthropes .layout-container-progressionheader {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 1px;
+    padding: 1px;
+    margin: 3px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+  }
+  .metanthropes .layout-container-chars {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
+    column-gap: 3px;
+    row-gap: 3px;
+    padding: 1px;
+    margin: 1px;
+    overflow: hidden;
+  }
+  .metanthropes .layout-container-stats {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    padding: 1px;
+    margin: 1px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+  }
+  .metanthropes .layout-container-grid1x3 {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    column-gap: 6px;
+    padding: 1px;
+    margin: 1px;
+    overflow: hidden;
+  }
+  .metanthropes .layout-container-vitals {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    column-gap: 6px;
+    padding: 1px;
+    margin: 3px;
+    overflow: hidden;
+  }
+  .metanthropes .layout-container-small {
+    display: flex;
+    flex-direction: column;
+    padding: 1px;
+    margin: 1px;
+  }
+  .metanthropes .layout-container-outer-tabs {
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    margin: 0px;
+  }
+  .metanthropes .layout-container-summary {
+    display: flex;
+    flex-direction: column;
+    padding: 6px;
+    margin: 1px;
+  }
+  .metanthropes .layout-container-summary-images {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    column-gap: 6px;
+    padding: 6px;
+    margin: 1px;
+  }
+  .metanthropes .layout-container-summary-controls {
+    display: flex;
+    padding: 6px;
+    margin: 1px;
+  }
+  .metanthropes .layout-container-nav {
+    display: block;
+  }
+  .metanthropes .layout-metaroll-dialog {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    justify-self: stretch;
+    align-self: auto;
+    padding: 6px;
+    margin: 6px;
+    overflow-y: auto;
+  }
+  .metanthropes .layout-container-actorinfo-details {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-self: center;
+    padding: 3px;
+    margin: 1px;
+  }
+  .metanthropes .layout-editor {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    justify-self: stretch;
+    justify-items: center;
+    align-self: auto;
+    align-items: stretch;
+    align-content: space-between;
+    min-height: 80px;
+    max-height: 500px;
+    height: auto;
+    padding: 1px;
+    margin: 1px;
+    overflow-y: auto;
+    font-family: "Roboto", sans-serif;
+    font-size: var(--font-size-14);
+    font-weight: 500;
+    color: #000;
+  }
+  .metanthropes .layout-tab-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto auto auto auto;
+    grid-template-areas: "narratorSecret narratorSecret" "buttons buttons" "portrait prime" "portrait gender" "entermeta physical" "narrator actor" "saga coalition";
+    gap: 3px;
+  }
+  .metanthropes .layout-tab-summary-at-medium {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto auto auto;
+    grid-template-areas: "prime" "gender" "actor" "saga" "coalition";
+    gap: 3px;
+  }
+  .metanthropes .layout-tab-summary-narrator-secret {
+    grid-area: narratorSecret;
+    border: 1px solid #7d0f81;
+    border-radius: 15px;
+  }
+  .metanthropes .layout-tab-summary-buttons {
+    grid-area: buttons;
+  }
+  .metanthropes .layout-tab-summary-portrait {
+    border: 1px solid #7d0f81;
+    border-radius: 15px;
+    grid-area: portrait;
+  }
+  .metanthropes .layout-tab-summary-prime {
+    border: 1px solid #7d0f81;
+    overflow: hidden;
+    border-radius: 15px;
+    grid-area: prime;
+  }
+  .metanthropes .layout-tab-summary-gender {
+    border: 1px solid #7d0f81;
+    overflow: hidden;
+    border-radius: 15px;
+    grid-area: gender;
+  }
+  .metanthropes .layout-tab-summary-entermeta {
+    border: 1px solid #7d0f81;
+    border-radius: 15px;
+    overflow: hidden;
+    grid-area: entermeta;
+  }
+  .metanthropes .layout-tab-summary-physical {
+    border: 1px solid #7d0f81;
+    border-radius: 15px;
+    overflow: hidden;
+    grid-area: physical;
+  }
+  .metanthropes .layout-tab-summary-narrator {
+    border: 1px solid #7d0f81;
+    border-radius: 15px;
+    overflow: hidden;
+    grid-area: narrator;
+  }
+  .metanthropes .layout-tab-summary-actor {
+    border: 1px solid #7d0f81;
+    border-radius: 15px;
+    overflow: hidden;
+    grid-area: actor;
+  }
+  .metanthropes .layout-tab-summary-saga {
+    border: 1px solid #7d0f81;
+    border-radius: 15px;
+    overflow: hidden;
+    grid-area: saga;
+  }
+  .metanthropes .layout-tab-summary-coalition {
+    border: 1px solid #7d0f81;
+    border-radius: 15px;
+    overflow: hidden;
+    grid-area: coalition;
+  }
+  .metanthropes .layout-tab-perks-container {
+    margin: 6px;
+    padding: 0px 0px 5px 0px;
+    border: 1px solid #7d0f81;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  .metanthropes .editor {
+    min-height: 80px;
+    height: auto;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+  .metanthropes .editor-content .ProseMirror {
+    min-height: 80px;
+    height: auto;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+  .metanthropes .sheet-header .metapower-img {
+    flex: 0 0 160px;
+    height: 160px;
+    width: 160px;
+    margin-right: 6px;
+  }
+  .metanthropes .sheet-header .possession-img {
+    flex: 0 0 160px;
+    height: 160px;
+    width: 160px;
+    margin-right: 6px;
+  }
+  .metanthropes .sheet-header .effect-img {
+    flex: 0 0 80px;
+    height: 80px;
+    width: 80px;
+    margin-right: 6px;
+  }
+  .metanthropes .perk-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .metanthropes .perk-item .resource-label {
+    margin-right: 10px;
+  }
+  .metanthropes .layout-tab-summary-portrait-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .metanthropes h3 {
+    font-family: "nasalization", sans-serif;
+    text-align: center;
+    color: #fff;
+    background-color: rgba(129, 129, 129, 0.3725490196);
+    text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
+  }
+  .metanthropes .style-container-outer-charstats {
+    opacity: 1;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+  }
+  .metanthropes .style-container-outer-charstatsprogression {
+    opacity: 1;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+  }
+  .metanthropes .style-container-grid3x2 {
+    opacity: 1;
+    border: 1px dotted #7d0f81;
+    border-radius: 15px;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+  }
+  .metanthropes .style-container-physical {
+    opacity: 1;
+    border: 1px solid #7d0f81;
+    border-radius: 15px;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+  }
+  .metanthropes .style-container-noborder {
+    opacity: 1;
+    border: none;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    white-space: nowrap;
+  }
+  .metanthropes .style-container-actorinfo {
+    opacity: 1;
+    border: 1px solid #7d0f81;
+    border-radius: 15px;
+    justify-content: stretch;
+    align-items: center;
+  }
+  .metanthropes .style-container-progressionheader {
+    opacity: 1;
+    border: 1px solid #7d0f81;
+    border-radius: 15px;
+    justify-content: stretch;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+  }
+  .metanthropes .style-container-grid4x1 {
+    opacity: 1;
+    border: 1px solid #7d0f81;
+    border-radius: 15px;
+    justify-content: stretch;
+    justify-self: center;
+    align-items: stretch;
+    align-self: center;
+  }
+  .metanthropes .style-container-chars {
+    opacity: 1;
+    border: 1px solid #7d0f81;
+    border-radius: 15px;
+    justify-content: center;
+    justify-self: stretch;
+    align-items: center;
+    align-self: stretch;
+  }
+  .metanthropes .style-container-stats {
+    opacity: 1;
+    border: 1px solid #7d0f81;
+    border-radius: 15px;
+    justify-content: center;
+    justify-self: stretch;
+    align-items: stretch;
+    align-self: stretch;
+  }
+  .metanthropes .style-container-grid1x3 {
+    opacity: 1;
+    border: 1px solid #7d0f81;
+    border-radius: 15px;
+    justify-content: center;
+    justify-self: stretch;
+    align-items: center;
+    align-self: stretch;
+  }
+  .metanthropes .style-container-vitals {
+    opacity: 1;
+    border: 1px solid #7d0f81;
+    border-radius: 15px;
+    justify-content: space-evenly;
+    justify-self: space-around;
+    justify-items: stretch;
+    align-items: center;
+    align-self: stretch;
+  }
+  .metanthropes .style-container-small {
+    opacity: 1;
+    border: 1px solid #7d0f81;
+    border-radius: 15px;
+    justify-content: center;
+    justify-self: stretch;
+    align-items: center;
+    align-self: stretch;
+  }
+  .metanthropes .style-container-outer-tabs {
+    opacity: 1;
+    justify-content: center;
+    justify-self: stretch;
+    align-items: stretch;
+    align-self: stretch;
+  }
+  .metanthropes .style-container-summary {
+    opacity: 1;
+    border: 1px solid #7d0f81;
+    border-radius: 15px;
+    justify-content: center;
+    justify-self: stretch;
+    align-items: stretch;
+    align-self: stretch;
+  }
+  .metanthropes .style-container-summary-controls {
+    opacity: 1;
+    border: 1px solid #7d0f81;
+    border-radius: 15px;
+    justify-content: space-evenly;
+    justify-self: stretch;
+    align-items: center;
+    align-self: stretch;
+  }
+  .metanthropes .style-container-border {
+    border: 1px solid #7d0f81;
+    border-radius: 15px;
+    border-style: dotted;
+    border-image: url(../assets/artwork/ui/borders/border.webp) 5/10px round;
+    border-radius: 15px;
+  }
+  .metanthropes .style-container-nav {
+    font-family: "nasalization", sans-serif;
+    text-transform: uppercase;
+    padding: 3px;
+    margin: 3px;
+    justify-content: space-around;
+    align-content: space-around;
+  }
+  .metanthropes .style-container-nav-children {
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000;
+    padding: 1px;
+    margin: 1px;
+  }
+  .metanthropes .style-container-nav-children .meta-emoji {
+    font-size: 0.8rem;
+  }
+  .metanthropes .style-container-input-charstat {
+    min-width: 2ch;
+    max-width: 4ch;
+    margin: 1px;
+    padding: 3px 3px 3px 6px;
+    border: 1px dashed #7d0f81;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+  }
+  .metanthropes .style-container-input-longtext {
+    min-width: 16ch;
+    max-width: 90ch;
+    margin: 1px;
+    padding: 3px 3px 3px 6px;
+    border: 1px dashed #7d0f81;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+  }
+  .metanthropes .style-labels-number {
+    opacity: 1;
+    font-family: "nasalization", sans-serif;
+    font-size: 1rem;
+    color: #000;
+    padding: 1px;
+    margin: 1px;
+  }
+  .metanthropes .style-labels-text {
+    opacity: 1;
+    font-family: "nasalization", sans-serif;
+    font-size: 1rem;
+    color: #000;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    padding: 1px;
+    margin: 1px;
+  }
+  .metanthropes .style-actorinfo-tier1 {
+    opacity: 1;
+    font-family: "nasalization", sans-serif;
+    font-size: 1.6rem;
+    color: #000;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    padding: 1px;
+    margin: 0px;
+  }
+  .metanthropes .style-actorinfo-tier2 {
+    opacity: 0.8;
+    font-family: "nasalization", sans-serif;
+    font-size: 1rem;
+    color: #000;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    padding: 0px;
+    margin: 0px;
+  }
+  .metanthropes .style-actorinfo-tier3 {
+    opacity: 0.5;
+    font-family: "Roboto", sans-serif;
+    font-size: 0.6rem;
+    color: #000;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    padding: 0px;
+    margin: 0px;
+  }
+  .metanthropes .style-labels-secondary {
+    opacity: 1;
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    color: #000;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    padding: 1px;
+    margin: 1px;
+  }
+  .metanthropes .style-cs-chars-label {
+    opacity: 1;
+    font-family: "nasalization", sans-serif;
+    font-size: 1.6rem;
+    color: #000;
+    text-transform: uppercase;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    padding: 1px;
+    margin: 1px;
+  }
+  .metanthropes .style-cs-stats-label {
+    opacity: 1;
+    font-family: "nasalization", sans-serif;
+    font-size: 1.6rem;
+    color: #000;
+    font-weight: bold;
+    text-transform: uppercase;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    padding: 1px;
+    margin: 1px;
+  }
+  .metanthropes .style-cs-labels {
+    opacity: 1;
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    color: #000;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    padding: 1px;
+    margin: 1px;
+  }
+  .metanthropes .style-cs-chars-value {
+    opacity: 1;
+    font-family: "nasalization", sans-serif;
+    font-size: 1.6rem;
+    color: #000;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    padding: 1px;
+    margin: 1px;
+  }
+  .metanthropes .style-cs-stats-value {
+    opacity: 1;
+    font-family: "nasalization", sans-serif;
+    font-size: 2.4rem;
+    color: #000;
+    font-weight: bold;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    padding: 1px;
+    margin: 1px;
+  }
+  .metanthropes .style-cs-values {
+    opacity: 1;
+    font-family: "nasalization", sans-serif;
+    font-size: 0.8rem;
+    color: #000;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    padding: 1px;
+    margin: 1px;
+  }
+  .metanthropes .style-cs-buffs {
+    opacity: 1;
+    font-family: "Roboto", sans-serif;
+    font-size: 0.8rem;
+    color: #267114;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    padding: 3px;
+    margin: 0px;
+  }
+  .metanthropes .style-cs-conditions {
+    opacity: 1;
+    font-family: "Roboto", sans-serif;
+    font-size: 0.8rem;
+    color: #ab1616;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    padding: 3px;
+    margin: 0px;
+  }
+  .metanthropes .style-cs-header-positive {
+    opacity: 1;
+    font-family: "nasalization", sans-serif;
+    color: #267114;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    padding: 1px;
+    margin: 1px;
+  }
+  .metanthropes .style-cs-header-negative {
+    opacity: 1;
+    font-family: "nasalization", sans-serif;
+    color: #ab1616;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    padding: 1px;
+    margin: 1px;
+  }
+  .metanthropes .style-cs-positive {
+    opacity: 1;
+    font-family: "Roboto", sans-serif;
+    color: #267114;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    padding: 1px;
+    margin: 1px;
+  }
+  .metanthropes .style-cs-negative {
+    opacity: 1;
+    font-family: "Roboto", sans-serif;
+    color: #ab1616;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    padding: 1px;
+    margin: 1px;
+  }
+  .metanthropes .meta-cover-roll:hover {
+    cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
+    color: #fff;
+    text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
+  }
+  .metanthropes .style-cs-rolls {
+    opacity: 1;
+    font-family: "nasalization", sans-serif;
+    font-size: 2.4rem;
+    color: #000;
+    font-weight: bold;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    padding: 3px;
+    margin: 3px;
+  }
+  .metanthropes .style-cs-rolls:hover {
+    cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
+    color: #fff;
+    text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
+  }
+  .metanthropes .style-cs-rolls-single-column {
+    opacity: 1;
+    font-family: "nasalization", sans-serif;
+    font-size: 2rem;
+    color: #000;
+    font-weight: bold;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    padding: 0px;
+    margin: 0px;
+  }
+  .metanthropes .style-cs-rolls-single-column:hover {
+    cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
+    color: #fff;
+    text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
+  }
+  .metanthropes .style-mp-rolls {
+    opacity: 1;
+    font-family: "nasalization", sans-serif;
+    font-size: 14px;
+    color: #000;
+    justify-items: center;
+    align-self: center;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+  }
+  .metanthropes .style-mp-rolls:hover {
+    cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
+    color: #fff;
+    text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
+  }
+  .metanthropes .style-pos-rolls {
+    opacity: 1;
+    font-family: "nasalization", sans-serif;
+    font-size: 14px;
+    color: #000;
+    justify-items: center;
+    align-self: center;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+  }
+  .metanthropes .style-pos-rolls:hover {
+    cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
+    color: #fff;
+    text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
+  }
+  .metanthropes .style-view-properties:hover {
+    cursor: help;
+    color: #fff;
+    text-shadow: 1px 1px 2px #7d0f81, 0 0 1em #7d0f81, 0 0 0.2em #7d0f81;
+  }
+  .metanthropes .style-editor {
+    opacity: 1;
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    color: #000;
+    padding: 3px;
+    margin: 3px;
+    min-height: 70px;
+    height: auto;
+    max-height: 800px;
+    overflow-y: auto;
+  }
+  .metanthropes .editor-content {
+    min-height: 50px;
+  }
+  .metanthropes .style-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .metanthropes .style-tab-header-logo {
+    max-height: 85px;
+    width: auto;
+    object-fit: contain;
+    border: none;
+    scale: 1;
+    border-radius: 50%;
+  }
+  .metanthropes .style-tab-header-portrait {
+    max-height: 100px;
+    width: auto;
+    object-fit: contain;
+    border: none;
+    border-radius: 15px;
+  }
+  .metanthropes .style-tab-header-prime {
+    max-height: 100px;
+    width: auto;
+    object-fit: contain;
+    border: none;
+    border-radius: 0px;
+  }
+  .metanthropes .style-tab-summary-portrait {
+    max-height: 300px;
+    width: auto;
+    object-fit: contain;
+    border: none;
+    border-radius: 15px;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+  }
+  .metanthropes .style-tab-summary-portrait:hover {
+    transform: scale(1.5) translateX(40px);
+  }
+  .metanthropes .style-tab-summary-token {
+    max-height: 300px;
+    width: auto;
+    object-fit: contain;
+    border: none;
+    border-radius: 15px;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+  }
+  .metanthropes .style-tab-summary-token:hover {
+    transform: scale(1.5) translateX(40px);
+  }
+  .metanthropes .style-dialog-portrait {
+    max-height: 300px;
+    width: auto;
+    object-fit: contain;
+    border: none;
+    border-radius: 15px;
+  }
+  .metanthropes .style-centered-paragraph {
+    text-align: center;
+  }
+  .metanthropes .items-header {
+    margin: 1px;
+    padding: 1px;
+    align-items: center;
+    background: rgba(129, 129, 129, 0.3725490196);
+    border: 2px groove #7d0f81;
+    border-radius: 15px;
+    font-weight: bold;
+  }
+  .metanthropes .items-header > * {
+    font-size: 14px;
+    text-align: center;
+  }
+  .metanthropes .items-header .item-name {
+    font-weight: bold;
+    padding-left: 50px;
+    text-align: left;
+    display: flex;
+  }
+  .metanthropes .items-list {
+    font-family: "Roboto", sans-serif;
+    list-style: none;
+    margin: 1px;
+    padding: 1px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    color: #000;
+  }
+  .metanthropes .items-list .item-list {
+    list-style: none;
+    margin: 1px;
+    padding: 1px;
+  }
+  .metanthropes .items-list .item-name {
+    flex: 2;
+    margin: 0;
+    overflow: hidden;
+    font-size: 16px;
+    text-align: left;
+    align-items: center;
+    display: flex;
+  }
+  .metanthropes .items-list .item-name h3,
+  .metanthropes .items-list .item-name h4 {
+    padding-left: 15px;
+    margin: 0;
+    white-space: nowrap;
+    overflow-x: hidden;
+    font-weight: 600;
+  }
+  .metanthropes .items-list .item-controls {
+    display: flex;
+    flex: 0 0 80px;
+    justify-content: center;
+  }
+  .metanthropes .items-list .item-controls a {
+    font-size: 14px;
+    text-align: center;
+    margin: 0 6px;
+  }
+  .metanthropes .items-list .item {
+    align-items: center;
+    text-align: center;
+    padding: 0 2px;
+  }
+  .metanthropes .items-list .item .item-name {
+    color: #000;
+  }
+  .metanthropes .items-list .item .item-name .item-image {
+    flex: 0 0 50px;
+    height: 50px;
+    width: 50px;
+    border: none;
+    margin-right: 5px;
+  }
+  .metanthropes .items-list .item-prop {
+    text-align: center;
+    font-size: 14px;
+  }
+  .metanthropes .items-list .items-header {
+    height: 36px;
+    margin: 1px;
+    padding: 1px;
+    align-items: center;
+    background: rgba(129, 129, 129, 0.3725490196);
+    border: 2px groove #7d0f81;
+    font-weight: bold;
+  }
+  .metanthropes .items-list .items-header > * {
+    font-size: 16px;
+    text-align: center;
+  }
+  .metanthropes .items-list .items-header .item-name {
+    padding-left: 5px;
+    text-align: left;
+  }
+  .metanthropes .item-formula {
+    flex: 0 0 200px;
+    padding: 0 8px;
+  }
+  .metanthropes .effects .item {
+    text-align: center;
+    padding: 0 2px;
+  }
+  .metanthropes .effects .item .effect-source,
+  .metanthropes .effects .item .effect-duration,
+  .metanthropes .effects .item .effect-controls {
+    text-align: center;
+    border-left: 1px solid #b0a765;
+    border-right: 1px solid #b0a765;
+    font-size: 12px;
+  }
+  .metanthropes .effects .item .effect-controls {
+    border: none;
+  }
+  .metanthropes summary {
+    display: grid;
+    font-weight: bold;
+  }
+  .metanthropes summary:hover {
+    cursor: pointer;
+    border-radius: 15px;
+    background: rgba(99, 53, 99, 0.5);
+    transition: background-color 0.3s;
+  }
+  .metanthropes summary::marker {
+    font-size: 1.5em;
+    content: "🔽";
+  }
+  .metanthropes [open] summary::marker {
+    content: "🔼";
+  }
+  .metanthropes .tabs .item.active {
+    text-shadow: 0 0 10px #7d0f81;
+  }
+  .metanthropes .item-form {
+    font-family: "nasalization", sans-serif;
+  }
+  .metanthropes .tox .tox-editor-container {
+    min-height: 80px;
+    height: auto;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+  .metanthropes .tox .tox-edit-area {
+    padding: 0 8px;
+    min-height: 80px;
+    height: auto;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+  .metanthropes .resource {
+    font-family: "Roboto", sans-serif;
+    font-size: 0.9rem;
+    color: #000;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    font-weight: 500;
+    padding: 1px;
+    margin: 1px;
+  }
+  .metanthropes .resource-label {
+    font-family: "nasalization", sans-serif;
+    font-size: 0.9rem;
+    color: #000;
+    width: 100%;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    font-weight: 700;
+    padding: 1px;
+    margin: 1px;
+  }
+}
+
+/*# sourceMappingURL=metanthropes.css.map */

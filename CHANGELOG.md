@@ -10,6 +10,11 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Early Access Releases
 
+# Early Access v0.13.0 [2025-xx-yy]
+
+## Added:
+- theme support & developer environment updates
+
 # Early Access v0.12.2 [2025-01-29]
 
 ## Added:
