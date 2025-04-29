@@ -1,0 +1,21 @@
+//the below two will change the default D20 in the initiative tracker icon to our custom dice
+.combat-sidebar li.combatant .roll {
+	display: block;
+	width: 40px;
+	height: var(--sidebar-item-height);
+	background: url("../assets/artwork/ui/dice/d100roll-white.webp") no-repeat 50% 50%;
+	background-size: 42px;
+	margin: 0 0.5em;
+}
+.combat-sidebar li.combatant .roll:hover {
+	background-image: url("../assets/artwork/ui/dice/d100roll-white-selected.webp");
+}
+//mana from discord black magic to replace fa-d20 with d10s
+.fa-solid.fa-dice-d20:before,
+.fas.fa-dice-d20:before {
+	content: "\f6cd";
+}
+//me copying the above for carousel
+.far.fa-dice-d20:before {
+	content: "\f6cd";
+}

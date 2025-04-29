@@ -2,10 +2,30 @@
 node_modules/
 npm-debug.log
 
-# Foundry
+# OS Junk
+.DS_Store
+Thumbs.db
+
+# IDE Junk
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Build Output
+release/
+dist/
+
+# Temp Foundry Runtime Files
+foundry/
 *.lock
 jsconfig.json
+
+# Improving Intellisense
+foundry-config.yaml
 foundry
 
-# Packs
+# Packs (built during release)
 packs/*
+
+# Styles (built during release)
+styles/*

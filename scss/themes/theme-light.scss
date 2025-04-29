@@ -1,0 +1,16 @@
+@layer theme {
+	:root,
+	.theme-light .metanthropes {
+		--primary-bg: #ffffff;
+		--secondary-bg: #f7f7f7;
+		--primary-text: #222222;
+		--accent-color: #6b4eff;
+		--button-bg: #eeeeee;
+		--header-bg: #dddddd;
+	}
+}
+
+// Fallback SCSS variables (still needed for SCSS logic)
+$c-background: #ffffff !default;
+$c-foreground: #222222 !default;
+$c-accent: #6b4eff !default;

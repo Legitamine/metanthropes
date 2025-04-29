@@ -2,14 +2,14 @@
 	"id": "metanthropes",
 	"title": "Metanthropes",
 	"description": "Metanthropes TTRPG System for Foundry VTT by Legitamine Games",
-	"version": "0.12.3",
+	"version": "0.13.0",
 	"compatibility": {
 		"minimum": "12",
-		"verified": "12.331",
-		"maximum": "12"
+		"verified": "13.340",
+		"maximum": "13"
 	},
 	"relationships": {
-		"requires": [
+		"recommends": [
 			{
 				"id": "dice-so-nice",
 				"type": "module",
@@ -58,6 +58,22 @@
 	],
 	"esmodules": ["greensock/esm/all.js", "module/metanthropes.mjs"],
 	"styles": ["styles/metanthropes.css"],
+	"themes": [
+		{
+			"id": "metanthropes-light",
+			"title": "Metanthropes Light Theme",
+			"type": "theme",
+			"styles": ["styles/metanthropes-light.css"],
+			"description": "A light UI theme for Metanthropes"
+		},
+		{
+			"id": "metanthropes-dark",
+			"title": "Metanthropes Dark Theme",
+			"type": "theme",
+			"styles": ["styles/metanthropes-dark.css"],
+			"description": "A dark UI theme for Metanthropes"
+		}
+	],
 	"packs": [
 		{
 			"name": "system",
