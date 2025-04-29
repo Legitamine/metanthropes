@@ -9,7 +9,7 @@ Metanthropes features **over 500 unique abilities**, called **Metapowers**: uniq
 
 This System is the official Metanthropes System for Foundry VTT. It is available, free of charge, for all Foundry VTT users. It includes demo content, to check out some example Metanthrope builds and playtest. It also comes with Journals to help you learn how to play.
 
-A list of Premium Modules for Foundry VTT is available [on our store](https://metanthropes.com/store). Take advantage of the **Early Access discount (-20%)** and the available bundles & start your Metanthropes journey today!
+A list of Premium Modules for Foundry VTT is available [on our store](https://metanthropes.com/store).
 
 - To learn more about Metanthropes, visit [our website.](https://metanthropes.com)
 - We would love to hear your opinion and feedback! Join our community [on Discord!](https://metanthropes.com/discord)
@@ -84,7 +84,7 @@ Shoutout especially to the #system-development channel on the FVTT Discord serve
 
 Special shoutouts and huge thanks to the lovely community of Metanthropes, for their continued support and feedback:
  - @MB & party for amazing feedback and suggestions, and for being the first to contribute specific code suggestions for the project!
- - @RXOliver and the gang over at the THC Discord for playtesting, feedback and suggestions!
+ - @RxOliver and the gang over at the THC Discord for playtesting, feedback and suggestions!
  - Our close friends, who have been instrumental in shaping Metanthropes since its infancy, back in 2014! For the game we deserve!!
  - Finally a special shoutout to my buddy @aMUSiC, who has guided me to avoid many pitfalls, for code-review assistance & overall mentoring!!
 

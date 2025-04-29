@@ -1,4 +1,5 @@
 import { CHARS } from "./chars.mjs";
+import { FACOLORS } from "./fa-colors.mjs";
 import { STATS } from "./stats.mjs";
 import { MOVEMENT } from "./movement.mjs";
 
@@ -13,6 +14,7 @@ __  __ ______ _______       _   _ _______ _    _ _____   ____  _____  ______  __
 |_|  |_|______|  |_/_/    \\_\\_| \\_|  |_|  |_|  |_|_|  \\_\\\\____/|_|    |______|_____/ 
 =====================================================================================`,
 	CHARS,
+	FACOLORS,
 	STATS,
 	MOVEMENT,
 };
