@@ -728,6 +728,32 @@
     justify-content: center;
     align-items: center;
   }
+  .metanthropes .style-metaroll-dialog {
+    opacity: 1;
+    font-family: "nasalization", sans-serif;
+    font-size: 1.8rem;
+    text-align: center;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    padding: 1px;
+    margin: 1px;
+  }
+  .metanthropes .style-buffs {
+    color: #267114;
+    --color-form-input: $c-green;
+    --color-form-input-hover: $c-green;
+    --color-form-label: $c-green;
+    --color-form-label-hover: $c-green;
+  }
+  .metanthropes .style-conditions {
+    color: #ab1616;
+    --color-form-input: $c-red;
+    --color-form-input-hover: $c-red;
+    --color-form-label: $c-red;
+    --color-form-label-hover: $c-red;
+  }
   .metanthropes h3 {
     font-family: "nasalization", sans-serif;
     text-align: center;
