@@ -1,5 +1,5 @@
 //* Fonts
-//? Nasalization
+//? Nasalization, Montserrat
 @import url("https://use.typekit.net/gld0tkk.css");
 //? Roboto
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
@@ -11,7 +11,7 @@
 @import "utils/variables";
 
 //* Global Styles
-@layer system {
+@layer global {
 	@import "global/window";
 	@import "global/apps";
 	@import "global/buttons";
@@ -21,7 +21,7 @@
 	@import "global/sheet";
 }
 //* Metanthropes-Specific Components
-@layer system {
+@layer metanthropes {
 	.metanthropes {
 		@import "components/responsive";
 		@import "components/layouts";
