@@ -1,5 +1,6 @@
 ![image](https://content.invisioncic.com/e290497/monthly_2024_03/new-cover.jpg.266c89d776592f674fd3a4133d3fb813.jpg)
 ![Foundry v12](https://img.shields.io/badge/foundry-v12-green)
+![Foundry v13](https://img.shields.io/badge/foundry-v13-green)
 
 # Metanthropes
 
@@ -35,7 +36,7 @@ Alternatively, you may use the following link when selecting to install manually
 
 Metanthropes aims to utilize the latest and best that the amazing Foundry VTT platform offers.
 
-- Foundry VTT version 12 is currently supported. Latest verified version is v12.331.
+- Foundry VTT versions 12 & 13 are currently supported. Latest verified version is v13.340.
 
 ## Supported 3rd Party Modules
 

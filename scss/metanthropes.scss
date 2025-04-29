@@ -3,6 +3,8 @@
 @import url("https://use.typekit.net/gld0tkk.css");
 //? Roboto
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+//? Nunito Sans
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap');
 
 //* Utilities
 @import "utils/colors";
@@ -29,10 +31,14 @@
 		@import "components/items";
 		@import "components/effects";
 		@import "components/forms";
-		//!todo!
-		z-index: 3;
+		//! do we still need to define z-index here?
+		//z-index: 3;
 		//changes to the selection elements default color
 		accent-color: $c-purple;
 		caret-color: $c-purple;
+		--color-scrollbar: $c-purple;
+		--input-focus-outline-color: $c-purple;
+		--outline-color: $c-purple;
+		outline-color: $c-purple;
 	}
 }

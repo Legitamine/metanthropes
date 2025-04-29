@@ -63,7 +63,6 @@
 				},
 				"life": {
 					"label": "Life",
-					"emoji": "<i class=\"fa-duotone fa-solid fa-heart\"></i>",
 					"value": {
 						"label": "Current",
 						"hint": "Life represents a Character's overall health, vitality, and will to live."
