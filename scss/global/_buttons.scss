@@ -1,0 +1,72 @@
+// --- Mixins ---
+@mixin button-hover-focus {
+	outline: none;
+	border: $border-activated;
+	box-shadow: 0 0 5px $c-purple;
+	opacity: 1;
+}
+
+@mixin button-active {
+	border: $border-activated;
+	box-shadow: 0 0 5px $c-purple;
+	opacity: 1;
+}
+
+// --- Base Button Styles ---
+%base-button {
+	font-family: $font-primary;
+	background-image: url("../assets/artwork/ui/buttons/button.webp");
+	background-size: cover;
+	text-shadow: $s-button;
+	border: $border-groove;
+	border-radius: $border-radius;
+	color: $c-white;
+	opacity: 0.7;
+}
+
+// --- Button Elements ---
+button,
+form button,
+a.button,
+.dialog .dialog-buttons button {
+	@extend %base-button;
+
+	&.active {
+		@include button-active;
+	}
+
+	&:hover,
+	&:focus {
+		@include button-hover-focus;
+	}
+}
+
+// --- Specific Adjustments ---
+
+// Default button inside dialogs
+.dialog .dialog-buttons button.default {
+	background: none;
+	background-image: url("../assets/artwork/ui/buttons/button.webp");
+	@include button-active;
+}
+
+// Chat anchor button (special width)
+button.chat-button-anchor {
+	width: auto;
+}
+
+// Button pseudo-element (before)
+button::before {
+	font: var(--fa-font-solid);
+	display: inline-block;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+
+	// Centering tricks
+	justify-self: center;
+	align-self: center;
+	justify-items: center;
+	align-items: center;
+	justify-content: center;
+	align-content: center;
+}

@@ -13,8 +13,15 @@ export class MetanthropesActor extends Actor {
 		await super._preCreate(data, options, user);
 		let createData = {};
 		//! v13 has a new way of handling this, needs investigation
-		//! workaround is to not set any of these defauls at this step
-		let defaultToken = game.settings.get("core", "defaultToken");
+		//! workaround is to not set any of these defauls at this step for v13
+		//todo: Instead of setting this everytime, overriding custom settings on the new UI,
+		//todo: we should place it as part of importing the adventure or on first load and only then
+		//todo: probably by setting a flag and reseting it so it doesn't re-apply everytime - per world
+		//! hotfix for v13
+		let defaultToken;
+		if (game.version < 13) {
+		defaultToken = game.settings.get("core", "defaultToken");
+		}
 		//? Configure Display Bars & Name Visibility
 		if (!data.prototypeToken)
 			foundry.utils.mergeObject(createData, {

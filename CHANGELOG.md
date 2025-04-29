@@ -10,7 +10,24 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Early Access Releases
 
-# Early Access v0.12.0 [2025-01-28]
+# Early Access v0.13.0 [2025-xx-yy]
+
+## Added:
+- Foundry VTT version 13 is now supported.
+- theme support & developer environment updates.
+- Roll d100 dice functions localized & using fields API & APP V2.
+
+# Early Access v0.12.2 [2025-01-29]
+
+## Added:
+- Added a link to the Metanthropes: Introductory trailer on the Welcome Journal.
+- [Core]: Added a new Adventure Compendium to help import the Core Journals to your World.
+
+## Fixed:
+- Fixed two broken links on the Welcome Journal.
+- [Core]: Fixed the missing Journals from the Core Journals Compendium.
+
+# Early Access v0.12.1 [2025-01-28]
 
 ## Added:
 - Foundry VTT version 12 is now supported. Latest verified version is v12.331.

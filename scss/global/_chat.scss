@@ -1,0 +1,33 @@
+.chat-message,
+.chat-message.whisper,
+.chat-message.blind {
+	background-image: url("../assets/artwork/ui/chat/chat-results.webp");
+	background-size: cover;
+	//opacity: 0.75;
+}
+#chat-form textarea {
+	background-image: url("../assets/artwork/ui/chat/chat-box.webp");
+}
+.chat-message .message-header .flavor-text,
+.chat-message .message-header .whisper-to,
+.chat-message .message-content {
+	font-family: $font-secondary;
+	font-size: 14px;
+	font-weight: 500;
+	color: $c-black;
+}
+//? rolltable results
+.chat-message .table-draw .table-results .table-result img.result-image {
+	width: 100%;
+	max-height: 150px;
+	height: auto;
+	object-fit: contain;
+	border: none;
+	align-self: center;
+	text-align: center;
+	margin: $margin-sm;
+	padding: $padding-sm;
+}
+.chat-message .table-draw .table-results .table-result {
+	flex-direction: column;
+}

@@ -85,6 +85,11 @@ export async function metaEvaluate(
 	let result = null;
 	let resultLevel = null;
 	let autoExecute = false;
+	const successColor = metanthropes.system.FACOLORS.success;
+	const successSecColor = metanthropes.system.FACOLORS.successSec;
+	const failureColor = metanthropes.system.FACOLORS.failure;
+	const failureSecColor = metanthropes.system.FACOLORS.failureSec;
+	const secOpacity = metanthropes.system.FACOLORS.secOpacity;
 	const roll = await new Roll("1d100").evaluate();
 	const rollResult = roll.total;
 	let levelsOfSuccess = Math.floor(
@@ -109,19 +114,19 @@ export async function metaEvaluate(
 	//? this kicks-off the calculation, assuming that is is a failure
 	if (rollResult - multiAction - perkReduction - aimingReduction - customReduction - penalty > statScore + bonus) {
 		//? in which case we don't care about what levels of success we have, so we set to 0 to avoid confusion later
-		result = "Failure 🟥";
+		result = `Failure <i class="fa-duotone fa-solid fa-square-xmark" style="--fa-primary-color: ${failureColor}; --fa-secondary-color: ${failureSecColor}; --fa-secondary-opacity: ${secOpacity};"></i>`;
 		levelsOfSuccess = 0;
 		//? resultlevel is a numerical value to facilitate other functions to use the result of the roll
 		resultLevel = 0;
 	} else {
 		//? if it's a success, similarly as above, we don't care about levels of failure
-		result = "Success 🟩";
+		result = `Success <i class="fa-duotone fa-solid fa-square" style="--fa-primary-color: ${successColor}; --fa-secondary-color: ${successSecColor}; --fa-secondary-opacity: ${secOpacity};"></i>`;
 		levelsOfFailure = 0;
 		resultLevel = 0.5;
 	}
 	//? check for critical success or failure
 	if (criticalSuccess) {
-		result = `<i class="fa-duotone fa-solid fa-square fa-beat-fade" style="--fa-primary-color: #35e704; --fa-secondary-color: #37ff00; --fa-secondary-opacity: 0.9;"></i> Critical Success <i class="fa-duotone fa-solid fa-square fa-beat-fade" style="--fa-primary-color: #35e704; --fa-secondary-color: #37ff00; --fa-secondary-opacity: 0.9;"></i>, rewarding ${actor.name} with +1 🤞 Destiny`;
+		result = `<i class="fa-duotone fa-solid fa-square fa-beat-fade" style="--fa-primary-color: ${successColor}; --fa-secondary-color: ${successSecColor}; --fa-secondary-opacity: ${secOpacity};"></i> Critical Success <i class="fa-duotone fa-solid fa-square fa-beat-fade" style="--fa-primary-color: ${successColor}; --fa-secondary-color: ${successSecColor}; --fa-secondary-opacity: ${secOpacity};"></i>, rewarding ${actor.name} with +1 <i class="fa-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny`;
 		await actor.applyDestinyChange(1);
 		levelsOfSuccess = 10;
 		levelsOfFailure = 0;
@@ -130,7 +135,7 @@ export async function metaEvaluate(
 		}
 	}
 	if (criticalFailure) {
-		result = `<i class="fa-duotone fa-solid fa-square fa-beat-fade" style="--fa-primary-color: #e70404; --fa-secondary-color: #ff0040; --fa-secondary-opacity: 0.9;"></i> Critical Failure <i class="fa-duotone fa-solid fa-square fa-beat-fade" style="--fa-primary-color: #e70404; --fa-secondary-color: #ff0040; --fa-secondary-opacity: 0.9;"></i>, rewarding ${actor.name} with +1 🤞 Destiny`;
+		result = `<i class="fa-duotone fa-solid fa-square-xmark fa-beat-fade" style="--fa-primary-color: ${failureColor}; --fa-secondary-color: ${failureSecColor}; --fa-secondary-opacity: ${secOpacity};"></i> Critical Failure <i class="fa-duotone fa-solid fa-square-xmark fa-beat-fade" style="--fa-primary-color: ${failureColor}; --fa-secondary-color: ${failureSecColor}; --fa-secondary-opacity: ${secOpacity};"></i>, rewarding ${actor.name} with +1 <i class="fa-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny`;
 		await actor.applyDestinyChange(1);
 		levelsOfFailure = 10;
 		levelsOfSuccess = 0;
@@ -157,12 +162,12 @@ export async function metaEvaluate(
 		message = `${startMessage} for Initiative with ${stat} score of ${statScore}%`;
 	} else if (action === "Metapower") {
 		if (Number(destinyCost) > 0) {
-			message = `${startMessage} to activate the Ⓜ️ Metapower: ${itemName} by spending ${destinyCost} 🤞 Destiny, with ${stat} score of ${statScore}%`;
+			message = `${startMessage} to activate the Ⓜ️ Metapower: ${itemName} by spending ${destinyCost} <i class="fa-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny, with ${stat} score of ${statScore}%`;
 		} else {
 			message = `${startMessage} to activate the Ⓜ️ Metapower: ${itemName} with ${stat} score of ${statScore}%`;
 		}
 	} else if (action === "Possession") {
-		message = `${startMessage} to use the 🛠️ Possession: ${itemName} with ${stat} score of ${statScore}%`;
+		message = `${startMessage} to use the <i class="fa-duotone fa-solid fa-backpack"></i> Possession: ${itemName} with ${stat} score of ${statScore}%`;
 	}
 	//? if we have a bonus or penalty, add it to the message
 	if (bonus > 0) {
@@ -192,7 +197,7 @@ export async function metaEvaluate(
 	if (resultLevel > 0 && !criticalSuccess && pain > 0) {
 		metanthropes.utils.metaLog(4, "metaEvaluate", "Results are affected by Pain");
 		if (painEffect < 0) {
-			result = "Failure 🟥";
+			result = `Failure <i class="fa-duotone fa-solid fa-square-xmark"></i>`;
 			resultLevel = 0;
 			levelsOfFailure = 0;
 			levelsOfSuccess = 0;
@@ -235,18 +240,18 @@ export async function metaEvaluate(
 	//? if we have levels of success or failure, add them to the message
 	if (levelsOfSuccess > 0) {
 		if (levelsOfSuccess === 1) {
-			message += `, accumulating:<br>${levelsOfSuccess} ✔️ Level of Success.`;
+			message += `, accumulating:<br>${levelsOfSuccess} <i class="fa-duotone fa-solid fa-check" style="--fa-primary-color: ${successSecColor};"></i> Level of Success.`;
 			resultLevel = levelsOfSuccess;
 		} else {
-			message += `, accumulating:<br>${levelsOfSuccess} ✔️ Levels of Success.`;
+			message += `, accumulating:<br>${levelsOfSuccess} <i class="fa-duotone fa-solid fa-check" style="--fa-primary-color: ${successSecColor};"></i> Levels of Success.`;
 			resultLevel = levelsOfSuccess;
 		}
 	} else if (levelsOfFailure > 0) {
 		if (levelsOfFailure === 1) {
-			message += `, accumulating:<br>${levelsOfFailure} ❌ Level of Failure.`;
+			message += `, accumulating:<br>${levelsOfFailure} <i class="fa-duotone fa-solid fa-xmark" style="--fa-primary-color: ${failureSecColor};"></i> Level of Failure.`;
 			resultLevel = -levelsOfFailure;
 		} else {
-			message += `, accumulating:<br>${levelsOfFailure} ❌ Levels of Failure.`;
+			message += `, accumulating:<br>${levelsOfFailure} <i class="fa-duotone fa-solid fa-xmark" style="--fa-primary-color: ${failureColor}; --fa-secondary-color: ${failureSecColor}; --fa-secondary-opacity: ${secOpacity};"></i> Levels of Failure.`;
 			resultLevel = -levelsOfFailure;
 		}
 	} else {
@@ -255,7 +260,7 @@ export async function metaEvaluate(
 	//? Bold text stops here
 	message += `</span>`;
 	//? Adding remaining Destiny message
-	message += `<hr />${actor.name} has ${actor.currentDestiny} 🤞 Destiny remaining.<br>`;
+	message += `<hr />${actor.name} has ${actor.currentDestiny} <i class="fa-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny remaining.<br>`;
 	//? Buttons to Re-Roll metaEvaluate results - only adds the button to message, if it's not a Critical and only if they have enough Destiny for needed reroll.
 	//* The buttons are hidden for everyone except the Player of the Actor and the GM
 	//? Define threshold of showing the button, to re-roll we need a minimum of 1 Destiny + the Destiny Cost of the Metapower (only applies to Metapowers with DestinyCost, otherwise it's 0)
@@ -266,7 +271,7 @@ export async function metaEvaluate(
 			message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button metainitiative-reroll"
 			data-actoruuid="${actor.uuid}" data-action="${action}"
 			data-message-id="${messageId}" data-reroll="true" data-reroll-counter="${rerollCounter}"
-			>Spend 🤞 Destiny to reroll</button><br></div>`;
+			>Spend <i class="fa-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny to reroll</button><br></div>`;
 		} else {
 			//? Button to re-roll metaEvaluate
 			message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button metaeval-reroll" data-actoruuid="${actor.uuid}"
@@ -274,7 +279,7 @@ export async function metaEvaluate(
 				data-bonus="${bonus}" data-penalty="${penalty}" data-action="${action}" data-destiny-cost="${destinyCost}" data-message-id="${messageId}"
 				data-item-name="${itemName}" data-pain="${pain}" data-aiming-reduction="${aimingReduction}" data-custom-reduction="${customReduction}"
 				data-reroll="true" data-reroll-counter="${rerollCounter}"
-				>Spend 🤞 Destiny to reroll</button><br></div>`;
+				>Spend <i class="fa-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny to reroll</button><br></div>`;
 		}
 		//? Buttons for Keeping the results of MetaEvalute
 		if (action === "Metapower") {
@@ -284,7 +289,7 @@ export async function metaEvaluate(
 		} else if (action === "Possession") {
 			message += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button possession-use" data-actoruuid="${actor.uuid}"
 			data-item-name="${itemName}" data-action="${action}" data-multi-action="${multiAction}"
-			>Use 🛠️ ${itemName}</button><br></div>`;
+			>Use <i class="fa-duotone fa-solid fa-backpack"></i> ${itemName}</button><br></div>`;
 		} else {
 			// Intentionally left blank for future expansion
 			//message += `<div><br></div>`;
@@ -401,8 +406,9 @@ export async function metaEvaluate(
 		}
 		const updatedRoll = await roll.toJSON();
 		const renderedRoll = await roll.render();
-		//? Call Dice So Nice to show the roll, assumes the module is active
-		game.dice3d.showForRoll(roll, game.user, true, null, false, messageId);
+		if (game.dice3d) {
+			game.dice3d.showForRoll(roll, game.user, true, null, false, messageId);
+		}
 		chatMessage.update({
 			flavor: message,
 			rolls: updatedRoll,

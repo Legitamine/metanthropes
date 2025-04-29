@@ -1,9 +1,10 @@
 /**
- * Metanthropes - Early Access for Foundry VTT
+ * Metanthropes - Official System for Foundry VTT
  * Author: The Orchestrator (qp)
  * Discord: qp#8888 ; q_._p
  *
- * If you would like to contribute to this project, please feel free to reach out to me via Discord
+ * If you would like to contribute to this project, please feel free to reach out to me via Discord.
+ * Formal contribution will be part of v1.0, however your feedback is most welcome at this early stage.
  *
  * Throughtout this project, I use the following syntax for comments:
  ** //! Marks a special comment that stands out (in Red) for critical notes/issues.
