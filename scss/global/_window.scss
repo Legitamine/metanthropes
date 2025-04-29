@@ -20,7 +20,7 @@
 	align-items: center;
 }
 section {
-	font-family: $font-primary;
+	//font-family: $font-primary;
 	margin: $margin-sm;
 	padding: $padding-sm;
 }
@@ -85,17 +85,17 @@ h3 {
 
 // this changes the font in most title-elements of Foundry UI
 .window-app {
-	font-family: $font-primary; //or
+	//font-family: $font-primary; //or
 	margin: $padding-sm;
 	padding: $padding-sm;
 }
 .window-content {
-	font-family: $font-primary;
+	//font-family: $font-primary;
 	padding: $padding-md;
 	margin: $margin-md;
 }
 .dialog-content {
-	font-family: $font-primary;
+	//font-family: $font-primary;
 	padding: $padding-md;
 	margin: $margin-md;
 }

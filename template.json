@@ -213,7 +213,7 @@
 					"Experience": {
 						"type": "number",
 						"dtype": "Number",
-						"Label": "📈 Experience",
+						"Label": "<i class=\"fa-duotone fa-solid fa-chart-line-up\"></i> EXP",
 						"Total": "1000",
 						"Spent": 0,
 						"Manual": 0,
@@ -282,14 +282,14 @@
 					},
 					"Life": {
 						"type": "number",
-						"label": "❤️ Life",
+						"label": "<i class=\"fa-duotone fa-solid fa-heart\"></i> Life",
 						"Initial": 100,
 						"value": 111,
 						"max": 0
 					},
 					"Destiny": {
 						"type": "number",
-						"label": "🤞 Destiny",
+						"label": "<i class=\"fa-duotone fa-solid fa-hand-fingers-crossed\"></i> Destiny",
 						"value": 3,
 						"max": 50
 					}
@@ -1088,13 +1088,13 @@
 					"Size": {
 						"type": "number",
 						"dtype": "Number",
-						"label": "🧱 📐",
+						"label": "🧱 <i class=\"fa-duotone fa-solid fa-ruler-triangle\"></i>",
 						"value": "10"
 					},
 					"Weight": {
 						"type": "number",
 						"dtype": "Number",
-						"label": "🧱 ⚖️",
+						"label": "🧱 <i class=\"fa-duotone fa-solid fa-weight-hanging\"></i>",
 						"value": "10"
 					},
 					"Cosmic": {
@@ -1134,7 +1134,7 @@
 					"StatRolled": {
 						"type": "text",
 						"dtype": "String",
-						"label": "🎲",
+						"label": "<i class=\"fa-duotone fa-solid fa-dice-d10\"></i>",
 						"value": null,
 						"options": [
 							"Awareness",
@@ -1151,7 +1151,7 @@
 					"ActionSlot": {
 						"type": "text",
 						"dtype": "String",
-						"label": "⏱ Activation",
+						"label": "<i class=\"fa-duotone fa-solid fa-stopwatch\"></i> Activation",
 						"value": null,
 						"options": [
 							"Always Active",
@@ -1169,7 +1169,7 @@
 					"Targets": {
 						"type": "text",
 						"dtype": "String",
-						"label": "Number of 🎯 Targets",
+						"label": "Number of <i class=\"fa-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
 						"value": null,
 						"options": [
 							"Self",
@@ -1185,7 +1185,7 @@
 						]
 					},
 					"TargetsEligibility": {
-						"label": "Eligible 🎯 Targets",
+						"label": "Eligible <i class=\"fa-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
 						"value": [],
 						"selections": {
 							"Willing": "Willing",
@@ -1199,7 +1199,7 @@
 						}
 					},
 					"TargetsType": {
-						"label": "Type of 🎯 Targets",
+						"label": "Type of <i class=\"fa-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
 						"value": [],
 						"selections": {
 							"Animal": "Animal",
@@ -1219,7 +1219,7 @@
 					"Duration": {
 						"type": "text",
 						"dtype": "String",
-						"label": "⏳ Duration",
+						"label": "<i class=\"fa-duotone fa-solid fa-hourglass-start\"></i> Duration",
 						"value": null,
 						"options": [
 							"Instantaneous",
@@ -1242,7 +1242,7 @@
 					"Range": {
 						"type": "text",
 						"dtype": "String",
-						"label": "📏 Range",
+						"label": "<i class=\"fa-duotone fa-solid fa-ruler\"></i> Range",
 						"value": null,
 						"options": [
 							"Self [Area 0]",
@@ -1267,7 +1267,7 @@
 					"AreaEffect": {
 						"type": "text",
 						"dtype": "String",
-						"label": "🗺️ Area of Effect",
+						"label": "<i class=\"fa-duotone fa-solid fa-hexagon-image\"></i> Area of Effect",
 						"value": null,
 						"options": [
 							"None",
@@ -1290,7 +1290,7 @@
 						]
 					},
 					"AreaType": {
-						"label": "🗺️ (Type)",
+						"label": "<i class=\"fa-duotone fa-solid fa-hexagon-image\"></i> (Type)",
 						"value": [],
 						"selections": {
 							"None": "None",
@@ -1343,28 +1343,28 @@
 					},
 					"Damage": {
 						"Cosmic": {
-							"label": "✨ Cosmic 💥 Damage",
+							"label": "<i class=\"fa-duotone fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-duotone fa-solid fa-burst\"></i> Damage",
 							"type": "number",
 							"dtype": "Number",
 							"Base": 0,
 							"Dice": 0
 						},
 						"Elemental": {
-							"label": "✨ Elemental 💥 Damage",
+							"label": "<i class=\"fa-duotone fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-duotone fa-solid fa-burst\"></i> Damage",
 							"type": "number",
 							"dtype": "Number",
 							"Base": 0,
 							"Dice": 0
 						},
 						"Material": {
-							"label": "✨ Material 💥 Damage",
+							"label": "<i class=\"fa-duotone fa-solid fa-sparkles\"></i> Material <i class=\"fa-duotone fa-solid fa-burst\"></i> Damage",
 							"type": "number",
 							"dtype": "Number",
 							"Base": 0,
 							"Dice": 0
 						},
 						"Psychic": {
-							"label": "✨ Psychic 💥 Damage",
+							"label": "<i class=\"fa-duotone fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-duotone fa-solid fa-burst\"></i> Damage",
 							"type": "number",
 							"dtype": "Number",
 							"Base": 0,
@@ -1394,13 +1394,13 @@
 					},
 					"Conditions": {
 						"Applied": {
-							"label": "💀 ➕",
+							"label": "<i class=\"fa-duotone fa-solid fa-skull\"></i> ➕",
 							"type": "text",
 							"dtype": "String",
 							"value": null
 						},
 						"Removed": {
-							"label": "💀 ➖",
+							"label": "<i class=\"fa-duotone fa-solid fa-skull\"></i> ➖",
 							"type": "text",
 							"dtype": "String",
 							"value": null
@@ -1408,19 +1408,19 @@
 					},
 					"Buffs": {
 						"Permanent": {
-							"label": "🛡️ ♾️",
+							"label": "<i class=\"fa-duotone fa-solid fa-shield-halved\"></i> ♾️",
 							"type": "text",
 							"dtype": "String",
 							"value": null
 						},
 						"Applied": {
-							"label": "🛡️ ➕",
+							"label": "<i class=\"fa-duotone fa-solid fa-shield-halved\"></i> ➕",
 							"type": "text",
 							"dtype": "String",
 							"value": null
 						},
 						"Removed": {
-							"label": "🛡️ ➖",
+							"label": "<i class=\"fa-duotone fa-solid fa-shield-halved\"></i> ➖",
 							"type": "text",
 							"dtype": "String",
 							"value": null
@@ -1457,73 +1457,73 @@
 					"level00": {
 						"type": "text",
 						"dtype": "String",
-						"label": "🟩",
+						"label": "<i class=\"fa-duotone fa-regular fa-square\"></i>",
 						"value": null
 					},
 					"level01": {
 						"type": "text",
 						"dtype": "String",
-						"label": "1 * ✔️",
+						"label": "1 * <i class=\"fa-duotone fa-solid fa-check\"></i>",
 						"value": null
 					},
 					"level02": {
 						"type": "text",
 						"dtype": "String",
-						"label": "2 * ✔️",
+						"label": "2 * <i class=\"fa-duotone fa-solid fa-check\"></i>",
 						"value": null
 					},
 					"level03": {
 						"type": "text",
 						"dtype": "String",
-						"label": "3 * ✔️",
+						"label": "3 * <i class=\"fa-duotone fa-solid fa-check\"></i>",
 						"value": null
 					},
 					"level04": {
 						"type": "text",
 						"dtype": "String",
-						"label": "4 * ✔️",
+						"label": "4 * <i class=\"fa-duotone fa-solid fa-check\"></i>",
 						"value": null
 					},
 					"level05": {
 						"type": "text",
 						"dtype": "String",
-						"label": "5 * ✔️",
+						"label": "5 * <i class=\"fa-duotone fa-solid fa-check\"></i>",
 						"value": null
 					},
 					"level06": {
 						"type": "text",
 						"dtype": "String",
-						"label": "6 * ✔️",
+						"label": "6 * <i class=\"fa-duotone fa-solid fa-check\"></i>",
 						"value": null
 					},
 					"level07": {
 						"type": "text",
 						"dtype": "String",
-						"label": "7 * ✔️",
+						"label": "7 * <i class=\"fa-duotone fa-solid fa-check\"></i>",
 						"value": null
 					},
 					"level08": {
 						"type": "text",
 						"dtype": "String",
-						"label": "8 * ✔️",
+						"label": "8 * <i class=\"fa-duotone fa-solid fa-check\"></i>",
 						"value": null
 					},
 					"level09": {
 						"type": "text",
 						"dtype": "String",
-						"label": "9 * ✔️",
+						"label": "9 * <i class=\"fa-duotone fa-solid fa-check\"></i>",
 						"value": null
 					},
 					"level10": {
 						"type": "text",
 						"dtype": "String",
-						"label": "10 * ✔️",
+						"label": "10 * <i class=\"fa-duotone fa-solid fa-check\"></i>",
 						"value": null
 					},
 					"level11": {
 						"type": "text",
 						"dtype": "String",
-						"label": "11+ * ✔️",
+						"label": "11+ * <i class=\"fa-duotone fa-solid fa-check\"></i>",
 						"value": null
 					},
 					"AdditionalInfo": {
@@ -1575,14 +1575,14 @@
 			"RequiredPerk": {
 				"type": "text",
 				"dtype": "String",
-				"label": "Required 📚 Perk",
+				"label": "Required <i class=\"fa-duotone fa-solid fa-books\"></i> Perk",
 				"value": "None",
 				"options": ["None", "Artistry", "Athletics", "Expertise", "Operation", "Weapons"]
 			},
 			"RequiredPerkLevel": {
 				"type": "number",
 				"dtype": "Number",
-				"label": "Required 📚 Perk Level",
+				"label": "Required <i class=\"fa-duotone fa-solid fa-books\"></i> Perk Level",
 				"value": 0
 			}
 		},
@@ -1628,14 +1628,14 @@
 			"EnergyType": {
 				"type": "text",
 				"dtype": "String",
-				"label": "✨",
+				"label": "<i class=\"fa-duotone fa-solid fa-sparkles\"></i>",
 				"value": null,
 				"options": ["Cosmic", "Elemental", "Material", "Psychic"]
 			},
 			"DestinyCost": {
 				"type": "number",
 				"dtype": "Number",
-				"label": "🤞",
+				"label": "<i class=\"fa-duotone fa-solid fa-hand-fingers-crossed\"></i>",
 				"value": 0
 			}
 		},

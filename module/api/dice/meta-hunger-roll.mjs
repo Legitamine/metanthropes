@@ -26,19 +26,19 @@ export async function metaHungerRoll(actor, hungerLevel) {
 	}
 	const hungerRoll = await new Roll("1d100").evaluate();
 	const hungerRollResult = hungerRoll.total;
-	hungerMessage = `Rolls to beat Hunger 💀 Condition Level ${hungerLevel} and gets a result of ${hungerRollResult} (needed ${hungerTarget} or less).<br><br>`;
+	hungerMessage = `Rolls to beat Hunger <i class="fa-duotone fa-solid fa-skull"></i> Condition Level ${hungerLevel} and gets a result of ${hungerRollResult} (needed ${hungerTarget} or less).<br><br>`;
 	if (hungerRollResult > hungerTarget) {
-		hungerMessage += `It is a 🟥 Failure!<br><br>${actor.name} is too hungry and can't act!`;
+		hungerMessage += `It is a <i class="fa-duotone fa-solid fa-square-xmark"></i> Failure!<br><br>${actor.name} is too hungry and can't act!`;
 		//? Button to re-roll Hunger using destiny
 		const currentDestiny = Number(actor.system.Vital.Destiny.value);
-		hungerMessage += `<hr />${actor.name} has ${currentDestiny} 🤞 Destiny remaining.<br>`;
+		hungerMessage += `<hr />${actor.name} has ${currentDestiny} <i class="fa-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny remaining.<br>`;
 		if (currentDestiny > 0) {
 			hungerMessage += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button hunger-reroll" 
 			data-actoruuid="${actor.uuid}" data-hunger-level="${hungerLevel}"
-			>Spend 🤞 Destiny to reroll</button><br></div><br>`;
+			>Spend <i class="fa-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny to reroll</button><br></div><br>`;
 		}
 	} else {
-		hungerMessage += `It is a 🟩 Success!<hr />${actor.name} has overcome Hunger!<br><br>`;
+		hungerMessage += `It is a <i class="fa-duotone fa-regular fa-square"></i> Success!<hr />${actor.name} has overcome Hunger!<br><br>`;
 		await actor.setFlag("metanthropes", "hungerRollResult", true);
 		const MetaRollBeforeHungerCheck = await actor.getFlag("metanthropes", "MetaRollBeforeHungerCheck");
 		metanthropes.utils.metaLog(

@@ -484,12 +484,12 @@ export class MetanthropesCombat extends Combat {
 					lifeLoss = Number(bleedingLevel) * Number(homebrewBleeding);
 					newLife = Number(currentLife) - lifeLoss;
 					if (homebrewBleeding !== 1)
-						combatantMessage += `Lost ${lifeLoss} ❤️ Life due to ${homebrewName} for Bleeding Condition ${bleedingLevel}.<br>`;
-					else combatantMessage += `Lost ${lifeLoss} ❤️ Life due to Bleeding Condition ${bleedingLevel}.<br>`;
+						combatantMessage += `Lost ${lifeLoss} <i class="fa-duotone fa-solid fa-heart"></i> Life due to ${homebrewName} for Bleeding Condition ${bleedingLevel}.<br>`;
+					else combatantMessage += `Lost ${lifeLoss} <i class="fa-duotone fa-solid fa-heart"></i> Life due to Bleeding Condition ${bleedingLevel}.<br>`;
 				} else {
 					lifeLoss = Number(bleedingLevel);
 					newLife = Number(currentLife) - lifeLoss;
-					combatantMessage += `Lost ${lifeLoss} ❤️ Life due to Bleeding Condition ${bleedingLevel}.<br>`;
+					combatantMessage += `Lost ${lifeLoss} <i class="fa-duotone fa-solid fa-heart"></i> Life due to Bleeding Condition ${bleedingLevel}.<br>`;
 				}
 				await actor.update({ "system.Vital.Life.value": newLife });
 			}
@@ -550,11 +550,11 @@ export class MetanthropesCombat extends Combat {
 	// 						break;
 	// 					case 4:
 	// 						unconsciousEffect =
-	// 							"The Character collapses into a comatose state for days. A Character who is sleeping or has passed out, cannot attempt any Actions or Movement, and neither is aware of their surroundings. The Character further receives the Condition: Knocked Down. The Character must spend 1 * 🤞 Destiny to attempt to be awakened from the coma. At the end of each Round, the unconscious Character attempting to wake up might attempt an Endurance roll (Free Roll), and if successful they wake up.";
+	// 							"The Character collapses into a comatose state for days. A Character who is sleeping or has passed out, cannot attempt any Actions or Movement, and neither is aware of their surroundings. The Character further receives the Condition: Knocked Down. The Character must spend 1 * <i class="fa-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny to attempt to be awakened from the coma. At the end of each Round, the unconscious Character attempting to wake up might attempt an Endurance roll (Free Roll), and if successful they wake up.";
 	// 						break;
 	// 					case 5:
 	// 						unconsciousEffect =
-	// 							"The Character collapses into a deep coma for an unknown amount of time. A Character who is sleeping or has passed out, cannot attempt any Actions or Movement, and neither is aware of their surroundings. The Character further receives the Condition: Knocked Down. The Character must spend 2 * 🤞 Destiny to attempt to be awakened from the coma. At the end of each Round, the unconscious Character attempting to wake up might attempt an Endurance roll (Free Roll), and if successful they wake up.";
+	// 							"The Character collapses into a deep coma for an unknown amount of time. A Character who is sleeping or has passed out, cannot attempt any Actions or Movement, and neither is aware of their surroundings. The Character further receives the Condition: Knocked Down. The Character must spend 2 * <i class="fa-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny to attempt to be awakened from the coma. At the end of each Round, the unconscious Character attempting to wake up might attempt an Endurance roll (Free Roll), and if successful they wake up.";
 	// 						break;
 	// 					default:
 	// 						metanthropes.utils.metaLog(2, "Combat", "nextRound", "Unconscious Level is out of bounds:", unconsciousLevel);
@@ -649,7 +649,7 @@ export class MetanthropesCombat extends Combat {
 	// 				await actor.update({ "system.Vital.Life.value": newLife });
 	// 				//? Create a chat message indicating the Bleeding effect
 	// 				await ChatMessage.create({
-	// 					content: `Lost ${bleedingLevel} ❤️ Life due to Bleeding Condition ${bleedingLevel}.<br><br>`,
+	// 					content: `Lost ${bleedingLevel} <i class="fa-duotone fa-solid fa-heart"></i> Life due to Bleeding Condition ${bleedingLevel}.<br><br>`,
 	// 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 	// 				});
 	// 			}
