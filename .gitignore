@@ -20,6 +20,10 @@ foundry/
 *.lock
 jsconfig.json
 
+# Improving Intellisense
+foundry-config.yaml
+foundry
+
 # Packs (built during release)
 packs/*
 

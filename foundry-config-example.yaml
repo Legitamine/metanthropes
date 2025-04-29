@@ -1,0 +1,6 @@
+# You need to create a new file to the root folder called `foundry-config.yaml`.
+# You also need to edit the installPath to point to your local Foundry installation.
+# See this guide for more details: https://foundryvtt.wiki/en/development/guides/improving-intellisense
+# example from the guide: installPath: "C:\\Program Files\\Foundry Virtual Tabletop\\Version 13"
+# Below is pointint to my local node install of Foundry VTT - this requires v13.340+
+installPath: "D:\\FoundryDev\\V13\\code"
