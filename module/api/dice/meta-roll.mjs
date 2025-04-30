@@ -350,19 +350,23 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 		let dialogTitle = `${actor.name}`;
 		dialogTitle += game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Title");
 		let dialogButtonLabel;
+		let dialogIcon;
 		if (action === "StatRoll") {
 			dialogTitle += `${stat}`;
 			dialogTitle += game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Stat");
 			dialogButtonLabel = game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.StatRoll");
 			dialogButtonLabel += `${stat}`;
+			dialogIcon = "fa-duotone fa-chart-simple"
 		} else if (action === "Metapower") {
 			dialogTitle += game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Metapower");
 			dialogButtonLabel = game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.MetapowerRoll");
 			dialogButtonLabel += `${itemName}`;
+			dialogIcon = "fa-kit fa-metanthropes"
 		} else if (action === "Possession") {
 			dialogTitle += game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Possession");
 			dialogButtonLabel = game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.PossessionRoll");
 			dialogButtonLabel += `${itemName}`;
+			dialogIcon = "fa-duotone fa-backpack"
 		}
 		//* Prompt the Dialog and define the options
 		const customDialogResults = await foundry.applications.api.DialogV2.prompt({
@@ -374,10 +378,10 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 			content: content,
 			modal: false,
 			ok: {
-				icon: "fa-duotone fa-dice-d10",
+				icon: dialogIcon,
 				label: dialogButtonLabel,
 				//? using the callback function to get the values from the form using FormDataExtended
-				callback: (event, button, dialog) => new FormDataExtended(button.form).object,
+				callback: (event, button, dialog) => new foundry.applications.ux.FormDataExtended(button.form).object,
 			},
 			rejectClose: false, //? Defaults true in V12, false in V13
 		});

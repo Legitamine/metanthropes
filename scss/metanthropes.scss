@@ -36,9 +36,12 @@
 		//changes to the selection elements default color
 		accent-color: $c-purple;
 		caret-color: $c-purple;
-		--color-scrollbar: $c-purple;
-		--input-focus-outline-color: $c-purple;
-		--outline-color: $c-purple;
+		--color-scrollbar: #7d0f81;
+		--input-focus-outline-color: #7d0f81;
+		--color-shadow-primary: #7d0f81;
+		--color-shadow-highlight: #7d0f81;
+		--outline-color: #7d0f81;
+		--color-warm-1: #7d0f81;
 		outline-color: $c-purple;
 	}
 }

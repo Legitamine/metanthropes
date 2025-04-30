@@ -25,12 +25,12 @@
 					"CustomReductionHint": "The total Reduction for the Roll result.",
 					"AimingReduction": "Aiming Reduction",
 					"AimingReductionHint": "The total Aiming Reduction for the Roll result.",
-					"Stat": " 📊 Stat",
-					"StatRoll": "Roll 📊 ",
-					"Metapower": "Ⓜ️ Metapower",
-					"MetapowerRoll": "Activate Ⓜ️ ",
-					"Possession": "🛠️ Possession",
-					"PossessionRoll": "Use 🛠️ "
+					"Stat": " Stat",
+					"StatRoll": "Roll ",
+					"Metapower": "Metapower",
+					"MetapowerRoll": "Activate ",
+					"Possession": "Possession",
+					"PossessionRoll": "Use "
 				}
 			}
 		},
