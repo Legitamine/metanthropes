@@ -13,7 +13,7 @@ gsap.registerPlugin(TextPlugin, Dragger);
  * @extends {ActorSheet}
  *
  */
-export class MetanthropesActorSheet extends ActorSheet {
+export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 	/** @override */
 	static get defaultOptions() {
 		const options = super.defaultOptions;
