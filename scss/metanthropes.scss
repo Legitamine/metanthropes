@@ -34,6 +34,8 @@
 		//! do we still need to define z-index here?
 		//z-index: 3;
 		//changes to the selection elements default color
+		.theme-light,
+		.application.theme-light {
 		accent-color: $c-purple;
 		caret-color: $c-purple;
 		--color-scrollbar: #7d0f81;
@@ -43,5 +45,18 @@
 		--outline-color: #7d0f81;
 		--color-warm-1: #7d0f81;
 		outline-color: $c-purple;
+		}
+		.theme-dark,
+		.application.theme-dark {
+		accent-color: #dcb4de;
+		caret-color: #dcb4de;
+		--color-scrollbar: #dcb4de;
+		--input-focus-outline-color: #dcb4de;
+		--color-shadow-primary: #dcb4de;
+		--color-shadow-highlight: #dcb4de;
+		--outline-color: #dcb4de;
+		--color-warm-1: #dcb4de;
+		outline-color: #dcb4de;
+		}
 	}
 }

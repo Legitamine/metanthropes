@@ -56,8 +56,16 @@
 			"flags": {}
 		}
 	],
-	"scripts": ["https://kit.fontawesome.com/ba60e3ed10.js"],
-	"esmodules": ["greensock/esm/all.js", "module/metanthropes.mjs"],
+	"esmodules": [
+		"assets/fonts/fontawesome/fontawesome.js",
+		"assets/fonts/fontawesome/solid.js",
+		"assets/fonts/fontawesome/sharp-solid.js",
+		"assets/fonts/fontawesome/duotone.js",
+		"assets/fonts/fontawesome/sharp-duotone-solid.js",
+		"assets/fonts/fontawesome/custom-icons.js",
+		"greensock/esm/all.js",
+		"module/metanthropes.mjs"
+	],
 	"styles": ["styles/metanthropes.css"],
 	"packs": [
 		{
