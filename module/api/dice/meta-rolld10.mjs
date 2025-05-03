@@ -184,12 +184,15 @@ export async function metaRolld10(
 			const chatMessage = game.messages.get(messageId);
 			if (!chatMessage) {
 				ui.notifications.warn("Could not find the chat message to update.");
+				metanthropes.utils.metaLog(2, "metaRolld10", "Could not find the chat message to update", messageId);
 				return;
 			}
 			const updatedRoll = await rolld10.toJSON();
 			const renderedRoll = await rolld10.render();
-			//? Call Dice So Nice to show the roll, assumes the module is active
+			//? Call Dice So Nice to show the roll, if the module is active
+			if (game.dice3d) {
 			game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
+			}
 			chatMessage.update({
 				rolls: updatedRoll,
 				rollMode: game.settings.get("core", "rollMode"),
