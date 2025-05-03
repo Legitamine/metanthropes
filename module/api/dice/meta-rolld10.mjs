@@ -1,4 +1,3 @@
-import { metaSheetRefresh } from "../../helpers/metahelpers.mjs";
 /**
  * metaRolld10 handles the rolling of d10 dice for a given actor and purpose.
  *
@@ -145,15 +144,19 @@ export async function metaRolld10(
 				flags: { metanthropes: { actoruuid: actor.uuid } },
 			});
 		} else {
+			//todo we should only update the chat message if it was a previous reroll, if it's the first reroll we should create a new message instead
 			const chatMessage = game.messages.get(messageId);
 			if (!chatMessage) {
 				ui.notifications.warn("Could not find the chat message to update.");
+				metanthropes.utils.metaLog(2, "metaRolld10", "reroll", "Could not find the chat message to update", messageId);
 				return;
 			}
 			const updatedRoll = await rolld10.toJSON();
 			const renderedRoll = await rolld10.render();
 			//? Call Dice So Nice to show the roll, assumes the module is active
-			game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
+			if (game.dice3d) {
+				game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
+			}
 			chatMessage.update({
 				flavor: message,
 				rolls: updatedRoll,
@@ -184,25 +187,24 @@ export async function metaRolld10(
 			const chatMessage = game.messages.get(messageId);
 			if (!chatMessage) {
 				ui.notifications.warn("Could not find the chat message to update.");
-				metanthropes.utils.metaLog(2, "metaRolld10", "Could not find the chat message to update", messageId);
+				metanthropes.utils.metaLog(2, "metaRolld10", "else", "Could not find the chat message to update", messageId);
 				return;
 			}
 			const updatedRoll = await rolld10.toJSON();
 			const renderedRoll = await rolld10.render();
 			//? Call Dice So Nice to show the roll, if the module is active
 			if (game.dice3d) {
-			game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
+				game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
 			}
 			chatMessage.update({
 				rolls: updatedRoll,
+				content: renderedRoll,
 				rollMode: game.settings.get("core", "rollMode"),
 				flags: { metanthropes: { actoruuid: actor.uuid } },
 			});
 		}
 	}
 	metanthropes.utils.metaLog(3, "metaRolld10", "Finished for:", actor.name + "'s", what);
-	////? Refresh the actor sheet if it's open
-	//metaSheetRefresh(actor);
 }
 
 /**
@@ -245,13 +247,15 @@ export async function metaRolld10ReRoll(event) {
 	const rerollCounter = parseInt(button.dataset.rerollCounter) ?? 0;
 	const actor = await fromUuid(actoruuid);
 	const targets = button.dataset.targets ?? null;
+	metanthropes.utils.metaLog(1, "metaRolld10ReRoll", "targets", targets);
 	//? Need to check if actor has enough Destiny to spend, because they might have already spent it on another secondary button
 	if (actor.currentDestiny > 0 && destinyReRoll) {
 		await actor.applyDestinyChange(-1);
 		if (targets) {
-			//todo it's not being applied at as no ui to trigger it properly (should be fixed with the roll orchestrator)
+			//todo needs extra steps to check if we are rerolling for damage/healing first and only then undo the life change
+			//? Undo previous life change for each targeted actor
 			for (let i = 0; i < targets.length; i++) {
-				const targetedActor = targets[i];
+				const targetedActor = await fromUuid(targets[i]);
 				await targetedActor.undoLastLifeChange();
 			}
 			metanthropes.dice.metaRolld10(

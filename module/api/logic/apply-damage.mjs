@@ -20,7 +20,7 @@ export async function metaApplyDamage(
 ) {
 	metanthropes.utils.metaLog(3, "metaApplyDamage", "Targets:", targets);
 	for (let i = 0; i < targets.length; i++) {
-		const targetedActor = targets[i];
+		const targetedActor = await fromUuid(targets[i]);
 		await targetedActor.applyDamage(cosmicDamage, elementalDamage, materialDamage, psychicDamage);
 		metanthropes.utils.metaLog(
 			3,

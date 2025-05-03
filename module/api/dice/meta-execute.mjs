@@ -497,13 +497,15 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		if (betaTesting) {
 			const manuallySelectedTargets = game.user.targets;
 			//? Store targeted actors in an array
-			targetedActors = Array.from(manuallySelectedTargets).map((token) => token.actor);
-			metanthropes.utils.metaLog(3, "metaExecute", "Targeted Actors:", targetedActors);
+			const targetsArray = Array.from(manuallySelectedTargets).map((token) => token.actor);
+			//?Create a new array with only the actor's uuids to be used later
+			targetedActors = targetsArray.map((actor) => actor.uuid);
+			metanthropes.utils.metaLog(3, "metaExecute", "Targeted Actors UUIDs", targetedActors);
 			//? Check if there are any targeted actors and set the actionableTargets variable accordingly
 			actionableTargets = targetedActors.length > 0;
 			if (actionableTargets) {
 				//? Get the names of all targeted actors
-				const targetedActorNames = targetedActors.map((actor) => actor.name);
+				const targetedActorNames = targetsArray.map((actor) => actor.name);
 				const allSelectedTargetsMessage = `Beta Testing: Selected <i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i> Target(s): ${targetedActorNames.join(
 					", "
 				)}`;
@@ -610,7 +612,6 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		flags: { metanthropes: { actoruuid: actor.uuid } },
 	};
 	//? Send the message to chat
-	//await new Dialog ({title: "test", flavor: flavorMessage, content: contentMessage, buttons: {ok: {label: "OK"}}}).render(true);
 	await ChatMessage.create(chatData);
 	//* Post Execution Actions
 	metanthropes.utils.metaLog(3, "metaExecute", "Post Execution Actions");
@@ -634,13 +635,18 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		let duplicateMaxLife = 0;
 		if (itemName === "Clone") {
 			duplicateMaxLife = Math.ceil(currentLife * 0.1);
-		} else if (itemName === "Couple") {
+		} else if (itemName === "Couple" || itemName === "Couple [Alt]") {
 			duplicateMaxLife = Math.ceil(currentLife * 0.2);
 		} else if (itemName === "Team") {
 			duplicateMaxLife = Math.ceil(currentLife * 0.3);
-		} else if (itemName === "Squad") {
+		} else if (itemName === "Squad" || itemName === "Squad [Alt]" || itemName === "Squad (⏱️E)") {
 			duplicateMaxLife = Math.ceil(currentLife * 0.4);
-		} else if (itemName === "Unit") {
+		} else if (
+			itemName === "Unit" ||
+			itemName === "Unit [Alt]" ||
+			itemName === "Unit (⏱️E)" ||
+			itemName === "Unit (⏱️R)"
+		) {
 			duplicateMaxLife = Math.ceil(currentLife * 0.5);
 		}
 		await actor.setFlag("metanthropes", "duplicateSelf", { maxLife: duplicateMaxLife });
