@@ -356,7 +356,7 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 			dialogTitle += game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Stat");
 			dialogButtonLabel = game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.StatRoll");
 			dialogButtonLabel += `${stat}`;
-			dialogIcon = "fa-duotone fa-chart-simple"
+			dialogIcon = "fa-sharp-duotone fa-chart-simple"
 		} else if (action === "Metapower") {
 			dialogTitle += game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Metapower");
 			dialogButtonLabel = game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.MetapowerRoll");
@@ -366,7 +366,7 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 			dialogTitle += game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Possession");
 			dialogButtonLabel = game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.PossessionRoll");
 			dialogButtonLabel += `${itemName}`;
-			dialogIcon = "fa-duotone fa-backpack"
+			dialogIcon = "fa-sharp-duotone fa-backpack"
 		}
 		//* Prompt the Dialog and define the options
 		const customDialogResults = await foundry.applications.api.DialogV2.prompt({

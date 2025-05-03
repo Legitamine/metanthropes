@@ -5,7 +5,7 @@
 	"version": "0.13.2",
 	"compatibility": {
 		"minimum": "13",
-		"verified": "13.340",
+		"verified": "13.341",
 		"maximum": "13"
 	},
 	"relationships": {
@@ -56,8 +56,17 @@
 			"flags": {}
 		}
 	],
-	"scripts": ["https://kit.fontawesome.com/ba60e3ed10.js"],
-	"esmodules": ["greensock/esm/all.js", "module/metanthropes.mjs"],
+	"esmodules": [
+		"assets/fonts/fontawesome/fontawesome.js",
+		"assets/fonts/fontawesome/solid.js",
+		"assets/fonts/fontawesome/sharp-solid.js",
+		"assets/fonts/fontawesome/duotone.js",
+		"assets/fonts/fontawesome/sharp-duotone-solid.js",
+		"assets/fonts/fontawesome/custom-icons.js",
+		"assets/fonts/fontawesome/conflict-detection.js",
+		"greensock/esm/all.js",
+		"module/metanthropes.mjs"
+	],
 	"styles": ["styles/metanthropes.css"],
 	"packs": [
 		{

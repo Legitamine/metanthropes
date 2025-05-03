@@ -121,14 +121,14 @@ export async function metaRolld10(
 	}
 	//? if destinyReRoll is true, allow rerolling the result by spending 1 Destiny Point
 	if (destinyReRoll && actor.currentDestiny > 0) {
-		message += `<br>${actor.name} has ${actor.currentDestiny} <i class="fa-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny remaining.<br>
+		message += `<br>${actor.name} has ${actor.currentDestiny} <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny remaining.<br>
 		<div class="hide-button hidden"><br><button class="metanthropes-secondary-chat-button rolld10-reroll"
 		data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 		data-what="${what}" data-destiny-re-roll="${destinyReRoll}"
 		data-dice="${dice}" data-base-number="${baseNumber}" data-is-half="${isHalf}"
 		data-anchor="${anchor}" data-message-id="${messageId}"
 		data-reroll="${reroll}" data-reroll-counter="${rerollCounter}"
-		>Spend <i class="fa-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny to reroll</button><br><br></div>`;
+		>Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny to reroll</button><br><br></div>`;
 	}
 	await actor.setFlag("metanthropes", "lastrolled", {
 		rolld10: rollTotal,
@@ -184,12 +184,15 @@ export async function metaRolld10(
 			const chatMessage = game.messages.get(messageId);
 			if (!chatMessage) {
 				ui.notifications.warn("Could not find the chat message to update.");
+				metanthropes.utils.metaLog(2, "metaRolld10", "Could not find the chat message to update", messageId);
 				return;
 			}
 			const updatedRoll = await rolld10.toJSON();
 			const renderedRoll = await rolld10.render();
-			//? Call Dice So Nice to show the roll, assumes the module is active
+			//? Call Dice So Nice to show the roll, if the module is active
+			if (game.dice3d) {
 			game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
+			}
 			chatMessage.update({
 				rolls: updatedRoll,
 				rollMode: game.settings.get("core", "rollMode"),
