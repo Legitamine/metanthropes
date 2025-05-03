@@ -21,27 +21,27 @@ Hooks.once("init", async function () {
 	CONFIG.Combat.documentClass = metanthropes.documents.MetanthropesCombat;
 
 	//* Register Application Sheets
-	Actors.unregisterSheet("core", ActorSheet);
-	Actors.registerSheet("metanthropes", metanthropes.applications.MetanthropesActorSheet, {
+	foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
+	foundry.documents.collections.Actors.registerSheet("metanthropes", metanthropes.applications.MetanthropesActorSheet, {
 		makeDefault: true,
 	});
 
-	Actors.registerSheet("metanthropes", metanthropes.applications.MetanthropesActorSheetV2, {
+	foundry.documents.collections.Actors.registerSheet("metanthropes", metanthropes.applications.MetanthropesActorSheetV2, {
 		makeDefault: false,
 		label: "METANTHROPES.SHEET.ACTOR.LABEL",
 	});
 
-	Items.unregisterSheet("core", ItemSheet);
-	Items.registerSheet("metanthropes", metanthropes.applications.MetanthropesItemSheet, {
+	foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
+	foundry.documents.collections.Items.registerSheet("metanthropes", metanthropes.applications.MetanthropesItemSheet, {
 		makeDefault: true,
 	});
 
-	Items.registerSheet("metanthropes", metanthropes.applications.MetanthropesItemSheetV2, {
+	foundry.documents.collections.Items.registerSheet("metanthropes", metanthropes.applications.MetanthropesItemSheetV2, {
 		makeDefault: false,
 		label: "METANTHROPES.SHEET.ITEM.LABEL",
 	});
 
-	DocumentSheetConfig.registerSheet(
+	foundry.applications.apps.DocumentSheetConfig.registerSheet(
 		ActiveEffect,
 		"metanthropes",
 		metanthropes.applications.MetanthropesActiveEffectSheet,

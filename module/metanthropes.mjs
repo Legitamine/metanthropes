@@ -134,7 +134,7 @@ globalThis.metanthropes = {
 //* Hooks
 import "./hooks/init.mjs";
 import "./hooks/ready.mjs";
-import "./hooks/render-chat-message.mjs";
+import "./hooks/render-chat-message-html.mjs";
 import "./hooks/create-actor.mjs";
 import "./hooks/pause.mjs";
 import "./hooks/supported-modules.mjs";

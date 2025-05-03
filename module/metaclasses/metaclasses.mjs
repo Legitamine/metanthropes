@@ -9,7 +9,7 @@ import { metaChangeActorImage } from "../helpers/metaimagehandler.mjs";
  * @param {*} app
  * @param {*} buttons
  */
-export class metaFilePicker extends FilePicker {
+export class metaFilePicker extends foundry.applications.apps.FilePicker.implementation {
 	//todo: clean up the z-index tryouts
 	/** @override */
 	constructor(options = {}) {
