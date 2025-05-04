@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 - Foundry VTT version 13 is now supported.
 - theme support & developer environment updates.
 - Roll d100 dice functions localized & using fields API & APP V2.
+todo: add license & contribution attributes for fonts
 
 # Early Access v0.12.2 [2025-01-29]
 

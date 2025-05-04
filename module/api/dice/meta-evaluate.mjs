@@ -120,7 +120,7 @@ export async function metaEvaluate(
 		resultLevel = 0;
 	} else {
 		//? if it's a success, similarly as above, we don't care about levels of failure
-		result = `Success <i class="fa-sharp-duotone fa-solid fa-square" style="--fa-primary-color: ${successColor}; --fa-secondary-color: ${successSecColor}; --fa-secondary-opacity: ${secOpacity};"></i>`;
+		result = `Success <span style="--fa-primary-color: ${successColor}; --fa-secondary-color: ${successSecColor}; --fa-secondary-opacity: ${secOpacity};"><i class="fa-sharp-duotone fa-solid fa-square"></i><span>`;
 		levelsOfFailure = 0;
 		resultLevel = 0.5;
 	}

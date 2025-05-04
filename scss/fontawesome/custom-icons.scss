@@ -1,0 +1,31 @@
+/*!
+ * Font Awesome Pro 6.7.2 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license (Commercial License)
+ * Copyright 2024 Fonticons, Inc.
+ */
+@import 'functions';
+@import 'variables';
+@import 'mixins';
+
+@font-face {
+  font-family: 'Font Awesome Kit';
+  font-style: normal;
+  font-weight: 400;
+  font-display: $fa-font-display;
+  src: url('#{$fa-font-path}/custom-icons.woff2') format('woff2'),
+    url('#{$fa-font-path}/custom-icons.ttf') format('truetype');
+}
+
+.fak, .#{$fa-css-prefix}-kit {
+  font-family: 'Font Awesome Kit';
+
+  @include fa-icon;
+}
+
+.fak::before, .fa-kit::before {
+  content: var(--fa);
+}
+
+@each $name, $icon in $fa-custom-icons {
+  .fak.#{$fa-css-prefix}-#{$name}, .fa-kit.#{$fa-css-prefix}-#{$name} { #{$fa-icon-property}: unquote("\"#{ $icon }\""); }
+}
