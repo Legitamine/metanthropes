@@ -203,7 +203,7 @@ export async function metaEvaluate(
 			levelsOfSuccess = 0;
 			message += `It was a Success, turned into a ${result}, because of Pain ${pain}`;
 			metanthropes.utils.metaLog(
-				3,
+				1,
 				"metaEvaluate",
 				"Pain Effect should be <0",
 				painEffect,
@@ -214,7 +214,7 @@ export async function metaEvaluate(
 			message += `It is still a ${result}, besides being affected by Pain ${pain}`;
 			levelsOfSuccess = 0;
 			metanthropes.utils.metaLog(
-				3,
+				1,
 				"metaEvaluate",
 				"Pain Effect should be =0",
 				painEffect,
@@ -225,7 +225,7 @@ export async function metaEvaluate(
 			message += `It is a ${result}, reduced by Pain ${pain}`;
 			levelsOfSuccess = painEffect;
 			metanthropes.utils.metaLog(
-				3,
+				1,
 				"metaEvaluate",
 				"Pain Effect should be >0",
 				painEffect,
@@ -388,8 +388,6 @@ export async function metaEvaluate(
 			levelsOfSuccess,
 			"levelsOfFailure:",
 			levelsOfFailure,
-			"Result:",
-			result,
 			"Result Level:",
 			resultLevel,
 			"Current Destiny:",

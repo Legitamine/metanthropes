@@ -10,12 +10,10 @@
 .combat-sidebar li.combatant .roll:hover {
 	background-image: url("../assets/artwork/ui/dice/d100roll-white-selected.webp");
 }
-//mana from discord black magic to replace fa-d20 with d10s
+//* Change all fa-d20 to d10
+//? suggested by mana from discord
+.far.fa-dice-d20:before,
 .fa-solid.fa-dice-d20:before,
 .fas.fa-dice-d20:before {
-	content: "fa-dice-d10";
-}
-//me copying the above for carousel
-.far.fa-dice-d20:before {
-	content: "fa-dice-d10";
+	content: "\f6cd";
 }

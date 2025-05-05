@@ -1,5 +1,20 @@
 {
 	"METANTHROPES": {
+		"COMMON": {
+			"Summary": "Sumamry",
+			"Stat": "Stat",
+			"Stats": "Stats",
+			"Perk": "Perk",
+			"Perks": "Perks",
+			"Action": "Action",
+			"Actions": "Actions",
+			"Possession": "Possession",
+			"Possessions": "Possessions",
+			"Effect": "Effect",
+			"Effects": "Effects",
+			"Metapower": "Metapower",
+			"Metapowers": "Metapowers"
+		},
 		"UI": {
 			"NOTIFICATIONS": {
 				"META_ROLL": {

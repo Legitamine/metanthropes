@@ -5,7 +5,7 @@
 @mixin fa-icon {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  display: inline-block;
+  display: inline-flex;
   font-style: normal;
   font-variant: normal;
   font-weight: normal;

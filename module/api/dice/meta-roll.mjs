@@ -114,7 +114,7 @@ export async function metaRoll(
 			const levelDifference = requiredPerkLevel - actorPerkLevel;
 			if (levelDifference > 0) {
 				perkReduction = levelDifference * -10;
-				metanthropes.utils.metaLog(2, "metaRoll", "Perk Penalty for", actor.name, "is", perkReduction);
+				metanthropes.utils.metaLog(1, "metaRoll", "Perk Penalty for", actor.name, "is", perkReduction);
 			}
 		}
 	}
