@@ -120,7 +120,7 @@ export async function metaEvaluate(
 		resultLevel = 0;
 	} else {
 		//? if it's a success, similarly as above, we don't care about levels of failure
-		result = `Success <span style="--fa-primary-color: ${successColor}; --fa-secondary-color: ${successSecColor}; --fa-secondary-opacity: ${secOpacity};"><i class="fa-sharp-duotone fa-solid fa-square"></i><span>`;
+		result = `Success <span style="--fa-primary-color: ${successColor}; --fa-secondary-color: ${successSecColor}; --fa-secondary-opacity: ${secOpacity};"><i class="fa-sharp-duotone fa-solid fa-square"></i></span>`;
 		levelsOfFailure = 0;
 		resultLevel = 0.5;
 	}
@@ -490,7 +490,7 @@ export async function metaEvaluateReRoll(event) {
 	);
 	await actor.applyDestinyChange(-1);
 	metanthropes.utils.metaLog(3, "metaEvaluateReRoll", "Destiny spent for re-roll, calling metaEvaluate");
-	await metaEvaluate(
+	await metanthropes.dice.metaEvaluate(
 		actor,
 		action,
 		stat,

@@ -12,7 +12,7 @@
  * @param {string} [itemName=""] - The name of the item associated with the roll, if any. Expected to be a string.
  * @param {number} [baseNumber=0] - A fixed number to add to the roll result, if any. Expected to be a positive number.
  * @param {boolean} [isHalf=false] - Determines if the roll result should be halved. Expected to be a boolean.
- * @param {boolean} [anchor=false] - Determines if the roll result should be prepared to be injected into a chat message. Expected to be a boolean.
+ * @param {boolean} [anchor=false] - Determines if the roll result should be prepared to be injected into a chat message. Expected to be a boolean. This shpuld be reset to false for subsequent re rolls.
  * @param {boolean} [reroll=false] - Determines if the roll is a reroll. Expected to be a boolean.
  * @param {number} [rerollCounter=0] - The number of rerolls that have been performed. Expected to be a positive number.
  * @param {string} [messageId=null] - The message ID of the chat message for the reroll, if any. Expected to be a string.
@@ -118,37 +118,50 @@ export async function metaRolld10(
 			}
 		}
 	}
-	//? if destinyReRoll is true, allow rerolling the result by spending 1 Destiny Point
+	//? Create the re-roll button for the chat, taking into account anchoring for re-rolls
+	const reRollButtonMessage = `<br>${actor.name} has ${actor.currentDestiny}
+	<i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny remaining.<br>
+	<div class="hide-button hidden"><br><button class="metanthropes-secondary-chat-button rolld10-reroll"
+	data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+	data-what="${what}" data-destiny-re-roll="${destinyReRoll}"
+	data-dice="${dice}" data-base-number="${baseNumber}" data-is-half="${isHalf}"
+	data-anchor="${anchor}" data-message-id="${messageId}"
+	data-reroll="true" data-reroll-counter="${rerollCounter}"
+	>Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny to reroll</button><br><br></div>`;
 	if (destinyReRoll && actor.currentDestiny > 0) {
-		message += `<br>${actor.name} has ${actor.currentDestiny} <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny remaining.<br>
-		<div class="hide-button hidden"><br><button class="metanthropes-secondary-chat-button rolld10-reroll"
-		data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
-		data-what="${what}" data-destiny-re-roll="${destinyReRoll}"
-		data-dice="${dice}" data-base-number="${baseNumber}" data-is-half="${isHalf}"
-		data-anchor="${anchor}" data-message-id="${messageId}"
-		data-reroll="${reroll}" data-reroll-counter="${rerollCounter}"
-		>Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny to reroll</button><br><br></div>`;
+		message += reRollButtonMessage;
 	}
 	await actor.setFlag("metanthropes", "lastrolled", {
 		rolld10: rollTotal,
 		rolld10what: what,
 		rolld10item: itemName,
 	});
-	//? Print message to chat
 	if (!anchor) {
+		//* Not anchored, print message to chat
 		if (!reroll) {
+			//* Not a reroll, printing a new message
+			const updatedRoll = await rolld10.toJSON();
+			const renderedRoll = await rolld10.render();
 			rolld10.toMessage({
 				speaker: ChatMessage.getSpeaker({ actor: actor }),
 				flavor: message,
+				rolls: updatedRoll,
+				content: renderedRoll,
 				rollMode: game.settings.get("core", "rollMode"),
 				flags: { metanthropes: { actoruuid: actor.uuid } },
 			});
 		} else {
-			//todo we should only update the chat message if it was a previous reroll, if it's the first reroll we should create a new message instead
+			//* Rerolling, update the previous message
 			const chatMessage = game.messages.get(messageId);
 			if (!chatMessage) {
 				ui.notifications.warn("Could not find the chat message to update.");
-				metanthropes.utils.metaLog(2, "metaRolld10", "reroll", "Could not find the chat message to update", messageId);
+				metanthropes.utils.metaLog(
+					2,
+					"metaRolld10",
+					"reroll",
+					"Could not find the chat message to update",
+					messageId
+				);
 				return;
 			}
 			const updatedRoll = await rolld10.toJSON();
@@ -164,9 +177,20 @@ export async function metaRolld10(
 				rollMode: game.settings.get("core", "rollMode"),
 				flags: { metanthropes: { actoruuid: actor.uuid } },
 			});
+			metanthropes.utils.metaLog(1, "metaRolld10", "Non-Anchored", "Updating chat message", messageId);
 		}
 	} else {
+		//* Roll is anchored
 		if (!reroll) {
+			//*? don't print a chat message ?what is reroll exactly? todo: rename to more clean purpose
+			//* We store in the dataset all info to display the chat message if needed from rerolls
+			const updatedRoll = await rolld10.toJSON();
+			const renderedRoll = await rolld10.render();
+			if (game.dice3d) {
+				game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
+			}
+			metanthropes.utils.metaLog(3, "metaRolld10", "Anchored", "Not updating original chat message", messageId);
+			//todo! here is where I need to flip the anchor switch
 			return rolld10.toAnchor({
 				label: what,
 				dataset: {
@@ -180,28 +204,84 @@ export async function metaRolld10(
 					isHalf: isHalf,
 					reroll: reroll,
 					rerollCounter: rerollCounter,
+					flavor: message,
+					content: renderedRoll,
+					rolls: updatedRoll,
 				},
 			});
 		} else {
-			//todo update only the anchor from the original message and re-apply the damage/healing
-			const chatMessage = game.messages.get(messageId);
-			if (!chatMessage) {
-				ui.notifications.warn("Could not find the chat message to update.");
-				metanthropes.utils.metaLog(2, "metaRolld10", "else", "Could not find the chat message to update", messageId);
-				return;
-			}
+			//* Re rolling for an anchor
 			const updatedRoll = await rolld10.toJSON();
 			const renderedRoll = await rolld10.render();
 			//? Call Dice So Nice to show the roll, if the module is active
 			if (game.dice3d) {
 				game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
 			}
-			chatMessage.update({
+			const chatData = {
+				speaker: ChatMessage.getSpeaker({ actor: actor }),
+				flavor: message,
 				rolls: updatedRoll,
 				content: renderedRoll,
 				rollMode: game.settings.get("core", "rollMode"),
 				flags: { metanthropes: { actoruuid: actor.uuid } },
-			});
+			};
+			const chatMessage = game.messages.get(messageId);
+			if (!chatMessage) {
+				//* If no previous chat message to replace
+				metanthropes.utils.metaLog(
+					1,
+					"metaRolld10",
+					"Re rolling for anchor",
+					"Could not find the chat message to update",
+					messageId,
+					"Creating new chat message"
+				);
+				ChatMessage.create(chatData);
+				//? AND return the anchor, setting it to false so if we have another reroll we'll update that new message
+				//! possibly not reading the dataset in proper sequence?
+				return rolld10.toAnchor({
+					label: what,
+					dataset: {
+						total: rollTotal,
+						actoruuid: actor.uuid,
+						item: itemName,
+						what: what,
+						destinyReRoll: destinyReRoll,
+						dice: dice,
+						baseNumber: baseNumber,
+						isHalf: isHalf,
+						reroll: reroll,
+						anchor: false,
+						rerollCounter: rerollCounter,
+						flavor: message,
+						content: renderedRoll,
+						rolls: updatedRoll,
+					},
+				});
+			} else {
+				//* Replacing previous chat message
+				metanthropes.utils.metaLog(1, "metaRolld10", "Re rolling for anchor", "Updating messageId", messageId);
+				chatMessage.update(chatData);
+				//*! Should we return this?
+				return rolld10.toAnchor({
+					label: what,
+					dataset: {
+						total: rollTotal,
+						actoruuid: actor.uuid,
+						item: itemName,
+						what: what,
+						destinyReRoll: destinyReRoll,
+						dice: dice,
+						baseNumber: baseNumber,
+						isHalf: isHalf,
+						reroll: reroll,
+						rerollCounter: rerollCounter,
+						flavor: message,
+						content: renderedRoll,
+						rolls: updatedRoll,
+					},
+				});
+			}
 		}
 	}
 	metanthropes.utils.metaLog(3, "metaRolld10", "Finished for:", actor.name + "'s", what);
@@ -246,18 +326,118 @@ export async function metaRolld10ReRoll(event) {
 	let reroll = button.dataset.reroll === "true" ? true : false;
 	const rerollCounter = parseInt(button.dataset.rerollCounter) ?? 0;
 	const actor = await fromUuid(actoruuid);
-	const targets = button.dataset.targets ?? null;
-	metanthropes.utils.metaLog(1, "metaRolld10ReRoll", "targets", targets);
+	const targets = button.dataset.targets ? button.dataset.targets.split(",") : [] ?? null;
 	//? Need to check if actor has enough Destiny to spend, because they might have already spent it on another secondary button
-	if (actor.currentDestiny > 0 && destinyReRoll) {
-		await actor.applyDestinyChange(-1);
-		if (targets) {
-			//todo needs extra steps to check if we are rerolling for damage/healing first and only then undo the life change
+	if (!(actor.currentDestiny > 0 && destinyReRoll)) {
+		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
+		metanthropes.utils.metaLog(
+			1,
+			"metaRolld10ReRoll",
+			"Not enough Destiny to spend",
+			"OR",
+			"destinyReRoll is not allowed"
+		);
+		return;
+	}
+	await actor.applyDestinyChange(-1);
+	//! reroll = true;
+	if (what.includes("Damage") || what.includes("Healing")) {
+		if (!targets) {
+			ui.notifications.warn("You must select valid targets");
+			return;
+		}
+		const reRoll = await metanthropes.dice.metaRolld10(
+			actor,
+			what,
+			true,
+			dice,
+			itemName,
+			baseNumber,
+			false,
+			true, //anchor
+			reroll,
+			rerollCounter,
+			messageId
+		);
+		const reRollResult = reRoll.dataset.total;
+		for (let i = 0; i < targets.length; i++) {
+			const targetedActor = await fromUuid(targets[i]);
 			//? Undo previous life change for each targeted actor
-			for (let i = 0; i < targets.length; i++) {
-				const targetedActor = await fromUuid(targets[i]);
-				await targetedActor.undoLastLifeChange();
+			await targetedActor.undoLastLifeChange();
+			if (what.includes("Healing")) {
+				//* Reroll Healing
+				await targetedActor.applyHealing(reRollResult);
+				metanthropes.utils.metaLog(
+					1,
+					"metaRolld10ReRoll",
+					"Applied Healing ReRoll",
+					reRollResult,
+					"targeted Actor",
+					targetedActor.name
+				);
 			}
+			if (what.includes("Cosmic")) {
+				//* Reroll Cosmic Damage
+				await targetedActor.applyDamage(reRollResult, 0, 0, 0);
+				metanthropes.utils.metaLog(
+					1,
+					"metaRolld10ReRoll",
+					"Applied Cosmic Damage ReRoll",
+					reRollResult,
+					"targeted Actor",
+					targetedActor.name
+				);
+			}
+			if (what.includes("Elemental")) {
+				//* Reroll Elemental Damage
+				await targetedActor.applyDamage(0, reRollResult, 0, 0);
+				metanthropes.utils.metaLog(
+					1,
+					"metaRolld10ReRoll",
+					"Applied Elemental Damage ReRoll",
+					reRollResult,
+					"targeted Actor",
+					targetedActor.name
+				);
+			}
+			if (what.includes("Material")) {
+				//* Reroll Material Damage
+				await targetedActor.applyDamage(0, 0, reRollResult, 0);
+				metanthropes.utils.metaLog(
+					1,
+					"metaRolld10ReRoll",
+					"Applied Material Damage ReRoll",
+					reRollResult,
+					"targeted Actor",
+					targetedActor.name
+				);
+			}
+			if (what.includes("Psychic")) {
+				//* Reroll Psychic Damage
+				await targetedActor.applyDamage(0, 0, 0, reRollResult);
+				metanthropes.utils.metaLog(
+					1,
+					"metaRolld10ReRoll",
+					"Applied Psychic Damage ReRoll",
+					reRollResult,
+					"targeted Actor",
+					targetedActor.name
+				);
+			}
+		}
+		const chatData = {
+			user: game.user.id,
+			flavor: reRoll.dataset.flavor,
+			speaker: ChatMessage.getSpeaker({ actor: actor }),
+			content: reRoll.dataset.content,
+			flags: { metanthropes: { actoruuid: actor.uuid } },
+		};
+		await ChatMessage.create(chatData);
+	} else {
+		//* Other Re Rolls
+		if (!reroll) {
+			metanthropes.utils.metaLog(1, "metaRolld10ReRoll", "Other Re Rolls", "No reroll");
+			//? We are going to print a new message since this is the first reroll
 			metanthropes.dice.metaRolld10(
 				actor,
 				what,
@@ -267,16 +447,13 @@ export async function metaRolld10ReRoll(event) {
 				baseNumber,
 				isHalf,
 				anchor,
-				reroll,
+				reroll, //?!returning true from now on ? does it?
 				rerollCounter,
 				messageId
 			);
 		} else {
-			//todo
-			//! apo to button kanw retrieve to message kai vriskw apo ekei kapoy to list me ta targeted actors
-			//todo gia kathe ena actor kanw to rollback life kai meta kanw apply to new type of damage/healing
-			// prepei na kanw account gia kathe ena type of damage, mias kai ta kanw total up otan kanw apply
-			reroll = true;
+			metanthropes.utils.metaLog(1, "metaRolld10ReRoll", "Other Re Rolls", "Reroll");
+			//?! We are following the existing reroll
 			metanthropes.dice.metaRolld10(
 				actor,
 				what,
@@ -291,14 +468,5 @@ export async function metaRolld10ReRoll(event) {
 				messageId
 			);
 		}
-	} else {
-		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
-		metanthropes.utils.metaLog(
-			1,
-			"metaRolld10ReRoll",
-			"Not enough Destiny to spend",
-			"OR",
-			"destinyReRoll is not allowed"
-		);
 	}
 }
