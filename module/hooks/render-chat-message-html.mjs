@@ -34,6 +34,12 @@ Hooks.on("renderChatMessageHTML", async (message, html) => {
 				metanthropes.dice.metaHungerReRoll(event);
 			} else if (button.classList.contains("cover-reroll")) {
 				metanthropes.dice.metaCoverReRoll(event);
+			} else if (button.classList.contains("roll-damage-reroll")) {
+				metanthropes.dice.metaDamageReRoll(event);
+				button.classList.add("disabled");
+			} else if (button.classList.contains("roll-healing-reroll")) {
+				metanthropes.dice.metaHealingReRoll(event);
+				button.classList.add("disabled");
 			} else if (button.classList.contains("rolld10-reroll")) {
 				metanthropes.dice.metaRolld10ReRoll(event);
 				//? Disable button (only secondary ones?)

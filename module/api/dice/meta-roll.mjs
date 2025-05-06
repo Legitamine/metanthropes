@@ -343,9 +343,10 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 			${bonusInputGroup.outerHTML}
 			${penaltyInputGroup.outerHTML}
 			${customReductionInputGroup.outerHTML}`;
-		if (action !== "StatRoll" && isBetaTesting) {
-			content += `${aimingReductionInputGroup.outerHTML}`;
-		}
+		//todo needs more clarification on when the aiming reduction is applied
+		// if (action !== "StatRoll" && isBetaTesting) {
+		// 	content += `${aimingReductionInputGroup.outerHTML}`;
+		// }
 		//* Create the Dialog Title and Buttons
 		let dialogTitle = `${actor.name}`;
 		dialogTitle += game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Title");
