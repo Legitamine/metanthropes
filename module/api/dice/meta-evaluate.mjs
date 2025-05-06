@@ -239,21 +239,17 @@ export async function metaEvaluate(
 	}
 	//? if we have levels of success or failure, add them to the message
 	if (levelsOfSuccess > 0) {
-		if (levelsOfSuccess === 1) {
-			message += `, accumulating:<br>${levelsOfSuccess} <i class="fa-sharp-duotone fa-solid fa-check" style="--fa-primary-color: ${successSecColor};"></i> Level of Success.`;
-			resultLevel = levelsOfSuccess;
-		} else {
-			message += `, accumulating:<br>${levelsOfSuccess} <i class="fa-sharp-duotone fa-solid fa-check" style="--fa-primary-color: ${successSecColor};"></i> Levels of Success.`;
-			resultLevel = levelsOfSuccess;
-		}
+		message += `, accumulating:<br>${levelsOfSuccess} <i class="fa-sharp-duotone fa-solid fa-check"
+		style="--fa-primary-color: ${successSecColor};"></i> Level${
+			levelsOfSuccess > 1 ? "s" : ""
+		} of Success.`;
+		resultLevel = levelsOfSuccess;
 	} else if (levelsOfFailure > 0) {
-		if (levelsOfFailure === 1) {
-			message += `, accumulating:<br>${levelsOfFailure} <i class="fa-sharp-duotone fa-solid fa-xmark" style="--fa-primary-color: ${failureSecColor};"></i> Level of Failure.`;
-			resultLevel = -levelsOfFailure;
-		} else {
-			message += `, accumulating:<br>${levelsOfFailure} <i class="fa-sharp-duotone fa-solid fa-xmark" style="--fa-primary-color: ${failureColor}; --fa-secondary-color: ${failureSecColor}; --fa-secondary-opacity: ${secOpacity};"></i> Levels of Failure.`;
-			resultLevel = -levelsOfFailure;
-		}
+		message += `, accumulating:<br>${levelsOfFailure} <i class="fa-sharp-duotone fa-solid fa-xmark"
+		style="--fa-primary-color: ${failureSecColor};"></i> Level${
+			levelsOfFailure > 1 ? "s" : ""
+		} of Failure.`;
+		resultLevel = -levelsOfFailure;
 	} else {
 		message += `.`;
 	}
@@ -344,7 +340,6 @@ export async function metaEvaluate(
 	//? Update the actor with the new .lastrolled values
 	await actor.setFlag("metanthropes", "lastrolled", newRolls);
 	//* Printing the results to chat, allowing Dice So Nice to do it's thing.
-	//await new Dialog ({title: "test", content: message, buttons: {ok: {label: "OK"}}}).render(true);
 	if (!reroll) {
 		roll.toMessage({
 			speaker: ChatMessage.getSpeaker({

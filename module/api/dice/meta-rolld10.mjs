@@ -573,7 +573,7 @@ export async function metaDamageReRoll(event) {
 		rerollCounter++;
 		if (rerollCounter > 1) startMessage += ` (<i class="fa-sharp-duotone fa-solid fa-xmark"></i>${rerollCounter})`;
 	}
-	flavorMessage = `${startMessage} Damage for ${itemName} to ${targetedActors.length} target(s):<br><br>`;
+	flavorMessage = `${startMessage} Damage for ${itemName} to ${targetedActors.length} target${targetedActors.length>1?'s':''}:<br><br>`;
 	contentMessage = `<div class="meta-roll-inline-results">`;
 	if (cosmicDamageRollResult > 0) contentMessage += `${damageCosmicMessage}<br>`;
 	if (elementalDamageRollResult > 0) contentMessage += `${damageElementalMessage}<br>`;
@@ -700,7 +700,7 @@ export async function metaHealingReRoll(event) {
 		rerollCounter++;
 		if (rerollCounter > 1) startMessage += ` (<i class="fa-sharp-duotone fa-solid fa-xmark"></i>${rerollCounter})`;
 	}
-	flavorMessage = `${startMessage} Healing for ${itemName} to ${targetedActors.length} target(s):<br><br>`;
+	flavorMessage = `${startMessage} ${itemName}'s Healing, with ${targetedActors.length} target${targetedActors.length > 1 ? 's' : ''}:<br><br>`;
 	contentMessage += `<div class="meta-roll-inline-results">`;
 	contentMessage = `${healingMessage}`;
 	contentMessage += `</div>`;
@@ -711,7 +711,7 @@ export async function metaHealingReRoll(event) {
 		data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 		data-what="Healing" data-anchor="true" data-reroll="true" data-reroll-counter="${rerollCounter}" data-message-id="messageId"
 		data-destiny-re-roll="true" data-healing-dice="${healingDice}" data-healing-base="${healingBase}"
-		>Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> to Reroll <i class="fa-sharp-duotone fa-solid fa-heart-pulse"></i> Healing
+		>Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> to Reroll <i class="fa-sharp-duotone fa-solid fa-heart-pulse" style="--fa-primary-color:#ebb1b1;--fa-secondary-color: #e60808; --fa-secondary-opacity: 0.8;"></i> Healing
 		</button></div><br>`;
 		contentMessage += `<hr />`;
 		contentMessage += healingReRollButton;
