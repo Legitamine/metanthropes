@@ -12,7 +12,7 @@
 	opacity: 1;
 }
 
-// --- Base Button Styles ---
+// Base Button Styles
 %base-button {
 	font-family: $font-primary;
 	background-image: url("../assets/artwork/ui/buttons/button.webp");
@@ -21,7 +21,7 @@
 	border: $border-groove;
 	border-radius: $border-radius;
 	color: $c-white;
-	opacity: 0.4;
+	opacity: 0.6;
 }
 
 // --- Button Elements ---

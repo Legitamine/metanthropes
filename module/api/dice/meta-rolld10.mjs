@@ -86,7 +86,7 @@ export async function metaRolld10(
 	if (reroll) {
 		messageStart = "Re-Rolls";
 		rerollCounter++;
-		if (rerollCounter > 1) messageStart += ` (×${rerollCounter})`;
+		if (rerollCounter > 1) messageStart += ` (<i class="fa-sharp-duotone fa-solid fa-xmark"></i>${rerollCounter})`;
 		messageStart += " for";
 	}
 	if (itemName) {
@@ -571,19 +571,21 @@ export async function metaDamageReRoll(event) {
 	} else {
 		startMessage = "Re-Rolls";
 		rerollCounter++;
-		if (rerollCounter > 1) startMessage += ` (×${rerollCounter})`;
+		if (rerollCounter > 1) startMessage += ` (<i class="fa-sharp-duotone fa-solid fa-xmark"></i>${rerollCounter})`;
 	}
-	flavorMessage = `${actor.name} ${startMessage} Damage for ${itemName} to ${targetedActors.length} target(s):<br><br>`;
-	contentMessage = `${damageCosmicMessage}<br>
-	${damageElementalMessage}<br>
-	${damageMaterialMessage}<br>
-	${damagePsychicMessage}`;
+	flavorMessage = `${startMessage} Damage for ${itemName} to ${targetedActors.length} target(s):<br><br>`;
+	contentMessage = `<div class="meta-roll-inline-results">`;
+	if (cosmicDamageRollResult > 0) contentMessage += `${damageCosmicMessage}<br>`;
+	if (elementalDamageRollResult > 0) contentMessage += `${damageElementalMessage}<br>`;
+	if (materialDamageRollResult > 0) contentMessage += `${damageMaterialMessage}<br>`;
+	if (psychicDamageRollResult > 0) contentMessage += `${damagePsychicMessage}<br>`;
+	contentMessage += `</div>`
 	if (actor.currentDestiny > 0) {
 		const damageReRollButton = `<div class="hide-button hidden">
 		<button class="metanthropes-secondary-chat-button damage roll-damage-reroll chat-button-anchor"
 		data-tooltip="Spend <i class='fa-sharp-duotone fa-solid fa-hand-fingers-crossed'></i> Destiny to reroll <i class='fa-sharp-duotone fa-solid fa-burst'></i> Damage"
 		data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
-		data-what="Damage" data-anchor="true" data-reroll="true" data-reroll-counter="1" data-message-id="messageId"
+		data-what="Damage" data-anchor="true" data-reroll="true" data-reroll-counter="${rerollCounter}" data-message-id="messageId"
 		data-destiny-re-roll="true" data-cosmic-dice="${damageDiceCosmic}" data-base-cosmic-number="${damageBaseCosmic}"
 		data-elemental-dice="${damageDiceElemental}" data-base-elemental-number="${damageBaseElemental}"
 		data-material-dice="${damageDiceMaterial}" data-base-material-number="${damageBaseMaterial}"
@@ -614,8 +616,8 @@ export async function metaDamageReRoll(event) {
 		elementalDamageRollResult,
 		materialDamageRollResult,
 		psychicDamageRollResult,
-		"targeted Actors",
-		targetedActors
+		"# of targets:",
+		targetedActors.length
 	);
 }
 export async function metaHealingReRoll(event) {
@@ -696,16 +698,18 @@ export async function metaHealingReRoll(event) {
 	} else {
 		startMessage = "Re-Rolls";
 		rerollCounter++;
-		if (rerollCounter > 1) startMessage += ` (×${rerollCounter})`;
+		if (rerollCounter > 1) startMessage += ` (<i class="fa-sharp-duotone fa-solid fa-xmark"></i>${rerollCounter})`;
 	}
-	flavorMessage = `${actor.name} ${startMessage} Healing for ${itemName} to ${targetedActors.length} target(s):<br><br>`;
+	flavorMessage = `${startMessage} Healing for ${itemName} to ${targetedActors.length} target(s):<br><br>`;
+	contentMessage += `<div class="meta-roll-inline-results">`;
 	contentMessage = `${healingMessage}`;
+	contentMessage += `</div>`;
 	if (actor.currentDestiny > 0) {
 		const healingReRollButton = `<div class="hide-button hidden">
 		<button class="metanthropes-secondary-chat-button damage roll-healing-reroll chat-button-anchor"
 		data-tooltip="Spend <i class='fa-sharp-duotone fa-solid fa-hand-fingers-crossed'></i> Destiny to reroll <i class='fa-sharp-duotone fa-solid fa-burst'></i> Damage"
 		data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
-		data-what="Healing" data-anchor="true" data-reroll="true" data-reroll-counter="1" data-message-id="messageId"
+		data-what="Healing" data-anchor="true" data-reroll="true" data-reroll-counter="${rerollCounter}" data-message-id="messageId"
 		data-destiny-re-roll="true" data-healing-dice="${healingDice}" data-healing-base="${healingBase}"
 		>Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> to Reroll <i class="fa-sharp-duotone fa-solid fa-heart-pulse"></i> Healing
 		</button></div><br>`;
@@ -730,7 +734,7 @@ export async function metaHealingReRoll(event) {
 		"metaHealingReRoll",
 		"Applied Healing ReRoll",
 		healingRollResult,
-		"targeted Actors",
-		targetedActors
+		"# of targets:",
+		targetedActors.length
 	);
 }

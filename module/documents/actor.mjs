@@ -20,7 +20,7 @@ export class MetanthropesActor extends Actor {
 		//! hotfix for v13
 		let defaultToken;
 		if (game.version < 13) {
-		defaultToken = game.settings.get("core", "defaultToken");
+			defaultToken = game.settings.get("core", "defaultToken");
 		}
 		//? Configure Display Bars & Name Visibility
 		if (!data.prototypeToken)
@@ -476,19 +476,26 @@ export class MetanthropesActor extends Actor {
 			(elementalDamage > 0 ? elementalDamage : 0) +
 			(materialDamage > 0 ? materialDamage : 0) +
 			(psychicDamage > 0 ? psychicDamage : 0);
-		if (totalDamage > 0) {
-			const newLife = currentLife - totalDamage;
-			//todo confirm we don't allow negative life
-			let updateData = {};
-			if (newLife < 0) {
-				updateData["flags.metanthropes.previousLife"] = currentLife;
-				updateData["system.Vital.Life.value"] = 0;
-			} else {
-				updateData["flags.metanthropes.previousLife"] = currentLife;
-				updateData["system.Vital.Life.value"] = Number(newLife);
-			}
-			await this.update({ ...updateData });
+		const newLife = currentLife - totalDamage;
+		let updateData = {};
+		updateData["flags.metanthropes.previousLife"] = currentLife;
+		if (newLife < 0) {
+			updateData["system.Vital.Life.value"] = 0;
+		} else {
+			updateData["system.Vital.Life.value"] = Number(newLife);
 		}
+		await this.update({ ...updateData });
+		metanthropes.utils.metaLog(
+			3,
+			"Actor.applyDamage",
+			"Applying Damage to",
+			this.name,
+			"going from",
+			currentLife,
+			"to",
+			newLife,
+			"Life"
+		);
 	}
 	/**
 	 * applyHealing - Apply Healing to the Actor
@@ -501,38 +508,41 @@ export class MetanthropesActor extends Actor {
 		const maxLife = this.system.Vital.Life.max;
 		const newLife = Number(currentLife) + Number(healing);
 		let updateData = {};
+		updateData["flags.metanthropes.previousLife"] = currentLife;
 		if (newLife > maxLife) {
-			updateData["flags.metanthropes.previousLife"] = currentLife;
 			updateData["system.Vital.Life.value"] = Number(maxLife);
 		} else {
-			updateData["flags.metanthropes.previousLife"] = currentLife;
 			updateData["system.Vital.Life.value"] = Number(newLife);
 		}
 		await this.update({ ...updateData });
+		metanthropes.utils.metaLog(
+			3,
+			"Actor.applyHealing",
+			"Applying Healing to",
+			this.name,
+			"going from",
+			currentLife,
+			"to",
+			newLife,
+			"Life"
+		);
 	}
 	/**
 	 * undoLastLifeChange - Restores the value stored in the previousLife flag
-	 * This is expected to trigger for the actor when destiny is spent to re-roll damage, before applying the new damage
+	 * This is expected to trigger for the actor when destiny is spent to re-roll damage/healing, before applying the new value
 	 */
 	async undoLastLifeChange() {
-		const previousLife = Number(this.getFlag("metanthropes", "previousLife"));
+		const previousLife = Number(await this.getFlag("metanthropes", "previousLife"));
 		if (!previousLife) return ui.notifications.warn("No previous Life value to restore!");
 		if (previousLife > 0) {
 			await this.update({
 				"system.Vital.Life.value": Number(previousLife),
 				"flags.metanthropes.previousLife": null,
 			});
-			metanthropes.utils.metaLog(
-				3,
-				"MetanthropesActor",
-				"undoLastLifeChange",
-				this.name,
-				"Restored Life to:",
-				previousLife
-			);
+			metanthropes.utils.metaLog(3, "Actor.undoLastLifeChange", "Restoring", this.name, "Life to:", previousLife);
 		}
 	}
-	
+
 	/**
 	 * applyDestinyChange - Apply Destiny Change to the Actor
 	 *
@@ -541,21 +551,20 @@ export class MetanthropesActor extends Actor {
 	 * @returns {*}
 	 */
 	async applyDestinyChange(destiny) {
+		if (destiny === 0)
+			return metanthropes.utils.metaLog(3, "Actor.applyDestinyChange", this.name, "No Destiny Cost/Change");
 		const currentDestiny = this.system.Vital.Destiny.value;
 		const maxDestiny = this.system.Vital.Destiny.max;
 		const newDestiny = Number(currentDestiny) + Number(destiny);
 		let updateData = {};
+		updateData["system.Vital.Destiny.value"] = newDestiny;
 		if (newDestiny > maxDestiny) {
-			updateData["system.Vital.Destiny.value"] = newDestiny;
 			updateData["system.Vital.Destiny.max"] = newDestiny;
-		} else {
-			updateData["system.Vital.Destiny.value"] = newDestiny;
 		}
 		await this.update({ ...updateData });
 		metanthropes.utils.metaLog(
 			3,
-			"MetanthropesActor",
-			"applyDestinyChange",
+			"Actor.applyDestinyChange",
 			this.name,
 			"Destiny changed by:",
 			destiny

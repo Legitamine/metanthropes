@@ -524,33 +524,36 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		const targetsArray = Array.from(manuallySelectedTargets).map((token) => token.actor);
 		//?Create a new array with only the actor's uuids to be used later
 		targetedActors = targetsArray.map((actor) => actor.uuid);
-		metanthropes.utils.metaLog(3, "metaExecute", "Targeted Actors UUIDs", targetedActors);
 		//? Check if there are any targeted actors and set the actionableTargets variable accordingly
 		actionableTargets = targetedActors.length > 0;
 		if (actionableTargets) {
 			//? Get the names of all targeted actors
 			targetedActorNames = targetsArray.map((actor) => actor.name);
+			metanthropes.utils.metaLog(3, "metaExecute", "Target(s) Names:", targetedActorNames);
 		}
 		if (damageCosmicMessage || damageElementalMessage || damageMaterialMessage || damagePsychicMessage) {
 			contentMessage += `Applying <i class="fa-sharp-duotone fa-solid fa-burst"></i> Damage to <i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i> Target(s): ${targetedActorNames.join(
 				", "
 			)}<br><br>`;
-		}
-		if (damageCosmicMessage) {
-			contentMessage += damageCosmicMessage;
-			// contentMessage += `<hr />`;
-		}
-		if (damageElementalMessage) {
-			contentMessage += damageElementalMessage;
-			// contentMessage += `<hr />`;
-		}
-		if (damageMaterialMessage) {
-			contentMessage += damageMaterialMessage;
-			// contentMessage += `<hr />`;
-		}
-		if (damagePsychicMessage) {
-			contentMessage += damagePsychicMessage;
-			// contentMessage += `<hr />`;
+			contentMessage += `<div class="meta-roll-inline-results">`;
+
+			if (damageCosmicMessage) {
+				contentMessage += damageCosmicMessage;
+				contentMessage += `<br>`;
+			}
+			if (damageElementalMessage) {
+				contentMessage += damageElementalMessage;
+				contentMessage += `<br>`;
+			}
+			if (damageMaterialMessage) {
+				contentMessage += damageMaterialMessage;
+				contentMessage += `<br>`;
+			}
+			if (damagePsychicMessage) {
+				contentMessage += damagePsychicMessage;
+				contentMessage += `<br>`;
+			}
+			contentMessage += `</div>`;
 		}
 		if (damageCosmicMessage || damageElementalMessage || damageMaterialMessage || damagePsychicMessage) {
 			damageSelectedTargets = true;
@@ -577,18 +580,19 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			contentMessage += `Applying <i class="fa-sharp-duotone fa-solid fa-heart-pulse"></i> Healing to <i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i> Target(s): ${targetedActorNames.join(
 				", "
 			)}<br><br>`;
-			const healingRerollButton = `<div class="hide-button hidden">
-			<button class="metanthropes-secondary-chat-button healing roll-healing-reroll chat-button-anchor"
-			data-tooltip="Spend <i class='fa-sharp-duotone fa-solid fa-hand-fingers-crossed'></i> Destiny to reroll <i class='fa-sharp-duotone fa-solid fa-heart-pulse'></i> Healing"
-			data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
-			data-what="Healing" data-anchor="true"
-			data-reroll="false" data-reroll-counter="1" data-message-id="null"
-			data-destiny-re-roll="true" data-healing-dice="${healingDice}" data-healing-base="${healingBase}"
-			>Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> to Reroll <i class="fa-sharp-duotone fa-solid fa-heart-pulse"></i> Healing
-			</button></div>`;
+			contentMessage += `<div class="meta-roll-inline-results">`;
 			contentMessage += healingMessage;
+			contentMessage += `<br></div>`;
 			if (actor.currentDestiny > 0) {
-				contentMessage += `<br>`;
+				const healingRerollButton = `<div class="hide-button hidden">
+				<button class="metanthropes-secondary-chat-button healing roll-healing-reroll chat-button-anchor"
+				data-tooltip="Spend <i class='fa-sharp-duotone fa-solid fa-hand-fingers-crossed'></i> Destiny to reroll <i class='fa-sharp-duotone fa-solid fa-heart-pulse'></i> Healing"
+				data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+				data-what="Healing" data-anchor="true"
+				data-reroll="false" data-reroll-counter="1" data-message-id="null"
+				data-destiny-re-roll="true" data-healing-dice="${healingDice}" data-healing-base="${healingBase}"
+				>Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> to Reroll <i class="fa-sharp-duotone fa-solid fa-heart-pulse"></i> Healing
+				</button></div>`;
 				contentMessage += healingRerollButton;
 			}
 			contentMessage += `<hr />`;
@@ -660,33 +664,23 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	//? Get the result of the last roll
 	let checkResult = await actor.getFlag("metanthropes", "lastrolled").MetaEvaluate;
 	//* Check for Duplicate Self Metapower Activation
-	//todo: could be cleaner with .inludes("Squad") instead of this
 	if (
 		checkResult > 0 &&
 		action === "Metapower" &&
-		(itemName === "Clone" ||
-			itemName === "Couple" ||
-			itemName === "Team" ||
-			itemName === "Squad" ||
-			itemName === "Unit")
+		["Clone", "Couple", "Team", "Squad", "Unit"].includes(itemName)
 	) {
 		metanthropes.utils.metaLog(3, "metaExecute", "Duplicate Self Metapower Activation Detected");
 		let currentLife = actor.system.Vital.Life.value;
 		let duplicateMaxLife = 0;
 		if (itemName === "Clone") {
 			duplicateMaxLife = Math.ceil(currentLife * 0.1);
-		} else if (itemName === "Couple" || itemName === "Couple [Alt]") {
+		} else if (itemName.includes("Couple")) {
 			duplicateMaxLife = Math.ceil(currentLife * 0.2);
 		} else if (itemName === "Team") {
 			duplicateMaxLife = Math.ceil(currentLife * 0.3);
-		} else if (itemName === "Squad" || itemName === "Squad [Alt]" || itemName === "Squad (⏱️E)") {
+		} else if (itemName.includes("Squad")) {
 			duplicateMaxLife = Math.ceil(currentLife * 0.4);
-		} else if (
-			itemName === "Unit" ||
-			itemName === "Unit [Alt]" ||
-			itemName === "Unit (⏱️E)" ||
-			itemName === "Unit (⏱️R)"
-		) {
+		} else if (itemName.includes("Unit")) {
 			duplicateMaxLife = Math.ceil(currentLife * 0.5);
 		}
 		await actor.setFlag("metanthropes", "duplicateSelf", { maxLife: duplicateMaxLife });

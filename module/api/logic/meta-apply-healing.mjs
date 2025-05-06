@@ -16,6 +16,9 @@ export async function metaApplyHealing(targets, healing) {
 			3,
 			"metaApplyHealing",
 			"Applying Healing to",
+			i+1,
+			"of",
+			targets.length,
 			targetedActor.name,
 			"Healing:",
 			healing

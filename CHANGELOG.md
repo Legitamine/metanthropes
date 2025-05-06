@@ -15,7 +15,11 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 ## Added:
 - Foundry VTT version 13 is now supported.
 - theme support & developer environment updates.
-- Roll d100 dice functions localized & using fields API & APP V2.
+- Roll d100 dice functions localized & using fields API & APP V2. More App V2 updates to come in future releases.
+- Activating a Metapower or using a Possession which can deal Damage or apply Healing, now requires you to have a target selected. Damage (taking resistances into account) and Healing will be applied to the targets automatically. If you choose to spend Destiny to re-roll the Damage/Healing, it will undo the last applied result and re-apply the new one.
+- changed: inline rolls now follow our own custom UI/UX style, instead of the default Foundry VTT UI style which was used previously.
+- fixed not being able to re-roll for damage/healing when beta-testing was enabled.
+todo: new alpha / beta testing for features core/homebrew
 todo: add license & contribution attributes for fonts
 
 # Early Access v0.12.2 [2025-01-29]
