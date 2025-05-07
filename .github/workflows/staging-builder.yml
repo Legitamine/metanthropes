@@ -5,7 +5,7 @@ on:
             - staging
 jobs:
     build:
-        name: Metanthropes Automated Builder
+        name: Metanthropes System Test Builder
         runs-on: ubuntu-latest
         steps:
             - name: Setup Node.js

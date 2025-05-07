@@ -240,13 +240,13 @@ export async function metaEvaluate(
 	//? if we have levels of success or failure, add them to the message
 	if (levelsOfSuccess > 0) {
 		message += `, accumulating:<br>${levelsOfSuccess} <i class="fa-sharp-duotone fa-solid fa-check"
-		style="--fa-primary-color: ${successSecColor};"></i> Level${
+		style="--fa-primary-color: ${successColor}; --fa-secondary-color: ${successSecColor}; --fa-secondary-opacity: ${secOpacity};"></i> Level${
 			levelsOfSuccess > 1 ? "s" : ""
 		} of Success.`;
 		resultLevel = levelsOfSuccess;
 	} else if (levelsOfFailure > 0) {
 		message += `, accumulating:<br>${levelsOfFailure} <i class="fa-sharp-duotone fa-solid fa-xmark"
-		style="--fa-primary-color: ${failureSecColor};"></i> Level${
+		style="--fa-primary-color: ${failureSecColor}; --fa-secondary-color: ${failureSecColor}; --fa-secondary-opacity: ${secOpacity};"></i> Level${
 			levelsOfFailure > 1 ? "s" : ""
 		} of Failure.`;
 		resultLevel = -levelsOfFailure;
