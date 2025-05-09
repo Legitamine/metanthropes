@@ -532,9 +532,10 @@ export class MetanthropesActor extends Actor {
 	 * This is expected to trigger for the actor when destiny is spent to re-roll damage/healing, before applying the new value
 	 */
 	async undoLastLifeChange() {
-		const previousLife = Number(await this.getFlag("metanthropes", "previousLife"));
-		if (!previousLife) return ui.notifications.warn("No previous Life value to restore!");
-		if (previousLife > 0) {
+		const previousLife = await this.getFlag("metanthropes", "previousLife");
+		if (previousLife === null || previousLife === undefined) 
+			return ui.notifications.warn("No previous Life value flag to restore for", this.name);
+		if (previousLife >= 0) {
 			await this.update({
 				"system.Vital.Life.value": Number(previousLife),
 				"flags.metanthropes.previousLife": null,

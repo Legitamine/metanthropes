@@ -36,6 +36,8 @@ export async function metaRolld10(
 	rerollCounter = 0,
 	messageId = null
 ) {
+	dice = typeof dice === "string" ? parseInt(dice) : dice;
+	baseNumber = typeof baseNumber === "string" ? parseInt(baseNumber) : baseNumber;
 	metanthropes.utils.metaLog(
 		3,
 		"metaRolld10",
@@ -63,7 +65,7 @@ export async function metaRolld10(
 	);
 	let rollTotal;
 	const explosiveDice = "x10";
-	//? Checking if actor has Metapowers that affect the explosive dice
+	//todo Checking if actor has Metapowers that affect the explosive dice - should be done via actor active effects
 	//	if (await metaIsItemEquipped(actor, "Cognitive Efficiency")) {
 	//		explosiveDice = "x1x10";
 	//		metanthropes.utils.metaLog(3, "metaRolld10", "Using Alternative explosive dice:", explosiveDice);
@@ -190,7 +192,6 @@ export async function metaRolld10(
 				game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
 			}
 			metanthropes.utils.metaLog(3, "metaRolld10", "Anchored", "Not updating original chat message", messageId);
-			//todo! here is where I need to flip the anchor switch
 			return rolld10.toAnchor({
 				label: what,
 				dataset: {
@@ -238,7 +239,6 @@ export async function metaRolld10(
 				);
 				ChatMessage.create(chatData);
 				//? AND return the anchor, setting it to false so if we have another reroll we'll update that new message
-				//! possibly not reading the dataset in proper sequence?
 				return rolld10.toAnchor({
 					label: what,
 					dataset: {
@@ -262,7 +262,6 @@ export async function metaRolld10(
 				//* Replacing previous chat message
 				metanthropes.utils.metaLog(1, "metaRolld10", "Re rolling for anchor", "Updating messageId", messageId);
 				chatMessage.update(chatData);
-				//*! Should we return this?
 				return rolld10.toAnchor({
 					label: what,
 					dataset: {
@@ -340,54 +339,12 @@ export async function metaRolld10ReRoll(event) {
 		);
 		return;
 	}
-	//! reroll = true;
-	//? If re rolling for healing, need to ensure we have valid targets before reducing destiny
-	if (!targets && what.includes("Healing")) {
+	//? If re rolling for damage/healing, need to ensure we have valid targets before reducing destiny
+	if (!targets && what.includes("Healing"||"Damage")) {
 		ui.notifications.warn("You must select valid targets first");
 		return;
 	}
 	await actor.applyDestinyChange(-1);
-	// if (what.includes("Healing")) {
-	// 	const reRoll = await metanthropes.dice.metaRolld10(
-	// 		actor,
-	// 		what,
-	// 		true,
-	// 		dice,
-	// 		itemName,
-	// 		baseNumber,
-	// 		false,
-	// 		true, //anchor
-	// 		reroll,
-	// 		rerollCounter,
-	// 		messageId
-	// 	);
-	// 	const reRollResult = reRoll.dataset.total;
-	// 	for (let i = 0; i < targets.length; i++) {
-	// 		const targetedActor = await fromUuid(targets[i]);
-	// 		await targetedActor.undoLastLifeChange();
-	// 		await targetedActor.applyHealing(reRollResult);
-	// 		metanthropes.utils.metaLog(
-	// 			1,
-	// 			"metaRolld10ReRoll",
-	// 			"Applied Healing ReRoll",
-	// 			reRollResult,
-	// 			"targeted Actor",
-	// 			targetedActor.name
-	// 		);
-	// 	}
-	// 	const chatData = {
-	// 		user: game.user.id,
-	// 		flavor: reRoll.dataset.flavor,
-	// 		speaker: ChatMessage.getSpeaker({ actor: actor }),
-	// 		content: reRoll.dataset.content,
-	// 		flags: { metanthropes: { actoruuid: actor.uuid } },
-	// 	};
-	// 	if (reroll) {
-	// 		await game.messages.get(messageId).update(chatData);
-	// 	} else {
-	// 		await ChatMessage.create(chatData);
-	// 	}
-	// } else {
 	//* Other Re Rolls
 	if (!reroll) {
 		metanthropes.utils.metaLog(1, "metaRolld10ReRoll", "Other Re Rolls", "No reroll");
@@ -401,13 +358,12 @@ export async function metaRolld10ReRoll(event) {
 			baseNumber,
 			isHalf,
 			anchor,
-			reroll, //?!returning true from now on ? does it?
+			reroll,
 			rerollCounter,
 			messageId
 		);
 	} else {
 		metanthropes.utils.metaLog(1, "metaRolld10ReRoll", "Other Re Rolls", "Reroll");
-		//?! We are following the existing reroll
 		metanthropes.dice.metaRolld10(
 			actor,
 			what,
@@ -421,7 +377,6 @@ export async function metaRolld10ReRoll(event) {
 			rerollCounter,
 			messageId
 		);
-		// }
 	}
 }
 
@@ -455,20 +410,20 @@ export async function metaDamageReRoll(event) {
 	const isHalf = button.dataset.isHalf === "true" ? true : false;
 	const anchor = button.dataset.anchor === "true" ? true : false;
 	let reroll = button.dataset.reroll === "true" ? true : false;
-	let rerollCounter = parseInt(button.dataset.rerollCounter) ?? 0;
+	let rerollCounter = parseInt(button.dataset.rerollCounter) || 0;
 	const actor = await fromUuid(actoruuid);
 	const targetedActors = button.dataset.targets ? button.dataset.targets.split(",") : [] ?? null;
-	const damageDiceCosmic = parseInt(button.dataset.cosmicDice) ?? 0;
-	const damageDiceElemental = parseInt(button.dataset.elementalDice) ?? 0;
-	const damageDiceMaterial = parseInt(button.dataset.materialDice) ?? 0;
-	const damageDicePsychic = parseInt(button.dataset.psychicDice) ?? 0;
-	const damageBaseCosmic = parseInt(button.dataset.baseCosmicNumber) ?? 0;
-	const damageBaseElemental = parseInt(button.dataset.baseElementalNumber) ?? 0;
-	const damageBaseMaterial = parseInt(button.dataset.baseMaterialNumber) ?? 0;
-	const damageBasePsychic = parseInt(button.dataset.basePsychicNumber) ?? 0;
-	let contentMessage = null;
-	let startMessage = null;
-	let flavorMessage = null;
+	const damageDiceCosmic = parseInt(button.dataset.diceCosmic) || 0;
+	const damageDiceElemental = parseInt(button.dataset.diceElemental) || 0;
+	const damageDiceMaterial = parseInt(button.dataset.diceMaterial) || 0;
+	const damageDicePsychic = parseInt(button.dataset.dicePsychic) || 0;
+	const damageBaseCosmic = parseInt(button.dataset.baseCosmic) || 0;
+	const damageBaseElemental = parseInt(button.dataset.baseElemental) || 0;
+	const damageBaseMaterial = parseInt(button.dataset.baseMaterial) || 0;
+	const damageBasePsychic = parseInt(button.dataset.basePsychic) || 0;
+	let contentMessage = ``;
+	let startMessage = ``;
+	let flavorMessage = ``;
 	//* Return conditions
 	//? Need to check if actor has enough Destiny to spend, because they might have already spent it on another secondary button
 	if (!(actor.currentDestiny > 0 && destinyReRoll)) {
@@ -480,12 +435,14 @@ export async function metaDamageReRoll(event) {
 			"OR",
 			"destinyReRoll is not allowed"
 		);
+		button.classList.remove("disabled");
 		return;
 	}
 	//! reroll = true;
 	//? Need to ensure we have valid targets before reducing destiny
 	if (!targetedActors && what.includes("Damage")) {
 		ui.notifications.warn("You must select valid targets first");
+		button.classList.remove("disabled");
 		return;
 	}
 	await actor.applyDestinyChange(-1);
@@ -504,7 +461,7 @@ export async function metaDamageReRoll(event) {
 		null
 	);
 	const cosmicDamageRollResult = cosmicDamageRoll.dataset.total;
-	const damageCosmicMessage = `${cosmicDamageRoll.outerHTML}<br>`;
+	const damageCosmicMessage = `${cosmicDamageRoll.outerHTML}`;
 	//* Elemental
 	const elementalDamageRoll = await metanthropes.dice.metaRolld10(
 		actor,
@@ -520,7 +477,7 @@ export async function metaDamageReRoll(event) {
 		null
 	);
 	const elementalDamageRollResult = elementalDamageRoll.dataset.total;
-	const damageElementalMessage = `${elementalDamageRoll.outerHTML}<br>`;
+	const damageElementalMessage = `${elementalDamageRoll.outerHTML}`;
 	//* Material
 	const materialDamageRoll = await metanthropes.dice.metaRolld10(
 		actor,
@@ -536,7 +493,7 @@ export async function metaDamageReRoll(event) {
 		null
 	);
 	const materialDamageRollResult = materialDamageRoll.dataset.total;
-	const damageMaterialMessage = `${materialDamageRoll.outerHTML}<br>`;
+	const damageMaterialMessage = `${materialDamageRoll.outerHTML}`;
 	//* Psychic
 	const psychicDamageRoll = await metanthropes.dice.metaRolld10(
 		actor,
@@ -552,7 +509,7 @@ export async function metaDamageReRoll(event) {
 		null
 	);
 	const psychicDamageRollResult = psychicDamageRoll.dataset.total;
-	const damagePsychicMessage = `${psychicDamageRoll.outerHTML}<br>`;
+	const damagePsychicMessage = `${psychicDamageRoll.outerHTML}`;
 	//* Work through targets to restore previous Life before applying new Damage
 	for (let i = 0; i < targetedActors.length; i++) {
 		const targetedActor = await fromUuid(targetedActors[i]);
@@ -573,29 +530,27 @@ export async function metaDamageReRoll(event) {
 		rerollCounter++;
 		if (rerollCounter > 1) startMessage += ` (<i class="fa-sharp-duotone fa-solid fa-xmark"></i>${rerollCounter})`;
 	}
-	flavorMessage = `${startMessage} Damage for ${itemName} to ${targetedActors.length} target${targetedActors.length>1?'s':''}:<br><br>`;
-	contentMessage = `<div class="meta-roll-inline-results">`;
-	if (cosmicDamageRollResult > 0) contentMessage += `${damageCosmicMessage}<br>`;
-	if (elementalDamageRollResult > 0) contentMessage += `${damageElementalMessage}<br>`;
-	if (materialDamageRollResult > 0) contentMessage += `${damageMaterialMessage}<br>`;
-	if (psychicDamageRollResult > 0) contentMessage += `${damagePsychicMessage}<br>`;
-	contentMessage += `</div>`
+	flavorMessage = `${startMessage} Damage for ${itemName} to ${targetedActors.length} target${targetedActors.length>1?'s':''}:<br>`;
+	if (cosmicDamageRollResult > 0) contentMessage += `<div class="meta-roll-inline-results">${damageCosmicMessage}</div>`;
+	if (elementalDamageRollResult > 0) contentMessage += `<div class="meta-roll-inline-results">${damageElementalMessage}</div>`;
+	if (materialDamageRollResult > 0) contentMessage += `<div class="meta-roll-inline-results">${damageMaterialMessage}</div>`;
+	if (psychicDamageRollResult > 0) contentMessage += `<div class="meta-roll-inline-results">${damagePsychicMessage}</div>`;
+	contentMessage += `<div>${actor.name} has ${actor.currentDestiny} <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny remaining.<br></div>`;
 	if (actor.currentDestiny > 0) {
 		const damageReRollButton = `<div class="hide-button hidden">
 		<button class="metanthropes-secondary-chat-button damage roll-damage-reroll chat-button-anchor"
 		data-tooltip="Spend <i class='fa-sharp-duotone fa-solid fa-hand-fingers-crossed'></i> Destiny to reroll <i class='fa-sharp-duotone fa-solid fa-burst'></i> Damage"
 		data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 		data-what="Damage" data-anchor="true" data-reroll="true" data-reroll-counter="${rerollCounter}" data-message-id="messageId"
-		data-destiny-re-roll="true" data-cosmic-dice="${damageDiceCosmic}" data-base-cosmic-number="${damageBaseCosmic}"
-		data-elemental-dice="${damageDiceElemental}" data-base-elemental-number="${damageBaseElemental}"
-		data-material-dice="${damageDiceMaterial}" data-base-material-number="${damageBaseMaterial}"
-		data-psychic-dice="${damageDicePsychic}" data-base-psychic-number="${damageBasePsychic}"
+		data-destiny-re-roll="true" data-dice-cosmic="${damageDiceCosmic}" data-base-cosmic="${damageBaseCosmic}"
+		data-dice-elemental="${damageDiceElemental}" data-base-elemental="${damageBaseElemental}"
+		data-dice-material="${damageDiceMaterial}" data-base-material="${damageBaseMaterial}"
+		data-dice-psychic="${damageDicePsychic}" data-base-psychic="${damageBasePsychic}"
 		>Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> to Reroll <i class="fa-sharp-duotone fa-solid fa-burst"></i> Damage
-		</button></div><br>`;
+		</button></div>`;
 		contentMessage += `<hr />`;
 		contentMessage += damageReRollButton;
 	}
-	contentMessage += `<div>${actor.name} has ${actor.currentDestiny} <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny remaining.<br></div>`;
 	let chatData = {
 		user: game.user.id,
 		flavor: flavorMessage,
@@ -616,10 +571,19 @@ export async function metaDamageReRoll(event) {
 		elementalDamageRollResult,
 		materialDamageRollResult,
 		psychicDamageRollResult,
-		"# of targets:",
+		`Target${targetedActors.length>1?'s':''}:`,
 		targetedActors.length
 	);
 }
+
+/**
+ * metaHealingReRoll handles the re-rolling of healing and applying the new value to targets.
+ *
+ * @export
+ * @async
+ * @param {*} event 
+ * @returns {*} 
+ */
 export async function metaHealingReRoll(event) {
 	event.preventDefault();
 	const button = event.target;
@@ -661,14 +625,16 @@ export async function metaHealingReRoll(event) {
 			"OR",
 			"destinyReRoll is not allowed"
 		);
+		button.classList.remove("disabled");
 		return;
 	}
-	//! reroll = true;
 	//? Need to ensure we have valid targets before reducing destiny
 	if (!targetedActors && what.includes("Healing")) {
 		ui.notifications.warn("You must select valid targets first");
+		button.classList.remove("disabled");
 		return;
 	}
+	//! reroll = true;
 	await actor.applyDestinyChange(-1);
 	//* Healing
 	const healingRoll = await metanthropes.dice.metaRolld10(
@@ -712,7 +678,7 @@ export async function metaHealingReRoll(event) {
 		data-what="Healing" data-anchor="true" data-reroll="true" data-reroll-counter="${rerollCounter}" data-message-id="messageId"
 		data-destiny-re-roll="true" data-healing-dice="${healingDice}" data-healing-base="${healingBase}"
 		>Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> to Reroll <i class="fa-sharp-duotone fa-solid fa-heart-pulse" style="--fa-primary-color:#ebb1b1;--fa-secondary-color: #e60808; --fa-secondary-opacity: 0.8;"></i> Healing
-		</button></div><br>`;
+		</button></div>`;
 		contentMessage += `<hr />`;
 		contentMessage += healingReRollButton;
 	}

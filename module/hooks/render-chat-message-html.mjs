@@ -35,19 +35,19 @@ Hooks.on("renderChatMessageHTML", async (message, html) => {
 			} else if (button.classList.contains("cover-reroll")) {
 				metanthropes.dice.metaCoverReRoll(event);
 			} else if (button.classList.contains("roll-damage-reroll")) {
+				button.classList.add("disabled");
 				metanthropes.dice.metaDamageReRoll(event);
-				button.classList.add("disabled");
 			} else if (button.classList.contains("roll-healing-reroll")) {
+				button.classList.add("disabled");
 				metanthropes.dice.metaHealingReRoll(event);
-				button.classList.add("disabled");
 			} else if (button.classList.contains("rolld10-reroll")) {
-				metanthropes.dice.metaRolld10ReRoll(event);
-				//? Disable button (only secondary ones?)
+				//? Disable secondary buttons
 				button.classList.add("disabled");
+				metanthropes.dice.metaRolld10ReRoll(event);
 			} else {
 				metanthropes.utils.metaLog(5, "renderChatMessageHTML", "not an actionable event", button, event);
 			}
-			//? Disable chat buttons
+			//? Disable main buttons
 			html.querySelectorAll(".metanthropes-main-chat-button").forEach((btn) => {
 				btn.classList.add("disabled");
 			});

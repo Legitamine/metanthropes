@@ -1,14 +1,14 @@
 .meta-roll-inline-results {
 	font-size: 0.9rem;
-	margin: $margin-lg;
-	padding: $padding-lg;
+	margin: 15px;
+	padding: 15px;
 }
 .meta-roll-inline-results-small {
-	//font-size: 0.9rem;
-	border: $border-style-dashed;
-	border-radius: 5px;
+	font-size: 0.8rem;
+	//border: none;
+	//border-radius: 5px;
 	//margin: $margin-sm;
-	//padding: $padding-sm;
+	padding: $padding-sm;
 	opacity: 1;
 }
 

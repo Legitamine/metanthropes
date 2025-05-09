@@ -27,6 +27,7 @@ export async function metaApplyDamage(
 			i+1,
 			"of",
 			targets.length,
+			`Target${targets.length>1?'s':''}:`,
 			targetedActor.name,
 			"Cosmic:",
 			cosmicDamage,
