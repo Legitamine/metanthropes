@@ -2,13 +2,13 @@
 @mixin button-hover-focus {
 	outline: none;
 	border: $border-activated;
-	box-shadow: 0 0 5px $c-purple;
+	//box-shadow: $border-box-shadow;
 	opacity: 1;
 }
 
 @mixin button-active {
 	border: $border-activated;
-	box-shadow: 0 0 5px $c-purple;
+	box-shadow: $border-box-shadow;
 	opacity: 1;
 }
 
@@ -21,7 +21,7 @@
 	border: $border-groove;
 	border-radius: $border-radius;
 	color: $c-white;
-	opacity: 0.6;
+	opacity: $opacity-button;
 }
 
 // --- Button Elements ---
@@ -40,6 +40,9 @@ app button,
 	&:hover,
 	&:focus {
 		@include button-hover-focus;
+	}
+	&.disabled {
+		color: black;
 	}
 }
 

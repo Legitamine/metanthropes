@@ -1,22 +1,37 @@
 .meta-roll-inline-results {
 	font-size: 0.9rem;
+	margin: $margin-lg;
+	padding: $padding-lg;
+}
+.meta-roll-inline-results-small {
+	//font-size: 0.9rem;
+	border: $border-style-dashed;
+	border-radius: 5px;
+	//margin: $margin-sm;
+	//padding: $padding-sm;
+	opacity: 1;
 }
 
 .dice-tooltip {
 	background-image: url("../assets/artwork/ui/buttons/button.webp");
 	background-color: rgba(255, 255, 255, 0.4);
+	.part-header {
+		.part-flavor {
+			color: var(--color-light-1);
+		}
+	}
 }
 
 @mixin roll-hover-focus {
 	outline: none;
 	border: $border-activated;
-	box-shadow: 0 0 0 3px $c-purple;
+	//box-shadow: 0 0 0 3px $c-purple;
 	text-shadow: $s-button;
 	opacity: 1;
 }
 @mixin roll-active {
 	border: $border-activated;
-	box-shadow: 0 0 0 5px $c-purple;
+	//box-shadow: 0 0 0 5px $c-purple;
 	opacity: 1;
 }
 //todo: this is pretty the same as base button style, should consolidate
@@ -29,8 +44,6 @@
 	border-radius: $border-radius;
 	color: $c-white;
 	opacity: 0.6;
-	margin: $margin-sm;
-	padding: $padding-md;
 }
 .inline-roll {
 	@extend %base-inline-roll;

@@ -267,7 +267,7 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 		const multiActionOptions = Array.from({ length: maxMultiActions - 1 }, (_, i) => i + 2);
 		//* Leverage the Field API to create the Dialog content
 		const fields = foundry.applications.fields;
-		//? Bonus
+		///* Bonus
 		const bonusInput = fields.createNumberInput({
 			name: "bonus",
 			classes: ["style-buffs"],
@@ -281,7 +281,7 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 			units: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Units"),
 			hint: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.BonusHint"),
 		});
-		//? Penalty
+		///* Penalty
 		const penaltyInput = fields.createNumberInput({
 			name: "penalty",
 			classes: ["style-conditions"],
@@ -295,7 +295,7 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 			units: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Units"),
 			hint: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.PenaltyHint"),
 		});
-		//? Custom Reduction
+		///* Custom Reduction
 		const customReductionInput = fields.createNumberInput({
 			name: "customReduction",
 			classes: ["style-conditions"],
@@ -309,7 +309,7 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 			units: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Units"),
 			hint: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.CustomReductionHint"),
 		});
-		//? Aiming Reduction
+		///* Aiming Reduction
 		const aimingReductionInput = fields.createNumberInput({
 			name: "aimingReduction",
 			classes: ["style-conditions"],
@@ -323,7 +323,7 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 			units: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Units"),
 			hint: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.AimingReductionHint"),
 		});
-		//* Multi-Action Count
+		///* Multi-Action Count
 		const multiActionCountInput = fields.createSelectInput({
 			name: "multiActionCount",
 			options: [
@@ -352,6 +352,7 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 		dialogTitle += game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Title");
 		let dialogButtonLabel;
 		let dialogIcon;
+		//todo actions should be in CONFIG
 		if (action === "StatRoll") {
 			dialogTitle += `${stat}`;
 			dialogTitle += game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Stat");
@@ -368,7 +369,7 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 			dialogButtonLabel = game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.PossessionRoll");
 			dialogButtonLabel += `${itemName}`;
 			dialogIcon = "fa-sharp-duotone fa-backpack"
-		}
+		} //todo add some error handling
 		//* Prompt the Dialog and define the options
 		const customDialogResults = await foundry.applications.api.DialogV2.prompt({
 			id: "metanthropes-meta-roll-custom",
@@ -392,6 +393,7 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 			return;
 		}
 		let customMultiAction;
+		//todo do we need this kind of validation with fields?
 		if (
 			customDialogResults.multiActionCount === "no" ||
 			customDialogResults.multiActionCount == undefined ||
@@ -405,7 +407,7 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 		let customPenalty = -customDialogResults.penalty;
 		let customReduction = -customDialogResults.customReduction;
 		let customAimingReduction = -customDialogResults.aimingReduction || 0; //? aiming is not always part of the result
-		//* Return the parsed results to the metaRoll function
+		//* Resolve the Promise & return data  to metaRoll
 		metanthropes.utils.metaLog(
 			3,
 			"metaRollCustomDialog",
@@ -416,7 +418,6 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 			customReduction,
 			customAimingReduction
 		);
-		//? Resolve the Promise & return the data we collected to the metaRoll function
 		resolve({ customMultiAction, customBonus, customPenalty, customReduction, customAimingReduction });
 	});
 }

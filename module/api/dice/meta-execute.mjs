@@ -31,8 +31,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	const betaTesting = await game.settings.get("metanthropes", "metaBetaTesting");
 	const actor = await fromUuid(actorUUID);
 	//? Checking if actor has Metapowers that affect the explosive dice
-	const explosiveDice = "x10";
-	//todo: placeholder for custom explosive dice
+	const explosiveDice = "x10"; //todo: placeholder for custom explosive dice
 	//? Find the first item ()that matches itemName
 	const metaItemData = actor.items.find((item) => item.name === itemName);
 	if (!metaItemData) {
@@ -124,19 +123,31 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	let psychicDamageRollParams = null;
 	let specialRerollButton = null;
 	let targetedActorNames = null;
-	//? Get the last rolled result
-	const rollResult = await actor.getFlag("metanthropes", "lastrolled");
+	//? Targeting variables
+	let damageSelectedTargets = false;
+	let healSelectedTargets = false;
+	let targetedActors = [];
+	let actionableTargets = false;
+	//? Other
 	let executeRoll = null;
-	//? Gather specific data & set the flavor message based on the action
+	const spendingDamage = damageDiceCosmic > 0 || damageDiceElemental > 0 || damageDiceMaterial > 0 || damageDicePsychic > 0;
+	const spendingHealing = healingDice > 0;
+	//* Get the last rolled result
+	const rollResult = await actor.getFlag("metanthropes", "lastrolled");
+	//* Gather specific data & set the flavor message based on the action
 	if (action === "Metapower") {
-		//? Metapower only properties
-		// space intentionally left blank
 		//? Check if activation was successfull
 		if (rollResult.Metapower <= 0) {
 			flavorMessage = `Fails to Activate ${itemName}!<br><br>`;
 			executeRoll = false;
 		} else {
 			//? Activate Metapower
+			if (spendingDamage && betaTesting) {
+				//todo
+			}
+			if (spendingHealing && betaTesting) {
+				//todo
+			}
 			flavorMessage = `Activates ${itemName}.<br><br>`;
 			executeRoll = true;
 		}
@@ -195,17 +206,9 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		metanthropes.utils.metaLog(2, "metaExecute", "ERROR: cannot Execute action:", action);
 		return;
 	}
-	//* Targeting v1 variables
-	//? Setup a variable to check if we will be applying damage/healing to the targeted actors later
-	let damageSelectedTargets = false;
-	let healSelectedTargets = false;
-	//? Setup an array for targeted actors, this will be used later to apply effects to them
-	let targetedActors = [];
-	//? Setup a variable to know if we'll have to apply effects to the targeted actors
-	let actionableTargets = false;
 	//* Prepare content message constituents
 	if (executeRoll) {
-		//? check Area Effect
+		///* check Area Effect
 		if (areaEffect !== "None") {
 			areaEffectMessage =
 				`<span data-tooltip="Area Effect"><i class="fa-sharp-duotone fa-solid fa-hexagon-image"></i> -</span> ` +
@@ -221,14 +224,14 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		} else {
 			areaEffectMessage = null;
 		}
-		//? check for VS
+		///* check for VS
 		if (vsRoll !== "None") {
 			vsMessage =
 				`<span data-tooltip="VS Roll"><i class="fa-sharp-duotone fa-solid fa-swords"></i> - </span>` +
 				vsRoll +
 				`<br>`;
 		}
-		//? finalize action slot
+		///* finalize action slot
 		if (actionSlot.includes("Always Active")) {
 			//? always active return
 			metanthropes.utils.metaLog(1, "metaExecute", actor.name + "'s " + itemName, "is Always Active!");
@@ -240,7 +243,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			if (actionSlot.includes("1d10 Cycles")) {
 				//? roll for cycles
 				actionSlotDice = 1;
-				actionSlotMessage += `Focused Action: [[1d10${explosiveDice}]] Cycles<br>`;
+				actionSlotMessage += `Focused Action:<br><br><div class="meta-roll-inline-results">[[1d10${explosiveDice}[Cycles]]] Cycles</div><br>`;
 				actionSlotRerollButton = `<div class="hide-button hidden"><br>
 				<button class="metanthropes-secondary-chat-button action-slot rolld10-reroll"
 				data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${actionSlotDice}"
@@ -250,7 +253,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			} else if (actionSlot.includes("1d10 Hours")) {
 				//? roll for hours
 				actionSlotDice = 1;
-				actionSlotMessage += `Focused Action: [[1d10${explosiveDice}]] Hours<br>`;
+				actionSlotMessage += `Focused Action: <br><br><div class="meta-roll-inline-results">[[1d10${explosiveDice}[Hours]]] Hours</div><br>`;
 				actionSlotRerollButton = `<div class="hide-button hidden"><br>
 				<button class="metanthropes-secondary-chat-button action-slot rolld10-reroll"
 				data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${actionSlotDice}"
@@ -267,13 +270,13 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				actionSlot +
 				`<br>`;
 		}
-		//? finalize targets
+		///* finalize targets
 		if (targetsNumber.includes("d10")) {
 			//? roll for targets
 			if (targetsNumber === "1d10/2") {
 				//? roll for 1d10/2
-				targetsNumberDiceMessage = `[[ceil(1d10${explosiveDice}/2)]]`;
-				targetsMessage = `<span data-tooltip="Targets"><i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i> -</span> ${targetsNumberDiceMessage}`;
+				targetsNumberDiceMessage = `<div class="meta-roll-inline-results">[[ceil(1d10${explosiveDice}/2)[Targets]]]</div>`;
+				targetsMessage = `<span data-tooltip="Targets"><i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i> -</span> ${targetsNumberDiceMessage} Targets<br>`;
 				targetsNumberDice = 1;
 				targetsRerollButton = `<div class="hide-button hidden"><br>
 			<button class="metanthropes-secondary-chat-button targets rolld10-reroll"
@@ -283,8 +286,8 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			} else {
 				//? all other rolls
 				targetsNumberDice = await metanthropes.utils.metaExtractNumberOfDice(targetsNumber);
-				targetsNumberDiceMessage = `[[${targetsNumberDice}d10${explosiveDice}]]`;
-				targetsMessage = `<span data-tooltip="Targets"><i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i> -</span> ${targetsNumberDiceMessage}`;
+				targetsNumberDiceMessage = `<span class="meta-roll-inline-results-small">[[${targetsNumberDice}d10${explosiveDice}[Targets]]]</span>`;
+				targetsMessage = `<span data-tooltip="METANTHROPES.COMMON.Targets"><i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i> -</span> ${targetsNumberDiceMessage}`;
 				targetsRerollButton = `<div class="hide-button hidden"><br>
 			<button class="metanthropes-secondary-chat-button targets rolld10-reroll"
 			data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${targetsNumberDice}"
@@ -293,19 +296,19 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			<br></div>`;
 			}
 		} else {
-			targetsMessage = `<span data-tooltip="Targets"><i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i> -</span> ${targetsNumber}`;
+			targetsMessage = `<span data-tooltip="METANTHROPES.COMMON.Targets"><i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i> -</span> ${targetsNumber}`;
 		}
-		//? add eligible targets
+		///* add eligible targets
 		if (targetsEligible.length > 0) {
 			targetsMessage += ` ` + targetsEligible.join(", ");
 		}
-		//? add type of targets
+		///* add type of targets
 		if (targetsType.length > 0) {
 			targetsMessage += ` ` + targetsType.join(", ") + `<br>`;
 		} else {
 			targetsMessage += `<br>`;
 		}
-		//? finalize duration
+		///* finalize duration
 		if (duration.includes("d10")) {
 			//? roll for duration
 			durationDiceMessage = duration.match(/1d10 (.+)/);
@@ -327,7 +330,8 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				duration +
 				`<br>`;
 		}
-		//* effect message
+		///* effect message
+		//todo spending would need a form, not dialog to control the +/- of the spending and inject the results at this step
 		if (damageBaseCosmic > 0 || damageDiceCosmic > 0) {
 			const cosmicDamageRoll = await metanthropes.dice.metaRolld10(
 				actor,
@@ -417,7 +421,6 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			healingRollResult = healingRoll.dataset.total;
 			healingMessage = `${healingRoll.outerHTML}<br>`;
 		}
-
 		if (specialBase > 0 && specialDice > 0) {
 			if (!specialIsHalf) {
 				specialMessage = `${specialName}: [[${specialDice}d10${explosiveDice}+${specialBase}]]<br>`;
@@ -459,10 +462,11 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			<br></div>`;
 			}
 		}
-		//? Removed Permanent Buffs showing until further notice
+		//todo Removed Permanent Buffs showing until further notice
 		// if (buffsPermanent) {
 		// 	buffsPermanentMessage = `<i class="fa-sharp-duotone fa-solid fa-shield-halved"></i> <i class="fa-sharp-duotone fa-solid fa-infinity"></i>: ` + buffsPermanent + `<br>`;
 		// }
+		///* todo refactor with Active Effects in mind
 		if (buffsApplied) {
 			buffsAppliedMessage =
 				`<span data-tooltip="Buffs Applied"><i class="fa-sharp-duotone fa-solid fa-plus"></i> <i class="fa-sharp-duotone fa-solid fa-shield-halved"></i></span>: ` +
@@ -487,7 +491,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				conditionsRemoved +
 				`<br>`;
 		}
-		//* Assemble contentMessage to be presented in the content section (allows inline rolls)
+		///* Assemble contentMessage to be presented in the content section (allows inline rolls)
 		//todo since this area allows inline rolls, couldn't we make the extra rolling here for spending lvl of success?
 		contentMessage = actionSlotMessage;
 		contentMessage += targetsMessage;
@@ -507,8 +511,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		if (effectDescription) {
 			contentMessage += `${effectDescription}<hr />`;
 		}
-		//* Targeting v1
-		//? Store targeted actors in an array
+		///todo Targeting v1 todo needs to move outside of execute or run along side it
 		const manuallySelectedTargets = game.user.targets;
 		const targetsArray = Array.from(manuallySelectedTargets).map((token) => token.actor);
 		//?Create a new array with only the actor's uuids to be used later
@@ -543,7 +546,6 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				", "
 			)}<br><br>`;
 			contentMessage += `<div class="meta-roll-inline-results">`;
-
 			if (damageCosmicMessage) {
 				contentMessage += damageCosmicMessage;
 				contentMessage += `<br>`;
@@ -625,6 +627,12 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		if (conditionsAppliedMessage || conditionsRemovedMessage) {
 			contentMessage += `<hr />`;
 		}
+		//todo add message that creates 'spend levels of success' button to increase damage + healing dices
+		// if condition to only apply when damage/healing and when levels>=1
+		// refactor metapowers json file
+		// new button sets off a dialog that takes input in the form of options from the itemName & lvls
+		// dialog returns an update to the chat message with the new results ideally.
+		// ok vasika anti na pame sto chat, pame na to kanoume present se ena dialog prwta kai ekei na rwtame ean exoume mpei sto if
 		//? check if actor has enough destiny points to reroll
 		contentMessage += `<div>${actor.name} has ${actor.currentDestiny} <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny remaining.<br></div>`;
 		if (actor.currentDestiny > 0) {
@@ -654,11 +662,12 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	//* Post Execution Actions
 	metanthropes.utils.metaLog(3, "metaExecute", "Post Execution Actions");
 	//? Clear all metapower related result flags (currently only from duplicateself)
+	//todo: this behavior should change with Actor active effects instead of flags, or we'd have to do many exceptions for edge cases
 	//! the idea here being that if the flags are going to be added later, here we prevent them from remaining from previous successful activations
 	await actor.unsetFlag("metanthropes", "duplicateSelf");
 	//? Get the result of the last roll
 	let checkResult = await actor.getFlag("metanthropes", "lastrolled").MetaEvaluate;
-	//* Check for Duplicate Self Metapower Activation
+	//? Check for Duplicate Self Metapower Activation
 	if (checkResult > 0 && action === "Metapower" && ["Clone", "Couple", "Team", "Squad", "Unit"].includes(itemName)) {
 		metanthropes.utils.metaLog(3, "metaExecute", "Duplicate Self Metapower Activation Detected");
 		let currentLife = actor.system.Vital.Life.value;
@@ -700,7 +709,6 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		await metanthropes.logic.metaApplyHealing(targetedActors, healingRollResult);
 	}
 	//* Send Chat Message
-	//? prepare the Chat message
 	let chatData = {
 		user: game.user.id,
 		flavor: flavorMessage,
@@ -708,8 +716,6 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		content: contentMessage,
 		flags: { metanthropes: { actoruuid: actor.uuid } },
 	};
-	//? Send the message to chat
 	await ChatMessage.create(chatData);
-	//? metaExecute Finished
 	metanthropes.utils.metaLog(3, "metaExecute", "Finished");
 }
