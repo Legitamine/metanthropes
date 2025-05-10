@@ -93,7 +93,7 @@ export const settings = [
 		key: "metaAlphaTesting",
 		name: "Enable Alpha Testing of Upcoming Features",
 		hint: `
-		Enable this setting to test New Features that are still in early development.
+		Enable this setting to test Upcoming Features that are still in early development.
 		These features are not fully functional and are subject to change during development.
 		Make sure you give us your feedback and suggestions!
 		`,

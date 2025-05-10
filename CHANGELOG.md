@@ -16,11 +16,12 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 - Foundry VTT version 13 is now supported.
 - theme support & developer environment updates.
 - Roll d100 dice functions localized & using fields API & APP V2. More App V2 updates to come in future releases.
-- Activating a Metapower or using a Possession which can deal Damage or apply Healing, now requires you to have a target selected. Damage (taking resistances into account) and Healing will be applied to the targets automatically. If you choose to spend Destiny to re-roll the Damage/Healing, it will undo the last applied result and re-apply the new one. Note that this feature does not take into account if the selected target(s) are valid targets, it will apply the result regardless. The targeting subsystem will be improved in future releases.
+- Activating a Metapower or using a Possession which can deal Damage or apply Healing, and has a Duration of "Instantaneous", now requires you to have a target selected. Damage (taking resistances into account) and Healing will be applied to the targets automatically. If you choose to spend Destiny to re-roll the Damage/Healing, it will undo the last applied result and re-apply the new one. Note that this feature does not take into account if the selected target(s) are valid targets, it will apply the result regardless. The targeting subsystem will be improved in future releases and non-Instantaneous effects will come with the Actor Active Effects subsystem.
 - changed: inline rolls now follow our own custom UI/UX style, instead of the default Foundry VTT UI style which was used previously.
+- changed: [Core] New capability to enable Beta Testing for new features. This previously was provided exclusively with the Homebrew Module, and is now part of the Core Module. This will give a broader audience access to test new features and allow us to get more feedback.
+- added: [Homebrew] New capability to enable Alpha testing of upcoming features. We would like to offer Homebrew owners the option to test features in the early prototype stage and give us their feedback during the early stages of development.
 - fixed not being able to re-roll for damage/healing when beta-testing was enabled.
-todo: new alpha / beta testing for features core/homebrew
-todo: add license & contribution attributes for fonts
+todo: add license & contribution attributes for fonts & music/sound effects
 
 # Early Access v0.12.2 [2025-01-29]
 

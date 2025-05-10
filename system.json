@@ -148,8 +148,8 @@
 	"bugs": "https://github.com/Legitamine/metanthropes/issues",
 	"background": "systems/metanthropes/assets/cover/cover.jpg",
 	"socket": true,
-	"primaryTokenAttribute": "Vital.Destiny",
-	"secondaryTokenAttribute": "Vital.Life",
+	"primaryTokenAttribute": "Vital.Life",
+	"secondaryTokenAttribute": "Vital.Destiny",
 	"grid": {
 		"type": 2,
 		"alpha": 0.2,
