@@ -11,7 +11,6 @@ Hooks.on("renderChatMessageHTML", async (message, html) => {
 	if (game.user.name === metaowner || game.user.isGM) {
 		//* Unhide the buttons
 		html.querySelectorAll(".hide-button").forEach((btn) => btn.classList.remove("hidden"));
-		//* Handle Main Chat Buttons (all the buttons that will be disabled if any of them is clicked)
 		html.addEventListener("click", (event) => {
 			const button = event.target;
 			//? Return if button is not a button element
@@ -21,10 +20,8 @@ Hooks.on("renderChatMessageHTML", async (message, html) => {
 					button.classList.contains("metanthropes-secondary-chat-button")
 				)
 			) {
-				metanthropes.utils.metaLog(1, "renderChatMessageHTML", "not our button", button, event);
 				return;
 			}
-			metanthropes.utils.metaLog(3, "renderChatMessageHTML", "Button Targeting", button, event);
 			if (button.classList.contains("metaeval-reroll")) {
 				metanthropes.dice.metaEvaluateReRoll(event);
 			} else if (button.classList.contains("metainitiative-reroll")) {
@@ -37,16 +34,22 @@ Hooks.on("renderChatMessageHTML", async (message, html) => {
 				metanthropes.dice.metaHungerReRoll(event);
 			} else if (button.classList.contains("cover-reroll")) {
 				metanthropes.dice.metaCoverReRoll(event);
+			} else if (button.classList.contains("roll-damage-reroll")) {
+				button.classList.add("disabled");
+				metanthropes.dice.metaDamageReRoll(event);
+			} else if (button.classList.contains("roll-healing-reroll")) {
+				button.classList.add("disabled");
+				metanthropes.dice.metaHealingReRoll(event);
 			} else if (button.classList.contains("rolld10-reroll")) {
+				//? Disable secondary buttons
+				button.classList.add("disabled");
 				metanthropes.dice.metaRolld10ReRoll(event);
-				//? Disable button (only secondary ones?)
-				button.disabled = true;
 			} else {
-				metanthropes.utils.metaLog(2, "renderChatMessageHTML", "not an actionable event", button, event);
+				metanthropes.utils.metaLog(5, "renderChatMessageHTML", "not an actionable event", button, event);
 			}
-			//? Disable chat buttons
+			//? Disable main buttons
 			html.querySelectorAll(".metanthropes-main-chat-button").forEach((btn) => {
-				btn.disabled = true;
+				btn.classList.add("disabled");
 			});
 		});
 	}

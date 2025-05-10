@@ -9,14 +9,17 @@
  * @returns {*}
  */
 export async function metaApplyHealing(targets, healing) {
-	metanthropes.utils.metaLog(3, "metaApplyHealing", "Targets:", targets);
 	for (let i = 0; i < targets.length; i++) {
-		const targetedActor = targets[i];
+		const targetedActor = await fromUuid(targets[i]);
 		await targetedActor.applyHealing(healing);
 		metanthropes.utils.metaLog(
 			3,
 			"metaApplyHealing",
 			"Applying Healing to",
+			i+1,
+			"of",
+			targets.length,
+			`Target${targets.length>1?'s':''}:`,
 			targetedActor.name,
 			"Healing:",
 			healing

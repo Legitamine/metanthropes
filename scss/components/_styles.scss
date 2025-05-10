@@ -200,6 +200,7 @@ h3 {
 	align-content: space-around;
 }
 .style-container-nav-children {
+	//font-family: $font-title !important; //or
 	align-items: center;
 	justify-content: center;
 	white-space: nowrap;
@@ -209,7 +210,8 @@ h3 {
 	padding: $padding-sm;
 	margin: $margin-sm;
 	.meta-emoji {
-		font-size: 0.8rem;
+		font-size: 1rem;
+		//color: $c-purple;
 	}
 }
 

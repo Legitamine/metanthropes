@@ -1,5 +1,27 @@
 {
 	"METANTHROPES": {
+		"COMMON": {
+			"Summary": "Summary",
+			"Stat": "Stat",
+			"Stats": "Stats",
+			"Perk": "Perk",
+			"Perks": "Perks",
+			"Action": "Action",
+			"Actions": "Actions",
+			"Possession": "Possession",
+			"Possessions": "Possessions",
+			"Effect": "Effect",
+			"Effects": "Effects",
+			"Metapower": "Metapower",
+			"Metapowers": "Metapowers",
+			"Target": "Target",
+			"Targets": "Targets"
+		},
+		"LOGIC": {
+			"METAEXECUTE": {
+				"Targets": ""
+			}
+		},
 		"UI": {
 			"NOTIFICATIONS": {
 				"META_ROLL": {
@@ -16,7 +38,7 @@
 					"MultiActionCount": "Multi-Action",
 					"MultiActionCountUnits": "Actions",
 					"MultiActionCountHint": "The total number of Multi-Actions you will do this Turn.",
-					"None": "None",
+					"None": "No Multi-Action",
 					"Bonus": "Bonus",
 					"BonusHint": "The total Bonus for the Roll result.",
 					"Penalty": "Penalty",

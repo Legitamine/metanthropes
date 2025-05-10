@@ -56,17 +56,8 @@
 			"flags": {}
 		}
 	],
-	"esmodules": [
-		"assets/fonts/fontawesome/fontawesome.js",
-		"assets/fonts/fontawesome/solid.js",
-		"assets/fonts/fontawesome/sharp-solid.js",
-		"assets/fonts/fontawesome/duotone.js",
-		"assets/fonts/fontawesome/sharp-duotone-solid.js",
-		"assets/fonts/fontawesome/custom-icons.js",
-		"assets/fonts/fontawesome/conflict-detection.js",
-		"greensock/esm/all.js",
-		"module/metanthropes.mjs"
-	],
+	"esmodules": ["greensock/esm/all.js", "module/metanthropes.mjs"],
+	"scripts": [],
 	"styles": ["styles/metanthropes.css"],
 	"packs": [
 		{
@@ -157,8 +148,8 @@
 	"bugs": "https://github.com/Legitamine/metanthropes/issues",
 	"background": "systems/metanthropes/assets/cover/cover.jpg",
 	"socket": true,
-	"primaryTokenAttribute": "Vital.Destiny",
-	"secondaryTokenAttribute": "Vital.Life",
+	"primaryTokenAttribute": "Vital.Life",
+	"secondaryTokenAttribute": "Vital.Destiny",
 	"grid": {
 		"type": 2,
 		"alpha": 0.2,
