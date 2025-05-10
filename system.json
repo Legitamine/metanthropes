@@ -5,7 +5,7 @@
 	"version": "0.13.2",
 	"compatibility": {
 		"minimum": "13",
-		"verified": "13.340",
+		"verified": "13.341",
 		"maximum": "13"
 	},
 	"relationships": {
@@ -57,23 +57,8 @@
 		}
 	],
 	"esmodules": ["greensock/esm/all.js", "module/metanthropes.mjs"],
+	"scripts": [],
 	"styles": ["styles/metanthropes.css"],
-	"themes": [
-		{
-			"id": "metanthropes-light",
-			"title": "Metanthropes Light Theme",
-			"type": "theme",
-			"styles": ["styles/metanthropes-light.css"],
-			"description": "A light UI theme for Metanthropes"
-		},
-		{
-			"id": "metanthropes-dark",
-			"title": "Metanthropes Dark Theme",
-			"type": "theme",
-			"styles": ["styles/metanthropes-dark.css"],
-			"description": "A dark UI theme for Metanthropes"
-		}
-	],
 	"packs": [
 		{
 			"name": "system",
@@ -163,8 +148,8 @@
 	"bugs": "https://github.com/Legitamine/metanthropes/issues",
 	"background": "systems/metanthropes/assets/cover/cover.jpg",
 	"socket": true,
-	"primaryTokenAttribute": "Vital.Destiny",
-	"secondaryTokenAttribute": "Vital.Life",
+	"primaryTokenAttribute": "Vital.Life",
+	"secondaryTokenAttribute": "Vital.Destiny",
 	"grid": {
 		"type": 2,
 		"alpha": 0.2,

@@ -13,7 +13,7 @@ gsap.registerPlugin(TextPlugin, Dragger);
  * @extends {ActorSheet}
  *
  */
-export class MetanthropesActorSheet extends ActorSheet {
+export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 	/** @override */
 	static get defaultOptions() {
 		const options = super.defaultOptions;
@@ -354,7 +354,7 @@ export class MetanthropesActorSheet extends ActorSheet {
 			headerButtons: this._getHeaderButtons(),
 		};
 		// Render the template and return the promise
-		let html = await renderTemplate("templates/app-window.html", windowData);
+		let html = await foundry.applications.handlebars.renderTemplate("templates/app-window.html", windowData);
 		html = $(html);
 		// Activate header button click listeners after a slight timeout to prevent immediate interaction
 		setTimeout(() => {
@@ -366,14 +366,14 @@ export class MetanthropesActorSheet extends ActorSheet {
 		}, 500);
 		// Make the outer window draggable
 		const header = html.find("header")[0];
-		new Draggable(this, html, header, this.options.resizable);
+		new foundry.applications.ux.Draggable.implementation(this, html, header, this.options.resizable);
 		// Make the outer window minimizable
 		if (this.options.minimizable) {
 			header.addEventListener("dblclick", this._onToggleMinimize.bind(this));
 		}
 		// Set the outer frame z-index
-		if (Object.keys(ui.windows).length === 0) _maxZ = 100 - 1;
-		this.position.zIndex = Math.min(++_maxZ, 9999);
+		if (Object.keys(ui.windows).length === 0) foundry.applications.api.ApplicationV2._maxZ = 100 - 1;
+		this.position.zIndex = Math.min(++foundry.applications.api.ApplicationV2._maxZ, 9999);
 		html.css({ zIndex: this.position.zIndex });
 		ui.activeWindow = this;
 		// Return the outer frame

@@ -1,5 +1,27 @@
 {
 	"METANTHROPES": {
+		"COMMON": {
+			"Summary": "Summary",
+			"Stat": "Stat",
+			"Stats": "Stats",
+			"Perk": "Perk",
+			"Perks": "Perks",
+			"Action": "Action",
+			"Actions": "Actions",
+			"Possession": "Possession",
+			"Possessions": "Possessions",
+			"Effect": "Effect",
+			"Effects": "Effects",
+			"Metapower": "Metapower",
+			"Metapowers": "Metapowers",
+			"Target": "Target",
+			"Targets": "Targets"
+		},
+		"LOGIC": {
+			"METAEXECUTE": {
+				"Targets": ""
+			}
+		},
 		"UI": {
 			"NOTIFICATIONS": {
 				"META_ROLL": {
@@ -16,7 +38,7 @@
 					"MultiActionCount": "Multi-Action",
 					"MultiActionCountUnits": "Actions",
 					"MultiActionCountHint": "The total number of Multi-Actions you will do this Turn.",
-					"None": "None",
+					"None": "No Multi-Action",
 					"Bonus": "Bonus",
 					"BonusHint": "The total Bonus for the Roll result.",
 					"Penalty": "Penalty",
@@ -25,12 +47,12 @@
 					"CustomReductionHint": "The total Reduction for the Roll result.",
 					"AimingReduction": "Aiming Reduction",
 					"AimingReductionHint": "The total Aiming Reduction for the Roll result.",
-					"Stat": " 📊 Stat",
-					"StatRoll": "Roll 📊 ",
-					"Metapower": "Ⓜ️ Metapower",
-					"MetapowerRoll": "Activate Ⓜ️ ",
-					"Possession": "🛠️ Possession",
-					"PossessionRoll": "Use 🛠️ "
+					"Stat": " Stat",
+					"StatRoll": "Roll ",
+					"Metapower": "Metapower",
+					"MetapowerRoll": "Activate ",
+					"Possession": "Possession",
+					"PossessionRoll": "Use "
 				}
 			}
 		},
@@ -69,7 +91,7 @@
 					},
 					"starting": {
 						"label": "Starting",
-						"hint": "Starting <i class=\"fa-duotone fa-solid fa-heart\"></i> Life"
+						"hint": "Starting <i class=\"fa-sharp-duotone fa-solid fa-heart\"></i> Life"
 					},
 					"max": {
 						"label": "Maximum",

@@ -12,10 +12,13 @@ $margin-zero: 0px;
 $margin-sm: 1px;
 $margin-md: 3px;
 $margin-lg: 6px;
-//border
+//* Border
 $border-groove: 2px groove $c-purple;
 $border-activated: 2px groove $c-white;
+$border-box-shadow: 0 0 5px $c-purple;
 $border-style-solid: 1px solid $c-purple;
 $border-style-dashed: 1px dashed $c-purple;
 $border-style-dotted: 1px dotted $c-purple;
 $border-radius: 15px;
+//* UI
+$opacity-button: 0.6;

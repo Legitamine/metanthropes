@@ -7,17 +7,17 @@
 			<div class="meta-ui-responsive meta-ui-change-at-medium layout-container-grid3x1-cs">
 				<div class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium">
 					<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
-						data-tooltip="Initial Score"><i class="fa-duotone fa-solid fa-flag-checkered"></i>
+						data-tooltip="Initial Score"><i class="fa-sharp-duotone fa-solid fa-flag-checkered"></i>
 						{{this.Initial}}
 					</p>
 					{{#if (or ../betaTesting (not ../coreFeatures))}}
 						<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
-							data-tooltip="Progression Level"><i class="fa-duotone fa-solid fa-chart-line-up"></i>
+							data-tooltip="Progression Level"><i class="fa-sharp-duotone fa-solid fa-chart-line-up"></i>
 							{{this.Progressed}}
 						</p>
 					{{else}}
 						<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
-							data-tooltip="Progression Level"><i class="fa-duotone fa-solid fa-chart-line-up"></i> <select
+							data-tooltip="Progression Level"><i class="fa-sharp-duotone fa-solid fa-chart-line-up"></i> <select
 								name="system.Characteristics.{{@key}}.Progressed"
 								id="system.Characteristics.{{@key}}.Progressed"
 								data-dtype="Number">
@@ -45,7 +45,7 @@
 						<p class="style-cs-buffs meta-ui-obscure"
 							data-tooltip="{{this.Buff.Name}} Buff Level">
 					{{/if}}
-					<i class="fa-duotone fa-solid fa-shield-halved"></i> <label class="meta-ui-responsive meta-ui-hide-at-medium"
+					<i class="fa-sharp-duotone fa-solid fa-shield-halved"></i> <label class="meta-ui-responsive meta-ui-hide-at-medium"
 						for="system.Characteristics.{{@key}}.Buff.Current">{{this.Buff.Name}}</label>
 					</p>
 					{{#if (gt this.Buff.Current 0)}}
@@ -72,7 +72,7 @@
 						<p class="style-cs-conditions meta-ui-obscure"
 							data-tooltip="{{this.Condition.Name}} Condition Level">
 					{{/if}}
-					<i class="fa-duotone fa-solid fa-skull"></i> <label class="meta-ui-responsive meta-ui-hide-at-medium"
+					<i class="fa-sharp-duotone fa-solid fa-skull"></i> <label class="meta-ui-responsive meta-ui-hide-at-medium"
 						for="system.Characteristics.{{@key}}.Condition.Current">{{this.Condition.Name}}</label>
 					</p>
 					{{#if (gt this.Condition.Current 0)}}
@@ -111,17 +111,17 @@
 				<div class="meta-ui-responsive meta-ui-change-at-medium layout-container-grid3x1-cs">
 					<div class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium">
 						<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
-							data-tooltip="Initial Score"><i class="fa-duotone fa-solid fa-flag-checkered"></i>
+							data-tooltip="Initial Score"><i class="fa-sharp-duotone fa-solid fa-flag-checkered"></i>
 							{{this.Initial}}
 						</p>
 						{{#if (or ../../betaTesting (not ../../coreFeatures))}}
 							<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
-								data-tooltip="Progression Level"><i class="fa-duotone fa-solid fa-chart-line-up"></i>
+								data-tooltip="Progression Level"><i class="fa-sharp-duotone fa-solid fa-chart-line-up"></i>
 								{{this.Progressed}}
 							</p>
 						{{else}}
 							<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
-								data-tooltip="Progression Level"><i class="fa-duotone fa-solid fa-chart-line-up"></i> <select
+								data-tooltip="Progression Level"><i class="fa-sharp-duotone fa-solid fa-chart-line-up"></i> <select
 									name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Progressed"
 									id="system.Characteristics.{{@../key}}.Stats.{{@key}}.Progressed"
 									data-dtype="Number">
@@ -149,9 +149,9 @@
 					</div>
 					<div class="meta-ui-responsive meta-ui-change-at-single-column style-cs-rolls"
 						data-tooltip="Click to Roll<br><br>{{@key}}<br><br>Right-Click for Custom Roll
-						{{#if ../../affectedByDisease}}<br><br>Result will be affected by <i class="fa-duotone fa-solid fa-skull"></i> Disease{{/if}}
-						{{#if ../../affectedByPain}}<br>Result will be affected by <i class="fa-duotone fa-solid fa-skull"></i> Pain{{/if}}
-						{{#if ../../affectedByHunger}}<br>Need to overcome <i class="fa-duotone fa-solid fa-skull"></i> Hunger{{/if}}
+						{{#if ../../affectedByDisease}}<br><br>Result will be affected by <i class="fa-sharp-duotone fa-solid fa-skull"></i> Disease{{/if}}
+						{{#if ../../affectedByPain}}<br>Result will be affected by <i class="fa-sharp-duotone fa-solid fa-skull"></i> Pain{{/if}}
+						{{#if ../../affectedByHunger}}<br>Need to overcome <i class="fa-sharp-duotone fa-solid fa-skull"></i> Hunger{{/if}}
 						" data-roll-type="StatRoll" data-stat="{{@key}}">
 						{{this.Roll}}
 					</div>
@@ -163,7 +163,7 @@
 							<p class="style-cs-buffs meta-ui-obscure"
 								data-tooltip="{{this.Buff.Name}} Buff Level">
 						{{/if}}
-						<i class="fa-duotone fa-solid fa-shield-halved"></i> <label class="meta-ui-responsive meta-ui-hide-at-medium"
+						<i class="fa-sharp-duotone fa-solid fa-shield-halved"></i> <label class="meta-ui-responsive meta-ui-hide-at-medium"
 							for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current">{{this.Buff.Name}}</label>
 						</p>
 						{{#if (gt this.Buff.Current 0)}}
@@ -207,7 +207,7 @@
 							<p class="style-cs-conditions meta-ui-obscure"
 								data-tooltip="{{this.Condition.Name}} Condition Level">
 						{{/if}}
-						<i class="fa-duotone fa-solid fa-skull"></i> <label class="meta-ui-responsive meta-ui-hide-at-medium"
+						<i class="fa-sharp-duotone fa-solid fa-skull"></i> <label class="meta-ui-responsive meta-ui-hide-at-medium"
 							for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Name">{{this.Condition.Name}}</label>
 						</p>
 						{{#if (gt this.Condition.Current 0)}}

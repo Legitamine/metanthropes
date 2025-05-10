@@ -2,17 +2,17 @@
 @mixin button-hover-focus {
 	outline: none;
 	border: $border-activated;
-	box-shadow: 0 0 5px $c-purple;
+	//box-shadow: $border-box-shadow;
 	opacity: 1;
 }
 
 @mixin button-active {
 	border: $border-activated;
-	box-shadow: 0 0 5px $c-purple;
+	box-shadow: $border-box-shadow;
 	opacity: 1;
 }
 
-// --- Base Button Styles ---
+// Base Button Styles
 %base-button {
 	font-family: $font-primary;
 	background-image: url("../assets/artwork/ui/buttons/button.webp");
@@ -21,13 +21,15 @@
 	border: $border-groove;
 	border-radius: $border-radius;
 	color: $c-white;
-	opacity: 0.7;
+	opacity: $opacity-button;
 }
 
 // --- Button Elements ---
 button,
 form button,
 a.button,
+app.button,
+app button,
 .dialog .dialog-buttons button {
 	@extend %base-button;
 
@@ -38,6 +40,9 @@ a.button,
 	&:hover,
 	&:focus {
 		@include button-hover-focus;
+	}
+	&.disabled {
+		color: black;
 	}
 }
 
@@ -58,7 +63,7 @@ button.chat-button-anchor {
 // Button pseudo-element (before)
 button::before {
 	font: var(--fa-font-solid);
-	display: inline-block;
+	display: flex;
 	text-rendering: auto;
 	-webkit-font-smoothing: antialiased;
 

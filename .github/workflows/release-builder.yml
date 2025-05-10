@@ -5,7 +5,7 @@ on:
             - main
 jobs:
     build:
-        name: Metanthropes Automated Builder
+        name: Metanthropes System Release Builder
         runs-on: ubuntu-latest
         steps:
             - name: Setup Node.js

@@ -38,7 +38,7 @@ import { MetanthropesItemSheetV2 } from "./ui/sheets/item-sheet-v2.mjs";
 import { metaPlaySoundEffect } from "./api/audio/play-sound-effect.mjs";
 //* Dice Rollers
 import { metaEvaluate, metaEvaluateReRoll } from "./api/dice/meta-evaluate.mjs";
-import { metaRolld10, metaRolld10ReRoll } from "./api/dice/meta-rolld10.mjs";
+import { metaRolld10, metaRolld10ReRoll, metaDamageReRoll, metaHealingReRoll } from "./api/dice/meta-rolld10.mjs";
 import { metaHungerRoll, metaHungerReRoll } from "./api/dice/meta-hunger-roll.mjs";
 import { metaCoverRoll, metaCoverReRoll } from "./api/dice/meta-cover-roll.mjs";
 import { handleCoverRolls, metaHandleRolls } from "./api/dice/meta-handle-rolls.mjs";
@@ -47,8 +47,8 @@ import { metaRoll } from "./api/dice/meta-roll.mjs";
 import { metaExecute } from "./api/dice/meta-execute.mjs";
 //* Logic
 import { metaFinalizePremadeActor } from "./api/logic/finalize-premade.mjs";
-import { metaApplyDamage } from "./api/logic/apply-damage.mjs";
-import { metaApplyHealing } from "./api/logic/apply-healing.mjs";
+import { metaApplyDamage } from "./api/logic/meta-apply-damage.mjs";
+import { metaApplyHealing } from "./api/logic/meta-apply-healing.mjs";
 import { metaAssignActorToPlayer } from "./api/logic/assign-actor-to-player.mjs";
 //* Utilities
 import { prepareActiveEffectCategories, onManageActiveEffect } from "./api/utils/active-effect-tools.mjs";
@@ -90,6 +90,8 @@ globalThis.metanthropes = {
 		metaEvaluateReRoll,
 		metaRolld10,
 		metaRolld10ReRoll,
+		metaDamageReRoll,
+		metaHealingReRoll,
 		metaInitiative,
 		metaInitiativeReRoll,
 		metaHungerRoll,
@@ -134,7 +136,7 @@ globalThis.metanthropes = {
 //* Hooks
 import "./hooks/init.mjs";
 import "./hooks/ready.mjs";
-import "./hooks/render-chat-message.mjs";
+import "./hooks/render-chat-message-html.mjs";
 import "./hooks/create-actor.mjs";
 import "./hooks/pause.mjs";
 import "./hooks/supported-modules.mjs";
