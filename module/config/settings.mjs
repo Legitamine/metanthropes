@@ -79,7 +79,23 @@ export const settings = [
 		hint: `
 		Enable this setting to test New Features that are still in development.
 		These features may not be fully functional and are subject to change during development.
-		Make sure you backup your world before enabling this setting - just to be safe.
+		Make sure you give us your feedback and suggestions!
+		`,
+		scope: "world",
+		config: false,
+		requiresReload: true,
+		type: Boolean,
+		default: false,
+		onChange: null,
+	},
+		{
+		module: "metanthropes",
+		key: "metaAlphaTesting",
+		name: "Enable Alpha Testing of Upcoming Features",
+		hint: `
+		Enable this setting to test New Features that are still in early development.
+		These features are not fully functional and are subject to change during development.
+		Make sure you give us your feedback and suggestions!
 		`,
 		scope: "world",
 		config: false,
