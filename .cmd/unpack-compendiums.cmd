@@ -12,8 +12,8 @@ pause
 call npm install -g @foundryvtt/foundryvtt-cli
 @echo Configuring FoundryVTT CLI to use the correct install path
 @echo ----------------------------------------------------------
-call fvtt configure set installPath "D:/FoundryDev/V12/code"
-call fvtt configure set dataPath "D:/FoundryDev/V12/data"
+call fvtt configure set installPath "D:/FoundryDev/V13Composer/code"
+call fvtt configure set dataPath "D:/FoundryDev/V13Composer/data"
 @echo Configuring FoundryVTT CLI for our use case
 @echo --------------------------------------------
 call fvtt package workon "metanthropes" --type "System"

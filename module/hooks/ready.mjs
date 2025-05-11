@@ -4,6 +4,16 @@ Hooks.once("ready", async function () {
 	await metanthropes.utils.metaMigrateData();
 	metanthropes.utils.metaLog(3, "System", "Finished Migration");
 
+	//* Override Protype Token Defaults
+	//const applied = await game.settings.get("metanthropes", "prototypeTokenOverridesApplied");
+	//if (applied) return;
+	const newTokenDefaults = metanthropes.system.TOKENDEFAULTS;
+	console.log(newTokenDefaults);
+	console.log(game.settings.get("core","prototypeTokenOverrides"));
+	await game.settings.set("core", "prototypeTokenOverrides", newTokenDefaults);
+	console.log(game.settings.get("core","prototypeTokenOverrides"));
+	//await game.settings.set("metanthropes", "prototypeTokenOverridesApplied", true);
+
 	//* Add support for Moulinette
 	//todo should be moved to supported-modules instead
 	if (game.moulinette) {
