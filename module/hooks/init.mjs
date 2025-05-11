@@ -21,7 +21,6 @@ Hooks.once("init", async function () {
 	CONFIG.Combat.documentClass = metanthropes.documents.MetanthropesCombat;
 
 	//* Register Application Sheets
-	foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
 	foundry.documents.collections.Actors.registerSheet("metanthropes", metanthropes.applications.MetanthropesActorSheet, {
 		makeDefault: true,
 	});
@@ -31,7 +30,6 @@ Hooks.once("init", async function () {
 		label: "METANTHROPES.SHEET.ACTOR.LABEL",
 	});
 
-	foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
 	foundry.documents.collections.Items.registerSheet("metanthropes", metanthropes.applications.MetanthropesItemSheet, {
 		makeDefault: true,
 	});
