@@ -59,16 +59,8 @@ export class MetanthropesActor extends Actor {
 				}
 				//? Splatter blood color for Protagonists
 				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
-				//? Monk's Bloodsplats blood color for Protagonists
-				//todo add more settings from new module options
-				createData.prototypeToken.flags["monks-bloodsplats"] = {
-					"bloodsplat-colour": "#d10000ff",
-					"bloodsplat-type": "",
-				};
 				//? Token Disposition to Friendly for Protagonists
 				createData.prototypeToken.disposition = 1;
-				//? Monk's Token Bar Inclusion for Protagonists
-				createData.prototypeToken.flags["monks-tokenbar"] = { include: "include" };
 				//? Make Name & Life/Destiny Bars visible on hover by Anyone for Protagonists
 				createData.prototypeToken.displayName = 30;
 				createData.prototypeToken.displayBars = 30;
@@ -84,13 +76,6 @@ export class MetanthropesActor extends Actor {
 				}
 				//? Splatter blood color for Metanthropes
 				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
-				//? Monk's Bloodsplats blood color for Metanthropes
-				//todo add more settings from new module options
-				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#d10000ff";
-				//? Token Disposition to Neutral for Metanthropes
-				createData.prototypeToken.disposition = 0;
-				//? Monk's Token Bar Exclusion for Metanthropes
-				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
 				//? Make Name & Life/Destiny Bars visible on hover by Owner for Metanthropes
 				createData.prototypeToken.displayName = 20;
 				createData.prototypeToken.displayBars = 20;
@@ -106,13 +91,6 @@ export class MetanthropesActor extends Actor {
 				}
 				//? Splatter blood color for Humans
 				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
-				//? Monk's Bloodsplats blood color for Humans
-				//todo add more settings from new module options
-				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#d10000ff";
-				//? Token Disposition to Neutral for Humans
-				createData.prototypeToken.disposition = 0;
-				//? Monk's Token Bar Exclusion for Humans
-				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
 				//? Make Name & Life/Destiny Bars visible on hover by Owner for Humans
 				createData.prototypeToken.displayName = 20;
 				createData.prototypeToken.displayBars = 20;
@@ -128,13 +106,6 @@ export class MetanthropesActor extends Actor {
 				}
 				//? Splatter blood color for Artificials
 				createData.prototypeToken.flags.splatter = { bloodColor: "#00BFFF" };
-				//? Monk's Bloodsplats blood color for Artificials
-				//todo add more settings from new module options
-				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#00BFFF";
-				//? Token Disposition to Hostile for Artificials
-				createData.prototypeToken.disposition = -1;
-				//? Monk's Token Bar Exclusion for Artificials
-				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
 				//? Make Name & Life/Destiny Bars visible on hover by Owner for Artificials
 				createData.prototypeToken.displayName = 20;
 				createData.prototypeToken.displayBars = 20;
@@ -150,13 +121,6 @@ export class MetanthropesActor extends Actor {
 				}
 				//? Splatter blood color for Animals
 				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
-				//? Monk's Bloodsplats blood color for Animals
-				//todo add more settings from new module options
-				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#d10000ff";
-				//? Token Disposition to Neutral for Animals
-				createData.prototypeToken.disposition = 0;
-				//? Monk's Token Bar Exclusion for Animals
-				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
 				//? Make Name & Life/Destiny Bars visible on hover by Owner for Animals
 				createData.prototypeToken.displayName = 20;
 				createData.prototypeToken.displayBars = 20;
@@ -172,13 +136,6 @@ export class MetanthropesActor extends Actor {
 				}
 				//? Splatter blood color for Animated-Plants
 				createData.prototypeToken.flags.splatter = { bloodColor: "#228B22" };
-				//? Monk's Bloodsplats blood color for Animated-Plants
-				//todo add more settings from new module options
-				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#228B22";
-				//? Token Disposition to Neutral for Animated-Plants
-				createData.prototypeToken.disposition = 0;
-				//? Monk's Token Bar Exclusion for Animated-Plants
-				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
 				//? Make Name & Life/Destiny Bars visible on hover by Owner for Animated-Plants
 				createData.prototypeToken.displayName = 20;
 				createData.prototypeToken.displayBars = 20;
@@ -194,13 +151,6 @@ export class MetanthropesActor extends Actor {
 				}
 				//? Splatter blood color for Animated-Cadavers
 				createData.prototypeToken.flags.splatter = { bloodColor: "#006400" };
-				//? Monk's Bloodsplats blood color for Animated-Cadavers
-				//todo add more settings from new module options
-				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#006400";
-				//? Token Disposition to Hostile for Animated-Cadavers
-				createData.prototypeToken.disposition = -1;
-				//? Monk's Token Bar Exclusion for Animated-Cadavers
-				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
 				//? Make Name & Life/Destiny Bars visible on hover by Owner for Animated-Cadavers
 				createData.prototypeToken.displayName = 20;
 				createData.prototypeToken.displayBars = 20;
@@ -216,13 +166,6 @@ export class MetanthropesActor extends Actor {
 				}
 				//? Splatter blood color for Extraterrestrials
 				createData.prototypeToken.flags.splatter = { bloodColor: "#800080" };
-				//? Monk's Bloodsplats blood color for Extraterrestrials
-				//todo add more settings from new module options
-				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#800080";
-				//? Token Disposition to Hostile for Extraterrestrials
-				createData.prototypeToken.disposition = -1;
-				//? Monk's Token Bar Exclusion for Extraterrestrials
-				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
 				//? Make Name & Life/Destiny Bars visible on hover by Owner for Extraterrestrials
 				createData.prototypeToken.displayName = 20;
 				createData.prototypeToken.displayBars = 20;
@@ -238,13 +181,6 @@ export class MetanthropesActor extends Actor {
 				}
 				//? Splatter blood color for Extradimensionals
 				createData.prototypeToken.flags.splatter = { bloodColor: "#FF69B4" };
-				//? Monk's Bloodsplats blood color for Extradimensionals
-				//todo add more settings from new module options
-				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#FF69B4";
-				//? Token Disposition to Hostile for Extradimensionals
-				createData.prototypeToken.disposition = -1;
-				//? Monk's Token Bar Exclusion for Extradimensionals
-				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
 				//? Make Name & Life/Destiny Bars visible on hover by Owner for Extradimensionals
 				createData.prototypeToken.displayName = 20;
 				createData.prototypeToken.displayBars = 20;
@@ -260,13 +196,6 @@ export class MetanthropesActor extends Actor {
 				}
 				//? Splatter blood color for MetaTherions
 				createData.prototypeToken.flags.splatter = { bloodColor: "#FF1493" };
-				//? Monk's Bloodsplats blood color for MetaTherions
-				//todo add more settings from new module options
-				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#FF1493";
-				//? Token Disposition to Hostile for MetaTherions
-				createData.prototypeToken.disposition = -1;
-				//? Monk's Token Bar Exclusion for MetaTherions
-				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
 				//? Make Name & Life/Destiny Bars visible on hover by Owner for MetaTherions
 				createData.prototypeToken.displayName = 20;
 				createData.prototypeToken.displayBars = 20;
@@ -282,13 +211,6 @@ export class MetanthropesActor extends Actor {
 				}
 				//? Splatter blood color for Vehicles
 				createData.prototypeToken.flags.splatter = { bloodColor: "#808080" };
-				//? Monk's Bloodsplats blood color for Vehicles
-				//todo add more settings from new module options
-				createData.prototypeToken.flags["monks-bloodsplats.bloodsplat-colour"] = "#808080";
-				//? Token Disposition to Neutral for Vehicles
-				createData.prototypeToken.disposition = 0;
-				//? Monk's Token Bar Exclusion for Vehicles
-				createData.prototypeToken.flags["monks-tokenbar"] = { include: "exclude" };
 				//? Make Name & Life/Destiny Bars visible on hover by Owner for Vehicles
 				createData.prototypeToken.displayName = 20;
 				createData.prototypeToken.displayBars = 20;
