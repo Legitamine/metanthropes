@@ -12,32 +12,14 @@ export class MetanthropesActor extends Actor {
 	async _preCreate(data, options, user) {
 		await super._preCreate(data, options, user);
 		let createData = {};
-		//! v13 has a new way of handling this, needs investigation
-		//! workaround is to not set any of these defauls at this step for v13
-		//todo: Instead of setting this everytime, overriding custom settings on the new UI,
-		//todo: we should place it as part of importing the adventure or on first load and only then
-		//todo: probably by setting a flag and reseting it so it doesn't re-apply everytime - per world
-		//! hotfix for v13
-		let defaultToken;
-		if (game.version < 13) {
-			defaultToken = game.settings.get("core", "defaultToken");
-		}
-		//? Configure Display Bars & Name Visibility
+		//! v13 has the ability to customize prototype Token Defaults, however it doesn't allow to customize everything we need (yet)
 		if (!data.prototypeToken)
 			foundry.utils.mergeObject(createData, {
-				"prototypeToken.bar1": { attribute: "Vital.Life" },
-				"prototypeToken.bar2": { attribute: "Vital.Destiny" },
-				//* values from https://foundryvtt.com/api/enums/foundry.CONST.TOKEN_DISPLAY_MODES.html
-				//? this is controlled via the new actor process - the below are used as a fall-back setting
-				//todo double-check how this affects the visible bars for NPCs / Protagonists & make sure it fits the desired behavior
-				"prototypeToken.displayName": defaultToken?.displayName || CONST.TOKEN_DISPLAY_MODES.HOVER, //? Default display name to be on hover
-				"prototypeToken.displayBars": defaultToken?.displayBars || CONST.TOKEN_DISPLAY_MODES.HOVER, //? Default display bars to be on hover
-				"prototypeToken.disposition": defaultToken?.disposition || CONST.TOKEN_DISPOSITIONS.NEUTRAL, //? Default disposition to neutral
 				"prototypeToken.name": data.name, //? Set token name to actor name
 				"prototypeToken.texture.src": createData.img, //? Set token image to actor image
 			});
 		else if (data.prototypeToken) createData.prototypeToken = data.prototypeToken;
-		//? Set custom default tokens portraits
+		//* Set custom default tokens portraits
 		//todo Needs Refactoring - this is a mess
 		if (!createData.prototypeToken.flags) createData.prototypeToken.flags = {};
 		switch (data.type) {
@@ -57,13 +39,6 @@ export class MetanthropesActor extends Actor {
 					createData.prototypeToken.texture.src =
 						"systems/metanthropes/assets/artwork/classifications/hammer.webp";
 				}
-				//? Splatter blood color for Protagonists
-				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
-				//? Token Disposition to Friendly for Protagonists
-				createData.prototypeToken.disposition = 1;
-				//? Make Name & Life/Destiny Bars visible on hover by Anyone for Protagonists
-				createData.prototypeToken.displayName = 30;
-				createData.prototypeToken.displayBars = 30;
 				break;
 			case "Metanthrope":
 				if (
@@ -74,11 +49,6 @@ export class MetanthropesActor extends Actor {
 					createData.prototypeToken.texture.src =
 						"systems/metanthropes/assets/artwork/classifications/utilitarian.webp";
 				}
-				//? Splatter blood color for Metanthropes
-				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
-				//? Make Name & Life/Destiny Bars visible on hover by Owner for Metanthropes
-				createData.prototypeToken.displayName = 20;
-				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Human":
 				if (
@@ -89,11 +59,6 @@ export class MetanthropesActor extends Actor {
 					createData.prototypeToken.texture.src =
 						"systems/metanthropes/assets/artwork/classifications/aegis.webp";
 				}
-				//? Splatter blood color for Humans
-				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
-				//? Make Name & Life/Destiny Bars visible on hover by Owner for Humans
-				createData.prototypeToken.displayName = 20;
-				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Artificial":
 				if (
@@ -104,11 +69,6 @@ export class MetanthropesActor extends Actor {
 					createData.prototypeToken.texture.src =
 						"systems/metanthropes/assets/artwork/classifications/animator.webp";
 				}
-				//? Splatter blood color for Artificials
-				createData.prototypeToken.flags.splatter = { bloodColor: "#00BFFF" };
-				//? Make Name & Life/Destiny Bars visible on hover by Owner for Artificials
-				createData.prototypeToken.displayName = 20;
-				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Animal":
 				if (
@@ -119,11 +79,6 @@ export class MetanthropesActor extends Actor {
 					createData.prototypeToken.texture.src =
 						"systems/metanthropes/assets/artwork/classifications/kineticist.webp";
 				}
-				//? Splatter blood color for Animals
-				createData.prototypeToken.flags.splatter = { bloodColor: "#d10000ff" };
-				//? Make Name & Life/Destiny Bars visible on hover by Owner for Animals
-				createData.prototypeToken.displayName = 20;
-				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Animated-Plant":
 				if (
@@ -134,11 +89,6 @@ export class MetanthropesActor extends Actor {
 					createData.prototypeToken.texture.src =
 						"systems/metanthropes/assets/artwork/classifications/clairvoyant.webp";
 				}
-				//? Splatter blood color for Animated-Plants
-				createData.prototypeToken.flags.splatter = { bloodColor: "#228B22" };
-				//? Make Name & Life/Destiny Bars visible on hover by Owner for Animated-Plants
-				createData.prototypeToken.displayName = 20;
-				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Animated-Cadaver":
 				if (
@@ -149,11 +99,6 @@ export class MetanthropesActor extends Actor {
 					createData.prototypeToken.texture.src =
 						"systems/metanthropes/assets/artwork/classifications/cosmonaut.webp";
 				}
-				//? Splatter blood color for Animated-Cadavers
-				createData.prototypeToken.flags.splatter = { bloodColor: "#006400" };
-				//? Make Name & Life/Destiny Bars visible on hover by Owner for Animated-Cadavers
-				createData.prototypeToken.displayName = 20;
-				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Extraterrestrial":
 				if (
@@ -164,11 +109,6 @@ export class MetanthropesActor extends Actor {
 					createData.prototypeToken.texture.src =
 						"systems/metanthropes/assets/artwork/classifications/arbiter.webp";
 				}
-				//? Splatter blood color for Extraterrestrials
-				createData.prototypeToken.flags.splatter = { bloodColor: "#800080" };
-				//? Make Name & Life/Destiny Bars visible on hover by Owner for Extraterrestrials
-				createData.prototypeToken.displayName = 20;
-				createData.prototypeToken.displayBars = 20;
 				break;
 			case "Extradimensional":
 				if (
@@ -179,11 +119,6 @@ export class MetanthropesActor extends Actor {
 					createData.prototypeToken.texture.src =
 						"systems/metanthropes/assets/artwork/classifications/pink.webp";
 				}
-				//? Splatter blood color for Extradimensionals
-				createData.prototypeToken.flags.splatter = { bloodColor: "#FF69B4" };
-				//? Make Name & Life/Destiny Bars visible on hover by Owner for Extradimensionals
-				createData.prototypeToken.displayName = 20;
-				createData.prototypeToken.displayBars = 20;
 				break;
 			case "MetaTherion":
 				if (
@@ -194,26 +129,6 @@ export class MetanthropesActor extends Actor {
 					createData.prototypeToken.texture.src =
 						"systems/metanthropes/assets/artwork/classifications/manipulator.webp";
 				}
-				//? Splatter blood color for MetaTherions
-				createData.prototypeToken.flags.splatter = { bloodColor: "#FF1493" };
-				//? Make Name & Life/Destiny Bars visible on hover by Owner for MetaTherions
-				createData.prototypeToken.displayName = 20;
-				createData.prototypeToken.displayBars = 20;
-				break;
-			case "Vehicle":
-				if (
-					!data.flags?.metanthropes?.duplicateSelf &&
-					(createData.img === "icons/svg/mystery-man.svg" || !data.img)
-				) {
-					createData.img = "systems/metanthropes/assets/artwork/classifications/controller.webp";
-					createData.prototypeToken.texture.src =
-						"systems/metanthropes/assets/artwork/classifications/controller.webp";
-				}
-				//? Splatter blood color for Vehicles
-				createData.prototypeToken.flags.splatter = { bloodColor: "#808080" };
-				//? Make Name & Life/Destiny Bars visible on hover by Owner for Vehicles
-				createData.prototypeToken.displayName = 20;
-				createData.prototypeToken.displayBars = 20;
 				break;
 			default:
 				if (
@@ -226,15 +141,7 @@ export class MetanthropesActor extends Actor {
 				}
 				break;
 		}
-		//? Fix for Token Attacher / CF Import - from wh4e
-		if (!createData.prototypeToken) createData.prototypeToken = {};
-		//? Enable vision for all actors except vehicles
-		if (data.type !== "Vehicle") {
-			createData.prototypeToken.sight = { enabled: true };
-		}
 		//* We control Unique (linked/unlined) from here
-		//* we can control token sizes, and along with newActor similar finishing touches,
-		//* control like splatter blood color, auras, visions and perhaps even more
 		//! need to revise with Actor v3 changes
 		if (data.type == "Protagonist" || data.type == "Metanthrope") {
 			if (!(data.name.includes("Copy") || data.name.includes("Duplicate"))) {
@@ -243,7 +150,8 @@ export class MetanthropesActor extends Actor {
 				createData.prototypeToken.prependAdjective = false;
 			}
 		}
-		//? Make the size of the token reflect a typical humanoid relative to the grid
+		//! v13 these cannot be passed as part of prototypeTokenOverrides
+		//* Make the size of the token reflect a typical humanoid relative to the grid
 		if (data.type == "Protagonist" || data.type == "Metanthrope" || data.type == "Human") {
 			createData.prototypeToken.height = 1;
 			createData.prototypeToken.width = 1;
