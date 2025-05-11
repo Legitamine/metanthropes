@@ -2,6 +2,7 @@ import { CHARS } from "./chars.mjs";
 import { FACOLORS } from "./fa-colors.mjs";
 import { STATS } from "./stats.mjs";
 import { MOVEMENT } from "./movement.mjs";
+import { TOKENDEFAULTS } from "./prototype-token-overrides.mjs";
 
 export const SYSTEM = {
 	id: "metanthropes",
@@ -17,4 +18,5 @@ __  __ ______ _______       _   _ _______ _    _ _____   ____  _____  ______  __
 	FACOLORS,
 	STATS,
 	MOVEMENT,
+	TOKENDEFAULTS,
 };

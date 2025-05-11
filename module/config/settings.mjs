@@ -88,7 +88,7 @@ export const settings = [
 		default: false,
 		onChange: null,
 	},
-		{
+	{
 		module: "metanthropes",
 		key: "metaAlphaTesting",
 		name: "Enable Alpha Testing of Upcoming Features",
@@ -144,6 +144,18 @@ export const settings = [
 		requiresReload: false,
 		type: Boolean,
 		default: true,
+		onChange: null,
+	},
+	{
+		module: "metanthropes",
+		key: "prototypeTokenOverridesApplied",
+		name: "Apply Override Token Settings in this World",
+		hint: ``,
+		scope: "world",
+		config: false,
+		requiresReload: false,
+		type: Boolean,
+		default: false,
 		onChange: null,
 	},
 ];
