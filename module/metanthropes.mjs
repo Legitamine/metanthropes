@@ -31,6 +31,7 @@ import { MetanthropesCombat } from "./documents/combat.mjs";
 import { MetanthropesActorSheet } from "./ui/sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./ui/sheets/item-sheet.mjs";
 import { MetanthropesActiveEffectSheet } from "./ui/sheets/active-effect-sheet.mjs";
+import { MetaDialog } from "./metaclasses/metaclasses.mjs";
 //* AppV2 Sheets
 import { MetanthropesNPCActorSheet, MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
 import { MetanthropesItemSheetV2 } from "./ui/sheets/item-sheet-v2.mjs";
@@ -57,6 +58,7 @@ import { metaMigrateData } from "./api/utils/migration.mjs";
 import { metaLog, metaLogDocument } from "./api/utils/log-tools.mjs";
 import { metaSortActions } from "./api/utils/sort-actions.mjs";
 import { metaRunMacro } from "./api/utils/run-macro.mjs";
+import { metaIsMetapowerEquipped, metaTransformStringForStorage } from "./helpers/metahelpers.mjs";
 //* Game Settings
 import { metaRegisterGameSettings } from "./api/utils/register-game-settings.mjs";
 import { metaRegisterStatusEffects } from "./config/status-effects.mjs";
@@ -83,6 +85,7 @@ globalThis.metanthropes = {
 		MetanthropesActorSheetV2,
 		MetanthropesNPCActorSheet,
 		MetanthropesItemSheetV2,
+		MetaDialog,
 	},
 	dice: {
 		metaRoll,
@@ -130,6 +133,8 @@ globalThis.metanthropes = {
 		preloadHandlebarsTemplates,
 		metaSortActions,
 		metaRunMacro,
+		metaTransformStringForStorage,
+		metaIsMetapowerEquipped,
 	},
 };
 

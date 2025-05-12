@@ -1,5 +1,3 @@
-import { metaIsMetapowerEquipped, metaTransformStringForStorage } from "../helpers/metahelpers.mjs";
-
 /**
  * The base Actor definition which defines common behavior of actors within the Metanthropes system.
  *
@@ -20,7 +18,6 @@ export class MetanthropesActor extends Actor {
 			});
 		else if (data.prototypeToken) createData.prototypeToken = data.prototypeToken;
 		//* Set custom default tokens portraits
-		//todo Needs Refactoring - this is a mess
 		if (!createData.prototypeToken.flags) createData.prototypeToken.flags = {};
 		switch (data.type) {
 			case "Protagonist":
@@ -193,7 +190,7 @@ export class MetanthropesActor extends Actor {
 					//? Make the Prime Metapower Image, the one for the Actor according to their Metamorphosis
 					const primeMPName = this.system.entermeta.primemetapower.value;
 					//? Proceed if Prime Metapower icon is not the correct one
-					const primeMPStorageName = metaTransformStringForStorage(primeMPName);
+					const primeMPStorageName = metanthropes.utils.metaTransformStringForStorage(primeMPName);
 					if (
 						!(
 							this.primeimg ==
@@ -442,7 +439,7 @@ export class MetanthropesActor extends Actor {
 		return Boolean(this.system.humanoids);
 	}
 	get isDuplicatingSelf() {
-		if (metaIsMetapowerEquipped(this, "Duplicate Self")) {
+		if (metanthropes.utils.metaIsMetapowerEquipped(this, "Duplicate Self")) {
 			return Boolean(this.getFlag("metanthropes", "duplicateSelf"));
 		} else {
 			return false;
