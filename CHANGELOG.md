@@ -13,14 +13,24 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 # Early Access v0.13.0 [2025-xx-yy]
 
 ## Added:
-- Foundry VTT version 13 is now supported.
+- Foundry VTT version 13 is now supported. New Dark/Light themes and the new UI is not included in this release and is planned for later this summer.
+- New dimentional effects without the need for 3rd party modules.
 - theme support & developer environment updates.
+- New fonts and quickstart journals.
 - Roll d100 dice functions localized & using fields API & APP V2. More App V2 updates to come in future releases.
 - Activating a Metapower or using a Possession which can deal Damage or apply Healing, and has a Duration of "Instantaneous", now requires you to have a target selected. Damage (taking resistances into account) and Healing will be applied to the targets automatically. If you choose to spend Destiny to re-roll the Damage/Healing, it will undo the last applied result and re-apply the new one. Note that this feature does not take into account if the selected target(s) are valid targets, it will apply the result regardless. The targeting subsystem will be improved in future releases and non-Instantaneous effects will come with the Actor Active Effects subsystem.
 - changed: inline rolls now follow our own custom UI/UX style, instead of the default Foundry VTT UI style which was used previously.
-- changed: [Core] New capability to enable Beta Testing for new features. This previously was provided exclusively with the Homebrew Module, and is now part of the Core Module. This will give a broader audience access to test new features and allow us to get more feedback.
-- added: [Homebrew] New capability to enable Alpha testing of upcoming features. We would like to offer Homebrew owners the option to test features in the early prototype stage and give us their feedback during the early stages of development.
+- changed: [Core] New capability to enable Beta Testing for new features. This feature was previously part of the Homebrew Module, and is now a part of the Core Module. This will give access to test new features to a broader audience, and allow us to get more feedback.
+- added: [Homebrew] New capability to enable Alpha testing of upcoming features. We are offering Homebrew owners the option to test features in the early prototype stage and give us their feedback during the early stages of development.
 - fixed not being able to re-roll for damage/healing when beta-testing was enabled.
+- Many improvements to the Metanthropes API and code documentation clean up.
+- Many Development evironment updates, with an improved process that moves SCSS compiling during release building. Moving to support CSS Cascade layers to align with FVTT V13 structure onwards.
+- Deprecating various jQuery and replaced with HTML DOM handling.
+- New defaults for Actor Prototype Tokens, including a Turn Marker Metanthropes Logo that's tinted according to Actor's disposition.
+- New functions that control dealing damage/healing to multiple targets, including re-rolls.
+- All emojis have been replaced by Font Awesome icons, as Metanthropes now comes with a Font Awesome Pro license and our own custom icons, starting with the Metanthropes Logo. These will be colored and animated automatically, according to contextual information in later releases.
+- sound effects for critical success? music or other effects?
+- Updated the Welcome Lobby / Demo scene with new artwork from Metanthropes: Anthologies. Includes custom lights & ambient sounds (??) for Players to test enviromental audio levels before jumping into a battlemap.
 todo: add license & contribution attributes for fonts & music/sound effects
 
 # Early Access v0.12.2 [2025-01-29]

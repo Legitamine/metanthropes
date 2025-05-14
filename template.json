@@ -1326,7 +1326,7 @@
 					"VSStatRoll": {
 						"type": "text",
 						"dtype": "String",
-						"label": "🆚",
+						"label": "<i class=\"fa-duotone fa-solid fa-swords\"></i>",
 						"options": [
 							"None",
 							"Awareness",
@@ -1394,13 +1394,13 @@
 					},
 					"Conditions": {
 						"Applied": {
-							"label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> ➕",
+							"label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
 							"type": "text",
 							"dtype": "String",
 							"value": null
 						},
 						"Removed": {
-							"label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> ➖",
+							"label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
 							"type": "text",
 							"dtype": "String",
 							"value": null
@@ -1408,19 +1408,19 @@
 					},
 					"Buffs": {
 						"Permanent": {
-							"label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> ♾️",
+							"label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-infinity\"></i>",
 							"type": "text",
 							"dtype": "String",
 							"value": null
 						},
 						"Applied": {
-							"label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> ➕",
+							"label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
 							"type": "text",
 							"dtype": "String",
 							"value": null
 						},
 						"Removed": {
-							"label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> ➖",
+							"label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
 							"type": "text",
 							"dtype": "String",
 							"value": null

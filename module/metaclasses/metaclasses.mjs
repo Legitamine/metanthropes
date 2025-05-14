@@ -9,6 +9,8 @@ import { metaChangeActorImage } from "../helpers/metaimagehandler.mjs";
  * @param {*} app
  * @param {*} buttons
  */
+//! todo perhps the best apprach is to have left-click our own and right click the orginal FVTT process
+//todo Deprecate notice: need to also revise/remove the CSS classes we had for the image animations
 export class metaFilePicker extends foundry.applications.apps.FilePicker.implementation {
 	//todo: clean up the z-index tryouts
 	/** @override */

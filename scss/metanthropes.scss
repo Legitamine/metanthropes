@@ -67,8 +67,9 @@
 		@import "components/items";
 		@import "components/effects";
 		@import "components/forms";
-		//! do we still need to define z-index here?
-		//z-index: 3;
+		//todo refactor the use of z-index accross appV2 features
+		//? currently here and @window we do custom ordering to overlay our logo and background images appropriately for the CS & Journals
+		z-index: 3;
 		//changes to the selection elements default color
 		.theme-light,
 		.application.theme-light {
@@ -81,6 +82,7 @@
 			--outline-color: #7d0f81;
 			--color-warm-1: #7d0f81;
 			outline-color: #7d0f81;
+			--background-journal-image: url("../assets/artwork/ui/window/background.webp");
 		}
 		.theme-dark,
 		.application.theme-dark {
@@ -93,6 +95,7 @@
 			--outline-color: #dcb4de;
 			--color-warm-1: #dcb4de;
 			outline-color: #dcb4de;
+			--background-journal-image: none;
 		}
 	}
 }
