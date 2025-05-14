@@ -536,21 +536,39 @@ h3 {
 	}
 }
 
+//* Text Editor - Prosemirror engine
 .style-editor {
 	opacity: 1;
-	font-family: $font-secondary;
-	font-size: 1rem;
-	color: $c-black;
 	padding: $padding-md;
 	margin: $margin-md;
-	min-height: 70px;
+	min-height: 80px;
 	height: auto;
-	max-height: 800px;
+	max-height: 130px;
 	overflow-y: auto;
 }
 .editor-content {
-	min-height: 50px;
+	min-height: 80px;
+	max-height: 420px;
+	height: auto;
+	overflow-y: auto;
 }
+.editor-container {
+	min-height: 80px;
+	max-height: 420px;
+	height: auto;
+	overflow-y: auto;
+}
+.editor {
+	min-height: 80px;
+	height: auto;
+	max-height: 420px;
+	overflow-y: auto;
+}
+.editor-menu {
+	padding: $padding-sm;
+	margin: $margin-sm;
+}
+
 .style-form {
 	display: flex;
 	justify-content: center;
