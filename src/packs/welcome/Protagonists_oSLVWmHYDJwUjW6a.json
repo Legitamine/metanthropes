@@ -231,7 +231,7 @@
     },
     {
       "sort": 700000,
-      "name": "<i class=\"fa-sharp-duotone fa-solid fa-books\"></i> Perks",
+      "name": "Perks",
       "type": "text",
       "_id": "bI8yBqlTn7fl7H6S",
       "title": {
@@ -268,7 +268,7 @@
     },
     {
       "sort": 800000,
-      "name": "<i class=\"fa-sharp-duotone fa-solid fa-chart-line-up\"></i> Experience",
+      "name": "Experience",
       "type": "text",
       "_id": "mStXk1UPdF9zzQZQ",
       "title": {
