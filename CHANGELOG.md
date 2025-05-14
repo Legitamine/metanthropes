@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 ## Added:
 - Foundry VTT version 13 is now supported. New Dark/Light themes and the new UI is not included in this release and is planned for later this summer.
 - New dimentional effects without the need for 3rd party modules.
+- New defaults for all prototype tokens including a Metanthropes Logo turn marker
 - theme support & developer environment updates.
 - New fonts and quickstart journals.
 - Roll d100 dice functions localized & using fields API & APP V2. More App V2 updates to come in future releases.
