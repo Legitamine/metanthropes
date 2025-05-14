@@ -1372,7 +1372,7 @@
 						}
 					},
 					"Healing": {
-						"label": "💞 Healing",
+						"label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
 						"type": "number",
 						"dtype": "Number",
 						"Base": 0,
@@ -1603,7 +1603,7 @@
 			"Classification": {
 				"type": "text",
 				"dtype": "String",
-				"label": "🔣",
+				"label": "<i class=\"fa-duotone fa-solid fa-people-group\"></i>",
 				"value": null,
 				"options": [
 					"Aegis",
@@ -1621,7 +1621,7 @@
 			"Level": {
 				"type": "number",
 				"dtype": "Number",
-				"label": "⏫",
+				"label": "<i class=\"fa-duotone fa-solid fa-layer-group\"></i>",
 				"value": 1,
 				"options": ["1", "2", "3", "4", "5"]
 			},
