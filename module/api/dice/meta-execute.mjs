@@ -554,13 +554,22 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			//todo: need to allow to proceed without targets selected - perhaps split if we do or don't do (actionableTargets)
 			actionableTargets > 0 ||
 			(!duration.includes("Instantaneous") &&
-				(damageCosmicMessage || damageElementalMessage || damageMaterialMessage || damagePsychicMessage))
+				(damageCosmicMessage ||
+					damageElementalMessage ||
+					damageMaterialMessage ||
+					damagePsychicMessage ||
+					healingMessage))
 		) {
 			if (
 				actionableTargets > 0 &&
 				(damageCosmicMessage || damageElementalMessage || damageMaterialMessage || damagePsychicMessage)
 			) {
 				contentMessage += `Applying <i class="fa-sharp-duotone fa-solid fa-burst"></i> Damage to <i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i> Target${
+					targetedActorNames.length > 1 ? "s" : ""
+				}: ${targetedActorNames.join(", ")}<br>`;
+			}
+			if (actionableTargets > 0 && healingMessage) {
+				contentMessage += `Applying <i class="fa-sharp-duotone fa-solid fa-heart-pulse" style="--fa-primary-color:#ebb1b1;--fa-secondary-color: #e60808; --fa-secondary-opacity: 0.8;"></i> Healing to <i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i> Target${
 					targetedActorNames.length > 1 ? "s" : ""
 				}: ${targetedActorNames.join(", ")}<br>`;
 			}
@@ -583,6 +592,11 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			if (damagePsychicMessage) {
 				contentMessage += `<div class="meta-roll-inline-results">`;
 				contentMessage += damagePsychicMessage;
+				contentMessage += `</div>`;
+			}
+			if (healingMessage) {
+				contentMessage += `<div class="meta-roll-inline-results">`;
+				contentMessage += healingMessage;
 				contentMessage += `</div>`;
 			}
 		}
@@ -614,12 +628,6 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		}
 		if (healingMessage) {
 			healSelectedTargets = true;
-			contentMessage += `Applying <i class="fa-sharp-duotone fa-solid fa-heart-pulse" style="--fa-primary-color:#ebb1b1;--fa-secondary-color: #e60808; --fa-secondary-opacity: 0.8;"></i> Healing to <i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i> Target${
-				targetedActorNames.length > 1 ? "s" : ""
-			}: ${targetedActorNames.join(", ")}<br>`;
-			contentMessage += `<div class="meta-roll-inline-results">`;
-			contentMessage += healingMessage;
-			contentMessage += `</div>`;
 			if (actor.currentDestiny > 0) {
 				const healingRerollButton = `<div class="hide-button hidden">
 				<button class="metanthropes-secondary-chat-button healing roll-healing-reroll chat-button-anchor"
