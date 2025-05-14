@@ -68,6 +68,9 @@ Hooks.once("init", async function () {
 	//* Register Status Effects
 	metanthropes.utils.metaRegisterStatusEffects();
 
+	//* Register Weather Effects
+	metanthropes.utils.metaRegisterWeatherEffects();
+
 	//* Finished Initializing the Metanthropes System
 	metanthropes.utils.metaLog(0, "System", "Initialized");
 
