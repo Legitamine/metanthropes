@@ -46,11 +46,11 @@
 		</div>
 		{{#if (and isNarrator homebrewFeatures)}}
 			<div class="layout-editor">
-				{{editor system.Execution.AdditionalInfo.value target="system.Execution.AdditionalInfo.value" button=true editable=true}}
+				{{editor system.Execution.AdditionalInfo.value target="system.Execution.AdditionalInfo.value" engine="prosemirror" button=true editable=true}}
 			</div><br>
 		{{else}}
 			<div class="layout-editor">
-				{{editor system.Execution.AdditionalInfo.value target="system.Execution.AdditionalInfo.value" button=false editable=false}}
+				{{editor system.Execution.AdditionalInfo.value target="system.Execution.AdditionalInfo.value" engine="prosemirror" button=false editable=false}}
 			</div><br>
 		{{/if}}
 	{{/if}}
