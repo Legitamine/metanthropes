@@ -24,7 +24,8 @@ Metanthropes is in **Early Access** - although functional, it does not fully rep
 
 Early Access is considered stable enough to run Sagas (Campaigns), as well as to playtest new features. We offer support to all Narrators [via our Discord!](https://metanthropes.com/discord). 
 
-- Beta Testing of New Features is available for owners of the [Premium Module Metanthropes: Homebrew](https://www.metanthropes.com/store/product/8-homebrew-early-access/).
+- Beta Testing of New Features is available for owners of the [Premium Module Metanthropes: Core](https://www.metanthropes.com/store/product/7-core-fvtt-module/).
+- Alpha Testing of Upcoming Features is available for owners of the [Premium Module Metanthropes: Homebrew](https://www.metanthropes.com/store/product/8-homebrew-early-access/).
 - Check out the roadmap section below, for more information on upcoming builds. 
 - Join the discussion and help us prioritize upcoming features, that are most important to your playgroup!
 
@@ -39,7 +40,7 @@ Alternatively, you may use the following link when selecting to install manually
 
 Metanthropes aims to utilize the latest and best that the amazing Foundry VTT platform offers.
 
-- Foundry VTT versions 12 & 13 are currently supported. Latest verified version is v13.340.
+- Foundry VTT version 13 is currently supported. Latest verified version is v13.342.
 
 ## Supported 3rd Party Modules
 
@@ -62,7 +63,7 @@ We love to hear about cool modules that enhance your Metanthropes experience!
 Briefly, we are working torwards the following milestones:
 
 -   Officially support the complete Rules for Metanthropes, including automating the vast majority of the game mechanics.
--   Make Combat as immersive as possible, with auto-applying damage/healing, targeting via measured templates and controlling all types of effects to Actors. Although the majority of automations is planned for v1, some features have been pushed back to align with the release of Foundry VTT version 13+.
+-   Make Combat as immersive as possible, with auto-applying damage/healing (done), targeting via measured templates and controlling all types of effects to Actors. Although the majority of automations is planned for v1, some features have been pushed back to align with the release of Foundry VTT version 13.
 -   Fully automate the activation of Metapowers, including unique audio and visual effects.
 -   Synchronize your Protagonist details with our website, for off-line viewing and more.
 
@@ -90,6 +91,6 @@ Special shoutouts and huge thanks to the lovely community of Metanthropes, for t
  - @MB & party for amazing feedback and suggestions, and for being the first to contribute specific code suggestions for the project!
  - @RxOliver and the gang over at the THC Discord for playtesting, feedback and suggestions!
  - Our close friends, who have been instrumental in shaping Metanthropes since its infancy, back in 2014! For the game we deserve!!
- - Finally a special shoutout to my buddy @aMUSiC, who has guided me to avoid many pitfalls, for code-review assistance & overall mentoring!!
+ - Finally a special shoutout to my buddy @aMUSiC, who has guided me to avoid many pitfalls, for code-review assistance & overall dev mentoring!!
 
 Metanthropes is a registered trademark of Legitamine Games. All rights reserved.
