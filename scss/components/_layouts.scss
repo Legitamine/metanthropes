@@ -258,6 +258,7 @@
 	padding: $padding-md;
 	margin: $margin-sm;
 }
+//* Text Editor
 .layout-editor {
 	display: flex;
 	flex-direction: column;
@@ -268,10 +269,10 @@
 	align-items: stretch;
 	align-content: space-between;
 	min-height: 80px;
-	max-height: 500px;
+	max-height: 420px;
 	height: auto;
-	padding: $padding-sm;
-	margin: $margin-sm;
+	padding: $padding-zero;
+	margin: $margin-zero;
 	overflow-y: auto;
 	font-family: $font-secondary;
 	font-size: var(--font-size-14);
@@ -373,18 +374,6 @@
 	border: $border-style-solid;
 	border-radius: $border-radius;
 	overflow: hidden;
-}
-.editor {
-	min-height: 80px;
-	height: auto;
-	max-height: 500px;
-	overflow-y: auto;
-}
-.editor-content .ProseMirror {
-	min-height: 80px;
-	height: auto;
-	max-height: 500px;
-	overflow-y: auto;
 }
 
 .sheet-header .metapower-img {
