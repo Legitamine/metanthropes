@@ -4,7 +4,6 @@
   "results": [
     {
       "type": "text",
-      "text": "Architect",
       "weight": 1,
       "range": [
         1,
@@ -12,14 +11,25 @@
       ],
       "drawn": false,
       "_id": "iiPtmcIzrpqNr9cF",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Architect",
+      "name": "",
       "_key": "!tables.results!D30zVqrKKsaVo0U0.iiPtmcIzrpqNr9cF"
     },
     {
       "type": "text",
-      "text": "Autocrat",
       "weight": 1,
       "range": [
         2,
@@ -27,14 +37,25 @@
       ],
       "drawn": false,
       "_id": "sJeU8Fqt78xEjTGs",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Autocrat",
+      "name": "",
       "_key": "!tables.results!D30zVqrKKsaVo0U0.sJeU8Fqt78xEjTGs"
     },
     {
       "type": "text",
-      "text": "Catalyst",
       "weight": 1,
       "range": [
         3,
@@ -42,14 +63,25 @@
       ],
       "drawn": false,
       "_id": "CkdeRXWKe8MQWsjk",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Catalyst",
+      "name": "",
       "_key": "!tables.results!D30zVqrKKsaVo0U0.CkdeRXWKe8MQWsjk"
     },
     {
       "type": "text",
-      "text": "Harmonizer",
       "weight": 1,
       "range": [
         4,
@@ -57,14 +89,25 @@
       ],
       "drawn": false,
       "_id": "Pii9itPF1IQQnDgu",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Harmonizer",
+      "name": "",
       "_key": "!tables.results!D30zVqrKKsaVo0U0.Pii9itPF1IQQnDgu"
     },
     {
       "type": "text",
-      "text": "Herald",
       "weight": 1,
       "range": [
         5,
@@ -72,14 +115,25 @@
       ],
       "drawn": false,
       "_id": "NPdlEB2noatDBYG5",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Herald",
+      "name": "",
       "_key": "!tables.results!D30zVqrKKsaVo0U0.NPdlEB2noatDBYG5"
     },
     {
       "type": "text",
-      "text": "Investigator",
       "weight": 1,
       "range": [
         6,
@@ -87,14 +141,25 @@
       ],
       "drawn": false,
       "_id": "BaW3mIKgGpvRWWi1",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Investigator",
+      "name": "",
       "_key": "!tables.results!D30zVqrKKsaVo0U0.BaW3mIKgGpvRWWi1"
     },
     {
       "type": "text",
-      "text": "Naturalist",
       "weight": 1,
       "range": [
         7,
@@ -102,14 +167,25 @@
       ],
       "drawn": false,
       "_id": "e9JirHgzwGaOuyvZ",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Naturalist",
+      "name": "",
       "_key": "!tables.results!D30zVqrKKsaVo0U0.e9JirHgzwGaOuyvZ"
     },
     {
       "type": "text",
-      "text": "Predator",
       "weight": 1,
       "range": [
         8,
@@ -117,14 +193,25 @@
       ],
       "drawn": false,
       "_id": "jFsz34pWn46u9Rdc",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Predator",
+      "name": "",
       "_key": "!tables.results!D30zVqrKKsaVo0U0.jFsz34pWn46u9Rdc"
     },
     {
       "type": "text",
-      "text": "Protector",
       "weight": 1,
       "range": [
         9,
@@ -132,14 +219,25 @@
       ],
       "drawn": false,
       "_id": "YJHSeTPBGBWGejGQ",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Protector",
+      "name": "",
       "_key": "!tables.results!D30zVqrKKsaVo0U0.YJHSeTPBGBWGejGQ"
     },
     {
       "type": "text",
-      "text": "Wayfarer",
       "weight": 1,
       "range": [
         10,
@@ -147,9 +245,21 @@
       ],
       "drawn": false,
       "_id": "KarceBF1ghJY0zZV",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Wayfarer",
+      "name": "",
       "_key": "!tables.results!D30zVqrKKsaVo0U0.KarceBF1ghJY0zZV"
     }
   ],
@@ -166,19 +276,18 @@
     "kF9zOdNs2UiqaJVn": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "RollTable.D30zVqrKKsaVo0U0"
-    }
+    "core": {}
   },
   "_stats": {
     "compendiumSource": "RollTable.D30zVqrKKsaVo0U0",
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.342",
     "systemId": "metanthropes",
     "systemVersion": "0.12.0",
     "createdTime": 1736082815596,
     "modifiedTime": 1736082815596,
-    "lastModifiedBy": "kF9zOdNs2UiqaJVn"
+    "lastModifiedBy": "kF9zOdNs2UiqaJVn",
+    "exportSource": null
   },
   "formula": "1d10",
   "_key": "!tables!D30zVqrKKsaVo0U0"

@@ -19,9 +19,7 @@
     "advanced-macros": {
       "runForSpecificUser": ""
     },
-    "core": {
-      "sourceId": "Compendium.metanthropes-introductory.narrator-toolkit.Macro.9qO7fgJFeFSPVdgd"
-    },
+    "core": {},
     "scene-packer": {
       "sourceId": "Macro.ufCqQmKGCIRzRXJj",
       "hash": "4ca60813ee3ae2bc21811ea0389b6138ec1784fb"
@@ -30,12 +28,13 @@
   "_stats": {
     "compendiumSource": "Compendium.metanthropes-introductory.narrator-toolkit.Macro.9qO7fgJFeFSPVdgd",
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.342",
     "systemId": "metanthropes",
     "systemVersion": "0.12.0",
     "createdTime": 1736084732815,
     "modifiedTime": 1736084732815,
-    "lastModifiedBy": "kF9zOdNs2UiqaJVn"
+    "lastModifiedBy": "kF9zOdNs2UiqaJVn",
+    "exportSource": null
   },
   "_id": "maklVZeKVLgluqMZ",
   "sort": 0,

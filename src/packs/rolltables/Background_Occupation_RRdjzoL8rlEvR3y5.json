@@ -4,7 +4,6 @@
   "results": [
     {
       "type": "text",
-      "text": "Accountant",
       "weight": 1,
       "range": [
         1,
@@ -12,14 +11,25 @@
       ],
       "drawn": false,
       "_id": "L4lDjKIhk6yr4cD1",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Accountant",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.L4lDjKIhk6yr4cD1"
     },
     {
       "type": "text",
-      "text": "Actor",
       "weight": 1,
       "range": [
         2,
@@ -27,14 +37,25 @@
       ],
       "drawn": false,
       "_id": "AcbuoN6PeEJMsmYM",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Actor",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.AcbuoN6PeEJMsmYM"
     },
     {
       "type": "text",
-      "text": "Advertiser",
       "weight": 1,
       "range": [
         3,
@@ -42,14 +63,25 @@
       ],
       "drawn": false,
       "_id": "MiXud8RYiZmdoEjc",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Advertiser",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.MiXud8RYiZmdoEjc"
     },
     {
       "type": "text",
-      "text": "Advisor",
       "weight": 1,
       "range": [
         4,
@@ -57,14 +89,25 @@
       ],
       "drawn": false,
       "_id": "OkhPocgQf4DAmtjd",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Advisor",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.OkhPocgQf4DAmtjd"
     },
     {
       "type": "text",
-      "text": "Agent",
       "weight": 1,
       "range": [
         5,
@@ -72,14 +115,25 @@
       ],
       "drawn": false,
       "_id": "OfDUKeeOBqlPd6eN",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Agent",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.OfDUKeeOBqlPd6eN"
     },
     {
       "type": "text",
-      "text": "Analyst",
       "weight": 1,
       "range": [
         6,
@@ -87,14 +141,25 @@
       ],
       "drawn": false,
       "_id": "w5GRlaezoefH4y11",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Analyst",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.w5GRlaezoefH4y11"
     },
     {
       "type": "text",
-      "text": "Architect",
       "weight": 1,
       "range": [
         7,
@@ -102,14 +167,25 @@
       ],
       "drawn": false,
       "_id": "WQlZuQzfnLxGM1Ay",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Architect",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.WQlZuQzfnLxGM1Ay"
     },
     {
       "type": "text",
-      "text": "Arms-Dealer",
       "weight": 1,
       "range": [
         8,
@@ -117,14 +193,25 @@
       ],
       "drawn": false,
       "_id": "dSCWC5ylR61fAk6F",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Arms-Dealer",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.dSCWC5ylR61fAk6F"
     },
     {
       "type": "text",
-      "text": "Artist",
       "weight": 1,
       "range": [
         9,
@@ -132,14 +219,25 @@
       ],
       "drawn": false,
       "_id": "hvSdWVrIpO5jVH2E",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Artist",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.hvSdWVrIpO5jVH2E"
     },
     {
       "type": "text",
-      "text": "Assassin",
       "weight": 1,
       "range": [
         10,
@@ -147,14 +245,25 @@
       ],
       "drawn": false,
       "_id": "7J82K3yugub5q2Ca",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Assassin",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.7J82K3yugub5q2Ca"
     },
     {
       "type": "text",
-      "text": "Assistant",
       "weight": 1,
       "range": [
         11,
@@ -162,14 +271,25 @@
       ],
       "drawn": false,
       "_id": "L5KZnRE8yVn4SOTH",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Assistant",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.L5KZnRE8yVn4SOTH"
     },
     {
       "type": "text",
-      "text": "Baker",
       "weight": 1,
       "range": [
         12,
@@ -177,14 +297,25 @@
       ],
       "drawn": false,
       "_id": "EfUNxNpANsYO5h9C",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Baker",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.EfUNxNpANsYO5h9C"
     },
     {
       "type": "text",
-      "text": "Barkeep",
       "weight": 1,
       "range": [
         13,
@@ -192,14 +323,25 @@
       ],
       "drawn": false,
       "_id": "iEOaq0rdj9HJMLDj",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Barkeep",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.iEOaq0rdj9HJMLDj"
     },
     {
       "type": "text",
-      "text": "Biologist",
       "weight": 1,
       "range": [
         14,
@@ -207,14 +349,25 @@
       ],
       "drawn": false,
       "_id": "IPs1BP2M2pGGU6aj",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Biologist",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.IPs1BP2M2pGGU6aj"
     },
     {
       "type": "text",
-      "text": "Captain",
       "weight": 1,
       "range": [
         15,
@@ -222,14 +375,25 @@
       ],
       "drawn": false,
       "_id": "XKfs4qD9ESV7BaN7",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Captain",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.XKfs4qD9ESV7BaN7"
     },
     {
       "type": "text",
-      "text": "Caretaker",
       "weight": 1,
       "range": [
         16,
@@ -237,14 +401,25 @@
       ],
       "drawn": false,
       "_id": "Wa95ZbatswSHtnGe",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Caretaker",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.Wa95ZbatswSHtnGe"
     },
     {
       "type": "text",
-      "text": "Carpenter",
       "weight": 1,
       "range": [
         17,
@@ -252,14 +427,25 @@
       ],
       "drawn": false,
       "_id": "h1mkqMUXstAZHNkh",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Carpenter",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.h1mkqMUXstAZHNkh"
     },
     {
       "type": "text",
-      "text": "Chemist",
       "weight": 1,
       "range": [
         18,
@@ -267,14 +453,25 @@
       ],
       "drawn": false,
       "_id": "Is2hISzdhLlyCIfP",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Chemist",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.Is2hISzdhLlyCIfP"
     },
     {
       "type": "text",
-      "text": "Choreographer",
       "weight": 1,
       "range": [
         19,
@@ -282,14 +479,25 @@
       ],
       "drawn": false,
       "_id": "agRgBcq3Z3uhJdRu",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Choreographer",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.agRgBcq3Z3uhJdRu"
     },
     {
       "type": "text",
-      "text": "Coach",
       "weight": 1,
       "range": [
         20,
@@ -297,14 +505,25 @@
       ],
       "drawn": false,
       "_id": "ronOnTjFgUwKpiiv",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Coach",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.ronOnTjFgUwKpiiv"
     },
     {
       "type": "text",
-      "text": "Comedian",
       "weight": 1,
       "range": [
         21,
@@ -312,14 +531,25 @@
       ],
       "drawn": false,
       "_id": "4hiH0isxh7JUFqB4",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Comedian",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.4hiH0isxh7JUFqB4"
     },
     {
       "type": "text",
-      "text": "Composer",
       "weight": 1,
       "range": [
         22,
@@ -327,14 +557,25 @@
       ],
       "drawn": false,
       "_id": "USWHJijEj9iezzK4",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Composer",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.USWHJijEj9iezzK4"
     },
     {
       "type": "text",
-      "text": "Con-Artist",
       "weight": 1,
       "range": [
         23,
@@ -342,14 +583,25 @@
       ],
       "drawn": false,
       "_id": "H0fRfFEalJtPdRPb",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Con-Artist",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.H0fRfFEalJtPdRPb"
     },
     {
       "type": "text",
-      "text": "Cook",
       "weight": 1,
       "range": [
         24,
@@ -357,14 +609,25 @@
       ],
       "drawn": false,
       "_id": "MN6AawnKeWT3kUqn",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Cook",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.MN6AawnKeWT3kUqn"
     },
     {
       "type": "text",
-      "text": "Counselor",
       "weight": 1,
       "range": [
         25,
@@ -372,14 +635,25 @@
       ],
       "drawn": false,
       "_id": "7SLF1yUbnf2H54ua",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Counselor",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.7SLF1yUbnf2H54ua"
     },
     {
       "type": "text",
-      "text": "Courier",
       "weight": 1,
       "range": [
         26,
@@ -387,14 +661,25 @@
       ],
       "drawn": false,
       "_id": "2N4j0YDBtW2G3rpH",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Courier",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.2N4j0YDBtW2G3rpH"
     },
     {
       "type": "text",
-      "text": "Creator",
       "weight": 1,
       "range": [
         27,
@@ -402,14 +687,25 @@
       ],
       "drawn": false,
       "_id": "saXK3Z8NRdEUpFyp",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Creator",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.saXK3Z8NRdEUpFyp"
     },
     {
       "type": "text",
-      "text": "Decorator",
       "weight": 1,
       "range": [
         28,
@@ -417,14 +713,25 @@
       ],
       "drawn": false,
       "_id": "thgMqvgXJrFsV6GZ",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Decorator",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.thgMqvgXJrFsV6GZ"
     },
     {
       "type": "text",
-      "text": "Dentist",
       "weight": 1,
       "range": [
         29,
@@ -432,14 +739,25 @@
       ],
       "drawn": false,
       "_id": "zstEDG4I9K69iyLT",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Dentist",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.zstEDG4I9K69iyLT"
     },
     {
       "type": "text",
-      "text": "Designer",
       "weight": 1,
       "range": [
         30,
@@ -447,14 +765,25 @@
       ],
       "drawn": false,
       "_id": "zn1nT2CWgpIKaMf8",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Designer",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.zn1nT2CWgpIKaMf8"
     },
     {
       "type": "text",
-      "text": "Detective",
       "weight": 1,
       "range": [
         31,
@@ -462,14 +791,25 @@
       ],
       "drawn": false,
       "_id": "jVIiJp2YEsAfTdCb",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Detective",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.jVIiJp2YEsAfTdCb"
     },
     {
       "type": "text",
-      "text": "Developer",
       "weight": 1,
       "range": [
         32,
@@ -477,14 +817,25 @@
       ],
       "drawn": false,
       "_id": "ZDtais9Cnk8gqYRo",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Developer",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.ZDtais9Cnk8gqYRo"
     },
     {
       "type": "text",
-      "text": "Director",
       "weight": 1,
       "range": [
         33,
@@ -492,14 +843,25 @@
       ],
       "drawn": false,
       "_id": "O8tntgT1KzP77iu9",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Director",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.O8tntgT1KzP77iu9"
     },
     {
       "type": "text",
-      "text": "Doctor",
       "weight": 1,
       "range": [
         34,
@@ -507,14 +869,25 @@
       ],
       "drawn": false,
       "_id": "0EUwAQ6N4E98SvxF",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Doctor",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.0EUwAQ6N4E98SvxF"
     },
     {
       "type": "text",
-      "text": "Engineer",
       "weight": 1,
       "range": [
         35,
@@ -522,14 +895,25 @@
       ],
       "drawn": false,
       "_id": "AzfORU8diu5XkLPM",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Engineer",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.AzfORU8diu5XkLPM"
     },
     {
       "type": "text",
-      "text": "Escort",
       "weight": 1,
       "range": [
         36,
@@ -537,14 +921,25 @@
       ],
       "drawn": false,
       "_id": "hd2pPn7ZFbSvSvKG",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Escort",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.hd2pPn7ZFbSvSvKG"
     },
     {
       "type": "text",
-      "text": "Evangelist",
       "weight": 1,
       "range": [
         37,
@@ -552,14 +947,25 @@
       ],
       "drawn": false,
       "_id": "6O5dEcsjRAP7EktX",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Evangelist",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.6O5dEcsjRAP7EktX"
     },
     {
       "type": "text",
-      "text": "Exorcist",
       "weight": 1,
       "range": [
         38,
@@ -567,14 +973,25 @@
       ],
       "drawn": false,
       "_id": "cip5rioXjcWnhEG6",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Exorcist",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.cip5rioXjcWnhEG6"
     },
     {
       "type": "text",
-      "text": "Expert",
       "weight": 1,
       "range": [
         39,
@@ -582,14 +999,25 @@
       ],
       "drawn": false,
       "_id": "qmyaNJx9NbnEZFeS",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Expert",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.qmyaNJx9NbnEZFeS"
     },
     {
       "type": "text",
-      "text": "Fisher",
       "weight": 1,
       "range": [
         40,
@@ -597,14 +1025,25 @@
       ],
       "drawn": false,
       "_id": "L4J6AJrFzmePl1Bd",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Fisher",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.L4J6AJrFzmePl1Bd"
     },
     {
       "type": "text",
-      "text": "Farmer",
       "weight": 1,
       "range": [
         41,
@@ -612,14 +1051,25 @@
       ],
       "drawn": false,
       "_id": "XW1MDqEzXGxtCx0U",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Farmer",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.XW1MDqEzXGxtCx0U"
     },
     {
       "type": "text",
-      "text": "Florist",
       "weight": 1,
       "range": [
         42,
@@ -627,14 +1077,25 @@
       ],
       "drawn": false,
       "_id": "oyfKtvSv0lw4q4aj",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Florist",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.oyfKtvSv0lw4q4aj"
     },
     {
       "type": "text",
-      "text": "Fugitive",
       "weight": 1,
       "range": [
         43,
@@ -642,14 +1103,25 @@
       ],
       "drawn": false,
       "_id": "S2GzkuvMQfS5rDwm",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Fugitive",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.S2GzkuvMQfS5rDwm"
     },
     {
       "type": "text",
-      "text": "Gamer",
       "weight": 1,
       "range": [
         44,
@@ -657,14 +1129,25 @@
       ],
       "drawn": false,
       "_id": "OkCmnjdPZNmT5UEg",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Gamer",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.OkCmnjdPZNmT5UEg"
     },
     {
       "type": "text",
-      "text": "Gardener",
       "weight": 1,
       "range": [
         45,
@@ -672,14 +1155,25 @@
       ],
       "drawn": false,
       "_id": "eKV6cgWceNEuY75P",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Gardener",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.eKV6cgWceNEuY75P"
     },
     {
       "type": "text",
-      "text": "Guard",
       "weight": 1,
       "range": [
         46,
@@ -687,14 +1181,25 @@
       ],
       "drawn": false,
       "_id": "uE9vwFd6SE0AYB8G",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Guard",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.uE9vwFd6SE0AYB8G"
     },
     {
       "type": "text",
-      "text": "Guide",
       "weight": 1,
       "range": [
         47,
@@ -702,14 +1207,25 @@
       ],
       "drawn": false,
       "_id": "gCYRaEQwtv4ajE0p",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Guide",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.gCYRaEQwtv4ajE0p"
     },
     {
       "type": "text",
-      "text": "Guru",
       "weight": 1,
       "range": [
         48,
@@ -717,14 +1233,25 @@
       ],
       "drawn": false,
       "_id": "5X8RM24wJiky7eeQ",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Guru",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.5X8RM24wJiky7eeQ"
     },
     {
       "type": "text",
-      "text": "Herbalist",
       "weight": 1,
       "range": [
         49,
@@ -732,14 +1259,25 @@
       ],
       "drawn": false,
       "_id": "CFV1hqfsUPOLvHsV",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Herbalist",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.CFV1hqfsUPOLvHsV"
     },
     {
       "type": "text",
-      "text": "Herder",
       "weight": 1,
       "range": [
         50,
@@ -747,14 +1285,25 @@
       ],
       "drawn": false,
       "_id": "7tDx4RmZMct6ltYb",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Herder",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.7tDx4RmZMct6ltYb"
     },
     {
       "type": "text",
-      "text": "Historian",
       "weight": 1,
       "range": [
         51,
@@ -762,14 +1311,25 @@
       ],
       "drawn": false,
       "_id": "kcl9ZiXs1OVlJjc5",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Historian",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.kcl9ZiXs1OVlJjc5"
     },
     {
       "type": "text",
-      "text": "Homeless",
       "weight": 1,
       "range": [
         52,
@@ -777,14 +1337,25 @@
       ],
       "drawn": false,
       "_id": "eD5hy9Du8xO9mMjZ",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Homeless",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.eD5hy9Du8xO9mMjZ"
     },
     {
       "type": "text",
-      "text": "Hunter",
       "weight": 1,
       "range": [
         53,
@@ -792,14 +1363,25 @@
       ],
       "drawn": false,
       "_id": "2IkV3h3XCSJ3hhSk",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Hunter",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.2IkV3h3XCSJ3hhSk"
     },
     {
       "type": "text",
-      "text": "Illusionist",
       "weight": 1,
       "range": [
         54,
@@ -807,14 +1389,25 @@
       ],
       "drawn": false,
       "_id": "2uI2uVbRaq7EIWNW",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Illusionist",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.2uI2uVbRaq7EIWNW"
     },
     {
       "type": "text",
-      "text": "Instructor",
       "weight": 1,
       "range": [
         55,
@@ -822,14 +1415,25 @@
       ],
       "drawn": false,
       "_id": "k9TeuZs0Oxq5TuhF",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Instructor",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.k9TeuZs0Oxq5TuhF"
     },
     {
       "type": "text",
-      "text": "Janitor",
       "weight": 1,
       "range": [
         56,
@@ -837,14 +1441,25 @@
       ],
       "drawn": false,
       "_id": "dKy4gm6dJ3qkaZ70",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Janitor",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.dKy4gm6dJ3qkaZ70"
     },
     {
       "type": "text",
-      "text": "Journalist",
       "weight": 1,
       "range": [
         57,
@@ -852,14 +1467,25 @@
       ],
       "drawn": false,
       "_id": "pNN8dQWprdpVaHSv",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Journalist",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.pNN8dQWprdpVaHSv"
     },
     {
       "type": "text",
-      "text": "Judge",
       "weight": 1,
       "range": [
         58,
@@ -867,14 +1493,25 @@
       ],
       "drawn": false,
       "_id": "K22gAS60zeOEvgnZ",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Judge",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.K22gAS60zeOEvgnZ"
     },
     {
       "type": "text",
-      "text": "Lawyer",
       "weight": 1,
       "range": [
         59,
@@ -882,14 +1519,25 @@
       ],
       "drawn": false,
       "_id": "jGGLiCdJapTtyPYu",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Lawyer",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.jGGLiCdJapTtyPYu"
     },
     {
       "type": "text",
-      "text": "Leader",
       "weight": 1,
       "range": [
         60,
@@ -897,14 +1545,25 @@
       ],
       "drawn": false,
       "_id": "s3JWHuWRw6fd0CwM",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Leader",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.s3JWHuWRw6fd0CwM"
     },
     {
       "type": "text",
-      "text": "Manager",
       "weight": 1,
       "range": [
         61,
@@ -912,14 +1571,25 @@
       ],
       "drawn": false,
       "_id": "FfwQvMCWgREyRDjb",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Manager",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.FfwQvMCWgREyRDjb"
     },
     {
       "type": "text",
-      "text": "Mathematician",
       "weight": 1,
       "range": [
         62,
@@ -927,14 +1597,25 @@
       ],
       "drawn": false,
       "_id": "3mmoGEWe82mv01zZ",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Mathematician",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.3mmoGEWe82mv01zZ"
     },
     {
       "type": "text",
-      "text": "Mechanic",
       "weight": 1,
       "range": [
         63,
@@ -942,14 +1623,25 @@
       ],
       "drawn": false,
       "_id": "uoJkEdMAsflYCBe3",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Mechanic",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.uoJkEdMAsflYCBe3"
     },
     {
       "type": "text",
-      "text": "Miner",
       "weight": 1,
       "range": [
         64,
@@ -957,14 +1649,25 @@
       ],
       "drawn": false,
       "_id": "t9zZF0gk6D04GmKw",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Miner",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.t9zZF0gk6D04GmKw"
     },
     {
       "type": "text",
-      "text": "Musician",
       "weight": 1,
       "range": [
         65,
@@ -972,14 +1675,25 @@
       ],
       "drawn": false,
       "_id": "iqqll87TQbxXZC09",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Musician",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.iqqll87TQbxXZC09"
     },
     {
       "type": "text",
-      "text": "Nun/Monk",
       "weight": 1,
       "range": [
         66,
@@ -987,14 +1701,25 @@
       ],
       "drawn": false,
       "_id": "fGLoZmnZ7fbtalan",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Nun/Monk",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.fGLoZmnZ7fbtalan"
     },
     {
       "type": "text",
-      "text": "Nurse",
       "weight": 1,
       "range": [
         67,
@@ -1002,14 +1727,25 @@
       ],
       "drawn": false,
       "_id": "xT4H4zmZ8fdF6Rk9",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Nurse",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.xT4H4zmZ8fdF6Rk9"
     },
     {
       "type": "text",
-      "text": "Occultist",
       "weight": 1,
       "range": [
         68,
@@ -1017,14 +1753,25 @@
       ],
       "drawn": false,
       "_id": "3UzayyxksrXedQ0S",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Occultist",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.3UzayyxksrXedQ0S"
     },
     {
       "type": "text",
-      "text": "Officer",
       "weight": 1,
       "range": [
         69,
@@ -1032,14 +1779,25 @@
       ],
       "drawn": false,
       "_id": "2obP1EsIxlbXtfIR",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Officer",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.2obP1EsIxlbXtfIR"
     },
     {
       "type": "text",
-      "text": "Patient",
       "weight": 1,
       "range": [
         70,
@@ -1047,14 +1805,25 @@
       ],
       "drawn": false,
       "_id": "7Ohrb2G1WGxwXppL",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Patient",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.7Ohrb2G1WGxwXppL"
     },
     {
       "type": "text",
-      "text": "Pawnbroker",
       "weight": 1,
       "range": [
         71,
@@ -1062,14 +1831,25 @@
       ],
       "drawn": false,
       "_id": "UGw1sxfS27obM7yq",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Pawnbroker",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.UGw1sxfS27obM7yq"
     },
     {
       "type": "text",
-      "text": "Performer",
       "weight": 1,
       "range": [
         72,
@@ -1077,14 +1857,25 @@
       ],
       "drawn": false,
       "_id": "CNguv6L94ljx5hwr",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Performer",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.CNguv6L94ljx5hwr"
     },
     {
       "type": "text",
-      "text": "Pharmacist",
       "weight": 1,
       "range": [
         73,
@@ -1092,14 +1883,25 @@
       ],
       "drawn": false,
       "_id": "LZRyP2xiVK1Fo3ZB",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Pharmacist",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.LZRyP2xiVK1Fo3ZB"
     },
     {
       "type": "text",
-      "text": "Physician",
       "weight": 1,
       "range": [
         74,
@@ -1107,14 +1909,25 @@
       ],
       "drawn": false,
       "_id": "gjDrqSXl8SwiAlR6",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Physician",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.gjDrqSXl8SwiAlR6"
     },
     {
       "type": "text",
-      "text": "Politician",
       "weight": 1,
       "range": [
         75,
@@ -1122,14 +1935,25 @@
       ],
       "drawn": false,
       "_id": "SEtLY0asEgZIPDCm",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Politician",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.SEtLY0asEgZIPDCm"
     },
     {
       "type": "text",
-      "text": "Priest",
       "weight": 1,
       "range": [
         76,
@@ -1137,14 +1961,25 @@
       ],
       "drawn": false,
       "_id": "Q14J1ihHGx6oF6WU",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Priest",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.Q14J1ihHGx6oF6WU"
     },
     {
       "type": "text",
-      "text": "Prisoner",
       "weight": 1,
       "range": [
         77,
@@ -1152,14 +1987,25 @@
       ],
       "drawn": false,
       "_id": "sFN90QpvaEOzxV38",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Prisoner",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.sFN90QpvaEOzxV38"
     },
     {
       "type": "text",
-      "text": "Professor",
       "weight": 1,
       "range": [
         78,
@@ -1167,14 +2013,25 @@
       ],
       "drawn": false,
       "_id": "HY1XOe0y31eZjgkF",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Professor",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.HY1XOe0y31eZjgkF"
     },
     {
       "type": "text",
-      "text": "Psychologist",
       "weight": 1,
       "range": [
         79,
@@ -1182,14 +2039,25 @@
       ],
       "drawn": false,
       "_id": "Mdyh24nWv10Hw36s",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Psychologist",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.Mdyh24nWv10Hw36s"
     },
     {
       "type": "text",
-      "text": "Racer",
       "weight": 1,
       "range": [
         80,
@@ -1197,14 +2065,25 @@
       ],
       "drawn": false,
       "_id": "mLqIwEf3iEy26nIy",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Racer",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.mLqIwEf3iEy26nIy"
     },
     {
       "type": "text",
-      "text": "Ranger",
       "weight": 1,
       "range": [
         81,
@@ -1212,14 +2091,25 @@
       ],
       "drawn": false,
       "_id": "Mrzrg3sMhtuC7M30",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Ranger",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.Mrzrg3sMhtuC7M30"
     },
     {
       "type": "text",
-      "text": "Refugee",
       "weight": 1,
       "range": [
         82,
@@ -1227,14 +2117,25 @@
       ],
       "drawn": false,
       "_id": "O9V0tWYNGGXm3zrY",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Refugee",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.O9V0tWYNGGXm3zrY"
     },
     {
       "type": "text",
-      "text": "Revolutionary",
       "weight": 1,
       "range": [
         83,
@@ -1242,14 +2143,25 @@
       ],
       "drawn": false,
       "_id": "XScsiqziPJVEPsV2",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Revolutionary",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.XScsiqziPJVEPsV2"
     },
     {
       "type": "text",
-      "text": "Rider",
       "weight": 1,
       "range": [
         84,
@@ -1257,14 +2169,25 @@
       ],
       "drawn": false,
       "_id": "WKhRM6SDWOK5Lh5S",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Rider",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.WKhRM6SDWOK5Lh5S"
     },
     {
       "type": "text",
-      "text": "Sailor",
       "weight": 1,
       "range": [
         85,
@@ -1272,14 +2195,25 @@
       ],
       "drawn": false,
       "_id": "KViSy6H0eIZVAqOr",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Sailor",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.KViSy6H0eIZVAqOr"
     },
     {
       "type": "text",
-      "text": "Scientist",
       "weight": 1,
       "range": [
         86,
@@ -1287,14 +2221,25 @@
       ],
       "drawn": false,
       "_id": "rO5UqzPkRo7VHSlA",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Scientist",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.rO5UqzPkRo7VHSlA"
     },
     {
       "type": "text",
-      "text": "Shop-Owner",
       "weight": 1,
       "range": [
         87,
@@ -1302,14 +2247,25 @@
       ],
       "drawn": false,
       "_id": "5P7szpBRT5KFwYZg",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Shop-Owner",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.5P7szpBRT5KFwYZg"
     },
     {
       "type": "text",
-      "text": "Soldier",
       "weight": 1,
       "range": [
         88,
@@ -1317,14 +2273,25 @@
       ],
       "drawn": false,
       "_id": "c7KtuaHSrb06dQ4a",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Soldier",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.c7KtuaHSrb06dQ4a"
     },
     {
       "type": "text",
-      "text": "Specialist",
       "weight": 1,
       "range": [
         89,
@@ -1332,14 +2299,25 @@
       ],
       "drawn": false,
       "_id": "u0vyUgDRYu56GYwm",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Specialist",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.u0vyUgDRYu56GYwm"
     },
     {
       "type": "text",
-      "text": "Spy",
       "weight": 1,
       "range": [
         90,
@@ -1347,14 +2325,25 @@
       ],
       "drawn": false,
       "_id": "RVPsjApG0F5G7xtG",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Spy",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.RVPsjApG0F5G7xtG"
     },
     {
       "type": "text",
-      "text": "Storyteller",
       "weight": 1,
       "range": [
         91,
@@ -1362,14 +2351,25 @@
       ],
       "drawn": false,
       "_id": "7XbuVNSs257Kj6sS",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Storyteller",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.7XbuVNSs257Kj6sS"
     },
     {
       "type": "text",
-      "text": "Tailor",
       "weight": 1,
       "range": [
         92,
@@ -1377,14 +2377,25 @@
       ],
       "drawn": false,
       "_id": "9fE0uqwCp9mC5j5B",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Tailor",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.9fE0uqwCp9mC5j5B"
     },
     {
       "type": "text",
-      "text": "Technician",
       "weight": 1,
       "range": [
         93,
@@ -1392,14 +2403,25 @@
       ],
       "drawn": false,
       "_id": "79be6oZE16CD5z8l",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Technician",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.79be6oZE16CD5z8l"
     },
     {
       "type": "text",
-      "text": "Apprentice",
       "weight": 1,
       "range": [
         94,
@@ -1407,14 +2429,25 @@
       ],
       "drawn": false,
       "_id": "35hEi0ee8Jt1ciSF",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Apprentice",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.35hEi0ee8Jt1ciSF"
     },
     {
       "type": "text",
-      "text": "Toolmaker",
       "weight": 1,
       "range": [
         95,
@@ -1422,14 +2455,25 @@
       ],
       "drawn": false,
       "_id": "8a4qV7nT934TGevK",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Toolmaker",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.8a4qV7nT934TGevK"
     },
     {
       "type": "text",
-      "text": "Translator",
       "weight": 1,
       "range": [
         96,
@@ -1437,14 +2481,25 @@
       ],
       "drawn": false,
       "_id": "umX4sZZknSYS7Ktt",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Translator",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.umX4sZZknSYS7Ktt"
     },
     {
       "type": "text",
-      "text": "Tutor",
       "weight": 1,
       "range": [
         97,
@@ -1452,14 +2507,25 @@
       ],
       "drawn": false,
       "_id": "7a2YEA5atMX0FCwM",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Tutor",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.7a2YEA5atMX0FCwM"
     },
     {
       "type": "text",
-      "text": "Veterinarian",
       "weight": 1,
       "range": [
         98,
@@ -1467,14 +2533,25 @@
       ],
       "drawn": false,
       "_id": "T8muSbppKPFAsvwj",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Veterinarian",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.T8muSbppKPFAsvwj"
     },
     {
       "type": "text",
-      "text": "Worker",
       "weight": 1,
       "range": [
         99,
@@ -1482,14 +2559,25 @@
       ],
       "drawn": false,
       "_id": "lc08tUx485U0KijW",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Worker",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.lc08tUx485U0KijW"
     },
     {
       "type": "text",
-      "text": "Writer",
       "weight": 1,
       "range": [
         100,
@@ -1497,9 +2585,21 @@
       ],
       "drawn": false,
       "_id": "PAT4NnbIzH1OzIeG",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Writer",
+      "name": "",
       "_key": "!tables.results!RRdjzoL8rlEvR3y5.PAT4NnbIzH1OzIeG"
     }
   ],
@@ -1516,19 +2616,18 @@
     "kF9zOdNs2UiqaJVn": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "RollTable.RRdjzoL8rlEvR3y5"
-    }
+    "core": {}
   },
   "_stats": {
     "compendiumSource": "RollTable.RRdjzoL8rlEvR3y5",
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.342",
     "systemId": "metanthropes",
     "systemVersion": "0.12.0",
     "createdTime": 1736082815596,
     "modifiedTime": 1736082815596,
-    "lastModifiedBy": "kF9zOdNs2UiqaJVn"
+    "lastModifiedBy": "kF9zOdNs2UiqaJVn",
+    "exportSource": null
   },
   "formula": "1d100",
   "_key": "!tables!RRdjzoL8rlEvR3y5"
