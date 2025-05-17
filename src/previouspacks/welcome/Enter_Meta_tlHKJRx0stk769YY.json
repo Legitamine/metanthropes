@@ -1,0 +1,344 @@
+{
+  "folder": "c06TOktGO792ePse",
+  "name": "Enter Meta",
+  "_id": "tlHKJRx0stk769YY",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "Intro",
+      "type": "text",
+      "_id": "cL5EGN85blCcjmG8",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p style=\"text-align:justify\">Welcome to the world of Tabletop Role-Playing Games (TTRPGs), where interactive, story-driven adventures come to life. In a TTRPG, the Players aren’t just passive observers. Instead, they become the Protagonists of an evolving story, shaped by their actions and decisions. A story orchestrated by one among them called the Narrator. <strong>The Narrator sets the mood and tone with their descriptions and the roleplay of the NPCs (non-Protagonist Characters). The Narrator and the Players collaborate, crafting a tale that springs from the collective imagination of everyone involved.</strong> Unlike traditional games, there are no winners or losers in a TTRPG. The goal is for the Group (both Players and Narrator) to immerse themselves in a world they created a world that, while bound by certain rules, encourages unrestricted imaginative play.</p><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">Think of the dynamic of a group playing Metanthropes like this: the Narrator is the screenwriter, the director, and the entire supporting cast of a series. The Players, become the Protagonist: the star of the show. But there are no scripted lines or directions for them. They are free to do whatever they want, and the Narrator adapts the story based on their actions. <strong>The Narrator sets the scene, describing the environment, the mood, the setting, and the Characters involved.</strong> Then, it's up to the Players to drive the story forward. They interact with other Characters, the environment, and the world around them. They are responsible for their Protagonist’s inner thoughts and how they translate into dialogue and actions. The Narrator controls the dialogue and actions of all NPCs, including the Antagonists (NPCs who antagonize the Protagonists).</p><p></p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "TnmSvbMxMd0fQgCE": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "13.342",
+        "systemId": "metanthropes",
+        "systemVersion": "0.12.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "exportSource": null
+      },
+      "category": null,
+      "_key": "!journal.pages!tlHKJRx0stk769YY.cL5EGN85blCcjmG8"
+    },
+    {
+      "sort": 200000,
+      "name": "Roleplaying",
+      "type": "text",
+      "_id": "NCvluBmluvW8VuPN",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p style=\"text-align:justify\">Roleplaying in Metanthropes is the act of embodying the role of another Character, bringing them to life within your Group. There's no right or wrong way to do it. Each Group can develop its own style of roleplaying, tailored to their interests and preferred pace and intensity of the game. <strong>The game unfolds as Players and Narrators engage in collaborative storytelling, improvising on the spot to create a truly unique narrative.</strong> Each story is forged by the preferences of the Group, and the level of commitment and involvement is entirely up to each Player. Each Player should find the level of participation and preparation that triggers their enthusiasm and excitement the most and be vocal about it to their Group. Roleplay can range from an amusing form of entertainment to a transcendental, emotional journey of self-discovery. Let your imagination take over and be inspired to act out scenes, adding greater depth and meaning to the storyline.</p><p style=\"text-align:justify\"></p><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">Transitioning into your Protagonist is an important process that helps the entire Group stay \"in-Character\". Once the flow of roleplay begins, Players are advised to jot down any non-urgent, out-of-game questions or notes and save them for the next pause, to avoid disrupting the game flow. <strong>Players can ask in-game questions to the Narrator, such as what they see around them, or if their Protagonist has knowledge of the subject that is in question in-game.</strong> The Narrator should provide all necessary information, and then resume the Narration.</p><p style=\"text-align:justify\"></p><img src=\"systems/metanthropes/assets/artwork/journals/pronoun-use.webp\" />"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "TnmSvbMxMd0fQgCE": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "13.342",
+        "systemId": "metanthropes",
+        "systemVersion": "0.12.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "exportSource": null
+      },
+      "category": null,
+      "_key": "!journal.pages!tlHKJRx0stk769YY.NCvluBmluvW8VuPN"
+    },
+    {
+      "sort": 300000,
+      "name": "Narration",
+      "type": "text",
+      "_id": "jvSgrC7isnVl9AsA",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p style=\"text-align:justify\">The Narrator's role within the Group is multifaceted and distinct from that of the Players. While Players create and roleplay a single Character, the Narrator breathes life into a multitude of NPCs, and the entire Cosmos. The Narrator also sets the pace of the Session and often acts as a referee or judge to resolve in-game or out-of-game disputes. <strong>The Narrator's primary focus should be on the story and the Players. They are tasked with ensuring that the spotlight is distributed equally among the Protagonists.</strong> Narrators should always build, develop, and deliver their stories without bias or favoritism towards the Players or their Protagonists. Each Player, in turn, must respect their fellow Players' moments in the spotlight.</p><p style=\"text-align:justify\"></p><p style=\"text-align:justify\"></p><p style=\"text-align:justify\"><strong>It's crucial for all Players to understand that the dynamic between them and the Narrator is not competitive.</strong> Additionally, both Players and the Narrator must respect any topics or contexts that have been designated as off-limits by any member of the Group. Such no-go zones could be any topic or context that makes any member of the Group uncomfortable.</p><p style=\"text-align:justify\"></p><p style=\"text-align:justify\"></p><p style=\"text-align:justify\"><strong>Every Narrator brings something unique to the table.</strong> Some may excel in dramatic roleplay performances, while others shine in creating action-packed tactical scenarios. Some may struggle with intricate plots but excel in improvisation. If you're a Player considering the role of the Narrator, remember that you'll only discover your unique talents by giving it a try.</p><p></p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "TnmSvbMxMd0fQgCE": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "13.342",
+        "systemId": "metanthropes",
+        "systemVersion": "0.12.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "exportSource": null
+      },
+      "category": null,
+      "_key": "!journal.pages!tlHKJRx0stk769YY.jvSgrC7isnVl9AsA"
+    },
+    {
+      "sort": 400000,
+      "name": "Metanthropes",
+      "type": "text",
+      "_id": "c42QxxTc4iJmVvK1",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p style=\"text-align:justify\">At the heart of each story are the Metanthrope Protagonists. The very essence of the word \"Metanthrope\" originates from the Greek term \"Μετάνθρωπος\" which translates to \"beyond human.\" These remarkable beings embody the dichotomy between humanity and something more. What sets them apart from ordinary humans are their Metapowers — unique, metaphysical gifts that transform them into something extraordinary. Yet, even with their newfound abilities, Metanthropes remain tethered to the frailties, passions, and flaws of their human nature. In a Session of Metanthropes, Players will embody the transformative journey of an ordinary human who becomes a being of limitless capabilities. <strong>The game poses the question: What would you do with such incredible power?</strong></p><p style=\"text-align:justify\"></p><p style=\"text-align:justify\"><strong>Anyone, anywhere in the world, regardless of their age, gender, or background, has the potential to become a Metanthrope.</strong> All Metanthropes possess an innate ability to learn new skills and knowledge at an extraordinary pace, while their physiology undergoes remarkable transformations. Elderly Metanthropes are rejuvenated, granted a breath of youth that defies the passing of time. On the other hand, younger Metanthropes mature at an accelerated rate, acquiring wisdom beyond their years. </p><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">Unlike other supernatural beings of other works of fiction, Metanthropes are not limited by any external source, such as an energy pool, magic, mana, spell slots, or their own vitae. Instead, their only limits are bound by their psychosynthesis and the possibility of some Metapowers backfiring. This grants them the freedom to use their powers as many times as they see fit, with no arbitrary constraints. Metanthropes can harness their Metapowers until they have accomplished their goals and fulfilled their deepest desires. <strong>Each Metanthrope is part of a grander destiny, a bigger picture that unfolds before them.</strong></p><p></p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "TnmSvbMxMd0fQgCE": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "13.342",
+        "systemId": "metanthropes",
+        "systemVersion": "0.12.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "exportSource": null
+      },
+      "category": null,
+      "_key": "!journal.pages!tlHKJRx0stk769YY.c42QxxTc4iJmVvK1"
+    },
+    {
+      "sort": 500000,
+      "name": "Metapowers",
+      "type": "text",
+      "_id": "7wy5GlOMjMSqIazs",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p style=\"text-align:justify\">Once ordinary individuals like you and me, Metanthropes undergo a profound transformation known as the Metamorphosis, which bestows upon them metaphysical abilities called Metapowers. <strong>This Metamorphosis can occur at birth, or at any point during their human lives.</strong> The manifestation of Metapowers can be triggered by a variety of factors, ranging from encoded genetic traits that activate at a certain age, to establishing a psychic connection with beings from other Dimensions or uncovering the secrets hidden within the depths of the ocean.</p><p style=\"text-align:justify\"></p><p style=\"text-align:justify\"><strong>Metapowers, in their remarkable diversity, emerge without bias, often bestowed upon individuals with antithetical personality traits and abilities.</strong> It is not uncommon to witness an elderly person harnessing the strength to effortlessly lift a car, or a once fearful individual developing an indomitable will. Social outcasts find themselves transformed into inspiring leaders, while those of high-status risk tarnishing their public image through the misuse of their newfound powers.</p><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">These powers defy the laws of reality, allowing for the control of gravity, telepathic communication, miraculously curing all wounds, creating duplicates of yourself, among other magnificent abilities. <strong>As a Metanthrope, your journey will be characterized by exploration, discovery, and the continual unlocking of the extraordinary within.</strong></p><p></p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "TnmSvbMxMd0fQgCE": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "13.342",
+        "systemId": "metanthropes",
+        "systemVersion": "0.12.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "exportSource": null
+      },
+      "category": null,
+      "_key": "!journal.pages!tlHKJRx0stk769YY.7wy5GlOMjMSqIazs"
+    },
+    {
+      "sort": 600000,
+      "name": "Metanthrope Society",
+      "type": "text",
+      "_id": "Y1W6IZvWqpAc7nBf",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p style=\"text-align:justify\">The formation of a Metanthrope society weaves together the complexities of their shared world. <strong>The ebb and flow of Metanthropes, their presence known or hidden from humanity, the advancement of technology, and myriad other factors intertwine to shape the bonds and social dynamics among them.</strong> Some Metanthropes have never encountered another of their kind, while others remain unaware of their own innate Metapowers. Fear of exposure may drive some Metanthropes to avoid any suspicious interactions, concealing their secret abilities from the world. However, there are also those who actively seek to connect with fellow Metanthropes, yearning for the bonds of community. Together, they aspire to unite their gifts and ideas, exerting influence and driving change on both societal and individual levels.</p><p></p><h3>Coalitions</h3><p></p><p style=\"text-align:justify\">Within the world of Metanthropes, the power of unity is realized through the formation of Coalitions. A Coalition is a group of Metanthropes who work together, synergizing their Metapowers and ideas to become a force to be reckoned with, capable of shaping the world itself. While individual Metanthropes can accomplish remarkable feats, the true potential of their abilities is magnified within the collective might of a Coalition. <strong>By joining forces, a Coalition enhances the individual capabilities of each Metanthrope, compensates for weaknesses, opens new avenues for problem-solving, and unlocks hidden potential.</strong></p><p></p><p></p><h3>Factions</h3><p></p><p style=\"text-align:justify\"><strong>As Coalitions grow in strength and influence, multiple Coalitions can unite to form a Faction.</strong> Factions are forged by shared doctrines, visions, common goals, ideals, or under the guidance of a unified leadership. These Factions may operate across multiple locations, spanning the planet, exoplanets, Dimensions, and even across multiple Timelines. Collaboration and communication between Factions have the potential to shape the Metanthrope status quo in profound ways. This vibrant ecosystem of Factions creates a delicate balance between unity and dissonance, shaping the future of Metanthrope society according to their unique vision. Amid the multifaceted realms of politics, philosophy, and power dynamics, the fate of Metanthropes, and the world hangs in the balance, as alliances form, rivalries ignite, and the eternal quest for a unified front unfolds within this intricate landscape.</p><p></p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "TnmSvbMxMd0fQgCE": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "13.342",
+        "systemId": "metanthropes",
+        "systemVersion": "0.12.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "exportSource": null
+      },
+      "category": null,
+      "_key": "!journal.pages!tlHKJRx0stk769YY.Y1W6IZvWqpAc7nBf"
+    },
+    {
+      "sort": 700000,
+      "name": "Themes",
+      "type": "text",
+      "_id": "47uMLcMtuz5Q8eIA",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p style=\"text-align:justify\">Themes within this “Setting-Flexible” game are as diverse as the imagination of the Group, allowing for a fluid and adaptable storytelling experience. While the possibilities are limitless, the main theme that is explored in this Zine is the esoteric journey of discovering the extraordinary within and the introduction to a vast, greater cosmos. <strong>There are four recurring themes that tend to emerge during a Metanthropes story, shaping the narrative and driving Character development.</strong></p><p style=\"text-align:justify\"></p><h3>Metamorphosis</h3><p style=\"text-align:justify\"></p><p style=\"text-align:justify\"><strong>The transformation from an ordinary human into an extraordinary being is a central theme in Metanthropes.</strong> Each Metanthrope experiences their Metamorphosis differently, ranging from traumatic or life-altering events to awe-inspiring moments of self-discovery. This theme explores the impact of this pivotal transformation on their identity, beliefs, and path in life, shaping the very essence of their existence.</p><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">As Metanthropes grapple with the aftermath of their Metamorphosis, they face a journey of self-discovery and self-acceptance. <strong>This theme explores their personal growth, as they learn to harness their newfound powers, confront their fears and limitations, and find their place in a world that may view them as both saviors and threats.</strong> The Metamorphosis is not just a physical transformation; it is a profound exploration of identity, inner strength, and the potential for both greatness and fallibility.</p><p style=\"text-align:justify\"></p><h3>Metanthropes and the World</h3><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">This theme delves into the complex relationships between Metanthropes and the world around them. It explores the implications of revealing their existence to humanity and the subsequent conflicts that may arise. <strong>Metanthropes have the power to influence and shape their environment, raising questions about the balance between coexistence with humans and the potential consequences of their actions.</strong> Will their interactions with humans, nature, and animals lead to harmony or chaos?</p><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">Beyond the conflicts and implications of revealing their existence, this theme delves into the ethical dilemmas that Metanthropes face. Metanthropes must wrestle with the consequences of their actions and the potential impact on the delicate balance of the world. <strong>It is a theme that explores the price of power, the nature of morality, and the complex interplay between individual agency and collective welfare.</strong></p><p style=\"text-align:justify\"></p><h3>Metanthrope Community</h3><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">The interactions within Metanthrope society form another recurring theme. The composition and locations of Metanthrope Coalitions on the planet create opportunities for collaboration, cooperation, or conflict. Stories may revolve around the personal connections of a small group of Metanthropes or explore larger Metanthrope civilizations with established governments, ideologies, and histories. <strong>The theme of Metanthrope society delves into questions of unity, dissonance, power dynamics, and the implications of Metapowers on the social fabric.</strong></p><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">Within Metanthrope society, there are struggles for power, ideological clashes, and tensions arising from diverse perspectives. <strong>This theme delves into the intricacies of Metanthrope relationships, highlighting the alliances, rivalries, and personal dramas that unfold within their ranks.</strong> Metanthropes must navigate the complexities of trust, betrayal, and loyalty as they face internal conflicts that mirror the external challenges they encounter. It is a theme that explores the dynamics of community, the quest for identity and belonging, and the ever-shifting balance between unity and individuality.</p><p style=\"text-align:justify\"></p><h3>Other Metapowered beings</h3><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">Metanthropes are not the only Metapowered entities out there. <strong>This theme explores the interactions between Metanthropes and other Metapowered beings, such as extradimensional Spirits, extraterrestrial entities, and other otherworldly Metapowered forces.</strong> Encounters with these NPCs can shape the narrative, introducing unique challenges, alliances, and cosmic mysteries. Stories may unfold within the confines of a single city on Earth or explore the rich intergalactic histories of alien civilizations.</p><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">The interactions between Metanthropes and other Metapowered beings give rise to far-reaching consequences. This theme explores the profound encounters with ancient entities and civilizations existing beyond the bounds of human comprehension. Metanthropes venture into uncharted territories, where the boundaries of reality blur and the fabric of existence bends. <strong>It is a theme that delves into existential questions, metaphysical explorations, and the pursuit of knowledge and understanding in the face of the unfathomable.</strong></p><p></p>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "TnmSvbMxMd0fQgCE": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "13.342",
+        "systemId": "metanthropes",
+        "systemVersion": "0.12.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "exportSource": null
+      },
+      "category": null,
+      "_key": "!journal.pages!tlHKJRx0stk769YY.47uMLcMtuz5Q8eIA"
+    },
+    {
+      "sort": 0,
+      "name": "Cover",
+      "type": "image",
+      "_id": "HQcEHnGzpHn4sxcx",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "image": {
+        "caption": ""
+      },
+      "text": {
+        "format": 1
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": "systems/metanthropes/assets/cover/chapter-1.webp",
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "gaWoeXg7uJWoAsCP": 3
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "13.342",
+        "systemId": "metanthropes",
+        "systemVersion": "0.12.0",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "exportSource": null
+      },
+      "category": null,
+      "_key": "!journal.pages!tlHKJRx0stk769YY.HQcEHnGzpHn4sxcx"
+    }
+  ],
+  "sort": 300000,
+  "ownership": {
+    "default": 2,
+    "TnmSvbMxMd0fQgCE": 3,
+    "3IqRUDDVG8kDd6mW": 3,
+    "MXmDyHQbVNXPVxrV": 3,
+    "gaWoeXg7uJWoAsCP": 3,
+    "E1nZXRNcwWMtogk0": 3,
+    "kF9zOdNs2UiqaJVn": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.342",
+    "systemId": "metanthropes",
+    "systemVersion": "0.12.0",
+    "createdTime": 1734888483869,
+    "modifiedTime": 1734888483869,
+    "lastModifiedBy": "kF9zOdNs2UiqaJVn",
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!tlHKJRx0stk769YY"
+}
