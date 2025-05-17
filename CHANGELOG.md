@@ -14,25 +14,41 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Added:
 - Foundry VTT version 13 is now supported. New Dark/Light themes and the new UI is not included in this release and is planned for later this summer.
-- New dimentional effects without the need for 3rd party modules.
 - New defaults for all prototype tokens including a Metanthropes Logo turn marker
-- theme support & developer environment updates.
-- New fonts and quickstart journals.
-- Roll d100 dice functions localized & using fields API & APP V2. More App V2 updates to come in future releases.
+- [Introductory] New Cinematic 
+- [Introductory] New custom Scene Particle & Filter Effects for when traveling to the Astral, Nether and Aether Dimensions, plus a new custom effect for showcasing the Metanthropes: Multiverse for Scene#3 of the Overture story.
+- New fonts and updated tables from the [quickstart guide](https://metanthropes.com/quickstart).
 - Activating a Metapower or using a Possession which can deal Damage or apply Healing, and has a Duration of "Instantaneous", now requires you to have a target selected. Damage (taking resistances into account) and Healing will be applied to the targets automatically. If you choose to spend Destiny to re-roll the Damage/Healing, it will undo the last applied result and re-apply the new one. Note that this feature does not take into account if the selected target(s) are valid targets, it will apply the result regardless. The targeting subsystem will be improved in future releases and non-Instantaneous effects will come with the Actor Active Effects subsystem.
+- added: [Homebrew] New capability to enable Alpha testing of upcoming features. We are offering Homebrew owners the option to test features in the early prototype stage and give us their feedback during the early stages of development.
+- New functions that control dealing damage/healing to multiple targets, including re-rolls.
+- New defaults for Actor Prototype Tokens, including a Turn Marker Metanthropes Logo that's tinted according to Actor's disposition.
+
+## Changed:
+- All emojis have been replaced by Font Awesome icons, as Metanthropes now comes with a Font Awesome Pro license and our own custom icons, starting with the Metanthropes Logo. These will be colored and animated automatically, according to contextual information in later releases.
+- change [Introductory] Deprecated recommended/required 3rd modules until we officially support 3rd party modules. FXMaster that was used previously for Dimensional effects, has been replaced by our custom effects, included with this release.
+- Updated the Welcome Lobby / Demo scene with new artwork from Metanthropes: Anthologies. Includes custom lights & ambient sounds (??) for Players to test enviromental audio levels before jumping into a battlemap.
+- change Roll d100 dice functions have been refactored to support localization & using fields API & APP V2. This is effort is ongoing and more App V2 updates are coming in the near future.
+- change: Metanthropes Premium Modules have been updated to use & extend the Metanthropes API.
+- changed: theme support & developer environment updates.
 - changed: inline rolls now follow our own custom UI/UX style, instead of the default Foundry VTT UI style which was used previously.
 - changed: [Core] New capability to enable Beta Testing for new features. This feature was previously part of the Homebrew Module, and is now a part of the Core Module. This will give access to test new features to a broader audience, and allow us to get more feedback.
-- added: [Homebrew] New capability to enable Alpha testing of upcoming features. We are offering Homebrew owners the option to test features in the early prototype stage and give us their feedback during the early stages of development.
-- fixed not being able to re-roll for damage/healing when beta-testing was enabled.
-- Many improvements to the Metanthropes API and code documentation clean up.
 - Many Development evironment updates, with an improved process that moves SCSS compiling during release building. Moving to support CSS Cascade layers to align with FVTT V13 structure onwards.
 - Deprecating various jQuery and replaced with HTML DOM handling.
-- New defaults for Actor Prototype Tokens, including a Turn Marker Metanthropes Logo that's tinted according to Actor's disposition.
-- New functions that control dealing damage/healing to multiple targets, including re-rolls.
-- All emojis have been replaced by Font Awesome icons, as Metanthropes now comes with a Font Awesome Pro license and our own custom icons, starting with the Metanthropes Logo. These will be colored and animated automatically, according to contextual information in later releases.
+- Many improvements to the Metanthropes API and code documentation clean up.
+
+## Fixed:
+- fixed not being able to re-roll for damage/healing when beta-testing was enabled.
+- fixed various typos and missing tooltips (confirm with gh project)
+
+## Known Issues:
+- Foundry V13 comes with new Dark & Light themes. This release does not come with our new UI for V13 that will include both Dark & Light themes, and the current release offers baseline support to ensure both choices are usable, albeit some graphical glitches might still exist. These will be addressed with the new UI, as we will be refactoring the majority of our CSS that's causing such issues. Let us know by [submitting a bug report on GitHub](https://github.com/Legitamine/metanthropes/issues), or come over on [our Discord System Feedback channel](https://discord.com/channels/690679176528920636/1212941912684765224) and let us know if there is something else we missed! We are currently aware of the following:
+	- With the Light theme, some of the buttons that should appear when you right-click a Token on the Canvas, are instead darkened out and not easy to discern, however they do remain usable.
+	- On the Chat sidebar, clicking to expand the Roll results from a d100 roll, will display the dice results with a dark background that makes it very hard to read them.
+
+## !!!
 - sound effects for critical success? music or other effects?
-- Updated the Welcome Lobby / Demo scene with new artwork from Metanthropes: Anthologies. Includes custom lights & ambient sounds (??) for Players to test enviromental audio levels before jumping into a battlemap.
 todo: add license & contribution attributes for fonts & music/sound effects
+
 
 # Early Access v0.12.2 [2025-01-29]
 

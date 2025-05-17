@@ -613,13 +613,12 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 	async _onNewActor(event) {
 		event.preventDefault();
 		const actor = this.actor;
-		//* Imports from Premium Module API
+		//* Call the metaNewActor logic
 		const coreModule = game.modules.get("metanthropes-core");
 		if (coreModule && coreModule?.active) {
-			const api = coreModule.api;
 			try {
-				metanthropes.utils.metaLog(3, "MetanthropesActorSheet", "_onNewActor", "Core Module API Available, calling metaNewActor");
-				await api.metaNewActor(actor);
+				metanthropes.utils.metaLog(3, "MetanthropesActorSheet", "_onNewActor", "Core API available, calling metaNewActor");
+				await metanthropes.logic.metaNewActor(actor);
 			} catch (error) {
 				metanthropes.utils.metaLog(2, "MetanthropesActorSheet", "_onNewActor", "Core Module API Error:", error);
 			}

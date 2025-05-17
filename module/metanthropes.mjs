@@ -62,7 +62,6 @@ import { metaIsMetapowerEquipped, metaTransformStringForStorage } from "./helper
 //* Game Settings
 import { metaRegisterGameSettings } from "./api/utils/register-game-settings.mjs";
 import { metaRegisterStatusEffects } from "./config/status-effects.mjs";
-import { metaRegisterWeatherEffects } from "./config/weather-effects.mjs";
 //* Handlebar Helpers
 import { metaRegisterHandlebarHelpers } from "./config/handlebar-helpers.mjs";
 //* Handlebar Templates
@@ -129,7 +128,6 @@ globalThis.metanthropes = {
 		metaExtractNumberOfDice,
 		metaRegisterGameSettings,
 		metaRegisterStatusEffects,
-		metaRegisterWeatherEffects,
 		onManageActiveEffect,
 		prepareActiveEffectCategories,
 		preloadHandlebarsTemplates,
@@ -148,4 +146,3 @@ import "./hooks/create-actor.mjs";
 import "./hooks/pause.mjs";
 import "./hooks/supported-modules.mjs";
 import "./hooks/other.mjs";
-

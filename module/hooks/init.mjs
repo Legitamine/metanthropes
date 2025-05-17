@@ -58,18 +58,11 @@ Hooks.once("init", async function () {
 	//* Round Duration (in seconds)
 	CONFIG.time.roundTime = 30;
 
-	//* Configure Active Effect Legacy Transferral
-	//todo: required for v12?
-	CONFIG.ActiveEffect.legacyTransferral = false;
-
 	//* Register System Settings
 	metanthropes.utils.metaRegisterGameSettings(settings);
 
 	//* Register Status Effects
 	metanthropes.utils.metaRegisterStatusEffects();
-
-	//* Register Weather Effects
-	metanthropes.utils.metaRegisterWeatherEffects();
 
 	//* Finished Initializing the Metanthropes System
 	metanthropes.utils.metaLog(0, "System", "Initialized");
