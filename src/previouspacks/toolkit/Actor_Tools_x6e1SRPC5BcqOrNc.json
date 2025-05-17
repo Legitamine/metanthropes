@@ -1,0 +1,29 @@
+{
+  "name": "Actor Tools",
+  "sorting": "a",
+  "folder": null,
+  "type": "Macro",
+  "_id": "x6e1SRPC5BcqOrNc",
+  "sort": 100000,
+  "color": "#7d0f81",
+  "flags": {
+    "df-qol": {
+      "colour": ""
+    },
+    "scene-packer": {
+      "hash": "e5a196ca1803b53423f7cadead579a7d07d91c73"
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "metanthropes",
+    "systemVersion": "0.12.0",
+    "createdTime": 1736084730821,
+    "modifiedTime": 1736084730839,
+    "lastModifiedBy": "kF9zOdNs2UiqaJVn"
+  },
+  "description": "",
+  "_key": "!folders!x6e1SRPC5BcqOrNc"
+}

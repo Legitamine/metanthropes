@@ -1,0 +1,218 @@
+{
+  "name": "Humanoid Hit Location",
+  "img": "systems/metanthropes/assets/artwork/rolltables/humanoid-hitbox.webp",
+  "description": "<p style=\"text-align:center\">Random location on the human body.</p>",
+  "results": [
+    {
+      "type": "text",
+      "weight": 20,
+      "range": [
+        1,
+        20
+      ],
+      "drawn": false,
+      "_id": "atcfZ3uuu7z5YGkb",
+      "img": "systems/metanthropes/assets/artwork/rolltables/humanoid-left-leg.webp",
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Left Leg",
+      "name": "",
+      "_key": "!tables.results!z4Yf0BLg957bRJ07.atcfZ3uuu7z5YGkb"
+    },
+    {
+      "type": "text",
+      "weight": 20,
+      "range": [
+        21,
+        40
+      ],
+      "drawn": false,
+      "_id": "YJF13455xnUOGPzN",
+      "img": "systems/metanthropes/assets/artwork/rolltables/humanoid-right-leg.webp",
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Right Leg",
+      "name": "",
+      "_key": "!tables.results!z4Yf0BLg957bRJ07.YJF13455xnUOGPzN"
+    },
+    {
+      "type": "text",
+      "weight": 15,
+      "range": [
+        41,
+        55
+      ],
+      "drawn": false,
+      "_id": "PCZGqCBoBKBLUA69",
+      "img": "systems/metanthropes/assets/artwork/rolltables/humanoid-left-arm.webp",
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Left Arm",
+      "name": "",
+      "_key": "!tables.results!z4Yf0BLg957bRJ07.PCZGqCBoBKBLUA69"
+    },
+    {
+      "type": "text",
+      "weight": 15,
+      "range": [
+        56,
+        70
+      ],
+      "drawn": false,
+      "_id": "wu39UguomjKHfhdH",
+      "img": "systems/metanthropes/assets/artwork/rolltables/humanoid-right-arm.webp",
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Right Arm",
+      "name": "",
+      "_key": "!tables.results!z4Yf0BLg957bRJ07.wu39UguomjKHfhdH"
+    },
+    {
+      "type": "text",
+      "weight": 10,
+      "range": [
+        71,
+        80
+      ],
+      "drawn": false,
+      "_id": "jB1HLLguHhB8229d",
+      "img": "systems/metanthropes/assets/artwork/rolltables/humanoid-lower-torso.webp",
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Lower Torso",
+      "name": "",
+      "_key": "!tables.results!z4Yf0BLg957bRJ07.jB1HLLguHhB8229d"
+    },
+    {
+      "type": "text",
+      "weight": 15,
+      "range": [
+        81,
+        95
+      ],
+      "drawn": false,
+      "_id": "VDKdReNx0uVr3Sdt",
+      "img": "systems/metanthropes/assets/artwork/rolltables/humanoid-upper-torso.webp",
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Upper Torso",
+      "name": "",
+      "_key": "!tables.results!z4Yf0BLg957bRJ07.VDKdReNx0uVr3Sdt"
+    },
+    {
+      "type": "text",
+      "weight": 5,
+      "range": [
+        96,
+        100
+      ],
+      "drawn": false,
+      "_id": "QCo6C7M8lTx4aMo1",
+      "img": "systems/metanthropes/assets/artwork/rolltables/humanoid-head.webp",
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Head",
+      "name": "",
+      "_key": "!tables.results!z4Yf0BLg957bRJ07.QCo6C7M8lTx4aMo1"
+    }
+  ],
+  "formula": "1d100",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": "Iz79q9G1Mzeygfuz",
+  "ownership": {
+    "default": 2,
+    "sb29LdJ2TZ8a4o0g": 3,
+    "TDjJpWtoCRIimJbB": 3,
+    "gaWoeXg7uJWoAsCP": 3,
+    "E1nZXRNcwWMtogk0": 3,
+    "kF9zOdNs2UiqaJVn": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.metanthropes.rollable-tables.RollTable.20FbVn8Ym4Nd9FGb",
+    "duplicateSource": null,
+    "coreVersion": "13.342",
+    "systemId": "metanthropes",
+    "systemVersion": "0.12.0",
+    "createdTime": 1736082813744,
+    "modifiedTime": 1736082813744,
+    "lastModifiedBy": "kF9zOdNs2UiqaJVn",
+    "exportSource": null
+  },
+  "_id": "z4Yf0BLg957bRJ07",
+  "sort": 0,
+  "_key": "!tables!z4Yf0BLg957bRJ07"
+}
