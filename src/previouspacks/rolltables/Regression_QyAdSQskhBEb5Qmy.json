@@ -1,0 +1,294 @@
+{
+  "name": "Regression",
+  "description": "<p>Roll d10 for a Random Regression</p>",
+  "results": [
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_id": "Je02FhGhz73op8i7",
+      "flags": {},
+      "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Anarchonism",
+      "name": "",
+      "_key": "!tables.results!QyAdSQskhBEb5Qmy.Je02FhGhz73op8i7"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_id": "KgZV2cgy9PIGuwSO",
+      "flags": {},
+      "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Artisan",
+      "name": "",
+      "_key": "!tables.results!QyAdSQskhBEb5Qmy.KgZV2cgy9PIGuwSO"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_id": "EjtKVvXh44CvAyMz",
+      "flags": {},
+      "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Beloveds",
+      "name": "",
+      "_key": "!tables.results!QyAdSQskhBEb5Qmy.EjtKVvXh44CvAyMz"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_id": "xCxicIgd6G0J8pb6",
+      "flags": {},
+      "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Consensus",
+      "name": "",
+      "_key": "!tables.results!QyAdSQskhBEb5Qmy.xCxicIgd6G0J8pb6"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_id": "Hk22NVtoFWU2cYL1",
+      "flags": {},
+      "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Disbelief",
+      "name": "",
+      "_key": "!tables.results!QyAdSQskhBEb5Qmy.Hk22NVtoFWU2cYL1"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_id": "jXZsEdT19Cw5EnNJ",
+      "flags": {},
+      "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Heritage",
+      "name": "",
+      "_key": "!tables.results!QyAdSQskhBEb5Qmy.jXZsEdT19Cw5EnNJ"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_id": "VyiRaVNYDua06IpR",
+      "flags": {},
+      "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Materialism",
+      "name": "",
+      "_key": "!tables.results!QyAdSQskhBEb5Qmy.VyiRaVNYDua06IpR"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_id": "25uF0sjZ1sZG82Jq",
+      "flags": {},
+      "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Overnthusiasm",
+      "name": "",
+      "_key": "!tables.results!QyAdSQskhBEb5Qmy.25uF0sjZ1sZG82Jq"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_id": "0evxSXM5VNkz8yZN",
+      "flags": {},
+      "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Persona",
+      "name": "",
+      "_key": "!tables.results!QyAdSQskhBEb5Qmy.0evxSXM5VNkz8yZN"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_id": "dxfeNqwQ8xLHKF1m",
+      "flags": {},
+      "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Suppressed",
+      "name": "",
+      "_key": "!tables.results!QyAdSQskhBEb5Qmy.dxfeNqwQ8xLHKF1m"
+    }
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "img": "systems/metanthropes/assets/logos/metanthropes-logo-rotating.gif",
+  "_id": "QyAdSQskhBEb5Qmy",
+  "folder": "rtz0diWbAzufQG7A",
+  "sort": 103125,
+  "ownership": {
+    "default": 2,
+    "OaMMdVPBuFh81lm0": 3,
+    "E1nZXRNcwWMtogk0": 3,
+    "kF9zOdNs2UiqaJVn": 3
+  },
+  "flags": {
+    "core": {}
+  },
+  "_stats": {
+    "compendiumSource": "RollTable.QyAdSQskhBEb5Qmy",
+    "duplicateSource": null,
+    "coreVersion": "13.342",
+    "systemId": "metanthropes",
+    "systemVersion": "0.12.0",
+    "createdTime": 1736082815596,
+    "modifiedTime": 1736082815596,
+    "lastModifiedBy": "kF9zOdNs2UiqaJVn",
+    "exportSource": null
+  },
+  "formula": "1d10",
+  "_key": "!tables!QyAdSQskhBEb5Qmy"
+}
