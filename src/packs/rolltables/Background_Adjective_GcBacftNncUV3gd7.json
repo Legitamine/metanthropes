@@ -4,7 +4,6 @@
   "results": [
     {
       "type": "text",
-      "text": "Addicted",
       "weight": 1,
       "range": [
         1,
@@ -12,14 +11,25 @@
       ],
       "drawn": false,
       "_id": "rjIypGOz11J5BYAg",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Addicted",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.rjIypGOz11J5BYAg"
     },
     {
       "type": "text",
-      "text": "Agreeable",
       "weight": 1,
       "range": [
         2,
@@ -27,14 +37,25 @@
       ],
       "drawn": false,
       "_id": "ZNj0GM7V5dKVsoFd",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Agreeable",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.ZNj0GM7V5dKVsoFd"
     },
     {
       "type": "text",
-      "text": "Aloof",
       "weight": 1,
       "range": [
         3,
@@ -42,14 +63,25 @@
       ],
       "drawn": false,
       "_id": "e6xgVJhIm2ziNOJi",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Aloof",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.e6xgVJhIm2ziNOJi"
     },
     {
       "type": "text",
-      "text": "Alternative",
       "weight": 1,
       "range": [
         4,
@@ -57,14 +89,25 @@
       ],
       "drawn": false,
       "_id": "vm4IP9O7sjBKwzdS",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Alternative",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.vm4IP9O7sjBKwzdS"
     },
     {
       "type": "text",
-      "text": "Always-late",
       "weight": 1,
       "range": [
         5,
@@ -72,14 +115,25 @@
       ],
       "drawn": false,
       "_id": "yjgOT8SCyJeiXblW",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Always-late",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.yjgOT8SCyJeiXblW"
     },
     {
       "type": "text",
-      "text": "Anarchic",
       "weight": 1,
       "range": [
         6,
@@ -87,14 +141,25 @@
       ],
       "drawn": false,
       "_id": "EcftP16U4tTcTbHc",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Anarchic",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.EcftP16U4tTcTbHc"
     },
     {
       "type": "text",
-      "text": "Beloved",
       "weight": 1,
       "range": [
         7,
@@ -102,14 +167,25 @@
       ],
       "drawn": false,
       "_id": "6BqVNr1P3PEhSy4T",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Beloved",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.6BqVNr1P3PEhSy4T"
     },
     {
       "type": "text",
-      "text": "Big Mouth",
       "weight": 1,
       "range": [
         8,
@@ -117,14 +193,25 @@
       ],
       "drawn": false,
       "_id": "nVVBh3XAPiFFQL0K",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Big Mouth",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.nVVBh3XAPiFFQL0K"
     },
     {
       "type": "text",
-      "text": "Bold",
       "weight": 1,
       "range": [
         9,
@@ -132,14 +219,25 @@
       ],
       "drawn": false,
       "_id": "W9mxjJjtc0yZs80O",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Bold",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.W9mxjJjtc0yZs80O"
     },
     {
       "type": "text",
-      "text": "Celebrity",
       "weight": 1,
       "range": [
         10,
@@ -147,14 +245,25 @@
       ],
       "drawn": false,
       "_id": "Dv1OON7NT5dcYaUs",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Celebrity",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.Dv1OON7NT5dcYaUs"
     },
     {
       "type": "text",
-      "text": "Charming",
       "weight": 1,
       "range": [
         11,
@@ -162,14 +271,25 @@
       ],
       "drawn": false,
       "_id": "8na7d5AKdNqH8A9s",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Charming",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.8na7d5AKdNqH8A9s"
     },
     {
       "type": "text",
-      "text": "Classy",
       "weight": 1,
       "range": [
         12,
@@ -177,14 +297,25 @@
       ],
       "drawn": false,
       "_id": "8j8OIHDbnZxvQHJ0",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Classy",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.8j8OIHDbnZxvQHJ0"
     },
     {
       "type": "text",
-      "text": "Content",
       "weight": 1,
       "range": [
         13,
@@ -192,14 +323,25 @@
       ],
       "drawn": false,
       "_id": "ulRu20x9sShn164j",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Content",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.ulRu20x9sShn164j"
     },
     {
       "type": "text",
-      "text": "Corrupt",
       "weight": 1,
       "range": [
         14,
@@ -207,14 +349,25 @@
       ],
       "drawn": false,
       "_id": "eqSSSlaumgQvgiJU",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Corrupt",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.eqSSSlaumgQvgiJU"
     },
     {
       "type": "text",
-      "text": "Craven",
       "weight": 1,
       "range": [
         15,
@@ -222,14 +375,25 @@
       ],
       "drawn": false,
       "_id": "bWk9qo4qYwdH06mp",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Craven",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.bWk9qo4qYwdH06mp"
     },
     {
       "type": "text",
-      "text": "Cunning",
       "weight": 1,
       "range": [
         16,
@@ -237,14 +401,25 @@
       ],
       "drawn": false,
       "_id": "5kBRUi4yEA9LpFnr",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Cunning",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.5kBRUi4yEA9LpFnr"
     },
     {
       "type": "text",
-      "text": "Curmudgeon",
       "weight": 1,
       "range": [
         17,
@@ -252,14 +427,25 @@
       ],
       "drawn": false,
       "_id": "bnpnduqUVjWJIYrT",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Curmudgeon",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.bnpnduqUVjWJIYrT"
     },
     {
       "type": "text",
-      "text": "Daffy",
       "weight": 1,
       "range": [
         18,
@@ -267,14 +453,25 @@
       ],
       "drawn": false,
       "_id": "dsOgVjnxglqVIDGm",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Daffy",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.dsOgVjnxglqVIDGm"
     },
     {
       "type": "text",
-      "text": "Daring",
       "weight": 1,
       "range": [
         19,
@@ -282,14 +479,25 @@
       ],
       "drawn": false,
       "_id": "SS4mipqzQabxPL4t",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Daring",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.SS4mipqzQabxPL4t"
     },
     {
       "type": "text",
-      "text": "Defiant",
       "weight": 1,
       "range": [
         20,
@@ -297,14 +505,25 @@
       ],
       "drawn": false,
       "_id": "tVC66ubyInv53wp1",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Defiant",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.tVC66ubyInv53wp1"
     },
     {
       "type": "text",
-      "text": "Delusional",
       "weight": 1,
       "range": [
         21,
@@ -312,14 +531,25 @@
       ],
       "drawn": false,
       "_id": "O6UxjGBJMdHcixxz",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Delusional",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.O6UxjGBJMdHcixxz"
     },
     {
       "type": "text",
-      "text": "Demoted",
       "weight": 1,
       "range": [
         22,
@@ -327,14 +557,25 @@
       ],
       "drawn": false,
       "_id": "kG10ca9sZP3UDPI5",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Demoted",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.kG10ca9sZP3UDPI5"
     },
     {
       "type": "text",
-      "text": "Depressed",
       "weight": 1,
       "range": [
         23,
@@ -342,14 +583,25 @@
       ],
       "drawn": false,
       "_id": "bf0GvVOqyOlRHpT7",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Depressed",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.bf0GvVOqyOlRHpT7"
     },
     {
       "type": "text",
-      "text": "Deranged",
       "weight": 1,
       "range": [
         24,
@@ -357,14 +609,25 @@
       ],
       "drawn": false,
       "_id": "lLYYllRwqrrl9LMT",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Deranged",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.lLYYllRwqrrl9LMT"
     },
     {
       "type": "text",
-      "text": "Determined",
       "weight": 1,
       "range": [
         25,
@@ -372,14 +635,25 @@
       ],
       "drawn": false,
       "_id": "UlzLq7uk42K4r7Eq",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Determined",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.UlzLq7uk42K4r7Eq"
     },
     {
       "type": "text",
-      "text": "Diplomatic",
       "weight": 1,
       "range": [
         26,
@@ -387,14 +661,25 @@
       ],
       "drawn": false,
       "_id": "UXxrTaZyQ5z5c50O",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Diplomatic",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.UXxrTaZyQ5z5c50O"
     },
     {
       "type": "text",
-      "text": "Discreet",
       "weight": 1,
       "range": [
         27,
@@ -402,14 +687,25 @@
       ],
       "drawn": false,
       "_id": "IZSPu3ncOCb2fmtz",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Discreet",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.IZSPu3ncOCb2fmtz"
     },
     {
       "type": "text",
-      "text": "Dispansable",
       "weight": 1,
       "range": [
         28,
@@ -417,14 +713,25 @@
       ],
       "drawn": false,
       "_id": "Yl0f4JaazCLbsJfJ",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Dispansable",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.Yl0f4JaazCLbsJfJ"
     },
     {
       "type": "text",
-      "text": "Easy-going",
       "weight": 1,
       "range": [
         29,
@@ -432,14 +739,25 @@
       ],
       "drawn": false,
       "_id": "oQzMjwKrfGEdDf8C",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Easy-going",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.oQzMjwKrfGEdDf8C"
     },
     {
       "type": "text",
-      "text": "Eccentric",
       "weight": 1,
       "range": [
         30,
@@ -447,14 +765,25 @@
       ],
       "drawn": false,
       "_id": "Cq5tFT4m7gGyCHWT",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Eccentric",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.Cq5tFT4m7gGyCHWT"
     },
     {
       "type": "text",
-      "text": "Enchanted",
       "weight": 1,
       "range": [
         31,
@@ -462,14 +791,25 @@
       ],
       "drawn": false,
       "_id": "zVcsg3rxErOhxm3a",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Enchanted",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.zVcsg3rxErOhxm3a"
     },
     {
       "type": "text",
-      "text": "Enigmatic",
       "weight": 1,
       "range": [
         32,
@@ -477,14 +817,25 @@
       ],
       "drawn": false,
       "_id": "DvGsULZgDmE4EgUw",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Enigmatic",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.DvGsULZgDmE4EgUw"
     },
     {
       "type": "text",
-      "text": "Esteemed",
       "weight": 1,
       "range": [
         33,
@@ -492,14 +843,25 @@
       ],
       "drawn": false,
       "_id": "B2zbN6jWCr00hMSp",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Esteemed",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.B2zbN6jWCr00hMSp"
     },
     {
       "type": "text",
-      "text": "Faithless",
       "weight": 1,
       "range": [
         34,
@@ -507,14 +869,25 @@
       ],
       "drawn": false,
       "_id": "g7XbDCENJ2FLelrZ",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Faithless",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.g7XbDCENJ2FLelrZ"
     },
     {
       "type": "text",
-      "text": "Fanatical",
       "weight": 1,
       "range": [
         35,
@@ -522,14 +895,25 @@
       ],
       "drawn": false,
       "_id": "VGH88IZruY59RZ9W",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Fanatical",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.VGH88IZruY59RZ9W"
     },
     {
       "type": "text",
-      "text": "Frail",
       "weight": 1,
       "range": [
         36,
@@ -537,14 +921,25 @@
       ],
       "drawn": false,
       "_id": "1SNRYG4v2N4nIBkg",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Frail",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.1SNRYG4v2N4nIBkg"
     },
     {
       "type": "text",
-      "text": "Friendly",
       "weight": 1,
       "range": [
         37,
@@ -552,14 +947,25 @@
       ],
       "drawn": false,
       "_id": "4XLdsos0RV03ZwXp",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Friendly",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.4XLdsos0RV03ZwXp"
     },
     {
       "type": "text",
-      "text": "Glamourous",
       "weight": 1,
       "range": [
         38,
@@ -567,14 +973,25 @@
       ],
       "drawn": false,
       "_id": "RZOeHZgue8K0hWZr",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Glamourous",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.RZOeHZgue8K0hWZr"
     },
     {
       "type": "text",
-      "text": "Hectic",
       "weight": 1,
       "range": [
         39,
@@ -582,14 +999,25 @@
       ],
       "drawn": false,
       "_id": "xmBE95RAbMmSjg82",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Hectic",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.xmBE95RAbMmSjg82"
     },
     {
       "type": "text",
-      "text": "Hotshot",
       "weight": 1,
       "range": [
         40,
@@ -597,14 +1025,25 @@
       ],
       "drawn": false,
       "_id": "MRgX2p09L6go8y5v",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Hotshot",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.MRgX2p09L6go8y5v"
     },
     {
       "type": "text",
-      "text": "Husky",
       "weight": 1,
       "range": [
         41,
@@ -612,14 +1051,25 @@
       ],
       "drawn": false,
       "_id": "4erTiC2zWhbMB0vO",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Husky",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.4erTiC2zWhbMB0vO"
     },
     {
       "type": "text",
-      "text": "Hyped-up",
       "weight": 1,
       "range": [
         42,
@@ -627,14 +1077,25 @@
       ],
       "drawn": false,
       "_id": "iklRbOaeBt30Djjz",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Hyped-up",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.iklRbOaeBt30Djjz"
     },
     {
       "type": "text",
-      "text": "Indipendant",
       "weight": 1,
       "range": [
         43,
@@ -642,14 +1103,25 @@
       ],
       "drawn": false,
       "_id": "NOavCbK4rzWgOMRO",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Indipendant",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.NOavCbK4rzWgOMRO"
     },
     {
       "type": "text",
-      "text": "Innocent",
       "weight": 1,
       "range": [
         44,
@@ -657,14 +1129,25 @@
       ],
       "drawn": false,
       "_id": "IMBZyNqG2SLED7NR",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Innocent",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.IMBZyNqG2SLED7NR"
     },
     {
       "type": "text",
-      "text": "Innovative",
       "weight": 1,
       "range": [
         45,
@@ -672,14 +1155,25 @@
       ],
       "drawn": false,
       "_id": "VmWTRLIxOAnt6PVy",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Innovative",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.VmWTRLIxOAnt6PVy"
     },
     {
       "type": "text",
-      "text": "Insomniac",
       "weight": 1,
       "range": [
         46,
@@ -687,14 +1181,25 @@
       ],
       "drawn": false,
       "_id": "ptJn8ZYLivuEoQxJ",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Insomniac",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.ptJn8ZYLivuEoQxJ"
     },
     {
       "type": "text",
-      "text": "Just",
       "weight": 1,
       "range": [
         47,
@@ -702,14 +1207,25 @@
       ],
       "drawn": false,
       "_id": "KsYyIedDQZkknpty",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Just",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.KsYyIedDQZkknpty"
     },
     {
       "type": "text",
-      "text": "Kind",
       "weight": 1,
       "range": [
         48,
@@ -717,14 +1233,25 @@
       ],
       "drawn": false,
       "_id": "oJ18Op1mtPaZondV",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Kind",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.oJ18Op1mtPaZondV"
     },
     {
       "type": "text",
-      "text": "Likeable",
       "weight": 1,
       "range": [
         49,
@@ -732,14 +1259,25 @@
       ],
       "drawn": false,
       "_id": "rj4y2Xh4GYZFVRX4",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Likeable",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.rj4y2Xh4GYZFVRX4"
     },
     {
       "type": "text",
-      "text": "Logical",
       "weight": 1,
       "range": [
         50,
@@ -747,14 +1285,25 @@
       ],
       "drawn": false,
       "_id": "7KJc4By8ih8NHqlf",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Logical",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.7KJc4By8ih8NHqlf"
     },
     {
       "type": "text",
-      "text": "Lost",
       "weight": 1,
       "range": [
         51,
@@ -762,14 +1311,25 @@
       ],
       "drawn": false,
       "_id": "UHpkwj5fdzOtpXqN",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Lost",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.UHpkwj5fdzOtpXqN"
     },
     {
       "type": "text",
-      "text": "Mean",
       "weight": 1,
       "range": [
         52,
@@ -777,14 +1337,25 @@
       ],
       "drawn": false,
       "_id": "K0TaUgEnypBo8ebO",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Mean",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.K0TaUgEnypBo8ebO"
     },
     {
       "type": "text",
-      "text": "Moody",
       "weight": 1,
       "range": [
         53,
@@ -792,14 +1363,25 @@
       ],
       "drawn": false,
       "_id": "HAx7QLJ0T3pytk7c",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Moody",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.HAx7QLJ0T3pytk7c"
     },
     {
       "type": "text",
-      "text": "Mysterious",
       "weight": 1,
       "range": [
         54,
@@ -807,14 +1389,25 @@
       ],
       "drawn": false,
       "_id": "akudQTZ0gd08pGe2",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Mysterious",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.akudQTZ0gd08pGe2"
     },
     {
       "type": "text",
-      "text": "Naïve",
       "weight": 1,
       "range": [
         55,
@@ -822,14 +1415,25 @@
       ],
       "drawn": false,
       "_id": "eLsefRQj1ZpuV3cN",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Naïve",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.eLsefRQj1ZpuV3cN"
     },
     {
       "type": "text",
-      "text": "Obscured",
       "weight": 1,
       "range": [
         56,
@@ -837,14 +1441,25 @@
       ],
       "drawn": false,
       "_id": "W7NXWuQWO5flqVUV",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Obscured",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.W7NXWuQWO5flqVUV"
     },
     {
       "type": "text",
-      "text": "Obsessed",
       "weight": 1,
       "range": [
         57,
@@ -852,14 +1467,25 @@
       ],
       "drawn": false,
       "_id": "2wV4KMMZ9Sl8D9Rx",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Obsessed",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.2wV4KMMZ9Sl8D9Rx"
     },
     {
       "type": "text",
-      "text": "Obsolete",
       "weight": 1,
       "range": [
         58,
@@ -867,14 +1493,25 @@
       ],
       "drawn": false,
       "_id": "o2qcT2bZZhtkWkjf",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Obsolete",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.o2qcT2bZZhtkWkjf"
     },
     {
       "type": "text",
-      "text": "Odd",
       "weight": 1,
       "range": [
         59,
@@ -882,14 +1519,25 @@
       ],
       "drawn": false,
       "_id": "Dna6ghl4jZPGTIXv",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Odd",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.Dna6ghl4jZPGTIXv"
     },
     {
       "type": "text",
-      "text": "Open-Minded",
       "weight": 1,
       "range": [
         60,
@@ -897,14 +1545,25 @@
       ],
       "drawn": false,
       "_id": "cfncB7STuv16tGhy",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Open-Minded",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.cfncB7STuv16tGhy"
     },
     {
       "type": "text",
-      "text": "Outlaw",
       "weight": 1,
       "range": [
         61,
@@ -912,14 +1571,25 @@
       ],
       "drawn": false,
       "_id": "8fAX8JnekHqT20nC",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Outlaw",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.8fAX8JnekHqT20nC"
     },
     {
       "type": "text",
-      "text": "Paranoid",
       "weight": 1,
       "range": [
         62,
@@ -927,14 +1597,25 @@
       ],
       "drawn": false,
       "_id": "uL0RJ3lYYLb9T9a0",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Paranoid",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.uL0RJ3lYYLb9T9a0"
     },
     {
       "type": "text",
-      "text": "Patient",
       "weight": 1,
       "range": [
         63,
@@ -942,14 +1623,25 @@
       ],
       "drawn": false,
       "_id": "YcQSzLv6UiotUtXz",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Patient",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.YcQSzLv6UiotUtXz"
     },
     {
       "type": "text",
-      "text": "Peaceful",
       "weight": 1,
       "range": [
         64,
@@ -957,14 +1649,25 @@
       ],
       "drawn": false,
       "_id": "FTFtxiZTRqfWPGe7",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Peaceful",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.FTFtxiZTRqfWPGe7"
     },
     {
       "type": "text",
-      "text": "Political",
       "weight": 1,
       "range": [
         65,
@@ -972,14 +1675,25 @@
       ],
       "drawn": false,
       "_id": "bhQJxCoj05KoPXeb",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Political",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.bhQJxCoj05KoPXeb"
     },
     {
       "type": "text",
-      "text": "Possessive",
       "weight": 1,
       "range": [
         66,
@@ -987,14 +1701,25 @@
       ],
       "drawn": false,
       "_id": "bRh6Zvdt5NgTamh0",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Possessive",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.bRh6Zvdt5NgTamh0"
     },
     {
       "type": "text",
-      "text": "Pragmatic",
       "weight": 1,
       "range": [
         67,
@@ -1002,14 +1727,25 @@
       ],
       "drawn": false,
       "_id": "UJbyEPmNYjogh88J",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Pragmatic",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.UJbyEPmNYjogh88J"
     },
     {
       "type": "text",
-      "text": "Promoted",
       "weight": 1,
       "range": [
         68,
@@ -1017,14 +1753,25 @@
       ],
       "drawn": false,
       "_id": "mTqw6IvxOcimctGq",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Promoted",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.mTqw6IvxOcimctGq"
     },
     {
       "type": "text",
-      "text": "Prude",
       "weight": 1,
       "range": [
         69,
@@ -1032,14 +1779,25 @@
       ],
       "drawn": false,
       "_id": "WmcTXhPRIqnsJMnF",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Prude",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.WmcTXhPRIqnsJMnF"
     },
     {
       "type": "text",
-      "text": "Puzzled",
       "weight": 1,
       "range": [
         70,
@@ -1047,14 +1805,25 @@
       ],
       "drawn": false,
       "_id": "1JASJ3VTTNDeNYbA",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Puzzled",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.1JASJ3VTTNDeNYbA"
     },
     {
       "type": "text",
-      "text": "Ranked",
       "weight": 1,
       "range": [
         71,
@@ -1062,14 +1831,25 @@
       ],
       "drawn": false,
       "_id": "m0CTUAldg9ADGVQF",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Ranked",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.m0CTUAldg9ADGVQF"
     },
     {
       "type": "text",
-      "text": "Recovering",
       "weight": 1,
       "range": [
         72,
@@ -1077,14 +1857,25 @@
       ],
       "drawn": false,
       "_id": "99hdK8sJHIE8jWYe",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Recovering",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.99hdK8sJHIE8jWYe"
     },
     {
       "type": "text",
-      "text": "Reknown",
       "weight": 1,
       "range": [
         73,
@@ -1092,14 +1883,25 @@
       ],
       "drawn": false,
       "_id": "rp6YewPNQ6C6xDws",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Reknown",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.rp6YewPNQ6C6xDws"
     },
     {
       "type": "text",
-      "text": "Reluctant",
       "weight": 1,
       "range": [
         74,
@@ -1107,14 +1909,25 @@
       ],
       "drawn": false,
       "_id": "bPTAY6vPw4BYhMzI",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Reluctant",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.bPTAY6vPw4BYhMzI"
     },
     {
       "type": "text",
-      "text": "Renegate",
       "weight": 1,
       "range": [
         75,
@@ -1122,14 +1935,25 @@
       ],
       "drawn": false,
       "_id": "Z8QuqnOVZYThV78k",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Renegate",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.Z8QuqnOVZYThV78k"
     },
     {
       "type": "text",
-      "text": "Restless",
       "weight": 1,
       "range": [
         76,
@@ -1137,14 +1961,25 @@
       ],
       "drawn": false,
       "_id": "RYRS4HS8AOiMyYrR",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Restless",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.RYRS4HS8AOiMyYrR"
     },
     {
       "type": "text",
-      "text": "Revered",
       "weight": 1,
       "range": [
         77,
@@ -1152,14 +1987,25 @@
       ],
       "drawn": false,
       "_id": "G4JKci0sX8hOMOUu",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Revered",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.G4JKci0sX8hOMOUu"
     },
     {
       "type": "text",
-      "text": "Robust",
       "weight": 1,
       "range": [
         78,
@@ -1167,14 +2013,25 @@
       ],
       "drawn": false,
       "_id": "3uHjKeBhcYsnPbEI",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Robust",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.3uHjKeBhcYsnPbEI"
     },
     {
       "type": "text",
-      "text": "Runaway",
       "weight": 1,
       "range": [
         79,
@@ -1182,14 +2039,25 @@
       ],
       "drawn": false,
       "_id": "8UT8YtzGtQfljB77",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Runaway",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.8UT8YtzGtQfljB77"
     },
     {
       "type": "text",
-      "text": "Ruthless",
       "weight": 1,
       "range": [
         80,
@@ -1197,14 +2065,25 @@
       ],
       "drawn": false,
       "_id": "SrlveX25y1Mh8U2l",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Ruthless",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.SrlveX25y1Mh8U2l"
     },
     {
       "type": "text",
-      "text": "Sassy",
       "weight": 1,
       "range": [
         81,
@@ -1212,14 +2091,25 @@
       ],
       "drawn": false,
       "_id": "tubckuUScrNkATWl",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Sassy",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.tubckuUScrNkATWl"
     },
     {
       "type": "text",
-      "text": "Scholastic",
       "weight": 1,
       "range": [
         82,
@@ -1227,14 +2117,25 @@
       ],
       "drawn": false,
       "_id": "zEequhs94cmVrOtq",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Scholastic",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.zEequhs94cmVrOtq"
     },
     {
       "type": "text",
-      "text": "Sensitive",
       "weight": 1,
       "range": [
         83,
@@ -1242,14 +2143,25 @@
       ],
       "drawn": false,
       "_id": "llLSLioSM6iLjLsI",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Sensitive",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.llLSLioSM6iLjLsI"
     },
     {
       "type": "text",
-      "text": "Short-Fused",
       "weight": 1,
       "range": [
         84,
@@ -1257,14 +2169,25 @@
       ],
       "drawn": false,
       "_id": "ks3ljvlC7DVba9j0",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Short-Fused",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.ks3ljvlC7DVba9j0"
     },
     {
       "type": "text",
-      "text": "Simplistic",
       "weight": 1,
       "range": [
         85,
@@ -1272,14 +2195,25 @@
       ],
       "drawn": false,
       "_id": "SeTi9mpJGs4GporI",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Simplistic",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.SeTi9mpJGs4GporI"
     },
     {
       "type": "text",
-      "text": "Sneaky",
       "weight": 1,
       "range": [
         86,
@@ -1287,14 +2221,25 @@
       ],
       "drawn": false,
       "_id": "kVtjBrD9aN9NAfRr",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Sneaky",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.kVtjBrD9aN9NAfRr"
     },
     {
       "type": "text",
-      "text": "Social",
       "weight": 1,
       "range": [
         87,
@@ -1302,14 +2247,25 @@
       ],
       "drawn": false,
       "_id": "ba8dWpNfGeFNyLJH",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Social",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.ba8dWpNfGeFNyLJH"
     },
     {
       "type": "text",
-      "text": "Stubborn",
       "weight": 1,
       "range": [
         88,
@@ -1317,14 +2273,25 @@
       ],
       "drawn": false,
       "_id": "hp1EcEjj3zWHaEJa",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Stubborn",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.hp1EcEjj3zWHaEJa"
     },
     {
       "type": "text",
-      "text": "Trailblazer",
       "weight": 1,
       "range": [
         89,
@@ -1332,14 +2299,25 @@
       ],
       "drawn": false,
       "_id": "HU6ByfGQLlZl8l3q",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Trailblazer",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.HU6ByfGQLlZl8l3q"
     },
     {
       "type": "text",
-      "text": "Troubled",
       "weight": 1,
       "range": [
         90,
@@ -1347,14 +2325,25 @@
       ],
       "drawn": false,
       "_id": "spcU0a6tqNyvcJ14",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Troubled",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.spcU0a6tqNyvcJ14"
     },
     {
       "type": "text",
-      "text": "Trusted",
       "weight": 1,
       "range": [
         91,
@@ -1362,14 +2351,25 @@
       ],
       "drawn": false,
       "_id": "7Ysdl0QSf1c0WFu2",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Trusted",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.7Ysdl0QSf1c0WFu2"
     },
     {
       "type": "text",
-      "text": "Univocal",
       "weight": 1,
       "range": [
         92,
@@ -1377,14 +2377,25 @@
       ],
       "drawn": false,
       "_id": "Qk6acnN8DWrhC4yq",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Univocal",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.Qk6acnN8DWrhC4yq"
     },
     {
       "type": "text",
-      "text": "Unknown",
       "weight": 1,
       "range": [
         93,
@@ -1392,14 +2403,25 @@
       ],
       "drawn": false,
       "_id": "y4GOFxuynlclKmnu",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Unknown",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.y4GOFxuynlclKmnu"
     },
     {
       "type": "text",
-      "text": "Untidy",
       "weight": 1,
       "range": [
         94,
@@ -1407,14 +2429,25 @@
       ],
       "drawn": false,
       "_id": "Ak4zmbAKUw8cVKwg",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Untidy",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.Ak4zmbAKUw8cVKwg"
     },
     {
       "type": "text",
-      "text": "Voluptuous",
       "weight": 1,
       "range": [
         95,
@@ -1422,14 +2455,25 @@
       ],
       "drawn": false,
       "_id": "w4CQEZWzocP9FIry",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Voluptuous",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.w4CQEZWzocP9FIry"
     },
     {
       "type": "text",
-      "text": "Weary",
       "weight": 1,
       "range": [
         96,
@@ -1437,14 +2481,25 @@
       ],
       "drawn": false,
       "_id": "SPCRgnwM4afIU8Vf",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Weary",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.SPCRgnwM4afIU8Vf"
     },
     {
       "type": "text",
-      "text": "Well-Spoken",
       "weight": 1,
       "range": [
         97,
@@ -1452,14 +2507,25 @@
       ],
       "drawn": false,
       "_id": "7qDFK13h5PF0JJ2q",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Well-Spoken",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.7qDFK13h5PF0JJ2q"
     },
     {
       "type": "text",
-      "text": "Wishful",
       "weight": 1,
       "range": [
         98,
@@ -1467,14 +2533,25 @@
       ],
       "drawn": false,
       "_id": "y7VHewxsP4qBL4Jy",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Wishful",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.y7VHewxsP4qBL4Jy"
     },
     {
       "type": "text",
-      "text": "Wistful",
       "weight": 1,
       "range": [
         99,
@@ -1482,14 +2559,25 @@
       ],
       "drawn": false,
       "_id": "ZSyuWF0rwoGTRfZ1",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Wistful",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.ZSyuWF0rwoGTRfZ1"
     },
     {
       "type": "text",
-      "text": "Wrathful",
       "weight": 1,
       "range": [
         100,
@@ -1497,9 +2585,21 @@
       ],
       "drawn": false,
       "_id": "OrjZJ5q8wLFqzqIO",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/artwork/ui/dice/d100-squared.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Wrathful",
+      "name": "",
       "_key": "!tables.results!GcBacftNncUV3gd7.OrjZJ5q8wLFqzqIO"
     }
   ],
@@ -1516,19 +2616,18 @@
     "kF9zOdNs2UiqaJVn": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "RollTable.GcBacftNncUV3gd7"
-    }
+    "core": {}
   },
   "_stats": {
     "compendiumSource": "RollTable.GcBacftNncUV3gd7",
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.342",
     "systemId": "metanthropes",
     "systemVersion": "0.12.0",
     "createdTime": 1736082815596,
     "modifiedTime": 1736082815596,
-    "lastModifiedBy": "kF9zOdNs2UiqaJVn"
+    "lastModifiedBy": "kF9zOdNs2UiqaJVn",
+    "exportSource": null
   },
   "formula": "1d100",
   "_key": "!tables!GcBacftNncUV3gd7"

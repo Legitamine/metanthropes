@@ -4,7 +4,6 @@
   "results": [
     {
       "type": "text",
-      "text": "Anarchonism",
       "weight": 1,
       "range": [
         1,
@@ -12,14 +11,25 @@
       ],
       "drawn": false,
       "_id": "Je02FhGhz73op8i7",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Anarchonism",
+      "name": "",
       "_key": "!tables.results!QyAdSQskhBEb5Qmy.Je02FhGhz73op8i7"
     },
     {
       "type": "text",
-      "text": "Artisan",
       "weight": 1,
       "range": [
         2,
@@ -27,14 +37,25 @@
       ],
       "drawn": false,
       "_id": "KgZV2cgy9PIGuwSO",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Artisan",
+      "name": "",
       "_key": "!tables.results!QyAdSQskhBEb5Qmy.KgZV2cgy9PIGuwSO"
     },
     {
       "type": "text",
-      "text": "Beloveds",
       "weight": 1,
       "range": [
         3,
@@ -42,14 +63,25 @@
       ],
       "drawn": false,
       "_id": "EjtKVvXh44CvAyMz",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Beloveds",
+      "name": "",
       "_key": "!tables.results!QyAdSQskhBEb5Qmy.EjtKVvXh44CvAyMz"
     },
     {
       "type": "text",
-      "text": "Consensus",
       "weight": 1,
       "range": [
         4,
@@ -57,14 +89,25 @@
       ],
       "drawn": false,
       "_id": "xCxicIgd6G0J8pb6",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Consensus",
+      "name": "",
       "_key": "!tables.results!QyAdSQskhBEb5Qmy.xCxicIgd6G0J8pb6"
     },
     {
       "type": "text",
-      "text": "Disbelief",
       "weight": 1,
       "range": [
         5,
@@ -72,14 +115,25 @@
       ],
       "drawn": false,
       "_id": "Hk22NVtoFWU2cYL1",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Disbelief",
+      "name": "",
       "_key": "!tables.results!QyAdSQskhBEb5Qmy.Hk22NVtoFWU2cYL1"
     },
     {
       "type": "text",
-      "text": "Heritage",
       "weight": 1,
       "range": [
         6,
@@ -87,14 +141,25 @@
       ],
       "drawn": false,
       "_id": "jXZsEdT19Cw5EnNJ",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Heritage",
+      "name": "",
       "_key": "!tables.results!QyAdSQskhBEb5Qmy.jXZsEdT19Cw5EnNJ"
     },
     {
       "type": "text",
-      "text": "Materialism",
       "weight": 1,
       "range": [
         7,
@@ -102,14 +167,25 @@
       ],
       "drawn": false,
       "_id": "VyiRaVNYDua06IpR",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Materialism",
+      "name": "",
       "_key": "!tables.results!QyAdSQskhBEb5Qmy.VyiRaVNYDua06IpR"
     },
     {
       "type": "text",
-      "text": "Overnthusiasm",
       "weight": 1,
       "range": [
         8,
@@ -117,14 +193,25 @@
       ],
       "drawn": false,
       "_id": "25uF0sjZ1sZG82Jq",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Overnthusiasm",
+      "name": "",
       "_key": "!tables.results!QyAdSQskhBEb5Qmy.25uF0sjZ1sZG82Jq"
     },
     {
       "type": "text",
-      "text": "Persona",
       "weight": 1,
       "range": [
         9,
@@ -132,14 +219,25 @@
       ],
       "drawn": false,
       "_id": "0evxSXM5VNkz8yZN",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Persona",
+      "name": "",
       "_key": "!tables.results!QyAdSQskhBEb5Qmy.0evxSXM5VNkz8yZN"
     },
     {
       "type": "text",
-      "text": "Suppressed",
       "weight": 1,
       "range": [
         10,
@@ -147,9 +245,21 @@
       ],
       "drawn": false,
       "_id": "dxfeNqwQ8xLHKF1m",
-      "documentId": null,
       "flags": {},
       "img": "systems/metanthropes/assets/logos/Metanthropes-Black-Transparent.webp",
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Suppressed",
+      "name": "",
       "_key": "!tables.results!QyAdSQskhBEb5Qmy.dxfeNqwQ8xLHKF1m"
     }
   ],
@@ -166,19 +276,18 @@
     "kF9zOdNs2UiqaJVn": 3
   },
   "flags": {
-    "core": {
-      "sourceId": "RollTable.QyAdSQskhBEb5Qmy"
-    }
+    "core": {}
   },
   "_stats": {
     "compendiumSource": "RollTable.QyAdSQskhBEb5Qmy",
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "13.342",
     "systemId": "metanthropes",
     "systemVersion": "0.12.0",
     "createdTime": 1736082815596,
     "modifiedTime": 1736082815596,
-    "lastModifiedBy": "kF9zOdNs2UiqaJVn"
+    "lastModifiedBy": "kF9zOdNs2UiqaJVn",
+    "exportSource": null
   },
   "formula": "1d10",
   "_key": "!tables!QyAdSQskhBEb5Qmy"
