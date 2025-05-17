@@ -1082,7 +1082,7 @@
 					"Durability": {
 						"type": "number",
 						"dtype": "Number",
-						"label": "🧱 🤍",
+						"label": "🧱 <i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i>",
 						"value": "10"
 					},
 					"Size": {
