@@ -7,7 +7,7 @@
 				<h3>{{system.secret-notes-narrator.label}}</h3>
 			</div>
 			<div class="layout-editor style-editor">
-				{{editor system.secret-notes-narrator.value target="system.secret-notes-narrator.value" button=true editable=true}}
+				{{editor system.secret-notes-narrator.value target="system.secret-notes-narrator.value" engine="prosemirror" button=true editable=true}}
 			</div>
 		</div>
 	{{/if}}
@@ -23,7 +23,7 @@
 				{{/if}}
 				{{#if coreFeatures}}
 					<button class="progression-form" data-tooltip="Progress {{actor.type}}">Progress
-						📈</button>
+						<i class="fa-sharp-duotone fa-solid fa-chart-line-up"></i></button>
 				{{/if}}
 				{{#if isNarrator}}
 					<button class="assign-actor-player"
@@ -38,7 +38,7 @@
 		<div class="layout-container-summary layout-tab-summary-prime style-container-summary">
 			<div class="resource-label"
 				data-tooltip="Each Metanthrope Character begins the game with one level in their first Metapower, called Prime Metapower. No other additional Metapower unlocked can be higher-level than the level of the Prime Metapower. The Classification and the Energy type of the Protagonist's Prime Metapower will influence the Experience cost of unlocking and advancing other Metapowers">
-				Prime Ⓜ️ Metapower: <span
+				Prime <i class="fa-kit fa-metanthropes"></i> Metapower: <span
 					class="resource">{{system.entermeta.primemetapower.value}}</span>
 			</div>
 			<div class="resource-label" data-tooltip="{{system.entermeta.metamorphosis.title}}">
@@ -136,7 +136,7 @@
 			<h3>{{system.physical.Description.label}}</h3>
 		</div>
 		<div class="layout-editor style-editor">
-			{{editor system.physical.Description.value target="system.physical.Description.value" button=true editable=true}}
+			{{editor system.physical.Description.value target="system.physical.Description.value" engine="prosemirror" button=true editable=true}}
 		</div>
 	</div>
 	{{! -- NOTE: ONLY PROTAGONISTS HAVE THE EXTRA FIELDS HERE -- }}
@@ -148,7 +148,7 @@
 					<h3>{{system.notes-narrator.label}}</h3>
 				</div>
 				<div class="layout-editor style-editor">
-					{{editor system.notes-narrator.value target="system.notes-narrator.value" button=true editable=true}}
+					{{editor system.notes-narrator.value target="system.notes-narrator.value" engine="prosemirror" button=true editable=true}}
 				</div>
 			</div>
 		{{else}}
@@ -157,7 +157,7 @@
 					<h3>{{system.notes-narrator.label}}</h3>
 				</div>
 				<div class="layout-editor style-editor">
-					{{editor system.notes-narrator.value target="system.notes-narrator.value" button=true editable=false}}
+					{{editor system.notes-narrator.value target="system.notes-narrator.value" engine="prosemirror" button=true editable=false}}
 				</div>
 			</div>
 		{{/if}}
@@ -167,7 +167,7 @@
 				<h3>{{system.notes-protagonist.label}}</h3>
 			</div>
 			<div class="layout-editor style-editor">
-				{{editor system.notes-protagonist.value target="system.notes-protagonist.value" button=true editable=true}}
+				{{editor system.notes-protagonist.value target="system.notes-protagonist.value" engine="prosemirror" button=true editable=true}}
 			</div>
 		</div>
 		{{! -- Saga Notes Section --}}
@@ -176,7 +176,7 @@
 				<h3>{{system.entermeta.sagaNotes.label}}</h3>
 			</div>
 			<div class="layout-editor style-editor">
-				{{editor system.entermeta.sagaNotes.value target="system.entermeta.sagaNotes.value" button=true editable=true}}
+				{{editor system.entermeta.sagaNotes.value target="system.entermeta.sagaNotes.value" engine="prosemirror" button=true editable=true}}
 			</div>
 		</div>
 		{{! -- Coalition Notes Section --}}
@@ -185,7 +185,7 @@
 				<h3>{{system.entermeta.coalitionNotes.label}}</h3>
 			</div>
 			<div class="layout-editor style-editor">
-				{{editor system.entermeta.coalitionNotes.value target="system.entermeta.coalitionNotes.value" button=true editable=true}}
+				{{editor system.entermeta.coalitionNotes.value target="system.entermeta.coalitionNotes.value" engine="prosemirror" button=true editable=true}}
 			</div>
 		</div>
 	{{/if}}

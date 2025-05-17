@@ -5,9 +5,15 @@ on:
             - main
 jobs:
     build:
-        name: Metanthropes Automated Builder
+        name: Metanthropes System Release Builder
         runs-on: ubuntu-latest
         steps:
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+            - name: Install SCSS Compiler
+              run: npm install -g sass
             - name: Checkout the master branch
               uses: actions/checkout@v3
             - name: Get Product Name
@@ -55,12 +61,17 @@ jobs:
                   echo "Contents of Data directory post packaging"
                   dir /home/runner/work/${{steps.id.outputs.prop}}/Data
                   echo "Finished packaging Compendiums"
+            - name: Compile SCSS to CSS
+              run: |
+                  sass scss/metanthropes.scss styles/metanthropes.css
+                  sass scss/themes/theme-light.scss styles/metanthropes-light.css
+                  sass scss/themes/theme-dark.scss styles/metanthropes-dark.css
             - name: Zip the compiled files
-              uses: thedoctor0/zip-release@0.7.1
+              uses: thedoctor0/zip-release@0.7.6
               with:
                   type: "zip"
                   filename: "${{steps.id.outputs.prop}}.zip"
-                  exclusions: "*.git* /*node_modules/* /*.vscode/* .npmignore .nvmrc gulpfile.js package-lock.json package.json /src/* /scss/* /sass/* /*.cmd/*"
+                  exclusions: "*.git* /*node_modules/* /*.vscode/* *.npmignore *.nvmrc gulpfile.js package-lock.json package.json /src/* /scss/* /sass/* /*.cmd/* *.yaml *.d.ts"
             - name: Create GitHub Release
               uses: softprops/action-gh-release@v1
               with:

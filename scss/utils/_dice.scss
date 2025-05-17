@@ -1,0 +1,19 @@
+//the below two will change the default D20 in the initiative tracker icon to our custom dice
+.combat-sidebar li.combatant .roll {
+	display: block;
+	width: 40px;
+	height: var(--sidebar-item-height);
+	background: url("../assets/artwork/ui/dice/d100roll-white.webp") no-repeat 50% 50%;
+	background-size: 42px;
+	margin: 0 0.5em;
+}
+.combat-sidebar li.combatant .roll:hover {
+	background-image: url("../assets/artwork/ui/dice/d100roll-white-selected.webp");
+}
+//* Change all fa-d20 to d10
+//? suggested by mana from discord
+.far.fa-dice-d20:before,
+.fa-solid.fa-dice-d20:before,
+.fas.fa-dice-d20:before {
+	content: "\f6cd";
+}

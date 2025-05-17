@@ -3,26 +3,26 @@
 		<details open>
 			<summary>
 				<li class="item-list flexrow items-header">
-					<div class="item-name" data-tooltip="Metapower Level">⏫: {{metapowerLevel}}</div>
+					<div class="item-name" data-tooltip="Metapower Level"><i class="fa-sharp-duotone fa-solid fa-layer-group"></i>: {{metapowerLevel}}</div>
 					<div class="item-statroll meta-ui-responsive meta-ui-hide-at-minimum"
-						data-tooltip="Stat Rolled to activate this Metapower">🎲</div>
+						data-tooltip="Stat Rolled to activate this Metapower"><i class="fa-sharp-duotone fa-solid fa-dice-d10"></i></div>
 					<div class="item-vsroll meta-ui-responsive meta-ui-extra-fields"
-						data-tooltip="Stat Rolled against activating this Metapower">🆚</div>
+						data-tooltip="Stat Rolled against activating this Metapower"><i class="fa-sharp-duotone fa-solid fa-swords"></i></div>
 					<div class="item-destinycost meta-ui-responsive meta-ui-extra-fields"
-						data-tooltip="Destiny Cost to activate this Metapower">🤞</div>
+						data-tooltip="Destiny Cost to activate this Metapower"><i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i></div>
 					<div class="item-actionslot meta-ui-responsive meta-ui-hide-at-minimum"
-						data-tooltip="Which part of my turn does it take to activate this Metapower">⏱</div>
+						data-tooltip="Which part of my turn does it take to activate this Metapower"><i class="fa-sharp-duotone fa-solid fa-stopwatch"></i></div>
 					<div class="item-targets meta-ui-responsive meta-ui-hide-at-medium"
-						data-tooltip="The Number of Targets of this Metapower">🎯</div>
+						data-tooltip="The Number of Targets of this Metapower"><i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i></div>
 					<div class="item-duration meta-ui-responsive meta-ui-hide-at-medium"
-						data-tooltip="The Duration of this Metapower">⏳</div>
+						data-tooltip="The Duration of this Metapower"><i class="fa-sharp-duotone fa-solid fa-hourglass-start"></i></div>
 					<div class="item-range meta-ui-responsive meta-ui-extra-fields"
-						data-tooltip="The Range of this Metapower">📏</div>
+						data-tooltip="The Range of this Metapower"><i class="fa-sharp-duotone fa-solid fa-ruler"></i></div>
 					<div class="item-area meta-ui-responsive meta-ui-extra-fields"
-						data-tooltip="The Area of Effect Range of this Metapower">🗺️</div>
+						data-tooltip="The Area of Effect Range of this Metapower"><i class="fa-sharp-duotone fa-solid fa-hexagon-image"></i></div>
 					{{#if ../isNarrator}}
 						<div class="item-controls meta-ui-responsive meta-ui-hide-at-medium"><i
-								class="fa-duotone fa-gears"></i></div>
+								class="fa-sharp-duotone fa-solid fa-gears"></i></div>
 					{{/if}}
 				</li>
 			</summary>
@@ -33,15 +33,15 @@
 							<img class="style-mp-rolls" data-roll-type="Metapower" data-item-name="{{item.name}}"
 								data-stat="{{item.system.Execution.StatRolled.value}}"
 								data-destiny-cost="{{item.system.DestinyCost.value}}" src="{{item.img}}" data-tooltip="Click to Activate<br><br>{{item.system.MetapowerName.value}} - {{item.name}}<br><br>Right Click for Custom Roll
-							{{#if ../../affectedByDisease}}<br><br>Result will be affected by 💀 Disease{{/if}}
-							{{#if ../../affectedByPain}}<br>Result will be affected by 💀 Pain{{/if}}
-							{{#if ../../affectedByHunger}}<br>Need to overcome 💀 Hunger{{/if}}" width="50" height="50"
+							{{#if ../../affectedByDisease}}<br><br>Result will be affected by <i class="fa-sharp-duotone fa-solid fa-skull"></i> Disease{{/if}}
+							{{#if ../../affectedByPain}}<br>Result will be affected by <i class="fa-sharp-duotone fa-solid fa-skull"></i> Pain{{/if}}
+							{{#if ../../affectedByHunger}}<br>Need to overcome <i class="fa-sharp-duotone fa-solid fa-skull"></i> Hunger{{/if}}" width="50" height="50"
 								style="border: none" />
 						</div>
 						<h4>
 							<div class="item-control item-edit style-view-properties"
 								data-tooltip="Click to open {{item.name}}<br><br>Effect: {{stripHtml item.system.Effects.EffectDescription.value}}">
-								{{item.name}}
+								{{{item.name}}}
 							</div>
 						</h4>
 					</div>
@@ -75,7 +75,7 @@
 					{{#if ../../isNarrator}}
 						<div class="item-controls meta-ui-responsive meta-ui-hide-at-medium">
 							<a class="item-control item-delete" data-tooltip="Remove Metapower"><i
-									class="fa-duotone fa-trash"></i></a>
+									class="fa-sharp-duotone fa-solid fa-trash"></i></a>
 						</div>
 					{{/if}}
 				</li>

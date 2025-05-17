@@ -1,6 +1,6 @@
 Metanthropes System for Foundry VTT Early Access License
 
-Copyright (c) 2024 Legitamine Games G.P.
+Copyright (c) 2025 Legitamine Games G.P.
 Metanthropes is a registered trademark of Legitamine Games G.P.
 
 The Metanthropes System for Foundry VTT is provided with permission only to install and use the game system within the Foundry Virtual Tabletop software for playtesting purposes during Early Access.
@@ -14,6 +14,10 @@ Possession Images (under artwork/possessions) are from game-icons.net, recolored
 Status Effect Images (under artwork/status-effects) & Metapower Images (under artwork/metapowers) are from thenounproject.com, redistributed after being edited under license CC BY 3.0.
 
 Rollable Table Images (under artwork/rolltables) are from thenounproject.com, redistributed after being edited under license CC BY 3.0.
+
+Metanthropes comes with a Font Awesome Pro License to utilize the sharp-duotone style of Icons and also includes a number of custom Font Awesome Icons, specially designed for the game. 
+
+Metanthropes also comes with its own custom Font (under /fonts) which is included in the game.
 
 All other artwork, images, maps and tokens, not mentioned explicitly above, are original artworks, property of Legitamine Games G.P.
 

@@ -13,13 +13,13 @@
 					<input name="name" type="text" value="{{item.name}}"
 						placeholder="Metapower Name" />
 				{{else}}
-					{{item.name}}
+					{{{item.name}}}
 				{{/if}}
 			</h1>
 			<div class="grid grid-2col">
 				<div class="resource">
 					<label class="resource-label"
-						data-tooltip="Which Stat is rolled when Activating this Metapower">🎲
+						data-tooltip="Which Stat is rolled when Activating this Metapower"><i class="fa-sharp-duotone fa-solid fa-dice-d10"></i>
 						Stat:</label>
 					{{#if isNarrator}}
 						<select name="system.Execution.StatRolled.value">
@@ -49,7 +49,7 @@
 				</div>
 				<div class="resource">
 					<label class="resource-label"
-						data-tooltip="Each Classification includes Metapowers which have a similar role and utilize capabilities and functions in a similar manner">🔣
+						data-tooltip="Each Classification includes Metapowers which have a similar role and utilize capabilities and functions in a similar manner"><i class="fa-sharp-duotone fa-solid fa-people-group"></i>
 						Classification:</label>
 					{{#if isNarrator}}
 						<select name="system.Classification.value">
@@ -65,7 +65,7 @@
 					{{/if}}
 				</div>
 				<div class="resource">
-					<label class="resource-label" data-tooltip="The Name of the Ⓜ️ Metapower">Ⓜ️
+					<label class="resource-label" data-tooltip="The Name of the <i class='fa-kit fa-metanthropes'></i> Metapower"><i class="fa-kit fa-metanthropes"></i>
 						Metapower:</label>
 					{{#if isNarrator}}
 						<input type="text" name="system.MetapowerName.value"
@@ -76,7 +76,7 @@
 				</div>
 				<div class="resource">
 					<label class="resource-label"
-						data-tooltip="Energy Type dictates the Damage and other properties of an effect">✨
+						data-tooltip="Energy Type dictates the Damage and other properties of an effect"><i class="fa-sharp-duotone fa-solid fa-sparkles"></i>
 						Energy
 						Type:</label>
 					{{#if isNarrator}}
@@ -93,7 +93,7 @@
 					{{/if}}
 				</div>
 				<div class="resource">
-					<label class="resource-label" data-tooltip="The Level of the Metapower">⏫
+					<label class="resource-label" data-tooltip="The Level of the Metapower"><i class="fa-sharp-duotone fa-solid fa-layer-group"></i>
 						Level:</label>
 					{{#if isNarrator}}
 						<select name="system.Level.value">
@@ -110,7 +110,7 @@
 				</div>
 				<div class="resource">
 					<label class="resource-label"
-						data-tooltip="The Destiny Cost to Activate this Metapower">🤞 Destiny
+						data-tooltip="The Destiny Cost to Activate this Metapower"><i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny
 						Cost:</label>
 					{{#if isNarrator}}
 						<input type="number" name="system.DestinyCost.value"

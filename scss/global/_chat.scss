@@ -1,0 +1,91 @@
+.meta-roll-inline-results {
+	font-size: 0.9rem;
+	margin: 15px;
+	padding: 15px;
+}
+.meta-roll-inline-results-small {
+	font-size: 0.8rem;
+	//border: none;
+	//border-radius: 5px;
+	//margin: $margin-sm;
+	padding: $padding-sm;
+	opacity: 1;
+}
+
+.dice-tooltip {
+	background-image: url("../assets/artwork/ui/buttons/button.webp");
+	background-color: rgba(255, 255, 255, 0.4);
+	.part-header {
+		.part-flavor {
+			color: var(--color-light-1);
+		}
+	}
+}
+
+@mixin roll-hover-focus {
+	outline: none;
+	border: $border-activated;
+	//box-shadow: 0 0 0 3px $c-purple;
+	text-shadow: $s-button;
+	opacity: 1;
+}
+@mixin roll-active {
+	border: $border-activated;
+	//box-shadow: 0 0 0 5px $c-purple;
+	opacity: 1;
+}
+//todo: this is pretty the same as base button style, should consolidate
+%base-inline-roll {
+	font-family: $font-primary;
+	background-image: url("../assets/artwork/ui/buttons/button.webp");
+	background-size: cover;
+	text-shadow: $s-button;
+	border: $border-groove;
+	border-radius: $border-radius;
+	color: $c-white;
+	opacity: 0.6;
+}
+.inline-roll {
+	@extend %base-inline-roll;
+	&.active {
+		@include roll-active;
+	}
+	&:hover,
+	&:focus {
+		@include roll-hover-focus;
+	}
+}
+
+.chat-message,
+.chat-message.whisper,
+.chat-message.blind {
+	background-image: url("../assets/artwork/ui/chat/chat-results.webp");
+	background-size: cover;
+	//opacity: 0.75;
+}
+#chat-form textarea {
+	background-image: url("../assets/artwork/ui/chat/chat-box.webp");
+}
+.chat-message .message-header .flavor-text,
+.chat-message .message-header .whisper-to,
+.chat-message .message-content {
+	font-family: $font-secondary;
+	font-size: 0.9rem;
+	font-weight: 500;
+	color: $c-black;
+}
+//? rolltable results
+.chat-message .table-draw .table-results .table-result img.result-image {
+	width: 100%;
+	max-height: 150px;
+	height: auto;
+	object-fit: contain;
+	border: none;
+	align-self: center;
+	text-align: center;
+	margin: $margin-sm;
+	padding: $padding-sm;
+}
+.chat-message .table-draw .table-results .table-result {
+	flex-direction: column;
+}

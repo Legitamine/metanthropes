@@ -1,0 +1,26 @@
+{
+  "name": "Random Tables",
+  "sorting": "a",
+  "folder": null,
+  "type": "RollTable",
+  "_id": "rtz0diWbAzufQG7A",
+  "sort": 100000,
+  "color": "#7d0f81",
+  "flags": {
+    "core": {
+      "sourceId": "Folder.rtz0diWbAzufQG7A"
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "metanthropes",
+    "systemVersion": "0.12.0",
+    "createdTime": 1736082815573,
+    "modifiedTime": 1736082815685,
+    "lastModifiedBy": "kF9zOdNs2UiqaJVn"
+  },
+  "description": "",
+  "_key": "!folders!rtz0diWbAzufQG7A"
+}

@@ -1,9 +1,10 @@
 /**
- * Metanthropes - Early Access for Foundry VTT
+ * Metanthropes - Official System for Foundry VTT
  * Author: The Orchestrator (qp)
  * Discord: qp#8888 ; q_._p
  *
- * If you would like to contribute to this project, please feel free to reach out to me via Discord
+ * If you would like to contribute to this project, please feel free to reach out to me via Discord.
+ * Formal contribution will be part of v1.0, however your feedback is most welcome at this early stage.
  *
  * Throughtout this project, I use the following syntax for comments:
  ** //! Marks a special comment that stands out (in Red) for critical notes/issues.
@@ -30,6 +31,7 @@ import { MetanthropesCombat } from "./documents/combat.mjs";
 import { MetanthropesActorSheet } from "./ui/sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./ui/sheets/item-sheet.mjs";
 import { MetanthropesActiveEffectSheet } from "./ui/sheets/active-effect-sheet.mjs";
+import { MetaDialog } from "./metaclasses/metaclasses.mjs";
 //* AppV2 Sheets
 import { MetanthropesNPCActorSheet, MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
 import { MetanthropesItemSheetV2 } from "./ui/sheets/item-sheet-v2.mjs";
@@ -37,7 +39,7 @@ import { MetanthropesItemSheetV2 } from "./ui/sheets/item-sheet-v2.mjs";
 import { metaPlaySoundEffect } from "./api/audio/play-sound-effect.mjs";
 //* Dice Rollers
 import { metaEvaluate, metaEvaluateReRoll } from "./api/dice/meta-evaluate.mjs";
-import { metaRolld10, metaRolld10ReRoll } from "./api/dice/meta-rolld10.mjs";
+import { metaRolld10, metaRolld10ReRoll, metaDamageReRoll, metaHealingReRoll } from "./api/dice/meta-rolld10.mjs";
 import { metaHungerRoll, metaHungerReRoll } from "./api/dice/meta-hunger-roll.mjs";
 import { metaCoverRoll, metaCoverReRoll } from "./api/dice/meta-cover-roll.mjs";
 import { handleCoverRolls, metaHandleRolls } from "./api/dice/meta-handle-rolls.mjs";
@@ -46,8 +48,8 @@ import { metaRoll } from "./api/dice/meta-roll.mjs";
 import { metaExecute } from "./api/dice/meta-execute.mjs";
 //* Logic
 import { metaFinalizePremadeActor } from "./api/logic/finalize-premade.mjs";
-import { metaApplyDamage } from "./api/logic/apply-damage.mjs";
-import { metaApplyHealing } from "./api/logic/apply-healing.mjs";
+import { metaApplyDamage } from "./api/logic/meta-apply-damage.mjs";
+import { metaApplyHealing } from "./api/logic/meta-apply-healing.mjs";
 import { metaAssignActorToPlayer } from "./api/logic/assign-actor-to-player.mjs";
 //* Utilities
 import { prepareActiveEffectCategories, onManageActiveEffect } from "./api/utils/active-effect-tools.mjs";
@@ -56,6 +58,7 @@ import { metaMigrateData } from "./api/utils/migration.mjs";
 import { metaLog, metaLogDocument } from "./api/utils/log-tools.mjs";
 import { metaSortActions } from "./api/utils/sort-actions.mjs";
 import { metaRunMacro } from "./api/utils/run-macro.mjs";
+import { metaIsMetapowerEquipped, metaTransformStringForStorage } from "./helpers/metahelpers.mjs";
 //* Game Settings
 import { metaRegisterGameSettings } from "./api/utils/register-game-settings.mjs";
 import { metaRegisterStatusEffects } from "./config/status-effects.mjs";
@@ -82,6 +85,7 @@ globalThis.metanthropes = {
 		MetanthropesActorSheetV2,
 		MetanthropesNPCActorSheet,
 		MetanthropesItemSheetV2,
+		MetaDialog,
 	},
 	dice: {
 		metaRoll,
@@ -89,6 +93,8 @@ globalThis.metanthropes = {
 		metaEvaluateReRoll,
 		metaRolld10,
 		metaRolld10ReRoll,
+		metaDamageReRoll,
+		metaHealingReRoll,
 		metaInitiative,
 		metaInitiativeReRoll,
 		metaHungerRoll,
@@ -127,13 +133,15 @@ globalThis.metanthropes = {
 		preloadHandlebarsTemplates,
 		metaSortActions,
 		metaRunMacro,
+		metaTransformStringForStorage,
+		metaIsMetapowerEquipped,
 	},
 };
 
 //* Hooks
 import "./hooks/init.mjs";
 import "./hooks/ready.mjs";
-import "./hooks/render-chat-message.mjs";
+import "./hooks/render-chat-message-html.mjs";
 import "./hooks/create-actor.mjs";
 import "./hooks/pause.mjs";
 import "./hooks/supported-modules.mjs";

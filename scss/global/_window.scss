@@ -1,55 +1,3 @@
-//journal
-.sheet.journal-entry .journal-entry-content {
-	position: relative;
-	background: none;
-	background-image: url("../assets/artwork/ui/window/background.webp");
-	background-position: center;
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-attachment: scroll;
-	background-origin: border-box;
-	background-clip: border-box;
-}
-
-form {
-	button {
-		background-image: url("../assets/artwork/ui/buttons/button.webp");
-		text-shadow: $s-button;
-		border: $border-groove;
-		border-radius: $border-radius;
-		color: $c-white;
-		opacity: 0.8;
-		&.active {
-			border: $border-activated;
-			box-shadow: 0 0 5px $c-purple;
-			opacity: 1;
-		}
-		&:hover {
-			outline: none;
-			border: $border-activated;
-			box-shadow: 0 0 5px $c-purple;
-			opacity: 1;
-		}
-		&:focus {
-			outline: none;
-			box-shadow: 0 0 5px $c-purple;
-			opacity: 1;
-		}
-	}
-}
-
-//the below two will change the default D20 in the initiative tracker icon to our custom dice
-.combat-sidebar li.combatant .roll {
-	display: block;
-	width: 40px;
-	height: var(--sidebar-item-height);
-	background: url("../assets/artwork/ui/dice/d100roll-white.webp") no-repeat 50% 50%;
-	background-size: 42px;
-	margin: 0 0.5em;
-}
-.combat-sidebar li.combatant .roll:hover {
-	background-image: url("../assets/artwork/ui/dice/d100roll-white-selected.webp");
-}
 // this changes the input fields in Foundry UI
 .metanthropes input[type="text"] {
 	min-width: 8ch;
@@ -62,8 +10,8 @@ form {
 	align-items: center;
 }
 .metanthropes input[type="number"] {
-	min-width: 3ch;
-	max-width: 5ch;
+	min-width: 4ch;
+	max-width: 6ch;
 	margin: $margin-sm;
 	padding: $padding-input-number;
 	border: $border-style-dashed;
@@ -72,7 +20,7 @@ form {
 	align-items: center;
 }
 section {
-	font-family: $font-primary;
+	//font-family: $font-primary;
 	margin: $margin-sm;
 	padding: $padding-sm;
 }
@@ -104,97 +52,10 @@ a {
 		text-shadow: $s-shadow;
 	}
 }
-//form buttons
-.dialog .dialog-buttons button {
-	font-family: $font-primary;
-	// text-transform: uppercase;
-	// justify-content: center;
-	// align-items: center;
-	background: none;
-	background-image: url("../assets/artwork/ui/buttons/button.webp");
-	background-size: cover;
-	text-shadow: $s-button;
-	border: $border-groove;
-	border-radius: $border-radius;
-	color: $c-white;
-	opacity: 0.8;
-	&.active {
-		border: $border-activated;
-		opacity: 1;
-	}
-	&:hover {
-		outline: none;
-		border: $border-activated;
-		box-shadow: 0 0 5px $c-purple;
-		opacity: 1;
-	}
-	&:focus {
-		outline: none;
-		box-shadow: 0 0 5px $c-purple;
-		opacity: 1;
-	}
-	&.default {
-		outline: none;
-		background: none;
-		background-image: url("../assets/artwork/ui/buttons/button.webp");
-		border: $border-activated;
-		box-shadow: 0 0 5px $c-purple;
-		opacity: 1;
-	}
-}
+
 dialog::backdrop {
 	background: #fff5;
 	backdrop-filter: blur(4px);
-}
-// this changes the font for buttons of Foundry UI
-button {
-	font-family: $font-primary;
-	// text-transform: uppercase;
-	justify-self: center;
-	align-self: center;
-	justify-items: center;
-	align-items: center;
-	justify-content: center;
-	align-content: center;
-	background-image: url("../assets/artwork/ui/buttons/button.webp");
-	background-size: cover;
-	text-shadow: $s-button;
-	border: $border-groove;
-	border-radius: $border-radius;
-	color: $c-white;
-	opacity: 0.8;
-	&.chat-button-anchor {
-		width: auto;
-	}
-	&.active {
-		border: $border-activated;
-		box-shadow: 0 0 5px $c-purple;
-		opacity: 1;
-	}
-	&:hover {
-		outline: none;
-		border: $border-activated;
-		box-shadow: 0 0 5px $c-purple;
-		opacity: 1;
-	}
-	&:focus {
-		outline: none;
-		box-shadow: 0 0 5px $c-purple;
-		opacity: 1;
-	}
-}
-
-button::before {
-	font: var(--fa-font-solid);
-	display: inline-block;
-	text-rendering: auto;
-	-webkit-font-smoothing: antialiased;
-	justify-self: center;
-	align-self: center;
-	justify-items: center;
-	align-items: center;
-	justify-content: center;
-	align-content: center;
 }
 
 select {
@@ -221,34 +82,20 @@ h3 {
 	color: $c-white;
 	text-shadow: $s-outline;
 }
-//? rolltable results
-.chat-message .table-draw .table-results .table-result img.result-image {
-	width: 100%;
-	max-height: 150px;
-	height: auto;
-	object-fit: contain;
-	border: none;
-	align-self: center;
-	text-align: center;
-	margin: $margin-sm;
-	padding: $padding-sm;
-}
-.chat-message .table-draw .table-results .table-result {
-	flex-direction: column;
-}
+
 // this changes the font in most title-elements of Foundry UI
 .window-app {
-	font-family: $font-primary; //or
+	//font-family: $font-primary; //or
 	margin: $padding-sm;
 	padding: $padding-sm;
 }
 .window-content {
-	font-family: $font-primary;
+	//font-family: $font-primary;
 	padding: $padding-md;
 	margin: $margin-md;
 }
 .dialog-content {
-	font-family: $font-primary;
+	//font-family: $font-primary;
 	padding: $padding-md;
 	margin: $margin-md;
 }
@@ -285,59 +132,12 @@ h3 {
 	}
 }
 
-.chat-message,
-.chat-message.whisper,
-.chat-message.blind {
-	background-image: url("../assets/artwork/ui/chat/chat-results.webp");
-	background-size: cover;
-	//opacity: 0.75;
-}
-#chat-form textarea {
-	background-image: url("../assets/artwork/ui/chat/chat-box.webp");
-}
 .directory .directory-header .header-search input {
 	background-color: $c-background;
 }
 
-.chat-message .message-header .flavor-text,
-.chat-message .message-header .whisper-to,
-.chat-message .message-content {
-	font-family: $font-secondary;
-	font-size: 14px;
-	font-weight: 500;
-	color: $c-black;
-}
-//mana from discord black magic!
-.fa-solid.fa-dice-d20:before,
-.fas.fa-dice-d20:before {
-	content: "\f6cd";
-}
-//me adding this for carousel
-.far.fa-dice-d20:before {
-	content: "\f6cd";
-}
-//override filepicker list defaults
-.filepicker .tiles-list {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	width: 508px;
-}
-.filepicker .tiles-list li {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 163px;
-	height: 100px;
-}
-.filepicker .tiles-list li img {
-	transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
-	z-index: 3;
-	&:hover {
-		transform: scale(1.6) translateY(10px);
-		z-index: 4;
-	}
-}
-
+//todo: are z-indexes here still doing something?
+//metanthropes logo in cs background still needs these
 .window-app .window-resizable-handle {
 	z-index: 4;
 }

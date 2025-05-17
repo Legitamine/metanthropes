@@ -4,7 +4,7 @@
 			"path": ".."
 		},
 		{
-			"path": "D:/FoundryDev/Playtest/code/resources/app"
+			"path": "D:/FoundryDev/V13Composer/code/resources/app"
 		}
 	],
 	"settings": {
@@ -15,7 +15,6 @@
 		"recommendations": [
 			"aaron-bond.better-comments",
 			"oderwat.indent-rainbow",
-			"glenn2223.live-sass",
 			"esbenp.prettier-vscode",
 			"redhat.vscode-yaml",
 			"lokalise.i18n-ally",

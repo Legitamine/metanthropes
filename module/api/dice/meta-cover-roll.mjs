@@ -30,17 +30,17 @@ export async function metaCoverRoll(actor, coverType, coverValue) {
 	const coverRollResult = coverRoll.total;
 	coverMessage = `Rolls to find ${coverType} Cover, with ${coverValue}% and gets a result of ${coverRollResult} (needed ${coverTarget} or less).<br><br>`;
 	if (coverRollResult > coverTarget) {
-		coverMessage += `It is a 🟥 Failure!<br><br>${actor.name} can't find Cover!`;
+		coverMessage += `It is a <i class="fa-sharp-duotone fa-solid fa-square-xmark"></i> Failure!<br><br>${actor.name} can't find Cover!`;
 		//? Button to re-roll Cover using destiny
 		const currentDestiny = Number(actor.system.Vital.Destiny.value);
-		coverMessage += `<hr />${actor.name} has ${currentDestiny} 🤞 Destiny remaining.<br>`;
+		coverMessage += `<hr />${actor.name} has ${currentDestiny} <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny remaining.<br>`;
 		if (currentDestiny > 0) {
 			coverMessage += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button cover-reroll" 
 			data-actoruuid="${actor.uuid}" data-cover-value="${coverValue}" data-type="${coverType}"
-			>Spend 🤞 Destiny to reroll</button><br></div><br>`;
+			>Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny to reroll</button><br></div><br>`;
 		}
 	} else {
-		coverMessage += `It is a 🟩 Success!<hr />${actor.name} found ${coverType} Cover!<br><br>`;
+		coverMessage += `It is a <i class="fa-sharp-duotone fa-solid fa-square"></i> Success!<hr />${actor.name} found ${coverType} Cover!<br><br>`;
 	}
 	coverRoll.toMessage({
 		speaker: ChatMessage.getSpeaker({ actor: actor }),

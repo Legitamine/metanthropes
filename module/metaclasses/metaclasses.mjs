@@ -9,7 +9,9 @@ import { metaChangeActorImage } from "../helpers/metaimagehandler.mjs";
  * @param {*} app
  * @param {*} buttons
  */
-export class metaFilePicker extends FilePicker {
+//! todo perhps the best apprach is to have left-click our own and right click the orginal FVTT process
+//todo Deprecate notice: need to also revise/remove the CSS classes we had for the image animations
+export class metaFilePicker extends foundry.applications.apps.FilePicker.implementation {
 	//todo: clean up the z-index tryouts
 	/** @override */
 	constructor(options = {}) {
@@ -84,7 +86,7 @@ export class MetaDialog extends Dialog {
 			headerButtons: this._getHeaderButtons(),
 		};
 		// Render the template and return the promise
-		let html = await renderTemplate("templates/app-window.html", windowData);
+		let html = await foundry.applications.handlebars.renderTemplate("templates/app-window.html", windowData);
 		html = $(html);
 		// Activate header button click listeners after a slight timeout to prevent immediate interaction
 		setTimeout(() => {
@@ -96,14 +98,14 @@ export class MetaDialog extends Dialog {
 		}, 500);
 		// Make the outer window draggable
 		const header = html.find("header")[0];
-		new Draggable(this, html, header, this.options.resizable);
+		new foundry.applications.ux.Draggable.implementation(this, html, header, this.options.resizable);
 		// Make the outer window minimizable
 		if (this.options.minimizable) {
 			header.addEventListener("dblclick", this._onToggleMinimize.bind(this));
 		}
 		// Set the outer frame z-index
-		if (Object.keys(ui.windows).length === 0) _maxZ = 100 - 1;
-		this.position.zIndex = Math.min(++_maxZ, 9999);
+		if (Object.keys(ui.windows).length === 0) foundry.applications.api.ApplicationV2._maxZ = 100 - 1;
+		this.position.zIndex = Math.min(++foundry.applications.api.ApplicationV2._maxZ, 9999);
 		/** @override */
 		//* Ensure that the dialog is always displayed over the Actor Sheet
 		this.position.zIndex += 10;

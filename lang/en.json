@@ -1,5 +1,61 @@
 {
 	"METANTHROPES": {
+		"COMMON": {
+			"Summary": "Summary",
+			"Stat": "Stat",
+			"Stats": "Stats",
+			"Perk": "Perk",
+			"Perks": "Perks",
+			"Action": "Action",
+			"Actions": "Actions",
+			"Possession": "Possession",
+			"Possessions": "Possessions",
+			"Effect": "Effect",
+			"Effects": "Effects",
+			"Metapower": "Metapower",
+			"Metapowers": "Metapowers",
+			"Target": "Target",
+			"Targets": "Targets"
+		},
+		"LOGIC": {
+			"METAEXECUTE": {
+				"Targets": ""
+			}
+		},
+		"UI": {
+			"NOTIFICATIONS": {
+				"META_ROLL": {
+					"CannotRoll": "Can't Roll ",
+					"ZeroStatScore": " with a Score of 0!",
+					"ActorS": "'s ",
+					"AlwaysActive": " is always Active, no need to Roll!"
+				}
+			},
+			"APPS": {
+				"META_ROLL_OPTIONS": {
+					"Title": "'s ",
+					"Units": "%",
+					"MultiActionCount": "Multi-Action",
+					"MultiActionCountUnits": "Actions",
+					"MultiActionCountHint": "The total number of Multi-Actions you will do this Turn.",
+					"None": "No Multi-Action",
+					"Bonus": "Bonus",
+					"BonusHint": "The total Bonus for the Roll result.",
+					"Penalty": "Penalty",
+					"PenaltyHint": "The total Penalty for the Roll result.",
+					"CustomReduction": "Reduction",
+					"CustomReductionHint": "The total Reduction for the Roll result.",
+					"AimingReduction": "Aiming Reduction",
+					"AimingReductionHint": "The total Aiming Reduction for the Roll result.",
+					"Stat": " Stat",
+					"StatRoll": "Roll ",
+					"Metapower": "Metapower",
+					"MetapowerRoll": "Activate ",
+					"Possession": "Possession",
+					"PossessionRoll": "Use "
+				}
+			}
+		},
 		"SHEET": {
 			"ACTOR": {
 				"LABEL": "Metanthropes Actor Sheet V2"
@@ -29,14 +85,13 @@
 				},
 				"life": {
 					"label": "Life",
-					"emoji": "❤️",
 					"value": {
 						"label": "Current",
 						"hint": "Life represents a Character's overall health, vitality, and will to live."
 					},
 					"starting": {
 						"label": "Starting",
-						"hint": "Starting ❤️ Life"
+						"hint": "Starting <i class=\"fa-sharp-duotone fa-solid fa-heart\"></i> Life"
 					},
 					"max": {
 						"label": "Maximum",
@@ -152,7 +207,7 @@
 			"Extraterrestrial": "Extraterrestrial",
 			"Animated-Cadaver": "Animated-Cadaver",
 			"Animated-Plant": "Animated-Plant",
-			"MetaTherion": "Metatherion"
+			"MetaTherion": "MetaTherion"
 		},
 		"Item": {
 			"Metapower": "Metapower",

@@ -1,26 +1,101 @@
-// Add custom fonts by visiting and search https://fonts.google.com
-// The below imports Nasalization from Adobe Fonts.
+//* Fonts
+//? Nasalization, Montserrat
 @import url("https://use.typekit.net/gld0tkk.css");
-// Import utilities.
-@import "utils/typography";
+//? Roboto
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+//? Nunito Sans
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap");
+//* Font Awesome
+@import "fontawesome/custom-icons.scss";
+@import "fontawesome/sharp-duotone-solid.scss";
+@import "fontawesome/fontawesome.scss";
+
+@layer blocks {
+	//?make the settings vertical buttons more readable
+	nav.tabs.vertical [data-tab] {
+		font-size: var(--font-size-14);
+	}
+}
+
+@layer elements {
+	//? change the sidebar fonts
+	h1 {
+		--font-h1: "Metanthropes", monospace;
+		--font-size-32: 1.8rem;
+	}
+	h4 {
+		--font-h4: "Metanthropes", monospace;
+		--font-h4-size: 1.2rem;
+	}
+}
+
+//* Utilities
+@import "elements/typography";
 @import "utils/colors";
 @import "utils/mixins";
 @import "utils/variables";
-//* Global styles */
-@import "global/window";
-@import "global/grid";
-@import "global/flex";
-//* Styles limited to metanthropes sheets */
-.metanthropes {
-	@import "components/responsive";
-	@import "components/layouts";
-	@import "components/styles";
-	@import "components/items";
-	@import "components/effects";
-	@import "components/forms";
-	//!todo!
-	z-index: 3;
-	//changes to the selection elements default color
-	accent-color: $c-purple;
-	caret-color: $c-purple;
+@import "utils/dice";
+
+//* Global Styles
+@layer global {
+	@import "global/window";
+	@import "global/apps";
+	@import "global/buttons";
+	@import "global/chat";
+	@import "global/journal";
+	@import "global/sheet";
+}
+@layer layout {
+	* {
+		accent-color: #7d0f81;
+		caret-color: #7d0f81;
+		--color-scrollbar: #7d0f81;
+		--input-focus-outline-color: #7d0f81;
+		--color-shadow-primary: #7d0f81;
+		--color-shadow-highlight: #7d0f81;
+		--outline-color: #7d0f81;
+		--color-warm-1: #7d0f81;
+		//outline-color: #dcb4de;
+	}
+}
+//* Metanthropes-Specific Components
+@layer metanthropes {
+	.metanthropes {
+		@import "components/responsive";
+		@import "components/layouts";
+		@import "components/styles";
+		@import "components/items";
+		@import "components/effects";
+		@import "components/forms";
+		//todo refactor the use of z-index accross appV2 features
+		//? currently here and @window we do custom ordering to overlay our logo and background images appropriately for the CS & Journals
+		z-index: 3;
+		//changes to the selection elements default color
+		.theme-light,
+		.application.theme-light {
+			accent-color: #7d0f81;
+			caret-color: #7d0f81;
+			--color-scrollbar: #7d0f81;
+			--input-focus-outline-color: #7d0f81;
+			--color-shadow-primary: #7d0f81;
+			--color-shadow-highlight: #7d0f81;
+			--outline-color: #7d0f81;
+			--color-warm-1: #7d0f81;
+			outline-color: #7d0f81;
+			--background-journal-image: url("../assets/artwork/ui/window/background.webp");
+		}
+		.theme-dark,
+		.application.theme-dark {
+			accent-color: #dcb4de;
+			caret-color: #dcb4de;
+			--color-scrollbar: #dcb4de;
+			--input-focus-outline-color: #dcb4de;
+			--color-shadow-primary: #dcb4de;
+			--color-shadow-highlight: #dcb4de;
+			--outline-color: #dcb4de;
+			--color-warm-1: #dcb4de;
+			outline-color: #dcb4de;
+			--background-journal-image: none;
+		}
+	}
 }
