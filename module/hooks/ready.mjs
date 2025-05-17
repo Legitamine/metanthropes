@@ -12,7 +12,6 @@ Hooks.once("ready", async function () {
 		metanthropes.utils.metaLog(0, "System", "Getting Ready", "Establishing System Default Token Overrides");
 		const newTokenDefaults = metanthropes.system.TOKENDEFAULTS;
 		await game.settings.set("core", "prototypeTokenOverrides", newTokenDefaults);
-		console.log(game.settings.get("core", "prototypeTokenOverrides"));
 		await game.settings.set("metanthropes", "prototypeTokenOverridesApplied", true);
 	}
 	//* Add support for Moulinette

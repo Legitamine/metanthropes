@@ -6062,7 +6062,7 @@
               "Durability": {
                 "type": "number",
                 "dtype": "Number",
-                "label": "🧱 🤍",
+                "label": "🧱 <i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i>",
                 "value": 10
               },
               "Size": {
@@ -7659,7 +7659,7 @@
               "Durability": {
                 "type": "number",
                 "dtype": "Number",
-                "label": "🧱 🤍",
+                "label": "🧱 <i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i>",
                 "value": 2
               },
               "Size": {
@@ -8222,7 +8222,7 @@
               "Durability": {
                 "type": "number",
                 "dtype": "Number",
-                "label": "🧱 🤍",
+                "label": "🧱 <i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i>",
                 "value": 2
               },
               "Size": {
@@ -8785,7 +8785,7 @@
               "Durability": {
                 "type": "number",
                 "dtype": "Number",
-                "label": "🧱 🤍",
+                "label": "🧱 <i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i>",
                 "value": 5
               },
               "Size": {
@@ -22432,7 +22432,7 @@
               "Durability": {
                 "type": "number",
                 "dtype": "Number",
-                "label": "🧱 🤍",
+                "label": "🧱 <i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i>",
                 "value": 10
               },
               "Size": {
@@ -26021,7 +26021,7 @@
               "Durability": {
                 "type": "number",
                 "dtype": "Number",
-                "label": "🧱 🤍",
+                "label": "🧱 <i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i>",
                 "value": 10
               },
               "Size": {
@@ -26580,7 +26580,7 @@
               "Durability": {
                 "type": "number",
                 "dtype": "Number",
-                "label": "🧱 🤍",
+                "label": "🧱 <i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i>",
                 "value": 13
               },
               "Size": {
@@ -32171,7 +32171,7 @@
               "Durability": {
                 "type": "number",
                 "dtype": "Number",
-                "label": "🧱 🤍",
+                "label": "🧱 <i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i>",
                 "value": 10
               },
               "Size": {
@@ -33768,7 +33768,7 @@
               "Durability": {
                 "type": "number",
                 "dtype": "Number",
-                "label": "🧱 🤍",
+                "label": "🧱 <i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i>",
                 "value": 2
               },
               "Size": {
@@ -34329,7 +34329,7 @@
               "Durability": {
                 "type": "number",
                 "dtype": "Number",
-                "label": "🧱 🤍",
+                "label": "🧱 <i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i>",
                 "value": 5
               },
               "Size": {
@@ -41469,7 +41469,7 @@
               "Durability": {
                 "type": "number",
                 "dtype": "Number",
-                "label": "🧱 🤍",
+                "label": "🧱 <i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i>",
                 "value": 10
               },
               "Size": {

@@ -14,8 +14,8 @@ export const TOKENDEFAULTS = {
 		lockRotation: false,
 		turnMarker: {
 			mode: CONST.TOKEN_TURN_MARKER_MODES.CUSTOM,
-			animation: "disabled",
-			src: "systems/metanthropes/assets/logos/Metanthropes-White-Transparent.webp",
+			animation: "pulse",
+			src: "systems/metanthropes/assets/logos/metanthropes-logo-turn-marker.webp",
 			disposition: true,
 		},
 	},
@@ -25,8 +25,8 @@ export const TOKENDEFAULTS = {
 		disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY,
 		turnMarker: {
 			mode: CONST.TOKEN_TURN_MARKER_MODES.CUSTOM,
-			animation: "pulse",
-			src: "systems/metanthropes/assets/logos/Metanthropes-White-Transparent.webp",
+			animation: "spin",
+			src: "systems/metanthropes/assets/logos/metanthropes-logo-turn-marker.webp",
 			disposition: true,
 		},
 	},
