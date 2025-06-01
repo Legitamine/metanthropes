@@ -51,7 +51,7 @@
 		{
 			"type": "setup",
 			"url": "https://content.invisioncic.com/e290497/monthly_2024_03/new-cover.jpg.266c89d776592f674fd3a4133d3fb813.jpg",
-			"thumbnail": "systems/metanthropes/assets/cover/cover.jpg",
+			"thumbnail": "systems/metanthropes/assets/cover/cover.webp",
 			"loop": false,
 			"flags": {}
 		}
@@ -215,7 +215,7 @@
 	"license": "https://github.com/legitamine/metanthropes/blob/main/LICENSE",
 	"readme": "https://github.com/Legitamine/metanthropes/blob/main/README.md",
 	"bugs": "https://github.com/Legitamine/metanthropes/issues",
-	"background": "systems/metanthropes/assets/cover/cover.jpg",
+	"background": "systems/metanthropes/assets/cover/cover.webp",
 	"socket": true,
 	"primaryTokenAttribute": "Vital.Life",
 	"secondaryTokenAttribute": "Vital.Destiny",
