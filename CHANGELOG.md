@@ -20,6 +20,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Changed:
 - New Compendium structure is introduced, sorting all our Premium content in a consistent and clean folder structure organized by Compendium type. If you are updating your World from a previous Metanthropes version, you will have both the old and the new Compendium structure in your World and you can see [#338](https://github.com/Legitamine/metanthropes/issues/338) on how to fix this.
+- New cover images for the System & Premium Modules.
 
 ## Fixed:
 - Fixed an issue with the new socket implementation to handle damage and healing application, where it would not trigger for some players.
@@ -33,7 +34,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 ## Known Issues:
 - Font Awesome icons dissapear when editing a Journal, or an Item's Effect Description, even if you don't apply any edits to the entry; just opening and closing the Journal/Item will make all Font Awesome icons dissapear. This issue is under investigation, please restore the Journal/Item from the corresponding Compendium to return proper functionality.
 - With Dice-So-Nice enabled, after re-rolling the result more than once, the dice roll animation will not trigger. All applicable effects are indeed applied, and the Chat message is updated, however it's missing the dice animation.  (also for d100 ??)
-- 
+- You may see the list of existing Known Issues here.
 
 # Early Access v0.13.1 [2025-05-17]
 
