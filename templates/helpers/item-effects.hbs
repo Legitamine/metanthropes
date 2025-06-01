@@ -38,8 +38,7 @@
 		{{#if isNarrator}}
 			<select name="system.Effects.VSStatRoll.value">
 				{{#each system.Effects.VSStatRoll.options as |option|}}
-					<option value="{{option}}"
-						{{#if (eq option ../system.Effects.VSStatRoll.value)}}selected{{/if}}>
+					<option value="{{option}}" {{#if (eq option ../system.Effects.VSStatRoll.value)}}selected{{/if}}>
 						{{option}}
 					</option>
 				{{/each}}
@@ -55,10 +54,10 @@
 			<div class="resource-label">{{{this.label}}}:
 				<span class="resource">
 					{{#if ../isNarrator}}
-						<input type="{{this.type}}" name="system.Effects.Damage.{{@key}}.Dice"
-							value="{{this.Dice}}" data-dtype="{{this.dtype}}" />d10
-						+ <input type="{{this.type}}" name="system.Effects.Damage.{{@key}}.Base"
-							value="{{this.Base}}" data-dtype="{{this.dtype}}" />
+						<input type="{{this.type}}" name="system.Effects.Damage.{{@key}}.Dice" value="{{this.Dice}}"
+							data-dtype="{{this.dtype}}" />d10
+						+ <input type="{{this.type}}" name="system.Effects.Damage.{{@key}}.Base" value="{{this.Base}}"
+							data-dtype="{{this.dtype}}" />
 						Base
 					{{else}}
 						{{#if (and this.Dice (not (or (eq this.Dice null) (eq this.Dice 0))))}}
@@ -72,9 +71,9 @@
 					{{/if}}
 				</span>
 			</div>
+			<hr />
 		{{/if}}
 	{{/each}}
-	<hr />
 	{{! -- Effect Healing --}}
 	{{#if (or isNarrator (or (and system.Effects.Healing.Base (not (or (eq system.Effects.Healing.Base null) (eq system.Effects.Healing.Base 0)))) (and system.Effects.Healing.Dice (not (or (eq system.Effects.Healing.Dice null) (eq system.Effects.Healing.Dice 0))))))}}
 		<div class="resource">
@@ -82,12 +81,9 @@
 			<span class="resource">
 				{{#if isNarrator}}
 					<input type="{{system.Effects.Healing.type}}" name="system.Effects.Healing.Dice"
-						value="{{system.Effects.Healing.Dice}}"
-						data-dtype="{{system.Effects.Healing.dtype}}" />d10
-					+ <input type="{{system.Effects.Healing.type}}"
-						name="system.Effects.Healing.Base"
-						value="{{system.Effects.Healing.Base}}"
-						data-dtype="{{system.Effects.Healing.dtype}}" /> Base
+						value="{{system.Effects.Healing.Dice}}" data-dtype="{{system.Effects.Healing.dtype}}" />d10
+					+ <input type="{{system.Effects.Healing.type}}" name="system.Effects.Healing.Base"
+						value="{{system.Effects.Healing.Base}}" data-dtype="{{system.Effects.Healing.dtype}}" /> Base
 				{{else}}
 					{{#if (and system.Effects.Healing.Dice (not (or (eq system.Effects.Healing.Dice null) (eq system.Effects.Healing.Dice 0))))}}
 						{{system.Effects.Healing.Dice}}d10
@@ -115,14 +111,11 @@
 					value="{{system.Effects.Special.SpecialDiceName.value}}"
 					data-dtype="{{system.Effects.Special.SpecialDiceName.dtype}}" />
 				<input type="{{system.Effects.Special.type}}" name="system.Effects.Special.Base"
-					value="{{system.Effects.Special.Base}}"
-					data-dtype="{{system.Effects.Special.dtype}}" />
+					value="{{system.Effects.Special.Base}}" data-dtype="{{system.Effects.Special.dtype}}" />
 				Base +
 				<input type="{{system.Effects.Special.type}}" name="system.Effects.Special.Dice"
-					value="{{system.Effects.Special.Dice}}"
-					data-dtype="{{system.Effects.Special.dtype}}" />d10
-				<input type="checkbox" name="system.Effects.Special.isHalf"
-					value="{{system.Effects.Special.isHalf}}"
+					value="{{system.Effects.Special.Dice}}" data-dtype="{{system.Effects.Special.dtype}}" />d10
+				<input type="checkbox" name="system.Effects.Special.isHalf" value="{{system.Effects.Special.isHalf}}"
 					{{#if system.Effects.Special.isHalf}}checked{{/if}} data-dtype="Boolean" />
 				d10/2
 			{{else}}
@@ -154,15 +147,15 @@
 				<div class="resource">
 					<label class="resource-label">{{{this.label}}}:</label>
 					{{#if ../isNarrator}}
-						<input type="{{this.type}}" name="system.Effects.Buffs.{{@key}}.value"
-							value="{{this.value}}" data-dtype="{{this.dtype}}" />
+						<input type="{{this.type}}" name="system.Effects.Buffs.{{@key}}.value" value="{{this.value}}"
+							data-dtype="{{this.dtype}}" />
 					{{else}}
 						{{this.value}}
 					{{/if}}
 				</div>
 			{{/if}}
 		{{/each}}
-		<hr />
+		{{!-- <hr /> --}}
 	</div>
 	{{! -- Effect Conditions --}}
 	<div class="resource">
@@ -171,8 +164,7 @@
 				<div class="resource">
 					<label class="resource-label">{{{this.label}}}:</label>
 					{{#if ../isNarrator}}
-						<input type="{{this.type}}"
-							name="system.Effects.Conditions.{{@key}}.value"
+						<input type="{{this.type}}" name="system.Effects.Conditions.{{@key}}.value"
 							value="{{this.value}}" data-dtype="{{this.dtype}}" />
 					{{else}}
 						{{this.value}}
@@ -180,7 +172,7 @@
 				</div>
 			{{/if}}
 		{{/each}}
-		<hr />
+		{{!-- <hr /> --}}
 	</div>
 	{{! -- Effect Additional Info --}}
 	{{#if (or isNarrator (and system.Effects.AdditionalInfo.value (not (or (eq system.Effects.AdditionalInfo.value null) (eq system.Effects.AdditionalInfo.value 0) (eq system.Effects.AdditionalInfo.value "None")))))}}
@@ -212,15 +204,18 @@
 			</div>
 			<br>
 			<p class="style-centered-paragraph">
-					<br>- This is a
-					placeholder for future capabilities -<br><br>Additional
-					functionality is available, during Early Access, via the Beta Testing Feature,<br>
-					available with the <a href="https://www.metanthropes.com/store/product/8-homebrew-fvtt-module/">Metanthropes: Homebrew</a> Premium Module for Foundry VTT.
-					<br><br> If you would like to know more about upcoming releases, visit <a
-						href="https://www.metanthropes.com/roadmap/">the
-						roadmap on our
-						website.</a>
-				</p>
+				<br>- This is a
+				placeholder for future capabilities -<br><br>Additional
+				functionality will be made available, during Early Access, via the Beta & Alpha Testing Features,<br>
+				available with the <a
+					href="https://www.metanthropes.com/store/product/7-core-fvtt-module/">Metanthropes: Core</a> and <a
+					href="https://www.metanthropes.com/store/product/8-homebrew-fvtt-module/">Metanthropes: Homebrew</a>
+				Premium Modules for Foundry VTT, respectively.
+				<br><br> If you would like to know more about upcoming releases, visit <a
+					href="https://www.metanthropes.com/roadmap/">the
+					roadmap on our
+					website.</a>
+			</p>
 		{{/if}}
 	</div>
 </div><br>

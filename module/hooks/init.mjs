@@ -21,23 +21,35 @@ Hooks.once("init", async function () {
 	CONFIG.Combat.documentClass = metanthropes.documents.MetanthropesCombat;
 
 	//* Register Application Sheets
-	foundry.documents.collections.Actors.registerSheet("metanthropes", metanthropes.applications.MetanthropesActorSheet, {
-		makeDefault: true,
-	});
+	foundry.documents.collections.Actors.registerSheet(
+		"metanthropes",
+		metanthropes.applications.MetanthropesActorSheet,
+		{
+			makeDefault: true,
+		}
+	);
 
-	foundry.documents.collections.Actors.registerSheet("metanthropes", metanthropes.applications.MetanthropesActorSheetV2, {
-		makeDefault: false,
-		label: "METANTHROPES.SHEET.ACTOR.LABEL",
-	});
+	foundry.documents.collections.Actors.registerSheet(
+		"metanthropes",
+		metanthropes.applications.MetanthropesActorSheetV2,
+		{
+			makeDefault: false,
+			label: "METANTHROPES.SHEET.ACTOR.LABEL",
+		}
+	);
 
 	foundry.documents.collections.Items.registerSheet("metanthropes", metanthropes.applications.MetanthropesItemSheet, {
 		makeDefault: true,
 	});
 
-	foundry.documents.collections.Items.registerSheet("metanthropes", metanthropes.applications.MetanthropesItemSheetV2, {
-		makeDefault: false,
-		label: "METANTHROPES.SHEET.ITEM.LABEL",
-	});
+	foundry.documents.collections.Items.registerSheet(
+		"metanthropes",
+		metanthropes.applications.MetanthropesItemSheetV2,
+		{
+			makeDefault: false,
+			label: "METANTHROPES.SHEET.ITEM.LABEL",
+		}
+	);
 
 	foundry.applications.apps.DocumentSheetConfig.registerSheet(
 		ActiveEffect,
@@ -63,6 +75,11 @@ Hooks.once("init", async function () {
 
 	//* Register Status Effects
 	metanthropes.utils.metaRegisterStatusEffects();
+
+	//* Register the socket listener
+	game.socket.on("system.metanthropes", async (payload) => {
+		metanthropes.logic.metaHandleSocketEvents(payload);
+	});
 
 	//* Finished Initializing the Metanthropes System
 	metanthropes.utils.metaLog(0, "System", "Initialized");
