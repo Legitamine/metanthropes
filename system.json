@@ -50,7 +50,7 @@
 	"media": [
 		{
 			"type": "setup",
-			"url": "https://content.invisioncic.com/e290497/monthly_2024_03/new-cover.jpg.266c89d776592f674fd3a4133d3fb813.jpg",
+			"url": "https://media.invisioncic.com/e290497/pages_media/system.webp?_cb=1749105696",
 			"thumbnail": "systems/metanthropes/assets/cover/cover.webp",
 			"loop": false,
 			"flags": {}
@@ -121,18 +121,6 @@
 			}
 		},
 		{
-			"name": "rolltables",
-			"label": "Rollable Tables",
-			"banner": "systems/metanthropes/assets/cover/compendium-roll-table.webp",
-			"path": "packs/rolltables",
-			"type": "RollTable",
-			"system": "metanthropes",
-			"ownership": {
-				"PLAYER": "OBSERVER",
-				"ASSISTANT": "OWNER"
-			}
-		},
-		{
 			"name": "hit-location",
 			"label": "Hit Location",
 			"banner": "systems/metanthropes/assets/cover/compendium-roll-table.webp",
@@ -196,7 +184,7 @@
 					"name": "Rollable Tables",
 					"sorting": "a",
 					"color": "#7d0f81",
-					"packs": ["rolltables", "hit-location"],
+					"packs": ["hit-location"],
 					"folders": []
 				},
 				{
