@@ -10,36 +10,36 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Early Access Releases
 
-# Early Access v0.13.2 [2025-06-05]
+# Early Access v0.13.5 [2025-06-05]
 
 ## Added:
 
 -   Foundry version 13.344 is now supported.
--   [INTRODUCTORY] New Entering the Opera Cinematic Scene. A short cinematic of entering and walking around the Opera from a first-person view. [note add to journal, can I activate it with a macro/button?]
--   [CORE] Possessions Compendium now includes a total of 100 Possessions from 3 eras: Archaic, Modern, Futuristic. These include various Weapons, Armors, Gadgets and Drugs.
+-   [INTRODUCTORY] New Entering the Opera Cinematic Scene. A short cinematic of entering and walking around the Opera from a first-person view.
+-   [CORE] Possessions Compendium now includes a total of 100 Possessions from 3 eras: Archaic, Modern, Futuristic. These are sorted into Weapons, Armors, Gadgets and Drugs.
 -   [Introductory] New compendiums with Actors, Scenes, Macros and Journals, for the experienced Narrator, so they can import specific content, without having to import the full adventure, if they so choose.
 
 ## Changed:
 
 -   New Compendium structure is introduced, sorting all our Premium content in a consistent and clean folder structure organized by Compendium type. If you are updating your World from a previous Metanthropes version, you will have both the old and the new Compendium structure in your World and you can see [#338](https://github.com/Legitamine/metanthropes/issues/338) on how to fix this.
 -   New cover images for the System & Premium Modules.
--   Reorganized the various Journals; this is the first step in a series of improvements planned for Journals in the road to Metanthropes v1.0, more improvements will come in later builds.
+-   Reorganized the various Journals; this is the first step in a series of improvements planned for Journals in the road to Metanthropes v1.0, more improvements will come in follow up builds.
 
 ## Fixed:
 
 -   Fixed an issue with the new socket implementation to handle damage and healing application, where it would not trigger for some players.
 -   Fixed the missing 'Restore Previous Life' button that is visible only for Narrators.
 -   Fixed the Disease, Hunger and Pain Conditions causing the Actor Sheet to miss-behave when the Actor had any level of those conditions.
--   Fixed various minor UI issues with Font Awesome implementation. There are still a few issues (see known issues below)
+-   Fixed various minor UI issues with Font Awesome implementation. There are still a few minor typos and missing icons - see known issues below.
 -   Fixed an issue where in some cases, when re-rolling damage would not apply the previous value correctly before applying the new damage result.
 -   Fixed an issue where damage would not calculate correctly when having a melee weapon that did not do any Material damage. Now the base Power Stat Score of the Actor will always apply when attacking with a melee weapon, in addition to any other energy damage type.
 -   Fixed the Projectile thrown weapon type Possession, which was not applying the multi-Action penalty on the Power Score while attacking.
 
 ## Known Issues:
 
--   Font Awesome icons dissapear when editing a Journal, or an Item's Effect Description, even if you don't apply any edits to the entry; just opening and closing the Journal/Item will make all Font Awesome icons dissapear. This issue is under investigation, please restore the Journal/Item from the corresponding Compendium to return proper functionality.
--   With Dice-So-Nice enabled, after re-rolling the result more than once, the dice roll animation will not trigger. All applicable effects are indeed applied, and the Chat message is updated, however it's missing the dice animation. (also for d100 ??)
--   You may see the list of existing Known Issues here.
+-   Font Awesome icons dissapear when editing a Journal, or an Item's Effect Description, even if you don't apply any edits to the entry; just opening and closing the Journal/Item will make all Font Awesome icons dissapear. This issue requires us to create a custom text enricher to be able to display Font Awesome icons in such fields. We will provide a solution in an upcoming build. In the meantime, if this issue occurs, please restore the Journal/Item from the corresponding Compendium to return proper functionality.
+-   With Dice-So-Nice enabled, after re-rolling the result more than twice, the dice roll animation will not trigger. All applicable effects are indeed applied, and the Chat message is updated, however it's missing the Dice-So-Nice animation.
+- Some Journal links are broken and we will restore their functionality in an upcoming release that will make another pass at our Journal structure.
 
 # Early Access v0.13.1 [2025-05-17]
 
