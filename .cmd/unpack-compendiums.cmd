@@ -19,15 +19,24 @@ call fvtt configure set dataPath "D:/FoundryDev/V13Composer/data"
 call fvtt package workon "metanthropes" --type "System"
 @echo Unpacking Compendiums for Metanthropes System
 @echo ---------------------------------------------
-@echo Welcome
-@echo -------
-call fvtt package unpack "welcome" --out "D:/FoundryDev/legitamine/metanthropes/src/packs/welcome"
+@echo Demo-Actors
+@echo -----------
+call fvtt package unpack "demo-actors" --out "D:/FoundryDev/legitamine/metanthropes/src/packs/demo-actors"
+@echo Lobby
+@echo -----
+call fvtt package unpack "lobby" --out "D:/FoundryDev/legitamine/metanthropes/src/packs/lobby"
 @echo System
 @echo ------
 call fvtt package unpack "system" --out "D:/FoundryDev/legitamine/metanthropes/src/packs/system"
-@echo Rolltables
-@echo ----------
-call fvtt package unpack "rolltables" --out "D:/FoundryDev/legitamine/metanthropes/src/packs/rolltables"
+@echo Welcome
+@echo -------
+call fvtt package unpack "welcome" --out "D:/FoundryDev/legitamine/metanthropes/src/packs/welcome"
+@echo How-To-Play
+@echo -----------
+call fvtt package unpack "how-to-play" --out "D:/FoundryDev/legitamine/metanthropes/src/packs/how-to-play"
+@echo Hit Location
+@echo ------------
+call fvtt package unpack "hit-location" --out "D:/FoundryDev/legitamine/metanthropes/src/packs/hit-location"
 @echo Toolkit
 @echo -------
 call fvtt package unpack "toolkit" --out "D:/FoundryDev/legitamine/metanthropes/src/packs/toolkit"

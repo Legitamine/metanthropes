@@ -52,11 +52,19 @@ jobs:
                   fvtt configure set dataPath "/home/runner/work/${{steps.id.outputs.prop}}/Data"
                   echo "Configure workon ${{steps.id.outputs.prop}} as a System"
                   fvtt package workon "${{steps.id.outputs.prop}}" --type "System"
-                  echo "Packaging Welcome"
-                  fvtt package pack -n "welcome" --in ./src/packs/welcome --out ./packs
+                  echo "Packaging Demo-Actors"
+                  fvtt package pack -n "demo-actors" --in ./src/packs/demo-actors --out ./packs
+                  echo "Packaging Lobby"
+                  fvtt package pack -n "lobby" --in ./src/packs/lobby --out ./packs
                   echo "Packaging System"
                   fvtt package pack -n "system" --in ./src/packs/system --out ./packs
-                  fvtt package pack -n "rolltables" --in ./src/packs/rolltables --out ./packs
+                  echo "Packaging Welcome"
+                  fvtt package pack -n "welcome" --in ./src/packs/welcome --out ./packs
+                  echo "Packaging How-To-Play"
+                  fvtt package pack -n "how-to-play" --in ./src/packs/how-to-play --out ./packs
+                  echo "Packaging Hit Location Tables"
+                  fvtt package pack -n "hit-location" --in ./src/packs/hit-location --out ./packs
+                  echo "Packaging System Toolkit"
                   fvtt package pack -n "toolkit" --in ./src/packs/toolkit --out ./packs
                   echo "Contents of Data directory post packaging"
                   dir /home/runner/work/${{steps.id.outputs.prop}}/Data

@@ -1,0 +1,228 @@
+{
+  "name": "Lobby",
+  "navigation": false,
+  "navOrder": 0,
+  "navName": "",
+  "background": {
+    "src": "systems/metanthropes/assets/maps/welcome.jpg",
+    "scaleX": 1,
+    "scaleY": 1,
+    "offsetX": 0,
+    "offsetY": 0,
+    "rotation": 0,
+    "tint": "#ffffff",
+    "anchorX": 0,
+    "anchorY": 0,
+    "fit": "fill",
+    "alphaThreshold": 0
+  },
+  "foregroundElevation": 8,
+  "width": 3889,
+  "height": 2222,
+  "padding": 0.25,
+  "initial": {
+    "x": 3473,
+    "y": 1719,
+    "scale": 0.5171094053261719
+  },
+  "backgroundColor": "#000000",
+  "grid": {
+    "type": 2,
+    "size": 170,
+    "color": "#ffffff",
+    "alpha": 0.2,
+    "distance": 2,
+    "units": "meters",
+    "style": "solidLines",
+    "thickness": 1
+  },
+  "tokenVision": false,
+  "drawings": [],
+  "tokens": [],
+  "lights": [
+    {
+      "_id": "98d9HA4JpEg1cKpe",
+      "x": 3613,
+      "y": 1644,
+      "elevation": 0,
+      "rotation": 0,
+      "walls": true,
+      "vision": false,
+      "config": {
+        "negative": false,
+        "priority": 0,
+        "alpha": 0.1,
+        "angle": 360,
+        "bright": 12.63,
+        "color": null,
+        "coloration": 1,
+        "dim": 25.26,
+        "attenuation": 1,
+        "luminosity": 0.15,
+        "saturation": -0.05,
+        "contrast": -1,
+        "shadows": 1,
+        "animation": {
+          "type": "fog",
+          "speed": 7,
+          "intensity": 5,
+          "reverse": false
+        },
+        "darkness": {
+          "min": 0,
+          "max": 1
+        }
+      },
+      "hidden": false,
+      "flags": {},
+      "_key": "!scenes.lights!LXyWJe2r9PXy9Mb0.98d9HA4JpEg1cKpe"
+    },
+    {
+      "x": 1275,
+      "y": 1619,
+      "elevation": 0,
+      "rotation": 0,
+      "walls": true,
+      "vision": false,
+      "config": {
+        "negative": false,
+        "priority": 0,
+        "alpha": 0.1,
+        "angle": 360,
+        "bright": 12.63,
+        "color": null,
+        "coloration": 1,
+        "dim": 25.26,
+        "attenuation": 1,
+        "luminosity": 0.15,
+        "saturation": -0.05,
+        "contrast": -1,
+        "shadows": 1,
+        "animation": {
+          "type": "fog",
+          "speed": 7,
+          "intensity": 5,
+          "reverse": false
+        },
+        "darkness": {
+          "min": 0,
+          "max": 1
+        }
+      },
+      "hidden": false,
+      "flags": {},
+      "_id": "WLuIaJcvI0vLDVqe",
+      "_key": "!scenes.lights!LXyWJe2r9PXy9Mb0.WLuIaJcvI0vLDVqe"
+    }
+  ],
+  "notes": [],
+  "sounds": [],
+  "templates": [],
+  "tiles": [],
+  "walls": [],
+  "playlist": null,
+  "playlistSound": null,
+  "journal": null,
+  "journalEntryPage": null,
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "MB9UTmmrdD2T8iaY": 3,
+    "3IqRUDDVG8kDd6mW": 3,
+    "F0ZXUMehd6qxarRo": 3,
+    "gaWoeXg7uJWoAsCP": 3,
+    "E1nZXRNcwWMtogk0": 3,
+    "GhLYz1u3dt1wc7P2": 3,
+    "zQFdWDQ0DNBdoBq5": 3,
+    "Kej98KlIpboqpaRV": 3
+  },
+  "flags": {
+    "weatherfx": {
+      "auto-apply": true
+    },
+    "levels": {
+      "backgroundElevation": 0,
+      "lightMasking": true,
+      "weatherElevation": null
+    },
+    "wall-height": {
+      "advancedVision": true
+    },
+    "token-attacher": {},
+    "fxmaster": {
+      "filters": {},
+      "invert": false
+    },
+    "core": {},
+    "scene-packer": {
+      "sourceId": "Scene.lxenYR81ODxiArEZ",
+      "hash": "0e49cefebf2004fe3299d259f6ca9931b016669d"
+    },
+    "zoom-pan-options": {
+      "minZoom": null,
+      "maxZoom": null
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.344",
+    "systemId": "metanthropes",
+    "systemVersion": "0.13.2",
+    "createdTime": 1749109945286,
+    "modifiedTime": 1749109945286,
+    "lastModifiedBy": "Kej98KlIpboqpaRV"
+  },
+  "foreground": null,
+  "thumb": "systems/metanthropes/assets/artwork/scenes/the-lobby-thumbnail.webp",
+  "weather": "",
+  "environment": {
+    "globalLight": {
+      "luminosity": 0,
+      "enabled": true,
+      "darkness": {
+        "max": 1,
+        "min": 0
+      },
+      "alpha": 0.5,
+      "bright": false,
+      "color": null,
+      "coloration": 1,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0
+    },
+    "darknessLevel": 0,
+    "darknessLock": false,
+    "cycle": true,
+    "base": {
+      "hue": 0,
+      "intensity": 0,
+      "luminosity": 0,
+      "saturation": 0,
+      "shadows": 0
+    },
+    "dark": {
+      "hue": 0.7138888888888889,
+      "intensity": 0,
+      "luminosity": -0.25,
+      "saturation": 0,
+      "shadows": 0
+    }
+  },
+  "fog": {
+    "exploration": true,
+    "reset": 1717789820946,
+    "overlay": null,
+    "colors": {
+      "explored": null,
+      "unexplored": null
+    }
+  },
+  "regions": [],
+  "_id": "LXyWJe2r9PXy9Mb0",
+  "active": false,
+  "sort": 0,
+  "_key": "!scenes!LXyWJe2r9PXy9Mb0"
+}

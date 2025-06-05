@@ -8,16 +8,21 @@
 						<i class="fa-sharp-duotone fa-solid fa-stopwatch"></i>: {{Action}}
 					</div>
 					<div class="item-statroll meta-ui-responsive meta-ui-hide-at-minimum"
-						data-tooltip="Stat Rolled to activate this Action"><i class="fa-sharp-duotone fa-solid fa-dice-d10"></i></div>
+						data-tooltip="Stat Rolled to activate this Action"><i
+							class="fa-sharp-duotone fa-solid fa-dice-d10"></i></div>
 					<div class="item-targets meta-ui-responsive meta-ui-hide-at-medium"
-						data-tooltip="The Number of Targets of this Action"><i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i></div>
+						data-tooltip="The Number of Targets of this Action"><i
+							class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i></div>
 					<div class="item-duration meta-ui-responsive meta-ui-hide-at-medium"
-						data-tooltip="The Duration of this Action"><i class="fa-sharp-duotone fa-solid fa-hourglass-start"></i></div>
+						data-tooltip="The Duration of this Action"><i
+							class="fa-sharp-duotone fa-solid fa-hourglass-start"></i></div>
 					<div class="item-range meta-ui-responsive meta-ui-extra-fields"
 						data-tooltip="The Range of this Action">
-						<i class="fa-sharp-duotone fa-solid fa-ruler"></i></div>
+						<i class="fa-sharp-duotone fa-solid fa-ruler"></i>
+					</div>
 					<div class="item-area meta-ui-responsive meta-ui-extra-fields"
-						data-tooltip="The Area of Effect Range of this Action"><i class="fa-sharp-duotone fa-solid fa-hexagon-image"></i></div>
+						data-tooltip="The Area of Effect Range of this Action"><i
+							class="fa-sharp-duotone fa-solid fa-hexagon-image"></i></div>
 					{{#if ../isNarrator}}
 						<div class="item-controls meta-ui-responsive meta-ui-hide-at-medium"><i
 								class="fa-sharp-duotone fa-gears"></i>
@@ -40,13 +45,14 @@
 								<br><br>Right Click for Custom Roll
 							{{#if ../../affectedByDisease}}<br><br>Result will be affected by <i class="fa-sharp-duotone fa-solid fa-skull"></i> Disease{{/if}}
 							{{#if ../../affectedByPain}}<br>Result will be affected by <i class="fa-sharp-duotone fa-solid fa-skull"></i> Pain{{/if}}
-							{{#if ../../affectedByHunger}}<br>Need to overcome <i class="fa-sharp-duotone fa-solid fa-skull"></i> Hunger{{/if}}' width="50" height="50"
-									style="border: none" />
+							{{#if ../../affectedByHunger}}<br>Need to overcome <i class="fa-sharp-duotone fa-solid fa-skull"></i> Hunger{{/if}}'
+									width="50" height="50" style="border: none" />
 							{{/if}}
 							{{#if (eq item.type "Possession")}}
 								<img class="style-pos-rolls" data-roll-type="Possession"
 									data-stat="{{item.system.Execution.StatRolled.value}}"
-									data-item-name="{{item.name}}" src="{{item.img}}" data-tooltip='Click to Use, {{item.system.Execution.ActionSlot.value}}<br><br>{{item.name}}
+									data-item-name="{{item.name}}" src="{{item.img}}"
+									data-tooltip='Click to Use, {{item.system.Execution.ActionSlot.value}}<br><br>{{item.name}}
 								{{#if isFocusedAction}}<br><i class="fa-sharp-duotone fa-solid fa-stopwatch"></i>: {{item.system.Execution.ActionSlot.value}}{{/if}}
 								<br><br>Right-Click for Custom Roll
 							{{#if ../../affectedByDisease}}<br><br>Result will be affected by <i class="fa-sharp-duotone fa-solid fa-skull"></i> Disease{{/if}}
