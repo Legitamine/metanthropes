@@ -1,0 +1,42 @@
+{
+  "name": "End Of Scene",
+  "type": "script",
+  "scope": "global",
+  "author": "kF9zOdNs2UiqaJVn",
+  "img": "icons/svg/door-exit.svg",
+  "command": "//*Narrator's Toolbox - End of Scene*//\nif (!game.user.isGM) {\n\tui.notifications.warn(\"You must be a Narrator to use this Macro.\");\n\treturn;\n}\nlet actors = game.actors.contents.filter((a) => a.type === \"Protagonist\");\n//todo: instead of just checking for our Premade characters that come with 'The Composer' we should also exclude null values? or even better only actors that are controlled by active players instead?\nlet assignedActors = actors.filter((actor) => actor.system.metaowner.value !== \"The Composer\");\nlet arcTitle = actors[0]?.system.Vital.arc.title || \"\";\nlet regressionTitle = actors[0]?.system.entermeta.regression.title || \"\";\nlet dialogContent = `<form>\n<div class=\"style-form\">To be used at the end of each Scene to award Destiny</div>\n<div class=\"style-form\"><br>Only Protagonists with Assigned Players will be shown in the list below</div>\n<div class=\"style-form\">You can mouse-over their Arc & Regression, for a quick reminder<br><br></div>\n<hr/>\n<div class=\"style-form\">Confirming will award Destiny and set Max Destiny accordingly for each Protagonist</div>\n<div class=\"style-form\">Protagonists with Luck Bending will be automatically awarded the extra Destiny</div><br><br>\n<div class=\"form-group style-form\">\n\t<div class=\"style-form\">Protagonist</div>\n\t<div class=\"style-form\" title=\"${arcTitle}\">Arc</div>\n\t<div class=\"style-form\" title=\"${regressionTitle}\">Regression</div>\n\t<div class=\"style-form\">Award Destiny</div>\n</div>\n`;\nfor (let actor of assignedActors) {\n\tlet regressionValue = actor.system.entermeta.regression.value;\n\tlet regressionTitle =\n\t\tactor.system.entermeta.regression.options[regressionValue]?.title ||\n\t\t\"This is not an officially supported Regression\";\n\tlet arcValue = actor.system.Vital.arc.value;\n\tlet arcTitle = actor.system.Vital.arc.options[arcValue]?.title || \"This is not an officially supported Arc\";\n\tdialogContent += `<div class=\"form-group style-form\">\n\t\t\t<div class=\"style-form\">${actor.name}</div>\n\t\t\t<div class=\"style-form\" title=\"${arcTitle}\">${arcValue}</div>\n\t\t\t<div class=\"style-form\" title=\"${regressionTitle}\">${regressionValue}</div>\n\t\t\t<div class=\"style-form\"><input type=\"number\" name=\"awardDestiny-${actor.id}\" value=\"1\"></div>\n\t\t\t</div>`;\n}\ndialogContent += `</form><br><br>`;\nlet dialogOptions = {\n\twidth: 750,\n\theight: 380,\n\tresizable: true,\n};\nlet toolboxdialog = new Dialog(\n\t{\n\t\ttitle: \"Narrator's Toolbox - End of Scene\",\n\t\tcontent: dialogContent,\n\t\tbuttons: {\n\t\t\tok: {\n\t\t\t\tlabel: \"Confirm\",\n\t\t\t\tcallback: async (html) => {\n\t\t\t\t\tfor (let actor of assignedActors) {\n\t\t\t\t\t\tconst currentDestiny = parseInt(actor.system.Vital.Destiny.value);\n\t\t\t\t\t\tconst awardDestiny = parseInt(html.find(`[name=\"awardDestiny-${actor.id}\"]`).val());\n\t\t\t\t\t\t//? Check for Luck Bending that would affect Destiny awards\n\t\t\t\t\t\tlet extraDestiny = 0;\n\t\t\t\t\t\tconst equippedItems = actor.items.toObject();\n\t\t\t\t\t\tconst equippedMetapowers = equippedItems.filter((item) => item.type === \"Metapower\");\n\t\t\t\t\t\tconst equippedLuck = equippedMetapowers.filter(\n\t\t\t\t\t\t\t(item) => item.system.MetapowerName.value === \"Luck Bending\"\n\t\t\t\t\t\t);\n\t\t\t\t\t\tif (equippedLuck.length > 0) {\n\t\t\t\t\t\t\tconst levels = equippedLuck.map((item) => item.system.Level.value);\n\t\t\t\t\t\t\tconst maxLevel = Math.max(...levels);\n\t\t\t\t\t\t\textraDestiny = maxLevel;\n\t\t\t\t\t\t}\n\t\t\t\t\t\tconst newDestiny = currentDestiny + awardDestiny + extraDestiny;\n\t\t\t\t\t\tawait actor.update({\n\t\t\t\t\t\t\t\"system.Vital.Destiny.value\": newDestiny,\n\t\t\t\t\t\t\t\"system.Vital.Destiny.max\": newDestiny,\n\t\t\t\t\t\t});\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t},\n\t\t\tcancel: {\n\t\t\t\tlabel: \"Cancel\",\n\t\t\t},\n\t\t},\n\t\tdefault: \"ok\",\n\t},\n\tdialogOptions\n);\ntoolboxdialog.render(true);",
+  "folder": "Be0XZnvUS3q7JTev",
+  "ownership": {
+    "default": 0,
+    "3IqRUDDVG8kDd6mW": 3,
+    "TnmSvbMxMd0fQgCE": 3,
+    "MXmDyHQbVNXPVxrV": 3,
+    "gaWoeXg7uJWoAsCP": 3,
+    "E1nZXRNcwWMtogk0": 3,
+    "kF9zOdNs2UiqaJVn": 3
+  },
+  "flags": {
+    "advanced-macros": {
+      "runForSpecificUser": ""
+    },
+    "core": {},
+    "scene-packer": {
+      "sourceId": "Macro.le8tJEXICKaihrKn",
+      "hash": "e5b0049a45752f11b37399b7421f9f58a22c97c8"
+    }
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.metanthropes-introductory.narrator-toolkit.Macro.s7b2tAv5syNViAR5",
+    "duplicateSource": null,
+    "coreVersion": "13.342",
+    "systemId": "metanthropes",
+    "systemVersion": "0.12.0",
+    "createdTime": 1736084732815,
+    "modifiedTime": 1736084732815,
+    "lastModifiedBy": "kF9zOdNs2UiqaJVn",
+    "exportSource": null
+  },
+  "_id": "d2TOlGC9d8ds3Vi1",
+  "sort": 0,
+  "_key": "!macros!d2TOlGC9d8ds3Vi1"
+}

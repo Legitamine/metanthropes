@@ -59,8 +59,8 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	const damageDiceCosmic = metaItemData.system.Effects.Damage.Cosmic.Dice;
 	const damageBaseElemental = metaItemData.system.Effects.Damage.Elemental.Base;
 	const damageDiceElemental = metaItemData.system.Effects.Damage.Elemental.Dice;
-	let damageBaseMaterial = metaItemData.system.Effects.Damage.Material.Base;
-	const damageDiceMaterial = metaItemData.system.Effects.Damage.Material.Dice;
+	let damageBaseMaterial = metaItemData.system.Effects.Damage.Material.Base || 0; //? ensures we can apply Power to melee & projectiles
+	const damageDiceMaterial = metaItemData.system.Effects.Damage.Material.Dice || 0; //? ensures we can apply Power to melee & projectiles
 	const damageBasePsychic = metaItemData.system.Effects.Damage.Psychic.Base;
 	const damageDicePsychic = metaItemData.system.Effects.Damage.Psychic.Dice;
 	const healingBase = metaItemData.system.Effects.Healing.Base;
@@ -196,7 +196,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				}
 			} else if (attackType === "Projectile") {
 				flavorMessage = `Throws their ${itemName}<br><br>`;
-				baseActorDamage = Math.ceil(powerScore / 2);
+				baseActorDamage = Math.ceil((powerScore + multiAction) / 2);
 				damageBaseMaterial = baseActorDamage + damageBaseMaterial;
 			} else if (attackType === "Firearm") {
 				flavorMessage = `Fires their ${itemName}<br><br>`;
@@ -733,6 +733,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	}
 	//* Apply Damage to Selected Targets
 	if (damageSelectedTargets && actionableTargets) {
+		metanthropes.utils.metaLog(4, "meta-execute", "Applying damage");
 		await metanthropes.logic.metaApplyDamage(
 			targetedActors,
 			cosmicDamageRollResult,
@@ -755,4 +756,5 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	};
 	await ChatMessage.create(chatData);
 	metanthropes.utils.metaLog(3, "metaExecute", "Finished");
+	//! return new Promise(resolve);
 }

@@ -2,10 +2,10 @@
 	"id": "metanthropes",
 	"title": "Metanthropes",
 	"description": "Metanthropes TTRPG System for Foundry VTT by Legitamine Games",
-	"version": "0.13.1",
+	"version": "0.13.2",
 	"compatibility": {
 		"minimum": "13",
-		"verified": "13.342",
+		"verified": "13.344",
 		"maximum": "13"
 	},
 	"relationships": {
@@ -50,8 +50,8 @@
 	"media": [
 		{
 			"type": "setup",
-			"url": "https://content.invisioncic.com/e290497/monthly_2024_03/new-cover.jpg.266c89d776592f674fd3a4133d3fb813.jpg",
-			"thumbnail": "systems/metanthropes/assets/cover/cover.jpg",
+			"url": "https://media.invisioncic.com/e290497/pages_media/system.webp?_cb=1749105696",
+			"thumbnail": "systems/metanthropes/assets/cover/cover.webp",
 			"loop": false,
 			"flags": {}
 		}
@@ -61,9 +61,33 @@
 	"styles": ["styles/metanthropes.css"],
 	"packs": [
 		{
+			"name": "demo-actors",
+			"label": "Demo Actors",
+			"banner": "systems/metanthropes/assets/cover/compendium-actor.webp",
+			"path": "packs/demo-actors",
+			"type": "Actor",
+			"system": "metanthropes",
+			"ownership": {
+				"PLAYER": "NONE",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
+			"name": "lobby",
+			"label": "Lobby",
+			"banner": "systems/metanthropes/assets/cover/compendium-scene.webp",
+			"path": "packs/lobby",
+			"type": "Scene",
+			"system": "metanthropes",
+			"ownership": {
+				"PLAYER": "NONE",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
 			"name": "system",
-			"label": "System",
-			"banner": "systems/metanthropes/assets/cover/compendium-header.webp",
+			"label": "System Demo",
+			"banner": "systems/metanthropes/assets/cover/compendium-adventure.webp",
 			"path": "packs/system",
 			"type": "Adventure",
 			"system": "metanthropes",
@@ -75,7 +99,7 @@
 		{
 			"name": "welcome",
 			"label": "Welcome",
-			"banner": "systems/metanthropes/assets/cover/compendium-header.webp",
+			"banner": "systems/metanthropes/assets/cover/compendium-journal.webp",
 			"path": "packs/welcome",
 			"type": "JournalEntry",
 			"system": "metanthropes",
@@ -85,10 +109,22 @@
 			}
 		},
 		{
-			"name": "rolltables",
-			"label": "Rollable Tables",
-			"banner": "systems/metanthropes/assets/cover/compendium-header.webp",
-			"path": "packs/rolltables",
+			"name": "how-to-play",
+			"label": "How To Play",
+			"banner": "systems/metanthropes/assets/cover/compendium-journal.webp",
+			"path": "packs/how-to-play",
+			"type": "JournalEntry",
+			"system": "metanthropes",
+			"ownership": {
+				"PLAYER": "OBSERVER",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
+			"name": "hit-location",
+			"label": "Hit Location",
+			"banner": "systems/metanthropes/assets/cover/compendium-roll-table.webp",
+			"path": "packs/hit-location",
 			"type": "RollTable",
 			"system": "metanthropes",
 			"ownership": {
@@ -98,8 +134,8 @@
 		},
 		{
 			"name": "toolkit",
-			"label": "Narrator Toolkit",
-			"banner": "systems/metanthropes/assets/cover/compendium-header.webp",
+			"label": "System Toolkit",
+			"banner": "systems/metanthropes/assets/cover/compendium-macro.webp",
 			"path": "packs/toolkit",
 			"type": "Macro",
 			"system": "metanthropes",
@@ -117,17 +153,38 @@
 			"packs": ["welcome"],
 			"folders": [
 				{
-					"name": "Installation",
+					"name": "Adventures",
 					"sorting": "a",
 					"color": "#7d0f81",
 					"packs": ["system"],
 					"folders": []
 				},
 				{
+					"name": "Actors",
+					"sorting": "a",
+					"color": "#7d0f81",
+					"packs": ["demo-actors"],
+					"folders": []
+				},
+				{
+					"name": "Journals",
+					"sorting": "a",
+					"color": "#7d0f81",
+					"packs": ["how-to-play"],
+					"folders": []
+				},
+				{
+					"name": "Scenes",
+					"sorting": "a",
+					"color": "#7d0f81",
+					"packs": ["lobby"],
+					"folders": []
+				},
+				{
 					"name": "Rollable Tables",
 					"sorting": "a",
 					"color": "#7d0f81",
-					"packs": ["rolltables"],
+					"packs": ["hit-location"],
 					"folders": []
 				},
 				{
@@ -146,7 +203,7 @@
 	"license": "https://github.com/legitamine/metanthropes/blob/main/LICENSE",
 	"readme": "https://github.com/Legitamine/metanthropes/blob/main/README.md",
 	"bugs": "https://github.com/Legitamine/metanthropes/issues",
-	"background": "systems/metanthropes/assets/cover/cover.jpg",
+	"background": "systems/metanthropes/assets/cover/cover.webp",
 	"socket": true,
 	"primaryTokenAttribute": "Vital.Life",
 	"secondaryTokenAttribute": "Vital.Destiny",
