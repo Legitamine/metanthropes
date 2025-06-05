@@ -142,6 +142,12 @@ export async function metaRolld10(
 		//* Not anchored, print message to chat
 		if (!reroll) {
 			//* Not a reroll, printing a new message
+			//todo! need to find a way to tell dice so nice to only show the animation if dice > 0
+			//todo oxi message edw? //if ( message?.rolls.length && ("dice3d" in game) ) await game.dice3d.waitFor3DAnimationByMessageID(message.id);
+			// if (game.dice3d && dice <= 0) {
+			// 	rolld10.dice[0].results[0].hidden = true;
+			// 	metanthropes.utils.metaLog(4, "metaRolld10", "not anchor, no reroll", rolld10);
+			// }
 			const updatedRoll = await rolld10.toJSON();
 			const renderedRoll = await rolld10.render();
 			rolld10.toMessage({
@@ -168,10 +174,10 @@ export async function metaRolld10(
 			}
 			const updatedRoll = await rolld10.toJSON();
 			const renderedRoll = await rolld10.render();
-			//? Call Dice So Nice to show the roll, assumes the module is active
-			if (game.dice3d) {
-				game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
-			}
+			//? Call Dice So Nice to show the roll
+			// if (game.dice3d && dice > 0) {
+			// 	game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
+			// }
 			chatMessage.update({
 				flavor: message,
 				rolls: updatedRoll,
@@ -186,11 +192,13 @@ export async function metaRolld10(
 		if (!reroll) {
 			//*? don't print a chat message ?what is reroll exactly? todo: rename to more clean purpose
 			//* We store in the dataset all info to display the chat message if needed from rerolls
+			//! do I need this anymore for rerolls to show for all players?
+			//? Call Dice So Nice to show the roll
+			// if (game.dice3d && dice > 0) {
+			// 	game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
+			// }
 			const updatedRoll = await rolld10.toJSON();
 			const renderedRoll = await rolld10.render();
-			if (game.dice3d) {
-				game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
-			}
 			metanthropes.utils.metaLog(3, "metaRolld10", "Anchored", "Not updating original chat message", messageId);
 			return rolld10.toAnchor({
 				label: what,
@@ -214,10 +222,10 @@ export async function metaRolld10(
 			//* Re rolling for an anchor
 			const updatedRoll = await rolld10.toJSON();
 			const renderedRoll = await rolld10.render();
-			//? Call Dice So Nice to show the roll, if the module is active
-			if (game.dice3d) {
-				game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
-			}
+			//? Call Dice So Nice to show the roll
+			// if (game.dice3d && dice > 0) {
+			// 	game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
+			// }
 			const chatData = {
 				speaker: ChatMessage.getSpeaker({ actor: actor }),
 				flavor: message,
@@ -340,7 +348,7 @@ export async function metaRolld10ReRoll(event) {
 		return;
 	}
 	//? If re rolling for damage/healing, need to ensure we have valid targets before reducing destiny
-	if (!targets && what.includes("Healing"||"Damage")) {
+	if (!targets && what.includes("Healing" || "Damage")) {
 		ui.notifications.warn("You must select valid targets first");
 		return;
 	}
@@ -515,6 +523,8 @@ export async function metaDamageReRoll(event) {
 		const targetedActor = await fromUuid(targetedActors[i]);
 		await targetedActor.undoLastLifeChange();
 	}
+	//todo instead of this arbitrary timeout, we should have a proper second socket event to track server responses? see https://foundryvtt.wiki/en/development/api/sockets - above specific use cases
+	await new Promise((resolve) => setTimeout(resolve, 3000));
 	await metanthropes.logic.metaApplyDamage(
 		targetedActors,
 		cosmicDamageRollResult,
@@ -530,11 +540,17 @@ export async function metaDamageReRoll(event) {
 		rerollCounter++;
 		if (rerollCounter > 1) startMessage += ` (<i class="fa-sharp-duotone fa-solid fa-xmark"></i>${rerollCounter})`;
 	}
-	flavorMessage = `${startMessage} Damage for ${itemName} to ${targetedActors.length} target${targetedActors.length>1?'s':''}:<br>`;
-	if (cosmicDamageRollResult > 0) contentMessage += `<div class="meta-roll-inline-results">${damageCosmicMessage}</div>`;
-	if (elementalDamageRollResult > 0) contentMessage += `<div class="meta-roll-inline-results">${damageElementalMessage}</div>`;
-	if (materialDamageRollResult > 0) contentMessage += `<div class="meta-roll-inline-results">${damageMaterialMessage}</div>`;
-	if (psychicDamageRollResult > 0) contentMessage += `<div class="meta-roll-inline-results">${damagePsychicMessage}</div>`;
+	flavorMessage = `${startMessage} Damage for ${itemName} to ${targetedActors.length} target${
+		targetedActors.length > 1 ? "s" : ""
+	}:<br>`;
+	if (cosmicDamageRollResult > 0)
+		contentMessage += `<div class="meta-roll-inline-results">${damageCosmicMessage}</div>`;
+	if (elementalDamageRollResult > 0)
+		contentMessage += `<div class="meta-roll-inline-results">${damageElementalMessage}</div>`;
+	if (materialDamageRollResult > 0)
+		contentMessage += `<div class="meta-roll-inline-results">${damageMaterialMessage}</div>`;
+	if (psychicDamageRollResult > 0)
+		contentMessage += `<div class="meta-roll-inline-results">${damagePsychicMessage}</div>`;
 	contentMessage += `<div>${actor.name} has ${actor.currentDestiny} <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny remaining.<br></div>`;
 	if (actor.currentDestiny > 0) {
 		const damageReRollButton = `<div class="hide-button hidden">
@@ -571,7 +587,7 @@ export async function metaDamageReRoll(event) {
 		elementalDamageRollResult,
 		materialDamageRollResult,
 		psychicDamageRollResult,
-		`Target${targetedActors.length>1?'s':''}:`,
+		`Target${targetedActors.length > 1 ? "s" : ""}:`,
 		targetedActors.length
 	);
 }
@@ -581,8 +597,8 @@ export async function metaDamageReRoll(event) {
  *
  * @export
  * @async
- * @param {*} event 
- * @returns {*} 
+ * @param {*} event
+ * @returns {*}
  */
 export async function metaHealingReRoll(event) {
 	event.preventDefault();
@@ -657,6 +673,8 @@ export async function metaHealingReRoll(event) {
 		const targetedActor = await fromUuid(targetedActors[i]);
 		await targetedActor.undoLastLifeChange();
 	}
+	//todo instead of this arbitrary timeout, we should have a proper second socket event to track server responses? see https://foundryvtt.wiki/en/development/api/sockets - above specific use cases
+	await new Promise((resolve) => setTimeout(resolve, 3000));
 	await metanthropes.logic.metaApplyHealing(targetedActors, healingRollResult);
 	//* Chat Message
 	if (!reroll) {
@@ -666,7 +684,9 @@ export async function metaHealingReRoll(event) {
 		rerollCounter++;
 		if (rerollCounter > 1) startMessage += ` (<i class="fa-sharp-duotone fa-solid fa-xmark"></i>${rerollCounter})`;
 	}
-	flavorMessage = `${startMessage} ${itemName}'s Healing, with ${targetedActors.length} target${targetedActors.length > 1 ? 's' : ''}:<br><br>`;
+	flavorMessage = `${startMessage} ${itemName}'s Healing, with ${targetedActors.length} target${
+		targetedActors.length > 1 ? "s" : ""
+	}:<br><br>`;
 	contentMessage += `<div class="meta-roll-inline-results">`;
 	contentMessage = `${healingMessage}`;
 	contentMessage += `</div>`;

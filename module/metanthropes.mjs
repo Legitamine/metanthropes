@@ -51,6 +51,8 @@ import { metaFinalizePremadeActor } from "./api/logic/finalize-premade.mjs";
 import { metaApplyDamage } from "./api/logic/meta-apply-damage.mjs";
 import { metaApplyHealing } from "./api/logic/meta-apply-healing.mjs";
 import { metaAssignActorToPlayer } from "./api/logic/assign-actor-to-player.mjs";
+import { metaApplyActorUpdates } from "./api/logic/apply-actor-updates.mjs";
+import { metaHandleSocketEvents } from "./api/logic/handle-socket-events.mjs";
 //* Utilities
 import { prepareActiveEffectCategories, onManageActiveEffect } from "./api/utils/active-effect-tools.mjs";
 import { metaExtractNumberOfDice } from "./api/utils/dice-tools.mjs";
@@ -112,6 +114,8 @@ globalThis.metanthropes = {
 		metaApplyDamage,
 		metaApplyHealing,
 		metaAssignActorToPlayer,
+		metaApplyActorUpdates,
+		metaHandleSocketEvents,
 	},
 	metapowers: {
 		metaExecute,

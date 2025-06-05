@@ -267,6 +267,7 @@ export async function metaEvaluate(
 	//* The buttons are hidden for everyone except the Player of the Actor and the GM
 	//? Define threshold of showing the button, to re-roll we need a minimum of 1 Destiny + the Destiny Cost of the Metapower (only applies to Metapowers with DestinyCost, otherwise it's 0)
 	const threshold = 1 + Number(destinyCost);
+	//todo: see for crit VFX/SFX https://gitlab.com/riccisi/foundryvtt-dice-so-nice/-/wikis/API/SFX
 	if (!criticalSuccess && !criticalFailure && actor.currentDestiny >= threshold) {
 		if (action === "Initiative") {
 			//? Button to re-roll Initiative
@@ -419,6 +420,7 @@ export async function metaEvaluate(
 	//* If autoExecute is true, we execute the Metapower or Possession
 	if (autoExecute) {
 		//? wait for 5 seconds to ensure the chat messages display in the proper order and animations clear out
+		//todo see https://gitlab.com/riccisi/foundryvtt-dice-so-nice/-/wikis/API/Roll#disablingenabling-the-3d-animation-programmatically 
 		await new Promise((resolve) => setTimeout(resolve, 5000));
 		//? Automatically execute the activation/use of the Metapower/Possession if it's a Critical Success/Failure or not enough destiny to reroll
 		if (action === "Metapower") {

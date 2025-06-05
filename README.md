@@ -1,4 +1,4 @@
-![image](https://content.invisioncic.com/e290497/monthly_2024_03/new-cover.jpg.266c89d776592f674fd3a4133d3fb813.jpg)
+![image](https://media.invisioncic.com/e290497/monthly_2025_04/welcomecopy.png.d0b949fdb99e8068c238ce720024ab28.png)
 ![Foundry v13](https://img.shields.io/badge/foundry-v13-green)
 ![Latest Release Download Count](https://img.shields.io/github/downloads/legitamine/metanthropes/latest/metanthropes.zip)
 [![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fmetanthropes&colorB=4aa94a)](https://forge-vtt.com/bazaar#package=metanthropes)
