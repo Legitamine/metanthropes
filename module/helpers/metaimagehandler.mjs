@@ -41,7 +41,7 @@ async function metaUpdateImage(actor, imageDir, changeBoth, useWildcard) {
 	const finalDir = `${baseDir}${imageDir}/${actorType}/`;
 
 	// Open the file picker
-	const fp = new metaFilePicker({
+	const fp = new foundry.applications.apps.FilePicker.implementation({
 		resource: "data",
 		current: finalDir,
 		displayMode: "tiles",

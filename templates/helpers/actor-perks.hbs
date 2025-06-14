@@ -72,16 +72,16 @@
 					{{#if (or ../betaTesting (not ../coreFeatures))}}
 						{{#if (and ../isNarrator ../coreFeatures)}}
 							<div class="layout-editor style-editor">
-								{{editor this.value target=(concat "system.Perks.Details." @key ".value") button=true editable=true}}
+								{{editor this.value target=(concat "system.Perks.Details." @key ".value") engine="prosemirror" button=true editable=true}}
 							</div>
 						{{else}}
 							<div class="layout-editor style-editor">
-								{{editor this.value target=(concat "system.Perks.Details." @key ".value") button=true editable=false}}
+								{{editor this.value target=(concat "system.Perks.Details." @key ".value") engine="prosemirror" button=true editable=false}}
 							</div>
 						{{/if}}
 					{{else}}
 						<div class="layout-editor style-editor">
-							{{editor this.value target=(concat "system.Perks.Details." @key ".value") button=true editable=true}}
+							{{editor this.value target=(concat "system.Perks.Details." @key ".value") engine="prosemirror" button=true editable=true}}
 						</div>
 					{{/if}}
 				</div>

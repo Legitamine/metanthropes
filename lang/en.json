@@ -96,6 +96,10 @@
 					"max": {
 						"label": "Maximum",
 						"hint": "Metanthrope Characters have a maximum Life total of 100 + their Endurance score and also gain an additional +25 Life for every 5.000 Total EXP they have accumulated"
+					},
+					"restore": {
+						"hint": "Undo last automatic Life change",
+						"notification": "Cannot undo last automatic Life change for "
 					}
 				},
 				"physical": {
@@ -207,7 +211,7 @@
 			"Extraterrestrial": "Extraterrestrial",
 			"Animated-Cadaver": "Animated-Cadaver",
 			"Animated-Plant": "Animated-Plant",
-			"MetaTherion": "Metatherion"
+			"MetaTherion": "MetaTherion"
 		},
 		"Item": {
 			"Metapower": "Metapower",

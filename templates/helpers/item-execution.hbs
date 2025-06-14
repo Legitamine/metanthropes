@@ -3,7 +3,7 @@
 		{{#if (or ../isNarrator (and (not (or (eq this.value null) (eq this.value 0) (eq this.value "None"))) (or (not (isArray this.value)) (and (isArray this.value) (gt this.value.length 0)))))}}
 			{{#unless (or (eq @key "StatRolled") (eq @key "AdditionalInfo"))}}
 				<div class="resource">
-					<label class="resource-label">{{this.label}}:</label>
+					<label class="resource-label">{{{this.label}}}:</label>
 					{{#if this.options}}
 						{{#if ../isNarrator}}
 							<select name="system.Execution.{{@key}}.value">
@@ -46,11 +46,11 @@
 		</div>
 		{{#if (and isNarrator homebrewFeatures)}}
 			<div class="layout-editor">
-				{{editor system.Execution.AdditionalInfo.value target="system.Execution.AdditionalInfo.value" button=true editable=true}}
+				{{editor system.Execution.AdditionalInfo.value target="system.Execution.AdditionalInfo.value" engine="prosemirror" button=true editable=true}}
 			</div><br>
 		{{else}}
 			<div class="layout-editor">
-				{{editor system.Execution.AdditionalInfo.value target="system.Execution.AdditionalInfo.value" button=false editable=false}}
+				{{editor system.Execution.AdditionalInfo.value target="system.Execution.AdditionalInfo.value" engine="prosemirror" button=false editable=false}}
 			</div><br>
 		{{/if}}
 	{{/if}}

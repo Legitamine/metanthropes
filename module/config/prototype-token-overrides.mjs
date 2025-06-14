@@ -10,12 +10,12 @@ export const TOKENDEFAULTS = {
 		ring: {
 			enabled: false,
 		},
-		disposition: CONST.TOKEN_DISPOSITIONS.NEUTRAL,
+		disposition: CONST.TOKEN_DISPOSITIONS.SECRET,
 		lockRotation: false,
 		turnMarker: {
 			mode: CONST.TOKEN_TURN_MARKER_MODES.CUSTOM,
-			animation: "spin",
-			src: "systems/metanthropes/assets/logos/Metanthropes-White-Transparent.webp",
+			animation: "pulse",
+			src: "systems/metanthropes/assets/logos/metanthropes-logo-turn-marker.webp",
 			disposition: true,
 		},
 	},
@@ -25,36 +25,18 @@ export const TOKENDEFAULTS = {
 		disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY,
 		turnMarker: {
 			mode: CONST.TOKEN_TURN_MARKER_MODES.CUSTOM,
-			animation: "spinPulse",
-			src: "systems/metanthropes/assets/logos/Metanthropes-White-Transparent.webp",
+			animation: "spin",
+			src: "systems/metanthropes/assets/logos/metanthropes-logo-turn-marker.webp",
 			disposition: true,
 		},
 	},
-	Metanthrope: {
-		disposition: CONST.TOKEN_DISPOSITIONS.SECRET,
-	},
-	Human: {
-		disposition: CONST.TOKEN_DISPOSITIONS.SECRET,
-	},
-	Animal: {
-		disposition: CONST.TOKEN_DISPOSITIONS.NEUTRAL,
-	},
-	Artificial: {
-		disposition: CONST.TOKEN_DISPOSITIONS.SECRET,
-	},
-	Extradimensional: {
-		disposition: CONST.TOKEN_DISPOSITIONS.SECRET,
-	},
-	Extraterrestrial: {
-		disposition: CONST.TOKEN_DISPOSITIONS.SECRET,
-	},
-	"Animated-Cadaver": {
-		disposition: CONST.TOKEN_DISPOSITIONS.HOSTILE,
-	},
-	"Animated-Plant": {
-		disposition: CONST.TOKEN_DISPOSITIONS.NEUTRAL,
-	},
-	MetaTherion: {
-		disposition: CONST.TOKEN_DISPOSITIONS.NEUTRAL,
-	},
+	Metanthrope: {},
+	Human: {},
+	Animal: {},
+	Artificial: {},
+	Extradimensional: {},
+	Extraterrestrial: {},
+	"Animated-Cadaver": {},
+	"Animated-Plant": {},
+	MetaTherion: {},
 };

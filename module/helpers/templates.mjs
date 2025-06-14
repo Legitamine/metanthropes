@@ -26,7 +26,7 @@ export const preloadHandlebarsTemplates = async function () {
 		//? Item Sheet
 		"systems/metanthropes/templates/item/item-combo-sheet.hbs",
 		"systems/metanthropes/templates/item/item-metapower-sheet.hbs",
-		"systems/metanthropes/templates/item/item-Object-sheet.hbs",
+		"systems/metanthropes/templates/item/item-object-sheet.hbs",
 		"systems/metanthropes/templates/item/item-possession-sheet.hbs",
 		//? Active Effect Sheet
 		"systems/metanthropes/templates/helpers/active-effects.hbs",

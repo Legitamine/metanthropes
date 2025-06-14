@@ -173,7 +173,8 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 					//? Remove the item from the actor if its category is not allowed
 					metanthropes.utils.metaLog(
 						2,
-						"MetanthropesActorSheet _prepareItems",
+						"MetanthropesActorSheet",
+						"_prepareItems",
 						"Invalid Category for Possession:",
 						item.name
 					);
@@ -334,7 +335,7 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		}
 		await this.maximize();
 		this.render(true);
-		metanthropes.utils.metaLog(3, "MetanthropesActorSheet _onHeaderButtonClick", size);
+		metanthropes.utils.metaLog(3, "MetanthropesActorSheet", "_onHeaderButtonClick", size);
 	}
 	//? Render the sheet
 	/**
@@ -612,18 +613,18 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 	async _onNewActor(event) {
 		event.preventDefault();
 		const actor = this.actor;
-		//* Imports from Premium Module API
+		//* Call the metaNewActor logic
 		const coreModule = game.modules.get("metanthropes-core");
 		if (coreModule && coreModule?.active) {
-			const api = coreModule.api;
 			try {
-				metanthropes.utils.metaLog(3, "_onNewActor", "Core Module API Available, calling metaNewActor");
-				await api.metaNewActor(actor);
+				metanthropes.utils.metaLog(3, "MetanthropesActorSheet", "_onNewActor", "Core API available, calling metaNewActor");
+				await metanthropes.logic.metaNewActor(actor);
 			} catch (error) {
-				metanthropes.utils.metaLog(2, "_onNewActor", "Core Module API Error:", error);
+				metanthropes.utils.metaLog(2, "MetanthropesActorSheet", "_onNewActor", "Core Module API Error:", error);
 			}
 		} else {
-			metanthropes.utils.metaLog(2, "_onNewActor", "Core Module Not Active");
+			metanthropes.utils.metaLog(2, "MetanthropesActorSheet", "_onNewActor", "Core Module Not Active");
+			ui.notifications.info("Metanthropes: Core module is required to roll a new actor during Early Access");
 		}
 	}
 	//* Finalize Premade Protagonist

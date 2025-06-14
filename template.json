@@ -1082,7 +1082,7 @@
 					"Durability": {
 						"type": "number",
 						"dtype": "Number",
-						"label": "🧱 🤍",
+						"label": "🧱 <i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i>",
 						"value": "10"
 					},
 					"Size": {
@@ -1326,7 +1326,7 @@
 					"VSStatRoll": {
 						"type": "text",
 						"dtype": "String",
-						"label": "🆚",
+						"label": "<i class=\"fa-duotone fa-solid fa-swords\"></i>",
 						"options": [
 							"None",
 							"Awareness",
@@ -1372,7 +1372,7 @@
 						}
 					},
 					"Healing": {
-						"label": "💞 Healing",
+						"label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
 						"type": "number",
 						"dtype": "Number",
 						"Base": 0,
@@ -1394,13 +1394,13 @@
 					},
 					"Conditions": {
 						"Applied": {
-							"label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> ➕",
+							"label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
 							"type": "text",
 							"dtype": "String",
 							"value": null
 						},
 						"Removed": {
-							"label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> ➖",
+							"label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
 							"type": "text",
 							"dtype": "String",
 							"value": null
@@ -1408,19 +1408,19 @@
 					},
 					"Buffs": {
 						"Permanent": {
-							"label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> ♾️",
+							"label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-infinity\"></i>",
 							"type": "text",
 							"dtype": "String",
 							"value": null
 						},
 						"Applied": {
-							"label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> ➕",
+							"label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
 							"type": "text",
 							"dtype": "String",
 							"value": null
 						},
 						"Removed": {
-							"label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> ➖",
+							"label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
 							"type": "text",
 							"dtype": "String",
 							"value": null
@@ -1603,7 +1603,7 @@
 			"Classification": {
 				"type": "text",
 				"dtype": "String",
-				"label": "🔣",
+				"label": "<i class=\"fa-duotone fa-solid fa-people-group\"></i>",
 				"value": null,
 				"options": [
 					"Aegis",
@@ -1621,7 +1621,7 @@
 			"Level": {
 				"type": "number",
 				"dtype": "Number",
-				"label": "⏫",
+				"label": "<i class=\"fa-duotone fa-solid fa-layer-group\"></i>",
 				"value": 1,
 				"options": ["1", "2", "3", "4", "5"]
 			},

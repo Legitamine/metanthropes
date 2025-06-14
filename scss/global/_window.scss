@@ -10,8 +10,8 @@
 	align-items: center;
 }
 .metanthropes input[type="number"] {
-	min-width: 3ch;
-	max-width: 5ch;
+	min-width: 4ch;
+	max-width: 6ch;
 	margin: $margin-sm;
 	padding: $padding-input-number;
 	border: $border-style-dashed;
@@ -137,14 +137,15 @@ h3 {
 }
 
 //todo: are z-indexes here still doing something?
-// .window-app .window-resizable-handle {
-// 	z-index: 4;
-// }
+//metanthropes logo in cs background still needs these
+.window-app .window-resizable-handle {
+	z-index: 4;
+}
 
-// .sheet.journal-entry .journal-entry-content {
-// 	z-index: 3;
-// }
+.sheet.journal-entry .journal-entry-content {
+	z-index: 3;
+}
 
-// .image-popout figure {
-// 	z-index: 3;
-// }
+.image-popout figure {
+	z-index: 3;
+}

@@ -31,6 +31,7 @@ import { MetanthropesCombat } from "./documents/combat.mjs";
 import { MetanthropesActorSheet } from "./ui/sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./ui/sheets/item-sheet.mjs";
 import { MetanthropesActiveEffectSheet } from "./ui/sheets/active-effect-sheet.mjs";
+import { MetaDialog } from "./metaclasses/metaclasses.mjs";
 //* AppV2 Sheets
 import { MetanthropesNPCActorSheet, MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
 import { MetanthropesItemSheetV2 } from "./ui/sheets/item-sheet-v2.mjs";
@@ -50,6 +51,8 @@ import { metaFinalizePremadeActor } from "./api/logic/finalize-premade.mjs";
 import { metaApplyDamage } from "./api/logic/meta-apply-damage.mjs";
 import { metaApplyHealing } from "./api/logic/meta-apply-healing.mjs";
 import { metaAssignActorToPlayer } from "./api/logic/assign-actor-to-player.mjs";
+import { metaApplyActorUpdates } from "./api/logic/apply-actor-updates.mjs";
+import { metaHandleSocketEvents } from "./api/logic/handle-socket-events.mjs";
 //* Utilities
 import { prepareActiveEffectCategories, onManageActiveEffect } from "./api/utils/active-effect-tools.mjs";
 import { metaExtractNumberOfDice } from "./api/utils/dice-tools.mjs";
@@ -57,6 +60,7 @@ import { metaMigrateData } from "./api/utils/migration.mjs";
 import { metaLog, metaLogDocument } from "./api/utils/log-tools.mjs";
 import { metaSortActions } from "./api/utils/sort-actions.mjs";
 import { metaRunMacro } from "./api/utils/run-macro.mjs";
+import { metaIsMetapowerEquipped, metaTransformStringForStorage } from "./helpers/metahelpers.mjs";
 //* Game Settings
 import { metaRegisterGameSettings } from "./api/utils/register-game-settings.mjs";
 import { metaRegisterStatusEffects } from "./config/status-effects.mjs";
@@ -83,6 +87,7 @@ globalThis.metanthropes = {
 		MetanthropesActorSheetV2,
 		MetanthropesNPCActorSheet,
 		MetanthropesItemSheetV2,
+		MetaDialog,
 	},
 	dice: {
 		metaRoll,
@@ -109,6 +114,8 @@ globalThis.metanthropes = {
 		metaApplyDamage,
 		metaApplyHealing,
 		metaAssignActorToPlayer,
+		metaApplyActorUpdates,
+		metaHandleSocketEvents,
 	},
 	metapowers: {
 		metaExecute,
@@ -130,6 +137,8 @@ globalThis.metanthropes = {
 		preloadHandlebarsTemplates,
 		metaSortActions,
 		metaRunMacro,
+		metaTransformStringForStorage,
+		metaIsMetapowerEquipped,
 	},
 };
 

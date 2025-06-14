@@ -1,5 +1,3 @@
-import { metaIsMetapowerEquipped, metaTransformStringForStorage } from "../helpers/metahelpers.mjs";
-
 /**
  * The base Actor definition which defines common behavior of actors within the Metanthropes system.
  *
@@ -20,7 +18,6 @@ export class MetanthropesActor extends Actor {
 			});
 		else if (data.prototypeToken) createData.prototypeToken = data.prototypeToken;
 		//* Set custom default tokens portraits
-		//todo Needs Refactoring - this is a mess
 		if (!createData.prototypeToken.flags) createData.prototypeToken.flags = {};
 		switch (data.type) {
 			case "Protagonist":
@@ -193,7 +190,7 @@ export class MetanthropesActor extends Actor {
 					//? Make the Prime Metapower Image, the one for the Actor according to their Metamorphosis
 					const primeMPName = this.system.entermeta.primemetapower.value;
 					//? Proceed if Prime Metapower icon is not the correct one
-					const primeMPStorageName = metaTransformStringForStorage(primeMPName);
+					const primeMPStorageName = metanthropes.utils.metaTransformStringForStorage(primeMPName);
 					if (
 						!(
 							this.primeimg ==
@@ -292,7 +289,7 @@ export class MetanthropesActor extends Actor {
 	 * @param {number} psychic
 	 */
 	async applyDamage(cosmic = 0, elemental = 0, material = 0, psychic = 0) {
-		const currentLife = Number(this.system.Vital.Life.value);
+		const currentLife = this.currentLife;
 		const cosmicResistance = Number(this.system.physical.resistances.cosmic.initial);
 		const elementalResistance = Number(this.system.physical.resistances.elemental.initial);
 		const materialResistance = Number(this.system.physical.resistances.material.initial);
@@ -314,7 +311,8 @@ export class MetanthropesActor extends Actor {
 		} else {
 			updateData["system.Vital.Life.value"] = Number(newLife);
 		}
-		await this.update({ ...updateData });
+		metanthropes.utils.metaLog(4, "Actor", "Applying Damage");
+		await metanthropes.logic.metaApplyActorUpdates(this.uuid, { ...updateData });
 		metanthropes.utils.metaLog(
 			3,
 			"Actor.applyDamage",
@@ -334,7 +332,7 @@ export class MetanthropesActor extends Actor {
 	 * @param {number} [healing=0]
 	 */
 	async applyHealing(healing) {
-		const currentLife = this.system.Vital.Life.value;
+		const currentLife = this.currentLife;
 		const maxLife = this.system.Vital.Life.max;
 		const newLife = Number(currentLife) + Number(healing);
 		let updateData = {};
@@ -344,7 +342,8 @@ export class MetanthropesActor extends Actor {
 		} else {
 			updateData["system.Vital.Life.value"] = Number(newLife);
 		}
-		await this.update({ ...updateData });
+		metanthropes.utils.metaLog(4, "Actor", "Applying Healing");
+		await metanthropes.logic.metaApplyActorUpdates(this.uuid, { ...updateData });
 		metanthropes.utils.metaLog(
 			3,
 			"Actor.applyHealing",
@@ -363,14 +362,17 @@ export class MetanthropesActor extends Actor {
 	 */
 	async undoLastLifeChange() {
 		const previousLife = await this.getFlag("metanthropes", "previousLife");
-		if (previousLife === null || previousLife === undefined) 
-			return ui.notifications.warn("No previous Life value flag to restore for", this.name);
+		if (previousLife === null || previousLife === undefined || previousLife === "nope")
+			return ui.notifications.warn(
+				game.i18n.localize("METANTHROPES.ACTOR.BASE.life.restore.notification") + this.name
+			);
 		if (previousLife >= 0) {
-			await this.update({
-				"system.Vital.Life.value": Number(previousLife),
-				"flags.metanthropes.previousLife": null,
-			});
+			//todo we should use the unsetflag instead
 			metanthropes.utils.metaLog(3, "Actor.undoLastLifeChange", "Restoring", this.name, "Life to:", previousLife);
+			await metanthropes.logic.metaApplyActorUpdates(this.uuid, {
+				"system.Vital.Life.value": Number(previousLife),
+				"flags.metanthropes.previousLife": "nope",
+			});
 		}
 	}
 
@@ -384,7 +386,7 @@ export class MetanthropesActor extends Actor {
 	async applyDestinyChange(destiny) {
 		if (destiny === 0)
 			return metanthropes.utils.metaLog(3, "Actor.applyDestinyChange", this.name, "No Destiny Cost/Change");
-		const currentDestiny = this.system.Vital.Destiny.value;
+		const currentDestiny = this.currentDestiny;
 		const maxDestiny = this.system.Vital.Destiny.max;
 		const newDestiny = Number(currentDestiny) + Number(destiny);
 		let updateData = {};
@@ -393,13 +395,7 @@ export class MetanthropesActor extends Actor {
 			updateData["system.Vital.Destiny.max"] = newDestiny;
 		}
 		await this.update({ ...updateData });
-		metanthropes.utils.metaLog(
-			3,
-			"Actor.applyDestinyChange",
-			this.name,
-			"Destiny changed by:",
-			destiny
-		);
+		metanthropes.utils.metaLog(3, "Actor.applyDestinyChange", this.name, "Destiny changed by:", destiny);
 	}
 	//* Getters
 	get hasCharacteristics() {
@@ -442,7 +438,7 @@ export class MetanthropesActor extends Actor {
 		return Boolean(this.system.humanoids);
 	}
 	get isDuplicatingSelf() {
-		if (metaIsMetapowerEquipped(this, "Duplicate Self")) {
+		if (metanthropes.utils.metaIsMetapowerEquipped(this, "Duplicate Self")) {
 			return Boolean(this.getFlag("metanthropes", "duplicateSelf"));
 		} else {
 			return false;
@@ -467,6 +463,9 @@ export class MetanthropesActor extends Actor {
 	}
 	get currentDestiny() {
 		return Number(this.system.Vital.Destiny.value);
+	}
+	get currentLife() {
+		return Number(this.system.Vital.Life.value);
 	}
 	//! To be deprecated with Data Models !//
 	//* Characteristics & Stats

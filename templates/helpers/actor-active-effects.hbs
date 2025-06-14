@@ -6,23 +6,19 @@
 			</div>
 			<div>Cosmic
 				<input name="system.physical.resistances.cosmic.initial" type="number"
-					value="{{system.physical.resistances.cosmic.initial}}" data-dtype="Number"
-					placeholder="0" />
+					value="{{system.physical.resistances.cosmic.initial}}" data-dtype="Number" placeholder="0" />
 			</div>
 			<div>Elemental
 				<input name="system.physical.resistances.elemental.initial" type="number"
-					value="{{system.physical.resistances.elemental.initial}}" data-dtype="Number"
-					placeholder="0" />
+					value="{{system.physical.resistances.elemental.initial}}" data-dtype="Number" placeholder="0" />
 			</div>
 			<div>Material
 				<input name="system.physical.resistances.material.initial" type="number"
-					value="{{system.physical.resistances.material.initial}}" data-dtype="Number"
-					placeholder="0" />
+					value="{{system.physical.resistances.material.initial}}" data-dtype="Number" placeholder="0" />
 			</div>
 			<div>Psychic
 				<input name="system.physical.resistances.psychic.initial" type="number"
-					value="{{system.physical.resistances.psychic.initial}}" data-dtype="Number"
-					placeholder="0" />
+					value="{{system.physical.resistances.psychic.initial}}" data-dtype="Number" placeholder="0" />
 			</div>
 		</div>
 		<div class="layout-container-small style-container-small">
@@ -37,10 +33,10 @@
 				{{#if (gt system.physical.speed.Conditions.slowed.value 0)}}
 					<span class="style-cs-conditions" data-tooltip="Slowed Condition Level">
 				{{else}}
-					<span class="style-cs-conditions meta-ui-obscure"
-						data-tooltip="Slowed Condition Level">
+					<span class="style-cs-conditions meta-ui-obscure" data-tooltip="Slowed Condition Level">
 				{{/if}}
-				<i class="fa-sharp-duotone fa-solid fa-skull"></i> <label class="meta-ui-responsive meta-ui-hide-at-medium"
+				<i class="fa-sharp-duotone fa-solid fa-skull"></i> <label
+					class="meta-ui-responsive meta-ui-hide-at-medium"
 					for="system.physical.speed.Conditions.slowed.value">Slowed</label>
 				<select class="style-cs-conditions" data-tooltip="Slowed Condition Level"
 					name="system.physical.speed.Conditions.slowed.value"
@@ -65,23 +61,23 @@
 					</option>
 					<option value="9" {{selected system.physical.speed.Conditions.slowed.value 9}}>9
 					</option>
-					<option value="10"
-						{{selected system.physical.speed.Conditions.slowed.value 10}}>10
+					<option value="10" {{selected system.physical.speed.Conditions.slowed.value 10}}>10
 					</option>
 				</select>
 				</span>
 				<span class="style-cs-values"
-					data-tooltip="Speed represents how fast a Character can move in the Grid"><i class="fa-sharp-duotone fa-solid fa-wind"></i>
+					data-tooltip="Speed represents how fast a Character can move in the Grid"><i
+						class="fa-sharp-duotone fa-solid fa-wind"></i>
 					<span class="meta-ui-responsive meta-ui-hide-at-medium">Speed
 					</span>{{system.physical.speed.value}}
 				</span>
 				{{#if (gt system.physical.speed.Buffs.accelerated.value 0)}}
 					<span class="style-cs-buffs" data-tooltip="Accelerated Buff Level">
 				{{else}}
-					<span class="style-cs-buffs meta-ui-obscure"
-						data-tooltip="Accelerated Buff Level">
+					<span class="style-cs-buffs meta-ui-obscure" data-tooltip="Accelerated Buff Level">
 				{{/if}}
-				<i class="fa-sharp-duotone fa-solid fa-shield-halved"></i> <label class="meta-ui-responsive meta-ui-hide-at-medium"
+				<i class="fa-sharp-duotone fa-solid fa-shield-halved"></i> <label
+					class="meta-ui-responsive meta-ui-hide-at-medium"
 					for="system.physical.speed.Buffs.accelerated.value">Accelerated</label>
 				<select class="style-cs-buffs" data-tooltip="Accelerated Buff Level"
 					name="system.physical.speed.Buffs.accelerated.value"
@@ -106,8 +102,7 @@
 					</option>
 					<option value="9" {{selected system.physical.speed.Buffs.accelerated.value 9}}>9
 					</option>
-					<option value="10"
-						{{selected system.physical.speed.Buffs.accelerated.value 10}}>10
+					<option value="10" {{selected system.physical.speed.Buffs.accelerated.value 10}}>10
 					</option>
 				</select>
 				</span>
@@ -116,72 +111,62 @@
 				{{#if (gt system.physical.weight.Conditions.encumbered.value 0)}}
 					<span class="style-cs-conditions" data-tooltip="Encumbered Condition Level">
 				{{else}}
-					<span class="style-cs-conditions meta-ui-obscure"
-						data-tooltip="Encumbered Condition Level">
+					<span class="style-cs-conditions meta-ui-obscure" data-tooltip="Encumbered Condition Level">
 				{{/if}}
-				<i class="fa-sharp-duotone fa-solid fa-skull"></i> <label class="meta-ui-responsive meta-ui-hide-at-medium"
+				<i class="fa-sharp-duotone fa-solid fa-skull"></i> <label
+					class="meta-ui-responsive meta-ui-hide-at-medium"
 					for="system.physical.weight.Conditions.encumbered.value">Encumbered</label>
 				<select class="style-cs-conditions" data-tooltip="Encumbered Condition Level"
 					name="system.physical.weight.Conditions.encumbered.value"
 					id="system.physical.weight.Conditions.encumbered.value" data-dtype="Number">
-					<option value="0"
-						{{selected system.physical.weight.Conditions.encumbered.value 0}}>
+					<option value="0" {{selected system.physical.weight.Conditions.encumbered.value 0}}>
 						0
 					</option>
-					<option value="1"
-						{{selected system.physical.weight.Conditions.encumbered.value 1}}>
+					<option value="1" {{selected system.physical.weight.Conditions.encumbered.value 1}}>
 						1
 					</option>
-					<option value="2"
-						{{selected system.physical.weight.Conditions.encumbered.value 2}}>
+					<option value="2" {{selected system.physical.weight.Conditions.encumbered.value 2}}>
 						2
 					</option>
-					<option value="3"
-						{{selected system.physical.weight.Conditions.encumbered.value 3}}>
+					<option value="3" {{selected system.physical.weight.Conditions.encumbered.value 3}}>
 						3
 					</option>
-					<option value="4"
-						{{selected system.physical.weight.Conditions.encumbered.value 4}}>
+					<option value="4" {{selected system.physical.weight.Conditions.encumbered.value 4}}>
 						4
 					</option>
-					<option value="5"
-						{{selected system.physical.weight.Conditions.encumbered.value 5}}>
+					<option value="5" {{selected system.physical.weight.Conditions.encumbered.value 5}}>
 						5
 					</option>
-					<option value="6"
-						{{selected system.physical.weight.Conditions.encumbered.value 6}}>
+					<option value="6" {{selected system.physical.weight.Conditions.encumbered.value 6}}>
 						6
 					</option>
-					<option value="7"
-						{{selected system.physical.weight.Conditions.encumbered.value 7}}>
+					<option value="7" {{selected system.physical.weight.Conditions.encumbered.value 7}}>
 						7
 					</option>
-					<option value="8"
-						{{selected system.physical.weight.Conditions.encumbered.value 8}}>
+					<option value="8" {{selected system.physical.weight.Conditions.encumbered.value 8}}>
 						8
 					</option>
-					<option value="9"
-						{{selected system.physical.weight.Conditions.encumbered.value 9}}>
+					<option value="9" {{selected system.physical.weight.Conditions.encumbered.value 9}}>
 						9
 					</option>
-					<option value="10"
-						{{selected system.physical.weight.Conditions.encumbered.value 10}}>
+					<option value="10" {{selected system.physical.weight.Conditions.encumbered.value 10}}>
 						10
 					</option>
 				</select>
 				</span>
 				<span class="style-cs-values"
-					data-tooltip="Weight represents how heavy or light a Character (or an Object) is"><i class="fa-sharp-duotone fa-solid fa-weight-hanging"></i>
+					data-tooltip="Weight represents how heavy or light a Character (or an Object) is"><i
+						class="fa-sharp-duotone fa-solid fa-weight-hanging"></i>
 					<span class="meta-ui-responsive meta-ui-hide-at-medium">Weight
 					</span>{{system.physical.weight.value}}
 				</span>
 				{{#if (gt system.physical.weight.Buffs.lightened.value 0)}}
 					<span class="style-cs-buffs" data-tooltip="Lightened Buff Level">
 				{{else}}
-					<span class="style-cs-buffs meta-ui-obscure"
-						data-tooltip="Lightened Buff Level">
+					<span class="style-cs-buffs meta-ui-obscure" data-tooltip="Lightened Buff Level">
 				{{/if}}
-				<i class="fa-sharp-duotone fa-solid fa-shield-halved"></i> <label class="meta-ui-responsive meta-ui-hide-at-medium"
+				<i class="fa-sharp-duotone fa-solid fa-shield-halved"></i> <label
+					class="meta-ui-responsive meta-ui-hide-at-medium"
 					for="system.physical.weight.Buffs.lightened.value">Lightened</label>
 				<select class="style-cs-buffs" data-tooltip="Lightened Buff Level"
 					name="system.physical.weight.Buffs.lightened.value"
@@ -216,10 +201,10 @@
 				{{#if (gt system.physical.size.Conditions.shrunken.value 0)}}
 					<span class="style-cs-conditions" data-tooltip="Shrunken Condition Level">
 				{{else}}
-					<span class="style-cs-conditions meta-ui-obscure"
-						data-tooltip="Shrunken Condition Level">
+					<span class="style-cs-conditions meta-ui-obscure" data-tooltip="Shrunken Condition Level">
 				{{/if}}
-				<i class="fa-sharp-duotone fa-solid fa-skull"></i> <label class="meta-ui-responsive meta-ui-hide-at-medium"
+				<i class="fa-sharp-duotone fa-solid fa-skull"></i> <label
+					class="meta-ui-responsive meta-ui-hide-at-medium"
 					for="system.physical.size.Conditions.shrunken.value">Shrunken</label>
 				<select class="style-cs-conditions" data-tooltip="Shrunken Condition Level"
 					name="system.physical.size.Conditions.shrunken.value"
@@ -254,14 +239,14 @@
 					<option value="9" {{selected system.physical.size.Conditions.shrunken.value 9}}>
 						9
 					</option>
-					<option value="10"
-						{{selected system.physical.size.Conditions.shrunken.value 10}}>
+					<option value="10" {{selected system.physical.size.Conditions.shrunken.value 10}}>
 						10
 					</option>
 				</select>
 				</span>
 				<span class="style-cs-values"
-					data-tooltip="Size represents how much space a Character (or an Object) can occupy in an area"><i class="fa-sharp-duotone fa-solid fa-ruler-triangle"></i>
+					data-tooltip="Size represents how much space a Character (or an Object) can occupy in an area"><i
+						class="fa-sharp-duotone fa-solid fa-ruler-triangle"></i>
 					<span class="meta-ui-responsive meta-ui-hide-at-medium">Size
 					</span>{{system.physical.size.value}}
 				</span>
@@ -270,11 +255,12 @@
 				{{else}}
 					<span class="style-cs-buffs meta-ui-obscure" data-tooltip="Enlarged Buff Level">
 				{{/if}}
-				<i class="fa-sharp-duotone fa-solid fa-shield-halved"></i> <label class="meta-ui-responsive meta-ui-hide-at-medium"
+				<i class="fa-sharp-duotone fa-solid fa-shield-halved"></i> <label
+					class="meta-ui-responsive meta-ui-hide-at-medium"
 					for="system.physical.size.Buff.enlarged.value">Enlarged</label>
 				<select class="style-cs-buffs" data-tooltip="Enlarged Buff Level"
-					name="system.physical.size.Buffs.enlarged.value"
-					id="system.physical.size.Buffs.enlarged.value" data-dtype="Number">
+					name="system.physical.size.Buffs.enlarged.value" id="system.physical.size.Buffs.enlarged.value"
+					data-dtype="Number">
 					<option value="0" {{selected system.physical.size.Buffs.enlarged.value 0}}>0
 					</option>
 					<option value="1" {{selected system.physical.size.Buffs.enlarged.value 1}}>1
@@ -308,15 +294,12 @@
 			</div>
 			{{#each system.physical.cover.types}}
 				<div>
-					<span data-tooltip="Click to Roll for {{this.label}} Cover"
-						data-tooltip-direction="UP" class="meta-cover-roll"
-						data-type="{{this.label}}"
+					<span data-tooltip="Click to Roll for {{this.label}} Cover" data-tooltip-direction="UP"
+						class="meta-cover-roll" data-type="{{this.label}}"
 						data-cover-value="{{this.value}}">{{this.label}}</span>:
-					<select name="system.physical.cover.types.{{@key}}.value" type="number"
-						data-dtype="Number">
+					<select name="system.physical.cover.types.{{@key}}.value" type="number" data-dtype="Number">
 						{{#each this.options as |option|}}
-							<option value="{{option}}"
-								{{#if (eq option ../this.value)}}selected{{/if}}>
+							<option value="{{option}}" {{#if (eq option ../this.value)}}selected{{/if}}>
 								{{option}}
 							</option>
 						{{/each}}
@@ -332,15 +315,15 @@
 				{{#each CoreConditions}}
 					<div {{#if (gt this 0)}} class="style-cs-conditions" {{else}}
 						class="style-cs-conditions meta-ui-obscure" {{/if}}>
-						<p class="style-centered-paragraph" data-tooltip="{{@key}} Condition Level"><i class="fa-sharp-duotone fa-solid fa-skull"></i> <label
+						<p class="style-centered-paragraph" data-tooltip="{{@key}} Condition Level"><i
+								class="fa-sharp-duotone fa-solid fa-skull"></i> <label
 								class="meta-ui-responsive meta-ui-hide-at-medium style-cs-conditions"
 								for="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}">{{@key}}</label>
 						</p>
 						<p class="style-centered-paragraph" data-tooltip="{{@key}} Condition Level">
 							<select class="style-cs-conditions"
 								name="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}"
-								id="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}"
-								data-dtype="Number">
+								id="system.Characteristics.{{@../key}}.CoreConditions.{{@key}}" data-dtype="Number">
 								<option value="0" {{selected this 0}}>0</option>
 								<option value="1" {{selected this 1}}>1</option>
 								<option value="2" {{selected this 2}}>2</option>
@@ -364,23 +347,20 @@
 				<div data-tooltip="Immunity offers immunity to medical conditions and specific effects">
 					<p class="style-actorinfo-tier2 style-centered-paragraph">Immunities
 						<input name="system.physical.immunities.value" type="text"
-							value="{{system.physical.immunities.value}}" data-dtype="String"
-							placeholder="Immunities" />
+							value="{{system.physical.immunities.value}}" data-dtype="String" placeholder="Immunities" />
 					</p>
 				</div>
 				<div data-tooltip="Detections allow a Character to perceive something others cannot">
 					<p class="style-actorinfo-tier2 style-centered-paragraph">Detections
 						<input name="system.physical.detections.value" type="text"
-							value="{{system.physical.detections.value}}" data-dtype="String"
-							placeholder="Detections" />
+							value="{{system.physical.detections.value}}" data-dtype="String" placeholder="Detections" />
 					</p>
 				</div>
 				<div
 					data-tooltip="Shifts are Buffs which alter the physiology, biomass, shape, and form of the one who activates them. Multiple Shifts activated at the same target do not stack, and only the one with the highest numerical value is considered">
 					<p class="style-actorinfo-tier2 style-centered-paragraph">Shifts
-						<input name="system.physical.shifts.value" type="text"
-							value="{{system.physical.shifts.value}}" data-dtype="String"
-							placeholder="Shifts" />
+						<input name="system.physical.shifts.value" type="text" value="{{system.physical.shifts.value}}"
+							data-dtype="String" placeholder="Shifts" />
 					</p>
 				</div>
 			</div>
@@ -394,8 +374,12 @@
 				<p class="style-centered-paragraph">
 					<br>- This is a
 					placeholder for future capabilities -<br><br>Additional
-					functionality is available, during Early Access, via the Beta Testing Feature,<br>
-					available with the <a href="https://www.metanthropes.com/store/product/8-homebrew-fvtt-module/">Metanthropes: Homebrew</a> Premium Module for Foundry VTT.
+					functionality will be made available, during Early Access, via the Beta & Alpha Testing Features,<br>
+					available with the <a
+						href="https://www.metanthropes.com/store/product/7-core-fvtt-module/">Metanthropes: Core</a> and
+					<a href="https://www.metanthropes.com/store/product/8-homebrew-fvtt-module/">Metanthropes:
+						Homebrew</a>
+					Premium Modules for Foundry VTT, respectively.
 					<br><br> If you would like to know more about upcoming releases, visit <a
 						href="https://www.metanthropes.com/roadmap/">the
 						roadmap on our
