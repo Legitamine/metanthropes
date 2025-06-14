@@ -32,6 +32,20 @@ export const settings = [
 	},
 	{
 		module: "metanthropes",
+		key: "metaCustomFAColor",
+		name: "Custom Icon Color",
+		hint: `
+		Custom Color for Font Awesome Icons
+		`,
+		scope: "client",
+		config: true,
+		requiresReload: false,
+		type: new foundry.data.fields.ColorField({ nullable: true }),
+		default: null,
+		onChange: null,
+	},
+	{
+		module: "metanthropes",
 		key: "metaIntroductory",
 		name: "Enable Metanthropes: Introductory",
 		hint: `
@@ -121,9 +135,9 @@ export const settings = [
 	{
 		module: "metanthropes",
 		key: "metaInstall",
-		name: "Show System Installation Guide",
+		name: "Show System Demo Adventure",
 		hint: `
-		Enable to show the System Installation Guide on the next startup.
+		Enable to show the System Demo Adventure on the next startup.
 		`,
 		scope: "world",
 		config: true,

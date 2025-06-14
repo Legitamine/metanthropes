@@ -76,6 +76,9 @@ Hooks.once("init", async function () {
 	//* Register Status Effects
 	metanthropes.utils.metaRegisterStatusEffects();
 
+	//* Register Custom Text Enrichers
+	metanthropes.utils.metaRegisterCustomEnrichers();
+
 	//* Register the socket listener
 	game.socket.on("system.metanthropes", async (payload) => {
 		metanthropes.logic.metaHandleSocketEvents(payload);
