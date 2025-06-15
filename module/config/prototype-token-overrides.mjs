@@ -38,5 +38,7 @@ export const TOKENDEFAULTS = {
 	Extraterrestrial: {},
 	"Animated-Cadaver": {},
 	"Animated-Plant": {},
-	MetaTherion: {},
+	MetaTherion: {
+		disposition: CONST.TOKEN_DISPOSITIONS.HOSTILE,
+	},
 };
