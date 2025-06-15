@@ -1,7 +1,7 @@
 export const settings = [
 	{
 		module: "metanthropes",
-		key: "migrationVersion", //! UNUSED
+		key: "migrationVersion",
 		name: "Last Migration Performed",
 		hint: `
 		This setting is used to keep track of the last migration script that was performed.
@@ -11,7 +11,7 @@ export const settings = [
 		config: false,
 		requiresReload: false,
 		type: String,
-		default: "0.8.20",
+		default: "0.13",
 		onChange: null,
 	},
 	{
@@ -121,9 +121,9 @@ export const settings = [
 	{
 		module: "metanthropes",
 		key: "metaInstall",
-		name: "Show System Installation Guide",
+		name: "Show System Demo Adventure",
 		hint: `
-		Enable to show the System Installation Guide on the next startup.
+		Enable to show the System Demo Adventure on the next startup.
 		`,
 		scope: "world",
 		config: true,

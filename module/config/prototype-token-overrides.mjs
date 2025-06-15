@@ -10,7 +10,7 @@ export const TOKENDEFAULTS = {
 		ring: {
 			enabled: false,
 		},
-		disposition: CONST.TOKEN_DISPOSITIONS.SECRET,
+		disposition: CONST.TOKEN_DISPOSITIONS.NEUTRAL,
 		lockRotation: false,
 		turnMarker: {
 			mode: CONST.TOKEN_TURN_MARKER_MODES.CUSTOM,
