@@ -20,6 +20,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Fixed:
 
+-   Replaced the loading screen that appears when first initializing a World, that stays up until the active scene loads. This image now uses the new cover image from the system. The old image was reported to cause motion sickness.
 -   Fixed the issue with dissappearing Font Awesome icons when editing a Journal page or a Possession's effect description fields.
 -   Better aligned the FontAwesome Icons that show up on chat during the Activation of Metapowers and Usage of Possessions.
 
