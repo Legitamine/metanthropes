@@ -20,6 +20,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Fixed:
 
+-   Changed the default Disposition for all non-Protagonist Prototype Tokens to be 'Neutral' instead of 'Secret', allowing players to target them. If loading a World that was created before this release, the Prototype Token defauls will be overriden with this new behavior.
 -   Replaced the loading screen that appears when first initializing a World, that stays up until the active scene loads. This image now uses the new cover image from the system. The old image was reported to cause motion sickness.
 -   Fixed the issue with dissappearing Font Awesome icons when editing a Journal page or a Possession's effect description fields.
 -   Better aligned the FontAwesome Icons that show up on chat during the Activation of Metapowers and Usage of Possessions.
