@@ -1,9 +1,9 @@
 /**
  * * metaLog function controls how console logging happens.
- * 
+ *
  * ? It is accessible via metanthropes.utils.metaLog()
  * example: metanthropes.utils.metaLog(3, "name of the function", "description of the log", "variable1", variable1, "variable2", variable2);
- * 
+ *
  * metaLog 0 (console.log), 1 (console.warn), 2 (console.error) show up in the console by default
  * metaLog 3 (console.log), 4 (console.warn), 5 (console.error) show up in the console if the advanced logging setting is enabled in the system settings
  * Advanced logging is disabled by default and is designed to be used for troubleshooting and debugging
@@ -56,27 +56,28 @@ export function metaLog(logType = 0, ...variables) {
 /**
  *
  * Helper function to print the currently open Document to the console
- * Kindly provided by TyphonJS(Michael) from the FoundryVTT Discord
+ * Initial version kindly provided by TyphonJS(Michael) from the FoundryVTT Discord
  * Inspired by a similar functionality from DevMode (https://foundryvtt.com/packages/_dev-mode)
  *
  * @param {*} app
  * @param {*} buttons
  */
 export function metaLogDocument(app, buttons) {
-	//? Will only run if the 'Enable Advanced Logging' setting is enabled
-	if (game.settings.get("metanthropes", "metaAdvancedLogging")) {
-		buttons.unshift({
-			icon: "fas fa-terminal",
-			class: "metalog-doc",
-			onclick: async () => {
-				const uuid = app?.object?.uuid;
-				if (typeof uuid === "string") {
-					const doc = await globalThis.fromUuid(uuid);
-					if (doc) {
-						console.log(doc);
-					}
-				}
-			},
-		});
-	}
+	if (!game.settings.get("metanthropes", "metaAdvancedLogging")) return;
+	buttons.unshift({
+		icon: "fas fa-terminal",
+		//visible: game.users.isGM,
+		label: "METANTHROPES.SHEET.OTHER.CONSOLE",
+		//class: "metalog-doc", //for custom button styling perhaps?
+		onClick: () => {
+			const uuid = app?.document?.uuid;
+			//todo do we need more graceful handling here?
+			//if (typeof uuid === "string") {
+			const doc = fromUuidSync(uuid);
+			// if (doc) {
+			metanthropes.utils.metaLog(3, "Advanced Logging", "app", app, "uuid", uuid, "document", doc);
+			// }
+			//}
+		},
+	});
 }

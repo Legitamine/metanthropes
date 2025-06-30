@@ -56,11 +56,6 @@
 				}
 			}
 		},
-		"SHEET": {
-			"ACTOR": {
-				"LABEL": "Metanthropes Actor Sheet V2"
-			}
-		},
 		"ACTOR": {
 			"BASE": {
 				"FIELDS": {
@@ -128,7 +123,9 @@
 						"hint": "The physical place of birth of this Actor."
 					}
 				}
-			}
+			},
+			"FOUFOU": {},
+			"ACTIVEEFFECT": {}
 		},
 		"CHARS": {
 			"BODY": {
@@ -197,6 +194,20 @@
 				"LABEL": "Size",
 				"HINT": "blah"
 			}
+		},
+		"SHEET": {
+			"ACTOR": {
+				"LABEL": "Metanthropes Actor Sheet V1"
+			},
+			"ITEM": {
+				"LABEL": "Metanthropes Item Sheet V1"
+			},
+			"AAE": {
+				"LABEL": "Metanthropes Actor Active Effect Sheet V1"
+			},
+			"OTHER": {
+				"CONSOLE": "@METAFA(metanthropes) Print to Console"
+			}
 		}
 	},
 	"TYPES": {
@@ -215,9 +226,7 @@
 		},
 		"Item": {
 			"Metapower": "Metapower",
-			"Possession": "Possession",
-			"Combo": "Combo",
-			"Object": "Object"
+			"Possession": "Possession"
 		}
 	}
 }

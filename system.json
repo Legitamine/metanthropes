@@ -59,6 +59,11 @@
 	"esmodules": ["greensock/esm/all.js", "module/metanthropes.mjs"],
 	"scripts": [],
 	"styles": ["styles/metanthropes.css"],
+	"documentTypes": {
+		"Actor": {
+			"foufoutos": {}
+		}
+	},
 	"packs": [
 		{
 			"name": "demo-actors",

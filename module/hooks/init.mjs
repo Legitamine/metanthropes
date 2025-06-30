@@ -6,13 +6,20 @@ Hooks.once("init", async function () {
 	//* Configure System
 	globalThis.SYSTEM = metanthropes.system;
 
-	//* Register Data Models
+	//* Register System Settings
+	metanthropes.utils.metaRegisterGameSettings(settings);
+
+	// //* Register Data Models
+	// const homebrewActive = (await game.settings.get("metanthropes", "metaHomebrew")) || false;
+	// if (homebrewActive) {
 	CONFIG.Actor.dataModels = {
-		testv12: metanthropes.models.MetanthropesActorNPC,
+		foufoutos: metanthropes.models.MetanthropesActorFOUFOU,
 	};
-	CONFIG.Item.dataModels = {
-		species: metanthropes.models.MetanthropesItemSpecies,
-	};
+
+	// 	CONFIG.Item.dataModels = {
+	// 		species: metanthropes.models.MetanthropesItemSpecies,
+	// 	};
+	// }
 
 	//* Register Document Classes
 	CONFIG.Actor.documentClass = metanthropes.documents.MetanthropesActor;
@@ -26,30 +33,32 @@ Hooks.once("init", async function () {
 		metanthropes.applications.MetanthropesActorSheet,
 		{
 			makeDefault: true,
-		}
-	);
-
-	foundry.documents.collections.Actors.registerSheet(
-		"metanthropes",
-		metanthropes.applications.MetanthropesActorSheetV2,
-		{
-			makeDefault: false,
 			label: "METANTHROPES.SHEET.ACTOR.LABEL",
 		}
 	);
 
+	// foundry.documents.collections.Actors.registerSheet(
+	// 	"metanthropes",
+	// 	metanthropes.applications.MetanthropesActorSheetV2,
+	// 	{
+	// 		makeDefault: false,
+	// 		label: "METANTHROPES.SHEET.ACTOR.LABEL",
+	// 	}
+	// );
+
 	foundry.documents.collections.Items.registerSheet("metanthropes", metanthropes.applications.MetanthropesItemSheet, {
 		makeDefault: true,
+		label: "METANTHROPES.SHEET.ITEM.LABEL",
 	});
 
-	foundry.documents.collections.Items.registerSheet(
-		"metanthropes",
-		metanthropes.applications.MetanthropesItemSheetV2,
-		{
-			makeDefault: false,
-			label: "METANTHROPES.SHEET.ITEM.LABEL",
-		}
-	);
+	// foundry.documents.collections.Items.registerSheet(
+	// 	"metanthropes",
+	// 	metanthropes.applications.MetanthropesItemSheetV2,
+	// 	{
+	// 		makeDefault: false,
+	// 		label: "METANTHROPES.SHEET.ITEM.LABEL",
+	// 	}
+	// );
 
 	foundry.applications.apps.DocumentSheetConfig.registerSheet(
 		ActiveEffect,
@@ -57,6 +66,7 @@ Hooks.once("init", async function () {
 		metanthropes.applications.MetanthropesActiveEffectSheet,
 		{
 			makeDefault: true,
+			label: "METANTHROPES.SHEET.AAE.LABEL",
 		}
 	);
 
@@ -69,9 +79,6 @@ Hooks.once("init", async function () {
 
 	//* Round Duration (in seconds)
 	CONFIG.time.roundTime = 30;
-
-	//* Register System Settings
-	metanthropes.utils.metaRegisterGameSettings(settings);
 
 	//* Register Status Effects
 	metanthropes.utils.metaRegisterStatusEffects();
