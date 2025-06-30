@@ -32,10 +32,11 @@ main {
 }
 body {
 	font-family: $font-secondary;
-	background-image: url("../assets/artwork/ui/canvas/bg-canvas.webp");
+	background-image: url("../assets/cover/cover.webp");
 	background-size: auto auto;
-	background-attachment: local;
-	background-repeat: repeat;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center;
 	background-origin: border-box;
 	background-clip: border-box;
 }
