@@ -32,6 +32,20 @@ export const settings = [
 	},
 	{
 		module: "metanthropes",
+		key: "metaCustomFAColor",
+		name: "Custom Icon Color",
+		hint: `
+		Custom Color for Font Awesome Icons
+		`,
+		scope: "client",
+		config: true,
+		requiresReload: false,
+		type: new foundry.data.fields.ColorField({ nullable: true }),
+		default: null,
+		onChange: null,
+	},
+	{
+		module: "metanthropes",
 		key: "metaIntroductory",
 		name: "Enable Metanthropes: Introductory",
 		hint: `

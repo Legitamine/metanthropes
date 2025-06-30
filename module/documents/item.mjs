@@ -79,6 +79,14 @@ export class MetanthropesItem extends Item {
 			this.img = imgPath;
 		}
 	}
+	get effectDescription() {
+		const isOwner = this.parent.isOwner;
+		const description = foundry.applications.ux.TextEditor.enrichHTML(
+			this.system.Effects.EffectDescription.value,
+			{ async: false, secrets: isOwner }
+		);
+		return description;
+	}
 	/**
 	 * Prepare a data object which is passed to any Roll formulas which are created related to this Item
 	 * @private

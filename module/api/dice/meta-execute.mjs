@@ -213,13 +213,13 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		///* check Area Effect
 		if (areaEffect !== "None") {
 			areaEffectMessage =
-				`<span data-tooltip="Area Effect"><i class="fa-sharp-duotone fa-solid fa-hexagon-image"></i> -</span> ` +
+				`<span data-tooltip="Area Effect"><i class="fa-sharp-duotone fa-solid fa-hexagon-image fa-fw"></i> -</span> ` +
 				areaEffect +
 				`<br>`;
 			//? check Area Type
 			if (areaType.length > 0) {
 				areaEffectMessage +=
-					`<span data-tooltip="Area Effect"><i class="fa-sharp-duotone fa-solid fa-hexagon-image"></i> (Type) -</span> ` +
+					`<span data-tooltip="Area Effect"><i class="fa-sharp-duotone fa-solid fa-hexagon-image fa-fw"></i> (Type) -</span> ` +
 					areaType +
 					`<br>`;
 			}
@@ -229,7 +229,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		///* check for VS
 		if (vsRoll !== "None") {
 			vsMessage =
-				`<span data-tooltip="VS Roll"><i class="fa-sharp-duotone fa-solid fa-swords"></i> - </span>` +
+				`<span data-tooltip="VS Roll"><i class="fa-sharp-duotone fa-solid fa-swords fa-fw"></i> - </span>` +
 				vsRoll +
 				`<br>`;
 		}
@@ -242,7 +242,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			return;
 		} else if (actionSlot.includes("Focused")) {
 			//? focused
-			actionSlotMessage = `<span data-tooltip="Activation Slot"><i class="fa-sharp-duotone fa-solid fa-stopwatch"></i> - </span>`;
+			actionSlotMessage = `<span data-tooltip="Activation Slot"><i class="fa-sharp-duotone fa-solid fa-stopwatch fa-fw"></i> - </span>`;
 			if (actionSlot.includes("1d10 Cycles")) {
 				//? roll for cycles
 				actionSlotDice = 1;
@@ -269,7 +269,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		} else {
 			//? normal execution
 			actionSlotMessage =
-				`<span data-tooltip="Activation Slot"><i class="fa-sharp-duotone fa-solid fa-stopwatch"></i> - </span>` +
+				`<span data-tooltip="Activation Slot"><i class="fa-sharp-duotone fa-solid fa-stopwatch fa-fw"></i> - </span>` +
 				actionSlot +
 				`<br>`;
 		}
@@ -299,7 +299,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			</div>`;
 			}
 		} else {
-			targetsMessage = `<span data-tooltip="METANTHROPES.COMMON.Targets"><i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i> -</span> ${targetsNumber}`;
+			targetsMessage = `<span data-tooltip="METANTHROPES.COMMON.Targets"><i class="fa-sharp-duotone fa-solid fa-crosshairs-simple fa-fw"></i> -</span> ${targetsNumber}`;
 		}
 		///* add eligible targets
 		if (targetsEligible.length > 0) {
@@ -317,7 +317,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			durationDiceMessage = duration.match(/1d10 (.+)/);
 			durationDice = 1;
 			durationMessage =
-				`<span data-tooltip="Duration"><i class="fa-sharp-duotone fa-solid fa-hourglass-start"></i> -</span> <span class="meta-roll-inline-results-small">[[1d10${explosiveDice}[${durationDiceMessage[1]}]]]</span> ` +
+				`<span data-tooltip="Duration"><i class="fa-sharp-duotone fa-solid fa-hourglass-start fa-fw"></i> -</span> <span class="meta-roll-inline-results-small">[[1d10${explosiveDice}[${durationDiceMessage[1]}]]]</span> ` +
 				durationDiceMessage[1] +
 				`<br>`;
 			durationRerollButton = `<div class="hide-button hidden">
@@ -329,7 +329,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		} else {
 			//? fixed duration
 			durationMessage =
-				`<span data-tooltip="Duration"><i class="fa-sharp-duotone fa-solid fa-hourglass-start"></i> -</span> ` +
+				`<span data-tooltip="Duration"><i class="fa-sharp-duotone fa-solid fa-hourglass-start fa-fw"></i> -</span> ` +
 				duration +
 				`<br>`;
 		}
@@ -473,25 +473,25 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		///* todo refactor with Active Effects in mind
 		if (buffsApplied) {
 			buffsAppliedMessage =
-				`<span data-tooltip="Buffs Applied"><i class="fa-sharp-duotone fa-solid fa-plus"></i> <i class="fa-sharp-duotone fa-solid fa-shield-halved"></i></span>: ` +
+				`<span data-tooltip="Buffs Applied"><i class="fa-sharp-duotone fa-solid fa-plus fa-fw"></i> <i class="fa-sharp-duotone fa-solid fa-shield-halved"></i></span>: ` +
 				buffsApplied +
 				`<br>`;
 		}
 		if (buffsRemoved) {
 			buffsRemovedMessage =
-				`<span data-tooltip="Buffs Removed"><i class="fa-sharp-duotone fa-solid fa-minus"></i> <i class="fa-sharp-duotone fa-solid fa-shield-halved"></i></span>: ` +
+				`<span data-tooltip="Buffs Removed"><i class="fa-sharp-duotone fa-solid fa-minus fa-fw"></i> <i class="fa-sharp-duotone fa-solid fa-shield-halved"></i></span>: ` +
 				buffsRemoved +
 				`<br>`;
 		}
 		if (conditionsApplied) {
 			conditionsAppliedMessage =
-				`<span data-tooltip="Conditions Applied"><i class="fa-sharp-duotone fa-solid fa-plus"></i> <i class="fa-sharp-duotone fa-solid fa-skull"></i></span>: ` +
+				`<span data-tooltip="Conditions Applied"><i class="fa-sharp-duotone fa-solid fa-plus fa-fw"></i> <i class="fa-sharp-duotone fa-solid fa-skull"></i></span>: ` +
 				conditionsApplied +
 				`<br>`;
 		}
 		if (conditionsRemoved) {
 			conditionsRemovedMessage =
-				`<span data-tooltip="Conditions Removed"><i class="fa-sharp-duotone fa-solid fa-minus"></i> <i class="fa-sharp-duotone fa-solid fa-skull"></i></span>: ` +
+				`<span data-tooltip="Conditions Removed"><i class="fa-sharp-duotone fa-solid fa-minus fa-fw"></i> <i class="fa-sharp-duotone fa-solid fa-skull"></i></span>: ` +
 				conditionsRemoved +
 				`<br>`;
 		}
@@ -501,7 +501,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		contentMessage += targetsMessage;
 		contentMessage += durationMessage;
 		contentMessage +=
-			`<span data-tooltip="Range"><i class="fa-sharp-duotone fa-solid fa-ruler"></i> -</span> ` + range + `<br>`;
+			`<span data-tooltip="Range"><i class="fa-sharp-duotone fa-solid fa-ruler fa-fw"></i> -</span> ` + range + `<br>`;
 		if (areaEffectMessage) {
 			contentMessage += areaEffectMessage;
 			contentMessage += `<hr />`;

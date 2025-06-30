@@ -6,11 +6,11 @@
 		</div>
 		{{#if (and isNarrator homebrewFeatures)}}
 			<div class="layout-editor">
-				{{editor system.Effects.PermanentEffectDescription.value target="system.Effects.PermanentEffectDescription.value" engine="prosemirror" button=true editable=true}}
+				{{editor permanentDescription target="system.Effects.PermanentEffectDescription.value" engine="prosemirror" button=true editable=true}}
 			</div>
 		{{else}}
 			<div class="layout-editor">
-				{{editor system.Effects.PermanentEffectDescription.value target="system.Effects.PermanentEffectDescription.value" engine="prosemirror" button=false editable=false}}
+				{{editor permanentDescription target="system.Effects.PermanentEffectDescription.value" engine="prosemirror" button=false editable=false}}
 			</div>
 		{{/if}}
 		<hr />
@@ -22,11 +22,11 @@
 		</div>
 		{{#if (and isNarrator homebrewFeatures)}}
 			<div class="layout-editor">
-				{{editor system.Effects.EffectDescription.value target="system.Effects.EffectDescription.value" engine="prosemirror" button=true editable=true}}
+				{{editor effectDescription target="system.Effects.EffectDescription.value" engine="prosemirror" button=true editable=true}}
 			</div>
 		{{else}}
 			<div class="layout-editor">
-				{{editor system.Effects.EffectDescription.value target="system.Effects.EffectDescription.value" engine="prosemirror" button=false editable=false}}
+				{{editor effectDescription target="system.Effects.EffectDescription.value" engine="prosemirror" button=false editable=false}}
 			</div>
 		{{/if}}
 		<hr />
@@ -181,11 +181,11 @@
 		</div>
 		{{#if (and isNarrator homebrewFeatures)}}
 			<div class="layout-editor">
-				{{editor system.Effects.AdditionalInfo.value target="system.Effects.AdditionalInfo.value" engine="prosemirror" button=true editable=true}}
+				{{editor effectAdditionalInfo target="system.Effects.AdditionalInfo.value" engine="prosemirror" button=true editable=true}}
 			</div>
 		{{else}}
 			<div class="layout-editor">
-				{{editor system.Effects.AdditionalInfo.value target="system.Effects.AdditionalInfo.value" engine="prosemirror" button=false editable=false}}
+				{{editor effectAdditionalInfo target="system.Effects.AdditionalInfo.value" engine="prosemirror" button=false editable=false}}
 			</div>
 		{{/if}}
 		<hr />

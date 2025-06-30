@@ -160,7 +160,7 @@ export async function metaEvaluate(
 	} else {
 		startMessage = "Re-Rolls";
 		rerollCounter++;
-		if (rerollCounter > 1) startMessage += ` (<i class="fa-sharp-duotone fa-solid fa-xmark"></i>${rerollCounter})`;
+		if (rerollCounter > 1) startMessage += ` (<i class="fa-sharp-duotone fa-solid fa-xmark fa-fw fa-xs"></i>${rerollCounter})`;
 	}
 	if (action === "StatRoll") {
 		message = `${startMessage} for ${stat} with a score of ${statScore}%`;
