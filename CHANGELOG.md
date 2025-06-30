@@ -10,6 +10,20 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Early Access Releases
 
+# Early Access v0.13.6 [2025-06-xx]
+
+## Added:
+
+-   Foundry version 13.345 is now supported.
+-   You can now pick a custom color that will be applied to Font Awesome Icons for Destiny (+++??).
+-   A new way to create Font Awesome Icons, with our own FA styling (sharp-duotone solid), using text enrichers. See #394 on how to configure your own content (requires a valid Font Awesome Pro license).
+
+## Fixed:
+
+-   Replaced the loading screen that appears when first initializing a World, that stays up until the active scene loads. This image now uses the new cover image from the system. The old image was reported to cause motion sickness.
+-   Fixed the issue with dissappearing Font Awesome icons when editing a Journal page or a Possession's effect description fields.
+-   Better aligned the FontAwesome Icons that show up on chat during the Activation of Metapowers and Usage of Possessions.
+
 # Early Access v0.13.5 [2025-06-05]
 
 ## Added:
@@ -39,7 +53,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 -   Font Awesome icons dissapear when editing a Journal, or an Item's Effect Description, even if you don't apply any edits to the entry; just opening and closing the Journal/Item will make all Font Awesome icons dissapear. This issue requires us to create a custom text enricher to be able to display Font Awesome icons in such fields. We will provide a solution in an upcoming build. In the meantime, if this issue occurs, please restore the Journal/Item from the corresponding Compendium to return proper functionality.
 -   With Dice-So-Nice enabled, after re-rolling the result more than twice, the dice roll animation will not trigger. All applicable effects are indeed applied, and the Chat message is updated, however it's missing the Dice-So-Nice animation.
-- Some Journal links are broken and we will restore their functionality in an upcoming release that will make another pass at our Journal structure.
+-   Some Journal links are broken and we will restore their functionality in an upcoming release that will make another pass at our Journal structure.
 
 # Early Access v0.13.1 [2025-05-17]
 
