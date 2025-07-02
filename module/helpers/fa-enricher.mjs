@@ -19,7 +19,7 @@ export function metaCreateFAIcon(
 	class2,
 	class3,
 	class4,
-	{ style = "sharp-duotone", fixedWidth = false, classes = ["fa-solid"] } = {}
+	{ style = "solid", fixedWidth = false, classes = [] } = {}
 ) {
 	const glyphClass = glyph.startsWith("fa-") ? glyph : `fa-${glyph}`;
 	const styleClass = `fa-${style}`;
