@@ -10,13 +10,13 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Early Access Releases
 
-# Early Access v0.13.6 [2025-06-xx]
+# Early Access v0.13.23 [2025-07-05]
 
 ## Added:
 
 -   Foundry version 13.346 is now supported.
--   You can now pick a custom color that will be applied to Font Awesome Icons for Destiny (+++??).
 -   A new way to create Font Awesome Icons, using text enrichers. See #394 on how to configure your own content (assumes you have a valid Font Awesome Pro license).
+-   Added a custom color scheme, available under `metanthropes.system.colors` to be used with Font Awesome icons as well as other UI elements in the future.
 
 ## Changed:
 
