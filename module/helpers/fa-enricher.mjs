@@ -33,12 +33,8 @@ export function metaCreateFAIcon(
 	classes = [...classes, ...extraClasses];
 	const icon = document.createElement("i");
 	if (color) {
-		if (color === "custom") {
-			const customFAColor = game.settings.get("metanthropes", "metaCustomFAColor");
-			icon.style.color = customFAColor;
-		} else {
-			icon.style.color = color;
-		}
+		const colorMap = metanthropes.system.colors;
+		icon.style.color = colorMap[color] ?? color;
 	}
 	icon.inert = false;
 	icon.classList.add(styleClass, ...classes, glyphClass);
@@ -78,12 +74,8 @@ export function metaCreateCustomIcon(
 	classes = [...classes, ...extraClasses];
 	const icon = document.createElement("i");
 	if (color) {
-		if (color === "custom") {
-			const customFAColor = game.settings.get("metanthropes", "metaCustomFAColor");
-			icon.style.color = customFAColor;
-		} else {
-			icon.style.color = color;
-		}
+		const colorMap = metanthropes.system.colors;
+		icon.style.color = colorMap[color] ?? color;
 	}
 	icon.inert = false;
 	icon.classList.add(styleClass, ...classes, glyphClass);

@@ -1001,59 +1001,59 @@
           "Category": {
             "type": "text",
             "dtype": "String",
-            "label": "🧱 Category",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Category",
             "value": "Compossed"
           },
           "Durability": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 <i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i>",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> <i class=\"fa-solid fa-heart-pulse\"></i>",
             "value": 2
           },
           "Size": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 <i class=\"fa-solid fa-ruler-triangle\"></i>",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> <i class=\"fa-solid fa-ruler-triangle\"></i>",
             "value": 7
           },
           "Weight": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 <i class=\"fa-solid fa-weight-hanging\"></i>",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> <i class=\"fa-solid fa-weight-hanging\"></i>",
             "value": 6
           },
           "Cosmic": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Cosmic Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Cosmic Resistance",
             "initial": 0,
             "value": null
           },
           "Elemental": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Elemental Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Elemental Resistance",
             "initial": 0,
             "value": 20
           },
           "Material": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Material Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Material Resistance",
             "initial": 0,
             "value": 20
           },
           "Psychic": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Psychic Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Psychic Resistance",
             "initial": 0,
             "value": null
           },
           "Description": {
             "type": "text",
             "dtype": "String",
-            "label": "🧱 Description",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Description",
             "value": ""
           }
         },
@@ -1299,7 +1299,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
@@ -1563,59 +1563,59 @@
           "Category": {
             "type": "text",
             "dtype": "String",
-            "label": "🧱 Category",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Category",
             "value": "Metallic"
           },
           "Durability": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 <i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i>",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> <i class=\"fa-solid fa-heart-pulse\"></i>",
             "value": 5
           },
           "Size": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 <i class=\"fa-solid fa-ruler-triangle\"></i>",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> <i class=\"fa-solid fa-ruler-triangle\"></i>",
             "value": 8
           },
           "Weight": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 <i class=\"fa-solid fa-weight-hanging\"></i>",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> <i class=\"fa-solid fa-weight-hanging\"></i>",
             "value": 6
           },
           "Cosmic": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Cosmic Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Cosmic Resistance",
             "initial": 0,
             "value": null
           },
           "Elemental": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Elemental Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Elemental Resistance",
             "initial": 0,
             "value": 20
           },
           "Material": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Material Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Material Resistance",
             "initial": 0,
             "value": 40
           },
           "Psychic": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Psychic Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Psychic Resistance",
             "initial": 0,
             "value": null
           },
           "Description": {
             "type": "text",
             "dtype": "String",
-            "label": "🧱 Description",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Description",
             "value": ""
           }
         },
@@ -1859,7 +1859,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
@@ -2312,7 +2312,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): You can alter the volume of light within the @METAFA(hexagon-image) Area Effect, from very bright to dim lightning. In Addition, you can alter any colors of any targets found within the Area Effect, for as long as they remain here.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check)@METAFA(square-check) = Expand the @METAFA(hexagon-image) by one Hexagon</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = @METAFA(ruler) + 1 Area</p>\n<p>@METAFA(xmark)@METAFA(xmark) = Receive the @METAFA(skull) Sense Lost: Vision for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square, success): You can alter the volume of light within the @METAFA(hexagon-image) Area Effect, from very bright to dim lightning. In Addition, you can alter any colors of any targets found within the Area Effect, for as long as they remain here.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Expand the @METAFA(hexagon-image) by one Hexagon</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = @METAFA(ruler) + 1 Area</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure) = Receive the @METAFA(skull) Sense Lost: Vision for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -2363,7 +2363,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
@@ -2820,7 +2820,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): Targets located within the @METAFA(hexagon-image) Area Effect receive the @METAFA(skull) Sense Lost: Vision, for as long as they remain within the Area Effect. Characters attesting to perceive or target with their vision anything inside, do so with a &ndash; 50% Penalty.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check)@METAFA(square-check) = Expand the @METAFA(hexagon-image) by one Hexagon</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = @METAFA(ruler) + 1 Area</p>\n<p>@METAFA(xmark)@METAFA(xmark) = Receive the @METAFA(skull) Sense Lost: Vision for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square, success): Targets located within the @METAFA(hexagon-image) Area Effect receive the @METAFA(skull) Sense Lost: Vision, for as long as they remain within the Area Effect. Characters attesting to perceive or target with their vision anything inside, do so with a &ndash; 50% Penalty.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Expand the @METAFA(hexagon-image) by one Hexagon</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = @METAFA(ruler) + 1 Area</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure) = Receive the @METAFA(skull) Sense Lost: Vision for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -2871,7 +2871,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
@@ -3324,7 +3324,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): You can choose to spend half of your Movement (rounded up, minimum 1) and instead of moving, to instantly transport to any one Visible Hexagon [Area 1] within your Visible Range (@METAFA(ruler) Range: Square [Area 4]). Your clothes and gear carried and held transport with you if they are of @METAFA(ruler-triangle) Size and @METAFA(weight-hanging) Weight up to 10. You can transport with you another Tangible Character, or additional Objects of @METAFA(ruler-triangle) Size and @METAFA(weight-hanging) up to 11, per level of your Light Projection. &nbsp;</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check)@METAFA(square-check) = Transport an additional target</p>\n<p>@METAFA(xmark)@METAFA(xmark) = Receive the @METAFA(skull) Immobilized for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square, success): You can choose to spend half of your Movement (rounded up, minimum 1) and instead of moving, to instantly transport to any one Visible Hexagon [Area 1] within your Visible Range (@METAFA(ruler) Range: Square [Area 4]). Your clothes and gear carried and held transport with you if they are of @METAFA(ruler-triangle) Size and @METAFA(weight-hanging) Weight up to 10. You can transport with you another Tangible Character, or additional Objects of @METAFA(ruler-triangle) Size and @METAFA(weight-hanging) up to 11, per level of your Light Projection. &nbsp;</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Transport an additional target</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure) = Receive the @METAFA(skull) Immobilized for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -3375,7 +3375,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
@@ -3828,7 +3828,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): You can choose to spend half of your Movement (rounded up, minimum 1) and instead of moving, to instantly transport to any one Visible Hexagon [Area 1] within your Visible Range (@METAFA(ruler) Range: Square [Area 4]). Your clothes and gear carried and held transport with you if they are of @METAFA(ruler-triangle) Size and @METAFA(weight-hanging) Weight up to 10. You can transport with you another Tangible Character, or additional Objects of @METAFA(ruler-triangle) Size and @METAFA(weight-hanging) up to 11, per level of your Light Projection. &nbsp;</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check)@METAFA(square-check) = Transport an additional target</p>\n<p>@METAFA(xmark)@METAFA(xmark) = Receive the @METAFA(skull) Immobilized for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square, success): You can choose to spend half of your Movement (rounded up, minimum 1) and instead of moving, to instantly transport to any one Visible Hexagon [Area 1] within your Visible Range (@METAFA(ruler) Range: Square [Area 4]). Your clothes and gear carried and held transport with you if they are of @METAFA(ruler-triangle) Size and @METAFA(weight-hanging) Weight up to 10. You can transport with you another Tangible Character, or additional Objects of @METAFA(ruler-triangle) Size and @METAFA(weight-hanging) up to 11, per level of your Light Projection. &nbsp;</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Transport an additional target</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure) = Receive the @METAFA(skull) Immobilized for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -3879,7 +3879,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
@@ -4333,7 +4333,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): &nbsp;You gain an @METAFA(shield-halved) Additional Main Action to use this Turn. Only Characters with Time Bending 4 or higher can spend Reactions to the main Actions you perform with Freeze Time.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = Gain an additional Main Action to use this Turn</p>\n<p>@METAFA(xmark)@METAFA(xmark) = Receive the @METAFA(skull): Disoriented 4 for 1 Cycle</p>\n<p><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span></p>"
+            "value": "<p><strong>@METAFA(square, success): &nbsp;You gain an @METAFA(shield-halved) Additional Main Action to use this Turn. Only Characters with Time Bending 4 or higher can spend Reactions to the main Actions you perform with Freeze Time.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = Gain an additional Main Action to use this Turn</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure) = Receive the @METAFA(skull): Disoriented 4 for 1 Cycle</p>\n<p><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span></p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -4384,7 +4384,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
@@ -4892,7 +4892,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
@@ -5351,7 +5351,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): You can prevent from triggering all the effects upon targeted area which trigger: &ldquo;at the beginning, and/or end of the Turn, Round, or Cycle&rdquo;.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check)@METAFA(square-check) = @METAFA(bullseye)+ 1</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = @METAFA(ruler) + 1 Area</p>\n<p>@METAFA(xmark)@METAFA(xmark)@METAFA(xmark)@METAFA(xmark) = Receive the @METAFA(skull): Disoriented 2 for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square, success): You can prevent from triggering all the effects upon targeted area which trigger: &ldquo;at the beginning, and/or end of the Turn, Round, or Cycle&rdquo;.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = @METAFA(bullseye)+ 1</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = @METAFA(ruler) + 1 Area</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure) = Receive the @METAFA(skull): Disoriented 2 for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -5402,7 +5402,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
@@ -5861,7 +5861,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): You can trigger twice instead of once all the effects upon targeted area which trigger: &ldquo;at the beginning, and/or end of the Turn, Round, or Cycle&rdquo;.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check)@METAFA(square-check) = @METAFA(bullseye)+ 1</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = @METAFA(ruler) + 1 Area</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = Trigger the effects an additional time</p>\n<p>@METAFA(xmark)@METAFA(xmark)@METAFA(xmark)@METAFA(xmark) = Receive the @METAFA(skull): Disoriented 2 for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square, success): You can trigger twice instead of once all the effects upon targeted area which trigger: &ldquo;at the beginning, and/or end of the Turn, Round, or Cycle&rdquo;.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = @METAFA(bullseye)+ 1</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = @METAFA(ruler) + 1 Area</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = Trigger the effects an additional time</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure) = Receive the @METAFA(skull): Disoriented 2 for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -5912,7 +5912,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
@@ -6372,7 +6372,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): You can increase all active @METAFA(shield-halved) Buffs your target has by one more of their @METAFA(hourglass-start) Duration type. Temporal Warping has no effect in case the Duration is Permanent, or Instantaneous.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check)@METAFA(square-check) = @METAFA(bullseye)+ 1</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = @METAFA(ruler) + 1 Area</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = Increase by one additional of their @METAFA(hourglass-start) type</p>\n<p>@METAFA(xmark)@METAFA(xmark)@METAFA(xmark) = Receive the @METAFA(skull): Disoriented 3 for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square, success): You can increase all active @METAFA(shield-halved) Buffs your target has by one more of their @METAFA(hourglass-start) Duration type. Temporal Warping has no effect in case the Duration is Permanent, or Instantaneous.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = @METAFA(bullseye)+ 1</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = @METAFA(ruler) + 1 Area</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = Increase by one additional of their @METAFA(hourglass-start) type</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure) = Receive the @METAFA(skull): Disoriented 3 for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -6423,7 +6423,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
@@ -6883,7 +6883,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): You can decrease all active @METAFA(skull) Conditions your target has by one less of their @METAFA(hourglass-start) Duration type. Temporal Warping has no effect in case the Duration is Permanent, or Instantaneous.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check)@METAFA(square-check) = @METAFA(bullseye)+ 1</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = @METAFA(ruler) + 1 Area</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = Decrease by one less of their @METAFA(hourglass-start) type</p>\n<p>@METAFA(xmark)@METAFA(xmark)@METAFA(xmark) = Receive the @METAFA(skull): Disoriented 3 for 1 Cycle&nbsp;</p>"
+            "value": "<p><strong>@METAFA(square, success): You can decrease all active @METAFA(skull) Conditions your target has by one less of their @METAFA(hourglass-start) Duration type. Temporal Warping has no effect in case the Duration is Permanent, or Instantaneous.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = @METAFA(bullseye)+ 1</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = @METAFA(ruler) + 1 Area</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = Decrease by one less of their @METAFA(hourglass-start) type</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure) = Receive the @METAFA(skull): Disoriented 3 for 1 Cycle&nbsp;</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -6934,7 +6934,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
@@ -7390,7 +7390,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): Your maximum Visible @METAFA(ruler) Range increases from Square [Area 4] to Block [Area 5].</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = Increase your Visible @METAFA(ruler) Range by + 1 Area</p>\n<p>@METAFA(xmark)@METAFA(xmark)@METAFA(xmark)@METAFA(xmark)@METAFA(xmark) = Receive the @METAFA(skull) Disoriented 1 and Sense Lost: Vision for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square, success): Your maximum Visible @METAFA(ruler) Range increases from Square [Area 4] to Block [Area 5].</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = Increase your Visible @METAFA(ruler) Range by + 1 Area</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure) = Receive the @METAFA(skull) Disoriented 1 and Sense Lost: Vision for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -7441,7 +7441,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
@@ -7894,7 +7894,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): Receive the @METAFA(shield-halved) Detection: Darkness, and the @METAFA(shield-halved) Detection: Thermal.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(xmark)@METAFA(xmark)@METAFA(xmark) = Receive the @METAFA(skull) Disoriented 3 for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square, success): Receive the @METAFA(shield-halved) Detection: Darkness, and the @METAFA(shield-halved) Detection: Thermal.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure) = Receive the @METAFA(skull) Disoriented 3 for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -7945,7 +7945,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
@@ -8398,7 +8398,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): You receive no Penalties when attempting to detect, or attack a target of @METAFA(ruler-triangle) Size 9 up to 3.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(xmark)@METAFA(xmark)@METAFA(xmark)@METAFA(xmark) = Receive the @METAFA(skull) Disoriented 2 for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square, success): You receive no Penalties when attempting to detect, or attack a target of @METAFA(ruler-triangle) Size 9 up to 3.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure) = Receive the @METAFA(skull) Disoriented 2 for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -8449,7 +8449,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
@@ -8717,59 +8717,59 @@
           "Category": {
             "type": "text",
             "dtype": "String",
-            "label": "🧱 Category",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Category",
             "value": "Earthly, Compossed, Metallic or Alien"
           },
           "Durability": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 <i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i>",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> <i class=\"fa-solid fa-heart-pulse\"></i>",
             "value": 10
           },
           "Size": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 <i class=\"fa-solid fa-ruler-triangle\"></i>",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> <i class=\"fa-solid fa-ruler-triangle\"></i>",
             "value": 10
           },
           "Weight": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 <i class=\"fa-solid fa-weight-hanging\"></i>",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> <i class=\"fa-solid fa-weight-hanging\"></i>",
             "value": 10
           },
           "Cosmic": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Cosmic Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Cosmic Resistance",
             "initial": 0,
             "value": null
           },
           "Elemental": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Elemental Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Elemental Resistance",
             "initial": 0,
             "value": null
           },
           "Material": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Material Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Material Resistance",
             "initial": 0,
             "value": null
           },
           "Psychic": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Psychic Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Psychic Resistance",
             "initial": 0,
             "value": null
           },
           "Description": {
             "type": "text",
             "dtype": "String",
-            "label": "🧱 Description",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Description",
             "value": ""
           }
         },
@@ -9013,7 +9013,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,

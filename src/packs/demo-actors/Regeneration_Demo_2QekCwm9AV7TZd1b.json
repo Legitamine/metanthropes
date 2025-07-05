@@ -1185,7 +1185,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Roll is Successful\"><span class=\"ipsEmoji\"><abbr title=\"Roll is Successful\">@METAFA(square)</abbr></span></abbr></span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">: Receive the&nbsp;</span></strong><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">@METAFA(shield-halved)</abbr></span></abbr><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"A Buff that alters a Character's shape and/or form. Only one Shift can be activated simultaneously\"><abbr title=\"A Buff that alters a Character's shape and/or form. Only one Shift can be activated simultaneously\">Shift</abbr></abbr>: Sizeshift 2. While the&nbsp;<abbr title=\"A Buff that alters a Character's shape and/or form. Only one Shift can be activated simultaneously\"><abbr title=\"A Buff that alters a Character's shape and/or form. Only one Shift can be activated simultaneously\">Shift</abbr></abbr>&nbsp;is active you further receive the&nbsp;</span></strong><strong><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">@METAFA(shield-halved)</abbr></span></abbr></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;<abbr title=\"Increases Size by + 1 per level\"><abbr title=\"Increases Size by + 1 per level\">Enlarged</abbr></abbr>&nbsp;2&nbsp;<em>(</em></span></strong><strong><em><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Size\"><span class=\"ipsEmoji\"><abbr title=\"Size\">@METAFA(ruler-triangle)</abbr></span></abbr><abbr title=\"How much space does a Character or an object occupies in the area. Effects Movement, Strike, Life and Detection\"><abbr title=\"How much space does a Character or an object occupies in the area. Effects Movement, Strike, Life and Detection\">Size</abbr></abbr>&nbsp;+2)&nbsp;</span></em></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">and the&nbsp;</span></strong><strong><abbr title=\"Condition\"><span class=\"ipsEmoji\"><abbr title=\"Condition\">@METAFA(skull)</abbr></span></abbr></strong><strong>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Increases Weight by + 1 per level\"><abbr title=\"Increases Weight by + 1 per level\">Encumbered</abbr></abbr>&nbsp;2&nbsp;<em>(</em></span></strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Weight\"><span class=\"ipsEmoji\"><abbr title=\"Weight\">@METAFA(weight-hanging)</abbr></span></abbr></span><strong><em><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"How heavy is an object or a Character, effects Movement and Grapple\"><abbr title=\"How heavy is an object or a Character, effects Movement and Grapple\">Weight</abbr></abbr>&nbsp;+2</span></em></strong><strong><em><span lang=\"en-us\" xml:lang=\"en-us\">)</span></em></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">.</span></strong></p>\n<p>&nbsp;</p>\n<p><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">@METAFA(square-check)</abbr></span></abbr><strong>&nbsp;</strong></span><strong><span lang=\"en-us\" xml:lang=\"en-us\">=&nbsp;</span></strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Duration\"><span class=\"ipsEmoji\"><abbr title=\"Duration\">@METAFA(hourglass-start)</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;+ 1&nbsp;<abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\"><abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\">Cycle</abbr></abbr></span></p>\n<p><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\"><abbr title=\"Level of Failure\">@METAFA(xmark)</abbr></span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\"><abbr title=\"Level of Failure\">@METAFA(xmark)</abbr></span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\"><abbr title=\"Level of Failure\">@METAFA(xmark)</abbr></span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\"><abbr title=\"Level of Failure\">@METAFA(xmark)</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;= Receive the&nbsp;</span><abbr title=\"Condition\"><span class=\"ipsEmoji\"><abbr title=\"Condition\">@METAFA(skull)</abbr></span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Lose part or whole of your Turn\"><abbr title=\"Lose part or whole of your Turn\">Fatigue</abbr></abbr>&nbsp;2 for&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\">1</span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;<abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\"><abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\">Cycle</abbr></abbr></span></p>"
+            "value": "<p><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Roll is Successful\"><span class=\"ipsEmoji\"><abbr title=\"Roll is Successful\">@METAFA(square, success)</abbr></span></abbr></span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">: Receive the&nbsp;</span></strong><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">@METAFA(shield-halved)</abbr></span></abbr><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"A Buff that alters a Character's shape and/or form. Only one Shift can be activated simultaneously\"><abbr title=\"A Buff that alters a Character's shape and/or form. Only one Shift can be activated simultaneously\">Shift</abbr></abbr>: Sizeshift 2. While the&nbsp;<abbr title=\"A Buff that alters a Character's shape and/or form. Only one Shift can be activated simultaneously\"><abbr title=\"A Buff that alters a Character's shape and/or form. Only one Shift can be activated simultaneously\">Shift</abbr></abbr>&nbsp;is active you further receive the&nbsp;</span></strong><strong><abbr title=\"Buff\"><span class=\"ipsEmoji\"><abbr title=\"Buff\">@METAFA(shield-halved)</abbr></span></abbr></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;<abbr title=\"Increases Size by + 1 per level\"><abbr title=\"Increases Size by + 1 per level\">Enlarged</abbr></abbr>&nbsp;2&nbsp;<em>(</em></span></strong><strong><em><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Size\"><span class=\"ipsEmoji\"><abbr title=\"Size\">@METAFA(ruler-triangle)</abbr></span></abbr><abbr title=\"How much space does a Character or an object occupies in the area. Effects Movement, Strike, Life and Detection\"><abbr title=\"How much space does a Character or an object occupies in the area. Effects Movement, Strike, Life and Detection\">Size</abbr></abbr>&nbsp;+2)&nbsp;</span></em></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">and the&nbsp;</span></strong><strong><abbr title=\"Condition\"><span class=\"ipsEmoji\"><abbr title=\"Condition\">@METAFA(skull)</abbr></span></abbr></strong><strong>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Increases Weight by + 1 per level\"><abbr title=\"Increases Weight by + 1 per level\">Encumbered</abbr></abbr>&nbsp;2&nbsp;<em>(</em></span></strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Weight\"><span class=\"ipsEmoji\"><abbr title=\"Weight\">@METAFA(weight-hanging)</abbr></span></abbr></span><strong><em><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"How heavy is an object or a Character, effects Movement and Grapple\"><abbr title=\"How heavy is an object or a Character, effects Movement and Grapple\">Weight</abbr></abbr>&nbsp;+2</span></em></strong><strong><em><span lang=\"en-us\" xml:lang=\"en-us\">)</span></em></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">.</span></strong></p>\n<p>&nbsp;</p>\n<p><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\"><abbr title=\"Spent Level of Success\">@METAFA(square-check, success)</abbr></span></abbr><strong>&nbsp;</strong></span><strong><span lang=\"en-us\" xml:lang=\"en-us\">=&nbsp;</span></strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Duration\"><span class=\"ipsEmoji\"><abbr title=\"Duration\">@METAFA(hourglass-start)</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;+ 1&nbsp;<abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\"><abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\">Cycle</abbr></abbr></span></p>\n<p><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\"><abbr title=\"Level of Failure\">@METAFA(xmark, failure)</abbr></span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\"><abbr title=\"Level of Failure\">@METAFA(xmark, failure)</abbr></span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\"><abbr title=\"Level of Failure\">@METAFA(xmark, failure)</abbr></span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\"><abbr title=\"Level of Failure\">@METAFA(xmark, failure)</abbr></span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;= Receive the&nbsp;</span><abbr title=\"Condition\"><span class=\"ipsEmoji\"><abbr title=\"Condition\">@METAFA(skull)</abbr></span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Lose part or whole of your Turn\"><abbr title=\"Lose part or whole of your Turn\">Fatigue</abbr></abbr>&nbsp;2 for&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\">1</span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;<abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\"><abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\">Cycle</abbr></abbr></span></p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -1236,7 +1236,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
@@ -1689,7 +1689,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Roll is Successful\"><span class=\"ipsEmoji\">@METAFA(square)</span></abbr></span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">: Receive the&nbsp;</span></strong><abbr title=\"Buff\"><span class=\"ipsEmoji\">@METAFA(shield-halved)</span></abbr>&nbsp;<strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"A Buff that alters a Character's shape and/or form. Only one Shift can be activated simultaneously\">Shift</abbr>: Sizeshift 1. While the&nbsp;<abbr title=\"A Buff that alters a Character's shape and/or form. Only one Shift can be activated simultaneously\">Shift</abbr>&nbsp;is active you further receive the&nbsp;</span></strong><strong><abbr title=\"Buff\"><span class=\"ipsEmoji\">@METAFA(shield-halved)</span></abbr></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Reduces Weight by - 1 per level\">Lightened</abbr>&nbsp;1&nbsp;<em>(</em></span></strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Weight\"><span class=\"ipsEmoji\">@METAFA(weight-hanging)</span></abbr></span><strong><em><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"How heavy is an object or a Character, effects Movement and Grapple\">Weight</abbr>&nbsp;-1)</span></em></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;and the&nbsp;</span></strong><strong><abbr title=\"Condition\"><span class=\"ipsEmoji\">@METAFA(skull)</span></abbr></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;<abbr title=\"Reduces Size by - 1 per level\">Shrunken</abbr>&nbsp;1&nbsp;<em>(<abbr title=\"Size\"><span class=\"ipsEmoji\">@METAFA(ruler-triangle)</span></abbr><abbr title=\"How much space does a Character or an object occupies in the area. Effects Movement, Strike, Life and Detection\">Size</abbr>&nbsp;-1)</em>.</span></strong></p>\n<p>&nbsp;</p>\n<p><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\">@METAFA(square-check)</span></abbr><strong>&nbsp;</strong></span><strong><span lang=\"en-us\" xml:lang=\"en-us\">=&nbsp;</span></strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Duration\"><span class=\"ipsEmoji\">@METAFA(hourglass-start)</span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;+ 1&nbsp;<abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\">Cycle</abbr></span></p>\n<p><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\">@METAFA(xmark)</span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\">@METAFA(xmark)</span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\">@METAFA(xmark)</span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\">@METAFA(xmark)</span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\">@METAFA(xmark)</span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;= Receive the&nbsp;</span><abbr title=\"Condition\"><span class=\"ipsEmoji\">@METAFA(skull)</span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Lose part or whole of your Turn\">Fatigue</abbr>&nbsp;1 for&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\">1</span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;<abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\">Cycle</abbr></span></p>"
+            "value": "<p><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Roll is Successful\"><span class=\"ipsEmoji\">@METAFA(square, success)</span></abbr></span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">: Receive the&nbsp;</span></strong><abbr title=\"Buff\"><span class=\"ipsEmoji\">@METAFA(shield-halved)</span></abbr>&nbsp;<strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"A Buff that alters a Character's shape and/or form. Only one Shift can be activated simultaneously\">Shift</abbr>: Sizeshift 1. While the&nbsp;<abbr title=\"A Buff that alters a Character's shape and/or form. Only one Shift can be activated simultaneously\">Shift</abbr>&nbsp;is active you further receive the&nbsp;</span></strong><strong><abbr title=\"Buff\"><span class=\"ipsEmoji\">@METAFA(shield-halved)</span></abbr></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Reduces Weight by - 1 per level\">Lightened</abbr>&nbsp;1&nbsp;<em>(</em></span></strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Weight\"><span class=\"ipsEmoji\">@METAFA(weight-hanging)</span></abbr></span><strong><em><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"How heavy is an object or a Character, effects Movement and Grapple\">Weight</abbr>&nbsp;-1)</span></em></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;and the&nbsp;</span></strong><strong><abbr title=\"Condition\"><span class=\"ipsEmoji\">@METAFA(skull)</span></abbr></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;<abbr title=\"Reduces Size by - 1 per level\">Shrunken</abbr>&nbsp;1&nbsp;<em>(<abbr title=\"Size\"><span class=\"ipsEmoji\">@METAFA(ruler-triangle)</span></abbr><abbr title=\"How much space does a Character or an object occupies in the area. Effects Movement, Strike, Life and Detection\">Size</abbr>&nbsp;-1)</em>.</span></strong></p>\n<p>&nbsp;</p>\n<p><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\">@METAFA(square-check, success)</span></abbr><strong>&nbsp;</strong></span><strong><span lang=\"en-us\" xml:lang=\"en-us\">=&nbsp;</span></strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Duration\"><span class=\"ipsEmoji\">@METAFA(hourglass-start)</span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;+ 1&nbsp;<abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\">Cycle</abbr></span></p>\n<p><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\">@METAFA(xmark, failure)</span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\">@METAFA(xmark, failure)</span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\">@METAFA(xmark, failure)</span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\">@METAFA(xmark, failure)</span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\">@METAFA(xmark, failure)</span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;= Receive the&nbsp;</span><abbr title=\"Condition\"><span class=\"ipsEmoji\">@METAFA(skull)</span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Lose part or whole of your Turn\">Fatigue</abbr>&nbsp;1 for&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\">1</span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;<abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\">Cycle</abbr></span></p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -1740,7 +1740,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
@@ -2191,7 +2191,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Roll is Successful\"><span class=\"ipsEmoji\">@METAFA(square)</span></abbr></span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">:&nbsp;</span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">You receive a + 25%&nbsp;<abbr title=\"An increase at a specific roll\">Bonus</abbr>&nbsp;on all Powers rolls which are attempts to unarmed&nbsp;<abbr title=\"An attack made from distance of the same Hexagon , unarmed or equipped with a Melee Weapon\">Strike</abbr>, jump, or climb. In addition, your unarmed&nbsp;<abbr title=\"An attack made from distance of the same Hexagon , unarmed or equipped with a Melee Weapon\">Strike</abbr>&rsquo;s accumulated&nbsp;</span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">✔</span></strong><span lang=\"en-us\" xml:lang=\"en-us\">️</span><strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;use the&nbsp;<u><a href=\"https://content.invisioncic.com/e290497/monthly_2021_12/1464043901_RULESC5.png.d0b6525a49e52ef8161b8a986f6dde4c.png\" target=\"_blank\" rel=\"external nofollow noopener\">Bladed Melee Weapon&nbsp;<abbr title=\"Negative effect\">Condition</abbr>&nbsp;table</a></u>&nbsp;instead of the Unarmed&nbsp;<abbr title=\"An attack made from distance of the same Hexagon , unarmed or equipped with a Melee Weapon\">Strike</abbr>&nbsp;<abbr title=\"Negative effect\">Condition</abbr>&nbsp;table.</span></strong></p>\n<p>&nbsp;</p>\n<p><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\">@METAFA(square-check)</span></abbr></span></strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><strong><span lang=\"en-us\" xml:lang=\"en-us\">=&nbsp;</span></strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Duration\"><span class=\"ipsEmoji\">@METAFA(hourglass-start)</span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\">+ 1d10&nbsp;<abbr title=\"Each Cycle is two subsequent Rounds, approximately 1 minute in-game\">Cycles</abbr></span></p>\n<p><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\">@METAFA(square-check)</span></abbr><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\">@METAFA(square-check)</span></abbr></span></strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><strong><span lang=\"en-us\" xml:lang=\"en-us\">=&nbsp;</span></strong><span lang=\"en-us\" xml:lang=\"en-us\">Increase the&nbsp;<abbr title=\"An increase at a specific roll\">Bonus</abbr>&nbsp;by + 5% (Up to + 50%)</span></p>\n<p><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\">@METAFA(xmark)</span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\">@METAFA(xmark)</span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;= Receive the&nbsp;</span><abbr title=\"Condition\"><span class=\"ipsEmoji\">@METAFA(skull)</span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Each Action has a % chance of failure\">Hunger</abbr>&nbsp;2 for 1&nbsp;<abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\">Cycle</abbr></span></p>"
+            "value": "<p><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Roll is Successful\"><span class=\"ipsEmoji\">@METAFA(square, success)</span></abbr></span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">:&nbsp;</span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">You receive a + 25%&nbsp;<abbr title=\"An increase at a specific roll\">Bonus</abbr>&nbsp;on all Powers rolls which are attempts to unarmed&nbsp;<abbr title=\"An attack made from distance of the same Hexagon , unarmed or equipped with a Melee Weapon\">Strike</abbr>, jump, or climb. In addition, your unarmed&nbsp;<abbr title=\"An attack made from distance of the same Hexagon , unarmed or equipped with a Melee Weapon\">Strike</abbr>&rsquo;s accumulated&nbsp;</span></strong><strong><span lang=\"en-us\" xml:lang=\"en-us\">✔</span></strong><span lang=\"en-us\" xml:lang=\"en-us\">️</span><strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;use the&nbsp;<u><a href=\"https://content.invisioncic.com/e290497/monthly_2021_12/1464043901_RULESC5.png.d0b6525a49e52ef8161b8a986f6dde4c.png\" target=\"_blank\" rel=\"external nofollow noopener\">Bladed Melee Weapon&nbsp;<abbr title=\"Negative effect\">Condition</abbr>&nbsp;table</a></u>&nbsp;instead of the Unarmed&nbsp;<abbr title=\"An attack made from distance of the same Hexagon , unarmed or equipped with a Melee Weapon\">Strike</abbr>&nbsp;<abbr title=\"Negative effect\">Condition</abbr>&nbsp;table.</span></strong></p>\n<p>&nbsp;</p>\n<p><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\">@METAFA(square-check, success)</span></abbr></span></strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><strong><span lang=\"en-us\" xml:lang=\"en-us\">=&nbsp;</span></strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Duration\"><span class=\"ipsEmoji\">@METAFA(hourglass-start)</span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><span lang=\"en-us\" xml:lang=\"en-us\">+ 1d10&nbsp;<abbr title=\"Each Cycle is two subsequent Rounds, approximately 1 minute in-game\">Cycles</abbr></span></p>\n<p><strong><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\">@METAFA(square-check, success)</span></abbr><abbr title=\"Spent Level of Success\"><span class=\"ipsEmoji\">@METAFA(square-check, success)</span></abbr></span></strong><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;</span><strong><span lang=\"en-us\" xml:lang=\"en-us\">=&nbsp;</span></strong><span lang=\"en-us\" xml:lang=\"en-us\">Increase the&nbsp;<abbr title=\"An increase at a specific roll\">Bonus</abbr>&nbsp;by + 5% (Up to + 50%)</span></p>\n<p><span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\">@METAFA(xmark, failure)</span></abbr><abbr title=\"Level of Failure\"><span class=\"ipsEmoji\">@METAFA(xmark, failure)</span></abbr></span><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;= Receive the&nbsp;</span><abbr title=\"Condition\"><span class=\"ipsEmoji\">@METAFA(skull)</span></abbr>&nbsp;<span lang=\"en-us\" xml:lang=\"en-us\"><abbr title=\"Each Action has a % chance of failure\">Hunger</abbr>&nbsp;2 for 1&nbsp;<abbr title=\"Two subsequent Rounds, approximately 1 minute in-game\">Cycle</abbr></span></p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -2242,7 +2242,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
@@ -2695,7 +2695,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p style=\"text-align: justify;\"><strong>@METAFA(square): Receive the &nbsp;@METAFA(shield-halved) Detection: Darkness and the &nbsp;@METAFA(shield-halved) Detection: Bleeding with @METAFA(ruler) Range equal to your Visible Range. In addition, your Visible @METAFA(ruler) Range increases from Square [Area 4] to Block [Area 5], your Audible @METAFA(ruler) Range increases from Building [Area 3] to Square [Area 4], and your Odorous Range @METAFA(ruler) Range increases from Room [Area 2] to Building [Area 3].</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">@METAFA(square-check) = @METAFA(hourglass-start) + 1d10 Cycles</p>\n<p style=\"text-align: justify;\">@METAFA(xmark) = Receive the @METAFA(skull) Hunger 1 for 1 Cycle</p>"
+            "value": "<p style=\"text-align: justify;\"><strong>@METAFA(square, success): Receive the &nbsp;@METAFA(shield-halved) Detection: Darkness and the &nbsp;@METAFA(shield-halved) Detection: Bleeding with @METAFA(ruler) Range equal to your Visible Range. In addition, your Visible @METAFA(ruler) Range increases from Square [Area 4] to Block [Area 5], your Audible @METAFA(ruler) Range increases from Building [Area 3] to Square [Area 4], and your Odorous Range @METAFA(ruler) Range increases from Room [Area 2] to Building [Area 3].</strong></p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<p style=\"text-align: justify;\">@METAFA(square-check, success) = @METAFA(hourglass-start) + 1d10 Cycles</p>\n<p style=\"text-align: justify;\">@METAFA(xmark, failure) = Receive the @METAFA(skull) Hunger 1 for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -2746,7 +2746,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
@@ -3013,59 +3013,59 @@
           "Category": {
             "type": "text",
             "dtype": "String",
-            "label": "🧱 Category",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Category",
             "value": "Earthly, Compossed, Metallic or Alien"
           },
           "Durability": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 <i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i>",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> <i class=\"fa-solid fa-heart-pulse\"></i>",
             "value": 10
           },
           "Size": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 <i class=\"fa-solid fa-ruler-triangle\"></i>",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> <i class=\"fa-solid fa-ruler-triangle\"></i>",
             "value": 10
           },
           "Weight": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 <i class=\"fa-solid fa-weight-hanging\"></i>",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> <i class=\"fa-solid fa-weight-hanging\"></i>",
             "value": 10
           },
           "Cosmic": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Cosmic Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Cosmic Resistance",
             "initial": 0,
             "value": null
           },
           "Elemental": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Elemental Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Elemental Resistance",
             "initial": 0,
             "value": null
           },
           "Material": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Material Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Material Resistance",
             "initial": 0,
             "value": null
           },
           "Psychic": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Psychic Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Psychic Resistance",
             "initial": 0,
             "value": null
           },
           "Description": {
             "type": "text",
             "dtype": "String",
-            "label": "🧱 Description",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Description",
             "value": ""
           }
         },
@@ -3309,7 +3309,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
@@ -3573,59 +3573,59 @@
           "Category": {
             "type": "text",
             "dtype": "String",
-            "label": "🧱 Category",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Category",
             "value": "Metallic"
           },
           "Durability": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 <i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i>",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> <i class=\"fa-solid fa-heart-pulse\"></i>",
             "value": 13
           },
           "Size": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 <i class=\"fa-solid fa-ruler-triangle\"></i>",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> <i class=\"fa-solid fa-ruler-triangle\"></i>",
             "value": 7
           },
           "Weight": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 <i class=\"fa-solid fa-weight-hanging\"></i>",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> <i class=\"fa-solid fa-weight-hanging\"></i>",
             "value": 7
           },
           "Cosmic": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Cosmic Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Cosmic Resistance",
             "initial": 0,
             "value": null
           },
           "Elemental": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Elemental Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Elemental Resistance",
             "initial": 0,
             "value": 30
           },
           "Material": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Material Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Material Resistance",
             "initial": 0,
             "value": 60
           },
           "Psychic": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Psychic Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Psychic Resistance",
             "initial": 0,
             "value": null
           },
           "Description": {
             "type": "text",
             "dtype": "String",
-            "label": "🧱 Description",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Description",
             "value": ""
           }
         },
@@ -3871,7 +3871,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
@@ -4319,7 +4319,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): At the end of each Round, you receive @METAFA(heart-pulse) 1d10 + 10 Life, and you may remove any one up to level 1 of the following Conditions of the Body (Skin Injury, Muscle Injury, Bone Injury, or Bleeding) from yourself.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1 Round</p>\n<p>@METAFA(square-check)@METAFA(square-check) = Increase the level of the @METAFA(skull) removed by + 1</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = Remove an additional @METAFA(skull)</p>"
+            "value": "<p><strong>@METAFA(square, success): At the end of each Round, you receive @METAFA(heart-pulse) 1d10 + 10 Life, and you may remove any one up to level 1 of the following Conditions of the Body (Skin Injury, Muscle Injury, Bone Injury, or Bleeding) from yourself.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1 Round</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Increase the level of the @METAFA(skull) removed by + 1</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = Remove an additional @METAFA(skull)</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -4370,7 +4370,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 10,
@@ -4823,7 +4823,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): At the end of each Round, you receive @METAFA(heart-pulse) 2d10 + 25 Life, and you may remove up to two, up to level 2 of the following Conditions (Skin Injury, Muscle Injury, Bone Injury, Bleeding, Burned, or Diseased) from yourself.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check)@METAFA(square-check) = Increase the level of the @METAFA(skull) removed by + 1</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = Remove an additional @METAFA(skull)</p>"
+            "value": "<p><strong>@METAFA(square, success): At the end of each Round, you receive @METAFA(heart-pulse) 2d10 + 25 Life, and you may remove up to two, up to level 2 of the following Conditions (Skin Injury, Muscle Injury, Bone Injury, Bleeding, Burned, or Diseased) from yourself.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Increase the level of the @METAFA(skull) removed by + 1</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = Remove an additional @METAFA(skull)</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -4874,7 +4874,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 25,
@@ -5327,7 +5327,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): At the end of each Round, you receive @METAFA(heart-pulse) 5d10 + 50 Life, and you may remove up to three, up to level 3 of the following Conditions (Skin Injury, Muscle Injury, Bone Injury, Asphyxiation, Bleeding, Burned, Diseased, or any Sense Lost) from yourself.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check)@METAFA(square-check) = Increase the level of the @METAFA(skull) removed by + 1</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = Remove an additional @METAFA(skull)</p>"
+            "value": "<p><strong>@METAFA(square, success): At the end of each Round, you receive @METAFA(heart-pulse) 5d10 + 50 Life, and you may remove up to three, up to level 3 of the following Conditions (Skin Injury, Muscle Injury, Bone Injury, Asphyxiation, Bleeding, Burned, Diseased, or any Sense Lost) from yourself.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Increase the level of the @METAFA(skull) removed by + 1</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = Remove an additional @METAFA(skull)</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -5378,7 +5378,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 50,
@@ -5831,7 +5831,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): At the end of each Round, you receive @METAFA(heart-pulse) 5d10 + 50 Life, and you may remove up to three, up to level 3 of the following Conditions (Skin Injury, Muscle Injury, Bone Injury, Asphyxiation, Bleeding, Burned, Diseased, or any Sense Lost) from yourself.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check)@METAFA(square-check) = Increase the level of the @METAFA(skull) removed by + 1</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = Remove an additional @METAFA(skull)</p>"
+            "value": "<p><strong>@METAFA(square, success): At the end of each Round, you receive @METAFA(heart-pulse) 5d10 + 50 Life, and you may remove up to three, up to level 3 of the following Conditions (Skin Injury, Muscle Injury, Bone Injury, Asphyxiation, Bleeding, Burned, Diseased, or any Sense Lost) from yourself.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Increase the level of the @METAFA(skull) removed by + 1</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = Remove an additional @METAFA(skull)</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -5882,7 +5882,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 50,
@@ -6335,7 +6335,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): At the end of each of your Turns, you receive @METAFA(heart-pulse) 7d10 + 70 Life, and you may remove up to four, up to level 4 of the following Conditions (Skin Injury, Muscle Injury, Bone Injury, Asphyxiation, Bleeding, Burned, Diseased, any Sense Lost, or Maimed) from yourself.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1d10 Cycles</p>\n<p>@METAFA(square-check)@METAFA(square-check) = Increase the level of the @METAFA(skull) removed by + 1</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = Remove an additional @METAFA(skull)</p>"
+            "value": "<p><strong>@METAFA(square, success): At the end of each of your Turns, you receive @METAFA(heart-pulse) 7d10 + 70 Life, and you may remove up to four, up to level 4 of the following Conditions (Skin Injury, Muscle Injury, Bone Injury, Asphyxiation, Bleeding, Burned, Diseased, any Sense Lost, or Maimed) from yourself.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1d10 Cycles</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Increase the level of the @METAFA(skull) removed by + 1</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = Remove an additional @METAFA(skull)</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -6386,7 +6386,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 70,
@@ -6839,7 +6839,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): At the end of each of your Turns, you receive @METAFA(heart-pulse) 7d10 + 70 Life, and you may remove up to four, up to level 4 of the following Conditions (Skin Injury, Muscle Injury, Bone Injury, Asphyxiation, Bleeding, Burned, Diseased, any Sense Lost, or Maimed) from yourself.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1d10 Cycles</p>\n<p>@METAFA(square-check)@METAFA(square-check) = Increase the level of the @METAFA(skull) removed by + 1</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = Remove an additional @METAFA(skull)</p>"
+            "value": "<p><strong>@METAFA(square, success): At the end of each of your Turns, you receive @METAFA(heart-pulse) 7d10 + 70 Life, and you may remove up to four, up to level 4 of the following Conditions (Skin Injury, Muscle Injury, Bone Injury, Asphyxiation, Bleeding, Burned, Diseased, any Sense Lost, or Maimed) from yourself.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1d10 Cycles</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Increase the level of the @METAFA(skull) removed by + 1</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = Remove an additional @METAFA(skull)</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -6890,7 +6890,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 70,
@@ -7343,7 +7343,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): At the end of each of your Turns, you receive @METAFA(heart-pulse) 7d10 + 70 Life, and you may remove up to four, up to level 4 of the following Conditions (Skin Injury, Muscle Injury, Bone Injury, Asphyxiation, Bleeding, Burned, Diseased, any Sense Lost, or Maimed) from yourself.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1d10 Cycles</p>\n<p>@METAFA(square-check)@METAFA(square-check) = Increase the level of the @METAFA(skull) removed by + 1</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = Remove an additional @METAFA(skull)</p>"
+            "value": "<p><strong>@METAFA(square, success): At the end of each of your Turns, you receive @METAFA(heart-pulse) 7d10 + 70 Life, and you may remove up to four, up to level 4 of the following Conditions (Skin Injury, Muscle Injury, Bone Injury, Asphyxiation, Bleeding, Burned, Diseased, any Sense Lost, or Maimed) from yourself.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1d10 Cycles</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Increase the level of the @METAFA(skull) removed by + 1</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = Remove an additional @METAFA(skull)</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -7394,7 +7394,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 70,
@@ -7847,7 +7847,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): At the end of each of your Turns, you receive @METAFA(heart-pulse) 10d10 + 100 Life, and you may remove up to five, up to level 5 of the following Conditions (Skin Injury, Muscle Injury, Bone Injury, Asphyxiation, Bleeding, Burned, Diseased, any Sense Lost, or Maimed) from yourself.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1d10 Cycles</p>\n<p>@METAFA(square-check)@METAFA(square-check) = Increase the level of the @METAFA(skull) removed by + 1</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = Remove an additional @METAFA(skull)</p>"
+            "value": "<p><strong>@METAFA(square, success): At the end of each of your Turns, you receive @METAFA(heart-pulse) 10d10 + 100 Life, and you may remove up to five, up to level 5 of the following Conditions (Skin Injury, Muscle Injury, Bone Injury, Asphyxiation, Bleeding, Burned, Diseased, any Sense Lost, or Maimed) from yourself.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1d10 Cycles</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Increase the level of the @METAFA(skull) removed by + 1</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = Remove an additional @METAFA(skull)</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -7898,7 +7898,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 100,
@@ -8351,7 +8351,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): At the end of each of your Turns, you receive @METAFA(heart-pulse) 10d10 + 100 Life, and you may remove up to five, up to level 5 of the following Conditions (Skin Injury, Muscle Injury, Bone Injury, Asphyxiation, Bleeding, Burned, Diseased, any Sense Lost, or Maimed) from yourself.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1d10 Cycles</p>\n<p>@METAFA(square-check)@METAFA(square-check) = Increase the level of the @METAFA(skull) removed by + 1</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = Remove an additional @METAFA(skull)</p>"
+            "value": "<p><strong>@METAFA(square, success): At the end of each of your Turns, you receive @METAFA(heart-pulse) 10d10 + 100 Life, and you may remove up to five, up to level 5 of the following Conditions (Skin Injury, Muscle Injury, Bone Injury, Asphyxiation, Bleeding, Burned, Diseased, any Sense Lost, or Maimed) from yourself.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1d10 Cycles</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Increase the level of the @METAFA(skull) removed by + 1</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = Remove an additional @METAFA(skull)</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -8402,7 +8402,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 100,
@@ -8855,7 +8855,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square): At the end of each of your Turns, you receive @METAFA(heart-pulse) 10d10 + 100 Life, and you may remove up to five, up to level 5 of the following Conditions (Skin Injury, Muscle Injury, Bone Injury, Asphyxiation, Bleeding, Burned, Diseased, any Sense Lost, or Maimed) from yourself.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1d10 Cycles</p>\n<p>@METAFA(square-check)@METAFA(square-check) = Increase the level of the @METAFA(skull) removed by + 1</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = Remove an additional @METAFA(skull)</p>"
+            "value": "<p><strong>@METAFA(square, success): At the end of each of your Turns, you receive @METAFA(heart-pulse) 10d10 + 100 Life, and you may remove up to five, up to level 5 of the following Conditions (Skin Injury, Muscle Injury, Bone Injury, Asphyxiation, Bleeding, Burned, Diseased, any Sense Lost, or Maimed) from yourself.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1d10 Cycles</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Increase the level of the @METAFA(skull) removed by + 1</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = Remove an additional @METAFA(skull)</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -8906,7 +8906,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 100,
@@ -9175,59 +9175,59 @@
           "Category": {
             "type": "text",
             "dtype": "String",
-            "label": "🧱 Category",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Category",
             "value": "Earthly, Compossed, Metallic or Alien"
           },
           "Durability": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 <i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i>",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> <i class=\"fa-solid fa-heart-pulse\"></i>",
             "value": 10
           },
           "Size": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 <i class=\"fa-solid fa-ruler-triangle\"></i>",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> <i class=\"fa-solid fa-ruler-triangle\"></i>",
             "value": 10
           },
           "Weight": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 <i class=\"fa-solid fa-weight-hanging\"></i>",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> <i class=\"fa-solid fa-weight-hanging\"></i>",
             "value": 10
           },
           "Cosmic": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Cosmic Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Cosmic Resistance",
             "initial": 0,
             "value": null
           },
           "Elemental": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Elemental Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Elemental Resistance",
             "initial": 0,
             "value": null
           },
           "Material": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Material Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Material Resistance",
             "initial": 0,
             "value": null
           },
           "Psychic": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 Psychic Resistance",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Psychic Resistance",
             "initial": 0,
             "value": null
           },
           "Description": {
             "type": "text",
             "dtype": "String",
-            "label": "🧱 Description",
+            "label": "<i class=\"fa-solid fa-cubes\"></i> Description",
             "value": ""
           }
         },
@@ -9471,7 +9471,7 @@
             }
           },
           "Healing": {
-            "label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
             "type": "number",
             "dtype": "Number",
             "Base": 0,
