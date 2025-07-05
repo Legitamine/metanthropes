@@ -299,7 +299,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			</div>`;
 			}
 		} else {
-			targetsMessage = `<span data-tooltip="METANTHROPES.COMMON.Targets"><i class="fa-solid fa-crosshairs-simple fa-fw"></i> -</span> ${targetsNumber}`;
+			targetsMessage = `<span data-tooltip="METANTHROPES.COMMON.Targets"><i class="fa-solid fa-bullseye fa-fw"></i> -</span> ${targetsNumber}`;
 		}
 		///* add eligible targets
 		if (targetsEligible.length > 0) {

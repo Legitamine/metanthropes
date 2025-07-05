@@ -1076,55 +1076,55 @@
 					"Category": {
 						"type": "text",
 						"dtype": "String",
-						"label": "🧱 Category",
+						"label": "<i class=\"fa-solid fa-cubes\"></i> Category",
 						"value": "Earthly, Compossed, Metallic or Alien"
 					},
 					"Durability": {
 						"type": "number",
 						"dtype": "Number",
-						"label": "🧱 <i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i>",
+						"label": "<i class=\"fa-solid fa-cubes\"></i> <i class=\"fa-solid fa-heart-pulse\"></i>",
 						"value": "10"
 					},
 					"Size": {
 						"type": "number",
 						"dtype": "Number",
-						"label": "🧱 <i class=\"fa-solid fa-ruler-triangle\"></i>",
+						"label": "<i class=\"fa-solid fa-cubes\"></i> <i class=\"fa-solid fa-ruler-triangle\"></i>",
 						"value": "10"
 					},
 					"Weight": {
 						"type": "number",
 						"dtype": "Number",
-						"label": "🧱 <i class=\"fa-solid fa-weight-hanging\"></i>",
+						"label": "<i class=\"fa-solid fa-cubes\"></i> <i class=\"fa-solid fa-weight-hanging\"></i>",
 						"value": "10"
 					},
 					"Cosmic": {
 						"type": "number",
 						"dtype": "Number",
-						"label": "🧱 Cosmic Resistance",
+						"label": "<i class=\"fa-solid fa-cubes\"></i> Cosmic Resistance",
 						"initial": 0
 					},
 					"Elemental": {
 						"type": "number",
 						"dtype": "Number",
-						"label": "🧱 Elemental Resistance",
+						"label": "<i class=\"fa-solid fa-cubes\"></i> Elemental Resistance",
 						"initial": 0
 					},
 					"Material": {
 						"type": "number",
 						"dtype": "Number",
-						"label": "🧱 Material Resistance",
+						"label": "<i class=\"fa-solid fa-cubes\"></i> Material Resistance",
 						"initial": 0
 					},
 					"Psychic": {
 						"type": "number",
 						"dtype": "Number",
-						"label": "🧱 Psychic Resistance",
+						"label": "<i class=\"fa-solid fa-cubes\"></i> Psychic Resistance",
 						"initial": 0
 					},
 					"Description": {
 						"type": "text",
 						"dtype": "String",
-						"label": "🧱 Description",
+						"label": "<i class=\"fa-solid fa-cubes\"></i> Description",
 						"value": null
 					}
 				}
@@ -1372,7 +1372,7 @@
 						}
 					},
 					"Healing": {
-						"label": "<i class=\"fa-sharp-duotone fa-regular fa-heart-pulse\"></i> Healing",
+						"label": "<i class=\"fa-solid fa-heart-pulse\"></i> Healing",
 						"type": "number",
 						"dtype": "Number",
 						"Base": 0,
