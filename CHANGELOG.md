@@ -14,6 +14,8 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Added:
 
+-   crits with bonus/penalty?
+-   reward destiny + reset or reroll initiative when
 -   Foundry version 13.346 is now supported.
 -   A new way to create Font Awesome Icons, using text enrichers. See #394 on how to configure your own content (assumes you have a valid Font Awesome Pro license).
 -   Added a custom color scheme, available under `metanthropes.system.colors` to be used with Font Awesome icons as well as other UI elements in the future.
@@ -22,9 +24,11 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 -   Changed the styling of the Font Awesome Icons to match the styling used by Foundry Core.
 -   Changed the Targets icon to match the Targeting icon used by Foundry Core.
+-   Updated the major functions of the `metanthropes.dice` API to utilize the new text enrichers.
 
 ## Fixed:
 
+-   todo: fix journals, links
 -   Changed the default Disposition for all non-Protagonist Prototype Tokens to be 'Neutral' instead of 'Secret', allowing players to target them. If loading a World that was created before this release, all Prototype Token defaults will be overriden with this new behavior.
 -   Replaced the loading screen that appears when loading a World, that stays up until the active scene loads. This image now uses the new cover image from the system.
 -   Fixed the issue with dissappearing Font Awesome icons when editing a Journal page or a Possession's effect description fields. From now on, use the new Text Enrichers to include FA icons in the Journals and in the description fields on Items.

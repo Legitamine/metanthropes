@@ -1,6 +1,8 @@
 /**
  * metaCoverRoll handles the rolling a simple d100 to check if the actor can find Cover.
  * 
+ * todo: update for text enrichers and review d100 roll
+ * 
  * @param {*} actor 
  * @param {*} coverType 
  * @param {*} coverValue 
