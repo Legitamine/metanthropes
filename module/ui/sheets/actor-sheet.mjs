@@ -88,6 +88,8 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		context.isNarrator = game.user.isGM;
 		//? Add the actor's active effects to the context for easier access.
 		if (context.betaTesting) context.effects = metanthropes.utils.prepareActiveEffectCategories(this.actor.effects);
+		//? Custom FA Icon Color
+		context.customFAColor = await game.settings.get("metanthropes", "metaCustomFAColor");
 		//? Calculate the actor's XP Spent
 		context.xpSpent = Number(actorData.system.Vital.Experience.Spent + actorData.system.Vital.Experience.Manual);
 		//? Flag if actor is affected by Disease
@@ -617,7 +619,12 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		const coreModule = game.modules.get("metanthropes-core");
 		if (coreModule && coreModule?.active) {
 			try {
-				metanthropes.utils.metaLog(3, "MetanthropesActorSheet", "_onNewActor", "Core API available, calling metaNewActor");
+				metanthropes.utils.metaLog(
+					3,
+					"MetanthropesActorSheet",
+					"_onNewActor",
+					"Core API available, calling metaNewActor"
+				);
 				await metanthropes.logic.metaNewActor(actor);
 			} catch (error) {
 				metanthropes.utils.metaLog(2, "MetanthropesActorSheet", "_onNewActor", "Core Module API Error:", error);

@@ -6,13 +6,16 @@ Hooks.once("ready", async function () {
 
 	//* Override Protype Token Defaults
 	const applied = await game.settings.get("metanthropes", "prototypeTokenOverridesApplied");
-	if (applied) {
+	const migrationVersion = await game.settings.get("metanthropes", "migrationVersion");
+	const isNewerVersion = foundry.utils.isNewerVersion("0.13.6", migrationVersion);
+	if (applied && !isNewerVersion) {
 		metanthropes.utils.metaLog(0, "System", "Getting Ready", "System Default Token Overrides already established");
 	} else {
 		metanthropes.utils.metaLog(0, "System", "Getting Ready", "Establishing System Default Token Overrides");
 		const newTokenDefaults = metanthropes.system.TOKENDEFAULTS;
 		await game.settings.set("core", "prototypeTokenOverrides", newTokenDefaults);
 		await game.settings.set("metanthropes", "prototypeTokenOverridesApplied", true);
+		await game.settings.set("metanthropes", "migrationVersion", "0.13.6");
 	}
 	//* Add support for Moulinette
 	//todo should be moved to supported-modules instead

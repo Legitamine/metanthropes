@@ -213,13 +213,13 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		///* check Area Effect
 		if (areaEffect !== "None") {
 			areaEffectMessage =
-				`<span data-tooltip="Area Effect"><i class="fa-sharp-duotone fa-solid fa-hexagon-image"></i> -</span> ` +
+				`<span data-tooltip="Area Effect"><i class="fa-solid fa-hexagon-image fa-fw"></i> -</span> ` +
 				areaEffect +
 				`<br>`;
 			//? check Area Type
 			if (areaType.length > 0) {
 				areaEffectMessage +=
-					`<span data-tooltip="Area Effect"><i class="fa-sharp-duotone fa-solid fa-hexagon-image"></i> (Type) -</span> ` +
+					`<span data-tooltip="Area Effect"><i class="fa-solid fa-hexagon-image fa-fw"></i> (Type) -</span> ` +
 					areaType +
 					`<br>`;
 			}
@@ -229,7 +229,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		///* check for VS
 		if (vsRoll !== "None") {
 			vsMessage =
-				`<span data-tooltip="VS Roll"><i class="fa-sharp-duotone fa-solid fa-swords"></i> - </span>` +
+				`<span data-tooltip="VS Roll"><i class="fa-solid fa-swords fa-fw"></i> - </span>` +
 				vsRoll +
 				`<br>`;
 		}
@@ -242,7 +242,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			return;
 		} else if (actionSlot.includes("Focused")) {
 			//? focused
-			actionSlotMessage = `<span data-tooltip="Activation Slot"><i class="fa-sharp-duotone fa-solid fa-stopwatch"></i> - </span>`;
+			actionSlotMessage = `<span data-tooltip="Activation Slot"><i class="fa-solid fa-stopwatch fa-fw"></i> - </span>`;
 			if (actionSlot.includes("1d10 Cycles")) {
 				//? roll for cycles
 				actionSlotDice = 1;
@@ -251,7 +251,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				<button class="metanthropes-secondary-chat-button action-slot rolld10-reroll"
 				data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${actionSlotDice}"
 				data-what="Activation" data-destiny-re-roll="true" data-reroll="false" data-reroll-counter="1">
-				Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> to reroll <i class="fa-sharp-duotone fa-solid fa-stopwatch"></i> Activation</button>
+				Spend <i class="fa-solid fa-hand-fingers-crossed"></i> to reroll <i class="fa-solid fa-stopwatch"></i> Activation</button>
 				</div>`;
 			} else if (actionSlot.includes("1d10 Hours")) {
 				//? roll for hours
@@ -261,7 +261,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				<button class="metanthropes-secondary-chat-button action-slot rolld10-reroll"
 				data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${actionSlotDice}"
 				data-what="Activation" data-destiny-re-roll="true" data-reroll="false" data-reroll-counter="1">
-				Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> to reroll <i class="fa-sharp-duotone fa-solid fa-stopwatch"></i> Activation</button>
+				Spend <i class="fa-solid fa-hand-fingers-crossed"></i> to reroll <i class="fa-solid fa-stopwatch"></i> Activation</button>
 				</div>`;
 			} else {
 				actionSlotMessage += actionSlot + `<br>`;
@@ -269,7 +269,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		} else {
 			//? normal execution
 			actionSlotMessage =
-				`<span data-tooltip="Activation Slot"><i class="fa-sharp-duotone fa-solid fa-stopwatch"></i> - </span>` +
+				`<span data-tooltip="Activation Slot"><i class="fa-solid fa-stopwatch fa-fw"></i> - </span>` +
 				actionSlot +
 				`<br>`;
 		}
@@ -279,27 +279,27 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			if (targetsNumber === "1d10/2") {
 				//? roll for 1d10/2
 				targetsNumberDiceMessage = `<span class="meta-roll-inline-results-small">[[ceil(1d10${explosiveDice}/2)[Targets]]]</span>`;
-				targetsMessage = `<span data-tooltip="Targets"><i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i> -</span> ${targetsNumberDiceMessage} Targets`;
+				targetsMessage = `<span data-tooltip="Targets"><i class="fa-solid fa-bullseye"></i> -</span> ${targetsNumberDiceMessage} Targets`;
 				targetsNumberDice = 1;
 				targetsRerollButton = `<div class="hide-button hidden">
 			<button class="metanthropes-secondary-chat-button targets rolld10-reroll"
 			data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${targetsNumberDice}"
 			data-what="Targets" data-is-half="true" data-destiny-re-roll="true" data-reroll="false"
-			data-reroll-counter="1">Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> to reroll <i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i> Targets</button></div>`;
+			data-reroll-counter="1">Spend <i class="fa-solid fa-hand-fingers-crossed"></i> to reroll <i class="fa-solid fa-bullseye"></i> Targets</button></div>`;
 			} else {
 				//? all other rolls
 				targetsNumberDice = await metanthropes.utils.metaExtractNumberOfDice(targetsNumber);
 				targetsNumberDiceMessage = `<span class="meta-roll-inline-results-small">[[${targetsNumberDice}d10${explosiveDice}[Targets]]]</span>`;
-				targetsMessage = `<span data-tooltip="METANTHROPES.COMMON.Targets"><i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i> -</span> ${targetsNumberDiceMessage}`;
+				targetsMessage = `<span data-tooltip="METANTHROPES.COMMON.Targets"><i class="fa-solid fa-bullseye"></i> -</span> ${targetsNumberDiceMessage}`;
 				targetsRerollButton = `<div class="hide-button hidden">
 			<button class="metanthropes-secondary-chat-button targets rolld10-reroll"
 			data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${targetsNumberDice}"
 			data-what="Targets" data-destiny-re-roll="true" data-reroll="false" data-reroll-counter="1">
-			Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> to reroll <i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i> Targets</button>
+			Spend <i class="fa-solid fa-hand-fingers-crossed"></i> to reroll <i class="fa-solid fa-bullseye"></i> Targets</button>
 			</div>`;
 			}
 		} else {
-			targetsMessage = `<span data-tooltip="METANTHROPES.COMMON.Targets"><i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i> -</span> ${targetsNumber}`;
+			targetsMessage = `<span data-tooltip="METANTHROPES.COMMON.Targets"><i class="fa-solid fa-crosshairs-simple fa-fw"></i> -</span> ${targetsNumber}`;
 		}
 		///* add eligible targets
 		if (targetsEligible.length > 0) {
@@ -317,19 +317,19 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			durationDiceMessage = duration.match(/1d10 (.+)/);
 			durationDice = 1;
 			durationMessage =
-				`<span data-tooltip="Duration"><i class="fa-sharp-duotone fa-solid fa-hourglass-start"></i> -</span> <span class="meta-roll-inline-results-small">[[1d10${explosiveDice}[${durationDiceMessage[1]}]]]</span> ` +
+				`<span data-tooltip="Duration"><i class="fa-solid fa-hourglass-start fa-fw"></i> -</span> <span class="meta-roll-inline-results-small">[[1d10${explosiveDice}[${durationDiceMessage[1]}]]]</span> ` +
 				durationDiceMessage[1] +
 				`<br>`;
 			durationRerollButton = `<div class="hide-button hidden">
 			<button class="metanthropes-secondary-chat-button duration rolld10-reroll"
 			data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${durationDice}"
 			data-what="Duration" data-destiny-re-roll="true" data-reroll="false" data-reroll-counter="1">
-			Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> to reroll <i class="fa-sharp-duotone fa-solid fa-hourglass-start"></i> Duration</button>
+			Spend <i class="fa-solid fa-hand-fingers-crossed"></i> to reroll <i class="fa-solid fa-hourglass-start"></i> Duration</button>
 			</div>`;
 		} else {
 			//? fixed duration
 			durationMessage =
-				`<span data-tooltip="Duration"><i class="fa-sharp-duotone fa-solid fa-hourglass-start"></i> -</span> ` +
+				`<span data-tooltip="Duration"><i class="fa-solid fa-hourglass-start fa-fw"></i> -</span> ` +
 				duration +
 				`<br>`;
 		}
@@ -433,7 +433,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="${specialName}"
 			data-dice="${specialDice}" data-destiny-re-roll="true" data-base-number="${specialBase}"
 			data-reroll="false" data-reroll-counter="1">
-			Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> to reroll ${specialName}</button>
+			Spend <i class="fa-solid fa-hand-fingers-crossed"></i> to reroll ${specialName}</button>
 			<br></div>`;
 			} else if (specialIsHalf) {
 				specialMessage = `${specialName}: [[ceil(${specialDice}d10${explosiveDice}/2)+${specialBase}]]<br>`;
@@ -442,7 +442,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			data-item-name="${itemName}" data-what="${specialName}" data-dice="${specialDice}"
 			data-destiny-re-roll="true" data-base-number="${specialBase}" data-is-half="true"
 			data-reroll="false" data-reroll-counter="1">
-			Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> to reroll ${specialName}</button>
+			Spend <i class="fa-solid fa-hand-fingers-crossed"></i> to reroll ${specialName}</button>
 			<br></div>`;
 			}
 		} else if (specialBase > 0) {
@@ -454,7 +454,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			<button class="metanthropes-secondary-chat-button special rolld10-reroll" data-actoruuid="${actor.uuid}"
 			data-item-name="${itemName}" data-what="${specialName}" data-dice="${specialDice}"
 			data-destiny-re-roll="true" data-reroll="false" data-reroll-counter="1">
-			Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> to reroll ${specialName}</button>
+			Spend <i class="fa-solid fa-hand-fingers-crossed"></i> to reroll ${specialName}</button>
 			<br></div>`;
 			} else if (specialIsHalf) {
 				specialMessage = `${specialName}: [[ceil(${specialDice}d10${explosiveDice}/2)]]<br>`;
@@ -462,36 +462,36 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			<button class="metanthropes-secondary-chat-button special rolld10-reroll" data-actoruuid="${actor.uuid}"
 			data-item-name="${itemName}" data-what="${specialName}" data-dice="${specialDice}"
 			data-destiny-re-roll="true" data-is-half="true" data-reroll="false" data-reroll-counter="1">
-			Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> to reroll ${specialName}</button>
+			Spend <i class="fa-solid fa-hand-fingers-crossed"></i> to reroll ${specialName}</button>
 			<br></div>`;
 			}
 		}
 		//todo Removed Permanent Buffs showing until further notice
 		// if (buffsPermanent) {
-		// 	buffsPermanentMessage = `<i class="fa-sharp-duotone fa-solid fa-shield-halved"></i> <i class="fa-sharp-duotone fa-solid fa-infinity"></i>: ` + buffsPermanent + `<br>`;
+		// 	buffsPermanentMessage = `<i class="fa-solid fa-shield-halved"></i> <i class="fa-solid fa-infinity"></i>: ` + buffsPermanent + `<br>`;
 		// }
 		///* todo refactor with Active Effects in mind
 		if (buffsApplied) {
 			buffsAppliedMessage =
-				`<span data-tooltip="Buffs Applied"><i class="fa-sharp-duotone fa-solid fa-plus"></i> <i class="fa-sharp-duotone fa-solid fa-shield-halved"></i></span>: ` +
+				`<span data-tooltip="Buffs Applied"><i class="fa-solid fa-plus fa-fw"></i> <i class="fa-solid fa-shield-halved"></i></span>: ` +
 				buffsApplied +
 				`<br>`;
 		}
 		if (buffsRemoved) {
 			buffsRemovedMessage =
-				`<span data-tooltip="Buffs Removed"><i class="fa-sharp-duotone fa-solid fa-minus"></i> <i class="fa-sharp-duotone fa-solid fa-shield-halved"></i></span>: ` +
+				`<span data-tooltip="Buffs Removed"><i class="fa-solid fa-minus fa-fw"></i> <i class="fa-solid fa-shield-halved"></i></span>: ` +
 				buffsRemoved +
 				`<br>`;
 		}
 		if (conditionsApplied) {
 			conditionsAppliedMessage =
-				`<span data-tooltip="Conditions Applied"><i class="fa-sharp-duotone fa-solid fa-plus"></i> <i class="fa-sharp-duotone fa-solid fa-skull"></i></span>: ` +
+				`<span data-tooltip="Conditions Applied"><i class="fa-solid fa-plus fa-fw"></i> <i class="fa-solid fa-skull"></i></span>: ` +
 				conditionsApplied +
 				`<br>`;
 		}
 		if (conditionsRemoved) {
 			conditionsRemovedMessage =
-				`<span data-tooltip="Conditions Removed"><i class="fa-sharp-duotone fa-solid fa-minus"></i> <i class="fa-sharp-duotone fa-solid fa-skull"></i></span>: ` +
+				`<span data-tooltip="Conditions Removed"><i class="fa-solid fa-minus fa-fw"></i> <i class="fa-solid fa-skull"></i></span>: ` +
 				conditionsRemoved +
 				`<br>`;
 		}
@@ -501,7 +501,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		contentMessage += targetsMessage;
 		contentMessage += durationMessage;
 		contentMessage +=
-			`<span data-tooltip="Range"><i class="fa-sharp-duotone fa-solid fa-ruler"></i> -</span> ` + range + `<br>`;
+			`<span data-tooltip="Range"><i class="fa-solid fa-ruler fa-fw"></i> -</span> ` + range + `<br>`;
 		if (areaEffectMessage) {
 			contentMessage += areaEffectMessage;
 			contentMessage += `<hr />`;
@@ -564,12 +564,12 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				actionableTargets > 0 &&
 				(damageCosmicMessage || damageElementalMessage || damageMaterialMessage || damagePsychicMessage)
 			) {
-				contentMessage += `Applying <i class="fa-sharp-duotone fa-solid fa-burst"></i> Damage to <i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i> Target${
+				contentMessage += `Applying <i class="fa-solid fa-burst"></i> Damage to <i class="fa-solid fa-bullseye"></i> Target${
 					targetedActorNames.length > 1 ? "s" : ""
 				}: ${targetedActorNames.join(", ")}<br>`;
 			}
 			if (actionableTargets > 0 && healingMessage) {
-				contentMessage += `Applying <i class="fa-sharp-duotone fa-solid fa-heart-pulse" style="--fa-primary-color:#ebb1b1;--fa-secondary-color: #e60808; --fa-secondary-opacity: 0.8;"></i> Healing to <i class="fa-sharp-duotone fa-solid fa-crosshairs-simple"></i> Target${
+				contentMessage += `Applying <i class="fa-solid fa-heart-pulse" style="--fa-primary-color:#ebb1b1;--fa-secondary-color: #e60808; --fa-secondary-opacity: 0.8;"></i> Healing to <i class="fa-solid fa-bullseye"></i> Target${
 					targetedActorNames.length > 1 ? "s" : ""
 				}: ${targetedActorNames.join(", ")}<br>`;
 			}
@@ -605,13 +605,13 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			if (actor.currentDestiny > 0) {
 				const damageReRollButton = `<div class="hide-button hidden">
 				<button class="metanthropes-secondary-chat-button damage roll-damage-reroll chat-button-anchor"
-				data-tooltip="Spend <i class='fa-sharp-duotone fa-solid fa-hand-fingers-crossed'></i> Destiny to reroll <i class='fa-sharp-duotone fa-solid fa-burst'></i> Damage"
+				data-tooltip="Spend <i class='fa-solid fa-hand-fingers-crossed'></i> Destiny to reroll <i class='fa-solid fa-burst'></i> Damage"
 				data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 				data-what="Damage" data-anchor="true" data-reroll="false" data-reroll-counter="1"
 				data-message-id="null" data-destiny-re-roll="true"
 				${cosmicDamageRollParams} ${elementalDamageRollParams}
 				${materialDamageRollParams} ${psychicDamageRollParams}
-				>Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> to Reroll <i class="fa-sharp-duotone fa-solid fa-burst"></i> Damage
+				>Spend <i class="fa-solid fa-hand-fingers-crossed"></i> to Reroll <i class="fa-solid fa-burst"></i> Damage
 				</button></div>`;
 				contentMessage += damageReRollButton;
 				metanthropes.utils.metaLog(
@@ -631,12 +631,12 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			if (actor.currentDestiny > 0) {
 				const healingRerollButton = `<div class="hide-button hidden">
 				<button class="metanthropes-secondary-chat-button healing roll-healing-reroll chat-button-anchor"
-				data-tooltip="Spend <i class='fa-sharp-duotone fa-solid fa-hand-fingers-crossed'></i> Destiny to reroll <i class='fa-sharp-duotone fa-solid fa-heart-pulse'></i> Healing"
+				data-tooltip="Spend <i class='fa-solid fa-hand-fingers-crossed'></i> Destiny to reroll <i class='fa-solid fa-heart-pulse'></i> Healing"
 				data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 				data-what="Healing" data-anchor="true"
 				data-reroll="false" data-reroll-counter="1" data-message-id="null"
 				data-destiny-re-roll="true" ${healingRollParams}
-				>Spend <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> to Reroll <i class="fa-sharp-duotone fa-solid fa-heart-pulse" style="--fa-primary-color:#ebb1b1;--fa-secondary-color: #e60808; --fa-secondary-opacity: 0.8;"></i> Healing
+				>Spend <i class="fa-solid fa-hand-fingers-crossed"></i> to Reroll <i class="fa-solid fa-heart-pulse" style="--fa-primary-color:#ebb1b1;--fa-secondary-color: #e60808; --fa-secondary-opacity: 0.8;"></i> Healing
 				</button></div>`;
 				contentMessage += healingRerollButton;
 			}
@@ -671,7 +671,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		// dialog returns an update to the chat message with the new results ideally.
 		// ok vasika anti na pame sto chat, pame na to kanoume present se ena dialog prwta kai ekei na rwtame ean exoume mpei sto if
 		//? check if actor has enough destiny points to reroll
-		contentMessage += `<div>${actor.name} has ${actor.currentDestiny} <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny remaining.<br></div><br>`;
+		contentMessage += `<div>${actor.name} has ${actor.currentDestiny} <i class="fa-solid fa-hand-fingers-crossed"></i> Destiny remaining.<br></div><br>`;
 		if (actor.currentDestiny > 0) {
 			let destinyRerollButtonMessage = false;
 			//? add destiny reroll buttons
