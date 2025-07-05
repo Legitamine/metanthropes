@@ -153,7 +153,7 @@
 		<div class="tab material" data-group="primary" data-tab="material">
 			{{#each system.Material}}
 				<div class="resource">
-					<label class="resource-label">{{this.label}}:</label>
+					<label class="resource-label">{{{this.label}}}:</label>
 					<input type="{{this.type}}" name="system.Material.{{@key}}.value"
 						value="{{this.value}}" data-dtype="{{this.dtype}}" />
 				</div>

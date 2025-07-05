@@ -13,7 +13,7 @@
 	</div>
 	{{#each system.Results}}
 		<div class="resource">
-			<label class="resource-label">{{this.label}}:</label>
+			<label class="resource-label">{{{this.label}}}:</label>
 			<input type="{{this.type}}" name="system.Results.{{@key}}.value" value="{{this.value}}"
 				data-dtype="{{this.dtype}}" />
 		</div>
