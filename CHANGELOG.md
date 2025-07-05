@@ -14,15 +14,20 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Added:
 
--   Foundry version 13.345 is now supported.
+-   Foundry version 13.346 is now supported.
 -   You can now pick a custom color that will be applied to Font Awesome Icons for Destiny (+++??).
--   A new way to create Font Awesome Icons, with our own FA styling (sharp-duotone solid), using text enrichers. See #394 on how to configure your own content (requires a valid Font Awesome Pro license).
+-   A new way to create Font Awesome Icons, using text enrichers. See #394 on how to configure your own content (assumes you have a valid Font Awesome Pro license).
+
+## Changed:
+
+-   Changed the styling of the Font Awesome Icons to match the styling used by Foundry Core.
+-   Changed the Targets icon to match the Targeting icon used by Foundry Core.
 
 ## Fixed:
 
--   Changed the default Disposition for all non-Protagonist Prototype Tokens to be 'Neutral' instead of 'Secret', allowing players to target them. If loading a World that was created before this release, the Prototype Token defauls will be overriden with this new behavior.
--   Replaced the loading screen that appears when first initializing a World, that stays up until the active scene loads. This image now uses the new cover image from the system. The old image was reported to cause motion sickness.
--   Fixed the issue with dissappearing Font Awesome icons when editing a Journal page or a Possession's effect description fields.
+-   Changed the default Disposition for all non-Protagonist Prototype Tokens to be 'Neutral' instead of 'Secret', allowing players to target them. If loading a World that was created before this release, all Prototype Token defaults will be overriden with this new behavior.
+-   Replaced the loading screen that appears when loading a World, that stays up until the active scene loads. This image now uses the new cover image from the system.
+-   Fixed the issue with dissappearing Font Awesome icons when editing a Journal page or a Possession's effect description fields. From now on, use the new Text Enrichers to include FA icons in the Journals and in the description fields on Items.
 -   Better aligned the FontAwesome Icons that show up on chat during the Activation of Metapowers and Usage of Possessions.
 
 # Early Access v0.13.5 [2025-06-05]

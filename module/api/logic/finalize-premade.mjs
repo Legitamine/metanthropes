@@ -49,7 +49,7 @@ export async function metaNewPremadeSummary(actor) {
 	const narratorName = game.users.activeGM.name;
 	let dialogContent = `
 		<div class="metanthropes layout-metaroll-dialog">
-			<h3>Choose your ${actor.type}'s <i class="fa-sharp-duotone fa-solid fa-id-card"></i> Summary</h3>
+			<h3>Choose your ${actor.type}'s <i class="fa-solid fa-id-card"></i> Summary</h3>
 			<form>
 			<h3>Protagonist Details:</h3>
 				<div class="form-group">
@@ -92,11 +92,11 @@ export async function metaNewPremadeSummary(actor) {
 	`;
 	return new Promise((resolve, reject) => {
 		let dialog = new Dialog({
-			title: `Finalize Premade: ${actor.type} <i class="fa-sharp-duotone fa-solid fa-id-card"></i> Summary`,
+			title: `Finalize Premade: ${actor.type} <i class="fa-solid fa-id-card"></i> Summary`,
 			content: dialogContent,
 			buttons: {
 				ok: {
-					label: `"Confirm <i class="fa-sharp-duotone fa-solid fa-id-card"></i> Summary`,
+					label: `"Confirm <i class="fa-solid fa-id-card"></i> Summary`,
 					callback: async (html) => {
 						const actorname = html.find('[name="actorname"]').val();
 						const actorage = html.find('[name="actorage"]').val();

@@ -43,7 +43,6 @@ export function metaCreateFAIcon(
 	icon.inert = false;
 	icon.classList.add(styleClass, ...classes, glyphClass);
 	if (fixedWidth) icon.classList.add("fa-fw");
-	console.log(icon);
 	return icon;
 }
 /**

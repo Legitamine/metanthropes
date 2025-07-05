@@ -91,7 +91,7 @@
 					},
 					"starting": {
 						"label": "Starting",
-						"hint": "Starting <i class=\"fa-sharp-duotone fa-solid fa-heart\"></i> Life"
+						"hint": "Starting <i class=\"fa-solid fa-heart\"></i> Life"
 					},
 					"max": {
 						"label": "Maximum",

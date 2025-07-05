@@ -43,9 +43,9 @@
 		<div>
 			<span>
 				{{#if isNarrator}}<button class="chat-button-anchor undo-last-life-change"
-						data-tooltip="METANTHROPES.ACTOR.BASE.life.restore.hint"><i class='fa-sharp-duotone fa-solid fa-arrow-rotate-left'></i></button>{{/if}}
+						data-tooltip="METANTHROPES.ACTOR.BASE.life.restore.hint"><i class='fa-solid fa-arrow-rotate-left'></i></button>{{/if}}
 				<span class="style-labels-text" data-tooltip="METANTHROPES.ACTOR.BASE.life.value.hint">
-					<span><i class="fa-sharp-duotone fa-solid fa-heart-pulse" style="--fa-primary-color:#ebb1b1;--fa-secondary-color: #e60808; --fa-secondary-opacity: 0.8;"></i></span><span
+					<span><i class="fa-solid fa-heart-pulse" style="--fa-primary-color:#ebb1b1;--fa-secondary-color: #e60808; --fa-secondary-opacity: 0.8;"></i></span><span
 						class="meta-ui-responsive meta-ui-hide-at-minimum">
 						{{#if actor.isSynthetic}}
 							Durability
@@ -61,7 +61,7 @@
 			</span>
 		</div>
 		<div class="meta-ui-responsive meta-ui-hide-at-medium">
-			<div class="style-labels-text"> <i class="fa-sharp-duotone fa-solid fa-chart-line-up"></i> EXP:
+			<div class="style-labels-text"> <i class="fa-solid fa-chart-line-up"></i> EXP:
 				{{system.Vital.Experience.Total}}
 				Spent:
 				{{#if (and isNarrator coreFeatures)}}{{system.Vital.Experience.Spent}} + <input
@@ -79,8 +79,8 @@
 		</div>
 		<div>
 			<div class="style-labels-text"
-				data-tooltip='Destiny (<i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i>) is a resource which Players can spend to reroll any roll with an undesirable outcome, activate powerful Metapowered effects, and even save their Protagonists from dying'>
-				<span><i style="color: {{customFAColor}};" class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i></span><span class="meta-ui-responsive meta-ui-hide-at-minimum"> Destiny
+				data-tooltip='Destiny (<i class="fa-solid fa-hand-fingers-crossed"></i>) is a resource which Players can spend to reroll any roll with an undesirable outcome, activate powerful Metapowered effects, and even save their Protagonists from dying'>
+				<span><i style="color: {{customFAColor}};" class="fa-solid fa-hand-fingers-crossed"></i></span><span class="meta-ui-responsive meta-ui-hide-at-minimum"> Destiny
 				</span>{{#if isNarrator}}<input name="system.Vital.Destiny.value" type="number"
 						value="{{system.Vital.Destiny.value}}" data-dtype="Number" />
 				{{else}}{{system.Vital.Destiny.value}}{{/if}}<span

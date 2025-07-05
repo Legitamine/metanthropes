@@ -227,7 +227,7 @@
       "Experience": {
         "type": "number",
         "dtype": "Number",
-        "Label": "<i class=\"fa-sharp-duotone fa-solid fa-chart-line-up\"></i> Experience",
+        "Label": "<i class=\"fa-solid fa-chart-line-up\"></i> Experience",
         "Total": "7700",
         "Spent": 0,
         "Manual": 5540,
@@ -296,14 +296,14 @@
       },
       "Life": {
         "type": "number",
-        "label": "<i class=\"fa-sharp-duotone fa-solid fa-heart\"></i> Life",
+        "label": "<i class=\"fa-solid fa-heart\"></i> Life",
         "Initial": 100,
         "value": "132",
         "max": 0
       },
       "Destiny": {
         "type": "number",
-        "label": "<i class=\"fa-sharp-duotone fa-solid fa-hand-fingers-crossed\"></i> Destiny",
+        "label": "<i class=\"fa-solid fa-hand-fingers-crossed\"></i> Destiny",
         "value": "16",
         "max": "16"
       }
@@ -1001,7 +1001,7 @@
           "StatRolled": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-dice-d10\"></i>",
+            "label": "<i class=\"fa-solid fa-dice-d10\"></i>",
             "value": "Reflexes",
             "options": [
               "Awareness",
@@ -1018,7 +1018,7 @@
           "ActionSlot": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-stopwatch\"></i> Activation",
+            "label": "<i class=\"fa-solid fa-stopwatch\"></i> Activation",
             "value": "Main Action",
             "options": [
               "Always Active",
@@ -1036,7 +1036,7 @@
           "Targets": {
             "type": "text",
             "dtype": "String",
-            "label": "Number of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Number of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": "Self",
             "options": [
               "Self",
@@ -1052,7 +1052,7 @@
             ]
           },
           "TargetsEligibility": {
-            "label": "Eligible <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Eligible <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [],
             "selections": {
               "Willing": "Willing",
@@ -1066,7 +1066,7 @@
             }
           },
           "TargetsType": {
-            "label": "Type of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Type of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [],
             "selections": {
               "Animal": "Animal",
@@ -1086,7 +1086,7 @@
           "Duration": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hourglass-start\"></i> Duration",
+            "label": "<i class=\"fa-solid fa-hourglass-start\"></i> Duration",
             "value": "Round",
             "options": [
               "Instantaneous",
@@ -1109,7 +1109,7 @@
           "Range": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-ruler\"></i> Range",
+            "label": "<i class=\"fa-solid fa-ruler\"></i> Range",
             "value": "Self [Area 0]",
             "options": [
               "Self [Area 0]",
@@ -1134,7 +1134,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -1157,7 +1157,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -1186,12 +1186,12 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong><i class=\"fa-sharp-duotone fa-solid fa-square\"></i>: Receive the &nbsp;<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> Invisible 1. While active, you are invisible when you are standing still, or performing Movement of up to 6 Hexagons per Turn.</strong></p>\n<p>&nbsp;</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i> = <i class=\"fa-sharp-duotone fa-solid fa-hourglass-start\"></i> + 1 Round</p>"
+            "value": "<p><strong>@METAFA(square): Receive the &nbsp;@METAFA(shield-halved) Invisible 1. While active, you are invisible when you are standing still, or performing Movement of up to 6 Hexagons per Turn.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1 Round</p>"
           },
           "VSStatRoll": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-duotone fa-solid fa-swords\"></i>",
+            "label": "<i class=\"fa-solid fa-swords\"></i>",
             "options": [
               "None",
               "Awareness",
@@ -1208,28 +1208,28 @@
           },
           "Damage": {
             "Cosmic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Elemental": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Material": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Material <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Material <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Psychic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
@@ -1259,13 +1259,13 @@
           },
           "Conditions": {
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
@@ -1273,19 +1273,19 @@
           },
           "Buffs": {
             "Permanent": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-infinity\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-infinity\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": "Invisible 1"
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
@@ -1327,80 +1327,80 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect Additional Information",
-            "value": "<p>You are detected by anyone with <i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> Detection: Invisibility 1 or higher level, by technological means (such as cameras), by the ultraviolet and thermal spectrum, and whenever any gaseous, liquid, or solid matter interacts with your body. Any Character without Detection: Invisibility 1 or higher level, even if they pin-point your location, can target you, with you having a 10% Cover, having a chance to ignore all Damage and Conditions.</p>"
+            "value": "<p>You are detected by anyone with @METAFA(shield-halved) Detection: Invisibility 1 or higher level, by technological means (such as cameras), by the ultraviolet and thermal spectrum, and whenever any gaseous, liquid, or solid matter interacts with your body. Any Character without Detection: Invisibility 1 or higher level, even if they pin-point your location, can target you, with you having a 10% Cover, having a chance to ignore all Damage and Conditions.</p>"
           }
         },
         "Results": {
           "level00": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-square\"></i>",
+            "label": "<i class=\"fa-solid fa-square\"></i>",
             "value": ""
           },
           "level01": {
             "type": "text",
             "dtype": "String",
-            "label": "1 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "1 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level02": {
             "type": "text",
             "dtype": "String",
-            "label": "2 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "2 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level03": {
             "type": "text",
             "dtype": "String",
-            "label": "3 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "3 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level04": {
             "type": "text",
             "dtype": "String",
-            "label": "4 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "4 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level05": {
             "type": "text",
             "dtype": "String",
-            "label": "5 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "5 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level06": {
             "type": "text",
             "dtype": "String",
-            "label": "6 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "6 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level07": {
             "type": "text",
             "dtype": "String",
-            "label": "7 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "7 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level08": {
             "type": "text",
             "dtype": "String",
-            "label": "8 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "8 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level09": {
             "type": "text",
             "dtype": "String",
-            "label": "9 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "9 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level10": {
             "type": "text",
             "dtype": "String",
-            "label": "10 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "10 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level11": {
             "type": "text",
             "dtype": "String",
-            "label": "11+ * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "11+ * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "AdditionalInfo": {
@@ -1425,7 +1425,7 @@
         "Classification": {
           "type": "text",
           "dtype": "String",
-          "label": "<i class=\"fa-duotone fa-solid fa-people-group\"></i>",
+          "label": "<i class=\"fa-solid fa-people-group\"></i>",
           "value": "Aegis",
           "options": [
             "Aegis",
@@ -1443,7 +1443,7 @@
         "Level": {
           "type": "number",
           "dtype": "Number",
-          "label": "<i class=\"fa-duotone fa-solid fa-layer-group\"></i>",
+          "label": "<i class=\"fa-solid fa-layer-group\"></i>",
           "value": "1",
           "options": [
             "1",
@@ -1456,7 +1456,7 @@
         "EnergyType": {
           "type": "text",
           "dtype": "String",
-          "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i>",
+          "label": "<i class=\"fa-solid fa-sparkles\"></i>",
           "value": "Material",
           "options": [
             "Cosmic",
@@ -1468,7 +1468,7 @@
         "DestinyCost": {
           "type": "number",
           "dtype": "Number",
-          "label": "<i class=\"fa-sharp-duotone fa-solid fa-hand-fingers-crossed\"></i>",
+          "label": "<i class=\"fa-solid fa-hand-fingers-crossed\"></i>",
           "value": 0
         }
       },
@@ -1505,7 +1505,7 @@
           "StatRolled": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-dice-d10\"></i>",
+            "label": "<i class=\"fa-solid fa-dice-d10\"></i>",
             "value": "Reflexes",
             "options": [
               "Awareness",
@@ -1522,7 +1522,7 @@
           "ActionSlot": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-stopwatch\"></i> Activation",
+            "label": "<i class=\"fa-solid fa-stopwatch\"></i> Activation",
             "value": "Main Action",
             "options": [
               "Always Active",
@@ -1540,7 +1540,7 @@
           "Targets": {
             "type": "text",
             "dtype": "String",
-            "label": "Number of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Number of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": "Self",
             "options": [
               "Self",
@@ -1556,7 +1556,7 @@
             ]
           },
           "TargetsEligibility": {
-            "label": "Eligible <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Eligible <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [],
             "selections": {
               "Willing": "Willing",
@@ -1570,7 +1570,7 @@
             }
           },
           "TargetsType": {
-            "label": "Type of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Type of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [],
             "selections": {
               "Animal": "Animal",
@@ -1590,7 +1590,7 @@
           "Duration": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hourglass-start\"></i> Duration",
+            "label": "<i class=\"fa-solid fa-hourglass-start\"></i> Duration",
             "value": "One Cycle",
             "options": [
               "Instantaneous",
@@ -1613,7 +1613,7 @@
           "Range": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-ruler\"></i> Range",
+            "label": "<i class=\"fa-solid fa-ruler\"></i> Range",
             "value": "Self [Area 0]",
             "options": [
               "Self [Area 0]",
@@ -1638,7 +1638,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -1661,7 +1661,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -1690,12 +1690,12 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong><i class=\"fa-sharp-duotone fa-solid fa-square\"></i>: Receive the &nbsp;<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> Invisible 2. While active, you are invisible, and you can perform any Movement and retain your invisibility. Any clothing you wear, and Possessions up to <i class=\"fa-sharp-duotone fa-solid fa-ruler-triangle\"></i> Size 9 you carry, or hold turn invisible with you.</strong></p>\n<p>&nbsp;</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i> = <i class=\"fa-sharp-duotone fa-solid fa-hourglass-start\"></i> + 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square): Receive the &nbsp;@METAFA(shield-halved) Invisible 2. While active, you are invisible, and you can perform any Movement and retain your invisibility. Any clothing you wear, and Possessions up to @METAFA(ruler-triangle) Size 9 you carry, or hold turn invisible with you.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-duotone fa-solid fa-swords\"></i>",
+            "label": "<i class=\"fa-solid fa-swords\"></i>",
             "options": [
               "None",
               "Awareness",
@@ -1712,28 +1712,28 @@
           },
           "Damage": {
             "Cosmic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Elemental": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Material": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Material <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Material <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Psychic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
@@ -1763,13 +1763,13 @@
           },
           "Conditions": {
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
@@ -1777,19 +1777,19 @@
           },
           "Buffs": {
             "Permanent": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-infinity\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-infinity\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": "Invisible 2"
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
@@ -1831,80 +1831,80 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect Additional Information",
-            "value": "<p>You are detected by anyone with <i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> Detection: Invisibility 2 or higher level, by the ultraviolet and thermal spectrum, and whenever any gaseous, liquid, or solid matter interacts with your body. Any Character without Detection: Invisibility 2 or higher level, even if they pin-point your location, can target you, with you having a 10% Cover, having a chance to ignore all Damage and Conditions.</p>"
+            "value": "<p>You are detected by anyone with @METAFA(shield-halved) Detection: Invisibility 2 or higher level, by the ultraviolet and thermal spectrum, and whenever any gaseous, liquid, or solid matter interacts with your body. Any Character without Detection: Invisibility 2 or higher level, even if they pin-point your location, can target you, with you having a 10% Cover, having a chance to ignore all Damage and Conditions.</p>"
           }
         },
         "Results": {
           "level00": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-square\"></i>",
+            "label": "<i class=\"fa-solid fa-square\"></i>",
             "value": ""
           },
           "level01": {
             "type": "text",
             "dtype": "String",
-            "label": "1 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "1 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level02": {
             "type": "text",
             "dtype": "String",
-            "label": "2 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "2 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level03": {
             "type": "text",
             "dtype": "String",
-            "label": "3 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "3 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level04": {
             "type": "text",
             "dtype": "String",
-            "label": "4 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "4 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level05": {
             "type": "text",
             "dtype": "String",
-            "label": "5 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "5 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level06": {
             "type": "text",
             "dtype": "String",
-            "label": "6 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "6 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level07": {
             "type": "text",
             "dtype": "String",
-            "label": "7 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "7 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level08": {
             "type": "text",
             "dtype": "String",
-            "label": "8 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "8 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level09": {
             "type": "text",
             "dtype": "String",
-            "label": "9 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "9 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level10": {
             "type": "text",
             "dtype": "String",
-            "label": "10 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "10 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level11": {
             "type": "text",
             "dtype": "String",
-            "label": "11+ * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "11+ * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "AdditionalInfo": {
@@ -1929,7 +1929,7 @@
         "Classification": {
           "type": "text",
           "dtype": "String",
-          "label": "<i class=\"fa-duotone fa-solid fa-people-group\"></i>",
+          "label": "<i class=\"fa-solid fa-people-group\"></i>",
           "value": "Aegis",
           "options": [
             "Aegis",
@@ -1947,7 +1947,7 @@
         "Level": {
           "type": "number",
           "dtype": "Number",
-          "label": "<i class=\"fa-duotone fa-solid fa-layer-group\"></i>",
+          "label": "<i class=\"fa-solid fa-layer-group\"></i>",
           "value": "2",
           "options": [
             "1",
@@ -1960,7 +1960,7 @@
         "EnergyType": {
           "type": "text",
           "dtype": "String",
-          "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i>",
+          "label": "<i class=\"fa-solid fa-sparkles\"></i>",
           "value": "Material",
           "options": [
             "Cosmic",
@@ -1972,7 +1972,7 @@
         "DestinyCost": {
           "type": "number",
           "dtype": "Number",
-          "label": "<i class=\"fa-sharp-duotone fa-solid fa-hand-fingers-crossed\"></i>",
+          "label": "<i class=\"fa-solid fa-hand-fingers-crossed\"></i>",
           "value": 0
         }
       },
@@ -2009,7 +2009,7 @@
           "StatRolled": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-dice-d10\"></i>",
+            "label": "<i class=\"fa-solid fa-dice-d10\"></i>",
             "value": "Consciousness",
             "options": [
               "Awareness",
@@ -2026,7 +2026,7 @@
           "ActionSlot": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-stopwatch\"></i> Activation",
+            "label": "<i class=\"fa-solid fa-stopwatch\"></i> Activation",
             "value": "Main Action",
             "options": [
               "Always Active",
@@ -2044,7 +2044,7 @@
           "Targets": {
             "type": "text",
             "dtype": "String",
-            "label": "Number of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Number of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": "All (Area)",
             "options": [
               "Self",
@@ -2060,7 +2060,7 @@
             ]
           },
           "TargetsEligibility": {
-            "label": "Eligible <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Eligible <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [
               "Detectable"
             ],
@@ -2076,7 +2076,7 @@
             }
           },
           "TargetsType": {
-            "label": "Type of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Type of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [],
             "selections": {
               "Animal": "Animal",
@@ -2096,7 +2096,7 @@
           "Duration": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hourglass-start\"></i> Duration",
+            "label": "<i class=\"fa-solid fa-hourglass-start\"></i> Duration",
             "value": "1d10 Cycles",
             "options": [
               "Instantaneous",
@@ -2119,7 +2119,7 @@
           "Range": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-ruler\"></i> Range",
+            "label": "<i class=\"fa-solid fa-ruler\"></i> Range",
             "value": "Room [Area 2]",
             "options": [
               "Self [Area 0]",
@@ -2144,7 +2144,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
             "value": "Room [Area 2]",
             "options": [
               "None",
@@ -2167,7 +2167,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
             "value": [
               "Aura",
               "Hemisphere"
@@ -2199,12 +2199,12 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong><i class=\"fa-sharp-duotone fa-solid fa-square\"></i>: You remove all <i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> Area Effects, and the <i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i>: Shift and Area Shift generated by Metapowers or Combos of level up to your level of Warp Reality from all targets and targeted Hexagons within Range.</strong></p>\n<p>&nbsp;</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i> = <i class=\"fa-sharp-duotone fa-solid fa-hourglass-start\"></i> + 1d10 Cycles</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i> = Exclude any one Hexagon from the <i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i></p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i> = Transform the <i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> into a Sphere</p>\n<p>&nbsp;<i class=\"fa-sharp-duotone fa-solid fa-xmark\"></i> = Remove all <i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i>: Shifts and become excluded from any Area Effect which offer Buffs for 1d10 Cycles</p>"
+            "value": "<p><strong>@METAFA(square): You remove all @METAFA(hexagon-image) Area Effects, and the @METAFA(shield-halved): Shift and Area Shift generated by Metapowers or Combos of level up to your level of Warp Reality from all targets and targeted Hexagons within Range.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1d10 Cycles</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = Exclude any one Hexagon from the @METAFA(hexagon-image)</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = Transform the @METAFA(hexagon-image) into a Sphere</p>\n<p>&nbsp;@METAFA(xmark) = Remove all @METAFA(shield-halved): Shifts and become excluded from any Area Effect which offer Buffs for 1d10 Cycles</p>"
           },
           "VSStatRoll": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-duotone fa-solid fa-swords\"></i>",
+            "label": "<i class=\"fa-solid fa-swords\"></i>",
             "options": [
               "None",
               "Awareness",
@@ -2221,28 +2221,28 @@
           },
           "Damage": {
             "Cosmic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Elemental": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Material": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Material <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Material <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Psychic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
@@ -2272,13 +2272,13 @@
           },
           "Conditions": {
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
@@ -2286,19 +2286,19 @@
           },
           "Buffs": {
             "Permanent": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-infinity\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-infinity\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": "Character Shift, Area Shift"
@@ -2347,73 +2347,73 @@
           "level00": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-square\"></i>",
+            "label": "<i class=\"fa-solid fa-square\"></i>",
             "value": ""
           },
           "level01": {
             "type": "text",
             "dtype": "String",
-            "label": "1 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "1 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level02": {
             "type": "text",
             "dtype": "String",
-            "label": "2 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "2 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level03": {
             "type": "text",
             "dtype": "String",
-            "label": "3 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "3 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level04": {
             "type": "text",
             "dtype": "String",
-            "label": "4 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "4 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level05": {
             "type": "text",
             "dtype": "String",
-            "label": "5 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "5 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level06": {
             "type": "text",
             "dtype": "String",
-            "label": "6 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "6 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level07": {
             "type": "text",
             "dtype": "String",
-            "label": "7 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "7 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level08": {
             "type": "text",
             "dtype": "String",
-            "label": "8 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "8 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level09": {
             "type": "text",
             "dtype": "String",
-            "label": "9 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "9 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level10": {
             "type": "text",
             "dtype": "String",
-            "label": "10 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "10 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level11": {
             "type": "text",
             "dtype": "String",
-            "label": "11+ * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "11+ * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "AdditionalInfo": {
@@ -2438,7 +2438,7 @@
         "Classification": {
           "type": "text",
           "dtype": "String",
-          "label": "<i class=\"fa-duotone fa-solid fa-people-group\"></i>",
+          "label": "<i class=\"fa-solid fa-people-group\"></i>",
           "value": "Arbiter",
           "options": [
             "Aegis",
@@ -2456,7 +2456,7 @@
         "Level": {
           "type": "number",
           "dtype": "Number",
-          "label": "<i class=\"fa-duotone fa-solid fa-layer-group\"></i>",
+          "label": "<i class=\"fa-solid fa-layer-group\"></i>",
           "value": "2",
           "options": [
             "1",
@@ -2469,7 +2469,7 @@
         "EnergyType": {
           "type": "text",
           "dtype": "String",
-          "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i>",
+          "label": "<i class=\"fa-solid fa-sparkles\"></i>",
           "value": "Cosmic",
           "options": [
             "Cosmic",
@@ -2481,7 +2481,7 @@
         "DestinyCost": {
           "type": "number",
           "dtype": "Number",
-          "label": "<i class=\"fa-sharp-duotone fa-solid fa-hand-fingers-crossed\"></i>",
+          "label": "<i class=\"fa-solid fa-hand-fingers-crossed\"></i>",
           "value": 0
         }
       },
@@ -2518,7 +2518,7 @@
           "StatRolled": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-dice-d10\"></i>",
+            "label": "<i class=\"fa-solid fa-dice-d10\"></i>",
             "value": "Consciousness",
             "options": [
               "Awareness",
@@ -2535,7 +2535,7 @@
           "ActionSlot": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-stopwatch\"></i> Activation",
+            "label": "<i class=\"fa-solid fa-stopwatch\"></i> Activation",
             "value": "Extra Action",
             "options": [
               "Always Active",
@@ -2553,7 +2553,7 @@
           "Targets": {
             "type": "text",
             "dtype": "String",
-            "label": "Number of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Number of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": "All (Area)",
             "options": [
               "Self",
@@ -2569,7 +2569,7 @@
             ]
           },
           "TargetsEligibility": {
-            "label": "Eligible <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Eligible <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [],
             "selections": {
               "Willing": "Willing",
@@ -2583,7 +2583,7 @@
             }
           },
           "TargetsType": {
-            "label": "Type of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Type of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [],
             "selections": {
               "Animal": "Animal",
@@ -2603,7 +2603,7 @@
           "Duration": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hourglass-start\"></i> Duration",
+            "label": "<i class=\"fa-solid fa-hourglass-start\"></i> Duration",
             "value": "One Cycle",
             "options": [
               "Instantaneous",
@@ -2626,7 +2626,7 @@
           "Range": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-ruler\"></i> Range",
+            "label": "<i class=\"fa-solid fa-ruler\"></i> Range",
             "value": "Hexagon [Area 1]",
             "options": [
               "Self [Area 0]",
@@ -2651,7 +2651,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -2674,7 +2674,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -2703,12 +2703,12 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong><i class=\"fa-sharp-duotone fa-solid fa-square\"></i>: You &nbsp;receive the <i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> Detection: Character Shifts, <i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> Detection: Area Shifts, and <i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> Detection: Area Infiltrated.</strong></p>\n<p>&nbsp;</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i> = <i class=\"fa-sharp-duotone fa-solid fa-hourglass-start\"></i> &nbsp;+ One Cycle</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-xmark\"></i> = You remove all <i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i>: Detection and cannot receive any for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square): You &nbsp;receive the @METAFA(shield-halved) Detection: Character Shifts, @METAFA(shield-halved) Detection: Area Shifts, and @METAFA(shield-halved) Detection: Area Infiltrated.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) &nbsp;+ One Cycle</p>\n<p>@METAFA(xmark) = You remove all @METAFA(shield-halved): Detection and cannot receive any for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-duotone fa-solid fa-swords\"></i>",
+            "label": "<i class=\"fa-solid fa-swords\"></i>",
             "options": [
               "None",
               "Awareness",
@@ -2725,28 +2725,28 @@
           },
           "Damage": {
             "Cosmic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Elemental": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Material": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Material <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Material <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Psychic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
@@ -2776,13 +2776,13 @@
           },
           "Conditions": {
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
@@ -2790,19 +2790,19 @@
           },
           "Buffs": {
             "Permanent": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-infinity\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-infinity\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": "Detection: Character Shifts, Detection: Area Shifts, Detection: Area Infiltrated"
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
@@ -2844,80 +2844,80 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect Additional Information",
-            "value": "<p>With <i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> Detection: Character Shifts you become aware of any <i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i>: Shift of level up to the level of your Warp Reality that any Character has within Range. With <i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> Detection: Area Shifts you become aware of any <i class=\"fa-sharp-duotone fa-solid fa-skull\"></i>: Area Shifts of level up to the level of your Warp Reality that any Hexagon, or Object has within Range. With <i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> Detection: Area Infiltrated you become aware of any <i class=\"fa-sharp-duotone fa-solid fa-skull\"></i>: Area Infiltrated of level up to the level of your Warp Reality that any Hexagon or Object has within Range.</p>"
+            "value": "<p>With @METAFA(shield-halved) Detection: Character Shifts you become aware of any @METAFA(shield-halved): Shift of level up to the level of your Warp Reality that any Character has within Range. With @METAFA(shield-halved) Detection: Area Shifts you become aware of any @METAFA(skull): Area Shifts of level up to the level of your Warp Reality that any Hexagon, or Object has within Range. With @METAFA(shield-halved) Detection: Area Infiltrated you become aware of any @METAFA(skull): Area Infiltrated of level up to the level of your Warp Reality that any Hexagon or Object has within Range.</p>"
           }
         },
         "Results": {
           "level00": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-square\"></i>",
+            "label": "<i class=\"fa-solid fa-square\"></i>",
             "value": ""
           },
           "level01": {
             "type": "text",
             "dtype": "String",
-            "label": "1 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "1 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level02": {
             "type": "text",
             "dtype": "String",
-            "label": "2 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "2 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level03": {
             "type": "text",
             "dtype": "String",
-            "label": "3 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "3 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level04": {
             "type": "text",
             "dtype": "String",
-            "label": "4 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "4 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level05": {
             "type": "text",
             "dtype": "String",
-            "label": "5 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "5 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level06": {
             "type": "text",
             "dtype": "String",
-            "label": "6 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "6 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level07": {
             "type": "text",
             "dtype": "String",
-            "label": "7 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "7 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level08": {
             "type": "text",
             "dtype": "String",
-            "label": "8 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "8 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level09": {
             "type": "text",
             "dtype": "String",
-            "label": "9 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "9 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level10": {
             "type": "text",
             "dtype": "String",
-            "label": "10 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "10 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level11": {
             "type": "text",
             "dtype": "String",
-            "label": "11+ * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "11+ * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "AdditionalInfo": {
@@ -2942,7 +2942,7 @@
         "Classification": {
           "type": "text",
           "dtype": "String",
-          "label": "<i class=\"fa-duotone fa-solid fa-people-group\"></i>",
+          "label": "<i class=\"fa-solid fa-people-group\"></i>",
           "value": "Arbiter",
           "options": [
             "Aegis",
@@ -2960,7 +2960,7 @@
         "Level": {
           "type": "number",
           "dtype": "Number",
-          "label": "<i class=\"fa-duotone fa-solid fa-layer-group\"></i>",
+          "label": "<i class=\"fa-solid fa-layer-group\"></i>",
           "value": "1",
           "options": [
             "1",
@@ -2973,7 +2973,7 @@
         "EnergyType": {
           "type": "text",
           "dtype": "String",
-          "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i>",
+          "label": "<i class=\"fa-solid fa-sparkles\"></i>",
           "value": "Cosmic",
           "options": [
             "Cosmic",
@@ -2985,7 +2985,7 @@
         "DestinyCost": {
           "type": "number",
           "dtype": "Number",
-          "label": "<i class=\"fa-sharp-duotone fa-solid fa-hand-fingers-crossed\"></i>",
+          "label": "<i class=\"fa-solid fa-hand-fingers-crossed\"></i>",
           "value": 0
         }
       },
@@ -3022,7 +3022,7 @@
           "StatRolled": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-dice-d10\"></i>",
+            "label": "<i class=\"fa-solid fa-dice-d10\"></i>",
             "value": "Consciousness",
             "options": [
               "Awareness",
@@ -3039,7 +3039,7 @@
           "ActionSlot": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-stopwatch\"></i> Activation",
+            "label": "<i class=\"fa-solid fa-stopwatch\"></i> Activation",
             "value": "Main Action",
             "options": [
               "Always Active",
@@ -3057,7 +3057,7 @@
           "Targets": {
             "type": "text",
             "dtype": "String",
-            "label": "Number of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Number of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": "One",
             "options": [
               "Self",
@@ -3073,7 +3073,7 @@
             ]
           },
           "TargetsEligibility": {
-            "label": "Eligible <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Eligible <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [
               "Detectable"
             ],
@@ -3089,7 +3089,7 @@
             }
           },
           "TargetsType": {
-            "label": "Type of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Type of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [
               "Character"
             ],
@@ -3111,7 +3111,7 @@
           "Duration": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hourglass-start\"></i> Duration",
+            "label": "<i class=\"fa-solid fa-hourglass-start\"></i> Duration",
             "value": "Instantaneous",
             "options": [
               "Instantaneous",
@@ -3134,7 +3134,7 @@
           "Range": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-ruler\"></i> Range",
+            "label": "<i class=\"fa-solid fa-ruler\"></i> Range",
             "value": "Building [Area 3]",
             "options": [
               "Self [Area 0]",
@@ -3159,7 +3159,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -3182,7 +3182,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -3205,18 +3205,18 @@
             "type": "text",
             "dtype": "String",
             "label": "Permanent Effects",
-            "value": "<p><strong>Receive the <i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> Enlightened 1.</strong></p>"
+            "value": "<p><strong>Receive the @METAFA(shield-halved) Enlightened 1.</strong></p>"
           },
           "EffectDescription": {
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong><i class=\"fa-sharp-duotone fa-solid fa-square\"></i>: You &nbsp;become aware of the Character&rsquo;s real name (the name given by birth, state, and the one the Character identifies with).</strong></p>\n<p>&nbsp;</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-check\"></i> = You additionally become aware of the target&rsquo;s Background</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-check\"></i> = You additionally become aware of the target&rsquo;s Arc and Regression</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-check\"></i> = You additionally become aware of the target&rsquo;s real height, weight, and gender</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-check\"></i> = You additionally become aware of the target&rsquo;s real age, date of birth, and place of birth</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-check\"></i> = You additionally become aware of the target&rsquo;s Perks, their level, as well as the target&rsquo;s chosen Fields of Study, Expertise choices, and spoken Languages</p>\n<p>&nbsp;</p>\n<p>(Spending <i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i> reduces the amount of <i class=\"fa-sharp-duotone fa-solid fa-check\"></i> accumulated)</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i> = <i class=\"fa-sharp-duotone fa-solid fa-ruler\"></i> + 1 Area</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-xmark\"></i><i class=\"fa-sharp-duotone fa-solid fa-xmark\"></i><i class=\"fa-sharp-duotone fa-solid fa-xmark\"></i> = Receive the <i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> Tormented 1 for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square): You &nbsp;become aware of the Character&rsquo;s real name (the name given by birth, state, and the one the Character identifies with).</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(check) = You additionally become aware of the target&rsquo;s Background</p>\n<p>@METAFA(check)@METAFA(check) = You additionally become aware of the target&rsquo;s Arc and Regression</p>\n<p>@METAFA(check)@METAFA(check)@METAFA(check) = You additionally become aware of the target&rsquo;s real height, weight, and gender</p>\n<p>@METAFA(check)@METAFA(check)@METAFA(check)@METAFA(check) = You additionally become aware of the target&rsquo;s real age, date of birth, and place of birth</p>\n<p>@METAFA(check)@METAFA(check)@METAFA(check)@METAFA(check)@METAFA(check) = You additionally become aware of the target&rsquo;s Perks, their level, as well as the target&rsquo;s chosen Fields of Study, Expertise choices, and spoken Languages</p>\n<p>&nbsp;</p>\n<p>(Spending @METAFA(square-check) reduces the amount of @METAFA(check) accumulated)</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = @METAFA(ruler) + 1 Area</p>\n<p>@METAFA(xmark)@METAFA(xmark)@METAFA(xmark) = Receive the @METAFA(skull) Tormented 1 for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-duotone fa-solid fa-swords\"></i>",
+            "label": "<i class=\"fa-solid fa-swords\"></i>",
             "options": [
               "None",
               "Awareness",
@@ -3233,28 +3233,28 @@
           },
           "Damage": {
             "Cosmic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Elemental": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Material": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Material <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Material <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Psychic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
@@ -3284,13 +3284,13 @@
           },
           "Conditions": {
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
@@ -3298,19 +3298,19 @@
           },
           "Buffs": {
             "Permanent": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-infinity\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-infinity\"></i>",
               "type": "text",
               "dtype": "String",
               "value": "Enlightened 1"
             },
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
@@ -3359,73 +3359,73 @@
           "level00": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-square\"></i>",
+            "label": "<i class=\"fa-solid fa-square\"></i>",
             "value": ""
           },
           "level01": {
             "type": "text",
             "dtype": "String",
-            "label": "1 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "1 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level02": {
             "type": "text",
             "dtype": "String",
-            "label": "2 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "2 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level03": {
             "type": "text",
             "dtype": "String",
-            "label": "3 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "3 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level04": {
             "type": "text",
             "dtype": "String",
-            "label": "4 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "4 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level05": {
             "type": "text",
             "dtype": "String",
-            "label": "5 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "5 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level06": {
             "type": "text",
             "dtype": "String",
-            "label": "6 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "6 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level07": {
             "type": "text",
             "dtype": "String",
-            "label": "7 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "7 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level08": {
             "type": "text",
             "dtype": "String",
-            "label": "8 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "8 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level09": {
             "type": "text",
             "dtype": "String",
-            "label": "9 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "9 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level10": {
             "type": "text",
             "dtype": "String",
-            "label": "10 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "10 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level11": {
             "type": "text",
             "dtype": "String",
-            "label": "11+ * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "11+ * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "AdditionalInfo": {
@@ -3450,7 +3450,7 @@
         "Classification": {
           "type": "text",
           "dtype": "String",
-          "label": "<i class=\"fa-duotone fa-solid fa-people-group\"></i>",
+          "label": "<i class=\"fa-solid fa-people-group\"></i>",
           "value": "Clairvoyant",
           "options": [
             "Aegis",
@@ -3468,7 +3468,7 @@
         "Level": {
           "type": "number",
           "dtype": "Number",
-          "label": "<i class=\"fa-duotone fa-solid fa-layer-group\"></i>",
+          "label": "<i class=\"fa-solid fa-layer-group\"></i>",
           "value": "1",
           "options": [
             "1",
@@ -3481,7 +3481,7 @@
         "EnergyType": {
           "type": "text",
           "dtype": "String",
-          "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i>",
+          "label": "<i class=\"fa-solid fa-sparkles\"></i>",
           "value": "Psychic",
           "options": [
             "Cosmic",
@@ -3493,7 +3493,7 @@
         "DestinyCost": {
           "type": "number",
           "dtype": "Number",
-          "label": "<i class=\"fa-sharp-duotone fa-solid fa-hand-fingers-crossed\"></i>",
+          "label": "<i class=\"fa-solid fa-hand-fingers-crossed\"></i>",
           "value": 0
         }
       },
@@ -3530,7 +3530,7 @@
           "StatRolled": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-dice-d10\"></i>",
+            "label": "<i class=\"fa-solid fa-dice-d10\"></i>",
             "value": "Consciousness",
             "options": [
               "Awareness",
@@ -3547,7 +3547,7 @@
           "ActionSlot": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-stopwatch\"></i> Activation",
+            "label": "<i class=\"fa-solid fa-stopwatch\"></i> Activation",
             "value": "Main Action",
             "options": [
               "Always Active",
@@ -3565,7 +3565,7 @@
           "Targets": {
             "type": "text",
             "dtype": "String",
-            "label": "Number of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Number of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": "One",
             "options": [
               "Self",
@@ -3581,7 +3581,7 @@
             ]
           },
           "TargetsEligibility": {
-            "label": "Eligible <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Eligible <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [
               "Detectable"
             ],
@@ -3597,7 +3597,7 @@
             }
           },
           "TargetsType": {
-            "label": "Type of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Type of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [
               "Character"
             ],
@@ -3619,7 +3619,7 @@
           "Duration": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hourglass-start\"></i> Duration",
+            "label": "<i class=\"fa-solid fa-hourglass-start\"></i> Duration",
             "value": "Instantaneous",
             "options": [
               "Instantaneous",
@@ -3642,7 +3642,7 @@
           "Range": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-ruler\"></i> Range",
+            "label": "<i class=\"fa-solid fa-ruler\"></i> Range",
             "value": "Building [Area 3]",
             "options": [
               "Self [Area 0]",
@@ -3667,7 +3667,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -3690,7 +3690,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -3713,18 +3713,18 @@
             "type": "text",
             "dtype": "String",
             "label": "Permanent Effects",
-            "value": "<p><strong>Receive the <i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> Enlightened 2.</strong></p>"
+            "value": "<p><strong>Receive the @METAFA(shield-halved) Enlightened 2.</strong></p>"
           },
           "EffectDescription": {
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong><i class=\"fa-sharp-duotone fa-solid fa-square\"></i>: You become aware of the Character&rsquo;s <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> type (human, Metanthrope, Extraterrestrial etc.).</strong></p>\n<p>&nbsp;</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-check\"></i> = You additionally become aware of the target&rsquo;s Metamorphosis (if any)</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-check\"></i> = You additionally become aware of the target&rsquo;s Prime Metapower (if any)</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-check\"></i> = You additionally become aware of the target&rsquo;s Characteristic scores and Stat scores</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-check\"></i> = You additionally become aware of the target&rsquo;s current Destiny amount</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-check\"></i> = You additionally become aware of the target&rsquo;s total Experience number</p>\n<p>&nbsp;</p>\n<p>(Spending <i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i> reduces the amount of <i class=\"fa-sharp-duotone fa-solid fa-check\"></i> accumulated)</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i> = <i class=\"fa-sharp-duotone fa-solid fa-ruler\"></i> + 1 Area</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-xmark\"></i><i class=\"fa-sharp-duotone fa-solid fa-xmark\"></i><i class=\"fa-sharp-duotone fa-solid fa-xmark\"></i> = Receive the <i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> Tormented 2 for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square): You become aware of the Character&rsquo;s @METAFA(bullseye) type (human, Metanthrope, Extraterrestrial etc.).</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(check) = You additionally become aware of the target&rsquo;s Metamorphosis (if any)</p>\n<p>@METAFA(check)@METAFA(check) = You additionally become aware of the target&rsquo;s Prime Metapower (if any)</p>\n<p>@METAFA(check)@METAFA(check)@METAFA(check) = You additionally become aware of the target&rsquo;s Characteristic scores and Stat scores</p>\n<p>@METAFA(check)@METAFA(check)@METAFA(check)@METAFA(check) = You additionally become aware of the target&rsquo;s current Destiny amount</p>\n<p>@METAFA(check)@METAFA(check)@METAFA(check)@METAFA(check)@METAFA(check) = You additionally become aware of the target&rsquo;s total Experience number</p>\n<p>&nbsp;</p>\n<p>(Spending @METAFA(square-check) reduces the amount of @METAFA(check) accumulated)</p>\n<p>@METAFA(square-check)@METAFA(square-check)@METAFA(square-check) = @METAFA(ruler) + 1 Area</p>\n<p>@METAFA(xmark)@METAFA(xmark)@METAFA(xmark) = Receive the @METAFA(skull) Tormented 2 for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-duotone fa-solid fa-swords\"></i>",
+            "label": "<i class=\"fa-solid fa-swords\"></i>",
             "options": [
               "None",
               "Awareness",
@@ -3741,28 +3741,28 @@
           },
           "Damage": {
             "Cosmic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Elemental": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Material": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Material <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Material <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Psychic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
@@ -3792,13 +3792,13 @@
           },
           "Conditions": {
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
@@ -3806,19 +3806,19 @@
           },
           "Buffs": {
             "Permanent": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-infinity\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-infinity\"></i>",
               "type": "text",
               "dtype": "String",
               "value": "Enlightened 2"
             },
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
@@ -3867,73 +3867,73 @@
           "level00": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-square\"></i>",
+            "label": "<i class=\"fa-solid fa-square\"></i>",
             "value": ""
           },
           "level01": {
             "type": "text",
             "dtype": "String",
-            "label": "1 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "1 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level02": {
             "type": "text",
             "dtype": "String",
-            "label": "2 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "2 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level03": {
             "type": "text",
             "dtype": "String",
-            "label": "3 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "3 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level04": {
             "type": "text",
             "dtype": "String",
-            "label": "4 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "4 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level05": {
             "type": "text",
             "dtype": "String",
-            "label": "5 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "5 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level06": {
             "type": "text",
             "dtype": "String",
-            "label": "6 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "6 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level07": {
             "type": "text",
             "dtype": "String",
-            "label": "7 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "7 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level08": {
             "type": "text",
             "dtype": "String",
-            "label": "8 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "8 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level09": {
             "type": "text",
             "dtype": "String",
-            "label": "9 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "9 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level10": {
             "type": "text",
             "dtype": "String",
-            "label": "10 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "10 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level11": {
             "type": "text",
             "dtype": "String",
-            "label": "11+ * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "11+ * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "AdditionalInfo": {
@@ -3958,7 +3958,7 @@
         "Classification": {
           "type": "text",
           "dtype": "String",
-          "label": "<i class=\"fa-duotone fa-solid fa-people-group\"></i>",
+          "label": "<i class=\"fa-solid fa-people-group\"></i>",
           "value": "Clairvoyant",
           "options": [
             "Aegis",
@@ -3976,7 +3976,7 @@
         "Level": {
           "type": "number",
           "dtype": "Number",
-          "label": "<i class=\"fa-duotone fa-solid fa-layer-group\"></i>",
+          "label": "<i class=\"fa-solid fa-layer-group\"></i>",
           "value": "2",
           "options": [
             "1",
@@ -3989,7 +3989,7 @@
         "EnergyType": {
           "type": "text",
           "dtype": "String",
-          "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i>",
+          "label": "<i class=\"fa-solid fa-sparkles\"></i>",
           "value": "Psychic",
           "options": [
             "Cosmic",
@@ -4001,7 +4001,7 @@
         "DestinyCost": {
           "type": "number",
           "dtype": "Number",
-          "label": "<i class=\"fa-sharp-duotone fa-solid fa-hand-fingers-crossed\"></i>",
+          "label": "<i class=\"fa-solid fa-hand-fingers-crossed\"></i>",
           "value": 0
         }
       },
@@ -4038,7 +4038,7 @@
           "StatRolled": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-dice-d10\"></i>",
+            "label": "<i class=\"fa-solid fa-dice-d10\"></i>",
             "value": "Consciousness",
             "options": [
               "Awareness",
@@ -4055,7 +4055,7 @@
           "ActionSlot": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-stopwatch\"></i> Activation",
+            "label": "<i class=\"fa-solid fa-stopwatch\"></i> Activation",
             "value": "Focused Action: Full Turn",
             "options": [
               "Always Active",
@@ -4073,7 +4073,7 @@
           "Targets": {
             "type": "text",
             "dtype": "String",
-            "label": "Number of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Number of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": "1 or 2",
             "options": [
               "Self",
@@ -4089,7 +4089,7 @@
             ]
           },
           "TargetsEligibility": {
-            "label": "Eligible <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Eligible <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [
               "Willing"
             ],
@@ -4105,7 +4105,7 @@
             }
           },
           "TargetsType": {
-            "label": "Type of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Type of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [
               "Character"
             ],
@@ -4127,7 +4127,7 @@
           "Duration": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hourglass-start\"></i> Duration",
+            "label": "<i class=\"fa-solid fa-hourglass-start\"></i> Duration",
             "value": "One Cycle",
             "options": [
               "Instantaneous",
@@ -4150,7 +4150,7 @@
           "Range": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-ruler\"></i> Range",
+            "label": "<i class=\"fa-solid fa-ruler\"></i> Range",
             "value": "Building [Area 3]",
             "options": [
               "Self [Area 0]",
@@ -4175,7 +4175,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -4198,7 +4198,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -4213,7 +4213,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Additional Information",
-            "value": "<p><i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> target up to 1d10/2 Willing Characters, who are the Protagonists.&nbsp;</p>"
+            "value": "<p>@METAFA(bullseye) target up to 1d10/2 Willing Characters, who are the Protagonists.&nbsp;</p>"
           }
         },
         "Effects": {
@@ -4221,18 +4221,18 @@
             "type": "text",
             "dtype": "String",
             "label": "Permanent Effects",
-            "value": "<p><strong>Receive the <i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> Enlightened 3.</strong></p>"
+            "value": "<p><strong>Receive the @METAFA(shield-halved) Enlightened 3.</strong></p>"
           },
           "EffectDescription": {
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong><i class=\"fa-sharp-duotone fa-solid fa-square\"></i>: You establish a channel of telepathic communication with yourself and the other Protagonists. Get The Message has an unlimited Range, that bypasses distance and Dimensions, but affects only other Protagonists participating in the Session. While the effect is active, you can transfer your thoughts to your targets, and they can reply with their thoughts back to you.</strong></p>\n<p>&nbsp;</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i> = <i class=\"fa-sharp-duotone fa-solid fa-hourglass-start\"></i> &nbsp;+ 1 Cycle</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i> = <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> + 1</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-xmark\"></i><i class=\"fa-sharp-duotone fa-solid fa-xmark\"></i><i class=\"fa-sharp-duotone fa-solid fa-xmark\"></i> = Receive the <i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> Tormented 3 for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square): You establish a channel of telepathic communication with yourself and the other Protagonists. Get The Message has an unlimited Range, that bypasses distance and Dimensions, but affects only other Protagonists participating in the Session. While the effect is active, you can transfer your thoughts to your targets, and they can reply with their thoughts back to you.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) &nbsp;+ 1 Cycle</p>\n<p>@METAFA(square-check)@METAFA(square-check) = @METAFA(bullseye) + 1</p>\n<p>@METAFA(xmark)@METAFA(xmark)@METAFA(xmark) = Receive the @METAFA(skull) Tormented 3 for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-duotone fa-solid fa-swords\"></i>",
+            "label": "<i class=\"fa-solid fa-swords\"></i>",
             "options": [
               "None",
               "Awareness",
@@ -4249,28 +4249,28 @@
           },
           "Damage": {
             "Cosmic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Elemental": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Material": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Material <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Material <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Psychic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
@@ -4300,13 +4300,13 @@
           },
           "Conditions": {
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
@@ -4314,19 +4314,19 @@
           },
           "Buffs": {
             "Permanent": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-infinity\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-infinity\"></i>",
               "type": "text",
               "dtype": "String",
               "value": "Enlightened 3"
             },
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
@@ -4375,73 +4375,73 @@
           "level00": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-square\"></i>",
+            "label": "<i class=\"fa-solid fa-square\"></i>",
             "value": ""
           },
           "level01": {
             "type": "text",
             "dtype": "String",
-            "label": "1 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "1 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level02": {
             "type": "text",
             "dtype": "String",
-            "label": "2 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "2 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level03": {
             "type": "text",
             "dtype": "String",
-            "label": "3 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "3 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level04": {
             "type": "text",
             "dtype": "String",
-            "label": "4 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "4 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level05": {
             "type": "text",
             "dtype": "String",
-            "label": "5 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "5 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level06": {
             "type": "text",
             "dtype": "String",
-            "label": "6 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "6 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level07": {
             "type": "text",
             "dtype": "String",
-            "label": "7 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "7 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level08": {
             "type": "text",
             "dtype": "String",
-            "label": "8 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "8 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level09": {
             "type": "text",
             "dtype": "String",
-            "label": "9 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "9 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level10": {
             "type": "text",
             "dtype": "String",
-            "label": "10 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "10 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level11": {
             "type": "text",
             "dtype": "String",
-            "label": "11+ * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "11+ * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "AdditionalInfo": {
@@ -4466,7 +4466,7 @@
         "Classification": {
           "type": "text",
           "dtype": "String",
-          "label": "<i class=\"fa-duotone fa-solid fa-people-group\"></i>",
+          "label": "<i class=\"fa-solid fa-people-group\"></i>",
           "value": "Clairvoyant",
           "options": [
             "Aegis",
@@ -4484,7 +4484,7 @@
         "Level": {
           "type": "number",
           "dtype": "Number",
-          "label": "<i class=\"fa-duotone fa-solid fa-layer-group\"></i>",
+          "label": "<i class=\"fa-solid fa-layer-group\"></i>",
           "value": "3",
           "options": [
             "1",
@@ -4497,7 +4497,7 @@
         "EnergyType": {
           "type": "text",
           "dtype": "String",
-          "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i>",
+          "label": "<i class=\"fa-solid fa-sparkles\"></i>",
           "value": "Psychic",
           "options": [
             "Cosmic",
@@ -4509,7 +4509,7 @@
         "DestinyCost": {
           "type": "number",
           "dtype": "Number",
-          "label": "<i class=\"fa-sharp-duotone fa-solid fa-hand-fingers-crossed\"></i>",
+          "label": "<i class=\"fa-solid fa-hand-fingers-crossed\"></i>",
           "value": 0
         }
       },
@@ -4545,7 +4545,7 @@
           "StatRolled": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-dice-d10\"></i>",
+            "label": "<i class=\"fa-solid fa-dice-d10\"></i>",
             "value": "Consciousness",
             "options": [
               "Awareness",
@@ -4562,7 +4562,7 @@
           "ActionSlot": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-stopwatch\"></i> Activation",
+            "label": "<i class=\"fa-solid fa-stopwatch\"></i> Activation",
             "value": "Extra Action",
             "options": [
               "Always Active",
@@ -4580,7 +4580,7 @@
           "Targets": {
             "type": "text",
             "dtype": "String",
-            "label": "Number of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Number of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": "Self",
             "options": [
               "Self",
@@ -4596,7 +4596,7 @@
             ]
           },
           "TargetsEligibility": {
-            "label": "Eligible <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Eligible <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [],
             "selections": {
               "Willing": "Willing",
@@ -4610,7 +4610,7 @@
             }
           },
           "TargetsType": {
-            "label": "Type of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Type of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [],
             "selections": {
               "Animal": "Animal",
@@ -4630,7 +4630,7 @@
           "Duration": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hourglass-start\"></i> Duration",
+            "label": "<i class=\"fa-solid fa-hourglass-start\"></i> Duration",
             "value": "1d10 Cycles",
             "options": [
               "Instantaneous",
@@ -4653,7 +4653,7 @@
           "Range": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-ruler\"></i> Range",
+            "label": "<i class=\"fa-solid fa-ruler\"></i> Range",
             "value": "Self [Area 0]",
             "options": [
               "Self [Area 0]",
@@ -4678,7 +4678,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -4701,7 +4701,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -4724,18 +4724,18 @@
             "type": "text",
             "dtype": "String",
             "label": "Permanent Effects",
-            "value": "<p><strong>Receive the <i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> Resistance 15 to the Psychic Energy Type.</strong></p>"
+            "value": "<p><strong>Receive the @METAFA(shield-halved) Resistance 15 to the Psychic Energy Type.</strong></p>"
           },
           "EffectDescription": {
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong><i class=\"fa-sharp-duotone fa-solid fa-square\"></i>: Receive any one Perk: Knowledge of level equal to your level of Ancestral Connection.</strong></p>\n<p>&nbsp;</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i> = <i class=\"fa-sharp-duotone fa-solid fa-hourglass-start\"></i> + 1d10 Cycles</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i> = Increase the Perk level by + 1</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-xmark\"></i><i class=\"fa-sharp-duotone fa-solid fa-xmark\"></i><i class=\"fa-sharp-duotone fa-solid fa-xmark\"></i>= Receive the <i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> Demented 3 for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square): Receive any one Perk: Knowledge of level equal to your level of Ancestral Connection.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1d10 Cycles</p>\n<p>@METAFA(square-check)@METAFA(square-check) = Increase the Perk level by + 1</p>\n<p>@METAFA(xmark)@METAFA(xmark)@METAFA(xmark)= Receive the @METAFA(skull) Demented 3 for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-duotone fa-solid fa-swords\"></i>",
+            "label": "<i class=\"fa-solid fa-swords\"></i>",
             "options": [
               "None",
               "Awareness",
@@ -4752,28 +4752,28 @@
           },
           "Damage": {
             "Cosmic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Elemental": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Material": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Material <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Material <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Psychic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
@@ -4803,13 +4803,13 @@
           },
           "Conditions": {
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
@@ -4817,19 +4817,19 @@
           },
           "Buffs": {
             "Permanent": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-infinity\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-infinity\"></i>",
               "type": "text",
               "dtype": "String",
               "value": "Resistance 15 Psychic "
             },
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
@@ -4878,73 +4878,73 @@
           "level00": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-square\"></i>",
+            "label": "<i class=\"fa-solid fa-square\"></i>",
             "value": ""
           },
           "level01": {
             "type": "text",
             "dtype": "String",
-            "label": "1 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "1 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level02": {
             "type": "text",
             "dtype": "String",
-            "label": "2 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "2 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level03": {
             "type": "text",
             "dtype": "String",
-            "label": "3 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "3 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level04": {
             "type": "text",
             "dtype": "String",
-            "label": "4 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "4 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level05": {
             "type": "text",
             "dtype": "String",
-            "label": "5 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "5 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level06": {
             "type": "text",
             "dtype": "String",
-            "label": "6 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "6 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level07": {
             "type": "text",
             "dtype": "String",
-            "label": "7 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "7 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level08": {
             "type": "text",
             "dtype": "String",
-            "label": "8 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "8 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level09": {
             "type": "text",
             "dtype": "String",
-            "label": "9 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "9 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level10": {
             "type": "text",
             "dtype": "String",
-            "label": "10 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "10 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level11": {
             "type": "text",
             "dtype": "String",
-            "label": "11+ * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "11+ * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "AdditionalInfo": {
@@ -4969,7 +4969,7 @@
         "Classification": {
           "type": "text",
           "dtype": "String",
-          "label": "<i class=\"fa-duotone fa-solid fa-people-group\"></i>",
+          "label": "<i class=\"fa-solid fa-people-group\"></i>",
           "value": "Utilitarian",
           "options": [
             "Aegis",
@@ -4987,7 +4987,7 @@
         "Level": {
           "type": "number",
           "dtype": "Number",
-          "label": "<i class=\"fa-duotone fa-solid fa-layer-group\"></i>",
+          "label": "<i class=\"fa-solid fa-layer-group\"></i>",
           "value": "3",
           "options": [
             "1",
@@ -5000,7 +5000,7 @@
         "EnergyType": {
           "type": "text",
           "dtype": "String",
-          "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i>",
+          "label": "<i class=\"fa-solid fa-sparkles\"></i>",
           "value": "Psychic",
           "options": [
             "Cosmic",
@@ -5012,7 +5012,7 @@
         "DestinyCost": {
           "type": "number",
           "dtype": "Number",
-          "label": "<i class=\"fa-sharp-duotone fa-solid fa-hand-fingers-crossed\"></i>",
+          "label": "<i class=\"fa-solid fa-hand-fingers-crossed\"></i>",
           "value": 0
         }
       },
@@ -5049,7 +5049,7 @@
           "StatRolled": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-dice-d10\"></i>",
+            "label": "<i class=\"fa-solid fa-dice-d10\"></i>",
             "value": "Consciousness",
             "options": [
               "Awareness",
@@ -5066,7 +5066,7 @@
           "ActionSlot": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-stopwatch\"></i> Activation",
+            "label": "<i class=\"fa-solid fa-stopwatch\"></i> Activation",
             "value": "Extra Action",
             "options": [
               "Always Active",
@@ -5084,7 +5084,7 @@
           "Targets": {
             "type": "text",
             "dtype": "String",
-            "label": "Number of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Number of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": "Self",
             "options": [
               "Self",
@@ -5100,7 +5100,7 @@
             ]
           },
           "TargetsEligibility": {
-            "label": "Eligible <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Eligible <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [],
             "selections": {
               "Willing": "Willing",
@@ -5114,7 +5114,7 @@
             }
           },
           "TargetsType": {
-            "label": "Type of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Type of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [],
             "selections": {
               "Animal": "Animal",
@@ -5134,7 +5134,7 @@
           "Duration": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hourglass-start\"></i> Duration",
+            "label": "<i class=\"fa-solid fa-hourglass-start\"></i> Duration",
             "value": "1d10 Cycles",
             "options": [
               "Instantaneous",
@@ -5157,7 +5157,7 @@
           "Range": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-ruler\"></i> Range",
+            "label": "<i class=\"fa-solid fa-ruler\"></i> Range",
             "value": "Self [Area 0]",
             "options": [
               "Self [Area 0]",
@@ -5182,7 +5182,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -5205,7 +5205,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -5228,18 +5228,18 @@
             "type": "text",
             "dtype": "String",
             "label": "Permanent Effects",
-            "value": "<p><strong>Receive the <i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> Resistance 10 to the Psychic Energy Type.</strong></p>"
+            "value": "<p><strong>Receive the @METAFA(shield-halved) Resistance 10 to the Psychic Energy Type.</strong></p>"
           },
           "EffectDescription": {
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong><i class=\"fa-sharp-duotone fa-solid fa-square\"></i>: Receive any one Perk: Skill, apart from the Skill: Expertise, of level equal to your level of Ancestral Connection.</strong></p>\n<p>&nbsp;</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i> = <i class=\"fa-sharp-duotone fa-solid fa-hourglass-start\"></i> + 1d10 Cycles</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i><i class=\"fa-sharp-duotone fa-solid fa-square-check\"></i> = Increase the Perk level by + 1</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-xmark\"></i><i class=\"fa-sharp-duotone fa-solid fa-xmark\"></i>= Receive the <i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> Demented 2 for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square): Receive any one Perk: Skill, apart from the Skill: Expertise, of level equal to your level of Ancestral Connection.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check) = @METAFA(hourglass-start) + 1d10 Cycles</p>\n<p>@METAFA(square-check)@METAFA(square-check) = Increase the Perk level by + 1</p>\n<p>@METAFA(xmark)@METAFA(xmark)= Receive the @METAFA(skull) Demented 2 for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-duotone fa-solid fa-swords\"></i>",
+            "label": "<i class=\"fa-solid fa-swords\"></i>",
             "options": [
               "None",
               "Awareness",
@@ -5256,28 +5256,28 @@
           },
           "Damage": {
             "Cosmic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Elemental": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Material": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Material <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Material <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Psychic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
@@ -5307,13 +5307,13 @@
           },
           "Conditions": {
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
@@ -5321,19 +5321,19 @@
           },
           "Buffs": {
             "Permanent": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-infinity\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-infinity\"></i>",
               "type": "text",
               "dtype": "String",
               "value": "Resistance 10 Psychic "
             },
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
@@ -5382,73 +5382,73 @@
           "level00": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-square\"></i>",
+            "label": "<i class=\"fa-solid fa-square\"></i>",
             "value": ""
           },
           "level01": {
             "type": "text",
             "dtype": "String",
-            "label": "1 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "1 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level02": {
             "type": "text",
             "dtype": "String",
-            "label": "2 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "2 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level03": {
             "type": "text",
             "dtype": "String",
-            "label": "3 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "3 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level04": {
             "type": "text",
             "dtype": "String",
-            "label": "4 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "4 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level05": {
             "type": "text",
             "dtype": "String",
-            "label": "5 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "5 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level06": {
             "type": "text",
             "dtype": "String",
-            "label": "6 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "6 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level07": {
             "type": "text",
             "dtype": "String",
-            "label": "7 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "7 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level08": {
             "type": "text",
             "dtype": "String",
-            "label": "8 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "8 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level09": {
             "type": "text",
             "dtype": "String",
-            "label": "9 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "9 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level10": {
             "type": "text",
             "dtype": "String",
-            "label": "10 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "10 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level11": {
             "type": "text",
             "dtype": "String",
-            "label": "11+ * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "11+ * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "AdditionalInfo": {
@@ -5473,7 +5473,7 @@
         "Classification": {
           "type": "text",
           "dtype": "String",
-          "label": "<i class=\"fa-duotone fa-solid fa-people-group\"></i>",
+          "label": "<i class=\"fa-solid fa-people-group\"></i>",
           "value": "Utilitarian",
           "options": [
             "Aegis",
@@ -5491,7 +5491,7 @@
         "Level": {
           "type": "number",
           "dtype": "Number",
-          "label": "<i class=\"fa-duotone fa-solid fa-layer-group\"></i>",
+          "label": "<i class=\"fa-solid fa-layer-group\"></i>",
           "value": "2",
           "options": [
             "1",
@@ -5504,7 +5504,7 @@
         "EnergyType": {
           "type": "text",
           "dtype": "String",
-          "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i>",
+          "label": "<i class=\"fa-solid fa-sparkles\"></i>",
           "value": "Psychic",
           "options": [
             "Cosmic",
@@ -5516,7 +5516,7 @@
         "DestinyCost": {
           "type": "number",
           "dtype": "Number",
-          "label": "<i class=\"fa-sharp-duotone fa-solid fa-hand-fingers-crossed\"></i>",
+          "label": "<i class=\"fa-solid fa-hand-fingers-crossed\"></i>",
           "value": 0
         }
       },
@@ -5553,7 +5553,7 @@
           "StatRolled": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-dice-d10\"></i>",
+            "label": "<i class=\"fa-solid fa-dice-d10\"></i>",
             "value": "Consciousness",
             "options": [
               "Awareness",
@@ -5570,7 +5570,7 @@
           "ActionSlot": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-stopwatch\"></i> Activation",
+            "label": "<i class=\"fa-solid fa-stopwatch\"></i> Activation",
             "value": "Focused Action: Full Turn",
             "options": [
               "Always Active",
@@ -5588,7 +5588,7 @@
           "Targets": {
             "type": "text",
             "dtype": "String",
-            "label": "Number of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Number of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": "Self",
             "options": [
               "Self",
@@ -5604,7 +5604,7 @@
             ]
           },
           "TargetsEligibility": {
-            "label": "Eligible <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Eligible <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [],
             "selections": {
               "Willing": "Willing",
@@ -5618,7 +5618,7 @@
             }
           },
           "TargetsType": {
-            "label": "Type of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Type of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [],
             "selections": {
               "Animal": "Animal",
@@ -5638,7 +5638,7 @@
           "Duration": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hourglass-start\"></i> Duration",
+            "label": "<i class=\"fa-solid fa-hourglass-start\"></i> Duration",
             "value": "Instantaneous",
             "options": [
               "Instantaneous",
@@ -5661,7 +5661,7 @@
           "Range": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-ruler\"></i> Range",
+            "label": "<i class=\"fa-solid fa-ruler\"></i> Range",
             "value": "Self [Area 0]",
             "options": [
               "Self [Area 0]",
@@ -5686,7 +5686,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -5709,7 +5709,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -5732,18 +5732,18 @@
             "type": "text",
             "dtype": "String",
             "label": "Permanent Effects",
-            "value": "<p><strong>Receive the <i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> Resistance 5 to the Psychic Energy Type.</strong></p>"
+            "value": "<p><strong>Receive the @METAFA(shield-halved) Resistance 5 to the Psychic Energy Type.</strong></p>"
           },
           "EffectDescription": {
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong><i class=\"fa-sharp-duotone fa-solid fa-square\"></i>: Receive the answer to a question you posed, at the Narrator&rsquo;s discretion. The additional <i class=\"fa-sharp-duotone fa-solid fa-check\"></i> accumulated provide additional clarity and certainty to the answer.</strong></p>\n<p>&nbsp;</p>\n<p><i class=\"fa-sharp-duotone fa-solid fa-xmark\"></i>= Receive <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> 1d10 + 10 Psychic Damage plus the <i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> Demented 1 for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square): Receive the answer to a question you posed, at the Narrator&rsquo;s discretion. The additional @METAFA(check) accumulated provide additional clarity and certainty to the answer.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(xmark)= Receive @METAFA(burst) 1d10 + 10 Psychic Damage plus the @METAFA(skull) Demented 1 for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-duotone fa-solid fa-swords\"></i>",
+            "label": "<i class=\"fa-solid fa-swords\"></i>",
             "options": [
               "None",
               "Awareness",
@@ -5760,28 +5760,28 @@
           },
           "Damage": {
             "Cosmic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Elemental": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Material": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Material <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Material <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Psychic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 10,
@@ -5811,13 +5811,13 @@
           },
           "Conditions": {
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
@@ -5825,19 +5825,19 @@
           },
           "Buffs": {
             "Permanent": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-infinity\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-infinity\"></i>",
               "type": "text",
               "dtype": "String",
               "value": "Resistance 5 Psychic"
             },
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
@@ -5886,73 +5886,73 @@
           "level00": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-square\"></i>",
+            "label": "<i class=\"fa-solid fa-square\"></i>",
             "value": ""
           },
           "level01": {
             "type": "text",
             "dtype": "String",
-            "label": "1 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "1 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level02": {
             "type": "text",
             "dtype": "String",
-            "label": "2 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "2 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level03": {
             "type": "text",
             "dtype": "String",
-            "label": "3 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "3 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level04": {
             "type": "text",
             "dtype": "String",
-            "label": "4 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "4 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level05": {
             "type": "text",
             "dtype": "String",
-            "label": "5 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "5 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level06": {
             "type": "text",
             "dtype": "String",
-            "label": "6 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "6 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level07": {
             "type": "text",
             "dtype": "String",
-            "label": "7 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "7 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level08": {
             "type": "text",
             "dtype": "String",
-            "label": "8 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "8 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level09": {
             "type": "text",
             "dtype": "String",
-            "label": "9 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "9 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level10": {
             "type": "text",
             "dtype": "String",
-            "label": "10 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "10 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level11": {
             "type": "text",
             "dtype": "String",
-            "label": "11+ * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "11+ * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "AdditionalInfo": {
@@ -5977,7 +5977,7 @@
         "Classification": {
           "type": "text",
           "dtype": "String",
-          "label": "<i class=\"fa-duotone fa-solid fa-people-group\"></i>",
+          "label": "<i class=\"fa-solid fa-people-group\"></i>",
           "value": "Utilitarian",
           "options": [
             "Aegis",
@@ -5995,7 +5995,7 @@
         "Level": {
           "type": "number",
           "dtype": "Number",
-          "label": "<i class=\"fa-duotone fa-solid fa-layer-group\"></i>",
+          "label": "<i class=\"fa-solid fa-layer-group\"></i>",
           "value": "1",
           "options": [
             "1",
@@ -6008,7 +6008,7 @@
         "EnergyType": {
           "type": "text",
           "dtype": "String",
-          "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i>",
+          "label": "<i class=\"fa-solid fa-sparkles\"></i>",
           "value": "Psychic",
           "options": [
             "Cosmic",
@@ -6020,7 +6020,7 @@
         "DestinyCost": {
           "type": "number",
           "dtype": "Number",
-          "label": "<i class=\"fa-sharp-duotone fa-solid fa-hand-fingers-crossed\"></i>",
+          "label": "<i class=\"fa-solid fa-hand-fingers-crossed\"></i>",
           "value": 0
         }
       },
@@ -6070,13 +6070,13 @@
           "Size": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 <i class=\"fa-sharp-duotone fa-solid fa-ruler-triangle\"></i>",
+            "label": "🧱 <i class=\"fa-solid fa-ruler-triangle\"></i>",
             "value": 10
           },
           "Weight": {
             "type": "number",
             "dtype": "Number",
-            "label": "🧱 <i class=\"fa-sharp-duotone fa-solid fa-weight-hanging\"></i>",
+            "label": "🧱 <i class=\"fa-solid fa-weight-hanging\"></i>",
             "value": 10
           },
           "Cosmic": {
@@ -6118,7 +6118,7 @@
           "StatRolled": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-dice-d10\"></i>",
+            "label": "<i class=\"fa-solid fa-dice-d10\"></i>",
             "value": "Power",
             "options": [
               "Awareness",
@@ -6135,7 +6135,7 @@
           "ActionSlot": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-stopwatch\"></i> Activation",
+            "label": "<i class=\"fa-solid fa-stopwatch\"></i> Activation",
             "value": "Main Action",
             "options": [
               "Always Active",
@@ -6153,7 +6153,7 @@
           "Targets": {
             "type": "text",
             "dtype": "String",
-            "label": "Number of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Number of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": "One",
             "options": [
               "Self",
@@ -6169,7 +6169,7 @@
             ]
           },
           "TargetsEligibility": {
-            "label": "Eligible <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Eligible <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [],
             "selections": {
               "Willing": "Willing",
@@ -6183,7 +6183,7 @@
             }
           },
           "TargetsType": {
-            "label": "Type of <i class=\"fa-sharp-duotone fa-solid fa-crosshairs-simple\"></i> Targets",
+            "label": "Type of <i class=\"fa-solid fa-bullseye\"></i> Targets",
             "value": [],
             "selections": {
               "Animal": "Animal",
@@ -6203,7 +6203,7 @@
           "Duration": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hourglass-start\"></i> Duration",
+            "label": "<i class=\"fa-solid fa-hourglass-start\"></i> Duration",
             "value": "Instantaneous",
             "options": [
               "Instantaneous",
@@ -6226,7 +6226,7 @@
           "Range": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-ruler\"></i> Range",
+            "label": "<i class=\"fa-solid fa-ruler\"></i> Range",
             "value": "Hexagon [Area 1]",
             "options": [
               "Self [Area 0]",
@@ -6251,7 +6251,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -6274,7 +6274,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -6303,12 +6303,12 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><abbr title=\"Damage\"><span class=\"ipsEmoji\"><i class=\"fa-sharp-duotone fa-solid fa-burst\"></i></span></abbr>= 1d10 + Power</p>"
+            "value": "<p><abbr title=\"Damage\"><span class=\"ipsEmoji\">@METAFA(burst)</span></abbr>= 1d10 + Power</p>"
           },
           "VSStatRoll": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-duotone fa-solid fa-swords\"></i>",
+            "label": "<i class=\"fa-solid fa-swords\"></i>",
             "options": [
               "None",
               "Awareness",
@@ -6325,28 +6325,28 @@
           },
           "Damage": {
             "Cosmic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Cosmic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Elemental": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Elemental <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 0
             },
             "Material": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Material <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Material <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
               "Dice": 1
             },
             "Psychic": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-sharp-duotone fa-solid fa-burst\"></i> Damage",
+              "label": "<i class=\"fa-solid fa-sparkles\"></i> Psychic <i class=\"fa-solid fa-burst\"></i> Damage",
               "type": "number",
               "dtype": "Number",
               "Base": 0,
@@ -6376,13 +6376,13 @@
           },
           "Conditions": {
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-skull\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-skull\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
@@ -6390,19 +6390,19 @@
           },
           "Buffs": {
             "Permanent": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-infinity\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-infinity\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Applied": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-plus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-plus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
             },
             "Removed": {
-              "label": "<i class=\"fa-sharp-duotone fa-solid fa-shield-halved\"></i> <i class=\"fa-duotone fa-solid fa-minus\"></i>",
+              "label": "<i class=\"fa-solid fa-shield-halved\"></i> <i class=\"fa-solid fa-minus\"></i>",
               "type": "text",
               "dtype": "String",
               "value": ""
@@ -6451,73 +6451,73 @@
           "level00": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-sharp-duotone fa-solid fa-square\"></i>",
+            "label": "<i class=\"fa-solid fa-square\"></i>",
             "value": ""
           },
           "level01": {
             "type": "text",
             "dtype": "String",
-            "label": "1 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "1 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level02": {
             "type": "text",
             "dtype": "String",
-            "label": "2 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "2 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level03": {
             "type": "text",
             "dtype": "String",
-            "label": "3 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "3 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level04": {
             "type": "text",
             "dtype": "String",
-            "label": "4 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "4 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level05": {
             "type": "text",
             "dtype": "String",
-            "label": "5 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "5 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level06": {
             "type": "text",
             "dtype": "String",
-            "label": "6 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "6 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level07": {
             "type": "text",
             "dtype": "String",
-            "label": "7 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "7 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level08": {
             "type": "text",
             "dtype": "String",
-            "label": "8 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "8 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level09": {
             "type": "text",
             "dtype": "String",
-            "label": "9 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "9 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level10": {
             "type": "text",
             "dtype": "String",
-            "label": "10 * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "10 * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "level11": {
             "type": "text",
             "dtype": "String",
-            "label": "11+ * <i class=\"fa-sharp-duotone fa-solid fa-check\"></i>",
+            "label": "11+ * <i class=\"fa-solid fa-check\"></i>",
             "value": ""
           },
           "AdditionalInfo": {
@@ -6567,7 +6567,7 @@
         "RequiredPerk": {
           "type": "text",
           "dtype": "String",
-          "label": "Required <i class=\"fa-sharp-duotone fa-solid fa-books\"></i> Perk",
+          "label": "Required <i class=\"fa-solid fa-books\"></i> Perk",
           "value": "None",
           "options": [
             "None",
@@ -6581,7 +6581,7 @@
         "RequiredPerkLevel": {
           "type": "number",
           "dtype": "Number",
-          "label": "Required <i class=\"fa-sharp-duotone fa-solid fa-books\"></i> Perk Level",
+          "label": "Required <i class=\"fa-solid fa-books\"></i> Perk Level",
           "value": 0
         }
       },
