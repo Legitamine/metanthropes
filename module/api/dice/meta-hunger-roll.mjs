@@ -1,5 +1,7 @@
 /**
  * metaHungerRoll handles the rolling a simple d100 to check if the actor can beat their Hunger effect.
+ * 
+ * todo: update to utilize text enrichers & finalize how the d100 roll for hunger should work
  */
 export async function metaHungerRoll(actor, hungerLevel) {
 	let hungerTarget = 0;

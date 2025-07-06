@@ -15,11 +15,16 @@
 			"Metapower": "Metapower",
 			"Metapowers": "Metapowers",
 			"Target": "Target",
-			"Targets": "Targets"
+			"Targets": "Targets",
+			"Duration": "Duration",
+			"Range": "Range"
 		},
 		"LOGIC": {
 			"METAEXECUTE": {
-				"Targets": ""
+				"BuffsApplied": "These Buffs are Applied to the Target(s)",
+				"BuffsRemoved": "These Buffs are Removed from the Target(s)",
+				"ConditionsApplied": "These Conditions are Applied to the Target(s)",
+				"ConditionsRemoved": "These Conditions are Removed from the Targets(s)"
 			}
 		},
 		"UI": {

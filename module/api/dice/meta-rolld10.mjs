@@ -88,7 +88,7 @@ export async function metaRolld10(
 	if (reroll) {
 		messageStart = "Re-Rolls";
 		rerollCounter++;
-		if (rerollCounter > 1) messageStart += ` (<i class="fa-solid fa-xmark"></i>${rerollCounter})`;
+		if (rerollCounter > 1) messageStart += ` (@METAFA(xmark, null, xs, fw)${rerollCounter})`;
 		messageStart += " for";
 	}
 	if (itemName) {
@@ -122,14 +122,14 @@ export async function metaRolld10(
 	}
 	//? Create the re-roll button for the chat, taking into account anchoring for re-rolls
 	const reRollButtonMessage = `<br>${actor.name} has ${actor.currentDestiny}
-	<i class="fa-solid fa-hand-fingers-crossed"></i> Destiny remaining.<br>
+	@METAFA(hand-fingers-crossed) Destiny remaining.<br>
 	<div class="hide-button hidden"><br><button class="metanthropes-secondary-chat-button rolld10-reroll"
 	data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 	data-what="${what}" data-destiny-re-roll="${destinyReRoll}"
 	data-dice="${dice}" data-base-number="${baseNumber}" data-is-half="${isHalf}"
 	data-anchor="${anchor}" data-message-id="${messageId}"
 	data-reroll="true" data-reroll-counter="${rerollCounter}"
-	>Spend <i class="fa-solid fa-hand-fingers-crossed"></i> Destiny to reroll</button><br><br></div>`;
+	>Spend @METAFA(hand-fingers-crossed) Destiny to reroll</button><br><br></div>`;
 	if (destinyReRoll && actor.currentDestiny > 0) {
 		message += reRollButtonMessage;
 	}
@@ -138,6 +138,8 @@ export async function metaRolld10(
 		rolld10what: what,
 		rolld10item: itemName,
 	});
+	//* Enrich the message
+	const enrichedMessage = await foundry.applications.ux.TextEditor.enrichHTML(message, { async: true });
 	if (!anchor) {
 		//* Not anchored, print message to chat
 		if (!reroll) {
@@ -152,7 +154,7 @@ export async function metaRolld10(
 			const renderedRoll = await rolld10.render();
 			rolld10.toMessage({
 				speaker: ChatMessage.getSpeaker({ actor: actor }),
-				flavor: message,
+				flavor: enrichedMessage,
 				rolls: updatedRoll,
 				content: renderedRoll,
 				rollMode: game.settings.get("core", "rollMode"),
@@ -179,7 +181,7 @@ export async function metaRolld10(
 			// 	game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
 			// }
 			chatMessage.update({
-				flavor: message,
+				flavor: enrichedMessage,
 				rolls: updatedRoll,
 				content: renderedRoll,
 				rollMode: game.settings.get("core", "rollMode"),
@@ -213,7 +215,7 @@ export async function metaRolld10(
 					isHalf: isHalf,
 					reroll: reroll,
 					rerollCounter: rerollCounter,
-					flavor: message,
+					flavor: enrichedMessage,
 					content: renderedRoll,
 					rolls: updatedRoll,
 				},
@@ -228,7 +230,7 @@ export async function metaRolld10(
 			// }
 			const chatData = {
 				speaker: ChatMessage.getSpeaker({ actor: actor }),
-				flavor: message,
+				flavor: enrichedMessage,
 				rolls: updatedRoll,
 				content: renderedRoll,
 				rollMode: game.settings.get("core", "rollMode"),
@@ -261,7 +263,7 @@ export async function metaRolld10(
 						reroll: reroll,
 						anchor: false,
 						rerollCounter: rerollCounter,
-						flavor: message,
+						flavor: enrichedMessage,
 						content: renderedRoll,
 						rolls: updatedRoll,
 					},
@@ -283,7 +285,7 @@ export async function metaRolld10(
 						isHalf: isHalf,
 						reroll: reroll,
 						rerollCounter: rerollCounter,
-						flavor: message,
+						flavor: enrichedMessage,
 						content: renderedRoll,
 						rolls: updatedRoll,
 					},
@@ -538,7 +540,7 @@ export async function metaDamageReRoll(event) {
 	} else {
 		startMessage = "Re-Rolls";
 		rerollCounter++;
-		if (rerollCounter > 1) startMessage += ` (<i class="fa-solid fa-xmark"></i>${rerollCounter})`;
+		if (rerollCounter > 1) startMessage += ` (@METAFA(xmark, null, fw)${rerollCounter})`;
 	}
 	flavorMessage = `${startMessage} Damage for ${itemName} to ${targetedActors.length} target${
 		targetedActors.length > 1 ? "s" : ""
@@ -551,27 +553,28 @@ export async function metaDamageReRoll(event) {
 		contentMessage += `<div class="meta-roll-inline-results">${damageMaterialMessage}</div>`;
 	if (psychicDamageRollResult > 0)
 		contentMessage += `<div class="meta-roll-inline-results">${damagePsychicMessage}</div>`;
-	contentMessage += `<div>${actor.name} has ${actor.currentDestiny} <i class="fa-solid fa-hand-fingers-crossed"></i> Destiny remaining.<br></div>`;
+	contentMessage += `<div>${actor.name} has ${actor.currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.<br></div>`;
 	if (actor.currentDestiny > 0) {
 		const damageReRollButton = `<div class="hide-button hidden">
 		<button class="metanthropes-secondary-chat-button damage roll-damage-reroll chat-button-anchor"
-		data-tooltip="Spend <i class='fa-solid fa-hand-fingers-crossed'></i> Destiny to reroll <i class='fa-solid fa-burst'></i> Damage"
 		data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 		data-what="Damage" data-anchor="true" data-reroll="true" data-reroll-counter="${rerollCounter}" data-message-id="messageId"
 		data-destiny-re-roll="true" data-dice-cosmic="${damageDiceCosmic}" data-base-cosmic="${damageBaseCosmic}"
 		data-dice-elemental="${damageDiceElemental}" data-base-elemental="${damageBaseElemental}"
 		data-dice-material="${damageDiceMaterial}" data-base-material="${damageBaseMaterial}"
 		data-dice-psychic="${damageDicePsychic}" data-base-psychic="${damageBasePsychic}"
-		>Spend <i class="fa-solid fa-hand-fingers-crossed"></i> to Reroll <i class="fa-solid fa-burst"></i> Damage
+		>Spend @METAFA(hand-fingers-crossed) to Reroll @METAFA(burst) Damage
 		</button></div>`;
 		contentMessage += `<hr />`;
 		contentMessage += damageReRollButton;
 	}
+	const enrichedContent = await foundry.applications.ux.TextEditor.enrichHTML(contentMessage, { async: true });
+	const enrichedFlavor = await foundry.applications.ux.TextEditor.enrichHTML(flavorMessage, { async: true });
 	let chatData = {
 		user: game.user.id,
-		flavor: flavorMessage,
+		flavor: enrichedFlavor,
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
-		content: contentMessage,
+		content: enrichedContent,
 		flags: { metanthropes: { actoruuid: actor.uuid } },
 	};
 	if (reroll) {
@@ -682,7 +685,7 @@ export async function metaHealingReRoll(event) {
 	} else {
 		startMessage = "Re-Rolls";
 		rerollCounter++;
-		if (rerollCounter > 1) startMessage += ` (<i class="fa-solid fa-xmark"></i>${rerollCounter})`;
+		if (rerollCounter > 1) startMessage += ` (@METAFA(xmark, null, fw)${rerollCounter})`;
 	}
 	flavorMessage = `${startMessage} ${itemName}'s Healing, with ${targetedActors.length} target${
 		targetedActors.length > 1 ? "s" : ""
@@ -693,16 +696,15 @@ export async function metaHealingReRoll(event) {
 	if (actor.currentDestiny > 0) {
 		const healingReRollButton = `<div class="hide-button hidden">
 		<button class="metanthropes-secondary-chat-button damage roll-healing-reroll chat-button-anchor"
-		data-tooltip="Spend <i class='fa-solid fa-hand-fingers-crossed'></i> Destiny to reroll <i class='fa-solid fa-burst'></i> Damage"
 		data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 		data-what="Healing" data-anchor="true" data-reroll="true" data-reroll-counter="${rerollCounter}" data-message-id="messageId"
 		data-destiny-re-roll="true" data-healing-dice="${healingDice}" data-healing-base="${healingBase}"
-		>Spend <i class="fa-solid fa-hand-fingers-crossed"></i> to Reroll <i class="fa-solid fa-heart-pulse" style="--fa-primary-color:#ebb1b1;--fa-secondary-color: #e60808; --fa-secondary-opacity: 0.8;"></i> Healing
+		>Spend @METAFA(hand-fingers-crossed) to Reroll @METAFA(heart-pulse) Healing
 		</button></div>`;
 		contentMessage += `<hr />`;
 		contentMessage += healingReRollButton;
 	}
-	contentMessage += `<div>${actor.name} has ${actor.currentDestiny} <i class="fa-solid fa-hand-fingers-crossed"></i> Destiny remaining.<br></div>`;
+	contentMessage += `<div>${actor.name} has ${actor.currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.<br></div>`;
 	let chatData = {
 		user: game.user.id,
 		flavor: flavorMessage,
