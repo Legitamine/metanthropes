@@ -23,7 +23,6 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Changed:
 
-- Pause icon
 -   Changed the styling of the Font Awesome Icons to match the styling used by Foundry Core. Targets and Area of Effect symbols now use the same Target and Measured Template icons from Foundry respectively, since they essentially serve the same practical purpose.
 -   Updated the major functions of the `metanthropes.dice` API to utilize the new text enrichers.
 -   [Core] Updated all Effect Description fields for all Possessions and Metapowers to utilize the new Text Enrichers.
@@ -31,8 +30,10 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Fixed:
 
+-   [Introductory] fix name of Cutscene vs Cinematic
 -   todo: fix journals, links
--   Changed the default Disposition for all non-Protagonist Prototype Tokens to be 'Neutral' instead of 'Secret', allowing players to target them. If loading a World that was created before this release, all Prototype Token defaults will be overriden with this new behavior.
+-   The Pause screen displays the Metanthropes Logo.
+-   Changed the default Disposition for all non-Protagonist Prototype Tokens to be 'Neutral' instead of 'Secret', allowing players to target them (Secret disposition apperently does not allow targeting). If loading a World that was created before this release, all Prototype Token defaults will be overriden with this new behavior.
 -   Replaced the loading screen that appears when loading a World, that stays up until the active scene loads. This image now uses the new cover image from the system.
 -   Fixed the issue with dissappearing Font Awesome icons when editing a Journal page or a Possession's effect description fields. From now on, use the new Text Enrichers to include FA icons in the Journals and in the description fields on Items. See #394 on how to configure your own content (assumes you have a valid Font Awesome Pro license).
 -   Better aligned the FontAwesome Icons that show up on chat during the Activation of Metapowers and Usage of Possessions.
