@@ -1198,7 +1198,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -1221,7 +1221,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -1762,7 +1762,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -1785,7 +1785,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -2324,7 +2324,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -2347,7 +2347,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -2823,7 +2823,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -2846,7 +2846,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -3327,7 +3327,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -3350,7 +3350,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -3831,7 +3831,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -3854,7 +3854,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -4335,7 +4335,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -4358,7 +4358,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -4840,7 +4840,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -4863,7 +4863,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -5344,7 +5344,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -5367,7 +5367,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -5848,7 +5848,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -5871,7 +5871,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -6352,7 +6352,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -6375,7 +6375,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -6856,7 +6856,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -6879,7 +6879,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -6908,7 +6908,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square, success): Your Evade attempts receive a + 25% Bonus, and you can attempt to Evade attacks made from Projectile, and Firearm Weapons. In addition, when being included in an @METAFA(hexagon-image) Area Effect of Material or Elemental Energy Type, you may attempt a Reflexes roll as your Reaction, and if successful you will not be included to that effect for that Round.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Increase the Bonus by + 5% (up to + 50%)</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure)= Receive a &ndash; 50% Penalty when attempting to Evade for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square, success): Your Evade attempts receive a + 25% Bonus, and you can attempt to Evade attacks made from Projectile, and Firearm Weapons. In addition, when being included in an @METAFA(ruler-combined) Area Effect of Material or Elemental Energy Type, you may attempt a Reflexes roll as your Reaction, and if successful you will not be included to that effect for that Round.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Increase the Bonus by + 5% (up to + 50%)</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure)= Receive a &ndash; 50% Penalty when attempting to Evade for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -7360,7 +7360,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -7383,7 +7383,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -7412,7 +7412,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square, success): Your Evade attempts receive a + 25% Bonus, and you can attempt to Evade attacks made from Projectile, and Firearm Weapons. In addition, when being included in an @METAFA(hexagon-image) Area Effect of Material or Elemental Energy Type, you may attempt a Reflexes roll as your Reaction, and if successful you will not be included to that effect for that Round.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Increase the Bonus by + 5% (up to + 50%)</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure)= Receive a &ndash; 50% Penalty when attempting to Evade for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square, success): Your Evade attempts receive a + 25% Bonus, and you can attempt to Evade attacks made from Projectile, and Firearm Weapons. In addition, when being included in an @METAFA(ruler-combined) Area Effect of Material or Elemental Energy Type, you may attempt a Reflexes roll as your Reaction, and if successful you will not be included to that effect for that Round.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Increase the Bonus by + 5% (up to + 50%)</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure)= Receive a &ndash; 50% Penalty when attempting to Evade for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -7864,7 +7864,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -7887,7 +7887,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -7916,7 +7916,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square, success): Your Evade attempts receive a + 25% Bonus, and you can attempt to Evade attacks made from Projectile, and Firearm Weapons. In addition, when being included in an @METAFA(hexagon-image) Area Effect of Material or Elemental Energy Type, you may attempt a Reflexes roll as your Reaction, and if successful you will not be included to that effect for that Round.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Increase the Bonus by + 5% (up to + 50%)</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure)= Receive a &ndash; 50% Penalty when attempting to Evade for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square, success): Your Evade attempts receive a + 25% Bonus, and you can attempt to Evade attacks made from Projectile, and Firearm Weapons. In addition, when being included in an @METAFA(ruler-combined) Area Effect of Material or Elemental Energy Type, you may attempt a Reflexes roll as your Reaction, and if successful you will not be included to that effect for that Round.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Increase the Bonus by + 5% (up to + 50%)</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure)= Receive a &ndash; 50% Penalty when attempting to Evade for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -8367,7 +8367,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -8390,7 +8390,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -8871,7 +8871,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -8894,7 +8894,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -9375,7 +9375,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -9398,7 +9398,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -9879,7 +9879,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -9902,7 +9902,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -10383,7 +10383,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -10406,7 +10406,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -10887,7 +10887,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -10910,7 +10910,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -11391,7 +11391,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -11414,7 +11414,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -11895,7 +11895,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -11918,7 +11918,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -12399,7 +12399,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -12422,7 +12422,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -12903,7 +12903,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -12926,7 +12926,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -13407,7 +13407,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -13430,7 +13430,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -13911,7 +13911,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -13934,7 +13934,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [
               "Burst"
             ],
@@ -13965,7 +13965,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square, success): All targets receive @METAFA(burst) 3d10 + 33 Elemental Damage plus the @METAFA(skull) Burned 3 and Pain 1.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(burst) + 1d10</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Expand the @METAFA(hexagon-image) by one Hexagon</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure) = You receive the @METAFA(burst) and the @METAFA(skull)</p>"
+            "value": "<p><strong>@METAFA(square, success): All targets receive @METAFA(burst) 3d10 + 33 Elemental Damage plus the @METAFA(skull) Burned 3 and Pain 1.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(burst) + 1d10</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Expand the @METAFA(ruler-combined) by one Hexagon</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure) = You receive the @METAFA(burst) and the @METAFA(skull)</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -14106,7 +14106,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect Additional Information",
-            "value": "<p>This effect has the Retracting Property allowing to reduce its @METAFA(hexagon-image) by any number of Hexagons as seen in the following picture.</p>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><em><span lang=\"en-us\" xml:lang=\"en-us\">Retracting property</span></em></p>\n<p style=\"text-align: center;\"><span lang=\"en-us\" xml:lang=\"en-us\"><a title=\"Enlarge image\" href=\"https://media.giphy.com/media/RkhxoIoEjOwOXxXOcJ/giphy.gif\" data-fileid=\"undefined\" data-wrappedlink=\"\" data-ipslightbox=\"\" data-ipslightbox-group=\"undefined\"><img class=\"ipsImage_thumbnailed\" src=\"https://media.giphy.com/media/RkhxoIoEjOwOXxXOcJ/giphy.gif\" alt=\"giphy.gif\" width=\"478\" height=\"464\" data-ratio=\"97.07\" data-src=\"https://media.giphy.com/media/RkhxoIoEjOwOXxXOcJ/giphy.gif\" data-loaded=\"true\"></a></span></p>\n<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: center;\"><em>Expanding property</em></p>\n<p style=\"text-align: center;\"><a title=\"Enlarge image\" href=\"https://media.giphy.com/media/dzCsOTuFV7apVbMs27/giphy.gif\" data-fileid=\"undefined\" data-wrappedlink=\"\" data-ipslightbox=\"\" data-ipslightbox-group=\"undefined\"><img class=\"ipsImage_thumbnailed\" src=\"https://media.giphy.com/media/dzCsOTuFV7apVbMs27/giphy.gif\" alt=\"giphy.gif\" width=\"478\" height=\"464\" data-ratio=\"97.07\" data-src=\"https://media.giphy.com/media/dzCsOTuFV7apVbMs27/giphy.gif\" data-loaded=\"true\"></a></p>"
+            "value": "<p>This effect has the Retracting Property allowing to reduce its @METAFA(ruler-combined) by any number of Hexagons as seen in the following picture.</p>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><em><span lang=\"en-us\" xml:lang=\"en-us\">Retracting property</span></em></p>\n<p style=\"text-align: center;\"><span lang=\"en-us\" xml:lang=\"en-us\"><a title=\"Enlarge image\" href=\"https://media.giphy.com/media/RkhxoIoEjOwOXxXOcJ/giphy.gif\" data-fileid=\"undefined\" data-wrappedlink=\"\" data-ipslightbox=\"\" data-ipslightbox-group=\"undefined\"><img class=\"ipsImage_thumbnailed\" src=\"https://media.giphy.com/media/RkhxoIoEjOwOXxXOcJ/giphy.gif\" alt=\"giphy.gif\" width=\"478\" height=\"464\" data-ratio=\"97.07\" data-src=\"https://media.giphy.com/media/RkhxoIoEjOwOXxXOcJ/giphy.gif\" data-loaded=\"true\"></a></span></p>\n<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: center;\"><em>Expanding property</em></p>\n<p style=\"text-align: center;\"><a title=\"Enlarge image\" href=\"https://media.giphy.com/media/dzCsOTuFV7apVbMs27/giphy.gif\" data-fileid=\"undefined\" data-wrappedlink=\"\" data-ipslightbox=\"\" data-ipslightbox-group=\"undefined\"><img class=\"ipsImage_thumbnailed\" src=\"https://media.giphy.com/media/dzCsOTuFV7apVbMs27/giphy.gif\" alt=\"giphy.gif\" width=\"478\" height=\"464\" data-ratio=\"97.07\" data-src=\"https://media.giphy.com/media/dzCsOTuFV7apVbMs27/giphy.gif\" data-loaded=\"true\"></a></p>"
           }
         },
         "Results": {
@@ -14417,7 +14417,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -14440,7 +14440,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [
               "Burst"
             ],
@@ -14471,7 +14471,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square, success): Remove up to all fires from the targeted area. You cannot remove any fires generated by a Metapower at a higher level than your level of Pyrokinesis.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Expand the @METAFA(hexagon-image) by one Hexagon</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = @METAFA(ruler) + 1 Area</p>"
+            "value": "<p><strong>@METAFA(square, success): Remove up to all fires from the targeted area. You cannot remove any fires generated by a Metapower at a higher level than your level of Pyrokinesis.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Expand the @METAFA(ruler-combined) by one Hexagon</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = @METAFA(ruler) + 1 Area</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -14612,7 +14612,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect Additional Information",
-            "value": "<p>This effect has the Retracting Property allowing to reduce its @METAFA(hexagon-image) by any number of Hexagons as seen in the following picture.</p>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><em><span lang=\"en-us\" xml:lang=\"en-us\">Retracting property</span></em></p>\n<p style=\"text-align: center;\"><span lang=\"en-us\" xml:lang=\"en-us\"><a title=\"Enlarge image\" href=\"https://media.giphy.com/media/RkhxoIoEjOwOXxXOcJ/giphy.gif\" data-fileid=\"undefined\" data-wrappedlink=\"\" data-ipslightbox=\"\" data-ipslightbox-group=\"undefined\"><img class=\"ipsImage_thumbnailed\" src=\"https://media.giphy.com/media/RkhxoIoEjOwOXxXOcJ/giphy.gif\" alt=\"giphy.gif\" width=\"478\" height=\"464\" data-ratio=\"97.07\" data-src=\"https://media.giphy.com/media/RkhxoIoEjOwOXxXOcJ/giphy.gif\" data-loaded=\"true\"></a></span></p>\n<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: center;\"><em>Expanding property</em></p>\n<p style=\"text-align: center;\"><a title=\"Enlarge image\" href=\"https://media.giphy.com/media/dzCsOTuFV7apVbMs27/giphy.gif\" data-fileid=\"undefined\" data-wrappedlink=\"\" data-ipslightbox=\"\" data-ipslightbox-group=\"undefined\"><img class=\"ipsImage_thumbnailed\" src=\"https://media.giphy.com/media/dzCsOTuFV7apVbMs27/giphy.gif\" alt=\"giphy.gif\" width=\"478\" height=\"464\" data-ratio=\"97.07\" data-src=\"https://media.giphy.com/media/dzCsOTuFV7apVbMs27/giphy.gif\" data-loaded=\"true\"></a></p>"
+            "value": "<p>This effect has the Retracting Property allowing to reduce its @METAFA(ruler-combined) by any number of Hexagons as seen in the following picture.</p>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><em><span lang=\"en-us\" xml:lang=\"en-us\">Retracting property</span></em></p>\n<p style=\"text-align: center;\"><span lang=\"en-us\" xml:lang=\"en-us\"><a title=\"Enlarge image\" href=\"https://media.giphy.com/media/RkhxoIoEjOwOXxXOcJ/giphy.gif\" data-fileid=\"undefined\" data-wrappedlink=\"\" data-ipslightbox=\"\" data-ipslightbox-group=\"undefined\"><img class=\"ipsImage_thumbnailed\" src=\"https://media.giphy.com/media/RkhxoIoEjOwOXxXOcJ/giphy.gif\" alt=\"giphy.gif\" width=\"478\" height=\"464\" data-ratio=\"97.07\" data-src=\"https://media.giphy.com/media/RkhxoIoEjOwOXxXOcJ/giphy.gif\" data-loaded=\"true\"></a></span></p>\n<p style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: center;\"><em>Expanding property</em></p>\n<p style=\"text-align: center;\"><a title=\"Enlarge image\" href=\"https://media.giphy.com/media/dzCsOTuFV7apVbMs27/giphy.gif\" data-fileid=\"undefined\" data-wrappedlink=\"\" data-ipslightbox=\"\" data-ipslightbox-group=\"undefined\"><img class=\"ipsImage_thumbnailed\" src=\"https://media.giphy.com/media/dzCsOTuFV7apVbMs27/giphy.gif\" alt=\"giphy.gif\" width=\"478\" height=\"464\" data-ratio=\"97.07\" data-src=\"https://media.giphy.com/media/dzCsOTuFV7apVbMs27/giphy.gif\" data-loaded=\"true\"></a></p>"
           }
         },
         "Results": {
@@ -14923,7 +14923,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "Hexagon [Area 1]",
             "options": [
               "None",
@@ -14946,7 +14946,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [
               "Aura"
             ],
@@ -14963,7 +14963,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Additional Information",
-            "value": "<p><i class=\"fa-solid fa-bullseye\"></i> target all targets within an @METAFA(hexagon-image) Area Effect: Aura Hexagon [Area 1] you are located upon.</p>"
+            "value": "<p><i class=\"fa-solid fa-bullseye\"></i> target all targets within an @METAFA(ruler-combined) Area Effect: Aura Hexagon [Area 1] you are located upon.</p>"
           }
         },
         "Effects": {
@@ -14977,7 +14977,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square, success): Receive the @METAFA(shield-halved) Resistance 30 to the Elemental Energy Type. In addition, at the end of each of your Turns, targets found within the @METAFA(hexagon-image) Area Effect @METAFA(hexagon-image) Area Effect receive @METAFA(burst) 3d10 + 33 Elemental Damage plus the @METAFA(skull) Burned 3 and Pain 1. A target can be damaged once per Round by this effect.&nbsp;</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = &nbsp;@METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = Increase the @METAFA(skull) Pain by + 1 level</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure) = You receive the @METAFA(burst) and the @METAFA(skull)</p>"
+            "value": "<p><strong>@METAFA(square, success): Receive the @METAFA(shield-halved) Resistance 30 to the Elemental Energy Type. In addition, at the end of each of your Turns, targets found within the @METAFA(ruler-combined) Area Effect @METAFA(ruler-combined) Area Effect receive @METAFA(burst) 3d10 + 33 Elemental Damage plus the @METAFA(skull) Burned 3 and Pain 1. A target can be damaged once per Round by this effect.&nbsp;</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = &nbsp;@METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = Increase the @METAFA(skull) Pain by + 1 level</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure) = You receive the @METAFA(burst) and the @METAFA(skull)</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -15431,7 +15431,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "Hexagon [Area 1]",
             "options": [
               "None",
@@ -15454,7 +15454,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -15469,7 +15469,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Additional Information",
-            "value": "<p><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;@METAFA(bullseye) target the up to three Visible, adjacent with each other, @METAFA(hexagon-image) Area Effect: Hexagon, as seen in the following picture.</span></p>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><em>Possible positioning of Fire Wall on the Grid</em></p>\n<p><a title=\"Enlarge image\" href=\"https://content.invisioncic.com/e290497/monthly_2020_05/FIRES.png.4e8fbc7ff596ecf1152891b9f6eaf7a8.png\" data-fileid=\"863\" data-wrappedlink=\"\" data-ipslightbox=\"\" data-ipslightbox-group=\"undefined\"><em><img class=\"ipsImage ipsImage_thumbnailed\" style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://content.invisioncic.com/e290497/monthly_2020_05/FIRES.png.4e8fbc7ff596ecf1152891b9f6eaf7a8.png\" alt=\"FIRES.png.4e8fbc7ff596ecf1152891b9f6eaf7a8.png\" width=\"215\" data-fileid=\"863\" data-ratio=\"88.37\" data-src=\"//content.invisioncic.com/e290497/monthly_2020_05/FIRES.png.4e8fbc7ff596ecf1152891b9f6eaf7a8.png\" data-loaded=\"true\"></em></a></p>"
+            "value": "<p><span lang=\"en-us\" xml:lang=\"en-us\">&nbsp;@METAFA(bullseye) target the up to three Visible, adjacent with each other, @METAFA(ruler-combined) Area Effect: Hexagon, as seen in the following picture.</span></p>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><em>Possible positioning of Fire Wall on the Grid</em></p>\n<p><a title=\"Enlarge image\" href=\"https://content.invisioncic.com/e290497/monthly_2020_05/FIRES.png.4e8fbc7ff596ecf1152891b9f6eaf7a8.png\" data-fileid=\"863\" data-wrappedlink=\"\" data-ipslightbox=\"\" data-ipslightbox-group=\"undefined\"><em><img class=\"ipsImage ipsImage_thumbnailed\" style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://content.invisioncic.com/e290497/monthly_2020_05/FIRES.png.4e8fbc7ff596ecf1152891b9f6eaf7a8.png\" alt=\"FIRES.png.4e8fbc7ff596ecf1152891b9f6eaf7a8.png\" width=\"215\" data-fileid=\"863\" data-ratio=\"88.37\" data-src=\"//content.invisioncic.com/e290497/monthly_2020_05/FIRES.png.4e8fbc7ff596ecf1152891b9f6eaf7a8.png\" data-loaded=\"true\"></em></a></p>"
           }
         },
         "Effects": {
@@ -15483,7 +15483,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square, success): You create up two fires upon the targeted @METAFA(hexagon-image) Hexagons [Area 1]. At the end of each of your Turns, targets located within the @METAFA(hexagon-image) Area Effect receive @METAFA(burst) 3d10 + 33 Elemental Damage plus the @METAFA(skull) Burned 3 and Pain 1. A target can be damaged once per Round by this effect.&nbsp;</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(burst) + 1d10</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Extend the @METAFA(hexagon-image) by one adjacent Hexagon</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = @METAFA(ruler) + 1 Area</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure) = You receive the @METAFA(burst) and the @METAFA(skull)</p>"
+            "value": "<p><strong>@METAFA(square, success): You create up two fires upon the targeted @METAFA(ruler-combined) Hexagons [Area 1]. At the end of each of your Turns, targets located within the @METAFA(ruler-combined) Area Effect receive @METAFA(burst) 3d10 + 33 Elemental Damage plus the @METAFA(skull) Burned 3 and Pain 1. A target can be damaged once per Round by this effect.&nbsp;</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(burst) + 1d10</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Extend the @METAFA(ruler-combined) by one adjacent Hexagon</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = @METAFA(ruler) + 1 Area</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure)@METAFA(xmark, failure) = You receive the @METAFA(burst) and the @METAFA(skull)</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -15996,7 +15996,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -16019,7 +16019,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",

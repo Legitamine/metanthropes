@@ -213,11 +213,11 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		///* check Area Effect
 		if (areaEffect !== "None") {
 			areaEffectMessage =
-				`<span data-tooltip="Area Effect">@METAFA(hexagon-image, null, fw) -</span> ` + areaEffect + `<br>`;
+				`<span data-tooltip="Area Effect">@METAFA(ruler-combined, null, fw) -</span> ` + areaEffect + `<br>`;
 			//? check Area Type
 			if (areaType.length > 0) {
 				areaEffectMessage +=
-					`<span data-tooltip="Area Effect">@METAFA(hexagon-image, null, fw) (Type) -</span> ` +
+					`<span data-tooltip="Area Effect">@METAFA(ruler-combined, null, fw) (Type) -</span> ` +
 					areaType +
 					`<br>`;
 			}

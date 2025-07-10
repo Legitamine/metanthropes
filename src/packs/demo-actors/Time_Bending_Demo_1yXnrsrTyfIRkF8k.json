@@ -1194,7 +1194,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "Block [Area 5]",
             "options": [
               "None",
@@ -1217,7 +1217,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [
               "Sphere"
             ],
@@ -1756,7 +1756,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -1779,7 +1779,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -2258,7 +2258,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "Room [Area 2]",
             "options": [
               "None",
@@ -2281,7 +2281,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [
               "Sphere"
             ],
@@ -2312,7 +2312,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square, success): You can alter the volume of light within the @METAFA(hexagon-image) Area Effect, from very bright to dim lightning. In Addition, you can alter any colors of any targets found within the Area Effect, for as long as they remain here.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Expand the @METAFA(hexagon-image) by one Hexagon</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = @METAFA(ruler) + 1 Area</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure) = Receive the @METAFA(skull) Sense Lost: Vision for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square, success): You can alter the volume of light within the @METAFA(ruler-combined) Area Effect, from very bright to dim lightning. In Addition, you can alter any colors of any targets found within the Area Effect, for as long as they remain here.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Expand the @METAFA(ruler-combined) by one Hexagon</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = @METAFA(ruler) + 1 Area</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure) = Receive the @METAFA(skull) Sense Lost: Vision for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -2766,7 +2766,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "Room [Area 2]",
             "options": [
               "None",
@@ -2789,7 +2789,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [
               "Sphere"
             ],
@@ -2820,7 +2820,7 @@
             "type": "text",
             "dtype": "String",
             "label": "Effect",
-            "value": "<p><strong>@METAFA(square, success): Targets located within the @METAFA(hexagon-image) Area Effect receive the @METAFA(skull) Sense Lost: Vision, for as long as they remain within the Area Effect. Characters attesting to perceive or target with their vision anything inside, do so with a &ndash; 50% Penalty.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Expand the @METAFA(hexagon-image) by one Hexagon</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = @METAFA(ruler) + 1 Area</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure) = Receive the @METAFA(skull) Sense Lost: Vision for 1 Cycle</p>"
+            "value": "<p><strong>@METAFA(square, success): Targets located within the @METAFA(ruler-combined) Area Effect receive the @METAFA(skull) Sense Lost: Vision, for as long as they remain within the Area Effect. Characters attesting to perceive or target with their vision anything inside, do so with a &ndash; 50% Penalty.</strong></p>\n<p>&nbsp;</p>\n<p>@METAFA(square-check, success) = @METAFA(hourglass-start) + 1 Cycle</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success) = Expand the @METAFA(ruler-combined) by one Hexagon</p>\n<p>@METAFA(square-check, success)@METAFA(square-check, success)@METAFA(square-check, success) = @METAFA(ruler) + 1 Area</p>\n<p>@METAFA(xmark, failure)@METAFA(xmark, failure) = Receive the @METAFA(skull) Sense Lost: Vision for 1 Cycle</p>"
           },
           "VSStatRoll": {
             "type": "text",
@@ -3272,7 +3272,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -3295,7 +3295,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -3776,7 +3776,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -3799,7 +3799,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -4281,7 +4281,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -4304,7 +4304,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -4789,7 +4789,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -4812,7 +4812,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -5299,7 +5299,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "Hexagon [Area 1]",
             "options": [
               "None",
@@ -5322,7 +5322,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -5809,7 +5809,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "Hexagon [Area 1]",
             "options": [
               "None",
@@ -5832,7 +5832,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -6320,7 +6320,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -6343,7 +6343,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -6831,7 +6831,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -6854,7 +6854,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -7338,7 +7338,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -7361,7 +7361,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -7842,7 +7842,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -7865,7 +7865,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -8346,7 +8346,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -8369,7 +8369,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",
@@ -8910,7 +8910,7 @@
           "AreaEffect": {
             "type": "text",
             "dtype": "String",
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
             "value": "None",
             "options": [
               "None",
@@ -8933,7 +8933,7 @@
             ]
           },
           "AreaType": {
-            "label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+            "label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
             "value": [],
             "selections": {
               "None": "None",

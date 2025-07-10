@@ -1,6 +1,6 @@
 /**
  * Helper function to import functionality from the Core Module
- * Deprecated in favor of metaImportFromModule
+ * !Deprecated in favor of metaImportFromModule
  */
 
 export async function metaImportProgressionFromCoreModule() {

@@ -1267,7 +1267,7 @@
 					"AreaEffect": {
 						"type": "text",
 						"dtype": "String",
-						"label": "<i class=\"fa-solid fa-hexagon-image\"></i> Area of Effect",
+						"label": "<i class=\"fa-solid fa-ruler-combined\"></i> Area of Effect",
 						"value": null,
 						"options": [
 							"None",
@@ -1290,7 +1290,7 @@
 						]
 					},
 					"AreaType": {
-						"label": "<i class=\"fa-solid fa-hexagon-image\"></i> (Type)",
+						"label": "<i class=\"fa-solid fa-ruler-combined\"></i> (Type)",
 						"value": [],
 						"selections": {
 							"None": "None",
