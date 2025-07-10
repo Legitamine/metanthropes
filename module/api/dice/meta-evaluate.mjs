@@ -136,13 +136,21 @@ export async function metaEvaluate(
 		if (statScore > 100) {
 			levelsOfSuccess += Math.floor((statScore - 100) / 10);
 		}
+		if (bonus > 0) {
+			levelsOfSuccess += Math.floor(bonus / 10);
+		}
 		//todo: edw tha valw +/- gia bonus KAI penalty ean to theloume, opote penalty kanei reduce kai ta crit success kai bonus antistrofa sta crit failure?
+		//if a/b
+		//
 	}
 	if (criticalFailure) {
 		result = `@METAFA(square-xmark, failure, beat-fade) Critical Failure @METAFA(square-xmark, failure, beat-fade), rewarding ${actor.name} with +1 @METAFA(hand-fingers-crossed) Destiny`;
 		await actor.applyDestinyChange(1);
 		levelsOfFailure = 10;
 		levelsOfSuccess = 0;
+		if (penalty < 0) {
+			levelsOfFailure -= Math.ceil(penalty / 10);
+		}
 	}
 	//? Create the message to be printed to chat - remember: Penalties and Reductions are Negative, Bonus and Pain are Positive
 	const needToRoll =
