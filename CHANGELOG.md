@@ -10,16 +10,16 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Early Access Releases
 
-# Early Access v0.13.23 [2025-07-05]
+# Early Access v0.13.xx [2025-07-18]
 
 ## Added:
 
--   reward destiny + reset or reroll initiative when
+-   !reward destiny + reset or reroll initiative when
 -   Foundry version 13.346 is now supported.
+-   A Critical Success roll result will now add any Bonus to the total Levels of Success.
+-   A Critical Failure roll result will now add any Penalty to the total Levels of Failure.
 -   Added a custom color scheme to the Metanthropes API, available under `metanthropes.system.colors` to be used with Font Awesome icons as well as other UI elements in upcoming releases.
 -   A new way to create Font Awesome Icons, using text enrichers. See #394 on how to configure your own content (assumes you have a valid Font Awesome Pro license).
--   Critical Success rolls will now also add any Bonus to the total Levels of Success.
--   Critical Failure rolls will now also add any Penalty to the total Levels of Failure.
 
 ## Changed:
 
@@ -31,8 +31,8 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 ## Fixed:
 
 -   [Introductory] fix name of Cutscene vs Cinematic
--   todo: fix journals, links
--   The Pause screen displays the Metanthropes Logo.
+-   !todo: fix journals, links
+-   The Pause screen displays the Metanthropes™ Logo.
 -   Changed the default Disposition for all non-Protagonist Prototype Tokens to be 'Neutral' instead of 'Secret', allowing players to target them (Secret disposition apperently does not allow targeting). If loading a World that was created before this release, all Prototype Token defaults will be overriden with this new behavior.
 -   Replaced the loading screen that appears when loading a World, that stays up until the active scene loads. This image now uses the new cover image from the system.
 -   Fixed the issue with dissappearing Font Awesome icons when editing a Journal page or a Possession's effect description fields. From now on, use the new Text Enrichers to include FA icons in the Journals and in the description fields on Items. See #394 on how to configure your own content (assumes you have a valid Font Awesome Pro license).
