@@ -654,10 +654,10 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 			text: "Progressing...",
 			ease: "none",
 		});
-		//? Check if 'Beta Testing of New Features' is enabled
-		if (!game.settings.get("metanthropes", "metaBetaTesting")) {
+		//? Check if 'Alpha Testing of New Features' is enabled
+		if (!game.settings.get("metanthropes", "metaAlphaTesting")) {
 			ui.notifications.warn(
-				"Progression is in Beta Testing and only available with the Metanthropes Homebrew Module at this time"
+				"Progression is in early Alpha Testing and only available with the Metanthropes Homebrew Module at this time"
 			);
 			return;
 		}
@@ -668,20 +668,21 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		// 	"metaprogression",
 		// 	"metaStartProgression"
 		// );
-		if (!metaProgressActor) {
-			metanthropes.utils.metaLog(
-				2,
-				"MetanthropesActorSheet",
-				"_onProgression",
-				"Progression function not available"
-			);
-			return;
-		}
-		//? Get the actor for the Progression
+		// if (!metaProgressActor) {
+		// 	metanthropes.utils.metaLog(
+		// 		2,
+		// 		"MetanthropesActorSheet",
+		// 		"_onProgression",
+		// 		"Progression function not available"
+		// 	);
+		// 	return;
+		// }
+		// //? Get the actor for the Progression
 		const metaProgressionActor = this.actor;
 		//? Set the Flags for the Progression Form
 		//! Note that this flag will remain set unless otherwise told to do so!
 		//todo do this properly with a promise!
+		//todo refactor this to use the Metanthropes API
 		metaProgressionActor.setFlag("metanthropes", "Progression", { isProgressing: true });
 		//? Pass along the actor to the Progression Form
 		metanthropes.utils.metaLog(
