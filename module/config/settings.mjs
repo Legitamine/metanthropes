@@ -1,4 +1,5 @@
 export const settings = [
+	//todo: deprecations
 	{
 		module: "metanthropes",
 		key: "migrationVersion",
@@ -26,6 +27,21 @@ export const settings = [
 		scope: "client",
 		config: true,
 		requiresReload: false,
+		type: Boolean,
+		default: false,
+		onChange: null,
+	},
+	{
+		module: "metanthropes",
+		key: "forceMigration",
+		name: "Force Data Migration",
+		hint: `
+		When you enable this setting, it will force the system to migrate world data to the latest version.
+		This setting requires a reload and it will be disabled automatically once it completes.
+		`,
+		scope: "world",
+		config: true,
+		requiresReload: true,
 		type: Boolean,
 		default: false,
 		onChange: null,
@@ -146,6 +162,8 @@ export const settings = [
 		default: true,
 		onChange: null,
 	},
+	//* Hidden from the UI
+	//todo deprecate this
 	{
 		module: "metanthropes",
 		key: "prototypeTokenOverridesApplied",
@@ -155,6 +173,18 @@ export const settings = [
 		config: false,
 		requiresReload: false,
 		type: Boolean,
+		default: false,
+		onChange: null,
+	},
+	{
+		module: "metanthropes",
+		key: "migration",
+		name: "Migration Settings",
+		hint: ``,
+		scope: "world",
+		config: false,
+		requiresReload: false,
+		type: Object,
 		default: false,
 		onChange: null,
 	},
