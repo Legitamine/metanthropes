@@ -2,53 +2,102 @@
  * Migrates data from older versions of the system to newer versions
  * @returns {Promise<void>}
  */
-export async function metaMigrateData() {
-	metanthropes.utils.metaLog(3, "metaMigrateData", "Initializing Migration Checks");
-	//* Check if we have run the migration or we are forced to run.
+export async function metaMigration(module) {
+	metanthropes.utils.metaLog(3, "metaMigration", "Initializing " + module + " Migration Checks");
 	const forcedMigration = await game.settings.get("metanthropes", "forceMigration");
 	const currentSystemVersion = await game.system.version;
-	const migrationData = await game.settings.get("metanthropes", "migration");
-	const lastMigratedVersion = migrationData.lastMigrationVersion ?? null;
+	const migrationData = (await game.settings.get("metanthropes", "migration")) || {};
+	const lastMigratedVersion = migrationData[module]?.lastMigrationVersion || 0;
 	const migrationTest = foundry.utils.isNewerVersion(currentSystemVersion, lastMigratedVersion);
 	if (migrationTest || forcedMigration) {
-		metanthropes.utils.metaLog(3, "metaMigrateData", "World Data Migration is required");
-		await metaMigrateDoMigration(migrationData, currentSystemVersion);
+		metanthropes.utils.metaLog(3, "metaMigration", module + " World Data Migration is required");
+		await _metaMigrateData(module, migrationData, currentSystemVersion);
 	} else {
-		metanthropes.utils.metaLog(3, "metaMigrateData", "World Data Migration is not required");
+		metanthropes.utils.metaLog(3, "metaMigration", module + " World Data Migration is not required");
 	}
 }
 
-export async function metaMigrateDoMigration(migrationData, currentSystemVersion) {
-	const progress = ui.notifications.info("System Migration: Migrating World Data", { progress: true });
-	progress.update({ pct: 0.1, message: "System Migration: Migrating World Data, please wait." });
-	//* Migrate Prototype Token Defauls
-	progress.update({ pct: 0.2, message: "System Migration: Migrating World Data, please wait." });
-	await metaMigratePrototypeTokenDefaults(migrationData, currentSystemVersion);
-	//* Migrate Metapowers from Core
-	//* Migrate Possessions from Core
-	//progress.update({ pct: 0.2, message: "System Migration: Migrating World Data, please wait." });
-	//await metaMigratePrototypeTokenDefaults(migrationData, currentSystemVersion);
+/**
+ * Description placeholder
+ *
+ * @async
+ * @param {*} migrationData
+ * @param {*} currentSystemVersion
+ * @returns {*}
+ */
+async function _metaMigrateData(module, migrationData, currentSystemVersion) {
+	const progress = ui.notifications.info(module + " Data Migration: Migrating World Data", { progress: true });
+	progress.update({ pct: 0.1, message: module + " Data Migration: Migrating World Data, please wait." });
+	let updateData = {};
+	if (module === "System") {
+		//* Migrate Prototype Token Defauls
+		progress.update({ pct: 0.2, message: module + " Data Migration: Migrating World Data, please wait.." });
+		const prototypeTokenDefaults = await _metaMigratePrototypeTokenDefaults(migrationData, currentSystemVersion);
+		if (prototypeTokenDefaults) updateData = prototypeTokenDefaults;
+		progress.update({ pct: 0.3, message: module + " Data Migration: Migrating World Data, please wait..." });
+		//todo Placeholder for further migrations
+		// progress.update({ pct: 0.4, message: module + " Data Migration: Migrating World Data, please wait.." });
+		// await _metaMigrateSomething(migrationData, currentSystemVersion);
+		// progress.update({ pct: 0.5, message: module + " Data Migration: Migrating World Data, please wait.." });
+	}
+	if (module === "Core") {
+		progress.update({ pct: 0.4, message: module + " Data Migration: Migrating World Data, please wait...." });
+		//todo more graceful error handling
+		await _metaMigrateCoreData(migrationData, currentSystemVersion);
+		//edw kanw await to updatedata apo core? or false?
+		progress.update({ pct: 0.5, message: module + " Data Migration: Migrating World Data, please wait....." });
+	}
 	//* Migration wrapping up
-	progress.update({ pct: 0.7, message: "System Migration: Migrating World Data, please wait.." });
-	const prevMigration = (await game.settings.get("metanthropes", "migration")) || {};
-	progress.update({ pct: 0.8, message: "System Migration: Migrating World Data, please wait..." });
+	progress.update({ pct: 0.7, message: module + " Data Migration: Migrating World Data, please wait......." });
+	const prevMigration = migrationData[module] || {};
+	progress.update({ pct: 0.8, message: module + " Data Migration: Migrating World Data, please wait........" });
 	await game.settings.set("metanthropes", "migration", {
-		...prevMigration,
-		lastMigrationVersion: currentSystemVersion,
+		...migrationData,
+		[module]: {
+			...prevMigration,
+			lastMigrationVersion: currentSystemVersion,
+			...updateData,
+		},
 	});
-	progress.update({ pct: 0.9, message: "System Migration: Migrating World Data, please wait...." });
+	progress.update({ pct: 0.9, message: module + " Data Migration: Migrating World Data, please wait........." });
 	await game.settings.set("metanthropes", "forceMigration", false);
-	progress.update({ pct: 1, message: "System Migration: Finished Migrating World Data" });
+	progress.update({ pct: 1, message: module + " Data Migration: Finished Migrating World Data" });
 }
 
-export async function metaMigratePrototypeTokenDefaults(migrationData, currentSystemVersion) {
+async function _metaMigrateCoreData(migrationData, currentSystemVersion) {
+	metanthropes.utils.metaLog(0, "System", "Migration", "Initializing Core Migration Engine");
+	const progress = ui.notifications.info("Core Data Migration", { progress: true });
+	progress.update({ pct: 0.2, message: "Updating, please do not refresh! ." });
+	const core = await game.settings.get("metanthropes", "metaCore");
+	if (!core) {
+		ui.notifications.warn("Metanthropes: Core is not Enabled, please activate it in the game settings.");
+		progress.update({ pct: 1, message: "No Data Migrated" });
+		metanthropes.utils.metaLog(2, "System", "Migration", "Unable to complete Core Data Miration");
+		return;
+	}
+	progress.update({ pct: 0.3, message: "Updating, please do not refresh! .." });
+	await metanthropes.utils.metaCoreMigration(migrationData, currentSystemVersion);
+	progress.update({ pct: 0.9, message: "Finalizing..." });
+	metanthropes.utils.metaLog(0, "System", "Migration", "Finished Core Data Migration");
+	progress.update({ pct: 1, message: "Finished updating!" });
+}
+/**
+ * Description placeholder
+ *
+ * @async
+ * @param {*} migrationData
+ * @param {*} currentSystemVersion
+ * @returns {*}
+ */
+async function _metaMigratePrototypeTokenDefaults(migrationData, currentSystemVersion) {
 	//* Override Protype Token Defaults
-	const settingApplied = migrationData.prototypeTokenOverridesApplied ?? null;
-	const settingAppliedVersion = migrationData.prototypeTokenOverridesAppliedVersion ?? null;
+	const settingApplied = migrationData?.System?.prototypeTokenOverridesApplied ?? null;
+	const settingAppliedVersion = migrationData?.System?.prototypeTokenOverridesAppliedVersion ?? 0;
 	const settingRequiredVersion = "0.13.26";
 	const isNewerVersion = foundry.utils.isNewerVersion(settingRequiredVersion, settingAppliedVersion);
 	if (settingApplied && !isNewerVersion) {
 		metanthropes.utils.metaLog(0, "System", "Migration", "System Default Token Overrides already established");
+		return false;
 	} else {
 		metanthropes.utils.metaLog(0, "System", "Migration", "Establishing New System Default Token Overrides");
 		const progress = ui.notifications.info("Updating Prototype Token Default Settings", { progress: true });
@@ -56,13 +105,28 @@ export async function metaMigratePrototypeTokenDefaults(migrationData, currentSy
 		progress.update({ pct: 0.25, message: "Updating, please do not refresh! ." });
 		await game.settings.set("core", "prototypeTokenOverrides", newTokenDefaults);
 		progress.update({ pct: 0.5, message: "Updating, please do not refresh! .." });
-		const prevMigration = (await game.settings.get("metanthropes", "migration")) || {};
-		progress.update({ pct: 0.75, message: "Updating, please do not refresh! ..." });
-		await game.settings.set("metanthropes", "migration", {
-			...prevMigration,
+		const updateData = {
 			prototypeTokenOverridesApplied: true,
 			prototypeTokenOverridesAppliedVersion: currentSystemVersion,
+		};
+		progress.update({ pct: 1.0, message: "Finished Updating Prototype Token Defaults" });
+		return updateData;
+		const prevMigration = migrationData.System || {};
+		//const prevMigration = (await game.settings.get("metanthropes", "migration", "System")) || {};
+		progress.update({ pct: 0.75, message: "Updating, please do not refresh! ..." });
+		await game.settings.set("metanthropes", "migration", {
+			...migrationData,
+			System: {
+				...prevMigration,
+				prototypeTokenOverridesApplied: true,
+				prototypeTokenOverridesAppliedVersion: currentSystemVersion,
+			},
 		});
+		// await game.settings.set("metanthropes", "migration", "System", {
+		// 	...prevMigration,
+		// 	prototypeTokenOverridesApplied: true,
+		// 	prototypeTokenOverridesAppliedVersion: currentSystemVersion,
+		// });
 		progress.update({ pct: 1.0, message: "Finished Updating Prototype Token Defaults" });
 	}
 }

@@ -56,7 +56,7 @@ import { metaHandleSocketEvents } from "./api/logic/handle-socket-events.mjs";
 //* Utilities
 import { prepareActiveEffectCategories, onManageActiveEffect } from "./api/utils/active-effect-tools.mjs";
 import { metaExtractNumberOfDice } from "./api/utils/dice-tools.mjs";
-import { metaMigrateData } from "./api/utils/migration.mjs";
+import { metaMigration } from "./api/utils/migration.mjs";
 import { metaLog, metaLogDocument } from "./api/utils/log-tools.mjs";
 import { metaSortActions } from "./api/utils/sort-actions.mjs";
 import { metaRunMacro } from "./api/utils/run-macro.mjs";
@@ -130,7 +130,7 @@ globalThis.metanthropes = {
 	utils: {
 		metaLog,
 		metaLogDocument,
-		metaMigrateData,
+		metaMigration,
 		metaExtractNumberOfDice,
 		metaRegisterGameSettings,
 		metaRegisterStatusEffects,
