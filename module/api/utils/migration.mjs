@@ -28,11 +28,11 @@ export async function metaMigration(module) {
 	}
 }
 
-
 /**
  * Migration Engine controls the overall migration steps, displays progress and updates the game settings
  * 
  * !todo: confirm we don't get to a state where we'll update the settings without having actually done things first
+ * todo: progress bar should be localized
  *
  * @async
  * @param {*} module 
@@ -76,10 +76,10 @@ async function _metaMigrateData(module, migrationData, currentSystemVersion) {
 	progress.update({ pct: 1, message: module + " Data Migration: Finished Updating World Data" });
 }
 
-
 /**
  * Calls the Core Data Migration
  * todo: modularity for upcoming modules
+ * todo: progress bar should be localized
  *
  * @async
  * @param {*} migrationData 
@@ -124,6 +124,7 @@ async function _metaMigrateDataCore(migrationData, currentSystemVersion) {
 		return false;
 	}
 }
+
 /**
  * Manages updating the overrides for the default Prototype Token Defauls introduced with v13
  * todo: modularity, better error handling
@@ -137,7 +138,7 @@ async function _metaMigrateDataPrototypeTokenDefaults(migrationData, currentSyst
 	//* Override Protype Token Defaults
 	const settingApplied = migrationData?.System?.prototypeTokenOverridesApplied ?? null;
 	const settingAppliedVersion = migrationData?.System?.prototypeTokenOverridesAppliedVersion ?? 0;
-	const settingRequiredVersion = "0.13.26";
+	const settingRequiredVersion = "0.13.26"; //? version is to be entered manually when a feature is introduced
 	const isNewerVersion = foundry.utils.isNewerVersion(settingRequiredVersion, settingAppliedVersion);
 	if (settingApplied && !isNewerVersion) {
 		metanthropes.utils.metaLog(0, "System", "Migration", "System Default Token Overrides already established");
