@@ -3,7 +3,7 @@
  * 
  * Migration will always trigger, if the 'Force Data migration' setting is enabled
  * It will also run every time a new version of the System is detected
- * Whether and How Data will be migrated is decided by _metaMigrateData
+ * How Data will be migrated is decided by _metaMigrateData
  * 
  * !todo: confirm we don't get to a state where we'll update the settings without having actually done things first
  * ?currently multiple modules can trigger it and it might happen that the migrationData it grabs could change already

@@ -153,21 +153,23 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 				//? Check if the item's category is allowed
 				if (item.system.Category.value && currentAllowedCategories.includes(item.system.Category.value)) {
 					Possessions[item.system.Category.value].push(item);
-					if (item.system.Execution.ActionSlot.value === "Reaction") {
-						Actions.Reaction.push(item);
-					}
-					//? There are various types of Focused Actions, so we need to grab all of them
-					if (item.system.Execution.ActionSlot.value.includes("Focused Action")) {
-						Actions.Focused.push(item);
-					}
-					if (item.system.Execution.ActionSlot.value === "Main Action") {
-						Actions.Main.push(item);
-					}
-					if (item.system.Execution.ActionSlot.value === "Extra Action") {
-						Actions.Extra.push(item);
-					}
-					if (item.system.Execution.ActionSlot.value === "Movement") {
-						Actions.Movement.push(item);
+					if (item.system.Execution.ActionSlot.value) {
+						if (item.system.Execution.ActionSlot.value === "Reaction") {
+							Actions.Reaction.push(item);
+						}
+						//? There are various types of Focused Actions, so we need to grab all of them
+						if (item.system.Execution.ActionSlot.value.includes("Focused Action")) {
+							Actions.Focused.push(item);
+						}
+						if (item.system.Execution.ActionSlot.value === "Main Action") {
+							Actions.Main.push(item);
+						}
+						if (item.system.Execution.ActionSlot.value === "Extra Action") {
+							Actions.Extra.push(item);
+						}
+						if (item.system.Execution.ActionSlot.value === "Movement") {
+							Actions.Movement.push(item);
+						}
 					}
 				} else {
 					//? Remove the item from the actor if its category is not allowed
@@ -185,21 +187,23 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 			else if (item.type === "Metapower") {
 				if (item.system.Level.value != undefined) {
 					Metapowers[item.system.Level.value].push(item);
-					if (item.system.Execution.ActionSlot.value === "Reaction") {
-						Actions.Reaction.push(item);
-					}
-					//? There are various types of Focused Actions, so we need to grab all of them
-					if (item.system.Execution.ActionSlot.value.includes("Focused Action")) {
-						Actions.Focused.push(item);
-					}
-					if (item.system.Execution.ActionSlot.value === "Main Action") {
-						Actions.Main.push(item);
-					}
-					if (item.system.Execution.ActionSlot.value === "Extra Action") {
-						Actions.Extra.push(item);
-					}
-					if (item.system.Execution.ActionSlot.value === "Movement") {
-						Actions.Movement.push(item);
+					if (item.system.Execution.ActionSlot.value) {
+						if (item.system.Execution.ActionSlot.value === "Reaction") {
+							Actions.Reaction.push(item);
+						}
+						//? There are various types of Focused Actions, so we need to grab all of them
+						if (item.system.Execution.ActionSlot.value.includes("Focused Action")) {
+							Actions.Focused.push(item);
+						}
+						if (item.system.Execution.ActionSlot.value === "Main Action") {
+							Actions.Main.push(item);
+						}
+						if (item.system.Execution.ActionSlot.value === "Extra Action") {
+							Actions.Extra.push(item);
+						}
+						if (item.system.Execution.ActionSlot.value === "Movement") {
+							Actions.Movement.push(item);
+						}
 					}
 				}
 			}

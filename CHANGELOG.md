@@ -35,6 +35,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 -   !todo: fix journals, links
 -   [Introductory] renamed the new Scene to 'Cutscene'
+-   [Core/Homebrew] Fixed an issue that was causing some customized Items to not show up properly on the Actor character sheet. These Items are now visible on the sheet and you can click on the delete icon to remove them.
 -   Changed the default Disposition for all non-Protagonist Prototype Tokens to be 'Neutral' instead of 'Secret', allowing players to target them (Secret disposition apperently does not allow targeting). If loading a World that was created before this release, all Prototype Token defaults will be overriden with this new behavior.
 -   Replaced the loading screen that appears when loading a World, that stays up until the active scene loads. This image now uses the new cover image from the system.
 -   The Pause screen displays the Metanthropes™ Logo again.
