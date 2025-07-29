@@ -1,8 +1,8 @@
 Hooks.once("ready", async function () {
-	//* Migration
-	metanthropes.utils.metaLog(0, "System", "Getting Ready", "Initializing System Data Migration");
-	await metanthropes.utils.metaMigration("System");
-	metanthropes.utils.metaLog(0, "System", "Getting Ready", "Finished System Data Migration");
+	//* Migration Engine
+	metanthropes.utils.metaLog(0, "System", "Getting Ready", "Initializing Data Migration Engine");
+	await metanthropes.utils.metaMigration();
+	metanthropes.utils.metaLog(0, "System", "Getting Ready", "Data Migration Finished");
 
 	//* Add support for Moulinette
 	//todo should be moved to supported-modules instead

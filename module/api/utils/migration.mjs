@@ -1,79 +1,200 @@
 /**
  * Evaluates whether Migration is required for the Metanthropes System and Premium Modules
- * 
+ *
  * Migration will always trigger, if the 'Force Data migration' setting is enabled
+ * The setting will reset upon a succesful application of updates from a module
  * It will also run every time a new version of the System is detected
- * How Data will be migrated is decided by _metaMigrateData
- * 
- * !todo: confirm we don't get to a state where we'll update the settings without having actually done things first
- * ?currently multiple modules can trigger it and it might happen that the migrationData it grabs could change already
+ *
+ * If running on a new World, it will also rename the default Gamemaster user to 'The Narrator'
+ *
+ * todo we could theoretically end up with multiple modules triggering it at the same time and it might unravel
+ * todo in such a way that that the migrationData it grabs could have changed already
+ * !to go around this, we could iterrate over modules enabled list that could propagate from the enabled settings of modules
+ * todo review the above fixes and also review if having a force data migration flag set could be prevented (bad ux to have it persist)
  * ? having it control the grabbing and updating could help control it / pace it better
  * ? however it might be best to have it store data for each module in a separate object under each module?
  * ? this should control it though
  * @returns {Promise<void>}
  */
-export async function metaMigration(module) {
-	metanthropes.utils.metaLog(3, "metaMigration", "Initializing", module, "Migration Checks");
+export async function metaMigration() {
+	if (!game.user.isActiveGM) return;
 	const isMigrationForced = await game.settings.get("metanthropes", "forceMigration");
 	const currentSystemVersion = await game.system.version;
-	const migrationData = (await game.settings.get("metanthropes", "migration")) || {};
-	const lastMigratedVersion = migrationData[module]?.lastMigrationVersion || 0;
-	const isMigrationRequired = foundry.utils.isNewerVersion(currentSystemVersion, lastMigratedVersion);
-	if (isMigrationRequired || isMigrationForced) {
-		metanthropes.utils.metaLog(3, "metaMigration", module, "World Data Migration is required or is being forced");
-		await _metaMigrateData(module, migrationData, currentSystemVersion);
-		metanthropes.utils.metaLog(3, "metaMigration", module, "World Data Migration completed");
-	} else {
-		metanthropes.utils.metaLog(3, "metaMigration", module, "World Data Migration is not required");
+	let migrationData = await game.settings.get("metanthropes", "migration");
+	if (!migrationData) {
+		metanthropes.utils.metaLog(3, "Migration", "New World Detected", "Renaming Gamemaster");
+		await game.users.activeGM.update({ name: game.i18n.localize("METANTHROPES.COMMON.Narrator") });
+		migrationData = {};
+	}
+	//todo figure out why intellisence says this await has no effect
+	const modules = await _metaInitializeModules();
+	for (const [module, moduleName] of modules) {
+		metanthropes.utils.metaLog(3, "Migration", "Initializing", module, "Migration Checks");
+		const lastMigratedVersion = migrationData[module]?.lastMigrationVersion || 0;
+		const isMigrationRequired = foundry.utils.isNewerVersion(currentSystemVersion, lastMigratedVersion);
+		if (isMigrationRequired || isMigrationForced) {
+			metanthropes.utils.metaLog(3, "Migration", module, "World Data Migration is required or is being forced");
+			await _metaMigrateData(module, migrationData, currentSystemVersion, moduleName);
+			metanthropes.utils.metaLog(3, "Migration", module, "World Data Migration completed");
+		} else {
+			metanthropes.utils.metaLog(3, "Migration", module, "World Data Migration is not required");
+		}
 	}
 }
 
 /**
- * Migration Engine controls the overall migration steps, displays progress and updates the game settings
- * 
- * !todo: confirm we don't get to a state where we'll update the settings without having actually done things first
- * todo: progress bar should be localized
+ * Initializes the order of Data Migration according to active and enabled Modules
+ * Only enabled Modules under Metanthropes game settings will trigger Data Migration
  *
  * @async
- * @param {*} module 
- * @param {*} migrationData 
- * @param {*} currentSystemVersion 
- * @returns {*} 
+ * @returns {Array} modules - an array with the enabled Modules for Data Migration
  */
-async function _metaMigrateData(module, migrationData, currentSystemVersion) {
-	const progress = ui.notifications.info(module + " Data Migration: Updating World Data", { progress: true });
-	progress.update({ pct: 0.1, message: module + " Data Migration: Updating World Data, please wait." });
-	let updateData = {};
+async function _metaInitializeModules() {
+	let modules = [["System", "METANTHROPES.MODULES.System"]];
+	const core = await game.settings.get("metanthropes", "metaCore");
+	if (core) modules.push(["Core", "METANTHROPES.MODULES.Core"]);
+	const homebrew = await game.settings.get("metanthropes", "metaHomebrew");
+	if (homebrew) modules.push(["Homebrew", "METANTHROPES.MODULES.Homebrew"]);
+	const intro = await game.settings.get("metanthropes", "metaIntroductory");
+	if (intro) modules.push(["Introductory", "METANTHROPES.MODULES.Introductory"]);
+	const aether = await game.settings.get("metanthropes", "metaAether");
+	if (aether) modules.push(["Aether", "METANTHROPES.MODULES.Aether"]);
+	const astral = await game.settings.get("metanthropes", "metaAstral");
+	if (astral) modules.push(["Astral", "METANTHROPES.MODULES.Astral"]);
+	const nether = await game.settings.get("metanthropes", "metaNether");
+	if (nether) modules.push(["Nether", "METANTHROPES.MODULES.Nether"]);
+	return modules;
+}
+
+/**
+ * Migration Engine controls the overall migration steps, displays progress and updates the game settings
+ * Game settings will only be updated if we receive updateData from any of the modules
+ * todo would be cool to have a more modular functionality and ability to display the % of loading bar dynamically
+ *
+ * @async
+ * @param {*} module
+ * @param {*} migrationData
+ * @param {*} currentSystemVersion
+ * @returns {*}
+ */
+async function _metaMigrateData(module, migrationData, currentSystemVersion, moduleName) {
+	const progress = ui.notifications.info(
+		`${game.i18n.localize(moduleName)} ${game.i18n.localize("METANTHROPES.MIGRATION.Data")}:
+		${game.i18n.localize("METANTHROPES.MIGRATION.Updating")}`,
+		{ progress: true }
+	);
+	progress.update({
+		pct: 0.1,
+		message: `${game.i18n.localize(moduleName)} ${game.i18n.localize("METANTHROPES.MIGRATION.Data")}:
+		${game.i18n.localize("METANTHROPES.MIGRATION.Updating")}:
+		${game.i18n.localize("METANTHROPES.MIGRATION.Wait")}.
+		`,
+	});
+	let updateData = null;
 	if (module === "System") {
 		//* Migrate Prototype Token Defaults
-		progress.update({ pct: 0.2, message: module + " Data Migration: Updating World Data, please wait.." });
-		const prototypeTokenDefaults = await _metaMigrateDataPrototypeTokenDefaults(migrationData, currentSystemVersion);
+		progress.update({
+			pct: 0.2,
+			message: `${game.i18n.localize(moduleName)} ${game.i18n.localize("METANTHROPES.MIGRATION.Data")}:
+		${game.i18n.localize("METANTHROPES.MIGRATION.Updating")}:
+		${game.i18n.localize("METANTHROPES.MIGRATION.Wait")}..
+		`,
+		});
+		const prototypeTokenDefaults = await _metaMigrateDataPrototypeTokenDefaults(
+			migrationData,
+			currentSystemVersion
+		);
+		progress.update({
+			pct: 0.3,
+			message: `${game.i18n.localize(moduleName)} ${game.i18n.localize("METANTHROPES.MIGRATION.Data")}:
+			${game.i18n.localize("METANTHROPES.MIGRATION.Updating")}:
+			${game.i18n.localize("METANTHROPES.MIGRATION.Wait")}...
+			`,
+		});
 		if (prototypeTokenDefaults) updateData = prototypeTokenDefaults;
-		progress.update({ pct: 0.3, message: module + " Data Migration: Updating World Data, please wait..." });
 	}
 	if (module === "Core") {
-		progress.update({ pct: 0.4, message: module + " Data Migration: Updating World Data, please wait...." });
+		progress.update({
+			pct: 0.4,
+			message: `${game.i18n.localize(moduleName)} ${game.i18n.localize("METANTHROPES.MIGRATION.Data")}:
+		${game.i18n.localize("METANTHROPES.MIGRATION.Updating")}:
+		${game.i18n.localize("METANTHROPES.MIGRATION.Wait")}....
+		`,
+		});
 		//todo more graceful error handling
 		const coreDataMigrationResults = await _metaMigrateDataCore(migrationData, currentSystemVersion);
-		progress.update({ pct: 0.5, message: module + " Data Migration: Updating World Data, please wait....." });
+		progress.update({
+			pct: 0.5,
+			message: `${game.i18n.localize(moduleName)} ${game.i18n.localize("METANTHROPES.MIGRATION.Data")}:
+		${game.i18n.localize("METANTHROPES.MIGRATION.Updating")}:
+		${game.i18n.localize("METANTHROPES.MIGRATION.Wait")}.....
+		`,
+		});
 		if (coreDataMigrationResults) updateData = coreDataMigrationResults;
-		progress.update({ pct: 0.6, message: module + " Data Migration: Updating World Data, please wait......" });
+		progress.update({
+			pct: 0.6,
+			message: `${game.i18n.localize(moduleName)} ${game.i18n.localize("METANTHROPES.MIGRATION.Data")}:
+		${game.i18n.localize("METANTHROPES.MIGRATION.Updating")}:
+		${game.i18n.localize("METANTHROPES.MIGRATION.Wait")}......
+		`,
+		});
 	}
 	//* Migration wrapping up
-	progress.update({ pct: 0.7, message: module + " Data Migration: Updating World Data, please wait......." });
-	const prevMigration = migrationData[module] || {};
-	progress.update({ pct: 0.8, message: module + " Data Migration: Updating World Data, please wait........" });
-	await game.settings.set("metanthropes", "migration", {
-		...migrationData,
-		[module]: {
-			...prevMigration,
-			lastMigrationVersion: currentSystemVersion,
-			...updateData,
-		},
+	progress.update({
+		pct: 0.7,
+		message: `${game.i18n.localize(moduleName)} ${game.i18n.localize("METANTHROPES.MIGRATION.Data")}:
+		${game.i18n.localize("METANTHROPES.MIGRATION.Updating")}:
+		${game.i18n.localize("METANTHROPES.MIGRATION.Wait")}.......
+		`,
 	});
-	progress.update({ pct: 0.9, message: module + " Data Migration: Updating World Data, please wait........." });
-	await game.settings.set("metanthropes", "forceMigration", false);
-	progress.update({ pct: 1, message: module + " Data Migration: Finished Updating World Data" });
+	const prevMigration = migrationData[module] || {};
+	progress.update({
+		pct: 0.8,
+		message: `${game.i18n.localize(moduleName)} ${game.i18n.localize("METANTHROPES.MIGRATION.Data")}:
+		${game.i18n.localize("METANTHROPES.MIGRATION.Updating")}:
+		${game.i18n.localize("METANTHROPES.MIGRATION.Wait")}........
+		`,
+	});
+	//* Finalize Migration
+	if (updateData) {
+		await game.settings.set("metanthropes", "migration", {
+			...migrationData,
+			[module]: {
+				...prevMigration,
+				lastMigrationVersion: currentSystemVersion,
+				...updateData,
+			},
+		});
+		progress.update({
+			pct: 0.9,
+			message: `${game.i18n.localize(moduleName)} ${game.i18n.localize("METANTHROPES.MIGRATION.Data")}:
+		${game.i18n.localize("METANTHROPES.MIGRATION.Updating")}:
+		${game.i18n.localize("METANTHROPES.MIGRATION.Wait")}.........
+		`,
+		});
+		await game.settings.set("metanthropes", "forceMigration", false);
+		progress.update({
+			pct: 1,
+			message: `${game.i18n.localize(moduleName)} ${game.i18n.localize("METANTHROPES.MIGRATION.Data")}:
+		${game.i18n.localize("METANTHROPES.MIGRATION.Finished")}!
+		`,
+		});
+	} else {
+		progress.update({
+			pct: 0.9,
+			message: `${game.i18n.localize(moduleName)} ${game.i18n.localize("METANTHROPES.MIGRATION.Data")}:
+		${game.i18n.localize("METANTHROPES.MIGRATION.Updating")}:
+		${game.i18n.localize("METANTHROPES.MIGRATION.Failed")}.........
+		`,
+		});
+		metanthropes.utils.metaLog(1, "_metaMigrateData", module, "Did not receive valid Migration Data");
+		progress.update({
+			pct: 1,
+			message: `${game.i18n.localize(moduleName)} ${game.i18n.localize("METANTHROPES.MIGRATION.Data")}:
+		${game.i18n.localize("METANTHROPES.MIGRATION.Failed")}!
+		`,
+		});
+	}
 }
 
 /**
@@ -82,13 +203,14 @@ async function _metaMigrateData(module, migrationData, currentSystemVersion) {
  * todo: progress bar should be localized
  *
  * @async
- * @param {*} migrationData 
- * @param {*} currentSystemVersion 
- * @returns {updateData} 
+ * @param {*} migrationData
+ * @param {*} currentSystemVersion
+ * @returns {updateData}
  */
 async function _metaMigrateDataCore(migrationData, currentSystemVersion) {
 	metanthropes.utils.metaLog(0, "System", "Migration", "Initializing Core Data Migration");
 	const progress = ui.notifications.info("Core Data Migration", { progress: true });
+	//todo don't need this check with the new modular version
 	progress.update({ pct: 0.2, message: "Core Data Migration: Confirming requirements before updating.." });
 	const core = await game.settings.get("metanthropes", "metaCore");
 	if (!core) {
@@ -130,15 +252,15 @@ async function _metaMigrateDataCore(migrationData, currentSystemVersion) {
  * todo: modularity, better error handling
  *
  * @async
- * @param {*} migrationData Migration Data object 
- * @param {*} currentSystemVersion 
+ * @param {*} migrationData Migration Data object
+ * @param {*} currentSystemVersion
  * @returns {updateData}
  */
 async function _metaMigrateDataPrototypeTokenDefaults(migrationData, currentSystemVersion) {
 	//* Override Protype Token Defaults
 	const settingApplied = migrationData?.System?.prototypeTokenOverridesApplied ?? null;
 	const settingAppliedVersion = migrationData?.System?.prototypeTokenOverridesAppliedVersion ?? 0;
-	const settingRequiredVersion = "0.13.26"; //? version is to be entered manually when a feature is introduced
+	const settingRequiredVersion = "0.13.26"; //? version # is to be entered manually when a feature is introduced
 	const isNewerVersion = foundry.utils.isNewerVersion(settingRequiredVersion, settingAppliedVersion);
 	if (settingApplied && !isNewerVersion) {
 		metanthropes.utils.metaLog(0, "System", "Migration", "System Default Token Overrides already established");
@@ -158,6 +280,8 @@ async function _metaMigrateDataPrototypeTokenDefaults(migrationData, currentSyst
 		return updateData;
 	}
 }
+
+//! Unused - Deprecated Migrations
 
 //* Handle template deprecations
 function _metaTemplateChanges() {
@@ -194,8 +318,6 @@ function _metaTemplateChanges() {
 	}
 }
 
-//* Deprecated Migrations
-
 //* Helper function to migrate Items
 async function _metaMigrateItems() {
 	const currentVersion = await game.system.data.version;
@@ -216,8 +338,8 @@ async function _metaMigrateItems() {
 		}
 	}
 }
+
 //* Helper function to check for invalid actors
-//! Unused
 async function _metaInvalidData() {
 	//* from: https://foundryvtt.com/article/v10-data-model/
 	//? Retrieve the data for an invalid document

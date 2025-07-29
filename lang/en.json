@@ -1,6 +1,23 @@
 {
 	"METANTHROPES": {
+		"MODULES": {
+			"System": "Metanthropes: System",
+			"Core": "Metanthropes: Core",
+			"Homebrew": "Metanthropes: Homebrew",
+			"Introductory": "Metanthropes: Introductory",
+			"Aether": "Metanthropes: Anthologies - Aether",
+			"Astral": "Metanthropes: Anthologies - Astral",
+			"Nether": "Metanthropes: Anthologies - Nether"
+		},
+		"MIGRATION": {
+			"Data": "Data Migration",
+			"Updating": "Updating World Data",
+			"Wait": "Please Wait",
+			"Finished": "Finished Updating World Data",
+			"Failed": "Did not receive valid Migration Data"
+		},
 		"COMMON": {
+			"Narrator": "The Narrator",
 			"Summary": "Summary",
 			"Stat": "Stat",
 			"Stats": "Stats",
