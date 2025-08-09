@@ -1,21 +1,6 @@
 export const settings = [
 	{
 		module: "metanthropes",
-		key: "migrationVersion",
-		name: "Last Migration Performed",
-		hint: `
-		This setting is used to keep track of the last migration script that was performed.
-		This setting is not visible in the UI and only used by the migration scripts.
-		`,
-		scope: "world",
-		config: false,
-		requiresReload: false,
-		type: String,
-		default: "0.13",
-		onChange: null,
-	},
-	{
-		module: "metanthropes",
 		key: "metaAdvancedLogging",
 		name: "Enable Advanced Logging",
 		hint: `
@@ -32,73 +17,16 @@ export const settings = [
 	},
 	{
 		module: "metanthropes",
-		key: "metaIntroductory",
-		name: "Enable Metanthropes: Introductory",
+		key: "forceMigration",
+		name: "Force Data Migration",
 		hint: `
-			Enable this setting to gain access to the Metanthropes: Introductory features.
-			`,
-		scope: "world",
-		config: false,
-		requiresReload: true,
-		type: Boolean,
-		default: false,
-		onChange: null,
-	},
-	{
-		module: "metanthropes",
-		key: "metaCore",
-		name: "Enable Metanthropes: Core",
-		hint: `
-			Enable this setting to gain access to the Metanthropes: Core features.
-			`,
-		scope: "world",
-		config: false,
-		requiresReload: true,
-		type: Boolean,
-		default: false,
-		onChange: null,
-	},
-	{
-		module: "metanthropes",
-		key: "metaHomebrew",
-		name: "Enable Metanthropes: Homebrew",
-		hint: `
-			Enable this setting to gain access to the Metanthropes: Homebrew features.
-			`,
-		scope: "world",
-		config: false,
-		requiresReload: true,
-		type: Boolean,
-		default: false,
-		onChange: null,
-	},
-	{
-		module: "metanthropes",
-		key: "metaBetaTesting",
-		name: "Enable Beta Testing of New Features",
-		hint: `
-		Enable this setting to test New Features that are still in development.
-		These features may not be fully functional and are subject to change during development.
-		Make sure you give us your feedback and suggestions!
+		When you enable this setting, it will force the system to migrate this World's data to the latest version.
+		Migration happens on the first World load after an update, and you can run it again by enabling this setting.
+		To get support with any issues with updating, contact us at support@metanthropes.com or join our Discord.
+		This setting requires a reload and it will be disabled automatically once it completes.
 		`,
 		scope: "world",
-		config: false,
-		requiresReload: true,
-		type: Boolean,
-		default: false,
-		onChange: null,
-	},
-	{
-		module: "metanthropes",
-		key: "metaAlphaTesting",
-		name: "Enable Alpha Testing of Upcoming Features",
-		hint: `
-		Enable this setting to test Upcoming Features that are still in early development.
-		These features are not fully functional and are subject to change during development.
-		Make sure you give us your feedback and suggestions!
-		`,
-		scope: "world",
-		config: false,
+		config: true,
 		requiresReload: true,
 		type: Boolean,
 		default: false,
@@ -146,14 +74,135 @@ export const settings = [
 		default: true,
 		onChange: null,
 	},
+	//* Hidden from the UI
 	{
 		module: "metanthropes",
-		key: "prototypeTokenOverridesApplied",
-		name: "Apply Override Token Settings in this World",
+		key: "migration",
+		name: "Migration Settings",
 		hint: ``,
 		scope: "world",
 		config: false,
 		requiresReload: false,
+		type: Object,
+		default: null,
+		onChange: null,
+	},
+	//* Visible with Metanthropes: Introductory
+	{
+		module: "metanthropes",
+		key: "metaIntroductory",
+		name: "Enable Metanthropes: Introductory",
+		hint: `
+			Enable this setting to gain access to the Metanthropes: Introductory features.
+			`,
+		scope: "world",
+		config: false,
+		requiresReload: true,
+		type: Boolean,
+		default: false,
+		onChange: null,
+	},
+	//* Visible with Metanthropes: Core
+	{
+		module: "metanthropes",
+		key: "metaCore",
+		name: "Enable Metanthropes: Core",
+		hint: `
+			Enable this setting to gain access to the Metanthropes: Core features.
+			`,
+		scope: "world",
+		config: false,
+		requiresReload: true,
+		type: Boolean,
+		default: false,
+		onChange: null,
+	},
+	{
+		module: "metanthropes",
+		key: "metaBetaTesting",
+		name: "Enable Beta Testing of New Features",
+		hint: `
+		Enable this setting to test New Features that are still in development.
+		These features may not be fully functional and are subject to change during development.
+		Make sure you give us your feedback and suggestions!
+		`,
+		scope: "world",
+		config: false,
+		requiresReload: true,
+		type: Boolean,
+		default: false,
+		onChange: null,
+	},
+	//* Visible with Metanthropes: Homebrew
+	{
+		module: "metanthropes",
+		key: "metaHomebrew",
+		name: "Enable Metanthropes: Homebrew",
+		hint: `
+			Enable this setting to gain access to the Metanthropes: Homebrew features.
+			`,
+		scope: "world",
+		config: false,
+		requiresReload: true,
+		type: Boolean,
+		default: false,
+		onChange: null,
+	},
+	{
+		module: "metanthropes",
+		key: "metaAlphaTesting",
+		name: "Enable Alpha Testing of Upcoming Features",
+		hint: `
+		Enable this setting to test Upcoming Features that are still in early development.
+		These features are not fully functional and are subject to change during development.
+		Make sure you give us your feedback and suggestions!
+		`,
+		scope: "world",
+		config: false,
+		requiresReload: true,
+		type: Boolean,
+		default: false,
+		onChange: null,
+	},
+	//* Placeholder for Anthologies
+	{
+		module: "metanthropes",
+		key: "metaAether",
+		name: "Enable Metanthropes: Anthologies - Aether",
+		hint: `
+			Enable this setting to gain access to the Metanthropes Anthologies: Aether features.
+			`,
+		scope: "world",
+		config: false,
+		requiresReload: true,
+		type: Boolean,
+		default: false,
+		onChange: null,
+	},
+	{
+		module: "metanthropes",
+		key: "metaAstral",
+		name: "Enable Metanthropes: Anthologies - Astral",
+		hint: `
+			Enable this setting to gain access to the Metanthropes Anthologies: Astral features.
+			`,
+		scope: "world",
+		config: false,
+		requiresReload: true,
+		type: Boolean,
+		default: false,
+		onChange: null,
+	},
+	{
+		module: "metanthropes",
+		key: "metaNether",
+		name: "Enable Metanthropes: Anthologies - Nether",
+		hint: `
+			Enable this setting to gain access to the Metanthropes Anthologies: Nether features.
+			`,
+		scope: "world",
+		config: false,
+		requiresReload: true,
 		type: Boolean,
 		default: false,
 		onChange: null,
