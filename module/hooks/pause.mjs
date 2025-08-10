@@ -1,7 +1,5 @@
-Hooks.on("renderPause", (app, html, options) => {
-	//* Customize Pause Logo
-	if (options.paused) {
-		const img = html.find("img")[0];
-		img.src = "systems/metanthropes/assets/logos/metanthropes-logo.webp";
-	}
+//* Customize Pause Logo
+Hooks.on("renderGamePause", (_, html, options) => {
+	if (options.cssClass !== "paused") return;
+	html.querySelector("img").src = "systems/metanthropes/assets/logos/metanthropes-logo.webp";
 });
