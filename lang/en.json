@@ -2,12 +2,12 @@
 	"METANTHROPES": {
 		"MODULES": {
 			"System": "System",
-			"Core": "Core",
-			"Homebrew": "Homebrew",
-			"Introductory": "Introductory",
-			"Aether": "Anthologies: Aether",
-			"Astral": "Anthologies: Astral",
-			"Nether": "Anthologies: Nether"
+			"Core": "Metanthropes: Core",
+			"Homebrew": "Metanthropes: Homebrew",
+			"Introductory": "Metanthropes: Introductory",
+			"Aether": "Metanthropes: Anthologies - Aether",
+			"Astral": "Metanthropes: Anthologies - Astral",
+			"Nether": "Metanthropes: Anthologies - Nether"
 		},
 		"MIGRATION": {
 			"Initialize": "Initializing Data Migration",
