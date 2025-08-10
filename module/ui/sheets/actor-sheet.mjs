@@ -153,21 +153,23 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 				//? Check if the item's category is allowed
 				if (item.system.Category.value && currentAllowedCategories.includes(item.system.Category.value)) {
 					Possessions[item.system.Category.value].push(item);
-					if (item.system.Execution.ActionSlot.value === "Reaction") {
-						Actions.Reaction.push(item);
-					}
-					//? There are various types of Focused Actions, so we need to grab all of them
-					if (item.system.Execution.ActionSlot.value.includes("Focused Action")) {
-						Actions.Focused.push(item);
-					}
-					if (item.system.Execution.ActionSlot.value === "Main Action") {
-						Actions.Main.push(item);
-					}
-					if (item.system.Execution.ActionSlot.value === "Extra Action") {
-						Actions.Extra.push(item);
-					}
-					if (item.system.Execution.ActionSlot.value === "Movement") {
-						Actions.Movement.push(item);
+					if (item.system.Execution.ActionSlot.value) {
+						if (item.system.Execution.ActionSlot.value === "Reaction") {
+							Actions.Reaction.push(item);
+						}
+						//? There are various types of Focused Actions, so we need to grab all of them
+						if (item.system.Execution.ActionSlot.value.includes("Focused Action")) {
+							Actions.Focused.push(item);
+						}
+						if (item.system.Execution.ActionSlot.value === "Main Action") {
+							Actions.Main.push(item);
+						}
+						if (item.system.Execution.ActionSlot.value === "Extra Action") {
+							Actions.Extra.push(item);
+						}
+						if (item.system.Execution.ActionSlot.value === "Movement") {
+							Actions.Movement.push(item);
+						}
 					}
 				} else {
 					//? Remove the item from the actor if its category is not allowed
@@ -185,21 +187,23 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 			else if (item.type === "Metapower") {
 				if (item.system.Level.value != undefined) {
 					Metapowers[item.system.Level.value].push(item);
-					if (item.system.Execution.ActionSlot.value === "Reaction") {
-						Actions.Reaction.push(item);
-					}
-					//? There are various types of Focused Actions, so we need to grab all of them
-					if (item.system.Execution.ActionSlot.value.includes("Focused Action")) {
-						Actions.Focused.push(item);
-					}
-					if (item.system.Execution.ActionSlot.value === "Main Action") {
-						Actions.Main.push(item);
-					}
-					if (item.system.Execution.ActionSlot.value === "Extra Action") {
-						Actions.Extra.push(item);
-					}
-					if (item.system.Execution.ActionSlot.value === "Movement") {
-						Actions.Movement.push(item);
+					if (item.system.Execution.ActionSlot.value) {
+						if (item.system.Execution.ActionSlot.value === "Reaction") {
+							Actions.Reaction.push(item);
+						}
+						//? There are various types of Focused Actions, so we need to grab all of them
+						if (item.system.Execution.ActionSlot.value.includes("Focused Action")) {
+							Actions.Focused.push(item);
+						}
+						if (item.system.Execution.ActionSlot.value === "Main Action") {
+							Actions.Main.push(item);
+						}
+						if (item.system.Execution.ActionSlot.value === "Extra Action") {
+							Actions.Extra.push(item);
+						}
+						if (item.system.Execution.ActionSlot.value === "Movement") {
+							Actions.Movement.push(item);
+						}
 					}
 				}
 			}
@@ -617,7 +621,12 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		const coreModule = game.modules.get("metanthropes-core");
 		if (coreModule && coreModule?.active) {
 			try {
-				metanthropes.utils.metaLog(3, "MetanthropesActorSheet", "_onNewActor", "Core API available, calling metaNewActor");
+				metanthropes.utils.metaLog(
+					3,
+					"MetanthropesActorSheet",
+					"_onNewActor",
+					"Core API available, calling metaNewActor"
+				);
 				await metanthropes.logic.metaNewActor(actor);
 			} catch (error) {
 				metanthropes.utils.metaLog(2, "MetanthropesActorSheet", "_onNewActor", "Core Module API Error:", error);
@@ -649,10 +658,10 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 			text: "Progressing...",
 			ease: "none",
 		});
-		//? Check if 'Beta Testing of New Features' is enabled
-		if (!game.settings.get("metanthropes", "metaBetaTesting")) {
+		//? Check if 'Alpha Testing of New Features' is enabled
+		if (!game.settings.get("metanthropes", "metaAlphaTesting")) {
 			ui.notifications.warn(
-				"Progression is in Beta Testing and only available with the Metanthropes Homebrew Module at this time"
+				"Progression is in early Alpha Testing and only available with the Metanthropes Homebrew Module at this time"
 			);
 			return;
 		}
@@ -663,20 +672,21 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		// 	"metaprogression",
 		// 	"metaStartProgression"
 		// );
-		if (!metaProgressActor) {
-			metanthropes.utils.metaLog(
-				2,
-				"MetanthropesActorSheet",
-				"_onProgression",
-				"Progression function not available"
-			);
-			return;
-		}
-		//? Get the actor for the Progression
+		// if (!metaProgressActor) {
+		// 	metanthropes.utils.metaLog(
+		// 		2,
+		// 		"MetanthropesActorSheet",
+		// 		"_onProgression",
+		// 		"Progression function not available"
+		// 	);
+		// 	return;
+		// }
+		// //? Get the actor for the Progression
 		const metaProgressionActor = this.actor;
 		//? Set the Flags for the Progression Form
 		//! Note that this flag will remain set unless otherwise told to do so!
 		//todo do this properly with a promise!
+		//todo refactor this to use the Metanthropes API
 		metaProgressionActor.setFlag("metanthropes", "Progression", { isProgressing: true });
 		//? Pass along the actor to the Progression Form
 		metanthropes.utils.metaLog(

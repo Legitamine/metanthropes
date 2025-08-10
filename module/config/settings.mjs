@@ -1,21 +1,6 @@
 export const settings = [
 	{
 		module: "metanthropes",
-		key: "migrationVersion", //! UNUSED
-		name: "Last Migration Performed",
-		hint: `
-		This setting is used to keep track of the last migration script that was performed.
-		This setting is not visible in the UI and only used by the migration scripts.
-		`,
-		scope: "world",
-		config: false,
-		requiresReload: false,
-		type: String,
-		default: "0.8.20",
-		onChange: null,
-	},
-	{
-		module: "metanthropes",
 		key: "metaAdvancedLogging",
 		name: "Enable Advanced Logging",
 		hint: `
@@ -32,6 +17,79 @@ export const settings = [
 	},
 	{
 		module: "metanthropes",
+		key: "forceMigration",
+		name: "Force Data Migration",
+		hint: `
+		When you enable this setting, it will force the system to migrate this World's data to the latest version.
+		Migration happens on the first World load after an update, and you can run it again by enabling this setting.
+		To get support with any issues with updating, contact us at support@metanthropes.com or join our Discord.
+		This setting requires a reload and it will be disabled automatically once it completes.
+		`,
+		scope: "world",
+		config: true,
+		requiresReload: true,
+		type: Boolean,
+		default: false,
+		onChange: null,
+	},
+	{
+		module: "metanthropes",
+		key: "metaWelcome",
+		name: "Show Welcome Screen",
+		hint: `
+		Enable this setting to display the Metanthropes Welcome Screen when the World loads.
+		`,
+		scope: "world",
+		config: true,
+		requiresReload: false,
+		type: Boolean,
+		default: true,
+		onChange: null,
+	},
+	{
+		module: "metanthropes",
+		key: "metaInstall",
+		name: "Show System Demo Adventure",
+		hint: `
+		Enable to show the System Demo Adventure on the next startup.
+		`,
+		scope: "world",
+		config: true,
+		requiresReload: false,
+		type: Boolean,
+		default: true,
+		onChange: null,
+	},
+	{
+		module: "metanthropes",
+		key: "metaPause",
+		name: "Un-pause the World after initialization",
+		hint: `
+		Enable this setting to automatically un-pause the World after initializing the System and Modules.
+		`,
+		scope: "world",
+		config: true,
+		requiresReload: false,
+		type: Boolean,
+		default: true,
+		onChange: null,
+	},
+	//* Hidden from the UI
+	{
+		module: "metanthropes",
+		key: "migration",
+		name: "Migration Settings",
+		hint: ``,
+		scope: "world",
+		config: false,
+		requiresReload: false,
+		type: Object,
+		default: null,
+		onChange: null,
+	},
+	//* Visible with Metanthropes: Introductory
+	{
+		module: "metanthropes",
 		key: "metaIntroductory",
 		name: "Enable Metanthropes: Introductory",
 		hint: `
@@ -44,26 +102,13 @@ export const settings = [
 		default: false,
 		onChange: null,
 	},
+	//* Visible with Metanthropes: Core
 	{
 		module: "metanthropes",
 		key: "metaCore",
 		name: "Enable Metanthropes: Core",
 		hint: `
 			Enable this setting to gain access to the Metanthropes: Core features.
-			`,
-		scope: "world",
-		config: false,
-		requiresReload: true,
-		type: Boolean,
-		default: false,
-		onChange: null,
-	},
-	{
-		module: "metanthropes",
-		key: "metaHomebrew",
-		name: "Enable Metanthropes: Homebrew",
-		hint: `
-			Enable this setting to gain access to the Metanthropes: Homebrew features.
 			`,
 		scope: "world",
 		config: false,
@@ -88,6 +133,21 @@ export const settings = [
 		default: false,
 		onChange: null,
 	},
+	//* Visible with Metanthropes: Homebrew
+	{
+		module: "metanthropes",
+		key: "metaHomebrew",
+		name: "Enable Metanthropes: Homebrew",
+		hint: `
+			Enable this setting to gain access to the Metanthropes: Homebrew features.
+			`,
+		scope: "world",
+		config: false,
+		requiresReload: true,
+		type: Boolean,
+		default: false,
+		onChange: null,
+	},
 	{
 		module: "metanthropes",
 		key: "metaAlphaTesting",
@@ -104,56 +164,45 @@ export const settings = [
 		default: false,
 		onChange: null,
 	},
+	//* Placeholder for Anthologies
 	{
 		module: "metanthropes",
-		key: "metaWelcome",
-		name: "Show Welcome Screen",
+		key: "metaAether",
+		name: "Enable Metanthropes: Anthologies - Aether",
 		hint: `
-		Enable this setting to display the Metanthropes Welcome Screen when the World loads.
-		`,
-		scope: "world",
-		config: true,
-		requiresReload: false,
-		type: Boolean,
-		default: true,
-		onChange: null,
-	},
-	{
-		module: "metanthropes",
-		key: "metaInstall",
-		name: "Show System Installation Guide",
-		hint: `
-		Enable to show the System Installation Guide on the next startup.
-		`,
-		scope: "world",
-		config: true,
-		requiresReload: false,
-		type: Boolean,
-		default: true,
-		onChange: null,
-	},
-	{
-		module: "metanthropes",
-		key: "metaPause",
-		name: "Un-pause the World after initialization",
-		hint: `
-		Enable this setting to automatically un-pause the World after initializing the System and Modules.
-		`,
-		scope: "world",
-		config: true,
-		requiresReload: false,
-		type: Boolean,
-		default: true,
-		onChange: null,
-	},
-	{
-		module: "metanthropes",
-		key: "prototypeTokenOverridesApplied",
-		name: "Apply Override Token Settings in this World",
-		hint: ``,
+			Enable this setting to gain access to the Metanthropes Anthologies: Aether features.
+			`,
 		scope: "world",
 		config: false,
-		requiresReload: false,
+		requiresReload: true,
+		type: Boolean,
+		default: false,
+		onChange: null,
+	},
+	{
+		module: "metanthropes",
+		key: "metaAstral",
+		name: "Enable Metanthropes: Anthologies - Astral",
+		hint: `
+			Enable this setting to gain access to the Metanthropes Anthologies: Astral features.
+			`,
+		scope: "world",
+		config: false,
+		requiresReload: true,
+		type: Boolean,
+		default: false,
+		onChange: null,
+	},
+	{
+		module: "metanthropes",
+		key: "metaNether",
+		name: "Enable Metanthropes: Anthologies - Nether",
+		hint: `
+			Enable this setting to gain access to the Metanthropes Anthologies: Nether features.
+			`,
+		scope: "world",
+		config: false,
+		requiresReload: true,
 		type: Boolean,
 		default: false,
 		onChange: null,
