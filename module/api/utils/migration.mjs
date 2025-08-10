@@ -126,6 +126,8 @@ export async function metaMigration() {
 			message: `${progressMessage} | ${game.i18n.localize("METANTHROPES.MIGRATION.Finished")}`,
 		});
 	}
+	const migrationDataResults = await game.settings.get("metanthropes", "migration");
+	mL(3, "Migration", "New Migration Data Results", migrationDataResults);
 	mL(0, "Migration", "Data Migration Engine Finished");
 }
 
