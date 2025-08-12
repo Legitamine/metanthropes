@@ -1,13 +1,21 @@
-//* Offical Metanthropes Style
-$c-primary: #9A5D9B;
-$c-secondary: #0CA79F;
-$c-highlight: #EC008C;
+
+
+//! Everything below is to be deprecated/refactored !
+// $c-highlight-a: ;
+// $c-highlight-b:
+$c-primary: #9a5d9b;
+$c-secondary: #0ca79f;
+$c-highlight: #ec008c;
+//$c-highlight: #486973;
+//$c-highlight: #563C55;
+//$c-highlight: #ffed00;
+//$c-highlight: #e6007e;
 
 //todo Unused currently?
 $c-buff: #267114;
-$c-condition: #AB1616;
-$c-success: #4CAF50;
-$c-failure: #E57373;
+$c-condition: #ab1616;
+$c-success: #4caf50;
+$c-failure: #e57373;
 
 //* Generic Coloring
 $c-white: #fff;
@@ -17,14 +25,59 @@ $c-faint: #b0a765;
 $c-beige: #66634f;
 $c-tan: #444;
 $c-red: #ab1616;
-$c-background:#8181815f;
+$c-background: #8181815f;
 
-//*qp's green & purple
+//*qp's green & purple (unused)
 $c-green: #267114;
 $c-purple: #7d0f81;
 
 //* Mixes
-$s-outline: 1px 1px 2px $c-highlight, 0 0 1em $c-highlight, 0 0 0.2em $c-highlight;
-$s-button: 1px 1px 1px $c-highlight, 0 0 0.2em $c-highlight, 0 0 0.2em $c-highlight;
-$s-shadow: 0 0 8px $c-highlight;
+$s-outline: 1px 1px 2px var(--metanthropes-color-highlight), 0 0 1em var(--metanthropes-color-highlight), 0 0 0.2em var(--metanthropes-color-highlight);
+$s-button: 1px 1px 1px var(--metanthropes-color-highlight), 0 0 0.2em var(--metanthropes-color-highlight), 0 0 0.2em var(--metanthropes-color-highlight);
+$s-shadow: 0 0 8px var(--metanthropes-color-highlight);
 
+//! Everything above is to be deprecated/refactored
+
+
+//* Dark Theme */
+.theme-dark,
+body.theme-dark,
+body.theme-dark .application,
+.application.theme-dark,
+.application.metanthropes.themed.theme-dark {
+	--metanthropes-chat-bg: url("../assets/artwork/ui/chat/chat-bw-dark.webp");
+	--sidebar-background: url("../systems/metanthropes/assets/artwork/ui/sidebar/sidebar-dark.png");
+	//--tjs-app-background: url("../systems/metanthropes/assets/artwork/ui/app/app-colored-dark.png");
+	--background: url("../systems/metanthropes/assets/artwork/ui/app/app-image-dark.png") repeat;
+	--metanthropes-color-primary: $c-dark-purple;
+	--metanthropes-color-secondary: $c-main-purple;
+	--metanthropes-color-highlight: $c-dark-highlight;
+	--metanthropes-color-text: $c-dark-font;
+	--metanthropes-color-disabled: $c-light-gold;
+	//* Foundry Overrides
+	--color-text-primary: $c-dark-font;
+    --button-background-color: rgba(0 0 0 / 10%);
+    --button-border-color: var(--color-dark-5);
+    --button-text-color: var(--color-dark-1);
+    --button-focus-outline-color: var(--color-warm-2);
+    --button-hover-background-color: var(--color-warm-2);
+    --button-hover-text-color: var(--color-light-1);
+}
+
+//* Light Theme */
+.theme-light,
+body.theme-light,
+body.theme-light .application,
+.application.theme-light,
+.application.metanthropes.themed.theme-light {
+	--metanthropes-chat-bg: url("../assets/artwork/ui/chat/chat-bw-light.webp");
+	--sidebar-background: url("../systems/metanthropes/assets/artwork/ui/sidebar/sidebar-light.png");
+	//--tjs-app-background: url("../systems/metanthropes/assets/artwork/ui/app/app-colored-light.png");
+	--background: url("../systems/metanthropes/assets/artwork/ui/app/app-image-light.png") repeat;
+	--metanthropes-color-primary: $c-dark-blue;
+	--metanthropes-color-secondary: $c-main-blue;
+	--metanthropes-color-highlight: $c-light-highlight;
+	--metanthropes-color-text: $c-light-font;
+	--color-text-primary: $c-light-font;
+	--metanthropes-color-disabled: $c-dark-gold;
+}

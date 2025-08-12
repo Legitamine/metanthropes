@@ -1,3 +1,5 @@
+@use "../settings" as *;
+//* Buttons
 // --- Mixins ---
 @mixin button-hover-focus {
 	outline: none;
@@ -15,9 +17,9 @@
 // Base Button Styles
 %base-button {
 	font-family: $font-primary;
-	background-image: url("../assets/artwork/ui/buttons/button.webp");
+	//background-image: url("../assets/artwork/ui/buttons/button.webp");
 	background-size: cover;
-	text-shadow: $s-button;
+	text-shadow: var(--metanthropes-color-text-shadow);
 	border: $border-groove;
 	border-radius: $border-radius;
 	color: var(--metanthropes-color-text);
@@ -51,7 +53,7 @@ app button,
 // Default button inside dialogs
 .dialog .dialog-buttons button.default {
 	background: none;
-	background-image: url("../assets/artwork/ui/buttons/button.webp");
+	//background-image: url("../assets/artwork/ui/buttons/button.webp");
 	@include button-active;
 }
 

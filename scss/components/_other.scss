@@ -1,0 +1,294 @@
+@use "../settings" as *;
+//* Other
+
+// effects, forms, items, responsive, dice encoutner/(d20)
+
+//* Effects
+.effects .item {
+	.effect-source,
+	.effect-duration,
+	.effect-controls {
+		text-align: center;
+		border-left: 1px solid var(--metanthropes-color-background);
+		border-right: 1px solid var(--metanthropes-color-background);
+		font-size: 12px;
+	}
+
+	.effect-controls {
+		border: none;
+	}
+	text-align: center;
+	padding: 0 2px; // to align with the header border
+}
+
+summary {
+	display: grid; //essentially hides the markers
+	font-weight: bold;
+}
+
+summary:hover {
+	cursor: pointer;
+	//border: 1px solid var(--metanthropes-color-highlight);
+	border-radius: 15px;
+	background: rgba(99, 53, 99, 0.5);
+	transition: background-color 0.3s;
+}
+
+summary::marker {
+	font-size: 1.5em;
+	content: "🔽";
+}
+[open] summary::marker {
+	content: "🔼";
+}
+
+//* Forms
+
+//? Primary shadow color for active tabs
+.tabs .item.active {
+	text-shadow: 0 0 10px var(--metanthropes-color-highlight);
+}
+
+.item-form {
+	font-family: $font-primary;
+}
+
+.tox {
+	.tox-editor-container {
+		//background: var(--metanthropes-color-secondary);
+		min-height: 80px;
+		height: auto;
+		max-height: 500px;
+		overflow-y: auto;
+	}
+
+	.tox-edit-area {
+		padding: 0 8px;
+		min-height: 80px;
+		height: auto;
+		max-height: 500px;
+		overflow-y: auto;
+	}
+}
+
+.resource {
+	font-family: $font-secondary;
+	font-size: 0.9rem;
+	color: var(--metanthropes-color-text);
+	justify-content: center;
+	align-items: center;
+	align-self: center;
+	font-weight: 500;
+	padding: $padding-sm;
+	margin: $margin-sm;
+}
+
+.resource-label {
+	font-family: $font-primary;
+	font-size: 0.9rem;
+	color: var(--metanthropes-color-text);
+	width: 100%;
+	justify-content: center;
+	justify-self: center;
+	align-items: center;
+	align-self: center;
+	font-weight: 700;
+	padding: $padding-sm;
+	margin: $margin-sm;
+}
+
+//* Items
+
+// Section Header
+.items-header {
+	//height: 28px;
+	margin: $margin-sm;
+	padding: $padding-sm;
+	align-items: center;
+	background: var(--metanthropes-color-background);
+	border: $border-groove;
+	border-radius: $border-radius;
+	font-weight: bold;
+	> * {
+		font-size: 14px;
+		text-align: center;
+	}
+	.item-name {
+		//! this section seems to be unused
+		font-weight: bold;
+		padding-left: 50px;
+		text-align: left;
+		display: flex;
+		// font-size: 16px;
+	}
+}
+
+//* ----------------------------------------- */
+//*  Items Lists                              */
+//* ----------------------------------------- */
+
+.items-list {
+	font-family: $font-secondary;
+	list-style: none;
+	margin: $margin-sm;
+	padding: $padding-sm;
+	overflow-y: auto;
+	scrollbar-width: thin;
+	color: var(--metanthropes-color-text);
+
+	// Child lists
+	.item-list {
+		list-style: none;
+		margin: $margin-sm;
+		padding: $padding-sm;
+	}
+
+	// Item Name
+	.item-name {
+		flex: 2;
+		margin: 0;
+		overflow: hidden;
+		font-size: 16px;
+		text-align: left;
+		align-items: center;
+		display: flex;
+		h3,
+		h4 {
+			padding-left: 15px;
+			margin: 0;
+			white-space: nowrap;
+			overflow-x: hidden;
+			font-weight: 600;
+		}
+	}
+
+	// Control Buttons
+	.item-controls {
+		display: flex;
+		flex: 0 0 80px;
+		justify-content: center;
+		a {
+			font-size: 14px;
+			text-align: center;
+			margin: 0 6px;
+		}
+	}
+
+	// Individual Item
+	//! I use this in the nav bars for the Forms in order to have it remain selected as the active tab
+	//todo understand why ^^ this is and how to make it properly
+	.item {
+		align-items: center;
+		text-align: center;
+		padding: 0 2px; // to align with the header border
+		//! didn't like this effect
+		//	border-bottom: 1px solid $c-black;
+		//	&:last-child {
+		//		border-bottom: none;
+		//	}
+		.item-name {
+			color: var(--metanthropes-color-text);
+			.item-image {
+				flex: 0 0 50px;
+				height: 50px;
+				width: 50px;
+				border: none;
+				margin-right: 5px;
+			}
+		}
+	}
+
+	.item-prop {
+		text-align: center;
+		// border-left: 1px solid $c-black;
+		// border-right: 1px solid $c-black;
+		font-size: 14px;
+	}
+
+	// Section Header
+	.items-header {
+		height: 36px;
+		margin: $margin-sm;
+		padding: $padding-sm;
+		align-items: center;
+		background: var(--metanthropes-color-background);
+		border: $border-groove;
+		font-weight: bold;
+		> * {
+			font-size: 16px;
+			text-align: center;
+		}
+		.item-name {
+			padding-left: 5px;
+			text-align: left;
+			// font-size: 16px;
+		}
+	}
+}
+
+//* Example style for Metanthropes (can be removed if not needed) */
+.item-formula {
+	flex: 0 0 200px;
+	padding: 0 8px;
+}
+
+//* Responsive
+// responsive.scss
+
+// Your defined breakpoints
+$minimum-width: 405px; // 40% of the default
+$default-width: 1012px; // Default width
+
+//! Hiding re-roll buttons from chat except from Narrator and Player of the Actor
+.chat-message .message-header .flavor-text .metanthropes .hide-button .meta-ui-hidden {
+	display: none !important;
+}
+
+.hide-button .meta-ui-hidden {
+	display: none !important;
+}
+
+.meta-ui-hidden {
+	display: none !important;
+}
+
+.meta-ui-medium-font {
+	font-size: 0.9rem !important;
+}
+
+.meta-ui-small-font {
+	font-size: 0.55rem !important;
+}
+
+.meta-ui-single-column-font {
+	font-size: 0.8rem !important;
+}
+
+.meta-ui-obscure {
+	opacity: 0.5 !important;
+	&:hover {
+		opacity: 1 !important;
+	}
+}
+
+//* Dice
+//*this should be in components?
+//the below two will change the default D20 in the initiative tracker icon to our custom dice
+.combat-sidebar li.combatant .roll {
+	display: block;
+	width: 40px;
+	height: var(--sidebar-item-height);
+	background: url("../assets/artwork/ui/dice/d100roll-white.webp") no-repeat 50% 50%;
+	background-size: 42px;
+	margin: 0 0.5em;
+}
+.combat-sidebar li.combatant .roll:hover {
+	background-image: url("../assets/artwork/ui/dice/d100roll-white-selected.webp");
+}
+//* Change all fa-d20 to d10
+//? suggested by mana from discord
+.far.fa-dice-d20:before,
+.fa-solid.fa-dice-d20:before,
+.fas.fa-dice-d20:before {
+	content: "\f6cd";
+}

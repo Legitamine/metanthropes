@@ -1,3 +1,5 @@
+@use "../settings" as *;
+//* Chat specifics
 .meta-roll-inline-results {
 	font-size: 0.9rem;
 	margin: 15px;
@@ -25,13 +27,13 @@
 @mixin roll-hover-focus {
 	outline: none;
 	border: $border-activated;
-	//box-shadow: 0 0 0 3px $c-purple;
-	text-shadow: $s-button;
+	//box-shadow: 0 0 0 3px var(--metanthropes-color-highlight);
+	text-shadow: var(--metanthropes-color-text-shadow);
 	opacity: 1;
 }
 @mixin roll-active {
 	border: $border-activated;
-	//box-shadow: 0 0 0 5px $c-purple;
+	//box-shadow: 0 0 0 5px var(--metanthropes-color-highlight);
 	opacity: 1;
 }
 //todo: this is pretty the same as base button style, should consolidate
@@ -39,7 +41,7 @@
 	font-family: $font-primary;
 	background-image: url("../assets/artwork/ui/buttons/button.webp");
 	background-size: cover;
-	text-shadow: $s-button;
+	text-shadow: var(--metanthropes-color-text-shadow);
 	border: $border-groove;
 	border-radius: $border-radius;
 	color: var(--metanthropes-color-text);

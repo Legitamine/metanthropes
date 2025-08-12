@@ -1,15 +1,29 @@
-//* Fonts
-//? Nasalization, Montserrat
-@import url("https://use.typekit.net/gld0tkk.css");
-//? Roboto
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
-//? Nunito Sans
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap");
 //* Font Awesome
-@import "fontawesome/custom-icons.scss";
-@import "fontawesome/sharp-duotone-solid.scss";
-@import "fontawesome/fontawesome.scss";
+@use "fontawesome/custom-icons.scss";
+// @use "fontawesome/sharp-duotone-solid.scss";
+@use "fontawesome/fontawesome.scss";
 
+//* Fonts - ayto twra ginetai import sto typography?
+// //? Nasalization, Montserrat from Adobe Subscription
+// @import url("https://use.typekit.net/gld0tkk.css");
+// //? Roboto from Google Fonts
+// @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+// //? Nunito Sans from Google Fonts
+// @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap");
+
+//* Settings
+//@use "settings" as *;
+@use "components" as *;
+//* Components
+//* Metanthrope specifics?
+// // * Layers
+// @layer metanthropes.tokens, metanthropes.base, metanthropes.components, metanthropes.theme, metanthropes.utilities;
+
+// @layer metanthropes.tokens {
+// 	@use "tokens/index" as tokens;
+// }
+//! Deprecations
+/* 
 @layer blocks {
 	//?make the settings vertical buttons more readable
 	nav.tabs.vertical [data-tab] {
@@ -83,6 +97,8 @@
 			--color-warm-1: #7d0f81;
 			outline-color: #7d0f81;
 			--background-journal-image: url("../assets/artwork/ui/window/background.webp");
+			--background: url("../systems/metanthropes/assets/artwork/ui/app/app-colored-light.png");
+			//--metanthropes-chat-bg: url("../assets/artwork/ui/chat/chat-bw-light.webp");
 		}
 		.theme-dark,
 		.application.theme-dark {
@@ -96,6 +112,9 @@
 			--color-warm-1: #dcb4de;
 			outline-color: #dcb4de;
 			--background-journal-image: none;
+			--background: url("../systems/metanthropes/assets/artwork/ui/app/app-colored-dark.png");
+			//--metanthropes-chat-bg: url("../assets/artwork/ui/chat/chat-bw-dark.webp");
 		}
 	}
 }
+*/
