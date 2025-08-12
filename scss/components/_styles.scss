@@ -13,18 +13,18 @@
 	margin: $margin-sm;
 }
 .style-buffs {
-	color: $c-green;
-	--color-form-input: $c-green;
-	--color-form-input-hover: $c-green;
-	--color-form-label: $c-green;
-	--color-form-label-hover: $c-green;
+	color: var(--metanthropes-color-buff);
+	--color-form-input: var(--metanthropes-color-buff);
+	--color-form-input-hover: var(--metanthropes-color-buff);
+	--color-form-label: var(--metanthropes-color-buff);
+	--color-form-label-hover: var(--metanthropes-color-buff);
 }
 .style-conditions {
-	color: $c-red;
-	--color-form-input: $c-red;
-	--color-form-input-hover: $c-red;
-	--color-form-label: $c-red;
-	--color-form-label-hover: $c-red;
+	color: var(--metanthropes-color-condition);
+	--color-form-input: var(--metanthropes-color-condition);
+	--color-form-input-hover: var(--metanthropes-color-condition);
+	--color-form-label: var(--metanthropes-color-condition);
+	--color-form-label-hover: var(--metanthropes-color-condition);
 }
 //Styles used in Metanthropes RPG Sheets
 h3 {
@@ -188,7 +188,7 @@ h3 {
 	border: $border-style-solid;
 	border-radius: $border-radius;
 	border-style: dotted;
-	border-image: url(../assets/artwork/ui/borders/border.webp) 5 / 10px round;
+	border-image: $a-border-image;
 	border-radius: $border-radius;
 }
 //nav container styling
@@ -388,7 +388,7 @@ h3 {
 	opacity: 1;
 	font-family: $font-secondary;
 	font-size: 0.8rem;
-	color: $c-green;
+	color: var(--metanthropes-color-buff);
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -400,7 +400,7 @@ h3 {
 	opacity: 1;
 	font-family: $font-secondary;
 	font-size: 0.8rem;
-	color: $c-red;
+	color: var(--metanthropes-color-condition);
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -411,7 +411,7 @@ h3 {
 .style-cs-header-positive {
 	opacity: 1;
 	font-family: $font-primary;
-	color: $c-green;
+	color: var(--metanthropes-color-buff);
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -422,7 +422,7 @@ h3 {
 .style-cs-header-negative {
 	opacity: 1;
 	font-family: $font-primary;
-	color: $c-red;
+	color: var(--metanthropes-color-condition);
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -433,7 +433,7 @@ h3 {
 .style-cs-positive {
 	opacity: 1;
 	font-family: $font-secondary;
-	color: $c-green;
+	color: var(--metanthropes-color-buff);
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -444,7 +444,7 @@ h3 {
 .style-cs-negative {
 	opacity: 1;
 	font-family: $font-secondary;
-	color: $c-red;
+	color: var(--metanthropes-color-condition);
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -454,7 +454,7 @@ h3 {
 }
 .meta-cover-roll {
 	&:hover {
-		cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
+		cursor: $a-cursor-hover;
 		color: var(--metanthropes-color-secondary);
 		text-shadow: var(--metanthropes-color-text-shadow);
 	}
@@ -473,7 +473,7 @@ h3 {
 	padding: $padding-md;
 	margin: $margin-md;
 	&:hover {
-		cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
+		cursor: $a-cursor-hover;
 		color: var(--metanthropes-color-secondary);
 		text-shadow: var(--metanthropes-color-text-shadow);
 	}
@@ -492,7 +492,7 @@ h3 {
 	padding: $padding-zero;
 	margin: $margin-zero;
 	&:hover {
-		cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
+		cursor: $a-cursor-hover;
 		color: var(--metanthropes-color-secondary);
 		text-shadow: var(--metanthropes-color-text-shadow);
 	}
@@ -508,7 +508,7 @@ h3 {
 	padding: $padding-zero;
 	margin: $margin-zero;
 	&:hover {
-		cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
+		cursor: $a-cursor-hover;
 		color: var(--metanthropes-color-secondary);
 		text-shadow: var(--metanthropes-color-text-shadow);
 	}
@@ -524,7 +524,7 @@ h3 {
 	padding: $padding-zero;
 	margin: $margin-zero;
 	&:hover {
-		cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
+		cursor: $a-cursor-hover;
 		color: var(--metanthropes-color-secondary);
 		text-shadow: var(--metanthropes-color-text-shadow);
 	}

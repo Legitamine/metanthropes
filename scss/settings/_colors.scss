@@ -1,4 +1,4 @@
-//* Offical Metanthropes Styling & Themes
+//* Offical Metanthropes Theme Colors
 //* Main Color Blue
 $c-light-blue: #94d1d8;
 $c-main-blue: #00b0bc;
@@ -18,8 +18,15 @@ $c-dark-highlight: #ffed00;
 $c-light-font: #fff;
 $c-dark-font: #000;
 //skouro defaul - mouse over middle - click: mesaio
-//* To be refactored/deprecated
-$c-green: #267114;
-$c-red: #ab1616;
 //* UI
 $opacity-button: 0.6;
+//* Dice Results
+//! Need to match these with CONFIG ALSO
+$c-success-dark: #267114;
+$c-success-light: #267114;
+$c-buff-dark: #267114;
+$c-buff-light: #267114;
+$c-failure-dark: #ab1616;
+$c-failure-light: #ab1616;
+$c-condition-dark: #ab1616;
+$c-condition-light: #ab1616;

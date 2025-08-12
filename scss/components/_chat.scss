@@ -15,11 +15,11 @@
 }
 
 .dice-tooltip {
-	background-image: url("../assets/artwork/ui/buttons/button.webp");
-	background-color: rgba(255, 255, 255, 0.4);
+	//background-image: $a-button-image;
+	background-color: var(--metanthropes-color-primary);
 	.part-header {
 		.part-flavor {
-			color: var(--color-light-1);
+			color: var(--metanthropes-color-primary);
 		}
 	}
 }
@@ -39,7 +39,7 @@
 //todo: this is pretty the same as base button style, should consolidate
 %base-inline-roll {
 	font-family: $font-primary;
-	background-image: url("../assets/artwork/ui/buttons/button.webp");
+	background-image: $a-button-image;
 	background-size: cover;
 	text-shadow: var(--metanthropes-color-text-shadow);
 	border: $border-groove;
@@ -69,7 +69,7 @@
 	//opacity: 0.75;
 }
 #chat-form textarea {
-	background-image: url("../assets/artwork/ui/chat/chat-box.webp");
+	background-image: $a-chat-text-area;
 }
 .chat-message .message-header .flavor-text,
 .chat-message .message-header .whisper-to,

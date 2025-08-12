@@ -23,7 +23,6 @@
 	align-items: center;
 }
 section {
-	//font-family: $font-primary;
 	margin: $margin-sm;
 	padding: $padding-sm;
 }
@@ -35,7 +34,7 @@ main {
 }
 body {
 	font-family: $font-secondary;
-	background-image: url("../assets/cover/cover.webp");
+	background-image: $a-loading-background;
 	background-size: auto auto;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
@@ -78,13 +77,16 @@ p {
 	margin: $margin-sm;
 	padding: $padding-sm;
 	text-align: left;
-	//font-size: 16px;
 }
 h3 {
 	font-family: $font-primary;
 	text-align: center;
 	color: var(--metanthropes-color-secondary);
 	text-shadow: var(--metanthropes-color-text-shadow);
+}
+
+hr {
+	color: var(--metanthropes-color-highlight);
 }
 
 // this changes the font in most title-elements of Foundry UI
@@ -106,7 +108,7 @@ h3 {
 
 .window-app .window-content {
 	position: relative;
-	background-image: url("../assets/artwork/ui/window/background.webp");
+	background-image: $a-background-image;
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -124,7 +126,7 @@ h3 {
 		transform: translate(-50%, -50%);
 		width: 55%;
 		height: 55%;
-		background-image: url("../assets/artwork/ui/window/logo.webp");
+		background-image: $a-background-logo;
 		background-position: center;
 		background-size: contain;
 		background-repeat: no-repeat;

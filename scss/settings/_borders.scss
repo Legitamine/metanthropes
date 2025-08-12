@@ -1,8 +1,8 @@
 //* Borders
 $border-groove: 2px groove var(--metanthropes-color-highlight);
 $border-activated: 2px groove var(--metanthropes-color-secondary);
-$border-box-shadow: 0 0 5px var(--metanthropes-color-highlight);
+$border-box-shadow-activated: 0 0 5px var(--metanthropes-color-highlight);
 $border-style-solid: 1px solid var(--metanthropes-color-highlight);
-$border-style-dashed: 1px dashed var(--metanthropes-color-highlight);
-$border-style-dotted: 1px dotted var(--metanthropes-color-highlight);
+$border-style-dashed: 1px dashed var(--metanthropes-color-secondary);
+$border-style-dotted: 1px dotted var(--metanthropes-color-primary);
 $border-radius: 0px;

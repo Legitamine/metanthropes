@@ -1,3 +1,5 @@
+//* Metanthropes Components
+@use "components" as *;
 //* Font Awesome
 @use "fontawesome/custom-icons.scss";
 // @use "fontawesome/sharp-duotone-solid.scss";
@@ -13,8 +15,6 @@
 
 //* Settings
 //@use "settings" as *;
-@use "components" as *;
-//* Components
 //* Metanthrope specifics?
 // // * Layers
 // @layer metanthropes.tokens, metanthropes.base, metanthropes.components, metanthropes.theme, metanthropes.utilities;
