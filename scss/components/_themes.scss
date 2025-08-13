@@ -2,6 +2,7 @@
 //* Consolidated Theme Selections
 
 //* Dark Theme */
+:root,
 .theme-dark,
 body.theme-dark,
 body.theme-dark select,
@@ -9,8 +10,8 @@ body.theme-dark input,
 body.theme-dark .application,
 .application.theme-dark,
 .application.metanthropes.themed.theme-dark {
-	--metanthropes-chat-bg: #{$a-chat-bw-dark};
-	//?--metanthropes-chat-bg: #{$a-chat-colored-dark};
+	//?--metanthropes-chat-bg: #{$a-chat-bw-dark};
+	--metanthropes-chat-bg: #{$a-chat-colored-dark};
 	--metanthropes-color-success: #{$c-success-dark};
 	--metanthropes-color-buff: #{$c-buff-dark};
 	--metanthropes-color-failure: #{$c-failure-dark};
@@ -49,7 +50,6 @@ body.theme-dark .application,
 }
 
 //* Light Theme */
-:root,
 .theme-light,
 body.theme-light,
 body.theme-light select,
@@ -57,8 +57,8 @@ body.theme-light input,
 body.theme-light .application,
 .application.theme-light,
 .application.metanthropes.themed.theme-light {
-	--metanthropes-chat-bg: #{$a-chat-bw-light};
-	//?--metanthropes-chat-bg: #{$a-chat-colored-light};
+	//?--metanthropes-chat-bg: #{$a-chat-bw-light};
+	--metanthropes-chat-bg: #{$a-chat-colored-light};
 	--metanthropes-color-success: #{$c-success-light};
 	--metanthropes-color-buff: #{$c-buff-light};
 	--metanthropes-color-failure: #{$c-failure-light};
