@@ -1,29 +1,21 @@
 /**
  * Controls the overall Content Data Migration each World needs, for Legitamine Games official content
  * Evaluates whether Migration is required for the Metanthropes System and Premium Modules
- * todo Displays an overall progress bar
  * Updates the migration setting for the system once it's all complete
  *
  * Migration will always trigger, if the 'Force Data migration' setting is enabled
  * This setting will reset upon a succesful application of updates from a module
  * It will also run every time a new version of the System is detected
+ * It will also rename the first active GM user from 'Gamemaster' to 'The Narrator'
  *
- * If running on a new World, it will also rename the default Gamemaster user to 'The Narrator'
- *
- * todo we could theoretically end up with multiple modules triggering it at the same time and it might unravel
- * todo in such a way that that the migrationData it grabs could have changed already
- * !to go around this, we could iterrate over modules enabled list that could propagate from the enabled settings of modules
- * todo review the above fixes and also review if having a force data migration flag set could be prevented (bad ux to have it persist)
- * ! this should be the only one responsible for manipulating the migration setting
- * todo give this a progress bar
- * ? having it control the grabbing and updating could help control it / pace it better
- * ? however it might be best to have it store data for each module in a separate object under each module?
- * ? this should control it though
  * todo do a round of checks first, totaling number of migrations that need to happen, then start over doing them once all checks complete.
  * todo this should be an even better way to control if a migration should proceed, when it would otherwise hang before ? like a test ?
- * ! bug progress.update percentage can go higher than 100% in some cases, which makes it look weird
- * ! this is because it will accumulate from both the good and the bad loops :/
- * @returns {Promise<void>}
+ * todo bugfix: progress.update percentage can go higher than 100% in some cases, which makes it look weird
+ * todo this is because it will accumulate from both the good and the bad loops :/
+ * 
+ * @export
+ * @async
+ * @returns {Promise<void>} 
  */
 export async function metaMigration() {
 	if (!game.user.isActiveGM) return;
@@ -160,21 +152,18 @@ async function metaInitializeModules() {
 /**
  * Module Migration goes through each enabled Module to apply specific migration logic to each content
  *
- * Returns a valid moduleDataUpdate if it received updates from child functions
+ * Returns a valid moduleDataUpdate if it received updates
  * Returns false if it didn't receive any updates
  *
- * Modules that are disabled from the Metanthropes Settings will not trigger a migration of their Data
- *
- * todo: would be cool to have a more modular functionality and ability to display the % of loading bar dynamically
- * todo: => this should be moved to parent function to enable the loading bar % dynamically
- * todo consolidate the progress message and trim where able
- * todo: better error handling/logging of edge cases
+ * Modules that are disabled from the Metanthropes Settings will not trigger a migration of their Data, even if the respective Module is Active.
+ * todo: improve on modular approach
  *
  * @async
- * @param {*} module
- * @param {*} migrationData
- * @param {*} currentSystemVersion
- * @returns {*} moduleMigrationResult
+ * @param {*} module 
+ * @param {*} migrationData 
+ * @param {*} currentSystemVersion 
+ * @param {*} moduleName 
+ * @returns {*} 
  */
 async function metaMigrateModuleData(module, migrationData, currentSystemVersion, moduleName) {
 	const mL = metanthropes.utils.metaLog;
@@ -235,7 +224,6 @@ async function metaMigrateModuleData(module, migrationData, currentSystemVersion
 /**
  * Calls the Core Data Migration
  * todo: modularity for upcoming modules
- * todo: progress bar should be localized
  *
  * @async
  * @param {*} migrationData
@@ -245,30 +233,12 @@ async function metaMigrateModuleData(module, migrationData, currentSystemVersion
 async function metaMigrateDataCore(migrationData, currentSystemVersion) {
 	const mL = metanthropes.utils.metaLog;
 	mL(0, "System", "Migration", "Initializing Core Data Migration");
-	//const progress = ui.notifications.info("Core Data Migration", { progress: true });
-	// //todo don't need this check with the new modular version
-	// progress.update({ pct: 0.2, message: "Core Data Migration: Confirming requirements before updating.." });
-	// const core = await game.settings.get("metanthropes", "metaCore");
-	// if (!core) {
-	// 	ui.notifications.warn("Metanthropes: Core is not Enabled, please activate it in the game settings.");
-	// 	progress.update({
-	// 		pct: 1,
-	// 		message: "Core Data Migration Canceled: requirements not met - Core is not Enabled",
-	// 	});
-	// 	mL(2, "System", "Migration", "Unable to complete Core Data Miration");
-	// 	return false;
-	// }
-	//todo error handling if API is unavailable?
-	//	progress.update({ pct: 0.3, message: "Core Data Migration: Updating, please do not refresh! .." });
+	//todo better error handling if API is unavailable needed?
 	const coreUpdateData = await metanthropes.utils?.metaCoreMigration(migrationData, currentSystemVersion);
-	//	progress.update({ pct: 0.7, message: "Core Data Migration: Updating, please do not refresh! ......." });
 	if (coreUpdateData) {
-		//		progress.update({ pct: 0.9, message: "Core Data Migration: Finalizing..." });
 		mL(0, "System", "Migration", "Finished Core Data Migration");
-		//		progress.update({ pct: 1, message: "Core Data Migration: Finished Updating!" });
 		return coreUpdateData;
 	} else {
-		//		progress.update({ pct: 0.9, message: "Core Data Migration: Error while Finalizing..." });
 		mL(
 			0,
 			"System",
@@ -278,7 +248,6 @@ async function metaMigrateDataCore(migrationData, currentSystemVersion) {
 			"OR",
 			"Update was not required"
 		);
-		//		progress.update({ pct: 1, message: "Core Data Migration: Migration Canceled" });
 		return false;
 	}
 }
