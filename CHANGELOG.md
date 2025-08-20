@@ -1,6 +1,6 @@
 # Latest Changes
 
-These are the latest changes of the Metanthropes System for Foundry VTT.
+These are the latest changes of the Metanthropes™ System for Foundry VTT.
 
 Included in these notes, is also the changelog for all the Premium Modules for Foundry VTT, by Legitamine Games.
 
@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Early Access Releases
 
-# Early Access v0.13.67 [2025-08-14]
+# Early Access v0.13.67 [2025-08-21]
 
 ## Added:
 
@@ -19,23 +19,25 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 -   A Critical Failure roll result will now add any Penalty to the total Levels of Failure.
 -   [Core] This version introduces the Data Migration engine, which updates a World's data with the latest content from Compendiums. This logic will automatically trigger when the World loads after an update and can also be forced to run from within the game settings.
 -   [Homebrew] With the advent of the new Data Migration engine, Homebrew owners who don't wish for their customized Items to be replaced with updated ones from the Compendiums, need to **rename their custom Items**, as the Data Migration, currently, checks and updates Items based on their name.
--   Extended the Metanthropes API with color options, available under `metanthropes.system.colors` to be used with Font Awesome icons as well as other UI elements in upcoming releases.
+-   Extended the Metanthropes™ API with color options, available under `metanthropes.system.colors` to be used with Font Awesome icons as well as other UI elements in upcoming releases.
 -   Also introducing a new way to create Font Awesome Icons, using text enrichers. See #394 on how to configure your own content in the Journals and Item fields.
 
 ## Changed:
 
--   New Worlds will now rename the default user account "Gamemaster" to "The Narrator".
+-   The first active GM (GameMaster) account that logs into a World will now be renamed to "The Narrator".
 -   Changed the styling of the Font Awesome Icons to match the styling used by Foundry Core. Targets and Area of Effect symbols now use the same Target and Measured Template icons from Foundry respectively, since they essentially serve the same practical purpose.
 -   [Core, Introductory] You no longer have to manually update an Actor's Items after upgrading to a newer system version. When your World loads it will automatically check and upgrade all existing Actors with the latest version for their Items from the respective Compendiums.
 -   [Core, Introductory] Updated all Effect Description fields for all Possessions and Metapowers to utilize the new Text Enrichers (See #394 on how to use it on your own).
--   Updated the major functions of the `metanthropes.dice` API to utilize the new text enrichers.
+-   Updated all `metanthropes.dice` API functions to utilize the new text enrichers.
 -   Updated all Journal pages to utilize the new Text Enrichers.
 
 ## Fixed:
 
 -   !todo: fix journals, links
--   [Introductory] renamed the new Scene to 'Cutscene'
+-   ! fix introductory actor replacements for metapowers when Core is active, also replace their origin actors in compendiums for this release
+-   [Introductory] renamed the new Scene to 'Cutscene' instead of 'Cinematic'.
 -   [Core/Homebrew] Fixed an issue that was causing some customized Items to not show up properly on the Actor character sheet. These Items are now visible on the sheet and you can click on the delete icon to remove them.
+-   [DSN] Fixed various issues with Dice So Nice not triggering the dice animation in some edge cases when re-rolling while spending Destiny. Requires DSN version 5.1.9 or newer. Please report any issues you might encounter, where DSN doesn't behave as expected.
 -   Changed the default Disposition for all non-Protagonist Prototype Tokens to be 'Neutral' instead of 'Secret', allowing players to target them (Secret disposition apperently does not allow targeting). If loading a World that was created before this release, all Prototype Token defaults will be overriden with this new behavior.
 -   Replaced the loading screen that appears when loading a World, that stays up until the active scene loads. This image now uses the new cover image from the system.
 -   The Pause screen displays the Metanthropes™ Logo again.
@@ -53,9 +55,9 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Changed:
 
--   New Compendium structure is introduced, sorting all our Premium content in a consistent and clean folder structure organized by Compendium type. If you are updating your World from a previous Metanthropes version, you will have both the old and the new Compendium structure in your World and you can see [#338](https://github.com/Legitamine/metanthropes/issues/338) on how to fix this.
+-   New Compendium structure is introduced, sorting all our Premium content in a consistent and clean folder structure organized by Compendium type. If you are updating your World from a previous Metanthropes™ version, you will have both the old and the new Compendium structure in your World and you can see [#338](https://github.com/Legitamine/metanthropes/issues/338) on how to fix this.
 -   New cover images for the System & Premium Modules.
--   Reorganized the various Journals; this is the first step in a series of improvements planned for Journals in the road to Metanthropes v1.0, more improvements will come in follow up builds.
+-   Reorganized the various Journals; this is the first step in a series of improvements planned for Journals in the road to Metanthropes™ v1.0, more improvements will come in follow up builds.
 
 ## Fixed:
 
@@ -84,19 +86,19 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 -   New fonts and updated tables from our new [quickstart guide](https://metanthropes.com/quickstart).
 -   [Homebrew] New capability to enable Alpha testing of upcoming features. We are offering Homebrew owners the option to test features in the early prototype stage and give us their feedback during the early stages of development.
 -   [Core] New capability to enable Beta Testing for new features. This feature was previously part of the Homebrew Module, and is now a part of the Core Module. This will give access to test new features to a broader audience, and allow us to get more feedback.
--   New defaults for all prototype Tokens including a Metanthropes Logo turn marker
+-   New defaults for all prototype Tokens including a Metanthropes™ Logo turn marker
 -   New API functionality to control dealing damage/healing to multiple targets, including re-rolls.
 
 ## Changed:
 
--   All emojis have been replaced by Font Awesome icons, as Metanthropes now comes with a Font Awesome Pro license and our own custom icons, starting with the Metanthropes Logo. These will be colored and animated automatically, according to contextual information in later releases.
+-   All emojis have been replaced by Font Awesome icons, as Metanthropes™ now comes with a Font Awesome Pro license and our own custom icons, starting with the Metanthropes™ Logo. These will be colored and animated automatically, according to contextual information in later releases.
 -   [Introductory] Deprecated recommended/required 3rd modules until we officially support 3rd party modules. FXMaster that was used previously for Dimensional effects, has been replaced by our custom effects, included with this release.
 -   Changed the Welcome Lobby / Demo scene with new artwork from Metanthropes: Anthologies.
 -   Changed API Roll d100 dice functions have been refactored to support localization & using fields API & APP V2. This is effort is ongoing and more App V2 updates are coming in the near future.
--   Metanthropes Premium Modules have been updated to use & extend the Metanthropes API.
+-   Metanthropes™ Premium Modules have been updated to use & extend the Metanthropes™ API.
 -   Chat inline rolls now follow our own custom UI/UX style, instead of the default Foundry VTT UI style which was used previously, this is still evolving and will become better in later updates.
 -   Many Development evironment updates, with an improved process that moves SCSS compiling during release building. Moving to support CSS Cascade layers to align with FVTT V13 structure onwards. We are laying the path to allow contributors in the future and this effort will continue in later releases.
--   Improved the documentation for the Metanthropes API.
+-   Improved the documentation for the Metanthropes™ API.
 -   Deprecated the use of various jQuery and replaced with HTML DOM handling.
 
 ## Fixed:
@@ -128,10 +130,10 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 -   Foundry VTT version 12 is now supported. Latest verified version is v12.331.
 -   New Actions tab for Actors. This new Actor Sheet tab will consolidate all available actions for the Actor from Metapowers & Possessions in a single tab. This tab will expand to become more dynamic while Combat is active in future releases.
--   Metanthropes API is introduced. This is part of the new v1 architecture and will further expand in future releases.
+-   Metanthropes™ API is introduced. This is part of the new v1 architecture and will further expand in future releases.
 -   Multi-language support is introduced. This is foundation work as part of the new v1 architecture and multi-language support will be added as we transition to AppV2 for the UI.
 -   From this release and onwards, we have adopted Conventional Commits for this project. This will help us better track changes and releases. See [#271](https://github.com/Legitamine/metanthropes/issues/271)
--   Updated the Welcome Compendium to include 3 new Journals : How to Play, Protagonists & Rules for Metanthropes TTRPG.
+-   Updated the Welcome Compendium to include 3 new Journals : How to Play, Protagonists & Rules for Metanthropes™ TTRPG.
 -   [Core] Added a new 'Narrator Journal', found under Compendiums - Core - Journals. This Journal brings together many advices, tips & tricks and information for new and experienced Narrators alike. It covers Preparation, World Building, Delivery and Techniques.
 -   [Core] Updated the Possessions compendium to include a total of 78 items, adding various Armors, Weapons and Gadgets.
 -   [Homebrew] Initial support for Audio & Visual effects. Items now have a new Tab that will allow to enter Document UUIDs for Macros and Playlist sounds that will be triggered when succesfully activating a Metapower or Possession. This is an initial implementation that will gradually expand to fully automate the Visual/Audio effects for Metapowers and Possessions. See [#323](https://github.com/Legitamine/metanthropes/issues/323)
@@ -141,7 +143,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 -   All compendiums have been re-organized and **you no longer need to import any content to the World** for the System, Core & Homebrew Modules to work as intended. This will help keep your Worlds clean and organized. If you choose to install the System Adventure, when prompted after the first World load, or later via the Installation folder in the Compendiums tab, it will import the Demo content and a copy of all Journals, Macros and Rollable tables to your World. The Metanthropes: Introductory Module still needs to import the installation adventure, to work as intended.
 -   [BREAKING CHANGE] Assets have now been consolidated under a new folder structure. This will cause existing Worlds to not show images for actors, items, journals and compendiums properly.
--   [BREAKING CHANGE] A good portion of the prototype code is now refactored to utilize the new Metanthropes API. This process continues until everything is refactored to meet the v1 architecture standards. See [#149](https://github.com/Legitamine/metanthropes/issues/149)
+-   [BREAKING CHANGE] A good portion of the prototype code is now refactored to utilize the new Metanthropes™ API. This process continues until everything is refactored to meet the v1 architecture standards. See [#149](https://github.com/Legitamine/metanthropes/issues/149)
 -   Re-Rolling a result by spending Destiny, will no longer spam the chat with multiple messages, instead it will update the original message and keep track of how many total re-rolls were made.
 -   Initial Font Awesome implementation: Font Awesome icons are now used instead of Emoji for the Critical Success / Failure message in Chat. We will gradually roll-out Emojis in favor of Font Awesome icons in future releases, this is just a small taste of what's to come.
 -   Under Game Settings - Configure Settings, all editable options are now grouped under the 'Metanthropes' setting, instead of each Module having their own section. This will help keep the settings more organized and easier to find, especially if you have many other modules installed.

@@ -4,6 +4,6 @@ export const colors = Object.freeze({
 	highlight: "#EC008C",
 	buff: "#267114",
 	condition: "#ab1616",
-	success: "#4CAF50",
-	failure: "#E57373",
+	success: "#267114",
+	failure: "#ab1616",
 });

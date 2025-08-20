@@ -177,9 +177,9 @@ export async function metaRolld10(
 			const updatedRoll = await rolld10.toJSON();
 			const renderedRoll = await rolld10.render();
 			//? Call Dice So Nice to show the roll
-			// if (game.dice3d && dice > 0) {
-			// 	game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
-			// }
+			if (game.dice3d && dice > 0) {
+				game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
+			}
 			chatMessage.update({
 				flavor: enrichedMessage,
 				rolls: updatedRoll,
@@ -196,9 +196,9 @@ export async function metaRolld10(
 			//* We store in the dataset all info to display the chat message if needed from rerolls
 			//! do I need this anymore for rerolls to show for all players?
 			//? Call Dice So Nice to show the roll
-			// if (game.dice3d && dice > 0) {
-			// 	game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
-			// }
+			if (game.dice3d && dice > 0) {
+				game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
+			}
 			const updatedRoll = await rolld10.toJSON();
 			const renderedRoll = await rolld10.render();
 			metanthropes.utils.metaLog(3, "metaRolld10", "Anchored", "Not updating original chat message", messageId);
