@@ -12,10 +12,10 @@
  * todo this should be an even better way to control if a migration should proceed, when it would otherwise hang before ? like a test ?
  * todo bugfix: progress.update percentage can go higher than 100% in some cases, which makes it look weird
  * todo this is because it will accumulate from both the good and the bad loops :/
- * 
+ *
  * @export
  * @async
- * @returns {Promise<void>} 
+ * @returns {Promise<void>}
  */
 export async function metaMigration() {
 	if (!game.user.isActiveGM) return;
@@ -132,12 +132,12 @@ export async function metaMigration() {
  */
 async function metaInitializeModules() {
 	let modules = [["System", "METANTHROPES.MODULES.System"]];
+	const intro = await game.settings.get("metanthropes", "metaIntroductory");
+	if (intro) modules.push(["Introductory", "METANTHROPES.MODULES.Introductory"]);
 	const core = await game.settings.get("metanthropes", "metaCore");
 	if (core) modules.push(["Core", "METANTHROPES.MODULES.Core"]);
 	const homebrew = await game.settings.get("metanthropes", "metaHomebrew");
 	if (homebrew) modules.push(["Homebrew", "METANTHROPES.MODULES.Homebrew"]);
-	const intro = await game.settings.get("metanthropes", "metaIntroductory");
-	if (intro) modules.push(["Introductory", "METANTHROPES.MODULES.Introductory"]);
 	const aether = await game.settings.get("metanthropes", "metaAether");
 	if (aether) modules.push(["Aether", "METANTHROPES.MODULES.Aether"]);
 	const astral = await game.settings.get("metanthropes", "metaAstral");
@@ -159,11 +159,11 @@ async function metaInitializeModules() {
  * todo: improve on modular approach
  *
  * @async
- * @param {*} module 
- * @param {*} migrationData 
- * @param {*} currentSystemVersion 
- * @param {*} moduleName 
- * @returns {*} 
+ * @param {*} module
+ * @param {*} migrationData
+ * @param {*} currentSystemVersion
+ * @param {*} moduleName
+ * @returns {*}
  */
 async function metaMigrateModuleData(module, migrationData, currentSystemVersion, moduleName) {
 	const mL = metanthropes.utils.metaLog;
@@ -180,15 +180,17 @@ async function metaMigrateModuleData(module, migrationData, currentSystemVersion
 			);
 			if (prototypeTokenDefaults) moduleDataUpdate = prototypeTokenDefaults;
 			break;
+		case "Introductory":
+			const introDataMigrationResults = await metaMigrateDataIntroductory(migrationData, currentSystemVersion);
+			if (introDataMigrationResults) moduleDataUpdate = introDataMigrationResults;
+			break;
+			break;
 		case "Core":
 			const coreDataMigrationResults = await metaMigrateDataCore(migrationData, currentSystemVersion);
 			if (coreDataMigrationResults) moduleDataUpdate = coreDataMigrationResults;
 			break;
 		case "Homebrew":
 			//* Placeholder for Metanthropes: Homebrew specific migrations
-			break;
-		case "Introductory":
-			//* Placeholder for Metanthropes: Introductory specific migrations
 			break;
 		case "Aether":
 			//* Placeholder for Metanthropes: Anthologies - Aether specific migrations
@@ -252,6 +254,36 @@ async function metaMigrateDataCore(migrationData, currentSystemVersion) {
 	}
 }
 
+/**
+ * Calls the Core Data Migration
+ * todo: modularity for upcoming modules
+ *
+ * @async
+ * @param {*} migrationData
+ * @param {*} currentSystemVersion
+ * @returns {updateData}
+ */
+async function metaMigrateDataIntroductory(migrationData, currentSystemVersion) {
+	const mL = metanthropes.utils.metaLog;
+	mL(0, "System", "Migration", "Initializing Introductory Data Migration");
+	//todo better error handling if API is unavailable needed?
+	const introUpdateData = await metanthropes.utils?.metaIntroductoryMigration(migrationData, currentSystemVersion);
+	if (introUpdateData) {
+		mL(0, "System", "Migration", "Finished Introductory Data Migration");
+		return introUpdateData;
+	} else {
+		mL(
+			0,
+			"System",
+			"Migration",
+			"Canceled",
+			"Did not receive valid Introductory Migration Data",
+			"OR",
+			"Update was not required"
+		);
+		return false;
+	}
+}
 /**
  * Manages updating the overrides for the default Prototype Token Defauls introduced with v13
  *
