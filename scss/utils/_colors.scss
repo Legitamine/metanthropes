@@ -46,9 +46,10 @@ body.theme-dark .application,
 .application.theme-dark,
 .application.metanthropes.themed.theme-dark {
 	--metanthropes-chat-bg: url("../assets/artwork/ui/chat/chat-bw-dark.webp");
-	--sidebar-background: url("../systems/metanthropes/assets/artwork/ui/sidebar/sidebar-dark.png");
+	--sidebar-background: url("../systems/metanthropes/assets/artwork/ui/sidebar/sidebar-dark.webp");
 	//--tjs-app-background: url("../systems/metanthropes/assets/artwork/ui/app/app-colored-dark.png");
-	--background: url("../systems/metanthropes/assets/artwork/ui/app/app-image-dark.png") repeat;
+	//--background: url("../systems/metanthropes/assets/artwork/ui/app/app-image-dark.png") repeat;
+	--background: url("../systems/metanthropes/assets/artwork/ui/app/app-colored-dark.webp") repeat;
 	--metanthropes-color-primary: $c-dark-purple;
 	--metanthropes-color-secondary: $c-main-purple;
 	--metanthropes-color-highlight: $c-dark-highlight;
@@ -71,9 +72,10 @@ body.theme-light .application,
 .application.theme-light,
 .application.metanthropes.themed.theme-light {
 	--metanthropes-chat-bg: url("../assets/artwork/ui/chat/chat-bw-light.webp");
-	--sidebar-background: url("../systems/metanthropes/assets/artwork/ui/sidebar/sidebar-light.png");
+	--sidebar-background: url("../systems/metanthropes/assets/artwork/ui/sidebar/sidebar-light.webp");
 	//--tjs-app-background: url("../systems/metanthropes/assets/artwork/ui/app/app-colored-light.png");
-	--background: url("../systems/metanthropes/assets/artwork/ui/app/app-image-light.png") repeat;
+	//--background: url("../systems/metanthropes/assets/artwork/ui/app/app-image-light.png") repeat;
+	--background: url("../systems/metanthropes/assets/artwork/ui/app/app-colored-light.webp") repeat;
 	--metanthropes-color-primary: $c-dark-blue;
 	--metanthropes-color-secondary: $c-main-blue;
 	--metanthropes-color-highlight: $c-light-highlight;

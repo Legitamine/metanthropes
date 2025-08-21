@@ -15,6 +15,9 @@
 	opacity: 1;
 }
 
+//todo: button smaller - not stretch to window
+//text align left
+
 // Base Button Styles
 %base-button {
 	font-family: $font-primary;
@@ -24,6 +27,7 @@
 	border-radius: $border-radius;
 	color: var(--metanthropes-color-text);
 	opacity: $opacity-button;
+	//text-align: left;
 }
 
 // --- Button Elements ---

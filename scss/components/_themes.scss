@@ -10,8 +10,8 @@ body.theme-dark input,
 body.theme-dark .application,
 .application.theme-dark,
 .application.metanthropes.themed.theme-dark {
-	//?--metanthropes-chat-bg: #{$a-chat-bw-dark};
-	--metanthropes-chat-bg: #{$a-chat-colored-dark};
+	--metanthropes-chat-bg: #{$a-chat-bw-dark};
+	//?--metanthropes-chat-bg: #{$a-chat-colored-dark};
 	--metanthropes-color-success: #{$c-success-dark};
 	--metanthropes-color-buff: #{$c-buff-dark};
 	--metanthropes-color-failure: #{$c-failure-dark};
@@ -24,9 +24,9 @@ body.theme-dark .application,
 	--metanthropes-color-disabled: #{$c-light-gold};
 	--metanthropes-color-background: #{$c-light-purple};
 	//* Foundry Overrides
-	--background: #{$a-app-image-dark};
+	//?--background: #{$a-app-image-dark};
 	//?--background: #{$a-app-colored-dark};
-	//?--background: #{$a-app-bw-dark};
+	--background: #{$a-app-bw-dark};
 	--background-journal-image: #{$a-journal-dark};
 	--sidebar-background: #{$a-sidebar-dark};
 	//--tjs-app-background: url("../systems/metanthropes/assets/artwork/ui/app/app-colored-dark.png");
@@ -57,8 +57,8 @@ body.theme-light input,
 body.theme-light .application,
 .application.theme-light,
 .application.metanthropes.themed.theme-light {
-	//?--metanthropes-chat-bg: #{$a-chat-bw-light};
-	--metanthropes-chat-bg: #{$a-chat-colored-light};
+	--metanthropes-chat-bg: #{$a-chat-bw-light};
+	//?--metanthropes-chat-bg: #{$a-chat-colored-light};
 	--metanthropes-color-success: #{$c-success-light};
 	--metanthropes-color-buff: #{$c-buff-light};
 	--metanthropes-color-failure: #{$c-failure-light};
@@ -71,9 +71,9 @@ body.theme-light .application,
 	--metanthropes-color-disabled: #{$c-dark-gold};
 	--metanthropes-color-background: #{$c-light-blue};
 	//* Foundry Overrides
-	--background: #{$a-app-image-light};
+	//?--background: #{$a-app-image-light};
 	//?--background: #{$a-app-colored-light};
-	//?--background: #{$a-app-bw-light};
+	--background: #{$a-app-bw-light};
 	--background-journal-image: #{$a-journal-light};
 	--sidebar-background: #{$a-sidebar-light};
 	//--tjs-app-background: url("../systems/metanthropes/assets/artwork/ui/app/app-colored-light.png");
