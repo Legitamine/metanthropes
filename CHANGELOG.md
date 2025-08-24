@@ -26,6 +26,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 -   The first active GM (GameMaster) account that logs into a World will now be renamed to "The Narrator".
 -   Changed the styling of the Font Awesome Icons to match the styling used by Foundry Core. Targets and Area of Effect symbols now use the same Target and Measured Template icons from Foundry respectively, since they essentially serve the same practical purpose.
+-   [Core] Possessions now display the Material Properties tab, previously only visible to Homebrew ownwers. Added tooltips to better clarify what each property does. This tab displays the material properties of the item, the Resistances it provides to the wearer (if an Armor type) and other properties, such as the item's Durability, Size and Weight. For Armors, Resistances provided, are not automatically applied to the Actor (yet), so Narrators will have to edit the Actor's Resistances to give them the armor's protection bonuses. Once applied on the Actor, Resistance values are automaticly included in the Damage application from Metapowers/Possessions.
 -   [Core, Introductory] You no longer have to manually update an Actor's Items after upgrading to a newer system version. When your World loads it will automatically check and upgrade all existing Actors with the latest version for their Items from the respective Compendiums.
 -   [Core, Introductory] Updated all Effect Description fields for all Possessions and Metapowers to utilize the new Text Enrichers (See #394 on how to use it on your own).
 -   Updated all `metanthropes.dice` API functions to utilize the new text enrichers.
@@ -34,12 +35,13 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 ## Fixed:
 
 -   !todo: fix journals, links
+-   !todo: materials 'composite materials' & tooltips for the whole tab
 -   ! fix introductory actor replacements for metapowers when Core is active, also replace their origin actors in compendiums for this release
 -   [Introductory] renamed the new Scene to 'Cutscene' instead of 'Cinematic'.
 -   [Core/Homebrew] Fixed an issue that was causing some customized Items to not show up properly on the Actor character sheet. These Items are now visible on the sheet and you can click on the delete icon to remove them.
 -   [DSN] Fixed various issues with Dice So Nice not triggering the dice animation in some edge cases when re-rolling while spending Destiny. Requires DSN version 5.1.9 or newer. Please report any issues you might encounter, where DSN doesn't behave as expected.
 -   Changed the default Disposition for all non-Protagonist Prototype Tokens to be 'Neutral' instead of 'Secret', allowing players to target them (Secret disposition apperently does not allow targeting). If loading a World that was created before this release, all Prototype Token defaults will be overriden with this new behavior.
--   Replaced the loading screen that appears when loading a World, that stays up until the active scene loads. This image now uses the new cover image from the system.
+-   Replaced the loading screen that appears when loading a World, that stays up until the active scene loads. This image now uses the new cover image for the system and should be less prone to cause any motion sickness than the previous artwork used as the loading screen.
 -   The Pause screen displays the Metanthropes™ Logo again.
 -   Fixed the issue with dissappearing Font Awesome icons when editing a Journal page or a Possession's effect description fields. From now on, use the new Text Enrichers to include FA icons in the Journals and in the description fields on Items. See #394 on how to configure your own content.
 -   Better aligned the FontAwesome Icons that show up on chat during the Activation of Metapowers and Usage of Possessions.
