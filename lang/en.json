@@ -238,10 +238,10 @@
 					"Durability": "The durability of the item. When damage received is higher than the Resistance for that damage type, excess damage reduces the Durability of the Possession. When Durability reaches 0, the Possession is destroyed.",
 					"Size": "The Size of this Possession.",
 					"Weight": "The Weight of this Possession.",
-					"Cosmic": "The Cosmic Resistance this material provides. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
-					"Elemental": "The Elemental Resistance this material provides. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
-					"Material": "The Material Resistance this material provides. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
-					"Psychic": "The Psychic Resistance this material provides. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+					"Cosmic": "The Cosmic Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+					"Elemental": "The Elemental Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+					"Material": "The Material Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+					"Psychic": "The Psychic Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
 					"Description": "A description for this particular material."
 				}
 			}

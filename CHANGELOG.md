@@ -1,8 +1,8 @@
 # Latest Changes
 
-These are the latest changes of the Metanthropes™ System for Foundry VTT.
+These are the latest changes for the Metanthropes™ System for Foundry VTT.
 
-Included in these notes, is also the changelog for all the Premium Modules for Foundry VTT, by Legitamine Games.
+Included in these notes, is also the changelog for all the Metanthropes™ Premium Modules for Foundry VTT, labeled as [Module Name].
 
 The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
@@ -17,7 +17,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 -   Added support for Foundry version 13.347.
 -   A Critical Success roll result will now add any Bonus to the total Levels of Success.
 -   A Critical Failure roll result will now add any Penalty to the total Levels of Failure.
--   [Core] This version introduces the Data Migration engine, which updates a World's data with the latest content from Compendiums. This logic will automatically trigger when the World loads after an update and can also be forced to run from within the game settings.
+-   [Core] This version introduces the Data Migration engine, which updates a World's data with the latest content from Compendiums. This engine will automatically trigger when the World loads after an update, and can also be forced to run from within the game settings.
 -   [Homebrew] With the advent of the new Data Migration engine, Homebrew owners who don't wish for their customized Items to be replaced with updated ones from the Compendiums, need to **rename their custom Items**, as the Data Migration, currently, checks and updates Items based on their name.
 -   Extended the Metanthropes™ API with color options, available under `metanthropes.system.colors` to be used with Font Awesome icons as well as other UI elements in upcoming releases.
 -   Also introducing a new way to create Font Awesome Icons, using text enrichers. See #394 on how to configure your own content in the Journals and Item fields.
@@ -36,8 +36,9 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 -   !todo: fix journals, links
 -   !todo: materials 'composite materials' & migration needed for composed? & labels
--   ! fix introductory actor replacements for metapowers when Core is active, also replace their origin actors in compendiums for this release
--   [Introductory] renamed the new Scene to 'Cutscene' instead of 'Cinematic'.
+!!!-   ! fix introductory actor replacements for metapowers when Core is active, also replace their origin actors in compendiums for this release = do we need to do a replace? it's gonna take the new ones from the compendiums if running core, so is this required???
+-   [Introductory] Fixed some typos and other errors in Shavo's and Niko's Metapowers.
+-   [Introductory] Renamed the new First Person Scene to 'Cutscene' instead of 'Cinematic'.
 -   [Core/Homebrew] Fixed an issue that was causing some customized Items to not show up properly on the Actor character sheet. These Items are now visible on the sheet and you can click on the delete icon to remove them.
 -   [DSN] Fixed various issues with Dice So Nice not triggering the dice animation in some edge cases when re-rolling while spending Destiny. Requires DSN version 5.1.9 or newer. Please report any issues you might encounter, where DSN doesn't behave as expected.
 -   Changed the default Disposition for all non-Protagonist Prototype Tokens to be 'Neutral' instead of 'Secret', allowing players to target them (Secret disposition apperently does not allow targeting). If loading a World that was created before this release, all Prototype Token defaults will be overriden with this new behavior.
