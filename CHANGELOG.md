@@ -26,7 +26,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 -   The first active GM (GameMaster) account that logs into a World will now be renamed to "The Narrator".
 -   Changed the styling of the Font Awesome Icons to match the styling used by Foundry Core. Targets and Area of Effect symbols now use the same Target and Measured Template icons from Foundry respectively, since they essentially serve the same practical purpose.
--   [Core] Possessions now display the Material Properties tab, previously only visible to Homebrew ownwers. Added tooltips to better clarify what each property does. This tab displays the material properties of the item, the Resistances it provides to the wearer (if an Armor type) and other properties, such as the item's Durability, Size and Weight. For Armors, Resistances provided, are not automatically applied to the Actor (yet), so Narrators will have to edit the Actor's Resistances to give them the armor's protection bonuses. Once applied on the Actor, Resistance values are automaticly included in the Damage application from Metapowers/Possessions.
+-   [Core] Possessions now display the Material Properties tab, previously only visible to Homebrew ownwers. Added tooltips to better clarify what each property does. This tab displays the material properties of the item, the Resistances it provides to the wearer (if an Armor type) and other properties, such as the item's Durability, Size and Weight. For Armors, the Resistances values provided, are not automatically applied to the Actor and the automation will come in future builds. Narrators will have to edit the Actor's Resistances Score directly, to give them the armor's protection bonuses.
 -   [Core, Introductory] You no longer have to manually update an Actor's Items after upgrading to a newer system version. When your World loads it will automatically check and upgrade all existing Actors with the latest version for their Items from the respective Compendiums.
 -   [Core, Introductory] Updated all Effect Description fields for all Possessions and Metapowers to utilize the new Text Enrichers (See #394 on how to use it on your own).
 -   Updated all `metanthropes.dice` API functions to utilize the new text enrichers.
@@ -35,7 +35,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 ## Fixed:
 
 -   !todo: fix journals, links
--   !todo: materials 'composite materials' & tooltips for the whole tab
+-   !todo: materials 'composite materials' & migration needed for composed? & labels
 -   ! fix introductory actor replacements for metapowers when Core is active, also replace their origin actors in compendiums for this release
 -   [Introductory] renamed the new Scene to 'Cutscene' instead of 'Cinematic'.
 -   [Core/Homebrew] Fixed an issue that was causing some customized Items to not show up properly on the Actor character sheet. These Items are now visible on the sheet and you can click on the delete icon to remove them.
