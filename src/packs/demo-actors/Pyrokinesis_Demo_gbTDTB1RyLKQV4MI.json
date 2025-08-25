@@ -974,7 +974,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "<i class=\"fa-solid fa-cube\"></i> Category",
-						"value": "Earthly"
+						"value": "Terrestrial"
 					},
 					"Durability": {
 						"type": "number",
@@ -1516,7 +1516,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "<i class=\"fa-solid fa-cube\"></i> Category",
-						"value": "Earthly"
+						"value": "Terrestrial"
 					},
 					"Durability": {
 						"type": "number",
@@ -2058,7 +2058,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "<i class=\"fa-solid fa-cube\"></i> Category",
-						"value": "Metallic"
+						"value": "Metals & Alloys"
 					},
 					"Durability": {
 						"type": "number",
@@ -15418,7 +15418,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "<i class=\"fa-solid fa-cube\"></i> Category",
-						"value": "Earthly, Compossed, Metallic or Alien"
+						"value": "Terrestrial, Metals & Alloys, Composite or Extraterrestrial"
 					},
 					"Durability": {
 						"type": "number",
