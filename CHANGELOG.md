@@ -29,6 +29,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 -   Changed the styling of the Font Awesome Icons to match the styling used by Foundry VTT. Targets and Area of Effect symbols now use the same Target and Measured Template icons from Foundry respectively, since they essentially serve the same practical purpose.
 -   [Core, Introductory] You no longer have to manually update an Actor's Items after upgrading to a newer system version. When your World loads it will automatically check and upgrade all existing Actors with the latest version for their Items from the respective Compendiums, using the new Data Migration Engine.
 -   [Core, Introductory] Updated all Effect Description fields for all Possessions and Metapowers to utilize the new Text Enrichers (See #394 on how to use it on your own).
+-   [Core] Updated all Metapowers and Possessions with the new Material Properties definitions. Kindly note that the website content is not yet updated to reflect this change.
 -   [Core] Metapower changes: Ancestral Connection Level 5 (Ancestral Roots) now gives 25 Psychic resistance.
 -   [Homebrew] With the advent of the new Data Migration engine, Homebrew owners who don't wish for their customized Items to be replaced with updated ones from the Compendiums, need to **rename their custom Items**, as the Data Migration, currently, checks and updates Items based on their name.
 -   Updated all `metanthropes.dice` API functions to utilize the new text enrichers.
@@ -38,7 +39,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 -   !todo: fix journals, links
 
--   Fixes in this release and onwards, will utilize the new Data Migration Engine to also update existing World Actors, with all the fixes available in the Compendiums.
+-   From this release and onwards, we utilize the new Data Migration Engine to also update existing World Actors, so Narrators won't have to re-import Actors from Compendiums to get the new content & fixes.
 -   [Introductory] Fixed some typos and other minor issues in Shavo's and Niko's Metapowers.
 -   [Introductory] Increased the top-down Token scale ratio for the Nightmare, Anomaly and Cyborg Antagonists to better reflect their larger than human relative sizes. Also fixed the backgrounds for the Cyborg and Nightmare.
 -   [Introductory] Renamed the new First Person Scene to 'Cutscene' instead of 'Cinematic'.
