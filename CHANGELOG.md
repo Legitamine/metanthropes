@@ -17,17 +17,17 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 -   Added support for Foundry version 13.347.
 -   A Critical Success roll result will now add any Bonus to the total Levels of Success.
 -   A Critical Failure roll result will now add any Penalty to the total Levels of Failure.
--   Non-Strike Possessions, now display the Material Properties tab, previously only visible to Homebrew ownwers. This is an early concept for the crafting subsystem of the game & you can [read more about each Material on our website and join the discussion](https://www.metanthropes.com/possessions/📦-items/materials/) (requires [Protagonist Web Access](https://www.metanthropes.com/store/product/16-protagonist-website/) or community rank of Instrument or above). This tab displays the Material Properties of the Possession, its category & the Resistances it provides to the wearer (if an Armor type) as well as other properties, such as the item's Durability, Size and Weight. Added tooltips to better clarify what each property does and renamed some definitions to provide better clarity. For Armors, the Resistance values of the Possession, are not automatically applied to the Actor. Narrators will have to edit the Actor's Resistance Scores manually, to give them the Armor's protection bonuses and keep track of it's Durability. Automatic application of Resistances for Armors and Durability tracking, will come in future builds.
--   [Core/Introductory] This version introduces the Data Migration engine, which updates a World's data with the latest content from Compendiums. Currently it will update all Metapowers & Possessions on all World Actors. This engine will automatically trigger when the World loads after an update, and can also be forced to run from within the game settings.
+-   Non-Strike Possessions, now display the Material Properties tab, previously only visible to Homebrew ownwers. This is an early concept for the crafting subsystem of the game & you can [read more about each Material on our website and join the discussion](https://www.metanthropes.com/possessions/📦-items/materials/) (requires [Protagonist Web Access](https://www.metanthropes.com/store/product/16-protagonist-website/), or a community rank of **Instrument** or above). This tab displays the Material Properties of the Possession, its category & the Resistances it provides to the wearer (if an Armor type) as well as other properties, such as the item's Durability, Size and Weight. Added tooltips to better clarify what each property does and renamed some definitions to provide better clarity. For Armors, the Resistance values of the Possession, are not automatically applied to the Actor. Narrators will have to edit the Actor's Resistance Scores manually, to give them the Armor's protection bonuses and keep track of it's Durability. Automatic application of Resistances for Armors and Durability tracking, will come in future builds.
+-   [Core/Introductory] This version introduces the **Data Migration Engine**, which updates a World's data with the latest content from Compendiums. Currently it will update all Metapowers & Possessions on all World Actors. It will automatically trigger when the World loads for the first time, following an update, and can also be forced to run from within the game settings.
 -   Extended the Metanthropes™ API with color options, available under `metanthropes.system.colors` to be used with Font Awesome icons as well as other UI elements in upcoming releases.
--   Also introducing a new way to create Font Awesome Icons, using text enrichers. See #394 on how to configure your own content in the Journals and Item fields.
+-   Also introducing a new way to create Font Awesome Icons, using text enrichers. See #394 on how to configure your own custom content for Journals and Item fields.
 
 ## Changed:
 
 -   The first active GM (GameMaster) account that logs into a World will now be renamed to "The Narrator".
 -   Changed the definitions for a Possessions' Material Properties, specifically their categories: 'Eartly' is now 'Terrestrial', 'Metallic' becomes 'Metals & Alloys', 'Compossed' is now 'Composite' and 'Alien' becomes 'Extraterrestrial'. Metapowers and Possessions refferencing these Materials now refference the new definitions. The Website content is not yet updated to reflect these changes.
--   Changed the styling of the Font Awesome Icons to match the styling used by Foundry Core. Targets and Area of Effect symbols now use the same Target and Measured Template icons from Foundry respectively, since they essentially serve the same practical purpose.
--   [Core, Introductory] You no longer have to manually update an Actor's Items after upgrading to a newer system version. When your World loads it will automatically check and upgrade all existing Actors with the latest version for their Items from the respective Compendiums.
+-   Changed the styling of the Font Awesome Icons to match the styling used by Foundry VTT. Targets and Area of Effect symbols now use the same Target and Measured Template icons from Foundry respectively, since they essentially serve the same practical purpose.
+-   [Core, Introductory] You no longer have to manually update an Actor's Items after upgrading to a newer system version. When your World loads it will automatically check and upgrade all existing Actors with the latest version for their Items from the respective Compendiums, using the new Data Migration Engine.
 -   [Core, Introductory] Updated all Effect Description fields for all Possessions and Metapowers to utilize the new Text Enrichers (See #394 on how to use it on your own).
 -   [Core] Metapower changes: Ancestral Connection Level 5 (Ancestral Roots) now gives 25 Psychic resistance.
 -   [Homebrew] With the advent of the new Data Migration engine, Homebrew owners who don't wish for their customized Items to be replaced with updated ones from the Compendiums, need to **rename their custom Items**, as the Data Migration, currently, checks and updates Items based on their name.
@@ -38,6 +38,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 -   !todo: fix journals, links
 
+-   Fixes in this release and onwards, will utilize the new Data Migration Engine to also update existing World Actors, with all the fixes available in the Compendiums.
 -   [Introductory] Fixed some typos and other minor issues in Shavo's and Niko's Metapowers.
 -   [Introductory] Increased the top-down Token scale ratio for the Nightmare, Anomaly and Cyborg Antagonists to better reflect their larger than human relative sizes. Also fixed the backgrounds for the Cyborg and Nightmare.
 -   [Introductory] Renamed the new First Person Scene to 'Cutscene' instead of 'Cinematic'.
@@ -47,6 +48,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 -   Replaced the loading screen that appears when loading a World, that stays up until the active scene loads. This image now uses the new cover image for the system and should be less prone to cause any motion sickness than the previous artwork used as the loading screen.
 -   Fixed the issue with dissappearing Font Awesome icons when editing a Journal page or a Possession's effect description fields. From now on, use the new Text Enrichers to include FA icons in the Journals and in the description fields on Items. See #394 on how to configure your own content.
 -   Better aligned the FontAwesome Icons that show up on chat during the Activation of Metapowers and Usage of Possessions.
+-   Fixed the Known Issues of the previous release.
 -   The Pause screen displays the Metanthropes™ Logo again.
 
 # Early Access v0.13.5 [2025-06-05]
