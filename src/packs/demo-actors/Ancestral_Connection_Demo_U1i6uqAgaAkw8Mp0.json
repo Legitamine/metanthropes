@@ -5904,7 +5904,7 @@
 						"type": "text",
 						"dtype": "String",
 						"label": "<i class=\"fa-solid fa-cube\"></i> Category",
-						"value": "Earthly, Compossed, Metallic or Alien"
+						"value": "Terrestrial, Metals & Alloys, Composite or Extraterrestrial"
 					},
 					"Durability": {
 						"type": "number",
