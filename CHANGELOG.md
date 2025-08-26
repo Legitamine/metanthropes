@@ -10,42 +10,47 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Early Access Releases
 
-# Early Access v0.13.67 [2025-08-21]
+# Early Access v0.13.67 [2025-08-26]
 
 ## Added:
 
 -   Added support for Foundry version 13.347.
 -   A Critical Success roll result will now add any Bonus to the total Levels of Success.
 -   A Critical Failure roll result will now add any Penalty to the total Levels of Failure.
--   [Core] This version introduces the Data Migration engine, which updates a World's data with the latest content from Compendiums. This engine will automatically trigger when the World loads after an update, and can also be forced to run from within the game settings.
--   [Homebrew] With the advent of the new Data Migration engine, Homebrew owners who don't wish for their customized Items to be replaced with updated ones from the Compendiums, need to **rename their custom Items**, as the Data Migration, currently, checks and updates Items based on their name.
+-   Non-Strike Possessions, now display the Material Properties tab, previously only visible to Homebrew ownwers. This is an early concept for the crafting subsystem of the game & you can [read more about each Material on our website and join the discussion](https://www.metanthropes.com/possessions/📦-items/materials/) (requires [Protagonist Web Access](https://www.metanthropes.com/store/product/16-protagonist-website/), or a community rank of **Instrument** or above). This tab displays the Material Properties of the Possession, its category & the Resistances it provides to the wearer (if an Armor type) as well as other properties, such as the item's Durability, Size and Weight. Added tooltips to better clarify what each property does and renamed some definitions to provide better clarity. For Armors, the Resistance values of the Possession, are not automatically applied to the Actor. Narrators will have to edit the Actor's Resistance Scores manually, to give them the Armor's protection bonuses and keep track of it's Durability. Automatic application of Resistances for Armors and Durability tracking, will come in future builds.
+-   [Core/Introductory] This version introduces the **Data Migration Engine**, which updates a World's data with the latest content from Compendiums. Currently it will update all Metapowers & Possessions on all World Actors. It will automatically trigger when the World loads for the first time, following an update, and can also be forced to run from within the game settings.
 -   Extended the Metanthropes™ API with color options, available under `metanthropes.system.colors` to be used with Font Awesome icons as well as other UI elements in upcoming releases.
--   Also introducing a new way to create Font Awesome Icons, using text enrichers. See #394 on how to configure your own content in the Journals and Item fields.
+-   Also introducing a new way to create Font Awesome Icons, using text enrichers. See #394 on how to configure your own custom content for Journals and Item fields.
 
 ## Changed:
 
 -   The first active GM (GameMaster) account that logs into a World will now be renamed to "The Narrator".
--   Changed the styling of the Font Awesome Icons to match the styling used by Foundry Core. Targets and Area of Effect symbols now use the same Target and Measured Template icons from Foundry respectively, since they essentially serve the same practical purpose.
--   [Core] Possessions now display the Material Properties tab, previously only visible to Homebrew ownwers. Added tooltips to better clarify what each property does. This tab displays the material properties of the item, the Resistances it provides to the wearer (if an Armor type) and other properties, such as the item's Durability, Size and Weight. For Armors, the Resistances values provided, are not automatically applied to the Actor and the automation will come in future builds. Narrators will have to edit the Actor's Resistances Score directly, to give them the armor's protection bonuses.
--   [Core, Introductory] You no longer have to manually update an Actor's Items after upgrading to a newer system version. When your World loads it will automatically check and upgrade all existing Actors with the latest version for their Items from the respective Compendiums.
+-   Changed the definitions for a Possessions' Material Properties, specifically their categories: 'Eartly' is now 'Terrestrial', 'Metallic' becomes 'Metals & Alloys', 'Compossed' is now 'Composite' and 'Alien' becomes 'Extraterrestrial'. Metapowers and Possessions refferencing these Materials now refference the new definitions. The Website content is not yet updated to reflect these changes.
+-   Changed the styling of the Font Awesome Icons to match the styling used by Foundry VTT. Targets and Area of Effect symbols now use the same Target and Measured Template icons from Foundry respectively, since they essentially serve the same practical purpose.
+-   [Core, Introductory] You no longer have to manually update an Actor's Items after upgrading to a newer system version. When your World loads it will automatically check and upgrade all existing Actors with the latest version for their Items from the respective Compendiums, using the new Data Migration Engine.
 -   [Core, Introductory] Updated all Effect Description fields for all Possessions and Metapowers to utilize the new Text Enrichers (See #394 on how to use it on your own).
+-   [Core] Updated all Metapowers and Possessions with the new Material Properties definitions. Kindly note that the website content is not yet updated to reflect this change.
+-   [Core] Metapower changes: Ancestral Connection Level 5 (Ancestral Roots) now gives 25 Psychic resistance.
+-   [Homebrew] With the advent of the new Data Migration engine, Homebrew owners who don't wish for their customized Items to be replaced with updated ones from the Compendiums, need to **rename their custom Items**, as the Data Migration, currently, checks and updates Items based on their name.
 -   Updated all `metanthropes.dice` API functions to utilize the new text enrichers.
 -   Updated all Journal pages to utilize the new Text Enrichers.
 
 ## Fixed:
 
 -   !todo: fix journals, links
--   !todo: materials 'composite materials' & migration needed for composed? & labels
-!!!-   ! fix introductory actor replacements for metapowers when Core is active, also replace their origin actors in compendiums for this release = do we need to do a replace? it's gonna take the new ones from the compendiums if running core, so is this required???
--   [Introductory] Fixed some typos and other errors in Shavo's and Niko's Metapowers.
+
+-   From this release and onwards, we utilize the new Data Migration Engine to also update existing World Actors, so Narrators won't have to re-import Actors from Compendiums to get the new content & fixes.
+-   [Introductory] Fixed some typos and other minor issues in Shavo's and Niko's Metapowers.
+-   [Introductory] Increased the top-down Token scale ratio for the Nightmare, Anomaly and Cyborg Antagonists to better reflect their larger than human relative sizes. Also fixed the backgrounds for the Cyborg and Nightmare.
 -   [Introductory] Renamed the new First Person Scene to 'Cutscene' instead of 'Cinematic'.
--   [Core/Homebrew] Fixed an issue that was causing some customized Items to not show up properly on the Actor character sheet. These Items are now visible on the sheet and you can click on the delete icon to remove them.
--   [DSN] Fixed various issues with Dice So Nice not triggering the dice animation in some edge cases when re-rolling while spending Destiny. Requires DSN version 5.1.9 or newer. Please report any issues you might encounter, where DSN doesn't behave as expected.
--   Changed the default Disposition for all non-Protagonist Prototype Tokens to be 'Neutral' instead of 'Secret', allowing players to target them (Secret disposition apperently does not allow targeting). If loading a World that was created before this release, all Prototype Token defaults will be overriden with this new behavior.
+-   [Core/Homebrew] Fixed an rare issue that was causing some customized Items with a broken image link, to not show up properly on the Actor character sheet. These Items are now again visible on the Actor sheet.
+-   [Dice-So-Nice] Fixed various issues with Dice So Nice not triggering the dice animation in some edge cases when re-rolling while spending Destiny. Requires DSN version 5.1.9 or newer. Please send us a report if DSN continues miss-behaving (prefferably with a screenshot/explanation of the exact type of roll that failed to animate).
+-   Changed the default Token Disposition for all non-Protagonist Prototype Tokens to be 'Neutral' instead of 'Secret', allowing players to target them (Secret disposition apperently does not allow targeting). If loading a World that was created before this release, all Prototype Token defaults will be overriden with this new behavior.
 -   Replaced the loading screen that appears when loading a World, that stays up until the active scene loads. This image now uses the new cover image for the system and should be less prone to cause any motion sickness than the previous artwork used as the loading screen.
--   The Pause screen displays the Metanthropes™ Logo again.
 -   Fixed the issue with dissappearing Font Awesome icons when editing a Journal page or a Possession's effect description fields. From now on, use the new Text Enrichers to include FA icons in the Journals and in the description fields on Items. See #394 on how to configure your own content.
 -   Better aligned the FontAwesome Icons that show up on chat during the Activation of Metapowers and Usage of Possessions.
+-   Fixed the Known Issues of the previous release.
+-   The Pause screen displays the Metanthropes™ Logo again.
 
 # Early Access v0.13.5 [2025-06-05]
 
