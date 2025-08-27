@@ -19,6 +19,7 @@
  * metaExecute(null, actorUUID, "Metapower", "Danger Sense");
  */
 export async function metaExecute(event, actorUUID, action, itemName, multiAction = 0) {
+	const mL = metanthropes.utils.metaLog;
 	//? If we called this from a button click, get the data we need
 	const clickedButton = event?.target;
 	if (event) {
@@ -35,10 +36,10 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	//? Find the first item ()that matches itemName
 	const metaItemData = actor.items.find((item) => item.name === itemName);
 	if (!metaItemData) {
-		metanthropes.utils.metaLog(2, "metaExecute", "ERROR: Could not find any item named:", itemName);
+		mL(2, "metaExecute", "ERROR: Could not find any item named:", itemName);
 		return;
 	}
-	metanthropes.utils.metaLog(3, "metaExecute", "Engaged for", itemName);
+	mL(3, "metaExecute", "Engaged for", itemName);
 	//? Gather all the execution data
 	const actionSlot = metaItemData.system.Execution.ActionSlot.value;
 	const targetsNumber = metaItemData.system.Execution.Targets.value;
@@ -176,14 +177,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		} else {
 			executeRoll = true;
 			//? Use Possession
-			metanthropes.utils.metaLog(
-				3,
-				"metaExecute",
-				"Using Possession:",
-				itemName,
-				"with Attack Type:",
-				attackType
-			);
+			mL(3, "metaExecute", "Using Possession:", itemName, "with Attack Type:", attackType);
 			if (attackType === "Melee") {
 				//todo: need to add size modifier to increase the base d10 dice pool for unarmed strikes only
 				flavorMessage = `Attacks with their ${itemName}<br><br>`;
@@ -205,7 +199,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			}
 		}
 	} else {
-		metanthropes.utils.metaLog(2, "metaExecute", "ERROR: cannot Execute action:", action);
+		mL(2, "metaExecute", "ERROR: cannot Execute action:", action);
 		return;
 	}
 	//* Prepare content message constituents
@@ -232,7 +226,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		if (actionSlot.includes("Always Active")) {
 			//todo should this check have been made back in the roller not in the execute?
 			//? always active return
-			metanthropes.utils.metaLog(1, "metaExecute", actor.name + "'s " + itemName, "is Always Active!");
+			mL(1, "metaExecute", actor.name + "'s " + itemName, "is Always Active!");
 			ui.notifications.info(actor.name + "'s " + itemName + " is Always Active!");
 			return;
 		} else if (actionSlot.includes("Focused")) {
@@ -464,6 +458,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		// 	buffsPermanentMessage = `<i class="fa-solid fa-shield-halved"></i> <i class="fa-solid fa-infinity"></i>: ` + buffsPermanent + `<br>`;
 		// }
 		///* todo refactor with Active Effects in mind
+		//todo: review if we should color the FA icons here to denote positive (+buff or -condition) / negative effects
 		if (buffsApplied) {
 			buffsAppliedMessage =
 				`<span data-tooltip="METANTHROPES.LOGIC.METAEXECUTE.BuffsApplied">@METAFA(plus, null, fw) @METAFA(shield-halved, null, fw)</span>: ` +
@@ -484,7 +479,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		}
 		if (conditionsRemoved) {
 			conditionsRemovedMessage =
-				`<span data-tooltip="METANTHROPES.LOGIC.METAEXECUTE.ConditionsRemoved">@METAFA(plus, null, fw) @METAFA(skull, null, fw)</span>: ` +
+				`<span data-tooltip="METANTHROPES.LOGIC.METAEXECUTE.ConditionsRemoved">@METAFA(minus, null, fw) @METAFA(skull, null, fw)</span>: ` +
 				conditionsRemoved +
 				`<br>`;
 		}
@@ -524,7 +519,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				damagePsychicMessage ||
 				healingMessage)
 		) {
-			metanthropes.utils.metaLog(4, "metaExecute", "No Manually Selected Targets");
+			mL(4, "metaExecute", "No Manually Selected Targets");
 			ui.notifications.warn("You must select valid targets first");
 			if (event) {
 				clickedButton.classList.remove("disabled");
@@ -532,11 +527,11 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			return;
 		}
 		if (!actionableTargets) {
-			metanthropes.utils.metaLog(4, "metaExecute", "No Actionable Targets");
+			mL(4, "metaExecute", "No Actionable Targets");
 		} else {
 			//? Get the names of all targeted actors
 			targetedActorNames = targetsArray.map((actor) => actor.name);
-			metanthropes.utils.metaLog(
+			mL(
 				3,
 				"metaExecute",
 				`Target${targetedActorNames.length > 1 ? "s" : ""} Name${targetedActorNames.length > 1 ? "s" : ""}:`,
@@ -606,7 +601,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				>Spend @METAFA(hand-fingers-crossed) to Reroll @METAFA(burst) Damage
 				</button></div>`;
 				contentMessage += damageReRollButton;
-				metanthropes.utils.metaLog(
+				mL(
 					4,
 					"metaExecute",
 					"Damage Reroll params",
@@ -688,7 +683,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		}
 	}
 	//* Post Execution Actions
-	metanthropes.utils.metaLog(3, "metaExecute", "Post Execution Actions");
+	mL(3, "metaExecute", "Post Execution Actions");
 	//? Clear all metapower related result flags (currently only from duplicateself)
 	//todo: this behavior should change with Actor active effects instead of flags, or we'd have to do many exceptions for edge cases
 	//! the idea here being that if the flags are going to be added later, here we prevent them from remaining from previous successful activations
@@ -697,7 +692,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	let checkResult = await actor.getFlag("metanthropes", "lastrolled").MetaEvaluate;
 	//? Check for Duplicate Self Metapower Activation
 	if (checkResult > 0 && action === "Metapower" && ["Clone", "Couple", "Team", "Squad", "Unit"].includes(itemName)) {
-		metanthropes.utils.metaLog(3, "metaExecute", "Duplicate Self Metapower Activation Detected");
+		mL(3, "metaExecute", "Duplicate Self Metapower Activation Detected");
 		let currentLife = actor.system.Vital.Life.value;
 		let duplicateMaxLife = 0;
 		if (itemName === "Clone") {
@@ -712,7 +707,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			duplicateMaxLife = Math.ceil(currentLife * 0.5);
 		}
 		await actor.setFlag("metanthropes", "duplicateSelf", { maxLife: duplicateMaxLife });
-		metanthropes.utils.metaLog(3, "metaExecute", "Duplicate Self Metapower Max Life:", duplicateMaxLife);
+		mL(3, "metaExecute", "Duplicate Self Metapower Max Life:", duplicateMaxLife);
 	}
 	//* Visual Effects
 	if (vfx) {
@@ -724,7 +719,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	}
 	//* Apply Damage to Selected Targets
 	if (damageSelectedTargets && actionableTargets) {
-		metanthropes.utils.metaLog(4, "meta-execute", "Applying damage");
+		mL(4, "meta-execute", "Applying damage");
 		await metanthropes.logic.metaApplyDamage(
 			targetedActors,
 			cosmicDamageRollResult,
@@ -746,6 +741,6 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		flags: { metanthropes: { actoruuid: actor.uuid } },
 	};
 	await ChatMessage.create(chatData);
-	metanthropes.utils.metaLog(3, "metaExecute", "Finished");
+	mL(3, "metaExecute", "Finished");
 	//! return new Promise(resolve);
 }

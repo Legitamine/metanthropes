@@ -9,20 +9,19 @@
  * @param {string} what - The reason or purpose for the roll. Expected to be a string. (eg: "Damage")
  * @param {boolean} destinyReRoll - Determines if a re-roll using Destiny is allowed. Expected to be a boolean.
  * @param {number} dice - The number of d10 dice to roll. Expected to be a positive number.
- * @param {string} [itemName=""] - The name of the item associated with the roll, if any. Expected to be a string.
+ * @param {string} [itemName=null] - The name of the item associated with the roll, if any. Expected to be a string.
  * @param {number} [baseNumber=0] - A fixed number to add to the roll result, if any. Expected to be a positive number.
  * @param {boolean} [isHalf=false] - Determines if the roll result should be halved. Expected to be a boolean.
  * @param {boolean} [anchor=false] - Determines if the roll result should be prepared to be injected into a chat message. Expected to be a boolean. This shpuld be reset to false for subsequent re rolls.
  * @param {boolean} [reroll=false] - Determines if the roll is a reroll. Expected to be a boolean.
  * @param {number} [rerollCounter=0] - The number of rerolls that have been performed. Expected to be a positive number.
- * @param {string} [messageId=null] - The message ID of the chat message for the reroll, if any. Expected to be a string.
- *
- * @returns {Promise<void>} A promise that resolves once the function completes its operations.
- *
+ * @param {string} [messageId=null] - The message ID of the chat message for the reroll, if any. Expected to be a string. 
+ * @returns {Promise<...>} 
  * @example
  * Rolling an actor's Weapon Damage for 3 * d10:
  * metanthropes.dice.metaRolld10(actor, "Damage", true, 3, "Weapon Name");
  */
+
 export async function metaRolld10(
 	actor,
 	what,
@@ -178,7 +177,7 @@ export async function metaRolld10(
 			const renderedRoll = await rolld10.render();
 			//? Call Dice So Nice to show the roll
 			if (game.dice3d && dice > 0) {
-				game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
+				await game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
 			}
 			chatMessage.update({
 				flavor: enrichedMessage,
@@ -195,10 +194,12 @@ export async function metaRolld10(
 			//*? don't print a chat message ?what is reroll exactly? todo: rename to more clean purpose
 			//* We store in the dataset all info to display the chat message if needed from rerolls
 			//! do I need this anymore for rerolls to show for all players?
+			// when roll is anchored we don't want DSN to trigger before showing the result.
+			// the resulting dsn animation should show up when the content message does from the parent caller (metaexecute in most cases)
 			//? Call Dice So Nice to show the roll
-			if (game.dice3d && dice > 0) {
-				game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
-			}
+			// if (game.dice3d && dice > 0) {
+			// 	await game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
+			// }
 			const updatedRoll = await rolld10.toJSON();
 			const renderedRoll = await rolld10.render();
 			metanthropes.utils.metaLog(3, "metaRolld10", "Anchored", "Not updating original chat message", messageId);
@@ -525,6 +526,7 @@ export async function metaDamageReRoll(event) {
 		const targetedActor = await fromUuid(targetedActors[i]);
 		await targetedActor.undoLastLifeChange();
 	}
+	//! who do we have to do a timeout again? needs review
 	//todo instead of this arbitrary timeout, we should have a proper second socket event to track server responses? see https://foundryvtt.wiki/en/development/api/sockets - above specific use cases
 	await new Promise((resolve) => setTimeout(resolve, 3000));
 	await metanthropes.logic.metaApplyDamage(
@@ -687,7 +689,7 @@ export async function metaHealingReRoll(event) {
 		rerollCounter++;
 		if (rerollCounter > 1) startMessage += ` (@METAFA(xmark, null, fw)${rerollCounter})`;
 	}
-	flavorMessage = `${startMessage} ${itemName}'s Healing, with ${targetedActors.length} target${
+	flavorMessage = `${startMessage} ${itemName}'s @METAFA(heart-pulse) Healing, with ${targetedActors.length} target${
 		targetedActors.length > 1 ? "s" : ""
 	}:<br><br>`;
 	contentMessage += `<div class="meta-roll-inline-results">`;
@@ -703,13 +705,16 @@ export async function metaHealingReRoll(event) {
 		</button></div>`;
 		contentMessage += `<hr />`;
 		contentMessage += healingReRollButton;
+		contentMessage += `<br>`;
 	}
 	contentMessage += `<div>${actor.name} has ${actor.currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.<br></div>`;
+	const enrichedContent = await foundry.applications.ux.TextEditor.enrichHTML(contentMessage, { async: true });
+	const enrichedFlavor = await foundry.applications.ux.TextEditor.enrichHTML(flavorMessage, { async: true });
 	let chatData = {
 		user: game.user.id,
-		flavor: flavorMessage,
+		flavor: enrichedFlavor,
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
-		content: contentMessage,
+		content: enrichedContent,
 		flags: { metanthropes: { actoruuid: actor.uuid } },
 	};
 	if (reroll) {
