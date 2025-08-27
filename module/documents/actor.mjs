@@ -311,7 +311,7 @@ export class MetanthropesActor extends Actor {
 		} else {
 			updateData["system.Vital.Life.value"] = Number(newLife);
 		}
-		metanthropes.utils.metaLog(4, "Actor", "Applying Damage");
+		metanthropes.utils.metaLog(3, "Actor", "Applying Damage");
 		await metanthropes.logic.metaApplyActorUpdates(this.uuid, { ...updateData });
 		metanthropes.utils.metaLog(
 			3,

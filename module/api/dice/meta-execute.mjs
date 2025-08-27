@@ -28,7 +28,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		itemName = clickedButton.dataset.itemName;
 		multiAction = parseInt(clickedButton.dataset.multiAction) ?? 0;
 	}
-	//? Check if we are running in Beta Testing mode (available via Homebrew Module)
+	//? Check if we are running in Beta Testing mode (available via Core Module)
 	const betaTesting = await game.settings.get("metanthropes", "metaBetaTesting");
 	const actor = await fromUuid(actorUUID);
 	//? Checking if actor has Metapowers that affect the explosive dice
@@ -601,15 +601,6 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				>Spend @METAFA(hand-fingers-crossed) to Reroll @METAFA(burst) Damage
 				</button></div>`;
 				contentMessage += damageReRollButton;
-				mL(
-					4,
-					"metaExecute",
-					"Damage Reroll params",
-					cosmicDamageRollParams,
-					elementalDamageRollParams,
-					materialDamageRollParams,
-					psychicDamageRollParams
-				);
 			}
 			contentMessage += `<hr />`;
 		}
@@ -719,7 +710,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	}
 	//* Apply Damage to Selected Targets
 	if (damageSelectedTargets && actionableTargets) {
-		mL(4, "meta-execute", "Applying damage");
+		mL(3, "meta-execute", "Applying damage");
 		await metanthropes.logic.metaApplyDamage(
 			targetedActors,
 			cosmicDamageRollResult,

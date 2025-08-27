@@ -117,7 +117,7 @@ export async function metaHungerRoll(actor, hungerLevel, messageId = false, rero
 			3,
 			"metaHungerRoll",
 			"Hunger check passed, engaging metaRoll for:",
-			actor,
+			actor.name,
 			metaRollBeforeHungerCheck.action,
 			metaRollBeforeHungerCheck.stat,
 			metaRollBeforeHungerCheck.isCustomRoll,

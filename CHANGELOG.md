@@ -54,6 +54,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 -   [Core] Fixed the Category of Thermal Goggles to be that of 'Gadget' instead of 'Strike'.
 -   Fixed the default Token Disposition for all non-Protagonist Prototype Tokens to be 'Neutral' instead of 'Secret', allowing players to target them (Secret disposition apperently does not allow targeting). If loading a World that was created before this release, all Prototype Token defaults will be overriden with this new behavior.
 -   Replaced the loading screen that appears when loading a World, that stays up until the active scene loads. This image now uses the new cover image for the system and should be less prone to cause any motion sickness than the previous artwork used as the loading screen.
+-   Fixed various minor issues and typos with the Finalize Premade Actor process.
 -   Fixed the issue with dissappearing Font Awesome icons when editing a Journal page or a Possession's effect description fields. From now on, use the new Text Enrichers to include FA icons in the Journals and in the description fields on Items. See #394 on how to configure your own content.
 -   Better aligned the FontAwesome Icons that show up on chat during the Activation of Metapowers and Usage of Possessions.
 -   Fixed the Known Issues of the v0.13.5 release.
