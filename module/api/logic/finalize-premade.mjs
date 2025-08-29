@@ -92,11 +92,11 @@ export async function metaNewPremadeSummary(actor) {
 	`;
 	return new Promise((resolve, reject) => {
 		let dialog = new Dialog({
-			title: `Finalize Premade: ${actor.type} <i class="fa-solid fa-id-card"></i> Summary`,
+			title: `Finalize Premade: ${actor.type} Summary`,
 			content: dialogContent,
 			buttons: {
 				ok: {
-					label: `"Confirm <i class="fa-solid fa-id-card"></i> Summary`,
+					label: `Confirm <i class="fa-solid fa-id-card"></i> Summary`,
 					callback: async (html) => {
 						const actorname = html.find('[name="actorname"]').val();
 						const actorage = html.find('[name="actorage"]').val();
