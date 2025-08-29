@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Early Access Releases
 
-# Early Access v0.13.78 [2025-08-29]
+# Early Access v0.13.82 [2025-08-29]
 
 ## Added:
 
@@ -23,7 +23,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
     -   Added tooltips to better clarify what each property does and renamed some definitions to provide better clarity.
     -   This is an early concept for the crafting subsystem of the game & you can [read more about each Material on our website and join the discussion](https://www.metanthropes.com/possessions/📦-items/materials/) (requires [Protagonist Web Access](https://www.metanthropes.com/store/product/16-protagonist-website/), or a community rank of **Instrument** or above).
     -   Automatic application of Resistances for Armors and Durability tracking, will come in future builds.
--   [Core/Introductory] This version introduces the **Data Migration Engine**, which updates a World's data with the latest content from Compendiums. Currently it will update all Metapowers & Possessions on all World Actors. It will automatically trigger when the World loads for the first time, following an update, and can also be forced to run from within the game settings.
+-   [Core/Introductory] This version introduces the [**Data Migration Engine**](https://github.com/Legitamine/metanthropes/issues/413), which updates a World's data with the latest content from Compendiums. Currently it will update all Metapowers & Possessions on all World Actors. It will automatically trigger when the World loads for the first time, following an update, and can also be forced to run from within the game settings.
 -   Extended the Metanthropes™ API with color options, available under `metanthropes.system.colors` to be used with Font Awesome icons as well as other UI elements in upcoming releases.
 -   Also introducing a new way to create Font Awesome Icons, using text enrichers. See #394 on how to configure your own custom content for Journals and Item fields.
 
@@ -73,6 +73,10 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 -   Made improvements to chat messages, removing excess line breaks and better aligned the FontAwesome Icons on the Activation of Metapowers and Usage of Possessions.
 -   Fixed the Known Issues of the v0.13.5 release.
 -   The Pause screen displays the Metanthropes™ Logo again.
+
+## Known Issues:
+
+-   [Dice-So-Nice] For Damage/Healing Re-Rolls, DSN fails to show the dice animation for the 2nd and subsequent re-rolls, while it will play fine for the first Destiny re-roll. The new Damage/Healing result are applied correctly to targets (if applicable), and the new result shows in chat as expected, however the DSN animation will not trigger properly. We will properly address this issue in a future release.
 
 # Early Access v0.13.5 [2025-06-05]
 
