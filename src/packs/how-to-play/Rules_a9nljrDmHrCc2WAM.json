@@ -23,22 +23,21 @@
       },
       "src": null,
       "system": {},
-      "ownership": {
-        "default": -1,
-        "TnmSvbMxMd0fQgCE": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "13.348",
         "systemId": "metanthropes",
-        "systemVersion": "0.13.2",
+        "systemVersion": "0.13.82",
         "lastModifiedBy": null
       },
       "category": null,
-      "_key": "!journal.pages!7Rsv6Vu9PCfEQmYJ.x2ng9N4RotOgp7bJ"
+      "ownership": {
+        "default": -1
+      },
+      "_key": "!journal.pages!a9nljrDmHrCc2WAM.x2ng9N4RotOgp7bJ"
     },
     {
       "sort": 200000,
@@ -60,22 +59,21 @@
       },
       "src": null,
       "system": {},
-      "ownership": {
-        "default": -1,
-        "TnmSvbMxMd0fQgCE": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "13.348",
         "systemId": "metanthropes",
-        "systemVersion": "0.13.2",
+        "systemVersion": "0.13.82",
         "lastModifiedBy": null
       },
       "category": null,
-      "_key": "!journal.pages!7Rsv6Vu9PCfEQmYJ.AAjPvL8EGV3UZ2gm"
+      "ownership": {
+        "default": -1
+      },
+      "_key": "!journal.pages!a9nljrDmHrCc2WAM.AAjPvL8EGV3UZ2gm"
     },
     {
       "sort": 300000,
@@ -97,22 +95,21 @@
       },
       "src": null,
       "system": {},
-      "ownership": {
-        "default": -1,
-        "TnmSvbMxMd0fQgCE": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "13.348",
         "systemId": "metanthropes",
-        "systemVersion": "0.13.2",
+        "systemVersion": "0.13.82",
         "lastModifiedBy": null
       },
       "category": null,
-      "_key": "!journal.pages!7Rsv6Vu9PCfEQmYJ.ISezQJVftIq4NZrb"
+      "ownership": {
+        "default": -1
+      },
+      "_key": "!journal.pages!a9nljrDmHrCc2WAM.ISezQJVftIq4NZrb"
     },
     {
       "sort": 400000,
@@ -134,22 +131,21 @@
       },
       "src": null,
       "system": {},
-      "ownership": {
-        "default": -1,
-        "TnmSvbMxMd0fQgCE": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "13.348",
         "systemId": "metanthropes",
-        "systemVersion": "0.13.2",
+        "systemVersion": "0.13.82",
         "lastModifiedBy": null
       },
       "category": null,
-      "_key": "!journal.pages!7Rsv6Vu9PCfEQmYJ.nyKAeGOxYwnT4ZmX"
+      "ownership": {
+        "default": -1
+      },
+      "_key": "!journal.pages!a9nljrDmHrCc2WAM.nyKAeGOxYwnT4ZmX"
     },
     {
       "sort": 500000,
@@ -171,22 +167,21 @@
       },
       "src": null,
       "system": {},
-      "ownership": {
-        "default": -1,
-        "TnmSvbMxMd0fQgCE": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "13.348",
         "systemId": "metanthropes",
-        "systemVersion": "0.13.2",
+        "systemVersion": "0.13.82",
         "lastModifiedBy": null
       },
       "category": null,
-      "_key": "!journal.pages!7Rsv6Vu9PCfEQmYJ.NwzqJhteVCXtGAVj"
+      "ownership": {
+        "default": -1
+      },
+      "_key": "!journal.pages!a9nljrDmHrCc2WAM.NwzqJhteVCXtGAVj"
     },
     {
       "sort": 600000,
@@ -208,22 +203,21 @@
       },
       "src": null,
       "system": {},
-      "ownership": {
-        "default": -1,
-        "TnmSvbMxMd0fQgCE": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "13.348",
         "systemId": "metanthropes",
-        "systemVersion": "0.13.2",
+        "systemVersion": "0.13.82",
         "lastModifiedBy": null
       },
       "category": null,
-      "_key": "!journal.pages!7Rsv6Vu9PCfEQmYJ.boGaBfSp0q4RfqSw"
+      "ownership": {
+        "default": -1
+      },
+      "_key": "!journal.pages!a9nljrDmHrCc2WAM.boGaBfSp0q4RfqSw"
     },
     {
       "sort": 700000,
@@ -245,22 +239,21 @@
       },
       "src": null,
       "system": {},
-      "ownership": {
-        "default": -1,
-        "TnmSvbMxMd0fQgCE": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "13.348",
         "systemId": "metanthropes",
-        "systemVersion": "0.13.2",
+        "systemVersion": "0.13.82",
         "lastModifiedBy": null
       },
       "category": null,
-      "_key": "!journal.pages!7Rsv6Vu9PCfEQmYJ.fQdTFE8Xh7s8mRqd"
+      "ownership": {
+        "default": -1
+      },
+      "_key": "!journal.pages!a9nljrDmHrCc2WAM.fQdTFE8Xh7s8mRqd"
     },
     {
       "sort": 800000,
@@ -282,22 +275,21 @@
       },
       "src": null,
       "system": {},
-      "ownership": {
-        "default": -1,
-        "TnmSvbMxMd0fQgCE": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "13.348",
         "systemId": "metanthropes",
-        "systemVersion": "0.13.2",
+        "systemVersion": "0.13.82",
         "lastModifiedBy": null
       },
       "category": null,
-      "_key": "!journal.pages!7Rsv6Vu9PCfEQmYJ.CEkUzKcLKgPCsD6M"
+      "ownership": {
+        "default": -1
+      },
+      "_key": "!journal.pages!a9nljrDmHrCc2WAM.CEkUzKcLKgPCsD6M"
     },
     {
       "sort": 900000,
@@ -320,22 +312,21 @@
       },
       "src": null,
       "system": {},
-      "ownership": {
-        "default": -1,
-        "TnmSvbMxMd0fQgCE": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "13.348",
         "systemId": "metanthropes",
-        "systemVersion": "0.13.2",
+        "systemVersion": "0.13.82",
         "lastModifiedBy": null
       },
       "category": null,
-      "_key": "!journal.pages!7Rsv6Vu9PCfEQmYJ.iyhYr3JaNDadAp9F"
+      "ownership": {
+        "default": -1
+      },
+      "_key": "!journal.pages!a9nljrDmHrCc2WAM.iyhYr3JaNDadAp9F"
     },
     {
       "sort": 1000000,
@@ -357,22 +348,21 @@
       },
       "src": null,
       "system": {},
-      "ownership": {
-        "default": -1,
-        "TnmSvbMxMd0fQgCE": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "13.348",
         "systemId": "metanthropes",
-        "systemVersion": "0.13.2",
+        "systemVersion": "0.13.82",
         "lastModifiedBy": null
       },
       "category": null,
-      "_key": "!journal.pages!7Rsv6Vu9PCfEQmYJ.RJ71fneUufIAxRMZ"
+      "ownership": {
+        "default": -1
+      },
+      "_key": "!journal.pages!a9nljrDmHrCc2WAM.RJ71fneUufIAxRMZ"
     },
     {
       "sort": 1100000,
@@ -394,22 +384,21 @@
       },
       "src": null,
       "system": {},
-      "ownership": {
-        "default": -1,
-        "TnmSvbMxMd0fQgCE": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "13.348",
         "systemId": "metanthropes",
-        "systemVersion": "0.13.2",
+        "systemVersion": "0.13.82",
         "lastModifiedBy": null
       },
       "category": null,
-      "_key": "!journal.pages!7Rsv6Vu9PCfEQmYJ.2dNtDDLMnPzQpm4H"
+      "ownership": {
+        "default": -1
+      },
+      "_key": "!journal.pages!a9nljrDmHrCc2WAM.2dNtDDLMnPzQpm4H"
     },
     {
       "sort": 1200000,
@@ -431,22 +420,21 @@
       },
       "src": null,
       "system": {},
-      "ownership": {
-        "default": -1,
-        "TnmSvbMxMd0fQgCE": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "13.348",
         "systemId": "metanthropes",
-        "systemVersion": "0.13.2",
+        "systemVersion": "0.13.82",
         "lastModifiedBy": null
       },
       "category": null,
-      "_key": "!journal.pages!7Rsv6Vu9PCfEQmYJ.gPHhgcXbD6EdX4Kb"
+      "ownership": {
+        "default": -1
+      },
+      "_key": "!journal.pages!a9nljrDmHrCc2WAM.gPHhgcXbD6EdX4Kb"
     },
     {
       "sort": 1300000,
@@ -468,22 +456,21 @@
       },
       "src": null,
       "system": {},
-      "ownership": {
-        "default": -1,
-        "TnmSvbMxMd0fQgCE": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "13.348",
         "systemId": "metanthropes",
-        "systemVersion": "0.13.2",
+        "systemVersion": "0.13.82",
         "lastModifiedBy": null
       },
       "category": null,
-      "_key": "!journal.pages!7Rsv6Vu9PCfEQmYJ.CGEGp7q9DcvxOWyS"
+      "ownership": {
+        "default": -1
+      },
+      "_key": "!journal.pages!a9nljrDmHrCc2WAM.CGEGp7q9DcvxOWyS"
     },
     {
       "sort": 1400000,
@@ -505,22 +492,21 @@
       },
       "src": null,
       "system": {},
-      "ownership": {
-        "default": -1,
-        "TnmSvbMxMd0fQgCE": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "13.348",
         "systemId": "metanthropes",
-        "systemVersion": "0.13.2",
+        "systemVersion": "0.13.82",
         "lastModifiedBy": null
       },
       "category": null,
-      "_key": "!journal.pages!7Rsv6Vu9PCfEQmYJ.PuxCTpgmBk8NibyJ"
+      "ownership": {
+        "default": -1
+      },
+      "_key": "!journal.pages!a9nljrDmHrCc2WAM.PuxCTpgmBk8NibyJ"
     },
     {
       "sort": 0,
@@ -543,48 +529,41 @@
       },
       "src": "systems/metanthropes/assets/cover/chapter-2.webp",
       "system": {},
-      "ownership": {
-        "default": -1,
-        "gaWoeXg7uJWoAsCP": 3
-      },
       "flags": {},
       "_stats": {
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "13.348",
         "systemId": "metanthropes",
-        "systemVersion": "0.13.2",
+        "systemVersion": "0.13.82",
         "lastModifiedBy": null
       },
       "category": null,
-      "_key": "!journal.pages!7Rsv6Vu9PCfEQmYJ.uSCViitHsRowCyKd"
+      "ownership": {
+        "default": -1
+      },
+      "_key": "!journal.pages!a9nljrDmHrCc2WAM.uSCViitHsRowCyKd"
     }
   ],
-  "ownership": {
-    "default": 2,
-    "TnmSvbMxMd0fQgCE": 3,
-    "3IqRUDDVG8kDd6mW": 3,
-    "MXmDyHQbVNXPVxrV": 3,
-    "gaWoeXg7uJWoAsCP": 3,
-    "E1nZXRNcwWMtogk0": 3,
-    "kF9zOdNs2UiqaJVn": 3,
-    "Kej98KlIpboqpaRV": 3
-  },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "13.348",
     "systemId": "metanthropes",
-    "systemVersion": "0.13.2",
-    "createdTime": 1749107131053,
-    "modifiedTime": 1749107131053,
-    "lastModifiedBy": "Kej98KlIpboqpaRV"
+    "systemVersion": "0.13.82",
+    "createdTime": 1756487923183,
+    "modifiedTime": 1756487923183,
+    "lastModifiedBy": "rWPa2N6RX83f5A7E"
   },
   "categories": [],
-  "_id": "7Rsv6Vu9PCfEQmYJ",
+  "ownership": {
+    "default": 0,
+    "rWPa2N6RX83f5A7E": 3
+  },
+  "_id": "a9nljrDmHrCc2WAM",
   "sort": 0,
-  "_key": "!journal!7Rsv6Vu9PCfEQmYJ"
+  "_key": "!journal!a9nljrDmHrCc2WAM"
 }
