@@ -4,7 +4,7 @@
  *
  * @export
  * @async
- * @param {Array} targets - Array of actors
+ * @param {Array} targets - Array of actor uuids
  * @param {number} healing - should be a positive number
  * @returns {*}
  */

@@ -127,6 +127,8 @@ export async function metaMigration() {
  * Initializes the order of Data Migration according to active and enabled Modules
  * Only enabled Modules under Metanthropes game settings will trigger Data Migration
  *
+ * todo: review how to gracefuly handle a module that was enabled (the setting was set) but disabled as a module afterwards
+ * 
  * @async
  * @returns {*} modules - an array with the enabled Modules for Data Migration
  */
@@ -183,7 +185,6 @@ async function metaMigrateModuleData(module, migrationData, currentSystemVersion
 		case "Introductory":
 			const introDataMigrationResults = await metaMigrateDataIntroductory(migrationData, currentSystemVersion);
 			if (introDataMigrationResults) moduleDataUpdate = introDataMigrationResults;
-			break;
 			break;
 		case "Core":
 			const coreDataMigrationResults = await metaMigrateDataCore(migrationData, currentSystemVersion);

@@ -19,6 +19,8 @@
  * @param {Number} [destinyCost=0] - The Destiny cost of the Metapower. Expected to be positive.
  * @param {String} [itemName=""] - The name of the Possession or Metapower. Expected to be a string.
  * @param {String} [messageId=""] - The message ID of the chat message to update with the new roll result. Expected to be a string.
+ * @param {Boolean} [reroll=false] - If this a re-roll from Destiny spending or not.
+ * @param {Number} [rerollCounter=0] - The number of Destiny rerolls already made.
  *
  * @returns {Promise<void>} A promise that resolves once the function completes its operations.
  *
@@ -41,7 +43,8 @@ export async function metaEvaluate(
 	reroll = false,
 	rerollCounter = 0
 ) {
-	metanthropes.utils.metaLog(
+	const mL = metanthropes.utils.metaLog;
+	mL(
 		3,
 		"metaEvaluate",
 		"Engaged for:",
@@ -105,7 +108,7 @@ export async function metaEvaluate(
 	const rollMinus = multiAction + perkReduction + aimingReduction + customReduction + penalty;
 	const rollPlus = statScore + bonus;
 	const rollEffectiveResult = rollResult - rollPlus + rollMinus;
-	metanthropes.utils.metaLog(3, "metaEvaluate", "rollEffectiveResult", rollEffectiveResult);
+	mL(3, "metaEvaluate", "rollEffectiveResult", rollEffectiveResult);
 	let levelsOfSuccess = Math.floor(
 		(statScore + bonus + penalty + multiAction + perkReduction + aimingReduction + customReduction - rollResult) /
 			10
@@ -207,43 +210,22 @@ export async function metaEvaluate(
 	//? if we have Pain condition, our succesfull (only) results are lowered by an equal amount - in case of Criticals we ignore Pain
 	let painEffect = levelsOfSuccess - pain;
 	if (resultLevel > 0 && !criticalSuccess && pain > 0) {
-		metanthropes.utils.metaLog(4, "metaEvaluate", "Results are affected by Pain");
+		mL(4, "metaEvaluate", "Results are affected by Pain");
 		if (painEffect < 0) {
 			result = `Failure @METAFA(square-xmark, failure)`;
 			resultLevel = 0;
 			levelsOfFailure = 0;
 			levelsOfSuccess = 0;
 			message += `It was a Success, turned into a ${result}, because of Pain ${pain}`;
-			metanthropes.utils.metaLog(
-				1,
-				"metaEvaluate",
-				"Pain Effect should be <0",
-				painEffect,
-				"levelsOfSuccess:",
-				levelsOfSuccess
-			);
+			mL(1, "metaEvaluate", "Pain Effect should be <0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
 		} else if (painEffect === 0) {
 			message += `It is still a ${result}, besides being affected by Pain ${pain}`;
 			levelsOfSuccess = 0;
-			metanthropes.utils.metaLog(
-				1,
-				"metaEvaluate",
-				"Pain Effect should be =0",
-				painEffect,
-				"levelsOfSuccess:",
-				levelsOfSuccess
-			);
+			mL(1, "metaEvaluate", "Pain Effect should be =0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
 		} else if (painEffect > 0) {
 			message += `It is a ${result}, reduced by Pain ${pain}`;
 			levelsOfSuccess = painEffect;
-			metanthropes.utils.metaLog(
-				1,
-				"metaEvaluate",
-				"Pain Effect should be >0",
-				painEffect,
-				"levelsOfSuccess:",
-				levelsOfSuccess
-			);
+			mL(1, "metaEvaluate", "Pain Effect should be >0", painEffect, "levelsOfSuccess:", levelsOfSuccess);
 		}
 	} else {
 		//? Print the result of the roll
@@ -306,7 +288,7 @@ export async function metaEvaluate(
 		if (!(action === "Initiative")) {
 			//? Set autoExecute to true if it's either a Critical Success or a Critical Failure, or if the actor doesn't have enough Destiny to reroll
 			autoExecute = true;
-			metanthropes.utils.metaLog(3, "metaEvaluate", "Auto-Execution Detected");
+			mL(3, "metaEvaluate", "Auto-Execution Detected");
 		}
 	}
 	message += `<div><br></div>`;
@@ -347,14 +329,17 @@ export async function metaEvaluate(
 			newRolls.PossessionName = itemName;
 			break;
 		default:
-			metanthropes.utils.metaLog(2, "metaEvaluate", "Error: Action not recognized:", action);
+			mL(2, "metaEvaluate", "Error: Action not recognized:", action);
 			return;
 	}
 	//? Update the actor with the new .lastrolled values
 	await actor.setFlag("metanthropes", "lastrolled", newRolls);
-	//* Printing the results to chat, allowing Dice So Nice to do it's thing.
+	//* Handling the chat message
+	let chatMessage;
 	if (!reroll) {
-		roll.toMessage({
+		//* This is a new roll, creating chat message
+		//? Printing the results to chat, allowing Dice So Nice to do it's thing.
+		chatMessage = await roll.toMessage({
 			speaker: ChatMessage.getSpeaker({
 				actor: actor,
 			}),
@@ -363,7 +348,7 @@ export async function metaEvaluate(
 			rollMode: game.settings.get("core", "rollMode"),
 			flags: { metanthropes: { actoruuid: actor.uuid } },
 		});
-		metanthropes.utils.metaLog(
+		mL(
 			3,
 			"metaEvaluate",
 			"Finished for:",
@@ -404,8 +389,9 @@ export async function metaEvaluate(
 			actor.uuid
 		);
 	} else {
+		//* This is a re-roll, updating existing message
 		//? Update the original message with the new results
-		const chatMessage = game.messages.get(messageId);
+		chatMessage = game.messages.get(messageId);
 		if (!chatMessage) {
 			ui.notifications.warn("Could not find the chat message to update.");
 			return;
@@ -413,7 +399,7 @@ export async function metaEvaluate(
 		const updatedRoll = await roll.toJSON();
 		const renderedRoll = await roll.render();
 		if (game.dice3d) {
-			game.dice3d.showForRoll(roll, game.user, true, null, false, messageId);
+			await game.dice3d.showForRoll(roll, game.user, true, null, false, messageId);
 		}
 		chatMessage.update({
 			flavor: enrichedMessage,
@@ -423,17 +409,34 @@ export async function metaEvaluate(
 			flags: { metanthropes: { actoruuid: actor.uuid } },
 		});
 	}
-	//* If autoExecute is true, we execute the Metapower or Possession
-	if (autoExecute) {
-		//? wait for 5 seconds to ensure the chat messages display in the proper order and animations clear out
+	//* Finished, checking for autoExecute
+	if (!autoExecute) {
+		return;
+	}
+	if (game.dice3d) {
+		game.dice3d.waitFor3DAnimationByMessageID(chatMessage.id).then(() => {
+			//? Automatically execute the activation/use of the Metapower/Possession if it's a Critical Success/Failure or not enough destiny to reroll
+			//! why no multiAction for Metapowers here?
+			if (action === "Metapower") {
+				mL(3, "metaEvaluate", "Auto-Activating Metapower:", itemName);
+				metanthropes.metapowers.metaExecute(null, actor.uuid, action, itemName);
+			} else if (action === "Possession") {
+				mL(3, "metaEvaluate", "Auto-Using Possession:", itemName);
+				metanthropes.possessions.metaExecute(null, actor.uuid, action, itemName, multiAction);
+			}
+		});
+	} else {
+		//? wait for 1 seconds to ensure the chat messages display in the proper order, ?probably not required?
+		//?des edw gia to pws perimenw na teleiwsei to animation https://gitlab.com/riccisi/foundryvtt-dice-so-nice/-/wikis/API/Roll#detecting-the-end-of-a-3d-roll-animation-for-a-specific-message
 		//todo see https://gitlab.com/riccisi/foundryvtt-dice-so-nice/-/wikis/API/Roll#disablingenabling-the-3d-animation-programmatically
-		await new Promise((resolve) => setTimeout(resolve, 5000));
+		await new Promise((resolve) => setTimeout(resolve, 1000));
 		//? Automatically execute the activation/use of the Metapower/Possession if it's a Critical Success/Failure or not enough destiny to reroll
+		//! why no multiAction for Metapowers here?
 		if (action === "Metapower") {
-			metanthropes.utils.metaLog(3, "metaEvaluate", "Auto-Activating Metapower:", itemName);
+			mL(3, "metaEvaluate", "Auto-Activating Metapower:", itemName);
 			metanthropes.metapowers.metaExecute(null, actor.uuid, action, itemName);
 		} else if (action === "Possession") {
-			metanthropes.utils.metaLog(3, "metaEvaluate", "Auto-Using Possession:", itemName);
+			mL(3, "metaEvaluate", "Auto-Using Possession:", itemName);
 			metanthropes.possessions.metaExecute(null, actor.uuid, action, itemName, multiAction);
 		}
 	}
@@ -456,6 +459,7 @@ export async function metaEvaluate(
  * This function is typically called via an event listener and not directly.
  */
 export async function metaEvaluateReRoll(event) {
+	const mL = metanthropes.utils.metaLog;
 	event.preventDefault();
 	//? Collect the data from the button
 	const button = event.target;
@@ -487,18 +491,9 @@ export async function metaEvaluateReRoll(event) {
 	const action = button.dataset.action;
 	const itemName = button.dataset.itemName === "null" ? null : button.dataset.itemName;
 	const pain = parseInt(button.dataset.pain);
-	metanthropes.utils.metaLog(
-		3,
-		"metaEvaluateReRoll",
-		"Engaged for:",
-		actor.name + "'s",
-		action,
-		actorUUID,
-		"from message ID:",
-		messageId
-	);
+	mL(3, "metaEvaluateReRoll", "Engaged for:", actor.name + "'s", action, actorUUID, "from message ID:", messageId);
 	await actor.applyDestinyChange(-1);
-	metanthropes.utils.metaLog(3, "metaEvaluateReRoll", "Destiny spent for re-roll, calling metaEvaluate");
+	mL(3, "metaEvaluateReRoll", "Destiny spent for re-roll, calling metaEvaluate");
 	await metanthropes.dice.metaEvaluate(
 		actor,
 		action,
@@ -517,5 +512,5 @@ export async function metaEvaluateReRoll(event) {
 		reroll,
 		rerollCounter
 	);
-	metanthropes.utils.metaLog(3, "metaEvaluateReRoll", "Finished for:", actor.name + "'s", action, actorUUID);
+	mL(3, "metaEvaluateReRoll", "Finished for:", actor.name + "'s", action, actorUUID);
 }
