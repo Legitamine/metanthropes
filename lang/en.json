@@ -1,6 +1,34 @@
 {
 	"METANTHROPES": {
+		"MODULES": {
+			"System": "System",
+			"Core": "Metanthropes: Core",
+			"Homebrew": "Metanthropes: Homebrew",
+			"Introductory": "Metanthropes: Introductory",
+			"Aether": "Metanthropes: Anthologies - Aether",
+			"Astral": "Metanthropes: Anthologies - Astral",
+			"Nether": "Metanthropes: Anthologies - Nether"
+		},
+		"MIGRATION": {
+			"Initialize": "Initializing Data Migration Engine",
+			"World": "World Data Migration Engine",
+			"Data": "Data Migration",
+			"Updating": "Updating World Data",
+			"Migrating": "Migrating World Data",
+			"Wait": "Please Wait...",
+			"NoUpdate": "No Update Required",
+			"DataFinalizing": "Finalizing Data Migration",
+			"PrototypeTokens": "Updating Token Defauls",
+			"Content": "Updating Content",
+			"Narrator": "Renaming Gamemaster to 'The Narrator'",
+			"Finalizing": "Finalizing...",
+			"Finished": "Finished Updating World Data!",
+			"Failed": "Did not receive valid Migration Data",
+			"ModuleError": "Encountered an error trying to process this Module!",
+			"Error": "Encountered an unexpected error, aborting migration, see console for details"
+		},
 		"COMMON": {
+			"Narrator": "The Narrator",
 			"Summary": "Summary",
 			"Stat": "Stat",
 			"Stats": "Stats",
@@ -15,11 +43,16 @@
 			"Metapower": "Metapower",
 			"Metapowers": "Metapowers",
 			"Target": "Target",
-			"Targets": "Targets"
+			"Targets": "Targets",
+			"Duration": "Duration",
+			"Range": "Range"
 		},
 		"LOGIC": {
 			"METAEXECUTE": {
-				"Targets": ""
+				"BuffsApplied": "These Buffs are Applied to the Target(s)",
+				"BuffsRemoved": "These Buffs are Removed from the Target(s)",
+				"ConditionsApplied": "These Conditions are Applied to the Target(s)",
+				"ConditionsRemoved": "These Conditions are Removed from the Target(s)"
 			}
 		},
 		"UI": {
@@ -91,7 +124,7 @@
 					},
 					"starting": {
 						"label": "Starting",
-						"hint": "Starting <i class=\"fa-sharp-duotone fa-solid fa-heart\"></i> Life"
+						"hint": "Starting <i class=\"fa-solid fa-heart\"></i> Life"
 					},
 					"max": {
 						"label": "Maximum",
@@ -196,6 +229,21 @@
 			"SIZE": {
 				"LABEL": "Size",
 				"HINT": "blah"
+			}
+		},
+		"ITEMS": {
+			"POSSESSIONS": {
+				"MATERIAL": {
+					"Category": "The type of Materials used in creating this Possession.",
+					"Durability": "The durability of this Possession. When this Possession takes damage, which is higher than the Resistance for that damage type, excess damage reduces the Durability of the Possession. When Durability reaches 0, the Possession is destroyed.",
+					"Size": "The Size of this Possession.",
+					"Weight": "The Weight of this Possession.",
+					"Cosmic": "The Cosmic Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+					"Elemental": "The Elemental Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+					"Material": "The Material Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+					"Psychic": "The Psychic Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+					"Description": "A description for this particular material."
+				}
 			}
 		}
 	},

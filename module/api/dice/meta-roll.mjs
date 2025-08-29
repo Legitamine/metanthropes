@@ -30,10 +30,11 @@ export async function metaRoll(
 	reroll = false,
 	rerollCounter = 0
 ) {
+	const mL = metanthropes.utils.metaLog;
 	//? Initialize the actor's RollStat array before proceeding
 	await actor.getRollData();
 	const statScore = actor.system.RollStats[stat];
-	metanthropes.utils.metaLog(3, "metaRoll", "Engaged for", actor.type + ":", actor.name + "'s", action, "with", stat);
+	mL(3, "metaRoll", "Engaged for", actor.type + ":", actor.name + "'s", action, "with", stat);
 	//* Go through a series of tests and checks before actually rolling the dice
 	//? Check if we are ok to do the roll stat-wise
 	if (statScore <= 0) {
@@ -65,13 +66,13 @@ export async function metaRoll(
 		//? Check if actor has already overcome hunger
 		const hungerRollResult = (await actor.getFlag("metanthropes", "hungerRollResult")) || false;
 		if (hungerRollResult) {
-			//? If the flag exists, we clear it and resume running the rest of the checks
+			//? If the flag exists, means we beat hunger check, so we clear it and resume running the rest of the checks
 			await actor.unsetFlag("metanthropes", "hungerRollResult");
-			metanthropes.utils.metaLog(3, "metaRoll", "Hunger Check Passed, moving on");
+			mL(3, "metaRoll", "Hunger Check Passed, moving on");
 			//todo: perhaps I should minimize the sheet while the hunger check is happening?
 			break hungerCheck;
 		} else {
-			//? Engage the Hunger Roll
+			//? we need to do a hunger check, so we set the flag with the player intended action, so it will roll it without player interaction again, once we pass hunger check
 			await actor.setFlag("metanthropes", "MetaRollBeforeHungerCheck", {
 				action: action,
 				stat: stat,
@@ -79,7 +80,7 @@ export async function metaRoll(
 				destinyCost: destinyCost,
 				itemName: itemName,
 			});
-			metanthropes.utils.metaLog(3, "metaRoll", "Hunger Check Failed, Engaging Hunger Roll");
+			mL(3, "metaRoll", "Hunger Check Failed, Engaging Hunger Roll");
 			await metanthropes.dice.metaHungerRoll(actor, hungerLevel);
 			return;
 		}
@@ -107,14 +108,14 @@ export async function metaRoll(
 	let perkReduction = 0;
 	if (itemName && action === "Possession") {
 		const requiredPerk = actor.items.getName(itemName).system.RequiredPerk.value;
-		metanthropes.utils.metaLog(3, "metaRoll", "Required Perk for", itemName, "is", requiredPerk);
+		mL(3, "metaRoll", "Required Perk for", itemName, "is", requiredPerk);
 		if (requiredPerk !== "None") {
 			const requiredPerkLevel = actor.items.getName(itemName).system.RequiredPerkLevel.value;
 			const actorPerkLevel = actor.system.Perks.Skills[requiredPerk].value;
 			const levelDifference = requiredPerkLevel - actorPerkLevel;
 			if (levelDifference > 0) {
 				perkReduction = levelDifference * -10;
-				metanthropes.utils.metaLog(1, "metaRoll", "Perk Penalty for", actor.name, "is", perkReduction);
+				mL(1, "metaRoll", "Perk Penalty for", actor.name, "is", perkReduction);
 			}
 		}
 	}
@@ -126,7 +127,7 @@ export async function metaRoll(
 	let reduction = 0;
 	let aimingReduction = 0;
 	if (isCustomRoll) {
-		metanthropes.utils.metaLog(3, "metaRoll", "Custom Roll Detected");
+		mL(3, "metaRoll", "Custom Roll Detected");
 		let { customMultiAction, customBonus, customPenalty, customReduction, customAimingReduction } =
 			await metaRollCustomDialog(actor, action, stat, statScore, itemName);
 		//? Check to see if null or undefined values were returned and change to 0 instead
@@ -135,21 +136,12 @@ export async function metaRoll(
 		penalty = customPenalty || 0;
 		reduction = customReduction || 0;
 		aimingReduction = customAimingReduction || 0;
-		metanthropes.utils.metaLog(
-			3,
-			"metaRoll",
-			"Using Custom Roll Results:",
-			multiAction,
-			bonus,
-			penalty,
-			reduction,
-			aimingReduction
-		);
+		mL(3, "metaRoll", "Using Custom Roll Results:", multiAction, bonus, penalty, reduction, aimingReduction);
 		//? Check if Custom Penalty is smaller than Disease penalty (values are expected to be negatives)
 		//todo add a new function to compare values for bonus and penalty - this way we can do the disease and perk check the same way without caring about the order in which we do them
 		if (customPenalty < diseasePenalty) {
 			penalty = customPenalty;
-			metanthropes.utils.metaLog(
+			mL(
 				3,
 				"metaRoll",
 				"Penalty from Disease is lower than Custom Roll Penalty, using the latter",
@@ -158,7 +150,7 @@ export async function metaRoll(
 			);
 		} else {
 			penalty = diseasePenalty;
-			metanthropes.utils.metaLog(
+			mL(
 				3,
 				"metaRoll",
 				"Penalty from Disease is higher than Custom Roll Penalty, using the former",
@@ -166,7 +158,7 @@ export async function metaRoll(
 				customPenalty
 			);
 		}
-		metanthropes.utils.metaLog(
+		mL(
 			3,
 			"metaRoll",
 			"Engaging metaEvaluate for:",
@@ -238,7 +230,7 @@ export async function metaRoll(
 	//* Post-Evaluate-roll actions
 	// intentionally left blank
 	//? metaRoll Finished
-	metanthropes.utils.metaLog(3, "metaRoll", "Finished");
+	mL(3, "metaRoll", "Finished");
 }
 
 /**
@@ -259,6 +251,7 @@ export async function metaRoll(
  * @returns {Promise<Object>} A promise that resolves with roll modifiers: multiAction, bonus, customPenalty, customReduction, aimingReduction.
  */
 export async function metaRollCustomDialog(actor, action, stat, statScore, itemName = null) {
+	const mL = metanthropes.utils.metaLog;
 	return new Promise(async (resolve) => {
 		//* Get Game Variables
 		const isBetaTesting = game.settings.get("metanthropes", "metaBetaTesting");
@@ -358,17 +351,17 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 			dialogTitle += game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Stat");
 			dialogButtonLabel = game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.StatRoll");
 			dialogButtonLabel += `${stat}`;
-			dialogIcon = "fa-sharp-duotone fa-chart-simple"
+			dialogIcon = "fa-solid fa-chart-simple";
 		} else if (action === "Metapower") {
 			dialogTitle += game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Metapower");
 			dialogButtonLabel = game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.MetapowerRoll");
 			dialogButtonLabel += `${itemName}`;
-			dialogIcon = "fa-kit fa-metanthropes"
+			dialogIcon = "fa-kit fa-metanthropes";
 		} else if (action === "Possession") {
 			dialogTitle += game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Possession");
 			dialogButtonLabel = game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.PossessionRoll");
 			dialogButtonLabel += `${itemName}`;
-			dialogIcon = "fa-sharp-duotone fa-backpack"
+			dialogIcon = "fa-solid fa-backpack";
 		} //todo add some error handling
 		//* Prompt the Dialog and define the options
 		const customDialogResults = await foundry.applications.api.DialogV2.prompt({
@@ -389,7 +382,7 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 		});
 		//* Parse the Dialog Results
 		if (!customDialogResults) {
-			metanthropes.utils.metaLog(3, "metaRoll", "Custom Roll Dialog Closed, Roll Canceled");
+			mL(3, "metaRoll", "Custom Roll Dialog Closed, Roll Canceled");
 			return;
 		}
 		let customMultiAction;
@@ -408,7 +401,7 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 		let customReduction = -customDialogResults.customReduction;
 		let customAimingReduction = -customDialogResults.aimingReduction || 0; //? aiming is not always part of the result
 		//* Resolve the Promise & return data  to metaRoll
-		metanthropes.utils.metaLog(
+		mL(
 			3,
 			"metaRollCustomDialog",
 			"Custom Dialog Results:",
