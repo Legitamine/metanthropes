@@ -10,11 +10,11 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Early Access Releases
 
-# Early Access v0.13.67 [2025-08-29]
+# Early Access v0.13.78 [2025-08-29]
 
 ## Added:
 
--   Added support for Foundry version 13.347.
+-   Added support for up to Foundry version 13.348.
 -   A Critical Success roll result will now add any Bonus to the total Levels of Success.
 -   A Critical Failure roll result will now add any Penalty to the total Levels of Failure.
 -   Non-Strike Possessions, now display the Material Properties tab, previously only visible to Homebrew ownwers.
@@ -43,8 +43,6 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Fixed:
 
--   !todo: fix journals, links
-
 -   From this release and onwards, we utilize the new Data Migration Engine to also update existing World Actors, so Narrators won't have to re-import Actors from Compendiums to get the new content & fixes.
 -   [Dice-So-Nice] Fixed various issues with Dice So Nice. Requires DSN version 5.2.1 or newer.
     -   Fixed cases where the animation triggered twice.
@@ -56,8 +54,17 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 -   [Introductory] Fixed some typos and other minor issues in The Usher's, Shavo's and Niko's Metapowers.
 -   [Introductory] Increased the top-down Token scale ratio for the Nightmare, Anomaly and Cyborg Antagonists to better reflect their larger than human relative sizes. Also fixed the backgrounds for the Cyborg and Nightmare.
 -   [Introductory] Renamed the new First Person Scene to 'Cutscene' instead of 'Cinematic'.
--   [Core] Fixed the Category of Thermal Goggles to be that of 'Gadget' instead of 'Strike'.
+-   [Core] Fixed various minor issues and typos for Metapowers & Possessions:
+    -   Fixed various minor issues with the display & sorting of Metapowers in the 100 Metapowers Journal.
+    -   Fixed Metapower: Ring of Fire had a typo in the effect description.
+    -   Fixed Metapower: Exonerated Level should be Level 5 instead of 4.
+    -   Fixed Metapower: Atmospheric Adaptation should be Level 3 instead of 2.
+    -   Fixed Metapower: Rapid Mass Alteration should be Level 5 instead of 4.
+    -   Fixed Metapower: Absolute Adaptation should be Level 5 instead of 4.
+    -   Fixed Possession: Thermal Goggles Category to 'Gadget' instead of 'Strike'.
+-   [Core] Added missing tables (Coalition, Story Hooks and Rumors) in the Narrator Journal. We will provide rollable tables for these in future builds.
 -   [Core/Homebrew] Fixed an rare issue that was causing some customized Items with a broken image link, to not show up properly on the Actor character sheet. These Items are now again visible on the Actor sheet.
+-   Fixed broken links to other Journal pages across all Modules.
 -   Fixed automated Damage/Healing to only apply to targets when the Duration of the Metapower/Possession is Instantaneous.
 -   Fixed the default Token Disposition for all non-Protagonist Prototype Tokens to be 'Neutral' instead of 'Secret', allowing players to target them (Secret disposition apperently does not allow targeting). If loading a World that was created before this release, all Prototype Token defaults will be overriden with this new behavior.
 -   Replaced the loading screen that appears when loading a World, that stays up until the active scene loads. This image now uses the new cover image for the system and should be less prone to cause any motion sickness than the previous artwork used as the loading screen.
