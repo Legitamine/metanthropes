@@ -51,7 +51,8 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
     -   Fixed cases where the animation did not trigger for all players.
     -   Fixed the animation triggering when no valid targets were selected.
     -   Fixed when re-rolling using Destiny, the chat message did not update/show after the DSN animation finished, now it will wait for the animation to play before showing the new result in chat.
-    -   Known issue: For Automated Damage/Healing Re-Rolls, DSN fails to show the dice animation for the 2nd and subsequent re-rolls. The new Damage/Healing result is applied correctly to targets, and the new result shows in chat as expected, however the DSN animation will not trigger properly. We will properly address this issue in a future release.
+    -   Fixed an issue that when the Actor had 0 Destiny remaining, the automatic activate/use would trigger after 5 seconds. Now it will trigger right after the DSN animation finishes, or right away if DSN is not enabled.
+    -   Known issue: For Damage/Healing Re-Rolls, DSN fails to show the dice animation for the 2nd and subsequent re-rolls, while it will play fine for the first Destiny re-roll. The new Damage/Healing result are applied correctly to targets (if applicable), and the new result shows in chat as expected, however the DSN animation will not trigger properly. We will properly address this issue in a future release.
 -   [Introductory] Fixed some typos and other minor issues in The Usher's, Shavo's and Niko's Metapowers.
 -   [Introductory] Increased the top-down Token scale ratio for the Nightmare, Anomaly and Cyborg Antagonists to better reflect their larger than human relative sizes. Also fixed the backgrounds for the Cyborg and Nightmare.
 -   [Introductory] Renamed the new First Person Scene to 'Cutscene' instead of 'Cinematic'.
