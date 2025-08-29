@@ -51,7 +51,7 @@ export async function metaHungerRoll(actor, hungerLevel, messageId = false, rero
 		if (currentDestiny > 0) {
 			hungerMessage += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button hunger-reroll" 
 			data-actoruuid="${actor.uuid}" data-hunger-level="${hungerLevel}" data-reroll="true" data-reroll-counter="${rerollCounter}"
-			>Spend @METAFA(hand-fingers-crossed) Destiny to reroll</button><br></div><br>`;
+			>Spend @METAFA(hand-fingers-crossed) Destiny to reroll</button><br></div>`;
 		}
 	} else {
 		//* We passed the Hunger Check

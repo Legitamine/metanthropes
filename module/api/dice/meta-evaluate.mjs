@@ -334,9 +334,12 @@ export async function metaEvaluate(
 	}
 	//? Update the actor with the new .lastrolled values
 	await actor.setFlag("metanthropes", "lastrolled", newRolls);
-	//* Printing the results to chat, allowing Dice So Nice to do it's thing.
+	//* Handling the chat message
+	let chatMessage;
 	if (!reroll) {
-		roll.toMessage({
+		//* This is a new roll, creating chat message
+		//? Printing the results to chat, allowing Dice So Nice to do it's thing.
+		chatMessage = await roll.toMessage({
 			speaker: ChatMessage.getSpeaker({
 				actor: actor,
 			}),
@@ -386,8 +389,9 @@ export async function metaEvaluate(
 			actor.uuid
 		);
 	} else {
+		//* This is a re-roll, updating existing message
 		//? Update the original message with the new results
-		const chatMessage = game.messages.get(messageId);
+		chatMessage = game.messages.get(messageId);
 		if (!chatMessage) {
 			ui.notifications.warn("Could not find the chat message to update.");
 			return;
@@ -405,12 +409,29 @@ export async function metaEvaluate(
 			flags: { metanthropes: { actoruuid: actor.uuid } },
 		});
 	}
-	//* If autoExecute is true, we execute the Metapower or Possession
-	if (autoExecute) {
-		//? wait for 5 seconds to ensure the chat messages display in the proper order and animations clear out
+	//* Finished, checking for autoExecute
+	if (!autoExecute) {
+		return;
+	}
+	if (game.dice3d) {
+		game.dice3d.waitFor3DAnimationByMessageID(chatMessage.id).then(() => {
+			//? Automatically execute the activation/use of the Metapower/Possession if it's a Critical Success/Failure or not enough destiny to reroll
+			//! why no multiAction for Metapowers here?
+			if (action === "Metapower") {
+				mL(3, "metaEvaluate", "Auto-Activating Metapower:", itemName);
+				metanthropes.metapowers.metaExecute(null, actor.uuid, action, itemName);
+			} else if (action === "Possession") {
+				mL(3, "metaEvaluate", "Auto-Using Possession:", itemName);
+				metanthropes.possessions.metaExecute(null, actor.uuid, action, itemName, multiAction);
+			}
+		});
+	} else {
+		//? wait for 1 seconds to ensure the chat messages display in the proper order, ?probably not required?
+		//?des edw gia to pws perimenw na teleiwsei to animation https://gitlab.com/riccisi/foundryvtt-dice-so-nice/-/wikis/API/Roll#detecting-the-end-of-a-3d-roll-animation-for-a-specific-message
 		//todo see https://gitlab.com/riccisi/foundryvtt-dice-so-nice/-/wikis/API/Roll#disablingenabling-the-3d-animation-programmatically
-		await new Promise((resolve) => setTimeout(resolve, 5000));
+		await new Promise((resolve) => setTimeout(resolve, 1000));
 		//? Automatically execute the activation/use of the Metapower/Possession if it's a Critical Success/Failure or not enough destiny to reroll
+		//! why no multiAction for Metapowers here?
 		if (action === "Metapower") {
 			mL(3, "metaEvaluate", "Auto-Activating Metapower:", itemName);
 			metanthropes.metapowers.metaExecute(null, actor.uuid, action, itemName);

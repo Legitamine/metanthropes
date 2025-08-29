@@ -10,8 +10,8 @@
 			"Nether": "Metanthropes: Anthologies - Nether"
 		},
 		"MIGRATION": {
-			"Initialize": "Initializing Data Migration",
-			"World": "World Migration Engine",
+			"Initialize": "Initializing Data Migration Engine",
+			"World": "World Data Migration Engine",
 			"Data": "Data Migration",
 			"Updating": "Updating World Data",
 			"Migrating": "Migrating World Data",

@@ -1,6 +1,9 @@
 /**
  * Applies updates to an actor, provided the actorUUID and updateData
  * If the user is GM it proceeds to do the update, if not, it emits a socket message
+ * todo the game.user should also work in updating documents that isOwner(?), saving us some socket calls
+ * ? this should also work for any type of document, not just actor documents, right?
+ * ? edw na kanw return done/failed? kai na kanw try/catch otan to kanw call?
  *
  * @export
  * @async

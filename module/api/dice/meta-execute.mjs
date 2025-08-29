@@ -527,7 +527,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			return;
 		}
 		if (!actionableTargets) {
-			mL(4, "metaExecute", "No Actionable Targets");
+			mL(3, "metaExecute", "No Actionable Targets");
 		} else {
 			//? Get the names of all targeted actors
 			targetedActorNames = targetsArray.map((actor) => actor.name);
@@ -550,13 +550,14 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		) {
 			if (
 				actionableTargets > 0 &&
+				duration.includes("Instantaneous") &&
 				(damageCosmicMessage || damageElementalMessage || damageMaterialMessage || damagePsychicMessage)
 			) {
 				contentMessage += `Applying @METAFA(burst) Damage to @METAFA(bullseye) Target${
 					targetedActorNames.length > 1 ? "s" : ""
 				}: ${targetedActorNames.join(", ")}<br>`;
 			}
-			if (actionableTargets > 0 && healingMessage) {
+			if (actionableTargets > 0 && healingMessage && duration.includes("Instantaneous")) {
 				contentMessage += `Applying @METAFA(heart-pulse) Healing to @METAFA(bullseye) Target${
 					targetedActorNames.length > 1 ? "s" : ""
 				}: ${targetedActorNames.join(", ")}<br>`;
@@ -589,13 +590,13 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			}
 		}
 		if (damageCosmicMessage || damageElementalMessage || damageMaterialMessage || damagePsychicMessage) {
-			damageSelectedTargets = true;
+			if (duration.includes("Instantaneous")) damageSelectedTargets = true;
 			if (actor.currentDestiny > 0) {
 				const damageReRollButton = `<div class="hide-button hidden">
 				<button class="metanthropes-secondary-chat-button damage roll-damage-reroll chat-button-anchor"
 				data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 				data-what="Damage" data-anchor="true" data-reroll="false" data-reroll-counter="1"
-				data-message-id="null" data-destiny-re-roll="true"
+				data-message-id="null" data-destiny-re-roll="true" data-damage-selected-targets="${damageSelectedTargets}"
 				${cosmicDamageRollParams} ${elementalDamageRollParams}
 				${materialDamageRollParams} ${psychicDamageRollParams}
 				>Spend @METAFA(hand-fingers-crossed) to Reroll @METAFA(burst) Damage
@@ -605,12 +606,12 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			contentMessage += `<hr />`;
 		}
 		if (healingMessage) {
-			healSelectedTargets = true;
+			if (duration.includes("Instantaneous")) healSelectedTargets = true;
 			if (actor.currentDestiny > 0) {
 				const healingRerollButton = `<div class="hide-button hidden">
 				<button class="metanthropes-secondary-chat-button healing roll-healing-reroll chat-button-anchor"
 				data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
-				data-what="Healing" data-anchor="true"
+				data-what="Healing" data-anchor="true" data-heal-selected-targets="${healSelectedTargets}"
 				data-reroll="false" data-reroll-counter="1" data-message-id="null"
 				data-destiny-re-roll="true" ${healingRollParams}
 				>Spend @METAFA(hand-fingers-crossed) to Reroll @METAFA(heart-pulse) Healing
@@ -725,7 +726,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	}
 	//* Send Chat Message
 	let chatData = {
-		user: game.user.id,
+		user: game.user.id, //!why do we have this here, is it even valid?
 		flavor: flavorMessage,
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		content: contentMessage,

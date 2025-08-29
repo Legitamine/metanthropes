@@ -263,7 +263,7 @@ export class MetanthropesActor extends Actor {
 		this._prepareDerivedCharacteristicsXPData(actorData);
 		this._prepareDerivedPerkXPData(actorData);
 	}
-	//* Actor Methods
+
 	/** @override */
 	getRollData() {
 		if (this.type == "Vehicle") return;
@@ -280,13 +280,17 @@ export class MetanthropesActor extends Actor {
 		}
 		return data;
 	}
+
 	/**
 	 * applyDamage - Apply Damage to the Actor
 	 * each parameter below is expected to be a positive number
-	 * @param {number} cosmic
-	 * @param {number} elemental
-	 * @param {number} material
-	 * @param {number} psychic
+	 *
+	 * @async
+	 * @param {number} [cosmic=0]
+	 * @param {number} [elemental=0]
+	 * @param {number} [material=0]
+	 * @param {number} [psychic=0]
+	 * @returns {*}
 	 */
 	async applyDamage(cosmic = 0, elemental = 0, material = 0, psychic = 0) {
 		const currentLife = this.currentLife;
@@ -311,8 +315,7 @@ export class MetanthropesActor extends Actor {
 		} else {
 			updateData["system.Vital.Life.value"] = Number(newLife);
 		}
-		metanthropes.utils.metaLog(3, "Actor", "Applying Damage");
-		await metanthropes.logic.metaApplyActorUpdates(this.uuid, { ...updateData });
+		metanthropes.utils.metaLog(0, "Actor", this.name, "Applying Damage");
 		metanthropes.utils.metaLog(
 			3,
 			"Actor.applyDamage",
@@ -324,12 +327,15 @@ export class MetanthropesActor extends Actor {
 			newLife,
 			"Life"
 		);
+		await metanthropes.logic.metaApplyActorUpdates(this.uuid, { ...updateData });
 	}
+
 	/**
 	 * applyHealing - Apply Healing to the Actor
-	 * @param {*} healing - Expected positive number
 	 *
-	 * @param {number} [healing=0]
+	 * @async
+	 * @param {*} healing - Expected positive number
+	 * @returns {*}
 	 */
 	async applyHealing(healing) {
 		const currentLife = this.currentLife;
@@ -342,8 +348,7 @@ export class MetanthropesActor extends Actor {
 		} else {
 			updateData["system.Vital.Life.value"] = Number(newLife);
 		}
-		metanthropes.utils.metaLog(4, "Actor", "Applying Healing");
-		await metanthropes.logic.metaApplyActorUpdates(this.uuid, { ...updateData });
+		metanthropes.utils.metaLog(0, "Actor", this.name, "Applying Healing");
 		metanthropes.utils.metaLog(
 			3,
 			"Actor.applyHealing",
@@ -355,10 +360,15 @@ export class MetanthropesActor extends Actor {
 			newLife,
 			"Life"
 		);
+		await metanthropes.logic.metaApplyActorUpdates(this.uuid, { ...updateData });
 	}
+
 	/**
 	 * undoLastLifeChange - Restores the value stored in the previousLife flag
 	 * This is expected to trigger for the actor when destiny is spent to re-roll damage/healing, before applying the new value
+	 *
+	 * @async
+	 * @returns {unknown}
 	 */
 	async undoLastLifeChange() {
 		const previousLife = await this.getFlag("metanthropes", "previousLife");
@@ -368,6 +378,7 @@ export class MetanthropesActor extends Actor {
 			);
 		if (previousLife >= 0) {
 			//todo we should use the unsetflag instead
+			metanthropes.utils.metaLog(0, "Actor", this.name, "Undoing Last Life Change");
 			metanthropes.utils.metaLog(3, "Actor.undoLastLifeChange", "Restoring", this.name, "Life to:", previousLife);
 			await metanthropes.logic.metaApplyActorUpdates(this.uuid, {
 				"system.Vital.Life.value": Number(previousLife),

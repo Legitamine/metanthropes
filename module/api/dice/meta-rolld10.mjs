@@ -5,6 +5,8 @@
  * It checks for the presence of certain Metapowers that might affect the roll and then performs the roll.
  * If destinyReRoll is set to true, it allows for a re-roll of that roll result, by spending a Destiny Point.
  *
+ * Anchored rolls do not trigger DSN when the function is called, but rather when the chat message is created/updated instead.
+ *
  * @param {Object} actor - The actor performing the roll. Expected to be an Actor object.
  * @param {string} what - The reason or purpose for the roll. Expected to be a string. (eg: "Damage")
  * @param {boolean} destinyReRoll - Determines if a re-roll using Destiny is allowed. Expected to be a boolean.
@@ -12,16 +14,15 @@
  * @param {string} [itemName=null] - The name of the item associated with the roll, if any. Expected to be a string.
  * @param {number} [baseNumber=0] - A fixed number to add to the roll result, if any. Expected to be a positive number.
  * @param {boolean} [isHalf=false] - Determines if the roll result should be halved. Expected to be a boolean.
- * @param {boolean} [anchor=false] - Determines if the roll result should be prepared to be injected into a chat message. Expected to be a boolean. This shpuld be reset to false for subsequent re rolls.
+ * @param {boolean} [anchor=false] - Determines if the roll result should be prepared to be injected into a chat message. Expected to be a boolean. This should be reset to False for subsequent re rolls.
  * @param {boolean} [reroll=false] - Determines if the roll is a reroll. Expected to be a boolean.
  * @param {number} [rerollCounter=0] - The number of rerolls that have been performed. Expected to be a positive number.
- * @param {string} [messageId=null] - The message ID of the chat message for the reroll, if any. Expected to be a string. 
- * @returns {Promise<...>} 
+ * @param {string} [messageId=null] - The message ID of the chat message for the reroll, if any. Expected to be a string.
+ * @returns {Promise<...>}
  * @example
  * Rolling an actor's Weapon Damage for 3 * d10:
  * metanthropes.dice.metaRolld10(actor, "Damage", true, 3, "Weapon Name");
  */
-
 export async function metaRolld10(
 	actor,
 	what,
@@ -35,9 +36,10 @@ export async function metaRolld10(
 	rerollCounter = 0,
 	messageId = null
 ) {
+	const mL = metanthropes.utils.metaLog;
 	dice = typeof dice === "string" ? parseInt(dice) : dice;
 	baseNumber = typeof baseNumber === "string" ? parseInt(baseNumber) : baseNumber;
-	metanthropes.utils.metaLog(
+	mL(
 		3,
 		"metaRolld10",
 		"Engaged for:",
@@ -67,7 +69,7 @@ export async function metaRolld10(
 	//todo Checking if actor has Metapowers that affect the explosive dice - should be done via actor active effects
 	//	if (await metaIsItemEquipped(actor, "Cognitive Efficiency")) {
 	//		explosiveDice = "x1x10";
-	//		metanthropes.utils.metaLog(3, "metaRolld10", "Using Alternative explosive dice:", explosiveDice);
+	//		mL(3, "metaRolld10", "Using Alternative explosive dice:", explosiveDice);
 	//	}
 	//? dice is the number of d10 to roll
 	let rolld10;
@@ -128,7 +130,7 @@ export async function metaRolld10(
 	data-dice="${dice}" data-base-number="${baseNumber}" data-is-half="${isHalf}"
 	data-anchor="${anchor}" data-message-id="${messageId}"
 	data-reroll="true" data-reroll-counter="${rerollCounter}"
-	>Spend @METAFA(hand-fingers-crossed) Destiny to reroll</button><br><br></div>`;
+	>Spend @METAFA(hand-fingers-crossed) Destiny to reroll</button><br></div>`;
 	if (destinyReRoll && actor.currentDestiny > 0) {
 		message += reRollButtonMessage;
 	}
@@ -143,11 +145,12 @@ export async function metaRolld10(
 		//* Not anchored, print message to chat
 		if (!reroll) {
 			//* Not a reroll, printing a new message
+			mL(1, "metaRolld10", "Not Anchored", "No Re-Roll", "Creating new chat message");
 			//todo! need to find a way to tell dice so nice to only show the animation if dice > 0
 			//todo oxi message edw? //if ( message?.rolls.length && ("dice3d" in game) ) await game.dice3d.waitFor3DAnimationByMessageID(message.id);
 			// if (game.dice3d && dice <= 0) {
 			// 	rolld10.dice[0].results[0].hidden = true;
-			// 	metanthropes.utils.metaLog(4, "metaRolld10", "not anchor, no reroll", rolld10);
+			// 	mL(4, "metaRolld10", "not anchor, no reroll", rolld10);
 			// }
 			const updatedRoll = await rolld10.toJSON();
 			const renderedRoll = await rolld10.render();
@@ -161,16 +164,11 @@ export async function metaRolld10(
 			});
 		} else {
 			//* Rerolling, update the previous message
+			mL(1, "metaRolld10", "Not Anchored", "Re-Roll", "Updating chat message", messageId);
 			const chatMessage = game.messages.get(messageId);
 			if (!chatMessage) {
 				ui.notifications.warn("Could not find the chat message to update.");
-				metanthropes.utils.metaLog(
-					2,
-					"metaRolld10",
-					"reroll",
-					"Could not find the chat message to update",
-					messageId
-				);
+				mL(2, "metaRolld10", "reroll", "Could not find the chat message to update", messageId);
 				return;
 			}
 			const updatedRoll = await rolld10.toJSON();
@@ -186,13 +184,13 @@ export async function metaRolld10(
 				rollMode: game.settings.get("core", "rollMode"),
 				flags: { metanthropes: { actoruuid: actor.uuid } },
 			});
-			metanthropes.utils.metaLog(1, "metaRolld10", "Non-Anchored", "Updating chat message", messageId);
 		}
 	} else {
 		//* Roll is anchored
 		if (!reroll) {
-			//*? don't print a chat message ?what is reroll exactly? todo: rename to more clean purpose
+			mL(1, "metaRolld10", "Anchored", "No Re-roll");
 			//* We store in the dataset all info to display the chat message if needed from rerolls
+			//*? don't print a chat message ?what is reroll exactly? todo: rename to more clean purpose
 			//! do I need this anymore for rerolls to show for all players?
 			// when roll is anchored we don't want DSN to trigger before showing the result.
 			// the resulting dsn animation should show up when the content message does from the parent caller (metaexecute in most cases)
@@ -200,9 +198,9 @@ export async function metaRolld10(
 			// if (game.dice3d && dice > 0) {
 			// 	await game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
 			// }
-			const updatedRoll = await rolld10.toJSON();
+			//! I need to pass the roll object for DSN through the anchor dataset to the damage/healing rerolls so they can trigger the DNS animation when they show the chat message after the initial destiny reroll
+			const updatedRoll = await JSON.stringify(rolld10.toJSON());
 			const renderedRoll = await rolld10.render();
-			metanthropes.utils.metaLog(3, "metaRolld10", "Anchored", "Not updating original chat message", messageId);
 			return rolld10.toAnchor({
 				label: what,
 				dataset: {
@@ -240,7 +238,7 @@ export async function metaRolld10(
 			const chatMessage = game.messages.get(messageId);
 			if (!chatMessage) {
 				//* If no previous chat message to replace
-				metanthropes.utils.metaLog(
+				mL(
 					1,
 					"metaRolld10",
 					"Re rolling for anchor",
@@ -271,7 +269,7 @@ export async function metaRolld10(
 				});
 			} else {
 				//* Replacing previous chat message
-				metanthropes.utils.metaLog(1, "metaRolld10", "Re rolling for anchor", "Updating messageId", messageId);
+				mL(1, "metaRolld10", "Anchored", "Re-Roll", "Updating messageId", messageId);
 				chatMessage.update(chatData);
 				return rolld10.toAnchor({
 					label: what,
@@ -294,7 +292,7 @@ export async function metaRolld10(
 			}
 		}
 	}
-	metanthropes.utils.metaLog(3, "metaRolld10", "Finished for:", actor.name + "'s", what);
+	mL(3, "metaRolld10", "Finished for:", actor.name + "'s", what);
 }
 
 /**
@@ -311,6 +309,7 @@ export async function metaRolld10(
  * This function is not called directly, but rather via an event listener.
  */
 export async function metaRolld10ReRoll(event) {
+	const mL = metanthropes.utils.metaLog;
 	event.preventDefault();
 	const button = event.target;
 	//? Traverse up the DOM to find the parent <li> element with the data-message-id attribute
@@ -341,13 +340,7 @@ export async function metaRolld10ReRoll(event) {
 	//? Need to check if actor has enough Destiny to spend, because they might have already spent it on another secondary button
 	if (!(actor.currentDestiny > 0 && destinyReRoll)) {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
-		metanthropes.utils.metaLog(
-			1,
-			"metaRolld10ReRoll",
-			"Not enough Destiny to spend",
-			"OR",
-			"destinyReRoll is not allowed"
-		);
+		mL(1, "metaRolld10ReRoll", "Not enough Destiny to spend", "OR", "destinyReRoll is not allowed");
 		return;
 	}
 	//? If re rolling for damage/healing, need to ensure we have valid targets before reducing destiny
@@ -356,9 +349,9 @@ export async function metaRolld10ReRoll(event) {
 		return;
 	}
 	await actor.applyDestinyChange(-1);
-	//* Other Re Rolls
+	//* Re-Roll check
 	if (!reroll) {
-		metanthropes.utils.metaLog(1, "metaRolld10ReRoll", "Other Re Rolls", "No reroll");
+		mL(1, "metaRolld10ReRoll", "No reroll");
 		//? We are going to print a new message since this is the first reroll
 		metanthropes.dice.metaRolld10(
 			actor,
@@ -374,7 +367,9 @@ export async function metaRolld10ReRoll(event) {
 			messageId
 		);
 	} else {
-		metanthropes.utils.metaLog(1, "metaRolld10ReRoll", "Other Re Rolls", "Reroll");
+		//! what's the difference?
+		//? mainly to see when Reroll is triggered?
+		mL(1, "metaRolld10ReRoll", "Reroll");
 		metanthropes.dice.metaRolld10(
 			actor,
 			what,
@@ -400,6 +395,8 @@ export async function metaRolld10ReRoll(event) {
  * @returns {*}
  */
 export async function metaDamageReRoll(event) {
+	const mL = metanthropes.utils.metaLog;
+	mL(3, "metaDamageReRoll", "Rerolling Damage Result");
 	event.preventDefault();
 	const button = event.target;
 	//? Traverse up the DOM to find the parent <li> element with the data-message-id attribute
@@ -424,6 +421,7 @@ export async function metaDamageReRoll(event) {
 	let rerollCounter = parseInt(button.dataset.rerollCounter) || 0;
 	const actor = await fromUuid(actoruuid);
 	const targetedActors = button.dataset.targets ? button.dataset.targets.split(",") : [] ?? null;
+	//todo ** tha mporousa na to kanw set null kai meta na min kanw call metaRoll ektos ean perimenw result
 	const damageDiceCosmic = parseInt(button.dataset.diceCosmic) || 0;
 	const damageDiceElemental = parseInt(button.dataset.diceElemental) || 0;
 	const damageDiceMaterial = parseInt(button.dataset.diceMaterial) || 0;
@@ -432,31 +430,29 @@ export async function metaDamageReRoll(event) {
 	const damageBaseElemental = parseInt(button.dataset.baseElemental) || 0;
 	const damageBaseMaterial = parseInt(button.dataset.baseMaterial) || 0;
 	const damageBasePsychic = parseInt(button.dataset.basePsychic) || 0;
+	const damageSelectedTargets = button.dataset.damageSelectedTargets === "true" ? true : false;
 	let contentMessage = ``;
 	let startMessage = ``;
 	let flavorMessage = ``;
+	let rollData = null;
 	//* Return conditions
 	//? Need to check if actor has enough Destiny to spend, because they might have already spent it on another secondary button
 	if (!(actor.currentDestiny > 0 && destinyReRoll)) {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
-		metanthropes.utils.metaLog(
-			1,
-			"metaDamageReRoll",
-			"Not enough Destiny to spend",
-			"OR",
-			"destinyReRoll is not allowed"
-		);
+		mL(1, "metaDamageReRoll", "Not enough Destiny to spend", "OR", "destinyReRoll is not allowed");
 		button.classList.remove("disabled");
 		return;
 	}
+	//todo giati exw ayto edw, eixa skopo na kanw restructure me vasi ta reroll state?
 	//! reroll = true;
 	//? Need to ensure we have valid targets before reducing destiny
-	if (!targetedActors && what.includes("Damage")) {
+	if (!targetedActors && damageSelectedTargets) {
 		ui.notifications.warn("You must select valid targets first");
 		button.classList.remove("disabled");
 		return;
 	}
 	await actor.applyDestinyChange(-1);
+	//todo see ** above
 	//* Cosmic
 	const cosmicDamageRoll = await metanthropes.dice.metaRolld10(
 		actor,
@@ -521,22 +517,24 @@ export async function metaDamageReRoll(event) {
 	);
 	const psychicDamageRollResult = psychicDamageRoll.dataset.total;
 	const damagePsychicMessage = `${psychicDamageRoll.outerHTML}`;
-	//* Work through targets to restore previous Life before applying new Damage
-	for (let i = 0; i < targetedActors.length; i++) {
-		const targetedActor = await fromUuid(targetedActors[i]);
-		await targetedActor.undoLastLifeChange();
+	if (damageSelectedTargets) {
+		//* Work through targets to restore previous Life before applying new Damage
+		for (let i = 0; i < targetedActors.length; i++) {
+			const targetedActor = await fromUuid(targetedActors[i]);
+			await targetedActor.undoLastLifeChange();
+		}
+		//? need to timeout to make sure the life change has been done first, however this is not properly done here
+		//todo instead of this arbitrary timeout, we should have a proper second socket event to track server responses? see https://foundryvtt.wiki/en/development/api/sockets - above specific use cases
+		await new Promise((resolve) => setTimeout(resolve, 3000));
+		await metanthropes.logic.metaApplyDamage(
+			targetedActors,
+			cosmicDamageRollResult,
+			elementalDamageRollResult,
+			materialDamageRollResult,
+			psychicDamageRollResult
+		);
 	}
-	//! who do we have to do a timeout again? needs review
-	//todo instead of this arbitrary timeout, we should have a proper second socket event to track server responses? see https://foundryvtt.wiki/en/development/api/sockets - above specific use cases
-	await new Promise((resolve) => setTimeout(resolve, 3000));
-	await metanthropes.logic.metaApplyDamage(
-		targetedActors,
-		cosmicDamageRollResult,
-		elementalDamageRollResult,
-		materialDamageRollResult,
-		psychicDamageRollResult
-	);
-	//* Chat Message
+	//* Build the chat Message
 	if (!reroll) {
 		startMessage = "Rolls again for";
 	} else {
@@ -544,9 +542,10 @@ export async function metaDamageReRoll(event) {
 		rerollCounter++;
 		if (rerollCounter > 1) startMessage += ` (@METAFA(xmark, null, fw)${rerollCounter})`;
 	}
-	flavorMessage = `${startMessage} Damage for ${itemName} to ${targetedActors.length} target${
-		targetedActors.length > 1 ? "s" : ""
-	}:<br>`;
+	flavorMessage = `${startMessage} ${itemName}'s @METAFA(burst) Damage`;
+	if (damageSelectedTargets)
+		flavorMessage += ` to ${targetedActors.length} target${targetedActors.length > 1 ? "s" : ""}:<br>`;
+	else flavorMessage += `.<br>`;
 	if (cosmicDamageRollResult > 0)
 		contentMessage += `<div class="meta-roll-inline-results">${damageCosmicMessage}</div>`;
 	if (elementalDamageRollResult > 0)
@@ -555,7 +554,6 @@ export async function metaDamageReRoll(event) {
 		contentMessage += `<div class="meta-roll-inline-results">${damageMaterialMessage}</div>`;
 	if (psychicDamageRollResult > 0)
 		contentMessage += `<div class="meta-roll-inline-results">${damagePsychicMessage}</div>`;
-	contentMessage += `<div>${actor.name} has ${actor.currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.<br></div>`;
 	if (actor.currentDestiny > 0) {
 		const damageReRollButton = `<div class="hide-button hidden">
 		<button class="metanthropes-secondary-chat-button damage roll-damage-reroll chat-button-anchor"
@@ -565,26 +563,41 @@ export async function metaDamageReRoll(event) {
 		data-dice-elemental="${damageDiceElemental}" data-base-elemental="${damageBaseElemental}"
 		data-dice-material="${damageDiceMaterial}" data-base-material="${damageBaseMaterial}"
 		data-dice-psychic="${damageDicePsychic}" data-base-psychic="${damageBasePsychic}"
+		data-damage-selected-targets="${damageSelectedTargets}"
 		>Spend @METAFA(hand-fingers-crossed) to Reroll @METAFA(burst) Damage
 		</button></div>`;
 		contentMessage += `<hr />`;
 		contentMessage += damageReRollButton;
+		contentMessage += `<br>`;
 	}
+	contentMessage += `<div>${actor.name} has ${actor.currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.<br><br></div>`;
 	const enrichedContent = await foundry.applications.ux.TextEditor.enrichHTML(contentMessage, { async: true });
 	const enrichedFlavor = await foundry.applications.ux.TextEditor.enrichHTML(flavorMessage, { async: true });
+	//const updatedRoll = await hungerRoll.toJSON();
+	//const renderedRoll = await hungerRoll.render();
 	let chatData = {
-		user: game.user.id,
+		//speaker: ChatMessage.getSpeaker({ actor: actor }),
+		//user: game.user.id,
 		flavor: enrichedFlavor,
-		speaker: ChatMessage.getSpeaker({ actor: actor }),
+		//rolls: [],
 		content: enrichedContent,
+		rollMode: game.settings.get("core", "rollMode"),
 		flags: { metanthropes: { actoruuid: actor.uuid } },
 	};
 	if (reroll) {
+		mL(1, "metaDamageReRoll", "Reroll");
+		//todo edw vazw to extra bit gia DSN giati den kanw create new message
+		//? issue edw einai oti exw kanei roll 4xmetarolls, poio akrivws tha diksw edw?
+		// if (game.dice3d) {
+		// 	await game.dice3d.showForRoll(hungerRoll, game.user, true, null, false, messageId);
+		// }
 		await game.messages.get(messageId).update(chatData);
 	} else {
+		mL(1, "metaDamageReRoll", "No Reroll");
+		//!review oti edw sto prwto diladi reroll apo meta-execute vlepw dsn, right?
 		await ChatMessage.create(chatData);
 	}
-	metanthropes.utils.metaLog(
+	mL(
 		3,
 		"metaDamageReRoll",
 		"Applied Damage ReRoll",
@@ -606,6 +619,8 @@ export async function metaDamageReRoll(event) {
  * @returns {*}
  */
 export async function metaHealingReRoll(event) {
+	const mL = metanthropes.utils.metaLog;
+	mL(3, "metaHealingReRoll", "Rerolling Healing Result");
 	event.preventDefault();
 	const button = event.target;
 	//? Traverse up the DOM to find the parent <li> element with the data-message-id attribute
@@ -632,25 +647,20 @@ export async function metaHealingReRoll(event) {
 	const targetedActors = button.dataset.targets ? button.dataset.targets.split(",") : [] ?? null;
 	const healingDice = parseInt(button.dataset.healingDice) ?? 0;
 	const healingBase = parseInt(button.dataset.healingBase) ?? 0;
-	let contentMessage = null;
-	let startMessage = null;
-	let flavorMessage = null;
+	const healSelectedTargets = button.dataset.healSelectedTargets === "true" ? true : false;
+	let contentMessage = ``;
+	let startMessage = ``;
+	let flavorMessage = ``;
 	//* Return conditions
 	//? Need to check if actor has enough Destiny to spend, because they might have already spent it on another secondary button
 	if (!(actor.currentDestiny > 0 && destinyReRoll)) {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
-		metanthropes.utils.metaLog(
-			1,
-			"metaHealingReRoll",
-			"Not enough Destiny to spend",
-			"OR",
-			"destinyReRoll is not allowed"
-		);
+		mL(1, "metaHealingReRoll", "Not enough Destiny to spend", "OR", "destinyReRoll is not allowed");
 		button.classList.remove("disabled");
 		return;
 	}
 	//? Need to ensure we have valid targets before reducing destiny
-	if (!targetedActors && what.includes("Healing")) {
+	if (!targetedActors && healSelectedTargets) {
 		ui.notifications.warn("You must select valid targets first");
 		button.classList.remove("disabled");
 		return;
@@ -673,14 +683,18 @@ export async function metaHealingReRoll(event) {
 	);
 	const healingRollResult = healingRoll.dataset.total;
 	const healingMessage = `${healingRoll.outerHTML}<br>`;
-	//* Work through targets to restore previous Life before applying new Healing
-	for (let i = 0; i < targetedActors.length; i++) {
-		const targetedActor = await fromUuid(targetedActors[i]);
-		await targetedActor.undoLastLifeChange();
+	if (healSelectedTargets) {
+		//* Work through targets to restore previous Life before applying new Healing
+		for (let i = 0; i < targetedActors.length; i++) {
+			const targetedActor = await fromUuid(targetedActors[i]);
+			await targetedActor.undoLastLifeChange();
+		}
+		//! stin ousia edw thelw na perimenw ena confirm apo server oti ginane ta undolife changes prin paw na kanw apply ta new ones
+		//todo instead of this arbitrary timeout, we should have a proper second socket event to track server responses? see https://foundryvtt.wiki/en/development/api/sockets - above specific use cases
+		//?des edw gia to pws perimenw na teleiwsei to animation https://gitlab.com/riccisi/foundryvtt-dice-so-nice/-/wikis/API/Roll
+		await new Promise((resolve) => setTimeout(resolve, 3000));
+		await metanthropes.logic.metaApplyHealing(targetedActors, healingRollResult);
 	}
-	//todo instead of this arbitrary timeout, we should have a proper second socket event to track server responses? see https://foundryvtt.wiki/en/development/api/sockets - above specific use cases
-	await new Promise((resolve) => setTimeout(resolve, 3000));
-	await metanthropes.logic.metaApplyHealing(targetedActors, healingRollResult);
 	//* Chat Message
 	if (!reroll) {
 		startMessage = "Rolls again for";
@@ -689,11 +703,12 @@ export async function metaHealingReRoll(event) {
 		rerollCounter++;
 		if (rerollCounter > 1) startMessage += ` (@METAFA(xmark, null, fw)${rerollCounter})`;
 	}
-	flavorMessage = `${startMessage} ${itemName}'s @METAFA(heart-pulse) Healing, with ${targetedActors.length} target${
-		targetedActors.length > 1 ? "s" : ""
-	}:<br><br>`;
+	flavorMessage = `${startMessage} ${itemName}'s @METAFA(heart-pulse) Healing`;
+	if (healSelectedTargets)
+		flavorMessage += ` to ${targetedActors.length} target${targetedActors.length > 1 ? "s" : ""}:<br>`;
+	else flavorMessage += `.<br>`;
 	contentMessage += `<div class="meta-roll-inline-results">`;
-	contentMessage = `${healingMessage}`;
+	contentMessage += `${healingMessage}`;
 	contentMessage += `</div>`;
 	if (actor.currentDestiny > 0) {
 		const healingReRollButton = `<div class="hide-button hidden">
@@ -701,33 +716,45 @@ export async function metaHealingReRoll(event) {
 		data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 		data-what="Healing" data-anchor="true" data-reroll="true" data-reroll-counter="${rerollCounter}" data-message-id="messageId"
 		data-destiny-re-roll="true" data-healing-dice="${healingDice}" data-healing-base="${healingBase}"
+		data-heal-selected-targets="${healSelectedTargets}"
 		>Spend @METAFA(hand-fingers-crossed) to Reroll @METAFA(heart-pulse) Healing
 		</button></div>`;
 		contentMessage += `<hr />`;
 		contentMessage += healingReRollButton;
 		contentMessage += `<br>`;
 	}
-	contentMessage += `<div>${actor.name} has ${actor.currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.<br></div>`;
+	contentMessage += `<div>${actor.name} has ${actor.currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.<br><br></div>`;
 	const enrichedContent = await foundry.applications.ux.TextEditor.enrichHTML(contentMessage, { async: true });
 	const enrichedFlavor = await foundry.applications.ux.TextEditor.enrichHTML(flavorMessage, { async: true });
+	const finalMessage = `${enrichedFlavor}${enrichedContent}`;
+	//! parsing the object from the string stored in the dataset
+	//todo: see https://gitlab.com/riccisi/foundryvtt-dice-so-nice/-/wikis/Integration#step-3-create-a-chat-message-with-the-required-data
+	const updatedRoll = await JSON.parse(healingRoll.dataset.rolls);
+	const renderedRoll = healingRoll.dataset.content;
+	//mL(2, "healingRoll", updatedRoll, renderedRoll);
+	//const updatedRoll = await healingRoll.toJSON(); //!!!
+	//const renderedRoll = await healingRoll.render();
 	let chatData = {
-		user: game.user.id,
-		flavor: enrichedFlavor,
-		speaker: ChatMessage.getSpeaker({ actor: actor }),
-		content: enrichedContent,
+		//speaker: ChatMessage.getSpeaker({ actor: actor }),
+		flavor: finalMessage,
+		//? deprecated in v12: type: CONST.CHAT_MESSAGE_STYLES.ROLL,
+		rolls: updatedRoll,
+		content: renderedRoll,
+		rollMode: game.settings.get("core", "rollMode"),
 		flags: { metanthropes: { actoruuid: actor.uuid } },
 	};
 	if (reroll) {
-		await game.messages.get(messageId).update(chatData);
+		mL(1, "metaHealingReRoll", "Reroll");
+		//? need to call dsn as we don't use the roll class to update the message
+		if (game.dice3d) {
+			await game.dice3d.showForRoll(updatedRoll, game.user, true, null, false, messageId);
+		}
+		const chatMessage = await game.messages.get(messageId);
+		//chatMessage.applyRollMode(chatData, "roll");
+		chatMessage.update(chatData);
 	} else {
+		mL(1, "metaHealingReRoll", "No Reroll");
 		await ChatMessage.create(chatData);
 	}
-	metanthropes.utils.metaLog(
-		3,
-		"metaHealingReRoll",
-		"Applied Healing ReRoll",
-		healingRollResult,
-		"# of targets:",
-		targetedActors.length
-	);
+	mL(3, "metaHealingReRoll", "Applied Healing ReRoll", healingRollResult, "# of targets:", targetedActors.length);
 }

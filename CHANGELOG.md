@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Early Access Releases
 
-# Early Access v0.13.67 [2025-08-26]
+# Early Access v0.13.67 [2025-08-29]
 
 ## Added:
 
@@ -46,17 +46,23 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 -   !todo: fix journals, links
 
 -   From this release and onwards, we utilize the new Data Migration Engine to also update existing World Actors, so Narrators won't have to re-import Actors from Compendiums to get the new content & fixes.
--   [Dice-So-Nice] Fixed various issues with Dice So Nice. Requires DSN version 5.2.1 or newer. Fixed cases where the animation triggered twice. Fixed cases where the animation did not trigger for all players. Fixed the chat message to update/show after the DSN animation finishes.
+-   [Dice-So-Nice] Fixed various issues with Dice So Nice. Requires DSN version 5.2.1 or newer.
+    -   Fixed cases where the animation triggered twice.
+    -   Fixed cases where the animation did not trigger for all players.
+    -   Fixed the animation triggering when no valid targets were selected.
+    -   Fixed when re-rolling using Destiny, the chat message did not update/show after the DSN animation finished, now it will wait for the animation to play before showing the new result in chat.
+    -   Known issue: For Automated Damage/Healing Re-Rolls, DSN fails to show the dice animation for the 2nd and subsequent re-rolls. The new Damage/Healing result is applied correctly to targets, and the new result shows in chat as expected, however the DSN animation will not trigger properly. We will properly address this issue in a future release.
 -   [Introductory] Fixed some typos and other minor issues in The Usher's, Shavo's and Niko's Metapowers.
 -   [Introductory] Increased the top-down Token scale ratio for the Nightmare, Anomaly and Cyborg Antagonists to better reflect their larger than human relative sizes. Also fixed the backgrounds for the Cyborg and Nightmare.
 -   [Introductory] Renamed the new First Person Scene to 'Cutscene' instead of 'Cinematic'.
--   [Core/Homebrew] Fixed an rare issue that was causing some customized Items with a broken image link, to not show up properly on the Actor character sheet. These Items are now again visible on the Actor sheet.
 -   [Core] Fixed the Category of Thermal Goggles to be that of 'Gadget' instead of 'Strike'.
+-   [Core/Homebrew] Fixed an rare issue that was causing some customized Items with a broken image link, to not show up properly on the Actor character sheet. These Items are now again visible on the Actor sheet.
+-   Fixed automated Damage/Healing to only apply to targets when the Duration of the Metapower/Possession is Instantaneous.
 -   Fixed the default Token Disposition for all non-Protagonist Prototype Tokens to be 'Neutral' instead of 'Secret', allowing players to target them (Secret disposition apperently does not allow targeting). If loading a World that was created before this release, all Prototype Token defaults will be overriden with this new behavior.
 -   Replaced the loading screen that appears when loading a World, that stays up until the active scene loads. This image now uses the new cover image for the system and should be less prone to cause any motion sickness than the previous artwork used as the loading screen.
 -   Fixed various minor issues and typos with the Finalize Premade Actor process.
 -   Fixed the issue with dissappearing Font Awesome icons when editing a Journal page or a Possession's effect description fields. From now on, use the new Text Enrichers to include FA icons in the Journals and in the description fields on Items. See #394 on how to configure your own content.
--   Better aligned the FontAwesome Icons that show up on chat during the Activation of Metapowers and Usage of Possessions.
+-   Made improvements to chat messages, removing excess line breaks and better aligned the FontAwesome Icons on the Activation of Metapowers and Usage of Possessions.
 -   Fixed the Known Issues of the v0.13.5 release.
 -   The Pause screen displays the Metanthropes™ Logo again.
 
