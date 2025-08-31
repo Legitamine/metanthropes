@@ -19,8 +19,8 @@ export function metaLog(logType = 0, ...variables) {
 	}
 	let logFunction = console.log;
 	let logMessage = `%cMetanthropes | `;
-	let logStyle = "background-color: #5C16C5; color: #fff";
-	let altLogStyle = "background-color: #00695c; color: #fff";
+	let logStyle = "background-color: #945d90; color: #fff";
+	let altLogStyle = "background-color: #00b0bc; color: #000";
 	switch (logType) {
 		case 1:
 		case 4:
