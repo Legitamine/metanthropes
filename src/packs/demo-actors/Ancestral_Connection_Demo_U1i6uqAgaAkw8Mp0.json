@@ -6059,51 +6059,51 @@
             "type": "text",
             "dtype": "String",
             "label": "<i class=\"fa-solid fa-cube\"></i> Category",
-            "value": "Earthly, Compossed, Metallic or Alien"
+            "value": "Terrestrial, Metals & Alloys, Composite or Extraterrestrial"
           },
           "Durability": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> <i class=\"fa-solid fa-heart-pulse\"></i>",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i>",
             "value": 10
           },
           "Size": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> <i class=\"fa-solid fa-ruler-triangle\"></i>",
+            "label": "<i class=\"fa-solid fa-ruler-triangle\"></i>",
             "value": 10
           },
           "Weight": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> <i class=\"fa-solid fa-weight-hanging\"></i>",
+            "label": "<i class=\"fa-solid fa-weight-hanging\"></i>",
             "value": 10
           },
           "Cosmic": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> Cosmic Resistance",
+            "label": "Cosmic Resistance",
             "initial": 0,
             "value": null
           },
           "Elemental": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> Elemental Resistance",
+            "label": "Elemental Resistance",
             "initial": 0,
             "value": null
           },
           "Material": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> Material Resistance",
+            "label": "Material Resistance",
             "initial": 0,
             "value": null
           },
           "Psychic": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> Psychic Resistance",
+            "label": "Psychic Resistance",
             "initial": 0,
             "value": null
           },

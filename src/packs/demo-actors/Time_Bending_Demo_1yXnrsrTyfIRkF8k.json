@@ -1002,51 +1002,51 @@
             "type": "text",
             "dtype": "String",
             "label": "<i class=\"fa-solid fa-cube\"></i> Category",
-            "value": "Compossed"
+            "value": "Composite"
           },
           "Durability": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> <i class=\"fa-solid fa-heart-pulse\"></i>",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i>",
             "value": 2
           },
           "Size": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> <i class=\"fa-solid fa-ruler-triangle\"></i>",
+            "label": "<i class=\"fa-solid fa-ruler-triangle\"></i>",
             "value": 7
           },
           "Weight": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> <i class=\"fa-solid fa-weight-hanging\"></i>",
+            "label": "<i class=\"fa-solid fa-weight-hanging\"></i>",
             "value": 6
           },
           "Cosmic": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> Cosmic Resistance",
+            "label": "Cosmic Resistance",
             "initial": 0,
             "value": null
           },
           "Elemental": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> Elemental Resistance",
+            "label": "Elemental Resistance",
             "initial": 0,
             "value": 20
           },
           "Material": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> Material Resistance",
+            "label": "Material Resistance",
             "initial": 0,
             "value": 20
           },
           "Psychic": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> Psychic Resistance",
+            "label": "Psychic Resistance",
             "initial": 0,
             "value": null
           },
@@ -1564,51 +1564,51 @@
             "type": "text",
             "dtype": "String",
             "label": "<i class=\"fa-solid fa-cube\"></i> Category",
-            "value": "Metallic"
+            "value": "Metals & Alloys"
           },
           "Durability": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> <i class=\"fa-solid fa-heart-pulse\"></i>",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i>",
             "value": 5
           },
           "Size": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> <i class=\"fa-solid fa-ruler-triangle\"></i>",
+            "label": "<i class=\"fa-solid fa-ruler-triangle\"></i>",
             "value": 8
           },
           "Weight": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> <i class=\"fa-solid fa-weight-hanging\"></i>",
+            "label": "<i class=\"fa-solid fa-weight-hanging\"></i>",
             "value": 6
           },
           "Cosmic": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> Cosmic Resistance",
+            "label": "Cosmic Resistance",
             "initial": 0,
             "value": null
           },
           "Elemental": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> Elemental Resistance",
+            "label": "Elemental Resistance",
             "initial": 0,
             "value": 20
           },
           "Material": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> Material Resistance",
+            "label": "Material Resistance",
             "initial": 0,
             "value": 40
           },
           "Psychic": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> Psychic Resistance",
+            "label": "Psychic Resistance",
             "initial": 0,
             "value": null
           },
@@ -8718,51 +8718,51 @@
             "type": "text",
             "dtype": "String",
             "label": "<i class=\"fa-solid fa-cube\"></i> Category",
-            "value": "Earthly, Compossed, Metallic or Alien"
+            "value": "Terrestrial, Metals & Alloys, Composite or Extraterrestrial"
           },
           "Durability": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> <i class=\"fa-solid fa-heart-pulse\"></i>",
+            "label": "<i class=\"fa-solid fa-heart-pulse\"></i>",
             "value": 10
           },
           "Size": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> <i class=\"fa-solid fa-ruler-triangle\"></i>",
+            "label": "<i class=\"fa-solid fa-ruler-triangle\"></i>",
             "value": 10
           },
           "Weight": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> <i class=\"fa-solid fa-weight-hanging\"></i>",
+            "label": "<i class=\"fa-solid fa-weight-hanging\"></i>",
             "value": 10
           },
           "Cosmic": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> Cosmic Resistance",
+            "label": "Cosmic Resistance",
             "initial": 0,
             "value": null
           },
           "Elemental": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> Elemental Resistance",
+            "label": "Elemental Resistance",
             "initial": 0,
             "value": null
           },
           "Material": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> Material Resistance",
+            "label": "Material Resistance",
             "initial": 0,
             "value": null
           },
           "Psychic": {
             "type": "number",
             "dtype": "Number",
-            "label": "<i class=\"fa-solid fa-cube\"></i> Psychic Resistance",
+            "label": "Psychic Resistance",
             "initial": 0,
             "value": null
           },

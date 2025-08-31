@@ -10,8 +10,8 @@
 			"Nether": "Metanthropes: Anthologies - Nether"
 		},
 		"MIGRATION": {
-			"Initialize": "Initializing Data Migration",
-			"World": "World Migration Engine",
+			"Initialize": "Initializing Data Migration Engine",
+			"World": "World Data Migration Engine",
 			"Data": "Data Migration",
 			"Updating": "Updating World Data",
 			"Migrating": "Migrating World Data",
@@ -52,7 +52,7 @@
 				"BuffsApplied": "These Buffs are Applied to the Target(s)",
 				"BuffsRemoved": "These Buffs are Removed from the Target(s)",
 				"ConditionsApplied": "These Conditions are Applied to the Target(s)",
-				"ConditionsRemoved": "These Conditions are Removed from the Targets(s)"
+				"ConditionsRemoved": "These Conditions are Removed from the Target(s)"
 			}
 		},
 		"UI": {
@@ -229,6 +229,21 @@
 			"SIZE": {
 				"LABEL": "Size",
 				"HINT": "blah"
+			}
+		},
+		"ITEMS": {
+			"POSSESSIONS": {
+				"MATERIAL": {
+					"Category": "The type of Materials used in creating this Possession.",
+					"Durability": "The durability of this Possession. When this Possession takes damage, which is higher than the Resistance for that damage type, excess damage reduces the Durability of the Possession. When Durability reaches 0, the Possession is destroyed.",
+					"Size": "The Size of this Possession.",
+					"Weight": "The Weight of this Possession.",
+					"Cosmic": "The Cosmic Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+					"Elemental": "The Elemental Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+					"Material": "The Material Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+					"Psychic": "The Psychic Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+					"Description": "A description for this particular material."
+				}
 			}
 		}
 	},
