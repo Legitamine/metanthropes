@@ -1,31 +1,62 @@
 /*!
- * Font Awesome Pro 6.7.2 by @fontawesome - https://fontawesome.com
+ * Font Awesome Pro 7.0.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license (Commercial License)
- * Copyright 2024 Fonticons, Inc.
+ * Copyright 2025 Fonticons, Inc.
  */
-@import 'functions';
-@import 'variables';
-@import 'mixins';
+@use "sass:string";
+@use 'variables' as v;
+@use 'mixins' as m;
 
 @font-face {
   font-family: 'Font Awesome Kit';
   font-style: normal;
   font-weight: 400;
-  font-display: $fa-font-display;
-  src: url('#{$fa-font-path}/custom-icons.woff2') format('woff2'),
-    url('#{$fa-font-path}/custom-icons.ttf') format('truetype');
+  font-display: v.$font-display;
+  src: url('#{v.$font-path}/custom-icons.woff2');
 }
 
-.fak, .#{$fa-css-prefix}-kit {
-  font-family: 'Font Awesome Kit';
+.fak, .#{v.$css-prefix}-kit {
+  --#{v.$css-prefix}-family: 'Font Awesome Kit';
+  --#{v.$css-prefix}-style: 400;
 
-  @include fa-icon;
+  @include m.fa-icon();
 }
 
-.fak::before, .fa-kit::before {
-  content: var(--fa);
+:is(.fak,.fa-kit,.fakd,.fa-kit-duotone)::before {
+  content: var(#{v.$icon-property})/"";
 }
 
-@each $name, $icon in $fa-custom-icons {
-  .fak.#{$fa-css-prefix}-#{$name}, .fa-kit.#{$fa-css-prefix}-#{$name} { #{$fa-icon-property}: unquote("\"#{ $icon }\""); }
+@supports not (content: ''/'') {
+  :is(.fak,.fa-kit,.fakd,.fa-kit-duotone)::before {
+    content: var(#{v.$icon-property});
+  }
+}
+
+:is(.fak,.fa-kit,.fakd,.fa-kit-duotone)::after {
+  content: var(#{v.$icon-property})/"";
+  font-feature-settings: "ss01";
+}
+
+@supports not (content: ''/'') {
+  :is(.fak,.fa-kit,.fakd,.fa-kit-duotone)::after {
+    content: var(#{v.$icon-property});
+  }
+}
+
+@each $name, $icon in v.$custom-icons {
+  .fak.#{v.$css-prefix}-#{$name}::before,
+  .fa-kit.#{v.$css-prefix}-#{$name}::before {
+    #{v.$icon-property}: string.unquote("\"#{ $icon }\"");
+  }
+}
+
+// convenience mixin for declaring pseudo-elements by CSS variable,
+// including all style-specific font properties and ::before elements.
+@mixin icon($var) {
+  @include m.fa-icon('Font Awesome Kit');
+  @extend .#{v.$css-prefix}-kit;
+
+  &::before {
+    content: string.unquote("\"#{ $var }\"");
+  }
 }
