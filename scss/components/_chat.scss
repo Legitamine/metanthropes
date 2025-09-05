@@ -1,3 +1,5 @@
+@use "../settings" as *;
+//* Chat specifics
 .meta-roll-inline-results {
 	font-size: 0.9rem;
 	margin: 15px;
@@ -13,11 +15,11 @@
 }
 
 .dice-tooltip {
-	background-image: url("../assets/artwork/ui/buttons/button.webp");
-	background-color: rgba(255, 255, 255, 0.4);
+	//background-image: $a-button-image;
+	background-color: var(--metanthropes-color-primary);
 	.part-header {
 		.part-flavor {
-			color: var(--color-light-1);
+			color: var(--metanthropes-color-primary);
 		}
 	}
 }
@@ -25,21 +27,21 @@
 @mixin roll-hover-focus {
 	outline: none;
 	border: $border-activated;
-	//box-shadow: 0 0 0 3px $c-purple;
-	text-shadow: $s-button;
+	//box-shadow: 0 0 0 3px var(--metanthropes-color-highlight);
+	text-shadow: var(--metanthropes-color-text-shadow);
 	opacity: 1;
 }
 @mixin roll-active {
 	border: $border-activated;
-	//box-shadow: 0 0 0 5px $c-purple;
+	//box-shadow: 0 0 0 5px var(--metanthropes-color-highlight);
 	opacity: 1;
 }
 //todo: this is pretty the same as base button style, should consolidate
 %base-inline-roll {
 	font-family: $font-primary;
-	background-image: url("../assets/artwork/ui/buttons/button.webp");
+	background-image: $a-button-image;
 	background-size: cover;
-	text-shadow: $s-button;
+	text-shadow: var(--metanthropes-color-text-shadow);
 	border: $border-groove;
 	border-radius: $border-radius;
 	color: var(--metanthropes-color-text);
@@ -67,7 +69,7 @@
 	//opacity: 0.75;
 }
 #chat-form textarea {
-	background-image: url("../assets/artwork/ui/chat/chat-box.webp");
+	background-image: $a-chat-text-area;
 }
 .chat-message .message-header .flavor-text,
 .chat-message .message-header .whisper-to,

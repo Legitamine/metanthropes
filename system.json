@@ -149,48 +149,48 @@
 		{
 			"name": "Metanthropes",
 			"sorting": "a",
-			"color": "#7d0f81",
+			"color": "#00b0bc",
 			"packs": ["welcome"],
 			"folders": [
 				{
 					"name": "Adventures",
 					"sorting": "a",
-					"color": "#7d0f81",
+					"color": "#00b0bc",
 					"packs": ["system"],
 					"folders": []
 				},
 				{
 					"name": "Actors",
 					"sorting": "a",
-					"color": "#7d0f81",
+					"color": "#00b0bc",
 					"packs": ["demo-actors"],
 					"folders": []
 				},
 				{
 					"name": "Journals",
 					"sorting": "a",
-					"color": "#7d0f81",
+					"color": "#00b0bc",
 					"packs": ["how-to-play"],
 					"folders": []
 				},
 				{
 					"name": "Scenes",
 					"sorting": "a",
-					"color": "#7d0f81",
+					"color": "#00b0bc",
 					"packs": ["lobby"],
 					"folders": []
 				},
 				{
 					"name": "Rollable Tables",
 					"sorting": "a",
-					"color": "#7d0f81",
+					"color": "#00b0bc",
 					"packs": ["hit-location"],
 					"folders": []
 				},
 				{
 					"name": "Macros",
 					"sorting": "a",
-					"color": "#7d0f81",
+					"color": "#00b0bc",
 					"packs": ["toolkit"],
 					"folders": []
 				}
