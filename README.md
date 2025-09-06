@@ -1,4 +1,4 @@
-![image](https://media.invisioncic.com/e290497/pages_media/system.webp)
+![image](./assets/cover/cover.webp)
 ![Foundry v13](https://img.shields.io/badge/foundry-v13-green)
 ![Latest Release Download Count](https://img.shields.io/github/downloads/legitamine/metanthropes/latest/metanthropes.zip)
 [![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fmetanthropes&colorB=4aa94a)](https://forge-vtt.com/bazaar#package=metanthropes)
@@ -38,7 +38,7 @@ Alternatively, you may use the following link when selecting to install manually
 
 Metanthropes™ aims to utilize the latest and best that the amazing Foundry VTT platform offers.
 
--   Foundry VTT version 13 is currently supported. Latest verified version is v13.346.
+-   Foundry VTT version 13 is currently supported. Latest verified version is v13.348.
 
 ## Supported 3rd Party Modules
 
