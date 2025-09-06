@@ -5,7 +5,7 @@
 
 # Metanthropes
 
-**Metanthropes** - comes from Greek *'Μετά-Άνθρωπος'*, meaning ***'Beyond-Human'*** - is a new, easy to learn, classless, setting-flexible, d100 system.
+**Metanthropes**™ - comes from Greek *'Μετά-Άνθρωπος'*, meaning ***'Beyond-Human'*** - is a new, easy to learn, classless, setting-flexible, d100 system.
 
 Metanthropes™ features **over 500 unique abilities**, called **Metapowers**: unique, metaphysical gifts that transform ordinary humans into something extraordinary.
 
