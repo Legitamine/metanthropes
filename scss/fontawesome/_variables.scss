@@ -76,6 +76,7 @@ $var-contact-book: \f2b9;
 $var-address-card: \f2bb;
 $var-contact-card: \f2bb;
 $var-vcard: \f2bb;
+$var-aeropress: \e82b;
 $var-air-conditioner: \f8f4;
 $var-airplay: \e089;
 $var-airplay-audio: \e77b;
@@ -223,10 +224,12 @@ $var-arrow-left-rotate: \f0e2;
 $var-arrow-rotate-back: \f0e2;
 $var-arrow-rotate-backward: \f0e2;
 $var-undo: \f0e2;
+$var-arrow-rotate-left-10: \e836;
 $var-arrow-rotate-right: \f01e;
 $var-arrow-right-rotate: \f01e;
 $var-arrow-rotate-forward: \f01e;
 $var-redo: \f01e;
+$var-arrow-rotate-right-10: \e837;
 $var-arrow-trend-down: \e097;
 $var-arrow-trend-up: \e098;
 $var-arrow-turn-down: \f149;
@@ -836,6 +839,10 @@ $var-card-spade: \e3ec;
 $var-cards: \e3ed;
 $var-cards-blank: \e4df;
 $var-caret-down: \f0d7;
+$var-caret-large-down: \e82c;
+$var-caret-large-left: \e82d;
+$var-caret-large-right: \e82e;
+$var-caret-large-up: \e82f;
 $var-caret-left: \f0d9;
 $var-caret-right: \f0da;
 $var-caret-up: \f0d8;
@@ -934,6 +941,7 @@ $var-check-to-slot: \f772;
 $var-vote-yea: \f772;
 $var-cheese: \f7ef;
 $var-cheese-swiss: \f7f0;
+$var-chemex: \e830;
 $var-cherries: \e0ec;
 $var-chess: \f439;
 $var-chess-bishop: \f43a;
@@ -2046,6 +2054,7 @@ $var-font-awesome: \f2b4;
 $var-font-awesome-flag: \f2b4;
 $var-font-awesome-logo-full: \f2b4;
 $var-font-case: \f866;
+$var-foot-wing: \e834;
 $var-football: \f44e;
 $var-football-ball: \f44e;
 $var-football-helmet: \f44f;
@@ -2250,6 +2259,7 @@ $var-hand-point-right: \f0a4;
 $var-hand-point-up: \f0a6;
 $var-hand-pointer: \f25a;
 $var-hand-scissors: \f257;
+$var-hand-shaka: \e831;
 $var-hand-sparkles: \e05d;
 $var-hand-spock: \f259;
 $var-hand-wave: \e1a7;
@@ -2534,6 +2544,7 @@ $var-k: \4b;
 $var-kaaba: \f66b;
 $var-kazoo: \f8c7;
 $var-kerning: \f86f;
+$var-kettlebell: \e832;
 $var-key: \f084;
 $var-key-skeleton: \f6f3;
 $var-key-skeleton-left-right: \e3b4;
@@ -3353,6 +3364,7 @@ $var-print-search: \f81a;
 $var-print-slash: \f686;
 $var-projector: \f8d6;
 $var-pump: \e442;
+$var-pump-impeller: \e835;
 $var-pump-medical: \e06a;
 $var-pump-soap: \e06b;
 $var-pumpkin: \f707;
@@ -4768,6 +4780,7 @@ $icons: (
   "address-card": $var-address-card,
   "contact-card": $var-contact-card,
   "vcard": $var-vcard,
+  "aeropress": $var-aeropress,
   "air-conditioner": $var-air-conditioner,
   "airplay": $var-airplay,
   "airplay-audio": $var-airplay-audio,
@@ -4915,10 +4928,12 @@ $icons: (
   "arrow-rotate-back": $var-arrow-rotate-back,
   "arrow-rotate-backward": $var-arrow-rotate-backward,
   "undo": $var-undo,
+  "arrow-rotate-left-10": $var-arrow-rotate-left-10,
   "arrow-rotate-right": $var-arrow-rotate-right,
   "arrow-right-rotate": $var-arrow-right-rotate,
   "arrow-rotate-forward": $var-arrow-rotate-forward,
   "redo": $var-redo,
+  "arrow-rotate-right-10": $var-arrow-rotate-right-10,
   "arrow-trend-down": $var-arrow-trend-down,
   "arrow-trend-up": $var-arrow-trend-up,
   "arrow-turn-down": $var-arrow-turn-down,
@@ -5528,6 +5543,10 @@ $icons: (
   "cards": $var-cards,
   "cards-blank": $var-cards-blank,
   "caret-down": $var-caret-down,
+  "caret-large-down": $var-caret-large-down,
+  "caret-large-left": $var-caret-large-left,
+  "caret-large-right": $var-caret-large-right,
+  "caret-large-up": $var-caret-large-up,
   "caret-left": $var-caret-left,
   "caret-right": $var-caret-right,
   "caret-up": $var-caret-up,
@@ -5626,6 +5645,7 @@ $icons: (
   "vote-yea": $var-vote-yea,
   "cheese": $var-cheese,
   "cheese-swiss": $var-cheese-swiss,
+  "chemex": $var-chemex,
   "cherries": $var-cherries,
   "chess": $var-chess,
   "chess-bishop": $var-chess-bishop,
@@ -6738,6 +6758,7 @@ $icons: (
   "font-awesome-flag": $var-font-awesome-flag,
   "font-awesome-logo-full": $var-font-awesome-logo-full,
   "font-case": $var-font-case,
+  "foot-wing": $var-foot-wing,
   "football": $var-football,
   "football-ball": $var-football-ball,
   "football-helmet": $var-football-helmet,
@@ -6942,6 +6963,7 @@ $icons: (
   "hand-point-up": $var-hand-point-up,
   "hand-pointer": $var-hand-pointer,
   "hand-scissors": $var-hand-scissors,
+  "hand-shaka": $var-hand-shaka,
   "hand-sparkles": $var-hand-sparkles,
   "hand-spock": $var-hand-spock,
   "hand-wave": $var-hand-wave,
@@ -7226,6 +7248,7 @@ $icons: (
   "kaaba": $var-kaaba,
   "kazoo": $var-kazoo,
   "kerning": $var-kerning,
+  "kettlebell": $var-kettlebell,
   "key": $var-key,
   "key-skeleton": $var-key-skeleton,
   "key-skeleton-left-right": $var-key-skeleton-left-right,
@@ -8045,6 +8068,7 @@ $icons: (
   "print-slash": $var-print-slash,
   "projector": $var-projector,
   "pump": $var-pump,
+  "pump-impeller": $var-pump-impeller,
   "pump-medical": $var-pump-medical,
   "pump-soap": $var-pump-soap,
   "pumpkin": $var-pumpkin,

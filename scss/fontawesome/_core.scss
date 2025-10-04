@@ -35,6 +35,9 @@
 .fajfr,
 .fajdr,
 .facr,
+.fausb,
+.faudsb,
+.faufsb,
 .#{v.$css-prefix}-solid,
 .#{v.$css-prefix}-semibold,
 .#{v.$css-prefix}-regular,
@@ -55,6 +58,9 @@
 .#{v.$css-prefix}-slab,
 .#{v.$css-prefix}-slab-press,
 .#{v.$css-prefix}-thumbprint,
+.#{v.$css-prefix}-utility,
+.#{v.$css-prefix}-utility-duo,
+.#{v.$css-prefix}-utility-fill,
 .#{v.$css-prefix}-whiteboard,
 .#{v.$css-prefix} {
   @include m.fa-icon();
@@ -89,6 +95,9 @@
   .fajfr,
   .fajdr,
   .facr,
+  .fausb,
+  .faudsb,
+  .faufsb,
   .#{v.$css-prefix}-solid,
   .#{v.$css-prefix}-semibold,
   .#{v.$css-prefix}-regular,
@@ -109,6 +118,9 @@
   .#{v.$css-prefix}-slab,
   .#{v.$css-prefix}-slab-press,
   .#{v.$css-prefix}-thumbprint,
+  .#{v.$css-prefix}-utility,
+  .#{v.$css-prefix}-utility-duo,
+  .#{v.$css-prefix}-utility-fill,
   .#{v.$css-prefix}-whiteboard,
   .fa
 )::before {
@@ -145,6 +157,9 @@
   .fajfr,
   .fajdr,
   .facr,
+  .fausb,
+  .faudsb,
+  .faufsb,
   .#{v.$css-prefix}-solid,
   .#{v.$css-prefix}-semibold,
   .#{v.$css-prefix}-regular,
@@ -165,6 +180,9 @@
   .#{v.$css-prefix}-slab,
   .#{v.$css-prefix}-slab-press,
   .#{v.$css-prefix}-thumbprint,
+  .#{v.$css-prefix}-utility,
+  .#{v.$css-prefix}-utility-duo,
+  .#{v.$css-prefix}-utility-fill,
   .#{v.$css-prefix}-whiteboard,
   .fa
 )::before {
@@ -187,7 +205,9 @@
   .fands,
   .#{v.$css-prefix}-notdog-duo,
   .fajdr,
-  .#{v.$css-prefix}-jelly-duo
+  .#{v.$css-prefix}-jelly-duo,
+  .faudsb,
+  .#{v.$css-prefix}-utility-duo
 )::after {
   content: var(#{v.$icon-property});
   font-feature-settings: "ss01";
@@ -210,7 +230,9 @@
   .fands,
   .#{v.$css-prefix}-notdog-duo,
   .fajdr,
-  .#{v.$css-prefix}-jelly-duo
+  .#{v.$css-prefix}-jelly-duo,
+  .faudsb,
+  .#{v.$css-prefix}-utility-duo
 )::after {
     content: var(#{v.$icon-property});
   }
