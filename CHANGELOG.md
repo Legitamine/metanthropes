@@ -15,7 +15,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 ## Added:
 
 - Added support for Foundry version 13.350.
-- Added support for Foundry version 14.
+- Added initial support for Foundry version 14.
 
 ## Changed:
 
