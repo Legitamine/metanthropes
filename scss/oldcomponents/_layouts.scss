@@ -1,5 +1,4 @@
-@use "../settings" as *;
-//* Layouts used in Metanthropes RPG Sheets - is that essentially the sheet? though?
+//layouts used in Metanthropes RPG Sheets
 //container layout
 //XL container with 3 columns and 4 rows
 .layout-container-grid3x4 {
@@ -278,7 +277,7 @@
 	font-family: $font-secondary;
 	font-size: var(--font-size-14);
 	font-weight: 500;
-	color: var(--metanthropes-color-text);
+	color: $c-black;
 }
 .layout-tab-summary {
 	display: grid;
