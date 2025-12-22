@@ -31,8 +31,9 @@ main {
 	box-sizing: border-box;
 }
 body {
+	//? Is this the background cover while loading?
 	font-family: $font-secondary;
-	background-image: url("../assets/cover/cover.webp");
+	background-image: url("../assets/cover/loading.webp");
 	background-size: auto auto;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
