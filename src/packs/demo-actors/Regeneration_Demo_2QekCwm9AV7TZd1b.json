@@ -953,7 +953,7 @@
       "contrast": 0,
       "color": null
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "flags": {
       "splatter": {
         "bloodColor": "#d10000ff"
@@ -1486,7 +1486,7 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "14.352",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
         "lastModifiedBy": null
@@ -1990,7 +1990,7 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "14.352",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
         "lastModifiedBy": null
@@ -2492,7 +2492,7 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "14.352",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
         "lastModifiedBy": null
@@ -2996,7 +2996,7 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "14.352",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
         "lastModifiedBy": null
@@ -3014,31 +3014,36 @@
             "type": "text",
             "dtype": "String",
             "label": "<i class=\"fa-solid fa-cube\"></i> Category",
-            "value": "Terrestrial, Metals & Alloys, Composite or Extraterrestrial"
+            "value": "Terrestrial, Metals & Alloys, Composite or Extraterrestrial",
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Category"
           },
           "Durability": {
             "type": "number",
             "dtype": "Number",
             "label": "<i class=\"fa-solid fa-heart-pulse\"></i>",
-            "value": 10
+            "value": 10,
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Durability"
           },
           "Size": {
             "type": "number",
             "dtype": "Number",
             "label": "<i class=\"fa-solid fa-ruler-triangle\"></i>",
-            "value": 10
+            "value": 10,
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Size"
           },
           "Weight": {
             "type": "number",
             "dtype": "Number",
             "label": "<i class=\"fa-solid fa-weight-hanging\"></i>",
-            "value": 10
+            "value": 10,
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Weight"
           },
           "Cosmic": {
             "type": "number",
             "dtype": "Number",
             "label": "Cosmic Resistance",
             "initial": 0,
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Cosmic",
             "value": null
           },
           "Elemental": {
@@ -3046,6 +3051,7 @@
             "dtype": "Number",
             "label": "Elemental Resistance",
             "initial": 0,
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Elemental",
             "value": null
           },
           "Material": {
@@ -3053,6 +3059,7 @@
             "dtype": "Number",
             "label": "Material Resistance",
             "initial": 0,
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Material",
             "value": null
           },
           "Psychic": {
@@ -3060,13 +3067,15 @@
             "dtype": "Number",
             "label": "Psychic Resistance",
             "initial": 0,
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Psychic",
             "value": null
           },
           "Description": {
             "type": "text",
             "dtype": "String",
             "label": "<i class=\"fa-solid fa-cube\"></i> Description",
-            "value": ""
+            "value": "",
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Description"
           }
         },
         "Execution": {
@@ -3554,7 +3563,7 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "14.352",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
         "lastModifiedBy": null
@@ -3574,31 +3583,36 @@
             "type": "text",
             "dtype": "String",
             "label": "<i class=\"fa-solid fa-cube\"></i> Category",
-            "value": "Metals & Alloys"
+            "value": "Metals & Alloys",
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Category"
           },
           "Durability": {
             "type": "number",
             "dtype": "Number",
             "label": "<i class=\"fa-solid fa-heart-pulse\"></i>",
-            "value": 13
+            "value": 13,
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Durability"
           },
           "Size": {
             "type": "number",
             "dtype": "Number",
             "label": "<i class=\"fa-solid fa-ruler-triangle\"></i>",
-            "value": 7
+            "value": 7,
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Size"
           },
           "Weight": {
             "type": "number",
             "dtype": "Number",
             "label": "<i class=\"fa-solid fa-weight-hanging\"></i>",
-            "value": 7
+            "value": 7,
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Weight"
           },
           "Cosmic": {
             "type": "number",
             "dtype": "Number",
             "label": "Cosmic Resistance",
             "initial": 0,
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Cosmic",
             "value": null
           },
           "Elemental": {
@@ -3606,6 +3620,7 @@
             "dtype": "Number",
             "label": "Elemental Resistance",
             "initial": 0,
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Elemental",
             "value": 30
           },
           "Material": {
@@ -3613,6 +3628,7 @@
             "dtype": "Number",
             "label": "Material Resistance",
             "initial": 0,
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Material",
             "value": 60
           },
           "Psychic": {
@@ -3620,13 +3636,15 @@
             "dtype": "Number",
             "label": "Psychic Resistance",
             "initial": 0,
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Psychic",
             "value": null
           },
           "Description": {
             "type": "text",
             "dtype": "String",
             "label": "<i class=\"fa-solid fa-cube\"></i> Description",
-            "value": ""
+            "value": "",
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Description"
           }
         },
         "Execution": {
@@ -4116,7 +4134,7 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "14.352",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
         "lastModifiedBy": null
@@ -4620,7 +4638,7 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "14.352",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
         "lastModifiedBy": null
@@ -5124,7 +5142,7 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "14.352",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
         "lastModifiedBy": null
@@ -5628,7 +5646,7 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "14.352",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
         "lastModifiedBy": null
@@ -6132,7 +6150,7 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "14.352",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
         "lastModifiedBy": null
@@ -6636,7 +6654,7 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "14.352",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
         "lastModifiedBy": null
@@ -7140,7 +7158,7 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "14.352",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
         "lastModifiedBy": null
@@ -7644,7 +7662,7 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "14.352",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
         "lastModifiedBy": null
@@ -8148,7 +8166,7 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "14.352",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
         "lastModifiedBy": null
@@ -8652,7 +8670,7 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "14.352",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
         "lastModifiedBy": null
@@ -9156,7 +9174,7 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "14.352",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
         "lastModifiedBy": null
@@ -9176,31 +9194,36 @@
             "type": "text",
             "dtype": "String",
             "label": "<i class=\"fa-solid fa-cube\"></i> Category",
-            "value": "Terrestrial, Metals & Alloys, Composite or Extraterrestrial"
+            "value": "Terrestrial, Metals & Alloys, Composite or Extraterrestrial",
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Category"
           },
           "Durability": {
             "type": "number",
             "dtype": "Number",
             "label": "<i class=\"fa-solid fa-heart-pulse\"></i>",
-            "value": 10
+            "value": 10,
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Durability"
           },
           "Size": {
             "type": "number",
             "dtype": "Number",
             "label": "<i class=\"fa-solid fa-ruler-triangle\"></i>",
-            "value": 10
+            "value": 10,
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Size"
           },
           "Weight": {
             "type": "number",
             "dtype": "Number",
             "label": "<i class=\"fa-solid fa-weight-hanging\"></i>",
-            "value": 10
+            "value": 10,
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Weight"
           },
           "Cosmic": {
             "type": "number",
             "dtype": "Number",
             "label": "Cosmic Resistance",
             "initial": 0,
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Cosmic",
             "value": null
           },
           "Elemental": {
@@ -9208,6 +9231,7 @@
             "dtype": "Number",
             "label": "Elemental Resistance",
             "initial": 0,
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Elemental",
             "value": null
           },
           "Material": {
@@ -9215,6 +9239,7 @@
             "dtype": "Number",
             "label": "Material Resistance",
             "initial": 0,
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Material",
             "value": null
           },
           "Psychic": {
@@ -9222,13 +9247,15 @@
             "dtype": "Number",
             "label": "Psychic Resistance",
             "initial": 0,
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Psychic",
             "value": null
           },
           "Description": {
             "type": "text",
             "dtype": "String",
             "label": "<i class=\"fa-solid fa-cube\"></i> Description",
-            "value": ""
+            "value": "",
+            "tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Description"
           }
         },
         "Execution": {
@@ -9717,7 +9744,7 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "14.352",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
         "lastModifiedBy": null
@@ -9762,7 +9789,7 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "14.352",
     "systemId": "metanthropes",
     "systemVersion": "0.13.2",
     "createdTime": 1749106750560,
