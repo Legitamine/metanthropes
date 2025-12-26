@@ -10,6 +10,21 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## Early Access Releases
 
+# Early Access v0.13.90 [2025-10-]
+
+## Added:
+
+- Added support for Foundry version 13.350.
+- Added initial support for Foundry version 14.
+
+## Changed:
+
+- Updated Font Awesome support for the latest Font Awesome version 7.1
+
+## Fixed:
+
+
+
 # Early Access v0.13.88 [2025-08-29]
 
 ## Added:
