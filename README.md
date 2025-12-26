@@ -1,20 +1,22 @@
-![image](https://media.invisioncic.com/e290497/pages_media/system.webp)
+![image](./assets/cover/cover.webp)
 ![Foundry v13](https://img.shields.io/badge/foundry-v13-green)
+![Foundry v14](https://img.shields.io/badge/foundry-v14-green)
 ![Latest Release Download Count](https://img.shields.io/github/downloads/legitamine/metanthropes/latest/metanthropes.zip)
 [![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fmetanthropes&colorB=4aa94a)](https://forge-vtt.com/bazaar#package=metanthropes)
 
 # Metanthropes
 
-**Metanthropes** - comes from Greek \*'Μετα-Άνθρωπος' **'Beyond-Human'\*** - is a new, easy to learn, classless, setting-flexible, d100 system.
+**Metanthropes**™ - comes from Greek *'Μετά-Άνθρωπος'*, meaning ***'Beyond-Human'*** - is a new, easy to learn, classless, setting-flexible, d100 system.
 
 Metanthropes™ features **over 500 unique abilities**, called **Metapowers**: unique, metaphysical gifts that transform ordinary humans into something extraordinary.
 
 This System is the official Metanthropes™ System for Foundry VTT. It is available, free of charge, for all Foundry VTT users. It includes demo content, to check out some example Metanthrope builds and playtest. It also comes with Journals to help you learn how to play.
 
-A list of Premium Modules for Foundry VTT is available [on our store](https://metanthropes.com/store).
+A list of Premium Modules for Foundry VTT is available [on our store](https://metanthropes.com/store). You can also find our Premium Modules available on the [official Foundry VTT Marketplace](https://www.foundryvtt.store/creators/legitamine-games).
 
--   To learn more about Metanthropes, visit [our website.](https://metanthropes.com)
--   We would love to hear your opinion and feedback! Join our community [on Discord!](https://metanthropes.com/discord)
+To learn more about Metanthropes, visit [our website.](https://metanthropes.com)
+
+We would love to hear your opinion and feedback! Join our community [on Discord!](https://metanthropes.com/discord)
 
 ## Early Access
 
@@ -38,20 +40,17 @@ Alternatively, you may use the following link when selecting to install manually
 
 Metanthropes™ aims to utilize the latest and best that the amazing Foundry VTT platform offers.
 
--   Foundry VTT version 13 is currently supported. Latest verified version is v13.346.
+-   Foundry VTT version 13 is currently supported. Latest verified version is v13.348.
 
 ## Supported 3rd Party Modules
 
 Metanthropes™ has a list of 3rd Party Modules, that will be automatically recommended during installation. We suggest you install these Modules, to get the best experience while playing Metanthropes:
 
 -   [Dice So Nice](https://foundryvtt.com/packages/dice-so-nice)
--   More officially supported modules will be added to the list, as we continue to develop the System. Please share your suggestions and recommendations with us!
 
 ## Additional Recommended Modules
 
-With the plethora of available modules for Foundry VTT, there are many options for Narrators, that wish to enhance their gameplay further. To that end, we have currated a list of modules that we use in our own sessions, that is available [on our website - soon™!]()
-
-We love to hear about cool modules that enhance your Metanthropes™ experience!
+With the plethora of available modules for Foundry VTT, there are many options for Narrators who wish to enhance their gameplay further. We'd love to hear about cool modules that enhance your Metanthropes™ experience!
 
 -   If you are a passionate GM and have a module that we should be supporting, please join the discussion and provide us with your suggestions and recommendations!
 -   If you are a Module Developer and would like to know more about how to utilize the Metanthropes™ API, please contact The Orchestrator (qp) on Discord.
@@ -69,7 +68,7 @@ For further info, check out our [planned features and milestones on GitHub](http
 
 ## Latest Changes
 
-For the latest changes with each build, you may check out the [detailed Change Log](https://github.com/Legitamine/metanthropes/blob/main/CHANGELOG.md).
+For the latest changes with each build, you may check out the [latest changes Log](https://github.com/Legitamine/metanthropes/blob/main/CHANGELOG.md).
 
 You can also view the archive of past releases, kept for posterity, [here](https://github.com/Legitamine/metanthropes/blob/main/CHANGELOGARCHIVES.md).
 
