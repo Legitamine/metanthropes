@@ -21,6 +21,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 -   The 100 Metapowers now come with their new official Icons.
 -   [Introductory] New Premade Protagonists, each with a unique backstory, ready to play.
+-   Reset the Actor Active Effects sheet to the new V14 default sheet, in preparation for the changes coming to Actor Active Effects with V14.
 
 ### Fixed:
 
