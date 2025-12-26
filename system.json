@@ -2,7 +2,7 @@
 	"id": "metanthropes",
 	"title": "Metanthropes",
 	"description": "Metanthropes TTRPG System for Foundry VTT by Legitamine Games",
-	"version": "0.13.93",
+	"version": "0.13.102",
 	"compatibility": {
 		"minimum": "13",
 		"verified": "14.352",
