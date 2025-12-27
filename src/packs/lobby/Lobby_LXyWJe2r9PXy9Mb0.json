@@ -117,7 +117,6 @@
   ],
   "notes": [],
   "sounds": [],
-  "templates": [],
   "tiles": [],
   "walls": [],
   "playlist": null,
@@ -167,7 +166,7 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "13.344",
+    "coreVersion": "14.352",
     "systemId": "metanthropes",
     "systemVersion": "0.13.2",
     "createdTime": 1749109945286,
@@ -224,5 +223,11 @@
   "_id": "LXyWJe2r9PXy9Mb0",
   "active": false,
   "sort": 0,
-  "_key": "!scenes!LXyWJe2r9PXy9Mb0"
+  "transition": {
+    "type": "fade",
+    "duration": 1500,
+    "activateOnly": true
+  },
+  "_key": "!scenes!LXyWJe2r9PXy9Mb0",
+  "templates": []
 }
