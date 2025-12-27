@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 # Early Access Releases
 
-## Early Access v0.13.102 [2025-12-26]
+## Early Access v0.13.104 [2025-12-27]
 
 ### Added:
 
@@ -28,12 +28,13 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 -   Text editor elements are now easier to read & edit for longer texts.
 -   Removed some predefined labels for Summary Tab fields on the Actor Character Sheet for defining an Actor's Height, Weight & Age. These fields do not apply any gameplay effects currently.
+-   Various minor fixes and build optimizations
 
 ### Known Issues:
 
 -   [Introductory] If the Introductory Premade Protagonists already exist in the World, aka previously imported via Compendiums, then they will be upgraded, however, if a Player already used the 'Finalize Premade' function, then that Protagonist won't be affected. If they don't exist in the World, the updated Compendium will include the new Introductory Premade Protagonists for you to import and use in your World.
 -   [Introductory] The new Hammer Premade Protagonist has the Sizeshift Metapower, instead of Meta Strength. If you have the Metanthropes: Core Module enabled, the change will happen automatically during Migration on the first World load, and no further action is required. If you don't, you'll have to import the Hammer Premade Protagonist (Trevor 'The Anvil' Rayes) from the Introductory Actors Compendium to get access to the new Metapower.
-- [Introductory/Core] Some Weapon Possessions have missing tables with additional effect information, such as the Conditions applied based on the ammunition type. We are reworking these tables and they will be added in a future build. Those with Narrator Website access can [review them on our website](https://www.metanthropes.com/possessions/).
+-   [Introductory/Core] Some Weapon Possessions have missing tables with additional effect information, such as the Conditions applied based on the ammunition type. We are reworking these tables and they will be added in a future build. Those with Narrator Website access can [review them on our website](https://www.metanthropes.com/possessions/).
 -   [FVTT v14] Importing an Adventure might prompt an error in the console log, and might appear like the import failed, as the Adventure Import window will remain open, while no imported content is visible. Reload the World (F5) and the imported content will display correctly. This seems to be a bug with v14 prototype build and will be addressed with v14 stable.
 
 ---
