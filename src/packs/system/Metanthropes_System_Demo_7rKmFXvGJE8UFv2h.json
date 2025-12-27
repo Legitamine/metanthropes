@@ -44226,11 +44226,11 @@
         "compendiumSource": "Compendium.metanthropes-introductory.introductory-scenes.Scene.x9ipvE8V4Lvxsw49",
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.344",
+        "coreVersion": "13.351",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
         "createdTime": 1748118901282,
-        "modifiedTime": 1749110161682,
+        "modifiedTime": 1766833780635,
         "lastModifiedBy": "Kej98KlIpboqpaRV"
       },
       "foreground": null,
@@ -44691,28 +44691,6 @@
       "description": ""
     },
     {
-      "name": "Welcome",
-      "type": "JournalEntry",
-      "color": "#7d0f81",
-      "_id": "vBLy0IJRerwxDgHP",
-      "description": "",
-      "folder": null,
-      "sorting": "a",
-      "sort": 0,
-      "flags": {},
-      "_stats": {
-        "compendiumSource": "Folder.vBLy0IJRerwxDgHP",
-        "duplicateSource": null,
-        "exportSource": null,
-        "coreVersion": "13.348",
-        "systemId": "metanthropes",
-        "systemVersion": "0.13.78",
-        "createdTime": 1756473496605,
-        "modifiedTime": 1756473496605,
-        "lastModifiedBy": "rWPa2N6RX83f5A7E"
-      }
-    },
-    {
       "name": "Hit Location",
       "type": "RollTable",
       "color": "#7d0f81",
@@ -44738,22 +44716,44 @@
       "name": "How To Play",
       "type": "JournalEntry",
       "color": "#7d0f81",
-      "_id": "QyCAOqjuxRetqpuG",
+      "_id": "yxqQfvVL5FyQxPS9",
       "description": "",
       "folder": null,
       "sorting": "a",
       "sort": 0,
       "flags": {},
       "_stats": {
-        "compendiumSource": "Folder.QyCAOqjuxRetqpuG",
+        "compendiumSource": "Folder.yxqQfvVL5FyQxPS9",
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "13.351",
         "systemId": "metanthropes",
-        "systemVersion": "0.13.82",
-        "createdTime": 1756490158869,
-        "modifiedTime": 1756490158869,
-        "lastModifiedBy": "rWPa2N6RX83f5A7E"
+        "systemVersion": "0.13.102",
+        "createdTime": 1766833399524,
+        "modifiedTime": 1766833399524,
+        "lastModifiedBy": "Kej98KlIpboqpaRV"
+      }
+    },
+    {
+      "name": "Welcome",
+      "type": "JournalEntry",
+      "color": "#7d0f81",
+      "_id": "TKfxLe61XTNq36Ki",
+      "description": "",
+      "folder": null,
+      "sorting": "a",
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "metanthropes",
+        "systemVersion": "0.13.102",
+        "createdTime": 1766833408230,
+        "modifiedTime": 1766833408230,
+        "lastModifiedBy": "Kej98KlIpboqpaRV"
       }
     }
   ],
@@ -44764,7 +44764,7 @@
     "systemId": "metanthropes",
     "systemVersion": "0.13.2",
     "coreVersion": "13.351",
-    "modifiedTime": 1766833570103,
+    "modifiedTime": 1766835004195,
     "lastModifiedBy": "Kej98KlIpboqpaRV",
     "compendiumSource": null,
     "duplicateSource": null,
