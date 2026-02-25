@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ### Added:
 
+- Added support for the latest Foundry V14 API Development 2 build (14.355)
 - Improved the development tools by properly configuring intellisense for the Foundry and Metanthropes API.
 
 ### Changed:
