@@ -18,7 +18,6 @@ dist/
 # Temp Foundry Runtime Files
 foundry/
 *.lock
-jsconfig.json
 
 # Improving Intellisense
 foundry-config.yaml
