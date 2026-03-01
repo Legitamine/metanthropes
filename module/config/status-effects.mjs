@@ -83,7 +83,7 @@ export function metaRegisterStatusEffects() {
 			changes: [
 				{
 					key: "system.physical.movement.Conditions.knockdown.value",
-					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+					type: CONST.ACTIVE_EFFECT_CHANGE_TYPES.OVERRIDE,
 					value: true,
 				},
 			],
@@ -108,12 +108,12 @@ export function metaRegisterStatusEffects() {
 			changes: [
 				{
 					key: "system.physical.movement.Conditions.immobilized.value",
-					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+					type: CONST.ACTIVE_EFFECT_CHANGE_TYPES.OVERRIDE,
 					value: true,
 				},
 				{
 					key: "system.physical.movement.value",
-					mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+					type: CONST.ACTIVE_EFFECT_CHANGE_TYPES.OVERRIDE,
 					value: 0,
 				},
 			],
