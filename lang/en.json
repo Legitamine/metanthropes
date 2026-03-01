@@ -240,39 +240,41 @@
 			},
 			"OTHER": {
 				"CONSOLE": "@METAFA(metanthropes) Print to Console"
-		"ITEMS": {
-			"POSSESSIONS": {
-				"MATERIAL": {
-					"Category": "The type of Materials used in creating this Possession.",
-					"Durability": "The durability of this Possession. When this Possession takes damage, which is higher than the Resistance for that damage type, excess damage reduces the Durability of the Possession. When Durability reaches 0, the Possession is destroyed.",
-					"Size": "The Size of this Possession.",
-					"Weight": "The Weight of this Possession.",
-					"Cosmic": "The Cosmic Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
-					"Elemental": "The Elemental Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
-					"Material": "The Material Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
-					"Psychic": "The Psychic Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
-					"Description": "A description for this particular material."
+			},
+			"ITEMS": {
+				"POSSESSIONS": {
+					"MATERIAL": {
+						"Category": "The type of Materials used in creating this Possession.",
+						"Durability": "The durability of this Possession. When this Possession takes damage, which is higher than the Resistance for that damage type, excess damage reduces the Durability of the Possession. When Durability reaches 0, the Possession is destroyed.",
+						"Size": "The Size of this Possession.",
+						"Weight": "The Weight of this Possession.",
+						"Cosmic": "The Cosmic Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+						"Elemental": "The Elemental Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+						"Material": "The Material Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+						"Psychic": "The Psychic Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+						"Description": "A description for this particular material."
+					}
 				}
 			}
-		}
-	},
-	"TYPES": {
-		"Actor": {
-			"Protagonist": "Protagonist",
-			"Metanthrope": "Metanthrope",
-			"Human": "Human",
-			"Vehicle": "Vehicle",
-			"Animal": "Animal",
-			"Artificial": "Artificial",
-			"Extradimensional": "Extradimensional",
-			"Extraterrestrial": "Extraterrestrial",
-			"Animated-Cadaver": "Animated-Cadaver",
-			"Animated-Plant": "Animated-Plant",
-			"MetaTherion": "MetaTherion"
 		},
-		"Item": {
-			"Metapower": "Metapower",
-			"Possession": "Possession"
+		"TYPES": {
+			"Actor": {
+				"Protagonist": "Protagonist",
+				"Metanthrope": "Metanthrope",
+				"Human": "Human",
+				"Vehicle": "Vehicle",
+				"Animal": "Animal",
+				"Artificial": "Artificial",
+				"Extradimensional": "Extradimensional",
+				"Extraterrestrial": "Extraterrestrial",
+				"Animated-Cadaver": "Animated-Cadaver",
+				"Animated-Plant": "Animated-Plant",
+				"MetaTherion": "MetaTherion"
+			},
+			"Item": {
+				"Metapower": "Metapower",
+				"Possession": "Possession"
+			}
 		}
 	}
 }
