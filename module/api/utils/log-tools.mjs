@@ -67,7 +67,8 @@ export function metaLogDocument(app, buttons) {
 	buttons.unshift({
 		icon: "fas fa-terminal",
 		//visible: game.users.isGM,
-		label: "METANTHROPES.SHEET.OTHER.CONSOLE",
+		//label: "METANTHROPES.SHEET.OTHER.CONSOLE", //todo figure out how to place a tooltip for this
+		hint: "METANTHROPES.SHEET.OTHER.CONSOLE", //! doesn't work
 		//class: "metalog-doc", //for custom button styling perhaps?
 		onClick: () => {
 			const uuid = app?.document?.uuid;
