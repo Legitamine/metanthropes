@@ -178,7 +178,7 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 						"MetanthropesActorSheet",
 						"_prepareItems",
 						"Invalid Category for Possession:",
-						item.name
+						item.name,
 					);
 					return;
 				}
@@ -366,7 +366,7 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 			html.find(".header-button").click((event) => {
 				event.preventDefault();
 				const button = windowData.headerButtons.find((b) => event.currentTarget.classList.contains(b.class));
-				metanthropes.utils.metaLog(3,"Header Button Pressed",button);
+				metanthropes.utils.metaLog(3, "Advanced Logging", "Header Button Pressed", button);
 				button.onclick(event);
 			});
 		}, 500);
@@ -626,7 +626,7 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 					3,
 					"MetanthropesActorSheet",
 					"_onNewActor",
-					"Core API available, calling metaNewActor"
+					"Core API available, calling metaNewActor",
 				);
 				await metanthropes.logic.metaNewActor(actor);
 			} catch (error) {
@@ -662,7 +662,7 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		//? Check if 'Alpha Testing of New Features' is enabled
 		if (!game.settings.get("metanthropes", "metaAlphaTesting")) {
 			ui.notifications.warn(
-				"Progression is in early Alpha Testing and only available with the Metanthropes Homebrew Module at this time"
+				"Progression is in early Alpha Testing and only available with the Metanthropes Homebrew Module at this time",
 			);
 			return;
 		}
@@ -695,7 +695,7 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 			"MetanthropesActorSheet",
 			"_onProgression",
 			"Engaging Progression Form for",
-			metaProgressionActor.name
+			metaProgressionActor.name,
 		);
 		try {
 			await metaProgressActor(metaProgressionActor);

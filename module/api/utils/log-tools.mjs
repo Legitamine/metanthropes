@@ -90,7 +90,7 @@ export function metaLogDocument(app, buttons) {
 				if (typeof uuid === "string") {
 					const doc = await globalThis.fromUuid(uuid);
 					if (doc) {
-						console.log(doc);
+						metanthropes.utils.metaLog(3, "Advanced Logging", "app", app, "uuid", uuid, "document", doc);
 					}
 				}
 			},
