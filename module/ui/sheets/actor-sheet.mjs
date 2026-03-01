@@ -366,6 +366,7 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 			html.find(".header-button").click((event) => {
 				event.preventDefault();
 				const button = windowData.headerButtons.find((b) => event.currentTarget.classList.contains(b.class));
+				metanthropes.utils.metaLog(3,"Header Button Pressed",button);
 				button.onclick(event);
 			});
 		}, 500);

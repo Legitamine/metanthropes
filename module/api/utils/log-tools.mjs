@@ -63,22 +63,37 @@ export function metaLog(logType = 0, ...variables) {
  * @param {*} buttons
  */
 export function metaLogDocument(app, buttons) {
-	if (!game.settings.get("metanthropes", "metaAdvancedLogging")) return;
-	buttons.unshift({
-		icon: "fas fa-terminal",
-		//visible: game.users.isGM,
-		//label: "METANTHROPES.SHEET.OTHER.CONSOLE", //todo figure out how to place a tooltip for this
-		hint: "METANTHROPES.SHEET.OTHER.CONSOLE", //! doesn't work
-		//class: "metalog-doc", //for custom button styling perhaps?
-		onClick: () => {
-			const uuid = app?.document?.uuid;
-			//todo do we need more graceful handling here?
-			//if (typeof uuid === "string") {
-			const doc = fromUuidSync(uuid);
-			// if (doc) {
-			metanthropes.utils.metaLog(3, "Advanced Logging", "app", app, "uuid", uuid, "document", doc);
-			// }
-			//}
-		},
-	});
+	// if (!game.settings.get("metanthropes", "metaAdvancedLogging")) return;
+	// buttons.unshift({
+	// 	icon: "fas fa-terminal",
+	// 	//visible: game.users.isGM,
+	// 	//label: "METANTHROPES.SHEET.OTHER.CONSOLE", //todo figure out how to place a tooltip for this
+	// 	hint: "METANTHROPES.SHEET.OTHER.CONSOLE", //! doesn't work
+	// 	class: "header-button, metalog-doc", //for custom button styling perhaps?
+	// 	onclick: () => {
+	// 		const uuid = app?.document?.uuid;
+	// 		//todo do we need more graceful handling here?
+	// 		//if (typeof uuid === "string") {
+	// 		const doc = fromUuidSync(uuid);
+	// 		// if (doc) {
+	// 		metanthropes.utils.metaLog(3, "Advanced Logging", "app", app, "uuid", uuid, "document", doc);
+	// 		// }
+	// 		//}
+	// 	},
+	// });
+	if (game.settings.get("metanthropes", "metaAdvancedLogging")) {
+		buttons.unshift({
+			icon: "fas fa-terminal",
+			class: "metalog-doc",
+			onclick: async () => {
+				const uuid = app?.object?.uuid;
+				if (typeof uuid === "string") {
+					const doc = await globalThis.fromUuid(uuid);
+					if (doc) {
+						console.log(doc);
+					}
+				}
+			},
+		});
+	}
 }
