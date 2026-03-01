@@ -89,7 +89,7 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		//? Add the actor's active effects to the context for easier access.
 		if (context.betaTesting) context.effects = metanthropes.utils.prepareActiveEffectCategories(this.actor.effects);
 		//? Calculate the actor's XP Spent
-		context.xpSpent = Number(actorData.system.Vital.Experience.Spent + actorData.system.Vital.Experience.Manual);
+		//!context.xpSpent = Number(actorData.system.Vital.Experience.Spent + actorData.system.Vital.Experience.Manual);
 		//? Flag if actor is affected by Disease
 		context.affectedByDisease = this.actor.isDiseased;
 		//? Flag if actor is affected by Pain
