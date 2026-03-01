@@ -1,19 +1,9 @@
 Hooks.once("ready", async function () {
-	//* Migration
-	metanthropes.utils.metaLog(3, "System", "Getting Ready", "Starting Migration");
-	await metanthropes.utils.metaMigrateData();
-	metanthropes.utils.metaLog(3, "System", "Getting Ready", "Finished Migration");
+	//* Migration Engine
+	metanthropes.utils.metaLog(0, "System", "Getting Ready", "Initializing Data Migration Engine");
+	await metanthropes.utils.metaMigration();
+	metanthropes.utils.metaLog(0, "System", "Getting Ready", "Data Migration Finished");
 
-	//* Override Protype Token Defaults
-	const applied = await game.settings.get("metanthropes", "prototypeTokenOverridesApplied");
-	if (applied) {
-		metanthropes.utils.metaLog(0, "System", "Getting Ready", "System Default Token Overrides already established");
-	} else {
-		metanthropes.utils.metaLog(0, "System", "Getting Ready", "Establishing System Default Token Overrides");
-		const newTokenDefaults = metanthropes.system.TOKENDEFAULTS;
-		await game.settings.set("core", "prototypeTokenOverrides", newTokenDefaults);
-		await game.settings.set("metanthropes", "prototypeTokenOverridesApplied", true);
-	}
 	//* Add support for Moulinette
 	//todo should be moved to supported-modules instead
 	if (game.moulinette) {

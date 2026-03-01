@@ -56,14 +56,16 @@ import { metaHandleSocketEvents } from "./api/logic/handle-socket-events.mjs";
 //* Utilities
 import { prepareActiveEffectCategories, onManageActiveEffect } from "./api/utils/active-effect-tools.mjs";
 import { metaExtractNumberOfDice } from "./api/utils/dice-tools.mjs";
-import { metaMigrateData } from "./api/utils/migration.mjs";
+import { metaMigration } from "./api/utils/migration.mjs";
 import { metaLog, metaLogDocument } from "./api/utils/log-tools.mjs";
 import { metaSortActions } from "./api/utils/sort-actions.mjs";
 import { metaRunMacro } from "./api/utils/run-macro.mjs";
 import { metaIsMetapowerEquipped, metaTransformStringForStorage } from "./helpers/metahelpers.mjs";
+import { metaCreateFAIcon, metaCreateCustomIcon } from "./helpers/fa-enricher.mjs";
 //* Game Settings
 import { metaRegisterGameSettings } from "./api/utils/register-game-settings.mjs";
 import { metaRegisterStatusEffects } from "./config/status-effects.mjs";
+import { metaRegisterCustomEnrichers } from "./config/custom-enrichers.mjs";
 //* Handlebar Helpers
 import { metaRegisterHandlebarHelpers } from "./config/handlebar-helpers.mjs";
 //* Handlebar Templates
@@ -128,10 +130,11 @@ globalThis.metanthropes = {
 	utils: {
 		metaLog,
 		metaLogDocument,
-		metaMigrateData,
+		metaMigration,
 		metaExtractNumberOfDice,
 		metaRegisterGameSettings,
 		metaRegisterStatusEffects,
+		metaRegisterCustomEnrichers,
 		onManageActiveEffect,
 		prepareActiveEffectCategories,
 		preloadHandlebarsTemplates,
@@ -139,6 +142,8 @@ globalThis.metanthropes = {
 		metaRunMacro,
 		metaTransformStringForStorage,
 		metaIsMetapowerEquipped,
+		metaCreateFAIcon,
+		metaCreateCustomIcon,
 	},
 };
 

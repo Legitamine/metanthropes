@@ -77,6 +77,15 @@ export class MetanthropesCombat extends Combat {
 				//todo: want to set the a.inititaive value
 				//aActor.applyDestinyChange(1);
 				//bActor.applyDestinyChange(1);
+				//todo: instead of the below resetAll, do for only the affected combatants?
+				// 				  async resetAll({updateTurn=true}={}) {
+				//     const currentId = this.combatant?.id;
+				//     for ( const c of this.combatants ) c.updateSource({initiative: null});
+				//     this.setupTurns();
+				//     const update = {combatants: this.combatants.toObject()};
+				//     if ( updateTurn && currentId ) update.turn = this.turns.findIndex(t => t.id === currentId);
+				//     await this.update(update, {turnEvents: false, diff: false});
+				//   }
 			}
 		}
 		//? We will sort by initiative first, then sort by statScore if the initiative is the same
@@ -484,12 +493,13 @@ export class MetanthropesCombat extends Combat {
 					lifeLoss = Number(bleedingLevel) * Number(homebrewBleeding);
 					newLife = Number(currentLife) - lifeLoss;
 					if (homebrewBleeding !== 1)
-						combatantMessage += `Lost ${lifeLoss} <i class="fa-sharp-duotone fa-solid fa-heart"></i> Life due to ${homebrewName} for Bleeding Condition ${bleedingLevel}.<br>`;
-					else combatantMessage += `Lost ${lifeLoss} <i class="fa-sharp-duotone fa-solid fa-heart"></i> Life due to Bleeding Condition ${bleedingLevel}.<br>`;
+						combatantMessage += `Lost ${lifeLoss} <i class="fa-solid fa-heart"></i> Life due to ${homebrewName} for Bleeding Condition ${bleedingLevel}.<br>`;
+					else
+						combatantMessage += `Lost ${lifeLoss} <i class="fa-solid fa-heart"></i> Life due to Bleeding Condition ${bleedingLevel}.<br>`;
 				} else {
 					lifeLoss = Number(bleedingLevel);
 					newLife = Number(currentLife) - lifeLoss;
-					combatantMessage += `Lost ${lifeLoss} <i class="fa-sharp-duotone fa-solid fa-heart"></i> Life due to Bleeding Condition ${bleedingLevel}.<br>`;
+					combatantMessage += `Lost ${lifeLoss} <i class="fa-solid fa-heart"></i> Life due to Bleeding Condition ${bleedingLevel}.<br>`;
 				}
 				await actor.update({ "system.Vital.Life.value": newLife });
 			}
@@ -550,11 +560,11 @@ export class MetanthropesCombat extends Combat {
 	// 						break;
 	// 					case 4:
 	// 						unconsciousEffect =
-	// 							"The Character collapses into a comatose state for days. A Character who is sleeping or has passed out, cannot attempt any Actions or Movement, and neither is aware of their surroundings. The Character further receives the Condition: Knocked Down. The Character must spend 1 * <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny to attempt to be awakened from the coma. At the end of each Round, the unconscious Character attempting to wake up might attempt an Endurance roll (Free Roll), and if successful they wake up.";
+	// 							"The Character collapses into a comatose state for days. A Character who is sleeping or has passed out, cannot attempt any Actions or Movement, and neither is aware of their surroundings. The Character further receives the Condition: Knocked Down. The Character must spend 1 * <i class="fa-solid fa-hand-fingers-crossed"></i> Destiny to attempt to be awakened from the coma. At the end of each Round, the unconscious Character attempting to wake up might attempt an Endurance roll (Free Roll), and if successful they wake up.";
 	// 						break;
 	// 					case 5:
 	// 						unconsciousEffect =
-	// 							"The Character collapses into a deep coma for an unknown amount of time. A Character who is sleeping or has passed out, cannot attempt any Actions or Movement, and neither is aware of their surroundings. The Character further receives the Condition: Knocked Down. The Character must spend 2 * <i class="fa-sharp-duotone fa-solid fa-hand-fingers-crossed"></i> Destiny to attempt to be awakened from the coma. At the end of each Round, the unconscious Character attempting to wake up might attempt an Endurance roll (Free Roll), and if successful they wake up.";
+	// 							"The Character collapses into a deep coma for an unknown amount of time. A Character who is sleeping or has passed out, cannot attempt any Actions or Movement, and neither is aware of their surroundings. The Character further receives the Condition: Knocked Down. The Character must spend 2 * <i class="fa-solid fa-hand-fingers-crossed"></i> Destiny to attempt to be awakened from the coma. At the end of each Round, the unconscious Character attempting to wake up might attempt an Endurance roll (Free Roll), and if successful they wake up.";
 	// 						break;
 	// 					default:
 	// 						metanthropes.utils.metaLog(2, "Combat", "nextRound", "Unconscious Level is out of bounds:", unconsciousLevel);
@@ -649,7 +659,7 @@ export class MetanthropesCombat extends Combat {
 	// 				await actor.update({ "system.Vital.Life.value": newLife });
 	// 				//? Create a chat message indicating the Bleeding effect
 	// 				await ChatMessage.create({
-	// 					content: `Lost ${bleedingLevel} <i class="fa-sharp-duotone fa-solid fa-heart"></i> Life due to Bleeding Condition ${bleedingLevel}.<br><br>`,
+	// 					content: `Lost ${bleedingLevel} <i class="fa-solid fa-heart"></i> Life due to Bleeding Condition ${bleedingLevel}.<br><br>`,
 	// 					speaker: ChatMessage.getSpeaker({ actor: actor }),
 	// 				});
 	// 			}

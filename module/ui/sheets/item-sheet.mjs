@@ -71,7 +71,28 @@ export class MetanthropesItemSheet extends foundry.appv1.sheets.ItemSheet {
 		//? Provide a boolean for if the user is a Narrator(GameMaster)
 		context.isNarrator = game.user.isGM;
 		//? Prepare Active Effects
-		if (context.betaTesting) context.effects = metanthropes.utils.prepareActiveEffectCategories(this.document.effects);
+		if (context.betaTesting)
+			context.effects = metanthropes.utils.prepareActiveEffectCategories(this.document.effects);
+		//? Prepare enriched Text Descriptions
+		//todo: confirm what works - see commented out above
+		const isOwner = this?.actor?.isOwner || null;
+		context.executionAdditionalInfo = await foundry.applications.ux.TextEditor.enrichHTML(
+			itemData.system.Execution.AdditionalInfo.value,
+			{ async: true, secrets: isOwner }
+			//todo: confirm we don't need async here
+		);
+		context.permanentDescription = await foundry.applications.ux.TextEditor.enrichHTML(
+			itemData.system.Effects.PermanentEffectDescription.value,
+			{ async: true, secrets: isOwner }
+		);
+		context.effectDescription = await foundry.applications.ux.TextEditor.enrichHTML(
+			itemData.system.Effects.EffectDescription.value,
+			{ async: true, secrets: isOwner }
+		);
+		context.effectAdditionalInfo = await foundry.applications.ux.TextEditor.enrichHTML(
+			itemData.system.Effects.AdditionalInfo.value,
+			{ async: true, secrets: isOwner }
+		);
 		return context;
 	}
 	//* Clickable stuff on the item sheets

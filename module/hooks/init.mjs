@@ -83,11 +83,23 @@ Hooks.once("init", async function () {
 	//* Register Status Effects
 	metanthropes.utils.metaRegisterStatusEffects();
 
+	//* Register Custom Text Enrichers
+	metanthropes.utils.metaRegisterCustomEnrichers();
+
 	//* Register the socket listener
 	game.socket.on("system.metanthropes", async (payload) => {
 		metanthropes.logic.metaHandleSocketEvents(payload);
 	});
 
+	//* V14 Active Effects
+	//todo: run on only v14
+	if (game.version > 14) {
+		metanthropes.utils.metaLog(3, "System", "V14+ detected, adding phases to ActiveEffects");
+		CONFIG.ActiveEffect.phases = {
+			initial: { label: "Init" },
+			final: { label: "Final" },
+		};
+	}
 	//* Finished Initializing the Metanthropes System
 	metanthropes.utils.metaLog(0, "System", "Initialized");
 
