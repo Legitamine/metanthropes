@@ -2,7 +2,7 @@
  * Metanthropes Active Effect Document
  * todo refactor this to utilize the v12 feature of Active Effect subtypes instead of doing the ninja stuff we've been doing here
  * @extends {ActiveEffect}
- * 
+ *
  */
 export class MetanthropesActiveEffect extends ActiveEffect {
 	/** @override */
@@ -18,7 +18,6 @@ export class MetanthropesActiveEffect extends ActiveEffect {
 	 * }
 	 * @internal
 	 */
-	//?! static LOCALIZATION_PREFIXES = ["METANTHROPES.ACTOR.ACTIVEEFFECT"];
 	_prepareDuration() {
 		const d = this.duration;
 
@@ -32,7 +31,7 @@ export class MetanthropesActiveEffect extends ActiveEffect {
 				type: "seconds",
 				duration: d.seconds,
 				remaining: remaining,
-				label: `${remaining} ${game.i18n.localize("Seconds")}`,
+				label: `${remaining} ${game.i18n.localize("METANTHROPES.AE.seconds")}`,
 				_worldTime: wt,
 			};
 		}
@@ -85,7 +84,7 @@ export class MetanthropesActiveEffect extends ActiveEffect {
 			type: "none",
 			duration: null,
 			remaining: null,
-			//label: game.i18n.localize("None"),
+			//label: game.i18n.localize("METANTHROPES.AE.none"),
 			label: "Permanent",
 		};
 	}

@@ -6,8 +6,8 @@ Hooks.on(`getActorSheetHeaderButtons`, metaLogDocument);
 Hooks.on(`getItemSheetHeaderButtons`, metaLogDocument);
 Hooks.on(`getActiveEffectConfigHeaderButtons`, metaLogDocument);
 Hooks.on(`getActiveEffectSheetHeaderButtons`, metaLogDocument);
-//todo V13 has a solution for not being able to work with AppV2 sheets: https://github.com/foundryvtt/foundryvtt/issues/11668
+//?See [this issue for AppV2](https://github.com/foundryvtt/foundryvtt/issues/11668) sheets.
 //todo this should probably be part of the new AppV2 document/sheet (?) rather than this hook here?
-//? For App V2 sheets FVTT V13+
-Hooks.on(`getHeaderControlsMetanthropesActorSheetV2`, metaLogDocumentV2); //? see todo notes above
+Hooks.on(`getHeaderControlsMetanthropesActorSheetV2`, metaLogDocumentV2);
+Hooks.on(`getHeaderControlsMetanthropesActiveEffectSheetV2`, metaLogDocumentV2);
 //* Other

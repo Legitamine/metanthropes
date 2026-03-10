@@ -63,10 +63,10 @@ Hooks.once("init", async function () {
 	foundry.applications.apps.DocumentSheetConfig.registerSheet(
 		ActiveEffect,
 		"metanthropes",
-		metanthropes.applications.MetanthropesActiveEffectSheet,
+		metanthropes.applications.MetanthropesActiveEffectSheetV2,
 		{
 			makeDefault: true,
-			label: "METANTHROPES.SHEET.AAE.LABEL",
+			label: "METANTHROPES.SHEET.AE.LABEL",
 		}
 	);
 
@@ -95,8 +95,8 @@ Hooks.once("init", async function () {
 	if (game.release.generation >= 14) {
 		metanthropes.utils.metaLog(3, "System", "FVTT V14+ detected, adding phases to ActiveEffects");
 		CONFIG.ActiveEffect.phases = {
-			initial: { label: "METANTHROPES.AAE.phases.initial" },
-			final: { label: "METANTHROPES.AAE.phases.final" },
+			initial: { label: "METANTHROPES.AE.phases.initial" },
+			final: { label: "METANTHROPES.AE.phases.final" },
 		};
 	}
 	//* Finished Initializing the Metanthropes System

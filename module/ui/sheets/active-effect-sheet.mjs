@@ -186,4 +186,4 @@
 // 		return data;
 // 	}
 // }
-export class MetanthropesActiveEffectSheet extends  foundry.applications.sheets.ActiveEffectConfig {}
+export class MetanthropesActiveEffectSheetV2 extends  foundry.applications.sheets.ActiveEffectConfig {}

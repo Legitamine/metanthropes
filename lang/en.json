@@ -146,8 +146,7 @@
 				"conditions": {},
 				"perks": {},
 				"notes": {}
-			},
-			"ACTIVEEFFECT": {}
+			}
 		},
 		"CHARS": {
 			"BODY": {
@@ -227,8 +226,8 @@
 			"ITEM": {
 				"LABEL": "Metanthropes Item Sheet V1"
 			},
-			"AAE": {
-				"LABEL": "Metanthropes Actor Active Effect Sheet V1"
+			"AE": {
+				"LABEL": "Metanthropes Active Effect Sheet V2"
 			},
 			"OTHER": {
 				"CONSOLE": "@METAFA(metanthropes) Print to Console"
@@ -269,11 +268,13 @@
 				"Possession": "Possession"
 			}
 		},
-		"AAE": {
+		"AE": {
 			"phases": {
 				"initial": "Initial Phase",
 				"final": "Final Phase"
-			}
+			},
+			"seconds": "Seconds",
+			"none": "None"
 		}
 	},
 	"TYPES": {

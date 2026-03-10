@@ -30,7 +30,7 @@ import { MetanthropesCombat } from "./documents/combat.mjs";
 //* Sheets
 import { MetanthropesActorSheet } from "./ui/sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./ui/sheets/item-sheet.mjs";
-import { MetanthropesActiveEffectSheet } from "./ui/sheets/active-effect-sheet.mjs";
+import { MetanthropesActiveEffectSheetV2 } from "./ui/sheets/active-effect-sheet.mjs";
 import { MetaDialog } from "./metaclasses/metaclasses.mjs";
 // //* AppV2 Sheets
 import { MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
@@ -85,7 +85,7 @@ globalThis.metanthropes = {
 	applications: {
 		MetanthropesActorSheet,
 		MetanthropesItemSheet,
-		MetanthropesActiveEffectSheet,
+		MetanthropesActiveEffectSheetV2,
 		MetanthropesActorSheetV2,
 		// MetanthropesItemSheetV2,
 		MetaDialog,
