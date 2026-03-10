@@ -171,7 +171,7 @@ export class MetanthropesActor extends Actor {
 		//* Data modifications in this step occur before processing embedded
 		//* documents or derived data.
 		const actorData = this;
-		if (actorData.type == "testv12") return;
+		if (actorData.type == "MetanthropesActorV2") return;
 		//? Setting Humans to have starting life of 50 instead of 100
 		if (this.type === "Human") {
 			this.system.Vital.Life.Initial = 50;
@@ -230,7 +230,7 @@ export class MetanthropesActor extends Actor {
 		//* This function is called after prepareBaseData() and prepareEmbeddedDocuments().
 		//! Note that if any values are to be affected by an Active Effect, then they should be calculated in the BaseData step, not here, otherwise they will be overwritten here
 		const actorData = this;
-		if (actorData.type == "testv12") return;
+		if (actorData.type == "MetanthropesActorV2") return;
 		this._prepareDerivedCharacteristicsData(actorData);
 		if (actorData.name.includes("Duplicate")) {
 			this._prepareDerivedDuplicateData(actorData);

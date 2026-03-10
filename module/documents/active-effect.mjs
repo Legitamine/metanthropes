@@ -18,7 +18,7 @@ export class MetanthropesActiveEffect extends ActiveEffect {
 	 * }
 	 * @internal
 	 */
-	static LOCALIZATION_PREFIXES = ["METANTHROPES.ACTOR.ACTIVEEFFECT"];
+	//?! static LOCALIZATION_PREFIXES = ["METANTHROPES.ACTOR.ACTIVEEFFECT"];
 	_prepareDuration() {
 		const d = this.duration;
 

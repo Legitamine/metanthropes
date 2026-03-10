@@ -61,7 +61,7 @@
 	"styles": ["styles/metanthropes.css"],
 	"documentTypes": {
 		"Actor": {
-			"foufoutos": {}
+			"MetanthropesActorV2": {}
 		}
 	},
 	"packs": [

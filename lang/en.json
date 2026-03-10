@@ -45,7 +45,8 @@
 			"Target": "Target",
 			"Targets": "Targets",
 			"Duration": "Duration",
-			"Range": "Range"
+			"Range": "Range",
+			"Logging": "Send to Console"
 		},
 		"LOGIC": {
 			"METAEXECUTE": {
@@ -220,6 +221,9 @@
 			"ACTOR": {
 				"LABEL": "Metanthropes Actor Sheet V1"
 			},
+			"ACTORV2": {
+				"LABEL": "Metanthropes Actor Sheet V2"
+			},
 			"ITEM": {
 				"LABEL": "Metanthropes Item Sheet V1"
 			},
@@ -247,6 +251,7 @@
 		},
 		"TYPES": {
 			"Actor": {
+				"MetanthropesActorV2": "Metanthropes Actor",
 				"Protagonist": "Protagonist",
 				"Metanthrope": "Metanthrope",
 				"Human": "Human",
@@ -263,6 +268,32 @@
 				"Metapower": "Metapower",
 				"Possession": "Possession"
 			}
+		},
+		"AAE": {
+			"phases": {
+				"initial": "Initial Phase",
+				"final": "Final Phase"
+			}
+		}
+	},
+	"TYPES": {
+		"Actor": {
+			"MetanthropesActorV2": "Metanthropes Actor",
+			"Protagonist": "Protagonist",
+			"Metanthrope": "Metanthrope",
+			"Human": "Human",
+			"Vehicle": "Vehicle",
+			"Animal": "Animal",
+			"Artificial": "Artificial",
+			"Extradimensional": "Extradimensional",
+			"Extraterrestrial": "Extraterrestrial",
+			"Animated-Cadaver": "Animated-Cadaver",
+			"Animated-Plant": "Animated-Plant",
+			"MetaTherion": "MetaTherion"
+		},
+		"Item": {
+			"Metapower": "Metapower",
+			"Possession": "Possession"
 		}
 	}
 }

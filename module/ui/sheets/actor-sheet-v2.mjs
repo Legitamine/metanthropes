@@ -1,4 +1,3 @@
-//? V12
 const { api, sheets } = foundry.applications;
 
 export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(sheets.ActorSheetV2) {
@@ -718,12 +717,4 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 			}
 		}
 	}
-}
-
-export class MetanthropesNPCActorSheet extends MetanthropesActorSheetV2 {
-	static DEFAULT_OPTIONS = {
-		actor: {
-			type: "testv12",
-		},
-	};
 }

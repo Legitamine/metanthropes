@@ -33,7 +33,7 @@ import { MetanthropesItemSheet } from "./ui/sheets/item-sheet.mjs";
 import { MetanthropesActiveEffectSheet } from "./ui/sheets/active-effect-sheet.mjs";
 import { MetaDialog } from "./metaclasses/metaclasses.mjs";
 // //* AppV2 Sheets
-// import { MetanthropesNPCActorSheet, MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
+import { MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
 // import { MetanthropesItemSheetV2 } from "./ui/sheets/item-sheet-v2.mjs";
 //* Audio
 import { metaPlaySoundEffect } from "./api/audio/play-sound-effect.mjs";
@@ -86,8 +86,7 @@ globalThis.metanthropes = {
 		MetanthropesActorSheet,
 		MetanthropesItemSheet,
 		MetanthropesActiveEffectSheet,
-		// MetanthropesActorSheetV2,
-		// MetanthropesNPCActorSheet,
+		MetanthropesActorSheetV2,
 		// MetanthropesItemSheetV2,
 		MetaDialog,
 	},
