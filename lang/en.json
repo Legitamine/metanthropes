@@ -90,46 +90,29 @@
 			}
 		},
 		"ACTOR": {
-			"BASE": {
-				"FIELDS": {
-					"resources": {
-						"life": {
-							"label": "Life",
-							"hint": "Life represents a Character's overall health, vitality, and will to live.",
-							"value": {
-								"label": "Current",
-								"hint": "Life represents a Character's overall health, vitality, and will to live."
-							},
-							"max": {
-								"label": "Maximum",
-								"hint": "Metanthrope Characters have a maximum Life total of 100 + their Endurance score and also gain an additional +25 Life for every 5.000 Total EXP they have accumulated"
-							}
+			"FIELDS": {
+				"resources": {
+					"life": {
+						"label": "Life",
+						"hint": "Life represents a Character's overall health, vitality, and will to live.",
+						"value": {
+							"label": "Current",
+							"hint": "Life represents a Character's overall health, vitality, and will to live."
 						},
-						"actions": {
-							"label": "Actions",
-							"hint": "Actions represent a Character's ability to perform tasks, combat maneuvers, and other actions."
+						"max": {
+							"label": "Maximum",
+							"hint": "Metanthrope Characters have a maximum Life total of 100 + their Endurance score and also gain an additional +25 Life for every 5.000 Total EXP they have accumulated"
 						}
 					}
 				},
-				"life": {
-					"label": "Life",
-					"value": {
-						"label": "Current",
-						"hint": "Life represents a Character's overall health, vitality, and will to live."
-					},
-					"starting": {
-						"label": "Starting",
-						"hint": "Starting <i class=\"fa-solid fa-heart\"></i> Life"
-					},
-					"max": {
-						"label": "Maximum",
-						"hint": "Metanthrope Characters have a maximum Life total of 100 + their Endurance score and also gain an additional +25 Life for every 5.000 Total EXP they have accumulated"
-					},
-					"restore": {
-						"hint": "Undo last automatic Life change",
-						"notification": "Cannot undo last automatic Life change for "
-					}
+				"actions": {
+					"main": {},
+					"extra": {},
+					"reaction": {},
+					"label": "Actions",
+					"hint": "Actions represent a Character's ability to perform tasks, combat maneuvers, and other actions."
 				},
+				"exp": {},
 				"physical": {
 					"description": {
 						"label": "Physical Description",
@@ -155,9 +138,14 @@
 						"label": "Place of Birth",
 						"hint": "The physical place of birth of this Actor."
 					}
-				}
+				},
+				"chars": {},
+				"stats": {},
+				"buffs": {},
+				"conditions": {},
+				"perks": {},
+				"notes": {}
 			},
-			"FOUFOU": {},
 			"ACTIVEEFFECT": {}
 		},
 		"CHARS": {
