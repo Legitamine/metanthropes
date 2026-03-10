@@ -1,32 +1,34 @@
 import MetanthropesItemBase from "./item-base.mjs";
 
 export default class MetanthropesItemSpecies extends MetanthropesItemBase {
-	//todo figure out static LOCALIZATION_PREFIXES = []; with inheritance?
-	// design it in a way that we plan for future sections to be augmented/overwritten by sub classes
-	// mark sections properly as private or protected etc
+	static LOCALIZATION_PREFIXES = [
+		...super.LOCALIZATION_PREFIXES,
+		"METANTHROPES.ITEM.SPECIES",
+	];
 
 	static defineSchema() {
-		const fields = foundry.data.fields;
+		const f = foundry.data.fields; //? Fields
+		const s = super.defineSchema(); //? Schema
+
 		const requiredString = { required: true, nullable: false };
 		const nonRequiredString = { required: false, nullable: true, initial: null };
-		const schema = super.defineSchema();
 
-		schema.origin = new fields.StringField({
+		s.origin = new f.StringField({
 			...requiredString,
 			initial: "Origin",
 		});
-		schema.hitbox = new fields.StringField({
+		s.hitbox = new f.StringField({
 			//todo make it a category with choices instead
 			...requiredString,
 			initial: "Hitbox", // needs to be an object type instead? ! we can't have an item within an item (right?)
 		});
-		schema.gender = new fields.StringField({ ...nonRequiredString }); // combine with pronoun below?
-		schema.genderPronoun = new fields.StringField({ ...nonRequiredString });
-		//todo need to think around target types, targeting and creating a 
-		schema.metaType = new fields.StringField(); // Metapowered or Non-Metapowered - this is not here
-		schema.majorType = new fields.StringField(); // Organism, Artificial, ET, ED
-		schema.minorType = new fields.StringField(); // Humanoid, Spirit, Anima, Animal, Incarnation etc <- or is that the name?
+		s.gender = new f.StringField({ ...nonRequiredString }); // combine with pronoun below?
+		s.genderPronoun = new f.StringField({ ...nonRequiredString });
+		//todo need to think around target types, targeting and creating a
+		s.metaType = new f.StringField(); // Metapowered or Non-Metapowered - this is not here
+		s.majorType = new f.StringField(); // Organism, Artificial, ET, ED
+		s.minorType = new f.StringField(); // Humanoid, Spirit, Anima, Animal, Incarnation etc <- or is that the name?
 
-		return schema;
+		return s;
 	}
 }

@@ -62,6 +62,9 @@
 	"documentTypes": {
 		"Actor": {
 			"MetanthropesActorV2": {}
+		},
+		"Item": {
+			"MetanthropesItemSpecies": {}
 		}
 	},
 	"packs": [

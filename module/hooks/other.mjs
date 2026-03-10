@@ -10,4 +10,5 @@ Hooks.on(`getActiveEffectSheetHeaderButtons`, metaLogDocument);
 //todo this should probably be part of the new AppV2 document/sheet (?) rather than this hook here?
 Hooks.on(`getHeaderControlsMetanthropesActorSheetV2`, metaLogDocumentV2);
 Hooks.on(`getHeaderControlsMetanthropesActiveEffectSheetV2`, metaLogDocumentV2);
+Hooks.on(`getHeaderControlsMetanthropesItemSheetV2`, metaLogDocumentV2);
 //* Other

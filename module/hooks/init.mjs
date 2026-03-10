@@ -16,9 +16,9 @@ Hooks.once("init", async function () {
 		MetanthropesActorV2: metanthropes.models.MetanthropesActorV2,
 	};
 
-	// 	CONFIG.Item.dataModels = {
-	// 		species: metanthropes.models.MetanthropesItemSpecies,
-	// 	};
+	CONFIG.Item.dataModels = {
+		MetanthropesItemSpecies: metanthropes.models.MetanthropesItemSpecies,
+	};
 	// }
 
 	//* Register Document Classes
@@ -34,7 +34,7 @@ Hooks.once("init", async function () {
 		{
 			makeDefault: true,
 			label: "METANTHROPES.SHEET.ACTOR.LABEL",
-		}
+		},
 	);
 
 	foundry.documents.collections.Actors.registerSheet(
@@ -43,7 +43,7 @@ Hooks.once("init", async function () {
 		{
 			makeDefault: false,
 			label: "METANTHROPES.SHEET.ACTORV2.LABEL",
-		}
+		},
 	);
 
 	foundry.documents.collections.Items.registerSheet("metanthropes", metanthropes.applications.MetanthropesItemSheet, {
@@ -51,14 +51,14 @@ Hooks.once("init", async function () {
 		label: "METANTHROPES.SHEET.ITEM.LABEL",
 	});
 
-	// foundry.documents.collections.Items.registerSheet(
-	// 	"metanthropes",
-	// 	metanthropes.applications.MetanthropesItemSheetV2,
-	// 	{
-	// 		makeDefault: false,
-	// 		label: "METANTHROPES.SHEET.ITEM.LABEL",
-	// 	}
-	// );
+	foundry.documents.collections.Items.registerSheet(
+		"metanthropes",
+		metanthropes.applications.MetanthropesItemSheetV2,
+		{
+			makeDefault: false,
+			label: "METANTHROPES.SHEET.ITEMV2.LABEL",
+		}
+	);
 
 	foundry.applications.apps.DocumentSheetConfig.registerSheet(
 		ActiveEffect,
@@ -67,7 +67,7 @@ Hooks.once("init", async function () {
 		{
 			makeDefault: true,
 			label: "METANTHROPES.SHEET.AE.LABEL",
-		}
+		},
 	);
 
 	//* Metanthropes Initiative System

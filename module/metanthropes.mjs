@@ -34,7 +34,7 @@ import { MetanthropesActiveEffectSheetV2 } from "./ui/sheets/active-effect-sheet
 import { MetaDialog } from "./metaclasses/metaclasses.mjs";
 // //* AppV2 Sheets
 import { MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
-// import { MetanthropesItemSheetV2 } from "./ui/sheets/item-sheet-v2.mjs";
+import { MetanthropesItemSheetV2 } from "./ui/sheets/item-sheet-v2.mjs";
 //* Audio
 import { metaPlaySoundEffect } from "./api/audio/play-sound-effect.mjs";
 //* Dice Rollers
@@ -87,7 +87,7 @@ globalThis.metanthropes = {
 		MetanthropesItemSheet,
 		MetanthropesActiveEffectSheetV2,
 		MetanthropesActorSheetV2,
-		// MetanthropesItemSheetV2,
+		MetanthropesItemSheetV2,
 		MetaDialog,
 	},
 	dice: {
