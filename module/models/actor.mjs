@@ -1,68 +1,85 @@
+const { HTMLField, SchemaField, NumberField, StringField } = foundry.data.fields;
+const scoreNumber = { required: true, nullable: false, integer: true, min: 0, initial: 1 }; //todo do I need to define initial here? how can it be overriden?
+const someNumber = { max: 10 }; //todo do I need to define max here? what if it's derived?
+
 export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel {
 	static LOCALIZATION_PREFIXES = ["METANTHROPES.ACTOR"];
 	static defineSchema() {
-		const f = foundry.data.fields; //? Fields
-		const s = {}; //? Schema
-		s.resources = new f.SchemaField({
-			life: new f.SchemaField({}),
-			//todo how do I add the ones that come after Species/Archetypes are defined/added?
-		});
-		s.actions = new f.SchemaField({
-			main: new f.SchemaField({}),
-			extra: new f.SchemaField({}),
-			reaction: new f.SchemaField({}),
-			//todo how do I do the derived ones like movement and focused?
-		});
-		s.exp = new f.SchemaField({});
-		s.physical = new f.SchemaField({
-			description: new f.SchemaField({}),
-			speed: new f.SchemaField({}),
-			weight: new f.SchemaField({}),
-			size: new f.SchemaField({}),
-			shift: new f.SchemaField({}),
-			resistances: new f.SchemaField({}),
-			immunities: new f.SchemaField({}),
-			hitbox: new f.SchemaField({}), //? From Species
-			origin: new f.SchemaField({}), //? From Species
-		});
-		s.chars = new f.SchemaField({});
-		s.stats = new f.SchemaField({});
-		s.buffs = new f.SchemaField({});
-		s.conditions = new f.SchemaField({});
-		s.perks = new f.SchemaField({});
-		s.notes = new f.SchemaField({});
-		s.meta = new f.SchemaField({}); //not at base actor
-		s.strikes = new f.SchemaField({}); //should be ommited much like possessions?
-		s.special = new f.SchemaField({}); //same as strikes?
-		return s; //? Schema
+		return {
+			resources: new SchemaField({
+				life: new SchemaField({
+					current: new NumberField({ ...scoreNumber }),
+				}),
+				//todo how do I add the ones that come after Species/Archetypes are defined/added?
+			}),
+			actions: new SchemaField({
+				main: new SchemaField({}),
+				extra: new SchemaField({}),
+				reaction: new SchemaField({}),
+				//todo how do I do the derived ones like movement and focused?
+			}),
+			exp: new SchemaField({}),
+			physical: new SchemaField({
+				description: new SchemaField({
+					player: new HTMLField(),
+					//todo species defined
+				}),
+				speed: new SchemaField({}),
+				weight: new SchemaField({}),
+				size: new SchemaField({}),
+				shift: new SchemaField({}),
+				resistances: new SchemaField({}),
+				immunities: new SchemaField({}),
+				hitbox: new SchemaField({}), //? From Species
+				origin: new SchemaField({}), //? From Species
+			}),
+			chars: new SchemaField(
+				//todo review const structure/usage - link to journal page - can I have it as a hint, click for more within the tooltip?
+				Object.entries(metanthropes.system.CHARS).reduce((obj, [charKey, charData]) => {
+					obj[charKey] = new SchemaField({
+						current: new NumberField({ ...scoreNumber }),
+						initial: new NumberField({ ...scoreNumber }),
+						progressed: new NumberField({ ...scoreNumber }), //derived?
+						max: new NumberField({ ...scoreNumber }), //derived?
+					});
+					return obj;
+				}, {}),
+			),
+			stats: new SchemaField(
+				Object.entries(metanthropes.system.STATS).reduce((obj, [statKey, statData]) => {
+					obj[statKey] = new SchemaField({
+						current: new NumberField({ ...scoreNumber }),
+						initial: new NumberField({ ...scoreNumber }),
+						//todo progressed / max via derived?
+					});
+					return obj;
+				}, {}),
+			),
+			buffs: new SchemaField({}),
+			conditions: new SchemaField({}),
+			perks: new SchemaField({}),
+			notes: new SchemaField({}),
+			meta: new SchemaField({}), //not at base actor
+			strikes: new SchemaField({}), //should be ommited much like possessions?
+			special: new SchemaField({}), //same as strikes?
+		};
 	}
 
-	prepareBaseData() {}
+	prepareBaseData() {
+		super.prepareBaseData();
+		metanthropes.utils.metaLog(3, "Actor DM Base", this);
+		this.resources.life.current += this.stats.endurance.current; //this works
+	}
 
-	prepareDerivedData() {}
+	prepareDerivedData() {
+		metanthropes.utils.metaLog(3, "Actor DM Derived", this);
+		super.prepareDerivedData();
+		this.resources.life.max = this.resources.life.current; //? defining a derived field
+		this.resources.life.current = Math.min(this.resources.life.current, this.resources.life.max); //todo is this the right spot for this?//?ensure life doesn't go over the max
+	}
 }
 
 //todo clean up notes
-// import MetanthropesActorBase from "./actor-base.mjs";
-
-// export default class MetanthropesActorProtagonist extends MetanthropesActorBase {
-
-// 		static LOCALIZATION_PREFIXES = [
-// 			...super.LOCALIZATION_PREFIXES,
-// 			"METANTHROPES.ACTOR.PROTAGONIST",
-// 		];
-
-// 		static defineSchema() {
-// 			const schema = super.defineSchema();
-
-// 			return schema;
-// 		}
-// }
-
-//import MetanthropesItemSpecies from "./item-species.mjs";
-
-// export default class MetanthropesActorBase extends foundry.abstract.TypeDataModel {
-// 	static LOCALIZATION_PREFIXES = ["METANTHROPES.ACTOR.BASE"];
 
 // 		static defineSchema() {
 // 		const fields = foundry.data.fields;
@@ -83,7 +100,7 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 
 // 		const schema = {};
 // 		//* Resources
-// 		schema.resources = new fields.SchemaField({
+// 		schema.resources : new fields.SchemaField({
 // 			life: new fields.SchemaField({
 // 				current: new fields.NumberField({ ...scoreNumber }),
 // 				max: new fields.NumberField({ ...scoreNumber }),
@@ -96,7 +113,7 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 // 			}),
 // 		});
 // 		//* Physical - species??
-// 		schema.physical = new fields.SchemaField({
+// 		schema.physical : new fields.SchemaField({
 // 			description: new fields.HTMLField(),
 // 			hitbox: new fields.DocumentUUIDField(),
 // 			//options
@@ -132,9 +149,9 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 // 			shift: new fields.StringField({ ...simpleStringValue }),
 // 		});
 // 		//* Characteristics
-// 		schema.chars = new fields.SchemaField(
+// 		schema.chars : new fields.SchemaField(
 // 			Object.entries(metanthropes.system.CHARS).reduce((obj, [charKey, charData]) => {
-// 				obj[charKey] = new fields.SchemaField({
+// 				obj[charKey] : new fields.SchemaField({
 // 					current: new fields.NumberField({
 // 						...scoreNumber,
 // 						id: charData.id,//!den pairnei ayta poy den einai already defined sto schema tou numberfield?
@@ -149,18 +166,18 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 // 			}, {})
 // 		);
 // 		//* Stats
-// 		//schema.stats = new fields.SchemaField();
+// 		//schema.stats : new fields.SchemaField();
 // 		//* Special Rolls
 // 		//* AAE ?
 // 		//* Other / notes / owner? admin stuff
 // 		//schema.other;
-// 		// schema.notes = new fields.SchemaField({
+// 		// schema.notes : new fields.SchemaField({
 // 		// 	metaOwner: new fields.StringField(),
 // 		// });
 
 // 		//* Possible Extentions outside Base
 // 		//* Species defines initial base actor values + extras
-// 		// schema.species = new fields.SchemaField(
+// 		// schema.species : new fields.SchemaField(
 // 		// 	{
 // 		// 		name: new fields.StringField({ blank: false }),
 // 		// 		img: new fields.StringField(),
@@ -216,7 +233,7 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 // 	// 	// }
 // 	// 	const schema = {};
 // 	// 	//* Resources
-// 	// 	schema.resources = new fields.SchemaField({
+// 	// 	schema.resources : new fields.SchemaField({
 // 	// 		life: new fields.SchemaField({
 // 	// 			current: new fields.NumberField({ ...scoreNumber }),
 // 	// 			max: new fields.NumberField({ ...scoreNumber }),
@@ -229,7 +246,7 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 // 	// 		}),
 // 	// 	});
 // 	// 	//* Physical
-// 	// 	schema.physical = new fields.SchemaField({
+// 	// 	schema.physical : new fields.SchemaField({
 // 	// 		description: new fields.HTMLField(),
 // 	// 		height: new fields.NumberField({
 // 	// 			...requiredNumber,
@@ -246,7 +263,7 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 // 	// 		pob: new fields.StringField(),
 // 	// 	});
 // 	// 	//* Movement
-// 	// 	schema.movement = new fields.SchemaField({
+// 	// 	schema.movement : new fields.SchemaField({
 // 	// 		value: new fields.NumberField({ ...effectLevel }),
 // 	// 		buff: new fields.NumberField({ ...effectLevel }),
 // 	// 		condition: new fields.NumberField({ ...effectLevel }),
@@ -277,7 +294,7 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 // 	// 	//* Shift
 // 	// 	schema.shift;
 // 	// 	//* Species
-// 	// 	// schema.species = new fields.SchemaField(
+// 	// 	// schema.species : new fields.SchemaField(
 // 	// 	// 	{
 // 	// 	// 		name: new fields.StringField({ blank: false }),
 // 	// 	// 		img: new fields.StringField(),
@@ -290,7 +307,7 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 // 	// 	// 	}
 // 	// 	// );
 // 	// 	//* Notes
-// 	// 	schema.notes = new fields.SchemaField({
+// 	// 	schema.notes : new fields.SchemaField({
 // 	// 		metaOwner: new fields.StringField(),
 // 	// 	});
 
@@ -298,9 +315,9 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 // 	// 	//* EXP
 // 	// 	schema.exp;
 // 	// 	//* Characteristics
-// 	// 	schema.chars = new fields.SchemaField(
+// 	// 	schema.chars : new fields.SchemaField(
 // 	// 		Object.entries(metanthropes.system.CHARS).reduce((obj, [charKey, charData]) => {
-// 	// 			obj[charKey] = new fields.SchemaField({
+// 	// 			obj[charKey] : new fields.SchemaField({
 // 	// 				value: new fields.NumberField({
 // 	// 					...requiredInteger,
 // 	// 					initial: 5,

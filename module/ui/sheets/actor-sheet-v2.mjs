@@ -84,8 +84,6 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 		
 		this._prepareItems(context);
 
-		console.log(this);
-
 		return context;
 	}
 
