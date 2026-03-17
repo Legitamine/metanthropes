@@ -1,5 +1,5 @@
-const { HTMLField, SchemaField, NumberField, StringField } = foundry.data.fields;
-const scoreNumber = { required: true, nullable: false, integer: true, min: 0, initial: 1 }; //todo do I need to define initial here? how can it be overriden?
+const { HTMLField, SchemaField, NumberField, StringField, ArrayField } = foundry.data.fields;
+const scoreNumber = { required: true, nullable: false, integer: true, min: 0, initial: 1, max: 10 }; //todo do I need to define initial here? how can it be overriden?
 const someNumber = { max: 10 }; //todo do I need to define max here? what if it's derived?
 
 export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel {
@@ -18,7 +18,13 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 				reaction: new SchemaField({}),
 				//todo how do I do the derived ones like movement and focused?
 			}),
-			exp: new SchemaField({}),
+			exp: new SchemaField({
+				progressionLog: new ArrayField(
+					new SchemaField({
+						something: new NumberField()
+					})
+				), //?this keeps the order
+			}),
 			physical: new SchemaField({
 				description: new SchemaField({
 					player: new HTMLField(),
@@ -39,7 +45,11 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 					obj[charKey] = new SchemaField({
 						current: new NumberField({ ...scoreNumber }),
 						initial: new NumberField({ ...scoreNumber }),
-						progressed: new NumberField({ ...scoreNumber }), //derived?
+						progressed: new ArrayField(
+							new SchemaField({
+								char: new StringField(),
+							}),
+						), //derived?
 						max: new NumberField({ ...scoreNumber }), //derived?
 					});
 					return obj;
@@ -50,6 +60,11 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 					obj[statKey] = new SchemaField({
 						current: new NumberField({ ...scoreNumber }),
 						initial: new NumberField({ ...scoreNumber }),
+						progressed: new ArrayField(
+							new SchemaField({
+								stat: new StringField(),
+							}),
+						),
 						//todo progressed / max via derived?
 					});
 					return obj;

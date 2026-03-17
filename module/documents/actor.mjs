@@ -168,6 +168,7 @@ export class MetanthropesActor extends Actor {
 	}
 	/** @override */
 	prepareBaseData() {
+		super.prepareBaseData();
 		//* Data modifications in this step occur before processing embedded
 		//* documents or derived data.
 		const actorData = this;
@@ -221,6 +222,7 @@ export class MetanthropesActor extends Actor {
 	}
 	/** @override */
 	prepareDerivedData() {
+		super.prepareDerivedData();
 		//* Augment the basic actor data with additional dynamic data. Typically,
 		//* you'll want to handle most of your calculated/derived data in this step.
 		//* Data calculated in this step should generally not exist in template.json

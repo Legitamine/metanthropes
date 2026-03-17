@@ -9,7 +9,7 @@ Hooks.once("init", async function () {
 	//* Register System Settings
 	metanthropes.utils.metaRegisterGameSettings(settings);
 
-	// //* Register Data Models
+	//* Register Data Models
 	// const homebrewActive = (await game.settings.get("metanthropes", "metaHomebrew")) || false;
 	// if (homebrewActive) {
 	CONFIG.Actor.dataModels = {
@@ -33,6 +33,18 @@ Hooks.once("init", async function () {
 		metanthropes.applications.MetanthropesActorSheet,
 		{
 			makeDefault: true,
+			types: [
+				"Protagonist",
+				"Metanthrope",
+				"Human",
+				"Animal",
+				"Artificial",
+				"Extradimensional",
+				"Extraterrestrial",
+				"Animated-Cadaver",
+				"Animated-Plant",
+				"MetaTherion",
+			],
 			label: "METANTHROPES.SHEET.ACTOR.LABEL",
 		},
 	);
@@ -41,7 +53,8 @@ Hooks.once("init", async function () {
 		"metanthropes",
 		metanthropes.applications.MetanthropesActorSheetV2,
 		{
-			makeDefault: false,
+			makeDefault: true,
+			types: ["MetanthropesActorV2"],
 			label: "METANTHROPES.SHEET.ACTORV2.LABEL",
 		},
 	);
@@ -57,7 +70,7 @@ Hooks.once("init", async function () {
 		{
 			makeDefault: false,
 			label: "METANTHROPES.SHEET.ITEMV2.LABEL",
-		}
+		},
 	);
 
 	foundry.applications.apps.DocumentSheetConfig.registerSheet(
@@ -91,14 +104,14 @@ Hooks.once("init", async function () {
 		metanthropes.logic.metaHandleSocketEvents(payload);
 	});
 
-	//* FVTT V14+ Active Effects
-	if (game.release.generation >= 14) {
-		metanthropes.utils.metaLog(3, "System", "FVTT V14+ detected, adding phases to ActiveEffects");
-		CONFIG.ActiveEffect.phases = {
-			initial: { label: "METANTHROPES.AE.phases.initial" },
-			final: { label: "METANTHROPES.AE.phases.final" },
-		};
-	}
+	// //* FVTT V14+ Active Effects
+	// if (game.release.generation >= 14) {
+	// 	metanthropes.utils.metaLog(3, "System", "FVTT V14+ detected, adding phases to ActiveEffects");
+	// 	CONFIG.ActiveEffect.phases = {
+	// 		initial: { label: "METANTHROPES.AE.phases.initial" },
+	// 		final: { label: "METANTHROPES.AE.phases.final" },
+	// 	};
+	// }
 	//* Finished Initializing the Metanthropes System
 	metanthropes.utils.metaLog(0, "System", "Initialized");
 
