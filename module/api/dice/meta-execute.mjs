@@ -714,6 +714,8 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	if (damageSelectedTargets && actionableTargets) {
 		mL(3, "meta-execute", "VFX");
 		//? we need to get the initiating actor's token
+		const newActorToken = actor.getActiveTokens();
+		mL(3, "meta-execute", "newActorToken", newActorToken, "targetedActors", targetedActors);
 		let actorToken;
 		if (!actor.prototypeToken) {
 			actorToken = actor.token;
