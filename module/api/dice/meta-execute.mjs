@@ -503,11 +503,16 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		if (effectDescription) {
 			contentMessage += `${effectDescription}<hr />`;
 		}
+		//* Targeting
 		///todo Targeting v1 todo needs to move outside of execute or run along side it
 		const manuallySelectedTargets = game.user.targets;
-		const targetsArray = Array.from(manuallySelectedTargets).map((token) => token.actor);
-		//?Create a new array with only the actor's uuids to be used later
-		targetedActors = targetsArray.map((actor) => actor.uuid);
+		//? Grab an Array of the token documents involved and filter out null & dupes
+		const targetsFilteredArray = Array.from(manuallySelectedTargets).map((token) => token.actor).filter(_ => _); //?Filter out null actors (in case there were deleted)
+		const targetsTokenDocumentsArray = Array.from(new Set (targetsFilteredArray)); //? Remove duplicates (in case a linked actor is placed multiple times in the canvas) //todo should we even allow this in the first place?
+		//? Create a new Array with only the token actor's uuids to be used later
+		targetedActors = Array.from (targetsTokenDocumentsArray.map(a => a.uuid)); 
+		// targetedActors = targetsArray.map((actor) => actor.uuid);
+		mL(3, "meta-execute", "Review Target selection", "manual", manuallySelectedTargets, "targetsFilteredArray", targetsFilteredArray, "targetDocuments", targetsTokenDocumentsArray, "targetedActors", targetedActors);
 		//? Check if there are any targeted actors and set the actionableTargets variable accordingly
 		actionableTargets = targetedActors.length > 0;
 		if (
@@ -529,8 +534,8 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		if (!actionableTargets) {
 			mL(3, "metaExecute", "No Actionable Targets");
 		} else {
-			//? Get the names of all targeted actors
-			targetedActorNames = targetsArray.map((actor) => actor.name);
+			//? Get the names of all targeted actors //! changed from targetsArray
+			targetedActorNames = targetsTokenDocumentsArray.map((actor) => actor.name);
 			mL(
 				3,
 				"metaExecute",
@@ -713,7 +718,8 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	//todo brings up a question whether it works as intented without linked actors, needs testing
 	if (damageSelectedTargets && actionableTargets) {
 		mL(3, "meta-execute", "VFX");
-		//? we need to get the initiating actor's token
+		//! we need to get the initiating actor's token
+			//todo what if they are linked but dupe, what if they are synthetic?
 		const newActorToken = actor.getActiveTokens();
 		mL(3, "meta-execute", "newActorToken", newActorToken, "targetedActors", targetedActors);
 		let actorToken;
