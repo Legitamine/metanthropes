@@ -1,16 +1,13 @@
 export default class MetanthropesItemBase extends foundry.abstract.TypeDataModel {
+	static LOCALIZATION_PREFIXES = ["METANTHROPES.ITEM"];
 	static defineSchema() {
-		const fields = foundry.data.fields;
-		const schema = {};
-
-		schema.description = new fields.HTMLField();
-
-		return schema;
+		const f = foundry.data.fields; //? Fields
+		const s = {}; //? Schema
+		s.description = new f.HTMLField();
+		return s;
 	}
 
 	prepareBaseData() {}
 
-	prepareDerivedData() {
-		console.log(this.parent);
-	}
+	prepareDerivedData() {}
 }

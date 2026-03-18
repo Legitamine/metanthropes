@@ -20,7 +20,7 @@
 
 //* System Configuration
 import { SYSTEM } from "./config/system.mjs";
-//* Data Models
+// //* Data Models
 import * as models from "./models/_data-models.mjs";
 //* Documents
 import { MetanthropesActor } from "./documents/actor.mjs";
@@ -30,10 +30,10 @@ import { MetanthropesCombat } from "./documents/combat.mjs";
 //* Sheets
 import { MetanthropesActorSheet } from "./ui/sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./ui/sheets/item-sheet.mjs";
-import { MetanthropesActiveEffectSheet } from "./ui/sheets/active-effect-sheet.mjs";
+import { MetanthropesActiveEffectSheetV2 } from "./ui/sheets/active-effect-sheet.mjs";
 import { MetaDialog } from "./metaclasses/metaclasses.mjs";
-//* AppV2 Sheets
-import { MetanthropesNPCActorSheet, MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
+// //* AppV2 Sheets
+import { MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
 import { MetanthropesItemSheetV2 } from "./ui/sheets/item-sheet-v2.mjs";
 //* Audio
 import { metaPlaySoundEffect } from "./api/audio/play-sound-effect.mjs";
@@ -85,9 +85,8 @@ globalThis.metanthropes = {
 	applications: {
 		MetanthropesActorSheet,
 		MetanthropesItemSheet,
-		MetanthropesActiveEffectSheet,
+		MetanthropesActiveEffectSheetV2,
 		MetanthropesActorSheetV2,
-		MetanthropesNPCActorSheet,
 		MetanthropesItemSheetV2,
 		MetaDialog,
 	},

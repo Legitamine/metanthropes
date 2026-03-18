@@ -6,13 +6,20 @@ Hooks.once("init", async function () {
 	//* Configure System
 	globalThis.SYSTEM = metanthropes.system;
 
+	//* Register System Settings
+	metanthropes.utils.metaRegisterGameSettings(settings);
+
 	//* Register Data Models
+	// const homebrewActive = (await game.settings.get("metanthropes", "metaHomebrew")) || false;
+	// if (homebrewActive) {
 	CONFIG.Actor.dataModels = {
-		testv12: metanthropes.models.MetanthropesActorNPC,
+		MetanthropesActorV2: metanthropes.models.MetanthropesActorV2,
 	};
+
 	CONFIG.Item.dataModels = {
-		species: metanthropes.models.MetanthropesItemSpecies,
+		MetanthropesItemSpecies: metanthropes.models.MetanthropesItemSpecies,
 	};
+	// }
 
 	//* Register Document Classes
 	CONFIG.Actor.documentClass = metanthropes.documents.MetanthropesActor;
@@ -26,20 +33,35 @@ Hooks.once("init", async function () {
 		metanthropes.applications.MetanthropesActorSheet,
 		{
 			makeDefault: true,
-		}
+			types: [
+				"Protagonist",
+				"Metanthrope",
+				"Human",
+				"Animal",
+				"Artificial",
+				"Extradimensional",
+				"Extraterrestrial",
+				"Animated-Cadaver",
+				"Animated-Plant",
+				"MetaTherion",
+			],
+			label: "METANTHROPES.SHEET.ACTOR.LABEL",
+		},
 	);
 
 	foundry.documents.collections.Actors.registerSheet(
 		"metanthropes",
 		metanthropes.applications.MetanthropesActorSheetV2,
 		{
-			makeDefault: false,
-			label: "METANTHROPES.SHEET.ACTOR.LABEL",
-		}
+			makeDefault: true,
+			types: ["MetanthropesActorV2"],
+			label: "METANTHROPES.SHEET.ACTORV2.LABEL",
+		},
 	);
 
 	foundry.documents.collections.Items.registerSheet("metanthropes", metanthropes.applications.MetanthropesItemSheet, {
 		makeDefault: true,
+		label: "METANTHROPES.SHEET.ITEM.LABEL",
 	});
 
 	foundry.documents.collections.Items.registerSheet(
@@ -47,21 +69,22 @@ Hooks.once("init", async function () {
 		metanthropes.applications.MetanthropesItemSheetV2,
 		{
 			makeDefault: false,
-			label: "METANTHROPES.SHEET.ITEM.LABEL",
-		}
+			label: "METANTHROPES.SHEET.ITEMV2.LABEL",
+		},
 	);
 
 	foundry.applications.apps.DocumentSheetConfig.registerSheet(
 		ActiveEffect,
 		"metanthropes",
-		metanthropes.applications.MetanthropesActiveEffectSheet,
+		metanthropes.applications.MetanthropesActiveEffectSheetV2,
 		{
 			makeDefault: true,
-		}
+			label: "METANTHROPES.SHEET.AE.LABEL",
+		},
 	);
 
 	//* Metanthropes Initiative System
-	//todo: revisit as part of Combat v12
+	//todo: revisit as part of Combat rework
 	CONFIG.Combat.initiative = {
 		formula: "1d100 + @RollStats.Reflexes",
 		decimals: 2,
@@ -69,9 +92,6 @@ Hooks.once("init", async function () {
 
 	//* Round Duration (in seconds)
 	CONFIG.time.roundTime = 30;
-
-	//* Register System Settings
-	metanthropes.utils.metaRegisterGameSettings(settings);
 
 	//* Register Status Effects
 	metanthropes.utils.metaRegisterStatusEffects();
@@ -84,16 +104,15 @@ Hooks.once("init", async function () {
 		metanthropes.logic.metaHandleSocketEvents(payload);
 	});
 
-	//* V14 Active Effects
-	//todo: run on only v14
-	if (game.version > 14) {
-		metanthropes.utils.metaLog(3, "System", "V14+ detected, adding phases to ActiveEffects");
-		CONFIG.ActiveEffect.phases = {
-			initial: { label: "Init" },
-			final: { label: "Final" },
-		};
-	}
-
+	// //* FVTT V14+ Active Effects
+	// if (game.release.generation >= 14) {
+	// 	metanthropes.utils.metaLog(3, "System", "FVTT V14+ detected, adding phases to ActiveEffects");
+	// 	CONFIG.ActiveEffect.phases = {
+	// 		initial: { label: "METANTHROPES.AE.phases.initial" },
+	// 		final: { label: "METANTHROPES.AE.phases.final" },
+	// 	};
+	// }
+  
 	//* V14 VFX
 	CONFIG.Canvas.vfx.enabled = true;
 
