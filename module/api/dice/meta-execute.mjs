@@ -713,6 +713,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	//todo brings up a question whether it works as intented without linked actors, needs testing
 	if (damageSelectedTargets && actionableTargets) {
 		mL(3, "meta-execute", "VFX");
+		//? we need to get the initiating actor's token
 		let actorToken;
 		if (!actor.prototypeToken) {
 			actorToken = actor.token;
@@ -798,7 +799,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				{ component: "damage", position: 200 },
 			],
 		});
-		//? Resolve each targeted actor document from the array so we can use them for this effect
+		//? Resolve each targeted actor's token document from the array so we can use them for this effect
 		for (const targetedActor of targetedActors) {
 			const target = await fromUuidSync(targetedActor);
 			let targetToken;
@@ -813,10 +814,10 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				}
 			}
 			mL(3, "meta-execute", "Shot VFX", actorToken, targetToken);
-			// await shot.play({
-			// 	origin: actorToken,
-			// 	target: targetToken,
-			// });
+			await shot.play({
+				origin: actorToken,
+				target: targetToken,
+			});
 			mL(3, "meta-execute", "Impact VFX");
 			await impact.play({
 				target: targetToken,
