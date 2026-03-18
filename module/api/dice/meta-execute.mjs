@@ -334,7 +334,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				true,
 				false,
 				0,
-				null
+				null,
 			);
 			cosmicDamageRollResult = cosmicDamageRoll.dataset.total;
 			cosmicDamageRollParams = `data-dice-cosmic="${damageDiceCosmic}" data-base-cosmic="${damageBaseCosmic}"`;
@@ -352,7 +352,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				true,
 				false,
 				0,
-				null
+				null,
 			);
 			elementalDamageRollResult = elementalDamageRoll.dataset.total;
 			elementalDamageRollParams = `data-dice-elemental="${damageDiceElemental}" data-base-elemental="${damageBaseElemental}"`;
@@ -370,7 +370,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				true,
 				false,
 				0,
-				null
+				null,
 			);
 			materialDamageRollResult = materialDamageRoll.dataset.total;
 			materialDamageRollParams = `data-dice-material="${damageDiceMaterial}" data-base-material="${damageBaseMaterial}"`;
@@ -388,7 +388,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				true,
 				false,
 				0,
-				null
+				null,
 			);
 			psychicDamageRollResult = psychicDamageRoll.dataset.total;
 			psychicDamageRollParams = `data-dice-psychic="${damageDicePsychic}" data-base-psychic="${damageBasePsychic}"`;
@@ -406,7 +406,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				true,
 				false,
 				0,
-				null
+				null,
 			);
 			healingRollResult = healingRoll.dataset.total;
 			healingRollParams = `data-healing-dice="${healingDice}" data-healing-base="${healingBase}"`;
@@ -535,7 +535,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				3,
 				"metaExecute",
 				`Target${targetedActorNames.length > 1 ? "s" : ""} Name${targetedActorNames.length > 1 ? "s" : ""}:`,
-				targetedActorNames
+				targetedActorNames,
 			);
 		}
 		if (
@@ -710,14 +710,126 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		await metanthropes.audio.metaPlaySoundEffect(sfx);
 	}
 	//* Apply Damage to Selected Targets
+	//todo brings up a question whether it works as intented without linked actors, needs testing
 	if (damageSelectedTargets && actionableTargets) {
+		mL(3, "meta-execute", "VFX");
+		let actorToken;
+		if (!actor.prototypeToken) {
+			actorToken = actor.token;
+		} else {
+			//?grab the actor's token from the active scene
+			const scene = game.scenes.active;
+			mL(3, "meta-execute", "scene", scene);
+			for (const sceneToken of scene.tokens.contents) {
+				if (sceneToken.actorId === actor.id) {
+					actorToken = sceneToken;
+				}
+			}
+		}
+		const shot = new foundry.canvas.vfx.VFXEffect({
+			name: "Meta Shot",
+			components: {
+				flight: {
+					type: "singleAttack",
+					path: [
+						{ reference: "origin", property: "center" },
+						{ reference: "target", property: "center" },
+					],
+					pathType: "arc",
+					charge: {
+						texture: "systems/metanthropes/assets/artwork/vfx/particle-1.webp",
+						duration: 300,
+						animations: [{ function: "drawBack", params: {} }],
+					},
+					projectile: {
+						texture: "systems/metanthropes/assets/artwork/vfx/particle-2.webp",
+						speed: 150, // feet per second; duration computed from path length
+						size: { w: 480, h: 240 },
+						animations: [{ function: "followPath", params: {} }],
+						sound: {
+							src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
+							align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START, //align: foundry.canvas.sfx.SOUND_ALIGNMENT.START,
+						},
+					},
+					impact: {
+						texture: "systems/metanthropes/assets/artwork/vfx/particle-3.webp",
+						duration: 400,
+						sound: {
+							src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Modern_device_beeping_01.ogg",
+							align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
+						},
+					},
+				},
+			},
+			timeline: [{ component: "flight", position: 0 }],
+		});
+		const impact = new foundry.canvas.vfx.VFXEffect({
+			name: "Meta Impact",
+			components: {
+				burst: {
+					type: "singleImpact",
+					position: { reference: "target", property: "center" },
+					texture: "systems/metanthropes/assets/artwork/vfx/particle-4.webp",
+					duration: 1200,
+					size: { w: 2056, h: 2056 },
+					animations: [{ function: "scale", params: {} }],
+					sound: {
+						src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
+					},
+				},
+				shake: {
+					type: "shake",
+					duration: 800,
+					maxDisplacement: 20,
+					smoothness: 0.6,
+				},
+				damage: {
+					type: "scrollingText",
+					origin: { reference: "target", property: "center" },
+					content: { reference: "damageText" },
+					duration: 15000,
+					scrollDirection: CONST.TEXT_ANCHOR_POINTS.TOP,
+					textStyle: { fill: "#ff4400", fontSize: 36, fontWeight: "bold" },
+				},
+			},
+			timeline: [
+				{ component: "burst", position: 0 },
+				{ component: "shake", position: 100 },
+				{ component: "damage", position: 200 },
+			],
+		});
+		//? Resolve each targeted actor document from the array so we can use them for this effect
+		for (const targetedActor of targetedActors) {
+			const target = await fromUuidSync(targetedActor);
+			let targetToken;
+			if (!target.prototypeToken) {
+				targetToken = target.token;
+			} else {
+				//?grab the target's token from the active scene
+				for (const sceneToken of game.scenes.active.tokens.contents) {
+					if (sceneToken.actorId === target.id) {
+						targetToken = sceneToken;
+					}
+				}
+			}
+			mL(3, "meta-execute", "Shot VFX", actorToken, targetToken);
+			// await shot.play({
+			// 	origin: actorToken,
+			// 	target: targetToken,
+			// });
+			mL(3, "meta-execute", "Impact VFX");
+			await impact.play({
+				target: targetToken,
+				damageText: `${elementalDamageRollResult} Elemental`,
+			});
+		}
 		mL(3, "meta-execute", "Applying damage");
 		await metanthropes.logic.metaApplyDamage(
 			targetedActors,
 			cosmicDamageRollResult,
 			elementalDamageRollResult,
 			materialDamageRollResult,
-			psychicDamageRollResult
+			psychicDamageRollResult,
 		);
 	}
 	//* Apply Healing to Selected Targets

@@ -93,6 +93,10 @@ Hooks.once("init", async function () {
 			final: { label: "Final" },
 		};
 	}
+
+	//* V14 VFX
+	CONFIG.Canvas.vfx.enabled = true;
+
 	//* Finished Initializing the Metanthropes System
 	metanthropes.utils.metaLog(0, "System", "Initialized");
 
