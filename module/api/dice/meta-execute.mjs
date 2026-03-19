@@ -128,7 +128,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	//? Targeting variables
 	let damageSelectedTargets = false;
 	let healSelectedTargets = false;
-	let targetedActors = [];
+	let targetedActorsUUIDs = [];
 	let actionableTargets = false;
 	//? Other
 	let executeRoll = null;
@@ -510,11 +510,10 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		const targetsFilteredArray = Array.from(manuallySelectedTargets).map((token) => token.actor).filter(_ => _); //?Filter out null actors (in case there were deleted)
 		const targetsTokenDocumentsArray = Array.from(new Set (targetsFilteredArray)); //? Remove duplicates (in case a linked actor is placed multiple times in the canvas) //todo should we even allow this in the first place?
 		//? Create a new Array with only the token actor's uuids to be used later
-		targetedActors = Array.from (targetsTokenDocumentsArray.map(a => a.uuid)); 
-		// targetedActors = targetsArray.map((actor) => actor.uuid);
-		mL(3, "meta-execute", "Review Target selection", "manual", manuallySelectedTargets, "targetsFilteredArray", targetsFilteredArray, "targetDocuments", targetsTokenDocumentsArray, "targetedActors", targetedActors);
+		targetedActorsUUIDs = Array.from (targetsTokenDocumentsArray.map(a => a.uuid)); 
+		mL(3, "meta-execute", "Review Target selection", "manual", manuallySelectedTargets, "targetsFilteredArray", targetsFilteredArray, "targetDocuments", targetsTokenDocumentsArray, "targetedActors", targetedActorsUUIDs);
 		//? Check if there are any targeted actors and set the actionableTargets variable accordingly
-		actionableTargets = targetedActors.length > 0;
+		actionableTargets = targetedActorsUUIDs.length > 0;
 		if (
 			!actionableTargets &&
 			duration.includes("Instantaneous") &&
@@ -599,7 +598,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			if (actor.currentDestiny > 0) {
 				const damageReRollButton = `<div class="hide-button hidden">
 				<button class="metanthropes-secondary-chat-button damage roll-damage-reroll chat-button-anchor"
-				data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+				data-targets="${targetedActorsUUIDs}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 				data-what="Damage" data-anchor="true" data-reroll="false" data-reroll-counter="1"
 				data-message-id="null" data-destiny-re-roll="true" data-damage-selected-targets="${damageSelectedTargets}"
 				${cosmicDamageRollParams} ${elementalDamageRollParams}
@@ -615,7 +614,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			if (actor.currentDestiny > 0) {
 				const healingRerollButton = `<div class="hide-button hidden">
 				<button class="metanthropes-secondary-chat-button healing roll-healing-reroll chat-button-anchor"
-				data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+				data-targets="${targetedActorsUUIDs}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 				data-what="Healing" data-anchor="true" data-heal-selected-targets="${healSelectedTargets}"
 				data-reroll="false" data-reroll-counter="1" data-message-id="null"
 				data-destiny-re-roll="true" ${healingRollParams}
@@ -706,135 +705,112 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		await actor.setFlag("metanthropes", "duplicateSelf", { maxLife: duplicateMaxLife });
 		mL(3, "metaExecute", "Duplicate Self Metapower Max Life:", duplicateMaxLife);
 	}
-	//* Visual Effects
-	if (vfx) {
-		await metanthropes.utils.metaRunMacro(vfx);
-	}
-	//* Sound Effects
-	if (sfx) {
-		await metanthropes.audio.metaPlaySoundEffect(sfx);
-	}
-	//* Apply Damage to Selected Targets
-	//todo brings up a question whether it works as intented without linked actors, needs testing
+	//!deprecate old VFX/SFX system
+	// //* Visual Effects
+	// if (vfx) {
+	// 	await metanthropes.utils.metaRunMacro(vfx);
+	// }
+	// //* Sound Effects
+	// if (sfx) {
+	// 	await metanthropes.audio.metaPlaySoundEffect(sfx);
+	// }
+	//* Trigger VFX & Apply Damage to Selected Targets
 	if (damageSelectedTargets && actionableTargets) {
-		mL(3, "meta-execute", "VFX");
-		//! we need to get the initiating actor's token
-			//todo what if they are linked but dupe, what if they are synthetic?
-		const newActorToken = actor.getActiveTokens();
-		mL(3, "meta-execute", "newActorToken", newActorToken, "targetedActors", targetedActors);
-		let actorToken;
-		if (!actor.prototypeToken) {
-			actorToken = actor.token;
-		} else {
-			//?grab the actor's token from the active scene
-			const scene = game.scenes.active;
-			mL(3, "meta-execute", "scene", scene);
-			for (const sceneToken of scene.tokens.contents) {
-				if (sceneToken.actorId === actor.id) {
-					actorToken = sceneToken;
-				}
-			}
-		}
-		const shot = new foundry.canvas.vfx.VFXEffect({
-			name: "Meta Shot",
-			components: {
-				flight: {
-					type: "singleAttack",
-					path: [
-						{ reference: "origin", property: "center" },
-						{ reference: "target", property: "center" },
-					],
-					pathType: "arc",
-					charge: {
-						texture: "systems/metanthropes/assets/artwork/vfx/particle-1.webp",
-						duration: 300,
-						animations: [{ function: "drawBack", params: {} }],
-					},
-					projectile: {
-						texture: "systems/metanthropes/assets/artwork/vfx/particle-2.webp",
-						speed: 150, // feet per second; duration computed from path length
-						size: { w: 480, h: 240 },
-						animations: [{ function: "followPath", params: {} }],
-						sound: {
-							src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
-							align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START, //align: foundry.canvas.sfx.SOUND_ALIGNMENT.START,
-						},
-					},
-					impact: {
-						texture: "systems/metanthropes/assets/artwork/vfx/particle-3.webp",
-						duration: 400,
-						sound: {
-							src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Modern_device_beeping_01.ogg",
-							align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-						},
-					},
-				},
-			},
-			timeline: [{ component: "flight", position: 0 }],
-		});
-		const impact = new foundry.canvas.vfx.VFXEffect({
-			name: "Meta Impact",
-			components: {
-				burst: {
-					type: "singleImpact",
-					position: { reference: "target", property: "center" },
-					texture: "systems/metanthropes/assets/artwork/vfx/particle-4.webp",
-					duration: 1200,
-					size: { w: 2056, h: 2056 },
-					animations: [{ function: "scale", params: {} }],
-					sound: {
-						src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
-					},
-				},
-				shake: {
-					type: "shake",
-					duration: 800,
-					maxDisplacement: 20,
-					smoothness: 0.6,
-				},
-				damage: {
-					type: "scrollingText",
-					origin: { reference: "target", property: "center" },
-					content: { reference: "damageText" },
-					duration: 15000,
-					scrollDirection: CONST.TEXT_ANCHOR_POINTS.TOP,
-					textStyle: { fill: "#ff4400", fontSize: 36, fontWeight: "bold" },
-				},
-			},
-			timeline: [
-				{ component: "burst", position: 0 },
-				{ component: "shake", position: 100 },
-				{ component: "damage", position: 200 },
-			],
-		});
-		//? Resolve each targeted actor's token document from the array so we can use them for this effect
-		for (const targetedActor of targetedActors) {
-			const target = await fromUuidSync(targetedActor);
-			let targetToken;
-			if (!target.prototypeToken) {
-				targetToken = target.token;
-			} else {
-				//?grab the target's token from the active scene
-				for (const sceneToken of game.scenes.active.tokens.contents) {
-					if (sceneToken.actorId === target.id) {
-						targetToken = sceneToken;
-					}
-				}
-			}
-			mL(3, "meta-execute", "Shot VFX", actorToken, targetToken);
-			await shot.play({
-				origin: actorToken,
-				target: targetToken,
-			});
-			mL(3, "meta-execute", "Impact VFX");
-			await impact.play({
-				target: targetToken,
-				damageText: `${elementalDamageRollResult} Elemental`,
-			});
-		}
+		// mL(3, "meta-execute", "VFX");
+		// //? Grab the initiating actor's token document
+		// const actorToken = await actor.getActiveTokens(false, true)[0];
+		// if (!actorToken) return mL(5, "meta-execute", "VFX", "No Initiating Actor Token could be found for actor", actor);
+		// mL(3, "meta-execute", "actorToken", actorToken, "targetedActorsUUIDs", targetedActorsUUIDs);
+		// const shot = new foundry.canvas.vfx.VFXEffect({
+		// 	name: "Meta Shot",
+		// 	components: {
+		// 		flight: {
+		// 			type: "singleAttack",
+		// 			path: [
+		// 				{ reference: "origin", property: "center" },
+		// 				{ reference: "target", property: "center" },
+		// 			],
+		// 			pathType: "arc",
+		// 			charge: {
+		// 				texture: "systems/metanthropes/assets/artwork/vfx/particle-1.webp",
+		// 				duration: 300,
+		// 				animations: [{ function: "drawBack", params: {} }],
+		// 			},
+		// 			projectile: {
+		// 				texture: "systems/metanthropes/assets/artwork/vfx/particle-2.webp",
+		// 				speed: 150, // feet per second; duration computed from path length
+		// 				size: { w: 480, h: 240 },
+		// 				animations: [{ function: "followPath", params: {} }],
+		// 				sound: {
+		// 					src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
+		// 					align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START, //align: foundry.canvas.sfx.SOUND_ALIGNMENT.START,
+		// 				},
+		// 			},
+		// 			impact: {
+		// 				texture: "systems/metanthropes/assets/artwork/vfx/particle-3.webp",
+		// 				duration: 400,
+		// 				sound: {
+		// 					src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Modern_device_beeping_01.ogg",
+		// 					align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
+		// 				},
+		// 			},
+		// 		},
+		// 	},
+		// 	timeline: [{ component: "flight", position: 0 }],
+		// });
+		// const impact = new foundry.canvas.vfx.VFXEffect({
+		// 	name: "Meta Impact",
+		// 	components: {
+		// 		burst: {
+		// 			type: "singleImpact",
+		// 			position: { reference: "target", property: "center" },
+		// 			texture: "systems/metanthropes/assets/artwork/vfx/particle-4.webp",
+		// 			duration: 1200,
+		// 			size: { w: 2056, h: 2056 },
+		// 			animations: [{ function: "scale", params: {} }],
+		// 			sound: {
+		// 				src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
+		// 			},
+		// 		},
+		// 		shake: {
+		// 			type: "shake",
+		// 			duration: 800,
+		// 			maxDisplacement: 20,
+		// 			smoothness: 0.6,
+		// 		},
+		// 		damage: {
+		// 			type: "scrollingText",
+		// 			origin: { reference: "target", property: "center" },
+		// 			content: { reference: "damageText" },
+		// 			duration: 15000,
+		// 			scrollDirection: CONST.TEXT_ANCHOR_POINTS.TOP,
+		// 			textStyle: { fill: "#ff4400", fontSize: 36, fontWeight: "bold" },
+		// 		},
+		// 	},
+		// 	timeline: [
+		// 		{ component: "burst", position: 0 },
+		// 		{ component: "shake", position: 100 },
+		// 		{ component: "damage", position: 200 },
+		// 	],
+		// });
+		// //? Resolve each targeted actor's token document from the array so we can use them for this effect
+		// for (const targetedActor of targetedActorsUUIDs) {
+		// 	const targetToken = await fromUuidSync(targetedActor); //todo is Sync here necesairy?
+		// 	mL(3, "meta-execute", "Shot VFX", "Initiating Actor Token", actorToken, "Target Token", targetToken);
+		// 	await shot.play({
+		// 		origin: actorToken,
+		// 		target: targetToken,
+		// 	});
+		// 	mL(3, "meta-execute", "Impact VFX");
+		// 	await impact.play({
+		// 		target: targetToken,
+		// 		damageText: `${elementalDamageRollResult} Elemental`,
+		// 	});
+		// }
+		//* Apply Damage
 		mL(3, "meta-execute", "Applying damage");
 		await metanthropes.logic.metaApplyDamage(
-			targetedActors,
+			targetedActorsUUIDs,
 			cosmicDamageRollResult,
 			elementalDamageRollResult,
 			materialDamageRollResult,
@@ -843,7 +819,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	}
 	//* Apply Healing to Selected Targets
 	if (healSelectedTargets && actionableTargets) {
-		await metanthropes.logic.metaApplyHealing(targetedActors, healingRollResult);
+		await metanthropes.logic.metaApplyHealing(targetedActorsUUIDs, healingRollResult);
 	}
 	//* Send Chat Message
 	let chatData = {
