@@ -7,13 +7,13 @@
  * Formal contribution will be part of v1.0, however your feedback is most welcome at this early stage.
  *
  * Throughtout this project, I use the following syntax for comments:
- ** //! Marks a special comment that stands out (in Red) for critical notes/issues.
- ** //* Marks a comment that is used as a section header (in Green) for better section visibility.
- ** //? Marks a comment that is used for sub-sections and for elaborating my intent (in Blue) for better readability.
- ** //todo Marks a comment that is used for marking (in Orange) potential optimization notes.
+ ** //* Section headers & high level overview of the intended functionality.
+ ** //? Sub-sections and for elaborating my intent for better readability & notes.
+ ** //! Things that must be addressed in the next refactoring pass.
+ ** //todo Things that should be addressed in a future pass.
  *** // comments without any special syntax are used for quick clarification of specific options.
  *
- * To get automatic coloring for these comments in VSCode, you can use this extension:
+ * To get automatic coloring for comments in VSCode, you can use this extension:
  * aaron-bond.better-comments
  *
  */
