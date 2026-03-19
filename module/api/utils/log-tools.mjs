@@ -17,9 +17,11 @@ export function metaLog(logType = 0, ...variables) {
 		return;
 	}
 	let logFunction = console.log;
-	let logMessage = `%cMetanthropes | `;
-	let logStyle = "background-color: #5C16C5; color: #fff";
-	let altLogStyle = "background-color: #00695c; color: #fff";
+	let logMessage = `%cMetanthropes`;
+	let logStyle = "background-color: #9A5D9B; color: #fff";
+	if (logType > 2) logStyle = "background-color: #EC008C; color: #fff";
+	let altLogStyle = "background-color: #0CA79F; color: #fff";
+	if (logType > 2) altLogStyle = "background-color: #b084ff; color: #fff";
 	switch (logType) {
 		case 1:
 		case 4:
@@ -31,7 +33,7 @@ export function metaLog(logType = 0, ...variables) {
 			break;
 	}
 	let styles = [logStyle];
-	let logStrings = [logMessage];
+	let logStrings = [logMessage, " | "];
 	let logObjects = [];
 	variables.forEach((variable, index) => {
 		if (variable !== null && variable !== undefined) {

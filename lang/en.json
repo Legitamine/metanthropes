@@ -20,7 +20,7 @@
 			"DataFinalizing": "Finalizing Data Migration",
 			"PrototypeTokens": "Updating Token Defauls",
 			"Content": "Updating Content",
-			"Narrator": "Renaming Gamemaster to 'The Narrator'",
+			"NarratorRename": "Renaming Gamemaster to",
 			"Finalizing": "Finalizing...",
 			"Finished": "Finished Updating World Data!",
 			"Failed": "Did not receive valid Migration Data",
