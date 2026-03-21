@@ -28,7 +28,8 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		itemName = clickedButton.dataset.itemName;
 		multiAction = parseInt(clickedButton.dataset.multiAction) ?? 0;
 	}
-	//? Check if we are running in Beta Testing mode (available via Core Module)
+	//? Check if we are running in Alpha/Beta Testing mode (available via Homebrew/Core Module respectfuly)
+	const alphaTesting = await game.settings.get("metanthropes", "metaAlphaTesting");
 	const betaTesting = await game.settings.get("metanthropes", "metaBetaTesting");
 	const actor = await fromUuid(actorUUID);
 	//? Checking if actor has Metapowers that affect the explosive dice
@@ -505,13 +506,29 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		}
 		//* Targeting
 		///todo Targeting v1 todo needs to move outside of execute or run along side it
+		//todo clean up notes & simplify
 		const manuallySelectedTargets = game.user.targets;
+		//? VFX requires the tokens from ^^ here, which we get in an Array
 		//? Grab an Array of the token documents involved and filter out null & dupes
-		const targetsFilteredArray = Array.from(manuallySelectedTargets).map((token) => token.actor).filter(_ => _); //?Filter out null actors (in case there were deleted)
-		const targetsTokenDocumentsArray = Array.from(new Set (targetsFilteredArray)); //? Remove duplicates (in case a linked actor is placed multiple times in the canvas) //todo should we even allow this in the first place?
-		//? Create a new Array with only the token actor's uuids to be used later
-		targetedActorsUUIDs = Array.from (targetsTokenDocumentsArray.map(a => a.uuid)); 
-		mL(3, "meta-execute", "Review Target selection", "manual", manuallySelectedTargets, "targetsFilteredArray", targetsFilteredArray, "targetDocuments", targetsTokenDocumentsArray, "targetedActors", targetedActorsUUIDs);
+		const targetsFilteredArray = Array.from(manuallySelectedTargets)
+			.map((token) => token.actor)
+			.filter((_) => _); //?Filter out null actors (in case there were deleted)
+		const targetsTokenDocumentsArray = Array.from(new Set(targetsFilteredArray)); //? Remove duplicates (in case a linked actor is placed multiple times in the canvas) //todo should we even allow this in the first place?
+		//? Create a new Array with only the token actor's uuids to be used for damage/healing application later
+		targetedActorsUUIDs = Array.from(targetsTokenDocumentsArray.map((a) => a.uuid));
+		mL(
+			3,
+			"metaExecute",
+			"Review Target selection",
+			"manuallySelectedTargets",
+			manuallySelectedTargets,
+			"targetsFilteredArray",
+			targetsFilteredArray,
+			"targetsTokenDocumentsArray",
+			targetsTokenDocumentsArray,
+			"targetedActorsUUIDs",
+			targetedActorsUUIDs,
+		);
 		//? Check if there are any targeted actors and set the actionableTargets variable accordingly
 		actionableTargets = targetedActorsUUIDs.length > 0;
 		if (
@@ -716,99 +733,13 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	// }
 	//* Trigger VFX & Apply Damage to Selected Targets
 	if (damageSelectedTargets && actionableTargets) {
-		// mL(3, "meta-execute", "VFX");
-		// //? Grab the initiating actor's token document
-		// const actorToken = await actor.getActiveTokens(false, true)[0];
-		// if (!actorToken) return mL(5, "meta-execute", "VFX", "No Initiating Actor Token could be found for actor", actor);
-		// mL(3, "meta-execute", "actorToken", actorToken, "targetedActorsUUIDs", targetedActorsUUIDs);
-		// const shot = new foundry.canvas.vfx.VFXEffect({
-		// 	name: "Meta Shot",
-		// 	components: {
-		// 		flight: {
-		// 			type: "singleAttack",
-		// 			path: [
-		// 				{ reference: "origin", property: "center" },
-		// 				{ reference: "target", property: "center" },
-		// 			],
-		// 			pathType: "arc",
-		// 			charge: {
-		// 				texture: "systems/metanthropes/assets/artwork/vfx/particle-1.webp",
-		// 				duration: 300,
-		// 				animations: [{ function: "drawBack", params: {} }],
-		// 			},
-		// 			projectile: {
-		// 				texture: "systems/metanthropes/assets/artwork/vfx/particle-2.webp",
-		// 				speed: 150, // feet per second; duration computed from path length
-		// 				size: { w: 480, h: 240 },
-		// 				animations: [{ function: "followPath", params: {} }],
-		// 				sound: {
-		// 					src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
-		// 					align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START, //align: foundry.canvas.sfx.SOUND_ALIGNMENT.START,
-		// 				},
-		// 			},
-		// 			impact: {
-		// 				texture: "systems/metanthropes/assets/artwork/vfx/particle-3.webp",
-		// 				duration: 400,
-		// 				sound: {
-		// 					src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Modern_device_beeping_01.ogg",
-		// 					align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-		// 				},
-		// 			},
-		// 		},
-		// 	},
-		// 	timeline: [{ component: "flight", position: 0 }],
-		// });
-		// const impact = new foundry.canvas.vfx.VFXEffect({
-		// 	name: "Meta Impact",
-		// 	components: {
-		// 		burst: {
-		// 			type: "singleImpact",
-		// 			position: { reference: "target", property: "center" },
-		// 			texture: "systems/metanthropes/assets/artwork/vfx/particle-4.webp",
-		// 			duration: 1200,
-		// 			size: { w: 2056, h: 2056 },
-		// 			animations: [{ function: "scale", params: {} }],
-		// 			sound: {
-		// 				src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
-		// 			},
-		// 		},
-		// 		shake: {
-		// 			type: "shake",
-		// 			duration: 800,
-		// 			maxDisplacement: 20,
-		// 			smoothness: 0.6,
-		// 		},
-		// 		damage: {
-		// 			type: "scrollingText",
-		// 			origin: { reference: "target", property: "center" },
-		// 			content: { reference: "damageText" },
-		// 			duration: 15000,
-		// 			scrollDirection: CONST.TEXT_ANCHOR_POINTS.TOP,
-		// 			textStyle: { fill: "#ff4400", fontSize: 36, fontWeight: "bold" },
-		// 		},
-		// 	},
-		// 	timeline: [
-		// 		{ component: "burst", position: 0 },
-		// 		{ component: "shake", position: 100 },
-		// 		{ component: "damage", position: 200 },
-		// 	],
-		// });
-		// //? Resolve each targeted actor's token document from the array so we can use them for this effect
-		// for (const targetedActor of targetedActorsUUIDs) {
-		// 	const targetToken = await fromUuidSync(targetedActor); //todo is Sync here necesairy?
-		// 	mL(3, "meta-execute", "Shot VFX", "Initiating Actor Token", actorToken, "Target Token", targetToken);
-		// 	await shot.play({
-		// 		origin: actorToken,
-		// 		target: targetToken,
-		// 	});
-		// 	mL(3, "meta-execute", "Impact VFX");
-		// 	await impact.play({
-		// 		target: targetToken,
-		// 		damageText: `${elementalDamageRollResult} Elemental`,
-		// 	});
-		// }
+		//* Trigger VFX
+		mL(3, "metaExecute", "Triggering VFX");
+		//todo try/error alphaTesting
+		const manuallySelectedTargets = game.user.targets; //todo for testing, later we need the filtered results here
+		await metanthropes.vfx.metaVFX(actor, manuallySelectedTargets, elementalDamageRollResult);
 		//* Apply Damage
-		mL(3, "meta-execute", "Applying damage");
+		mL(3, "metaExecute", "Applying Damage");
 		await metanthropes.logic.metaApplyDamage(
 			targetedActorsUUIDs,
 			cosmicDamageRollResult,

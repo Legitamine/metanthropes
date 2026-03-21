@@ -37,6 +37,8 @@ import { MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
 import { MetanthropesItemSheetV2 } from "./ui/sheets/item-sheet-v2.mjs";
 //* Audio
 import { metaPlaySoundEffect } from "./api/audio/play-sound-effect.mjs";
+//* VFX
+import { metaVFX } from "./api/vfx/meta-vfx.mjs";
 //* Dice Rollers
 import { metaEvaluate, metaEvaluateReRoll } from "./api/dice/meta-evaluate.mjs";
 import { metaRolld10, metaRolld10ReRoll, metaDamageReRoll, metaHealingReRoll } from "./api/dice/meta-rolld10.mjs";
@@ -109,6 +111,9 @@ globalThis.metanthropes = {
 	},
 	audio: {
 		metaPlaySoundEffect,
+	},
+	vfx: {
+		metaVFX,
 	},
 	logic: {
 		metaFinalizePremadeActor,
