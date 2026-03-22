@@ -1,15 +1,15 @@
 /**
- * Description placeholder
+ * Proof of concept function to trigger VFX
  *
  * @export
  * @async
- * @param {*} actor
- * @param {*} targetedActorsUUIDs
- * @param {*} effect
- * @returns {unknown}
+ * @param {*} actor 
+ * @param {*} manuallySelectedTargets 
+ * @param {*} effect 
+ * @param {*} elementalDamageRollResult 
+ * @returns {unknown} 
  */
 export async function metaVFX(actor, manuallySelectedTargets, effect, elementalDamageRollResult) {
-	//!xreiazomai ta tokens apo to game.user.targets oxi ta token documents
 	const mL = metanthropes.utils.metaLog;
 	mL(3, "metaVFX", "VFX");
 	//? Grab the initiating actor's Token
@@ -22,6 +22,9 @@ export async function metaVFX(actor, manuallySelectedTargets, effect, elementalD
 	// can we run multiple VFXEffects in parallel? How does clone affect us? Need to decide/define the master combinations
 	// Should also think about VFXEffects not triggered by metaExecute, but rather on other triggers like Criticals / Hunger / Cover, Bloodsplats etc
 	// Also, we should be able to call a specific effect (like textscroll for other things too like when losing life (vs damage dealt) and others (portal opens, trap triggered!))
+	// Also the animation should trigger ONCE after all potential re-rolls happen, not multiple times for each damage re-roll for eg.
+	// Need a way to scale the animation to the size of the Token or not?
+	// eventually we'll need to define our own custom VFXComponents see [the api for more details](https://foundryvtt.com/api/v14/modules/foundry.canvas.vfx.html)
 
 	//* VFX Tests
 	const shot = new foundry.canvas.vfx.VFXEffect({
@@ -136,7 +139,7 @@ export async function metaVFX(actor, manuallySelectedTargets, effect, elementalD
 		name: "metaVFX",
 		components: {
 			//?the type of the component matters, not the key name
-			
+			//? use key name in timeline
 			kame: {
 				type: "singleAttack",
 				path: [
@@ -145,7 +148,9 @@ export async function metaVFX(actor, manuallySelectedTargets, effect, elementalD
 				],
 				pathType: "arc",
 				charge: {
-					texture: "systems/metanthropes/assets/artwork/possessions/fist.svg",
+					//texture: "systems/metanthropes/assets/artwork/possessions/fist.svg",
+					texture: "systems/metanthropes/assets/artwork/metapowers/mp-pyrokinesis.webp",
+					size: 12,
 					duration: 1500,
 					animations: [{ function: "drawBack" }],
 					sound: {
@@ -199,7 +204,7 @@ export async function metaVFX(actor, manuallySelectedTargets, effect, elementalD
 					align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
 					radius: 120, //def 60 - what is this, feet?
 				},
-				shake: {
+				shake: { //doesn't seem to get triggered here, perhaps it's not a valid component in the singleImpact?
 					type: "shake",
 					target: "stage", //can also target individual canvas layers or groups
 					duration: 200,
@@ -272,12 +277,11 @@ export async function metaVFX(actor, manuallySelectedTargets, effect, elementalD
 				content: { reference: "text" },
 				//distance: 5, // no idea, no default
 				duration: 5000, //optional def 2000
-				jitter: 10, //def 0
-				//origin: { reference: "target", property: "center" }, //origin is confusing here, why not position?
-				origin: { reference: "target" },
+				//jitter: 1, //def 0
+				origin: { reference: "target", property: "center" }, //origin is confusing here, why not position?
 				scrollDirection: CONST.TEXT_ANCHOR_POINTS.TOP,
-				textAnchor: CONST.TEXT_ANCHOR_POINTS.TOP, //optional
-				textStyle: { fill: "#d21414", fontSize: 28, fontWeight: "bold" },
+				//textAnchor: CONST.TEXT_ANCHOR_POINTS.TOP, //optional
+				textStyle: { fill: "#d21414", fontSize: 42, fontWeight: "bold" },
 			},
 		},
 		timeline: [
@@ -288,7 +292,7 @@ export async function metaVFX(actor, manuallySelectedTargets, effect, elementalD
 			{ component: "boom4", position: 3580 },
 			{ component: "boom5", position: 3780 },
 			{ component: "particles", position: 3840 },
-			{ component: "text", position: 5000 },
+			{ component: "text", position: 4000 },
 		],
 	});
 
@@ -296,6 +300,9 @@ export async function metaVFX(actor, manuallySelectedTargets, effect, elementalD
 	for (const targetedActor of manuallySelectedTargets) {
 		mL(3, "metaVFX", "Target's Name", targetedActor.name);
 		//! if we await the VFX then it goes from one target to the next, if we don't, it does all at the same time.
+		//! Are there metapowers/possessions where we would want an effect to be awaited instead ?
+		//! Multi-action is essentially multiple separate activations, not subject to this
+		// rather check to see if there are any metapowers that would require us to re-roll for EACH target, then it would need an await
 		if (metaVFX.started) {
 			mL(3, "metaVFX", "Cloning VFX");
 			const newVFX = metaVFX.clone();
