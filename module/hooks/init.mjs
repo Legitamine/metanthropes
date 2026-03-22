@@ -17,7 +17,8 @@ Hooks.once("init", async function () {
 	};
 
 	CONFIG.Item.dataModels = {
-		MetanthropesItemSpecies: metanthropes.models.MetanthropesItemSpecies,
+		species: metanthropes.models.species,
+		archetype: metanthropes.models.archetype,
 	};
 	// }
 
@@ -68,7 +69,8 @@ Hooks.once("init", async function () {
 		"metanthropes",
 		metanthropes.applications.MetanthropesItemSheetV2,
 		{
-			makeDefault: false,
+			makeDefault: true,
+			types: ["species", "archetype"],
 			label: "METANTHROPES.SHEET.ITEMV2.LABEL",
 		},
 	);
@@ -112,7 +114,7 @@ Hooks.once("init", async function () {
 	// 		final: { label: "METANTHROPES.AE.phases.final" },
 	// 	};
 	// }
-  
+
 	//* V14 VFX
 	CONFIG.Canvas.vfx.enabled = true;
 

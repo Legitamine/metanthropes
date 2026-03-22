@@ -1,8 +1,7 @@
 const { HTMLField, SchemaField, NumberField, StringField, ArrayField } = foundry.data.fields;
-const scoreNumber = { required: true, nullable: false, integer: true, min: 0, initial: 0, max: 5 }; //todo do I need to define initial here? how can it be overriden?
-const lifeNumber = { required: true, nullable: false, integer: true, min: 0, initial: 0 }; //todo what if no max is defined? it can go infinite? can i do max: life.max or somethign here?
-const movementNumber = { required: true, nullable: false, integer: true, min: 0, initial: 0 };
-const actionsNumber = { required: true, nullable: false, integer: true, min: 0, initial: 0, }
+const standardNumber = { required: true, nullable: false, integer: true, min: 0, initial: 0 };
+const scoreNumber = { required: true, nullable: false, integer: true, min: 0, initial: 0, max: 5 }; //todo choices, step?
+const initialDiceNumber = { required: true, nullable: false, integer: true, min: 0, initial: 1, max: 3 };
 
 export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel {
 	static LOCALIZATION_PREFIXES = ["METANTHROPES.ACTOR"];
@@ -10,21 +9,21 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 		return {
 			resources: new SchemaField({
 				life: new SchemaField({
-					current: new NumberField({ ...lifeNumber }),
+					current: new NumberField({ ...standardNumber }),
 				}),
 				movement: new SchemaField({
-					current: new NumberField({ ...movementNumber }),
+					current: new NumberField({ ...standardNumber }),
 				}),
 			}),
 			actions: new SchemaField({
 				main: new SchemaField({
-					current: new NumberField({ ...actionsNumber }),
+					current: new NumberField({ ...standardNumber }),
 				}),
 				extra: new SchemaField({
-					current: new NumberField({ ...actionsNumber }),
+					current: new NumberField({ ...standardNumber }),
 				}),
 				reaction: new SchemaField({
-					current: new NumberField({ ...actionsNumber }),
+					current: new NumberField({ ...standardNumber }),
 				}),
 			}),
 			exp: new SchemaField({
@@ -33,6 +32,8 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 						something: new NumberField(),
 					}),
 				), //?this keeps the order
+				total: new NumberField({ ...standardNumber }),
+				spent: new NumberField({ ...standardNumber }),
 			}),
 			physical: new SchemaField({
 				description: new SchemaField({
@@ -52,14 +53,15 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 				Object.entries(metanthropes.system.CHARS).reduce((obj, [charKey, charData]) => {
 					//todo review const structure/usage - link to journal page - can I have it as a hint, click for more within the tooltip?
 					obj[charKey] = new SchemaField({
-						current: new NumberField({ ...scoreNumber }),
-						initial: new NumberField({ ...scoreNumber }),
-						progressed: new ArrayField(
+						current: new NumberField({ ...standardNumber }),
+						initial: new NumberField({ ...standardNumber }),
+						initialChoice: new NumberField({ ...standardNumber }), //need to define how we work with the choices here
+						progressed: new NumberField({ ...scoreNumber }),
+						progressionLog: new ArrayField(
 							new SchemaField({
 								char: new StringField(),
 							}),
-						), //derived?
-						max: new NumberField({ ...scoreNumber }), //derived?
+						),
 					});
 					return obj;
 				}, {}),
@@ -67,9 +69,11 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 			stats: new SchemaField(
 				Object.entries(metanthropes.system.STATS).reduce((obj, [statKey, statData]) => {
 					obj[statKey] = new SchemaField({
-						current: new NumberField({ ...scoreNumber }),
-						initial: new NumberField({ ...scoreNumber }),
-						progressed: new ArrayField(
+						current: new NumberField({ ...standardNumber }),
+						initial: new NumberField({ ...standardNumber }),
+						initialDice: new NumberField({ ...initialDiceNumber }),
+						progressed: new NumberField({ ...scoreNumber }),
+						progressionLog: new ArrayField(
 							new SchemaField({
 								stat: new StringField(),
 							}),
@@ -86,343 +90,89 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 		};
 	}
 
+	//* Base = Initial (from Species/Archetypes) + Progressed
 	prepareBaseData() {
 		super.prepareBaseData();
+
 		metanthropes.utils.metaLog(3, "Actor DM Base", this);
-		this.resources.life.current += this.stats.endurance.current; //this works
+
+		const { life, movement } = this.resources;
+		const { main, extra, reaction } = this.actions;
 
 		const items = this.parent.items;
 		const species = items.documentsByType.species[0];
 		const archetypes = items.documentsByType.archetype;
 
-		//* Initial Base values
+		//* Base Life
+		let lifeInitial = species?.system.resources.life.initial ?? 0;
+		for (const item of archetypes) {
+			const lifeArchetypeModifier = item?.system.resources.life.initial ?? 0;
+			lifeInitial += lifeArchetypeModifier;
+		}
+		//todo these values could come from the species? or does it apply only to Metanthropes aka Archetype?
+		life.progressed = Math.floor(this.exp.total / 5000) * 25; //? 25 extra Life for each 5K EXP Total
+		life.base = lifeInitial + life.progressed; //! size should be applied to the base life or the derived? do we care?
 
-		//* Max Base values
-		this.resources.life.max = 0; //apo initial, species, archetypes, size
-		this.resources.movement.max = 0;
-		this.actions.main.max = 0;
-		this.actions.extra.max = 0;
-		this.actions.reaction.max = 0;
+		//* Movement
+		movement.base = 0;
 
+		//* Actions
+		main.base = 0;
+		extra.base = 0;
+		reaction.base = 0;
+
+		//* EXP
+		this.exp.stored = this.exp.total - this.exp.spent;
+		if (this.exp.stored < 0) metanthropes.utils.metaLog(2, "Actor DM Base", "Stored EXP is Negative!", this.name);
+
+		//* Chars
+		for (const charKey of Object.keys(metanthropes.system.CHARS)) {
+			let charArchetype = 0;
+			for (const item of archetypes) {
+				charArchetype += item?.system.chars[charKey].initial ?? 0;
+			}
+			this.chars[charKey].base = this.chars[charKey].initial + charArchetype + this.chars[charKey].progressed * 5;
+		}
+
+		//* Stats + base char
+		for (const [statKey, statData] of Object.entries(metanthropes.system.STATS)) {
+			let statArchetype = 0;
+			for (const item of archetypes) {
+				statArchetype += item?.system.chars[statKey].initial ?? 0;
+			}
+			this.stats[statKey].base =
+				this.chars[statData.associatedChar].base +
+				this.stats[statKey].initial +
+				statArchetype +
+				this.stats[statKey].progressed * 5;
+		}
 	}
 
+	//* Derived values after Active Effects haven applied | Current: Base + Buffs - Conditions
 	prepareDerivedData() {
 		super.prepareDerivedData();
+
 		metanthropes.utils.metaLog(3, "Actor DM Derived", this);
-		this.resources.life.max = this.resources.life.current; //? defining a derived field
-		this.resources.life.current = Math.min(this.resources.life.current, this.resources.life.max); //todo is this the right spot for this?//?ensure life doesn't go over the max
+
+		const { life, movement } = this.resources;
+		const { main, extra, reaction } = this.actions;
+
+		const items = this.parent.items;
+		const species = items.documentsByType.species[0];
+		const archetypes = items.documentsByType.archetype;
+
+		//* Life
+		//todo: how to handle Duplicates? see _prepareDerivedVitalData(actorData) in old actor
+		life.max = life.base + this.stats.endurance.current; //+ size modifier + metaLifeProgression + metaConstitution + substanceImitation + controlDensityTemp
+		life.current = Math.min(life.current, life.max);
+
+		//* Movement
+		movement.max = movement.base; //could an effect change the max? yes, so what would happen here?
+		movement.current = Math.min(movement.current, movement.max); //do we need this? can someone get +movement.current somehow?
+
+		//* Actions
+		main.max = main.base; //+ metapower -- does species limit the max?
+		extra.max = extra.base;
+		reaction.max = reaction.base;
 	}
 }
-
-//todo clean up notes
-
-// 		static defineSchema() {
-// 		const fields = foundry.data.fields;
-
-// 		const scoreNumber = { required: true, nullable: false, integer: true, min: 0, initial: 1 };
-// 		const buffLevelNumber = { required: true, nullable: false, integer: true, min: 0, max: 10, initial: 0 };
-// 		const conditionLevelNumber = { required: true, nullable: false, integer: true, min: 0, max: 5, initial: 0};
-// 		const effectLevelNumber = { required: true, nullable: false, integer: true, min: -20, max: 20, initial: 10 }; //!should not be called effect?
-// 		//numberfield options
-// 		//!positive bool
-// 		//max
-// 		//initial
-// 		//gmOnly bool
-// 		//!choices
-// 		//readonly
-// 		//step
-// 		const simpleStringValue = { required: true, nullable: false, initial: "default value" };
-
-// 		const schema = {};
-// 		//* Resources
-// 		schema.resources : new fields.SchemaField({
-// 			life: new fields.SchemaField({
-// 				current: new fields.NumberField({ ...scoreNumber }),
-// 				max: new fields.NumberField({ ...scoreNumber }),
-// 			}),
-// 			actions: new fields.SchemaField({
-// 				main: new fields.NumberField({ ...scoreNumber }),
-// 				movement: new fields.NumberField({ ...scoreNumber }),
-// 				//extra: new fields.NumberField({ ...actionsAvailable }),
-// 				//reaction: new fields.NumberField({ ...actionsAvailable }),
-// 			}),
-// 		});
-// 		//* Physical - species??
-// 		schema.physical : new fields.SchemaField({
-// 			description: new fields.HTMLField(),
-// 			hitbox: new fields.DocumentUUIDField(),
-// 			//options
-// 			//required bool/true
-// 			//!blank bool/false= don't allow null/blank as a save option when false
-// 			//nullable bool/true
-// 			//initial null
-// 			//type undefined - edw isws kanw specify to type of document?
-// 			//embedded undefined
-// 			//!textSearch bool where is it defined? what does it do?
-// 			//!trim bool /true def ^ same
-// 			speed: new fields.SchemaField({
-// 				current: new fields.NumberField({ ...effectLevelNumber }),
-// 				buff: new fields.NumberField({ ...buffLevelNumber }),
-// 				condition: new fields.NumberField({ ...conditionLevelNumber }),
-// 			}),
-// 			weight: new fields.SchemaField({
-// 				current: new fields.NumberField({ ...effectLevelNumber }),
-// 				buff: new fields.NumberField({ ...buffLevelNumber }),
-// 				condition: new fields.NumberField({ ...conditionLevelNumber }),
-// 			}),
-// 			size: new fields.SchemaField({
-// 				current: new fields.NumberField({ ...effectLevelNumber }),
-// 				buff: new fields.NumberField({ ...buffLevelNumber }),
-// 				condition: new fields.NumberField({ ...conditionLevelNumber }),
-// 			}),
-// 			age: new fields.NumberField({ ...scoreNumber }),
-// 			pob: new fields.StringField({ ...simpleStringValue }),
-// 			cover: new fields.StringField({ ...simpleStringValue }),
-// 			detections: new fields.StringField({ ...simpleStringValue }),
-// 			resistances: new fields.StringField({ ...simpleStringValue }),
-// 			immunities: new fields.StringField({ ...simpleStringValue }),
-// 			shift: new fields.StringField({ ...simpleStringValue }),
-// 		});
-// 		//* Characteristics
-// 		schema.chars : new fields.SchemaField(
-// 			Object.entries(metanthropes.system.CHARS).reduce((obj, [charKey, charData]) => {
-// 				obj[charKey] : new fields.SchemaField({
-// 					current: new fields.NumberField({
-// 						...scoreNumber,
-// 						id: charData.id,//!den pairnei ayta poy den einai already defined sto schema tou numberfield?
-// 						label: charData.label,
-// 						hint: charData.hint,
-// 					}),
-// 					// id: new fields.StringField({ initial: charData.id }),
-// 					// label: new fields.StringField({ initial: charData.label }),
-// 					// hint: new fields.StringField({ initial: charData.hint }),
-// 				});
-// 				return obj;
-// 			}, {})
-// 		);
-// 		//* Stats
-// 		//schema.stats : new fields.SchemaField();
-// 		//* Special Rolls
-// 		//* AAE ?
-// 		//* Other / notes / owner? admin stuff
-// 		//schema.other;
-// 		// schema.notes : new fields.SchemaField({
-// 		// 	metaOwner: new fields.StringField(),
-// 		// });
-
-// 		//* Possible Extentions outside Base
-// 		//* Species defines initial base actor values + extras
-// 		// schema.species : new fields.SchemaField(
-// 		// 	{
-// 		// 		name: new fields.StringField({ blank: false }),
-// 		// 		img: new fields.StringField(),
-// 		// 		...MetanthropesItemSpecies.defineSchema(),
-// 		// 	},
-// 		// 	{
-// 		// 		required: true,
-// 		// 		nullable: true,
-// 		// 		initial: null,
-// 		// 	}
-// 		// );
-// 		//* Intelligent-Sentient-Profession-Archetype
-// 		// schema.exp - progression;
-// 		// schema.perks;
-// 		// schema.arc - regression - background;
-// 		// //* Metapowers
-// 		// schema.metamorphosis;
-// 		// //* Destiny
-// 		// schema.oxidestiny - resource;
-// 		// //* ??? extentions?
-// 		// schema.politics;
-// 		// schema.achievements;
-
-// 		return schema;
-// 		//base actor: hitbox, life, stats, actions (main, movement), AAe, special rolls, strikes
-// 		// species ->
-
-// 		//actions: duplicants and animated will level up actions tous
-// 		//duplicants nai men destiny alla oxi really (kovoune tou owner - isws me active effect kapws)
-
-// 		//const actionsAvailable = { required: true, nullable: false, integer: true, min: 0, initial: 0 };
-// 		//const requiredInteger = { required: true, nullable: false, integer: true, min: 0, initial: 0 };
-// 		//const requiredNumber = { required: true, nullable: false, integer: false, min: 0, initial: 0 };
-// 		//const requiredString = { required: true, nullable: false };
-// 		//const statScore = { required: true, nullable: false, integer: true, min: 0, initial: 1 };
-// 	}
-
-// 	// static defineSchema() {
-// 	// 	const fields = foundry.data.fields;
-// 	// 	const scoreNumber = { required: true, nullable: false, integer: true, min: 0 };
-
-// 	// 	const lifeScore = { required: true, nullable: false, integer: true, min: 0, initial: undefined };
-// 	// 	const lifeValue = { required: true, nullable: false, integer: true, min: 0 };
-
-// 	// 	const effectLevel = { required: true, nullable: false, integer: true, min: 0, max: 10, initial: 0 };
-// 	// 	const actionsAvailable = { required: true, nullable: false, integer: true, min: 0, initial: 0 };
-// 	// 	const requiredInteger = { required: true, nullable: false, integer: true, min: 0, initial: 0 };
-// 	// 	const requiredNumber = { required: true, nullable: false, integer: false, min: 0, initial: 0 };
-// 	// 	const requiredString = { required: true, nullable: false };
-// 	// 	const statScore = { required: true, nullable: false, integer: true, min: 0, initial: 1 };
-// 	// 	// const baseNumberFields = {
-// 	// 	// 	current: new fields.NumberField({...kati}),
-// 	// 	// }
-// 	// 	const schema = {};
-// 	// 	//* Resources
-// 	// 	schema.resources : new fields.SchemaField({
-// 	// 		life: new fields.SchemaField({
-// 	// 			current: new fields.NumberField({ ...scoreNumber }),
-// 	// 			max: new fields.NumberField({ ...scoreNumber }),
-// 	// 		}),
-// 	// 		actions: new fields.SchemaField({
-// 	// 			main: new fields.NumberField({ ...actionsAvailable }),
-// 	// 			extra: new fields.NumberField({ ...actionsAvailable }),
-// 	// 			reaction: new fields.NumberField({ ...actionsAvailable }),
-// 	// 			movement: new fields.NumberField({ ...actionsAvailable }),
-// 	// 		}),
-// 	// 	});
-// 	// 	//* Physical
-// 	// 	schema.physical : new fields.SchemaField({
-// 	// 		description: new fields.HTMLField(),
-// 	// 		height: new fields.NumberField({
-// 	// 			...requiredNumber,
-// 	// 			initial: 1.65,
-// 	// 		}),
-// 	// 		weight: new fields.NumberField({
-// 	// 			...requiredInteger,
-// 	// 			initial: 62,
-// 	// 		}),
-// 	// 		age: new fields.NumberField({
-// 	// 			...requiredInteger,
-// 	// 			initial: 30,
-// 	// 		}),
-// 	// 		pob: new fields.StringField(),
-// 	// 	});
-// 	// 	//* Movement
-// 	// 	schema.movement : new fields.SchemaField({
-// 	// 		value: new fields.NumberField({ ...effectLevel }),
-// 	// 		buff: new fields.NumberField({ ...effectLevel }),
-// 	// 		condition: new fields.NumberField({ ...effectLevel }),
-// 	// 		speed: new fields.SchemaField({
-// 	// 			value: new fields.NumberField({ ...effectLevel }),
-// 	// 			buff: new fields.NumberField({ ...effectLevel }),
-// 	// 			condition: new fields.NumberField({ ...effectLevel }),
-// 	// 		}),
-// 	// 		weight: new fields.SchemaField({
-// 	// 			value: new fields.NumberField({ ...effectLevel }),
-// 	// 			buff: new fields.NumberField({ ...effectLevel }),
-// 	// 			condition: new fields.NumberField({ ...effectLevel }),
-// 	// 		}),
-// 	// 		size: new fields.SchemaField({
-// 	// 			value: new fields.NumberField({ ...effectLevel }),
-// 	// 			buff: new fields.NumberField({ ...effectLevel }),
-// 	// 			condition: new fields.NumberField({ ...effectLevel }),
-// 	// 		}),
-// 	// 	});
-// 	// 	//* Cover
-// 	// 	schema.cover;
-// 	// 	//* Vision
-// 	// 	schema.detections;
-// 	// 	//* Resistances
-// 	// 	schema.resistances;
-// 	// 	//* Immunities
-// 	// 	schema.immunities;
-// 	// 	//* Shift
-// 	// 	schema.shift;
-// 	// 	//* Species
-// 	// 	// schema.species : new fields.SchemaField(
-// 	// 	// 	{
-// 	// 	// 		name: new fields.StringField({ blank: false }),
-// 	// 	// 		img: new fields.StringField(),
-// 	// 	// 		...MetanthropesItemSpecies.defineSchema(),
-// 	// 	// 	},
-// 	// 	// 	{
-// 	// 	// 		required: true,
-// 	// 	// 		nullable: true,
-// 	// 	// 		initial: null,
-// 	// 	// 	}
-// 	// 	// );
-// 	// 	//* Notes
-// 	// 	schema.notes : new fields.SchemaField({
-// 	// 		metaOwner: new fields.StringField(),
-// 	// 	});
-
-// 	// 	//* Intellectual Beings
-// 	// 	//* EXP
-// 	// 	schema.exp;
-// 	// 	//* Characteristics
-// 	// 	schema.chars : new fields.SchemaField(
-// 	// 		Object.entries(metanthropes.system.CHARS).reduce((obj, [charKey, charData]) => {
-// 	// 			obj[charKey] : new fields.SchemaField({
-// 	// 				value: new fields.NumberField({
-// 	// 					...requiredInteger,
-// 	// 					initial: 5,
-// 	// 					min: 0,
-// 	// 				}),
-// 	// 				id: new fields.StringField({ initial: charData.id }),
-// 	// 				//label: charData.label,
-// 	// 				//hint: charData.hint,
-// 	// 			});
-// 	// 			return obj;
-// 	// 		}, {})
-// 	// 	);
-// 	// 	//* Stats
-// 	// 	schema.stats;
-// 	// 	//* Perks
-// 	// 	schema.perks;
-
-// 	// 	//* Sentient Beings
-// 	// 	//* Destiny
-// 	// 	schema.destiny;
-// 	// 	//* Arc
-// 	// 	schema.arc;
-// 	// 	//* Regression
-// 	// 	schema.regression;
-// 	// 	//* Political Beings
-// 	// 	schema.politics;
-// 	// 	//
-
-// 	// 	return schema;
-// 	// }
-
-// 	//* Data Preparation
-// 	//? Base Data preparation, before embedded documents or derived data.
-// 	prepareBaseData() {
-// 		this._prepareBaseLifeData();
-// 		this._prepareBaseCharacteristicsData(); //todo: duplicate data
-// 		this._prepareBaseMovementData();
-// 	}
-
-// 	prepareDerivedData() {
-// 		this._prepareDerivedLifeData();
-// 		this._prepareDerivedCharacteristicsData();
-// 		this._prepareDerivedMovementData();
-
-// 		console.log(this);
-// 	}
-
-// 	//? Base Life Data preparation
-// 	_prepareBaseLifeData() {
-// 		metanthropes.utils.metaLog(3, "datamodel prepareBaseLifeData", this);
-// 		this.resources.life.max = this.chars.body.current + 50;
-// 		// species initial max + progression max + endurance max + size max
-// 	}
-
-// 	//? Base Characteristics Data preparation
-// 	_prepareBaseCharacteristicsData() {}
-
-// 	//? Base Movement Data preparation
-// 	_prepareBaseMovementData() {
-// 		this.movement.value = this.movement.size.value + this.movement.speed.value + this.movement.weight.value;
-// 	}
-
-// 	//? Derived Life Data preparation
-// 	_prepareDerivedLifeData() {
-// 		this.resources.life.current = this.resources.life.max;
-// 	}
-
-// 	//? Derived Characteristics Data preparation
-// 	_prepareDerivedCharacteristicsData() {}
-
-// 	//? Derived Movement Data preparation
-// 	_prepareDerivedMovementData() {}
-// }

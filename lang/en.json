@@ -101,6 +101,10 @@
 							"label": "Current Life",
 							"hint": "This is your current Life."
 						},
+						"base": {
+							"label": "Base Life",
+							"hint": "The life from ..."
+						},
 						"max": {
 							"label": "Maximum Life",
 							"hint": "Metanthropes have a maximum Life of 100 + their Endurance Score and also gain an additional +25 Life for every 5.000 EXP they have accumulated."
@@ -151,7 +155,38 @@
 				"notes": {}
 			}
 		},
-		"ITEM": {},
+		"ITEM": {
+			"SPECIES": {
+				"FIELDS": {
+					"resources": {
+						"life": {
+							"initial": {
+								"label": "Initial Life",
+								"hint": "The Initial Life added to the the Actor"
+							},
+							"label": "Life",
+							"labelArtificial": "Durability",
+							"hint": "Initial Life given to a character based on their Species"
+						}
+					}
+				}
+			},
+			"ARCHETYPE": {
+				"FIELDS": {
+					"resources": {
+						"life": {
+							"initial": {
+								"label": "Initial Life",
+								"hint": "The Initial Life added to the the Actor"
+							},
+							"label": "Life",
+							"labelArtificial": "Durability",
+							"hint": "Initial Life given to a character based on this Archetype"
+						}
+					}
+				}
+			}
+		},
 		"CHARS": {
 			"BODY": {
 				"LABEL": "Body",
@@ -282,7 +317,8 @@
 		"Item": {
 			"Metapower": "Metapower",
 			"Possession": "Possession",
-			"MetanthropesItemSpecies": "Species"
+			"species": "Species",
+			"archetype": "Archetype"
 		}
 	}
 }

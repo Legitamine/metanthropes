@@ -268,7 +268,7 @@ export class MetanthropesActor extends Actor {
 
 	/** @override */
 	getRollData() {
-		if (this.type == "Vehicle") return;
+		if (this.type === "Vehicle") return;
 		const data = super.getRollData();
 		if (!data.Characteristics) {
 			metanthropes.utils.metaLog(2, "MetanthropesActor", "getRollData", this.name, "has no Characteristics!");
