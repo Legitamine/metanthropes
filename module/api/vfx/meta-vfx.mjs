@@ -143,8 +143,8 @@ export async function metaVFX(actor, manuallySelectedTargets, effect, elementalD
 			kame: {
 				type: "singleAttack",
 				path: [
-					{ reference: "origin", deltas: { sort: 1 } },
-					{ reference: "target", deltas: { sort: 1 } },
+					{ reference: "origin", deltas: { sort: 0 } },
+					{ reference: "target", deltas: { sort: 0 } },
 				],
 				pathType: "arc",
 				charge: {
@@ -153,7 +153,7 @@ export async function metaVFX(actor, manuallySelectedTargets, effect, elementalD
 					size: 12,
 					duration: 1500,
 					animations: [{ function: "drawBack" }],
-					sound: {
+					sound: { //defaults to the music track vs the interface or environment
 						src: "systems/metanthropes/assets/audio/sfx/reload-heavy-03.wav",
 						align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
 					},
