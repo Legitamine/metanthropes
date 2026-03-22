@@ -1,6 +1,8 @@
 const { HTMLField, SchemaField, NumberField, StringField, ArrayField } = foundry.data.fields;
-const scoreNumber = { required: true, nullable: false, integer: true, min: 0, initial: 1, max: 10 }; //todo do I need to define initial here? how can it be overriden?
-const someNumber = { max: 10 }; //todo do I need to define max here? what if it's derived?
+const scoreNumber = { required: true, nullable: false, integer: true, min: 0, initial: 0, max: 5 }; //todo do I need to define initial here? how can it be overriden?
+const lifeNumber = { required: true, nullable: false, integer: true, min: 0, initial: 0 }; //todo what if no max is defined? it can go infinite? can i do max: life.max or somethign here?
+const movementNumber = { required: true, nullable: false, integer: true, min: 0, initial: 0 };
+const actionsNumber = { required: true, nullable: false, integer: true, min: 0, initial: 0, }
 
 export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel {
 	static LOCALIZATION_PREFIXES = ["METANTHROPES.ACTOR"];
@@ -8,21 +10,28 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 		return {
 			resources: new SchemaField({
 				life: new SchemaField({
-					current: new NumberField({ ...scoreNumber }),
+					current: new NumberField({ ...lifeNumber }),
 				}),
-				//todo how do I add the ones that come after Species/Archetypes are defined/added?
+				movement: new SchemaField({
+					current: new NumberField({ ...movementNumber }),
+				}),
 			}),
 			actions: new SchemaField({
-				main: new SchemaField({}),
-				extra: new SchemaField({}),
-				reaction: new SchemaField({}),
-				//todo how do I do the derived ones like movement and focused?
+				main: new SchemaField({
+					current: new NumberField({ ...actionsNumber }),
+				}),
+				extra: new SchemaField({
+					current: new NumberField({ ...actionsNumber }),
+				}),
+				reaction: new SchemaField({
+					current: new NumberField({ ...actionsNumber }),
+				}),
 			}),
 			exp: new SchemaField({
 				progressionLog: new ArrayField(
 					new SchemaField({
-						something: new NumberField()
-					})
+						something: new NumberField(),
+					}),
 				), //?this keeps the order
 			}),
 			physical: new SchemaField({
@@ -40,8 +49,8 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 				origin: new SchemaField({}), //? From Species
 			}),
 			chars: new SchemaField(
-				//todo review const structure/usage - link to journal page - can I have it as a hint, click for more within the tooltip?
 				Object.entries(metanthropes.system.CHARS).reduce((obj, [charKey, charData]) => {
+					//todo review const structure/usage - link to journal page - can I have it as a hint, click for more within the tooltip?
 					obj[charKey] = new SchemaField({
 						current: new NumberField({ ...scoreNumber }),
 						initial: new NumberField({ ...scoreNumber }),
@@ -74,9 +83,6 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 			conditions: new SchemaField({}),
 			perks: new SchemaField({}),
 			notes: new SchemaField({}),
-			meta: new SchemaField({}), //not at base actor
-			strikes: new SchemaField({}), //should be ommited much like possessions?
-			special: new SchemaField({}), //same as strikes?
 		};
 	}
 
@@ -84,11 +90,25 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 		super.prepareBaseData();
 		metanthropes.utils.metaLog(3, "Actor DM Base", this);
 		this.resources.life.current += this.stats.endurance.current; //this works
+
+		const items = this.parent.items;
+		const species = items.documentsByType.species[0];
+		const archetypes = items.documentsByType.archetype;
+
+		//* Initial Base values
+
+		//* Max Base values
+		this.resources.life.max = 0; //apo initial, species, archetypes, size
+		this.resources.movement.max = 0;
+		this.actions.main.max = 0;
+		this.actions.extra.max = 0;
+		this.actions.reaction.max = 0;
+
 	}
 
 	prepareDerivedData() {
-		metanthropes.utils.metaLog(3, "Actor DM Derived", this);
 		super.prepareDerivedData();
+		metanthropes.utils.metaLog(3, "Actor DM Derived", this);
 		this.resources.life.max = this.resources.life.current; //? defining a derived field
 		this.resources.life.current = Math.min(this.resources.life.current, this.resources.life.max); //todo is this the right spot for this?//?ensure life doesn't go over the max
 	}
