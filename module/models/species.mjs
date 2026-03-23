@@ -16,7 +16,7 @@ export default class MetanthropesSpecies extends MetanthropesItemBase {
 			//todo den thelw ayto akrivws, thelw 3 values gia ta choices
 			//! kanoune choose ola ta species the same way?
 			chars: new SchemaField(
-				Object.entries(metanthropes.system.CHARS).reduce((obj, [charKey, charData]) => {
+				Object.keys(metanthropes.system.CHARS).reduce((obj, charKey) => {
 					obj[charKey] = new SchemaField({
 						initial: new NumberField({ ...standardNumber }),
 					});
@@ -24,7 +24,7 @@ export default class MetanthropesSpecies extends MetanthropesItemBase {
 				}, {}),
 			),
 			stats: new SchemaField(
-				Object.entries(metanthropes.system.STATS).reduce((obj, [statKey, statData]) => {
+				Object.keys(metanthropes.system.STATS).reduce((obj, statKey) => {
 					obj[statKey] = new SchemaField({
 						initial: new NumberField({ ...standardNumber }),
 					});

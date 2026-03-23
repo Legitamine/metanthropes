@@ -31,7 +31,7 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 					new SchemaField({
 						something: new NumberField(),
 					}),
-				), //?this keeps the order
+				), //?this keeps the progression order
 				total: new NumberField({ ...standardNumber }),
 				spent: new NumberField({ ...standardNumber }),
 			}),
@@ -50,7 +50,7 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 				origin: new SchemaField({}), //? From Species
 			}),
 			chars: new SchemaField(
-				Object.entries(metanthropes.system.CHARS).reduce((obj, [charKey, charData]) => {
+				Object.keys(metanthropes.system.CHARS).reduce((obj, charKey) => {
 					//todo review const structure/usage - link to journal page - can I have it as a hint, click for more within the tooltip?
 					obj[charKey] = new SchemaField({
 						current: new NumberField({ ...standardNumber }),
@@ -67,7 +67,7 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 				}, {}),
 			),
 			stats: new SchemaField(
-				Object.entries(metanthropes.system.STATS).reduce((obj, [statKey, statData]) => {
+				Object.keys(metanthropes.system.STATS).reduce((obj, statKey) => {
 					obj[statKey] = new SchemaField({
 						current: new NumberField({ ...standardNumber }),
 						initial: new NumberField({ ...standardNumber }),
@@ -103,7 +103,7 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 		const species = items.documentsByType.species[0];
 		const archetypes = items.documentsByType.archetype;
 
-		//* Base Life
+		//* Life
 		let lifeInitial = species?.system.resources.life.initial ?? 0;
 		for (const item of archetypes) {
 			const lifeArchetypeModifier = item?.system.resources.life.initial ?? 0;
@@ -138,7 +138,7 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 		for (const [statKey, statData] of Object.entries(metanthropes.system.STATS)) {
 			let statArchetype = 0;
 			for (const item of archetypes) {
-				statArchetype += item?.system.chars[statKey].initial ?? 0;
+				statArchetype += item?.system.stats[statKey].initial ?? 0;
 			}
 			this.stats[statKey].base =
 				this.chars[statData.associatedChar].base +
@@ -162,6 +162,7 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 		const archetypes = items.documentsByType.archetype;
 
 		//* Life
+		//todo: do I need a life.value to make it work as a bar? or just define life.current in system.json?
 		//todo: how to handle Duplicates? see _prepareDerivedVitalData(actorData) in old actor
 		life.max = life.base + this.stats.endurance.current; //+ size modifier + metaLifeProgression + metaConstitution + substanceImitation + controlDensityTemp
 		life.current = Math.min(life.current, life.max);
@@ -174,5 +175,6 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 		main.max = main.base; //+ metapower -- does species limit the max?
 		extra.max = extra.base;
 		reaction.max = reaction.base;
+		//derived actions, define max math.min
 	}
 }
