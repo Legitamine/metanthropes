@@ -104,14 +104,15 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 		const archetypes = items.documentsByType.archetype;
 
 		//* Life
+		const progressionStep = species?.system.resources.life.progressionStep ?? 0;
+		const progressionGain = species?.system.resources.life.progressionGain ?? 0;
 		let lifeInitial = species?.system.resources.life.initial ?? 0;
 		for (const item of archetypes) {
 			const lifeArchetypeModifier = item?.system.resources.life.initial ?? 0;
 			lifeInitial += lifeArchetypeModifier;
 		}
-		//todo these values could come from the species? or does it apply only to Metanthropes aka Archetype?
-		life.progressed = Math.floor(this.exp.total / 5000) * 25; //? 25 extra Life for each 5K EXP Total
-		life.base = lifeInitial + life.progressed; //! size should be applied to the base life or the derived? do we care?
+		life.progressed = Math.floor(this.exp.total / progressionStep) * progressionGain; //? Extra gain Life for each step EXP Total
+		life.base = lifeInitial + life.progressed;
 
 		//* Movement
 		movement.base = 0;
@@ -141,10 +142,11 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 				statArchetype += item?.system.stats[statKey].initial ?? 0;
 			}
 			this.stats[statKey].base =
-				this.chars[statData.associatedChar].base +
+				this.chars[statData.associatedChar].base + //ayto na paei derived instead kai na vazw to current
 				this.stats[statKey].initial +
 				statArchetype +
 				this.stats[statKey].progressed * 5;
+				//! or do we keep this base value with base char here, so we can use this as the input for EXP calculation?
 		}
 	}
 
@@ -164,11 +166,11 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 		//* Life
 		//todo: do I need a life.value to make it work as a bar? or just define life.current in system.json?
 		//todo: how to handle Duplicates? see _prepareDerivedVitalData(actorData) in old actor
-		life.max = life.base + this.stats.endurance.current; //+ size modifier + metaLifeProgression + metaConstitution + substanceImitation + controlDensityTemp
+		life.max = life.base + this.stats.endurance.current; //+ size modifier + metaConstitution + substanceImitation + controlDensityTemp
 		life.current = Math.min(life.current, life.max);
 
 		//* Movement
-		movement.max = movement.base; //could an effect change the max? yes, so what would happen here?
+		movement.max = movement.base;
 		movement.current = Math.min(movement.current, movement.max); //do we need this? can someone get +movement.current somehow?
 
 		//* Actions
@@ -176,5 +178,8 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 		extra.max = extra.base;
 		reaction.max = reaction.base;
 		//derived actions, define max math.min
+
+		//* Chars
+		//todo we want to keep the ifCharGoesToZero value vs defined min=0, leave it undefined?
 	}
 }
