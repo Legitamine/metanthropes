@@ -106,15 +106,6 @@ Hooks.once("init", async function () {
 		metanthropes.logic.metaHandleSocketEvents(payload);
 	});
 
-	// //* FVTT V14+ Active Effects
-	// if (game.release.generation >= 14) {
-	// 	metanthropes.utils.metaLog(3, "System", "FVTT V14+ detected, adding phases to ActiveEffects");
-	// 	CONFIG.ActiveEffect.phases = {
-	// 		initial: { label: "METANTHROPES.AE.phases.initial" },
-	// 		final: { label: "METANTHROPES.AE.phases.final" },
-	// 	};
-	// }
-
 	//* V14 VFX
 	CONFIG.Canvas.vfx.enabled = true;
 
