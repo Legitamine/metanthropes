@@ -18,7 +18,7 @@ Hooks.once("init", async function () {
 
 	CONFIG.Item.dataModels = {
 		species: metanthropes.models.species,
-		archetype: metanthropes.models.archetype,
+		template: metanthropes.models.template,
 	};
 	// }
 
@@ -70,7 +70,7 @@ Hooks.once("init", async function () {
 		metanthropes.applications.MetanthropesItemSheetV2,
 		{
 			makeDefault: true,
-			types: ["species", "archetype"],
+			types: ["species", "template"],
 			label: "METANTHROPES.SHEET.ITEMV2.LABEL",
 		},
 	);

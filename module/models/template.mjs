@@ -3,8 +3,8 @@ const { HTMLField, SchemaField, NumberField, StringField, ArrayField } = foundry
 const scoreNumber = { required: true, nullable: false, integer: true, min: 0, initial: 0, max: 5 };
 const standardNumber = { required: true, nullable: false, integer: true, min: 0, initial: 2 };
 
-export default class MetanthropesArchetype extends MetanthropesItemBase {
-	static LOCALIZATION_PREFIXES = [...super.LOCALIZATION_PREFIXES, "METANTHROPES.ITEM.ARCHETYPE"];
+export default class MetanthropesTemplate extends MetanthropesItemBase {
+	static LOCALIZATION_PREFIXES = [...super.LOCALIZATION_PREFIXES, "METANTHROPES.ITEM.TEMPLATE"];
 
 	static defineSchema() {
 		return {

@@ -93,24 +93,17 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 	//* Base = Initial (from Species/Archetypes) + Progressed
 	prepareBaseData() {
 		super.prepareBaseData();
-
-		metanthropes.utils.metaLog(3, "Actor DM Base", this);
-
 		const { life, movement } = this.resources;
 		const { main, extra, reaction } = this.actions;
-
 		const items = this.parent.items;
 		const species = items.documentsByType.species[0];
-		const archetypes = items.documentsByType.archetype;
+		const templates = items.documentsByType.template;
 
 		//* Life
-		const progressionStep = species?.system.resources.life.progressionStep ?? 0;
+		const progressionStep = species?.system.resources.life.progressionStep ?? Infinity; //! should never be 0
 		const progressionGain = species?.system.resources.life.progressionGain ?? 0;
 		let lifeInitial = species?.system.resources.life.initial ?? 0;
-		for (const item of archetypes) {
-			const lifeArchetypeModifier = item?.system.resources.life.initial ?? 0;
-			lifeInitial += lifeArchetypeModifier;
-		}
+		for (const item of templates) lifeInitial += item?.system.resources.life.initial ?? 0;
 		life.progressed = Math.floor(this.exp.total / progressionStep) * progressionGain; //? Extra gain Life for each step EXP Total
 		life.base = lifeInitial + life.progressed;
 
@@ -128,25 +121,21 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 
 		//* Chars
 		for (const charKey of Object.keys(metanthropes.system.CHARS)) {
-			let charArchetype = 0;
-			for (const item of archetypes) {
-				charArchetype += item?.system.chars[charKey].initial ?? 0;
-			}
-			this.chars[charKey].base = this.chars[charKey].initial + charArchetype + this.chars[charKey].progressed * 5;
+			let charTemplate = 0;
+			for (const item of templates) charTemplate += item?.system.chars[charKey].initial ?? 0;
+			this.chars[charKey].base = this.chars[charKey].initial + charTemplate + this.chars[charKey].progressed * 5;
 		}
 
 		//* Stats + base char
 		for (const [statKey, statData] of Object.entries(metanthropes.system.STATS)) {
-			let statArchetype = 0;
-			for (const item of archetypes) {
-				statArchetype += item?.system.stats[statKey].initial ?? 0;
-			}
+			let statTemplate = 0;
+			for (const item of templates) statTemplate += item?.system.stats[statKey].initial ?? 0;
 			this.stats[statKey].base =
 				this.chars[statData.associatedChar].base + //ayto na paei derived instead kai na vazw to current
 				this.stats[statKey].initial +
-				statArchetype +
+				statTemplate +
 				this.stats[statKey].progressed * 5;
-				//! or do we keep this base value with base char here, so we can use this as the input for EXP calculation?
+			//! or do we keep this base value with base char here, so we can use this as the input for EXP calculation?
 		}
 	}
 
@@ -161,7 +150,7 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 
 		const items = this.parent.items;
 		const species = items.documentsByType.species[0];
-		const archetypes = items.documentsByType.archetype;
+		const templates = items.documentsByType.template;
 
 		//* Life
 		//todo: do I need a life.value to make it work as a bar? or just define life.current in system.json?

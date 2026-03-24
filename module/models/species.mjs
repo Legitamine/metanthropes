@@ -11,7 +11,7 @@ export default class MetanthropesSpecies extends MetanthropesItemBase {
 			resources: new SchemaField({
 				life: new SchemaField({
 					initial: new NumberField({ ...standardNumber }),
-					progressionStep: new NumberField({ ...standardNumber }),
+					progressionStep: new NumberField({ ...standardNumber }), //cannot be zero?
 					progressionGain: new NumberField({ ...standardNumber }),
 				}),
 			}),
