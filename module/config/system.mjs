@@ -3,8 +3,9 @@ import { colors } from "./colors.mjs";
 import { STATS } from "./stats.mjs";
 import { MOVEMENT } from "./movement.mjs";
 import { TOKENDEFAULTS } from "./prototype-token-overrides.mjs";
+import { TABLES } from "./tables/_tables.mjs";
 
-export const SYSTEM = {
+export const SYSTEM = Object.freeze({
 	id: "metanthropes",
 	ASCII: `_____________________________________________________________________________________ 
 __  __ ______ _______       _   _ _______ _    _ _____   ____  _____  ______  _____  
@@ -15,8 +16,9 @@ __  __ ______ _______       _   _ _______ _    _ _____   ____  _____  ______  __
 |_|  |_|______|  |_/_/    \\_\\_| \\_|  |_|  |_|  |_|_|  \\_\\\\____/|_|    |______|_____/ 
 =====================================================================================`,
 	CHARS,
-	colors,
+	colors, //todo rename with new UI
 	STATS,
-	MOVEMENT,
+	MOVEMENT, //todo deprecate
 	TOKENDEFAULTS,
-};
+	TABLES,
+});
