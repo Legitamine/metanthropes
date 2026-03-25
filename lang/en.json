@@ -297,7 +297,22 @@
 			},
 			"seconds": "Seconds",
 			"none": "None"
-		}
+		},
+		"TABLES": {
+			"SPEED": {
+				"0": {
+					"average": "average example",
+					"example": "example average"
+				}
+			}
+		},
+		"BUFFS": {
+			"body": {
+				"label": "Hardened",
+				"hint": "Hardened makes your *Body* stronger"
+			}
+		},
+		"CONDITIONS": {}
 	},
 	"TYPES": {
 		"Actor": {

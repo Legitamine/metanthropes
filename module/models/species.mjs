@@ -2,7 +2,23 @@ import MetanthropesItemBase from "./item.mjs";
 const { HTMLField, SchemaField, NumberField, StringField, ArrayField } = foundry.data.fields;
 const scoreNumber = { required: true, nullable: false, integer: true, min: 0, initial: 0, max: 5 };
 const standardNumber = { required: true, nullable: false, integer: true, min: 0, initial: 1 };
-
+//todo we don't want more than applied to the actor
+//! perhaps a hybrid is a way to have more than a single species
+//! but with some caveats: so choices/initialDice come from the first one you enter
+//! but other properties can come from additional species you get, like immunities or addtional life?
+/**
+ * Species is the basic class for an actor, and defines among many things:
+ ** Initial choice for CHARS & dice for STATS during rolling a new Actor
+ ** The Hitbox for the Actor
+ ** The place of origin for the Actor
+ ** Assigns Target types for the Actor
+ ** Controls if the Actor can have Destiny and other optional features
+ *
+ * @export
+ * @class MetanthropesSpecies
+ * @typedef {MetanthropesSpecies}
+ * @extends {MetanthropesItemBase}
+ */
 export default class MetanthropesSpecies extends MetanthropesItemBase {
 	static LOCALIZATION_PREFIXES = [...super.LOCALIZATION_PREFIXES, "METANTHROPES.ITEM.SPECIES"];
 

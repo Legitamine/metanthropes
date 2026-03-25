@@ -1,8 +1,7 @@
 export const SPEED = Object.freeze({
-	"-10": {
-		score: -10,
-		movement: 1,
-		average: "LOCALIZED.STRING",
-		example: "LOCALIZED STRING",
+	0: {
+		movement: 0,
+		average: "METANTHROPES.TABLES.SPEED.0.average",
+		example: "METANTHROPES.TABLES.SPEED.0.average",
 	},
 });

@@ -2,7 +2,19 @@ import MetanthropesItemBase from "./item.mjs";
 const { HTMLField, SchemaField, NumberField, StringField, ArrayField } = foundry.data.fields;
 const scoreNumber = { required: true, nullable: false, integer: true, min: 0, initial: 0, max: 5 };
 const standardNumber = { required: true, nullable: false, integer: true, min: 0, initial: 2 };
+//todo we don't want the same template applied twice on an actor
 
+/**
+ * Templates are optional and provide an Actor with a combination of:
+ ** Augmented CHARS and STATS that add to the Base values
+ ** Access to special game mechanics (...)
+ ** Additional Resistances, Immunities and Special abilities
+ *
+ * @export
+ * @class MetanthropesTemplate
+ * @typedef {MetanthropesTemplate}
+ * @extends {MetanthropesItemBase}
+ */
 export default class MetanthropesTemplate extends MetanthropesItemBase {
 	static LOCALIZATION_PREFIXES = [...super.LOCALIZATION_PREFIXES, "METANTHROPES.ITEM.TEMPLATE"];
 

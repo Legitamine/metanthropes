@@ -1,10 +1,9 @@
 export const SIZE = Object.freeze({
-	"-10": {
-		score: 1,
+	0: {
 		movement: 1,
 		reach: "fromRangeTable",
 		strike: 5, //damage dice number
-		altLife: -20,
+		life: -20,
 		average: "",
 		example: "",
 	},
