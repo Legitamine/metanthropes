@@ -10,19 +10,17 @@
 
 Metanthropes™ features **over 500 unique abilities**, called **Metapowers**: unique, metaphysical gifts that transform ordinary humans into something extraordinary.
 
-This System is the official Metanthropes™ System for Foundry VTT. It is available, free of charge, for all Foundry VTT users. It includes demo content, to check out some example Metanthrope builds and playtest. It also comes with Journals to help you learn how to play.
+This System is the official Metanthropes™ System for Foundry VTT. It is available, free of charge, for all Foundry VTT users. It includes demo content, to check out some example Metanthrope builds and playtest. It also comes with Journals to help you learn how to play & the official Metanthropes 2025 Quickstart PDF.
 
 A list of Premium Modules for Foundry VTT is available [on our store](https://metanthropes.com/store). You can also find our Premium Modules available on the [official Foundry VTT Marketplace](https://www.foundryvtt.store/creators/legitamine-games).
 
-To learn more about Metanthropes, visit [our website.](https://metanthropes.com)
-
-We would love to hear your opinion and feedback! Join our community [on Discord!](https://metanthropes.com/discord)
+To learn more about Metanthropes, visit [the website](https://metanthropes.com) & join our community [on Discord!](https://metanthropes.com/discord)
 
 ## Early Access
 
-Metanthropes™ is in **Early Access** - although functional, it does not fully represent the envisioned scope of the project.
+Metanthropes™ is in **Early Access** and does not fully represent the envisioned scope of the project.
 
-Early Access is considered stable enough to run Sagas (Campaigns), as well as to playtest new features. We offer support to all Narrators [via our Discord!](https://metanthropes.com/discord).
+Early Access is considered stable enough to run Sagas (Campaigns), as well as to playtest new features. We offer support to all Narrators [via our Discord.](https://metanthropes.com/discord).
 
 -   Beta Testing of New Features is available for owners of the [Premium Module Metanthropes: Core](https://www.metanthropes.com/store/product/7-core-fvtt-module/).
 -   Alpha Testing of Upcoming Features is available for owners of the [Premium Module Metanthropes: Homebrew](https://www.metanthropes.com/store/product/8-homebrew-early-access/).
@@ -31,7 +29,7 @@ Early Access is considered stable enough to run Sagas (Campaigns), as well as to
 
 ## Installation
 
-To use this System, please search for 'Metanthropes' in Foundry's System Search box and click Install.
+To install this System, search for 'Metanthropes' in Foundry's System Search box and click Install.
 Alternatively, you may use the following link when selecting to install manually via the .JSON manifest file:
 
      https://github.com/legitamine/metanthropes/releases/latest/download/system.json
@@ -40,7 +38,7 @@ Alternatively, you may use the following link when selecting to install manually
 
 Metanthropes™ aims to utilize the latest and best that the amazing Foundry VTT platform offers.
 
--   Foundry VTT version 13 and version 14 are currently supported. Latest verified version is v14.352.
+-   Foundry VTT version 14 is fully supported. Latest verified version is v14.357.
 
 ## Supported 3rd Party Modules
 

@@ -10,18 +10,32 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 # Early Access Releases
 
-## Early Access v0.1x.xxx []
+## Early Access v0.14.xxx []
 
 ### Added:
 
-- Added support for the latest Foundry V14 API Development 2 build (14.355)
-- Improved the development tools by properly configuring intellisense for the Foundry and Metanthropes API.
+- Added support for the latest Foundry V14 build (14.357).
+- [Homebrew] (Requires Alpha Testing Enabled in the Settings) Added support for the new VFX engine. Metapowers & Possessions that deal Damage, will now trigger a new Visual & Audio effect upon successful activation, before automatically applying the damage. The effect will not trigger on re-rolls of Damage. Read more about it on [blog on VFX](). +Design Doc
+- [Homebrew] (Requires Alpha Testing Enabled in the Settings) The new Metanthropes Actor V2, the new Species and Template Item types are available for Alpha testing. This is a major step to Metanthropes going out of Early Access and we are looking forward to your feedback. Read more about it on our [Dev Blog](). +Design Doc
+- NEW UI ?
+- NEW Actor Sheet V2 + Item Sheet V2 (Species/Template)
 
 ### Changed:
+- Improved the development tools by properly configuring intellisense for the Foundry and Metanthropes API.
+- Extended the Metanthropes API to include [+?] and removed [-?]
+
+-
 
 ### Fixed:
 
 ### Known Issues:
+
+- [DSN] Dice So Nice v5.2.5 isn't fully compatible with FVTT v14.357, so we recommend to keep it disabled until a newer version is available.
+
+### Deprecated:
+
+- tables.movement (confirm)
+-
 
 ## Early Access v0.13.104 [2025-12-27]
 
