@@ -22,12 +22,14 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 - NEW Actor Sheet V2 + Item Sheet V2 (Species/Template)
 
 ### Changed:
-- On a new World creation, since now you get an option to name your Gamemaster user, if you leave the default, it will be localized to 'The Narrator'.
+- When creating a new World, you now get the option to name the default Gamemaster user. If you don't, it will be localized to 'The Narrator'.
 - Extended the Metanthropes API to include [+?] and removed [-?]
 - Console logging (F12 or Ctrl+Shift+i) now has different colored messages to help distinguish the Advanced Logging ones (color-tuned for Dark/Light mode incoming with the new ui)
+- Updated the ```>_ Send to Console``` button, to work with both AppV1 and AppV2 sheets of any type. This buttons shows up when you enable the 'Advanced Logging' option in the settings and will send to the console the App & Document for quick inspection and debugging.
 
 ### Fixed:
 - Improved the development tools by properly configuring intellisense for the Foundry and Metanthropes API.
+- When targeting multiple Tokens, it will now check & remove any invalid actors, or duplicate actor-linked Tokens before proceeding with applying damage to them.
 
 ### Known Issues:
 
