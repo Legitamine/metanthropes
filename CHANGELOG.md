@@ -18,15 +18,16 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 - [Homebrew] (Requires Alpha Testing Enabled in the Settings) Added support for the new VFX engine. Metapowers & Possessions that deal Damage, will now trigger a new Visual & Audio effect upon successful activation, before automatically applying the damage. The effect will not trigger on re-rolls of Damage. Read more about it on [blog on VFX](). +Design Doc
 - [Homebrew] (Requires Alpha Testing Enabled in the Settings) The new Metanthropes Actor V2, the new Species and Template Item types are available for Alpha testing. This is a major step to Metanthropes going out of Early Access and we are looking forward to your feedback. Read more about it on our [Dev Blog](). +Design Doc
 - NEW UI ?
+- AAE ??
 - NEW Actor Sheet V2 + Item Sheet V2 (Species/Template)
 
 ### Changed:
-- Improved the development tools by properly configuring intellisense for the Foundry and Metanthropes API.
+- On a new World creation, since now you get an option to name your Gamemaster user, if you leave the default, it will be localized to 'The Narrator'.
 - Extended the Metanthropes API to include [+?] and removed [-?]
-
--
+- Console logging (F12 or Ctrl+Shift+i) now has different colored messages to help distinguish the Advanced Logging ones (color-tuned for Dark/Light mode incoming with the new ui)
 
 ### Fixed:
+- Improved the development tools by properly configuring intellisense for the Foundry and Metanthropes API.
 
 ### Known Issues:
 
@@ -35,7 +36,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 ### Deprecated:
 
 - tables.movement (confirm)
--
+- old macro-based triggering of VFX/SFX
 
 ## Early Access v0.13.104 [2025-12-27]
 

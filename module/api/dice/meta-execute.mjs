@@ -733,11 +733,16 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	// }
 	//* Trigger VFX & Apply Damage to Selected Targets
 	if (damageSelectedTargets && actionableTargets) {
-		//* Trigger VFX
-		mL(3, "metaExecute", "Triggering VFX");
-		//todo try/error alphaTesting
-		const manuallySelectedTargets = game.user.targets; //todo for testing, later we need the filtered results here
-		await metanthropes.vfx.metaVFX(actor, manuallySelectedTargets, elementalDamageRollResult);
+		if (alphaTesting) {
+			//* Trigger VFX
+			mL(3, "metaExecute", "Triggering VFX");
+			try {
+				const manuallySelectedTargets = game.user.targets; //todo for testing, later we need the filtered results here
+				await metanthropes.vfx.metaVFX(actor, manuallySelectedTargets, elementalDamageRollResult);
+			} catch (error) {
+				mL(5, "metaExecute", "VFX Failed with error", error);
+			}
+		}
 		//* Apply Damage
 		mL(3, "metaExecute", "Applying Damage");
 		await metanthropes.logic.metaApplyDamage(
