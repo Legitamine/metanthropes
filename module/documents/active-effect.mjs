@@ -31,7 +31,7 @@ export class MetanthropesActiveEffect extends ActiveEffect {
 				type: "seconds",
 				duration: d.seconds,
 				remaining: remaining,
-				label: `${remaining} ${game.i18n.localize("METANTHROPES.AE.seconds")}`,
+				label: `${remaining} ${_loc("METANTHROPES.AE.seconds")}`,
 				_worldTime: wt,
 			};
 		}
@@ -84,7 +84,7 @@ export class MetanthropesActiveEffect extends ActiveEffect {
 			type: "none",
 			duration: null,
 			remaining: null,
-			//label: game.i18n.localize("METANTHROPES.AE.none"),
+			//label: _loc("METANTHROPES.AE.none"),
 			label: "Permanent",
 		};
 	}

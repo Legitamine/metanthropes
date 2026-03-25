@@ -30,7 +30,7 @@ export class MetanthropesActor extends Actor {
 						"MetanthropesActor",
 						"_preCreate",
 						"Creating Protagonist Token from data",
-						data
+						data,
 					);
 					createData.img = "systems/metanthropes/assets/artwork/classifications/hammer.webp";
 					createData.prototypeToken.texture.src =
@@ -205,7 +205,7 @@ export class MetanthropesActor extends Actor {
 							"MetanthropesActor",
 							"prepareBaseData",
 							"Updating Prime Metapower Image for:",
-							this.name
+							this.name,
 						);
 					} else {
 						return;
@@ -258,7 +258,7 @@ export class MetanthropesActor extends Actor {
 				"_prepareDerivedCharacteristicsXPData",
 				actorData.name,
 				"hasProgressed:",
-				hasProgressed
+				hasProgressed,
 			);
 			return;
 		}
@@ -327,7 +327,7 @@ export class MetanthropesActor extends Actor {
 			currentLife,
 			"to",
 			newLife,
-			"Life"
+			"Life",
 		);
 		await metanthropes.logic.metaApplyActorUpdates(this.uuid, { ...updateData });
 	}
@@ -360,7 +360,7 @@ export class MetanthropesActor extends Actor {
 			currentLife,
 			"to",
 			newLife,
-			"Life"
+			"Life",
 		);
 		await metanthropes.logic.metaApplyActorUpdates(this.uuid, { ...updateData });
 	}
@@ -375,9 +375,7 @@ export class MetanthropesActor extends Actor {
 	async undoLastLifeChange() {
 		const previousLife = await this.getFlag("metanthropes", "previousLife");
 		if (previousLife === null || previousLife === undefined || previousLife === "nope")
-			return ui.notifications.warn(
-				game.i18n.localize("METANTHROPES.ACTOR.BASE.life.restore.notification") + this.name
-			);
+			return ui.notifications.warn(_loc("METANTHROPES.ACTOR.BASE.life.restore.notification") + this.name);
 		if (previousLife >= 0) {
 			//todo we should use the unsetflag instead
 			metanthropes.utils.metaLog(0, "Actor", this.name, "Undoing Last Life Change");
@@ -459,7 +457,7 @@ export class MetanthropesActor extends Actor {
 	}
 	get canOnlyHaveStrikes() {
 		return Boolean(
-			this.type.includes("Animal") || this.type.includes("Animated-Plant") || this.type.includes("MetaTherion")
+			this.type.includes("Animal") || this.type.includes("Animated-Plant") || this.type.includes("MetaTherion"),
 		);
 	}
 	get isDiseased() {
@@ -514,7 +512,7 @@ export class MetanthropesActor extends Actor {
 				(CharValue.Current =
 					Number(CharValue.Base) +
 					Number(Number(CharValue.Buff.Current) * 5) -
-					Number(Number(CharValue.Condition.Current) * 5))
+					Number(Number(CharValue.Condition.Current) * 5)),
 			);
 			//? Determine if the Characteristic has dropped to 0
 			if (CharValue.Current <= 0) {
@@ -526,7 +524,7 @@ export class MetanthropesActor extends Actor {
 					"_prepareBaseCharacteristicsData",
 					this.name + "'s",
 					CharKey,
-					"has dropped to 0!"
+					"has dropped to 0!",
 				);
 			}
 			for (const [StatKey, StatScore] of Object.entries(CharValue.Stats)) {
@@ -537,14 +535,14 @@ export class MetanthropesActor extends Actor {
 					(StatScore.Current =
 						Number(StatScore.Base) +
 						Number(Number(StatScore.Buff.Current) * 5) -
-						Number(Number(StatScore.Condition.Current) * 5))
+						Number(Number(StatScore.Condition.Current) * 5)),
 				);
 				//? Calculate the Roll score for this Stat (Current + Characteristic + ifCharacteristicBecomesZeroPenalty)
 				parseInt(
 					(StatScore.Roll =
 						Number(StatScore.Current) +
 						Number(CharValue.Current) +
-						Number(ifCharacteristicBecomesZeroPenalty))
+						Number(ifCharacteristicBecomesZeroPenalty)),
 				);
 				//? Determine if the Stat has dropped to 0
 				if (StatScore.Roll <= 0) {
@@ -555,7 +553,7 @@ export class MetanthropesActor extends Actor {
 						"_prepareBaseCharacteristicsData",
 						this.name + "'s",
 						StatKey,
-						"has dropped to 0!"
+						"has dropped to 0!",
 					);
 				}
 			}
@@ -648,7 +646,7 @@ export class MetanthropesActor extends Actor {
 		};
 		//? movement value is always rounded up
 		const movementValue = Math.ceil(
-			speedModifiers[speedCurrent] * weightModifiers[weightCurrent] * sizeModifiers[sizeCurrent]
+			speedModifiers[speedCurrent] * weightModifiers[weightCurrent] * sizeModifiers[sizeCurrent],
 		);
 		systemData.physical.movement.value = movementValue;
 		systemData.physical.movement.additional = movementValue;
@@ -748,7 +746,7 @@ export class MetanthropesActor extends Actor {
 		const wobblyModifier = Number(systemData.Characteristics.Mind.Stats.Creativity.Condition.Current);
 		//? movement value is always rounded up
 		const movementValue = Math.ceil(
-			speedModifiers[speedCurrent] * weightModifiers[weightCurrent] * sizeModifiers[sizeCurrent] - wobblyModifier
+			speedModifiers[speedCurrent] * weightModifiers[weightCurrent] * sizeModifiers[sizeCurrent] - wobblyModifier,
 		);
 		systemData.physical.movement.value = movementValue;
 		systemData.physical.movement.additional = movementValue;
@@ -768,7 +766,7 @@ export class MetanthropesActor extends Actor {
 			parseInt(
 				(systemData.Vital.Life.max =
 					Number(systemData.Vital.Life.Initial) +
-					Number(systemData.Characteristics.Body.Stats.Endurance.Roll))
+					Number(systemData.Characteristics.Body.Stats.Endurance.Roll)),
 			);
 			//? If current Life is higher than max Life, set current Life to max Life
 			if (systemData.Vital.Life.value > systemData.Vital.Life.max) {
@@ -783,14 +781,14 @@ export class MetanthropesActor extends Actor {
 					this.type +
 						" " +
 						this.name +
-						" hasn't activated Duplicate Self Metapower and should not be duplicated!"
+						" hasn't activated Duplicate Self Metapower and should not be duplicated!",
 				);
 				metanthropes.utils.metaLog(
 					2,
 					"MetanthropesActor",
 					"_prepareBaseVitalData",
 					this.name,
-					"hasn't activated Duplicate Self Metapower and should not be duplicated!"
+					"hasn't activated Duplicate Self Metapower and should not be duplicated!",
 				);
 				return;
 			} else {
@@ -834,7 +832,7 @@ export class MetanthropesActor extends Actor {
 				statExperienceSpent = 0;
 				for (let i = 0; i < progressionCount; i++) {
 					statExperienceSpent += Number(
-						(Number(StatScore.Initial) + Number(CharValue.Base) + Number(i * 5)) * 3
+						(Number(StatScore.Initial) + Number(CharValue.Base) + Number(i * 5)) * 3,
 					);
 				}
 				//? Add the experience spent on this characteristic to the total experience spent, only if Progressed is >0
@@ -849,8 +847,8 @@ export class MetanthropesActor extends Actor {
 			(systemData.Vital.Experience.Stored = Number(
 				Number(systemData.Vital.Experience.Total) -
 					Number(experienceSpent) -
-					Number(systemData.Vital.Experience.Manual)
-			))
+					Number(systemData.Vital.Experience.Manual),
+			)),
 		);
 	}
 	_prepareDerivedPerkXPData(actorData) {
@@ -899,7 +897,7 @@ export class MetanthropesActor extends Actor {
 				this.name,
 				"needs to spend",
 				startingPerks * 100,
-				"total XP on perks"
+				"total XP on perks",
 			);
 		}
 		//	clog("Total Experience Spent automagically for", this.name, "Perks:", experienceSpent);
@@ -907,7 +905,7 @@ export class MetanthropesActor extends Actor {
 		//? adding this to remove the xp calculated for spent xp on the starting perks
 		parseInt(
 			(systemData.Vital.Experience.Spent =
-				Number(experienceSpent) + Number(experienceAlreadySpent) - Number(startingPerks * 100))
+				Number(experienceSpent) + Number(experienceAlreadySpent) - Number(startingPerks * 100)),
 		);
 		parseInt(
 			(systemData.Vital.Experience.Stored = Number(
@@ -916,8 +914,8 @@ export class MetanthropesActor extends Actor {
 					Number(experienceAlreadySpent) -
 					Number(systemData.Vital.Experience.Manual) +
 					//? here we are adding the cost of free starting perks to the stored xp
-					Number(startingPerks) * 100
-			))
+					Number(startingPerks) * 100,
+			)),
 		);
 		if (systemData.Vital.Experience.Stored < 0) {
 			metanthropes.utils.metaLog(
@@ -925,7 +923,7 @@ export class MetanthropesActor extends Actor {
 				"MetanthropesActor",
 				"_prepareDerivedPerkXPData",
 				"WARNING: Stored Experience is Negative for:",
-				this.name
+				this.name,
 			);
 			//! the below either .info or .error will cause an exception? This should also affect v0.7.xx builds
 			//! ui.notifications.info(this.name + "'s Stored Experience is Negative!");
@@ -990,22 +988,22 @@ export class MetanthropesActor extends Actor {
 			"MetanthropesActorProgression",
 			"_prepareCharacteristicsProgression",
 			"actorData:",
-			actorData
+			actorData,
 		);
 		const systemData = actorData.system;
 		for (const [CharKey, CharValue] of Object.entries(systemData.Characteristics)) {
 			//? Calculate the Base score for this Characteristic (Initial + Progressed)
 			parseInt(
-				(CharValue.ProgressionBase = Number(CharValue.Initial) + Number(Number(CharValue.Progressed) * 5))
+				(CharValue.ProgressionBase = Number(CharValue.Initial) + Number(Number(CharValue.Progressed) * 5)),
 			);
 			for (const [StatKey, StatScore] of Object.entries(CharValue.Stats)) {
 				//? Calculate the Base score for this Stat (Initial + Progressed)
 				parseInt(
-					(StatScore.ProgressionBase = Number(StatScore.Initial) + Number(Number(StatScore.Progressed) * 5))
+					(StatScore.ProgressionBase = Number(StatScore.Initial) + Number(Number(StatScore.Progressed) * 5)),
 				);
 				//? Calculate the Score used for Progression for this Stat (Base + Characteristic_Base)
 				parseInt(
-					(StatScore.ProgressionRoll = Number(StatScore.ProgressionBase) + Number(CharValue.ProgressionBase))
+					(StatScore.ProgressionRoll = Number(StatScore.ProgressionBase) + Number(CharValue.ProgressionBase)),
 				);
 			}
 		}

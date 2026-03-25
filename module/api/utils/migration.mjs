@@ -21,10 +21,10 @@ export async function metaMigration() {
 	mL(0, "Migration", "Data Migration Engine Initialized");
 	const modules = await metaInitializeModules();
 	if (!modules) return mL(2, "Migration", "Error could not initialize Modules!");
-	const progressMessage = `${game.i18n.localize("METANTHROPES.MIGRATION.World")}`;
+	const progressMessage = `${_loc("METANTHROPES.MIGRATION.World")}`;
 	const progress = ui.notifications.info(progressMessage, { progress: true });
 	let progressCompletedSteps = 1;
-	let progressTotalSteps = 2 + 2*modules.length;
+	let progressTotalSteps = 2 + 2 * modules.length;
 	function updateProgress(message) {
 		progress.update({
 			pct: ++progressCompletedSteps / progressTotalSteps,
@@ -42,11 +42,11 @@ export async function metaMigration() {
 			migrationData = {};
 			if (game.users.activeGM.name === "Gamemaster") {
 				mL(0, "Migration", "Renaming Gamemaster");
-				progressTotalSteps ++;
+				progressTotalSteps++;
 				updateProgress(
-					`${progressMessage} | ${game.i18n.localize("METANTHROPES.MIGRATION.NarratorRename")} | ${game.i18n.localize("METANTHROPES.COMMON.Narrator")}`,
+					`${progressMessage} | ${_loc("METANTHROPES.MIGRATION.NarratorRename")} | ${_loc("METANTHROPES.COMMON.Narrator")}`,
 				);
-				await game.users.activeGM.update({ name: game.i18n.localize("METANTHROPES.COMMON.Narrator") });
+				await game.users.activeGM.update({ name: _loc("METANTHROPES.COMMON.Narrator") });
 			}
 		}
 		//* For each module I expect to get back either false (no migration) or the migrationDataUpdate for that module
@@ -55,13 +55,13 @@ export async function metaMigration() {
 		for (const [module, moduleName] of modules) {
 			//? contributes +2 to total counter for each module
 			mL(0, "Migration", "Initializing", module, "Data Migration");
-			const moduleMessage = `${progressMessage} | ${game.i18n.localize(moduleName)} |`;
-			updateProgress(`${moduleMessage} ${game.i18n.localize("METANTHROPES.MIGRATION.Data")}`);
+			const moduleMessage = `${progressMessage} | ${_loc(moduleName)} |`;
+			updateProgress(`${moduleMessage} ${_loc("METANTHROPES.MIGRATION.Data")}`);
 			const lastMigratedVersion = migrationData[module]?.lastMigrationVersion || 0;
 			const isMigrationRequired = foundry.utils.isNewerVersion(currentSystemVersion, lastMigratedVersion);
 			if (isMigrationRequired || isMigrationForced) {
 				mL(3, "Migration", module, "World Data Migration is required or is being forced");
-				updateProgress(`${moduleMessage} ${game.i18n.localize("METANTHROPES.MIGRATION.Migrating")}`);
+				updateProgress(`${moduleMessage} ${_loc("METANTHROPES.MIGRATION.Migrating")}`);
 				const moduleMigrationResult = await metaMigrateModuleData(
 					module,
 					migrationData,
@@ -81,7 +81,7 @@ export async function metaMigration() {
 				continue;
 			} else {
 				mL(0, "Migration", module, "Migration is not required");
-				updateProgress(`${moduleMessage} ${game.i18n.localize("METANTHROPES.MIGRATION.NoUpdate")}`);
+				updateProgress(`${moduleMessage} ${_loc("METANTHROPES.MIGRATION.NoUpdate")}`);
 				continue;
 			}
 		}
@@ -96,7 +96,7 @@ export async function metaMigration() {
 		);
 		progress.update({
 			pct: 1,
-			message: `${progressMessage} | ${game.i18n.localize("METANTHROPES.MIGRATION.Error")}`,
+			message: `${progressMessage} | ${_loc("METANTHROPES.MIGRATION.Error")}`,
 		});
 		return;
 	}
@@ -106,10 +106,10 @@ export async function metaMigration() {
 		mL(0, "Migration", "World Data Migration not required");
 		progress.update({
 			pct: 1,
-			message: `${progressMessage} | ${game.i18n.localize("METANTHROPES.MIGRATION.NoUpdate")}`,
+			message: `${progressMessage} | ${_loc("METANTHROPES.MIGRATION.NoUpdate")}`,
 		});
 	} else {
-		updateProgress(`${progressMessage} | ${game.i18n.localize("METANTHROPES.MIGRATION.Finalizing")}`);
+		updateProgress(`${progressMessage} | ${_loc("METANTHROPES.MIGRATION.Finalizing")}`);
 		mL(0, "Migration", "Updating Game Settings with Data Migration Results");
 		await game.settings.set("metanthropes", "migration", {
 			...migrationData,
@@ -120,7 +120,7 @@ export async function metaMigration() {
 		await game.settings.set("metanthropes", "forceMigration", false);
 		progress.update({
 			pct: 1,
-			message: `${progressMessage} | ${game.i18n.localize("METANTHROPES.MIGRATION.Finished")}`,
+			message: `${progressMessage} | ${_loc("METANTHROPES.MIGRATION.Finished")}`,
 		});
 	}
 	const migrationDataResults = await game.settings.get("metanthropes", "migration");
