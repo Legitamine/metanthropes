@@ -226,14 +226,7 @@ summary::marker {
 	}
 }
 
-//* Example style for Metanthropes (can be removed if not needed) */
-.item-formula {
-	flex: 0 0 200px;
-	padding: 0 8px;
-}
-
 //* Responsive
-// responsive.scss
 
 // Breakpoints
 $minimum-width: 405px; // 40% of the default
