@@ -7,20 +7,20 @@
  * Formal contribution will be part of v1.0, however your feedback is most welcome at this early stage.
  *
  * Throughtout this project, I use the following syntax for comments:
- ** //! Marks a special comment that stands out (in Red) for critical notes/issues.
- ** //* Marks a comment that is used as a section header (in Green) for better section visibility.
- ** //? Marks a comment that is used for sub-sections and for elaborating my intent (in Blue) for better readability.
- ** //todo Marks a comment that is used for marking (in Orange) potential optimization notes.
+ ** //* Section headers & high level overview of the intended functionality.
+ ** //? Sub-sections and for elaborating my intent for better readability & notes.
+ ** //! Things that must be addressed in the next refactoring pass.
+ ** //todo Things that should be addressed in a future pass.
  *** // comments without any special syntax are used for quick clarification of specific options.
  *
- * To get automatic coloring for these comments in VSCode, you can use this extension:
+ * To get automatic coloring for comments in VSCode, you can use this extension:
  * aaron-bond.better-comments
  *
  */
 
 //* System Configuration
 import { SYSTEM } from "./config/system.mjs";
-//* Data Models
+// //* Data Models
 import * as models from "./models/_data-models.mjs";
 //* Documents
 import { MetanthropesActor } from "./documents/actor.mjs";
@@ -30,13 +30,15 @@ import { MetanthropesCombat } from "./documents/combat.mjs";
 //* Sheets
 import { MetanthropesActorSheet } from "./ui/sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./ui/sheets/item-sheet.mjs";
-import { MetanthropesActiveEffectSheet } from "./ui/sheets/active-effect-sheet.mjs";
+import { MetanthropesActiveEffectSheetV2 } from "./ui/sheets/active-effect-sheet.mjs";
 import { MetaDialog } from "./metaclasses/metaclasses.mjs";
-//* AppV2 Sheets
-import { MetanthropesNPCActorSheet, MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
+// //* AppV2 Sheets
+import { MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
 import { MetanthropesItemSheetV2 } from "./ui/sheets/item-sheet-v2.mjs";
 //* Audio
 import { metaPlaySoundEffect } from "./api/audio/play-sound-effect.mjs";
+//* VFX
+import { metaVFX } from "./api/vfx/meta-vfx.mjs";
 //* Dice Rollers
 import { metaEvaluate, metaEvaluateReRoll } from "./api/dice/meta-evaluate.mjs";
 import { metaRolld10, metaRolld10ReRoll, metaDamageReRoll, metaHealingReRoll } from "./api/dice/meta-rolld10.mjs";
@@ -85,9 +87,8 @@ globalThis.metanthropes = {
 	applications: {
 		MetanthropesActorSheet,
 		MetanthropesItemSheet,
-		MetanthropesActiveEffectSheet,
+		MetanthropesActiveEffectSheetV2,
 		MetanthropesActorSheetV2,
-		MetanthropesNPCActorSheet,
 		MetanthropesItemSheetV2,
 		MetaDialog,
 	},
@@ -110,6 +111,9 @@ globalThis.metanthropes = {
 	},
 	audio: {
 		metaPlaySoundEffect,
+	},
+	vfx: {
+		metaVFX,
 	},
 	logic: {
 		metaFinalizePremadeActor,

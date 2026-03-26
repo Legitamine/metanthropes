@@ -28,7 +28,8 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		itemName = clickedButton.dataset.itemName;
 		multiAction = parseInt(clickedButton.dataset.multiAction) ?? 0;
 	}
-	//? Check if we are running in Beta Testing mode (available via Core Module)
+	//? Check if we are running in Alpha/Beta Testing mode (available via Homebrew/Core Module respectfuly)
+	const alphaTesting = await game.settings.get("metanthropes", "metaAlphaTesting");
 	const betaTesting = await game.settings.get("metanthropes", "metaBetaTesting");
 	const actor = await fromUuid(actorUUID);
 	//? Checking if actor has Metapowers that affect the explosive dice
@@ -128,7 +129,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	//? Targeting variables
 	let damageSelectedTargets = false;
 	let healSelectedTargets = false;
-	let targetedActors = [];
+	let targetedActorsUUIDs = [];
 	let actionableTargets = false;
 	//? Other
 	let executeRoll = null;
@@ -334,7 +335,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				true,
 				false,
 				0,
-				null
+				null,
 			);
 			cosmicDamageRollResult = cosmicDamageRoll.dataset.total;
 			cosmicDamageRollParams = `data-dice-cosmic="${damageDiceCosmic}" data-base-cosmic="${damageBaseCosmic}"`;
@@ -352,7 +353,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				true,
 				false,
 				0,
-				null
+				null,
 			);
 			elementalDamageRollResult = elementalDamageRoll.dataset.total;
 			elementalDamageRollParams = `data-dice-elemental="${damageDiceElemental}" data-base-elemental="${damageBaseElemental}"`;
@@ -370,7 +371,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				true,
 				false,
 				0,
-				null
+				null,
 			);
 			materialDamageRollResult = materialDamageRoll.dataset.total;
 			materialDamageRollParams = `data-dice-material="${damageDiceMaterial}" data-base-material="${damageBaseMaterial}"`;
@@ -388,7 +389,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				true,
 				false,
 				0,
-				null
+				null,
 			);
 			psychicDamageRollResult = psychicDamageRoll.dataset.total;
 			psychicDamageRollParams = `data-dice-psychic="${damageDicePsychic}" data-base-psychic="${damageBasePsychic}"`;
@@ -406,7 +407,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				true,
 				false,
 				0,
-				null
+				null,
 			);
 			healingRollResult = healingRoll.dataset.total;
 			healingRollParams = `data-healing-dice="${healingDice}" data-healing-base="${healingBase}"`;
@@ -503,13 +504,33 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		if (effectDescription) {
 			contentMessage += `${effectDescription}<hr />`;
 		}
+		//* Targeting
 		///todo Targeting v1 todo needs to move outside of execute or run along side it
+		//todo clean up notes & simplify
 		const manuallySelectedTargets = game.user.targets;
-		const targetsArray = Array.from(manuallySelectedTargets).map((token) => token.actor);
-		//?Create a new array with only the actor's uuids to be used later
-		targetedActors = targetsArray.map((actor) => actor.uuid);
+		//? VFX requires the tokens from ^^ here, which we get in an Array
+		//? Grab an Array of the token documents involved and filter out null & dupes
+		const targetsFilteredArray = Array.from(manuallySelectedTargets)
+			.map((token) => token.actor)
+			.filter((_) => _); //?Filter out null actors (in case there were deleted)
+		const targetsTokenDocumentsArray = Array.from(new Set(targetsFilteredArray)); //? Remove duplicates (in case a linked actor is placed multiple times in the canvas) //todo should we even allow this in the first place?
+		//? Create a new Array with only the token actor's uuids to be used for damage/healing application later
+		targetedActorsUUIDs = Array.from(targetsTokenDocumentsArray.map((a) => a.uuid));
+		mL(
+			3,
+			"metaExecute",
+			"Review Target selection",
+			"manuallySelectedTargets",
+			manuallySelectedTargets,
+			"targetsFilteredArray",
+			targetsFilteredArray,
+			"targetsTokenDocumentsArray",
+			targetsTokenDocumentsArray,
+			"targetedActorsUUIDs",
+			targetedActorsUUIDs,
+		);
 		//? Check if there are any targeted actors and set the actionableTargets variable accordingly
-		actionableTargets = targetedActors.length > 0;
+		actionableTargets = targetedActorsUUIDs.length > 0;
 		if (
 			!actionableTargets &&
 			duration.includes("Instantaneous") &&
@@ -529,13 +550,13 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		if (!actionableTargets) {
 			mL(3, "metaExecute", "No Actionable Targets");
 		} else {
-			//? Get the names of all targeted actors
-			targetedActorNames = targetsArray.map((actor) => actor.name);
+			//? Get the names of all targeted actors //! changed from targetsArray
+			targetedActorNames = targetsTokenDocumentsArray.map((actor) => actor.name);
 			mL(
 				3,
 				"metaExecute",
 				`Target${targetedActorNames.length > 1 ? "s" : ""} Name${targetedActorNames.length > 1 ? "s" : ""}:`,
-				targetedActorNames
+				targetedActorNames,
 			);
 		}
 		if (
@@ -594,7 +615,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			if (actor.currentDestiny > 0) {
 				const damageReRollButton = `<div class="hide-button hidden">
 				<button class="metanthropes-secondary-chat-button damage roll-damage-reroll chat-button-anchor"
-				data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+				data-targets="${targetedActorsUUIDs}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 				data-what="Damage" data-anchor="true" data-reroll="false" data-reroll-counter="1"
 				data-message-id="null" data-destiny-re-roll="true" data-damage-selected-targets="${damageSelectedTargets}"
 				${cosmicDamageRollParams} ${elementalDamageRollParams}
@@ -610,7 +631,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			if (actor.currentDestiny > 0) {
 				const healingRerollButton = `<div class="hide-button hidden">
 				<button class="metanthropes-secondary-chat-button healing roll-healing-reroll chat-button-anchor"
-				data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+				data-targets="${targetedActorsUUIDs}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 				data-what="Healing" data-anchor="true" data-heal-selected-targets="${healSelectedTargets}"
 				data-reroll="false" data-reroll-counter="1" data-message-id="null"
 				data-destiny-re-roll="true" ${healingRollParams}
@@ -701,28 +722,40 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		await actor.setFlag("metanthropes", "duplicateSelf", { maxLife: duplicateMaxLife });
 		mL(3, "metaExecute", "Duplicate Self Metapower Max Life:", duplicateMaxLife);
 	}
-	//* Visual Effects
-	if (vfx) {
-		await metanthropes.utils.metaRunMacro(vfx);
-	}
-	//* Sound Effects
-	if (sfx) {
-		await metanthropes.audio.metaPlaySoundEffect(sfx);
-	}
-	//* Apply Damage to Selected Targets
+	//!deprecate old VFX/SFX system
+	// //* Visual Effects
+	// if (vfx) {
+	// 	await metanthropes.utils.metaRunMacro(vfx);
+	// }
+	// //* Sound Effects
+	// if (sfx) {
+	// 	await metanthropes.audio.metaPlaySoundEffect(sfx);
+	// }
+	//* Trigger VFX & Apply Damage to Selected Targets
 	if (damageSelectedTargets && actionableTargets) {
-		mL(3, "meta-execute", "Applying damage");
+		if (alphaTesting) {
+			//* Trigger VFX
+			mL(3, "metaExecute", "Triggering VFX");
+			try {
+				const manuallySelectedTargets = game.user.targets; //todo for testing, later we need the filtered results here
+				await metanthropes.vfx.metaVFX(actor, manuallySelectedTargets, elementalDamageRollResult);
+			} catch (error) {
+				mL(5, "metaExecute", "VFX Failed with error", error);
+			}
+		}
+		//* Apply Damage
+		mL(3, "metaExecute", "Applying Damage");
 		await metanthropes.logic.metaApplyDamage(
-			targetedActors,
+			targetedActorsUUIDs,
 			cosmicDamageRollResult,
 			elementalDamageRollResult,
 			materialDamageRollResult,
-			psychicDamageRollResult
+			psychicDamageRollResult,
 		);
 	}
 	//* Apply Healing to Selected Targets
 	if (healSelectedTargets && actionableTargets) {
-		await metanthropes.logic.metaApplyHealing(targetedActors, healingRollResult);
+		await metanthropes.logic.metaApplyHealing(targetedActorsUUIDs, healingRollResult);
 	}
 	//* Send Chat Message
 	let chatData = {

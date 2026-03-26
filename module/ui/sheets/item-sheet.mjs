@@ -39,6 +39,7 @@ export class MetanthropesItemSheet extends foundry.appv1.sheets.ItemSheet {
 	}
 	/** @override */
 	async getData(options = {}) {
+		if (itemData.type === "species" || itemData.type === "template") return;
 		//! In the item getData we currently collect and store in .rollData the actor's roll data.
 		//! However it's never used from there - right??
 		//? Retrieve base data structure.
@@ -78,20 +79,20 @@ export class MetanthropesItemSheet extends foundry.appv1.sheets.ItemSheet {
 		const isOwner = this?.actor?.isOwner || null;
 		context.executionAdditionalInfo = await foundry.applications.ux.TextEditor.enrichHTML(
 			itemData.system.Execution.AdditionalInfo.value,
-			{ async: true, secrets: isOwner }
+			{ async: true, secrets: isOwner },
 			//todo: confirm we don't need async here
 		);
 		context.permanentDescription = await foundry.applications.ux.TextEditor.enrichHTML(
 			itemData.system.Effects.PermanentEffectDescription.value,
-			{ async: true, secrets: isOwner }
+			{ async: true, secrets: isOwner },
 		);
 		context.effectDescription = await foundry.applications.ux.TextEditor.enrichHTML(
 			itemData.system.Effects.EffectDescription.value,
-			{ async: true, secrets: isOwner }
+			{ async: true, secrets: isOwner },
 		);
 		context.effectAdditionalInfo = await foundry.applications.ux.TextEditor.enrichHTML(
 			itemData.system.Effects.AdditionalInfo.value,
-			{ async: true, secrets: isOwner }
+			{ async: true, secrets: isOwner },
 		);
 		return context;
 	}

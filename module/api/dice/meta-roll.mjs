@@ -28,7 +28,7 @@ export async function metaRoll(
 	itemName = null,
 	messageId = null,
 	reroll = false,
-	rerollCounter = 0
+	rerollCounter = 0,
 ) {
 	const mL = metanthropes.utils.metaLog;
 	//? Initialize the actor's RollStat array before proceeding
@@ -39,11 +39,11 @@ export async function metaRoll(
 	//? Check if we are ok to do the roll stat-wise
 	if (statScore <= 0) {
 		ui.notifications.error(
-			game.i18n.localize("METANTHROPES.UI.NOTIFICATIONS.META_ROLL.CannotRoll") +
+			_loc("METANTHROPES.UI.NOTIFICATIONS.META_ROLL.CannotRoll") +
 				actor.name +
-				game.i18n.localize("METANTHROPES.UI.NOTIFICATIONS.META_ROLL.ActorS") +
+				_loc("METANTHROPES.UI.NOTIFICATIONS.META_ROLL.ActorS") +
 				stat +
-				game.i18n.localize("METANTHROPES.UI.NOTIFICATIONS.META_ROLL.ZeroStatScore")
+				_loc("METANTHROPES.UI.NOTIFICATIONS.META_ROLL.ZeroStatScore"),
 		);
 		return;
 	}
@@ -53,9 +53,9 @@ export async function metaRoll(
 		if (actionSlot === "Always Active") {
 			ui.notifications.info(
 				actor.name +
-					game.i18n.localize("METANTHROPES.UI.NOTIFICATIONS.META_ROLL.ActorS") +
+					_loc("METANTHROPES.UI.NOTIFICATIONS.META_ROLL.ActorS") +
 					itemName +
-					game.i18n.localize("METANTHROPES.UI.NOTIFICATIONS.META_ROLL.AlwaysActive")
+					_loc("METANTHROPES.UI.NOTIFICATIONS.META_ROLL.AlwaysActive"),
 			);
 			return;
 		}
@@ -146,7 +146,7 @@ export async function metaRoll(
 				"metaRoll",
 				"Penalty from Disease is lower than Custom Roll Penalty, using the latter",
 				diseasePenalty,
-				customPenalty
+				customPenalty,
 			);
 		} else {
 			penalty = diseasePenalty;
@@ -155,7 +155,7 @@ export async function metaRoll(
 				"metaRoll",
 				"Penalty from Disease is higher than Custom Roll Penalty, using the former",
 				diseasePenalty,
-				customPenalty
+				customPenalty,
 			);
 		}
 		mL(
@@ -186,7 +186,7 @@ export async function metaRoll(
 			"Item Name:",
 			itemName,
 			"Message ID:",
-			messageId
+			messageId,
 		);
 		await metanthropes.dice.metaEvaluate(
 			actor,
@@ -204,7 +204,7 @@ export async function metaRoll(
 			itemName,
 			messageId,
 			reroll,
-			rerollCounter
+			rerollCounter,
 		);
 	} else {
 		penalty = diseasePenalty;
@@ -224,7 +224,7 @@ export async function metaRoll(
 			itemName,
 			messageId,
 			reroll,
-			rerollCounter
+			rerollCounter,
 		);
 	}
 	//* Post-Evaluate-roll actions
@@ -270,9 +270,9 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 		const bonusInputGroup = fields.createFormGroup({
 			input: bonusInput,
 			classes: ["style-buffs"],
-			label: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Bonus"),
-			units: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Units"),
-			hint: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.BonusHint"),
+			label: _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Bonus"),
+			units: _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Units"),
+			hint: _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.BonusHint"),
 		});
 		///* Penalty
 		const penaltyInput = fields.createNumberInput({
@@ -284,9 +284,9 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 		const penaltyInputGroup = fields.createFormGroup({
 			input: penaltyInput,
 			classes: ["style-conditions"],
-			label: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Penalty"),
-			units: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Units"),
-			hint: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.PenaltyHint"),
+			label: _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Penalty"),
+			units: _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Units"),
+			hint: _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.PenaltyHint"),
 		});
 		///* Custom Reduction
 		const customReductionInput = fields.createNumberInput({
@@ -298,9 +298,9 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 		const customReductionInputGroup = fields.createFormGroup({
 			input: customReductionInput,
 			classes: ["style-conditions"],
-			label: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.CustomReduction"),
-			units: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Units"),
-			hint: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.CustomReductionHint"),
+			label: _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.CustomReduction"),
+			units: _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Units"),
+			hint: _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.CustomReductionHint"),
 		});
 		///* Aiming Reduction
 		const aimingReductionInput = fields.createNumberInput({
@@ -312,24 +312,24 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 		const aimingReductionInputGroup = fields.createFormGroup({
 			input: aimingReductionInput,
 			classes: ["style-conditions"],
-			label: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.AimingReduction"),
-			units: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Units"),
-			hint: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.AimingReductionHint"),
+			label: _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.AimingReduction"),
+			units: _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Units"),
+			hint: _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.AimingReductionHint"),
 		});
 		///* Multi-Action Count
 		const multiActionCountInput = fields.createSelectInput({
 			name: "multiActionCount",
 			options: [
-				{ value: "no", label: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.None") },
+				{ value: "no", label: _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.None") },
 				...multiActionOptions.map((n) => ({ value: n, label: String(n) })),
 			],
 			required: true,
 		});
 		const multiActionCountSelectGroup = fields.createFormGroup({
 			input: multiActionCountInput,
-			label: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.MultiActionCount"),
-			units: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.MultiActionCountUnits"),
-			hint: game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.MultiActionCountHint"),
+			label: _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.MultiActionCount"),
+			units: _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.MultiActionCountUnits"),
+			hint: _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.MultiActionCountHint"),
 		});
 		//* Create the content for the Dialog
 		let content = `${multiActionCountSelectGroup.outerHTML}
@@ -342,24 +342,24 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 		// }
 		//* Create the Dialog Title and Buttons
 		let dialogTitle = `${actor.name}`;
-		dialogTitle += game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Title");
+		dialogTitle += _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Title");
 		let dialogButtonLabel;
 		let dialogIcon;
 		//todo actions should be in CONFIG
 		if (action === "StatRoll") {
 			dialogTitle += `${stat}`;
-			dialogTitle += game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Stat");
-			dialogButtonLabel = game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.StatRoll");
+			dialogTitle += _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Stat");
+			dialogButtonLabel = _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.StatRoll");
 			dialogButtonLabel += `${stat}`;
 			dialogIcon = "fa-solid fa-chart-simple";
 		} else if (action === "Metapower") {
-			dialogTitle += game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Metapower");
-			dialogButtonLabel = game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.MetapowerRoll");
+			dialogTitle += _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Metapower");
+			dialogButtonLabel = _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.MetapowerRoll");
 			dialogButtonLabel += `${itemName}`;
 			dialogIcon = "fa-kit fa-metanthropes";
 		} else if (action === "Possession") {
-			dialogTitle += game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Possession");
-			dialogButtonLabel = game.i18n.localize("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.PossessionRoll");
+			dialogTitle += _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.Possession");
+			dialogButtonLabel = _loc("METANTHROPES.UI.APPS.META_ROLL_OPTIONS.PossessionRoll");
 			dialogButtonLabel += `${itemName}`;
 			dialogIcon = "fa-solid fa-backpack";
 		} //todo add some error handling
@@ -409,7 +409,7 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 			customBonus,
 			customPenalty,
 			customReduction,
-			customAimingReduction
+			customAimingReduction,
 		);
 		resolve({ customMultiAction, customBonus, customPenalty, customReduction, customAimingReduction });
 	});

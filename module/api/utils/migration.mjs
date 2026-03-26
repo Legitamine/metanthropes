@@ -6,12 +6,10 @@
  * Migration will always trigger, if the 'Force Data migration' setting is enabled
  * This setting will reset upon a succesful application of updates from a module
  * It will also run every time a new version of the System is detected
- * It will also rename the first active GM user from 'Gamemaster' to 'The Narrator'
+ * It will also rename the first active GM user from the default 'Gamemaster' to 'The Narrator' (if applicable, localized)
  *
  * todo do a round of checks first, totaling number of migrations that need to happen, then start over doing them once all checks complete.
  * todo this should be an even better way to control if a migration should proceed, when it would otherwise hang before ? like a test ?
- * todo bugfix: progress.update percentage can go higher than 100% in some cases, which makes it look weird
- * todo this is because it will accumulate from both the good and the bad loops :/
  *
  * @export
  * @async
@@ -23,10 +21,10 @@ export async function metaMigration() {
 	mL(0, "Migration", "Data Migration Engine Initialized");
 	const modules = await metaInitializeModules();
 	if (!modules) return mL(2, "Migration", "Error could not initialize Modules!");
-	const progressMessage = `${game.i18n.localize("METANTHROPES.MIGRATION.World")}`;
+	const progressMessage = `${_loc("METANTHROPES.MIGRATION.World")}`;
 	const progress = ui.notifications.info(progressMessage, { progress: true });
 	let progressCompletedSteps = 1;
-	const progressTotalSteps = 11 + modules.length;
+	let progressTotalSteps = 2 + 2 * modules.length;
 	function updateProgress(message) {
 		progress.update({
 			pct: ++progressCompletedSteps / progressTotalSteps,
@@ -40,30 +38,36 @@ export async function metaMigration() {
 	//* Migration Engine Engaged, will update the migration game setting only if it doesn't end unexpectedly
 	try {
 		if (!migrationData) {
-			mL(0, "Migration", "New World Detected", "Renaming Gamemaster");
-			await game.users.activeGM.update({ name: game.i18n.localize("METANTHROPES.COMMON.Narrator") });
+			mL(0, "Migration", "New World Detected");
 			migrationData = {};
-			updateProgress(`${progressMessage} | ${game.i18n.localize("METANTHROPES.MIGRATION.Narrator")}`);
+			if (game.users.activeGM.name === "Gamemaster") {
+				mL(0, "Migration", "Renaming Gamemaster");
+				progressTotalSteps++;
+				updateProgress(
+					`${progressMessage} | ${_loc("METANTHROPES.MIGRATION.NarratorRename")} | ${_loc("METANTHROPES.COMMON.Narrator")}`,
+				);
+				await game.users.activeGM.update({ name: _loc("METANTHROPES.COMMON.Narrator") });
+			}
 		}
 		//* For each module I expect to get back either false (no migration) or the migrationDataUpdate for that module
 		//todo do I want to further modularize this? //const moduleMigrationResult = await metaMigrateModules(migrationData, modules);
 		mL(0, "Migration", "Initializing Data Migration for", modules.length, `Module${modules.length > 1 ? "s" : ""}`);
 		for (const [module, moduleName] of modules) {
+			//? contributes +2 to total counter for each module
 			mL(0, "Migration", "Initializing", module, "Data Migration");
-			const moduleMessage = `${progressMessage} | ${game.i18n.localize(moduleName)} |`;
-			updateProgress(`${moduleMessage} ${game.i18n.localize("METANTHROPES.MIGRATION.Data")}`);
+			const moduleMessage = `${progressMessage} | ${_loc(moduleName)} |`;
+			updateProgress(`${moduleMessage} ${_loc("METANTHROPES.MIGRATION.Data")}`);
 			const lastMigratedVersion = migrationData[module]?.lastMigrationVersion || 0;
 			const isMigrationRequired = foundry.utils.isNewerVersion(currentSystemVersion, lastMigratedVersion);
 			if (isMigrationRequired || isMigrationForced) {
-				mL(0, "Migration", module, "World Data Migration is required or is being forced");
-				updateProgress(`${moduleMessage} ${game.i18n.localize("METANTHROPES.MIGRATION.Migrating")}`);
+				mL(3, "Migration", module, "World Data Migration is required or is being forced");
+				updateProgress(`${moduleMessage} ${_loc("METANTHROPES.MIGRATION.Migrating")}`);
 				const moduleMigrationResult = await metaMigrateModuleData(
 					module,
 					migrationData,
 					currentSystemVersion,
-					moduleName
+					moduleName,
 				);
-				updateProgress(`${moduleMessage} ${game.i18n.localize("METANTHROPES.MIGRATION.DataFinalizing")}`);
 				if (!moduleMigrationResult) {
 					mL(0, "Migration", module, "Finished without Migration Data");
 					continue;
@@ -77,7 +81,7 @@ export async function metaMigration() {
 				continue;
 			} else {
 				mL(0, "Migration", module, "Migration is not required");
-				updateProgress(`${moduleMessage} ${game.i18n.localize("METANTHROPES.MIGRATION.NoUpdate")}`);
+				updateProgress(`${moduleMessage} ${_loc("METANTHROPES.MIGRATION.NoUpdate")}`);
 				continue;
 			}
 		}
@@ -88,23 +92,24 @@ export async function metaMigration() {
 			"Encountered unexpected error:",
 			error,
 			"Aborting without finalizing",
-			"Migration will retry on the next World load"
+			"Migration will retry on the next World load",
 		);
 		progress.update({
 			pct: 1,
-			message: `${progressMessage} | ${game.i18n.localize("METANTHROPES.MIGRATION.Error")}`,
+			message: `${progressMessage} | ${_loc("METANTHROPES.MIGRATION.Error")}`,
 		});
 		return;
 	}
 	//* Consolidate migrationDataUpdate results and do the game.settings update
+	//? contributes + 1 to to total counter
 	if (!metaMigrateModulesResult) {
 		mL(0, "Migration", "World Data Migration not required");
 		progress.update({
 			pct: 1,
-			message: `${progressMessage} | ${game.i18n.localize("METANTHROPES.MIGRATION.NoUpdate")}`,
+			message: `${progressMessage} | ${_loc("METANTHROPES.MIGRATION.NoUpdate")}`,
 		});
 	} else {
-		updateProgress(`${progressMessage} | ${game.i18n.localize("METANTHROPES.MIGRATION.Finalizing")}`);
+		updateProgress(`${progressMessage} | ${_loc("METANTHROPES.MIGRATION.Finalizing")}`);
 		mL(0, "Migration", "Updating Game Settings with Data Migration Results");
 		await game.settings.set("metanthropes", "migration", {
 			...migrationData,
@@ -115,7 +120,7 @@ export async function metaMigration() {
 		await game.settings.set("metanthropes", "forceMigration", false);
 		progress.update({
 			pct: 1,
-			message: `${progressMessage} | ${game.i18n.localize("METANTHROPES.MIGRATION.Finished")}`,
+			message: `${progressMessage} | ${_loc("METANTHROPES.MIGRATION.Finished")}`,
 		});
 	}
 	const migrationDataResults = await game.settings.get("metanthropes", "migration");
@@ -128,7 +133,7 @@ export async function metaMigration() {
  * Only enabled Modules under Metanthropes game settings will trigger Data Migration
  *
  * todo: review how to gracefuly handle a module that was enabled (the setting was set) but disabled as a module afterwards
- * 
+ *
  * @async
  * @returns {*} modules - an array with the enabled Modules for Data Migration
  */
@@ -178,7 +183,7 @@ async function metaMigrateModuleData(module, migrationData, currentSystemVersion
 			//* Migrate Prototype Token Defaults
 			const prototypeTokenDefaults = await metaMigrateDataPrototypeTokenDefaults(
 				migrationData,
-				currentSystemVersion
+				currentSystemVersion,
 			);
 			if (prototypeTokenDefaults) moduleDataUpdate = prototypeTokenDefaults;
 			break;
@@ -216,10 +221,10 @@ async function metaMigrateModuleData(module, migrationData, currentSystemVersion
 				...moduleDataUpdate,
 			},
 		};
-		mL(0, "metaMigrateModuleData", module, "Returning Migration Results");
+		mL(3, "metaMigrateModuleData", module, "Returning Migration Results");
 		return moduleMigrationResult;
 	} else {
-		mL(0, "metaMigrateModuleData", module, "Did not receive valid Migration Data or Update not required");
+		mL(4, "metaMigrateModuleData", module, "Did not receive valid Migration Data or Update not required");
 		return false;
 	}
 }
@@ -249,7 +254,7 @@ async function metaMigrateDataCore(migrationData, currentSystemVersion) {
 			"Canceled",
 			"Did not receive valid Core Migration Data",
 			"OR",
-			"Update was not required"
+			"Update was not required",
 		);
 		return false;
 	}
@@ -280,7 +285,7 @@ async function metaMigrateDataIntroductory(migrationData, currentSystemVersion) 
 			"Canceled",
 			"Did not receive valid Introductory Migration Data",
 			"OR",
-			"Update was not required"
+			"Update was not required",
 		);
 		return false;
 	}
