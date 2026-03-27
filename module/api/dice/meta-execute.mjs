@@ -36,6 +36,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	const explosiveDice = "x10"; //todo: placeholder for custom explosive dice
 	//? Find the first item ()that matches itemName
 	const metaItemData = actor.items.find((item) => item.name === itemName);
+	const itemUUID = metaItemData.uuid;
 	if (!metaItemData) {
 		mL(2, "metaExecute", "ERROR: Could not find any item named:", itemName);
 		return;
@@ -737,12 +738,25 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			//* Trigger VFX
 			mL(3, "metaExecute", "Triggering VFX");
 			try {
-				const manuallySelectedTargets = game.user.targets; //todo for testing, later we need the filtered results here
-				await metanthropes.vfx.metaVFX(actor, manuallySelectedTargets, elementalDamageRollResult);
+				const vfxData = {
+					initiatingTokenUUID: actorUUID,
+					targetTokensUUIDs: JSON.stringify(targetedActorsUUIDs),
+					cosmicDamageRollResult,
+					elementalDamageRollResult,
+					materialDamageRollResult,
+					psychicDamageRollResult,
+					itemUUID,
+				};
+				await game.socket.emit("system.metanthropes", {
+					action: "metaPlayVFX",
+					vfxData: vfxData,
+				});
+				await metanthropes.vfx.metaVFX(vfxData);
 			} catch (error) {
 				mL(5, "metaExecute", "VFX Failed with error", error);
 			}
 		}
+
 		//* Apply Damage
 		mL(3, "metaExecute", "Applying Damage");
 		await metanthropes.logic.metaApplyDamage(
@@ -757,7 +771,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	if (healSelectedTargets && actionableTargets) {
 		await metanthropes.logic.metaApplyHealing(targetedActorsUUIDs, healingRollResult);
 	}
-	//* Send Chat Message
+	//* Compile Chat Data
 	let chatData = {
 		user: game.user.id, //!why do we have this here, is it even valid?
 		flavor: flavorMessage,
@@ -765,7 +779,8 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		content: contentMessage,
 		flags: { metanthropes: { actoruuid: actor.uuid } },
 	};
-	await ChatMessage.create(chatData);
+	//* Send Chat Message
+	await metanthropes.applications.MetaChatMessage.create(chatData);
 	mL(3, "metaExecute", "Finished");
 	//! return new Promise(resolve);
 }

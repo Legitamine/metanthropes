@@ -179,3 +179,34 @@ export class MetaDialog extends Dialog {
 		}
 	}
 }
+
+
+export class MetaChatMessage extends ChatMessage {
+	/** @inheritDoc */
+	_onCreate(data, options, userId) {
+		metanthropes.utils.metaLog(2, "QUAPLA QUAPLA QUAPLA");
+		super._onCreate(data, options, userId);
+	}
+	/** @inheritDoc */
+	_onUpdate(changed, options, userId) {
+		metanthropes.utils.metaLog(2, "QUAPLA -------QUAPLA------- QUAPLA");
+		super._onUpdate(changed, options, userId);
+	}
+	/**
+	 * Play a VFX animation using data provided by this ChatMessage
+	 * @returns {Promise<void>}
+	 */
+	async #playVFXEffect() {
+		if (!game.settings.get("metanthropes", "metaAlphaTesting")) return;
+		//! DSN
+		if (this.rolls.length && "dice3d" in game) await game.dice3d.waitFor3DAnimationByMessageID(this.id);
+		/*
+		const action = CrucibleAction.fromChatMessage(this);
+		//grabs references and config from the flags
+		const { references, ...vfxConfig } = this.flags.crucible.vfxConfig;
+		//calls to play the vfx
+		await action.playVFXEffect(vfxConfig, references);
+		*/
+		if (!this.token?.parent.isView) return; //! prepei edw to this na ginetai resolve ston actor?
+	}
+}

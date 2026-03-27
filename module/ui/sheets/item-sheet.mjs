@@ -39,7 +39,6 @@ export class MetanthropesItemSheet extends foundry.appv1.sheets.ItemSheet {
 	}
 	/** @override */
 	async getData(options = {}) {
-		if (itemData.type === "species" || itemData.type === "template") return;
 		//! In the item getData we currently collect and store in .rollData the actor's roll data.
 		//! However it's never used from there - right??
 		//? Retrieve base data structure.
@@ -47,6 +46,7 @@ export class MetanthropesItemSheet extends foundry.appv1.sheets.ItemSheet {
 		//? Use a safe clone of the item data for further operations.
 		//! this is not the same as in actor??
 		const itemData = context.item;
+		if (itemData.type === "species" || itemData.type === "template") return;
 		//! We don't use the rollData so no need for this to exist
 		//	// ? Retrieve the roll data for TinyMCE editors.
 		//	context.rollData = {};

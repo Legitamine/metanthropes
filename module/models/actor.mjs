@@ -1,9 +1,10 @@
 const { HTMLField, SchemaField, NumberField, StringField, ArrayField } = foundry.data.fields;
 //todo choices, step?
 const standardScore = { required: true, nullable: false, integer: true, min: 0, initial: 0 }; //? Used in most cases
-const levelScore = { required: true, nullable: false, integer: true, min: 0, initial: 0, max: 5 }; //? Used where we have Levels
+const levelScore = { required: true, nullable: false, integer: true, min: 0, initial: 0, max: 5, choices: [0,1,2,3,4,5] }; //? Used where we have Levels
 const physicalScore = { required: true, nullable: false, integer: true, min: 0, initial: 0, max: 20 }; //? Used for Speed, Size, Weight
 const initialDiceNumber = { required: true, nullable: false, integer: true, min: 1, initial: 1 };
+
 
 export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel {
 	static LOCALIZATION_PREFIXES = ["METANTHROPES.ACTOR"];
@@ -192,9 +193,11 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 
 		//* Life
 		//todo: do I need a life.value to make it work as a bar? or just define life.current in system.json?
+			//todo needs.value/.max in data field
 		//todo: how to handle Duplicates? see _prepareDerivedVitalData(actorData) in old actor
 		life.max = life.base + this.stats.endurance.current + TABLES.SIZE[buffs.size.current].life; // + metaConstitution + substanceImitation + controlDensityTemp
 		life.current = Math.min(life.current, life.max);
+		life.value = life.current;
 
 		//* Movement
 		movement.max = Math.ceil(

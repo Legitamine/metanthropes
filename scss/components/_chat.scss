@@ -39,8 +39,8 @@
 //todo: this is pretty the same as base button style, should consolidate
 %base-inline-roll {
 	font-family: $font-primary;
-	background-image: $a-button-image;
-	background-size: cover;
+	//background-image: $a-button-image;
+	//background-size: cover;
 	text-shadow: var(--metanthropes-color-text-shadow);
 	border: $border-groove;
 	border-radius: $border-radius;

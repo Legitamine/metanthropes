@@ -159,7 +159,7 @@ export class MetanthropesCombat extends Combat {
 			}
 		}
 		//? Create Chat Message
-		await ChatMessage.create({
+		await metanthropes.applications.MetaChatMessage.create({
 			content: `Combat Encounter Begins!<br><br>`,
 			speaker: { alias: "Metanthropes Action Scene" },
 		});
@@ -182,7 +182,7 @@ export class MetanthropesCombat extends Combat {
 				const combatRound = this.round ?? 0;
 				const combatCycleMessage = `${combatCycle} Cycle${combatCycle === 1 ? "" : "s"}`;
 				const combatRoundMessage = `${combatRound} Round${combatRound === 1 ? "" : "s"}`;
-				await ChatMessage.create({
+				await metanthropes.applications.MetaChatMessage.create({
 					content: `Combat Encounter Ended after:<br><br>${combatRoundMessage} and ${combatCycleMessage}!<br><br>`,
 					speaker: { alias: "Metanthropes Action Scene" },
 				});
@@ -347,7 +347,7 @@ export class MetanthropesCombat extends Combat {
 		if (this.round > 2 && this.round % 2 !== 0) {
 			//? Create a chat message indicating the new Cycle and a new Initiative Roll
 			metanthropes.utils.metaLog(3, "Combat", "_onStartRound", "Initiative Reset for Round:", this.round);
-			await ChatMessage.create({
+			await metanthropes.applications.MetaChatMessage.create({
 				content: `New Round & New Cycle!<br><br>Round: ${this.round} - Cycle: ${nextCycle}<br><br>Roll for Inititiative!<br><br>`,
 				speaker: {
 					alias: "Metanthropes Action Scene",
@@ -364,7 +364,7 @@ export class MetanthropesCombat extends Combat {
 						"First Round did not have a Previous Round of 0",
 					);
 				metanthropes.utils.metaLog(3, "Combat", "_onStartRound", "First Round:", this.round);
-				await ChatMessage.create({
+				await metanthropes.applications.MetaChatMessage.create({
 					content: `Round: ${this.round} - Cycle: ${nextCycle}<br><br>`,
 					speaker: {
 						alias: "Metanthropes Action Scene",
@@ -372,7 +372,7 @@ export class MetanthropesCombat extends Combat {
 				});
 			} else {
 				metanthropes.utils.metaLog(3, "Combat", "_onStartRound", "Round:", this.round);
-				await ChatMessage.create({
+				await metanthropes.applications.MetaChatMessage.create({
 					content: `New Round!<br><br>Round: ${this.round} - Cycle: ${nextCycle}<br><br>`,
 					speaker: {
 						alias: "Metanthropes Action Scene",
@@ -509,7 +509,7 @@ export class MetanthropesCombat extends Combat {
 			}
 		}
 		//? Create the chat message
-		await ChatMessage.create({
+		await metanthropes.applications.MetaChatMessage.create({
 			content: chatContent,
 			speaker: ChatMessage.getSpeaker({ alias: "Metanthropes Action Scene" }),
 		});

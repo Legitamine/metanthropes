@@ -246,7 +246,7 @@ export async function metaRolld10(
 					messageId,
 					"Creating new chat message"
 				);
-				ChatMessage.create(chatData);
+				metanthropes.applications.MetaChatMessage.create(chatData);
 				//? AND return the anchor, setting it to false so if we have another reroll we'll update that new message
 				return rolld10.toAnchor({
 					label: what,
@@ -595,7 +595,7 @@ export async function metaDamageReRoll(event) {
 	} else {
 		mL(1, "metaDamageReRoll", "No Reroll");
 		//!review oti edw sto prwto diladi reroll apo meta-execute vlepw dsn, right?
-		await ChatMessage.create(chatData);
+		await metanthropes.applications.MetaChatMessage.create(chatData);
 	}
 	mL(
 		3,
@@ -754,7 +754,7 @@ export async function metaHealingReRoll(event) {
 		chatMessage.update(chatData);
 	} else {
 		mL(1, "metaHealingReRoll", "No Reroll");
-		await ChatMessage.create(chatData);
+		await metanthropes.applications.MetaChatMessage.create(chatData);
 	}
 	mL(3, "metaHealingReRoll", "Applied Healing ReRoll", healingRollResult, "# of targets:", targetedActors.length);
 }

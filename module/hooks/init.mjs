@@ -12,7 +12,7 @@ Hooks.once("init", async function () {
 	//* Register Data Models
 	const alphaTestingEnabled = (await game.settings.get("metanthropes", "metaAlphaTesting")) || false;
 	if (alphaTestingEnabled) {
-		metanthropes.utils.metaLog(1, "System Initializing", "Alpha Testing Enabled")
+		metanthropes.utils.metaLog(1, "System Initializing", "Alpha Testing Enabled");
 		CONFIG.Actor.dataModels = {
 			MetanthropesActorV2: metanthropes.models.MetanthropesActorV2,
 		};
@@ -105,15 +105,16 @@ Hooks.once("init", async function () {
 	//* Register Custom Text Enrichers
 	metanthropes.utils.metaRegisterCustomEnrichers();
 
+	//* V14 VFX
+	//! EXPERIMENTAL
+	if (alphaTestingEnabled) {
+		CONFIG.Canvas.vfx.enabled = true;
+	}
+
 	//* Register the socket listener
 	game.socket.on("system.metanthropes", async (payload) => {
 		metanthropes.logic.metaHandleSocketEvents(payload);
 	});
-
-	if (alphaTestingEnabled) {
-		//* V14 VFX
-		CONFIG.Canvas.vfx.enabled = true;
-	}
 
 	//* Finished Initializing the Metanthropes System
 	metanthropes.utils.metaLog(0, "System", "Initialized");

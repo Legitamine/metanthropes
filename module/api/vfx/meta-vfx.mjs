@@ -1,21 +1,45 @@
 /**
  * Proof of concept function to trigger VFX
+ * Should be called during the applyDamage step
  *
  * @export
  * @async
- * @param {*} actor 
- * @param {*} manuallySelectedTargets 
- * @param {*} effect 
- * @param {*} elementalDamageRollResult 
- * @returns {unknown} 
+ * @param {*} actor
+ * @param {*} manuallySelectedTargets
+ * @param {*} effect
+ * @param {*} elementalDamageRollResult
+ * @returns {unknown}
  */
-export async function metaVFX(actor, manuallySelectedTargets, effect, elementalDamageRollResult) {
+export async function metaVFX({
+	initiatingTokenUUID,
+	targetTokensUUIDs,
+	cosmicDamageRollResult,
+	elementalDamageRollResult,
+	materialDamageRollResult,
+	psychicDamageRollResult,
+	itemUUID,
+}) {
 	const mL = metanthropes.utils.metaLog;
-	mL(3, "metaVFX", "VFX");
+	mL(
+		3,
+		"metaVFX",
+		"VFX",
+		"params:",
+		initiatingTokenUUID,
+		targetTokensUUIDs,
+		cosmicDamageRollResult,
+		elementalDamageRollResult,
+		materialDamageRollResult,
+		psychicDamageRollResult,
+		itemUUID,
+	);
 	//? Grab the initiating actor's Token
+	const actor = await fromUuid(initiatingTokenUUID);
 	const actorToken = await actor.getActiveTokens(false, false)[0];
+	mL(3, "metaVFX", "Initiating Actor: UUID/actor/actorToken", initiatingTokenUUID, actor, actorToken);
+	///scene.uuid // actorToken.uuid,
 	if (!actorToken) return mL(5, "metaVFX", "No Initiating Actor Token could be found for actor", actor);
-	mL(3, "metaVFX", "actorToken", actorToken, "manuallySelectedTargets", manuallySelectedTargets);
+	//? mL(3, "metaVFX", "actorToken", actorToken, "manuallySelectedTargets", manuallySelectedTargets);
 
 	// idea here is probably that we create a bunch of different components and we synthesize them into a single VFXEffect
 	// based off the properties of the Item that was used. Would need to create a 'master' animation with all component combinations and test that
@@ -25,7 +49,8 @@ export async function metaVFX(actor, manuallySelectedTargets, effect, elementalD
 	// Also the animation should trigger ONCE after all potential re-rolls happen, not multiple times for each damage re-roll for eg.
 	// Need a way to scale the animation to the size of the Token or not?
 	// eventually we'll need to define our own custom VFXComponents see [the api for more details](https://foundryvtt.com/api/v14/modules/foundry.canvas.vfx.html)
-
+	//? item
+	const item = await fromUuid(itemUUID);
 	//* VFX Tests
 	const shot = new foundry.canvas.vfx.VFXEffect({
 		name: "Meta Shot",
@@ -134,7 +159,29 @@ export async function metaVFX(actor, manuallySelectedTargets, effect, elementalD
 		},
 		timeline: [{ component: "damage", position: 0 }],
 	});
-	const metaVFX = new foundry.canvas.vfx.VFXEffect({
+	const damageTextures = [];
+	let totalDamage = 0;
+	if (cosmicDamageRollResult > 0) {
+		damageTextures.push("systems/metanthropes/assets/artwork/vfx/particle-1.webp");
+		totalDamage += cosmicDamageRollResult;
+	}
+	if (elementalDamageRollResult > 0) {
+		damageTextures.push("systems/metanthropes/assets/artwork/vfx/particle-2.webp");
+		totalDamage += elementalDamageRollResult;
+	}
+	if (materialDamageRollResult > 0) {
+		damageTextures.push("systems/metanthropes/assets/artwork/vfx/particle-3.webp");
+		totalDamage += materialDamageRollResult;
+	}
+	if (psychicDamageRollResult > 0) {
+		damageTextures.push("systems/metanthropes/assets/artwork/vfx/particle-4.webp");
+		totalDamage += psychicDamageRollResult;
+	}
+	const damageCount = Math.clamp(totalDamage / 4, 1, 100);
+	const minScale = Math.clamp(damageCount * 0.1, 0.1, 0.3);
+	const maxScale = Math.clamp(damageCount * 0.5, 0.4, 0.8);
+	mL(3, "damageTextures", damageTextures, "damageCount", damageCount);
+	const metaVFX = await new foundry.canvas.vfx.VFXEffect({
 		//todo improvements: speed & overlap, random rotation, fades, scaling via token size or life total?, delta positions?
 		name: "metaVFX",
 		components: {
@@ -148,21 +195,21 @@ export async function metaVFX(actor, manuallySelectedTargets, effect, elementalD
 				],
 				pathType: "arc",
 				charge: {
-					//texture: "systems/metanthropes/assets/artwork/possessions/fist.svg",
-					texture: "systems/metanthropes/assets/artwork/metapowers/mp-pyrokinesis.webp",
-					size: 12,
+					texture: item.img,
+					size: 4,
 					duration: 1500,
 					animations: [{ function: "drawBack" }],
-					sound: { //defaults to the music track vs the interface or environment
+					sound: {
+						//defaults to the music track vs the interface or environment
 						src: "systems/metanthropes/assets/audio/sfx/reload-heavy-03.wav",
 						align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
 					},
 				},
 				projectile: {
-					texture: "systems/metanthropes/assets/artwork/vfx/particle-2.webp",
+					texture: item.img,
 					// size: { w: 48, h: 24 }, //number in feet ?
-					size: 3, // feet
-					speed: 24, // feet per second;  duration computed from path length //? 32f/s is 10m/s
+					size: 2, // feet
+					speed: 32, // feet per second;  duration computed from path length //? 32f/s is 10m/s
 					animations: [{ function: "followPath" }],
 					sound: {
 						src: "systems/metanthropes/assets/audio/sfx/astral-cue-metal-detector-01.ogg",
@@ -171,7 +218,7 @@ export async function metaVFX(actor, manuallySelectedTargets, effect, elementalD
 				},
 				impact: {
 					//bloodsplatter?
-					texture: "systems/metanthropes/assets/artwork/vfx/particle-3.webp",
+					texture: item.img,
 					duration: 2000,
 					sound: {
 						src: "systems/metanthropes/assets/audio/sfx/distant-explosion-03.wav",
@@ -204,7 +251,8 @@ export async function metaVFX(actor, manuallySelectedTargets, effect, elementalD
 					align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
 					radius: 120, //def 60 - what is this, feet?
 				},
-				shake: { //doesn't seem to get triggered here, perhaps it's not a valid component in the singleImpact?
+				shake: {
+					//doesn't seem to get triggered here, perhaps it's not a valid component in the singleImpact?
 					type: "shake",
 					target: "stage", //can also target individual canvas layers or groups
 					duration: 200,
@@ -253,18 +301,13 @@ export async function metaVFX(actor, manuallySelectedTargets, effect, elementalD
 			},
 			particles: {
 				type: "particleGenerator",
-				textures: [
-					"systems/metanthropes/assets/artwork/vfx/particle-1.webp",
-					"systems/metanthropes/assets/artwork/vfx/particle-2.webp",
-					"systems/metanthropes/assets/artwork/vfx/particle-3.webp",
-					"systems/metanthropes/assets/artwork/vfx/particle-4.webp",
-				],
+				textures: damageTextures,
 				area: { reference: "target" },
-				count: 40,
-				duration: 2500,
+				count: damageCount,
+				duration: 3500,
 				lifetime: { min: 300, max: 700 },
 				fade: { in: 50, out: 200 },
-				scale: { min: 0.1, max: 0.4 },
+				scale: { min: minScale, max: maxScale },
 				velocity: { speed: 1, angle: 1 },
 				config: {
 					constraints: { mode: "none" },
@@ -278,9 +321,11 @@ export async function metaVFX(actor, manuallySelectedTargets, effect, elementalD
 				//distance: 5, // no idea, no default
 				duration: 5000, //optional def 2000
 				//jitter: 1, //def 0
-				origin: { reference: "target", property: "center" }, //origin is confusing here, why not position?
+				//origin: { reference: "target", property: "center" }, //origin is confusing here, why not position?
+				origin: { reference: "target", deltas: { sort: 0 } },
 				scrollDirection: CONST.TEXT_ANCHOR_POINTS.TOP,
 				//textAnchor: CONST.TEXT_ANCHOR_POINTS.TOP, //optional
+				//todo color based on damagetype
 				textStyle: { fill: "#d21414", fontSize: 42, fontWeight: "bold" },
 			},
 		},
@@ -297,10 +342,19 @@ export async function metaVFX(actor, manuallySelectedTargets, effect, elementalD
 	});
 
 	//* Go thru each Token from the manuallySelectedTargets - future input from Targeting validation
-	for (const targetedActor of manuallySelectedTargets) {
-		mL(3, "metaVFX", "Target's Name", targetedActor.name);
+	for (const targetedActorUUID of JSON.parse(targetTokensUUIDs)) {
+		const actor = await fromUuid(targetedActorUUID);
+		const targetedActor = await actor.getActiveTokens(false, false)[0]; //?would that work for target tokens too?
+		mL(3, "metaVFX", "TargetedActor UUID/actor/TargetedActor", targetedActorUUID, actor, targetedActor);
+		let damageMessage = ``;
+		//todo localize
+		if (cosmicDamageRollResult > 0) damageMessage += `Cosmic: ${cosmicDamageRollResult} `;
+		if (elementalDamageRollResult > 0) damageMessage += ` Elemental: ${elementalDamageRollResult} `;
+		if (materialDamageRollResult > 0) damageMessage += ` Material: ${materialDamageRollResult} `;
+		if (psychicDamageRollResult > 0) damageMessage += ` Psychic: ${psychicDamageRollResult}`;
 		//! if we await the VFX then it goes from one target to the next, if we don't, it does all at the same time.
 		//! Are there metapowers/possessions where we would want an effect to be awaited instead ?
+		//? what if there is a miss??
 		//! Multi-action is essentially multiple separate activations, not subject to this
 		// rather check to see if there are any metapowers that would require us to re-roll for EACH target, then it would need an await
 		if (metaVFX.started) {
@@ -317,7 +371,7 @@ export async function metaVFX(actor, manuallySelectedTargets, effect, elementalD
 					elevation: targetedActor.document.elevation,
 					sort: targetedActor.document.sort,
 				},
-				text: "Elemental",
+				text: damageMessage,
 			});
 			continue;
 		}
@@ -332,7 +386,7 @@ export async function metaVFX(actor, manuallySelectedTargets, effect, elementalD
 				elevation: targetedActor.document.elevation,
 				sort: targetedActor.document.sort, //?sort controls if the effect will be under or over the token (enabled is over)
 			},
-			text: `${elementalDamageRollResult} Elemental`,
+			text: damageMessage,
 		});
 		continue;
 	}

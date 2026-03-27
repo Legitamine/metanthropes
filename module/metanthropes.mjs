@@ -31,7 +31,8 @@ import { MetanthropesCombat } from "./documents/combat.mjs";
 import { MetanthropesActorSheet } from "./ui/sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./ui/sheets/item-sheet.mjs";
 import { MetanthropesActiveEffectSheetV2 } from "./ui/sheets/active-effect-sheet.mjs";
-import { MetaDialog } from "./metaclasses/metaclasses.mjs";
+//* Custom Classes
+import { MetaDialog, MetaChatMessage } from "./metaclasses/metaclasses.mjs";
 // //* AppV2 Sheets
 import { MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
 import { MetanthropesItemSheetV2 } from "./ui/sheets/item-sheet-v2.mjs";
@@ -91,6 +92,7 @@ globalThis.metanthropes = {
 		MetanthropesActorSheetV2,
 		MetanthropesItemSheetV2,
 		MetaDialog,
+		MetaChatMessage,
 	},
 	dice: {
 		metaRoll,
