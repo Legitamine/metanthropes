@@ -146,9 +146,57 @@
 					}
 				},
 				"chars": {
-					"body": "{{METANTHROPES.CHARS.BODY}}"
+					"body": {
+						"label": "Body",
+						"hint": "Body is the Characteristic which defines a Character's constitution, physical prowess, and physique."
+					},
+					"mind": {
+						"label": "Mind",
+						"hint": "Mind is the Characteristic which defines a Character's brainpower, problem solving and innovative thoughts."
+					},
+					"soul": {
+						"label": "Soul",
+						"hint": "Soul is the Characteristic which defines a Character's conviction, spiritual prowess, and mettle."
+					}
 				},
-				"stats": {},
+				"stats": {
+					"endurance": {
+						"label": "Endurance",
+						"hint": "Endurance determines a Character's stamina, health, and vigor."
+					},
+					"power": {
+						"label": "Power",
+						"hint": "Power determines a Character's strength, striking effectiveness, and physical explosiveness."
+					},
+					"reflexes": {
+						"label": "Reflexes",
+						"hint": "Reflexes determines a Character's agility, motor skills and balance."
+					},
+					"creativity": {
+						"label": "Creativity",
+						"hint": "Creativity determines a Character's imagination, expression, and handiwork."
+					},
+					"manipulation": {
+						"label": "Manipulation",
+						"hint": "Manipulation determines a Character's persuasiveness, charisma, and social engineering skills."
+					},
+					"perception": {
+						"label": "Perception",
+						"hint": "Perception determines a Character's observatory, evaluative and calculative capabilities."
+					},
+					"awareness": {
+						"label": "Awareness",
+						"hint": "Awareness determines a Character's empathy, intuition, and instinctual responses."
+					},
+					"willpower": {
+						"label": "Willpower",
+						"hint": "Willpower determines a Character's courage, discipline, and confidence."
+					},
+					"consciousness": {
+						"label": "Consciousness",
+						"hint": "Consciousness determines a Character's recollection, subconscious processing, and sanity."
+					}
+				},
 				"buffs": {},
 				"conditions": {},
 				"perks": {},
@@ -187,58 +235,7 @@
 				}
 			}
 		},
-		"CHARS": {
-			"BODY": {
-				"LABEL": "Body",
-				"HINT": "Body is the Characteristic which defines a Character's constitution, physical prowess, and physique."
-			},
-			"MIND": {
-				"LABEL": "Mind",
-				"HINT": "Mind is the Characteristic which defines a Character's brainpower, problem solving and innovative thoughts."
-			},
-			"SOUL": {
-				"LABEL": "Soul",
-				"HINT": "Soul is the Characteristic which defines a Character's conviction, spiritual prowess, and mettle."
-			}
-		},
-		"STATS": {
-			"ENDURANCE": {
-				"LABEL": "Endurance",
-				"HINT": "Endurance determines a Character's stamina, health, and vigor."
-			},
-			"POWER": {
-				"LABEL": "Power",
-				"HINT": "Power determines a Character's strength, striking effectiveness, and physical explosiveness."
-			},
-			"REFLEXES": {
-				"LABEL": "Reflexes",
-				"HINT": "Reflexes determines a Character's agility, motor skills and balance."
-			},
-			"CREATIVITY": {
-				"LABEL": "Creativity",
-				"HINT": "Creativity determines a Character's imagination, expression, and handiwork."
-			},
-			"MANIPULATION": {
-				"LABEL": "Manipulation",
-				"HINT": "Manipulation determines a Character's persuasiveness, charisma, and social engineering skills."
-			},
-			"PERCEPTION": {
-				"LABEL": "Perception",
-				"HINT": "Perception determines a Character's observatory, evaluative and calculative capabilities."
-			},
-			"AWARENESS": {
-				"LABEL": "Awareness",
-				"HINT": "Awareness determines a Character's empathy, intuition, and instinctual responses."
-			},
-			"WILLPOWER": {
-				"LABEL": "Willpower",
-				"HINT": "Willpower determines a Character's courage, discipline, and confidence."
-			},
-			"CONSCIOUSNESS": {
-				"LABEL": "Consciousness",
-				"HINT": "Consciousness determines a Character's recollection, subconscious processing, and sanity."
-			}
-		},
+
 		"MOVEMENT": {
 			"LABEL": "Movement",
 			"HINT": "blah",
