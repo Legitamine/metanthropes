@@ -24,7 +24,7 @@ __  __ ______ _______       _   _ _______ _    _ _____   ____  _____  ______  __
 	CHARS,
 	colors, //todo rename with new UI
 	STATS,
-	MOVEMENT, //todo deprecate
+	MOVEMENT, //! deprecate when we remove V1 Actors
 	TOKENDEFAULTS,
 	TABLES,
 });

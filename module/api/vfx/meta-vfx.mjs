@@ -11,6 +11,7 @@
  * @returns {unknown}
  */
 export async function metaVFX({
+	//todo rename values cleanly
 	initiatingTokenUUID,
 	targetTokensUUIDs,
 	cosmicDamageRollResult,
@@ -49,9 +50,7 @@ export async function metaVFX({
 	// Also the animation should trigger ONCE after all potential re-rolls happen, not multiple times for each damage re-roll for eg.
 	// Need a way to scale the animation to the size of the Token or not?
 	// eventually we'll need to define our own custom VFXComponents see [the api for more details](https://foundryvtt.com/api/v14/modules/foundry.canvas.vfx.html)
-	//? item
-	const item = await fromUuid(itemUUID);
-	//* VFX Tests
+	//* single VFX Effect Tests
 	const shot = new foundry.canvas.vfx.VFXEffect({
 		name: "Meta Shot",
 		components: {
@@ -159,6 +158,9 @@ export async function metaVFX({
 		},
 		timeline: [{ component: "damage", position: 0 }],
 	});
+	// * Customize the effect
+	//? item
+	const item = await fromUuid(itemUUID);
 	const damageTextures = [];
 	let totalDamage = 0;
 	if (cosmicDamageRollResult > 0) {
@@ -180,7 +182,7 @@ export async function metaVFX({
 	const damageCount = Math.clamp(totalDamage / 4, 1, 100);
 	const minScale = Math.clamp(damageCount * 0.1, 0.1, 0.3);
 	const maxScale = Math.clamp(damageCount * 0.5, 0.4, 0.8);
-	mL(3, "damageTextures", damageTextures, "damageCount", damageCount);
+	//* meta (combined) VFX Effect test
 	const metaVFX = await new foundry.canvas.vfx.VFXEffect({
 		//todo improvements: speed & overlap, random rotation, fades, scaling via token size or life total?, delta positions?
 		name: "metaVFX",
@@ -200,39 +202,39 @@ export async function metaVFX({
 					duration: 1500,
 					animations: [{ function: "drawBack" }],
 					// sound: {
-					// 	//defaults to the music track vs the interface or environment
-					// 	src: "systems/metanthropes/assets/audio/sfx/reload-heavy-03.wav",
-					// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-					// 	channel: "environment",
-					// 	volume: 0.3,
-					// },
-				},
-				projectile: {
-					texture: item.img,
-					// size: { w: 48, h: 24 }, //number in feet ?
-					size: 2, // feet
-					speed: 32, // feet per second;  duration computed from path length //? 32f/s is 10m/s
-					animations: [{ function: "followPath" }],
-					// sound: {
-					// 	src: "systems/metanthropes/assets/audio/sfx/astral-cue-metal-detector-01.ogg",
-					// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START, //align: foundry.canvas.sfx.SOUND_ALIGNMENT.START,
-					// 	channel: "environment",
-					// 	volume: 0.1,
-					// },
-				},
-				impact: {
-					//bloodsplatter?
-					texture: item.img,
-					size: 4,
-					duration: 2000,
-					// sound: {
-					// 	src: "systems/metanthropes/assets/audio/sfx/distant-explosion-03.wav",
-					// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-					// 	channel: "environment",
-					// 	volume: 0.3,
-					// },
-				},
-			},
+						// 	//defaults to the music track vs the interface or environment
+						// 	src: "systems/metanthropes/assets/audio/sfx/reload-heavy-03.wav",
+						// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
+						// 	channel: "environment",
+						// 	volume: 0.3,
+						// },
+					},
+					projectile: {
+						texture: item.img,
+						// size: { w: 48, h: 24 }, //number in feet ?
+						size: 2, // feet
+						speed: 32, // feet per second;  duration computed from path length //? 32f/s is 10m/s
+						animations: [{ function: "followPath" }],
+						// sound: {
+							// 	src: "systems/metanthropes/assets/audio/sfx/astral-cue-metal-detector-01.ogg",
+							// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START, //align: foundry.canvas.sfx.SOUND_ALIGNMENT.START,
+							// 	channel: "environment",
+							// 	volume: 0.1,
+							// },
+						},
+						impact: {
+							//bloodsplatter?
+							texture: item.img,
+							size: 4,
+							duration: 2000,
+							// sound: {
+								// 	src: "systems/metanthropes/assets/audio/sfx/distant-explosion-03.wav",
+								// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
+								// 	channel: "environment",
+								// 	volume: 0.3,
+								// },
+							},
+						},
 			boom1: {
 				type: "singleImpact",
 				position: { reference: "target", deltas: { sort: 0 } }, //timeline position? what does this sort affect?

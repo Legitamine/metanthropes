@@ -922,7 +922,7 @@ export class MetanthropesActor extends Actor {
 				2,
 				"MetanthropesActor",
 				"_prepareDerivedPerkXPData",
-				"WARNING: Stored Experience is Negative for:",
+				"ERROR: Stored Experience is Negative for:",
 				this.name,
 			);
 			//! the below either .info or .error will cause an exception? This should also affect v0.7.xx builds
