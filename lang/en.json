@@ -148,7 +148,8 @@
 				"chars": {
 					"body": {
 						"label": "Body",
-						"hint": "Body is the Characteristic which defines a Character's constitution, physical prowess, and physique."
+						"hint": "Body is the Characteristic which defines a Character's constitution, physical prowess, and physique.",
+						"ifZero": "new test"
 					},
 					"mind": {
 						"label": "Mind",
