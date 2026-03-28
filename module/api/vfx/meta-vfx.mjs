@@ -1,24 +1,34 @@
 /**
  * Proof of concept function to trigger VFX
+ * !Experimental
  * Should be called during the applyDamage step
+ * idea here is probably that we create a bunch of different components and we synthesize them into a single VFXEffect
+ * based off the properties of the Item that was used. Would need to create a 'master' animation with all component combinations and test that
+ * can we run multiple VFXEffects in parallel? How does clone affect us? Need to decide/define the master combinations
+ * Should also think about VFXEffects not triggered by metaExecute, but rather on other triggers like Criticals / Hunger / Cover, Bloodsplats etc
+ * Also, we should be able to call a specific effect (like textscroll for other things too like when losing life (vs damage dealt) and others (portal opens, trap triggered!))
+ * Also the animation should trigger ONCE after all potential re-rolls happen, not multiple times for each damage re-roll for eg.
+ * Need a way to scale the animation to the size of the Token or not?
+ * eventually we'll need to define our own custom VFXComponents see [the api for more details](https://foundryvtt.com/api/v14/modules/foundry.canvas.vfx.html)
+
  *
  * @export
  * @async
  * @param {*} actor
  * @param {*} manuallySelectedTargets
  * @param {*} effect
- * @param {*} elementalDamageRollResult
+ * @param {*} elementalDamage
  * @returns {unknown}
  */
 export async function metaVFX({
 	//todo rename values cleanly
 	initiatingTokenUUID,
-	targetTokensUUIDs,
-	cosmicDamageRollResult,
-	elementalDamageRollResult,
-	materialDamageRollResult,
-	psychicDamageRollResult,
-	itemUUID,
+	targetTokensUUIDs = [],
+	cosmicDamage = 0,
+	elementalDamage = 0,
+	materialDamage = 0,
+	psychicDamage = 0,
+	itemUUID = null,
 }) {
 	const mL = metanthropes.utils.metaLog;
 	mL(
@@ -28,161 +38,45 @@ export async function metaVFX({
 		"params:",
 		initiatingTokenUUID,
 		targetTokensUUIDs,
-		cosmicDamageRollResult,
-		elementalDamageRollResult,
-		materialDamageRollResult,
-		psychicDamageRollResult,
+		cosmicDamage,
+		elementalDamage,
+		materialDamage,
+		psychicDamage,
 		itemUUID,
 	);
 	//? Grab the initiating actor's Token
 	const actor = await fromUuid(initiatingTokenUUID);
+	if (!actor) return mL(5, "metaVFX", "Could find Actor", actor, "from UUID", initiatingTokenUUID);
 	const actorToken = await actor.getActiveTokens(false, false)[0];
-	mL(3, "metaVFX", "Initiating Actor: UUID/actor/actorToken", initiatingTokenUUID, actor, actorToken);
-	///scene.uuid // actorToken.uuid,
 	if (!actorToken) return mL(5, "metaVFX", "No Initiating Actor Token could be found for actor", actor);
-	//? mL(3, "metaVFX", "actorToken", actorToken, "manuallySelectedTargets", manuallySelectedTargets);
+	mL(3, "metaVFX", "Initiating Actor: UUID/actor/actorToken", initiatingTokenUUID, actor, actorToken);
 	//? Crusible way of checking for DSN being active and await the animation to finish - assuming the animation is getting triggered from the message.id
 	//! if ( this.rolls.length && ("dice3d" in game) ) await game.dice3d.waitFor3DAnimationByMessageID(this.id);
-	//? Crusible way of checking if the user's token is in the scene? 
+	//? Crusible way of checking if the user's token is in the scene?
 	//todo we need to come up with something similar
 	//! if ( !this.token?.parent.isView ) return;
-	// idea here is probably that we create a bunch of different components and we synthesize them into a single VFXEffect
-	// based off the properties of the Item that was used. Would need to create a 'master' animation with all component combinations and test that
-	// can we run multiple VFXEffects in parallel? How does clone affect us? Need to decide/define the master combinations
-	// Should also think about VFXEffects not triggered by metaExecute, but rather on other triggers like Criticals / Hunger / Cover, Bloodsplats etc
-	// Also, we should be able to call a specific effect (like textscroll for other things too like when losing life (vs damage dealt) and others (portal opens, trap triggered!))
-	// Also the animation should trigger ONCE after all potential re-rolls happen, not multiple times for each damage re-roll for eg.
-	// Need a way to scale the animation to the size of the Token or not?
-	// eventually we'll need to define our own custom VFXComponents see [the api for more details](https://foundryvtt.com/api/v14/modules/foundry.canvas.vfx.html)
-	//* single VFX Effect Tests
-	const shot = new foundry.canvas.vfx.VFXEffect({
-		name: "Meta Shot",
-		components: {
-			flight: {
-				type: "singleAttack",
-				path: [
-					{ reference: "origin", deltas: { sort: 1 } },
-					{ reference: "target", deltas: { sort: 1 } },
-				],
-				pathType: "arc",
-				charge: {
-					texture: "systems/metanthropes/assets/artwork/vfx/particle-1.webp",
-					duration: 300,
-					animations: [{ function: "drawBack", params: {} }],
-					//sound: { src: "ogg", align : 2}
-				},
-				projectile: {
-					texture: "systems/metanthropes/assets/artwork/vfx/particle-2.webp",
-					speed: 6, // feet per second;  duration computed from path length //? 32f/s is 10m/s
-					size: { w: 480, h: 240 }, //number in feet ?
-					animations: [{ function: "followPath", params: {} }],
-					sound: {
-						src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
-						align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START, //align: foundry.canvas.sfx.SOUND_ALIGNMENT.START,
-					},
-				},
-				impact: {
-					//bloodsplatter?
-					texture: "systems/metanthropes/assets/artwork/vfx/particle-3.webp",
-					duration: 400,
-					sound: {
-						src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Modern_device_beeping_01.ogg",
-						align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-					},
-				},
-			},
-		},
-		timeline: [{ component: "flight", position: 0 }],
-	});
-	const impact = new foundry.canvas.vfx.VFXEffect({
-		name: "Meta Impact",
-		components: {
-			burst: {
-				type: "singleImpact",
-				position: { reference: "target", property: "center" },
-				texture: "systems/metanthropes/assets/artwork/vfx/particle-4.webp",
-				duration: 2100,
-				// size: { w: 2056, h: 2056 },
-				size: 10,
-				animations: [{ function: "scale", params: {} }],
-				sound: {
-					src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
-				},
-			},
-			shake: {
-				type: "shake",
-				duration: 800,
-				maxDisplacement: 20,
-				smoothness: 0.6,
-			},
-			damage: {
-				type: "scrollingText",
-				origin: { reference: "target", property: "center" },
-				content: { reference: "damageText" },
-				duration: 2500,
-				scrollDirection: CONST.TEXT_ANCHOR_POINTS.TOP,
-				textStyle: { fill: "#ff4400", fontSize: 86, fontWeight: "bold" },
-			},
-		},
-		timeline: [
-			{ component: "burst", position: 0 },
-			{ component: "shake", position: 100 },
-			{ component: "damage", position: 200 },
-		],
-	});
-	const splatter = new foundry.canvas.vfx.VFXEffect({
-		name: "bloodSplatter",
-		components: {
-			splash: {
-				type: "singleImpact",
-				position: { reference: "target", deltas: { sort: 1 } },
-				texture: "systems/metanthropes/assets/artwork/vfx/particle-4.webp",
-				size: 2,
-				duration: 2000,
-				sound: {
-					src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
-					align: 1,
-				},
-			},
-		},
-		timeline: [{ component: "splash" }],
-	});
-	const dmgText = new foundry.canvas.vfx.VFXEffect({
-		name: "DmgText",
-		components: {
-			damage: {
-				type: "scrollingText",
-				origin: { reference: "target", property: "center" },
-				content: { reference: "damageText" },
-				duration: 2500, //optional def 2000
-				scrollDirection: CONST.TEXT_ANCHOR_POINTS.TOP,
-				textAnchor: CONST.TEXT_ANCHOR_POINTS.CENTER, //optional
-				textStyle: { fill: "#d21414", fontSize: 46, fontWeight: "bold" },
-			},
-		},
-		timeline: [{ component: "damage", position: 0 }],
-	});
 	// * Customize the effect
 	//? item
 	const item = await fromUuid(itemUUID);
 	const damageTextures = [];
 	let totalDamage = 0;
-	if (cosmicDamageRollResult > 0) {
+	if (cosmicDamage > 0) {
 		damageTextures.push("systems/metanthropes/assets/artwork/vfx/particle-1.webp");
-		totalDamage += cosmicDamageRollResult;
+		totalDamage += cosmicDamage;
 	}
-	if (elementalDamageRollResult > 0) {
+	if (elementalDamage > 0) {
 		damageTextures.push("systems/metanthropes/assets/artwork/vfx/particle-2.webp");
-		totalDamage += elementalDamageRollResult;
+		totalDamage += elementalDamage;
 	}
-	if (materialDamageRollResult > 0) {
+	if (materialDamage > 0) {
 		damageTextures.push("systems/metanthropes/assets/artwork/vfx/particle-3.webp");
-		totalDamage += materialDamageRollResult;
+		totalDamage += materialDamage;
 	}
-	if (psychicDamageRollResult > 0) {
+	if (psychicDamage > 0) {
 		damageTextures.push("systems/metanthropes/assets/artwork/vfx/particle-4.webp");
-		totalDamage += psychicDamageRollResult;
+		totalDamage += psychicDamage;
 	}
+	//todo review min/max clamp values based off the system performance setting
 	const damageCount = Math.clamp(totalDamage / 4, 1, 100);
 	const minScale = Math.clamp(damageCount * 0.1, 0.1, 0.3);
 	const maxScale = Math.clamp(damageCount * 0.5, 0.4, 0.8);
@@ -339,7 +233,7 @@ export async function metaVFX({
 			},
 			text: {
 				type: "scrollingText",
-				//content: "${elementalDamageRollResult} Elemental",
+				//content: "${elementalDamage} Elemental",
 				content: { reference: "text" },
 				//distance: 5, // no idea, no default
 				duration: 5000, //optional def 2000
@@ -371,10 +265,10 @@ export async function metaVFX({
 		mL(3, "metaVFX", "TargetedActor UUID/actor/TargetedActor", targetedActorUUID, actor, targetedActor);
 		let damageMessage = ``;
 		//todo localize
-		if (cosmicDamageRollResult > 0) damageMessage += `Cosmic: ${cosmicDamageRollResult} `;
-		if (elementalDamageRollResult > 0) damageMessage += ` Elemental: ${elementalDamageRollResult} `;
-		if (materialDamageRollResult > 0) damageMessage += ` Material: ${materialDamageRollResult} `;
-		if (psychicDamageRollResult > 0) damageMessage += ` Psychic: ${psychicDamageRollResult}`;
+		if (cosmicDamage > 0) damageMessage += `Cosmic: ${cosmicDamage} `;
+		if (elementalDamage > 0) damageMessage += ` Elemental: ${elementalDamage} `;
+		if (materialDamage > 0) damageMessage += ` Material: ${materialDamage} `;
+		if (psychicDamage > 0) damageMessage += ` Psychic: ${psychicDamage}`;
 		//! if we await the VFX then it goes from one target to the next, if we don't, it does all at the same time.
 		//! Are there metapowers/possessions where we would want an effect to be awaited instead ?
 		//? what if there is a miss??
@@ -415,3 +309,113 @@ export async function metaVFX({
 	}
 	mL(3, "metaVFX", "Finished");
 }
+
+//* initial tests, delete after review
+	// //* single VFX Effect Tests
+	// const shot = new foundry.canvas.vfx.VFXEffect({
+	// 	name: "Meta Shot",
+	// 	components: {
+	// 		flight: {
+	// 			type: "singleAttack",
+	// 			path: [
+	// 				{ reference: "origin", deltas: { sort: 1 } },
+	// 				{ reference: "target", deltas: { sort: 1 } },
+	// 			],
+	// 			pathType: "arc",
+	// 			charge: {
+	// 				texture: "systems/metanthropes/assets/artwork/vfx/particle-1.webp",
+	// 				duration: 300,
+	// 				animations: [{ function: "drawBack", params: {} }],
+	// 				//sound: { src: "ogg", align : 2}
+	// 			},
+	// 			projectile: {
+	// 				texture: "systems/metanthropes/assets/artwork/vfx/particle-2.webp",
+	// 				speed: 6, // feet per second;  duration computed from path length //? 32f/s is 10m/s
+	// 				size: { w: 480, h: 240 }, //number in feet ?
+	// 				animations: [{ function: "followPath", params: {} }],
+	// 				sound: {
+	// 					src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
+	// 					align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START, //align: foundry.canvas.sfx.SOUND_ALIGNMENT.START,
+	// 				},
+	// 			},
+	// 			impact: {
+	// 				//bloodsplatter?
+	// 				texture: "systems/metanthropes/assets/artwork/vfx/particle-3.webp",
+	// 				duration: 400,
+	// 				sound: {
+	// 					src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Modern_device_beeping_01.ogg",
+	// 					align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
+	// 				},
+	// 			},
+	// 		},
+	// 	},
+	// 	timeline: [{ component: "flight", position: 0 }],
+	// });
+	// const impact = new foundry.canvas.vfx.VFXEffect({
+	// 	name: "Meta Impact",
+	// 	components: {
+	// 		burst: {
+	// 			type: "singleImpact",
+	// 			position: { reference: "target", property: "center" },
+	// 			texture: "systems/metanthropes/assets/artwork/vfx/particle-4.webp",
+	// 			duration: 2100,
+	// 			// size: { w: 2056, h: 2056 },
+	// 			size: 10,
+	// 			animations: [{ function: "scale", params: {} }],
+	// 			sound: {
+	// 				src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
+	// 			},
+	// 		},
+	// 		shake: {
+	// 			type: "shake",
+	// 			duration: 800,
+	// 			maxDisplacement: 20,
+	// 			smoothness: 0.6,
+	// 		},
+	// 		damage: {
+	// 			type: "scrollingText",
+	// 			origin: { reference: "target", property: "center" },
+	// 			content: { reference: "damageText" },
+	// 			duration: 2500,
+	// 			scrollDirection: CONST.TEXT_ANCHOR_POINTS.TOP,
+	// 			textStyle: { fill: "#ff4400", fontSize: 86, fontWeight: "bold" },
+	// 		},
+	// 	},
+	// 	timeline: [
+	// 		{ component: "burst", position: 0 },
+	// 		{ component: "shake", position: 100 },
+	// 		{ component: "damage", position: 200 },
+	// 	],
+	// });
+	// const splatter = new foundry.canvas.vfx.VFXEffect({
+	// 	name: "bloodSplatter",
+	// 	components: {
+	// 		splash: {
+	// 			type: "singleImpact",
+	// 			position: { reference: "target", deltas: { sort: 1 } },
+	// 			texture: "systems/metanthropes/assets/artwork/vfx/particle-4.webp",
+	// 			size: 2,
+	// 			duration: 2000,
+	// 			sound: {
+	// 				src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
+	// 				align: 1,
+	// 			},
+	// 		},
+	// 	},
+	// 	timeline: [{ component: "splash" }],
+	// });
+	// const dmgText = new foundry.canvas.vfx.VFXEffect({
+	// 	name: "DmgText",
+	// 	components: {
+	// 		damage: {
+	// 			type: "scrollingText",
+	// 			origin: { reference: "target", property: "center" },
+	// 			content: { reference: "damageText" },
+	// 			duration: 2500, //optional def 2000
+	// 			scrollDirection: CONST.TEXT_ANCHOR_POINTS.TOP,
+	// 			textAnchor: CONST.TEXT_ANCHOR_POINTS.CENTER, //optional
+	// 			textStyle: { fill: "#d21414", fontSize: 46, fontWeight: "bold" },
+	// 		},
+	// 	},
+	// 	timeline: [{ component: "damage", position: 0 }],
+	// });

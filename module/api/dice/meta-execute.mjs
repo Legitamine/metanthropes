@@ -741,16 +741,18 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				const vfxData = {
 					initiatingTokenUUID: actorUUID,
 					targetTokensUUIDs: JSON.stringify(targetedActorsUUIDs),
-					cosmicDamageRollResult,
-					elementalDamageRollResult,
-					materialDamageRollResult,
-					psychicDamageRollResult,
+					cosmicDamage: cosmicDamageRollResult,
+					elementalDamage: elementalDamageRollResult,
+					materialDamage: materialDamageRollResult,
+					psychicDamage: psychicDamageRollResult,
 					itemUUID,
 				};
 				game.socket.emit("system.metanthropes", {
 					action: "metaPlayVFX",
 					vfxData: vfxData,
 				});
+				//todo review socket emit if we would receive this ourselves?
+				//todo review if stringify is required?
 				await metanthropes.vfx.metaVFX(vfxData);
 			} catch (error) {
 				mL(5, "metaExecute", "VFX Failed with error", error);
@@ -769,6 +771,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	}
 	//* Apply Healing to Selected Targets
 	if (healSelectedTargets && actionableTargets) {
+		mL(3, "metaExecute", "Applying Healing");
 		await metanthropes.logic.metaApplyHealing(targetedActorsUUIDs, healingRollResult);
 	}
 	//* Compile Chat Data
