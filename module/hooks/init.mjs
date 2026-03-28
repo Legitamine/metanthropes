@@ -7,12 +7,13 @@ Hooks.once("init", async function () {
 	globalThis.SYSTEM = metanthropes.system;
 
 	//* Register System Settings
-	metanthropes.utils.metaRegisterGameSettings(settings);
+	await metanthropes.utils.metaRegisterGameSettings(settings);
+	const alphaTestingEnabled = (await game.settings.get("metanthropes", "metaAlphaTesting")) || false;
+	const betaTestingEnabled = (await game.settings.get("metanthropes", "metaBetaTesting")) || false;
 
 	//* Register Data Models
-	const alphaTestingEnabled = (await game.settings.get("metanthropes", "metaAlphaTesting")) || false;
 	if (alphaTestingEnabled) {
-		metanthropes.utils.metaLog(1, "System Initializing", "Alpha Testing Enabled");
+		metanthropes.utils.metaLog(1, "System", "Initializing", "Alpha Testing Enabled");
 		CONFIG.Actor.dataModels = {
 			MetanthropesActorV2: metanthropes.models.MetanthropesActorV2,
 		};
@@ -108,6 +109,7 @@ Hooks.once("init", async function () {
 	//* V14 VFX
 	//! EXPERIMENTAL
 	if (alphaTestingEnabled) {
+		metanthropes.utils.metaLog(1, "System", "Initializing", "Enabling Experimental VFX Engine");
 		CONFIG.Canvas.vfx.enabled = true;
 	}
 

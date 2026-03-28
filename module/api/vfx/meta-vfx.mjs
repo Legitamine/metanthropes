@@ -199,11 +199,13 @@ export async function metaVFX({
 					size: 4,
 					duration: 1500,
 					animations: [{ function: "drawBack" }],
-					sound: {
-						//defaults to the music track vs the interface or environment
-						src: "systems/metanthropes/assets/audio/sfx/reload-heavy-03.wav",
-						align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-					},
+					// sound: {
+					// 	//defaults to the music track vs the interface or environment
+					// 	src: "systems/metanthropes/assets/audio/sfx/reload-heavy-03.wav",
+					// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
+					// 	channel: "environment",
+					// 	volume: 0.3,
+					// },
 				},
 				projectile: {
 					texture: item.img,
@@ -211,19 +213,24 @@ export async function metaVFX({
 					size: 2, // feet
 					speed: 32, // feet per second;  duration computed from path length //? 32f/s is 10m/s
 					animations: [{ function: "followPath" }],
-					sound: {
-						src: "systems/metanthropes/assets/audio/sfx/astral-cue-metal-detector-01.ogg",
-						align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START, //align: foundry.canvas.sfx.SOUND_ALIGNMENT.START,
-					},
+					// sound: {
+					// 	src: "systems/metanthropes/assets/audio/sfx/astral-cue-metal-detector-01.ogg",
+					// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START, //align: foundry.canvas.sfx.SOUND_ALIGNMENT.START,
+					// 	channel: "environment",
+					// 	volume: 0.1,
+					// },
 				},
 				impact: {
 					//bloodsplatter?
 					texture: item.img,
+					size: 4,
 					duration: 2000,
-					sound: {
-						src: "systems/metanthropes/assets/audio/sfx/distant-explosion-03.wav",
-						align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-					},
+					// sound: {
+					// 	src: "systems/metanthropes/assets/audio/sfx/distant-explosion-03.wav",
+					// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
+					// 	channel: "environment",
+					// 	volume: 0.3,
+					// },
 				},
 			},
 			boom1: {
@@ -233,11 +240,13 @@ export async function metaVFX({
 				size: 10,
 				animations: [{ function: "scale", params: {} }],
 				duration: 230,
-				sound: {
-					src: "systems/metanthropes/assets/audio/sfx/small-explosion-01.wav",
-					align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-					radius: 120, //def 60 - what is this, feet?
-				},
+				// sound: {
+				// 	src: "systems/metanthropes/assets/audio/sfx/small-explosion-01.wav",
+				// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
+				// 	channel: "environment",
+				// 	radius: 120, //def 60 - what is this, feet?
+				// 	volume: 0.3,
+				// },
 			},
 			boom2: {
 				type: "singleImpact",
@@ -246,11 +255,13 @@ export async function metaVFX({
 				size: 10,
 				animations: [{ function: "scale", params: {} }],
 				duration: 230,
-				sound: {
-					src: "systems/metanthropes/assets/audio/sfx/small-explosion-02.wav",
-					align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-					radius: 120, //def 60 - what is this, feet?
-				},
+				// sound: {
+				// 	src: "systems/metanthropes/assets/audio/sfx/small-explosion-02.wav",
+				// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
+				// 	radius: 120, //def 60 - what is this, feet?
+				// 	channel: "environment",
+				// 	volume: 0.3,
+				// },
 				shake: {
 					//doesn't seem to get triggered here, perhaps it's not a valid component in the singleImpact?
 					type: "shake",
@@ -267,11 +278,13 @@ export async function metaVFX({
 				size: 10,
 				animations: [{ function: "scale", params: {} }],
 				duration: 230,
-				sound: {
-					src: "systems/metanthropes/assets/audio/sfx/small-explosion-03.wav",
-					align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-					radius: 120, //def 60 - what is this, feet?
-				},
+				// sound: {
+				// 	src: "systems/metanthropes/assets/audio/sfx/small-explosion-03.wav",
+				// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
+				// 	radius: 120, //def 60 - what is this, feet?
+				// 	channel: "environment",
+				// 	volume: 0.3,
+				// },
 			},
 			boom4: {
 				type: "singleImpact",
@@ -280,11 +293,13 @@ export async function metaVFX({
 				size: 10,
 				animations: [{ function: "scale", params: {} }],
 				duration: 230,
-				sound: {
-					src: "systems/metanthropes/assets/audio/sfx/small-explosion-04.wav",
-					align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-					radius: 120, //def 60 - what is this, feet?
-				},
+				// sound: {
+				// 	src: "systems/metanthropes/assets/audio/sfx/small-explosion-04.wav",
+				// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
+				// 	radius: 120, //def 60 - what is this, feet?
+				// 	channel: "environment",
+				// 	volume: 0.3,
+				// },
 			},
 			boom5: {
 				type: "singleImpact",
@@ -293,11 +308,13 @@ export async function metaVFX({
 				size: 10,
 				animations: [{ function: "scale", params: {} }],
 				duration: 230,
-				sound: {
-					src: "systems/metanthropes/assets/audio/sfx/small-explosion-05.wav",
-					align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-					radius: 120, //def 60 - what is this, feet?
-				},
+				// sound: {
+				// 	src: "systems/metanthropes/assets/audio/sfx/small-explosion-05.wav",
+				// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
+				// 	radius: 120, //def 60 - what is this, feet?
+				// 	channel: "environment",
+				// 	volume: 0.3,
+				// },
 			},
 			particles: {
 				type: "particleGenerator",
@@ -326,7 +343,7 @@ export async function metaVFX({
 				scrollDirection: CONST.TEXT_ANCHOR_POINTS.TOP,
 				//textAnchor: CONST.TEXT_ANCHOR_POINTS.TOP, //optional
 				//todo color based on damagetype
-				textStyle: { fill: "#d21414", fontSize: 42, fontWeight: "bold" },
+				textStyle: { fill: "#d21414", fontSize: 64, fontWeight: "bold" },
 			},
 		},
 		timeline: [
