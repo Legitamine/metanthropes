@@ -41,7 +41,11 @@ export async function metaVFX({
 	///scene.uuid // actorToken.uuid,
 	if (!actorToken) return mL(5, "metaVFX", "No Initiating Actor Token could be found for actor", actor);
 	//? mL(3, "metaVFX", "actorToken", actorToken, "manuallySelectedTargets", manuallySelectedTargets);
-
+	//? Crusible way of checking for DSN being active and await the animation to finish - assuming the animation is getting triggered from the message.id
+	//! if ( this.rolls.length && ("dice3d" in game) ) await game.dice3d.waitFor3DAnimationByMessageID(this.id);
+	//? Crusible way of checking if the user's token is in the scene? 
+	//todo we need to come up with something similar
+	//! if ( !this.token?.parent.isView ) return;
 	// idea here is probably that we create a bunch of different components and we synthesize them into a single VFXEffect
 	// based off the properties of the Item that was used. Would need to create a 'master' animation with all component combinations and test that
 	// can we run multiple VFXEffects in parallel? How does clone affect us? Need to decide/define the master combinations
@@ -202,39 +206,39 @@ export async function metaVFX({
 					duration: 1500,
 					animations: [{ function: "drawBack" }],
 					// sound: {
-						// 	//defaults to the music track vs the interface or environment
-						// 	src: "systems/metanthropes/assets/audio/sfx/reload-heavy-03.wav",
-						// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-						// 	channel: "environment",
-						// 	volume: 0.3,
-						// },
-					},
-					projectile: {
-						texture: item.img,
-						// size: { w: 48, h: 24 }, //number in feet ?
-						size: 2, // feet
-						speed: 32, // feet per second;  duration computed from path length //? 32f/s is 10m/s
-						animations: [{ function: "followPath" }],
-						// sound: {
-							// 	src: "systems/metanthropes/assets/audio/sfx/astral-cue-metal-detector-01.ogg",
-							// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START, //align: foundry.canvas.sfx.SOUND_ALIGNMENT.START,
-							// 	channel: "environment",
-							// 	volume: 0.1,
-							// },
-						},
-						impact: {
-							//bloodsplatter?
-							texture: item.img,
-							size: 4,
-							duration: 2000,
-							// sound: {
-								// 	src: "systems/metanthropes/assets/audio/sfx/distant-explosion-03.wav",
-								// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-								// 	channel: "environment",
-								// 	volume: 0.3,
-								// },
-							},
-						},
+					// 	//defaults to the music track vs the interface or environment
+					// 	src: "systems/metanthropes/assets/audio/sfx/reload-heavy-03.wav",
+					// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
+					// 	channel: "environment",
+					// 	volume: 0.3,
+					// },
+				},
+				projectile: {
+					texture: item.img,
+					// size: { w: 48, h: 24 }, //number in feet ?
+					size: 2, // feet
+					speed: 32, // feet per second;  duration computed from path length //? 32f/s is 10m/s
+					animations: [{ function: "followPath" }],
+					// sound: {
+					// 	src: "systems/metanthropes/assets/audio/sfx/astral-cue-metal-detector-01.ogg",
+					// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START, //align: foundry.canvas.sfx.SOUND_ALIGNMENT.START,
+					// 	channel: "environment",
+					// 	volume: 0.1,
+					// },
+				},
+				impact: {
+					//bloodsplatter?
+					texture: item.img,
+					size: 4,
+					duration: 2000,
+					// sound: {
+					// 	src: "systems/metanthropes/assets/audio/sfx/distant-explosion-03.wav",
+					// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
+					// 	channel: "environment",
+					// 	volume: 0.3,
+					// },
+				},
+			},
 			boom1: {
 				type: "singleImpact",
 				position: { reference: "target", deltas: { sort: 0 } }, //timeline position? what does this sort affect?

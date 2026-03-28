@@ -30,6 +30,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 ### Fixed:
 - Improved the development tools by properly configuring intellisense for the Foundry and Metanthropes API.
 - When targeting multiple Tokens, it will now check & remove any invalid actors, or duplicate actor-linked Tokens before proceeding with applying damage to them.
+- Actor owners will now update their Actors directly, rather than emit a Socket
 
 ### Known Issues:
 

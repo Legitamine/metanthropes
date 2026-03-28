@@ -747,7 +747,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 					psychicDamageRollResult,
 					itemUUID,
 				};
-				await game.socket.emit("system.metanthropes", {
+				game.socket.emit("system.metanthropes", {
 					action: "metaPlayVFX",
 					vfxData: vfxData,
 				});
