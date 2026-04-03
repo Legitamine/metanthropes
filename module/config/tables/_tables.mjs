@@ -1,5 +1,5 @@
 import { AREAS } from "./areas.mjs";
-import { ACTIONS } from "./actions.mjs";
+import { ACTIVATIONS } from "./activations.mjs";
 import { ENERGY } from "./energy.mjs";
 import { TARGETS } from "./targets.mjs";
 import { SPEED } from "./speed.mjs";
@@ -10,7 +10,7 @@ import { AMMO } from "./ammo/_ammo.mjs";
 
 export const TABLES = Object.freeze({
 	AREAS,
-	ACTIONS,
+	ACTIVATIONS,
 	ENERGY,
 	TARGETS,
 	SPEED,

@@ -124,6 +124,24 @@
 						"label": "Physical Description",
 						"hint": "The physical description of this Actor."
 					},
+					"resistances": {
+						"cosmic": {
+							"label": "Cosmic",
+							"hint": "Cosmic Energy Type Hint"
+						},
+						"elemental": {
+							"label": "Elemental",
+							"hint": "Elemental Energy Type Hint"
+						},
+						"material": {
+							"label": "Material",
+							"hint": "Material Energy Type Hint"
+						},
+						"psychic": {
+							"label": "Psychic",
+							"hint": "Psychic Energy Type Hint"
+						}
+					},
 					"height": {
 						"label": "Height",
 						"suffix": "m",
@@ -236,7 +254,12 @@
 				}
 			}
 		},
-
+		"ACTIVATIONS": {
+			"alwaysActive": {
+				"label": "Always Active",
+				"hint": "Always Active Hint"
+			}
+		},
 		"MOVEMENT": {
 			"LABEL": "Movement",
 			"HINT": "blah",

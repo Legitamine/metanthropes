@@ -8,4 +8,13 @@ export const WEIGHT = Object.freeze({
 		toss: "",
 		push: "",
 	}, //plus lift toss push/pull
+	10: {
+		movement: 11,
+		prowess: -50,
+		average: "",
+		example: "",
+		lift: "",
+		toss: "",
+		push: "",
+	},
 });

@@ -590,7 +590,7 @@ h3 {
 	width: auto;
 	object-fit: contain;
 	border: none;
-	border-radius: 15px;
+	//border-radius: 15px;
 }
 
 .style-tab-header-prime {
@@ -606,7 +606,8 @@ h3 {
 	width: auto;
 	object-fit: contain;
 	border: none;
-	border-radius: 15px;
+	//border-radius: 15px;
+	z-index: 2;
 	transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
 	&:hover {
 		transform: scale(1.5) translateX(40px);

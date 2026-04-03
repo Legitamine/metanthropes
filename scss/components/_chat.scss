@@ -16,6 +16,7 @@
 
 .dice-tooltip {
 	//background-image: $a-button-image;
+	background-image: none;
 	background-color: var(--metanthropes-color-primary);
 	.part-header {
 		.part-flavor {
@@ -71,6 +72,7 @@
 #chat-form textarea {
 	background-image: $a-chat-text-area;
 }
+.chat-message .message-header,
 .chat-message .message-header .flavor-text,
 .chat-message .message-header .whisper-to,
 .chat-message .message-content {

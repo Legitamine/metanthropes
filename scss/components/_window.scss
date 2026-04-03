@@ -142,6 +142,10 @@ hr {
 	background-color: var(--metanthropes-color-background);
 }
 
+nav.tabs {
+	line-height: 3.4;
+}
+
 //todo: are z-indexes here still doing something?
 //metanthropes logo in cs background still needs these
 .window-app .window-resizable-handle {

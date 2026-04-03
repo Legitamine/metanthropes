@@ -14,27 +14,32 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ### Added:
 
-- Added support for the latest Foundry V14 Testing 3 build (14.358).
+- Added support for the Foundry V14 stable build 14.359.
+- [Introductory] Now supports the new 'Quickstart' capability, so you can create a new World and select the Metanthropes: Introductory Adventure and skip required installation steps. The new World will be ready to go on the first load.
 - [Homebrew] (Requires Alpha Testing Enabled in the Settings) Added support for the new VFX engine. Metapowers & Possessions that deal Damage, will now trigger a new Visual & Audio effect upon successful activation, before automatically applying the damage. The effect will not trigger on re-rolls of Damage. Read more about it on [blog on VFX](). +Design Doc
 - [Homebrew] (Requires Alpha Testing Enabled in the Settings) The new Metanthropes Actor V2, the new Species and Template Item types are available for Alpha testing. This is a major step to Metanthropes going out of Early Access and we are looking forward to your feedback. Read more about it on our [Dev Blog](). +Design Doc
-- NEW UI ?
-- AAE ??
+- The long-awaited new User Interface is now available! It comes with both Dark & Light Themes for the Interface and Applications sections of the UI.
+- Added support for Font Awesome v7.2
+- [Homebrew] ?? Active Effects are now available as a Compendium ()[] also need to add this in the compendium build script & github actions!!!
 - NEW Actor Sheet V2 + Item Sheet V2 (Species/Template)
 
 ### Changed:
 - When creating a new World, you now get the option to name the default Gamemaster user. If you don't, it will be localized to 'The Narrator'.
 - Extended the Metanthropes API to include [+?] and removed [-?]
-- Console logging (F12 or Ctrl+Shift+i) now has different colored messages to help distinguish the Advanced Logging ones (color-tuned for Dark/Light mode incoming with the new ui)
+- Console logging (F12 or Ctrl+Shift+i) now has different colored messages to help distinguish the Advanced Logging ones.
 - Updated the ```>_ Send to Console``` button, to work with both AppV1 and AppV2 sheets of any type. This buttons shows up when you enable the 'Advanced Logging' option in the settings and will send to the console the App & Document for quick inspection and debugging.
 
 ### Fixed:
 - Improved the development tools by properly configuring intellisense for the Foundry and Metanthropes API.
 - When targeting multiple Tokens, it will now check & remove any invalid actors, or duplicate actor-linked Tokens before proceeding with applying damage to them.
-- Actor owners will now update their Actors directly, rather than emit a Socket
+- Actor owners will now update their Actors directly, rather than emit a Socket call.
+- When the Data Migration Engine is running, the progress bar will now correctly update the completion % based on the total number of modules active.
+- The Adventure import screens will now only show if the user is the Active GM.
 
 ### Known Issues:
 
 - [DSN] Dice So Nice v5.2.5 isn't fully compatible with FVTT v14, so we recommend to keep it disabled until a newer, compatible version is available.
+- When the sidebar is minimized and Chat Cards are enabled for Chat Notifications in the User Interface Configuration, the Chat Card will use the Light Interface theme, regardless of the user's choice.
 
 ### Deprecated:
 

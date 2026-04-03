@@ -33,7 +33,7 @@ export function metaCreateFAIcon(
 	classes = [...classes, ...extraClasses];
 	const icon = document.createElement("i");
 	if (color) {
-		const colorMap = metanthropes.system.colors;
+		const colorMap = metanthropes.system.COLORS;
 		icon.style.color = colorMap[color] ?? color;
 	}
 	icon.inert = false;
@@ -74,7 +74,7 @@ export function metaCreateCustomIcon(
 	classes = [...classes, ...extraClasses];
 	const icon = document.createElement("i");
 	if (color) {
-		const colorMap = metanthropes.system.colors;
+		const colorMap = metanthropes.system.COLORS;
 		icon.style.color = colorMap[color] ?? color;
 	}
 	icon.inert = false;

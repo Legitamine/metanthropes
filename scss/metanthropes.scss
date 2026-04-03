@@ -1,6 +1,7 @@
 //* Metanthropes Components
 @use "components" as *;
-//* Font Awesome 6.7.2
+//* Font Awesome v6.7.2 Custom Metanthropes FA Icon
 @use "fontawesome/custom-icons.scss";
+//! Removing our own FA implementation, since V14 now comes with FA V7.2 included!
 // @use "fontawesome/sharp-duotone-solid.scss";
-@use "fontawesome/fontawesome.scss";
+// @use "fontawesome/fontawesome.scss";

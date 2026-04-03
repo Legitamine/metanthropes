@@ -88,8 +88,8 @@ export async function metaEvaluate(
 	let result = null;
 	let resultLevel = null;
 	let autoExecute = false;
-	const successColor = metanthropes.system.colors.success;
-	const failureColor = metanthropes.system.colors.failure;
+	const successColor = metanthropes.system.COLORS.success;
+	const failureColor = metanthropes.system.COLORS.failure;
 	//* Check for Destiny Cost in case of a Metapower
 	//todo: 'hail mary' achievement where we have destiny cost and missing 1 destiny that we would get from a critical, should we still allow the roll, spending all remaining destiny?
 	if (action === "Metapower") {

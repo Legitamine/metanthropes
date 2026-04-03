@@ -5,7 +5,7 @@
 	"version": "0.14.018",
 	"compatibility": {
 		"minimum": "14",
-		"verified": "14.358",
+		"verified": "14.359",
 		"maximum": "14"
 	},
 	"relationships": {
@@ -81,6 +81,18 @@
 			"banner": "systems/metanthropes/assets/cover/compendium-actor.webp",
 			"path": "packs/demo-actors",
 			"type": "Actor",
+			"system": "metanthropes",
+			"ownership": {
+				"PLAYER": "NONE",
+				"ASSISTANT": "OWNER"
+			}
+		},
+		{
+			"name": "active-effects",
+			"label": "System Active Effects",
+			"banner": "systems/metanthropes/assets/cover/compendium-actor.webp",
+			"path": "packs/active-effects",
+			"type": "ActiveEffect",
 			"system": "metanthropes",
 			"ownership": {
 				"PLAYER": "NONE",
@@ -179,6 +191,13 @@
 					"sorting": "a",
 					"color": "#00b0bc",
 					"packs": ["demo-actors"],
+					"folders": []
+				},
+				{
+					"name": "Active Effects",
+					"sorting": "a",
+					"color": "#00b0bc",
+					"packs": ["active-effects"],
 					"folders": []
 				},
 				{

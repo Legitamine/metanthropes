@@ -7,4 +7,12 @@ export const SIZE = Object.freeze({
 		average: "",
 		example: "",
 	},
+		10: {
+		movement: 1,
+		reach: "fromRangeTable",
+		strike: 5, //damage dice number
+		life: 50,
+		average: "",
+		example: "",
+	},
 });

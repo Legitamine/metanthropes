@@ -1,4 +1,4 @@
-export const colors = Object.freeze({
+export const COLORS = Object.freeze({
 	primary: "#00b0bc",
 	secondary: "#945d90",
 	highlight: "#e6007e",
