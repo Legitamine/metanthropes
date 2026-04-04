@@ -31,10 +31,14 @@ Hooks.once("ready", async function () {
 	const quickstarted = game.settings.get("core", "adventureImports")[
 		"Compendium.metanthropes-introductory.introductory-installation.Adventure.YdClwNoSYgTmG6Y5"
 	];
-	if (game.settings.get("metanthropes", "metaInstall") && game.user.isActiveGM && !quickstarted) {
-		const metaInstall = await fromUuid("Compendium.metanthropes.system.Adventure.7rKmFXvGJE8UFv2h");
-		metaInstall.sheet.render(true);
-		await game.settings.set("metanthropes", "metaInstall", false);
+	if (game.settings.get("metanthropes", "metaInstall") && game.user.isActiveGM) {
+		if (!quickstarted) {
+			const metaInstall = await fromUuid("Compendium.metanthropes.system.Adventure.7rKmFXvGJE8UFv2h");
+			metaInstall.sheet.render(true);
+			await game.settings.set("metanthropes", "metaInstall", false);
+		} else {
+			await game.settings.set("metanthropes", "metaInstall", false);
+		}
 	}
 
 	//* Un-pause the World
