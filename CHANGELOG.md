@@ -15,7 +15,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 ### Added:
 
 - Added support for the Foundry V14 stable build 14.359.
-- [Introductory] Now supports the new 'Quickstart' capability, so you can create a new World and select the Metanthropes: Introductory Adventure and skip required installation steps. The new World will be ready to go on the first load.
+- [Introductory] Now supports the new 'Quickstart' capability, so when you create a new World you can select the Metanthropes: Introductory Adventure and skip required installation steps. The new World will be ready to go on the first load.
 - [Homebrew] (Requires Alpha Testing Enabled in the Settings) Added support for the new VFX engine. Metapowers & Possessions that deal Damage, will now trigger a new Visual & Audio effect upon successful activation, before automatically applying the damage. The effect will not trigger on re-rolls of Damage. Read more about it on [blog on VFX](). +Design Doc
 - [Homebrew] (Requires Alpha Testing Enabled in the Settings) The new Metanthropes Actor V2, the new Species and Template Item types are available for Alpha testing. This is a major step to Metanthropes going out of Early Access and we are looking forward to your feedback. Read more about it on our [Dev Blog](). +Design Doc
 - The long-awaited new User Interface is now available! It comes with both Dark & Light Themes for the Interface and Applications sections of the UI.

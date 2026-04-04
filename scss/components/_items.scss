@@ -1,0 +1,133 @@
+@use "../settings" as *;
+//* Items
+
+// Section Header
+.items-header {
+	//height: 28px;
+	margin: $margin-sm;
+	padding: $padding-sm;
+	align-items: center;
+	background: var(--metanthropes-color-background);
+	border: $border-groove;
+	border-radius: $border-radius;
+	font-weight: bold;
+	> * {
+		font-size: 14px;
+		text-align: center;
+	}
+	.item-name {
+		//! this section seems to be unused
+		font-weight: bold;
+		padding-left: 50px;
+		text-align: left;
+		display: flex;
+		// font-size: 16px;
+	}
+}
+
+//* ----------------------------------------- */
+//*  Items Lists                              */
+//* ----------------------------------------- */
+
+.items-list {
+	font-family: $font-secondary;
+	list-style: none;
+	margin: $margin-sm;
+	padding: $padding-sm;
+	overflow-y: auto;
+	scrollbar-width: thin;
+	color: var(--metanthropes-color-text);
+
+	// Child lists
+	.item-list {
+		list-style: none;
+		margin: $margin-sm;
+		padding: $padding-sm;
+	}
+
+	// Item Name
+	.item-name {
+		flex: 2;
+		margin: 0;
+		overflow: hidden;
+		font-size: 16px;
+		text-align: left;
+		align-items: center;
+		display: flex;
+		h3,
+		h4 {
+			padding-left: 15px;
+			margin: 0;
+			white-space: nowrap;
+			overflow-x: hidden;
+			font-weight: 600;
+		}
+	}
+
+	// Control Buttons
+	.item-controls {
+		display: flex;
+		flex: 0 0 80px;
+		justify-content: center;
+		a {
+			font-size: 14px;
+			text-align: center;
+			margin: 0 6px;
+		}
+	}
+
+	// Individual Item
+	//! I use this in the nav bars for the Forms in order to have it remain selected as the active tab
+	//todo understand why ^^ this is and how to make it properly
+	.item {
+		align-items: center;
+		text-align: center;
+		padding: 0 2px; // to align with the header border
+		//! didn't like this effect
+		//	border-bottom: 1px solid $c-black;
+		//	&:last-child {
+		//		border-bottom: none;
+		//	}
+		.item-name {
+			color: var(--metanthropes-color-text);
+			.item-image {
+				flex: 0 0 50px;
+				height: 50px;
+				width: 50px;
+				border: none;
+				margin-right: 5px;
+			}
+		}
+	}
+
+	.item-prop {
+		text-align: center;
+		// border-left: 1px solid $c-black;
+		// border-right: 1px solid $c-black;
+		font-size: 14px;
+	}
+
+	// Section Header
+	.items-header {
+		height: 36px;
+		margin: $margin-sm;
+		padding: $padding-sm;
+		align-items: center;
+		background: var(--metanthropes-color-background);
+		border: $border-groove;
+		font-weight: bold;
+		> * {
+			font-size: 16px;
+			text-align: center;
+		}
+		.item-name {
+			padding-left: 5px;
+			text-align: left;
+			// font-size: 16px;
+		}
+	}
+}
+
+.item-form {
+	font-family: $font-primary;
+}

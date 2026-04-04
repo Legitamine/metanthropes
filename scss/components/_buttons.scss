@@ -1,6 +1,6 @@
 @use "../settings" as *;
 //* Buttons
-// --- Mixins ---
+
 @mixin button-hover-focus {
 	outline: none;
 	//border: $border-activated;
@@ -15,10 +15,7 @@
 	opacity: 1;
 }
 
-//todo: button smaller - not stretch to window
-//text align left
-
-// Base Button Styles
+//? Base Button Styles
 %base-button {
 	font-family: $font-primary;
 	background-color: var(--metanthropes-color-primary);
@@ -30,7 +27,7 @@
 	//text-align: left;
 }
 
-// --- Button Elements ---
+//? Elements
 button,
 form button,
 a.button,
@@ -52,21 +49,19 @@ app button,
 	}
 }
 
-// --- Specific Adjustments ---
-
-// Default button inside dialogs
+//* Button inside dialogs
 .dialog .dialog-buttons button.default {
 	//background: none;
 	//background-image: $a-button-image
 	@include button-hover-focus;
 }
 
-// Chat anchor button (special width)
+//* Chat anchor button (special width)
 button.chat-button-anchor {
 	width: auto;
 }
 
-// Button pseudo-element (before)
+//* Button pseudo-element for FA
 button::before {
 	font: var(--fa-font-solid);
 	display: flex;

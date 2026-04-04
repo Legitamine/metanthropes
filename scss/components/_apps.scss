@@ -5,7 +5,8 @@
 #pause figcaption {
 	font-family: $font-title;
 }
-//override filepicker list defaults
+
+//* Filepicker
 .filepicker .tiles-list {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
@@ -25,4 +26,11 @@
 		transform: scale(1.6) translateY(10px);
 		z-index: 4;
 	}
+}
+
+//* Dialog
+.dialog-content {
+	//font-family: $font-primary;
+	padding: $padding-md;
+	margin: $margin-md;
 }

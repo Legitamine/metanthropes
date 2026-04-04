@@ -1,3 +1,4 @@
+@use "../settings" as *;
 //* Sheet Specifics
 .sheet-header {
 	flex: 0 auto;
@@ -40,3 +41,25 @@
 .sheet-body .tab .editor {
 	height: 100%;
 }
+
+.sheet-header .metapower-img {
+	flex: 0 0 160px;
+	height: 160px;
+	width: 160px;
+	margin-right: $margin-lg;
+}
+
+.sheet-header .possession-img {
+	flex: 0 0 160px;
+	height: 160px;
+	width: 160px;
+	margin-right: $margin-lg;
+}
+
+.sheet-header .effect-img {
+	flex: 0 0 80px;
+	height: 80px;
+	width: 80px;
+	margin-right: $margin-lg;
+}
+

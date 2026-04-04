@@ -377,36 +377,7 @@
 	overflow: hidden;
 }
 
-.sheet-header .metapower-img {
-	flex: 0 0 160px;
-	height: 160px;
-	width: 160px;
-	margin-right: $margin-lg;
-}
 
-.sheet-header .possession-img {
-	flex: 0 0 160px;
-	height: 160px;
-	width: 160px;
-	margin-right: $margin-lg;
-}
-
-.sheet-header .effect-img {
-	flex: 0 0 80px;
-	height: 80px;
-	width: 80px;
-	margin-right: $margin-lg;
-}
-
-.perk-item {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.perk-item .resource-label {
-	margin-right: 10px;
-}
 
 .layout-tab-summary-portrait-container {
 	display: flex;

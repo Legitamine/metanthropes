@@ -1,0 +1,33 @@
+@use "../settings" as *;
+//* Dice
+//? change the default D20 in the initiative tracker icon to our custom dice
+.combat-sidebar li.combatant .roll {
+	display: block;
+	width: 40px;
+	height: var(--sidebar-item-height);
+	background: $a-sidebar-combat-dice-background;
+	background-size: 42px;
+	margin: 0 0.5em;
+}
+.combat-sidebar li.combatant .roll:hover {
+	background-image: $a-sidebar-combat-dice-selected;
+}
+//* Change all fa-d20 to d10
+//? suggested by mana from discord
+.far.fa-dice-d20:before,
+.fa-solid.fa-dice-d20:before,
+.fas.fa-dice-d20:before {
+	content: "\f6cd";
+}
+
+//* dice messages in chat
+.dice-tooltip {
+	//background-image: $a-button-image;
+	background-image: none;
+	background-color: var(--metanthropes-color-primary);
+	.part-header {
+		.part-flavor {
+			color: var(--metanthropes-color-primary);
+		}
+	}
+}
