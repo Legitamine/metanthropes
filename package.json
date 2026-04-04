@@ -5,9 +5,11 @@
 	"scripts": {
 		"build": "sass --watch scss/metanthropes.scss styles/metanthropes.css",
 		"createSymlinks": "node ./src/dev-tools/create-symlinks.mjs",
-		"update": "npm run createSymlinks"
+		"update": "npm run createSymlinks",
+		"postinstall": "npm run createSymlinks"
 	},
 	"devDependencies": {
-		"sass": "^1.69.5"
+		"sass": "^1.69.5",
+		"js-yaml": "^4.1.1"
 	}
 }
