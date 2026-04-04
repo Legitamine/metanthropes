@@ -3,30 +3,26 @@
 //* Chat
 $a-chat-bw-dark: url("../assets/artwork/ui/chat/chat-bw-dark.webp");
 $a-chat-bw-light: url("../assets/artwork/ui/chat/chat-bw-light.webp");
-$a-chat-colored-dark: url("../assets/artwork/ui/chat/chat-colored-dark.webp");
-$a-chat-colored-light: url("../assets/artwork/ui/chat/chat-colored-light.webp");
 $a-chat-text-area: url("../assets/artwork/ui/chat/chat-box.webp"); //?! chat input image deprecated in V13?
 
 //* Application
-$a-app-colored-dark: url("../systems/metanthropes/assets/artwork/ui/app/app-colored-dark.webp");
-$a-app-colored-light: url("../systems/metanthropes/assets/artwork/ui/app/app-colored-light.webp");
-$a-app-image-dark: url("../systems/metanthropes/assets/artwork/ui/app/app-image-dark.webp");
-$a-app-image-light: url("../systems/metanthropes/assets/artwork/ui/app/app-image-light.webp");
 $a-app-bw-dark: url("../systems/metanthropes/assets/artwork/ui/app/app-bw-dark.webp");
 $a-app-bw-light: url("../systems/metanthropes/assets/artwork/ui/app/app-bw-light.webp");
 
 //* Sidebar
 $a-sidebar-dark: url("../systems/metanthropes/assets/artwork/ui/sidebar/sidebar-dark.webp");
 $a-sidebar-light: url("../systems/metanthropes/assets/artwork/ui/sidebar/sidebar-light.webp");
+
+//* Combat dice
 $a-sidebar-combat-dice-background: url("../assets/artwork/ui/dice/d100roll-white.webp") no-repeat 50% 50%;
 $a-sidebar-combat-dice-selected: url("../assets/artwork/ui/dice/d100roll-white-selected.webp");
 
 //* Journal
-$a-journal-dark: url("../assets/artwork/ui/window/background.webp");
-$a-journal-light: url("../assets/artwork/ui/window/background.webp");
+$a-journal-dark: url("../assets/artwork/ui/app/app-image-dark.webp");
+$a-journal-light: url("../assets/artwork/ui/app/app-image-light.webp");
 
 //* Loading Background (empty canvas)
-$a-loading-background: url("../assets/cover/cover.webp");
+$a-loading-background: url("../assets/cover/loading.webp");
 
 //* Window (character sheets)
 $a-background-image: url("../assets/artwork/ui/window/background.webp");

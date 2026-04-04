@@ -14,27 +14,31 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ### Added:
 
-- Added support for the Foundry V14 stable build 14.359.
+- Added support for **Foundry V14** stable build 14.359.
+- Added support for Font Awesome v7.2 //todo review fw changes
+- The **New User Interface** is now available! It comes with both **Dark & Light Themes** for the Interface and Applications sections of the UI. The **assets are not final** and will be updated to higher quality in a future release. We decided to go ahead with some lower quality assets for now, instead of holding back the release until we get the final assets. Looking forward to your feedback.
 - [Introductory] Now supports the new 'Quickstart' capability, so when you create a new World you can select the Metanthropes: Introductory Adventure and skip required installation steps. The new World will be ready to go on the first load.
 - [Homebrew] (Requires Alpha Testing Enabled in the Settings) Added support for the new VFX engine. Metapowers & Possessions that deal Damage, will now trigger a new Visual & Audio effect upon successful activation, before automatically applying the damage. The effect will not trigger on re-rolls of Damage. Read more about it on [blog on VFX](). +Design Doc
 - [Homebrew] (Requires Alpha Testing Enabled in the Settings) The new Metanthropes Actor V2, the new Species and Template Item types are available for Alpha testing. This is a major step to Metanthropes going out of Early Access and we are looking forward to your feedback. Read more about it on our [Dev Blog](). +Design Doc
-- The long-awaited new User Interface is now available! It comes with both Dark & Light Themes for the Interface and Applications sections of the UI.
-- Added support for Font Awesome v7.2
 - [Homebrew] ?? Active Effects are now available as a Compendium ()[] also need to add this in the compendium build script & github actions!!!
 - NEW Actor Sheet V2 + Item Sheet V2 (Species/Template)
 
 ### Changed:
+
+- Removed support for Foundry VTT V13. With the new features V14 brings and the current quality of the build, we feel that there is no need to keep V13 support. You can easily install V14 with the new portable method to a clean folder without affecting your V13 installation. If you require assistance, don't hesitate to reach out on our Discord and we'll help you get this sorted in no time!
 - When creating a new World, you now get the option to name the default Gamemaster user. If you don't, it will be localized to 'The Narrator'.
 - Extended the Metanthropes API to include [+?] and removed [-?]
 - Console logging (F12 or Ctrl+Shift+i) now has different colored messages to help distinguish the Advanced Logging ones.
-- Updated the ```>_ Send to Console``` button, to work with both AppV1 and AppV2 sheets of any type. This buttons shows up when you enable the 'Advanced Logging' option in the settings and will send to the console the App & Document for quick inspection and debugging.
+- Updated the `>_ Send to Console` button, to work with both AppV1 and AppV2 sheets of any type. This buttons shows up when you enable the 'Advanced Logging' option in the settings and will send to the console the App & Document for quick inspection and debugging.
 
 ### Fixed:
+
 - Improved the development tools by properly configuring intellisense for the Foundry and Metanthropes API.
 - When targeting multiple Tokens, it will now check & remove any invalid actors, or duplicate actor-linked Tokens before proceeding with applying damage to them.
 - Actor owners will now update their Actors directly, rather than emit a Socket call.
 - When the Data Migration Engine is running, the progress bar will now correctly update the completion % based on the total number of modules active.
-- The Adventure import screens will now only show if the user is the Active GM.
+- The Adventure import screens will now only show if the user is the Active GM and the world is not created using the new Quickstart method.
+- Various minor tweaks and improvements in the underlying code.
 
 ### Known Issues:
 

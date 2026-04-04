@@ -1,7 +1,7 @@
 //* Journal Specifics
 .sheet.journal-entry .journal-entry-content {
 	position: relative;
-	//background: none;
+	background: var(--background-journal-image);
 	//background-image: var(--background-journal-image);
 	background-position: center;
 	background-size: cover;
