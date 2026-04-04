@@ -32,9 +32,9 @@ export async function metaMigration() {
 		});
 	}
 	let metaMigrateModulesResult = null; //? If we receive no updates whatsoever, we'll end up not requiring migration.
-	const isMigrationForced = await game.settings.get("metanthropes", "forceMigration");
+	const isMigrationForced = game.settings.get("metanthropes", "forceMigration");
 	const currentSystemVersion = await game.system.version;
-	let migrationData = await game.settings.get("metanthropes", "migration");
+	let migrationData = game.settings.get("metanthropes", "migration");
 	//* Migration Engine Engaged, will update the migration game setting only if it doesn't end unexpectedly
 	try {
 		if (!migrationData) {
@@ -123,7 +123,7 @@ export async function metaMigration() {
 			message: `${progressMessage} | ${_loc("METANTHROPES.MIGRATION.Finished")}`,
 		});
 	}
-	const migrationDataResults = await game.settings.get("metanthropes", "migration");
+	const migrationDataResults = game.settings.get("metanthropes", "migration");
 	mL(3, "Migration", "New Migration Data Results", migrationDataResults);
 	mL(0, "Migration", "Data Migration Engine Finished");
 }
@@ -139,17 +139,17 @@ export async function metaMigration() {
  */
 async function metaInitializeModules() {
 	let modules = [["System", "METANTHROPES.MODULES.System"]];
-	const intro = await game.settings.get("metanthropes", "metaIntroductory");
+	const intro = game.settings.get("metanthropes", "metaIntroductory");
 	if (intro) modules.push(["Introductory", "METANTHROPES.MODULES.Introductory"]);
-	const core = await game.settings.get("metanthropes", "metaCore");
+	const core = game.settings.get("metanthropes", "metaCore");
 	if (core) modules.push(["Core", "METANTHROPES.MODULES.Core"]);
-	const homebrew = await game.settings.get("metanthropes", "metaHomebrew");
+	const homebrew = game.settings.get("metanthropes", "metaHomebrew");
 	if (homebrew) modules.push(["Homebrew", "METANTHROPES.MODULES.Homebrew"]);
-	const aether = await game.settings.get("metanthropes", "metaAether");
+	const aether = game.settings.get("metanthropes", "metaAether");
 	if (aether) modules.push(["Aether", "METANTHROPES.MODULES.Aether"]);
-	const astral = await game.settings.get("metanthropes", "metaAstral");
+	const astral = game.settings.get("metanthropes", "metaAstral");
 	if (astral) modules.push(["Astral", "METANTHROPES.MODULES.Astral"]);
-	const nether = await game.settings.get("metanthropes", "metaNether");
+	const nether = game.settings.get("metanthropes", "metaNether");
 	if (nether) modules.push(["Nether", "METANTHROPES.MODULES.Nether"]);
 	return modules;
 }

@@ -484,11 +484,11 @@ export class MetanthropesCombat extends Combat {
 				const currentLife = actor.system.Vital.Life.value;
 				let lifeLoss;
 				let newLife;
-				const metaHomebrew = await game.settings.get("metanthropes", "metaHomebrew");
+				const metaHomebrew = game.settings.get("metanthropes", "metaHomebrew");
 				if (metaHomebrew) {
-					const homebrewBleeding = (await game.settings.get("metanthropes", "metaBleeding")) ?? 1;
+					const homebrewBleeding = (game.settings.get("metanthropes", "metaBleeding")) ?? 1;
 					const homebrewName =
-						(await game.settings.get("metanthropes", "metaHomebrewName")) ??
+						(game.settings.get("metanthropes", "metaHomebrewName")) ??
 						"Error: Custom Homebrew Name not defined properly, please fix in the Settings";
 					lifeLoss = Number(bleedingLevel) * Number(homebrewBleeding);
 					newLife = Number(currentLife) - lifeLoss;

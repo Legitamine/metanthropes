@@ -73,15 +73,15 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		//? This will create the .RollStats object under .system that is used by Handlebars in the actor sheet for rolling
 		this.actor.getRollData();
 		//? Provide a boolean for if we are running with Introductory Features enabled
-		context.introductoryFeatures = await game.settings.get("metanthropes", "metaIntroductory");
+		context.introductoryFeatures = game.settings.get("metanthropes", "metaIntroductory");
 		//? Provide a boolean for if we are running with Core Features enabled
-		context.coreFeatures = await game.settings.get("metanthropes", "metaCore");
+		context.coreFeatures = game.settings.get("metanthropes", "metaCore");
 		//? Provide a boolean for if we are running with Homebrew Features enabled
-		context.homebrewFeatures = await game.settings.get("metanthropes", "metaHomebrew");
+		context.homebrewFeatures = game.settings.get("metanthropes", "metaHomebrew");
 		//? Provide a boolean for if 'Beta Testing of New Features' is enabled
-		context.betaTesting = await game.settings.get("metanthropes", "metaBetaTesting");
+		context.betaTesting = game.settings.get("metanthropes", "metaBetaTesting");
 		//? Provide a boolean for if 'Advanced Logging' is enabled
-		context.advancedLogging = await game.settings.get("metanthropes", "metaAdvancedLogging");
+		context.advancedLogging = game.settings.get("metanthropes", "metaAdvancedLogging");
 		//? Provide a combined boolean for if 'Beta Testing of New Features' and 'Advanced Logging' are enabled
 		context.advancedBetaTesting = context.betaTesting && context.advancedLogging;
 		//? Provide a boolean for if the user is a Narrator(GameMaster)
