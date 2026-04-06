@@ -1,5 +1,8 @@
 @use "../settings" as *;
-//* Apps
+//* All Apps
+.application {
+	background-size: cover;
+}
 
 //* Game Pause
 #pause figcaption {

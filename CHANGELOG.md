@@ -16,16 +16,16 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 - Added support for **Foundry V14** stable build 14.359.
 - Added support for Font Awesome v7.2 //todo review fw changes
-- The **New User Interface** is now available! It comes with both **Dark & Light Themes** for the Interface and Applications sections of the UI. The **assets are not final** and will be updated to higher quality in a future release. We decided to go ahead with some lower quality assets for now, instead of holding back the release until we get the final assets. Looking forward to your feedback.
+- The **New User Interface** is now available! It comes with both **Dark & Light Themes** for the Interface and Applications sections of the UI. The **assets are not final** and will be updated to higher quality soon™. We decided to go ahead with some lower quality assets for now, instead of holding back the release until we get the final assets. Looking forward to your feedback.
 - [Introductory] Now supports the new 'Quickstart' capability, so when you create a new World you can select the Metanthropes: Introductory Adventure and skip required installation steps. The new World will be ready to go on the first load.
 - [Homebrew] The new Metanthropes Actor, the new Species and Template Item types are available for Alpha testing. This is a major step to Metanthropes going out of Early Access and we are looking forward to your feedback. Read more about it on our [Dev Blog]. Requires Alpha Testing Enabled in the Settings.(). +Design Doc
-- [Homebrew] The new Actor Active Effects are now available in a Compendium! Note that they are intented to be used only with the new 'Metanthropes Actor' type and not any of the existing ones, so it's only meant for initial testing with the new Actors.  ()[] also need to add this in the compendium build script & github actions!!!
+- [Homebrew] The new Actor Active Effects are now available in a Compendium! Note that they are intented to be used only with the new 'Metanthropes Actor' type and not any of the existing ones, so it's only meant for initial testing with the new Actors. ()[] also need to add this in the compendium build script & github actions!!!
 - [Homebrew] Added support for the new VFX engine. Metapowers & Possessions that deal Damage, will now trigger a new Visual & Audio effect upon successful activation, before automatically applying the damage. The effect will not trigger on re-rolls of Damage. Read more about it on [blog on VFX](). Requires Alpha Testing Enabled in the Settings. +Design Doc
 - NEW Actor Sheet V2 + Item Sheet V2 (Species/Template)
 
 ### Changed:
 
-- Removed support for Foundry VTT V13. With the new features V14 brings and the current quality of the build, we feel that there is no need to keep V13 support. You can easily install V14 with the new portable method to a clean folder without affecting your V13 installation. If you require assistance, don't hesitate to reach out on our Discord and we'll help you get this sorted in no time!
+- Removed support for Foundry VTT V13. With the new features V14 brings like the new Active Effects & the current quality of the build, we feel that there is no need to keep V13 support. You can easily install V14 without affecting your existing V13 installation. If you require assistance, don't hesitate to reach out on our Discord and we'll help you migrate to V14 in no time!
 - When creating a new World, you now get the option to name the default Gamemaster user. If you don't, it will be localized to 'The Narrator'.
 - Extended the Metanthropes API to include [+?] and removed [-?]
 - Console logging (F12 or Ctrl+Shift+i) now has different colored messages to help distinguish the Advanced Logging ones.
@@ -42,6 +42,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ### Known Issues:
 
+- Review The Forge compatibility
 - [DSN] Dice So Nice v5.2.5 isn't fully compatible with FVTT v14, so we recommend to keep it disabled until a newer, compatible version is available.
 - When the sidebar is minimized and Chat Cards are enabled for Chat Notifications in the User Interface Configuration, the Chat Card will use the Light Interface theme, regardless of the user's choice.
 

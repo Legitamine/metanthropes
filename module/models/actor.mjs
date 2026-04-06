@@ -119,13 +119,13 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 		//const { speed, weight, size } = this.physical;
 		const physical = this.physical;
 		const items = this.parent.items;
-		const species = items.documentsByType.species[0]; //! Ayto kanw gia to hitbox
+		const dominantSpecies = items.documentsByType.species[0]; //! Ayto kanw gia to hitbox
 		const templates = items.documentsByType.template;
 		metanthropes.utils.metaLog(4, "Actor DM Base", physical);
 		//* Life
-		const progressionStep = species?.system?.resources?.life?.progressionStep ?? 0;
-		const progressionGain = species?.system?.resources?.life?.progressionGain ?? 0;
-		let lifeInitial = species?.system?.resources?.life?.initial ?? 0;
+		const progressionStep = dominantSpecies?.system?.resources?.life?.progressionStep ?? 0;
+		const progressionGain = dominantSpecies?.system?.resources?.life?.progressionGain ?? 0;
+		let lifeInitial = dominantSpecies?.system?.resources?.life?.initial ?? 0;
 		for (const item of templates) lifeInitial += item?.system?.resources?.life?.initial ?? 0; //! Ayto kanw gia ola ta ypoloipa initial stats
 		//! doing this so it won't show Life NaN/NaN until a species is added to the actor, is there a better way?
 		if (progressionStep > 0) {
@@ -182,22 +182,12 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 		const templates = items.documentsByType.template;
 
 		//* Dominant Species (the first Species applied to the Actor)
-
 		//todo CHARS, STATS, SPEED, WEIGHT, SIZE exoune BUFF/CONDITION
 		//todo gia na vrw to current = base?/initial? + BUFF *5 - CONDITION *5
 		//* SPEED, SIZE, WEIGHT
-		//! den exei noima na koitaw species, apla einai 10 ta defaults panta gia ola ta species
-		//! kai pairnoune to final/actual apo ta buffs/conditions poy kanei define to species?
-		//! to theloume ayto? tha dinei kai Life k ta ypoloipa buffs se strikes klp klp
-		const speedInitial = dominantSpecies?.system.physical.speed ?? 10;
-		const sizeInitial = dominantSpecies?.system?.physical?.size ?? 10;
-		const weightInitial = dominantSpecies?.system?.physical?.weight ?? 10;
-		metanthropes.utils.metaLog(5, "speedInitial", speedInitial);
-		physical.speed = speedInitial + buffs.speed - conditions.speed;
-		physical.size = sizeInitial + buffs.size - conditions.size;
-		physical.weight = weightInitial + buffs.weight - conditions.weight;
-		metanthropes.utils.metaLog(4, "Actor DM Derived", physical);
-		//? can I have size control Token x,y,z ?
+		physical.speed = 10 + buffs.speed - conditions.speed;
+		physical.size = 10 + buffs.size - conditions.size;
+		physical.weight = 10 + buffs.weight - conditions.weight;
 
 		//* Life
 		//todo: how to handle Duplicates? see _prepareDerivedVitalData(actorData) in old actor

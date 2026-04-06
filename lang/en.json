@@ -181,7 +181,11 @@
 				"stats": {
 					"endurance": {
 						"label": "Endurance",
-						"hint": "Endurance determines a Character's stamina, health, and vigor."
+						"hint": "Endurance determines a Character's stamina, health, and vigor.",
+						"current": {
+							"label": "Current Endurance",
+							"hint": "Your Endurance is Low!"
+						}
 					},
 					"power": {
 						"label": "Power",
@@ -220,6 +224,16 @@
 				"conditions": {},
 				"perks": {},
 				"notes": {}
+			},
+			"SHEET": {
+				"TABS": {
+					"Actions": "Actions",
+					"Perks": "Perks",
+					"Metapowers": "Metapowers",
+					"Possessions": "Possessions",
+					"Effects": "Effects",
+					"Notes": "Notes"
+				}
 			}
 		},
 		"ITEM": {
