@@ -7,16 +7,17 @@ const mL = metanthropes.utils.metaLog;
 
 const batches = [];
 
-const allowedScopes = ["core", "world", "metanthropes"];
+//? add "metanthropes" if we end up requiring flags to exist (we don't currently) but there might be a scene in the future that wants to have a specific weather effect ready to un-toggle?
+const allowedScopes = ["core", "world"]; 
 
 const makeUpdate = (doc) => {
 	const flags = foundry.utils.deepClone(doc.toObject().flags);
 	Object.keys(flags).forEach((k) => {
 		if (!allowedScopes.includes(k)) {
-			if (k === "metanthropes") {
-				mL(4, "Clean World Flags Macro", "Metanthropes Flag Detected",k, "Contents", flags[k]);
-				return
-			}
+			// if (k === "metanthropes") {
+			// 	mL(4, "Clean World Flags Macro", "Metanthropes Flag Detected", k, "Contents", flags[k]);
+			// 	return;
+			// }
 			mL(3, "Clean World Flags Macro", "Found Flags from", k, "Contents", flags[k]);
 			delete flags[k];
 		}

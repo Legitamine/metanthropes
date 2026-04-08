@@ -115,9 +115,9 @@ export async function metaVFX({
 	}
 	//todo review min/max clamp values based off the system performance setting
 	//todo see the mode implementation from the weather in introductory
-	const damageCount = Math.clamp(totalDamage, 25, 100);
-	const minScale = Math.clamp(damageCount * 0.1, 0.1, 0.3);
-	const maxScale = Math.clamp(damageCount * 0.5, 0.4, 0.8);
+	const damageCount = Math.clamp(totalDamage, 25, 70);
+	const minScale = Math.clamp(damageCount * 0.1, 0.1, 0.2);
+	const maxScale = Math.clamp(damageCount * 0.2, 0.2, 0.3);
 	const damageColor = damageColors.length ? addHexColors(damageColors) : "#fff";
 	//* meta (combined) VFX Effect test
 	const metaVFX = await new foundry.canvas.vfx.VFXEffect({
@@ -135,7 +135,7 @@ export async function metaVFX({
 				pathType: "arc",
 				charge: {
 					texture: item.img,
-					size: 4,
+					size: 2,
 					duration: 500,
 					animations: [{ function: "drawBack" }],
 					sound: {
@@ -162,7 +162,7 @@ export async function metaVFX({
 				impact: {
 					//bloodsplatter?
 					texture: item.img,
-					size: 4,
+					size: 2,
 					duration: 500,
 					// sound: {
 					// 	src: "systems/metanthropes/assets/audio/sfx/distant-explosion-03.wav",
@@ -305,6 +305,7 @@ export async function metaVFX({
 		const targetedActor = await actor.getActiveTokens(false, false)[0]; //?would that work for target tokens too?
 		mL(3, "metaVFX", "TargetedActor UUID/actor/TargetedActor", targetedActorUUID, actor, targetedActor);
 		let damageMessage = ``;
+		//todo can we change the font to the metanthropes font or roboto?
 		const textStyleOptions = { fill: damageColor, fontSize: Number(damageCount), fontWeight: "bold" };
 		if (cosmicDamage > 0) damageMessage += `${_loc("METANTHROPES.COMMON.Cosmic")}: ${cosmicDamage} `;
 		if (elementalDamage > 0) damageMessage += ` ${_loc("METANTHROPES.COMMON.Elemental")}: ${elementalDamage} `;
