@@ -101,6 +101,9 @@ Hooks.once("init", async function () {
 	//* Round Duration (in seconds)
 	CONFIG.time.roundTime = 30;
 
+	//* Metanthropes Pause Application
+	CONFIG.ui.pause = metanthropes.applications.MetanthropesPause;
+
 	//* Register Status Effects
 	metanthropes.utils.metaRegisterStatusEffects();
 

@@ -32,7 +32,7 @@ import { MetanthropesActorSheet } from "./ui/sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./ui/sheets/item-sheet.mjs";
 import { MetanthropesActiveEffectSheetV2 } from "./ui/sheets/active-effect-sheet.mjs";
 //* Custom Classes
-import { MetaDialog, MetaChatMessage } from "./metaclasses/metaclasses.mjs";
+import { MetaDialog, MetaChatMessage, MetanthropesPause } from "./metaclasses/metaclasses.mjs";
 // //* AppV2 Sheets
 import { MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
 import { MetanthropesItemSheetV2 } from "./ui/sheets/item-sheet-v2.mjs";
@@ -93,6 +93,7 @@ globalThis.metanthropes = {
 		MetanthropesItemSheetV2,
 		MetaDialog,
 		MetaChatMessage,
+		MetanthropesPause,
 	},
 	dice: {
 		metaRoll,
@@ -158,7 +159,6 @@ import "./hooks/init.mjs";
 import "./hooks/render-chat-log.mjs";
 import "./hooks/render-chat-message-html.mjs";
 import "./hooks/create-actor.mjs";
-import "./hooks/pause.mjs";
 import "./hooks/supported-modules.mjs";
 import "./hooks/other.mjs";
 import "./hooks/ready.mjs";

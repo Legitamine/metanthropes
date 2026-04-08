@@ -174,3 +174,20 @@ export class MetaChatMessage extends ChatMessage {
 		if (!this.token?.parent.isView) return; //! prepei edw to this na ginetai resolve ston actor?
 	}
 }
+
+
+/**
+ * Custom Class for the Pause UI
+ *
+ * @export
+ * @class MetanthropesPause
+ * @typedef {MetanthropesPause}
+ * @extends {foundry.applications.ui.GamePause}
+ */
+export class MetanthropesPause extends foundry.applications.ui.GamePause {
+	async _prepareContext(_options) {
+		const context = await super._prepareContext(_options);
+		context.icon = "systems/metanthropes/assets/logos/metanthropes-logo.webp";
+		return context
+	}
+}
