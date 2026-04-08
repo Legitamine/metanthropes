@@ -12,4 +12,5 @@ declare global {
 	class Hooks extends foundry.helpers.Hooks {}
 	const fromUuid = foundry.utils.fromUuid;
 	const fromUuidSync = foundry.utils.fromUuidSync;
+	const _loc = game.i18n.localize;
 }

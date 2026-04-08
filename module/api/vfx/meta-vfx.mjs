@@ -138,13 +138,13 @@ export async function metaVFX({
 					size: 4,
 					duration: 500,
 					animations: [{ function: "drawBack" }],
-					// sound: {
-					// 	//defaults to the music track vs the interface or environment
-					// 	src: "systems/metanthropes/assets/audio/sfx/reload-heavy-03.wav",
-					// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-					// 	channel: "environment",
-					// 	volume: 0.3,
-					// },
+					sound: {
+						//defaults to the music track vs the interface or environment
+						src: "systems/metanthropes/assets/audio/sfx/reload-heavy-03.ogg",
+						align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
+						channel: "environment", //! is this working as expected?
+						volume: 0.3,
+					},
 				},
 				projectile: {
 					texture: item.img,
@@ -280,7 +280,7 @@ export async function metaVFX({
 				//origin: { reference: "target", property: "center" }, //origin is confusing here, why not position?
 				origin: { reference: "target", deltas: { sort: 0 } },
 				scrollDirection: CONST.TEXT_ANCHOR_POINTS.TOP,
-				//textAnchor: CONST.TEXT_ANCHOR_POINTS.TOP, //optional
+				textAnchor: CONST.TEXT_ANCHOR_POINTS.TOP, //optional
 				//textStyle: { fill: "#d21414", fontSize: 64, fontWeight: "bold" },
 				textStyle: { reference: "textStyle" },
 			},
@@ -306,11 +306,10 @@ export async function metaVFX({
 		mL(3, "metaVFX", "TargetedActor UUID/actor/TargetedActor", targetedActorUUID, actor, targetedActor);
 		let damageMessage = ``;
 		const textStyleOptions = { fill: damageColor, fontSize: Number(damageCount), fontWeight: "bold" };
-		//todo localize
-		if (cosmicDamage > 0) damageMessage += `Cosmic: ${cosmicDamage} `;
-		if (elementalDamage > 0) damageMessage += ` Elemental: ${elementalDamage} `;
-		if (materialDamage > 0) damageMessage += ` Material: ${materialDamage} `;
-		if (psychicDamage > 0) damageMessage += ` Psychic: ${psychicDamage}`;
+		if (cosmicDamage > 0) damageMessage += `${_loc("METANTHROPES.COMMON.Cosmic")}: ${cosmicDamage} `;
+		if (elementalDamage > 0) damageMessage += ` ${_loc("METANTHROPES.COMMON.Elemental")}: ${elementalDamage} `;
+		if (materialDamage > 0) damageMessage += ` ${_loc("METANTHROPES.COMMON.Material")}: ${materialDamage} `;
+		if (psychicDamage > 0) damageMessage += ` ${_loc("METANTHROPES.COMMON.Psychic")}: ${psychicDamage}`;
 		mL(
 			3,
 			"metaVFX",
@@ -322,10 +321,7 @@ export async function metaVFX({
 			textStyleOptions,
 		);
 		//! if we await the VFX then it goes from one target to the next, if we don't, it does all at the same time.
-		//! Are there metapowers/possessions where we would want an effect to be awaited instead ?
-		//? what if there is a miss??
-		//! Multi-action is essentially multiple separate activations, not subject to this
-		// rather check to see if there are any metapowers that would require us to re-roll for EACH target, then it would need an await
+		//todo what if there is a miss??
 		if (metaVFX.started) {
 			mL(3, "metaVFX", "Cloning VFX");
 			const newVFX = metaVFX.clone();
@@ -363,113 +359,3 @@ export async function metaVFX({
 	}
 	mL(3, "metaVFX", "Finished");
 }
-
-//* initial tests, delete after review
-// //* single VFX Effect Tests
-// const shot = new foundry.canvas.vfx.VFXEffect({
-// 	name: "Meta Shot",
-// 	components: {
-// 		flight: {
-// 			type: "singleAttack",
-// 			path: [
-// 				{ reference: "origin", deltas: { sort: 1 } },
-// 				{ reference: "target", deltas: { sort: 1 } },
-// 			],
-// 			pathType: "arc",
-// 			charge: {
-// 				texture: "systems/metanthropes/assets/artwork/vfx/particle-1.webp",
-// 				duration: 300,
-// 				animations: [{ function: "drawBack", params: {} }],
-// 				//sound: { src: "ogg", align : 2}
-// 			},
-// 			projectile: {
-// 				texture: "systems/metanthropes/assets/artwork/vfx/particle-2.webp",
-// 				speed: 6, // feet per second;  duration computed from path length //? 32f/s is 10m/s
-// 				size: { w: 480, h: 240 }, //number in feet ?
-// 				animations: [{ function: "followPath", params: {} }],
-// 				sound: {
-// 					src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
-// 					align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START, //align: foundry.canvas.sfx.SOUND_ALIGNMENT.START,
-// 				},
-// 			},
-// 			impact: {
-// 				//bloodsplatter?
-// 				texture: "systems/metanthropes/assets/artwork/vfx/particle-3.webp",
-// 				duration: 400,
-// 				sound: {
-// 					src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Modern_device_beeping_01.ogg",
-// 					align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-// 				},
-// 			},
-// 		},
-// 	},
-// 	timeline: [{ component: "flight", position: 0 }],
-// });
-// const impact = new foundry.canvas.vfx.VFXEffect({
-// 	name: "Meta Impact",
-// 	components: {
-// 		burst: {
-// 			type: "singleImpact",
-// 			position: { reference: "target", property: "center" },
-// 			texture: "systems/metanthropes/assets/artwork/vfx/particle-4.webp",
-// 			duration: 2100,
-// 			// size: { w: 2056, h: 2056 },
-// 			size: 10,
-// 			animations: [{ function: "scale", params: {} }],
-// 			sound: {
-// 				src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
-// 			},
-// 		},
-// 		shake: {
-// 			type: "shake",
-// 			duration: 800,
-// 			maxDisplacement: 20,
-// 			smoothness: 0.6,
-// 		},
-// 		damage: {
-// 			type: "scrollingText",
-// 			origin: { reference: "target", property: "center" },
-// 			content: { reference: "damageText" },
-// 			duration: 2500,
-// 			scrollDirection: CONST.TEXT_ANCHOR_POINTS.TOP,
-// 			textStyle: { fill: "#ff4400", fontSize: 86, fontWeight: "bold" },
-// 		},
-// 	},
-// 	timeline: [
-// 		{ component: "burst", position: 0 },
-// 		{ component: "shake", position: 100 },
-// 		{ component: "damage", position: 200 },
-// 	],
-// });
-// const splatter = new foundry.canvas.vfx.VFXEffect({
-// 	name: "bloodSplatter",
-// 	components: {
-// 		splash: {
-// 			type: "singleImpact",
-// 			position: { reference: "target", deltas: { sort: 1 } },
-// 			texture: "systems/metanthropes/assets/artwork/vfx/particle-4.webp",
-// 			size: 2,
-// 			duration: 2000,
-// 			sound: {
-// 				src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
-// 				align: 1,
-// 			},
-// 		},
-// 	},
-// 	timeline: [{ component: "splash" }],
-// });
-// const dmgText = new foundry.canvas.vfx.VFXEffect({
-// 	name: "DmgText",
-// 	components: {
-// 		damage: {
-// 			type: "scrollingText",
-// 			origin: { reference: "target", property: "center" },
-// 			content: { reference: "damageText" },
-// 			duration: 2500, //optional def 2000
-// 			scrollDirection: CONST.TEXT_ANCHOR_POINTS.TOP,
-// 			textAnchor: CONST.TEXT_ANCHOR_POINTS.CENTER, //optional
-// 			textStyle: { fill: "#d21414", fontSize: 46, fontWeight: "bold" },
-// 		},
-// 	},
-// 	timeline: [{ component: "damage", position: 0 }],
-// });

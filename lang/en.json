@@ -46,7 +46,11 @@
 			"Targets": "Targets",
 			"Duration": "Duration",
 			"Range": "Range",
-			"Logging": "Send to Console"
+			"Logging": "Send to Console",
+			"Cosmic": "Cosmic",
+			"Elemental": "Elemental",
+			"Material": "Material",
+			"Psychic": "Psychic"
 		},
 		"LOGIC": {
 			"METAEXECUTE": {
