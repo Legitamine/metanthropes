@@ -18,7 +18,8 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 - Added support for Font Awesome v7.2
 - The **New User Interface** is now available! It comes with both **Dark & Light Themes** for the Interface and Applications sections of the UI. Looking forward to your feedback! This update does not include the new Sheets for Actors & Items as these are being developed along with the data models and will arrive soon™. The current Actor & Item Sheets had a small facelift, and remain functionaly the same.
 - [Introductory] Now supports the new 'Quickstart' capability, so when you create a new World you can select the Metanthropes: Introductory Adventure during the World creation. This will skip the required installation steps & the new World will be ready to go on the first load.
-- [Homebrew] Added support for the new Experimental VFX engine. Metapowers & Possessions that deal Damage automatically, will now trigger a new Visual & Audio effect upon successful activation, before automatically applying the damage. The effect will not trigger on subsequent Damage re-rolls with Destiny. The particles that show up and the Damage text size and color will adjust dynamically according to the type & amount of Damage dealt! Read more about it on [blog on VFX](). Requires Alpha Testing Enabled in the Settings. +Design Doc
+- [Homebrew] Added support for the new Experimental VFX engine. Metapowers & Possessions that deal Damage automatically, will now trigger a new Visual & Audio effect upon successful activation, before automatically applying the damage. The effect will not trigger on subsequent Damage re-rolls with Destiny. The particles that show up, the Damage text size & text color will adjust dynamically according to the Energy type & amount of Damage dealt! Read more about it on [blog on VFX](). Requires Alpha Testing Enabled in the Settings. +Design Doc
+
 - [Homebrew] The new Metanthropes Actor, the new Species and Template Item types are available for Alpha testing. This is a major step to Metanthropes going out of Early Access and we are looking forward to your feedback. Read more about it on our [Dev Blog]. Requires Alpha Testing Enabled in the Settings.(). +Design Doc
 - [Homebrew] The new Actor Active Effects are now available in a Compendium! Note that they are intented to be used only with the new 'Metanthropes Actor' type and not any of the existing ones, so it's only meant for initial testing with the new Actors. ()[] also need to add this in the compendium build script & github actions!!!
 - NEW Actor Sheet V2 + Item Sheet V2 (Species/Template)
@@ -27,17 +28,18 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 - Removed support for Foundry VTT V13. With the new features V14 brings like the new Active Effects & the current quality of the build, we feel that there is no need to keep V13 support. You can easily install V14 without affecting your existing V13 installation. If you require assistance, don't hesitate to reach out on our Discord and we'll help you migrate to V14 in no time!
 - When creating a new World, you now get the option to name the default Gamemaster user. If you don't, it will be localized to 'The Narrator'.
-- Extended the Metanthropes API to include [+?] and removed [-?]
+- Extended the Metanthropes API to include the new classes and the experimental VFX.
 - Console logging (F12 or Ctrl+Shift+i) now has different colored messages to help distinguish the Advanced Logging ones.
-- Updated the `>_ Send to Console` button, to work with both AppV1 and AppV2 sheets of any type. This buttons shows up when you enable the 'Advanced Logging' option in the settings and will send to the console the App & Document for quick inspection and debugging.
+- Updated the `>_ Send to Console` button, to work with both AppV1 and AppV2 sheets of any Document type. This buttons shows up when you enable the 'Advanced Logging' option in the settings and will send to the console both the App & Document for quick inspection during development and to help with debugging.
+- Pausing the game now uses a custom class override, rather than a render hook override.
 
 ### Fixed:
 
-- Improved the development tools by properly configuring intellisense for the Foundry and Metanthropes API.
+- Improved the development tools by properly configuring intellisense for the Foundry and Metanthropes API. Further improved compatibility with i18nAlly to understand the new \_loc shorthand.
 - When targeting multiple Tokens, it will now check & remove any invalid actors, or duplicate actor-linked Tokens before proceeding with applying damage to them.
-- Actor owners will now update their Actors directly, rather than emit a Socket call.
-- When the Data Migration Engine is running, the progress bar will now correctly update the completion % based on the total number of modules active.
-- The Adventure import screens will now only show if the user is the Active GM and the world is not created using the new Quickstart method.
+- Actor owners will now update their owned Actors directly when applying damage/healing, rather than emit a Socket call, improving performance and responsiveness.
+- When the Data Migration Engine is running, the progress bar will now correctly update the completion % based on the total number of modules active. It should no longer exceed values of 100%.
+- The Adventure import screens will now only show if the user is the Active GM and the World is NOT created using the new Quickstart method.
 - Various minor tweaks and improvements in the underlying code & documentation.
 - Fixed a previously known issue importing Adventures.
 
@@ -49,9 +51,9 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ### Deprecated:
 
-- tables.movement (confirm)
+- Deprecated the old movement tables. These will be removed once the transition to AppV2 for Actors completes.
 - Removed the ability to trigger the old macro-based VFX/SFX, since these will be now integrated to the new VFX engine. The respective Item tabs are still visible, but no longer apply the configured macros to the Item's activation.
-- The @METAFA and @METAICON enrichers no longer take fixed width as a parameter, since this has been deprecated since Font Awesome 7.1 (everything defaults to fw now), and will log a warning in the console. Support will be removed with Metanthropes v1.0.
+- The @METAFA and @METAICON enrichers no longer take fixed width as a parameter, since this has been deprecated since Font Awesome 7.1 (everything defaults to fw now), and will log a warning in the console if it detects it's use. Support will be removed with Metanthropes v1.0.
 
 ## Early Access v0.13.104 [2025-12-27]
 
