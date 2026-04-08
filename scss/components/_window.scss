@@ -16,6 +16,8 @@
 .window-app .window-content {
 	position: relative;
 	background-image: $a-background-image;
+	//background: var(--background);
+	//background-blend-mode: darken;
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;

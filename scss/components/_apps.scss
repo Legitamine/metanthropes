@@ -1,7 +1,12 @@
 @use "../settings" as *;
 //* All Apps
 .application {
+	background-position: center;
 	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-origin: border-box;
+	background-clip: border-box;
 }
 
 //* Game Pause

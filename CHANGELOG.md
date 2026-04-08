@@ -15,12 +15,12 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 ### Added:
 
 - Added support for **Foundry V14** stable build 14.359.
-- Added support for Font Awesome v7.2 //todo review fw changes
-- The **New User Interface** is now available! It comes with both **Dark & Light Themes** for the Interface and Applications sections of the UI. The **assets are not final** and will be updated to higher quality soon™. We decided to go ahead with some lower quality assets for now, instead of holding back the release until we get the final assets. Looking forward to your feedback.
-- [Introductory] Now supports the new 'Quickstart' capability, so when you create a new World you can select the Metanthropes: Introductory Adventure and skip required installation steps. The new World will be ready to go on the first load.
+- Added support for Font Awesome v7.2
+- The **New User Interface** is now available! It comes with both **Dark & Light Themes** for the Interface and Applications sections of the UI. Looking forward to your feedback! This update does not include the new Sheets for Actors & Items as these are being developed along with the data models and will arrive soon™. The current Actor & Item Sheets had a small facelift, and remain functionaly the same.
+- [Introductory] Now supports the new 'Quickstart' capability, so when you create a new World you can select the Metanthropes: Introductory Adventure during the World creation. This will skip the required installation steps & the new World will be ready to go on the first load.
+- [Homebrew] Added support for the new Experimental VFX engine. Metapowers & Possessions that deal Damage automatically, will now trigger a new Visual & Audio effect upon successful activation, before automatically applying the damage. The effect will not trigger on subsequent Damage re-rolls with Destiny. The particles that show up and the Damage text size and color will adjust dynamically according to the type & amount of Damage dealt! Read more about it on [blog on VFX](). Requires Alpha Testing Enabled in the Settings. +Design Doc
 - [Homebrew] The new Metanthropes Actor, the new Species and Template Item types are available for Alpha testing. This is a major step to Metanthropes going out of Early Access and we are looking forward to your feedback. Read more about it on our [Dev Blog]. Requires Alpha Testing Enabled in the Settings.(). +Design Doc
 - [Homebrew] The new Actor Active Effects are now available in a Compendium! Note that they are intented to be used only with the new 'Metanthropes Actor' type and not any of the existing ones, so it's only meant for initial testing with the new Actors. ()[] also need to add this in the compendium build script & github actions!!!
-- [Homebrew] Added support for the new VFX engine. Metapowers & Possessions that deal Damage, will now trigger a new Visual & Audio effect upon successful activation, before automatically applying the damage. The effect will not trigger on re-rolls of Damage. Read more about it on [blog on VFX](). Requires Alpha Testing Enabled in the Settings. +Design Doc
 - NEW Actor Sheet V2 + Item Sheet V2 (Species/Template)
 
 ### Changed:
@@ -38,18 +38,20 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 - Actor owners will now update their Actors directly, rather than emit a Socket call.
 - When the Data Migration Engine is running, the progress bar will now correctly update the completion % based on the total number of modules active.
 - The Adventure import screens will now only show if the user is the Active GM and the world is not created using the new Quickstart method.
-- Various minor tweaks and improvements in the underlying code.
+- Various minor tweaks and improvements in the underlying code & documentation.
+- Fixed a previously known issue importing Adventures.
 
 ### Known Issues:
 
 - Review The Forge compatibility
 - [DSN] Dice So Nice v5.2.5 isn't fully compatible with FVTT v14, so we recommend to keep it disabled until a newer, compatible version is available.
-- When the sidebar is minimized and Chat Cards are enabled for Chat Notifications in the User Interface Configuration, the Chat Card will use the Light Interface theme, regardless of the user's choice.
+- When the sidebar is minimized and Chat Cards are enabled for Chat Notifications in the User Interface Configuration, the Chat Card will use the Light Interface theme, regardless of the user's choice. In addition, activating a Metapower or using a Possession from the Chat Card won't store that the button was clicked when viewed in the Chat later, allowing players to re-activate them.
 
 ### Deprecated:
 
 - tables.movement (confirm)
-- old macro-based triggering of VFX/SFX
+- Removed the ability to trigger the old macro-based VFX/SFX, since these will be now integrated to the new VFX engine. The respective Item tabs are still visible, but no longer apply the configured macros to the Item's activation.
+- The @METAFA and @METAICON enrichers no longer take fixed width as a parameter, since this has been deprecated since Font Awesome 7.1 (everything defaults to fw now), and will log a warning in the console. Support will be removed with Metanthropes v1.0.
 
 ## Early Access v0.13.104 [2025-12-27]
 

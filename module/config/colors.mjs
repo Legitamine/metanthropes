@@ -4,6 +4,12 @@ export const COLORS = Object.freeze({
 	highlight: "#e6007e",
 	buff: "#267114",
 	condition: "#ab1616",
+	// buff: "#006e74",
+	// condition: "#e6007e",
 	success: "#267114",
 	failure: "#ab1616",
+	cosmic: "#543558",
+	psychic: "#cd3f86",
+	elemental: "#006f73",
+	material: "#58585a",
 });

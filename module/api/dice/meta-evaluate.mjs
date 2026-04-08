@@ -41,7 +41,7 @@ export async function metaEvaluate(
 	itemName = null,
 	messageId = null,
 	reroll = false,
-	rerollCounter = 0
+	rerollCounter = 0,
 ) {
 	const mL = metanthropes.utils.metaLog;
 	mL(
@@ -76,7 +76,7 @@ export async function metaEvaluate(
 		"Re-Roll?",
 		reroll,
 		"Reroll Counter:",
-		rerollCounter
+		rerollCounter,
 	);
 
 	//* Variables
@@ -111,11 +111,11 @@ export async function metaEvaluate(
 	mL(3, "metaEvaluate", "rollEffectiveResult", rollEffectiveResult);
 	let levelsOfSuccess = Math.floor(
 		(statScore + bonus + penalty + multiAction + perkReduction + aimingReduction + customReduction - rollResult) /
-			10
+			10,
 	);
 	let levelsOfFailure = Math.floor(
 		(rollResult - statScore - bonus - multiAction - perkReduction - aimingReduction - customReduction - penalty) /
-			10
+			10,
 	);
 	//? this kicks-off the calculation, assuming that is is a failure
 	if (rollResult - multiAction - perkReduction - aimingReduction - customReduction - penalty > statScore + bonus) {
@@ -169,7 +169,7 @@ export async function metaEvaluate(
 	} else {
 		startMessage = "Re-Rolls";
 		rerollCounter++;
-		if (rerollCounter > 1) startMessage += ` (@METAFA(xmark, null, xs, fw)${rerollCounter})`;
+		if (rerollCounter > 1) startMessage += ` (@METAFA(xmark, null, xs)${rerollCounter})`;
 	}
 	if (action === "StatRoll") {
 		message = `${startMessage} for ${stat} with a score of ${statScore}%`;
@@ -386,7 +386,7 @@ export async function metaEvaluate(
 			"Current Destiny:",
 			actor.currentDestiny,
 			"Actor UUID:",
-			actor.uuid
+			actor.uuid,
 		);
 	} else {
 		//* This is a re-roll, updating existing message
@@ -510,7 +510,7 @@ export async function metaEvaluateReRoll(event) {
 		itemName,
 		messageId,
 		reroll,
-		rerollCounter
+		rerollCounter,
 	);
 	mL(3, "metaEvaluateReRoll", "Finished for:", actor.name + "'s", action, actorUUID);
 }

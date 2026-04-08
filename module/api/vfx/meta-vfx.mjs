@@ -55,31 +55,70 @@ export async function metaVFX({
 	//? Crusible way of checking if the user's token is in the scene?
 	//todo we need to come up with something similar
 	//! if ( !this.token?.parent.isView ) return;
+	//* Custom Damage Color additive hex combinations
+	//todo poc - is there a better util ready somewhere else?
+	function hexToRgb(hex) {
+		const clean = hex.replace("#", "");
+		return {
+			r: parseInt(clean.slice(0, 2), 16),
+			g: parseInt(clean.slice(2, 4), 16),
+			b: parseInt(clean.slice(4, 6), 16),
+		};
+	}
+
+	function rgbToHex({ r, g, b }) {
+		return (
+			"#" +
+			[Math.min(255, r), Math.min(255, g), Math.min(255, b)]
+				.map((value) => value.toString(16).padStart(2, "0"))
+				.join("")
+		);
+	}
+
+	function addHexColors(colors = []) {
+		const total = { r: 0, g: 0, b: 0 };
+
+		for (const hex of colors) {
+			const { r, g, b } = hexToRgb(hex);
+			total.r += r;
+			total.g += g;
+			total.b += b;
+		}
+
+		return rgbToHex(total);
+	}
 	// * Customize the effect
 	//? item
 	const item = await fromUuid(itemUUID);
 	const damageTextures = [];
+	const damageColors = [];
 	let totalDamage = 0;
 	if (cosmicDamage > 0) {
 		damageTextures.push("systems/metanthropes/assets/artwork/vfx/particle-1.webp");
+		damageColors.push(metanthropes.system.COLORS.cosmic);
 		totalDamage += cosmicDamage;
 	}
 	if (elementalDamage > 0) {
 		damageTextures.push("systems/metanthropes/assets/artwork/vfx/particle-2.webp");
+		damageColors.push(metanthropes.system.COLORS.elemental);
 		totalDamage += elementalDamage;
 	}
 	if (materialDamage > 0) {
 		damageTextures.push("systems/metanthropes/assets/artwork/vfx/particle-3.webp");
+		damageColors.push(metanthropes.system.COLORS.material);
 		totalDamage += materialDamage;
 	}
 	if (psychicDamage > 0) {
 		damageTextures.push("systems/metanthropes/assets/artwork/vfx/particle-4.webp");
+		damageColors.push(metanthropes.system.COLORS.psychic);
 		totalDamage += psychicDamage;
 	}
 	//todo review min/max clamp values based off the system performance setting
-	const damageCount = Math.clamp(totalDamage / 4, 1, 100);
+	//todo see the mode implementation from the weather in introductory
+	const damageCount = Math.clamp(totalDamage, 25, 100);
 	const minScale = Math.clamp(damageCount * 0.1, 0.1, 0.3);
 	const maxScale = Math.clamp(damageCount * 0.5, 0.4, 0.8);
+	const damageColor = damageColors.length ? addHexColors(damageColors) : "#fff";
 	//* meta (combined) VFX Effect test
 	const metaVFX = await new foundry.canvas.vfx.VFXEffect({
 		//todo improvements: speed & overlap, random rotation, fades, scaling via token size or life total?, delta positions?
@@ -97,7 +136,7 @@ export async function metaVFX({
 				charge: {
 					texture: item.img,
 					size: 4,
-					duration: 1500,
+					duration: 500,
 					animations: [{ function: "drawBack" }],
 					// sound: {
 					// 	//defaults to the music track vs the interface or environment
@@ -124,7 +163,7 @@ export async function metaVFX({
 					//bloodsplatter?
 					texture: item.img,
 					size: 4,
-					duration: 2000,
+					duration: 500,
 					// sound: {
 					// 	src: "systems/metanthropes/assets/audio/sfx/distant-explosion-03.wav",
 					// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
@@ -133,89 +172,89 @@ export async function metaVFX({
 					// },
 				},
 			},
-			boom1: {
-				type: "singleImpact",
-				position: { reference: "target", deltas: { sort: 0 } }, //timeline position? what does this sort affect?
-				texture: "systems/metanthropes/assets/artwork/vfx/boom-1.png",
-				size: 10,
-				animations: [{ function: "scale", params: {} }],
-				duration: 230,
-				// sound: {
-				// 	src: "systems/metanthropes/assets/audio/sfx/small-explosion-01.wav",
-				// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-				// 	channel: "environment",
-				// 	radius: 120, //def 60 - what is this, feet?
-				// 	volume: 0.3,
-				// },
-			},
-			boom2: {
-				type: "singleImpact",
-				position: { reference: "target", deltas: { sort: 1 } },
-				texture: "systems/metanthropes/assets/artwork/vfx/boom-2.png",
-				size: 10,
-				animations: [{ function: "scale", params: {} }],
-				duration: 230,
-				// sound: {
-				// 	src: "systems/metanthropes/assets/audio/sfx/small-explosion-02.wav",
-				// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-				// 	radius: 120, //def 60 - what is this, feet?
-				// 	channel: "environment",
-				// 	volume: 0.3,
-				// },
-				shake: {
-					//doesn't seem to get triggered here, perhaps it's not a valid component in the singleImpact?
-					type: "shake",
-					target: "stage", //can also target individual canvas layers or groups
-					duration: 200,
-					maxDisplacement: 20, //35 def
-					smoothness: 0.6,
-				},
-			},
-			boom3: {
-				type: "singleImpact",
-				position: { reference: "target", deltas: { sort: 0 } },
-				texture: "systems/metanthropes/assets/artwork/vfx/boom-3.png",
-				size: 10,
-				animations: [{ function: "scale", params: {} }],
-				duration: 230,
-				// sound: {
-				// 	src: "systems/metanthropes/assets/audio/sfx/small-explosion-03.wav",
-				// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-				// 	radius: 120, //def 60 - what is this, feet?
-				// 	channel: "environment",
-				// 	volume: 0.3,
-				// },
-			},
-			boom4: {
-				type: "singleImpact",
-				position: { reference: "target", deltas: { sort: 1 } },
-				texture: "systems/metanthropes/assets/artwork/vfx/boom-4.png",
-				size: 10,
-				animations: [{ function: "scale", params: {} }],
-				duration: 230,
-				// sound: {
-				// 	src: "systems/metanthropes/assets/audio/sfx/small-explosion-04.wav",
-				// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-				// 	radius: 120, //def 60 - what is this, feet?
-				// 	channel: "environment",
-				// 	volume: 0.3,
-				// },
-			},
-			boom5: {
-				type: "singleImpact",
-				position: { reference: "target", deltas: { sort: 0 } },
-				texture: "systems/metanthropes/assets/artwork/vfx/boom-5.png",
-				size: 10,
-				animations: [{ function: "scale", params: {} }],
-				duration: 230,
-				// sound: {
-				// 	src: "systems/metanthropes/assets/audio/sfx/small-explosion-05.wav",
-				// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-				// 	radius: 120, //def 60 - what is this, feet?
-				// 	channel: "environment",
-				// 	volume: 0.3,
-				// },
-			},
+			// boom1: {
+			// 	type: "singleImpact",
+			// 	position: { reference: "target", deltas: { sort: 0 } }, //timeline position? what does this sort affect?
+			// 	texture: "systems/metanthropes/assets/artwork/vfx/boom-1.png",
+			// 	size: 10,
+			// 	animations: [{ function: "scale", params: {} }],
+			// 	duration: 230,
+			// 	// sound: {
+			// 	// 	src: "systems/metanthropes/assets/audio/sfx/small-explosion-01.wav",
+			// 	// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
+			// 	// 	channel: "environment",
+			// 	// 	radius: 120, //def 60 - what is this, feet?
+			// 	// 	volume: 0.3,
+			// 	// },
+			// },
+			// boom2: {
+			// 	type: "singleImpact",
+			// 	position: { reference: "target", deltas: { sort: 1 } },
+			// 	texture: "systems/metanthropes/assets/artwork/vfx/boom-2.png",
+			// 	size: 10,
+			// 	animations: [{ function: "scale", params: {} }],
+			// 	duration: 230,
+			// 	// sound: {
+			// 	// 	src: "systems/metanthropes/assets/audio/sfx/small-explosion-02.wav",
+			// 	// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
+			// 	// 	radius: 120, //def 60 - what is this, feet?
+			// 	// 	channel: "environment",
+			// 	// 	volume: 0.3,
+			// 	// },
+			// 	shake: {
+			// 		//doesn't seem to get triggered here, perhaps it's not a valid component in the singleImpact?
+			// 		type: "shake",
+			// 		target: "stage", //can also target individual canvas layers or groups
+			// 		duration: 200,
+			// 		maxDisplacement: 20, //35 def
+			// 		smoothness: 0.6,
+			// 	},
+			// },
+			// boom3: {
+			// 	type: "singleImpact",
+			// 	position: { reference: "target", deltas: { sort: 0 } },
+			// 	texture: "systems/metanthropes/assets/artwork/vfx/boom-3.png",
+			// 	size: 10,
+			// 	animations: [{ function: "scale", params: {} }],
+			// 	duration: 230,
+			// 	// sound: {
+			// 	// 	src: "systems/metanthropes/assets/audio/sfx/small-explosion-03.wav",
+			// 	// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
+			// 	// 	radius: 120, //def 60 - what is this, feet?
+			// 	// 	channel: "environment",
+			// 	// 	volume: 0.3,
+			// 	// },
+			// },
+			// boom4: {
+			// 	type: "singleImpact",
+			// 	position: { reference: "target", deltas: { sort: 1 } },
+			// 	texture: "systems/metanthropes/assets/artwork/vfx/boom-4.png",
+			// 	size: 10,
+			// 	animations: [{ function: "scale", params: {} }],
+			// 	duration: 230,
+			// 	// sound: {
+			// 	// 	src: "systems/metanthropes/assets/audio/sfx/small-explosion-04.wav",
+			// 	// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
+			// 	// 	radius: 120, //def 60 - what is this, feet?
+			// 	// 	channel: "environment",
+			// 	// 	volume: 0.3,
+			// 	// },
+			// },
+			// boom5: {
+			// 	type: "singleImpact",
+			// 	position: { reference: "target", deltas: { sort: 0 } },
+			// 	texture: "systems/metanthropes/assets/artwork/vfx/boom-5.png",
+			// 	size: 10,
+			// 	animations: [{ function: "scale", params: {} }],
+			// 	duration: 230,
+			// 	// sound: {
+			// 	// 	src: "systems/metanthropes/assets/audio/sfx/small-explosion-05.wav",
+			// 	// 	align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
+			// 	// 	radius: 120, //def 60 - what is this, feet?
+			// 	// 	channel: "environment",
+			// 	// 	volume: 0.3,
+			// 	// },
+			// },
 			particles: {
 				type: "particleGenerator",
 				textures: damageTextures,
@@ -242,19 +281,21 @@ export async function metaVFX({
 				origin: { reference: "target", deltas: { sort: 0 } },
 				scrollDirection: CONST.TEXT_ANCHOR_POINTS.TOP,
 				//textAnchor: CONST.TEXT_ANCHOR_POINTS.TOP, //optional
-				//todo color based on damagetype
-				textStyle: { fill: "#d21414", fontSize: 64, fontWeight: "bold" },
+				//textStyle: { fill: "#d21414", fontSize: 64, fontWeight: "bold" },
+				textStyle: { reference: "textStyle" },
 			},
 		},
 		timeline: [
 			{ component: "kame", position: 0 }, //can I have relative positions in the timeline - how do you know how much time it takes for the projectile to reach the target?
-			{ component: "boom1", position: 3100 },
-			{ component: "boom2", position: 3180 },
-			{ component: "boom3", position: 3380 },
-			{ component: "boom4", position: 3580 },
-			{ component: "boom5", position: 3780 },
-			{ component: "particles", position: 3840 },
-			{ component: "text", position: 4000 },
+			// { component: "boom1", position: 3100 },
+			// { component: "boom2", position: 3180 },
+			// { component: "boom3", position: 3380 },
+			// { component: "boom4", position: 3580 },
+			// { component: "boom5", position: 3780 },
+			// { component: "particles", position: 3840 },
+			// { component: "text", position: 4000 },
+			{ component: "particles", position: 1000 },
+			{ component: "text", position: 3000 },
 		],
 	});
 
@@ -264,11 +305,22 @@ export async function metaVFX({
 		const targetedActor = await actor.getActiveTokens(false, false)[0]; //?would that work for target tokens too?
 		mL(3, "metaVFX", "TargetedActor UUID/actor/TargetedActor", targetedActorUUID, actor, targetedActor);
 		let damageMessage = ``;
+		const textStyleOptions = { fill: damageColor, fontSize: Number(damageCount), fontWeight: "bold" };
 		//todo localize
 		if (cosmicDamage > 0) damageMessage += `Cosmic: ${cosmicDamage} `;
 		if (elementalDamage > 0) damageMessage += ` Elemental: ${elementalDamage} `;
 		if (materialDamage > 0) damageMessage += ` Material: ${materialDamage} `;
 		if (psychicDamage > 0) damageMessage += ` Psychic: ${psychicDamage}`;
+		mL(
+			3,
+			"metaVFX",
+			"Damage Message/Count/Color",
+			damageMessage,
+			damageCount,
+			damageColor,
+			"textStyleOptions",
+			textStyleOptions,
+		);
 		//! if we await the VFX then it goes from one target to the next, if we don't, it does all at the same time.
 		//! Are there metapowers/possessions where we would want an effect to be awaited instead ?
 		//? what if there is a miss??
@@ -289,6 +341,7 @@ export async function metaVFX({
 					sort: targetedActor.document.sort,
 				},
 				text: damageMessage,
+				textStyle: textStyleOptions,
 			});
 			continue;
 		}
@@ -304,6 +357,7 @@ export async function metaVFX({
 				sort: targetedActor.document.sort, //?sort controls if the effect will be under or over the token (enabled is over)
 			},
 			text: damageMessage,
+			textStyle: textStyleOptions,
 		});
 		continue;
 	}
@@ -311,111 +365,111 @@ export async function metaVFX({
 }
 
 //* initial tests, delete after review
-	// //* single VFX Effect Tests
-	// const shot = new foundry.canvas.vfx.VFXEffect({
-	// 	name: "Meta Shot",
-	// 	components: {
-	// 		flight: {
-	// 			type: "singleAttack",
-	// 			path: [
-	// 				{ reference: "origin", deltas: { sort: 1 } },
-	// 				{ reference: "target", deltas: { sort: 1 } },
-	// 			],
-	// 			pathType: "arc",
-	// 			charge: {
-	// 				texture: "systems/metanthropes/assets/artwork/vfx/particle-1.webp",
-	// 				duration: 300,
-	// 				animations: [{ function: "drawBack", params: {} }],
-	// 				//sound: { src: "ogg", align : 2}
-	// 			},
-	// 			projectile: {
-	// 				texture: "systems/metanthropes/assets/artwork/vfx/particle-2.webp",
-	// 				speed: 6, // feet per second;  duration computed from path length //? 32f/s is 10m/s
-	// 				size: { w: 480, h: 240 }, //number in feet ?
-	// 				animations: [{ function: "followPath", params: {} }],
-	// 				sound: {
-	// 					src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
-	// 					align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START, //align: foundry.canvas.sfx.SOUND_ALIGNMENT.START,
-	// 				},
-	// 			},
-	// 			impact: {
-	// 				//bloodsplatter?
-	// 				texture: "systems/metanthropes/assets/artwork/vfx/particle-3.webp",
-	// 				duration: 400,
-	// 				sound: {
-	// 					src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Modern_device_beeping_01.ogg",
-	// 					align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
-	// 				},
-	// 			},
-	// 		},
-	// 	},
-	// 	timeline: [{ component: "flight", position: 0 }],
-	// });
-	// const impact = new foundry.canvas.vfx.VFXEffect({
-	// 	name: "Meta Impact",
-	// 	components: {
-	// 		burst: {
-	// 			type: "singleImpact",
-	// 			position: { reference: "target", property: "center" },
-	// 			texture: "systems/metanthropes/assets/artwork/vfx/particle-4.webp",
-	// 			duration: 2100,
-	// 			// size: { w: 2056, h: 2056 },
-	// 			size: 10,
-	// 			animations: [{ function: "scale", params: {} }],
-	// 			sound: {
-	// 				src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
-	// 			},
-	// 		},
-	// 		shake: {
-	// 			type: "shake",
-	// 			duration: 800,
-	// 			maxDisplacement: 20,
-	// 			smoothness: 0.6,
-	// 		},
-	// 		damage: {
-	// 			type: "scrollingText",
-	// 			origin: { reference: "target", property: "center" },
-	// 			content: { reference: "damageText" },
-	// 			duration: 2500,
-	// 			scrollDirection: CONST.TEXT_ANCHOR_POINTS.TOP,
-	// 			textStyle: { fill: "#ff4400", fontSize: 86, fontWeight: "bold" },
-	// 		},
-	// 	},
-	// 	timeline: [
-	// 		{ component: "burst", position: 0 },
-	// 		{ component: "shake", position: 100 },
-	// 		{ component: "damage", position: 200 },
-	// 	],
-	// });
-	// const splatter = new foundry.canvas.vfx.VFXEffect({
-	// 	name: "bloodSplatter",
-	// 	components: {
-	// 		splash: {
-	// 			type: "singleImpact",
-	// 			position: { reference: "target", deltas: { sort: 1 } },
-	// 			texture: "systems/metanthropes/assets/artwork/vfx/particle-4.webp",
-	// 			size: 2,
-	// 			duration: 2000,
-	// 			sound: {
-	// 				src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
-	// 				align: 1,
-	// 			},
-	// 		},
-	// 	},
-	// 	timeline: [{ component: "splash" }],
-	// });
-	// const dmgText = new foundry.canvas.vfx.VFXEffect({
-	// 	name: "DmgText",
-	// 	components: {
-	// 		damage: {
-	// 			type: "scrollingText",
-	// 			origin: { reference: "target", property: "center" },
-	// 			content: { reference: "damageText" },
-	// 			duration: 2500, //optional def 2000
-	// 			scrollDirection: CONST.TEXT_ANCHOR_POINTS.TOP,
-	// 			textAnchor: CONST.TEXT_ANCHOR_POINTS.CENTER, //optional
-	// 			textStyle: { fill: "#d21414", fontSize: 46, fontWeight: "bold" },
-	// 		},
-	// 	},
-	// 	timeline: [{ component: "damage", position: 0 }],
-	// });
+// //* single VFX Effect Tests
+// const shot = new foundry.canvas.vfx.VFXEffect({
+// 	name: "Meta Shot",
+// 	components: {
+// 		flight: {
+// 			type: "singleAttack",
+// 			path: [
+// 				{ reference: "origin", deltas: { sort: 1 } },
+// 				{ reference: "target", deltas: { sort: 1 } },
+// 			],
+// 			pathType: "arc",
+// 			charge: {
+// 				texture: "systems/metanthropes/assets/artwork/vfx/particle-1.webp",
+// 				duration: 300,
+// 				animations: [{ function: "drawBack", params: {} }],
+// 				//sound: { src: "ogg", align : 2}
+// 			},
+// 			projectile: {
+// 				texture: "systems/metanthropes/assets/artwork/vfx/particle-2.webp",
+// 				speed: 6, // feet per second;  duration computed from path length //? 32f/s is 10m/s
+// 				size: { w: 480, h: 240 }, //number in feet ?
+// 				animations: [{ function: "followPath", params: {} }],
+// 				sound: {
+// 					src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
+// 					align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START, //align: foundry.canvas.sfx.SOUND_ALIGNMENT.START,
+// 				},
+// 			},
+// 			impact: {
+// 				//bloodsplatter?
+// 				texture: "systems/metanthropes/assets/artwork/vfx/particle-3.webp",
+// 				duration: 400,
+// 				sound: {
+// 					src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Modern_device_beeping_01.ogg",
+// 					align: foundry.canvas.vfx.constants.SOUND_ALIGNMENT.START,
+// 				},
+// 			},
+// 		},
+// 	},
+// 	timeline: [{ component: "flight", position: 0 }],
+// });
+// const impact = new foundry.canvas.vfx.VFXEffect({
+// 	name: "Meta Impact",
+// 	components: {
+// 		burst: {
+// 			type: "singleImpact",
+// 			position: { reference: "target", property: "center" },
+// 			texture: "systems/metanthropes/assets/artwork/vfx/particle-4.webp",
+// 			duration: 2100,
+// 			// size: { w: 2056, h: 2056 },
+// 			size: 10,
+// 			animations: [{ function: "scale", params: {} }],
+// 			sound: {
+// 				src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
+// 			},
+// 		},
+// 		shake: {
+// 			type: "shake",
+// 			duration: 800,
+// 			maxDisplacement: 20,
+// 			smoothness: 0.6,
+// 		},
+// 		damage: {
+// 			type: "scrollingText",
+// 			origin: { reference: "target", property: "center" },
+// 			content: { reference: "damageText" },
+// 			duration: 2500,
+// 			scrollDirection: CONST.TEXT_ANCHOR_POINTS.TOP,
+// 			textStyle: { fill: "#ff4400", fontSize: 86, fontWeight: "bold" },
+// 		},
+// 	},
+// 	timeline: [
+// 		{ component: "burst", position: 0 },
+// 		{ component: "shake", position: 100 },
+// 		{ component: "damage", position: 200 },
+// 	],
+// });
+// const splatter = new foundry.canvas.vfx.VFXEffect({
+// 	name: "bloodSplatter",
+// 	components: {
+// 		splash: {
+// 			type: "singleImpact",
+// 			position: { reference: "target", deltas: { sort: 1 } },
+// 			texture: "systems/metanthropes/assets/artwork/vfx/particle-4.webp",
+// 			size: 2,
+// 			duration: 2000,
+// 			sound: {
+// 				src: "systems/metanthropes/assets/audio/sfx/Astral_Cue_Metal_Detector_01.ogg",
+// 				align: 1,
+// 			},
+// 		},
+// 	},
+// 	timeline: [{ component: "splash" }],
+// });
+// const dmgText = new foundry.canvas.vfx.VFXEffect({
+// 	name: "DmgText",
+// 	components: {
+// 		damage: {
+// 			type: "scrollingText",
+// 			origin: { reference: "target", property: "center" },
+// 			content: { reference: "damageText" },
+// 			duration: 2500, //optional def 2000
+// 			scrollDirection: CONST.TEXT_ANCHOR_POINTS.TOP,
+// 			textAnchor: CONST.TEXT_ANCHOR_POINTS.CENTER, //optional
+// 			textStyle: { fill: "#d21414", fontSize: 46, fontWeight: "bold" },
+// 		},
+// 	},
+// 	timeline: [{ component: "damage", position: 0 }],
+// });

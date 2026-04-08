@@ -34,7 +34,7 @@ export async function metaRolld10(
 	anchor = false,
 	reroll = false,
 	rerollCounter = 0,
-	messageId = null
+	messageId = null,
 ) {
 	const mL = metanthropes.utils.metaLog;
 	dice = typeof dice === "string" ? parseInt(dice) : dice;
@@ -62,7 +62,7 @@ export async function metaRolld10(
 		"ReRoll Counter:",
 		rerollCounter,
 		"Message ID:",
-		messageId
+		messageId,
 	);
 	let rollTotal;
 	const explosiveDice = "x10";
@@ -89,7 +89,7 @@ export async function metaRolld10(
 	if (reroll) {
 		messageStart = "Re-Rolls";
 		rerollCounter++;
-		if (rerollCounter > 1) messageStart += ` (@METAFA(xmark, null, xs, fw)${rerollCounter})`;
+		if (rerollCounter > 1) messageStart += ` (@METAFA(xmark, null, xs)${rerollCounter})`;
 		messageStart += " for";
 	}
 	if (itemName) {
@@ -244,7 +244,7 @@ export async function metaRolld10(
 					"Re rolling for anchor",
 					"Could not find the chat message to update",
 					messageId,
-					"Creating new chat message"
+					"Creating new chat message",
 				);
 				metanthropes.applications.MetaChatMessage.create(chatData);
 				//? AND return the anchor, setting it to false so if we have another reroll we'll update that new message
@@ -335,7 +335,7 @@ export async function metaRolld10ReRoll(event) {
 	let reroll = button.dataset.reroll === "true" ? true : false;
 	let rerollCounter = parseInt(button.dataset.rerollCounter) ?? 0;
 	const actor = await fromUuid(actoruuid);
-	const targets = button.dataset.targets ? button.dataset.targets.split(",") : [] ?? null;
+	const targets = button.dataset.targets ? button.dataset.targets.split(",") : ([] ?? null);
 	//* Return conditions
 	//? Need to check if actor has enough Destiny to spend, because they might have already spent it on another secondary button
 	if (!(actor.currentDestiny > 0 && destinyReRoll)) {
@@ -364,7 +364,7 @@ export async function metaRolld10ReRoll(event) {
 			anchor,
 			reroll,
 			rerollCounter,
-			messageId
+			messageId,
 		);
 	} else {
 		//! what's the difference?
@@ -381,7 +381,7 @@ export async function metaRolld10ReRoll(event) {
 			anchor,
 			reroll,
 			rerollCounter,
-			messageId
+			messageId,
 		);
 	}
 }
@@ -420,7 +420,7 @@ export async function metaDamageReRoll(event) {
 	let reroll = button.dataset.reroll === "true" ? true : false;
 	let rerollCounter = parseInt(button.dataset.rerollCounter) || 0;
 	const actor = await fromUuid(actoruuid);
-	const targetedActors = button.dataset.targets ? button.dataset.targets.split(",") : [] ?? null;
+	const targetedActors = button.dataset.targets ? button.dataset.targets.split(",") : ([] ?? null);
 	//todo ** tha mporousa na to kanw set null kai meta na min kanw call metaRoll ektos ean perimenw result
 	const damageDiceCosmic = parseInt(button.dataset.diceCosmic) || 0;
 	const damageDiceElemental = parseInt(button.dataset.diceElemental) || 0;
@@ -465,7 +465,7 @@ export async function metaDamageReRoll(event) {
 		true,
 		false,
 		0,
-		null
+		null,
 	);
 	const cosmicDamageRollResult = cosmicDamageRoll.dataset.total;
 	const damageCosmicMessage = `${cosmicDamageRoll.outerHTML}`;
@@ -481,7 +481,7 @@ export async function metaDamageReRoll(event) {
 		true,
 		false,
 		0,
-		null
+		null,
 	);
 	const elementalDamageRollResult = elementalDamageRoll.dataset.total;
 	const damageElementalMessage = `${elementalDamageRoll.outerHTML}`;
@@ -497,7 +497,7 @@ export async function metaDamageReRoll(event) {
 		true,
 		false,
 		0,
-		null
+		null,
 	);
 	const materialDamageRollResult = materialDamageRoll.dataset.total;
 	const damageMaterialMessage = `${materialDamageRoll.outerHTML}`;
@@ -513,7 +513,7 @@ export async function metaDamageReRoll(event) {
 		true,
 		false,
 		0,
-		null
+		null,
 	);
 	const psychicDamageRollResult = psychicDamageRoll.dataset.total;
 	const damagePsychicMessage = `${psychicDamageRoll.outerHTML}`;
@@ -531,7 +531,7 @@ export async function metaDamageReRoll(event) {
 			cosmicDamageRollResult,
 			elementalDamageRollResult,
 			materialDamageRollResult,
-			psychicDamageRollResult
+			psychicDamageRollResult,
 		);
 	}
 	//* Build the chat Message
@@ -540,7 +540,7 @@ export async function metaDamageReRoll(event) {
 	} else {
 		startMessage = "Re-Rolls";
 		rerollCounter++;
-		if (rerollCounter > 1) startMessage += ` (@METAFA(xmark, null, fw)${rerollCounter})`;
+		if (rerollCounter > 1) startMessage += ` (@METAFA(xmark, null)${rerollCounter})`;
 	}
 	flavorMessage = `${startMessage} ${itemName}'s @METAFA(burst) Damage`;
 	if (damageSelectedTargets)
@@ -606,7 +606,7 @@ export async function metaDamageReRoll(event) {
 		materialDamageRollResult,
 		psychicDamageRollResult,
 		`Target${targetedActors.length > 1 ? "s" : ""}:`,
-		targetedActors.length
+		targetedActors.length,
 	);
 }
 
@@ -644,7 +644,7 @@ export async function metaHealingReRoll(event) {
 	let reroll = button.dataset.reroll === "true" ? true : false;
 	let rerollCounter = parseInt(button.dataset.rerollCounter) ?? 0;
 	const actor = await fromUuid(actoruuid);
-	const targetedActors = button.dataset.targets ? button.dataset.targets.split(",") : [] ?? null;
+	const targetedActors = button.dataset.targets ? button.dataset.targets.split(",") : ([] ?? null);
 	const healingDice = parseInt(button.dataset.healingDice) ?? 0;
 	const healingBase = parseInt(button.dataset.healingBase) ?? 0;
 	const healSelectedTargets = button.dataset.healSelectedTargets === "true" ? true : false;
@@ -679,7 +679,7 @@ export async function metaHealingReRoll(event) {
 		true,
 		false,
 		0,
-		null
+		null,
 	);
 	const healingRollResult = healingRoll.dataset.total;
 	const healingMessage = `${healingRoll.outerHTML}<br>`;
@@ -701,7 +701,7 @@ export async function metaHealingReRoll(event) {
 	} else {
 		startMessage = "Re-Rolls";
 		rerollCounter++;
-		if (rerollCounter > 1) startMessage += ` (@METAFA(xmark, null, fw)${rerollCounter})`;
+		if (rerollCounter > 1) startMessage += ` (@METAFA(xmark, null)${rerollCounter})`;
 	}
 	flavorMessage = `${startMessage} ${itemName}'s @METAFA(heart-pulse) Healing`;
 	if (healSelectedTargets)

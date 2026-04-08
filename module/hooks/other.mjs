@@ -11,4 +11,6 @@ Hooks.on(`getActiveEffectSheetHeaderButtons`, metaLogDocument);
 Hooks.on(`getHeaderControlsMetanthropesActorSheetV2`, metaLogDocumentV2);
 Hooks.on(`getHeaderControlsMetanthropesActiveEffectSheetV2`, metaLogDocumentV2);
 Hooks.on(`getHeaderControlsMetanthropesItemSheetV2`, metaLogDocumentV2);
+//todo review, does this makes the above redundant?
+Hooks.on(`getHeaderControlsDocumentSheetV2`, metaLogDocumentV2);
 //* Other
