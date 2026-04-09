@@ -51,6 +51,7 @@ export async function metaVFX({
 	if (!actorToken) return mL(5, "metaVFX", "No Initiating Actor Token could be found for actor", actor);
 	mL(3, "metaVFX", "Initiating Actor: UUID/actor/actorToken", initiatingTokenUUID, actor, actorToken);
 	//? Crusible way of checking for DSN being active and await the animation to finish - assuming the animation is getting triggered from the message.id
+	//? Since we are not triggering via chat.id, we need to pass along the message.id so it can know to wait for it to finish?
 	//! if ( this.rolls.length && ("dice3d" in game) ) await game.dice3d.waitFor3DAnimationByMessageID(this.id);
 	//? Crusible way of checking if the user's token is in the scene?
 	//todo we need to come up with something similar

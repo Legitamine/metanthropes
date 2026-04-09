@@ -18,7 +18,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 - Added support for Font Awesome v7.2
 - The **New User Interface** is now available! It comes with both **Dark & Light Themes** for the Interface and Applications sections of the UI. Looking forward to your feedback! This update does not include the new Sheets for Actors & Items as these are being developed along with the data models and will arrive soon™. The current Actor & Item Sheets had a small facelift, and remain functionaly the same.
 - [Introductory] Now supports the new 'Quickstart' capability, so when you create a new World you can select the Metanthropes: Introductory Adventure during the World creation. This will skip the required installation steps & the new World will be ready to go on the first load.
-- [Homebrew] Added support for the new Experimental VFX engine. Metapowers & Possessions that deal Damage automatically, will now trigger a new Visual & Audio effect upon successful activation, before automatically applying the damage. The effect will not trigger on subsequent Damage re-rolls with Destiny. The particles that show up, the Damage text size & text color will adjust dynamically according to the Energy type & amount of Damage dealt! Read more about it on [blog on VFX](). Requires Alpha Testing Enabled in the Settings. +Design Doc
+- [Homebrew] Added support for the new Experimental VFX engine. Metapowers & Possessions that deal Damage automatically, will now trigger a new Visual & Audio effect upon successful activation, before automatically applying the damage. The effect will not trigger on subsequent Damage re-rolls with Destiny. The placeholder particles that show up, the Damage text size & text color will adjust dynamically according to the Energy type & amount of Damage dealt! Requires Alpha Testing Enabled in the Settings.
 
 - [Homebrew] The new Metanthropes Actor, the new Species and Template Item types are available for Alpha testing. This is a major step to Metanthropes going out of Early Access and we are looking forward to your feedback. Read more about it on our [Dev Blog]. Requires Alpha Testing Enabled in the Settings.(). +Design Doc
 - [Homebrew] The new Actor Active Effects are now available in a Compendium! Note that they are intented to be used only with the new 'Metanthropes Actor' type and not any of the existing ones, so it's only meant for initial testing with the new Actors. ()[] also need to add this in the compendium build script & github actions!!!
@@ -35,25 +35,28 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ### Fixed:
 
-- Improved the development tools by properly configuring intellisense for the Foundry and Metanthropes API. Further improved compatibility with i18nAlly to understand the new \_loc shorthand.
+- Improved the development tools by properly configuring intellisense for the Foundry and Metanthropes API. Further improved compatibility with i18nAlly to work with the new \_loc shorthand.
 - When targeting multiple Tokens, it will now check & remove any invalid actors, or duplicate actor-linked Tokens before proceeding with applying damage to them.
-- Actor owners will now update their owned Actors directly when applying damage/healing, rather than emit a Socket call, improving performance and responsiveness.
+- Actor owners will now update their owned Actors directly when applying Damage/Healing, rather than emit a Socket call, improving performance and responsiveness.
 - When the Data Migration Engine is running, the progress bar will now correctly update the completion % based on the total number of modules active. It should no longer exceed values of 100%.
 - The Adventure import screens will now only show if the user is the Active GM and the World is NOT created using the new Quickstart method.
 - Various minor tweaks and improvements in the underlying code & documentation.
 - Fixed a previously known issue importing Adventures.
+- [DSN] Fixed support for the latest Dice So Nice v5.3.3.
 
 ### Known Issues:
 
 - Review The Forge compatibility
-- [DSN] Dice So Nice v5.2.5 isn't fully compatible with FVTT v14, so we recommend to keep it disabled until a newer, compatible version is available.
-- When the sidebar is minimized and Chat Cards are enabled for Chat Notifications in the User Interface Configuration, the Chat Card will use the Light Interface theme, regardless of the user's choice. In addition, activating a Metapower or using a Possession from the Chat Card won't store that the button was clicked when viewed in the Chat later, allowing players to re-activate them.
+
+- When the sidebar is minimized and Chat Cards are enabled for Chat Notifications in the User Interface Configuration, the Chat Card will use the Light Interface theme, regardless of the user's choice. In addition, activating a Metapower / using a Possession from the Chat Card, won't remember that the button was clicked from the Chat Card, when viewed in the Chat later, allowing players to re-activate them.
 
 ### Deprecated:
 
-- Deprecated the old movement tables. These will be removed once the transition to AppV2 for Actors completes.
+- Deprecated the old Movement tables. These will be removed once the transition to AppV2 for Actors completes refactoring.
 - Removed the ability to trigger the old macro-based VFX/SFX, since these will be now integrated to the new VFX engine. The respective Item tabs are still visible, but no longer apply the configured macros to the Item's activation.
 - The @METAFA and @METAICON enrichers no longer take fixed width as a parameter, since this has been deprecated since Font Awesome 7.1 (everything defaults to fw now), and will log a warning in the console if it detects it's use. Support will be removed with Metanthropes v1.0.
+
+---
 
 ## Early Access v0.13.104 [2025-12-27]
 
