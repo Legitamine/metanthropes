@@ -50,7 +50,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:justify\">Roleplaying in Metanthropes is the act of embodying the role of another Character, bringing them to life within your Group. There's no right or wrong way to do it. Each Group can develop its own style of roleplaying, tailored to their interests and preferred pace and intensity of the game. <strong>The game unfolds as Players and Narrators engage in collaborative storytelling, improvising on the spot to create a truly unique narrative.</strong> Each story is forged by the preferences of the Group, and the level of commitment and involvement is entirely up to each Player. Each Player should find the level of participation and preparation that triggers their enthusiasm and excitement the most and be vocal about it to their Group. Roleplay can range from an amusing form of entertainment to a transcendental, emotional journey of self-discovery. Let your imagination take over and be inspired to act out scenes, adding greater depth and meaning to the storyline.</p><p style=\"text-align:justify\"></p><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">Transitioning into your Protagonist is an important process that helps the entire Group stay \"in-Character\". Once the flow of roleplay begins, Players are advised to jot down any non-urgent, out-of-game questions or notes and save them for the next pause, to avoid disrupting the game flow. <strong>Players can ask in-game questions to the Narrator, such as what they see around them, or if their Protagonist has knowledge of the subject that is in question in-game.</strong> The Narrator should provide all necessary information, and then resume the Narration.</p><p style=\"text-align:justify\"></p><img src=\"systems/metanthropes/assets/artwork/journals/pronoun-use.webp\" />"
+        "content": "<p style=\"text-align:justify\">Roleplaying in Metanthropes is the act of embodying the role of another Character, bringing them to life within your Group. There's no right or wrong way to do it. Each Group can develop its own style of roleplaying, tailored to their interests and preferred pace and intensity of the game. <strong>The game unfolds as Players and Narrators engage in collaborative storytelling, improvising on the spot to create a truly unique narrative.</strong> Each story is forged by the preferences of the Group, and the level of commitment and involvement is entirely up to each Player. Each Player should find the level of participation and preparation that triggers their enthusiasm and excitement the most and be vocal about it to their Group. Roleplay can range from an amusing form of entertainment to a transcendental, emotional journey of self-discovery. Let your imagination take over and be inspired to act out scenes, adding greater depth and meaning to the storyline.</p><p style=\"text-align:justify\"></p><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">Transitioning into your Protagonist is an important process that helps the entire Group stay \"in-Character\". Once the flow of roleplay begins, Players are advised to jot down any non-urgent, out-of-game questions or notes and save them for the next pause, to avoid disrupting the game flow. <strong>Players can ask in-game questions to the Narrator, such as what they see around them, or if their Protagonist has knowledge of the subject that is in question in-game.</strong> The Narrator should provide all necessary information, and then resume the Narration.</p><p style=\"text-align:justify\"></p><img src=\"systems/metanthropes/assets/artwork/journals/pronoun-use.webp\" class=\"centered\">"
       },
       "video": {
         "controls": true,
@@ -63,10 +63,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "14.359",
         "systemId": "metanthropes",
         "systemVersion": "0.13.82",
-        "lastModifiedBy": null
+        "lastModifiedBy": "twKi3FnOeOceszse",
+        "createdTime": 1775654916958,
+        "modifiedTime": 1775654916958
       },
       "category": null,
       "ownership": {

@@ -31,7 +31,9 @@
         "coreVersion": "13.348",
         "systemId": "metanthropes",
         "systemVersion": "0.13.82",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "category": null,
       "ownership": {
@@ -67,7 +69,9 @@
         "coreVersion": "13.348",
         "systemId": "metanthropes",
         "systemVersion": "0.13.82",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "category": null,
       "ownership": {
@@ -103,7 +107,9 @@
         "coreVersion": "13.348",
         "systemId": "metanthropes",
         "systemVersion": "0.13.82",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "category": null,
       "ownership": {
@@ -139,7 +145,9 @@
         "coreVersion": "13.348",
         "systemId": "metanthropes",
         "systemVersion": "0.13.82",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "category": null,
       "ownership": {
@@ -175,7 +183,9 @@
         "coreVersion": "13.348",
         "systemId": "metanthropes",
         "systemVersion": "0.13.82",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "category": null,
       "ownership": {
@@ -211,7 +221,9 @@
         "coreVersion": "13.348",
         "systemId": "metanthropes",
         "systemVersion": "0.13.82",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "category": null,
       "ownership": {
@@ -247,7 +259,9 @@
         "coreVersion": "13.348",
         "systemId": "metanthropes",
         "systemVersion": "0.13.82",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "category": null,
       "ownership": {
@@ -283,7 +297,9 @@
         "coreVersion": "13.348",
         "systemId": "metanthropes",
         "systemVersion": "0.13.82",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "category": null,
       "ownership": {
@@ -320,7 +336,9 @@
         "coreVersion": "13.348",
         "systemId": "metanthropes",
         "systemVersion": "0.13.82",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "category": null,
       "ownership": {
@@ -356,7 +374,9 @@
         "coreVersion": "13.348",
         "systemId": "metanthropes",
         "systemVersion": "0.13.82",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "category": null,
       "ownership": {
@@ -376,7 +396,7 @@
       "image": {},
       "text": {
         "format": 1,
-        "content": "<p style=\"text-align:justify\">Movement during Action Scenes represents the series of movements a Character is going to perform during a Turn. <strong>Movement is spent by moving around the area, using items and by interacting with the environment.</strong></p><p></p><h2>How Movement is calculated</h2><p></p><p style=\"text-align:justify\"><strong>A human or a Metanthrope Character have a base Movement score of 10, which allows them to move up to 10 Hexagons on the Grid.</strong> Movement is a number which is calculated by a Character’s Speed, Weight, and Size. A Character Movement has a modifier of Speed, Weight, and Size.</p><p style=\"text-align:justify\"></p><p style=\"text-align:justify\"><strong>A Character’s Movement is equal to the (Speed Modifier) * (Weight Modifier) * (Size Modifier).</strong> For more information about Speed, Weight, Size, and their Modifiers, read the following section.</p><p></p><img src=\"systems/metanthropes/assets/artwork/journals/movement.webp\" class=\" centered\" /><p></p><ul><li><p style=\"text-align:justify\"><strong>A Character can spend any number of Movement during their Turn and store the rest.</strong> Afterwards, they perform any Action slot they wish and afterwards, complete the remaining Movement available.</p></li><li><p style=\"text-align:justify\"><strong>During a Character’s Turn, a Character can forgo their Main Action slot to gain another (full) Movement.</strong> A Character cannot perform an Additional Movement more than once each Turn. A Character cannot perform an Additional Movement as part of a Multi-Action.</p></li><li><p style=\"text-align:justify\"><strong>In case a Character has received the Condition: Knocked Down, or begins their Turn prone, down on the ground, then the Character may spend 5 of their total Movement to get back up.</strong></p></li><li><p style=\"text-align:justify\"><strong>Using Items, operating Vehicles, and interacting with the environment requires spending Movement.</strong> The Narrator can include, exclude, or modify any of the following numbers according to the situation in-game.</p></li><li><p style=\"text-align:justify\"><strong>A Character’s Movement is hindered if that Character is found crossing natural landscape. When dealing with obstacles, and if the Character is within an Area affected by Metapowers that create such uneven terrain.</strong></p></li><li><p style=\"text-align:justify\"><strong>The Condition Wobbly (in addition to reducing the Creativity of a Character) further reduces a Character’s Movement by -1 per level of the Condition.</strong></p></li></ul><p></p><img src=\"systems/metanthropes/assets/artwork/journals/movement-interaction.webp\" class=\" centered\" /><p></p><img src=\"systems/metanthropes/assets/artwork/journals/movement-terrain.webp\" class=\" centered\" /><p></p><h3>@METAFA(wind) Speed</h3><p></p><p style=\"text-align:justify\">Speed represents how fast a Character can move. <strong>Speed is the base of a Character’s Movement.</strong> The field of Movement Modifier is used when calculating the Movement of a Character.</p><p style=\"text-align:justify\"></p><img src=\"systems/metanthropes/assets/artwork/tables/speed.webp\" class=\" centered\" /><p></p><h3>@METAFA(weight-hanging) Weight</h3><p></p><p style=\"text-align:justify\">Weight represents how heavy or light a Character (or an Object) is. <strong>Heavier Characters have low Movement, while lighter Characters have high Movement.</strong> Prowess is the Bonus or Penalty applied whenever a Character attempts to engage in physical activity, such as attempting to Push, Pull, or Lift objects or when attempting to Grapple a target.</p><p></p><img src=\"systems/metanthropes/assets/artwork/tables/weight.webp\" class=\"centered\" /><p></p><h3>@METAFA(ruler-triangle) Size</h3><p></p><p style=\"text-align:justify\">Size represents how much space a Character (or an Object) can occupy in an area. Size is the combination of a Character or an Object’s height, length, and width. <strong>Bigger Characters have increased Movement, while smaller have decreased Movement.</strong> Reach is the expanded or shortened Strike range. Strike @METAFA(burst) is the dice used for a Strike’s rolled Damage. Alternative @METAFA(heart-pulse) is any alterations offered by having non-human Size. The field of Observation is used when attempting to locate or attack any target with Size other than Size 10.</p><p style=\"text-align:justify\"></p><img src=\"systems/metanthropes/assets/artwork/tables/size.webp\" class=\"centered\" /><p></p><p style=\"text-align:center\"><em>How Movement is influenced by Speed, Weight, and Size alterations.</em></p><p style=\"text-align:center\"><em>A Character has received the Buff: Accelerated 2 and Accelerated 1. Only the highest is considered therefore their Speed is 12. Furthermore, the Character has received the Condition: Encumbered 2, (their Weight is 12) and the Buff: Enlarged 2 (their Size is 12). Therefore, that Character's total Movement is (50 * 0.6 * 3) = 90.</em></p><p style=\"text-align:justify\"> </p><h2>The Grid</h2><p></p><p style=\"text-align:justify\"><strong>The Grid is the visual representation of an Action Scene as seen from a top-down view. The Grid is composed of Areas, from the smallest Area: Hexagon [Area 1] Which represents an area of 2 meters (6.5 feet) wide, long, to the biggest Area: Planet [Area 16]. Moving from one Hexagon to any adjacent one costs one Movement.</strong> The following table lists all the Areas of Metanthropes, as well as how much Movement is required to fully cross a side, both in a straight line, and in a diagonal line.</p><p></p><img src=\"systems/metanthropes/assets/artwork/tables/grid-area.webp\" class=\"centered\" /><p style=\"text-align:justify\"></p><h2>@METAFA(ruler-combined) Area Effects</h2><p style=\"text-align:justify\">Here are presented the Area Effects that can be placed on the Grid. Each Area Effect has additional properties. Properties allow the activator of the Area Effect to choose to alter the scope of the Area Effect.</p><p></p><h3>Line</h3><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">The Area Effect: Line consists of 7 Hexagons in a straight line, facing the direction of the activator’s choice.</p><p></p><img src=\"systems/metanthropes/assets/artwork/area-effects/line.gif\" class=\"centered\" /><p></p><h4>Expanding Line</h4><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">The Expanding property expands the Line towards the side it was facing.</p><p></p><img src=\"systems/metanthropes/assets/artwork/area-effects/line-expanding.gif\" class=\"centered\" /><p></p><h4>Retracting</h4><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">The Retracting property retracts the Line towards the start of the effect.</p><p style=\"text-align:justify\"></p><img src=\"systems/metanthropes/assets/artwork/area-effects/line-retracting.gif\" class=\"centered\" /><p></p><h3>Aura</h3><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">The Area Effect: Aura is in tandem with one of the any of the existing Ranges (except Self [Area 0]). Each Aura is followed by an Area's name and consists of enough Hexagons to fill an entire Area’s perimeter. Seven Hexagons are required in total to fill a Room [Area 2] while forty-nine are required to fill a Building [Area 3] and so on. The activator of the Area Effect lies in the epicenter of it, and when the activator moves, the Area Effects follows their movement, with them continuously being at the epicenter of it.</p><p></p><h4>Aura Expanding</h4><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">The Expanding property on the Area Effect: Aura expands the scope of the effect by one peripheral Hexagon on all sides of the Area Effect.</p><p></p><img src=\"systems/metanthropes/assets/artwork/area-effects/aura-1.gif\" class=\"centered\" /><p></p><img src=\"systems/metanthropes/assets/artwork/area-effects/aura-2.gif\" class=\"centered\" /><p></p><h3>Sphere</h3><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">The Area Effect: Sphere much like the Area Effect: Aura, is in tandem with any of the existing Ranges (except Self [Area 0]), but it occupies the entire Area three-dimensionally, leaving no space in the Area’s width, depth, or length outside the effect. Spheres occupy the same space as their counterparts Areas occupy, plus they rise into the air and go deep into the ground as many Hexagons as the radius (from the center to a side) of the Area. For example, a Sphere of a Room [Area 2] is one Hexagons tall and one Hexagon deep, a Sphere of a Building [Area 3] effect is three Hexagons tall and three Hexagons deep, while a Sphere of a Square [Area 4] is eight Hexagons tall and eight Hexagons deep.</p><p></p><h4>Properties</h4><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">The expanding, and retracting properties of both Spheres and Hemispheres are functioning identical to the Auras but operate in a three-dimensional space.</p><p style=\"text-align:justify\"></p>"
+        "content": "<p style=\"text-align:justify\">Movement during Action Scenes represents the series of movements a Character is going to perform during a Turn. <strong>Movement is spent by moving around the area, using items and by interacting with the environment.</strong></p><p></p><h2>How Movement is calculated</h2><p></p><p style=\"text-align:justify\"><strong>A human or a Metanthrope Character have a base Movement score of 10, which allows them to move up to 10 Hexagons on the Grid.</strong> Movement is a number which is calculated by a Character’s Speed, Weight, and Size. A Character Movement has a modifier of Speed, Weight, and Size.</p><p style=\"text-align:justify\"></p><p style=\"text-align:justify\"><strong>A Character’s Movement is equal to the (Speed Modifier) * (Weight Modifier) * (Size Modifier).</strong> For more information about Speed, Weight, Size, and their Modifiers, read the following section.</p><ul><li><p style=\"text-align:justify\"><strong>A Character can spend any number of Movement during their Turn and store the rest.</strong> Afterwards, they perform any Action slot they wish and afterwards, complete the remaining Movement available.</p></li><li><p style=\"text-align:justify\"><strong>During a Character’s Turn, a Character can forgo their Main Action slot to gain another (full) Movement.</strong> A Character cannot perform an Additional Movement more than once each Turn. A Character cannot perform an Additional Movement as part of a Multi-Action.</p></li><li><p style=\"text-align:justify\"><strong>In case a Character has received the Condition: Knocked Down, or begins their Turn prone, down on the ground, then the Character may spend 5 of their total Movement to get back up.</strong></p></li><li><p style=\"text-align:justify\"><strong>Using Items, operating Vehicles, and interacting with the environment requires spending Movement.</strong> The Narrator can include, exclude, or modify any of the following numbers according to the situation in-game.</p></li><li><p style=\"text-align:justify\"><strong>A Character’s Movement is hindered if that Character is found crossing natural landscape. When dealing with obstacles, and if the Character is within an Area affected by Metapowers that create such uneven terrain.</strong></p></li><li><p style=\"text-align:justify\"><strong>The Condition Wobbly (in addition to reducing the Creativity of a Character) further reduces a Character’s Movement by -1 per level of the Condition.</strong></p></li></ul><p></p><img src=\"systems/metanthropes/assets/artwork/journals/movement-interaction.webp\" class=\"centered\"><p></p><h3>@METAFA(wind) Speed</h3><p></p><p style=\"text-align:justify\">Speed represents how fast a Character can move. <strong>Speed is the base of a Character’s Movement.</strong> The field of Movement Modifier is used when calculating the Movement of a Character.</p><p style=\"text-align:justify\"></p><img src=\"systems/metanthropes/assets/artwork/tables/speed.webp\" class=\"centered\"><p></p><h3>@METAFA(weight-hanging) Weight</h3><p></p><p style=\"text-align:justify\">Weight represents how heavy or light a Character (or an Object) is. <strong>Heavier Characters have low Movement, while lighter Characters have high Movement.</strong> Prowess is the Bonus or Penalty applied whenever a Character attempts to engage in physical activity, such as attempting to Push, Pull, or Lift objects or when attempting to Grapple a target.</p><p></p><img src=\"systems/metanthropes/assets/artwork/tables/weight.webp\" class=\"centered\"><p></p><h3>@METAFA(ruler-triangle) Size</h3><p></p><p style=\"text-align:justify\">Size represents how much space a Character (or an Object) can occupy in an area. Size is the combination of a Character or an Object’s height, length, and width. <strong>Bigger Characters have increased Movement, while smaller have decreased Movement.</strong> Reach is the expanded or shortened Strike range. Strike @METAFA(burst) is the dice used for a Strike’s rolled Damage. Alternative @METAFA(heart-pulse) is any alterations offered by having non-human Size. The field of Observation is used when attempting to locate or attack any target with Size other than Size 10.</p><p style=\"text-align:justify\"></p><img src=\"systems/metanthropes/assets/artwork/tables/size.webp\" class=\"centered\"><p></p><p style=\"text-align:center\"><em>How Movement is influenced by Speed, Weight, and Size alterations.</em></p><p style=\"text-align:center\"><em>A Character has received the Buff: Accelerated 2 and Accelerated 1. Only the highest is considered therefore their Speed is 12. Furthermore, the Character has received the Condition: Encumbered 2, (their Weight is 12) and the Buff: Enlarged 2 (their Size is 12). Therefore, that Character's total Movement is (50 * 0.6 * 3) = 90.</em></p><p style=\"text-align:justify\"> </p><h2>The Grid</h2><p></p><p style=\"text-align:justify\"><strong>The Grid is the visual representation of an Action Scene as seen from a top-down view. The Grid is composed of Areas, from the smallest Area: Hexagon [Area 1] Which represents an area of 2 meters (6.5 feet) wide, long, to the biggest Area: Planet [Area 16]. Moving from one Hexagon to any adjacent one costs one Movement.</strong> The following table lists all the Areas of Metanthropes, as well as how much Movement is required to fully cross a side, both in a straight line, and in a diagonal line.</p><p></p><img src=\"systems/metanthropes/assets/artwork/tables/grid-area.webp\" class=\"centered\"><p style=\"text-align:justify\"></p><h2>@METAFA(ruler-combined) Area Effects</h2><p style=\"text-align:justify\">Here are presented the Area Effects that can be placed on the Grid. Each Area Effect has additional properties. Properties allow the activator of the Area Effect to choose to alter the scope of the Area Effect.</p><p></p><h3>Line</h3><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">The Area Effect: Line consists of 7 Hexagons in a straight line, facing the direction of the activator’s choice.</p><p></p><img src=\"systems/metanthropes/assets/artwork/area-effects/line.gif\" class=\"centered\"><p></p><h4>Expanding Line</h4><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">The Expanding property expands the Line towards the side it was facing.</p><p></p><img src=\"systems/metanthropes/assets/artwork/area-effects/line-expanding.gif\" class=\"centered\"><p></p><h4>Retracting</h4><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">The Retracting property retracts the Line towards the start of the effect.</p><p style=\"text-align:justify\"></p><img src=\"systems/metanthropes/assets/artwork/area-effects/line-retracting.gif\" class=\"centered\"><p></p><h3>Aura</h3><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">The Area Effect: Aura is in tandem with one of the any of the existing Ranges (except Self [Area 0]). Each Aura is followed by an Area's name and consists of enough Hexagons to fill an entire Area’s perimeter. Seven Hexagons are required in total to fill a Room [Area 2] while forty-nine are required to fill a Building [Area 3] and so on. The activator of the Area Effect lies in the epicenter of it, and when the activator moves, the Area Effects follows their movement, with them continuously being at the epicenter of it.</p><p></p><h4>Aura Expanding</h4><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">The Expanding property on the Area Effect: Aura expands the scope of the effect by one peripheral Hexagon on all sides of the Area Effect.</p><p></p><img src=\"systems/metanthropes/assets/artwork/area-effects/aura-1.gif\" class=\"centered\"><p></p><img src=\"systems/metanthropes/assets/artwork/area-effects/aura-2.gif\" class=\"centered\"><p></p><h3>Sphere</h3><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">The Area Effect: Sphere much like the Area Effect: Aura, is in tandem with any of the existing Ranges (except Self [Area 0]), but it occupies the entire Area three-dimensionally, leaving no space in the Area’s width, depth, or length outside the effect. Spheres occupy the same space as their counterparts Areas occupy, plus they rise into the air and go deep into the ground as many Hexagons as the radius (from the center to a side) of the Area. For example, a Sphere of a Room [Area 2] is one Hexagons tall and one Hexagon deep, a Sphere of a Building [Area 3] effect is three Hexagons tall and three Hexagons deep, while a Sphere of a Square [Area 4] is eight Hexagons tall and eight Hexagons deep.</p><p></p><h4>Properties</h4><p style=\"text-align:justify\"></p><p style=\"text-align:justify\">The expanding, and retracting properties of both Spheres and Hemispheres are functioning identical to the Auras but operate in a three-dimensional space.</p><p style=\"text-align:justify\"></p>"
       },
       "video": {
         "controls": true,
@@ -389,10 +409,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "13.348",
+        "coreVersion": "14.359",
         "systemId": "metanthropes",
         "systemVersion": "0.13.82",
-        "lastModifiedBy": null
+        "lastModifiedBy": "twKi3FnOeOceszse",
+        "createdTime": 1775656280051,
+        "modifiedTime": 1775656372682
       },
       "category": null,
       "ownership": {
@@ -428,7 +450,9 @@
         "coreVersion": "13.348",
         "systemId": "metanthropes",
         "systemVersion": "0.13.82",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "category": null,
       "ownership": {
@@ -464,7 +488,9 @@
         "coreVersion": "13.348",
         "systemId": "metanthropes",
         "systemVersion": "0.13.82",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "category": null,
       "ownership": {
@@ -500,7 +526,9 @@
         "coreVersion": "13.348",
         "systemId": "metanthropes",
         "systemVersion": "0.13.82",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "category": null,
       "ownership": {
@@ -537,7 +565,9 @@
         "coreVersion": "13.348",
         "systemId": "metanthropes",
         "systemVersion": "0.13.82",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "category": null,
       "ownership": {
