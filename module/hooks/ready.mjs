@@ -29,7 +29,7 @@ Hooks.once("ready", async function () {
 
 	//* Display System Installation Guide
 	const quickstarted = game.settings.get("core", "adventureImports")[
-		"Compendium.metanthropes-introductory.introductory-installation.Adventure.YdClwNoSYgTmG6Y5"
+		"Compendium.metanthropes-introductory.introductory-installation.Adventure.Rpbcpo6kj4V6LpUv"
 	];
 	if (game.settings.get("metanthropes", "metaInstall") && game.user.isActiveGM) {
 		if (!quickstarted) {
