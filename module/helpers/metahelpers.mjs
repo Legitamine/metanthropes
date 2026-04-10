@@ -2,9 +2,9 @@
  * Helper function to import functionality from the Core Module
  * !Deprecated in favor of metaImportFromModule
  */
-
+//todo deprecate check & deletion
 export async function metaImportProgressionFromCoreModule() {
-	const metaCoreIsEnabled = await game.settings.get("metanthropes", "metaCore");
+	const metaCoreIsEnabled = game.settings.get("metanthropes", "metaCore");
 	if (metaCoreIsEnabled) {
 		try {
 			const module = await import("../../../../modules/metanthropes-core/module/progression/metaprogression.mjs");

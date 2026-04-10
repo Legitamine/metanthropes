@@ -1,0 +1,16 @@
+//* Journal Specifics
+.sheet.journal-entry .journal-entry-content {
+	position: relative;
+	background: var(--background-journal-image);
+	//background-image: var(--background-journal-image);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-origin: border-box;
+	background-clip: border-box;
+}
+
+.sheet.journal-entry .journal-entry-content {
+	z-index: 3;
+}

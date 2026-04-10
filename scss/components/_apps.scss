@@ -1,0 +1,44 @@
+@use "../settings" as *;
+//* All Apps
+.application {
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-origin: border-box;
+	background-clip: border-box;
+}
+
+//* Game Pause
+#pause figcaption {
+	font-family: $font-title;
+}
+
+//* Filepicker
+.filepicker .tiles-list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	width: 508px;
+}
+.filepicker .tiles-list li {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 163px;
+	height: 100px;
+}
+.filepicker .tiles-list li img {
+	transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+	z-index: 3;
+	&:hover {
+		transform: scale(1.6) translateY(10px);
+		z-index: 4;
+	}
+}
+
+//* Dialog
+.dialog-content {
+	//font-family: $font-primary;
+	padding: $padding-md;
+	margin: $margin-md;
+}

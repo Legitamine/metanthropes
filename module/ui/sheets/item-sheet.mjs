@@ -46,6 +46,7 @@ export class MetanthropesItemSheet extends foundry.appv1.sheets.ItemSheet {
 		//? Use a safe clone of the item data for further operations.
 		//! this is not the same as in actor??
 		const itemData = context.item;
+		if (itemData.type === "species" || itemData.type === "template") return;
 		//! We don't use the rollData so no need for this to exist
 		//	// ? Retrieve the roll data for TinyMCE editors.
 		//	context.rollData = {};
@@ -57,15 +58,15 @@ export class MetanthropesItemSheet extends foundry.appv1.sheets.ItemSheet {
 		context.system = itemData.system;
 		context.flags = itemData.flags;
 		//? Provide a boolean for if we are running with Introductory Features enabled
-		context.introductoryFeatures = await game.settings.get("metanthropes", "metaIntroductory");
+		context.introductoryFeatures = game.settings.get("metanthropes", "metaIntroductory");
 		//? Provide a boolean for if we are running with Core Features enabled
-		context.coreFeatures = await game.settings.get("metanthropes", "metaCore");
+		context.coreFeatures = game.settings.get("metanthropes", "metaCore");
 		//? Provide a boolean for if we are running with Homebrew Features enabled
-		context.homebrewFeatures = await game.settings.get("metanthropes", "metaHomebrew");
+		context.homebrewFeatures = game.settings.get("metanthropes", "metaHomebrew");
 		//? Provide a boolean for if 'Beta Testing of New Features' is enabled
-		context.betaTesting = await game.settings.get("metanthropes", "metaBetaTesting");
+		context.betaTesting = game.settings.get("metanthropes", "metaBetaTesting");
 		//? Provide a boolean for if 'Advanced Logging' is enabled
-		context.advancedLogging = await game.settings.get("metanthropes", "metaAdvancedLogging");
+		context.advancedLogging = game.settings.get("metanthropes", "metaAdvancedLogging");
 		//? Provide a combined boolean for if 'Beta Testing of New Features' and 'Advanced Logging' are enabled
 		context.advancedBetaTesting = context.betaTesting && context.advancedLogging;
 		//? Provide a boolean for if the user is a Narrator(GameMaster)
@@ -78,20 +79,20 @@ export class MetanthropesItemSheet extends foundry.appv1.sheets.ItemSheet {
 		const isOwner = this?.actor?.isOwner || null;
 		context.executionAdditionalInfo = await foundry.applications.ux.TextEditor.enrichHTML(
 			itemData.system.Execution.AdditionalInfo.value,
-			{ async: true, secrets: isOwner }
+			{ async: true, secrets: isOwner },
 			//todo: confirm we don't need async here
 		);
 		context.permanentDescription = await foundry.applications.ux.TextEditor.enrichHTML(
 			itemData.system.Effects.PermanentEffectDescription.value,
-			{ async: true, secrets: isOwner }
+			{ async: true, secrets: isOwner },
 		);
 		context.effectDescription = await foundry.applications.ux.TextEditor.enrichHTML(
 			itemData.system.Effects.EffectDescription.value,
-			{ async: true, secrets: isOwner }
+			{ async: true, secrets: isOwner },
 		);
 		context.effectAdditionalInfo = await foundry.applications.ux.TextEditor.enrichHTML(
 			itemData.system.Effects.AdditionalInfo.value,
-			{ async: true, secrets: isOwner }
+			{ async: true, secrets: isOwner },
 		);
 		return context;
 	}

@@ -5,6 +5,7 @@ npm-debug.log
 # OS Junk
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # IDE Junk
 .vscode/

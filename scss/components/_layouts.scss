@@ -1,4 +1,5 @@
-//layouts used in Metanthropes RPG Sheets
+@use "../settings" as *;
+//* Layouts used in Metanthropes RPG Sheets - is that essentially the sheet? though?
 //container layout
 //XL container with 3 columns and 4 rows
 .layout-container-grid3x4 {
@@ -277,7 +278,7 @@
 	font-family: $font-secondary;
 	font-size: var(--font-size-14);
 	font-weight: 500;
-	color: $c-black;
+	color: var(--metanthropes-color-text);
 }
 .layout-tab-summary {
 	display: grid;
@@ -376,36 +377,7 @@
 	overflow: hidden;
 }
 
-.sheet-header .metapower-img {
-	flex: 0 0 160px;
-	height: 160px;
-	width: 160px;
-	margin-right: $margin-lg;
-}
 
-.sheet-header .possession-img {
-	flex: 0 0 160px;
-	height: 160px;
-	width: 160px;
-	margin-right: $margin-lg;
-}
-
-.sheet-header .effect-img {
-	flex: 0 0 80px;
-	height: 80px;
-	width: 80px;
-	margin-right: $margin-lg;
-}
-
-.perk-item {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.perk-item .resource-label {
-	margin-right: 10px;
-}
 
 .layout-tab-summary-portrait-container {
 	display: flex;

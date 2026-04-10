@@ -6,13 +6,24 @@ Hooks.once("init", async function () {
 	//* Configure System
 	globalThis.SYSTEM = metanthropes.system;
 
+	//* Register System Settings
+	await metanthropes.utils.metaRegisterGameSettings(settings);
+	const alphaTestingEnabled = (game.settings.get("metanthropes", "metaAlphaTesting")) || false;
+	if (alphaTestingEnabled) metanthropes.utils.metaLog(1, "System", "Initializing", "Alpha Testing Enabled");
+	const betaTestingEnabled = (game.settings.get("metanthropes", "metaBetaTesting")) || false;
+	if (betaTestingEnabled) metanthropes.utils.metaLog(1, "System", "Initializing", "Beta Testing Enabled");
+
 	//* Register Data Models
-	CONFIG.Actor.dataModels = {
-		testv12: metanthropes.models.MetanthropesActorNPC,
-	};
-	CONFIG.Item.dataModels = {
-		species: metanthropes.models.MetanthropesItemSpecies,
-	};
+	if (alphaTestingEnabled) {
+		CONFIG.Actor.dataModels = {
+			MetanthropesActorV2: metanthropes.models.MetanthropesActorV2,
+		};
+
+		CONFIG.Item.dataModels = {
+			species: metanthropes.models.species,
+			template: metanthropes.models.template,
+		};
+	}
 
 	//* Register Document Classes
 	CONFIG.Actor.documentClass = metanthropes.documents.MetanthropesActor;
@@ -26,42 +37,62 @@ Hooks.once("init", async function () {
 		metanthropes.applications.MetanthropesActorSheet,
 		{
 			makeDefault: true,
-		}
-	);
-
-	foundry.documents.collections.Actors.registerSheet(
-		"metanthropes",
-		metanthropes.applications.MetanthropesActorSheetV2,
-		{
-			makeDefault: false,
+			types: [
+				"Protagonist",
+				"Metanthrope",
+				"Human",
+				"Animal",
+				"Artificial",
+				"Extradimensional",
+				"Extraterrestrial",
+				"Animated-Cadaver",
+				"Animated-Plant",
+				"MetaTherion",
+			],
 			label: "METANTHROPES.SHEET.ACTOR.LABEL",
-		}
+		},
 	);
 
+	if (alphaTestingEnabled) {
+		foundry.documents.collections.Actors.registerSheet(
+			"metanthropes",
+			metanthropes.applications.MetanthropesActorSheetV2,
+			{
+				makeDefault: true,
+				types: ["MetanthropesActorV2"],
+				label: "METANTHROPES.SHEET.ACTORV2.LABEL",
+			},
+		);
+	}
 	foundry.documents.collections.Items.registerSheet("metanthropes", metanthropes.applications.MetanthropesItemSheet, {
 		makeDefault: true,
+		label: "METANTHROPES.SHEET.ITEM.LABEL",
 	});
 
-	foundry.documents.collections.Items.registerSheet(
-		"metanthropes",
-		metanthropes.applications.MetanthropesItemSheetV2,
-		{
-			makeDefault: false,
-			label: "METANTHROPES.SHEET.ITEM.LABEL",
-		}
-	);
+	if (alphaTestingEnabled) {
+		foundry.documents.collections.Items.registerSheet(
+			"metanthropes",
+			metanthropes.applications.MetanthropesItemSheetV2,
+			{
+				makeDefault: true,
+				types: ["species", "template"],
+				label: "METANTHROPES.SHEET.ITEMV2.LABEL",
+			},
+		);
+	}
 
 	foundry.applications.apps.DocumentSheetConfig.registerSheet(
 		ActiveEffect,
 		"metanthropes",
-		metanthropes.applications.MetanthropesActiveEffectSheet,
+		metanthropes.applications.MetanthropesActiveEffectSheetV2,
 		{
 			makeDefault: true,
-		}
+			label: "METANTHROPES.SHEET.AE.LABEL",
+		},
 	);
 
 	//* Metanthropes Initiative System
-	//todo: revisit as part of Combat v12
+	//todo: revisit as part of Combat rework
 	CONFIG.Combat.initiative = {
 		formula: "1d100 + @RollStats.Reflexes",
 		decimals: 2,
@@ -70,8 +101,8 @@ Hooks.once("init", async function () {
 	//* Round Duration (in seconds)
 	CONFIG.time.roundTime = 30;
 
-	//* Register System Settings
-	metanthropes.utils.metaRegisterGameSettings(settings);
+	//* Metanthropes Pause Application
+	CONFIG.ui.pause = metanthropes.applications.MetanthropesPause;
 
 	//* Register Status Effects
 	metanthropes.utils.metaRegisterStatusEffects();
@@ -79,20 +110,18 @@ Hooks.once("init", async function () {
 	//* Register Custom Text Enrichers
 	metanthropes.utils.metaRegisterCustomEnrichers();
 
+	//* V14 VFX
+	//! EXPERIMENTAL
+	if (alphaTestingEnabled) {
+		metanthropes.utils.metaLog(1, "System", "Initializing", "Enabling Experimental VFX Engine");
+		CONFIG.Canvas.vfx.enabled = true;
+	}
+
 	//* Register the socket listener
 	game.socket.on("system.metanthropes", async (payload) => {
 		metanthropes.logic.metaHandleSocketEvents(payload);
 	});
 
-	//* V14 Active Effects
-	//todo: run on only v14
-	if (game.version > 14) {
-		metanthropes.utils.metaLog(3, "System", "V14+ detected, adding phases to ActiveEffects");
-		CONFIG.ActiveEffect.phases = {
-			initial: { label: "Init" },
-			final: { label: "Final" },
-		};
-	}
 	//* Finished Initializing the Metanthropes System
 	metanthropes.utils.metaLog(0, "System", "Initialized");
 

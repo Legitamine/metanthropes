@@ -1,0 +1,77 @@
+@use "../settings" as *;
+//* Buttons
+
+@mixin button-hover-focus {
+	outline: none;
+	//border: $border-activated;
+	background-color: var(--metanthropes-color-secondary);
+	opacity: 1;
+}
+
+@mixin button-active {
+	border: $border-activated;
+	box-shadow: $border-box-shadow-activated;
+	background-color: var(--metanthropes-color-secondary);
+	opacity: 1;
+}
+
+//? Base Button Styles
+%base-button {
+	font-family: $font-primary;
+	background-color: var(--metanthropes-color-primary);
+	text-shadow: var(--metanthropes-color-text-shadow);
+	//border: $border-groove;
+	border-radius: $border-radius;
+	color: var(--metanthropes-color-text);
+	opacity: $opacity-button;
+	//text-align: left;
+}
+
+//? Elements
+button,
+form button,
+a.button,
+app.button,
+app button,
+.dialog .dialog-buttons button {
+	@extend %base-button;
+
+	&.active {
+		@include button-active;
+	}
+
+	&:hover,
+	&:focus {
+		@include button-hover-focus;
+	}
+	&.disabled {
+		color: var(--metanthropes-color-disabled);
+	}
+}
+
+//* Button inside dialogs
+.dialog .dialog-buttons button.default {
+	//background: none;
+	//background-image: $a-button-image
+	@include button-hover-focus;
+}
+
+//* Chat anchor button (special width)
+button.chat-button-anchor {
+	width: auto;
+}
+
+//* Button pseudo-element for FA
+button::before {
+	font: var(--fa-font-solid);
+	display: flex;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	// Centering tricks
+	justify-self: center;
+	align-self: center;
+	justify-items: center;
+	align-items: center;
+	justify-content: center;
+	align-content: center;
+}

@@ -1,5 +1,4 @@
-//? V12
-const { api, sheets } = foundry.applications;
+const { api, sheets, ux } = foundry.applications;
 
 export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(sheets.ActorSheetV2) {
 	constructor(options = {}) {
@@ -35,10 +34,36 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 	/** @override */
 	static PARTS = {
 		header: {
-			template: "systems/metanthropes/templates/sheets/partials/actor-header.hbs",
+			template: "systems/metanthropes/templates/apps/sheets/actor-header.hbs",
 		},
 		tabs: {
-			template: "systems/metanthropes/templates/helpers/actor-navbar.hbs",
+			//template: "systems/metanthropes/templates/apps/sheets/actor-tabs.hbs",
+			// Foundry-provided generic template
+			template: "templates/generic/tab-navigation.hbs",
+		},
+		actions: {
+			template: "systems/metanthropes/templates/apps/sheets/actor-actions.hbs",
+			scrollable: [""],
+		},
+		perks: {
+			template: "systems/metanthropes/templates/apps/sheets/actor-perks.hbs",
+			scrollable: [""],
+		},
+		metapowers: {
+			template: "systems/metanthropes/templates/apps/sheets/actor-metapowers.hbs",
+			scrollable: [""],
+		},
+		possessions: {
+			template: "systems/metanthropes/templates/apps/sheets/actor-possessions.hbs",
+			scrollable: [""],
+		},
+		effects: {
+			template: "systems/metanthropes/templates/apps/sheets/actor-effects.hbs",
+			scrollable: [""],
+		},
+		notes: {
+			template: "systems/metanthropes/templates/apps/sheets/actor-notes.hbs",
+			scrollable: [""],
 		},
 	};
 
@@ -50,12 +75,11 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 		// Don't show the other tabs if only limited view
 		if (this.document.limited) return;
 		// Control which parts show based on document subtype
-		switch (this.document.type) {
-			case "testv12":
-				options.parts.push("effects");
-				break;
-			case "npc":
-				options.parts.push("gear", "effects");
+		switch (
+			this.document.type //!species
+		) {
+			case "MetanthropesActorV2":
+				options.parts.push("actions", "perks", "metapowers", "possessions", "effects", "notes");
 				break;
 		}
 	}
@@ -63,29 +87,28 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 	/** @override */
 	async _prepareContext(options) {
 		const context = {
-			//!? is narrator
 			isNarrator: game.user.isGM,
 			// Validates both permissions and compendium status
-			editable: this.isEditable,
-			owner: this.document.isOwner,
+			isEditable: this.isEditable,
+			isOwner: this.document.isOwner,
 			limited: this.document.limited,
 			// Add the actor document.
 			actor: this.actor,
 			// Add the actor's data to context.data for easier access, as well as flags.
 			system: this.actor.system,
 			flags: this.actor.flags,
-			//! needed? Adding a pointer to CONFIG.METANTHROPES
-			config: CONFIG.Metanthropes,
+			statsConst: metanthropes.system.STATS,
 			tabs: this._getTabs(options.parts),
 			// Necessary for formInput and formFields helpers
 			fields: this.document.schema.fields,
 			systemFields: this.document.system.schema.fields,
+			actionFields: this.document.system.schema.fields.actions.fields,
+			statsFields: this.document.system.schema.fields.stats.fields,
+			charsFields: this.document.system.schema.fields.chars.fields,
 			blah: this.document.system.schema.fields.resources.fields,
 		};
-		
-		this._prepareItems(context);
 
-		console.log(this);
+		this._prepareItems(context);
 
 		return context;
 	}
@@ -93,32 +116,39 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 	/** @override */
 	async _preparePartContext(partId, context) {
 		switch (partId) {
-			case "features":
-			case "spells":
-			case "gear":
+			case "actions":
 				context.tab = context.tabs[partId];
 				break;
-			case "biography":
+			case "perks":
 				context.tab = context.tabs[partId];
-				// Enrich biography info for display
-				// Enrichment turns text like `[[/r 1d20]]` into buttons
-				context.enrichedBiography = await TextEditor.enrichHTML(this.actor.system.biography, {
-					// Whether to show secret blocks in the finished html
-					secrets: this.document.isOwner,
-					// Data to fill in for inline rolls
-					rollData: this.actor.getRollData(),
-					// Relative UUID resolution
-					relativeTo: this.actor,
-				});
+				break;
+			case "metapowers":
+				context.tab = context.tabs[partId];
+				break;
+			case "possessions":
+				context.tab = context.tabs[partId];
 				break;
 			case "effects":
 				context.tab = context.tabs[partId];
 				// Prepare active effects
-				context.effects = prepareActiveEffectCategories(
-					// A generator that returns all effects stored on the actor
-					// as well as any items
-					this.actor.allApplicableEffects()
-				);
+				// context.effects = prepareActiveEffectCategories(
+				// 	// A generator that returns all effects stored on the actor
+				// 	// as well as any items
+				// 	this.actor.allApplicableEffects(),
+				// );
+				break;
+			case "notes":
+				context.tab = context.tabs[partId];
+				// // Enrich biography info for display
+				// // Enrichment turns text like `[[/r 1d20]]` into buttons
+				// context.enrichedBiography = await TextEditor.enrichHTML(this.actor.system.biography, {
+				// 	// Whether to show secret blocks in the finished html
+				// 	secrets: this.document.isOwner,
+				// 	// Data to fill in for inline rolls
+				// 	rollData: this.actor.getRollData(),
+				// 	// Relative UUID resolution
+				// 	relativeTo: this.actor,
+				// });
 				break;
 		}
 		return context;
@@ -134,7 +164,7 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 		// If you have sub-tabs this is necessary to change
 		const tabGroup = "primary";
 		// Default tab for first time it's rendered this session
-		if (!this.tabGroups[tabGroup]) this.tabGroups[tabGroup] = "biography";
+		if (!this.tabGroups[tabGroup]) this.tabGroups[tabGroup] = "actions";
 		return parts.reduce((tabs, partId) => {
 			const tab = {
 				cssClass: "",
@@ -144,31 +174,35 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 				// FontAwesome Icon, if you so choose
 				icon: "",
 				// Run through localization
-				label: "METANTHROPES.ACTOR.Tabs.",
+				label: "METANTHROPES.ACTOR.SHEET.TABS.",
 			};
 			switch (partId) {
 				case "header":
 				case "tabs":
 					return tabs;
-				case "biography":
-					tab.id = "biography";
-					tab.label += "Biography";
+				case "actions":
+					tab.id = "actions";
+					tab.label += "Actions";
 					break;
-				case "features":
-					tab.id = "features";
-					tab.label += "Features";
+				case "perks":
+					tab.id = "perks";
+					tab.label += "Perks";
 					break;
-				case "gear":
-					tab.id = "gear";
-					tab.label += "Gear";
+				case "metapowers":
+					tab.id = "metapowers";
+					tab.label += "Metapowers";
 					break;
-				case "spells":
-					tab.id = "spells";
-					tab.label += "Spells";
+				case "possessions":
+					tab.id = "possessions";
+					tab.label += "Possessions";
 					break;
 				case "effects":
 					tab.id = "effects";
 					tab.label += "Effects";
+					break;
+				case "notes":
+					tab.id = "notes";
+					tab.label += "Notes";
 					break;
 			}
 			if (this.tabGroups[tabGroup] === tab.id) tab.cssClass = "active";
@@ -183,51 +217,48 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 	 * @param {object} context The context object to mutate
 	 */
 	_prepareItems(context) {
-		// Initialize containers.
-		// You can just use `this.document.itemTypes` instead
-		// if you don't need to subdivide a given type like
-		// this sheet does with spells
-		const gear = [];
-		const features = [];
-		const spells = {
-			0: [],
-			1: [],
-			2: [],
-			3: [],
-			4: [],
-			5: [],
-			6: [],
-			7: [],
-			8: [],
-			9: [],
-		};
-
-		// Iterate through items, allocating to containers
-		for (let i of this.document.items) {
-			// Append to gear.
-			if (i.type === "gear") {
-				gear.push(i);
-			}
-			// Append to features.
-			else if (i.type === "feature") {
-				features.push(i);
-			}
-			// Append to spells.
-			else if (i.type === "spell") {
-				if (i.system.spellLevel != undefined) {
-					spells[i.system.spellLevel].push(i);
-				}
-			}
-		}
-
-		for (const s of Object.values(spells)) {
-			s.sort((a, b) => (a.sort || 0) - (b.sort || 0));
-		}
-
-		// Sort then assign
-		context.gear = gear.sort((a, b) => (a.sort || 0) - (b.sort || 0));
-		context.features = features.sort((a, b) => (a.sort || 0) - (b.sort || 0));
-		context.spells = spells;
+		// // Initialize containers.
+		// // You can just use `this.document.itemTypes` instead
+		// // if you don't need to subdivide a given type like
+		// // this sheet does with spells
+		// const gear = [];
+		// const features = [];
+		// const spells = {
+		// 	0: [],
+		// 	1: [],
+		// 	2: [],
+		// 	3: [],
+		// 	4: [],
+		// 	5: [],
+		// 	6: [],
+		// 	7: [],
+		// 	8: [],
+		// 	9: [],
+		// };
+		// // Iterate through items, allocating to containers
+		// for (let i of this.document.items) {
+		// 	// Append to gear.
+		// 	if (i.type === "gear") {
+		// 		gear.push(i);
+		// 	}
+		// 	// Append to features.
+		// 	else if (i.type === "feature") {
+		// 		features.push(i);
+		// 	}
+		// 	// Append to spells.
+		// 	else if (i.type === "spell") {
+		// 		if (i.system.spellLevel != undefined) {
+		// 			spells[i.system.spellLevel].push(i);
+		// 		}
+		// 	}
+		// }
+		// for (const s of Object.values(spells)) {
+		// 	s.sort((a, b) => (a.sort || 0) - (b.sort || 0));
+		// }
+		// // Sort then assign
+		// context.gear = gear.sort((a, b) => (a.sort || 0) - (b.sort || 0));
+		// context.features = features.sort((a, b) => (a.sort || 0) - (b.sort || 0));
+		// context.spells = spells;
 	}
 
 	/**
@@ -595,7 +626,7 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 			folder.contents.map(async (item) => {
 				if (!(document instanceof Item)) item = await fromUuid(item.uuid);
 				return item;
-			})
+			}),
 		);
 		return this._onDropItemCreate(droppedItemData, event);
 	}
@@ -681,7 +712,7 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 				dragover: this._onDragOver.bind(this),
 				drop: this._onDrop.bind(this),
 			};
-			return new DragDrop(d);
+			return new ux.DragDrop(d);
 		});
 	}
 
@@ -718,12 +749,4 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 			}
 		}
 	}
-}
-
-export class MetanthropesNPCActorSheet extends MetanthropesActorSheetV2 {
-	static DEFAULT_OPTIONS = {
-		actor: {
-			type: "testv12",
-		},
-	};
 }
