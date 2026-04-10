@@ -66,8 +66,6 @@ jobs:
             - name: Compile SCSS to CSS
               run: |
                   sass scss/metanthropes.scss styles/metanthropes.css
-                  sass scss/themes/theme-light.scss styles/metanthropes-light.css
-                  sass scss/themes/theme-dark.scss styles/metanthropes-dark.css
             - name: Zip the compiled files
               uses: thedoctor0/zip-release@0.7.6
               with:
