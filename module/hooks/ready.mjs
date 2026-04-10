@@ -1,8 +1,10 @@
 Hooks.once("ready", async function () {
+	const mL = metanthropes.utils.metaLog;
 	//* Migration Engine
-	metanthropes.utils.metaLog(0, "System", "Getting Ready", "Initializing Data Migration Engine");
+	mL(0, "System", "Getting Ready", "Initializing Data Migration Engine");
+	//todo can I wait for en.json to finish loading descriptions first?
 	await metanthropes.utils.metaMigration();
-	metanthropes.utils.metaLog(0, "System", "Getting Ready", "Data Migration Finished");
+	mL(0, "System", "Getting Ready", "Data Migration Finished");
 
 	//* Add support for Moulinette
 	//todo should be moved to supported-modules instead
@@ -19,28 +21,32 @@ Hooks.once("ready", async function () {
 	}
 
 	//* Display Welcome Screen
-	const welcome = await game.settings.get("metanthropes", "metaWelcome");
-	if (welcome) {
+	if (game.settings.get("metanthropes", "metaWelcome")) {
 		const systemWelcome = await fromUuid("Compendium.metanthropes.welcome.JournalEntry.5zynXjK4RTiGzcxQ");
 		systemWelcome.sheet.render(true);
 		await game.settings.set("metanthropes", "metaWelcome", false);
 	}
 
 	//* Display System Installation Guide
-	const installGuide = await game.settings.get("metanthropes", "metaInstall");
-	if (installGuide) {
-		const metaInstall = await fromUuid("Compendium.metanthropes.system.Adventure.7rKmFXvGJE8UFv2h");
-		metaInstall.sheet.render(true);
-		await game.settings.set("metanthropes", "metaInstall", false);
+	const quickstarted = game.settings.get("core", "adventureImports")[
+		"Compendium.metanthropes-introductory.introductory-installation.Adventure.ESXVGNQu7VybH7nV"
+	];
+	if (game.settings.get("metanthropes", "metaInstall") && game.user.isActiveGM) {
+		if (!quickstarted) {
+			const metaInstall = await fromUuid("Compendium.metanthropes.system.Adventure.7rKmFXvGJE8UFv2h");
+			metaInstall.sheet.render(true);
+			await game.settings.set("metanthropes", "metaInstall", false);
+		} else {
+			await game.settings.set("metanthropes", "metaInstall", false);
+		}
 	}
 
 	//* Un-pause the World
-	const metaPause = await game.settings.get("metanthropes", "metaPause");
-	if (metaPause) {
-		metanthropes.utils.metaLog(0, "System", "Getting Ready", "Un-pausing the World after initialization");
+	if (game.settings.get("metanthropes", "metaPause")) {
+		mL(0, "System", "Getting Ready", "Un-pausing the World after initialization");
 		game.togglePause(false);
 	}
 
 	//* Finished Loading Metanthropes System
-	metanthropes.utils.metaLog(0, "System", "Ready");
+	mL(0, "System", "Ready");
 });

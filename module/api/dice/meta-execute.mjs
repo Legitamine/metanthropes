@@ -28,13 +28,15 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		itemName = clickedButton.dataset.itemName;
 		multiAction = parseInt(clickedButton.dataset.multiAction) ?? 0;
 	}
-	//? Check if we are running in Beta Testing mode (available via Core Module)
-	const betaTesting = await game.settings.get("metanthropes", "metaBetaTesting");
+	//? Check if we are running in Alpha/Beta Testing mode (available via Homebrew/Core Module respectfuly)
+	const alphaTesting = game.settings.get("metanthropes", "metaAlphaTesting");
+	const betaTesting = game.settings.get("metanthropes", "metaBetaTesting");
 	const actor = await fromUuid(actorUUID);
 	//? Checking if actor has Metapowers that affect the explosive dice
 	const explosiveDice = "x10"; //todo: placeholder for custom explosive dice
 	//? Find the first item ()that matches itemName
 	const metaItemData = actor.items.find((item) => item.name === itemName);
+	const itemUUID = metaItemData.uuid;
 	if (!metaItemData) {
 		mL(2, "metaExecute", "ERROR: Could not find any item named:", itemName);
 		return;
@@ -128,7 +130,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 	//? Targeting variables
 	let damageSelectedTargets = false;
 	let healSelectedTargets = false;
-	let targetedActors = [];
+	let targetedActorsUUIDs = [];
 	let actionableTargets = false;
 	//? Other
 	let executeRoll = null;
@@ -207,11 +209,11 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		///* check Area Effect
 		if (areaEffect !== "None") {
 			areaEffectMessage =
-				`<span data-tooltip="Area Effect">@METAFA(ruler-combined, null, fw) -</span> ` + areaEffect + `<br>`;
+				`<span data-tooltip="Area Effect">@METAFA(ruler-combined, null) -</span> ` + areaEffect + `<br>`;
 			//? check Area Type
 			if (areaType.length > 0) {
 				areaEffectMessage +=
-					`<span data-tooltip="Area Effect">@METAFA(ruler-combined, null, fw) (Type) -</span> ` +
+					`<span data-tooltip="Area Effect">@METAFA(ruler-combined, null) (Type) -</span> ` +
 					areaType +
 					`<br>`;
 			}
@@ -220,7 +222,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		}
 		///* check for VS
 		if (vsRoll !== "None") {
-			vsMessage = `<span data-tooltip="VS Roll">@METAFA(swords, null, fw) - </span>` + vsRoll + `<br>`;
+			vsMessage = `<span data-tooltip="VS Roll">@METAFA(swords, null) - </span>` + vsRoll + `<br>`;
 		}
 		///* finalize action slot
 		if (actionSlot.includes("Always Active")) {
@@ -231,7 +233,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			return;
 		} else if (actionSlot.includes("Focused")) {
 			//? focused
-			actionSlotMessage = `<span data-tooltip="Activation Slot">@METAFA(stopwatch, null, fw) - </span>`;
+			actionSlotMessage = `<span data-tooltip="Activation Slot">@METAFA(stopwatch, null) - </span>`;
 			if (actionSlot.includes("1d10 Cycles")) {
 				//? roll for cycles
 				actionSlotDice = 1;
@@ -258,7 +260,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		} else {
 			//? normal execution
 			actionSlotMessage =
-				`<span data-tooltip="Activation Slot">@METAFA(stopwatch, null, fw) - </span>` + actionSlot + `<br>`;
+				`<span data-tooltip="Activation Slot">@METAFA(stopwatch, null) - </span>` + actionSlot + `<br>`;
 		}
 		///* finalize targets
 		if (targetsNumber.includes("d10")) {
@@ -266,7 +268,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			if (targetsNumber === "1d10/2") {
 				//? roll for 1d10/2
 				targetsNumberDiceMessage = `<span class="meta-roll-inline-results-small">[[ceil(1d10${explosiveDice}/2)[Targets]]]</span>`;
-				targetsMessage = `<span data-tooltip="METANTHROPES.COMMON.Targets">@METAFA(bullseye, null, fw) -</span> ${targetsNumberDiceMessage} Targets`;
+				targetsMessage = `<span data-tooltip="METANTHROPES.COMMON.Targets">@METAFA(bullseye, null) -</span> ${targetsNumberDiceMessage} Targets`;
 				targetsNumberDice = 1;
 				targetsRerollButton = `<div class="hide-button hidden">
 			<button class="metanthropes-secondary-chat-button targets rolld10-reroll"
@@ -277,7 +279,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				//? all other rolls
 				targetsNumberDice = await metanthropes.utils.metaExtractNumberOfDice(targetsNumber);
 				targetsNumberDiceMessage = `<span class="meta-roll-inline-results-small">[[${targetsNumberDice}d10${explosiveDice}[Targets]]]</span>`;
-				targetsMessage = `<span data-tooltip="METANTHROPES.COMMON.Targets">@METAFA(bullseye, null, fw) -</span> ${targetsNumberDiceMessage}`;
+				targetsMessage = `<span data-tooltip="METANTHROPES.COMMON.Targets">@METAFA(bullseye, null) -</span> ${targetsNumberDiceMessage}`;
 				targetsRerollButton = `<div class="hide-button hidden">
 			<button class="metanthropes-secondary-chat-button targets rolld10-reroll"
 			data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${targetsNumberDice}"
@@ -286,7 +288,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			</div>`;
 			}
 		} else {
-			targetsMessage = `<span data-tooltip="METANTHROPES.COMMON.Targets">@METAFA(bullseye, null, fw) -</span> ${targetsNumber}`;
+			targetsMessage = `<span data-tooltip="METANTHROPES.COMMON.Targets">@METAFA(bullseye, null) -</span> ${targetsNumber}`;
 		}
 		///* add eligible targets
 		if (targetsEligible.length > 0) {
@@ -304,7 +306,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			durationDiceMessage = duration.match(/1d10 (.+)/);
 			durationDice = 1;
 			durationMessage =
-				`<span data-tooltip="METANTHROPES.COMMON.Duration">@METAFA(hourglass-start, null, fw) -</span> <span class="meta-roll-inline-results-small">[[1d10${explosiveDice}[${durationDiceMessage[1]}]]]</span> ` +
+				`<span data-tooltip="METANTHROPES.COMMON.Duration">@METAFA(hourglass-start, null) -</span> <span class="meta-roll-inline-results-small">[[1d10${explosiveDice}[${durationDiceMessage[1]}]]]</span> ` +
 				durationDiceMessage[1] +
 				`<br>`;
 			durationRerollButton = `<div class="hide-button hidden">
@@ -316,7 +318,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		} else {
 			//? fixed duration
 			durationMessage =
-				`<span data-tooltip="METANTHROPES.COMMON.Duration">@METAFA(hourglass-start, null, fw) -</span> ` +
+				`<span data-tooltip="METANTHROPES.COMMON.Duration">@METAFA(hourglass-start, null) -</span> ` +
 				duration +
 				`<br>`;
 		}
@@ -334,7 +336,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				true,
 				false,
 				0,
-				null
+				null,
 			);
 			cosmicDamageRollResult = cosmicDamageRoll.dataset.total;
 			cosmicDamageRollParams = `data-dice-cosmic="${damageDiceCosmic}" data-base-cosmic="${damageBaseCosmic}"`;
@@ -352,7 +354,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				true,
 				false,
 				0,
-				null
+				null,
 			);
 			elementalDamageRollResult = elementalDamageRoll.dataset.total;
 			elementalDamageRollParams = `data-dice-elemental="${damageDiceElemental}" data-base-elemental="${damageBaseElemental}"`;
@@ -370,7 +372,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				true,
 				false,
 				0,
-				null
+				null,
 			);
 			materialDamageRollResult = materialDamageRoll.dataset.total;
 			materialDamageRollParams = `data-dice-material="${damageDiceMaterial}" data-base-material="${damageBaseMaterial}"`;
@@ -388,7 +390,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				true,
 				false,
 				0,
-				null
+				null,
 			);
 			psychicDamageRollResult = psychicDamageRoll.dataset.total;
 			psychicDamageRollParams = `data-dice-psychic="${damageDicePsychic}" data-base-psychic="${damageBasePsychic}"`;
@@ -406,7 +408,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 				true,
 				false,
 				0,
-				null
+				null,
 			);
 			healingRollResult = healingRoll.dataset.total;
 			healingRollParams = `data-healing-dice="${healingDice}" data-healing-base="${healingBase}"`;
@@ -461,25 +463,25 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		//todo: review if we should color the FA icons here to denote positive (+buff or -condition) / negative effects
 		if (buffsApplied) {
 			buffsAppliedMessage =
-				`<span data-tooltip="METANTHROPES.LOGIC.METAEXECUTE.BuffsApplied">@METAFA(plus, null, fw) @METAFA(shield-halved, null, fw)</span>: ` +
+				`<span data-tooltip="METANTHROPES.LOGIC.METAEXECUTE.BuffsApplied">@METAFA(plus, null) @METAFA(shield-halved, null)</span>: ` +
 				buffsApplied +
 				`<br>`;
 		}
 		if (buffsRemoved) {
 			buffsRemovedMessage =
-				`<span data-tooltip="METANTHROPES.LOGIC.METAEXECUTE.BuffsRemoved">@METAFA(minus, null, fw) @METAFA(shield-halved, null, fw)</span>: ` +
+				`<span data-tooltip="METANTHROPES.LOGIC.METAEXECUTE.BuffsRemoved">@METAFA(minus, null) @METAFA(shield-halved, null)</span>: ` +
 				buffsRemoved +
 				`<br>`;
 		}
 		if (conditionsApplied) {
 			conditionsAppliedMessage =
-				`<span data-tooltip="METANTHROPES.LOGIC.METAEXECUTE.ConditionsApplied">@METAFA(plus, null, fw) @METAFA(skull, null, fw)</span>: ` +
+				`<span data-tooltip="METANTHROPES.LOGIC.METAEXECUTE.ConditionsApplied">@METAFA(plus, null) @METAFA(skull, null)</span>: ` +
 				conditionsApplied +
 				`<br>`;
 		}
 		if (conditionsRemoved) {
 			conditionsRemovedMessage =
-				`<span data-tooltip="METANTHROPES.LOGIC.METAEXECUTE.ConditionsRemoved">@METAFA(minus, null, fw) @METAFA(skull, null, fw)</span>: ` +
+				`<span data-tooltip="METANTHROPES.LOGIC.METAEXECUTE.ConditionsRemoved">@METAFA(minus, null) @METAFA(skull, null)</span>: ` +
 				conditionsRemoved +
 				`<br>`;
 		}
@@ -489,7 +491,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		contentMessage += targetsMessage;
 		contentMessage += durationMessage;
 		contentMessage +=
-			`<span data-tooltip="METANTHROPES.COMMON.Range">@METAFA(ruler, null, fw) -</span> ` + range + `<br>`;
+			`<span data-tooltip="METANTHROPES.COMMON.Range">@METAFA(ruler, null) -</span> ` + range + `<br>`;
 		if (areaEffectMessage) {
 			contentMessage += areaEffectMessage;
 			contentMessage += `<hr />`;
@@ -503,13 +505,33 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		if (effectDescription) {
 			contentMessage += `${effectDescription}<hr />`;
 		}
+		//* Targeting
 		///todo Targeting v1 todo needs to move outside of execute or run along side it
+		//todo clean up notes & simplify
 		const manuallySelectedTargets = game.user.targets;
-		const targetsArray = Array.from(manuallySelectedTargets).map((token) => token.actor);
-		//?Create a new array with only the actor's uuids to be used later
-		targetedActors = targetsArray.map((actor) => actor.uuid);
+		//? VFX requires the tokens from ^^ here, which we get in an Array
+		//? Grab an Array of the token documents involved and filter out null & dupes
+		const targetsFilteredArray = Array.from(manuallySelectedTargets)
+			.map((token) => token.actor)
+			.filter((_) => _); //?Filter out null actors (in case there were deleted)
+		const targetsTokenDocumentsArray = Array.from(new Set(targetsFilteredArray)); //? Remove duplicates (in case a linked actor is placed multiple times in the canvas) //todo should we even allow this in the first place?
+		//? Create a new Array with only the token actor's uuids to be used for damage/healing application later
+		targetedActorsUUIDs = Array.from(targetsTokenDocumentsArray.map((a) => a.uuid));
+		mL(
+			3,
+			"metaExecute",
+			"Review Target selection",
+			"manuallySelectedTargets",
+			manuallySelectedTargets,
+			"targetsFilteredArray",
+			targetsFilteredArray,
+			"targetsTokenDocumentsArray",
+			targetsTokenDocumentsArray,
+			"targetedActorsUUIDs",
+			targetedActorsUUIDs,
+		);
 		//? Check if there are any targeted actors and set the actionableTargets variable accordingly
-		actionableTargets = targetedActors.length > 0;
+		actionableTargets = targetedActorsUUIDs.length > 0;
 		if (
 			!actionableTargets &&
 			duration.includes("Instantaneous") &&
@@ -529,13 +551,13 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		if (!actionableTargets) {
 			mL(3, "metaExecute", "No Actionable Targets");
 		} else {
-			//? Get the names of all targeted actors
-			targetedActorNames = targetsArray.map((actor) => actor.name);
+			//? Get the names of all targeted actors //! changed from targetsArray
+			targetedActorNames = targetsTokenDocumentsArray.map((actor) => actor.name);
 			mL(
 				3,
 				"metaExecute",
 				`Target${targetedActorNames.length > 1 ? "s" : ""} Name${targetedActorNames.length > 1 ? "s" : ""}:`,
-				targetedActorNames
+				targetedActorNames,
 			);
 		}
 		if (
@@ -594,7 +616,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			if (actor.currentDestiny > 0) {
 				const damageReRollButton = `<div class="hide-button hidden">
 				<button class="metanthropes-secondary-chat-button damage roll-damage-reroll chat-button-anchor"
-				data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+				data-targets="${targetedActorsUUIDs}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 				data-what="Damage" data-anchor="true" data-reroll="false" data-reroll-counter="1"
 				data-message-id="null" data-destiny-re-roll="true" data-damage-selected-targets="${damageSelectedTargets}"
 				${cosmicDamageRollParams} ${elementalDamageRollParams}
@@ -610,7 +632,7 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 			if (actor.currentDestiny > 0) {
 				const healingRerollButton = `<div class="hide-button hidden">
 				<button class="metanthropes-secondary-chat-button healing roll-healing-reroll chat-button-anchor"
-				data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+				data-targets="${targetedActorsUUIDs}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 				data-what="Healing" data-anchor="true" data-heal-selected-targets="${healSelectedTargets}"
 				data-reroll="false" data-reroll-counter="1" data-message-id="null"
 				data-destiny-re-roll="true" ${healingRollParams}
@@ -701,30 +723,58 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		await actor.setFlag("metanthropes", "duplicateSelf", { maxLife: duplicateMaxLife });
 		mL(3, "metaExecute", "Duplicate Self Metapower Max Life:", duplicateMaxLife);
 	}
-	//* Visual Effects
-	if (vfx) {
-		await metanthropes.utils.metaRunMacro(vfx);
-	}
-	//* Sound Effects
-	if (sfx) {
-		await metanthropes.audio.metaPlaySoundEffect(sfx);
-	}
-	//* Apply Damage to Selected Targets
+	//!deprecate old VFX/SFX system
+	// //* Visual Effects
+	// if (vfx) {
+	// 	await metanthropes.utils.metaRunMacro(vfx);
+	// }
+	// //* Sound Effects
+	// if (sfx) {
+	// 	await metanthropes.audio.metaPlaySoundEffect(sfx);
+	// }
+	//* Trigger VFX & Apply Damage to Selected Targets
 	if (damageSelectedTargets && actionableTargets) {
-		mL(3, "meta-execute", "Applying damage");
+		if (alphaTesting) {
+			//* Trigger VFX
+			mL(3, "metaExecute", "Triggering VFX");
+			try {
+				const vfxData = {
+					initiatingTokenUUID: actorUUID,
+					targetTokensUUIDs: JSON.stringify(targetedActorsUUIDs),
+					cosmicDamage: cosmicDamageRollResult,
+					elementalDamage: elementalDamageRollResult,
+					materialDamage: materialDamageRollResult,
+					psychicDamage: psychicDamageRollResult,
+					itemUUID,
+				};
+				game.socket.emit("system.metanthropes", {
+					action: "metaPlayVFX",
+					vfxData: vfxData,
+				});
+				//todo review socket emit if we would receive this ourselves?
+				//todo review if stringify is required?
+				await metanthropes.vfx.metaVFX(vfxData);
+			} catch (error) {
+				mL(5, "metaExecute", "VFX Failed with error", error);
+			}
+		}
+
+		//* Apply Damage
+		mL(3, "metaExecute", "Applying Damage");
 		await metanthropes.logic.metaApplyDamage(
-			targetedActors,
+			targetedActorsUUIDs,
 			cosmicDamageRollResult,
 			elementalDamageRollResult,
 			materialDamageRollResult,
-			psychicDamageRollResult
+			psychicDamageRollResult,
 		);
 	}
 	//* Apply Healing to Selected Targets
 	if (healSelectedTargets && actionableTargets) {
-		await metanthropes.logic.metaApplyHealing(targetedActors, healingRollResult);
+		mL(3, "metaExecute", "Applying Healing");
+		await metanthropes.logic.metaApplyHealing(targetedActorsUUIDs, healingRollResult);
 	}
-	//* Send Chat Message
+	//* Compile Chat Data
 	let chatData = {
 		user: game.user.id, //!why do we have this here, is it even valid?
 		flavor: flavorMessage,
@@ -732,7 +782,8 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		content: contentMessage,
 		flags: { metanthropes: { actoruuid: actor.uuid } },
 	};
-	await ChatMessage.create(chatData);
+	//* Send Chat Message
+	await metanthropes.applications.MetaChatMessage.create(chatData);
 	mL(3, "metaExecute", "Finished");
 	//! return new Promise(resolve);
 }

@@ -66,14 +66,12 @@ jobs:
             - name: Compile SCSS to CSS
               run: |
                   sass scss/metanthropes.scss styles/metanthropes.css
-                  sass scss/themes/theme-light.scss styles/metanthropes-light.css
-                  sass scss/themes/theme-dark.scss styles/metanthropes-dark.css
             - name: Zip the compiled files
               uses: thedoctor0/zip-release@0.7.6
               with:
                   type: "zip"
                   filename: "${{steps.id.outputs.prop}}.zip"
-                  exclusions: "*.git* /*node_modules/* /*.vscode/* *.npmignore *.nvmrc gulpfile.js package-lock.json package.json /src/* /scss/* /sass/* /*.cmd/* *.yaml *.d.ts"
+                  exclusions: "*.git* /*node_modules/* /*.vscode/* *.npmignore *.nvmrc gulpfile.js package-lock.json package.json /src/* /scss/* /sass/* /*.cmd/* *.yaml *.d.ts jsconfig.json"
             - name: Create GitHub Release
               uses: softprops/action-gh-release@v1
               with:

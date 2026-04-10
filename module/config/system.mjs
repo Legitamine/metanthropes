@@ -1,10 +1,14 @@
+import { BUFFS } from "./buffs.mjs";
+import { CONDITIONS } from "./conditions.mjs";
+import { CORECONDITIONS } from "./core-conditions.mjs";
 import { CHARS } from "./chars.mjs";
-import { colors } from "./colors.mjs";
+import { COLORS } from "./colors.mjs";
 import { STATS } from "./stats.mjs";
 import { MOVEMENT } from "./movement.mjs";
 import { TOKENDEFAULTS } from "./prototype-token-overrides.mjs";
+import { TABLES } from "./tables/_tables.mjs";
 
-export const SYSTEM = {
+export const SYSTEM = Object.freeze({
 	id: "metanthropes",
 	ASCII: `_____________________________________________________________________________________ 
 __  __ ______ _______       _   _ _______ _    _ _____   ____  _____  ______  _____  
@@ -14,9 +18,13 @@ __  __ ______ _______       _   _ _______ _    _ _____   ____  _____  ______  __
 | |  | | |____   | |/ ____ \\| |\\  |  | |  | |  | | | \\ \\| |__| | |    | |____ ____) |
 |_|  |_|______|  |_/_/    \\_\\_| \\_|  |_|  |_|  |_|_|  \\_\\\\____/|_|    |______|_____/ 
 =====================================================================================`,
+	BUFFS,
+	CONDITIONS,
+	CORECONDITIONS,
 	CHARS,
-	colors,
+	COLORS,
 	STATS,
-	MOVEMENT,
+	MOVEMENT, //! deprecate when we remove V1 Actors
 	TOKENDEFAULTS,
-};
+	TABLES,
+});

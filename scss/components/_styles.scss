@@ -1,3 +1,4 @@
+@use "../settings" as *;
 //* New stuff testing
 .style-metaroll-dialog {
 	opacity: 1;
@@ -12,26 +13,26 @@
 	margin: $margin-sm;
 }
 .style-buffs {
-	color: $c-green;
-	--color-form-input: $c-green;
-	--color-form-input-hover: $c-green;
-	--color-form-label: $c-green;
-	--color-form-label-hover: $c-green;
+	color: var(--metanthropes-color-buff);
+	--color-form-input: var(--metanthropes-color-buff);
+	--color-form-input-hover: var(--metanthropes-color-buff);
+	--color-form-label: var(--metanthropes-color-buff);
+	--color-form-label-hover: var(--metanthropes-color-buff);
 }
 .style-conditions {
-	color: $c-red;
-	--color-form-input: $c-red;
-	--color-form-input-hover: $c-red;
-	--color-form-label: $c-red;
-	--color-form-label-hover: $c-red;
+	color: var(--metanthropes-color-condition);
+	--color-form-input: var(--metanthropes-color-condition);
+	--color-form-input-hover: var(--metanthropes-color-condition);
+	--color-form-label: var(--metanthropes-color-condition);
+	--color-form-label-hover: var(--metanthropes-color-condition);
 }
 //Styles used in Metanthropes RPG Sheets
 h3 {
 	font-family: $font-primary;
 	text-align: center;
-	color: $c-white;
-	background-color: $c-background;
-	text-shadow: $s-outline;
+	color: var(--metanthropes-color-secondary);
+	background-color: var(--metanthropes-color-background);
+	text-shadow: var(--metanthropes-color-text-shadow);
 }
 //containers and borders
 //characteristics and stats styling and borders
@@ -187,7 +188,7 @@ h3 {
 	border: $border-style-solid;
 	border-radius: $border-radius;
 	border-style: dotted;
-	border-image: url(../assets/artwork/ui/borders/border.webp) 5 / 10px round;
+	//border-image: $a-border-image;
 	border-radius: $border-radius;
 }
 //nav container styling
@@ -206,12 +207,12 @@ h3 {
 	white-space: nowrap;
 	font-size: 1rem;
 	font-weight: 600;
-	color: $c-black;
+	color: var(--metanthropes-color-text);
 	padding: $padding-sm;
 	margin: $margin-sm;
 	.meta-emoji {
 		font-size: 1rem;
-		//color: $c-purple;
+		//color: var(--metanthropes-color-highlight);
 	}
 }
 
@@ -242,7 +243,7 @@ h3 {
 	opacity: 1;
 	font-family: $font-primary;
 	font-size: 1rem;
-	color: $c-black;
+	color: var(--metanthropes-color-text);
 	padding: $padding-sm;
 	margin: $margin-sm;
 }
@@ -250,7 +251,7 @@ h3 {
 	opacity: 1;
 	font-family: $font-primary;
 	font-size: 1rem;
-	color: $c-black;
+	color: var(--metanthropes-color-text);
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -262,7 +263,7 @@ h3 {
 	opacity: 1;
 	font-family: $font-primary; //or
 	font-size: 1.6rem;
-	color: $c-black;
+	color: var(--metanthropes-color-text);
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -274,7 +275,7 @@ h3 {
 	opacity: 0.8;
 	font-family: $font-primary;
 	font-size: 1rem;
-	color: $c-black;
+	color: var(--metanthropes-color-text);
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -286,7 +287,7 @@ h3 {
 	opacity: 0.5;
 	font-family: $font-secondary;
 	font-size: 0.6rem;
-	color: $c-black;
+	color: var(--metanthropes-color-text);
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -298,7 +299,7 @@ h3 {
 	opacity: 1;
 	font-family: $font-secondary;
 	font-size: 1rem;
-	color: $c-black;
+	color: var(--metanthropes-color-text);
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -311,7 +312,7 @@ h3 {
 	opacity: 1;
 	font-family: $font-primary; //or
 	font-size: 1.6rem;
-	color: $c-black;
+	color: var(--metanthropes-color-text);
 	text-transform: uppercase;
 	justify-content: center;
 	justify-self: center;
@@ -324,7 +325,7 @@ h3 {
 	opacity: 1;
 	font-family: $font-primary; //or
 	font-size: 1.6rem;
-	color: $c-black;
+	color: var(--metanthropes-color-text);
 	font-weight: bold;
 	text-transform: uppercase;
 	justify-content: center;
@@ -338,7 +339,7 @@ h3 {
 	opacity: 1;
 	font-family: $font-secondary;
 	font-size: 1rem;
-	color: $c-black;
+	color: var(--metanthropes-color-text);
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -350,7 +351,7 @@ h3 {
 	opacity: 1;
 	font-family: $font-primary; //or
 	font-size: 1.6rem;
-	color: $c-black;
+	color: var(--metanthropes-color-text);
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -362,7 +363,7 @@ h3 {
 	opacity: 1;
 	font-family: $font-primary; //or
 	font-size: 2.4rem;
-	color: $c-black;
+	color: var(--metanthropes-color-text);
 	font-weight: bold;
 	justify-content: center;
 	justify-self: center;
@@ -375,7 +376,7 @@ h3 {
 	opacity: 1;
 	font-family: $font-primary;
 	font-size: 0.8rem;
-	color: $c-black;
+	color: var(--metanthropes-color-text);
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -387,7 +388,7 @@ h3 {
 	opacity: 1;
 	font-family: $font-secondary;
 	font-size: 0.8rem;
-	color: $c-green;
+	color: var(--metanthropes-color-buff);
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -399,7 +400,7 @@ h3 {
 	opacity: 1;
 	font-family: $font-secondary;
 	font-size: 0.8rem;
-	color: $c-red;
+	color: var(--metanthropes-color-condition);
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -410,7 +411,7 @@ h3 {
 .style-cs-header-positive {
 	opacity: 1;
 	font-family: $font-primary;
-	color: $c-green;
+	color: var(--metanthropes-color-buff);
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -421,7 +422,7 @@ h3 {
 .style-cs-header-negative {
 	opacity: 1;
 	font-family: $font-primary;
-	color: $c-red;
+	color: var(--metanthropes-color-condition);
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -432,7 +433,7 @@ h3 {
 .style-cs-positive {
 	opacity: 1;
 	font-family: $font-secondary;
-	color: $c-green;
+	color: var(--metanthropes-color-buff);
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -443,7 +444,7 @@ h3 {
 .style-cs-negative {
 	opacity: 1;
 	font-family: $font-secondary;
-	color: $c-red;
+	color: var(--metanthropes-color-condition);
 	justify-content: center;
 	justify-self: center;
 	align-items: center;
@@ -453,16 +454,16 @@ h3 {
 }
 .meta-cover-roll {
 	&:hover {
-		cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
-		color: $c-white;
-		text-shadow: $s-outline;
+		cursor: $a-cursor-hover;
+		color: var(--metanthropes-color-secondary);
+		text-shadow: var(--metanthropes-color-text-shadow);
 	}
 }
 .style-cs-rolls {
 	opacity: 1;
 	font-family: $font-primary; //or
 	font-size: 2.4rem;
-	color: $c-black;
+	color: var(--metanthropes-color-text);
 	font-weight: bold;
 	justify-content: center;
 	justify-self: center;
@@ -472,16 +473,16 @@ h3 {
 	padding: $padding-md;
 	margin: $margin-md;
 	&:hover {
-		cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
-		color: $c-white;
-		text-shadow: $s-outline;
+		cursor: $a-cursor-hover;
+		color: var(--metanthropes-color-secondary);
+		text-shadow: var(--metanthropes-color-text-shadow);
 	}
 }
 .style-cs-rolls-single-column {
 	opacity: 1;
 	font-family: $font-primary; //or
 	font-size: 2rem;
-	color: $c-black;
+	color: var(--metanthropes-color-text);
 	font-weight: bold;
 	justify-content: center;
 	justify-self: center;
@@ -491,82 +492,49 @@ h3 {
 	padding: $padding-zero;
 	margin: $margin-zero;
 	&:hover {
-		cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
-		color: $c-white;
-		text-shadow: $s-outline;
+		cursor: $a-cursor-hover;
+		color: var(--metanthropes-color-secondary);
+		text-shadow: var(--metanthropes-color-text-shadow);
 	}
 }
 .style-mp-rolls {
 	opacity: 1;
 	font-family: $font-primary; //or
 	font-size: 14px;
-	color: $c-black;
+	color: var(--metanthropes-color-text);
 	justify-items: center;
 	align-self: center;
 	text-align: center;
 	padding: $padding-zero;
 	margin: $margin-zero;
 	&:hover {
-		cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
-		color: $c-white;
-		text-shadow: $s-outline;
+		cursor: $a-cursor-hover;
+		color: var(--metanthropes-color-secondary);
+		text-shadow: var(--metanthropes-color-text-shadow);
 	}
 }
 .style-pos-rolls {
 	opacity: 1;
 	font-family: $font-primary; //or
 	font-size: 14px;
-	color: $c-black;
+	color: var(--metanthropes-color-text);
 	justify-items: center;
 	align-self: center;
 	text-align: center;
 	padding: $padding-zero;
 	margin: $margin-zero;
 	&:hover {
-		cursor: url(../assets/artwork/ui/dice/d100roll-black-small.webp), pointer;
-		color: $c-white;
-		text-shadow: $s-outline;
+		cursor: $a-cursor-hover;
+		color: var(--metanthropes-color-secondary);
+		text-shadow: var(--metanthropes-color-text-shadow);
 	}
 }
 .style-view-properties {
 	&:hover {
 		cursor: help;
-		color: $c-white;
-		text-shadow: $s-outline;
+		color: var(--metanthropes-color-secondary);
+		text-shadow: var(--metanthropes-color-text-shadow);
 	}
-}
-
-//* Text Editor - Prosemirror engine
-.style-editor {
-	opacity: 1;
-	padding: $padding-md;
-	margin: $margin-md;
-	min-height: 80px;
-	height: auto;
-	max-height: 450px;
-	overflow-y: auto;
-}
-.editor-content {
-	min-height: 80px;
-	max-height: 380px;
-	height: auto;
-	overflow-y: auto;
-}
-.editor-container {
-	min-height: 240px;
-	max-height: 420px;
-	height: 100%;
-	overflow-y: auto;
-}
-.editor {
-	min-height: 80px;
-	height: 100%;
-	max-height: 450px;
-	overflow-y: auto;
-}
-.editor-menu {
-	padding: $padding-sm;
-	margin: $margin-sm;
 }
 
 .style-form {
@@ -589,7 +557,7 @@ h3 {
 	width: auto;
 	object-fit: contain;
 	border: none;
-	border-radius: 15px;
+	//border-radius: 15px;
 }
 
 .style-tab-header-prime {
@@ -605,7 +573,8 @@ h3 {
 	width: auto;
 	object-fit: contain;
 	border: none;
-	border-radius: 15px;
+	//border-radius: 15px;
+	z-index: 2;
 	transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
 	&:hover {
 		transform: scale(1.5) translateX(40px);

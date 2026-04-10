@@ -73,15 +73,15 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		//? This will create the .RollStats object under .system that is used by Handlebars in the actor sheet for rolling
 		this.actor.getRollData();
 		//? Provide a boolean for if we are running with Introductory Features enabled
-		context.introductoryFeatures = await game.settings.get("metanthropes", "metaIntroductory");
+		context.introductoryFeatures = game.settings.get("metanthropes", "metaIntroductory");
 		//? Provide a boolean for if we are running with Core Features enabled
-		context.coreFeatures = await game.settings.get("metanthropes", "metaCore");
+		context.coreFeatures = game.settings.get("metanthropes", "metaCore");
 		//? Provide a boolean for if we are running with Homebrew Features enabled
-		context.homebrewFeatures = await game.settings.get("metanthropes", "metaHomebrew");
+		context.homebrewFeatures = game.settings.get("metanthropes", "metaHomebrew");
 		//? Provide a boolean for if 'Beta Testing of New Features' is enabled
-		context.betaTesting = await game.settings.get("metanthropes", "metaBetaTesting");
+		context.betaTesting = game.settings.get("metanthropes", "metaBetaTesting");
 		//? Provide a boolean for if 'Advanced Logging' is enabled
-		context.advancedLogging = await game.settings.get("metanthropes", "metaAdvancedLogging");
+		context.advancedLogging = game.settings.get("metanthropes", "metaAdvancedLogging");
 		//? Provide a combined boolean for if 'Beta Testing of New Features' and 'Advanced Logging' are enabled
 		context.advancedBetaTesting = context.betaTesting && context.advancedLogging;
 		//? Provide a boolean for if the user is a Narrator(GameMaster)
@@ -89,7 +89,7 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		//? Add the actor's active effects to the context for easier access.
 		if (context.betaTesting) context.effects = metanthropes.utils.prepareActiveEffectCategories(this.actor.effects);
 		//? Calculate the actor's XP Spent
-		context.xpSpent = Number(actorData.system.Vital.Experience.Spent + actorData.system.Vital.Experience.Manual);
+		//!context.xpSpent = Number(actorData.system.Vital.Experience.Spent + actorData.system.Vital.Experience.Manual);
 		//? Flag if actor is affected by Disease
 		context.affectedByDisease = this.actor.isDiseased;
 		//? Flag if actor is affected by Pain
@@ -178,7 +178,7 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 						"MetanthropesActorSheet",
 						"_prepareItems",
 						"Invalid Category for Possession:",
-						item.name
+						item.name,
 					);
 					return;
 				}
@@ -366,6 +366,7 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 			html.find(".header-button").click((event) => {
 				event.preventDefault();
 				const button = windowData.headerButtons.find((b) => event.currentTarget.classList.contains(b.class));
+				metanthropes.utils.metaLog(3, "Advanced Logging", "Header Button Pressed", button);
 				button.onclick(event);
 			});
 		}, 500);
@@ -625,7 +626,7 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 					3,
 					"MetanthropesActorSheet",
 					"_onNewActor",
-					"Core API available, calling metaNewActor"
+					"Core API available, calling metaNewActor",
 				);
 				await metanthropes.logic.metaNewActor(actor);
 			} catch (error) {
@@ -661,7 +662,7 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		//? Check if 'Alpha Testing of New Features' is enabled
 		if (!game.settings.get("metanthropes", "metaAlphaTesting")) {
 			ui.notifications.warn(
-				"Progression is in early Alpha Testing and only available with the Metanthropes Homebrew Module at this time"
+				"Progression is in early Alpha Testing and only available with the Metanthropes Homebrew Module at this time",
 			);
 			return;
 		}
@@ -694,7 +695,7 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 			"MetanthropesActorSheet",
 			"_onProgression",
 			"Engaging Progression Form for",
-			metaProgressionActor.name
+			metaProgressionActor.name,
 		);
 		try {
 			await metaProgressActor(metaProgressionActor);

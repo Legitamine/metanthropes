@@ -1,50 +1,4 @@
-//? Import Helpers
 import { metaChangeActorImage } from "../helpers/metaimagehandler.mjs";
-/**
- *
- * Helper class to extend the FilePicker class for a custom MetaDialog usage
- * Primarily we want to use this to render a 'select your portrait' dialog for the User
- * Minimizing the additional functionality and controls that FilePicker provides
- *
- * @param {*} app
- * @param {*} buttons
- */
-//! todo perhps the best apprach is to have left-click our own and right click the orginal FVTT process
-//todo Deprecate notice: need to also revise/remove the CSS classes we had for the image animations
-export class metaFilePicker extends foundry.applications.apps.FilePicker.implementation {
-	//todo: clean up the z-index tryouts
-	/** @override */
-	constructor(options = {}) {
-		super(options);
-		this.displayMode = options.displayMode || "tiles";
-	}
-	static get defaultOptions() {
-		return foundry.utils.mergeObject(super.defaultOptions, {
-			template: "systems/metanthropes/templates/metanthropes/filepicker.html",
-			classes: ["filepicker"],
-			width: 520,
-			tabs: [{ navSelector: ".tabs" }],
-			dragDrop: [{ dragSelector: ".file", dropSelector: ".filepicker-body" }],
-			tileSize: false,
-			filters: [{ inputSelector: 'input[name="filter"]', contentSelector: ".filepicker-body" }],
-		});
-	}
-	/** @override */
-	render(force, options) {
-		if (game.world && !game.user.can("FILES_BROWSE")) return this;
-		this.position.height = null;
-		//* Ensure the dialog is rendered above the MetaDialog
-		const newZIndex = this.position.zIndex + 1500;
-		this.element.css({ height: "" });
-		this.element.css({ zIndex: newZIndex });
-		this._tabs[0].active = this.activeSource;
-		if (!this._loaded) {
-			this.browse();
-			this.position.zIndex = newZIndex;
-			return this;
-		} else return super.render(force, options);
-	}
-}
 
 /**
  * The MetaDialog class is a custom Dialog that ensures it's always displayed over the Actor Sheet
@@ -177,5 +131,63 @@ export class MetaDialog extends Dialog {
 			const choice = this.data.buttons[button];
 			return this.submit(choice);
 		}
+	}
+}
+
+/**
+ * Meta Chat Message
+ ** Extends the default ChatMessage
+ ** Used for testing, not really doing anything
+ *todo examine why it is not overriding as expected
+ *
+ * @export
+ * @class MetaChatMessage
+ * @typedef {MetaChatMessage}
+ * @extends {ChatMessage}
+ */
+export class MetaChatMessage extends ChatMessage {
+	/** @inheritDoc */
+	_onCreate(data, options, userId) {
+		metanthropes.utils.metaLog(2, "QUAPLA QUAPLA QUAPLA");
+		super._onCreate(data, options, userId);
+	}
+	/** @inheritDoc */
+	_onUpdate(changed, options, userId) {
+		metanthropes.utils.metaLog(2, "QUAPLA -------QUAPLA------- QUAPLA");
+		super._onUpdate(changed, options, userId);
+	}
+	/**
+	 * Play a VFX animation using data provided by this ChatMessage
+	 * @returns {Promise<void>}
+	 */
+	async #playVFXEffect() {
+		if (!game.settings.get("metanthropes", "metaAlphaTesting")) return;
+		//! DSN
+		if (this.rolls.length && "dice3d" in game) await game.dice3d.waitFor3DAnimationByMessageID(this.id);
+		/*
+		const action = CrucibleAction.fromChatMessage(this);
+		//grabs references and config from the flags
+		const { references, ...vfxConfig } = this.flags.crucible.vfxConfig;
+		//calls to play the vfx
+		await action.playVFXEffect(vfxConfig, references);
+		*/
+		if (!this.token?.parent.isView) return; //! prepei edw to this na ginetai resolve ston actor?
+	}
+}
+
+
+/**
+ * Custom Class for the Pause UI
+ *
+ * @export
+ * @class MetanthropesPause
+ * @typedef {MetanthropesPause}
+ * @extends {foundry.applications.ui.GamePause}
+ */
+export class MetanthropesPause extends foundry.applications.ui.GamePause {
+	async _prepareContext(_options) {
+		const context = await super._prepareContext(_options);
+		context.icon = "systems/metanthropes/assets/logos/metanthropes-logo.webp";
+		return context
 	}
 }

@@ -1,16 +1,12 @@
-export const CHARS = Object.freeze ({
+export const CHARS = Object.freeze({
 	body: {
 		id: "body",
-		label: "METANTHROPES.CHARS.BODY.LABEL",
-		buff: {
-			id: "bodyBuff",
-			label: "METANTHROPES.CHARS.BODY.BUFF.LABEL",
-		},
-		condition: {
-			id: "bodyCondition",
-			label: "METANTHROPES.CHARS.BODY.CONDITION.LABEL",
-		},
+		ifZero: "METANTHROPES.ACTOR.FIELDS.chars.body.ifZero", //!TBD
 	},
-	mind: "METANTHROPES.CHARS.MIND.LABEL",
-	soul: "METANTHROPES.CHARS.SOUL.LABEL",
+	mind: {
+		id: "mind",
+	},
+	soul: {
+		id: "soul",
+	},
 });

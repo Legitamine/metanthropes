@@ -1,0 +1,30 @@
+<header> Header
+	<section> First Half
+		{{log this}}
+		<img>
+		<div>
+			Player
+		</div>
+		<div>
+			Exp
+		</div>
+	</section>
+	<section> Second Half
+		{{#each system.chars}}
+			<div data-tooltip="{{lookup (lookup @root.charsFields @key) "hint"}}">
+				{{lookup (lookup @root.charsFields @key) "label"}}
+				{{#each ../system.stats}}
+					{{#if (eq (lookup (lookup @root.statsConst @key) "associatedChar") @../key)}}
+						<div data-tooltip="{{lookup (lookup @root.statsFields @key) "hint"}}">
+							{{lookup (lookup @root.statsFields @key) "label"}}
+							<div
+								data-tooltip="{{lookup (lookup (lookup (lookup @root.statsFields @key) "fields") "current") "hint"}}">
+								{{this.current}}
+							</div>
+						</div>
+					{{/if}}
+				{{/each}}
+			</div>
+		{{/each}}
+	</section>
+</header>

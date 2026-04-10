@@ -41,7 +41,7 @@ export async function metaEvaluate(
 	itemName = null,
 	messageId = null,
 	reroll = false,
-	rerollCounter = 0
+	rerollCounter = 0,
 ) {
 	const mL = metanthropes.utils.metaLog;
 	mL(
@@ -76,7 +76,7 @@ export async function metaEvaluate(
 		"Re-Roll?",
 		reroll,
 		"Reroll Counter:",
-		rerollCounter
+		rerollCounter,
 	);
 
 	//* Variables
@@ -88,8 +88,8 @@ export async function metaEvaluate(
 	let result = null;
 	let resultLevel = null;
 	let autoExecute = false;
-	const successColor = metanthropes.system.colors.success;
-	const failureColor = metanthropes.system.colors.failure;
+	const successColor = metanthropes.system.COLORS.success;
+	const failureColor = metanthropes.system.COLORS.failure;
 	//* Check for Destiny Cost in case of a Metapower
 	//todo: 'hail mary' achievement where we have destiny cost and missing 1 destiny that we would get from a critical, should we still allow the roll, spending all remaining destiny?
 	if (action === "Metapower") {
@@ -111,11 +111,11 @@ export async function metaEvaluate(
 	mL(3, "metaEvaluate", "rollEffectiveResult", rollEffectiveResult);
 	let levelsOfSuccess = Math.floor(
 		(statScore + bonus + penalty + multiAction + perkReduction + aimingReduction + customReduction - rollResult) /
-			10
+			10,
 	);
 	let levelsOfFailure = Math.floor(
 		(rollResult - statScore - bonus - multiAction - perkReduction - aimingReduction - customReduction - penalty) /
-			10
+			10,
 	);
 	//? this kicks-off the calculation, assuming that is is a failure
 	if (rollResult - multiAction - perkReduction - aimingReduction - customReduction - penalty > statScore + bonus) {
@@ -169,7 +169,7 @@ export async function metaEvaluate(
 	} else {
 		startMessage = "Re-Rolls";
 		rerollCounter++;
-		if (rerollCounter > 1) startMessage += ` (@METAFA(xmark, null, xs, fw)${rerollCounter})`;
+		if (rerollCounter > 1) startMessage += ` (@METAFA(xmark, null, xs)${rerollCounter})`;
 	}
 	if (action === "StatRoll") {
 		message = `${startMessage} for ${stat} with a score of ${statScore}%`;
@@ -337,6 +337,7 @@ export async function metaEvaluate(
 	//* Handling the chat message
 	let chatMessage;
 	if (!reroll) {
+		mL(3, "metaEvalute", "Not a re-roll")
 		//* This is a new roll, creating chat message
 		//? Printing the results to chat, allowing Dice So Nice to do it's thing.
 		chatMessage = await roll.toMessage({
@@ -348,47 +349,8 @@ export async function metaEvaluate(
 			rollMode: game.settings.get("core", "rollMode"),
 			flags: { metanthropes: { actoruuid: actor.uuid } },
 		});
-		mL(
-			3,
-			"metaEvaluate",
-			"Finished for:",
-			actor.name,
-			"Action:",
-			action,
-			stat + ":",
-			statScore,
-			"Roll:",
-			rollResult,
-			"Multi-Action:",
-			multiAction,
-			"Perk Reduction:",
-			perkReduction,
-			"Aiming Reduction:",
-			aimingReduction,
-			"Custom Reduction:",
-			customReduction,
-			"Bonus:",
-			bonus,
-			"Penalty:",
-			penalty,
-			"Pain:",
-			pain,
-			"Destiny Cost:",
-			destinyCost,
-			"Item Name:",
-			itemName,
-			"levelsOfSuccess:",
-			levelsOfSuccess,
-			"levelsOfFailure:",
-			levelsOfFailure,
-			"Result Level:",
-			resultLevel,
-			"Current Destiny:",
-			actor.currentDestiny,
-			"Actor UUID:",
-			actor.uuid
-		);
 	} else {
+		mL(3, "metaEvalute", "Re-roll")
 		//* This is a re-roll, updating existing message
 		//? Update the original message with the new results
 		chatMessage = game.messages.get(messageId);
@@ -396,7 +358,7 @@ export async function metaEvaluate(
 			ui.notifications.warn("Could not find the chat message to update.");
 			return;
 		}
-		const updatedRoll = await roll.toJSON();
+		const updatedRoll = JSON.stringify(roll.toJSON());
 		const renderedRoll = await roll.render();
 		if (game.dice3d) {
 			await game.dice3d.showForRoll(roll, game.user, true, null, false, messageId);
@@ -409,14 +371,57 @@ export async function metaEvaluate(
 			flags: { metanthropes: { actoruuid: actor.uuid } },
 		});
 	}
+	mL(
+		3,
+		"metaEvaluate",
+		"Finished for:",
+		actor.name,
+		"Action:",
+		action,
+		stat + ":",
+		statScore,
+		"Roll:",
+		rollResult,
+		"Multi-Action:",
+		multiAction,
+		"Perk Reduction:",
+		perkReduction,
+		"Aiming Reduction:",
+		aimingReduction,
+		"Custom Reduction:",
+		customReduction,
+		"Bonus:",
+		bonus,
+		"Penalty:",
+		penalty,
+		"Pain:",
+		pain,
+		"Destiny Cost:",
+		destinyCost,
+		"Item Name:",
+		itemName,
+		"levelsOfSuccess:",
+		levelsOfSuccess,
+		"levelsOfFailure:",
+		levelsOfFailure,
+		"Result Level:",
+		resultLevel,
+		"Current Destiny:",
+		actor.currentDestiny,
+		"Actor UUID:",
+		actor.uuid,
+	);
 	//* Finished, checking for autoExecute
 	if (!autoExecute) {
 		return;
 	}
 	if (game.dice3d) {
+		//? Await 3D Dice animation - Read More: https://gitlab.com/riccisi/foundryvtt-dice-so-nice/-/wikis/API/Roll#detecting-the-end-of-a-3d-roll-animation-for-a-specific-message
+		//? Could also do simply await?
+		//todo see https://gitlab.com/riccisi/foundryvtt-dice-so-nice/-/wikis/API/Roll#disablingenabling-the-3d-animation-programmatically
 		game.dice3d.waitFor3DAnimationByMessageID(chatMessage.id).then(() => {
 			//? Automatically execute the activation/use of the Metapower/Possession if it's a Critical Success/Failure or not enough destiny to reroll
-			//! why no multiAction for Metapowers here?
+			//! why no multiAction for Metapowers here? Critical success removed reductions, is that why?
 			if (action === "Metapower") {
 				mL(3, "metaEvaluate", "Auto-Activating Metapower:", itemName);
 				metanthropes.metapowers.metaExecute(null, actor.uuid, action, itemName);
@@ -427,8 +432,6 @@ export async function metaEvaluate(
 		});
 	} else {
 		//? wait for 1 seconds to ensure the chat messages display in the proper order, ?probably not required?
-		//?des edw gia to pws perimenw na teleiwsei to animation https://gitlab.com/riccisi/foundryvtt-dice-so-nice/-/wikis/API/Roll#detecting-the-end-of-a-3d-roll-animation-for-a-specific-message
-		//todo see https://gitlab.com/riccisi/foundryvtt-dice-so-nice/-/wikis/API/Roll#disablingenabling-the-3d-animation-programmatically
 		await new Promise((resolve) => setTimeout(resolve, 1000));
 		//? Automatically execute the activation/use of the Metapower/Possession if it's a Critical Success/Failure or not enough destiny to reroll
 		//! why no multiAction for Metapowers here?
@@ -475,7 +478,7 @@ export async function metaEvaluateReRoll(event) {
 		ui.notifications.warn("Could not retrieve the message ID.");
 		return;
 	}
-	const reroll = button.dataset.reroll === "true" ? true : false;
+	const reroll = button.dataset.reroll === "false" ? false : true;
 	const rerollCounter = parseInt(button.dataset.rerollCounter);
 	const actorUUID = button.dataset.actoruuid;
 	const stat = button.dataset.stat;
@@ -510,7 +513,7 @@ export async function metaEvaluateReRoll(event) {
 		itemName,
 		messageId,
 		reroll,
-		rerollCounter
+		rerollCounter,
 	);
 	mL(3, "metaEvaluateReRoll", "Finished for:", actor.name + "'s", action, actorUUID);
 }

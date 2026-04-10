@@ -3,29 +3,14 @@
   "navigation": false,
   "navOrder": 0,
   "navName": "",
-  "background": {
-    "src": "systems/metanthropes/assets/maps/welcome.jpg",
-    "scaleX": 1,
-    "scaleY": 1,
-    "offsetX": 0,
-    "offsetY": 0,
-    "rotation": 0,
-    "tint": "#ffffff",
-    "anchorX": 0,
-    "anchorY": 0,
-    "fit": "fill",
-    "alphaThreshold": 0
-  },
-  "foregroundElevation": 8,
   "width": 3889,
   "height": 2222,
   "padding": 0.25,
   "initial": {
     "x": 3473,
     "y": 1719,
-    "scale": 0.5171094053261719
+    "scale": 0.517
   },
-  "backgroundColor": "#000000",
   "grid": {
     "type": 2,
     "size": 170,
@@ -75,6 +60,8 @@
       },
       "hidden": false,
       "flags": {},
+      "levels": [],
+      "locked": false,
       "_key": "!scenes.lights!LXyWJe2r9PXy9Mb0.98d9HA4JpEg1cKpe"
     },
     {
@@ -112,6 +99,8 @@
       "hidden": false,
       "flags": {},
       "_id": "WLuIaJcvI0vLDVqe",
+      "levels": [],
+      "locked": false,
       "_key": "!scenes.lights!LXyWJe2r9PXy9Mb0.WLuIaJcvI0vLDVqe"
     }
   ],
@@ -166,14 +155,13 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "14.352",
+    "coreVersion": "14.359",
     "systemId": "metanthropes",
     "systemVersion": "0.13.2",
     "createdTime": 1749109945286,
     "modifiedTime": 1749109945286,
     "lastModifiedBy": "Kej98KlIpboqpaRV"
   },
-  "foreground": null,
   "thumb": "systems/metanthropes/assets/artwork/scenes/the-lobby-thumbnail.webp",
   "weather": "",
   "environment": {
@@ -211,13 +199,12 @@
     }
   },
   "fog": {
-    "exploration": true,
     "reset": 1717789820946,
-    "overlay": null,
     "colors": {
       "explored": null,
       "unexplored": null
-    }
+    },
+    "mode": 1
   },
   "regions": [],
   "_id": "LXyWJe2r9PXy9Mb0",
@@ -226,8 +213,52 @@
   "transition": {
     "type": "fade",
     "duration": 1500,
-    "activateOnly": true
+    "activeOnly": true
   },
-  "_key": "!scenes!LXyWJe2r9PXy9Mb0",
-  "templates": []
+  "levels": [
+    {
+      "_id": "defaultLevel0000",
+      "name": "Lobby",
+      "background": {
+        "color": "#000000",
+        "src": "systems/metanthropes/assets/maps/welcome.jpg",
+        "tint": "#ffffff",
+        "alphaThreshold": 0.75
+      },
+      "elevation": {
+        "top": 8,
+        "bottom": 0
+      },
+      "foreground": {
+        "src": null,
+        "tint": "#ffffff",
+        "alphaThreshold": 0.75
+      },
+      "fog": {
+        "src": null,
+        "tint": "#ffffff"
+      },
+      "textures": {
+        "anchorX": 0.5,
+        "anchorY": 0.5,
+        "offsetX": 0,
+        "offsetY": 0,
+        "fit": "fill",
+        "scaleX": 1,
+        "scaleY": 1,
+        "rotation": 0
+      },
+      "visibility": {
+        "levels": []
+      },
+      "sort": 0,
+      "flags": {},
+      "_key": "!scenes.levels!LXyWJe2r9PXy9Mb0.defaultLevel0000"
+    }
+  ],
+  "shiftX": 0,
+  "shiftY": 0,
+  "initialLevel": "defaultLevel0000",
+  "templates": [],
+  "_key": "!scenes!LXyWJe2r9PXy9Mb0"
 }

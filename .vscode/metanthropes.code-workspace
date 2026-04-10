@@ -1,15 +1,12 @@
 {
 	"folders": [
 		{
-			"path": ".."
+			"path": "..",
 		},
-		{
-			"path": "D:/FoundryDev/V14/code"
-		}
 	],
 	"settings": {
 		"i18n-ally.localesPaths": ["lang"],
-		"i18n-ally.keystyle": "nested"
+		"i18n-ally.keystyle": "nested",
 	},
 	"extensions": {
 		"recommendations": [
@@ -23,7 +20,7 @@
 			"zignd.html-css-class-completion",
 			"ecmel.vscode-html-css",
 			"github.vscode-github-actions",
-			"donjayamanne.githistory"
-		]
-	}
+			"donjayamanne.githistory",
+		],
+	},
 }

@@ -1,3 +1,7 @@
+import "@client/global.mjs";
+import "@common/primitives/global.d.mts";
+import "@common/primitives/global.mjs";
+
 declare global {
 	// not a real extension of course but simplest way for this to work with the intellisense.
 	/**
@@ -8,4 +12,5 @@ declare global {
 	class Hooks extends foundry.helpers.Hooks {}
 	const fromUuid = foundry.utils.fromUuid;
 	const fromUuidSync = foundry.utils.fromUuidSync;
+	const _loc = game.i18n.localize;
 }

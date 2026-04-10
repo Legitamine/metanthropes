@@ -5,11 +5,11 @@
  *
  * @export
  * @async
- * @param {*} actor 
- * @param {*} hungerLevel 
- * @param {boolean} [messageId=false] 
- * @param {boolean} [reroll=false] 
- * @param {number} [rerollCounter=0] 
+ * @param {*} actor
+ * @param {*} hungerLevel
+ * @param {boolean} [messageId=false]
+ * @param {boolean} [reroll=false]
+ * @param {number} [rerollCounter=0]
  * @returns {*}
  */
 export async function metaHungerRoll(actor, hungerLevel, messageId = false, reroll = false, rerollCounter = 0) {
@@ -31,7 +31,7 @@ export async function metaHungerRoll(actor, hungerLevel, messageId = false, rero
 		metanthropes.utils.metaLog(5, "metaHungerRoll", "Hunger Level is not valid:", hungerLevel);
 		return;
 	}
-	const metaRollBeforeHungerCheck = await actor.getFlag("metanthropes", "MetaRollBeforeHungerCheck") || false;
+	const metaRollBeforeHungerCheck = (await actor.getFlag("metanthropes", "MetaRollBeforeHungerCheck")) || false;
 	const hungerRoll = await new Roll("1d100").evaluate();
 	const hungerRollResult = hungerRoll.total;
 	if (!reroll) {
@@ -39,7 +39,7 @@ export async function metaHungerRoll(actor, hungerLevel, messageId = false, rero
 	} else {
 		startMessage = "Re-Rolls";
 		rerollCounter++;
-		if (rerollCounter > 1) startMessage += ` (@METAFA(xmark, null, xs, fw)${rerollCounter})`;
+		if (rerollCounter > 1) startMessage += ` (@METAFA(xmark, null, xs)${rerollCounter})`;
 	}
 	hungerMessage = `${startMessage} to beat Hunger @METAFA(skull) Condition Level ${hungerLevel} and gets a result of ${hungerRollResult} (needed ${hungerTarget} or less).<br><br>`;
 	if (hungerRollResult > hungerTarget) {
@@ -74,7 +74,7 @@ export async function metaHungerRoll(actor, hungerLevel, messageId = false, rero
 					2,
 					"metaHungerRoll",
 					"Error: Action not valid for Hunger Check:",
-					metaRollBeforeHungerCheck.action
+					metaRollBeforeHungerCheck.action,
 				);
 				return;
 		}
@@ -122,7 +122,7 @@ export async function metaHungerRoll(actor, hungerLevel, messageId = false, rero
 			metaRollBeforeHungerCheck.stat,
 			metaRollBeforeHungerCheck.isCustomRoll,
 			metaRollBeforeHungerCheck.destinyCost,
-			metaRollBeforeHungerCheck.itemName
+			metaRollBeforeHungerCheck.itemName,
 		);
 		metanthropes.dice.metaRoll(
 			actor,
@@ -130,7 +130,7 @@ export async function metaHungerRoll(actor, hungerLevel, messageId = false, rero
 			metaRollBeforeHungerCheck.stat,
 			metaRollBeforeHungerCheck.isCustomRoll,
 			metaRollBeforeHungerCheck.destinyCost,
-			metaRollBeforeHungerCheck.itemName
+			metaRollBeforeHungerCheck.itemName,
 		);
 	}
 }
@@ -140,8 +140,8 @@ export async function metaHungerRoll(actor, hungerLevel, messageId = false, rero
  *
  * @export
  * @async
- * @param {*} event 
- * @returns {*} 
+ * @param {*} event
+ * @returns {*}
  */
 export async function metaHungerReRoll(event) {
 	event.preventDefault();
