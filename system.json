@@ -59,21 +59,6 @@
 	"esmodules": ["greensock/esm/all.js", "module/metanthropes.mjs"],
 	"scripts": [],
 	"styles": ["styles/metanthropes.css"],
-	"documentTypes": {
-		"Actor": {
-			"MetanthropesActorV2": {
-				"htmlFields": ["physical.description.player"]
-			}
-		},
-		"Item": {
-			"species": {
-				"htmlFields": ["description"]
-			},
-			"template": {
-				"htmlFields": ["description"]
-			}
-		}
-	},
 	"packs": [
 		{
 			"name": "demo-actors",
