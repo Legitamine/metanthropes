@@ -28,6 +28,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 - Removed support for Foundry VTT V13. With the new features V14 brings like the new Active Effects & the current quality of the build, we feel that there is no need to keep V13 support. You can easily install V14 without affecting your existing V13 installation. If you require assistance, don't hesitate to reach out on our Discord and we'll help you migrate to V14 in no time!
 - When creating a new World, you now get the option to name the default Gamemaster user. If you don't, it will be localized to 'The Narrator'.
+- Updated the Journals with some new tables and images and minor fixes.
 - Extended the Metanthropes API to include the new classes and the experimental VFX.
 - Console logging (F12 or Ctrl+Shift+i) now has different colored messages to help distinguish the Advanced Logging ones.
 - Updated the `>_ Send to Console` button, to work with both AppV1 and AppV2 sheets of any Document type. This buttons shows up when you enable the 'Advanced Logging' option in the settings and will send to the console both the App & Document for quick inspection during development and to help with debugging.
