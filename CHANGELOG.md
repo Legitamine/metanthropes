@@ -10,19 +10,15 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 # Early Access Releases
 
-## Early Access v0.14.043 [2026-04-10]
+## Early Access v0.14.044 [2026-04-10]
 
 ### Added:
 
-- Added support for **Foundry V14** stable build 14.359.
+- Added support for **Foundry V14** - the latest supported build is 14.360 (Stable 2).
 - Added support for Font Awesome v7.2.
 - The **New User Interface** is now available! It comes with both **Dark & Light Themes** for the Interface and Applications sections of the UI. Looking forward to your feedback! This update does not include the new Sheets for Actors & Items as these are being developed along with the data models and will arrive soon™. The current Actor & Item Sheets had a small facelift, and remain functionaly the same.
 - [Introductory] Now supports the new 'Quickstart' capability, so when you create a new World you can select the Metanthropes: Introductory Adventure during the World creation. This will skip the required installation steps & the new World will be ready to go on the first load.
 - [Homebrew] Added support for the new Experimental VFX engine. Metapowers & Possessions that deal Damage automatically, will now trigger a new Visual & Audio effect upon successful activation, before automatically applying the damage. The effect will not trigger on subsequent Damage re-rolls with Destiny. The placeholder particles that show up, the Damage text size & text color will adjust dynamically according to the Energy type & amount of Damage dealt! Requires Alpha Testing Enabled in the Settings.
-
-- [Homebrew] The new Metanthropes Actor, the new Species and Template Item types are available for Alpha testing. This is a major step to Metanthropes going out of Early Access and we are looking forward to your feedback. Read more about it on our [Dev Blog]. Requires Alpha Testing Enabled in the Settings.(). +Design Doc
-- [Homebrew] The new Actor Active Effects are now available in a Compendium! Note that they are intented to be used only with the new 'Metanthropes Actor' type and not any of the existing ones, so it's only meant for initial testing with the new Actors. ()[] also need to add this in the compendium build script & github actions!!!
-- NEW Actor Sheet V2 + Item Sheet V2 (Species/Template)
 
 ### Changed:
 
@@ -46,8 +42,6 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 - [DSN] Fixed support for the latest Dice So Nice v5.3.3.
 
 ### Known Issues:
-
-- Review The Forge compatibility
 
 - When the sidebar is minimized and Chat Cards are enabled for Chat Notifications in the User Interface Configuration, the Chat Card will use the Light Interface theme, regardless of the user's choice. In addition, activating a Metapower / using a Possession from the Chat Card, won't remember that the button was clicked from the Chat Card, when viewed in the Chat later, allowing players to re-activate them.
 
