@@ -1,5 +1,6 @@
 //! This whole hook is going to be removed & refactored be part of the new roll Orchestrator
 Hooks.on("renderChatMessageHTML", async (message, html) => {
+	const mL = metanthropes.utils.metaLog;
 	//* Chat Button Handling
 	//? Get the actor from the message - all our messages have the actoruuid flag set, so if it's not our message, return.
 	const actorUUID = await message.getFlag("metanthropes", "actoruuid");

@@ -1,9 +1,10 @@
 /**
- * Applies updates to an actor, provided the actorUUID and updateData
- * If the user is GM it proceeds to do the update, if not, it emits a socket message
- * todo the game.user should also work in updating documents that isOwner(?), saving us some socket calls
- * ? this should also work for any type of document, not just actor documents, right?
- * ? edw na kanw return done/failed? kai na kanw try/catch otan to kanw call?
+ * Applies updates to an Actor, provided the actorUUID and updateData
+ ** If the user is GM or metaowner of the Actor, it proceeds to do the update.
+ ** If not, it emits a socket message with the proper payload
+ *todo validate and serialize data (is it required?)
+ *todo this should also work for any type of document, not just actor documents, right?
+ *todo edw na kanw return done/failed? kai na kanw try/catch otan to kanw call?
  *
  * @export
  * @async
@@ -13,15 +14,23 @@
  */
 export async function metaApplyActorUpdates(actorUUID, updateData) {
 	const mL = metanthropes.utils.metaLog;
-	if (game.user.isGM) {
-		mL(3, "metaApplyActorUpdates", "User is a GM, applying updates directly");
-		const actor = await fromUuid(actorUUID);
+	const actor = await fromUuid(actorUUID);
+	if (game.user.isGM || actor.system?.metaowner?.value === game.user.name) {
+		mL(3, "metaApplyActorUpdates", "User is a GM or onwer of the Actor", "Applying Actor updates directly");
 		return await actor.update(updateData);
 	}
-	mL(3, "metaApplyActorUpdates", "User is not a GM, socket emit instead", actorUUID, updateData);
-	return await game.socket.emit("system.metanthropes", {
+	const payload = {
 		action: "metaApplyActorUpdate",
 		actorUUID: actorUUID,
 		updateData: updateData,
-	});
+	};
+	mL(
+		3,
+		"metaApplyActorUpdates",
+		"User is not a GM or owner of the Actor",
+		"Using Socket to update the Actor",
+		"With payload",
+		payload,
+	);
+	return await game.socket.emit("system.metanthropes", payload);
 }

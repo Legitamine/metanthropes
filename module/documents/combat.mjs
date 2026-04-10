@@ -42,7 +42,7 @@ export class MetanthropesCombat extends Combat {
 				"aActor:",
 				aActor,
 				"bActor:",
-				bActor
+				bActor,
 			);
 			return;
 		}
@@ -70,7 +70,7 @@ export class MetanthropesCombat extends Combat {
 					"'Perfect Tie' between combatants:",
 					a.name,
 					"and:",
-					b.name
+					b.name,
 				);
 				//ui.notifications.warn(`'Perfect Tie' between combatants: ${a.name} & ${b.name}`);
 				//a.combat.rollInitiative([a._id, b._id]);
@@ -119,7 +119,7 @@ export class MetanthropesCombat extends Combat {
 				"Combat",
 				"rollInitiative",
 				"Engaging metaInitiative for combatant:",
-				combatant.name
+				combatant.name,
 			);
 			await metanthropes.dice.metaInitiative(combatant);
 			let initiativeResult = combatant.actor.getFlag("metanthropes", "lastrolled").Initiative;
@@ -129,7 +129,7 @@ export class MetanthropesCombat extends Combat {
 				"rollInitiative",
 				"metaInitiative result for combatant:",
 				combatant.name,
-				initiativeResult
+				initiativeResult,
 			);
 			updates.push({ _id: id, initiative: initiativeResult });
 		}
@@ -153,13 +153,13 @@ export class MetanthropesCombat extends Combat {
 		for (let combatant of this.combatants) {
 			if (combatant.initiative === null || combatant.initiative === undefined) {
 				ui.notifications.warn(
-					"All Combatants must have rolled for Initiative before starting Combat Encounter!"
+					"All Combatants must have rolled for Initiative before starting Combat Encounter!",
 				);
 				return;
 			}
 		}
 		//? Create Chat Message
-		await ChatMessage.create({
+		await metanthropes.applications.MetaChatMessage.create({
 			content: `Combat Encounter Begins!<br><br>`,
 			speaker: { alias: "Metanthropes Action Scene" },
 		});
@@ -174,15 +174,15 @@ export class MetanthropesCombat extends Combat {
 	 */
 	async endCombat() {
 		return Dialog.confirm({
-			title: game.i18n.localize("COMBAT.EndTitle"),
-			content: `<p>${game.i18n.localize("COMBAT.EndConfirmation")}</p>`,
+			title: _loc("COMBAT.EndTitle"),
+			content: `<p>${_loc("COMBAT.EndConfirmation")}</p>`,
 			yes: async () => {
 				//? Chat message
 				const combatCycle = Math.ceil(this.round / 2) ?? 0;
 				const combatRound = this.round ?? 0;
 				const combatCycleMessage = `${combatCycle} Cycle${combatCycle === 1 ? "" : "s"}`;
 				const combatRoundMessage = `${combatRound} Round${combatRound === 1 ? "" : "s"}`;
-				await ChatMessage.create({
+				await metanthropes.applications.MetaChatMessage.create({
 					content: `Combat Encounter Ended after:<br><br>${combatRoundMessage} and ${combatCycleMessage}!<br><br>`,
 					speaker: { alias: "Metanthropes Action Scene" },
 				});
@@ -220,7 +220,7 @@ export class MetanthropesCombat extends Combat {
 			for (let combatant of this.combatants) {
 				if (combatant.initiative === null || combatant.initiative === undefined) {
 					ui.notifications.warn(
-						"All combatants must have rolled for Initiative before progressing the Turn!"
+						"All combatants must have rolled for Initiative before progressing the Turn!",
 					);
 					return;
 				}
@@ -298,7 +298,7 @@ export class MetanthropesCombat extends Combat {
 			"Apply Effects for Round:",
 			applyEffectsForRound,
 			"while this is for Round:",
-			this.round
+			this.round,
 		);
 		if (Number(applyEffectsForRound) < this.round) {
 			metanthropes.utils.metaLog(
@@ -307,7 +307,7 @@ export class MetanthropesCombat extends Combat {
 				"_onEndRound",
 				"Applying End of Round:",
 				this.previous.round,
-				"Effects"
+				"Effects",
 			);
 			await this.metaApplyEndOfRoundEffects();
 			metanthropes.utils.metaLog(
@@ -316,7 +316,7 @@ export class MetanthropesCombat extends Combat {
 				"_onEndRound",
 				"Finished applying end of Round",
 				this.previous.round,
-				"Effects"
+				"Effects",
 			);
 		} else {
 			metanthropes.utils.metaLog(
@@ -326,7 +326,7 @@ export class MetanthropesCombat extends Combat {
 				"End of Round Effects already applied for Round:",
 				applyEffectsForRound,
 				"while this is for Round:",
-				this.round
+				this.round,
 			);
 		}
 		metanthropes.utils.metaLog(3, "Combat", "_onEndRound", "Finished");
@@ -347,7 +347,7 @@ export class MetanthropesCombat extends Combat {
 		if (this.round > 2 && this.round % 2 !== 0) {
 			//? Create a chat message indicating the new Cycle and a new Initiative Roll
 			metanthropes.utils.metaLog(3, "Combat", "_onStartRound", "Initiative Reset for Round:", this.round);
-			await ChatMessage.create({
+			await metanthropes.applications.MetaChatMessage.create({
 				content: `New Round & New Cycle!<br><br>Round: ${this.round} - Cycle: ${nextCycle}<br><br>Roll for Inititiative!<br><br>`,
 				speaker: {
 					alias: "Metanthropes Action Scene",
@@ -361,10 +361,10 @@ export class MetanthropesCombat extends Combat {
 						5,
 						"Combat",
 						"_onStartRound",
-						"First Round did not have a Previous Round of 0"
+						"First Round did not have a Previous Round of 0",
 					);
 				metanthropes.utils.metaLog(3, "Combat", "_onStartRound", "First Round:", this.round);
-				await ChatMessage.create({
+				await metanthropes.applications.MetaChatMessage.create({
 					content: `Round: ${this.round} - Cycle: ${nextCycle}<br><br>`,
 					speaker: {
 						alias: "Metanthropes Action Scene",
@@ -372,7 +372,7 @@ export class MetanthropesCombat extends Combat {
 				});
 			} else {
 				metanthropes.utils.metaLog(3, "Combat", "_onStartRound", "Round:", this.round);
-				await ChatMessage.create({
+				await metanthropes.applications.MetaChatMessage.create({
 					content: `New Round!<br><br>Round: ${this.round} - Cycle: ${nextCycle}<br><br>`,
 					speaker: {
 						alias: "Metanthropes Action Scene",
@@ -395,7 +395,7 @@ export class MetanthropesCombat extends Combat {
 			"Combat",
 			"metaApplyEndOfRoundEffects",
 			"Engaged for Round:",
-			this.previous.round
+			this.previous.round,
 		);
 		//? Accumulate messages for the chat
 		let chatContent = `Round ${this.previous.round} concluded.<br><br>Applying End of Round Effects.<br><br>`;
@@ -428,7 +428,7 @@ export class MetanthropesCombat extends Combat {
 						"Combat",
 						"nextRound",
 						"Unconscious Level is out of bounds:",
-						unconsciousLevel
+						unconsciousLevel,
 					);
 				}
 			}
@@ -452,7 +452,7 @@ export class MetanthropesCombat extends Combat {
 						"Combat",
 						"nextRound",
 						"Asphyxiation Level is out of bounds:",
-						asphyxiationLevel
+						asphyxiationLevel,
 					);
 				}
 			}
@@ -474,7 +474,7 @@ export class MetanthropesCombat extends Combat {
 						"Combat",
 						"nextRound",
 						"Fatigue Level is out of bounds:",
-						fatigueLevel
+						fatigueLevel,
 					);
 				}
 			}
@@ -484,11 +484,11 @@ export class MetanthropesCombat extends Combat {
 				const currentLife = actor.system.Vital.Life.value;
 				let lifeLoss;
 				let newLife;
-				const metaHomebrew = await game.settings.get("metanthropes", "metaHomebrew");
+				const metaHomebrew = game.settings.get("metanthropes", "metaHomebrew");
 				if (metaHomebrew) {
-					const homebrewBleeding = (await game.settings.get("metanthropes", "metaBleeding")) ?? 1;
+					const homebrewBleeding = (game.settings.get("metanthropes", "metaBleeding")) ?? 1;
 					const homebrewName =
-						(await game.settings.get("metanthropes", "metaHomebrewName")) ??
+						(game.settings.get("metanthropes", "metaHomebrewName")) ??
 						"Error: Custom Homebrew Name not defined properly, please fix in the Settings";
 					lifeLoss = Number(bleedingLevel) * Number(homebrewBleeding);
 					newLife = Number(currentLife) - lifeLoss;
@@ -509,7 +509,7 @@ export class MetanthropesCombat extends Combat {
 			}
 		}
 		//? Create the chat message
-		await ChatMessage.create({
+		await metanthropes.applications.MetaChatMessage.create({
 			content: chatContent,
 			speaker: ChatMessage.getSpeaker({ alias: "Metanthropes Action Scene" }),
 		});
@@ -518,7 +518,7 @@ export class MetanthropesCombat extends Combat {
 			"Combat",
 			"metaApplyEndOfRoundEffects",
 			"Finished applying effects for Round:",
-			this.previous.round
+			this.previous.round,
 		);
 	}
 	//Todo: Keeping this until we finalize the Journal text

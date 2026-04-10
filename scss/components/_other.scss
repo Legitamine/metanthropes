@@ -1,0 +1,73 @@
+@use "../settings" as *;
+//* Other
+
+// effects, forms, items, responsive, dice encoutner/(d20)
+
+//* Effects
+.effects .item {
+	.effect-source,
+	.effect-duration,
+	.effect-controls {
+		text-align: center;
+		border-left: 1px solid var(--metanthropes-color-background);
+		border-right: 1px solid var(--metanthropes-color-background);
+		font-size: 12px;
+	}
+
+	.effect-controls {
+		border: none;
+	}
+	text-align: center;
+	padding: 0 2px; // to align with the header border
+}
+
+
+//* Forms
+
+//? Primary shadow color for active tabs
+.tabs .item.active {
+	text-shadow: 0 0 10px var(--metanthropes-color-highlight);
+}
+
+//* Resources (V1 reference)
+.resource {
+	font-family: $font-secondary;
+	font-size: 0.9rem;
+	color: var(--metanthropes-color-text);
+	justify-content: center;
+	align-items: center;
+	align-self: center;
+	font-weight: 500;
+	padding: $padding-sm;
+	margin: $margin-sm;
+}
+
+.resource-label {
+	font-family: $font-primary;
+	font-size: 0.9rem;
+	color: var(--metanthropes-color-text);
+	width: 100%;
+	justify-content: center;
+	justify-self: center;
+	align-items: center;
+	align-self: center;
+	font-weight: 700;
+	padding: $padding-sm;
+	margin: $margin-sm;
+}
+
+//* Sidebar directory (?)
+.directory .directory-header .header-search input {
+	background-color: var(--metanthropes-color-background);
+}
+
+//* Perk specifics
+.perk-item {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.perk-item .resource-label {
+	margin-right: 10px;
+}

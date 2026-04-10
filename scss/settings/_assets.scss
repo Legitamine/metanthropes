@@ -1,0 +1,39 @@
+//* Artwork paths
+
+//* Chat
+$a-chat-bw-dark: url("../assets/artwork/ui/chat/chat-bw-dark.webp");
+$a-chat-bw-light: url("../assets/artwork/ui/chat/chat-bw-light.webp");
+$a-chat-text-area: url("../assets/artwork/ui/chat/chat-box.webp"); //?! chat input image deprecated in V13?
+
+//* Application
+$a-app-bw-dark: url("../systems/metanthropes/assets/artwork/ui/app/app-bw-dark.webp");
+$a-app-bw-light: url("../systems/metanthropes/assets/artwork/ui/app/app-bw-light.webp");
+
+//* Sidebar
+$a-sidebar-dark: url("../systems/metanthropes/assets/artwork/ui/sidebar/sidebar-dark.webp");
+$a-sidebar-light: url("../systems/metanthropes/assets/artwork/ui/sidebar/sidebar-light.webp");
+
+//* Combat dice
+$a-sidebar-combat-dice-background: url("../assets/artwork/ui/dice/d100roll-white.webp") no-repeat 50% 50%;
+$a-sidebar-combat-dice-selected: url("../assets/artwork/ui/dice/d100roll-white-selected.webp");
+
+//* Journal
+$a-journal-dark: url("../assets/artwork/ui/app/app-image-dark.webp");
+$a-journal-light: url("../assets/artwork/ui/app/app-image-light.webp");
+
+//* Loading Background (empty canvas)
+$a-loading-background: url("../assets/cover/loading.webp");
+
+//* Window (character sheets)
+$a-background-image: url("../assets/artwork/ui/window/background.webp");
+//$a-background-image: url("../assets/artwork/ui/app/app-generic.webp");
+$a-background-logo: url("../assets/artwork/ui/window/logo.webp");
+
+//* Border
+//$a-border-image: url(../assets/artwork/ui/borders/border.webp) 5 / 10px round;
+
+//* Cursor
+$a-cursor-hover: url("../assets/artwork/ui/dice/d100roll-black-small.webp"), pointer;
+
+//* Button
+$a-button-image: url("../assets/artwork/ui/buttons/button.webp");

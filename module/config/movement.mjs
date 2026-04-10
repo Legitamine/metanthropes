@@ -1,7 +1,7 @@
 export const MOVEMENT = Object.freeze({
 	label: "METANTHROPES.MOVEMENT.LABEL",
 	hint: "METANTHROPES.MOVEMENT.HINT",
-	speed: {
+	speed: { //these go under the new DM physical?
 		label: "METANTHROPES.MOVEMENT.SPEED.LABEL",
 		hint: "METANTHROPES.MOVEMENT.SPEED.HINT",
 		buff: {

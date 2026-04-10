@@ -18,7 +18,7 @@ export async function metaCoverRoll(
 	coverValue,
 	messageId = false,
 	reroll = false,
-	rerollCounter = 0
+	rerollCounter = 0,
 ) {
 	let coverMessage = null;
 	let coverTarget = null;
@@ -47,7 +47,7 @@ export async function metaCoverRoll(
 	} else {
 		startMessage = "Re-Rolls";
 		rerollCounter++;
-		if (rerollCounter > 1) startMessage += ` (@METAFA(xmark, null, xs, fw)${rerollCounter})`;
+		if (rerollCounter > 1) startMessage += ` (@METAFA(xmark, null, xs)${rerollCounter})`;
 	}
 	coverMessage = `${startMessage} to find ${coverType} Cover, with ${coverValue}% and gets a result of ${coverRollResult} (needed ${coverTarget} or less).<br><br>`;
 	if (coverRollResult > coverTarget) {

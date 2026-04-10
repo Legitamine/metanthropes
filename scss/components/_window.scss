@@ -1,0 +1,59 @@
+@use "../settings" as *;
+//* Window
+
+// this changes the font in most title-elements of Foundry UI
+.window-app {
+	//font-family: $font-primary; //or
+	margin: $padding-sm;
+	padding: $padding-sm;
+}
+.window-content {
+	//font-family: $font-primary;
+	padding: $padding-md;
+	margin: $margin-md;
+}
+
+.window-app .window-content {
+	position: relative;
+	background-image: $a-background-image;
+	//background: var(--background);
+	//background-blend-mode: darken;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-origin: border-box;
+	background-clip: border-box;
+	z-index: 1;
+	&::before {
+		pointer-events: none;
+		content: "";
+		display: inline-block;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 55%;
+		height: 55%;
+		background-image: $a-background-logo;
+		background-position: center;
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-origin: padding-box;
+		background-clip: content-box;
+		z-index: 2;
+		filter: blur(1px);
+		opacity: 0.5;
+	}
+}
+
+//todo: are z-indexes here still doing something?
+//!metanthropes logo in cs background still needs these
+//! also in _journal
+.window-app .window-resizable-handle {
+	z-index: 4;
+}
+
+.image-popout figure {
+	z-index: 3;
+}

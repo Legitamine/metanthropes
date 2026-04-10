@@ -1,0 +1,96 @@
+@use "../settings" as *;
+//* Consolidated Theme Selections
+
+//* Dark Theme */
+:root,
+.theme-dark,
+body.theme-dark,
+body.theme-dark select,
+body.theme-dark input,
+body.theme-dark .application,
+body.theme-dark .application .window-content,
+.application.theme-dark,
+.application.metanthropes.themed.theme-dark {
+	--metanthropes-chat-bg: #{$a-chat-bw-dark};
+	--metanthropes-color-success: #{$c-success-dark};
+	--metanthropes-color-buff: #{$c-buff-dark};
+	--metanthropes-color-failure: #{$c-failure-dark};
+	--metanthropes-color-condition: #{$c-condition-dark};
+	--metanthropes-color-primary: #{$c-dark-purple};
+	--metanthropes-color-secondary: #{$c-main-purple};
+	--metanthropes-color-highlight: #{$c-dark-highlight};
+	--metanthropes-color-text: #{$c-light-font};
+	--metanthropes-color-text-shadow: #{$c-light-purple};
+	--metanthropes-color-disabled: #{$c-light-gold};
+	--metanthropes-color-background: #{$c-light-purple};
+	//* Foundry Overrides
+	--background: #{$a-app-bw-dark}; //! weird resolving url
+	--background-journal-image: #{$a-journal-dark};
+	--sidebar-background: #{$a-sidebar-dark}; //! weird resolving url
+	//? what's this for? --tjs-app-background: url("../systems/metanthropes/assets/artwork/ui/app/app-colored-dark.png");
+	--color-text-primary: #{$c-light-font};
+	--color-fieldset-border: var(--metanthropes-color-primary);
+	--color-scrollbar: var(--metanthropes-color-highlight);
+	--color-shadow-primary: var(--metanthropes-color-disabled);
+	--color-shadow-highlight: var(--metanthropes-text-shadow);
+	--color-warm-1: var(--metanthropes-color-highlight);
+	--button-background-color: rgba(0 0 0 / 10%);
+	--button-border-color: var(--metanthropes-color-secondary);
+	--button-text-color: var(--metanthropes-color-text);
+	--button-focus-outline-color: var(--metanthropes-color-primary);
+	--button-hover-background-color: var(--metanthropes-color-primary);
+	--button-hover-text-color: var(--metanthropes-color-secondary);
+	--input-focus-outline-color: var(--metanthropes-color-highlight);
+	--outline-color: var(--metanthropes-color-secondary);
+	accent-color: var(--metanthropes-color-primary);
+	caret-color: var(--metanthropes-color-secondary);
+	outline-color: var(--metanthropes-color-secondary);
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}
+
+//* Light Theme */
+.theme-light,
+body.theme-light,
+body.theme-light select,
+body.theme-light input,
+body.theme-light .application,
+.application.theme-light,
+.application.metanthropes.themed.theme-light {
+	--metanthropes-chat-bg: #{$a-chat-bw-light};
+	--metanthropes-color-success: #{$c-success-light};
+	--metanthropes-color-buff: #{$c-buff-light};
+	--metanthropes-color-failure: #{$c-failure-light};
+	--metanthropes-color-condition: #{$c-condition-light};
+	--metanthropes-color-primary: #{$c-dark-blue};
+	--metanthropes-color-secondary: #{$c-main-blue};
+	--metanthropes-color-highlight: #{$c-light-highlight};
+	--metanthropes-color-text: #{$c-dark-font};
+	--metanthropes-color-text-shadow: #{$c-light-blue};
+	--metanthropes-color-disabled: #{$c-dark-gold};
+	--metanthropes-color-background: #{$c-light-blue};
+	//* Foundry Overrides
+	--background: #{$a-app-bw-light};
+	--background-journal-image: #{$a-journal-light};
+	--sidebar-background: #{$a-sidebar-light};
+	//--tjs-app-background: url("../systems/metanthropes/assets/artwork/ui/app/app-colored-light.png");
+	--color-text-primary: #{$c-dark-font};
+	--color-fieldset-border: var(--metanthropes-color-primary);
+	--color-scrollbar: var(--metanthropes-color-highlight);
+	--color-shadow-primary: var(--metanthropes-color-disabled);
+	--color-shadow-highlight: var(--metanthropes-text-shadow);
+	--color-warm-1: var(--metanthropes-color-highlight);
+	--button-background-color: rgba(0 0 0 / 10%);
+	--button-border-color: var(--metanthropes-color-secondary);
+	--button-text-color: var(--metanthropes-color-text);
+	--button-focus-outline-color: var(--metanthropes-color-primary);
+	--button-hover-background-color: var(--metanthropes-color-primary);
+	--button-hover-text-color: var(--metanthropes-color-secondary);
+	--input-focus-outline-color: var(--metanthropes-color-highlight);
+	--outline-color: var(--metanthropes-color-secondary);
+	accent-color: var(--metanthropes-color-primary);
+	caret-color: var(--metanthropes-color-secondary);
+	outline-color: var(--metanthropes-color-secondary);
+	backdrop-filter: none;
+	-webkit-backdrop-filter: none;
+}

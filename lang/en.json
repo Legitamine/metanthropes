@@ -20,7 +20,7 @@
 			"DataFinalizing": "Finalizing Data Migration",
 			"PrototypeTokens": "Updating Token Defauls",
 			"Content": "Updating Content",
-			"Narrator": "Renaming Gamemaster to 'The Narrator'",
+			"NarratorRename": "Renaming Gamemaster to",
 			"Finalizing": "Finalizing...",
 			"Finished": "Finished Updating World Data!",
 			"Failed": "Did not receive valid Migration Data",
@@ -45,7 +45,12 @@
 			"Target": "Target",
 			"Targets": "Targets",
 			"Duration": "Duration",
-			"Range": "Range"
+			"Range": "Range",
+			"Logging": "Send to Console",
+			"Cosmic": "Cosmic",
+			"Elemental": "Elemental",
+			"Material": "Material",
+			"Psychic": "Psychic"
 		},
 		"LOGIC": {
 			"METAEXECUTE": {
@@ -89,56 +94,57 @@
 				}
 			}
 		},
-		"SHEET": {
-			"ACTOR": {
-				"LABEL": "Metanthropes Actor Sheet V2"
-			}
-		},
 		"ACTOR": {
-			"BASE": {
-				"FIELDS": {
-					"resources": {
-						"life": {
-							"label": "Life",
-							"hint": "Life represents a Character's overall health, vitality, and will to live.",
-							"value": {
-								"label": "Current",
-								"hint": "Life represents a Character's overall health, vitality, and will to live."
-							},
-							"max": {
-								"label": "Maximum",
-								"hint": "Metanthrope Characters have a maximum Life total of 100 + their Endurance score and also gain an additional +25 Life for every 5.000 Total EXP they have accumulated"
-							}
+			"FIELDS": {
+				"resources": {
+					"life": {
+						"label": "Life",
+						"labelArtificial": "Durability",
+						"hint": "Life represents a Character's overall health, vitality, and will to live.",
+						"current": {
+							"label": "Current Life",
+							"hint": "This is your current Life."
 						},
-						"actions": {
-							"label": "Actions",
-							"hint": "Actions represent a Character's ability to perform tasks, combat maneuvers, and other actions."
+						"base": {
+							"label": "Base Life",
+							"hint": "The life from ..."
+						},
+						"max": {
+							"label": "Maximum Life",
+							"hint": "Metanthropes have a maximum Life of 100 + their Endurance Score and also gain an additional +25 Life for every 5.000 EXP they have accumulated."
 						}
 					}
 				},
-				"life": {
-					"label": "Life",
-					"value": {
-						"label": "Current",
-						"hint": "Life represents a Character's overall health, vitality, and will to live."
-					},
-					"starting": {
-						"label": "Starting",
-						"hint": "Starting <i class=\"fa-solid fa-heart\"></i> Life"
-					},
-					"max": {
-						"label": "Maximum",
-						"hint": "Metanthrope Characters have a maximum Life total of 100 + their Endurance score and also gain an additional +25 Life for every 5.000 Total EXP they have accumulated"
-					},
-					"restore": {
-						"hint": "Undo last automatic Life change",
-						"notification": "Cannot undo last automatic Life change for "
-					}
+				"actions": {
+					"main": {},
+					"extra": {},
+					"reaction": {},
+					"label": "Actions",
+					"hint": "Actions represent a Character's ability to perform tasks, combat maneuvers, and other actions."
 				},
+				"exp": {},
 				"physical": {
 					"description": {
 						"label": "Physical Description",
 						"hint": "The physical description of this Actor."
+					},
+					"resistances": {
+						"cosmic": {
+							"label": "Cosmic",
+							"hint": "Cosmic Energy Type Hint"
+						},
+						"elemental": {
+							"label": "Elemental",
+							"hint": "Elemental Energy Type Hint"
+						},
+						"material": {
+							"label": "Material",
+							"hint": "Material Energy Type Hint"
+						},
+						"psychic": {
+							"label": "Psychic",
+							"hint": "Psychic Energy Type Hint"
+						}
 					},
 					"height": {
 						"label": "Height",
@@ -160,59 +166,116 @@
 						"label": "Place of Birth",
 						"hint": "The physical place of birth of this Actor."
 					}
+				},
+				"chars": {
+					"body": {
+						"label": "Body",
+						"hint": "Body is the Characteristic which defines a Character's constitution, physical prowess, and physique.",
+						"ifZero": "new test"
+					},
+					"mind": {
+						"label": "Mind",
+						"hint": "Mind is the Characteristic which defines a Character's brainpower, problem solving and innovative thoughts."
+					},
+					"soul": {
+						"label": "Soul",
+						"hint": "Soul is the Characteristic which defines a Character's conviction, spiritual prowess, and mettle."
+					}
+				},
+				"stats": {
+					"endurance": {
+						"label": "Endurance",
+						"hint": "Endurance determines a Character's stamina, health, and vigor.",
+						"current": {
+							"label": "Current Endurance",
+							"hint": "Your Endurance is Low!"
+						}
+					},
+					"power": {
+						"label": "Power",
+						"hint": "Power determines a Character's strength, striking effectiveness, and physical explosiveness."
+					},
+					"reflexes": {
+						"label": "Reflexes",
+						"hint": "Reflexes determines a Character's agility, motor skills and balance."
+					},
+					"creativity": {
+						"label": "Creativity",
+						"hint": "Creativity determines a Character's imagination, expression, and handiwork."
+					},
+					"manipulation": {
+						"label": "Manipulation",
+						"hint": "Manipulation determines a Character's persuasiveness, charisma, and social engineering skills."
+					},
+					"perception": {
+						"label": "Perception",
+						"hint": "Perception determines a Character's observatory, evaluative and calculative capabilities."
+					},
+					"awareness": {
+						"label": "Awareness",
+						"hint": "Awareness determines a Character's empathy, intuition, and instinctual responses."
+					},
+					"willpower": {
+						"label": "Willpower",
+						"hint": "Willpower determines a Character's courage, discipline, and confidence."
+					},
+					"consciousness": {
+						"label": "Consciousness",
+						"hint": "Consciousness determines a Character's recollection, subconscious processing, and sanity."
+					}
+				},
+				"buffs": {},
+				"conditions": {},
+				"perks": {},
+				"notes": {}
+			},
+			"SHEET": {
+				"TABS": {
+					"Actions": "Actions",
+					"Perks": "Perks",
+					"Metapowers": "Metapowers",
+					"Possessions": "Possessions",
+					"Effects": "Effects",
+					"Notes": "Notes"
 				}
 			}
 		},
-		"CHARS": {
-			"BODY": {
-				"LABEL": "Body",
-				"HINT": "Body is the Characteristic which defines a Character's constitution, physical prowess, and physique."
+		"ITEM": {
+			"SPECIES": {
+				"FIELDS": {
+					"resources": {
+						"life": {
+							"initial": {
+								"label": "Initial Life",
+								"hint": "The Initial Life added to the the Actor"
+							},
+							"label": "Life",
+							"labelArtificial": "Durability",
+							"hint": "Initial Life given to a character based on their Species"
+						}
+					}
+				}
 			},
-			"MIND": {
-				"LABEL": "Mind",
-				"HINT": "Mind is the Characteristic which defines a Character's brainpower, problem solving and innovative thoughts."
-			},
-			"SOUL": {
-				"LABEL": "Soul",
-				"HINT": "Soul is the Characteristic which defines a Character's conviction, spiritual prowess, and mettle."
+			"TEMPLATE": {
+				"FIELDS": {
+					"resources": {
+						"life": {
+							"initial": {
+								"label": "Initial Life",
+								"hint": "The Initial Life added to the the Actor"
+							},
+							"label": "Life",
+							"labelArtificial": "Durability",
+							"hint": "Initial Life given to a character based on this Archetype"
+						}
+					}
+				}
 			}
 		},
-		"STATS": {
-			"ENDURANCE": {
-				"LABEL": "Endurance",
-				"HINT": "Endurance determines a Character's stamina, health, and vigor."
-			},
-			"POWER": {
-				"LABEL": "Power",
-				"HINT": "Power determines a Character's strength, striking effectiveness, and physical explosiveness."
-			},
-			"REFLEXES": {
-				"LABEL": "Reflexes",
-				"HINT": "Reflexes determines a Character's agility, motor skills and balance."
-			},
-			"CREATIVITY": {
-				"LABEL": "Creativity",
-				"HINT": "Creativity determines a Character's imagination, expression, and handiwork."
-			},
-			"MANIPULATION": {
-				"LABEL": "Manipulation",
-				"HINT": "Manipulation determines a Character's persuasiveness, charisma, and social engineering skills."
-			},
-			"PERCEPTION": {
-				"LABEL": "Perception",
-				"HINT": "Perception determines a Character's observatory, evaluative and calculative capabilities."
-			},
-			"AWARENESS": {
-				"LABEL": "Awareness",
-				"HINT": "Awareness determines a Character's empathy, intuition, and instinctual responses."
-			},
-			"WILLPOWER": {
-				"LABEL": "Willpower",
-				"HINT": "Willpower determines a Character's courage, discipline, and confidence."
-			},
-			"CONSCIOUSNESS": {
-				"LABEL": "Consciousness",
-				"HINT": "Consciousness determines a Character's recollection, subconscious processing, and sanity."
+		"ACTIVATIONS": {
+			"alwaysActive": {
+				"label": "Always Active",
+				"hint": "Always Active Hint"
 			}
 		},
 		"MOVEMENT": {
@@ -231,24 +294,68 @@
 				"HINT": "blah"
 			}
 		},
-		"ITEMS": {
-			"POSSESSIONS": {
-				"MATERIAL": {
-					"Category": "The type of Materials used in creating this Possession.",
-					"Durability": "The durability of this Possession. When this Possession takes damage, which is higher than the Resistance for that damage type, excess damage reduces the Durability of the Possession. When Durability reaches 0, the Possession is destroyed.",
-					"Size": "The Size of this Possession.",
-					"Weight": "The Weight of this Possession.",
-					"Cosmic": "The Cosmic Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
-					"Elemental": "The Elemental Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
-					"Material": "The Material Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
-					"Psychic": "The Psychic Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
-					"Description": "A description for this particular material."
+		"SHEET": {
+			"ACTOR": {
+				"LABEL": "Metanthropes Actor Sheet V1"
+			},
+			"ACTORV2": {
+				"LABEL": "Metanthropes Actor Sheet V2"
+			},
+			"ITEM": {
+				"LABEL": "Metanthropes Item Sheet V1"
+			},
+			"ITEMV2": {
+				"LABEL": "Metanthropes Item Sheet V2"
+			},
+			"AE": {
+				"LABEL": "Metanthropes Active Effect Sheet V2"
+			},
+			"OTHER": {
+				"CONSOLE": "@METAFA(metanthropes) Print to Console"
+			},
+			"ITEMS": {
+				"POSSESSIONS": {
+					"MATERIAL": {
+						"Category": "The type of Materials used in creating this Possession.",
+						"Durability": "The durability of this Possession. When this Possession takes damage, which is higher than the Resistance for that damage type, excess damage reduces the Durability of the Possession. When Durability reaches 0, the Possession is destroyed.",
+						"Size": "The Size of this Possession.",
+						"Weight": "The Weight of this Possession.",
+						"Cosmic": "The Cosmic Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+						"Elemental": "The Elemental Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+						"Material": "The Material Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+						"Psychic": "The Psychic Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+						"Description": "A description for this particular material."
+					}
 				}
 			}
-		}
+		},
+		"AE": {
+			"phases": {
+				"initial": "Initial Phase",
+				"final": "Final Phase"
+			},
+			"seconds": "Seconds",
+			"none": "None"
+		},
+		"TABLES": {
+			"SPEED": {
+				"0": {
+					"average": "average example",
+					"example": "example average"
+				}
+			}
+		},
+		"BUFFS": {
+			"body": {
+				"label": "Hardened",
+				"hint": "Hardened makes your *Body* stronger"
+			}
+		},
+		"CONDITIONS": {}
 	},
 	"TYPES": {
 		"Actor": {
+			"MetanthropesActorV2": "Metanthropes Actor",
 			"Protagonist": "Protagonist",
 			"Metanthrope": "Metanthrope",
 			"Human": "Human",
@@ -264,8 +371,8 @@
 		"Item": {
 			"Metapower": "Metapower",
 			"Possession": "Possession",
-			"Combo": "Combo",
-			"Object": "Object"
+			"species": "Species",
+			"template": "Template"
 		}
 	}
 }

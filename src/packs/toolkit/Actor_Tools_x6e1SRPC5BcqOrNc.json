@@ -5,7 +5,7 @@
   "type": "Macro",
   "_id": "x6e1SRPC5BcqOrNc",
   "sort": 100000,
-  "color": "#7d0f81",
+  "color": "#00b0bc",
   "flags": {
     "df-qol": {
       "colour": ""
@@ -17,12 +17,13 @@
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "coreVersion": "12.331",
+    "coreVersion": "14.359",
     "systemId": "metanthropes",
     "systemVersion": "0.12.0",
     "createdTime": 1736084730821,
-    "modifiedTime": 1736084730839,
-    "lastModifiedBy": "kF9zOdNs2UiqaJVn"
+    "modifiedTime": 1775572131343,
+    "lastModifiedBy": "twKi3FnOeOceszse",
+    "exportSource": null
   },
   "description": "",
   "_key": "!folders!x6e1SRPC5BcqOrNc"

@@ -5,6 +5,7 @@ npm-debug.log
 # OS Junk
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # IDE Junk
 .vscode/
@@ -18,7 +19,6 @@ dist/
 # Temp Foundry Runtime Files
 foundry/
 *.lock
-jsconfig.json
 
 # Improving Intellisense
 foundry-config.yaml

@@ -1,3 +1,3 @@
-//? Export Actors
-export { default as MetanthropesActorNPC } from './actor-npc.mjs';
-export { default as MetanthropesItemSpecies } from './item-species.mjs';
+export { default as MetanthropesActorV2 } from "./actor.mjs";
+export { default as species } from "./species.mjs";
+export { default as template } from "./template.mjs";

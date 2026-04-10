@@ -36,8 +36,8 @@
 // 		});
 // 		const labels = {
 // 			transfer: {
-// 				name: game.i18n.localize(`EFFECT.Transfer`),
-// 				hint: game.i18n.localize(`EFFECT.TransferHint`),
+// 				name: _loc(`EFFECT.Transfer`),
+// 				hint: _loc(`EFFECT.TransferHint`),
 // 			},
 // 		};
 // 		const metaEffectTypeOptions = ["Buff", "Condition"];
@@ -98,7 +98,7 @@
 // 			isNarrator: game.user.isGM,
 // 			submitText: "EFFECT.Submit",
 // 			modes: Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((obj, e) => {
-// 				obj[e[1]] = game.i18n.localize(`EFFECT.MODE_${e[0]}`);
+// 				obj[e[1]] = _loc(`EFFECT.MODE_${e[0]}`);
 // 				return obj;
 // 			}, {}),
 // 			predefinedKeys: predefinedKeys,
@@ -186,4 +186,4 @@
 // 		return data;
 // 	}
 // }
-export class MetanthropesActiveEffectSheet extends  foundry.applications.sheets.ActiveEffectConfig {}
+export class MetanthropesActiveEffectSheetV2 extends foundry.applications.sheets.ActiveEffectConfig {}

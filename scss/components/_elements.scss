@@ -1,0 +1,101 @@
+@use "../settings" as *;
+
+nav.tabs {
+	line-height: 3.4;
+}
+
+section {
+	margin: $margin-sm;
+	padding: $padding-sm;
+}
+
+main {
+	font-family: $font-primary;
+	margin: $margin-sm;
+	padding: $padding-sm;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: $font-secondary;
+	background-image: $a-loading-background;
+	background-size: auto auto;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-origin: border-box;
+	background-clip: border-box;
+}
+
+header {
+	margin: $margin-sm;
+	padding: $padding-sm;
+}
+
+footer {
+	margin: $margin-sm;
+	padding: $padding-sm;
+}
+
+a {
+	&:hover {
+		text-shadow: var(--metanthropes-color-text-shadow);
+	}
+}
+
+dialog::backdrop {
+	background: #fff5;
+	backdrop-filter: blur(4px);
+}
+
+select {
+	font-family: $font-secondary;
+	border: $border-style-dotted;
+	border-radius: $border-radius;
+}
+
+option {
+	background-color: var(--metanthropes-color-background);
+	font-family: $font-secondary;
+	border: $border-style-dotted;
+	border-radius: $border-radius;
+}
+
+p {
+	font-family: $font-secondary;
+	margin: $margin-sm;
+	padding: $padding-sm;
+	text-align: left;
+}
+
+h3 {
+	font-family: $font-primary;
+	text-align: center;
+	color: var(--metanthropes-color-secondary);
+	text-shadow: var(--metanthropes-color-text-shadow);
+}
+
+hr {
+	color: var(--metanthropes-color-highlight);
+}
+
+summary {
+	display: grid; //essentially hides the markers
+	font-weight: bold;
+}
+
+summary:hover {
+	cursor: pointer;
+	//border: 1px solid var(--metanthropes-color-highlight);
+	border-radius: 15px;
+	background: rgba(99, 53, 99, 0.5);
+	transition: background-color 0.3s;
+}
+
+summary::marker {
+	font-size: 1.5em;
+	content: "🔽";
+}
+[open] summary::marker {
+	content: "🔼";
+}

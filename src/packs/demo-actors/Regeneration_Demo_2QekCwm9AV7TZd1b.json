@@ -895,9 +895,6 @@
       "src": "systems/metanthropes/assets/artwork/actors/tokens/protagonist/demo-regeneration.webp",
       "scaleX": 0.5,
       "scaleY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
-      "rotation": 0,
       "tint": "#ffffff",
       "anchorX": 0.5,
       "anchorY": 0.5,
@@ -988,7 +985,8 @@
       "src": "systems/metanthropes/assets/logos/metanthropes-logo-turn-marker.webp",
       "disposition": true
     },
-    "movementAction": null
+    "movementAction": null,
+    "depth": 1
   },
   "items": [
     {
@@ -1486,10 +1484,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "14.352",
+        "coreVersion": "14.355",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "_id": "x6M1aVogKsNIhQl0",
       "_key": "!actors.items!2QekCwm9AV7TZd1b.x6M1aVogKsNIhQl0"
@@ -1990,10 +1990,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "14.352",
+        "coreVersion": "14.355",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "_key": "!actors.items!2QekCwm9AV7TZd1b.cDwU9TEvUThLBI7w"
     },
@@ -2492,10 +2494,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "14.352",
+        "coreVersion": "14.355",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "_id": "DvuwDZfkcSNIE635",
       "_key": "!actors.items!2QekCwm9AV7TZd1b.DvuwDZfkcSNIE635"
@@ -2996,10 +3000,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "14.352",
+        "coreVersion": "14.355",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "_key": "!actors.items!2QekCwm9AV7TZd1b.wf1qCVa4MzBE36Bz"
     },
@@ -3563,10 +3569,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "14.352",
+        "coreVersion": "14.355",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "sort": 400000,
       "_id": "olDfdpyBAffSmAQV",
@@ -4134,10 +4142,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "14.352",
+        "coreVersion": "14.355",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "_id": "4s6Fd0dBbLrJXV20",
       "sort": 700000,
@@ -4638,10 +4648,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "14.352",
+        "coreVersion": "14.355",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "_id": "pi2sKmby5LqkYNyY",
       "sort": 0,
@@ -5142,10 +5154,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "14.352",
+        "coreVersion": "14.355",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "_id": "dFtyTovuYPnsfVM0",
       "sort": 0,
@@ -5646,10 +5660,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "14.352",
+        "coreVersion": "14.355",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "_id": "F2nlInuBrldUTLTO",
       "sort": 0,
@@ -6150,10 +6166,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "14.352",
+        "coreVersion": "14.355",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "_id": "EHvzjp66EvvPZQfa",
       "sort": 0,
@@ -6654,10 +6672,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "14.352",
+        "coreVersion": "14.355",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "_id": "JphPXqCTip8vYZ58",
       "sort": 0,
@@ -7158,10 +7178,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "14.352",
+        "coreVersion": "14.355",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "_id": "oRh3EQOpoDJH3jWp",
       "sort": 0,
@@ -7662,10 +7684,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "14.352",
+        "coreVersion": "14.355",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "_id": "G15cRTNCAuFMS4H9",
       "sort": 0,
@@ -8166,10 +8190,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "14.352",
+        "coreVersion": "14.355",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "_id": "xeiOZ3rc4nshMeQw",
       "sort": 0,
@@ -8670,10 +8696,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "14.352",
+        "coreVersion": "14.355",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "_id": "Pp6WOQh6n3rCNRLT",
       "sort": 0,
@@ -9174,10 +9202,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "14.352",
+        "coreVersion": "14.355",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "_id": "64FFlcM2jzQzJvhi",
       "sort": 0,
@@ -9744,10 +9774,12 @@
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null,
-        "coreVersion": "14.352",
+        "coreVersion": "14.355",
         "systemId": "metanthropes",
         "systemVersion": "0.13.2",
-        "lastModifiedBy": null
+        "lastModifiedBy": null,
+        "createdTime": null,
+        "modifiedTime": null
       },
       "_id": "3CdWoQk0F5QDRKr8",
       "sort": 0,
@@ -9789,7 +9821,7 @@
     "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null,
-    "coreVersion": "14.352",
+    "coreVersion": "14.355",
     "systemId": "metanthropes",
     "systemVersion": "0.13.2",
     "createdTime": 1749106750560,
