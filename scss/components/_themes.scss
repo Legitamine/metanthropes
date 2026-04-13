@@ -35,7 +35,7 @@ body.theme-dark .application .window-content,
 	--color-shadow-highlight: var(--metanthropes-text-shadow);
 	--color-warm-1: var(--metanthropes-color-highlight);
 	--button-background-color: rgba(0 0 0 / 10%);
-	--button-border-color: var(--metanthropes-color-secondary);
+	--button-border-color: var(--metanthropes-color-background);
 	--button-text-color: var(--metanthropes-color-text);
 	--button-focus-outline-color: var(--metanthropes-color-primary);
 	--button-hover-background-color: var(--metanthropes-color-primary);
@@ -81,7 +81,7 @@ body.theme-light .application,
 	--color-shadow-highlight: var(--metanthropes-text-shadow);
 	--color-warm-1: var(--metanthropes-color-highlight);
 	--button-background-color: rgba(0 0 0 / 10%);
-	--button-border-color: var(--metanthropes-color-secondary);
+	--button-border-color: var(--metanthropes-color-background);
 	--button-text-color: var(--metanthropes-color-text);
 	--button-focus-outline-color: var(--metanthropes-color-primary);
 	--button-hover-background-color: var(--metanthropes-color-primary);

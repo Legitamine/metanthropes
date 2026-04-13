@@ -19,6 +19,7 @@ export async function metaChangeTokenImage(actor, useWildcard = false) {
 }
 
 /**
+ * todo this should be an Actor method instead
  * Core function to change the image of an actor or its token
  * @param {*} actor - Object of the actor
  * @param {string} imageDir - Directory for the image type (portraits/tokens)
@@ -26,39 +27,48 @@ export async function metaChangeTokenImage(actor, useWildcard = false) {
  * @param {boolean} useWildcard - Flag to determine if a wildcard image path should be used
  */
 async function metaUpdateImage(actor, imageDir, changeBoth, useWildcard) {
+	new metanthropes.applications.MetaImagePicker({
+		selected: actor.img,
+		onSelect: async (path) => {
+			metanthropes.utils.metaLog(2, "metaUpdateImage", "new path", path);
+			//?I get the new image path here for the Actor, need to update the top-down token accordingly
+			//todo merge the callback after reviewing the metaUpdateTokenImage and convertPortraitToTokenPath
+		},
+	}).render({force: true});
+
 	//todo we want to have a 'virtual' directory where we show all available actors for that species/type
 	//todo needs to grab all active modules that can provide such assets and combine them
-	let baseDir = "systems/metanthropes/assets/artwork/actors/";
+	// let baseDir = "systems/metanthropes/assets/artwork/actors/";
 	
-	//? If using the Metanthropes: Introductory Module features, change the base directory
-	const intro = game.settings.get("metanthropes", "metaIntroductory");
-	if (intro) {
-		baseDir = "modules/metanthropes-introductory/assets/artwork/actors/";
-	}
+	// //? If using the Metanthropes: Introductory Module features, change the base directory
+	// const intro = game.settings.get("metanthropes", "metaIntroductory");
+	// if (intro) {
+	// 	baseDir = "modules/metanthropes-introductory/assets/artwork/actors/";
+	// }
 	
-	//? Set the final directory based on the actor type
-	//todo replace the 'actorType' with the new 'species'
-	const actorType = actor.type.toLowerCase();
-	const finalDir = `${baseDir}${imageDir}/${actorType}/`;
+	// //? Set the final directory based on the actor type
+	// //todo replace the 'actorType' with the new 'species'
+	// const actorType = actor.type.toLowerCase();
+	// const finalDir = `${baseDir}${imageDir}/${actorType}/`;
 
-	//? File picker configuration
-	//todo set a flag on the actor so we show the virtual folder once?
-	const fp = new foundry.applications.apps.FilePicker.implementation({
-		resource: "data",
-		current: finalDir,
-		displayMode: "tiles",
-		callback: async (selection) => {
-			if (changeBoth) {
-				await actor.update({ img: selection });
-				const tokenImagePath = convertPortraitToTokenPath(selection);
-				await metaUpdateTokenImage(actor, tokenImagePath, useWildcard);
-			} else {
-				await metaUpdateTokenImage(actor, selection, useWildcard);
-			}
-		},
-	});
+	// //? File picker configuration
+	// //todo set a flag on the actor so we show the virtual folder once?
+	// const fp = new foundry.applications.apps.FilePicker.implementation({
+	// 	resource: "data",
+	// 	current: finalDir,
+	// 	displayMode: "tiles",
+	// 	callback: async (selection) => {
+	// 		if (changeBoth) {
+	// 			await actor.update({ img: selection });
+	// 			const tokenImagePath = convertPortraitToTokenPath(selection);
+	// 			await metaUpdateTokenImage(actor, tokenImagePath, useWildcard);
+	// 		} else {
+	// 			await metaUpdateTokenImage(actor, selection, useWildcard);
+	// 		}
+	// 	},
+	// });
 
-	return fp.browse();
+	// return fp.browse();
 }
 
 /**

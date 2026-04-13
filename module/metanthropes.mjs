@@ -32,7 +32,7 @@ import { MetanthropesActorSheet } from "./ui/sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./ui/sheets/item-sheet.mjs";
 import { MetanthropesActiveEffectSheetV2 } from "./ui/sheets/active-effect-sheet.mjs";
 //* Custom Classes
-import { MetaDialog, MetaChatMessage, MetanthropesPause } from "./metaclasses/metaclasses.mjs";
+import { MetaDialog, MetaChatMessage, MetanthropesPause, MetaImagePicker } from "./metaclasses/metaclasses.mjs";
 // //* AppV2 Sheets
 import { MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
 import { MetanthropesItemSheetV2 } from "./ui/sheets/item-sheet-v2.mjs";
@@ -94,6 +94,7 @@ globalThis.metanthropes = {
 		MetaDialog,
 		MetaChatMessage,
 		MetanthropesPause,
+		MetaImagePicker,
 	},
 	dice: {
 		metaRoll,
@@ -151,6 +152,12 @@ globalThis.metanthropes = {
 		metaIsMetapowerEquipped,
 		metaCreateFAIcon,
 		metaCreateCustomIcon,
+	},
+	registry: {
+		imagePaths: {
+			systemActors: "systems/metanthropes/assets/artwork/actors/portraits/protagonist",
+			introductoryActors: "modules/metanthropes-introductory/assets/artwork/actors/portraits/protagonist",
+		},
 	},
 };
 

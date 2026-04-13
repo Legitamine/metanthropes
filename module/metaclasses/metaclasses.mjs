@@ -1,6 +1,97 @@
 import { metaChangeActorImage } from "../helpers/metaimagehandler.mjs";
 
+const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
+
+
 /**
+ * Proof Of Concept custom class to display portrait images from multiple paths
+ *todo review registry functionality
+ *todo is this going to be also used in non-Actor scenarios?
+ *todo proper localization of hbs etc
+ *todo review The Forge compatibility
+ *
+ * @export
+ * @class MetaImagePicker
+ * @typedef {MetaImagePicker}
+ * @extends {HandlebarsApplicationMixin(ApplicationV2)}
+ */
+export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
+	static DEFAULT_OPTIONS = {
+		id: "metanthropes-image-picker",
+		classes: ["metanthropes", "image-picker"],
+		tag: "section",
+		position: {
+			width: 960,
+			height: 720,
+		},
+		window: {
+			title: "Select Image",
+			resizable: true,
+		},
+		actions: {
+			selectImage: this.#onSelectImage,
+		},
+	};
+
+	static PARTS = {
+		main: {
+			template: "systems/metanthropes/templates/apps/image-picker.hbs",
+		},
+	};
+
+	constructor(options = {}) {
+		super(options);
+		this.selected = options.selected ?? null;
+	}
+
+	get imageRegistry() {
+		return metanthropes.registry.imagePaths ?? {};
+	}
+
+	async _prepareContext(_options) {
+		const groups = await this.#collectGroups();
+		return {
+			groups,
+			selected: this.selected,
+			hasImages: groups.some((group) => group.images.length),
+		};
+	}
+
+	async #collectGroups() {
+		const groups = [];
+		for (const [registryKey, rootPath] of Object.entries(this.imageRegistry)) {
+			//todo can do filtering based on the registry structure here
+			//todo include final species design
+			//todo do we want AppV1 compatibility?
+			if (!rootPath) continue;
+			//? Spin off a FilePicker for grabbing the files from the rootPath for that selection
+			//todo if running on The Forge, figure out the correct relative path?
+			const filePickerInstance = await foundry.applications.apps.FilePicker.browse("data", rootPath);
+			const images = (filePickerInstance.files ?? []).map((path) => ({
+				path,
+				name: path.split("/").pop().split(".")[0], //? grab the file name without the extension
+				isSelected: path === this.selected,
+			}));
+			groups.push({
+				registryKey,
+				rootPath,
+				images,
+			});
+		}
+		return groups;
+	}
+
+	static async #onSelectImage(_event, target) {
+		const path = target.dataset.path;
+		if (!path) return metanthropes.utils.metaLog(2, "MetaImagePicker", "onSelectImage", "Could not work with path", path);
+		this.selected = path;
+		metanthropes.utils.metaLog(3, "MetaImagePicker", "onSelectImage", "Selected path", path);
+		await this.close();
+	}
+}
+
+/**
+ * ! to be deprecated
  * The MetaDialog class is a custom Dialog that ensures it's always displayed over the Actor Sheet
  * It also removes the Close button and the ability to press Escape to close the dialog
  *
@@ -175,7 +266,6 @@ export class MetaChatMessage extends ChatMessage {
 	}
 }
 
-
 /**
  * Custom Class for the Pause UI
  *
@@ -188,6 +278,6 @@ export class MetanthropesPause extends foundry.applications.ui.GamePause {
 	async _prepareContext(_options) {
 		const context = await super._prepareContext(_options);
 		context.icon = "systems/metanthropes/assets/logos/metanthropes-logo.webp";
-		return context
+		return context;
 	}
 }

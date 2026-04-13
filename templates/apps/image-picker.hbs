@@ -1,0 +1,28 @@
+<section class="metanthropes-image-picker">
+	{{#if hasImages}}
+		{{#each groups}}
+			<section class="image-group">
+				<header class="image-group-header">
+					<div class="image-group-key">{{registryKey}}</div>
+					<div class="image-group-path">{{rootPath}}</div>
+				</header>
+
+				<div class="image-grid">
+					{{#each images}}
+						<button
+							type="button"
+							class="image-card {{#if isSelected}}selected{{/if}}"
+							data-action="selectImage"
+							data-path="{{path}}"
+						>
+							<img src="{{path}}" alt="{{name}}">
+							<span class="image-name">{{name}}</span>
+						</button>
+					{{/each}}
+				</div>
+			</section>
+		{{/each}}
+	{{else}}
+		<p>No images found in the registered image paths.</p>
+	{{/if}}
+</section>
