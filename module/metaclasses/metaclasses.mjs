@@ -9,6 +9,7 @@ const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
  *todo is this going to be also used in non-Actor scenarios?
  *todo proper localization of hbs etc
  *todo review The Forge compatibility
+ *todo utilize the 'enabled' content from modules
  *
  * @export
  * @class MetaImagePicker
