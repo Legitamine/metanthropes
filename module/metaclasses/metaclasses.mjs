@@ -2,7 +2,6 @@ import { metaChangeActorImage } from "../helpers/metaimagehandler.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
-
 /**
  * Proof Of Concept custom class to display portrait images from multiple paths
  *todo review registry functionality
@@ -26,7 +25,7 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 			height: 720,
 		},
 		window: {
-			title: "Select Image",
+			title: "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Title",
 			resizable: true,
 		},
 		actions: {
@@ -43,48 +42,85 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 	constructor(options = {}) {
 		super(options);
 		this.selected = options.selected ?? null;
+		this.imageRegistryType = options.imageRegistryType ?? null;
+		this.imageFolder = options.imageFolder ?? null;
 	}
 
 	get imageRegistry() {
-		return metanthropes.registry.imagePaths ?? {};
+		return metanthropes.imageRegistry ?? {};
 	}
 
 	async _prepareContext(_options) {
-		const groups = await this.#collectGroups();
+		const paths = await this.#collectPaths(this.imageRegistryType, this.imageFolder);
 		return {
-			groups,
+			paths: paths,
 			selected: this.selected,
-			hasImages: groups.some((group) => group.images.length),
+			imageRegistryType: this.imageRegistryType,
+			imageFolder: this.imageFolder,
+			hasImages: paths.some((group) => group.images.length),
 		};
 	}
 
-	async #collectGroups() {
-		const groups = [];
+	async #collectPaths(imageRegistryType, imageFolder) {
+		if (!imageRegistryType || !imageRegistryType === "actors")
+			return metanthropes.utils.metaLog(
+				5,
+				"MetaImagePicker",
+				"#collectPaths",
+				"No valid imageRegistryType Provided",
+			);
+		const paths = [];
 		for (const [registryKey, rootPath] of Object.entries(this.imageRegistry)) {
+			//if (!(registryKey === this.imageRegistryType)) continue;
+			if (!rootPath) continue;
+			//todo add final path
+			const finalPath = `${rootPath}/actors/portraits/${imageFolder}/`;
+			// registry gives root actor folder path - behind it are /portraits /tokens and
+			// below are /targetgroupname folders so need to know that path
+			// if the registry does not include, skip - also honors the use content setting
+			// push to groups
+			// push to tokens so we can also return valid token path?
 			//todo can do filtering based on the registry structure here
 			//todo include final species design
 			//todo do we want AppV1 compatibility?
-			if (!rootPath) continue;
 			//? Spin off a FilePicker for grabbing the files from the rootPath for that selection
 			//todo if running on The Forge, figure out the correct relative path?
-			const filePickerInstance = await foundry.applications.apps.FilePicker.browse("data", rootPath);
+			metanthropes.utils.metaLog(3, "trying finalPath", finalPath);
+			let filePickerInstance;
+			try {
+				filePickerInstance = await foundry.applications.apps.FilePicker.browse("data", finalPath);
+			} catch (error) {
+				metanthropes.utils.metaLog(
+					4,
+					"MetaImagePicker",
+					"Didn't find any assets at",
+					finalPath,
+					"FilePicker Returned Error",
+					error,
+				);
+				continue;
+			}
+
 			const images = (filePickerInstance.files ?? []).map((path) => ({
 				path,
 				name: path.split("/").pop().split(".")[0], //? grab the file name without the extension
 				isSelected: path === this.selected,
 			}));
-			groups.push({
+			paths.push({
 				registryKey,
 				rootPath,
 				images,
 			});
+
 		}
-		return groups;
+		metanthropes.utils.metaLog(3, "all paths returned", paths);
+		return paths;
 	}
 
 	static async #onSelectImage(_event, target) {
 		const path = target.dataset.path;
-		if (!path) return metanthropes.utils.metaLog(2, "MetaImagePicker", "onSelectImage", "Could not work with path", path);
+		if (!path)
+			return metanthropes.utils.metaLog(2, "MetaImagePicker", "onSelectImage", "Could not work with path", path);
 		this.selected = path;
 		metanthropes.utils.metaLog(3, "MetaImagePicker", "onSelectImage", "Selected path", path);
 		await this.close();

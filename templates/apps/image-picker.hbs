@@ -1,21 +1,33 @@
 <section class="metanthropes-image-picker">
+		<section class="selected-image">
+			<header class="selected-image-header">
+			<div>
+				<h3>
+					{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Selected"}}
+				</h3>
+				<img class="" loading="lazy" src="{{this.selected}}" alt="">
+			</div>
+				<hr>
+			<div>
+				<p class="menu">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Menu"}}</p>
+				<p class="menu">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Token"}}</p>
+				<hr>
+			</div>
+			</header>
+		</section>
 	{{#if hasImages}}
-		{{#each groups}}
+		{{#each paths}}
 			<section class="image-group">
 				<header class="image-group-header">
-					<div class="image-group-key">{{registryKey}}</div>
-					<div class="image-group-path">{{rootPath}}</div>
+					<div class="image-group-key">
+						<h3>{{localize (concat "METANTHROPES.MODULES."registryKey)}}</h3>
+					</div>
 				</header>
-
 				<div class="image-grid">
 					{{#each images}}
-						<button
-							type="button"
-							class="image-card {{#if isSelected}}selected{{/if}}"
-							data-action="selectImage"
-							data-path="{{path}}"
-						>
-							<img src="{{path}}" alt="{{name}}">
+						<button type="button" class="image-card {{#if isSelected}}selected{{/if}}"
+							data-action="selectImage" data-path="{{path}}">
+							<img loading="lazy" src="{{path}}" alt="{{name}}">
 							<span class="image-name">{{name}}</span>
 						</button>
 					{{/each}}
@@ -23,6 +35,6 @@
 			</section>
 		{{/each}}
 	{{else}}
-		<p>No images found in the registered image paths.</p>
+		<p>{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Error"}}</p>
 	{{/if}}
 </section>

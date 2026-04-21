@@ -18,7 +18,7 @@
  * @example
  * metaExecute(null, actorUUID, "Metapower", "Danger Sense");
  */
-export async function metaExecute(event, actorUUID, action, itemName, multiAction = 0) {
+export async function metaExecute({event, actorUUID, action, itemName, multiAction = 0}) {
 	const mL = metanthropes.utils.metaLog;
 	//? If we called this from a button click, get the data we need
 	const clickedButton = event?.target;

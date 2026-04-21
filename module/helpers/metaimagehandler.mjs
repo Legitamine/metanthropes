@@ -27,15 +27,18 @@ export async function metaChangeTokenImage(actor, useWildcard = false) {
  * @param {boolean} useWildcard - Flag to determine if a wildcard image path should be used
  */
 async function metaUpdateImage(actor, imageDir, changeBoth, useWildcard) {
-	new metanthropes.applications.MetaImagePicker({
+	const actorType = actor.type.toLowerCase();
+	const test = await new metanthropes.applications.MetaImagePicker({
 		selected: actor.img,
+		imageRegistryType: "actors",
+		imageFolder: actorType,
 		onSelect: async (path) => {
-			metanthropes.utils.metaLog(2, "metaUpdateImage", "new path", path);
+			metanthropes.utils.metaLog(2, "metaUpdateImage", "onSelect" ,"new path", path);
 			//?I get the new image path here for the Actor, need to update the top-down token accordingly
 			//todo merge the callback after reviewing the metaUpdateTokenImage and convertPortraitToTokenPath
 		},
-	}).render({force: true});
-
+	}).render({force: true}); //todo test without force
+	metanthropes.utils.metaLog(2, "metaUpdateImage", "test", test);
 	//todo we want to have a 'virtual' directory where we show all available actors for that species/type
 	//todo needs to grab all active modules that can provide such assets and combine them
 	// let baseDir = "systems/metanthropes/assets/artwork/actors/";
@@ -48,7 +51,6 @@ async function metaUpdateImage(actor, imageDir, changeBoth, useWildcard) {
 	
 	// //? Set the final directory based on the actor type
 	// //todo replace the 'actorType' with the new 'species'
-	// const actorType = actor.type.toLowerCase();
 	// const finalDir = `${baseDir}${imageDir}/${actorType}/`;
 
 	// //? File picker configuration

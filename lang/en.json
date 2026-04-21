@@ -91,6 +91,13 @@
 					"MetapowerRoll": "Activate ",
 					"Possession": "Possession",
 					"PossessionRoll": "Use "
+				},
+				"META_IMAGE_PICKER":{
+					"Title": "Change Actor Potrait Image",
+					"Menu": "Select a new Image for this Actor from the available options below.",
+					"Token": "The Top-Down Token will be updated accordingly.",
+					"Selected": "Currently Selected Image",
+					"Error": "No Images found in the Registered Image paths."
 				}
 			}
 		},

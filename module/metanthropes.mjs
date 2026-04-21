@@ -153,11 +153,12 @@ globalThis.metanthropes = {
 		metaCreateFAIcon,
 		metaCreateCustomIcon,
 	},
-	registry: {
-		imagePaths: {
-			systemActors: "systems/metanthropes/assets/artwork/actors/portraits/protagonist",
-			introductoryActors: "modules/metanthropes-introductory/assets/artwork/actors/portraits/protagonist",
-		},
+	imageRegistry: {
+		System: "systems/metanthropes/assets/artwork",
+
+		// netherActors: "modules/metanthropes-anthologies-nether/assets/artwork/actors/portraits",
+		// astralActors: "modules/metanthropes-anthologies-astral/assets/artwork/actors/portraits",
+		// aetherActors: "modules/metanthropes-anthologies-aether/assets/artwork/actors/portraits"
 	},
 };
 
