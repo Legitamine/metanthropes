@@ -13,6 +13,10 @@ Hooks.once("init", async function () {
 			editor: true,
 			fonts: [{ urls: ["systems/metanthropes/assets/fonts/metanthropes.ttf"] }],
 		},
+		Roboto: {
+			editor: true,
+			fonts: [{ urls: ["systems/metanthropes/assets/fonts/roboto.ttf"] }],
+		},
 	};
 
 	//* Register System Settings
