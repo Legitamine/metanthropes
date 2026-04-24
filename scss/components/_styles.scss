@@ -27,13 +27,6 @@
 	--color-form-label-hover: var(--metanthropes-color-condition);
 }
 //Styles used in Metanthropes RPG Sheets
-h3 {
-	font-family: $font-primary;
-	text-align: center;
-	color: var(--metanthropes-color-secondary);
-	background-color: var(--metanthropes-color-background);
-	text-shadow: var(--metanthropes-color-text-shadow);
-}
 //containers and borders
 //characteristics and stats styling and borders
 .style-container-outer-charstats {
@@ -310,7 +303,7 @@ h3 {
 //styles for character sheet elements: style-cs-*
 .style-cs-chars-label {
 	opacity: 1;
-	font-family: $font-primary; //or
+	font-family: $font-title; //or
 	font-size: 1.6rem;
 	color: var(--metanthropes-color-text);
 	text-transform: uppercase;
@@ -323,10 +316,10 @@ h3 {
 }
 .style-cs-stats-label {
 	opacity: 1;
-	font-family: $font-primary; //or
+	font-family: $font-title; //or
 	font-size: 1.6rem;
 	color: var(--metanthropes-color-text);
-	font-weight: bold;
+	//font-weight: bold;
 	text-transform: uppercase;
 	justify-content: center;
 	justify-self: center;
