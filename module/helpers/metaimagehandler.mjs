@@ -1,4 +1,5 @@
 /**
+ * !deprecate
  * Helper function to change the image of an actor
  * @param {*} actor - Object of the actor
  * @param {boolean} useWildcard - Flag to determine if a wildcard image path should be used
@@ -9,6 +10,7 @@ export async function metaChangeActorImage(actor, useWildcard = false) {
 }
 
 /**
+ * !deprecate
  * Helper function to change the token image of an actor
  * @param {*} actor - Object of the actor
  * @param {boolean} useWildcard - Flag to determine if a wildcard image path should be used
@@ -28,27 +30,62 @@ export async function metaChangeTokenImage(actor, useWildcard = false) {
  */
 async function metaUpdateImage(actor, imageDir, changeBoth, useWildcard) {
 	const actorType = actor.type.toLowerCase();
-	const test = await new metanthropes.applications.MetaImagePicker({
+	const imagePick = new metanthropes.applications.MetaImagePicker({
 		selected: actor.img,
 		imageRegistryType: "actors",
 		imageFolder: actorType,
 		onSelect: async (path) => {
-			metanthropes.utils.metaLog(2, "metaUpdateImage", "onSelect" ,"new path", path);
-			//?I get the new image path here for the Actor, need to update the top-down token accordingly
-			//todo merge the callback after reviewing the metaUpdateTokenImage and convertPortraitToTokenPath
+			if (!path)
+				return metanthropes.utils.metaLog(
+					2,
+					"metaUpdateImage",
+					"Not a valid path returned from MetaImagePicker",
+					path,
+				);
+			if (changeBoth) {
+				metanthropes.utils.metaLog(2, "metaUpdateImage", "changeBoth / path / useWildcard", path, useWildcard);
+				await actor.update({ img: path });
+				const tokenImagePath = convertPortraitToTokenPath(path);
+				await metaUpdateTokenImage(actor, tokenImagePath, useWildcard);
+			} else {
+				metanthropes.utils.metaLog(
+					2,
+					"metaUpdateImage",
+					"no changeBoth / path / useWildcard",
+					imagePick.selected,
+					useWildcard,
+				);
+				await metaUpdateTokenImage(actor, path, useWildcard);
+			}
 		},
-	}).render({force: true}); //todo test without force
-	metanthropes.utils.metaLog(2, "metaUpdateImage", "test", test);
+	});
+	imagePick.render({ force: true }); //todo test without force
+	const path = await imagePick.result;
+	metanthropes.utils.metaLog(2, "metaUpdateImage", "onSelect", "new path", path);
+	//todo merge the callback after reviewing the metaUpdateTokenImage and convertPortraitToTokenPath
+
+	//?I get the new image path here for the Actor, need to update the top-down token accordingly
+	// if (!imagePick.selected) return metanthropes.utils.metaLog(2, "metaUpdateImage", "Not a valid path returned from MetaImagePicker", imagePick);
+	// if (changeBoth) {
+	// 	metanthropes.utils.metaLog(2, "metaUpdateImage", "changeBoth / path / useWildcard", imagePick.selected, useWildcard);
+	// 	await actor.update({ img: imagePick.selected });
+	// 	const tokenImagePath = convertPortraitToTokenPath(imagePick.selected);
+	// 	await metaUpdateTokenImage(actor, tokenImagePath, useWildcard);
+	// } else {
+	// 	metanthropes.utils.metaLog(2, "metaUpdateImage", "no changeBoth / path / useWildcard", imagePick.selected, useWildcard);
+	// 	await metaUpdateTokenImage(actor, imagePick.selected, useWildcard);
+	// }
+
 	//todo we want to have a 'virtual' directory where we show all available actors for that species/type
 	//todo needs to grab all active modules that can provide such assets and combine them
 	// let baseDir = "systems/metanthropes/assets/artwork/actors/";
-	
+
 	// //? If using the Metanthropes: Introductory Module features, change the base directory
 	// const intro = game.settings.get("metanthropes", "metaIntroductory");
 	// if (intro) {
 	// 	baseDir = "modules/metanthropes-introductory/assets/artwork/actors/";
 	// }
-	
+
 	// //? Set the final directory based on the actor type
 	// //todo replace the 'actorType' with the new 'species'
 	// const finalDir = `${baseDir}${imageDir}/${actorType}/`;
@@ -90,6 +127,7 @@ function convertPortraitToTokenPath(portraitPath) {
  * ! wildcards should not use the full directory but the -01-02 versions instead?
  */
 async function metaUpdateTokenImage(actor, selection, useWildcard) {
+	metanthropes.utils.metaLog(3, "metaUpdateTokenImage", actor, selection, useWildcard);
 	//? Modify the selection path if using wildcard
 	const tokenImagePath = useWildcard ? `${selection}/*` : selection;
 

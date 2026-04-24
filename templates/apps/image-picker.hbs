@@ -1,11 +1,14 @@
 <section class="metanthropes-image-picker">
 		<section class="selected-image">
 			<header class="selected-image-header">
+				<h2>
+					{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.ActorType"}} {{localize (concat "METANTHROPES.UI.APPS.META_IMAGE_PICKER.ActorTypes."imageFolder)}}
+				</h2>
 			<div>
 				<h3>
 					{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Selected"}}
 				</h3>
-				<img class="" loading="lazy" src="{{this.selected}}" alt="">
+				<img class="selected-image-img" loading="lazy" src="{{this.selected}}" alt="">
 			</div>
 				<hr>
 			<div>
@@ -33,6 +36,8 @@
 					{{/each}}
 				</div>
 			</section>
+			<br>
+			<hr>
 		{{/each}}
 	{{else}}
 		<p>{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Error"}}</p>

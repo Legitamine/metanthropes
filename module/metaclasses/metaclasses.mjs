@@ -44,6 +44,7 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 		this.selected = options.selected ?? null;
 		this.imageRegistryType = options.imageRegistryType ?? null;
 		this.imageFolder = options.imageFolder ?? null;
+		this.onSelect = options.onSelect ?? null;
 	}
 
 	get imageRegistry() {
@@ -62,6 +63,7 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 	}
 
 	async #collectPaths(imageRegistryType, imageFolder) {
+		//todo how to properly modularize, do I really needd to?
 		if (!imageRegistryType || !imageRegistryType === "actors")
 			return metanthropes.utils.metaLog(
 				5,
@@ -75,6 +77,7 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 			if (!rootPath) continue;
 			//todo add final path
 			const finalPath = `${rootPath}/actors/portraits/${imageFolder}/`;
+			//const tokenPath = `${rootPath}/actors/tokens/${imageFolder}/`;
 			// registry gives root actor folder path - behind it are /portraits /tokens and
 			// below are /targetgroupname folders so need to know that path
 			// if the registry does not include, skip - also honors the use content setting
@@ -100,7 +103,6 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 				);
 				continue;
 			}
-
 			const images = (filePickerInstance.files ?? []).map((path) => ({
 				path,
 				name: path.split("/").pop().split(".")[0], //? grab the file name without the extension
@@ -123,6 +125,7 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 			return metanthropes.utils.metaLog(2, "MetaImagePicker", "onSelectImage", "Could not work with path", path);
 		this.selected = path;
 		metanthropes.utils.metaLog(3, "MetaImagePicker", "onSelectImage", "Selected path", path);
+		await this.onSelect(path);
 		await this.close();
 	}
 }

@@ -67,6 +67,10 @@
 		padding: 0.75rem;
 		gap: 2rem;
 	}
+	.selected-image-img {
+		max-width: 720px;
+		padding: 1rem;
+	}
 
 	.image-group {
 		display: flex;
@@ -82,8 +86,7 @@
 	}
 
 	.image-group-key {
-		font-weight: 600;
-		line-height: 1.2;
+		font-weight: 400;
 	}
 
 	.image-group-path {
@@ -120,20 +123,25 @@
 		cursor: pointer;
 		text-align: left;
 		transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+		transform: translateY(15px);
 
 		&:hover {
 			transform: scale(1.5) translateY(5px);
 			z-index: +1;
+			aspect-ratio: unset;
 		}
 
 		img {
 			display: block;
 			width: 100%;
-			max-width: 100%;
+			max-width: 420px;
 			height: auto;
 			aspect-ratio: 1 / 1;
 			object-fit: cover;
 			flex: 0 0 auto;
+		}
+		&:hover {
+			aspect-ratio: unset;
 		}
 
 		.image-name {

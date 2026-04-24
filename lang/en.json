@@ -92,12 +92,26 @@
 					"Possession": "Possession",
 					"PossessionRoll": "Use "
 				},
-				"META_IMAGE_PICKER":{
-					"Title": "Change Actor Potrait Image",
+				"META_IMAGE_PICKER": {
+					"Title": "Change Actor Potrait & Token Images",
+					"ActorType": "Actor Type:",
 					"Menu": "Select a new Image for this Actor from the available options below.",
 					"Token": "The Top-Down Token will be updated accordingly.",
 					"Selected": "Currently Selected Image",
-					"Error": "No Images found in the Registered Image paths."
+					"Error": "No Images found in the Registered Image paths.",
+					"ActorTypes": {
+						"protagonist": "Protagonist",
+						"metanthrope": "Metanthrope",
+						"human": "Human",
+						"vehicle": "Vehicle",
+						"animal": "Animal",
+						"artificial": "Artificial",
+						"extradimensional": "Extradimensional",
+						"extraterrestrial": "Extraterrestrial",
+						"animated-cadaver": "Animated-Cadaver",
+						"animated-plant": "Animated-Plant",
+						"metatherion": "MetaTherion"
+					}
 				}
 			}
 		},
