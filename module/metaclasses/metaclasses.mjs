@@ -9,6 +9,9 @@ const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
  *todo proper localization of hbs etc
  *todo review The Forge compatibility
  *todo utilize the 'enabled' content from modules
+ *todo webm token prefered
+ *todo actor type dropdown
+ *todo wildcard selection, limits only to those who have more than 01
  *
  * @export
  * @class MetaImagePicker
@@ -54,6 +57,7 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 	async _prepareContext(_options) {
 		const paths = await this.#collectPaths(this.imageRegistryType, this.imageFolder);
 		return {
+			isNarrator: game.user.isActiveGM, //todo should we enable for non-Active GMs too?
 			paths: paths,
 			selected: this.selected,
 			imageRegistryType: this.imageRegistryType,
@@ -76,7 +80,13 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 			//if (!(registryKey === this.imageRegistryType)) continue;
 			if (!rootPath) continue;
 			//todo add final path
-			const finalPath = `${rootPath}/actors/portraits/${imageFolder}/`;
+			//todo edw einai gia ta diafora actor types - ean valw to logic edw, mporw na
+			// keep it consistent over v1 migration, so the change here, reflects the new paths
+			// although that wouldn't affect how existing portraits are setup, so won't avoid a migration script
+			//! alt change the structure now?, also needs a migration script so..
+			// ean ta krathsw the same tha prepei k pali na ginei ^^ later so..
+			// what to do
+			let finalPath = `${rootPath}/actors/portraits/${imageFolder}/`;
 			//const tokenPath = `${rootPath}/actors/tokens/${imageFolder}/`;
 			// registry gives root actor folder path - behind it are /portraits /tokens and
 			// below are /targetgroupname folders so need to know that path
@@ -88,35 +98,97 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 			//todo do we want AppV1 compatibility?
 			//? Spin off a FilePicker for grabbing the files from the rootPath for that selection
 			//todo if running on The Forge, figure out the correct relative path?
-			metanthropes.utils.metaLog(3, "trying finalPath", finalPath);
-			let filePickerInstance;
-			try {
-				filePickerInstance = await foundry.applications.apps.FilePicker.browse("data", finalPath);
-			} catch (error) {
-				metanthropes.utils.metaLog(
-					4,
-					"MetaImagePicker",
-					"Didn't find any assets at",
-					finalPath,
-					"FilePicker Returned Error",
-					error,
-				);
-				continue;
-			}
-			const images = (filePickerInstance.files ?? []).map((path) => ({
-				path,
-				name: path.split("/").pop().split(".")[0], //? grab the file name without the extension
-				isSelected: path === this.selected,
-			}));
+			let images = await this.#callFilePicker(finalPath);
+			if (!images || images === "false") continue;
+			let folderName = imageFolder
 			paths.push({
 				registryKey,
 				rootPath,
+				folderName,
 				images,
 			});
-
+			//? Go for additional imageFolders per Module
+			//! giati den dixnei tous Aether Metanthropes otan kaneis Change Protagonist?
+			//todo na exw ena const some list poy gia px protagonist, vale ta alla 2
+			if (imageFolder === "protagonist") {
+				//? Also Show Metanthropes
+				folderName = "metanthrope";
+				finalPath = `${rootPath}/actors/portraits/metanthrope/`;
+				images = await this.#callFilePicker(finalPath);
+				if (images && images !== "false") {
+					paths.push({
+						registryKey,
+						rootPath,
+						folderName,
+						images,
+					});
+				}
+				//? Also Show Humans
+				folderName = "human";
+				finalPath = `${rootPath}/actors/portraits/human/`;
+				images = await this.#callFilePicker(finalPath);
+				if (images && images !== "false") {
+					paths.push({
+						registryKey,
+						rootPath,
+						folderName,
+						images,
+					});
+				}
+			}
+			if (imageFolder === "metanthrope") {
+				//? Also Show Humans
+				folderName = "human";
+				finalPath = `${rootPath}/actors/portraits/human/`;
+				images = await this.#callFilePicker(finalPath);
+				if (images && images !== "false") {
+					paths.push({
+						registryKey,
+						rootPath,
+						folderName,
+						images,
+					});
+				}
+				//? Also Show Protagonists
+				folderName = "protagonist";
+				finalPath = `${rootPath}/actors/portraits/protagonist/`;
+				images = await this.#callFilePicker(finalPath);
+				if (images && images !== "false") {
+					paths.push({
+						registryKey,
+						rootPath,
+						folderName,
+						images,
+					});
+				}
+			}
 		}
 		metanthropes.utils.metaLog(3, "all paths returned", paths);
 		return paths;
+	}
+
+	async #callFilePicker(path) {
+		metanthropes.utils.metaLog(3, "trying path", path);
+		let filePickerInstance;
+		try {
+			filePickerInstance = await foundry.applications.apps.FilePicker.browse("data", path);
+		} catch (error) {
+			metanthropes.utils.metaLog(
+				4,
+				"MetaImagePicker",
+				"Didn't find any assets at",
+				path,
+				"FilePicker Returned Error",
+				error,
+			);
+			return false;
+		}
+		const images = (filePickerInstance.files ?? []).map((path) => ({
+			path,
+			name: path.split("/").pop().split(".")[0], //? grab the file name without the extension
+			isSelected: path === this.selected,
+		}));
+		return images;
 	}
 
 	static async #onSelectImage(_event, target) {

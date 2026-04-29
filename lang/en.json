@@ -98,6 +98,7 @@
 					"Menu": "Select a new Image for this Actor from the available options below.",
 					"Token": "The Top-Down Token will be updated accordingly.",
 					"Selected": "Currently Selected Image",
+					"Select": "Select an",
 					"Error": "No Images found in the Registered Image paths.",
 					"ActorTypes": {
 						"protagonist": "Protagonist",

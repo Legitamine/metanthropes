@@ -153,5 +153,9 @@
 			word-break: break-word;
 			white-space: normal;
 		}
+
+		&.selected {
+			background-color: var(--metanthropes-color-disabled);
+		}
 	}
 }
