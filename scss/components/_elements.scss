@@ -68,11 +68,35 @@ p {
 	text-align: left;
 }
 
+title {
+	font-family: $font-title;
+}
+
+h1 {
+	font-family: $font-title;
+}
+
+h2 {
+	font-family: $font-title;
+}
+
 h3 {
-	font-family: $font-primary;
+	font-family: $font-title;
 	text-align: center;
-	color: var(--metanthropes-color-secondary);
-	text-shadow: var(--metanthropes-color-text-shadow);
+	//color: var(--metanthropes-color-secondary);
+	//background-color: var(--metanthropes-color-background);
+	//text-shadow: var(--metanthropes-color-text-shadow);
+}
+
+h4 {
+	font-family: $font-primary;
+}
+
+h5 {
+	font-family: $font-primary;
+}
+h6 {
+	font-family: $font-primary;
 }
 
 hr {
@@ -96,6 +120,7 @@ summary::marker {
 	font-size: 1.5em;
 	content: "🔽";
 }
+
 [open] summary::marker {
 	content: "🔼";
 }
