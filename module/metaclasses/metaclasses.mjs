@@ -3,14 +3,11 @@ import { metaChangeActorImage } from "../helpers/metaimagehandler.mjs";
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 /**
- * Proof Of Concept custom class to display portrait images from multiple paths
- *todo review registry functionality
+ * Allows to browse Images from multiple folders
+ *todo Utilizes the metanthropes.registry - read how to use it in your own modules [here](tbd)
  *todo is this going to be also used in non-Actor scenarios?
- *todo proper localization of hbs etc
- *todo review The Forge compatibility
- *todo utilize the 'enabled' content from modules
- *todo webm token prefered
- *todo actor type dropdown
+ *todo test The Forge compatibility
+ *!todo utilize the 'enabled' content from modules - or remove to declutter the Settings UI
  *todo wildcard selection, limits only to those who have more than 01
  *
  * @export
@@ -33,6 +30,7 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 		},
 		actions: {
 			selectImage: this.#onSelectImage,
+			editImage: this.#onEditImage,
 		},
 	};
 
@@ -48,25 +46,56 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 		this.imageRegistryType = options.imageRegistryType ?? null;
 		this.imageFolder = options.imageFolder ?? null;
 		this.onSelect = options.onSelect ?? null;
+		this.actorName = options.actorName ?? null;
+		this.actorUUID = options.actorUUID ?? null;
 	}
 
-	get imageRegistry() {
-		return metanthropes.imageRegistry ?? {};
-	}
-
-	async _prepareContext(_options) {
+	async _prepareContext(options) {
+		//todo why freaks out when calling super below?
+		//super(options);
 		const paths = await this.#collectPaths(this.imageRegistryType, this.imageFolder);
 		return {
-			isNarrator: game.user.isActiveGM, //todo should we enable for non-Active GMs too?
+			isNarrator: game.user.isGM, //todo should we enable only for Active GMs?
 			paths: paths,
 			selected: this.selected,
 			imageRegistryType: this.imageRegistryType,
 			imageFolder: this.imageFolder,
 			hasImages: paths.some((group) => group.images.length),
+			actorName: this.actorName,
+			actorUUID: this.actorUUID,
 		};
 	}
 
+	static async #onSelectImage(event, target) {
+		const path = target.dataset.path;
+		if (!path)
+			return metanthropes.utils.metaLog(2, "MetaImagePicker", "onSelectImage", "Could not work with path", path);
+		this.selected = path;
+		metanthropes.utils.metaLog(3, "MetaImagePicker", "onSelectImage", "Selected path", path);
+		await this.onSelect(path);
+		await this.close();
+	}
+
+	static async #onEditImage(event, target) {
+		//? from example https://foundryvtt.wiki/en/development/guides/applicationV2-conversion-guide
+		const field = target.dataset.field || "img";
+		const actor = await fromUuid(target.dataset.actorId);
+		const current = foundry.utils.getProperty(actor.document, field);
+		const fp = new foundry.applications.apps.FilePicker({
+			type: "image",
+			current: current,
+			callback: (path) => actor.update({ [field]: path }),
+		});
+
+		fp.render(true);
+	}
+
 	async #collectPaths(imageRegistryType, imageFolder) {
+		//todo idea to deprecate old portraits without removing them now
+		//todo curate a list of files we want to exclude and skip protagonist folders
+		//images still exist in assets, no need to do any migrations atm
+		//later we can remove the excess assets, perhaps some civilian# will be empty?
+		//the case of the mystery of the missing civilians
 		//todo how to properly modularize, do I really needd to?
 		if (!imageRegistryType || !imageRegistryType === "actors")
 			return metanthropes.utils.metaLog(
@@ -76,7 +105,7 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 				"No valid imageRegistryType Provided",
 			);
 		const paths = [];
-		for (const [registryKey, rootPath] of Object.entries(this.imageRegistry)) {
+		for (const [registryKey, rootPath] of Object.entries(metanthropes.registry.artwork)) {
 			//if (!(registryKey === this.imageRegistryType)) continue;
 			if (!rootPath) continue;
 			//todo add final path
@@ -100,7 +129,7 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 			//todo if running on The Forge, figure out the correct relative path?
 			let images = await this.#callFilePicker(finalPath);
 			if (!images || images === "false") continue;
-			let folderName = imageFolder
+			let folderName = imageFolder;
 			paths.push({
 				registryKey,
 				rootPath,
@@ -109,6 +138,7 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 			});
 			//? Go for additional imageFolders per Module
 			//! giati den dixnei tous Aether Metanthropes otan kaneis Change Protagonist?
+			// needs refactoring
 			//todo na exw ena const some list poy gia px protagonist, vale ta alla 2
 			if (imageFolder === "protagonist") {
 				//? Also Show Metanthropes
@@ -171,7 +201,11 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 		metanthropes.utils.metaLog(3, "trying path", path);
 		let filePickerInstance;
 		try {
-			filePickerInstance = await foundry.applications.apps.FilePicker.browse("data", path);
+			//? The Forge compatibility
+			let source;
+			if (game.modules?.["forge-vtt"]?.active) source = "forge";
+			else source = "data";
+			filePickerInstance = await foundry.applications.apps.FilePicker.browse(source, path);
 		} catch (error) {
 			metanthropes.utils.metaLog(
 				4,
@@ -189,16 +223,6 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 			isSelected: path === this.selected,
 		}));
 		return images;
-	}
-
-	static async #onSelectImage(_event, target) {
-		const path = target.dataset.path;
-		if (!path)
-			return metanthropes.utils.metaLog(2, "MetaImagePicker", "onSelectImage", "Could not work with path", path);
-		this.selected = path;
-		metanthropes.utils.metaLog(3, "MetaImagePicker", "onSelectImage", "Selected path", path);
-		await this.onSelect(path);
-		await this.close();
 	}
 }
 

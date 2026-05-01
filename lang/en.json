@@ -95,11 +95,13 @@
 				"META_IMAGE_PICKER": {
 					"Title": "Change Actor Potrait & Token Images",
 					"ActorType": "Actor Type:",
-					"Menu": "Select a new Image for this Actor from the available options below.",
+					"Menu": "Select a new artwork for this Actor from the available options below.",
 					"Token": "The Top-Down Token will be updated accordingly.",
 					"Selected": "Currently Selected Image",
+					"Manual": "Select Image Manually",
+					"ManualTooltip": "Click here for the default Foundry VTT behavior. The Token Image will not be updated automatically.",
 					"Select": "Select an",
-					"Error": "No Images found in the Registered Image paths.",
+					"Error": "No Images found in the Artwork Registry for this Actor Type.",
 					"ActorTypes": {
 						"protagonist": "Protagonist",
 						"metanthrope": "Metanthrope",

@@ -1,24 +1,3 @@
-/**
- * !deprecate
- * Helper function to change the image of an actor
- * @param {*} actor - Object of the actor
- * @param {boolean} useWildcard - Flag to determine if a wildcard image path should be used
- */
-export async function metaChangeActorImage(actor, useWildcard = false) {
-	const imageDir = "portraits";
-	await metaUpdateImage(actor, imageDir, true, useWildcard);
-}
-
-/**
- * !deprecate
- * Helper function to change the token image of an actor
- * @param {*} actor - Object of the actor
- * @param {boolean} useWildcard - Flag to determine if a wildcard image path should be used
- */
-export async function metaChangeTokenImage(actor, useWildcard = false) {
-	const imageDir = "tokens";
-	await metaUpdateImage(actor, imageDir, false, useWildcard);
-}
 
 /**
  * todo this should be an Actor method instead
@@ -34,6 +13,8 @@ async function metaUpdateImage(actor, imageDir, changeBoth, useWildcard) {
 		selected: actor.img,
 		imageRegistryType: "actors",
 		imageFolder: actorType,
+		actorName: actor.name,
+		actorUUID: actor.uuid,
 		onSelect: async (path) => {
 			if (!path)
 				return metanthropes.utils.metaLog(
@@ -45,8 +26,8 @@ async function metaUpdateImage(actor, imageDir, changeBoth, useWildcard) {
 			if (changeBoth) {
 				metanthropes.utils.metaLog(2, "metaUpdateImage", "changeBoth / path / useWildcard", path, useWildcard);
 				await actor.update({ img: path });
-				const tokenImagePath = convertPortraitToTokenPath(path);
-				await metaUpdateTokenImage(actor, tokenImagePath, useWildcard);
+				const updatedTokenImage = await convertPortraitToToken(path);
+				await metaUpdateTokenImage(actor, updatedTokenImage, useWildcard);
 			} else {
 				metanthropes.utils.metaLog(
 					2,
@@ -59,64 +40,59 @@ async function metaUpdateImage(actor, imageDir, changeBoth, useWildcard) {
 			}
 		},
 	});
-	imagePick.render({ force: true }); //todo test without force
-	const path = await imagePick.result;
-	metanthropes.utils.metaLog(2, "metaUpdateImage", "onSelect", "new path", path);
-	//todo merge the callback after reviewing the metaUpdateTokenImage and convertPortraitToTokenPath
-
-	//?I get the new image path here for the Actor, need to update the top-down token accordingly
-	// if (!imagePick.selected) return metanthropes.utils.metaLog(2, "metaUpdateImage", "Not a valid path returned from MetaImagePicker", imagePick);
-	// if (changeBoth) {
-	// 	metanthropes.utils.metaLog(2, "metaUpdateImage", "changeBoth / path / useWildcard", imagePick.selected, useWildcard);
-	// 	await actor.update({ img: imagePick.selected });
-	// 	const tokenImagePath = convertPortraitToTokenPath(imagePick.selected);
-	// 	await metaUpdateTokenImage(actor, tokenImagePath, useWildcard);
-	// } else {
-	// 	metanthropes.utils.metaLog(2, "metaUpdateImage", "no changeBoth / path / useWildcard", imagePick.selected, useWildcard);
-	// 	await metaUpdateTokenImage(actor, imagePick.selected, useWildcard);
-	// }
-
-	//todo we want to have a 'virtual' directory where we show all available actors for that species/type
-	//todo needs to grab all active modules that can provide such assets and combine them
-	// let baseDir = "systems/metanthropes/assets/artwork/actors/";
-
-	// //? If using the Metanthropes: Introductory Module features, change the base directory
-	// const intro = game.settings.get("metanthropes", "metaIntroductory");
-	// if (intro) {
-	// 	baseDir = "modules/metanthropes-introductory/assets/artwork/actors/";
-	// }
-
-	// //? Set the final directory based on the actor type
-	// //todo replace the 'actorType' with the new 'species'
-	// const finalDir = `${baseDir}${imageDir}/${actorType}/`;
-
-	// //? File picker configuration
-	// //todo set a flag on the actor so we show the virtual folder once?
-	// const fp = new foundry.applications.apps.FilePicker.implementation({
-	// 	resource: "data",
-	// 	current: finalDir,
-	// 	displayMode: "tiles",
-	// 	callback: async (selection) => {
-	// 		if (changeBoth) {
-	// 			await actor.update({ img: selection });
-	// 			const tokenImagePath = convertPortraitToTokenPath(selection);
-	// 			await metaUpdateTokenImage(actor, tokenImagePath, useWildcard);
-	// 		} else {
-	// 			await metaUpdateTokenImage(actor, selection, useWildcard);
-	// 		}
-	// 	},
-	// });
-
-	// return fp.browse();
+	imagePick.render(true);
 }
 
 /**
- * Convert a portrait image path to a token image path
- * @param {string} portraitPath - The portrait image path
- * @returns {string} The token image path
+ * Returns the corresponsing top-down Token for a Portrait
+ * Prefers Animated Tokens if available
+ * Compatible with The Forge hosting service
+ *
+ * @async
+ * @param {*} path
+ * @returns {string} path
  */
-function convertPortraitToTokenPath(portraitPath) {
-	return portraitPath.replace("/portraits/", "/tokens/");
+async function convertPortraitToToken(path) {
+	//? Switch path
+	const tokenPath = path.replace("/portraits/", "/tokens/");
+	if (tokenPath === path) return path;
+	//? Prefer Animated Tokens
+	const animatedPath = tokenPath.replace(/\.webp$/i, ".webm");
+	if (animatedPath === tokenPath) return tokenPath;
+	const dir = animatedPath.split("/").slice(0, -1).join("/");
+	try {
+		//? The Forge compatibility
+		let source;
+		if (game.modules?.["forge-vtt"]?.active) source = "forge";
+		else source = "data";
+		try {
+			const fpcheck = await foundry.applications.apps.FilePicker.browse(source, dir);
+			return fpcheck.files?.includes(animatedPath) ? animatedPath : tokenPath;
+		} catch (fperror) {
+			metanthropes.utils.metaLog(
+				2,
+				"convertPortraitToToken",
+				"path",
+				path,
+				"returned FP error",
+				fperror,
+				"Insted Returning tokenPath",
+				tokenPath,
+			);
+			return tokenPath;
+		}
+	} catch (error) {
+		metanthropes.utils.metaLog(
+			4,
+			"convertPortraitToToken",
+			"No result from dir, animatedPath",
+			dir,
+			animatedPath,
+			"FilePicker returned error",
+			error,
+		);
+		return tokenPath;
+	}
 }
 
 /**
@@ -124,11 +100,19 @@ function convertPortraitToTokenPath(portraitPath) {
  * @param {*} actor - Object of the actor
  * @param {string} selection - Selected image path
  * @param {boolean} useWildcard - Flag to determine if a wildcard image path should be used
- * ! wildcards should not use the full directory but the -01-02 versions instead?
+ * todo wildcards should not use the full directory but the -01-02 versions instead?
  */
 async function metaUpdateTokenImage(actor, selection, useWildcard) {
-	metanthropes.utils.metaLog(3, "metaUpdateTokenImage", actor, selection, useWildcard);
+	metanthropes.utils.metaLog(
+		3,
+		"metaUpdateTokenImage",
+		"actor, selection, useWildcard",
+		actor,
+		selection,
+		useWildcard,
+	);
 	//? Modify the selection path if using wildcard
+	//todo review how we choose to enable wildcards
 	const tokenImagePath = useWildcard ? `${selection}/*` : selection;
 
 	//? Iterate over all the available Scenes
@@ -165,4 +149,26 @@ async function metaUpdateTokenImage(actor, selection, useWildcard) {
 		const token = actor.token;
 		await token.update({ "texture.src": tokenImagePath });
 	}
+}
+
+/**
+ * !deprecate
+ * Helper function to change the image of an actor
+ * @param {*} actor - Object of the actor
+ * @param {boolean} useWildcard - Flag to determine if a wildcard image path should be used
+ */
+export async function metaChangeActorImage(actor, useWildcard = false) {
+	const imageDir = "portraits";
+	await metaUpdateImage(actor, imageDir, true, useWildcard);
+}
+
+/**
+ * !deprecate
+ * Helper function to change the token image of an actor
+ * @param {*} actor - Object of the actor
+ * @param {boolean} useWildcard - Flag to determine if a wildcard image path should be used
+ */
+export async function metaChangeTokenImage(actor, useWildcard = false) {
+	const imageDir = "tokens";
+	await metaUpdateImage(actor, imageDir, false, useWildcard);
 }

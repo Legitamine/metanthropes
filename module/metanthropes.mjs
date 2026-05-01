@@ -153,12 +153,10 @@ globalThis.metanthropes = {
 		metaCreateFAIcon,
 		metaCreateCustomIcon,
 	},
-	imageRegistry: {
-		System: "systems/metanthropes/assets/artwork",
-
-		// netherActors: "modules/metanthropes-anthologies-nether/assets/artwork/actors/portraits",
-		// astralActors: "modules/metanthropes-anthologies-astral/assets/artwork/actors/portraits",
-		// aetherActors: "modules/metanthropes-anthologies-aether/assets/artwork/actors/portraits"
+	registry: {
+		artwork: {
+			System: "systems/metanthropes/assets/artwork",
+		},
 	},
 };
 

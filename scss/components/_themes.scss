@@ -19,16 +19,17 @@ body.theme-dark .application .window-content,
 	--metanthropes-color-primary: #{$c-dark-purple};
 	--metanthropes-color-secondary: #{$c-main-purple};
 	--metanthropes-color-highlight: #{$c-dark-highlight};
-	--metanthropes-color-text: #{$c-light-font};
+	--metanthropes-color-text: #{$c-light-font-primary};
 	--metanthropes-color-text-shadow: #{$c-light-purple};
-	--metanthropes-color-disabled: #{$c-light-gold};
+	--metanthropes-color-disabled: #{$c-dark-gold};
 	--metanthropes-color-background: #{$c-light-purple};
 	//* Foundry Overrides
 	--background: #{$a-app-bw-dark}; //! weird resolving url
 	--background-journal-image: #{$a-journal-dark};
 	--sidebar-background: #{$a-sidebar-dark}; //! weird resolving url
 	//? what's this for? --tjs-app-background: url("../systems/metanthropes/assets/artwork/ui/app/app-colored-dark.png");
-	--color-text-primary: #{$c-light-font};
+	--color-text-primary: #{$c-light-font-primary};
+	--color-text-secondary: #{$c-light-font-secondary};
 	--color-fieldset-border: var(--metanthropes-color-primary);
 	--color-scrollbar: var(--metanthropes-color-highlight);
 	--color-shadow-primary: var(--metanthropes-color-disabled);
@@ -71,16 +72,17 @@ body.theme-light .application,
 	--metanthropes-color-primary: #{$c-dark-blue};
 	--metanthropes-color-secondary: #{$c-main-blue};
 	--metanthropes-color-highlight: #{$c-light-highlight};
-	--metanthropes-color-text: #{$c-dark-font};
+	--metanthropes-color-text: #{$c-dark-font-primary};
 	--metanthropes-color-text-shadow: #{$c-light-blue};
-	--metanthropes-color-disabled: #{$c-dark-gold};
+	--metanthropes-color-disabled: #{$c-light-gold};
 	--metanthropes-color-background: #{$c-light-blue};
 	//* Foundry Overrides
 	--background: #{$a-app-bw-light};
 	--background-journal-image: #{$a-journal-light};
 	--sidebar-background: #{$a-sidebar-light};
 	//--tjs-app-background: url("../systems/metanthropes/assets/artwork/ui/app/app-colored-light.png");
-	--color-text-primary: #{$c-dark-font};
+	--color-text-primary: #{$c-dark-font-primary};
+	--color-text-secondary: #{$c-dark-font-secondary};
 	--color-fieldset-border: var(--metanthropes-color-primary);
 	--color-scrollbar: var(--metanthropes-color-highlight);
 	--color-shadow-primary: var(--metanthropes-color-disabled);
