@@ -7,8 +7,10 @@ const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
  *todo Utilizes the metanthropes.registry - read how to use it in your own modules [here](tbd)
  *todo is this going to be also used in non-Actor scenarios?
  *todo test The Forge compatibility
+ *todo test Tokenizer compatibility with manual select
  *!todo utilize the 'enabled' content from modules - or remove to declutter the Settings UI
  *todo wildcard selection, limits only to those who have more than 01
+ *todo revise how we do wildcards, should we control it or read if it's enabled instead?
  *
  * @export
  * @class MetaImagePicker
@@ -63,6 +65,7 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 			hasImages: paths.some((group) => group.images.length),
 			actorName: this.actorName,
 			actorUUID: this.actorUUID,
+			tokenizer: game.modules.get("vtta-tokenizer")?.active
 		};
 	}
 
@@ -115,7 +118,6 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 			//! alt change the structure now?, also needs a migration script so..
 			// ean ta krathsw the same tha prepei k pali na ginei ^^ later so..
 			// what to do
-			let finalPath = `${rootPath}/actors/portraits/${imageFolder}/`;
 			//const tokenPath = `${rootPath}/actors/tokens/${imageFolder}/`;
 			// registry gives root actor folder path - behind it are /portraits /tokens and
 			// below are /targetgroupname folders so need to know that path
@@ -127,71 +129,143 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 			//todo do we want AppV1 compatibility?
 			//? Spin off a FilePicker for grabbing the files from the rootPath for that selection
 			//todo if running on The Forge, figure out the correct relative path?
-			let images = await this.#callFilePicker(finalPath);
-			if (!images || images === "false") continue;
-			let folderName = imageFolder;
-			paths.push({
-				registryKey,
-				rootPath,
-				folderName,
-				images,
-			});
+			let finalPath;
+			let folderName;
+			let images;
+			//todo remove once deprecation period ends
+			const deprecatedImages = new Set([
+				"modules/metanthropes-introductory/assets/artwork/actors/portraits/human/civilian-03.webp",
+				"modules/metanthropes-introductory/assets/artwork/actors/portraits/human/civilian-06.webp",
+				"modules/metanthropes-introductory/assets/artwork/actors/portraits/human/civilian-08.webp",
+				"modules/metanthropes-introductory/assets/artwork/actors/portraits/human/civilian-10.webp",
+				"modules/metanthropes-introductory/assets/artwork/actors/portraits/human/civilian-15.webp",
+				"modules/metanthropes-introductory/assets/artwork/actors/portraits/human/civilian-16.webp",
+			]);
+			switch (imageFolder) {
+				case "protagonist":
+					//? Show Metanthropes
+					folderName = "metanthrope";
+					finalPath = `${rootPath}/actors/portraits/metanthrope/`;
+					images = await this.#callFilePicker(finalPath);
+					if (images && images !== "false") {
+						paths.push({
+							registryKey,
+							rootPath,
+							folderName,
+							images,
+						});
+					}
+					//? Show Humans
+					folderName = "human";
+					finalPath = `${rootPath}/actors/portraits/human/`;
+					images = await this.#callFilePicker(finalPath);
+					if (images && images !== "false") {
+						const deprecateCivilians = images.filter((entry) => !deprecatedImages.has(entry.path))
+						paths.push({
+							registryKey,
+							rootPath,
+							folderName,
+							images: deprecateCivilians,
+						});
+					}
+					continue;
+				case "metanthrope":
+					//? Show Metanthropes
+					folderName = "metanthrope";
+					finalPath = `${rootPath}/actors/portraits/metanthrope/`;
+					images = await this.#callFilePicker(finalPath);
+					if (images && images !== "false") {
+						paths.push({
+							registryKey,
+							rootPath,
+							folderName,
+							images,
+						});
+					}
+					//? Show Humans
+					folderName = "human";
+					finalPath = `${rootPath}/actors/portraits/human/`;
+					images = await this.#callFilePicker(finalPath);
+					if (images && images !== "false") {
+						const deprecateCivilians = images.filter((entry) => !deprecatedImages.has(entry.path))
+						paths.push({
+							registryKey,
+							rootPath,
+							folderName,
+							images: deprecateCivilians,
+						});
+					}
+					continue;
+				default:
+					finalPath = `${rootPath}/actors/portraits/${imageFolder}/`;
+					images = await this.#callFilePicker(finalPath);
+					if (!images || images === "false") continue;
+					folderName = imageFolder;
+					paths.push({
+						registryKey,
+						rootPath,
+						folderName,
+						images,
+					});
+					continue;
+			}
+
 			//? Go for additional imageFolders per Module
 			//! giati den dixnei tous Aether Metanthropes otan kaneis Change Protagonist?
 			// needs refactoring
 			//todo na exw ena const some list poy gia px protagonist, vale ta alla 2
-			if (imageFolder === "protagonist") {
-				//? Also Show Metanthropes
-				folderName = "metanthrope";
-				finalPath = `${rootPath}/actors/portraits/metanthrope/`;
-				images = await this.#callFilePicker(finalPath);
-				if (images && images !== "false") {
-					paths.push({
-						registryKey,
-						rootPath,
-						folderName,
-						images,
-					});
-				}
-				//? Also Show Humans
-				folderName = "human";
-				finalPath = `${rootPath}/actors/portraits/human/`;
-				images = await this.#callFilePicker(finalPath);
-				if (images && images !== "false") {
-					paths.push({
-						registryKey,
-						rootPath,
-						folderName,
-						images,
-					});
-				}
-			}
-			if (imageFolder === "metanthrope") {
-				//? Also Show Humans
-				folderName = "human";
-				finalPath = `${rootPath}/actors/portraits/human/`;
-				images = await this.#callFilePicker(finalPath);
-				if (images && images !== "false") {
-					paths.push({
-						registryKey,
-						rootPath,
-						folderName,
-						images,
-					});
-				}
-				//? Also Show Protagonists
-				folderName = "protagonist";
-				finalPath = `${rootPath}/actors/portraits/protagonist/`;
-				images = await this.#callFilePicker(finalPath);
-				if (images && images !== "false") {
-					paths.push({
-						registryKey,
-						rootPath,
-						folderName,
-						images,
-					});
-				}
-			}
+			// if (imageFolder === "protagonist") {
+			// 	//? Also Show Metanthropes
+			// 	folderName = "metanthrope";
+			// 	finalPath = `${rootPath}/actors/portraits/metanthrope/`;
+			// 	images = await this.#callFilePicker(finalPath);
+			// 	if (images && images !== "false") {
+			// 		paths.push({
+			// 			registryKey,
+			// 			rootPath,
+			// 			folderName,
+			// 			images,
+			// 		});
+			// 	}
+			// 	//? Also Show Humans
+			// 	folderName = "human";
+			// 	finalPath = `${rootPath}/actors/portraits/human/`;
+			// 	images = await this.#callFilePicker(finalPath);
+			// 	if (images && images !== "false") {
+			// 		paths.push({
+			// 			registryKey,
+			// 			rootPath,
+			// 			folderName,
+			// 			images,
+			// 		});
+			// 	}
+			// }
+			// if (imageFolder === "metanthrope") {
+			// 	//? Also Show Humans
+			// 	folderName = "human";
+			// 	finalPath = `${rootPath}/actors/portraits/human/`;
+			// 	images = await this.#callFilePicker(finalPath);
+			// 	if (images && images !== "false") {
+			// 		paths.push({
+			// 			registryKey,
+			// 			rootPath,
+			// 			folderName,
+			// 			images,
+			// 		});
+			// 	}
+			// 	//? Also Show Protagonists
+			// 	folderName = "protagonist";
+			// 	finalPath = `${rootPath}/actors/portraits/protagonist/`;
+			// 	images = await this.#callFilePicker(finalPath);
+			// 	if (images && images !== "false") {
+			// 		paths.push({
+			// 			registryKey,
+			// 			rootPath,
+			// 			folderName,
+			// 			images,
+			// 		});
+			// 	}
+			// }
 		}
 		metanthropes.utils.metaLog(3, "all paths returned", paths);
 		return paths;
@@ -203,7 +277,7 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 		try {
 			//? The Forge compatibility
 			let source;
-			if (game.modules?.["forge-vtt"]?.active) source = "forge";
+			if (game.modules.get("forge-vtt")?.active) source = "forgevtt";
 			else source = "data";
 			filePickerInstance = await foundry.applications.apps.FilePicker.browse(source, path);
 		} catch (error) {

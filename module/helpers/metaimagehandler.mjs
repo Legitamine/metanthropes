@@ -63,7 +63,7 @@ async function convertPortraitToToken(path) {
 	try {
 		//? The Forge compatibility
 		let source;
-		if (game.modules?.["forge-vtt"]?.active) source = "forge";
+		if (game.modules.get("forge-vtt")?.active) source = "forgevtt";
 		else source = "data";
 		try {
 			const fpcheck = await foundry.applications.apps.FilePicker.browse(source, dir);

@@ -1,4 +1,3 @@
-{{log this}}
 <section class="metanthropes-image-picker">
 	<header class="header">
 		<h3>{{actorName}}</h3>
@@ -10,16 +9,10 @@
 			<hr>
 			{{#if isNarrator}}
 				<h5>Narrator Options</h5>
-				{{!--
-				<h6>
-					{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Selected"}} |  
-					{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.ActorType"}}
-					{{localize (concat "METANTHROPES.UI.APPS.META_IMAGE_PICKER.ActorTypes."imageFolder)}}
-				</h6>
-				--}}
 				<br>
-				<button class="button" data-action="editImage" data-field="img" data-actor-id={{actorUUID}}
-					data-tooltip="METANTHROPES.UI.APPS.META_IMAGE_PICKER.ManualTooltip">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Manual"}}</button>
+				<button class="button" {{#if tokenizer}}data-edit="img" {{/if}} data-action="editImage" data-field="img"
+					data-actor-id={{actorUUID}} data-tooltip="METANTHROPES.UI.APPS.META_IMAGE_PICKER.ManualTooltip"
+					data-tooltip-direction="UP">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Manual"}}</button>
 			{{/if}}
 			<hr>
 		</div>
@@ -27,17 +20,14 @@
 	{{#if hasImages}}
 		{{#each paths}}
 			<section class="image-group">
-				
-
-					<h3>{{localize (concat "METANTHROPES.MODULES."registryKey)}} |
-						{{localize (concat "METANTHROPES.UI.APPS.META_IMAGE_PICKER.ActorTypes."folderName)}}</h3>
-
-				
+				<h3>{{localize (concat "METANTHROPES.UI.APPS.META_IMAGE_PICKER.ActorTypes."folderName)}} |
+					{{localize (concat "METANTHROPES.MODULES."registryKey)}}
+				</h3>
 				<div class="image-grid">
 					{{#each images}}
 						<button type="button" class="image-card{{#if isSelected}} selected{{/if}}"
-							{{#if isSelected}}data-tooltip="METANTHROPES.UI.APPS.META_IMAGE_PICKER.Selected" {{/if}}
-							data-action="selectImage" data-path="{{path}}">
+							{{#if isSelected}}data-tooltip="METANTHROPES.UI.APPS.META_IMAGE_PICKER.Selected"
+							data-tooltip-direction="UP" {{/if}} data-action="selectImage" data-path="{{path}}">
 							<img loading="lazy" src="{{path}}" alt="{{name}}">
 							<span class="image-name">{{name}}</span>
 						</button>

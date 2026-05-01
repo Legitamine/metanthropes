@@ -262,7 +262,7 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		html.find(".meta-cover-roll").click(this._onCoverRoll.bind(this));
 		//? Change Portrait Image
 		html.find(".meta-change-portrait").click(this._onChangePortrait.bind(this));
-		//? Change Token Image
+		//? Change Token Image !unused
 		html.find(".meta-change-token").click(this._onChangeToken.bind(this));
 		//? Undo last Life change button
 		html.find(".undo-last-life-change").click(this._onUndoLastLifeChange.bind(this));
@@ -713,6 +713,7 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		const actor = await fromUuid(actorUUID);
 		metaChangeActorImage(actor);
 	}
+	//!unused
 	async _onChangeToken(event) {
 		event.preventDefault();
 		const actorUUID = this.actor.uuid;
