@@ -1,16 +1,18 @@
-import { metaChangeActorImage } from "../helpers/metaimagehandler.mjs";
-
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 /**
- * Allows to browse Images from multiple folders
+ * Metanthropes Image Picker - Allows to browse Images from multiple folders & sets corresponding top-down Token accordingly
+ * * Allows other supported Modules to extend the available options for each Type of Actor
+ * * Compatible with The Forge hosting service (test pending)
+ * * Compatible with the Tokenizer Module (test pending)
+ * * Applies the respective top-down Token to all respective Tokens across Scenes
+ * * Prefers to use an Animated Token if available.
  *todo Utilizes the metanthropes.registry - read how to use it in your own modules [here](tbd)
  *todo is this going to be also used in non-Actor scenarios?
- *todo test The Forge compatibility
- *todo test Tokenizer compatibility with manual select
  *!todo utilize the 'enabled' content from modules - or remove to declutter the Settings UI
  *todo wildcard selection, limits only to those who have more than 01
- *todo revise how we do wildcards, should we control it or read if it's enabled instead?
+ *todo revise how we do wildcards, we should we control it 
+ *todo when returning an animated token, set the correct scale
  *
  * @export
  * @class MetaImagePicker
@@ -47,7 +49,6 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 		this.selected = options.selected ?? null;
 		this.imageRegistryType = options.imageRegistryType ?? null;
 		this.imageFolder = options.imageFolder ?? null;
-		this.onSelect = options.onSelect ?? null;
 		this.actorName = options.actorName ?? null;
 		this.actorUUID = options.actorUUID ?? null;
 	}
@@ -58,6 +59,8 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 		const paths = await this.#collectPaths(this.imageRegistryType, this.imageFolder);
 		return {
 			isNarrator: game.user.isGM, //todo should we enable only for Active GMs?
+			isUntrustedUser: Boolean(game.user.role === 1),
+			isTrustedUser: Boolean(game.user.role > 1),
 			paths: paths,
 			selected: this.selected,
 			imageRegistryType: this.imageRegistryType,
@@ -65,17 +68,20 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 			hasImages: paths.some((group) => group.images.length),
 			actorName: this.actorName,
 			actorUUID: this.actorUUID,
-			tokenizer: game.modules.get("vtta-tokenizer")?.active
+			tokenizer: game.modules.get("vtta-tokenizer")?.active,
 		};
 	}
 
 	static async #onSelectImage(event, target) {
 		const path = target.dataset.path;
 		if (!path)
-			return metanthropes.utils.metaLog(2, "MetaImagePicker", "onSelectImage", "Could not work with path", path);
+			return metanthropes.utils.metaLog(2, "MetaImagePicker", "#onSelectImage", "Could not work with path", path, "Aborting");
 		this.selected = path;
-		metanthropes.utils.metaLog(3, "MetaImagePicker", "onSelectImage", "Selected path", path);
-		await this.onSelect(path);
+		metanthropes.utils.metaLog(3, "MetaImagePicker", "#onSelectImage", "Selected path", path);
+		const actor = await fromUuid(this.actorUUID);
+		await actor.update({ img: path });
+		const updatedTokenImage = await metanthropes.utils.metaConvertPortraitToTokenImage(path);
+		await metanthropes.utils.metaUpdateTokenImages({actorUUID: actor.uuid, selectedPath: updatedTokenImage});
 		await this.close();
 	}
 
@@ -87,18 +93,15 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 		const fp = new foundry.applications.apps.FilePicker({
 			type: "image",
 			current: current,
-			callback: (path) => actor.update({ [field]: path }),
+			callback: async (path) => {
+				await actor.update({ [field]: path });
+				await this.close();
+			},
 		});
-
 		fp.render(true);
 	}
 
 	async #collectPaths(imageRegistryType, imageFolder) {
-		//todo idea to deprecate old portraits without removing them now
-		//todo curate a list of files we want to exclude and skip protagonist folders
-		//images still exist in assets, no need to do any migrations atm
-		//later we can remove the excess assets, perhaps some civilian# will be empty?
-		//the case of the mystery of the missing civilians
 		//todo how to properly modularize, do I really needd to?
 		if (!imageRegistryType || !imageRegistryType === "actors")
 			return metanthropes.utils.metaLog(
@@ -111,24 +114,6 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 		for (const [registryKey, rootPath] of Object.entries(metanthropes.registry.artwork)) {
 			//if (!(registryKey === this.imageRegistryType)) continue;
 			if (!rootPath) continue;
-			//todo add final path
-			//todo edw einai gia ta diafora actor types - ean valw to logic edw, mporw na
-			// keep it consistent over v1 migration, so the change here, reflects the new paths
-			// although that wouldn't affect how existing portraits are setup, so won't avoid a migration script
-			//! alt change the structure now?, also needs a migration script so..
-			// ean ta krathsw the same tha prepei k pali na ginei ^^ later so..
-			// what to do
-			//const tokenPath = `${rootPath}/actors/tokens/${imageFolder}/`;
-			// registry gives root actor folder path - behind it are /portraits /tokens and
-			// below are /targetgroupname folders so need to know that path
-			// if the registry does not include, skip - also honors the use content setting
-			// push to groups
-			// push to tokens so we can also return valid token path?
-			//todo can do filtering based on the registry structure here
-			//todo include final species design
-			//todo do we want AppV1 compatibility?
-			//? Spin off a FilePicker for grabbing the files from the rootPath for that selection
-			//todo if running on The Forge, figure out the correct relative path?
 			let finalPath;
 			let folderName;
 			let images;
@@ -160,7 +145,7 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 					finalPath = `${rootPath}/actors/portraits/human/`;
 					images = await this.#callFilePicker(finalPath);
 					if (images && images !== "false") {
-						const deprecateCivilians = images.filter((entry) => !deprecatedImages.has(entry.path))
+						const deprecateCivilians = images.filter((entry) => !deprecatedImages.has(entry.path));
 						paths.push({
 							registryKey,
 							rootPath,
@@ -187,7 +172,7 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 					finalPath = `${rootPath}/actors/portraits/human/`;
 					images = await this.#callFilePicker(finalPath);
 					if (images && images !== "false") {
-						const deprecateCivilians = images.filter((entry) => !deprecatedImages.has(entry.path))
+						const deprecateCivilians = images.filter((entry) => !deprecatedImages.has(entry.path));
 						paths.push({
 							registryKey,
 							rootPath,
@@ -209,63 +194,6 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 					});
 					continue;
 			}
-
-			//? Go for additional imageFolders per Module
-			//! giati den dixnei tous Aether Metanthropes otan kaneis Change Protagonist?
-			// needs refactoring
-			//todo na exw ena const some list poy gia px protagonist, vale ta alla 2
-			// if (imageFolder === "protagonist") {
-			// 	//? Also Show Metanthropes
-			// 	folderName = "metanthrope";
-			// 	finalPath = `${rootPath}/actors/portraits/metanthrope/`;
-			// 	images = await this.#callFilePicker(finalPath);
-			// 	if (images && images !== "false") {
-			// 		paths.push({
-			// 			registryKey,
-			// 			rootPath,
-			// 			folderName,
-			// 			images,
-			// 		});
-			// 	}
-			// 	//? Also Show Humans
-			// 	folderName = "human";
-			// 	finalPath = `${rootPath}/actors/portraits/human/`;
-			// 	images = await this.#callFilePicker(finalPath);
-			// 	if (images && images !== "false") {
-			// 		paths.push({
-			// 			registryKey,
-			// 			rootPath,
-			// 			folderName,
-			// 			images,
-			// 		});
-			// 	}
-			// }
-			// if (imageFolder === "metanthrope") {
-			// 	//? Also Show Humans
-			// 	folderName = "human";
-			// 	finalPath = `${rootPath}/actors/portraits/human/`;
-			// 	images = await this.#callFilePicker(finalPath);
-			// 	if (images && images !== "false") {
-			// 		paths.push({
-			// 			registryKey,
-			// 			rootPath,
-			// 			folderName,
-			// 			images,
-			// 		});
-			// 	}
-			// 	//? Also Show Protagonists
-			// 	folderName = "protagonist";
-			// 	finalPath = `${rootPath}/actors/portraits/protagonist/`;
-			// 	images = await this.#callFilePicker(finalPath);
-			// 	if (images && images !== "false") {
-			// 		paths.push({
-			// 			registryKey,
-			// 			rootPath,
-			// 			folderName,
-			// 			images,
-			// 		});
-			// 	}
-			// }
 		}
 		metanthropes.utils.metaLog(3, "all paths returned", paths);
 		return paths;

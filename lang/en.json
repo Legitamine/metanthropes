@@ -100,8 +100,8 @@
 					"Selected": "Currently Selected Image",
 					"Manual": "Select Image Manually",
 					"ManualTooltip": "Click here for the default Foundry VTT behavior. The Token Image will not be updated automatically.",
-					"Select": "Select an",
 					"Error": "No Images found in the Artwork Registry for this Actor Type.",
+					"Untrusted": "It seems your User doesn't have the 'Use File Browser' Permission. Ask your Narrator to give your user this permission, or promote you to a Trusted Player from the User Permission Configuration screen.",
 					"ActorTypes": {
 						"protagonist": "Protagonist",
 						"metanthrope": "Metanthrope",

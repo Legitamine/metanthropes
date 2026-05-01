@@ -65,6 +65,7 @@ import { metaSortActions } from "./api/utils/sort-actions.mjs";
 import { metaRunMacro } from "./api/utils/run-macro.mjs";
 import { metaIsMetapowerEquipped, metaTransformStringForStorage } from "./helpers/metahelpers.mjs";
 import { metaCreateFAIcon, metaCreateCustomIcon } from "./helpers/fa-enricher.mjs";
+import { metaUpdateActorImages, metaConvertPortraitToTokenImage, metaUpdateTokenImages } from "./helpers/metaimagehandler.mjs";
 //* Game Settings
 import { metaRegisterGameSettings } from "./api/utils/register-game-settings.mjs";
 import { metaRegisterStatusEffects } from "./config/status-effects.mjs";
@@ -152,6 +153,9 @@ globalThis.metanthropes = {
 		metaIsMetapowerEquipped,
 		metaCreateFAIcon,
 		metaCreateCustomIcon,
+		metaUpdateActorImages,
+		metaUpdateTokenImages,
+		metaConvertPortraitToTokenImage,
 	},
 	registry: {
 		artwork: {

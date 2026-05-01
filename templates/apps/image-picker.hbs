@@ -6,15 +6,17 @@
 			<hr>
 			<p class="menu">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Menu"}}</p>
 			<p class="menu">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Token"}}</p>
-			<hr>
-			{{#if isNarrator}}
-				<h5>Narrator Options</h5>
-				<br>
+			{{#if isTrustedUser}}
 				<button class="button" {{#if tokenizer}}data-edit="img" {{/if}} data-action="editImage" data-field="img"
 					data-actor-id={{actorUUID}} data-tooltip="METANTHROPES.UI.APPS.META_IMAGE_PICKER.ManualTooltip"
 					data-tooltip-direction="UP">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Manual"}}</button>
 			{{/if}}
 			<hr>
+			{{#if isNarrator}}
+				<h5>Narrator Options</h5>
+				<br>
+				<hr>
+			{{/if}}
 		</div>
 	</header>
 	{{#if hasImages}}
@@ -37,7 +39,13 @@
 		{{/each}}
 	{{else}}
 		<section>
+			<div>
 			<p class="menu">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Error"}}</p>
+			{{#if isUntrustedUser}}
+			<hr>
+				<p class="menu">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Untrusted"}}</p>
+			{{/if}}
+			</div>
 		</section>
 	{{/if}}
 </section>
