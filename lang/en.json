@@ -91,6 +91,30 @@
 					"MetapowerRoll": "Activate ",
 					"Possession": "Possession",
 					"PossessionRoll": "Use "
+				},
+				"META_IMAGE_PICKER": {
+					"Title": "Change Actor Potrait & Token Images",
+					"ActorType": "Actor Type:",
+					"Menu": "Select a new artwork for this Actor from the available options below.",
+					"Token": "The Top-Down Token will be updated accordingly.",
+					"Selected": "Currently Selected Image",
+					"Manual": "Select Image Manually",
+					"ManualTooltip": "Click here for the default Foundry VTT behavior. The Token Image will not be updated automatically.",
+					"Error": "No Images found in the Artwork Registry for this Actor Type.",
+					"Untrusted": "It seems your User doesn't have the 'Use File Browser' Permission. Ask your Narrator to give your user this permission, or promote you to a Trusted Player from the User Permission Configuration screen.",
+					"ActorTypes": {
+						"protagonist": "Protagonist",
+						"metanthrope": "Metanthrope",
+						"human": "Human",
+						"vehicle": "Vehicle",
+						"animal": "Animal",
+						"artificial": "Artificial",
+						"extradimensional": "Extradimensional",
+						"extraterrestrial": "Extraterrestrial",
+						"animated-cadaver": "Animated-Cadaver",
+						"animated-plant": "Animated-Plant",
+						"metatherion": "MetaTherion"
+					}
 				}
 			}
 		},

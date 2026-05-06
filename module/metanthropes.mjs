@@ -32,7 +32,7 @@ import { MetanthropesActorSheet } from "./ui/sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./ui/sheets/item-sheet.mjs";
 import { MetanthropesActiveEffectSheetV2 } from "./ui/sheets/active-effect-sheet.mjs";
 //* Custom Classes
-import { MetaDialog, MetaChatMessage, MetanthropesPause } from "./metaclasses/metaclasses.mjs";
+import { MetaDialog, MetaChatMessage, MetanthropesPause, MetaImagePicker } from "./metaclasses/metaclasses.mjs";
 // //* AppV2 Sheets
 import { MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
 import { MetanthropesItemSheetV2 } from "./ui/sheets/item-sheet-v2.mjs";
@@ -65,6 +65,7 @@ import { metaSortActions } from "./api/utils/sort-actions.mjs";
 import { metaRunMacro } from "./api/utils/run-macro.mjs";
 import { metaIsMetapowerEquipped, metaTransformStringForStorage } from "./helpers/metahelpers.mjs";
 import { metaCreateFAIcon, metaCreateCustomIcon } from "./helpers/fa-enricher.mjs";
+import { metaUpdateActorImages, metaConvertPortraitToTokenImage, metaUpdateTokenImages } from "./helpers/metaimagehandler.mjs";
 //* Game Settings
 import { metaRegisterGameSettings } from "./api/utils/register-game-settings.mjs";
 import { metaRegisterStatusEffects } from "./config/status-effects.mjs";
@@ -94,6 +95,7 @@ globalThis.metanthropes = {
 		MetaDialog,
 		MetaChatMessage,
 		MetanthropesPause,
+		MetaImagePicker,
 	},
 	dice: {
 		metaRoll,
@@ -151,6 +153,14 @@ globalThis.metanthropes = {
 		metaIsMetapowerEquipped,
 		metaCreateFAIcon,
 		metaCreateCustomIcon,
+		metaUpdateActorImages,
+		metaUpdateTokenImages,
+		metaConvertPortraitToTokenImage,
+	},
+	registry: {
+		artwork: {
+			System: "systems/metanthropes/assets/artwork",
+		},
 	},
 };
 
