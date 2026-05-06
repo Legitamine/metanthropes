@@ -84,6 +84,9 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		context.advancedBetaTesting = context.betaTesting && context.advancedLogging;
 		//? Provide a boolean for if the user is a Narrator(GameMaster)
 		context.isNarrator = game.user.isGM;
+		context.secretNarratorNotes = await foundry.applications.ux.TextEditor.enrichHTML(
+			actorData.system["secret-notes-narrator"].value, {async: true, secrets: context.isNarrator}
+		);
 		//? Add the actor's active effects to the context for easier access.
 		if (context.betaTesting) context.effects = metanthropes.utils.prepareActiveEffectCategories(this.actor.effects);
 		//? Calculate the actor's XP Spent
