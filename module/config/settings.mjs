@@ -34,13 +34,28 @@ export const settings = [
 	},
 	{
 		module: "metanthropes",
+		key: "metaPause",
+		name: "Un-pause the World after initialization",
+		hint: `
+		Enable this setting to automatically un-pause the World after initializing the System and Modules.
+		`,
+		scope: "world",
+		config: true,
+		requiresReload: false,
+		type: Boolean,
+		default: true,
+		onChange: null,
+	},
+	//! Deprecated
+	{
+		module: "metanthropes",
 		key: "metaWelcome",
 		name: "Show Welcome Screen",
 		hint: `
 		Enable this setting to display the Metanthropes Welcome Screen when the World loads.
 		`,
 		scope: "world",
-		config: true,
+		config: false,
 		requiresReload: false,
 		type: Boolean,
 		default: true,
@@ -54,21 +69,7 @@ export const settings = [
 		Enable to show the System Demo Adventure on the next startup.
 		`,
 		scope: "world",
-		config: true,
-		requiresReload: false,
-		type: Boolean,
-		default: true,
-		onChange: null,
-	},
-	{
-		module: "metanthropes",
-		key: "metaPause",
-		name: "Un-pause the World after initialization",
-		hint: `
-		Enable this setting to automatically un-pause the World after initializing the System and Modules.
-		`,
-		scope: "world",
-		config: true,
+		config: false,
 		requiresReload: false,
 		type: Boolean,
 		default: true,
@@ -79,6 +80,18 @@ export const settings = [
 		module: "metanthropes",
 		key: "migration",
 		name: "Migration Settings",
+		hint: ``,
+		scope: "world",
+		config: false,
+		requiresReload: false,
+		type: Object,
+		default: null,
+		onChange: null,
+	},
+	{
+		module: "metanthropes",
+		key: "welcomeMsg",
+		name: "Welcome Message",
 		hint: ``,
 		scope: "world",
 		config: false,
