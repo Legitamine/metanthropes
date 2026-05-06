@@ -14,11 +14,15 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ### Added:
 
-- Added support for the new Metanthropes: Anthologies - Nether Premium Module. This Module is not available for purchase currently, yet this release allows Kickstarter Backers to receive their Alpha access benefit and give us feedback on the initial release for this new product.
-- [Nether] First release includes the Journals, Actors, Maps (including walls, lights & ambient audio) as well as their corresponding Compendiums & Adventure. This initial release does not include the Animated Doors, Dimensional Effects, Automations and Narrator Macros, some additional Journal pages & tables, and some additional Actor Images; these will be coming in a later update.
-- Added a new app to facilitate the selection of an Actor's Portrait & Top-Down Images. The new app allows you to choose a Portrait for your Actor, according to their Actor Type and the available options are populated from all active Metanthropes Premium Modules on your World. The new app will change your Actor's Top Down Token accordingly & prefer animated Tokens when available. It also supports The Forge hosting service. Users need to have the 'Use File Browser' permission to use.
+- Added support for the latest Foundry VTT Stable 3 build V14.361.
+- Added support for the new Metanthropes: Anthologies - Nether Premium Module. This Module is not available for purchase currently, yet this release allows Kickstarter Backers to receive their Alpha access benefit and give us their feedback on the initial release for this new product.
+- [Nether] Initial release includes the Journals, Actors, Maps (including walls, lights & ambient audio) as well as their corresponding Compendiums & Adventure. This initial release does not include the Animated Doors, Dimensional Effects, Automations and Narrator Macros, some additional Journal pages & tables, and some additional Actor Images; these will be coming in a later update.
+- [Nether] Supports the new 'Quickstart' capability, so you can create a new World directly with all the new content ready to go.
+- Added a new app to facilitate the selection of an Actor's Portrait & Top-Down Images. The new app allows you to choose a Portrait for your Actor, according to their Actor Type and the available options are populated from all active Metanthropes Premium Modules on your World. The new app will change your Actor's Top Down Token accordingly & prefer animated Tokens when available. It also supports The Forge hosting service. Players need to have the 'Use File Browser' permission to use (or be given the 'Trusted Player' role, which includes this permission by default).
 
 ### Changed:
+
+- Adventure Importer now defaults to the new App V2.
 
 ### Fixed:
 
@@ -29,7 +33,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ### Deprecated:
 
-- [Introductory] The new Portrait Image picker app won't show some existing duplicate images and they will be removed in a later release.
+- [Introductory] The new Portrait Image picker app won't show some existing duplicate image assets and they will be removed in a later release.
 
 ---
 
