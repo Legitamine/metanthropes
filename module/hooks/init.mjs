@@ -104,6 +104,15 @@ Hooks.once("init", async function () {
 		},
 	);
 
+	foundry.applications.apps.DocumentSheetConfig.registerSheet(
+		Adventure,
+		"metanthropes",
+		foundry.applications.sheets.AdventureImporter,
+		{ makeDefault: true,
+			label: "METANTHROPES.SHEET.ADVENTURE.LABEL"
+		 },
+	);
+
 	//* Metanthropes Initiative System
 	//todo: revisit as part of Combat rework
 	CONFIG.Combat.initiative = {

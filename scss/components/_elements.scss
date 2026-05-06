@@ -37,6 +37,17 @@ footer {
 	padding: $padding-sm;
 }
 
+figure {
+	&.adventure-banner {
+		img {
+			border: none;
+			border-radius: unset;
+			object-fit: contain;
+			box-shadow: none;
+		}
+	}
+}
+
 a {
 	&:hover {
 		text-shadow: var(--metanthropes-color-text-shadow);
