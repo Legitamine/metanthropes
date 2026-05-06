@@ -310,6 +310,9 @@
 			"AE": {
 				"LABEL": "Metanthropes Active Effect Sheet V2"
 			},
+			"ADVENTURE": {
+				"LABEL": "Metanthropes Adventure Importer V2"
+			},
 			"OTHER": {
 				"CONSOLE": "@METAFA(metanthropes) Print to Console"
 			},

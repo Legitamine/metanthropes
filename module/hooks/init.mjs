@@ -6,11 +6,24 @@ Hooks.once("init", async function () {
 	//* Configure System
 	globalThis.SYSTEM = metanthropes.system;
 
+	//* Register Fonts
+	CONFIG.fontDefinitions = {
+		...CONFIG.fontDefinitions,
+		Metanthropes: {
+			editor: true,
+			fonts: [{ urls: ["systems/metanthropes/assets/fonts/metanthropes.ttf"] }],
+		},
+		Roboto: {
+			editor: true,
+			fonts: [{ urls: ["systems/metanthropes/assets/fonts/roboto.ttf"] }],
+		},
+	};
+
 	//* Register System Settings
 	await metanthropes.utils.metaRegisterGameSettings(settings);
-	const alphaTestingEnabled = (game.settings.get("metanthropes", "metaAlphaTesting")) || false;
+	const alphaTestingEnabled = game.settings.get("metanthropes", "metaAlphaTesting") || false;
 	if (alphaTestingEnabled) metanthropes.utils.metaLog(1, "System", "Initializing", "Alpha Testing Enabled");
-	const betaTestingEnabled = (game.settings.get("metanthropes", "metaBetaTesting")) || false;
+	const betaTestingEnabled = game.settings.get("metanthropes", "metaBetaTesting") || false;
 	if (betaTestingEnabled) metanthropes.utils.metaLog(1, "System", "Initializing", "Beta Testing Enabled");
 
 	//* Register Data Models
@@ -89,6 +102,15 @@ Hooks.once("init", async function () {
 			makeDefault: true,
 			label: "METANTHROPES.SHEET.AE.LABEL",
 		},
+	);
+
+	foundry.applications.apps.DocumentSheetConfig.registerSheet(
+		Adventure,
+		"metanthropes",
+		foundry.applications.sheets.AdventureImporter,
+		{ makeDefault: true,
+			label: "METANTHROPES.SHEET.ADVENTURE.LABEL"
+		 },
 	);
 
 	//* Metanthropes Initiative System
