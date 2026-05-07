@@ -108,9 +108,7 @@ Hooks.once("init", async function () {
 		Adventure,
 		"metanthropes",
 		foundry.applications.sheets.AdventureImporter,
-		{ makeDefault: true,
-			label: "METANTHROPES.SHEET.ADVENTURE.LABEL"
-		 },
+		{ makeDefault: true, label: "METANTHROPES.SHEET.ADVENTURE.LABEL" },
 	);
 
 	//* Metanthropes Initiative System
