@@ -390,7 +390,7 @@ export class MetaChatMessage extends ChatMessage {
 	 * @returns {Promise<void>}
 	 */
 	async #playVFXEffect() {
-		if (!game.settings.get("metanthropes", "metaAlphaTesting")) return;
+		if (!metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) return;
 		//! DSN
 		if (this.rolls.length && "dice3d" in game) await game.dice3d.waitFor3DAnimationByMessageID(this.id);
 		/*

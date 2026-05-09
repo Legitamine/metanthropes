@@ -81,6 +81,11 @@
 	color: var(--metanthropes-color-text);
 }
 
+//? match FVTT default chat messages
+.welcome-message {
+	font-size: var(--font-size-12);
+}
+
 //* Rolltable results
 .chat-message .table-draw .table-results .table-result img.result-image {
 	width: 100%;
