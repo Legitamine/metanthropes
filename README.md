@@ -37,7 +37,7 @@ Alternatively, you may use the following link when selecting to install manually
 
 Metanthropes™ aims to utilize the latest and best that the amazing Foundry VTT platform offers.
 
--   Foundry VTT version 14 is fully supported. Latest verified version is v14.357.
+-   Foundry VTT version 14 is fully supported. Latest verified version is v14.360.
 
 ## Supported 3rd Party Modules
 

@@ -254,7 +254,7 @@ export async function metaRollCustomDialog(actor, action, stat, statScore, itemN
 	const mL = metanthropes.utils.metaLog;
 	return new Promise(async (resolve) => {
 		//* Get Game Variables
-		const isBetaTesting = game.settings.get("metanthropes", "metaBetaTesting");
+		const isBetaTesting = metanthropes.utils.metaCheckSetting("core", "metaBetaTesting");
 		//* Determine the maximum number of multi-actions possible based on the statScore value
 		const maxMultiActions = Math.max(Math.floor((statScore - 1) / 10), 0);
 		const multiActionOptions = Array.from({ length: maxMultiActions - 1 }, (_, i) => i + 2);

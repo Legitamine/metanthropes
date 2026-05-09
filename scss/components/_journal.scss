@@ -1,3 +1,4 @@
+@use "../settings" as *;
 //* Journal Specifics
 .sheet.journal-entry .journal-entry-content {
 	position: relative;
@@ -13,4 +14,8 @@
 
 .sheet.journal-entry .journal-entry-content {
 	z-index: 3;
+}
+
+.journal-sheet .journal-header .title {
+	font-family: $font-title;
 }

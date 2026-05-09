@@ -37,6 +37,26 @@ footer {
 	padding: $padding-sm;
 }
 
+figure {
+	&.adventure-banner {
+		img {
+			border: none;
+			border-radius: unset;
+			object-fit: contain;
+			box-shadow: none;
+		}
+	}
+}
+
+input[type="checkbox"]::before,
+input[type="radio"]::before {
+	//font-family: var(--font-awesome);
+	color: var(--metanthropes-color-primary);
+	//outline: 1px solid transparent;
+	//outline-color: var(--metanthropes-color-background);
+	//transition: outline-color 0.5s;
+}
+
 a {
 	&:hover {
 		text-shadow: var(--metanthropes-color-text-shadow);
@@ -68,18 +88,46 @@ p {
 	text-align: left;
 }
 
+title {
+	font-family: $font-title;
+}
+
+h1 {
+	font-family: $font-title;
+}
+
+h2 {
+	font-family: $font-title;
+}
+
 h3 {
+	font-family: $font-title;
+	text-align: center;
+	//color: var(--metanthropes-color-secondary);
+	//background-color: var(--metanthropes-color-background);
+	//text-shadow: var(--metanthropes-color-text-shadow);
+}
+
+h4 {
+	font-family: $font-primary;
+}
+
+h5 {
 	font-family: $font-primary;
 	text-align: center;
-	color: var(--metanthropes-color-secondary);
-	text-shadow: var(--metanthropes-color-text-shadow);
+}
+
+h6 {
+	font-family: $font-primary;
 }
 
 hr {
-	color: var(--metanthropes-color-highlight);
+	border-top: none;
+	background-image: linear-gradient(90deg, transparent 0%, var(--metanthropes-color-primary) 50%, transparent 100%);
 }
 
 summary {
+	font-family: $font-title;
 	display: grid; //essentially hides the markers
 	font-weight: bold;
 }
@@ -96,6 +144,7 @@ summary::marker {
 	font-size: 1.5em;
 	content: "🔽";
 }
+
 [open] summary::marker {
 	content: "🔼";
 }

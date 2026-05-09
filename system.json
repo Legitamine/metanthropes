@@ -2,10 +2,10 @@
 	"id": "metanthropes",
 	"title": "Metanthropes",
 	"description": "Metanthropes TTRPG System for Foundry VTT by Legitamine Games",
-	"version": "0.14.018",
+	"version": "0.14.173",
 	"compatibility": {
 		"minimum": "14",
-		"verified": "14.359",
+		"verified": "14.361",
 		"maximum": "14"
 	},
 	"relationships": {
@@ -15,8 +15,8 @@
 				"type": "module",
 				"manifest": "https://gitlab.com/riccisi/foundryvtt-dice-so-nice/-/raw/master/module/module.json",
 				"compatibility": {
-					"minimum": "5.3.3",
-					"verified": "5.3.3"
+					"minimum": "6.2.1",
+					"verified": "6.2.1"
 				}
 			}
 		]
@@ -59,21 +59,6 @@
 	"esmodules": ["greensock/esm/all.js", "module/metanthropes.mjs"],
 	"scripts": [],
 	"styles": ["styles/metanthropes.css"],
-	"documentTypes": {
-		"Actor": {
-			"MetanthropesActorV2": {
-				"htmlFields": ["physical.description.player"]
-			}
-		},
-		"Item": {
-			"species": {
-				"htmlFields": ["description"]
-			},
-			"template": {
-				"htmlFields": ["description"]
-			}
-		}
-	},
 	"packs": [
 		{
 			"name": "demo-actors",

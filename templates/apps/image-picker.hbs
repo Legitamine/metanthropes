@@ -1,0 +1,51 @@
+<section class="metanthropes-image-picker">
+	<header class="header">
+		<h3>{{actorName}}</h3>
+		<img class="selected-image" loading="lazy" src="{{this.selected}}">
+		<div>
+			<hr>
+			<p class="menu">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Menu"}}</p>
+			<p class="menu">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Token"}}</p>
+			{{#if isTrustedUser}}
+				<button class="button" {{#if tokenizer}}data-edit="img" {{/if}} data-action="editImage" data-field="img"
+					data-actor-id={{actorUUID}} data-tooltip="METANTHROPES.UI.APPS.META_IMAGE_PICKER.ManualTooltip"
+					data-tooltip-direction="UP">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Manual"}}</button>
+			{{/if}}
+			<hr>
+			{{!-- {{#if isNarrator}}
+				<h5>Narrator Options</h5>
+				<br>
+				<hr>
+			{{/if}} --}}
+		</div>
+	</header>
+	{{#if hasImages}}
+		{{#each paths}}
+			<section class="image-group">
+				<h3>{{localize (concat "METANTHROPES.UI.APPS.META_IMAGE_PICKER.ActorTypes."folderName)}} |
+					{{localize (concat "METANTHROPES.MODULES."registryKey)}}
+				</h3>
+				<div class="image-grid">
+					{{#each images}}
+						<button type="button" class="image-card{{#if isSelected}} selected{{/if}}"
+							{{#if isSelected}}data-tooltip="METANTHROPES.UI.APPS.META_IMAGE_PICKER.Selected"
+							data-tooltip-direction="UP" {{/if}} data-action="selectImage" data-path="{{path}}">
+							<img loading="lazy" src="{{path}}" alt="{{name}}">
+							<span class="image-name">{{name}}</span>
+						</button>
+					{{/each}}
+				</div>
+			</section>
+		{{/each}}
+	{{else}}
+		<section>
+			<div>
+			<p class="menu">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Error"}}</p>
+			{{#if isUntrustedUser}}
+			<hr>
+				<p class="menu">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Untrusted"}}</p>
+			{{/if}}
+			</div>
+		</section>
+	{{/if}}
+</section>
