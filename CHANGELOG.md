@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 # Early Access Releases
 
-## Early Access v0.14.xxx [2026-05-xx]
+## Early Access v0.14.173 [2026-05-09]
 
 ### Added:
 
@@ -32,6 +32,8 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 - Various minor fixes and adjustments to the new UI.
 
 ### Known Issues:
+
+- When the sidebar is minimized and Chat Cards are enabled for Chat Notifications in the User Interface Configuration, the Chat Card will use the Light Interface theme, regardless of the user's choice. In addition, activating a Metapower / using a Possession from the Chat Card, won't remember that the button was clicked from the Chat Card, when viewed in the Chat later, allowing players to re-activate them.
 
 ### Deprecated:
 
