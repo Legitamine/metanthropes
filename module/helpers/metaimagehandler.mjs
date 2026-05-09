@@ -94,11 +94,17 @@ export async function metaConvertPortraitToTokenImage(path) {
 	const dir = animatedPath.split("/").slice(0, -1).join("/");
 	try {
 		//? The Forge compatibility
+		let fp;
 		let source;
-		if (game.modules.get("forge-vtt")?.active) source = "forgevtt";
-		else source = "data";
+		if (game.modules.get("forge-vtt")?.active) {
+			source = "forgevtt";
+			fp = ForgeVTT_FilePicker;
+		} else {
+			source = "data";
+			fp = foundry.applications.apps.FilePicker;
+		}
 		try {
-			const fpcheck = await foundry.applications.apps.FilePicker.browse(source, dir);
+			const fpcheck = await fp.browse(source, dir);
 			return fpcheck.files?.includes(animatedPath) ? animatedPath : tokenPath;
 		} catch (fperror) {
 			metanthropes.utils.metaLog(

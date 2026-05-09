@@ -11,7 +11,7 @@ const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
  *todo is this going to be also used in non-Actor scenarios?
  *!todo utilize the 'enabled' content from modules - or remove to declutter the Settings UI
  *todo wildcard selection, limits only to those who have more than 01
- *todo revise how we do wildcards, we should we control it 
+ *todo revise how we do wildcards, we should we control it
  *todo when returning an animated token, set the correct scale
  *
  * @export
@@ -75,13 +75,20 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 	static async #onSelectImage(event, target) {
 		const path = target.dataset.path;
 		if (!path)
-			return metanthropes.utils.metaLog(2, "MetaImagePicker", "#onSelectImage", "Could not work with path", path, "Aborting");
+			return metanthropes.utils.metaLog(
+				2,
+				"MetaImagePicker",
+				"#onSelectImage",
+				"Could not work with path",
+				path,
+				"Aborting",
+			);
 		this.selected = path;
 		metanthropes.utils.metaLog(3, "MetaImagePicker", "#onSelectImage", "Selected path", path);
 		const actor = await fromUuid(this.actorUUID);
 		await actor.update({ img: path });
 		const updatedTokenImage = await metanthropes.utils.metaConvertPortraitToTokenImage(path);
-		await metanthropes.utils.metaUpdateTokenImages({actorUUID: actor.uuid, selectedPath: updatedTokenImage});
+		await metanthropes.utils.metaUpdateTokenImages({ actorUUID: actor.uuid, selectedPath: updatedTokenImage });
 		await this.close();
 	}
 
@@ -201,13 +208,17 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 
 	async #callFilePicker(path) {
 		metanthropes.utils.metaLog(3, "trying path", path);
-		let filePickerInstance;
+		let fpcheck;
+		//? The Forge compatibility
+		if (game.modules.get("forge-vtt")?.active) {
+			source = "forgevtt";
+			fp = ForgeVTT_FilePicker;
+		} else {
+			source = "data";
+			fp = foundry.applications.apps.FilePicker;
+		}
 		try {
-			//? The Forge compatibility
-			let source;
-			if (game.modules.get("forge-vtt")?.active) source = "forgevtt";
-			else source = "data";
-			filePickerInstance = await foundry.applications.apps.FilePicker.browse(source, path);
+			fpcheck = await fp.browse(source, path);
 		} catch (error) {
 			metanthropes.utils.metaLog(
 				4,
@@ -219,7 +230,7 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 			);
 			return false;
 		}
-		const images = (filePickerInstance.files ?? []).map((path) => ({
+		const images = (fpcheck.files ?? []).map((path) => ({
 			path,
 			name: path.split("/").pop().split(".")[0], //? grab the file name without the extension
 			isSelected: path === this.selected,
