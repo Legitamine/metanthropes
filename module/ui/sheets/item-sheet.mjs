@@ -57,19 +57,13 @@ export class MetanthropesItemSheet extends foundry.appv1.sheets.ItemSheet {
 		//? Add the actor's data to context.data for easier access, as well as flags.
 		context.system = itemData.system;
 		context.flags = itemData.flags;
-		//? Provide a boolean for if we are running with Introductory Features enabled
-		context.introductoryFeatures = game.settings.get("metanthropes", "metaIntroductory");
-		//? Provide a boolean for if we are running with Core Features enabled
-		context.coreFeatures = game.settings.get("metanthropes", "metaCore");
-		//? Provide a boolean for if we are running with Homebrew Features enabled
-		context.homebrewFeatures = game.settings.get("metanthropes", "metaHomebrew");
-		//? Provide a boolean for if 'Beta Testing of New Features' is enabled
-		context.betaTesting = game.settings.get("metanthropes", "metaBetaTesting");
-		//? Provide a boolean for if 'Advanced Logging' is enabled
+		//? Gather enabled features
+		context.introductoryFeatures = metanthropes.utils.metaCheckSetting("introductory", "metaIntroductory");
+		context.coreFeatures = metanthropes.utils.metaCheckSetting("core", "metaCore");
+		context.homebrewFeatures = metanthropes.utils.metaCheckSetting("homebrew", "metaHomebrew");
+		context.betaTesting = metanthropes.utils.metaCheckSetting("core", "metaBetaTesting");
 		context.advancedLogging = game.settings.get("metanthropes", "metaAdvancedLogging");
-		//? Provide a combined boolean for if 'Beta Testing of New Features' and 'Advanced Logging' are enabled
 		context.advancedBetaTesting = context.betaTesting && context.advancedLogging;
-		//? Provide a boolean for if the user is a Narrator(GameMaster)
 		context.isNarrator = game.user.isGM;
 		//? Prepare Active Effects
 		if (context.betaTesting)
@@ -111,7 +105,7 @@ export class MetanthropesItemSheet extends foundry.appv1.sheets.ItemSheet {
 		//? Observers (non-owners) of the item sheet, should not be able to roll anything
 		if (!this.isEditable) return;
 		//? Active Effects
-		if (game.settings.get("metanthropes", "metaBetaTesting"))
+		if (game.settings.get("metanthropes-core", "metaBetaTesting"))
 			html.find(".effect-control").click((ev) => metanthropes.utils.onManageActiveEffect(ev, this.document));
 		//? Roll Metapower
 		html.find(".style-mp-rolls").click(this._onRoll.bind(this));

@@ -33,14 +33,14 @@ Hooks.once("ready", async function () {
 			flags: { metanthropes: {} },
 		};
 		await metanthropes.applications.MetaChatMessage.create(chatData);
-		//await game.settings.set("metanthropes", "welcomeMsg", false);
+		await game.settings.set("metanthropes", "welcomeMsg", false);
 	}
-	//!deprecated * Display Welcome Screen
-	// if (game.settings.get("metanthropes", "metaWelcome")) {
-	// 	const systemWelcome = await fromUuid("Compendium.metanthropes.welcome.JournalEntry.5zynXjK4RTiGzcxQ");
-	// 	systemWelcome.sheet.render(true);
-	// 	await game.settings.set("metanthropes", "metaWelcome", false);
-	// }
+	//* Welcome Journal
+	if (game.settings.get("metanthropes", "metaWelcome")) {
+		const systemWelcome = await fromUuid("Compendium.metanthropes.welcome.JournalEntry.5zynXjK4RTiGzcxQ");
+		systemWelcome.sheet.render(true);
+		await game.settings.set("metanthropes", "metaWelcome", false);
+	}
 
 	//* Display System Installation Guide
 	const intro = game.settings.get("core", "adventureImports")[

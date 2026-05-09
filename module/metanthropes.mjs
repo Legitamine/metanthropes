@@ -63,9 +63,13 @@ import { metaMigration } from "./api/utils/migration.mjs";
 import { metaLog, metaLogDocument } from "./api/utils/log-tools.mjs";
 import { metaSortActions } from "./api/utils/sort-actions.mjs";
 import { metaRunMacro } from "./api/utils/run-macro.mjs";
-import { metaIsMetapowerEquipped, metaTransformStringForStorage } from "./helpers/metahelpers.mjs";
+import { metaIsMetapowerEquipped, metaTransformStringForStorage, metaCheckSetting } from "./helpers/metahelpers.mjs";
 import { metaCreateFAIcon, metaCreateCustomIcon } from "./helpers/fa-enricher.mjs";
-import { metaUpdateActorImages, metaConvertPortraitToTokenImage, metaUpdateTokenImages } from "./helpers/metaimagehandler.mjs";
+import {
+	metaUpdateActorImages,
+	metaConvertPortraitToTokenImage,
+	metaUpdateTokenImages,
+} from "./helpers/metaimagehandler.mjs";
 //* Game Settings
 import { metaRegisterGameSettings } from "./api/utils/register-game-settings.mjs";
 import { metaRegisterStatusEffects } from "./config/status-effects.mjs";
@@ -78,7 +82,7 @@ import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 //* Register Handlebars Helpers
 metaRegisterHandlebarHelpers();
 
-//* Expose API for Metanthropes
+//* Metanthropes API
 globalThis.metanthropes = {
 	documents: {
 		MetanthropesActor,
@@ -156,6 +160,7 @@ globalThis.metanthropes = {
 		metaUpdateActorImages,
 		metaUpdateTokenImages,
 		metaConvertPortraitToTokenImage,
+		metaCheckSetting,
 	},
 	registry: {
 		artwork: {

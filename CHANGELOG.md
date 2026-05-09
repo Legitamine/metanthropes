@@ -15,15 +15,16 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 ### Added:
 
 - Added support for the latest Foundry VTT V14 Stable 3 build V14.361.
-- Added support for the new **Metanthropes: Anthologies - NETHER** Premium Module. This Module is not available for purchase and this release allows Kickstarter Backers to receive their Alpha access benefit and give us their feedback on the Alpha release.
+- Added support for the new **Metanthropes: Anthologies - NETHER** Premium Module. This release allows Kickstarter Backers to receive their Alpha access benefit and give us their feedback on the Alpha release.
 - [Nether] Alpha release includes the Journals, Actors, Maps (including walls, lights & ambient audio) as well as their corresponding Compendiums & Adventure. This Alpha release does not include the Animated Doors, Dimensional Effects, Automations and Narrator Macros, some additional Journal pages & tables, and some additional Actor Images; these will be coming in a later update.
 - [Nether] Supports the new 'Quickstart' capability, so you can create a new World directly with all the new content ready to go.
 - Added a new app to facilitate the selection of an Actor's Portrait & Top-Down Images. The new app allows you to choose a Portrait for your Actor, according to their Actor Type and the available options are populated from all active Metanthropes Premium Modules on your World. The new app will change your Actor's Top Down Token accordingly & prefer animated Tokens when available. It also supports The Forge hosting service. Players need to have the 'Use File Browser' permission to use (or be given the 'Trusted Player' role, which includes this permission by default).
 
 ### Changed:
 
-- Added new Welcome Chat Messages that appear on the first load after an update, highlighting the release notes from the most recent Metanthropes build. These chat messages only show once and you can re-enable them in the Settings.
-- Adventure Importer now defaults to the new App V2.
+- Added new Welcome Chat Messages that appear on the first load after an update, for each module, highlighting the release notes.
+- Adventure Importer should now default to the new App V2.
+- Updated the Game Settings menu options, breaking down each Module to have it's own set of Settings, decluttering and presenting the available options in a more consistent way.
 
 ### Fixed:
 

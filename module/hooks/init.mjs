@@ -21,13 +21,13 @@ Hooks.once("init", async function () {
 
 	//* Register System Settings
 	await metanthropes.utils.metaRegisterGameSettings(settings);
-	const alphaTestingEnabled = game.settings.get("metanthropes", "metaAlphaTesting") || false;
-	if (alphaTestingEnabled) metanthropes.utils.metaLog(1, "System", "Initializing", "Alpha Testing Enabled");
-	const betaTestingEnabled = game.settings.get("metanthropes", "metaBetaTesting") || false;
-	if (betaTestingEnabled) metanthropes.utils.metaLog(1, "System", "Initializing", "Beta Testing Enabled");
+	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting"))
+		metanthropes.utils.metaLog(1, "System", "Initializing", "Alpha Testing Enabled");
+	if (metanthropes.utils.metaCheckSetting("core", "metaBetaTesting"))
+		metanthropes.utils.metaLog(1, "System", "Initializing", "Beta Testing Enabled");
 
 	//* Register Data Models
-	if (alphaTestingEnabled) {
+	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
 		CONFIG.Actor.dataModels = {
 			MetanthropesActorV2: metanthropes.models.MetanthropesActorV2,
 		};
@@ -66,7 +66,7 @@ Hooks.once("init", async function () {
 		},
 	);
 
-	if (alphaTestingEnabled) {
+	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
 		foundry.documents.collections.Actors.registerSheet(
 			"metanthropes",
 			metanthropes.applications.MetanthropesActorSheetV2,
@@ -82,7 +82,7 @@ Hooks.once("init", async function () {
 		label: "METANTHROPES.SHEET.ITEM.LABEL",
 	});
 
-	if (alphaTestingEnabled) {
+	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
 		foundry.documents.collections.Items.registerSheet(
 			"metanthropes",
 			metanthropes.applications.MetanthropesItemSheetV2,
@@ -132,7 +132,7 @@ Hooks.once("init", async function () {
 
 	//* V14 VFX
 	//! EXPERIMENTAL
-	if (alphaTestingEnabled) {
+	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
 		metanthropes.utils.metaLog(1, "System", "Initializing", "Enabling Experimental VFX Engine");
 		CONFIG.Canvas.vfx.enabled = true;
 	}
