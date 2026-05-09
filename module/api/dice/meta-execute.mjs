@@ -7,7 +7,7 @@
  * It also constructs and sends a chat message detailing the execution results.
  * todo: this function is currently in the process of being refactored, along with all other dice functions
  *
- * @param {Event} [event] - The button click event, if the function was triggered by a button click. Expected to be null if the function is called directly.
+ * @param {object} event - The button click event, if the function was triggered by a button click. Expected to be null if the function is called directly.
  * @param {string} actorUUID - The UUID of the actor performing the action. Expected to be a string.
  * @param {string} action - The type of action ("Metapower" or "Possession"). Expected to be a string.
  * @param {string} itemName - The name of the Metapower or Possession being executed. Expected to be a string.
