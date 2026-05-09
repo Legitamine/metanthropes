@@ -1,5 +1,3 @@
-//todo: deprecate this for v12
-import { metaChangeActorImage, metaChangeTokenImage } from "../../helpers/metaimagehandler.mjs";
 //? Import GreenSock Animation Platform
 import gsap, { TextPlugin, Draggable as Dragger } from "/scripts/greensock/esm/all.js";
 //? Register Draggable for GreenSock
@@ -72,20 +70,17 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		this._prepareItems(actorData, context);
 		//? This will create the .RollStats object under .system that is used by Handlebars in the actor sheet for rolling
 		this.actor.getRollData();
-		//? Provide a boolean for if we are running with Introductory Features enabled
-		context.introductoryFeatures = game.settings.get("metanthropes", "metaIntroductory");
-		//? Provide a boolean for if we are running with Core Features enabled
-		context.coreFeatures = game.settings.get("metanthropes", "metaCore");
-		//? Provide a boolean for if we are running with Homebrew Features enabled
-		context.homebrewFeatures = game.settings.get("metanthropes", "metaHomebrew");
-		//? Provide a boolean for if 'Beta Testing of New Features' is enabled
-		context.betaTesting = game.settings.get("metanthropes", "metaBetaTesting");
-		//? Provide a boolean for if 'Advanced Logging' is enabled
+		//? Gather enabled features
+		context.introductoryFeatures = metanthropes.utils.metaCheckSetting("introductory", "metaIntroductory");
+		context.coreFeatures = metanthropes.utils.metaCheckSetting("core", "metaCore");
+		context.homebrewFeatures = metanthropes.utils.metaCheckSetting("homebrew", "metaHomebrew");
+		context.betaTesting = metanthropes.utils.metaCheckSetting("core", "metaBetaTesting");
 		context.advancedLogging = game.settings.get("metanthropes", "metaAdvancedLogging");
-		//? Provide a combined boolean for if 'Beta Testing of New Features' and 'Advanced Logging' are enabled
 		context.advancedBetaTesting = context.betaTesting && context.advancedLogging;
-		//? Provide a boolean for if the user is a Narrator(GameMaster)
 		context.isNarrator = game.user.isGM;
+		context.secretNarratorNotes = await foundry.applications.ux.TextEditor.enrichHTML(
+			actorData.system["secret-notes-narrator"].value, {async: true, secrets: context.isNarrator}
+		);
 		//? Add the actor's active effects to the context for easier access.
 		if (context.betaTesting) context.effects = metanthropes.utils.prepareActiveEffectCategories(this.actor.effects);
 		//? Calculate the actor's XP Spent
@@ -239,7 +234,7 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 			li.slideUp(200, () => this.render(false));
 		});
 		//? Active Effect management
-		if (game.settings.get("metanthropes", "metaBetaTesting"))
+		if (game.settings.get("metanthropes-core", "metaBetaTesting"))
 			html.find(".effect-control").click((ev) => metanthropes.utils.onManageActiveEffect(ev, this.actor));
 		//? Roll Stat
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
@@ -262,8 +257,8 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		html.find(".meta-cover-roll").click(this._onCoverRoll.bind(this));
 		//? Change Portrait Image
 		html.find(".meta-change-portrait").click(this._onChangePortrait.bind(this));
-		//? Change Token Image
-		html.find(".meta-change-token").click(this._onChangeToken.bind(this));
+		// //? Change Token Image !unused
+		// html.find(".meta-change-token").click(this._onChangeToken.bind(this));
 		//? Undo last Life change button
 		html.find(".undo-last-life-change").click(this._onUndoLastLifeChange.bind(this));
 		//!? Drag events for macros !??
@@ -709,14 +704,6 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 	}
 	async _onChangePortrait(event) {
 		event.preventDefault();
-		const actorUUID = this.actor.uuid;
-		const actor = await fromUuid(actorUUID);
-		metaChangeActorImage(actor);
-	}
-	async _onChangeToken(event) {
-		event.preventDefault();
-		const actorUUID = this.actor.uuid;
-		const actor = await fromUuid(actorUUID);
-		metaChangeTokenImage(actor);
+		await metanthropes.utils.metaUpdateActorImages({ actorUUID: this.actor.uuid });
 	}
 }

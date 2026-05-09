@@ -1,5 +1,3 @@
-import { metaSheetRefresh } from "../../helpers/metahelpers.mjs";
-
 /**
  * metaInitiative handles Initiative rolls for a given combatant.
  *
@@ -142,6 +140,4 @@ export async function metaInitiativeReRoll(event) {
 	actor.applyDestinyChange(-1);
 	metanthropes.utils.metaLog(3, "metaInitiativeReRoll", "Engaging metaInitiative for:", actor.name);
 	await metaInitiative(combatant, messageId, reroll, rerollCounter);
-	// //? Refresh the actor sheet if it's open
-	// metaSheetRefresh(actor);
 }

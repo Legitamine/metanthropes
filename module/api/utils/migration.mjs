@@ -19,7 +19,7 @@ export async function metaMigration() {
 	if (!game.user.isActiveGM) return;
 	const mL = metanthropes.utils.metaLog;
 	mL(0, "Migration", "Data Migration Engine Initialized");
-	const modules = await metaInitializeModules();
+	const modules = metaInitializeModules();
 	if (!modules) return mL(2, "Migration", "Error could not initialize Modules!");
 	const progressMessage = `${_loc("METANTHROPES.MIGRATION.World")}`;
 	const progress = ui.notifications.info(progressMessage, { progress: true });
@@ -134,27 +134,19 @@ export async function metaMigration() {
  *
  * todo: review how to gracefuly handle a module that was enabled (the setting was set) but disabled as a module afterwards
  *
- * @async
- * @returns {*} modules - an array with the enabled Modules for Data Migration
+ * @returns {Array} modules - an array with the enabled Modules for Data Migration
  */
-async function metaInitializeModules() {
+function metaInitializeModules() {
 	let modules = [["System", "METANTHROPES.MODULES.System"]];
-	const intro = game.settings.get("metanthropes", "metaIntroductory");
-	if (intro) modules.push(["Introductory", "METANTHROPES.MODULES.Introductory"]);
-	const core = game.settings.get("metanthropes", "metaCore");
-	if (core) modules.push(["Core", "METANTHROPES.MODULES.Core"]);
-	const homebrew = game.settings.get("metanthropes", "metaHomebrew");
-	if (homebrew) modules.push(["Homebrew", "METANTHROPES.MODULES.Homebrew"]);
-	const aether = game.settings.get("metanthropes", "metaAether");
-	if (aether) modules.push(["Aether", "METANTHROPES.MODULES.Aether"]);
-	const astral = game.settings.get("metanthropes", "metaAstral");
-	if (astral) modules.push(["Astral", "METANTHROPES.MODULES.Astral"]);
-	const nether = game.settings.get("metanthropes", "metaNether");
-	if (nether) modules.push(["Nether", "METANTHROPES.MODULES.Nether"]);
+	const check = metanthropes.utils.metaCheckSetting;
+	if (check("introductory", "metaIntroductory")) modules.push(["Introductory", "METANTHROPES.MODULES.Introductory"]);
+	if (check("core", "metaCore")) modules.push(["Core", "METANTHROPES.MODULES.Core"]);
+	if (check("homebrew", "metaHomebrew")) modules.push(["Homebrew", "METANTHROPES.MODULES.Homebrew"]);
+	if (check("anthologies-aether", "metaAether")) modules.push(["Aether", "METANTHROPES.MODULES.Aether"]);
+	if (check("anthologies-astral", "metaAstral")) modules.push(["Astral", "METANTHROPES.MODULES.Astral"]);
+	if (check("anthologies-nether", "metaNether")) modules.push(["Nether", "METANTHROPES.MODULES.Nether"]);
 	return modules;
 }
-
-//async function metaMigrateModules(migrationData, modules) {}
 
 /**
  * Module Migration goes through each enabled Module to apply specific migration logic to each content
