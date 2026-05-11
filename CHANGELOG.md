@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 # Early Access Releases
 
-## Early Access v0.14.173 [2026-05-09]
+## Early Access v0.14.174 [2026-05-11]
 
 ### Added:
 
@@ -25,11 +25,13 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 - Added new Welcome Chat Messages that appear on the first load after an update, for each module, highlighting the release notes.
 - Adventure Importer should now default to the new App V2.
 - Updated the Game Settings menu options, breaking down each Module to have it's own set of Settings, decluttering and presenting the available options in a more consistent way.
+- Updates on the Metanthropes API: metaExecute parameters change, new helpers and many small incremental updates & optimizations.
 
 ### Fixed:
 
 - Updated the button, radio & checkbox elements of the new UI to make them stand out more clearly when unselected.
 - Various minor fixes and adjustments to the new UI.
+- Hotfix for the new Image Picker app to support The Forge's File Picker implementation.
 
 ### Known Issues:
 
