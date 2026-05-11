@@ -209,6 +209,8 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 	async #callFilePicker(path) {
 		metanthropes.utils.metaLog(3, "trying path", path);
 		let fpcheck;
+		let source;
+		let fp;
 		//? The Forge compatibility
 		if (game.modules.get("forge-vtt")?.active) {
 			source = "forgevtt";
