@@ -337,7 +337,7 @@ export async function metaEvaluate(
 	//* Handling the chat message
 	let chatMessage;
 	if (!reroll) {
-		mL(3, "metaEvalute", "Not a re-roll")
+		mL(3, "metaEvalute", "Not a re-roll");
 		//* This is a new roll, creating chat message
 		//? Printing the results to chat, allowing Dice So Nice to do it's thing.
 		chatMessage = await roll.toMessage({
@@ -350,7 +350,7 @@ export async function metaEvaluate(
 			flags: { metanthropes: { actoruuid: actor.uuid } },
 		});
 	} else {
-		mL(3, "metaEvalute", "Re-roll")
+		mL(3, "metaEvalute", "Re-roll");
 		//* This is a re-roll, updating existing message
 		//? Update the original message with the new results
 		chatMessage = game.messages.get(messageId);
@@ -415,6 +415,7 @@ export async function metaEvaluate(
 	if (!autoExecute) {
 		return;
 	}
+	//! todo refactor/simplify this
 	if (game.dice3d) {
 		//? Await 3D Dice animation - Read More: https://gitlab.com/riccisi/foundryvtt-dice-so-nice/-/wikis/API/Roll#detecting-the-end-of-a-3d-roll-animation-for-a-specific-message
 		//? Could also do simply await?
@@ -424,10 +425,19 @@ export async function metaEvaluate(
 			//! why no multiAction for Metapowers here? Critical success removed reductions, is that why?
 			if (action === "Metapower") {
 				mL(3, "metaEvaluate", "Auto-Activating Metapower:", itemName);
-				metanthropes.metapowers.metaExecute(null, actor.uuid, action, itemName);
+				metanthropes.metapowers.metaExecute({
+					actorUUID: actor.uuid,
+					action: action,
+					itemName: itemName,
+				});
 			} else if (action === "Possession") {
 				mL(3, "metaEvaluate", "Auto-Using Possession:", itemName);
-				metanthropes.possessions.metaExecute(null, actor.uuid, action, itemName, multiAction);
+				metanthropes.possessions.metaExecute({
+					actorUUID: actor.uuid,
+					action: action,
+					itemName: itemName,
+					multiAction: multiAction,
+				});
 			}
 		});
 	} else {
@@ -437,10 +447,19 @@ export async function metaEvaluate(
 		//! why no multiAction for Metapowers here?
 		if (action === "Metapower") {
 			mL(3, "metaEvaluate", "Auto-Activating Metapower:", itemName);
-			metanthropes.metapowers.metaExecute(null, actor.uuid, action, itemName);
+			metanthropes.metapowers.metaExecute({
+				actorUUID: actor.uuid,
+				action: action,
+				itemName: itemName,
+			});
 		} else if (action === "Possession") {
 			mL(3, "metaEvaluate", "Auto-Using Possession:", itemName);
-			metanthropes.possessions.metaExecute(null, actor.uuid, action, itemName, multiAction);
+			metanthropes.possessions.metaExecute({
+				actorUUID: actor.uuid,
+				action: action,
+				itemName: itemName,
+				multiAction: multiAction,
+			});
 		}
 	}
 }

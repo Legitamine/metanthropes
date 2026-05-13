@@ -5,6 +5,7 @@
 	outline: none;
 	//border: $border-activated;
 	background-color: var(--metanthropes-color-secondary);
+	border-color: var(--metanthropes-color-highlight);
 	opacity: 1;
 }
 
@@ -20,7 +21,8 @@
 	font-family: $font-primary;
 	background-color: var(--metanthropes-color-primary);
 	text-shadow: var(--metanthropes-color-text-shadow);
-	//border: $border-groove;
+	border-color: var(--button-border-color);
+	border: $border-groove;
 	border-radius: $border-radius;
 	color: var(--metanthropes-color-text);
 	opacity: $opacity-button;

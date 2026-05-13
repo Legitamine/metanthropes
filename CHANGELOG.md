@@ -10,6 +10,39 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 # Early Access Releases
 
+## Early Access v0.14.175 [2026-05-11]
+
+### Added:
+
+- Added support for the latest Foundry VTT V14 Stable 3 build V14.361.
+- Added support for the new **Metanthropes: Anthologies - NETHER** Premium Module. This release allows Kickstarter Backers to receive their Alpha access benefit and give us their feedback on the Alpha release.
+- [Nether] Alpha release includes the Journals, Actors, Maps (including walls, lights & ambient audio) as well as their corresponding Compendiums & Adventure. This Alpha release does not include the Animated Doors, Dimensional Effects, Automations and Narrator Macros, some additional Journal pages & tables, and some additional Actor Images; these will be coming in a later update.
+- [Nether] Supports the new 'Quickstart' capability, so you can create a new World directly with all the new content ready to go.
+- Added a new app to facilitate the selection of an Actor's Portrait & Top-Down Images. The new app allows you to choose a Portrait for your Actor, according to their Actor Type and the available options are populated from all active Metanthropes Premium Modules on your World. The new app will change your Actor's Top Down Token accordingly & prefer animated Tokens when available. It also supports The Forge hosting service. Players need to have the 'Use File Browser' permission to use (or be given the 'Trusted Player' role, which includes this permission by default).
+
+### Changed:
+
+- Added new Welcome Chat Messages that appear on the first load after an update, for each module, highlighting the release notes.
+- Adventure Importer should now default to the new App V2.
+- Updated the Game Settings menu options, breaking down each Module to have it's own set of Settings, decluttering and presenting the available options in a more consistent way.
+- Updates on the Metanthropes API: metaExecute parameters change, new helpers and many small incremental updates & optimizations.
+
+### Fixed:
+
+- Updated the button, radio & checkbox elements of the new UI to make them stand out more clearly when unselected.
+- Various minor fixes and adjustments to the new UI.
+- Hotfix for the new Image Picker app to support The Forge's File Picker implementation.
+
+### Known Issues:
+
+- When the sidebar is minimized and Chat Cards are enabled for Chat Notifications in the User Interface Configuration, the Chat Card will use the Light Interface theme, regardless of the user's choice. In addition, activating a Metapower / using a Possession from the Chat Card, won't remember that the button was clicked from the Chat Card, when viewed in the Chat later, allowing players to re-activate them.
+
+### Deprecated:
+
+- [Introductory] The new Portrait Image picker app won't show some existing duplicate image assets and they will be removed in a later release.
+
+---
+
 ## Early Access v0.14.044 [2026-04-10]
 
 ### Added:

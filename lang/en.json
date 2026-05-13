@@ -91,6 +91,30 @@
 					"MetapowerRoll": "Activate ",
 					"Possession": "Possession",
 					"PossessionRoll": "Use "
+				},
+				"META_IMAGE_PICKER": {
+					"Title": "Change Actor Potrait & Token Images",
+					"ActorType": "Actor Type:",
+					"Menu": "Select a new artwork for this Actor from the available options below.",
+					"Token": "The Top-Down Token will be updated accordingly.",
+					"Selected": "Currently Selected Image",
+					"Manual": "Select Image Manually",
+					"ManualTooltip": "Click here for the default Foundry VTT behavior. The Token Image will not be updated automatically.",
+					"Error": "No Images found in the Artwork Registry for this Actor Type.",
+					"Untrusted": "It seems your User doesn't have the 'Use File Browser' Permission. Ask your Narrator to give your user this permission, or promote you to a Trusted Player from the User Permission Configuration screen.",
+					"ActorTypes": {
+						"protagonist": "Protagonist",
+						"metanthrope": "Metanthrope",
+						"human": "Human",
+						"vehicle": "Vehicle",
+						"animal": "Animal",
+						"artificial": "Artificial",
+						"extradimensional": "Extradimensional",
+						"extraterrestrial": "Extraterrestrial",
+						"animated-cadaver": "Animated-Cadaver",
+						"animated-plant": "Animated-Plant",
+						"metatherion": "MetaTherion"
+					}
 				}
 			}
 		},
@@ -310,6 +334,9 @@
 			"AE": {
 				"LABEL": "Metanthropes Active Effect Sheet V2"
 			},
+			"ADVENTURE": {
+				"LABEL": "Metanthropes Adventure Importer V2"
+			},
 			"OTHER": {
 				"CONSOLE": "@METAFA(metanthropes) Print to Console"
 			},
@@ -351,7 +378,21 @@
 				"hint": "Hardened makes your *Body* stronger"
 			}
 		},
-		"CONDITIONS": {}
+		"CONDITIONS": {},
+		"SETTINGS": {
+			"metaAdvancedLoggingName": "Enable Advanced Logging",
+			"metaAdvancedLoggingHint": "The Console helps you identify any issues or potential bugs in regards to Metanthropes System for Foundry VTT. Enable this setting to see even more detailed logs in the Console. You can press 'F12' in the Foundry Client or 'CTRL+SHIFT+i' in a Chrome-ium web browser to show the Console.",
+			"forceMigrationName": "Force Data Migration",
+			"forceMigrationHint": "Forces the System to migrate this World's data to the latest version. Migration happens on the first World load after an update, and you can force to run it again by enabling this setting. To get support with any issues after updating, contact us at support@metanthropes.com or join our Discord. This setting requires a reload and it will be disabled automatically once it completes.",
+			"metaPauseName": "Un-pause the World after initialization",
+			"metaPauseHint": "Enable this setting to automatically un-pause the World after initializing the System and Modules.",
+			"welcomeMsgName": "Welcome Message",
+			"welcomeMsgHint": "Display the System Welcome Message on the next World load.",
+			"metaWelcomeName": "Show Welcome Journal",
+			"metaWelcomeHint": "Enable this setting to display the Metanthropes Welcome Journal when the World loads.",
+			"metaInstallName": "Show System Demo Adventure",
+			"metaInstallHint": "Enable to show the System Demo Adventure Importer on the next startup."
+		}
 	},
 	"TYPES": {
 		"Actor": {

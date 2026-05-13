@@ -28,9 +28,9 @@ Hooks.on("renderChatMessageHTML", async (message, html) => {
 			} else if (button.classList.contains("metainitiative-reroll")) {
 				metanthropes.dice.metaInitiativeReRoll(event);
 			} else if (button.classList.contains("metapower-activate")) {
-				metanthropes.metapowers.metaExecute(event);
+				metanthropes.metapowers.metaExecute({event: event});
 			} else if (button.classList.contains("possession-use")) {
-				metanthropes.possessions.metaExecute(event);
+				metanthropes.possessions.metaExecute({event: event});
 			} else if (button.classList.contains("hunger-reroll")) {
 				metanthropes.dice.metaHungerReRoll(event);
 			} else if (button.classList.contains("cover-reroll")) {

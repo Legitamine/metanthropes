@@ -32,7 +32,7 @@ import { MetanthropesActorSheet } from "./ui/sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./ui/sheets/item-sheet.mjs";
 import { MetanthropesActiveEffectSheetV2 } from "./ui/sheets/active-effect-sheet.mjs";
 //* Custom Classes
-import { MetaDialog, MetaChatMessage, MetanthropesPause } from "./metaclasses/metaclasses.mjs";
+import { MetaDialog, MetaChatMessage, MetanthropesPause, MetaImagePicker } from "./metaclasses/metaclasses.mjs";
 // //* AppV2 Sheets
 import { MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
 import { MetanthropesItemSheetV2 } from "./ui/sheets/item-sheet-v2.mjs";
@@ -63,8 +63,13 @@ import { metaMigration } from "./api/utils/migration.mjs";
 import { metaLog, metaLogDocument } from "./api/utils/log-tools.mjs";
 import { metaSortActions } from "./api/utils/sort-actions.mjs";
 import { metaRunMacro } from "./api/utils/run-macro.mjs";
-import { metaIsMetapowerEquipped, metaTransformStringForStorage } from "./helpers/metahelpers.mjs";
+import { metaIsMetapowerEquipped, metaTransformStringForStorage, metaCheckSetting } from "./helpers/metahelpers.mjs";
 import { metaCreateFAIcon, metaCreateCustomIcon } from "./helpers/fa-enricher.mjs";
+import {
+	metaUpdateActorImages,
+	metaConvertPortraitToTokenImage,
+	metaUpdateTokenImages,
+} from "./helpers/metaimagehandler.mjs";
 //* Game Settings
 import { metaRegisterGameSettings } from "./api/utils/register-game-settings.mjs";
 import { metaRegisterStatusEffects } from "./config/status-effects.mjs";
@@ -77,7 +82,7 @@ import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 //* Register Handlebars Helpers
 metaRegisterHandlebarHelpers();
 
-//* Expose API for Metanthropes
+//* Metanthropes API
 globalThis.metanthropes = {
 	documents: {
 		MetanthropesActor,
@@ -94,6 +99,7 @@ globalThis.metanthropes = {
 		MetaDialog,
 		MetaChatMessage,
 		MetanthropesPause,
+		MetaImagePicker,
 	},
 	dice: {
 		metaRoll,
@@ -151,6 +157,15 @@ globalThis.metanthropes = {
 		metaIsMetapowerEquipped,
 		metaCreateFAIcon,
 		metaCreateCustomIcon,
+		metaUpdateActorImages,
+		metaUpdateTokenImages,
+		metaConvertPortraitToTokenImage,
+		metaCheckSetting,
+	},
+	registry: {
+		artwork: {
+			System: "systems/metanthropes/assets/artwork",
+		},
 	},
 };
 

@@ -7,7 +7,7 @@
  * It also constructs and sends a chat message detailing the execution results.
  * todo: this function is currently in the process of being refactored, along with all other dice functions
  *
- * @param {Event} [event] - The button click event, if the function was triggered by a button click. Expected to be null if the function is called directly.
+ * @param {object} event - The button click event, if the function was triggered by a button click. Expected to be null if the function is called directly.
  * @param {string} actorUUID - The UUID of the actor performing the action. Expected to be a string.
  * @param {string} action - The type of action ("Metapower" or "Possession"). Expected to be a string.
  * @param {string} itemName - The name of the Metapower or Possession being executed. Expected to be a string.
@@ -18,7 +18,7 @@
  * @example
  * metaExecute(null, actorUUID, "Metapower", "Danger Sense");
  */
-export async function metaExecute(event, actorUUID, action, itemName, multiAction = 0) {
+export async function metaExecute({event, actorUUID, action, itemName, multiAction = 0}) {
 	const mL = metanthropes.utils.metaLog;
 	//? If we called this from a button click, get the data we need
 	const clickedButton = event?.target;
@@ -29,8 +29,8 @@ export async function metaExecute(event, actorUUID, action, itemName, multiActio
 		multiAction = parseInt(clickedButton.dataset.multiAction) ?? 0;
 	}
 	//? Check if we are running in Alpha/Beta Testing mode (available via Homebrew/Core Module respectfuly)
-	const alphaTesting = game.settings.get("metanthropes", "metaAlphaTesting");
-	const betaTesting = game.settings.get("metanthropes", "metaBetaTesting");
+	const alphaTesting = metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting");
+	const betaTesting = metanthropes.utils.metaCheckSetting("core", "metaBetaTesting");
 	const actor = await fromUuid(actorUUID);
 	//? Checking if actor has Metapowers that affect the explosive dice
 	const explosiveDice = "x10"; //todo: placeholder for custom explosive dice
