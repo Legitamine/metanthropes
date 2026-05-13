@@ -97,7 +97,17 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 		const field = target.dataset.field || "img";
 		const actor = await fromUuid(target.dataset.actorId);
 		const current = foundry.utils.getProperty(actor.document, field);
-		const fp = new foundry.applications.apps.FilePicker({
+		let source;
+		let fp;
+		//? The Forge compatibility
+		if (game.modules.get("forge-vtt")?.active) {
+			source = "forgevtt";
+			fp = ForgeVTT_FilePicker;
+		} else {
+			source = "data";
+			fp = foundry.applications.apps.FilePicker;
+		}
+		const imageEditor = new fp({
 			type: "image",
 			current: current,
 			callback: async (path) => {
@@ -105,7 +115,7 @@ export class MetaImagePicker extends HandlebarsApplicationMixin(ApplicationV2) {
 				await this.close();
 			},
 		});
-		fp.render(true);
+		imageEditor.render(true);
 	}
 
 	async #collectPaths(imageRegistryType, imageFolder) {
