@@ -27,12 +27,14 @@ import { MetanthropesActor } from "./documents/actor.mjs";
 import { MetanthropesItem } from "./documents/item.mjs";
 import { MetanthropesActiveEffect } from "./documents/active-effect.mjs";
 import { MetanthropesCombat } from "./documents/combat.mjs";
+//* Apps
+import { MetaDialog, MetaChatMessage } from "./metaclasses/metaclasses.mjs";
+import { MetaImagePicker } from "./ui/apps/meta-image-picker.mjs";
+import { MetanthropesPause } from "./ui/apps/meta-pause.mjs";
 //* Sheets
 import { MetanthropesActorSheet } from "./ui/sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./ui/sheets/item-sheet.mjs";
 import { MetanthropesActiveEffectSheetV2 } from "./ui/sheets/active-effect-sheet.mjs";
-//* Custom Classes
-import { MetaDialog, MetaChatMessage, MetanthropesPause, MetaImagePicker } from "./metaclasses/metaclasses.mjs";
 // //* AppV2 Sheets
 import { MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
 import { MetanthropesItemSheetV2 } from "./ui/sheets/item-sheet-v2.mjs";

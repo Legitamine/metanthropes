@@ -97,7 +97,7 @@ export class MetanthropesItemSheet extends foundry.appv1.sheets.ItemSheet {
 		super.activateListeners(html);
 		//? Only Narrators with the Homebrew Module are allowed to edit the item sheets
 		//todo this will change to include the author so that narrators can edit their own items, while protecting official items being edited without homebrew
-		const homebrewFeatures = game.settings.get("metanthropes", "metaHomebrew");
+		const homebrewFeatures = metanthropes.utils.metaCheckSetting("homebrew", "metaHomebrew");
 		if (!game.user.isGM || !homebrewFeatures) {
 			html.find("input, textarea, select").attr("disabled", "disabled");
 		}
@@ -105,7 +105,7 @@ export class MetanthropesItemSheet extends foundry.appv1.sheets.ItemSheet {
 		//? Observers (non-owners) of the item sheet, should not be able to roll anything
 		if (!this.isEditable) return;
 		//? Active Effects
-		if (game.settings.get("metanthropes-core", "metaBetaTesting"))
+		if (metanthropes.utils.metaCheckSetting("core", "metaBetaTesting"))
 			html.find(".effect-control").click((ev) => metanthropes.utils.onManageActiveEffect(ev, this.document));
 		//? Roll Metapower
 		html.find(".style-mp-rolls").click(this._onRoll.bind(this));

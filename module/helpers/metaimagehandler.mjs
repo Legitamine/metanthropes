@@ -19,6 +19,7 @@ export async function metaUpdateActorImages({ actorUUID, changeBoth = true, useW
 }
 
 /**
+ * !Deprecated
  * Updates the token images for an actor in each scene
  * @param {string} actorUUID - Actor's UUID
  * @param {string} selectedPath - Selected image path
@@ -76,6 +77,7 @@ export async function metaUpdateTokenImages({ actorUUID, selectedPath, useWildca
 }
 
 /**
+ * !Deprecated
  * Returns the corresponsing top-down Token for a Portrait
  * Prefers Animated Tokens if available
  * Compatible with The Forge hosting service

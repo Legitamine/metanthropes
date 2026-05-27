@@ -10,6 +10,36 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 # Early Access Releases
 
+## Early Access v0.14.190 [2026-05-28]
+
+### Added:
+
+- Added support for the latest Foundry VTT V14 Stable 5 build V14.363.
+- The new Image Picker App now includes additional options for Narrators to configure an Actor's Wildcard token (as well as naming options), while selecting the Image for that Actor, saving the trouble of having to do that configuration part manually for each Actor. You can still manually tweak any of these settings and the app will reflect the actual values for each Actor.
+- [DSN] Added support for the new Dice So Nice! version 6, which comes with custom Metanthropes d10 & d100 dice, with our logo and our theme colors, included in the system. When rolling for Damage, the dice will be colored according to the Energy Type being used, unless you disable it in the Game Settings, so you can use your custom dice color theme.
+  \*\*\*\* - [Core] Added a new Journal with guidance on how to Progress characters during Early Access.
+
+### Changes:
+
+- The 'Assign Player' app will now also configure the default Player Character, for that Player, to the Actor being assigned.
+- [Core] Progressing your Chars, Stats & Perks will no longer be disabled while the 'Beta Testing of new Features' setting is enabled.
+
+### Fixes:
+
+- Fixed an issue with the Item sheet, which was causing it to always open in a maximized state.
+- Fixed an issue with the Possesions Item Sheet, where the Tooltips on the Material Properties tab where not showing up correctly.
+- Fixed an issue with the Roll Tables, where the image of the Roll Table grew out of proportion, making it hard to see the interactable buttons and table results in some resolutions.
+- [Core] Fixed an issue with the createActor Hook that was causing it to give some actors duplicate Strike Items when multiple Narrators (GMs) where online at the same time.
+- [Homebrew] Fixed an issue with some of the settings not being accessible under the Game Settings menu.
+- [The Forge] Fixed an issue with the new Image Picker app, which was causing it to display empty folders while running on The Forge.
+
+### Known Issues:
+
+\*\*\* - [Introductory] Wildcard may show agents as civilians - will be once deprecated, although these actors will be forced to not show up properly after udpate deprecating this, so perhaps best to just not set these top downs and deprecate them fromt he selector token update.
+- [DSN] When using Dice So Nice, the dice roll animation will not trigger on subsequent re-rolls of damage beyond the first re-roll. This will be addressed with the upcoming Roll Orchestrator feature.
+
+---
+
 ## Early Access v0.14.175 [2026-05-11]
 
 ### Added:

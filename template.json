@@ -1078,63 +1078,63 @@
 						"dtype": "String",
 						"label": "<i class=\"fa-solid fa-cube\"></i> Category",
 						"value": "Material Composition",
-						"tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Category"
+						"tooltip": "METANTHROPES.SHEET.ITEMS.POSSESSIONS.MATERIAL.Category"
 					},
 					"Durability": {
 						"type": "number",
 						"dtype": "Number",
 						"label": "<i class=\"fa-solid fa-heart-pulse\"></i>",
 						"value": "10",
-						"tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Durability"
+						"tooltip": "METANTHROPES.SHEET.ITEMS.POSSESSIONS.MATERIAL.Durability"
 					},
 					"Size": {
 						"type": "number",
 						"dtype": "Number",
 						"label": "<i class=\"fa-solid fa-ruler-triangle\"></i>",
 						"value": "10",
-						"tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Size"
+						"tooltip": "METANTHROPES.SHEET.ITEMS.POSSESSIONS.MATERIAL.Size"
 					},
 					"Weight": {
 						"type": "number",
 						"dtype": "Number",
 						"label": "<i class=\"fa-solid fa-weight-hanging\"></i>",
 						"value": "10",
-						"tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Weight"
+						"tooltip": "METANTHROPES.SHEET.ITEMS.POSSESSIONS.MATERIAL.Weight"
 					},
 					"Cosmic": {
 						"type": "number",
 						"dtype": "Number",
 						"label": "Cosmic Resistance",
 						"initial": 0,
-						"tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Cosmic"
+						"tooltip": "METANTHROPES.SHEET.ITEMS.POSSESSIONS.MATERIAL.Cosmic"
 					},
 					"Elemental": {
 						"type": "number",
 						"dtype": "Number",
 						"label": "Elemental Resistance",
 						"initial": 0,
-						"tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Elemental"
+						"tooltip": "METANTHROPES.SHEET.ITEMS.POSSESSIONS.MATERIAL.Elemental"
 					},
 					"Material": {
 						"type": "number",
 						"dtype": "Number",
 						"label": "Material Resistance",
 						"initial": 0,
-						"tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Material"
+						"tooltip": "METANTHROPES.SHEET.ITEMS.POSSESSIONS.MATERIAL.Material"
 					},
 					"Psychic": {
 						"type": "number",
 						"dtype": "Number",
 						"label": "Psychic Resistance",
 						"initial": 0,
-						"tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Psychic"
+						"tooltip": "METANTHROPES.SHEET.ITEMS.POSSESSIONS.MATERIAL.Psychic"
 					},
 					"Description": {
 						"type": "text",
 						"dtype": "String",
 						"label": "<i class=\"fa-solid fa-cube\"></i> Description",
 						"value": null,
-						"tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Description"
+						"tooltip": "METANTHROPES.SHEET.ITEMS.POSSESSIONS.MATERIAL.Description"
 					}
 				}
 			},

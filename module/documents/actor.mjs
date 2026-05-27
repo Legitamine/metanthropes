@@ -8,9 +8,11 @@ export class MetanthropesActor extends Actor {
 	/** @override */
 	//* Setting default Token configuration for all actors
 	async _preCreate(data, options, user) {
+		metanthropes.utils.metaLog(3, "actor _precreate", "data, options, user", data, options, user);
 		await super._preCreate(data, options, user);
 		let createData = {};
 		//! v13 has the ability to customize prototype Token Defaults, however it doesn't allow to customize everything we need (yet)
+		//! verify no breaking changes after removing the following
 		if (!data.prototypeToken)
 			foundry.utils.mergeObject(createData, {
 				"prototypeToken.name": data.name, //? Set token name to actor name
@@ -140,18 +142,20 @@ export class MetanthropesActor extends Actor {
 		}
 		//* We control Unique (linked/unlined) from here
 		//! need to revise with Actor v3 changes
-		if (data.type == "Protagonist" || data.type == "Metanthrope") {
-			if (!(data.name.includes("Copy") || data.name.includes("Duplicate"))) {
-				//? Enable Linked Tokens for Protagonists & Metanthropes without 'Duplicate' or 'Copy' in their name
-				createData.prototypeToken.actorLink = true;
-				createData.prototypeToken.prependAdjective = false;
-			}
-		}
+		//! removed as part of the new Image Picker controlling the actorLink/Wildcard features
+		// if (data.type == "Protagonist" || data.type == "Metanthrope") {
+		// 	if (!(data.name.includes("Copy") || data.name.includes("Duplicate"))) {
+		// 		//? Enable Linked Tokens for Protagonists & Metanthropes without 'Duplicate' or 'Copy' in their name
+		// 		createData.prototypeToken.actorLink = true;
+		// 		createData.prototypeToken.prependAdjective = false;
+		// 	}
+		// }
 		//! v13 these cannot be passed as part of prototypeTokenOverrides
 		//* Make the size of the token reflect a typical humanoid relative to the grid
 		if (data.type == "Protagonist" || data.type == "Metanthrope" || data.type == "Human") {
 			createData.prototypeToken.height = 1;
 			createData.prototypeToken.width = 1;
+			createData.prototypeToken.depth = 1;
 			createData.prototypeToken.texture.scaleX = 0.5;
 			createData.prototypeToken.texture.scaleY = 0.5;
 		}

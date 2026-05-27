@@ -58,6 +58,9 @@
 				"BuffsRemoved": "These Buffs are Removed from the Target(s)",
 				"ConditionsApplied": "These Conditions are Applied to the Target(s)",
 				"ConditionsRemoved": "These Conditions are Removed from the Target(s)"
+			},
+			"ASSIGN_ACTOR_TO_PLAYER": {
+				"noGM": "You must be a Narrator (Gamemaster) to use this app."
 			}
 		},
 		"UI": {
@@ -97,11 +100,19 @@
 					"ActorType": "Actor Type:",
 					"Menu": "Select a new artwork for this Actor from the available options below.",
 					"Token": "The Top-Down Token will be updated accordingly.",
+					"Wildcard": "Configure this Actor to have Wildcard Tokens.",
+					"WildcardExplain": "Enabling this option and selecting an Image below, will configure the Actor to use the selected Image as the Portrait (Actor) Image, while each Token will use an Image with the same name (eg. 'Civilian-') as the selected Image, and use a random number each time. This will also force the Actor to become unlinked, meaning you can place multiples on a Scene and they each have their own Name/Life/Destiny etc.",
+					"appendNumber": "Append a Number to the Name of each Token.",
+					"prependAdjective": "Prepend an adjective to the Name of each Token",
+					"TokenOptions": "You can select any additional options for naming the Wildcard Tokens.",
+					"isToken": "You are editing a Token, to edit the parent Actor, use the Sidebar. If the Actor has the Wildcard option enabled, selecting an Image here will apply the corresponding Top-Down Token for this Token.",
 					"Selected": "Currently Selected Image",
 					"Manual": "Select Image Manually",
 					"ManualTooltip": "Click here for the default Foundry VTT behavior. The Token Image will not be updated automatically.",
 					"Error": "No Images found in the Artwork Registry for this Actor Type.",
 					"Untrusted": "It seems your User doesn't have the 'Use File Browser' Permission. Ask your Narrator to give your user this permission, or promote you to a Trusted Player from the User Permission Configuration screen.",
+					"actorLink": "Is this Actor Linked",
+					"actorLinkTooltip": "Is this Actor's PrototypeToken linked? Can be true or false. Changing the Wildcard checkbox will toggle this option automatically. The default value is set according to the Actor's Type.",
 					"ActorTypes": {
 						"protagonist": "Protagonist",
 						"metanthrope": "Metanthrope",
@@ -391,7 +402,25 @@
 			"metaWelcomeName": "Show Welcome Journal",
 			"metaWelcomeHint": "Enable this setting to display the Metanthropes Welcome Journal when the World loads.",
 			"metaInstallName": "Show System Demo Adventure",
-			"metaInstallHint": "Enable to show the System Demo Adventure Importer on the next startup."
+			"metaInstallHint": "Enable to show the System Demo Adventure Importer on the next startup.",
+			"dsnDamageDiceName": "Damage Color Theme for Dice So Nice!",
+			"dsnDamageDiceHint": "This setting requires the Dice So Nice! module to be active. Enabling will change the color theme of Damage dice to match the Energy Type being used. Disable to use your custom color theme for Damage rolls."
+		},
+		"ITEMS": {
+			"TO_BE_DEPRECATED": "with v1",
+			"POSSESSIONS": {
+				"MATERIAL": {
+					"Category": "The type of Materials used in creating this Possession.",
+					"Durability": "The durability of this Possession. When this Possession takes damage, which is higher than the Resistance for that damage type, excess damage reduces the Durability of the Possession. When Durability reaches 0, the Possession is destroyed.",
+					"Size": "The Size of this Possession.",
+					"Weight": "The Weight of this Possession.",
+					"Cosmic": "The Cosmic Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+					"Elemental": "The Elemental Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+					"Material": "The Material Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+					"Psychic": "The Psychic Resistance of this Possession. If the Possession is an Armor, this Resistance value should be applied to the Actor when equipped. This is a manual process that needs to be done by the Narrator.",
+					"Description": "A description for this particular material."
+				}
+			}
 		}
 	},
 	"TYPES": {

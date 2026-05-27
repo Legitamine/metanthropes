@@ -234,7 +234,7 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 			li.slideUp(200, () => this.render(false));
 		});
 		//? Active Effect management
-		if (game.settings.get("metanthropes-core", "metaBetaTesting"))
+		if (metanthropes.utils.metaCheckSetting("core", "metaBetaTesting"))
 			html.find(".effect-control").click((ev) => metanthropes.utils.onManageActiveEffect(ev, this.actor));
 		//? Roll Stat
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
@@ -655,7 +655,7 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 			ease: "none",
 		});
 		//? Check if 'Alpha Testing of New Features' is enabled
-		if (!game.settings.get("metanthropes", "metaAlphaTesting")) {
+		if (!metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
 			ui.notifications.warn(
 				"Progression is in early Alpha Testing and only available with the Metanthropes Homebrew Module at this time",
 			);

@@ -47,6 +47,18 @@ export const settings = [
 		default: true,
 		onChange: null,
 	},
+		{
+		module: "metanthropes",
+		key: "dsnDamageDice",
+		name: "METANTHROPES.SETTINGS.dsnDamageDiceName",
+		hint: "METANTHROPES.SETTINGS.dsnDamageDiceHint",
+		scope: "client",
+		config: true,
+		requiresReload: false,
+		type: Boolean,
+		default: true,
+		onChange: null,
+	},
 	//! Deprecated
 	{
 		module: "metanthropes",

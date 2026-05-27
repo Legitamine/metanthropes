@@ -79,12 +79,32 @@ export async function metaRolld10(
 	//		explosiveDice = "x1x10";
 	//		mL(3, "metaRolld10", "Using Alternative explosive dice:", explosiveDice);
 	//	}
-	//? dice is the number of d10 to roll
+	let customDiceTheme;
+	const customDiceThemeSetting = game.settings.get("metanthropes", "dsnDamageDice");
+	if (customDiceThemeSetting) {
+		switch (what) {
+			case "Cosmic Damage":
+				customDiceTheme = `[meta-cosmic]`;
+				break;
+			case "Elemental Damage":
+				customDiceTheme = `[meta-elemental]`;
+				break;
+			case "Psychic Damage":
+				customDiceTheme = `[meta-psychic]`;
+				break;
+			case "Material Damage":
+				customDiceTheme = `[meta-material]`;
+				break;
+			default:
+				customDiceTheme = ``;
+				break;
+		}
+	} else customDiceTheme = ``;
 	let rolld10;
 	if (baseNumber > 0) {
-		rolld10 = await new Roll(`${dice}d10${explosiveDice}+${baseNumber}`).evaluate();
+		rolld10 = await new Roll(`${dice}d10${explosiveDice}${customDiceTheme}+${baseNumber}`).evaluate();
 	} else {
-		rolld10 = await new Roll(`${dice}d10${explosiveDice}`).evaluate();
+		rolld10 = await new Roll(`${dice}d10${explosiveDice}${customDiceTheme}`).evaluate();
 	}
 	if (isHalf) {
 		rollTotal = Math.ceil(rolld10.total / 2);
@@ -224,7 +244,7 @@ export async function metaRolld10(
 					dice: dice,
 					baseNumber: baseNumber,
 					isHalf: isHalf,
-					reroll: reroll,
+					reroll: true, //edw
 					rerollCounter: rerollCounter,
 					flavor: enrichedMessage,
 					//content: renderedRoll, //? not including the rendered roll doesn't trigger DSN?
@@ -284,8 +304,11 @@ export async function metaRolld10(
 			} else {
 				//* Replacing previous chat message
 				mL(4, "metaRolld10", "Anchored", "Re-Roll", "Updating messageId", messageId);
-				chatMessage.update(chatData);
+				await chatMessage.update(chatData);
 				mL(3, "metaRolld10", "Finished for:", actor.name + "'s", what);
+				if (game.dice3d && dice > 0) {
+					await game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
+				}
 				return rolld10.toAnchor({
 					label: what,
 					dataset: {
@@ -621,7 +644,7 @@ export async function metaDamageReRoll(event) {
 		//speaker: ChatMessage.getSpeaker({ actor: actor }),
 		//user: game.user.id,
 		flavor: enrichedFlavor,
-		//rolls: rolledDice,
+		//rolls: rolledDice, //enabling causes double rolls on first roll
 		content: enrichedContent,
 		rollMode: game.settings.get("core", "rollMode"),
 		flags: { metanthropes: { actoruuid: actor.uuid } },
@@ -632,13 +655,15 @@ export async function metaDamageReRoll(event) {
 		//? issue edw einai oti exw kanei roll 4xmetarolls, poio akrivws tha diksw edw?
 		//! ara na kanei show to DSN to idio to metaroll instead? oxi exw to rolls apo to dataset
 		mL(5, "dice", rolledDice);
-		// if (game.dice3d) {
-		// 	await game.dice3d.showForRoll(rolledDice, game.user, true, null, false, messageId);
-		// }
 		await game.messages.get(messageId).update(chatData);
+		//const updatedRoll = await JSON.stringify(rolledDice);
+		// if (game.dice3d) {
+		// // 	await game.dice3d.showForRoll(rolledDice, game.user, true, null, false, messageId); error for rolledDice 'for each'
+		// // await game.dice3d.waitFor3DAnimationByMessageID(messageId); doesn't work
+		// }
 	} else {
 		mL(4, "metaDamageReRoll", "No Reroll");
-		//!review oti edw sto prwto diladi reroll apo meta-execute vlepw dsn, right?
+		//!review oti edw sto prwto diladi reroll apo meta-execute vlepw dsn, right? nai
 		await metanthropes.applications.MetaChatMessage.create(chatData);
 	}
 	mL(

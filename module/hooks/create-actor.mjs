@@ -1,4 +1,5 @@
 Hooks.on("createActor", async (actor) => {
+	if (!game.user.isActiveGM) return;
 	//* Duplicate Self Metapower Activation Detection - Rename to Duplicate & Remove Items & Effects from Duplicates
 	if (actor.name.includes("Copy") && actor.isDuplicatingSelf) {
 		const newName = actor.name.replace("Copy", "Duplicate");
