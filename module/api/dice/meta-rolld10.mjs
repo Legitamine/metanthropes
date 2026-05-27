@@ -644,7 +644,7 @@ export async function metaDamageReRoll(event) {
 		//speaker: ChatMessage.getSpeaker({ actor: actor }),
 		//user: game.user.id,
 		flavor: enrichedFlavor,
-		//rolls: rolledDice, //!enabling causes double rolls on first roll - test if it solves the x2+ rerolls from showing though
+		//rolls: rolledDice, //!enabling causes double rolls on first roll - does not solve the x2+ rerolls from showing though
 		content: enrichedContent,
 		rollMode: game.settings.get("core", "rollMode"),
 		flags: { metanthropes: { actoruuid: actor.uuid } },
@@ -655,12 +655,12 @@ export async function metaDamageReRoll(event) {
 		//? issue edw einai oti exw kanei roll 4xmetarolls, poio akrivws tha diksw edw?
 		//! ara na kanei show to DSN to idio to metaroll instead? oxi exw to rolls apo to dataset
 		mL(5, "dice", rolledDice);
-		await game.messages.get(messageId).update(chatData);
+		if (game.dice3d) { //todo perhaps proper way is to use the .show(data,) and restructure the rolledDice to that data structure
+		await game.dice3d.showForRoll(rolledDice[0], game.user, true, null, false, messageId); //!error for rolledDice 'for each' - no error after passing the [0], however still no animation
+		// await game.dice3d.waitFor3DAnimationByMessageID(messageId); doesn't work
+		}
+		await game.messages.get(messageId).update(chatData); //! changing the order didn't seem to affect showing the dsn
 		//const updatedRoll = await JSON.stringify(rolledDice);
-		// if (game.dice3d) {
-		// // 	await game.dice3d.showForRoll(rolledDice, game.user, true, null, false, messageId); error for rolledDice 'for each'
-		// // await game.dice3d.waitFor3DAnimationByMessageID(messageId); doesn't work
-		// }
 	} else {
 		mL(4, "metaDamageReRoll", "No Reroll");
 		//!review oti edw sto prwto diladi reroll apo meta-execute vlepw dsn, right? nai
