@@ -16,7 +16,7 @@
 				"manifest": "https://gitlab.com/riccisi/foundryvtt-dice-so-nice/-/raw/master/module/module.json",
 				"compatibility": {
 					"minimum": "6.2.1",
-					"verified": "6.2.3"
+					"verified": "6.2.4"
 				}
 			}
 		]

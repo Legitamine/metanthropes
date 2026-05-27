@@ -532,9 +532,9 @@ export async function metaDamageReRoll(event) {
 			damageBaseElemental,
 			false,
 			true,
-			false,
-			0,
-			null,
+			false, //!giati pernaw false edw? //todo kai gia ta alla damage types
+			0, //! kai giati to counter einai 0 edw alla seems to be working fine?
+			null, //! den tha eprepe na pernaw kai to swsto message Id edw?
 		);
 		mL(3, "metaDamageReRoll", "Elemental Damage Dataset", elementalDamageRoll.dataset);
 		elementalDamageRollResult = elementalDamageRoll.dataset.total;
@@ -644,7 +644,7 @@ export async function metaDamageReRoll(event) {
 		//speaker: ChatMessage.getSpeaker({ actor: actor }),
 		//user: game.user.id,
 		flavor: enrichedFlavor,
-		//rolls: rolledDice, //enabling causes double rolls on first roll
+		//rolls: rolledDice, //!enabling causes double rolls on first roll - test if it solves the x2+ rerolls from showing though
 		content: enrichedContent,
 		rollMode: game.settings.get("core", "rollMode"),
 		flags: { metanthropes: { actoruuid: actor.uuid } },

@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 - The new Image Picker App now includes additional options for Narrators to configure an Actor's Wildcard token (as well as naming options), while selecting the Image for that Actor, saving the trouble of having to do that configuration part manually for each Actor. You can still manually tweak any of these settings and the app will reflect the actual values for each Actor.
 - [DSN] Added support for the new Dice So Nice! version 6, which comes with custom Metanthropes d10 & d100 dice, with our logo and our theme colors, included in the system. When rolling for Damage, the dice will be colored according to the Energy Type being used, unless you disable it in the Game Settings, so you can use your custom dice color theme.
   \*\*\*\* - [Core] Added a new Journal with guidance on how to Progress characters during Early Access.
+- Added a small text animation to buttons in Chat, to help clarify when the button is clicked & when the button becomes available again.
 
 ### Changes:
 
@@ -36,7 +37,12 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 ### Known Issues:
 
 \*\*\* - [Introductory] Wildcard may show agents as civilians - will be once deprecated, although these actors will be forced to not show up properly after udpate deprecating this, so perhaps best to just not set these top downs and deprecate them fromt he selector token update.
+
 - [DSN] When using Dice So Nice, the dice roll animation will not trigger on subsequent re-rolls of damage beyond the first re-roll. This will be addressed with the upcoming Roll Orchestrator feature.
+
+### Deprecated:
+
+- Removed support for the Drag Ruler Module as it's functionality will be included in the system.
 
 ---
 
