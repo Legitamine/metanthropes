@@ -204,13 +204,13 @@ export class MetanthropesActor extends Actor {
 					) {
 						//? for Protagonists with a prime metapower defined, make it their respective metapower icon
 						this.primeimg = `systems/metanthropes/assets/artwork/metapowers/mp-${primeMPStorageName}.webp`;
-						metanthropes.utils.metaLog(
-							3,
-							"MetanthropesActor",
-							"prepareBaseData",
-							"Updating Prime Metapower Image for:",
-							this.name,
-						);
+						// metanthropes.utils.metaLog(
+						// 	3,
+						// 	"MetanthropesActor",
+						// 	"prepareBaseData",
+						// 	"Updating Prime Metapower Image for:",
+						// 	this.name,
+						// );
 					} else {
 						return;
 					}
@@ -378,17 +378,19 @@ export class MetanthropesActor extends Actor {
 	 */
 	async undoLastLifeChange() {
 		const previousLife = await this.getFlag("metanthropes", "previousLife");
-		if (previousLife === null || previousLife === undefined || previousLife === "nope")
-			return ui.notifications.warn(_loc("METANTHROPES.ACTOR.BASE.life.restore.notification") + this.name);
-		if (previousLife >= 0) {
-			//todo we should use the unsetflag instead
-			metanthropes.utils.metaLog(0, "Actor", this.name, "Undoing Last Life Change");
-			metanthropes.utils.metaLog(3, "Actor.undoLastLifeChange", "Restoring", this.name, "Life to:", previousLife);
-			await metanthropes.logic.metaApplyActorUpdates(this.uuid, {
-				"system.Vital.Life.value": Number(previousLife),
-				"flags.metanthropes.previousLife": "nope",
-			});
+		if (previousLife === null || previousLife === undefined || previousLife === "nope") {
+			ui.notifications.warn(_loc("METANTHROPES.ACTOR.NOTIFICATIONS.restoreLife") + this.name);
+			return false;
 		}
+
+		//todo we should use the unsetflag instead
+		metanthropes.utils.metaLog(0, "Actor", this.name, "Undoing Last Life Change");
+		metanthropes.utils.metaLog(3, "Actor.undoLastLifeChange", "Restoring", this.name, "Life to:", previousLife);
+		await metanthropes.logic.metaApplyActorUpdates(this.uuid, {
+			"system.Vital.Life.value": Number(previousLife),
+			"flags.metanthropes.previousLife": "nope",
+		});
+		return true;
 	}
 
 	/**

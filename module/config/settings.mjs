@@ -47,7 +47,7 @@ export const settings = [
 		default: true,
 		onChange: null,
 	},
-		{
+	{
 		module: "metanthropes",
 		key: "dsnDamageDice",
 		name: "METANTHROPES.SETTINGS.dsnDamageDiceName",
@@ -96,7 +96,19 @@ export const settings = [
 		type: Object,
 		default: null,
 		onChange: null,
-	}
+	},
+	{
+		module: "metanthropes",
+		key: "metaDSNSFX",
+		name: "Dice So Nice default SFX",
+		hint: ``,
+		scope: "world",
+		config: false,
+		requiresReload: false,
+		type: Boolean,
+		default: false,
+		onChange: null,
+	},
 	//! All below to be Deprecated & moved to their respective modules
 	//* Visible with Metanthropes: Introductory
 	// {

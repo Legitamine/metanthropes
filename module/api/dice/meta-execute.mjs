@@ -619,6 +619,7 @@ export async function metaExecute({event, actorUUID, action, itemName, multiActi
 				data-targets="${targetedActorsUUIDs}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 				data-what="Damage" data-anchor="true" data-reroll="false" data-reroll-counter="1"
 				data-message-id="null" data-destiny-re-roll="true" data-damage-selected-targets="${damageSelectedTargets}"
+				data-first-message="true"
 				${cosmicDamageRollParams} ${elementalDamageRollParams}
 				${materialDamageRollParams} ${psychicDamageRollParams}
 				>Spend @METAFA(hand-fingers-crossed) to Reroll @METAFA(burst) Damage
@@ -636,6 +637,7 @@ export async function metaExecute({event, actorUUID, action, itemName, multiActi
 				data-what="Healing" data-anchor="true" data-heal-selected-targets="${healSelectedTargets}"
 				data-reroll="false" data-reroll-counter="1" data-message-id="null"
 				data-destiny-re-roll="true" ${healingRollParams}
+				data-first-message="true"
 				>Spend @METAFA(hand-fingers-crossed) to Reroll @METAFA(heart-pulse) Healing
 				</button></div>`;
 				contentMessage += healingRerollButton;

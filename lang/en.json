@@ -273,6 +273,9 @@
 					"Effects": "Effects",
 					"Notes": "Notes"
 				}
+			},
+			"NOTIFICATIONS" :{
+				"restoreLife": "Could not restore the previous Life Score for "
 			}
 		},
 		"ITEM": {

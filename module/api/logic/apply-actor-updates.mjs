@@ -23,6 +23,8 @@ export async function metaApplyActorUpdates(actorUUID, updateData) {
 		action: "metaApplyActorUpdate",
 		actorUUID: actorUUID,
 		updateData: updateData,
+		requestID: foundry.utils.randomID(),
+		requesterID: game.user.id,
 	};
 	mL(
 		3,
@@ -32,5 +34,22 @@ export async function metaApplyActorUpdates(actorUUID, updateData) {
 		"With payload",
 		payload,
 	);
-	return await game.socket.emit("system.metanthropes", payload);
+	//* We will now await a response for our payload and return as appropriate
+	return new Promise((resolve, reject) => {
+		const timeoutError = setTimeout(() => {
+			game.socket.off("system.metanthropes", responseHandler);
+			reject(new Error(`metaApplyActorUpdates timed out for ${actorUUID}`));
+		}, 10000);
+		const responseHandler = (response) => {
+			if (response?.action !== "metaApplyActorUpdatesResult") return;
+			if (response.requestID !== requestID) return;
+			if (response.requesterID !== game.user.id) return;
+			clearTimeout(timeoutError);
+			game.socket.off("system.metanthropes", responseHandler);
+			if (response.error) reject(new Error(response.error));
+			else resolve(response.result ?? true);
+		};
+		game.socket.on("system.metanthropes", responseHandler);
+		game.socket.emit("system.metanthropes", payload);
+	});
 }

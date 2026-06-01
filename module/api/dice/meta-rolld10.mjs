@@ -47,6 +47,9 @@ export async function metaRolld10(
 	const mL = metanthropes.utils.metaLog;
 	dice = typeof dice === "string" ? parseInt(dice) : dice;
 	baseNumber = typeof baseNumber === "string" ? parseInt(baseNumber) : baseNumber;
+	isHalf = isHalf === true || isHalf === "true";
+	anchor = anchor === true || anchor === "true";
+	reroll = reroll === true || reroll === "true"; //? so if either true or "true" reroll now is true (bool)
 	mL(
 		3,
 		"metaRolld10",
@@ -172,8 +175,9 @@ export async function metaRolld10(
 	if (!anchor) {
 		//* Not anchored, print message to chat
 		if (!reroll) {
+			//!des parakatw note
 			//* Not a reroll, printing a new message
-			mL(4, "metaRolld10", "Not Anchored", "No Re-Roll", "Creating new chat message");
+			mL(3, "metaRolld10", "Not Anchored", "No Re-Roll", "Creating new chat message");
 			//todo! need to find a way to tell dice so nice to only show the animation if dice > 0
 			//todo oxi message edw? //if ( message?.rolls.length && ("dice3d" in game) ) await game.dice3d.waitFor3DAnimationByMessageID(message.id);
 			// if (game.dice3d && dice <= 0) {
@@ -192,19 +196,19 @@ export async function metaRolld10(
 			});
 		} else {
 			//* Rerolling, update the previous message
-			mL(4, "metaRolld10", "Not Anchored", "Re-Roll", "Updating chat message", messageId);
+			mL(3, "metaRolld10", "Not Anchored", "Re-Roll", "Updating chat message", messageId);
 			const chatMessage = game.messages.get(messageId);
 			if (!chatMessage) {
 				ui.notifications.warn("Could not find the chat message to update.");
-				mL(2, "metaRolld10", "reroll", "Could not find the chat message to update", messageId);
+				mL(2, "metaRolld10", "Not Anchored", "Re-Roll", "Could not find the chat message to update", messageId);
 				return;
 			}
 			const updatedRoll = await rolld10.toJSON();
 			const renderedRoll = await rolld10.render();
 			//? Call Dice So Nice to show the roll
-			if (game.dice3d && dice > 0) {
-				await game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
-			}
+			// if (game.dice3d && dice > 0) {
+			// 	await game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
+			// }
 			chatMessage.update({
 				flavor: enrichedMessage,
 				rolls: updatedRoll,
@@ -216,7 +220,10 @@ export async function metaRolld10(
 	} else {
 		//* Roll is anchored (shown within an existing message)
 		if (!reroll) {
-			mL(4, "metaRolld10", "Anchored", "No Re-roll");
+			//! Anchored, not re-roll means we'll be creating a new chat message
+			//however we return the roll to anchor here, so when does the message get created?
+			//!atn here (!reroll) returns truthy if reroll==="false" cause it's a string! giati edw kanw parse to string directly oxi opws ta reroll functions
+			mL(3, "metaRolld10", "Anchored", "No Re-roll");
 			//* We store in the dataset all info to display the chat message if needed from rerolls
 			//*? don't print a chat message ?what is reroll exactly? todo: rename to more clean purpose
 			//! do I need this anymore for rerolls to show for all players?
@@ -231,7 +238,7 @@ export async function metaRolld10(
 			//const updatedRoll = JSON.stringify(rolld10.toJSON());
 			const updatedRoll = JSON.stringify(foundry.utils.deepClone(rolld10));
 			//const renderedRoll = await rolld10.render();
-			mL(5, "metaRolld10", "updatedRoll", updatedRoll, "rolld10", rolld10);
+			//mL(5, "metaRolld10", "updatedRoll", updatedRoll, "rolld10", rolld10);
 			mL(3, "metaRolld10", "Finished for:", actor.name + "'s", what);
 			return rolld10.toAnchor({
 				label: what,
@@ -253,10 +260,10 @@ export async function metaRolld10(
 			});
 		} else {
 			//* Re rolling for an anchor
-			mL(4, "metaRolld10", "Anchored", "Re-rolling");
+			mL(3, "metaRolld10", "Anchored", "Re-Roll");
 			const updatedRoll = JSON.stringify(rolld10.toJSON());
 			const renderedRoll = await rolld10.render();
-			//? Call Dice So Nice to show the roll
+			//? Call Dice So Nice to show the roll - ayto to xreiazomai gia ta re-rolls
 			if (game.dice3d && dice > 0) {
 				game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
 			}
@@ -271,18 +278,27 @@ export async function metaRolld10(
 			const chatMessage = game.messages.get(messageId);
 			if (!chatMessage) {
 				//* If no previous chat message to replace
+				//? This should only happen if it's the first reroll after activation
+				//todo we should not send a new chat message, instead only return anchor?
 				mL(
 					4,
 					"metaRolld10",
-					"Re rolling for anchor",
-					"Could not find the chat message to update",
+					"Anchored",
+					"Re-Roll",
+					"Could not find the chat message to update", chatMessage,
 					messageId,
-					"Creating new chat message",
+					"Not Creating new chat message, returning to anchor",
 				);
-				metanthropes.applications.MetaChatMessage.create(chatData);
+				//metanthropes.applications.MetaChatMessage.create(chatData); // ayto kanei to "The Protagonist" message
 				//? AND return the anchor, setting it to false so if we have another reroll we'll update that new message
+				//? xreiazomai na kanw return to anchor giati ayto kanei create to dataset poy thelw gia to rolledDice
+				//? isws auto einai edw poy prepei na zhtaw na min to kanei animate to DSN?
 				mL(3, "metaRolld10", "Finished for:", actor.name + "'s", what);
+				//! issue edw einai oti to Anchor kanei create message enw den tha eprepe.
+				//! omws einai to metaDamageReroll poy kanei create to message me ayto to anchor? giati edw kanoyme return, se poion kanoume return?
+				// todo kai confirm ta dataset params
 				return rolld10.toAnchor({
+					//ayto kanei to 'The Narrator' message
 					label: what,
 					dataset: {
 						total: rollTotal,
@@ -303,12 +319,17 @@ export async function metaRolld10(
 				});
 			} else {
 				//* Replacing previous chat message
-				mL(4, "metaRolld10", "Anchored", "Re-Roll", "Updating messageId", messageId);
+				mL(3, "metaRolld10", "Anchored", "Re-Roll", "Updating messageId", messageId);
 				await chatMessage.update(chatData);
 				mL(3, "metaRolld10", "Finished for:", actor.name + "'s", what);
-				if (game.dice3d && dice > 0) {
-					await game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
-				}
+				//? DSN pleon redundant edw mias kai kanei pickup ta chat message updates?
+				// if (game.dice3d && dice > 0) {
+				// 	await game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
+				// }
+				// //? Call Dice So Nice to show the roll - ayto to xreiazomai gia ta re-rolls
+				// if (game.dice3d && dice > 0) {
+				// 	game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
+				// }
 				return rolld10.toAnchor({
 					label: what,
 					dataset: {
@@ -325,6 +346,7 @@ export async function metaRolld10(
 						flavor: enrichedMessage,
 						content: renderedRoll,
 						rolls: updatedRoll,
+						//! do I need messageId here?
 					},
 				});
 			}
@@ -444,6 +466,7 @@ export async function metaDamageReRoll(event) {
 		return;
 	}
 	//? Retrieve the message ID from the data-message-id attribute
+	///pairnw result, alla giati to xreiazomai?
 	const messageId = messageElement.dataset.messageId;
 	if (!messageId) {
 		ui.notifications.warn("Could not retrieve the message ID.");
@@ -469,6 +492,7 @@ export async function metaDamageReRoll(event) {
 	const damageBaseMaterial = parseInt(button.dataset.baseMaterial) || 0;
 	const damageBasePsychic = parseInt(button.dataset.basePsychic) || 0;
 	const damageSelectedTargets = button.dataset.damageSelectedTargets === "true" ? true : false;
+	const firstMessage = button.dataset?.firstMessage === "true" ? true : false;
 	let contentMessage = ``;
 	let startMessage = ``;
 	let flavorMessage = ``;
@@ -532,9 +556,9 @@ export async function metaDamageReRoll(event) {
 			damageBaseElemental,
 			false,
 			true,
-			false, //!giati pernaw false edw? //todo kai gia ta alla damage types
+			true, //!giati pernaw false edw? //todo kai gia ta alla damage types -- me false paizei swsta to 1o reroll alla den paizoune ta sub-sequent
 			0, //! kai giati to counter einai 0 edw alla seems to be working fine?
-			null, //! den tha eprepe na pernaw kai to swsto message Id edw?
+			null, //? we don't pass the messageId as that would replace the original message
 		);
 		mL(3, "metaDamageReRoll", "Elemental Damage Dataset", elementalDamageRoll.dataset);
 		elementalDamageRollResult = elementalDamageRoll.dataset.total;
@@ -552,7 +576,7 @@ export async function metaDamageReRoll(event) {
 			damageBaseMaterial,
 			false,
 			true,
-			false,
+			firstMessage ? false : true,
 			0,
 			null,
 		);
@@ -583,13 +607,18 @@ export async function metaDamageReRoll(event) {
 	}
 	if (damageSelectedTargets) {
 		//* Work through targets to restore previous Life before applying new Damage
-		for (let i = 0; i < targetedActors.length; i++) {
-			const targetedActor = await fromUuid(targetedActors[i]);
-			await targetedActor.undoLastLifeChange();
-		}
+		// for (let i = 0; i < targetedActors.length; i++) {
+		// 	const targetedActor = await fromUuid(targetedActors[i]);
+		// 	await targetedActor.undoLastLifeChange();
+		// }
+		//todo tha prepei na kanw to ^^ na kanei return promise! - not quite
 		//? need to timeout to make sure the life change has been done first, however this is not properly done here
 		//todo instead of this arbitrary timeout, we should have a proper second socket event to track server responses? see https://foundryvtt.wiki/en/development/api/sockets - above specific use cases
-		await new Promise((resolve) => setTimeout(resolve, 3000));
+		// await new Promise((resolve) => setTimeout(resolve, 3000));
+		//todo review refactored
+		//? For each UUID we check for a reply (bool)
+		const resolvedActors = (await Promise.all(targetedActors.map((uuid) => fromUuidSync(uuid)))).filter(Boolean);
+		await Promise.all(resolvedActors.map((actor) => actor.undoLastLifeChange()));
 		await metanthropes.logic.metaApplyDamage(
 			targetedActors,
 			cosmicDamageRollResult,
@@ -622,7 +651,7 @@ export async function metaDamageReRoll(event) {
 		const damageReRollButton = `<div class="hide-button hidden">
 		<button class="metanthropes-secondary-chat-button damage roll-damage-reroll chat-button-anchor"
 		data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
-		data-what="Damage" data-anchor="true" data-reroll="true" data-reroll-counter="${rerollCounter}" data-message-id="messageId"
+		data-what="Damage" data-anchor="true" data-reroll="true" data-reroll-counter="${rerollCounter}" data-message-id="${messageId}"
 		data-destiny-re-roll="true" data-dice-cosmic="${damageDiceCosmic}" data-base-cosmic="${damageBaseCosmic}"
 		data-dice-elemental="${damageDiceElemental}" data-base-elemental="${damageBaseElemental}"
 		data-dice-material="${damageDiceMaterial}" data-base-material="${damageBaseMaterial}"
@@ -641,7 +670,7 @@ export async function metaDamageReRoll(event) {
 	//const renderedRoll = await hungerRoll.render();
 	mL(5, "metaDamageReRoll", "rolls", rolledDice);
 	let chatData = {
-		//speaker: ChatMessage.getSpeaker({ actor: actor }),
+		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		//user: game.user.id,
 		flavor: enrichedFlavor,
 		//rolls: rolledDice, //!enabling causes double rolls on first roll - does not solve the x2+ rerolls from showing though
@@ -655,11 +684,18 @@ export async function metaDamageReRoll(event) {
 		//? issue edw einai oti exw kanei roll 4xmetarolls, poio akrivws tha diksw edw?
 		//! ara na kanei show to DSN to idio to metaroll instead? oxi exw to rolls apo to dataset
 		mL(5, "dice", rolledDice);
-		if (game.dice3d) { //todo perhaps proper way is to use the .show(data,) and restructure the rolledDice to that data structure
-		await game.dice3d.showForRoll(rolledDice[0], game.user, true, null, false, messageId); //!error for rolledDice 'for each' - no error after passing the [0], however still no animation
-		// await game.dice3d.waitFor3DAnimationByMessageID(messageId); doesn't work
-		}
+		chatData = { ...chatData, rolls: rolledDice };
 		await game.messages.get(messageId).update(chatData); //! changing the order didn't seem to affect showing the dsn
+		// if (game.dice3d) { // isws telika ayto einai redundant?
+		// 	//todo perhaps proper way is to use the .show(data,) and restructure the rolledDice to that data structure
+		// 	// const data= {throws: [{ dice: [{
+		// 	// 	result: ,
+		// 	// }]}]}
+		// 	//todo thelw for each of the rolledDice na kanw showforroll?
+		// 	for (const roll of rolledDice) await game.dice3d.showForRoll(roll, game.user, true, null, false, messageId); //!null messageId? //!error for rolledDice 'for each' - no error after passing the [0], however still no animation
+		// 	//await game.dice3d.showForRoll(rolledDice, game.user, true, null, false, messageId); //!null messageId? //!error for rolledDice 'for each' - no error after passing the [0], however still no animation
+		// 	// await game.dice3d.waitFor3DAnimationByMessageID(messageId); doesn't work
+		// }
 		//const updatedRoll = await JSON.stringify(rolledDice);
 	} else {
 		mL(4, "metaDamageReRoll", "No Reroll");
@@ -783,7 +819,7 @@ export async function metaHealingReRoll(event) {
 		const healingReRollButton = `<div class="hide-button hidden">
 		<button class="metanthropes-secondary-chat-button damage roll-healing-reroll chat-button-anchor"
 		data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
-		data-what="Healing" data-anchor="true" data-reroll="true" data-reroll-counter="${rerollCounter}" data-message-id="messageId"
+		data-what="Healing" data-anchor="true" data-reroll="true" data-reroll-counter="${rerollCounter}" data-message-id="${messageId}"
 		data-destiny-re-roll="true" data-healing-dice="${healingDice}" data-healing-base="${healingBase}"
 		data-heal-selected-targets="${healSelectedTargets}"
 		>Spend @METAFA(hand-fingers-crossed) to Reroll @METAFA(heart-pulse) Healing
@@ -815,9 +851,9 @@ export async function metaHealingReRoll(event) {
 	if (reroll) {
 		mL(1, "metaHealingReRoll", "Reroll");
 		//? need to call dsn as we don't use the roll class to update the message
-		if (game.dice3d) {
-			await game.dice3d.showForRoll(updatedRoll, game.user, true, null, false, messageId);
-		}
+		// if (game.dice3d) {
+		// 	await game.dice3d.showForRoll(updatedRoll, game.user, true, null, false, messageId);
+		// }
 		const chatMessage = await game.messages.get(messageId);
 		//chatMessage.applyRollMode(chatData, "roll");
 		chatMessage.update(chatData);

@@ -2,7 +2,7 @@
 
 These are the latest changes for the Metanthropes™ System for Foundry VTT.
 
-Included in these notes, is also the changelog for all the Metanthropes™ Premium Modules for Foundry VTT, labeled as [Module Name].
+Included in these notes, is also the changelog for all the Metanthropes™ Premium Modules for Foundry VTT, as well as officially supported 3rd-party Modules, labeled as [Module Name].
 
 The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
@@ -10,13 +10,15 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 # Early Access Releases
 
-## Early Access v0.14.190 [2026-05-28]
+## Early Access v0.14.195 [2026-06-xx]
 
 ### Added:
 
 - Added support for the latest Foundry VTT V14 Stable 5 build V14.363.
-- The new Image Picker App now includes additional options for Narrators to configure an Actor's Wildcard token (as well as naming options), while selecting the Image for that Actor, saving the trouble of having to do that configuration part manually for each Actor. You can still manually tweak any of these settings and the app will reflect the actual values for each Actor.
-- [DSN] Added support for the new Dice So Nice! version 6, which comes with custom Metanthropes d10 & d100 dice, with our logo and our theme colors, included in the system. When rolling for Damage, the dice will be colored according to the Energy Type being used, unless you disable it in the Game Settings, so you can use your custom dice color theme.
+- [DiceSoNice] Added support for the new Dice So Nice! Module version 6, which comes with our own custom Metanthropes d10 & d100 dice and Metanthropes Dark & Light Themes.
+- [DiceSoNice] When rolling for Damage, the dice Theme will change according to the Energy Type being used, unless you disable it in the Game Settings. To personalize your dice, while keeping the automatic Theme switching, you can select any combination of Materials & Textures from the 3D Dice configuration screen.
+- [DiceSoNice] Comes with pre-configured Special Effects that will play for all players when a d10 rolls an explosive result and also when rolling a Critical Success / Failure on a d100 roll.
+- The new Image Picker App now includes additional options for Narrators to configure an Actor's Wildcard token (as well as naming options), while selecting the Image for that Actor, saving the trouble of having to do those configuration steps manually for each Actor. You can still manually tweak any of these settings and the app will reflect the actual values for each Actor.
   \*\*\*\* - [Core] Added a new Journal with guidance on how to Progress characters during Early Access.
 - Added a small text animation to buttons in Chat, to help clarify when the button is clicked & when the button becomes available again.
 
@@ -27,12 +29,15 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ### Fixes:
 
+- Solved a race condition & updated the socket handler. This makes our handling more robust & now when re-rolling Damage/Healing it will resolve up to 3 seconds faster, while ensuring the undoLifeChange completes before applying the new Damage/Healing results.
 - Fixed an issue with the Item sheet, which was causing it to always open in a maximized state.
 - Fixed an issue with the Possesions Item Sheet, where the Tooltips on the Material Properties tab where not showing up correctly.
 - Fixed an issue with the Roll Tables, where the image of the Roll Table grew out of proportion, making it hard to see the interactable buttons and table results in some resolutions.
 - [Core] Fixed an issue with the createActor Hook that was causing it to give some actors duplicate Strike Items when multiple Narrators (GMs) where online at the same time.
 - [Homebrew] Fixed an issue with some of the settings not being accessible under the Game Settings menu.
 - [The Forge] Fixed an issue with the new Image Picker app, which was causing it to display empty folders while running on The Forge.
+- Fixed some missing Tooltips on the Actor Sheet.
+  \*\*\* - [DSN] Fixed an issue with
 
 ### Known Issues:
 
@@ -42,7 +47,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ### Deprecated:
 
-- Removed support for the Drag Ruler Module as it's functionality will be included in the system.
+- Removed support for the Drag Ruler Module.
 
 ---
 

@@ -7,6 +7,7 @@ import { STATS } from "./stats.mjs";
 import { MOVEMENT } from "./movement.mjs";
 import { TOKENDEFAULTS } from "./prototype-token-overrides.mjs";
 import { TABLES } from "./tables/_tables.mjs";
+import { DSNSFX } from "./dice-so-nice-sfx.mjs";
 
 export const SYSTEM = Object.freeze({
 	id: "metanthropes",
@@ -27,4 +28,5 @@ __  __ ______ _______       _   _ _______ _    _ _____   ____  _____  ______  __
 	MOVEMENT, //! deprecate when we remove V1 Actors
 	TOKENDEFAULTS,
 	TABLES,
+	DSNSFX,
 });
