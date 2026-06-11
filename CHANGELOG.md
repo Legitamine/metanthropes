@@ -38,13 +38,11 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 - [Homebrew] Fixed an issue with some of the settings not being accessible under the Game Settings menu.
 - [The Forge] Fixed an issue with the new Image Picker app, which was causing it to display empty folders while running on The Forge.
 - Fixed some missing Tooltips on the Actor Sheet.
-  \*\*\* - [DSN] Fixed an issue with
+- [DSN] Fixed an issue with the Dice animation not showing on Destiny Rerolls after the first.
 
 ### Known Issues:
 
 \*\*\* - [Introductory] Wildcard may show agents as civilians - will be once deprecated, although these actors will be forced to not show up properly after udpate deprecating this, so perhaps best to just not set these top downs and deprecate them fromt he selector token update.
-
-- [DSN] When using Dice So Nice, the dice roll animation will not trigger on subsequent re-rolls of damage beyond the first re-roll. This will be addressed with the upcoming Roll Orchestrator feature.
 
 ### Deprecated:
 

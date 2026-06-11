@@ -1,10 +1,10 @@
 //* Meta Roll Functions that roll d10 dice and apply Damage/healing
-//! DSN doesn't show up on subsequent re-rolls of the metaDamageReRoll
-//! DSN also doesn't show up on the first re-roll from the metaExecute result
+//! DSN doesn't show up on subsequent re-rolls of the metaDamageReRoll - fixed
+//! DSN also doesn't show up on the first re-roll from the metaExecute result - fixed
 //todo need to review the structure in lieu of the new VFX & DSN support (Roll Orchestrator)
 //todo need to order the flow and account for who's able (supposed) to view the VFX and the dice rolls
-//todo need to review the whole anchor/re-roll concept and simplify accross all meta-roll functions
-//todo undoing life changes should return a promise so we can continue rather than waiting 3 sec
+//todo need to review the whole anchor/re-roll concept and simplify accross all meta-roll functions  - in progress
+//todo undoing life changes should return a promise so we can continue rather than waiting 3 sec = done
 
 /**
  * metaRolld10 handles the rolling of d10 dice for a given actor and purpose.
@@ -47,9 +47,10 @@ export async function metaRolld10(
 	const mL = metanthropes.utils.metaLog;
 	dice = typeof dice === "string" ? parseInt(dice) : dice;
 	baseNumber = typeof baseNumber === "string" ? parseInt(baseNumber) : baseNumber;
+	//? ensure reading the string to match a bool value
 	isHalf = isHalf === true || isHalf === "true";
 	anchor = anchor === true || anchor === "true";
-	reroll = reroll === true || reroll === "true"; //? so if either true or "true" reroll now is true (bool)
+	reroll = reroll === true || reroll === "true"; //? so if either true or "true" reroll now is true (bool), so I can use (!reroll) etc
 	mL(
 		3,
 		"metaRolld10",
@@ -263,10 +264,7 @@ export async function metaRolld10(
 			mL(3, "metaRolld10", "Anchored", "Re-Roll");
 			const updatedRoll = JSON.stringify(rolld10.toJSON());
 			const renderedRoll = await rolld10.render();
-			//? Call Dice So Nice to show the roll - ayto to xreiazomai gia ta re-rolls
-			if (game.dice3d && dice > 0) {
-				game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
-			}
+
 			const chatData = {
 				speaker: ChatMessage.getSpeaker({ actor: actor }),
 				flavor: enrichedMessage,
@@ -285,11 +283,12 @@ export async function metaRolld10(
 					"metaRolld10",
 					"Anchored",
 					"Re-Roll",
-					"Could not find the chat message to update", chatMessage,
+					"Could not find the chat message to update",
+					chatMessage,
 					messageId,
-					"Not Creating new chat message, returning to anchor",
+					"Creating new chat message, not returning to anchor",
 				);
-				//metanthropes.applications.MetaChatMessage.create(chatData); // ayto kanei to "The Protagonist" message
+				metanthropes.applications.MetaChatMessage.create(chatData); // ayto kanei to "The Protagonist" message
 				//? AND return the anchor, setting it to false so if we have another reroll we'll update that new message
 				//? xreiazomai na kanw return to anchor giati ayto kanei create to dataset poy thelw gia to rolledDice
 				//? isws auto einai edw poy prepei na zhtaw na min to kanei animate to DSN?
@@ -297,30 +296,30 @@ export async function metaRolld10(
 				//! issue edw einai oti to Anchor kanei create message enw den tha eprepe.
 				//! omws einai to metaDamageReroll poy kanei create to message me ayto to anchor? giati edw kanoyme return, se poion kanoume return?
 				// todo kai confirm ta dataset params
-				return rolld10.toAnchor({
-					//ayto kanei to 'The Narrator' message
-					label: what,
-					dataset: {
-						total: rollTotal,
-						actoruuid: actor.uuid,
-						item: itemName,
-						what: what,
-						destinyReRoll: destinyReRoll,
-						dice: dice,
-						baseNumber: baseNumber,
-						isHalf: isHalf,
-						reroll: reroll,
-						anchor: false,
-						rerollCounter: rerollCounter,
-						flavor: enrichedMessage,
-						content: renderedRoll,
-						rolls: updatedRoll,
-					},
-				});
+				// return rolld10.toAnchor({
+				// 	//ayto kanei to 'The Narrator' message
+				// 	label: what,
+				// 	dataset: {
+				// 		total: rollTotal,
+				// 		actoruuid: actor.uuid,
+				// 		item: itemName,
+				// 		what: what,
+				// 		destinyReRoll: destinyReRoll,
+				// 		dice: dice,
+				// 		baseNumber: baseNumber,
+				// 		isHalf: isHalf,
+				// 		reroll: reroll,
+				// 		anchor: false,
+				// 		rerollCounter: rerollCounter,
+				// 		flavor: enrichedMessage,
+				// 		content: renderedRoll,
+				// 		rolls: updatedRoll,
+				// 	},
+				// });
 			} else {
 				//* Replacing previous chat message
 				mL(3, "metaRolld10", "Anchored", "Re-Roll", "Updating messageId", messageId);
-				await chatMessage.update(chatData);
+				//await chatMessage.update(chatData);
 				mL(3, "metaRolld10", "Finished for:", actor.name + "'s", what);
 				//? DSN pleon redundant edw mias kai kanei pickup ta chat message updates?
 				// if (game.dice3d && dice > 0) {
@@ -330,6 +329,10 @@ export async function metaRolld10(
 				// if (game.dice3d && dice > 0) {
 				// 	game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
 				// }
+				// //? Call Dice So Nice to show the roll - ayto to xreiazomai gia ta re-rolls
+				if (game.dice3d && dice > 0) {
+					game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
+				}
 				return rolld10.toAnchor({
 					label: what,
 					dataset: {
@@ -536,9 +539,9 @@ export async function metaDamageReRoll(event) {
 			damageBaseCosmic,
 			false,
 			true,
-			false,
+			firstMessage ? false : true,
 			0,
-			null,
+			firstMessage ? null : messageId,
 		);
 		mL(3, "metaDamageReRoll", "Cosmic Damage Dataset", cosmicDamageRoll.dataset);
 		cosmicDamageRollResult = cosmicDamageRoll.dataset.total;
@@ -556,9 +559,9 @@ export async function metaDamageReRoll(event) {
 			damageBaseElemental,
 			false,
 			true,
-			true, //!giati pernaw false edw? //todo kai gia ta alla damage types -- me false paizei swsta to 1o reroll alla den paizoune ta sub-sequent
+			firstMessage ? false : true, //!giati pernaw false edw? //todo kai gia ta alla damage types -- me false paizei swsta to 1o reroll alla den paizoune ta sub-sequent
 			0, //! kai giati to counter einai 0 edw alla seems to be working fine?
-			null, //? we don't pass the messageId as that would replace the original message
+			firstMessage ? null : messageId, //null, //? we don't pass the messageId as that would replace the original message
 		);
 		mL(3, "metaDamageReRoll", "Elemental Damage Dataset", elementalDamageRoll.dataset);
 		elementalDamageRollResult = elementalDamageRoll.dataset.total;
@@ -578,7 +581,7 @@ export async function metaDamageReRoll(event) {
 			true,
 			firstMessage ? false : true,
 			0,
-			null,
+			firstMessage ? null : messageId,
 		);
 		mL(3, "metaDamageReRoll", "Material Damage Dataset", materialDamageRoll.dataset);
 		materialDamageRollResult = materialDamageRoll.dataset.total;
@@ -596,9 +599,9 @@ export async function metaDamageReRoll(event) {
 			damageBasePsychic,
 			false,
 			true,
-			false,
+			firstMessage ? false : true,
 			0,
-			null,
+			firstMessage ? null : messageId,
 		);
 		mL(3, "metaDamageReRoll", "Psychic Damage Dataset", psychicDamageRoll.dataset);
 		psychicDamageRollResult = psychicDamageRoll.dataset.total;
@@ -607,16 +610,6 @@ export async function metaDamageReRoll(event) {
 	}
 	if (damageSelectedTargets) {
 		//* Work through targets to restore previous Life before applying new Damage
-		// for (let i = 0; i < targetedActors.length; i++) {
-		// 	const targetedActor = await fromUuid(targetedActors[i]);
-		// 	await targetedActor.undoLastLifeChange();
-		// }
-		//todo tha prepei na kanw to ^^ na kanei return promise! - not quite
-		//? need to timeout to make sure the life change has been done first, however this is not properly done here
-		//todo instead of this arbitrary timeout, we should have a proper second socket event to track server responses? see https://foundryvtt.wiki/en/development/api/sockets - above specific use cases
-		// await new Promise((resolve) => setTimeout(resolve, 3000));
-		//todo review refactored
-		//? For each UUID we check for a reply (bool)
 		const resolvedActors = (await Promise.all(targetedActors.map((uuid) => fromUuidSync(uuid)))).filter(Boolean);
 		await Promise.all(resolvedActors.map((actor) => actor.undoLastLifeChange()));
 		await metanthropes.logic.metaApplyDamage(
@@ -668,7 +661,7 @@ export async function metaDamageReRoll(event) {
 	const enrichedFlavor = await foundry.applications.ux.TextEditor.enrichHTML(flavorMessage, { async: true });
 	//const updatedRoll = JSON.stringify(.toJSON();
 	//const renderedRoll = await hungerRoll.render();
-	mL(5, "metaDamageReRoll", "rolls", rolledDice);
+	//mL(5, "metaDamageReRoll", "rolls", rolledDice);
 	let chatData = {
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		//user: game.user.id,
@@ -679,27 +672,21 @@ export async function metaDamageReRoll(event) {
 		flags: { metanthropes: { actoruuid: actor.uuid } },
 	};
 	if (reroll) {
+		//todo need to figure out how to wait for 3d dice before showing updated message
 		mL(4, "metaDamageReRoll", "Reroll");
-		//todo edw vazw to extra bit gia DSN giati den kanw create new message
-		//? issue edw einai oti exw kanei roll 4xmetarolls, poio akrivws tha diksw edw?
-		//! ara na kanei show to DSN to idio to metaroll instead? oxi exw to rolls apo to dataset
-		mL(5, "dice", rolledDice);
+		//mL(5, "dice", rolledDice);
 		chatData = { ...chatData, rolls: rolledDice };
-		await game.messages.get(messageId).update(chatData); //! changing the order didn't seem to affect showing the dsn
-		// if (game.dice3d) { // isws telika ayto einai redundant?
-		// 	//todo perhaps proper way is to use the .show(data,) and restructure the rolledDice to that data structure
-		// 	// const data= {throws: [{ dice: [{
-		// 	// 	result: ,
-		// 	// }]}]}
-		// 	//todo thelw for each of the rolledDice na kanw showforroll?
-		// 	for (const roll of rolledDice) await game.dice3d.showForRoll(roll, game.user, true, null, false, messageId); //!null messageId? //!error for rolledDice 'for each' - no error after passing the [0], however still no animation
-		// 	//await game.dice3d.showForRoll(rolledDice, game.user, true, null, false, messageId); //!null messageId? //!error for rolledDice 'for each' - no error after passing the [0], however still no animation
-		// 	// await game.dice3d.waitFor3DAnimationByMessageID(messageId); doesn't work
-		// }
-		//const updatedRoll = await JSON.stringify(rolledDice);
+		if (game.dice3d) {
+			for (const roll of rolledDice) await game.dice3d.showForRoll(roll, game.user, true, null, false, messageId);
+			//await game.dice3d.showForRoll(rolledDice, game.user, true, null, false, messageId);
+		}
+		await game.messages.get(messageId).update(chatData);
+		//if (game.dice3d) await game.dice3d.waitFor3DAnimationByMessageID(messageId);
 	} else {
-		mL(4, "metaDamageReRoll", "No Reroll");
-		//!review oti edw sto prwto diladi reroll apo meta-execute vlepw dsn, right? nai
+		mL(5, "metaDamageReRoll", "No Reroll");
+		//? disabling DSN animation for this message (it appears from the anchor)
+		//chatData = { ...chatData, flags: { "dice-so-nice": { skip: true } } };
+		//todo fix this causes the double dice appearing on x2 roll?
 		await metanthropes.applications.MetaChatMessage.create(chatData);
 	}
 	mL(
@@ -753,6 +740,7 @@ export async function metaHealingReRoll(event) {
 	const healingDice = parseInt(button.dataset.healingDice) ?? 0;
 	const healingBase = parseInt(button.dataset.healingBase) ?? 0;
 	const healSelectedTargets = button.dataset.healSelectedTargets === "true" ? true : false;
+	const firstMessage = button.dataset?.firstMessage === "true" ? true : false;
 	let contentMessage = ``;
 	let startMessage = ``;
 	let flavorMessage = ``;
@@ -782,7 +770,7 @@ export async function metaHealingReRoll(event) {
 		healingBase,
 		false,
 		true,
-		false,
+		firstMessage ? false : true,
 		0,
 		null,
 	);
