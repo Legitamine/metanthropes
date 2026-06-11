@@ -10,17 +10,18 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 # Early Access Releases
 
-## Early Access v0.14.195 [2026-06-xx]
+## Early Access v0.14.203 [2026-06-xx]
 
 ### Added:
 
-- Added support for the latest Foundry VTT V14 Stable 5 build V14.363.
+- Added support for the latest Foundry VTT V14 Stable 6 build V14.364.
 - [DiceSoNice] Added support for the new Dice So Nice! Module version 6, which comes with our own custom Metanthropes d10 & d100 dice and Metanthropes Dark & Light Themes.
 - [DiceSoNice] When rolling for Damage, the dice Theme will change according to the Energy Type being used, unless you disable it in the Game Settings. To personalize your dice, while keeping the automatic Theme switching, you can select any combination of Materials & Textures from the 3D Dice configuration screen.
-- [DiceSoNice] Comes with pre-configured Special Effects that will play for all players when a d10 rolls an explosive result and also when rolling a Critical Success / Failure on a d100 roll.
-- The new Image Picker App now includes additional options for Narrators to configure an Actor's Wildcard token (as well as naming options), while selecting the Image for that Actor, saving the trouble of having to do those configuration steps manually for each Actor. You can still manually tweak any of these settings and the app will reflect the actual values for each Actor.
+- [DiceSoNice] Comes with pre-configured Special Effects that will play for all players when a d10 results in a splash 10 effect and also when rolling a Critical Success / Failure on a d100 roll.
+- The new 'Image Picker' App now includes additional options for Narrators to configure an Actor's Wildcard token (as well as naming options), while selecting the Image for that Actor, saving the trouble of having to do those configuration steps manually for each Actor. You can still manually tweak any of these settings and the app will reflect the actual values for each Actor.
   \*\*\*\* - [Core] Added a new Journal with guidance on how to Progress characters during Early Access.
-- Added a small text animation to buttons in Chat, to help clarify when the button is clicked & when the button becomes available again.
+- Added a small text animation to buttons in Chat, to help clarify when a button is clicked & when the button becomes available again, after the animation concludes.
+- Added a Metanthropes section on the Settings Sidebar with links to the website, the latest changes (this page) and a new Feedback form (coming soon™).
 
 ### Changes:
 

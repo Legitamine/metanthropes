@@ -127,6 +127,16 @@
 						"metatherion": "MetaTherion"
 					}
 				}
+			},
+			"SIDEBAR": {
+				"SETTINGS": {
+					"Website": "Join The Multiverse",
+					"WebsiteTooltip": "Visit the website and join our community",
+					"Changes": "Review Latest Changes",
+					"ChangesTooltip": "Review the latest release notes on GitHub",
+					"Feedback": "Share Your Feedback",
+					"FeedbackTooltip": "Comming Soon!™"
+				}
 			}
 		},
 		"ACTOR": {

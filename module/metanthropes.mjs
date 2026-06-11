@@ -177,5 +177,6 @@ import "./hooks/render-chat-log.mjs";
 import "./hooks/render-chat-message-html.mjs";
 import "./hooks/create-actor.mjs";
 import "./hooks/supported-modules.mjs";
+import "./hooks/render-settings.mjs";
 import "./hooks/other.mjs";
 import "./hooks/ready.mjs";
