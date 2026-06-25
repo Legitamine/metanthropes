@@ -135,7 +135,7 @@
 					"Changes": "Review Latest Changes",
 					"ChangesTooltip": "Review the latest release notes on GitHub",
 					"Feedback": "Share Your Feedback",
-					"FeedbackTooltip": "Comming Soon!™"
+					"FeedbackTooltip": "Coming Soon!"
 				}
 			}
 		},
@@ -406,6 +406,8 @@
 		"SETTINGS": {
 			"metaAdvancedLoggingName": "Enable Advanced Logging",
 			"metaAdvancedLoggingHint": "The Console helps you identify any issues or potential bugs in regards to Metanthropes System for Foundry VTT. Enable this setting to see even more detailed logs in the Console. You can press 'F12' in the Foundry Client or 'CTRL+SHIFT+i' in a Chrome-ium web browser to show the Console.",
+			"metaNetworkLoggingName": "Enable Network Logging",
+			"metaNetworkLoggingHint": "Enabling this setting will replay all Metanthropes console messages from all connected Clients, in the Active GM's console, for debugging purposes. Any Objects returned as part of error messages, are serialized before transmitting. This Setting should be disabled during normal play to reduce network load & message spam.",
 			"forceMigrationName": "Force Data Migration",
 			"forceMigrationHint": "Forces the System to migrate this World's data to the latest version. Migration happens on the first World load after an update, and you can force to run it again by enabling this setting. To get support with any issues after updating, contact us at support@metanthropes.com or join our Discord. This setting requires a reload and it will be disabled automatically once it completes.",
 			"metaPauseName": "Un-pause the World after initialization",

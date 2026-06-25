@@ -22,6 +22,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
   \*\*\*\* - [Core] Added a new Journal with guidance on how to Progress characters during Early Access.
 - Added a small text animation to buttons in Chat, to help clarify when a button is clicked & when the button becomes available again, after the animation concludes.
 - Added a Metanthropes section on the Settings Sidebar with links to the website, the latest changes (this page) and a new Feedback form (coming soon™).
+- Added a new advanced Network Logging feature, available under the Game Settings for Metanthropes. When enabled, it will relay all Metanthropes Console Log messages, from all connected Clients, to the Active GM's Console Log.This will greatly help with ongoing troubleshooting & debugging for network issues. It is recommended to keep it disabled during normal play to reduce the network load.
 
 ### Changes:
 

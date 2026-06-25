@@ -11,7 +11,26 @@ export async function metaHandleSocketEvents(payload) {
 	}
 	//* Things that should only happen on the Active GM's client
 	if (!game.user.isActiveGM) return;
-	metanthropes.utils.metaLog(3, "metaHandleSocketEvents", "Engaged for payload:", payload);
+	// metanthropes.utils.metaLog(3, "metaHandleSocketEvents", "Engaged for payload:", payload);
+	if (payload.action === "metaNetLog") {
+		let logFunction = console.log;
+		switch (payload.logType) {
+			case 1:
+			case 4:
+				logFunction = console.warn;
+				break;
+			case 2:
+			case 5:
+				logFunction = console.error;
+				break;
+		}
+		const netLogObjects = JSON.parse(payload.logObjects);
+		const networkMessage = payload.message.replace(
+			/^%cMetanthropes/,
+			`%cMetanthropes NetLog | ${payload.playerName}`,
+		);
+		logFunction(networkMessage, ...payload.styles, ...netLogObjects);
+	}
 	if (payload.action === "metaApplyActorUpdate") {
 		try {
 			const actor = await fromUuid(payload.actorUUID);
