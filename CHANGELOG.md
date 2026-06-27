@@ -10,44 +10,47 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 # Early Access Releases
 
-## Early Access v0.14.203 [2026-06-xx]
+## Early Access v0.14.205 [2026-06-27]
 
 ### Added:
 
 - Added support for the latest Foundry VTT V14 Stable 6 build V14.364.
+- [ASTRAL] Added support for the upcoming Metanthropes: Anthologies - ASTRAL Premium Module.
+- [Core] Added a new Narrator Journal with guidance on how to Progress Actors during Early Access.
 - [DiceSoNice] Added support for the new Dice So Nice! Module version 6, which comes with our own custom Metanthropes d10 & d100 dice and Metanthropes Dark & Light Themes.
 - [DiceSoNice] When rolling for Damage, the dice Theme will change according to the Energy Type being used, unless you disable it in the Game Settings. To personalize your dice, while keeping the automatic Theme switching, you can select any combination of Materials & Textures from the 3D Dice configuration screen.
 - [DiceSoNice] Comes with pre-configured Special Effects that will play for all players when a d10 results in a splash 10 effect and also when rolling a Critical Success / Failure on a d100 roll.
-- The new 'Image Picker' App now includes additional options for Narrators to configure an Actor's Wildcard token (as well as naming options), while selecting the Image for that Actor, saving the trouble of having to do those configuration steps manually for each Actor. You can still manually tweak any of these settings and the app will reflect the actual values for each Actor.
-  \*\*\*\* - [Core] Added a new Journal with guidance on how to Progress characters during Early Access.
-- Added a small text animation to buttons in Chat, to help clarify when a button is clicked & when the button becomes available again, after the animation concludes.
-- Added a Metanthropes section on the Settings Sidebar with links to the website, the latest changes (this page) and a new Feedback form (coming soon™).
 - Added a new advanced Network Logging feature, available under the Game Settings for Metanthropes. When enabled, it will relay all Metanthropes Console Log messages, from all connected Clients, to the Active GM's Console Log.This will greatly help with ongoing troubleshooting & debugging for network issues. It is recommended to keep it disabled during normal play to reduce the network load.
+- The 'Image Picker' App, launched when clicking on an Actor's portrait from the Summary Tab, now includes additional options for Narrators to configure an Actor's Wildcard token (as well as naming options), while selecting the Image for that Actor, saving the trouble of having to do those configuration steps manually for each Actor. You can still manually tweak any of these settings and the app will reflect the actual values for each Actor.
+- Added a small text animation to buttons in Chat, to help clarify when a button is clicked & when the button becomes available again, after the animation concludes.
+- Added a Metanthropes section on the Settings Sidebar with links to the website, the latest changes (this page) and a placeholder for the upcoming Feedback form (coming soon™).
 
 ### Changes:
 
-- The 'Assign Player' app will now also configure the default Player Character, for that Player, to the Actor being assigned.
 - [Core] Progressing your Chars, Stats & Perks will no longer be disabled while the 'Beta Testing of new Features' setting is enabled.
+- [Core] Added a new Attack Type for Possessions: 'Explosive' and the Possessions Compendium has been updated with a new 'Explosive' folder under 'Weapons'. Various Weapons have been updated to match the new Attack Type. Updated Chat messages when using a Posssession to align with the updated Attack Types.
+- The 'Assign Player' app, launched from an Actor's Summary Tab, will now also configure the default Player Character, for that Player, to the Actor being assigned.
 
 ### Fixes:
 
+- [Core] Fixed an issue with the createActor Hook that was causing it to give some actors duplicate Strike Items when multiple Narrators (GMs) were online at the same time.
+- [Homebrew] Fixed an issue with some of the settings not being accessible under the Game Settings menu.
+- [DiceSoNice] Fixed an issue with the Dice animation not showing on Destiny Rerolls after the first.
+- [TheForge] Fixed an issue with the new 'Image Picker' app, which was causing it to display empty folders while running on The Forge.
 - Solved a race condition & updated the socket handler. This makes our handling more robust & now when re-rolling Damage/Healing it will resolve up to 3 seconds faster, while ensuring the undoLifeChange completes before applying the new Damage/Healing results.
-- Fixed an issue with the Item sheet, which was causing it to always open in a maximized state.
+- Fixed an issue with the Item sheets, which was causing it to always open in a maximized state.
 - Fixed an issue with the Possesions Item Sheet, where the Tooltips on the Material Properties tab where not showing up correctly.
 - Fixed an issue with the Roll Tables, where the image of the Roll Table grew out of proportion, making it hard to see the interactable buttons and table results in some resolutions.
-- [Core] Fixed an issue with the createActor Hook that was causing it to give some actors duplicate Strike Items when multiple Narrators (GMs) where online at the same time.
-- [Homebrew] Fixed an issue with some of the settings not being accessible under the Game Settings menu.
-- [The Forge] Fixed an issue with the new Image Picker app, which was causing it to display empty folders while running on The Forge.
 - Fixed some missing Tooltips on the Actor Sheet.
-- [DSN] Fixed an issue with the Dice animation not showing on Destiny Rerolls after the first.
 
 ### Known Issues:
 
-\*\*\* - [Introductory] Wildcard may show agents as civilians - will be once deprecated, although these actors will be forced to not show up properly after udpate deprecating this, so perhaps best to just not set these top downs and deprecate them fromt he selector token update.
+- [DiceSoNice] When spending Destiny to re-roll Damage/Healing, the 2nd re-roll dice animation plays twice. It's only a visual bug, the Damage/Healing is applied properly.
 
 ### Deprecated:
 
-- Removed support for the Drag Ruler Module.
+- [Drag Ruler] Removed support for the Drag Ruler Module.
+- [Homebrew] Removed the 'Audio/Visual' Tab from Items, as the upcoming new VFX feature won't use the same macro-style inputs this page was using.
 
 ---
 

@@ -1573,7 +1573,7 @@
 				"dtype": "String",
 				"label": "Attack Type",
 				"value": null,
-				"options": ["None", "Melee", "Projectile", "Firearm"]
+				"options": ["None", "Melee", "Projectile", "Firearm", "Explosive"]
 			},
 			"Quantity": {
 				"type": "number",
