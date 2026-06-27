@@ -143,13 +143,14 @@ export class MetanthropesActor extends Actor {
 		//* We control Unique (linked/unlined) from here
 		//! need to revise with Actor v3 changes
 		//! removed as part of the new Image Picker controlling the actorLink/Wildcard features
-		// if (data.type == "Protagonist" || data.type == "Metanthrope") {
-		// 	if (!(data.name.includes("Copy") || data.name.includes("Duplicate"))) {
-		// 		//? Enable Linked Tokens for Protagonists & Metanthropes without 'Duplicate' or 'Copy' in their name
-		// 		createData.prototypeToken.actorLink = true;
-		// 		createData.prototypeToken.prependAdjective = false;
-		// 	}
-		// }
+		//! re-enabled as it is still needed
+		if (data.type == "Protagonist" || data.type == "Metanthrope") {
+			if (!(data.name.includes("Copy") || data.name.includes("Duplicate"))) {
+				//? Enable Linked Tokens for Protagonists & Metanthropes without 'Duplicate' or 'Copy' in their name
+				createData.prototypeToken.actorLink = true;
+				createData.prototypeToken.prependAdjective = false;
+			}
+		}
 		//! v13 these cannot be passed as part of prototypeTokenOverrides
 		//* Make the size of the token reflect a typical humanoid relative to the grid
 		if (data.type == "Protagonist" || data.type == "Metanthrope" || data.type == "Human") {
@@ -176,7 +177,7 @@ export class MetanthropesActor extends Actor {
 		//* Data modifications in this step occur before processing embedded
 		//* documents or derived data.
 		const actorData = this;
-		if (actorData.type == "MetanthropesActorV2") return;
+		if (actorData.type === "MetanthropesActorV2") return;
 		//? Setting Humans to have starting life of 50 instead of 100
 		if (this.type === "Human") {
 			this.system.Vital.Life.Initial = 50;
@@ -236,7 +237,7 @@ export class MetanthropesActor extends Actor {
 		//* This function is called after prepareBaseData() and prepareEmbeddedDocuments().
 		//! Note that if any values are to be affected by an Active Effect, then they should be calculated in the BaseData step, not here, otherwise they will be overwritten here
 		const actorData = this;
-		if (actorData.type == "MetanthropesActorV2") return;
+		if (actorData.type === "MetanthropesActorV2") return;
 		this._prepareDerivedCharacteristicsData(actorData);
 		if (actorData.name.includes("Duplicate")) {
 			this._prepareDerivedDuplicateData(actorData);

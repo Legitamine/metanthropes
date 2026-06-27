@@ -140,6 +140,54 @@
 			}
 		},
 		"ACTOR": {
+			"BASE": {
+				"TOBEDEPRECATED": "WITHV1",
+				"life": {
+					"label": "Life",
+					"value": {
+						"label": "Current",
+						"hint": "Life represents a Character's overall health, vitality, and will to live."
+					},
+					"starting": {
+						"label": "Starting",
+						"hint": "Starting <i class=\"fa-solid fa-heart\"></i> Life"
+					},
+					"max": {
+						"label": "Maximum",
+						"hint": "Metanthrope Characters have a maximum Life total of 100 + their Endurance score and also gain an additional +25 Life for every 5.000 Total EXP they have accumulated"
+					},
+					"restore": {
+						"hint": "Undo last automatic Life change",
+						"notification": "Cannot undo last automatic Life change for "
+					}
+				},
+				"physical": {
+					"description": {
+						"label": "Physical Description",
+						"hint": "The physical description of this Actor."
+					},
+					"height": {
+						"label": "Height",
+						"suffix": "m",
+						"hint": "The physical height of this Actor.",
+						"suffixHint": "Meters"
+					},
+					"weight": {
+						"label": "Weight",
+						"suffix": "Kg",
+						"hint": "The physical weight of this Actor.",
+						"suffixHint": "Kilograms"
+					},
+					"age": {
+						"label": "Age",
+						"hint": "The physical age of this Actor."
+					},
+					"pob": {
+						"label": "Place of Birth",
+						"hint": "The physical place of birth of this Actor."
+					}
+				}
+			},
 			"FIELDS": {
 				"resources": {
 					"life": {
@@ -284,7 +332,7 @@
 					"Notes": "Notes"
 				}
 			},
-			"NOTIFICATIONS" :{
+			"NOTIFICATIONS": {
 				"restoreLife": "Could not restore the previous Life Score for "
 			}
 		},
