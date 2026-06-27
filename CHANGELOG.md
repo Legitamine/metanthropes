@@ -43,6 +43,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 - Fixed an issue with the Roll Tables, where the image of the Roll Table grew out of proportion, making it hard to see the interactable buttons and table results in some resolutions.
 - Fixed some missing Tooltips on the Actor Sheet.
 - Fixed an issue where newly created Protagonists & Metanthropes wouldn't get the Actor Linked enabled by default.
+- Fixed the new Welcome Chat message firing for each connected Narrator. Now it will only display once for the Active GM.
 
 ### Known Issues:
 

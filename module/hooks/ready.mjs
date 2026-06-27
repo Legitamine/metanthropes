@@ -55,8 +55,11 @@ Hooks.once("ready", async function () {
 		game.settings.get("core", "adventureImports")[
 			"Compendium.metanthropes-anthologies-nether.nether-installation.Adventure.5DcNVeJ9fkj0zncj"
 		] ?? false;
+	const astral =
+		game.settings.get("core", "adventureImports")[
+			"Compendium.metanthropes-anthologies-astral.astral-installation.Adventure.HYfQqjFGavUf1CER"
+		] ?? false;
 	//todo update with actual once released
-	const astral = false;
 	const aether = false;
 	const quickstarted = Boolean(intro || nether || astral || aether);
 	if (game.settings.get("metanthropes", "metaInstall")) {
