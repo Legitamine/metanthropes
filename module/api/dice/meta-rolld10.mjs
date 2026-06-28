@@ -3,9 +3,9 @@
 //! DSN also doesn't show up on the first re-roll from the metaExecute result - fixed
 //todo need to review the structure in lieu of the new VFX & DSN support (Roll Orchestrator)
 //todo need to order the flow and account for who's able (supposed) to view the VFX and the dice rolls
-//todo need to review the whole anchor/re-roll concept and simplify accross all meta-roll functions  - in progress
+//todo need to review the whole anchor/re-roll concept and simplify accross all meta-roll functions  - done
 //todo undoing life changes should return a promise so we can continue rather than waiting 3 sec = done
-
+//todo clean up notes - 
 /**
  * metaRolld10 handles the rolling of d10 dice for a given actor and purpose.
  *
