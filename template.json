@@ -901,7 +901,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "<p>This is my favorite Human. Secret Narrator Notes section is only visible to Narrators</p>"
+				"value": "<p>Secret Narrator Notes section is only visible to Narrators.</p>"
 			}
 		},
 		"Extradimensional": {
@@ -916,7 +916,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "<p>This is my favorite Extradimensional. Secret Narrator Notes section is only visible to Narrators</p>"
+				"value": "<p>Secret Narrator Notes section is only visible to Narrators.</p>"
 			}
 		},
 		"Extraterrestrial": {
@@ -931,7 +931,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "<p>This is my favorite Extraterrestrial. Secret Narrator Notes section is only visible to Narrators</p>"
+				"value": "<p>Secret Narrator Notes section is only visible to Narrators.</p>"
 			}
 		},
 		"Metanthrope": {
@@ -946,7 +946,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "<p>This is my favorite Metanthrope. Secret Narrator Notes section is only visible to Narrators</p>"
+				"value": "<p>Secret Narrator Notes section is only visible to Narrators.</p>"
 			}
 		},
 		"Protagonist": {
@@ -973,7 +973,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "<p>This is my favorite Protagonist. Secret Narrator Notes section is only visible to Narrators</p>"
+				"value": "<p>Secret Narrator Notes section is only visible to Narrators.</p>"
 			}
 		},
 		"Animal": {
@@ -988,7 +988,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "<p>This is my favorite Animal. Secret Narrator Notes section is only visible to Narrators</p>"
+				"value": "<p>Secret Narrator Notes section is only visible to Narrators.</p>"
 			}
 		},
 		"MetaTherion": {
@@ -1003,7 +1003,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "<p>This is my favorite MetaTherion. Secret Narrator Notes section is only visible to Narrators</p>"
+				"value": "<p>Secret Narrator Notes section is only visible to Narrators.</p>"
 			}
 		},
 		"Artificial": {
@@ -1018,7 +1018,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "<p>This is my favorite Artificial. Secret Narrator Notes section is only visible to Narrators</p>"
+				"value": "<p>Secret Narrator Notes section is only visible to Narrators.</p>"
 			}
 		},
 		"Animated-Plant": {
@@ -1033,7 +1033,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "<p>This is my favorite Animated Plant. Secret Narrator Notes section is only visible to Narrators</p>"
+				"value": "<p>Secret Narrator Notes section is only visible to Narrators.</p>"
 			}
 		},
 		"Animated-Cadaver": {
@@ -1048,7 +1048,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "<p>This is my favorite Animated Cadaver. Secret Narrator Notes section is only visible to Narrators</p>"
+				"value": "<p>Secret Narrator Notes section is only visible to Narrators.</p>"
 			}
 		},
 		"Vehicle": {
@@ -1063,7 +1063,7 @@
 				"type": "text",
 				"dtype": "String",
 				"label": "Secret Narrator Notes",
-				"value": "<p>This is my favorite Vehicle. Secret Narrator Notes section is only visible to Narrators</p>"
+				"value": "<p>Secret Narrator Notes section is only visible to Narrators.</p>"
 			}
 		},
 		"testv12": {}
@@ -1078,63 +1078,63 @@
 						"dtype": "String",
 						"label": "<i class=\"fa-solid fa-cube\"></i> Category",
 						"value": "Material Composition",
-						"tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Category"
+						"tooltip": "METANTHROPES.SHEET.ITEMS.POSSESSIONS.MATERIAL.Category"
 					},
 					"Durability": {
 						"type": "number",
 						"dtype": "Number",
 						"label": "<i class=\"fa-solid fa-heart-pulse\"></i>",
 						"value": "10",
-						"tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Durability"
+						"tooltip": "METANTHROPES.SHEET.ITEMS.POSSESSIONS.MATERIAL.Durability"
 					},
 					"Size": {
 						"type": "number",
 						"dtype": "Number",
 						"label": "<i class=\"fa-solid fa-ruler-triangle\"></i>",
 						"value": "10",
-						"tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Size"
+						"tooltip": "METANTHROPES.SHEET.ITEMS.POSSESSIONS.MATERIAL.Size"
 					},
 					"Weight": {
 						"type": "number",
 						"dtype": "Number",
 						"label": "<i class=\"fa-solid fa-weight-hanging\"></i>",
 						"value": "10",
-						"tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Weight"
+						"tooltip": "METANTHROPES.SHEET.ITEMS.POSSESSIONS.MATERIAL.Weight"
 					},
 					"Cosmic": {
 						"type": "number",
 						"dtype": "Number",
 						"label": "Cosmic Resistance",
 						"initial": 0,
-						"tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Cosmic"
+						"tooltip": "METANTHROPES.SHEET.ITEMS.POSSESSIONS.MATERIAL.Cosmic"
 					},
 					"Elemental": {
 						"type": "number",
 						"dtype": "Number",
 						"label": "Elemental Resistance",
 						"initial": 0,
-						"tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Elemental"
+						"tooltip": "METANTHROPES.SHEET.ITEMS.POSSESSIONS.MATERIAL.Elemental"
 					},
 					"Material": {
 						"type": "number",
 						"dtype": "Number",
 						"label": "Material Resistance",
 						"initial": 0,
-						"tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Material"
+						"tooltip": "METANTHROPES.SHEET.ITEMS.POSSESSIONS.MATERIAL.Material"
 					},
 					"Psychic": {
 						"type": "number",
 						"dtype": "Number",
 						"label": "Psychic Resistance",
 						"initial": 0,
-						"tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Psychic"
+						"tooltip": "METANTHROPES.SHEET.ITEMS.POSSESSIONS.MATERIAL.Psychic"
 					},
 					"Description": {
 						"type": "text",
 						"dtype": "String",
 						"label": "<i class=\"fa-solid fa-cube\"></i> Description",
 						"value": null,
-						"tooltip": "METANTHROPES.ITEMS.POSSESSIONS.MATERIAL.Description"
+						"tooltip": "METANTHROPES.SHEET.ITEMS.POSSESSIONS.MATERIAL.Description"
 					}
 				}
 			},
@@ -1573,7 +1573,7 @@
 				"dtype": "String",
 				"label": "Attack Type",
 				"value": null,
-				"options": ["None", "Melee", "Projectile", "Firearm"]
+				"options": ["None", "Melee", "Projectile", "Firearm", "Explosive"]
 			},
 			"Quantity": {
 				"type": "number",

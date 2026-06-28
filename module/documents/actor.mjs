@@ -8,9 +8,11 @@ export class MetanthropesActor extends Actor {
 	/** @override */
 	//* Setting default Token configuration for all actors
 	async _preCreate(data, options, user) {
+		metanthropes.utils.metaLog(3, "actor _precreate", "data, options, user", data, options, user);
 		await super._preCreate(data, options, user);
 		let createData = {};
 		//! v13 has the ability to customize prototype Token Defaults, however it doesn't allow to customize everything we need (yet)
+		//! verify no breaking changes after removing the following
 		if (!data.prototypeToken)
 			foundry.utils.mergeObject(createData, {
 				"prototypeToken.name": data.name, //? Set token name to actor name
@@ -140,6 +142,8 @@ export class MetanthropesActor extends Actor {
 		}
 		//* We control Unique (linked/unlined) from here
 		//! need to revise with Actor v3 changes
+		//! removed as part of the new Image Picker controlling the actorLink/Wildcard features
+		//! re-enabled as it is still needed
 		if (data.type == "Protagonist" || data.type == "Metanthrope") {
 			if (!(data.name.includes("Copy") || data.name.includes("Duplicate"))) {
 				//? Enable Linked Tokens for Protagonists & Metanthropes without 'Duplicate' or 'Copy' in their name
@@ -152,6 +156,7 @@ export class MetanthropesActor extends Actor {
 		if (data.type == "Protagonist" || data.type == "Metanthrope" || data.type == "Human") {
 			createData.prototypeToken.height = 1;
 			createData.prototypeToken.width = 1;
+			createData.prototypeToken.depth = 1;
 			createData.prototypeToken.texture.scaleX = 0.5;
 			createData.prototypeToken.texture.scaleY = 0.5;
 		}
@@ -172,7 +177,7 @@ export class MetanthropesActor extends Actor {
 		//* Data modifications in this step occur before processing embedded
 		//* documents or derived data.
 		const actorData = this;
-		if (actorData.type == "MetanthropesActorV2") return;
+		if (actorData.type === "MetanthropesActorV2") return;
 		//? Setting Humans to have starting life of 50 instead of 100
 		if (this.type === "Human") {
 			this.system.Vital.Life.Initial = 50;
@@ -200,13 +205,13 @@ export class MetanthropesActor extends Actor {
 					) {
 						//? for Protagonists with a prime metapower defined, make it their respective metapower icon
 						this.primeimg = `systems/metanthropes/assets/artwork/metapowers/mp-${primeMPStorageName}.webp`;
-						metanthropes.utils.metaLog(
-							3,
-							"MetanthropesActor",
-							"prepareBaseData",
-							"Updating Prime Metapower Image for:",
-							this.name,
-						);
+						// metanthropes.utils.metaLog(
+						// 	3,
+						// 	"MetanthropesActor",
+						// 	"prepareBaseData",
+						// 	"Updating Prime Metapower Image for:",
+						// 	this.name,
+						// );
 					} else {
 						return;
 					}
@@ -232,7 +237,7 @@ export class MetanthropesActor extends Actor {
 		//* This function is called after prepareBaseData() and prepareEmbeddedDocuments().
 		//! Note that if any values are to be affected by an Active Effect, then they should be calculated in the BaseData step, not here, otherwise they will be overwritten here
 		const actorData = this;
-		if (actorData.type == "MetanthropesActorV2") return;
+		if (actorData.type === "MetanthropesActorV2") return;
 		this._prepareDerivedCharacteristicsData(actorData);
 		if (actorData.name.includes("Duplicate")) {
 			this._prepareDerivedDuplicateData(actorData);
@@ -374,17 +379,19 @@ export class MetanthropesActor extends Actor {
 	 */
 	async undoLastLifeChange() {
 		const previousLife = await this.getFlag("metanthropes", "previousLife");
-		if (previousLife === null || previousLife === undefined || previousLife === "nope")
-			return ui.notifications.warn(_loc("METANTHROPES.ACTOR.BASE.life.restore.notification") + this.name);
-		if (previousLife >= 0) {
-			//todo we should use the unsetflag instead
-			metanthropes.utils.metaLog(0, "Actor", this.name, "Undoing Last Life Change");
-			metanthropes.utils.metaLog(3, "Actor.undoLastLifeChange", "Restoring", this.name, "Life to:", previousLife);
-			await metanthropes.logic.metaApplyActorUpdates(this.uuid, {
-				"system.Vital.Life.value": Number(previousLife),
-				"flags.metanthropes.previousLife": "nope",
-			});
+		if (previousLife === null || previousLife === undefined || previousLife === "nope") {
+			ui.notifications.warn(_loc("METANTHROPES.ACTOR.NOTIFICATIONS.restoreLife") + this.name);
+			return false;
 		}
+
+		//todo we should use the unsetflag instead
+		metanthropes.utils.metaLog(0, "Actor", this.name, "Undoing Last Life Change");
+		metanthropes.utils.metaLog(3, "Actor.undoLastLifeChange", "Restoring", this.name, "Life to:", previousLife);
+		await metanthropes.logic.metaApplyActorUpdates(this.uuid, {
+			"system.Vital.Life.value": Number(previousLife),
+			"flags.metanthropes.previousLife": "nope",
+		});
+		return true;
 	}
 
 	/**

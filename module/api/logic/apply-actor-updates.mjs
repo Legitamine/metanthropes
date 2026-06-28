@@ -15,22 +15,52 @@
 export async function metaApplyActorUpdates(actorUUID, updateData) {
 	const mL = metanthropes.utils.metaLog;
 	const actor = await fromUuid(actorUUID);
-	if (game.user.isGM || actor.system?.metaowner?.value === game.user.name) {
-		mL(3, "metaApplyActorUpdates", "User is a GM or onwer of the Actor", "Applying Actor updates directly");
+	if (game.user.isActiveGM || actor.system?.metaowner?.value === game.user.name) {
+		mL(
+			3,
+			"metaApplyActorUpdates",
+			"User is the Active GM or owner of the Actor",
+			"Applying Actor updates directly",
+		);
 		return await actor.update(updateData);
 	}
+	const requestID = foundry.utils.randomID();
 	const payload = {
 		action: "metaApplyActorUpdate",
 		actorUUID: actorUUID,
 		updateData: updateData,
+		requestID: requestID,
+		requesterID: game.user.id,
 	};
 	mL(
 		3,
 		"metaApplyActorUpdates",
-		"User is not a GM or owner of the Actor",
-		"Using Socket to update the Actor",
-		"With payload",
+		"User is NOT the Active GM or owner of the Actor",
+		"Sending Server Socket Request with Payload & Awaiting Reply",
 		payload,
 	);
-	return await game.socket.emit("system.metanthropes", payload);
+	//* We will now await a response for our payload and return as appropriate
+	return new Promise((resolve, reject) => {
+		const timeoutError = setTimeout(() => {
+			game.socket.off("system.metanthropes", responseHandler);
+			mL(3, "metaApplyActorUpdates", "Did NOT receive a Server response within 10sec", "Aborting Request");
+			reject(new Error(`metaApplyActorUpdates timed out for ${actorUUID}`));
+		}, 10000);
+		const responseHandler = (response) => {
+			if (response?.action !== "metaApplyActorUpdatesResult") return;
+			if (response.requestID !== requestID) return;
+			if (response.requesterID !== game.user.id) return;
+			clearTimeout(timeoutError);
+			game.socket.off("system.metanthropes", responseHandler);
+			if (response.error) {
+				mL(3, "metaApplyActorUpdates", "Received an Error in Server response", response.error);
+				reject(new Error(response.error));
+			} else {
+				mL(3, "metaApplyActorUpdates", "Received Server Response", response.result);
+				resolve(response.result ?? true);
+			}
+		};
+		game.socket.on("system.metanthropes", responseHandler);
+		game.socket.emit("system.metanthropes", payload);
+	});
 }

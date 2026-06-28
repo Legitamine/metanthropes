@@ -16,6 +16,7 @@ export function metaLog(logType = 0, ...variables) {
 	if (!metaAdvancedLogging && logType > 2) {
 		return;
 	}
+	const metaNetworkLogging = game.settings.get("metanthropes", "metaNetworkLogging");
 	let logFunction = console.log;
 	let logMessage = `%cMetanthropes`;
 	let logStyle = "background-color: #9A5D9B; color: #fff";
@@ -52,6 +53,18 @@ export function metaLog(logType = 0, ...variables) {
 		}
 	});
 	logFunction(logStrings.join(""), ...styles, ...logObjects);
+	//? Add support for Network Logging - note it needs to check for game.ready or it won't work, due to using metaLog during the init.
+	if (game.ready && metaNetworkLogging && !game.user.isActiveGM) {
+		const payload = {
+			action: "metaNetLog",
+			playerName: game.user.name,
+			logType,
+			message: logStrings.join(""),
+			styles,
+			logObjects: JSON.stringify(logObjects),
+		};
+		game.socket.emit("system.metanthropes", payload);
+	}
 }
 
 /**

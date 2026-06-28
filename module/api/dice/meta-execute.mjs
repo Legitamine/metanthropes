@@ -18,7 +18,7 @@
  * @example
  * metaExecute(null, actorUUID, "Metapower", "Danger Sense");
  */
-export async function metaExecute({event, actorUUID, action, itemName, multiAction = 0}) {
+export async function metaExecute({ event, actorUUID, action, itemName, multiAction = 0 }) {
 	const mL = metanthropes.utils.metaLog;
 	//? If we called this from a button click, get the data we need
 	const clickedButton = event?.target;
@@ -165,14 +165,17 @@ export async function metaExecute({event, actorUUID, action, itemName, multiActi
 		requiredPerk = metaItemData.system.RequiredPerk.value; // currently unused
 		requiredPerkLevel = metaItemData.system.RequiredPerkLevel.value; // currently unused
 		//? Check if using was successfull
+		//todo: work on how to include the gender pronoun in the chat message.
 		if (rollResult.Possession <= 0) {
 			executeRoll = false;
 			if (attackType === "Melee") {
-				flavorMessage = `Fails to connect with their ${itemName}!<br><br>`;
+				flavorMessage = `Swings and misses with ${itemName}!<br><br>`;
 			} else if (attackType === "Projectile") {
-				flavorMessage = `Throws their ${itemName} in the air!<br><br>`;
+				flavorMessage = `Throws and misses with ${itemName}!<br><br>`;
 			} else if (attackType === "Firearm") {
-				flavorMessage = `Fires their ${itemName} and hits nothing!<br><br>`;
+				flavorMessage = `Fires and misses with ${itemName}!<br><br>`;
+			} else if (attackType === "Explosive") {
+				flavorMessage = `Fails to arm ${itemName}!<br><br>`;
 			} else {
 				flavorMessage = `Fails to use ${itemName}!<br><br>`;
 			}
@@ -182,7 +185,7 @@ export async function metaExecute({event, actorUUID, action, itemName, multiActi
 			mL(3, "metaExecute", "Using Possession:", itemName, "with Attack Type:", attackType);
 			if (attackType === "Melee") {
 				//todo: need to add size modifier to increase the base d10 dice pool for unarmed strikes only
-				flavorMessage = `Attacks with their ${itemName}<br><br>`;
+				flavorMessage = `Swings with ${itemName}.<br><br>`;
 				if (multiAction < 0) {
 					baseActorDamage = powerScore + multiAction;
 					damageBaseMaterial = baseActorDamage + damageBaseMaterial;
@@ -191,13 +194,15 @@ export async function metaExecute({event, actorUUID, action, itemName, multiActi
 					damageBaseMaterial = baseActorDamage + damageBaseMaterial;
 				}
 			} else if (attackType === "Projectile") {
-				flavorMessage = `Throws their ${itemName}<br><br>`;
+				flavorMessage = `Throws ${itemName}.<br><br>`;
 				baseActorDamage = Math.ceil((powerScore + multiAction) / 2);
 				damageBaseMaterial = baseActorDamage + damageBaseMaterial;
 			} else if (attackType === "Firearm") {
-				flavorMessage = `Fires their ${itemName}<br><br>`;
+				flavorMessage = `Fires ${itemName}.<br><br>`;
+			} else if (attackType === "Explosive") {
+				flavorMessage = `Arms ${itemName} successfully and throws it.<br><br>`;
 			} else {
-				flavorMessage = `Uses ${itemName}<br><br>`;
+				flavorMessage = `Uses ${itemName}.<br><br>`;
 			}
 		}
 	} else {
@@ -619,6 +624,7 @@ export async function metaExecute({event, actorUUID, action, itemName, multiActi
 				data-targets="${targetedActorsUUIDs}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
 				data-what="Damage" data-anchor="true" data-reroll="false" data-reroll-counter="1"
 				data-message-id="null" data-destiny-re-roll="true" data-damage-selected-targets="${damageSelectedTargets}"
+				data-first-message="true"
 				${cosmicDamageRollParams} ${elementalDamageRollParams}
 				${materialDamageRollParams} ${psychicDamageRollParams}
 				>Spend @METAFA(hand-fingers-crossed) to Reroll @METAFA(burst) Damage
@@ -636,6 +642,7 @@ export async function metaExecute({event, actorUUID, action, itemName, multiActi
 				data-what="Healing" data-anchor="true" data-heal-selected-targets="${healSelectedTargets}"
 				data-reroll="false" data-reroll-counter="1" data-message-id="null"
 				data-destiny-re-roll="true" ${healingRollParams}
+				data-first-message="true"
 				>Spend @METAFA(hand-fingers-crossed) to Reroll @METAFA(heart-pulse) Healing
 				</button></div>`;
 				contentMessage += healingRerollButton;

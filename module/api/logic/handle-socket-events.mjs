@@ -11,10 +11,49 @@ export async function metaHandleSocketEvents(payload) {
 	}
 	//* Things that should only happen on the Active GM's client
 	if (!game.user.isActiveGM) return;
-	metanthropes.utils.metaLog(3, "metaHandleSocketEvents", "Engaged for payload:", payload);
+	// metanthropes.utils.metaLog(3, "metaHandleSocketEvents", "Engaged for payload:", payload);
+	if (payload.action === "metaNetLog") {
+		let logFunction = console.log;
+		switch (payload.logType) {
+			case 1:
+			case 4:
+				logFunction = console.warn;
+				break;
+			case 2:
+			case 5:
+				logFunction = console.error;
+				break;
+		}
+		const netLogObjects = JSON.parse(payload.logObjects);
+		const networkMessage = payload.message.replace(
+			/^%cMetanthropes/,
+			`%cMetanthropes NetLog | ${payload.playerName}`,
+		);
+		logFunction(networkMessage, ...payload.styles, ...netLogObjects);
+	}
 	if (payload.action === "metaApplyActorUpdate") {
-		const actor = await fromUuid(payload.actorUUID);
-		if (!actor) return;
-		await actor.update(payload.updateData);
+		try {
+			const actor = await fromUuid(payload.actorUUID);
+			if (!actor) throw new Error(`Actor not found from UUID: ${payload.actorUUID}`);
+			await actor.update(payload.updateData);
+			const reply = {
+				action: "metaApplyActorUpdatesResult",
+				result: true,
+				actorUUID: payload.actorUUID,
+				requestID: payload.requestID,
+				requesterID: payload.requesterID,
+			};
+			game.socket.emit("system.metanthropes", reply);
+		} catch (error) {
+			const reply = {
+				action: "metaApplyActorUpdatesResult",
+				result: false,
+				actorUUID: payload.actorUUID,
+				requestID: payload.requestID,
+				requesterID: payload.requesterID,
+				error: error?.message ?? String(error),
+			};
+			game.socket.emit("system.metanthropes", reply);
+		}
 	}
 }

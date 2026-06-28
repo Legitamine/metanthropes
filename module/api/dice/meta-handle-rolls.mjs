@@ -14,66 +14,71 @@
  *
  */
 export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
-	event.preventDefault();
+	const mL = metanthropes.utils.metaLog;
+	// event.preventDefault();
 	const element = event.currentTarget;
-	//? Disable the element for 3 seconds to prevent double-clicking
-	//! Is this required since I disable the buttons now? Does this affect stat rolls? (I don't think so)
-	//todo Investigate if this is still required
-	element.disabled = true;
-	setTimeout(() => {
-		element.disabled = false;
-	}, 3000);
+	// //? Disable the element for 3 seconds to prevent double-clicking
+	// //! Is this required since I disable the buttons now? Does this affect stat rolls? (I don't think so)
+	// //todo Investigate if this is still required
+	// element.disabled = true;
+	// setTimeout(() => {
+	// 	element.disabled = false;
+	// }, 3000);
 	const dataset = element.dataset;
-	metanthropes.utils.metaLog(3, "metaHandleRolls", "Engaged via right-click:", isCustomRoll);
-	//? Handle all types of rolls here based on the rollType (data-roll-type)
-	if (dataset.rollType) {
-		const actor = metaSheet.actor;
-		const action = dataset.rollType;
-		const stat = dataset.stat;
-		const destinyCost = Number(dataset.destinyCost) || 0; //? Destiny Cost is optional, so if it's not defined, set it to 0
-		const itemName = dataset.itemName || null; //? Item Name is optional, so if it's not defined, set it to null
-		switch (dataset.rollType) {
-			case "StatRoll":
-				metanthropes.utils.metaLog(3, "metaHandleRolls", "Engaging metaRoll for:", actor.name + "'s", action, "with", stat);
-				await metanthropes.dice.metaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
-				metanthropes.utils.metaLog(3, "metaHandleRolls", "Finished Rolling for StatRoll");
-				break;
-			case "Metapower":
-				metanthropes.utils.metaLog(
-					3,
-					"metaHandleRolls",
-					"Engaging metaRoll for:",
-					actor.name + "'s",
-					action,
-					"Metapower:",
-					itemName,
-					"Destiny Cost:",
-					destinyCost,
-					"with:",
-					stat
-				);
-				await metanthropes.dice.metaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
-				metanthropes.utils.metaLog(3, "metaHandleRolls", "Finished Rolling for Metapower");
-				break;
-			case "Possession":
-				metanthropes.utils.metaLog(
-					3,
-					"metaHandleRolls",
-					"Engaging metaRoll for:",
-					actor.name + "'s",
-					action,
-					"Possession:",
-					itemName,
-					"with:",
-					stat
-				);
-				await metanthropes.dice.metaRoll(actor, action, stat, isCustomRoll, 0, itemName);
-				metanthropes.utils.metaLog(3, "metaHandleRolls", "Finished Rolling for Possession");
-				break;
-			default:
-				metanthropes.utils.metaLog(2, "metaHandleRolls", "ERROR: not defined rollType", dataset.rollType);
-				return;
-		}
+	mL(3, "metaHandleRolls", "Engaged via right-click:", isCustomRoll);
+	//? Handle all types of rolls here based on the rollType (data-roll-type) - return if it's not a rollType
+	if (!dataset.rollType) return false;
+
+	const actor = metaSheet.actor;
+	const action = dataset.rollType;
+	const stat = dataset.stat;
+	const destinyCost = Number(dataset.destinyCost) || 0; //? Destiny Cost is optional, so if it's not defined, set it to 0
+	const itemName = dataset.itemName || null; //? Item Name is optional, so if it's not defined, set it to null
+	switch (dataset.rollType) {
+		case "StatRoll":
+			mL(3, "metaHandleRolls", "Engaging metaRoll for:", actor.name + "'s", action, "with", stat);
+			await metanthropes.dice.metaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
+			mL(3, "metaHandleRolls", "Finished Rolling for StatRoll");
+			return true;
+			break;
+		case "Metapower":
+			mL(
+				3,
+				"metaHandleRolls",
+				"Engaging metaRoll for:",
+				actor.name + "'s",
+				action,
+				"Metapower:",
+				itemName,
+				"Destiny Cost:",
+				destinyCost,
+				"with:",
+				stat,
+			);
+			await metanthropes.dice.metaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
+			mL(3, "metaHandleRolls", "Finished Rolling for Metapower");
+			return true;
+			break;
+		case "Possession":
+			mL(
+				3,
+				"metaHandleRolls",
+				"Engaging metaRoll for:",
+				actor.name + "'s",
+				action,
+				"Possession:",
+				itemName,
+				"with:",
+				stat,
+			);
+			await metanthropes.dice.metaRoll(actor, action, stat, isCustomRoll, 0, itemName);
+			mL(3, "metaHandleRolls", "Finished Rolling for Possession");
+			return true;
+			break;
+		default:
+			mL(2, "metaHandleRolls", "ERROR: not defined rollType", dataset.rollType);
+			return false;
+			return;
 	}
 }
 /**

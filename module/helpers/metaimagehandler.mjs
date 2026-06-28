@@ -19,6 +19,7 @@ export async function metaUpdateActorImages({ actorUUID, changeBoth = true, useW
 }
 
 /**
+ * !Deprecated
  * Updates the token images for an actor in each scene
  * @param {string} actorUUID - Actor's UUID
  * @param {string} selectedPath - Selected image path
@@ -76,6 +77,7 @@ export async function metaUpdateTokenImages({ actorUUID, selectedPath, useWildca
 }
 
 /**
+ * !Deprecated
  * Returns the corresponsing top-down Token for a Portrait
  * Prefers Animated Tokens if available
  * Compatible with The Forge hosting service
@@ -94,11 +96,17 @@ export async function metaConvertPortraitToTokenImage(path) {
 	const dir = animatedPath.split("/").slice(0, -1).join("/");
 	try {
 		//? The Forge compatibility
+		let fp;
 		let source;
-		if (game.modules.get("forge-vtt")?.active) source = "forgevtt";
-		else source = "data";
+		if (game.modules.get("forge-vtt")?.active) {
+			source = "forgevtt";
+			fp = ForgeVTT_FilePicker;
+		} else {
+			source = "data";
+			fp = foundry.applications.apps.FilePicker;
+		}
 		try {
-			const fpcheck = await foundry.applications.apps.FilePicker.browse(source, dir);
+			const fpcheck = await fp.browse(source, dir);
 			return fpcheck.files?.includes(animatedPath) ? animatedPath : tokenPath;
 		} catch (fperror) {
 			metanthropes.utils.metaLog(

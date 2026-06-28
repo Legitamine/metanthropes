@@ -1,15 +1,25 @@
 {
-  "compilerOptions": {
-    "module": "ES2022",
-    "target": "ES2024",
-    "paths": {
-      "@client/*": ["./foundry/client/*"],
-      "@common/*": ["./foundry/common/*"]
-    }
-  },
-  "exclude": ["node_modules", "**/node_modules/*"],
-  "include": ["module/metanthropes.mjs", "foundry/client/client.mjs", "config.d.ts"],
-  "typeAcquisition": {
-    "include": ["jquery"]
-  }
+	"compilerOptions": {
+		"module": "ES2022",
+		"target": "ES2024",
+		"paths": {
+			"@client/*": ["./foundry/client/*"],
+			"@common/*": ["./foundry/common/*"]
+		}
+	},
+	"exclude": ["node_modules", "**/node_modules/*"],
+	"include": [
+		"module/metanthropes.mjs",
+		"foundry/client/client.mjs",
+		"config.d.ts",
+		"../metanthropes-core/module/metanthropes-core.mjs",
+		"../metanthropes-homebrew/module/metanthropes-homebrew.mjs",
+		"../metanthropes-introductory/module/metanthropes-introductory.mjs",
+		"../metanthropes-anthologies-nether/module/metanthropes-anthologies-nether.mjs",
+		"../metanthropes-anthologies-astral/module/metanthropes-anthologies-astral.mjs",
+		"../metanthropes-anthologies-aether/module/metanthropes-anthologies-aether.mjs"
+	],
+	"typeAcquisition": {
+		"include": ["jquery"]
+	}
 }
