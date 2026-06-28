@@ -43,6 +43,7 @@ Hooks.once("init", async function () {
 	CONFIG.Item.documentClass = metanthropes.documents.MetanthropesItem;
 	CONFIG.ActiveEffect.documentClass = metanthropes.documents.MetanthropesActiveEffect;
 	CONFIG.Combat.documentClass = metanthropes.documents.MetanthropesCombat;
+	//? missing MetaChatMessage === didn't register mine as the default so it falls back to the default
 
 	//* Register Application Sheets
 	foundry.documents.collections.Actors.registerSheet(

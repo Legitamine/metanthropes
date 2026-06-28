@@ -5,7 +5,7 @@
 				Knowledge</h3>
 			{{#each system.Perks.Knowledge}}
 				<div class="perk-item">
-					{{#if (or ../betaTesting (not ../coreFeatures))}}
+					{{#unless ../coreFeatures}}
 						<div class="resource-label" data-tooltip="{{this.title}}">
 							{{this.label}}:
 							{{this.value}}
@@ -24,7 +24,7 @@
 							<option value="4" {{selected this.value 4}}>4</option>
 							<option value="5" {{selected this.value 5}}>5</option>
 						</select>
-					{{/if}}
+					{{/unless}}
 				</div>
 			{{/each}}
 		</div>
@@ -33,7 +33,7 @@
 				Skills</h3>
 			{{#each system.Perks.Skills}}
 				<div class="perk-item">
-					{{#if (or ../betaTesting (not ../coreFeatures))}}
+					{{#unless ../coreFeatures}}
 						<div class="resource-label" data-tooltip="{{this.title}}">
 							{{this.label}}:
 							{{this.value}}
@@ -52,7 +52,7 @@
 							<option value="4" {{selected this.value 4}}>4</option>
 							<option value="5" {{selected this.value 5}}>5</option>
 						</select>
-					{{/if}}
+					{{/unless}}
 				</div>
 			{{/each}}
 		</div>
@@ -69,8 +69,8 @@
 					<div>
 						<h3>{{this.label}}</h3>
 					</div>
-					{{#if (or ../betaTesting (not ../coreFeatures))}}
-						{{#if (and ../isNarrator ../coreFeatures)}}
+					{{#unless ../coreFeatures}}
+						{{#if ../isNarrator}}
 							<div class="layout-editor style-editor">
 								{{editor this.value target=(concat "system.Perks.Details." @key ".value") engine="prosemirror" button=true editable=true}}
 							</div>
@@ -83,7 +83,7 @@
 						<div class="layout-editor style-editor">
 							{{editor this.value target=(concat "system.Perks.Details." @key ".value") engine="prosemirror" button=true editable=true}}
 						</div>
-					{{/if}}
+					{{/unless}}
 				</div>
 			{{/unless}}
 		{{/each}}

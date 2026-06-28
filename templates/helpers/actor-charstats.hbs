@@ -6,21 +6,21 @@
 			</div>
 			<div class="meta-ui-responsive meta-ui-change-at-medium layout-container-grid3x1-cs">
 				<div class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium">
-					<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
-						data-tooltip="Initial Score"><i class="fa-solid fa-flag-checkered"></i>
+					<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium" data-tooltip="Initial Score"><i
+							class="fa-solid fa-flag-checkered"></i>
 						{{this.Initial}}
 					</p>
-					{{#if (or ../betaTesting (not ../coreFeatures))}}
+					{{#unless ../coreFeatures}}
 						<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
-							data-tooltip="Progression Level"><i class="fa-solid fa-chart-line-up"></i>
+							data-tooltip="Progression Level. During Early Access, Progression is available only with Metanthropes: Core.">
+							<i class="fa-solid fa-chart-line-up"></i>
 							{{this.Progressed}}
 						</p>
 					{{else}}
 						<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
 							data-tooltip="Progression Level"><i class="fa-solid fa-chart-line-up"></i> <select
 								name="system.Characteristics.{{@key}}.Progressed"
-								id="system.Characteristics.{{@key}}.Progressed"
-								data-dtype="Number">
+								id="system.Characteristics.{{@key}}.Progressed" data-dtype="Number">
 								<option value="0" {{selected this.Progressed 0}}>0
 								</option>
 								<option value="1" {{selected this.Progressed 1}}>1
@@ -35,15 +35,14 @@
 								</option>
 							</select>
 						</p>
-					{{/if}}
+					{{/unless}}
 				</div>
 				<div class="style-cs-chars-value">{{this.Current}}</div>
 				<div>
 					{{#if (gt this.Buff.Current 0)}}
 						<p class="style-cs-buffs" data-tooltip="{{this.Buff.Name}} Buff Level">
 					{{else}}
-						<p class="style-cs-buffs meta-ui-obscure"
-							data-tooltip="{{this.Buff.Name}} Buff Level">
+						<p class="style-cs-buffs meta-ui-obscure" data-tooltip="{{this.Buff.Name}} Buff Level">
 					{{/if}}
 					<i class="fa-solid fa-shield-halved"></i> <label class="meta-ui-responsive meta-ui-hide-at-medium"
 						for="system.Characteristics.{{@key}}.Buff.Current">{{this.Buff.Name}}</label>
@@ -51,11 +50,9 @@
 					{{#if (gt this.Buff.Current 0)}}
 						<p class="style-cs-buffs" data-tooltip="{{this.Buff.Name}} Buff Level">
 					{{else}}
-						<p class="style-cs-buffs meta-ui-obscure"
-							data-tooltip="{{this.Buff.Name}} Buff Level">
+						<p class="style-cs-buffs meta-ui-obscure" data-tooltip="{{this.Buff.Name}} Buff Level">
 					{{/if}}
-					<select class="style-cs-buffs"
-						name="system.Characteristics.{{@key}}.Buff.Current"
+					<select class="style-cs-buffs" name="system.Characteristics.{{@key}}.Buff.Current"
 						id="system.Characteristics.{{@key}}.Buff.Current" data-dtype="Number">
 						<option value="0" {{selected Buff.Current 0}}>0</option>
 						<option value="1" {{selected Buff.Current 1}}>1</option>
@@ -66,8 +63,7 @@
 					</select>
 					</p>
 					{{#if (gt this.Condition.Current 0)}}
-						<p class="style-cs-conditions"
-							data-tooltip="{{this.Condition.Name}} Condition Level">
+						<p class="style-cs-conditions" data-tooltip="{{this.Condition.Name}} Condition Level">
 					{{else}}
 						<p class="style-cs-conditions meta-ui-obscure"
 							data-tooltip="{{this.Condition.Name}} Condition Level">
@@ -76,16 +72,13 @@
 						for="system.Characteristics.{{@key}}.Condition.Current">{{this.Condition.Name}}</label>
 					</p>
 					{{#if (gt this.Condition.Current 0)}}
-						<p class="style-cs-conditions"
-							data-tooltip="{{this.Condition.Name}} Condition Level">
+						<p class="style-cs-conditions" data-tooltip="{{this.Condition.Name}} Condition Level">
 					{{else}}
 						<p class="style-cs-conditions meta-ui-obscure"
 							data-tooltip="{{this.Condition.Name}} Condition Level">
 					{{/if}}
-					<select class="style-cs-conditions"
-						name="system.Characteristics.{{@key}}.Condition.Current"
-						id="system.Characteristics.{{@key}}.Condition.Current"
-						data-dtype="Number">
+					<select class="style-cs-conditions" name="system.Characteristics.{{@key}}.Condition.Current"
+						id="system.Characteristics.{{@key}}.Condition.Current" data-dtype="Number">
 						<option value="0" {{selected this.Condition.Current 0}}>0
 						</option>
 						<option value="1" {{selected this.Condition.Current 1}}>1
@@ -114,9 +107,10 @@
 							data-tooltip="Initial Score"><i class="fa-solid fa-flag-checkered"></i>
 							{{this.Initial}}
 						</p>
-						{{#if (or ../../betaTesting (not ../../coreFeatures))}}
+						{{#unless ../../coreFeatures}}
 							<p class="style-cs-values meta-ui-responsive meta-ui-hide-at-medium"
-								data-tooltip="Progression Level"><i class="fa-solid fa-chart-line-up"></i>
+								data-tooltip="Progression Level. During Early Access, Progression is available only with Metanthropes: Core.">
+								<i class="fa-solid fa-chart-line-up"></i>
 								{{this.Progressed}}
 							</p>
 						{{else}}
@@ -125,30 +119,23 @@
 									name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Progressed"
 									id="system.Characteristics.{{@../key}}.Stats.{{@key}}.Progressed"
 									data-dtype="Number">
-									<option value="0"
-										{{selected this.Progressed 0}}>0
+									<option value="0" {{selected this.Progressed 0}}>0
 									</option>
-									<option value="1"
-										{{selected this.Progressed 1}}>1
+									<option value="1" {{selected this.Progressed 1}}>1
 									</option>
-									<option value="2"
-										{{selected this.Progressed 2}}>2
+									<option value="2" {{selected this.Progressed 2}}>2
 									</option>
-									<option value="3"
-										{{selected this.Progressed 3}}>3
+									<option value="3" {{selected this.Progressed 3}}>3
 									</option>
-									<option value="4"
-										{{selected this.Progressed 4}}>4
+									<option value="4" {{selected this.Progressed 4}}>4
 									</option>
-									<option value="5"
-										{{selected this.Progressed 5}}>5
+									<option value="5" {{selected this.Progressed 5}}>5
 									</option>
 								</select>
 							</p>
-						{{/if}}
+						{{/unless}}
 					</div>
-					<div class="meta-ui-responsive meta-ui-change-at-single-column style-cs-rolls"
-						data-tooltip="Click to Roll<br><br>{{@key}}<br><br>Right-Click for Custom Roll
+					<div class="meta-ui-responsive meta-ui-change-at-single-column style-cs-rolls" data-tooltip="Click to Roll<br><br>{{@key}}<br><br>Right-Click for Custom Roll
 						{{#if ../../affectedByDisease}}<br><br>Result will be affected by <i class='fa-solid fa-skull'></i> Disease{{/if}}
 						{{#if ../../affectedByPain}}<br>Result will be affected by <i class='fa-solid fa-skull'></i> Pain{{/if}}
 						{{#if ../../affectedByHunger}}<br>Need to overcome <i class='fa-solid fa-skull'></i> Hunger{{/if}}
@@ -157,13 +144,12 @@
 					</div>
 					<div class="meta-ui-responsive meta-ui-hide-at-minimum">
 						{{#if (gt this.Buff.Current 0)}}
-							<p class="style-cs-buffs"
-								data-tooltip="{{this.Buff.Name}} Buff Level">
+							<p class="style-cs-buffs" data-tooltip="{{this.Buff.Name}} Buff Level">
 						{{else}}
-							<p class="style-cs-buffs meta-ui-obscure"
-								data-tooltip="{{this.Buff.Name}} Buff Level">
+							<p class="style-cs-buffs meta-ui-obscure" data-tooltip="{{this.Buff.Name}} Buff Level">
 						{{/if}}
-						<i class="fa-solid fa-shield-halved"></i> <label class="meta-ui-responsive meta-ui-hide-at-medium"
+						<i class="fa-solid fa-shield-halved"></i> <label
+							class="meta-ui-responsive meta-ui-hide-at-medium"
 							for="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current">{{this.Buff.Name}}</label>
 						</p>
 						{{#if (gt this.Buff.Current 0)}}
@@ -171,11 +157,9 @@
 						{{else}}
 							<p class="style-cs-buffs meta-ui-obscure">
 						{{/if}}
-						<select class="style-cs-buffs"
-							data-tooltip="{{this.Buff.Name}} Buff Level"
+						<select class="style-cs-buffs" data-tooltip="{{this.Buff.Name}} Buff Level"
 							name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current"
-							id="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current"
-							data-dtype="Number">
+							id="system.Characteristics.{{@../key}}.Stats.{{@key}}.Buff.Current" data-dtype="Number">
 							<option value="0" {{selected this.Buff.Current 0}}>0
 							</option>
 							<option value="1" {{selected this.Buff.Current 1}}>1
@@ -201,8 +185,7 @@
 						</select>
 						</p>
 						{{#if (gt this.Condition.Current 0)}}
-							<p class="style-cs-conditions"
-								data-tooltip="{{this.Condition.Name}} Condition Level">
+							<p class="style-cs-conditions" data-tooltip="{{this.Condition.Name}} Condition Level">
 						{{else}}
 							<p class="style-cs-conditions meta-ui-obscure"
 								data-tooltip="{{this.Condition.Name}} Condition Level">
@@ -215,8 +198,7 @@
 						{{else}}
 							<p class="style-cs-conditions meta-ui-obscure">
 						{{/if}}
-						<select class="style-cs-conditions"
-							data-tooltip="{{this.Condition.Name}} Condition Level"
+						<select class="style-cs-conditions" data-tooltip="{{this.Condition.Name}} Condition Level"
 							name="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Current"
 							id="system.Characteristics.{{@../key}}.Stats.{{@key}}.Condition.Current"
 							data-dtype="Number">

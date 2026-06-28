@@ -6,17 +6,43 @@
 			<hr>
 			<p class="menu">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Menu"}}</p>
 			<p class="menu">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Token"}}</p>
-			{{#if isTrustedUser}}
+			{{#if canUseFilePicker}}
+				<br>
 				<button class="button" {{#if tokenizer}}data-edit="img" {{/if}} data-action="editImage" data-field="img"
 					data-actor-id={{actorUUID}} data-tooltip="METANTHROPES.UI.APPS.META_IMAGE_PICKER.ManualTooltip"
 					data-tooltip-direction="UP">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Manual"}}</button>
 			{{/if}}
 			<hr>
-			{{!-- {{#if isNarrator}}
+			{{#if isNarrator}}
 				<h5>Narrator Options</h5>
-				<br>
+				{{#unless isToken}}
+					<h6 data-tooltip="METANTHROPES.UI.APPS.META_IMAGE_PICKER.actorLinkTooltip">
+						{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.actorLink"}}: {{actorLink}}
+					</h6>
+					<br>
+					<label class="checkbox">
+						<h6>{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Wildcard"}}</h6>
+						<input type="checkbox" name="wildcard" {{checked isWildcard}}>
+					</label>
+					<br>
+					<p class="hint">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.WildcardExplain"}}</p>
+					{{#if isWildcard}}
+						<br>
+						<label class="checkbox">
+							<h6>{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.appendNumber"}}</h6>
+							<input type="checkbox" name="appendNumber" {{checked appendNumber}}>
+						</label><br>
+						<label class="checkbox">
+							<h6>{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.prependAdjective"}}</h6>
+							<input type="checkbox" name="prependAdjective" {{checked prependAdjective}}>
+						</label><br>
+						<p class="hint">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.TokenOptions"}}</p>
+					{{/if}}
+				{{else}}
+					<p class="menu">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.isToken"}}</p>
+				{{/unless}}
 				<hr>
-			{{/if}} --}}
+			{{/if}}
 		</div>
 	</header>
 	{{#if hasImages}}
@@ -40,11 +66,18 @@
 	{{else}}
 		<section>
 			<div>
-			<p class="menu">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Error"}}</p>
-			{{#if isUntrustedUser}}
-			<hr>
-				<p class="menu">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Untrusted"}}</p>
-			{{/if}}
+				<p class="menu">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Error"}}</p>
+				{{#unless canUseFilePicker}}
+					<hr>
+					<p class="menu">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Untrusted"}}
+						<strong>{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Untrusted2"}}</strong>.
+					</p>
+					<br>
+					<p class="menu">{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Untrusted3"}}
+						<strong>{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Untrusted4"}}</strong>,
+						{{localize "METANTHROPES.UI.APPS.META_IMAGE_PICKER.Untrusted5"}}
+					</p>
+				{{/unless}}
 			</div>
 		</section>
 	{{/if}}
