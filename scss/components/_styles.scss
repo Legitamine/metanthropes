@@ -465,12 +465,31 @@
 	align-content: center;
 	padding: $padding-md;
 	margin: $margin-md;
-	&:hover {
+	&:hover:not(.is-rolling) {
 		cursor: $a-cursor-hover;
 		color: var(--metanthropes-color-secondary);
 		text-shadow: var(--metanthropes-color-text-shadow);
 	}
+	&.is-rolling {
+		//pointer-events: none; //!redundant as we already block further events from js
+		opacity: 0.5;
+		color: var(--metanthropes-color-disabled);
+		cursor: wait;
+		text-shadow: none;
+	}
+	&.is-rolling,
+	&.is-rolling * {
+		cursor: wait !important;
+	}
 }
+
+//! this will enforce the wait cursor for the whole UI, while a roll is happening
+body.metanthropes-roll-wait,
+body.metanthropes-roll-wait * {
+	cursor: wait !important;
+}
+
+//! is this being used?
 .style-cs-rolls-single-column {
 	opacity: 1;
 	font-family: $font-primary; //or
@@ -490,6 +509,8 @@
 		text-shadow: var(--metanthropes-color-text-shadow);
 	}
 }
+
+
 .style-mp-rolls {
 	opacity: 1;
 	font-family: $font-primary; //or
@@ -504,6 +525,17 @@
 		cursor: $a-cursor-hover;
 		color: var(--metanthropes-color-secondary);
 		text-shadow: var(--metanthropes-color-text-shadow);
+	}
+	&.is-rolling {
+		//pointer-events: none; //!redundant as we already block further events from js
+		opacity: 0.5;
+		color: var(--metanthropes-color-disabled);
+		cursor: wait;
+		text-shadow: none;
+	}
+	&.is-rolling,
+	&.is-rolling * {
+		cursor: wait !important;
 	}
 }
 .style-pos-rolls {
@@ -520,6 +552,17 @@
 		cursor: $a-cursor-hover;
 		color: var(--metanthropes-color-secondary);
 		text-shadow: var(--metanthropes-color-text-shadow);
+	}
+	&.is-rolling {
+		//pointer-events: none; //!redundant as we already block further events from js
+		opacity: 0.5;
+		color: var(--metanthropes-color-disabled);
+		cursor: wait;
+		text-shadow: none;
+	}
+	&.is-rolling,
+	&.is-rolling * {
+		cursor: wait !important;
 	}
 }
 .style-view-properties {

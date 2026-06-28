@@ -30,6 +30,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 - [Core] Progressing your Chars, Stats & Perks will no longer be disabled while the 'Beta Testing of new Features' setting is enabled.
 - [Core] Added a new Attack Type for Possessions: 'Explosive' and the Possessions Compendium has been updated with a new 'Explosive' folder under 'Weapons'. Various Weapons have been updated to match the new Attack Type. Updated Chat messages when using a Posssession to align with the updated Attack Types.
 - The 'Assign Player' app, launched from an Actor's Summary Tab, will now also configure the default Player Character, for that Player, to the Actor being assigned.
+- Clicking on a rollable element from an Actor or Item sheet, will now wait for the completion of the roll animation (if Dice So Nice is enabled, or 1sec otherwise) before allowing you to click on a rollable element again. This will prevent any accidental double-clicks on rollable elements and spamming the chat.
 
 ### Fixes:
 

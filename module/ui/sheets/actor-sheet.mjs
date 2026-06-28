@@ -79,7 +79,8 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		context.advancedBetaTesting = context.betaTesting && context.advancedLogging;
 		context.isNarrator = game.user.isGM;
 		context.secretNarratorNotes = await foundry.applications.ux.TextEditor.enrichHTML(
-			actorData.system["secret-notes-narrator"].value, {async: true, secrets: context.isNarrator}
+			actorData.system["secret-notes-narrator"].value,
+			{ async: true, secrets: context.isNarrator },
 		);
 		//? Add the actor's active effects to the context for easier access.
 		if (context.betaTesting) context.effects = metanthropes.utils.prepareActiveEffectCategories(this.actor.effects);
@@ -597,11 +598,27 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 	}
 	//* Handle Left-Click Rolls
 	async _onRoll(event) {
-		metanthropes.dice.metaHandleRolls(event, this, false);
+		event.preventDefault();
+		if (this._rolling) return;
+		this._rolling = true;
+		const element = event.currentTarget;
+		element.classList.add("is-rolling");
+		//! the document is refreshed once we update the actor's flags for the last roll, so the above class is not there when the DOM updates.
+		//! so need to store this state on the document body which does not get destroyed on actor update and then remove it when we are done
+		document.body.classList.add("metanthropes-roll-wait");
+		try {
+			await metanthropes.dice.metaHandleRolls(event, this, false);
+		} catch (error) {
+			metanthropes.utils.metaLog(5, "ActorSheet _onRoll", "Roll Failed", error);
+		} finally {
+			this._rolling = false;
+			element.classList.remove("is-rolling");
+			document.body.classList.remove("metanthropes-roll-wait");
+		}
 	}
 	//* Handle Right-Click Rolls
 	async _onCustomRoll(event) {
-		metanthropes.dice.metaHandleRolls(event, this, true);
+		await metanthropes.dice.metaHandleRolls(event, this, true);
 	}
 	//* Handle undoing the last life change
 	async _onUndoLastLifeChange(event) {
