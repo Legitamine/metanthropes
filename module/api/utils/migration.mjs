@@ -142,9 +142,9 @@ function metaInitializeModules() {
 	if (check("introductory", "metaIntroductory")) modules.push(["Introductory", "METANTHROPES.MODULES.Introductory"]);
 	if (check("core", "metaCore")) modules.push(["Core", "METANTHROPES.MODULES.Core"]);
 	if (check("homebrew", "metaHomebrew")) modules.push(["Homebrew", "METANTHROPES.MODULES.Homebrew"]);
-	if (check("anthologies-aether", "metaAether")) modules.push(["Aether", "METANTHROPES.MODULES.Aether"]);
-	if (check("anthologies-astral", "metaAstral")) modules.push(["Astral", "METANTHROPES.MODULES.Astral"]);
 	if (check("anthologies-nether", "metaNether")) modules.push(["Nether", "METANTHROPES.MODULES.Nether"]);
+	if (check("anthologies-astral", "metaAstral")) modules.push(["Astral", "METANTHROPES.MODULES.Astral"]);
+	if (check("anthologies-aether", "metaAether")) modules.push(["Aether", "METANTHROPES.MODULES.Aether"]);
 	return modules;
 }
 
@@ -234,7 +234,7 @@ async function metaMigrateDataCore(migrationData, currentSystemVersion) {
 	const mL = metanthropes.utils.metaLog;
 	mL(0, "System", "Migration", "Initializing Core Data Migration");
 	//todo better error handling if API is unavailable needed?
-	const coreUpdateData = await metanthropes.utils?.metaCoreMigration(migrationData, currentSystemVersion);
+	const coreUpdateData = await metanthropes.utils?.metaCoreMigration(migrationData, currentSystemVersion) ?? false;
 	if (coreUpdateData) {
 		mL(0, "System", "Migration", "Finished Core Data Migration");
 		return coreUpdateData;
@@ -253,7 +253,7 @@ async function metaMigrateDataCore(migrationData, currentSystemVersion) {
 }
 
 /**
- * Calls the Core Data Migration
+ * Calls the Introductory Data Migration
  * todo: modularity for upcoming modules
  *
  * @async
@@ -265,7 +265,7 @@ async function metaMigrateDataIntroductory(migrationData, currentSystemVersion) 
 	const mL = metanthropes.utils.metaLog;
 	mL(0, "System", "Migration", "Initializing Introductory Data Migration");
 	//todo better error handling if API is unavailable needed?
-	const introUpdateData = await metanthropes.utils?.metaIntroductoryMigration(migrationData, currentSystemVersion);
+	const introUpdateData = await metanthropes.utils?.metaIntroductoryMigration(migrationData, currentSystemVersion) ?? false;
 	if (introUpdateData) {
 		mL(0, "System", "Migration", "Finished Introductory Data Migration");
 		return introUpdateData;

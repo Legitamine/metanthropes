@@ -363,7 +363,7 @@ export async function metaEvaluate(
 		if (game.dice3d) {
 			await game.dice3d.showForRoll(roll, game.user, true, null, false, messageId);
 		}
-		chatMessage.update({
+		await chatMessage.update({
 			flavor: enrichedMessage,
 			rolls: updatedRoll,
 			content: renderedRoll, //? controls clickable roll result in chat
@@ -411,50 +411,52 @@ export async function metaEvaluate(
 		"Actor UUID:",
 		actor.uuid,
 	);
-	//* Finished, checking for autoExecute
-	if (!autoExecute) {
-		return;
-	}
-	//! todo refactor/simplify this
+	//* Finished, checking for DSN before autoExecute
 	if (game.dice3d) {
 		//? Await 3D Dice animation - Read More: https://gitlab.com/riccisi/foundryvtt-dice-so-nice/-/wikis/API/Roll#detecting-the-end-of-a-3d-roll-animation-for-a-specific-message
 		//? Could also do simply await?
 		//todo see https://gitlab.com/riccisi/foundryvtt-dice-so-nice/-/wikis/API/Roll#disablingenabling-the-3d-animation-programmatically
-		game.dice3d.waitFor3DAnimationByMessageID(chatMessage.id).then(() => {
-			//? Automatically execute the activation/use of the Metapower/Possession if it's a Critical Success/Failure or not enough destiny to reroll
-			//! why no multiAction for Metapowers here? Critical success removed reductions, is that why?
-			if (action === "Metapower") {
-				mL(3, "metaEvaluate", "Auto-Activating Metapower:", itemName);
-				metanthropes.metapowers.metaExecute({
-					actorUUID: actor.uuid,
-					action: action,
-					itemName: itemName,
-				});
-			} else if (action === "Possession") {
-				mL(3, "metaEvaluate", "Auto-Using Possession:", itemName);
-				metanthropes.possessions.metaExecute({
-					actorUUID: actor.uuid,
-					action: action,
-					itemName: itemName,
-					multiAction: multiAction,
-				});
-			}
-		});
-	} else {
-		//? wait for 1 seconds to ensure the chat messages display in the proper order, ?probably not required?
-		await new Promise((resolve) => setTimeout(resolve, 1000));
+		await game.dice3d.waitFor3DAnimationByMessageID(chatMessage.id);
+		//? Autoexecute
+		if (!autoExecute) {
+			return;
+		}
 		//? Automatically execute the activation/use of the Metapower/Possession if it's a Critical Success/Failure or not enough destiny to reroll
-		//! why no multiAction for Metapowers here?
+		//! why no multiAction for Metapowers here? Critical success removed reductions, is that why?
 		if (action === "Metapower") {
 			mL(3, "metaEvaluate", "Auto-Activating Metapower:", itemName);
-			metanthropes.metapowers.metaExecute({
+			await metanthropes.metapowers.metaExecute({
 				actorUUID: actor.uuid,
 				action: action,
 				itemName: itemName,
 			});
 		} else if (action === "Possession") {
 			mL(3, "metaEvaluate", "Auto-Using Possession:", itemName);
-			metanthropes.possessions.metaExecute({
+			await metanthropes.possessions.metaExecute({
+				actorUUID: actor.uuid,
+				action: action,
+				itemName: itemName,
+				multiAction: multiAction,
+			});
+		}
+	} else {
+		if (!autoExecute) {
+			return;
+		}
+		//? wait for 1 seconds to ensure the chat messages display in the proper order, ?probably not required?
+		await new Promise((resolve) => setTimeout(resolve, 1000));
+		//? Automatically execute the activation/use of the Metapower/Possession if it's a Critical Success/Failure or not enough destiny to reroll
+		//! why no multiAction for Metapowers here?
+		if (action === "Metapower") {
+			mL(3, "metaEvaluate", "Auto-Activating Metapower:", itemName);
+			await metanthropes.metapowers.metaExecute({
+				actorUUID: actor.uuid,
+				action: action,
+				itemName: itemName,
+			});
+		} else if (action === "Possession") {
+			mL(3, "metaEvaluate", "Auto-Using Possession:", itemName);
+			await metanthropes.possessions.metaExecute({
 				actorUUID: actor.uuid,
 				action: action,
 				itemName: itemName,

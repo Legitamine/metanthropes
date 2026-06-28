@@ -1,4 +1,9 @@
 //! This whole hook is going to be removed & refactored be part of the new roll Orchestrator
+//? Import GreenSock Animation Platform
+import gsap, { TextPlugin, Draggable as Dragger } from "/scripts/greensock/esm/all.js";
+//? Register Draggable for GreenSock
+gsap.registerPlugin(TextPlugin, Dragger);
+
 Hooks.on("renderChatMessageHTML", async (message, html) => {
 	const mL = metanthropes.utils.metaLog;
 	//* Chat Button Handling
@@ -24,26 +29,71 @@ Hooks.on("renderChatMessageHTML", async (message, html) => {
 				return;
 			}
 			if (button.classList.contains("metaeval-reroll")) {
+				gsap.to("button.metaeval-reroll", {
+					duration: 3,
+					text: "Re-Rolling...",
+					ease: "none",
+				});
 				metanthropes.dice.metaEvaluateReRoll(event);
 			} else if (button.classList.contains("metainitiative-reroll")) {
+				gsap.to("button.metainitiative-reroll", {
+					duration: 3,
+					text: "Re-Rolling Initiative...",
+					ease: "none",
+				});
 				metanthropes.dice.metaInitiativeReRoll(event);
 			} else if (button.classList.contains("metapower-activate")) {
-				metanthropes.metapowers.metaExecute({event: event});
+				gsap.to("button.metapower-activate", {
+					duration: 3,
+					text: "Activating Metapower...",
+					ease: "none",
+				});
+				metanthropes.metapowers.metaExecute({ event: event });
 			} else if (button.classList.contains("possession-use")) {
-				metanthropes.possessions.metaExecute({event: event});
+				gsap.to("button.possession-use", {
+					duration: 3,
+					text: "Using Possession...",
+					ease: "none",
+				});
+				metanthropes.possessions.metaExecute({ event: event });
 			} else if (button.classList.contains("hunger-reroll")) {
+				gsap.to("button.hunger-reroll", {
+					duration: 3,
+					text: "Re-Rolling Hunger...",
+					ease: "none",
+				});
 				metanthropes.dice.metaHungerReRoll(event);
 			} else if (button.classList.contains("cover-reroll")) {
+				gsap.to("button.cover-reroll", {
+					duration: 3,
+					text: "Re-Rolling Cover...",
+					ease: "none",
+				});
 				metanthropes.dice.metaCoverReRoll(event);
 			} else if (button.classList.contains("roll-damage-reroll")) {
 				button.classList.add("disabled");
+				gsap.to("button.roll-damage-reroll", {
+					duration: 3,
+					text: "Re-Rolling Damage...",
+					ease: "none",
+				});
 				metanthropes.dice.metaDamageReRoll(event);
 			} else if (button.classList.contains("roll-healing-reroll")) {
 				button.classList.add("disabled");
+				gsap.to("button.roll-healing-reroll", {
+					duration: 3,
+					text: "Re-Rolling Healing...",
+					ease: "none",
+				});
 				metanthropes.dice.metaHealingReRoll(event);
 			} else if (button.classList.contains("rolld10-reroll")) {
 				//? Disable secondary buttons
 				button.classList.add("disabled");
+				gsap.to("button.rolld10-reroll", {
+					duration: 3,
+					text: "Re-Rolling...",
+					ease: "none",
+				});
 				metanthropes.dice.metaRolld10ReRoll(event);
 			} else {
 				metanthropes.utils.metaLog(5, "renderChatMessageHTML", "not an actionable event", button, event);
