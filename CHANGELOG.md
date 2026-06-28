@@ -36,7 +36,9 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 - [Core] Fixed an issue with the createActor Hook that was causing it to give some actors duplicate Strike Items when multiple Narrators (GMs) were online at the same time.
 - [Homebrew] Fixed an issue with some of the settings not being accessible under the Game Settings menu.
-- [DiceSoNice] Fixed an issue with the Dice animation not showing on Destiny Rerolls after the first.
+- [DiceSoNice] Fixed an issue with the Dice animation not showing on Destiny Rerolls after the first re-roll.
+- [DiceSoNice] Fixed an issue with the Dice animation showing twice on some Destiny Rerolls.
+- [DiceSoNice] Fixed some previously known issues with DSN and animations not playing properly for all players.
 - [TheForge] Fixed an issue with the new 'Image Picker' app, which was causing it to display empty folders while running on The Forge.
 - Solved a race condition & updated the socket handler. This makes our handling more robust & now when re-rolling Damage/Healing it will resolve up to 3 seconds faster, while ensuring the undoLifeChange completes before applying the new Damage/Healing results.
 - Fixed an issue with the Item sheets, which was causing it to always open in a maximized state.
@@ -47,8 +49,6 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 - Fixed the new Welcome Chat message firing for each connected Narrator. Now it will only display once for the Active GM.
 
 ### Known Issues:
-
-- [DiceSoNice] When spending Destiny to re-roll Damage/Healing, the 2nd re-roll dice animation plays twice. It's only a visual bug, the Damage/Healing is applied properly.
 
 ### Deprecated:
 

@@ -110,7 +110,11 @@
 					"Manual": "Select Image Manually",
 					"ManualTooltip": "Click here for the default Foundry VTT behavior. The Token Image will not be updated automatically.",
 					"Error": "No Images found in the Artwork Registry for this Actor Type.",
-					"Untrusted": "It seems your User doesn't have the 'Use File Browser' Permission. Ask your Narrator to give your user this permission, or promote you to a Trusted Player from the User Permission Configuration screen.",
+					"Untrusted": "It seems your User doesn't have the",
+					"Untrusted2": "'Use File Browser' Permission",
+					"Untrusted3": "Ask your Narrator to give your user this permission, or promote you to a",
+					"Untrusted4": "Trusted Player",
+					"Untrusted5": "from the User Permission Configuration screen.",
 					"actorLink": "Is this Actor Linked",
 					"actorLinkTooltip": "Is this Actor's PrototypeToken linked? Can be true or false. Changing the Wildcard checkbox will toggle this option automatically. The default value is set according to the Actor's Type.",
 					"ActorTypes": {
