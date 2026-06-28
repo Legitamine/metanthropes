@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 # Early Access Releases
 
-## Early Access v0.14.205 [2026-06-27]
+## Early Access v0.14.205 [2026-06-28]
 
 ### Added:
 
