@@ -44,7 +44,9 @@ import { metaPlaySoundEffect } from "./api/audio/play-sound-effect.mjs";
 import { metaVFX } from "./api/vfx/meta-vfx.mjs";
 //* Dice Rollers
 import { metaEvaluate, metaEvaluateReRoll } from "./api/dice/meta-evaluate.mjs";
-import { metaRolld10, metaRolld10ReRoll, metaDamageReRoll, metaHealingReRoll } from "./api/dice/meta-rolld10.mjs";
+import { metaRolld10, metaRolld10ReRoll } from "./api/dice/meta-rolld10.mjs";
+import { metaDamageReRoll } from "./api/dice/meta-damage-reroll.mjs";
+import { metaHealingReRoll } from "./api/dice/meta-healing-reroll.mjs";
 import { metaHungerRoll, metaHungerReRoll } from "./api/dice/meta-hunger-roll.mjs";
 import { metaCoverRoll, metaCoverReRoll } from "./api/dice/meta-cover-roll.mjs";
 import { handleCoverRolls, metaHandleRolls } from "./api/dice/meta-handle-rolls.mjs";
