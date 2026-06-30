@@ -63,7 +63,6 @@ export class MetanthropesItemSheet extends foundry.appv1.sheets.ItemSheet {
 		context.homebrewFeatures = metanthropes.utils.metaCheckSetting("homebrew", "metaHomebrew");
 		context.betaTesting = metanthropes.utils.metaCheckSetting("core", "metaBetaTesting");
 		context.advancedLogging = game.settings.get("metanthropes", "metaAdvancedLogging");
-		context.advancedBetaTesting = context.betaTesting && context.advancedLogging;
 		context.isNarrator = game.user.isGM;
 		//? Prepare Active Effects
 		if (context.betaTesting)

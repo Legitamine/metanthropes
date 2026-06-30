@@ -27,7 +27,10 @@ export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 	const dataset = element.dataset;
 	mL(3, "metaHandleRolls", "Engaged via right-click:", isCustomRoll);
 	//? Handle all types of rolls here based on the rollType (data-roll-type) - return if it's not a rollType
-	if (!dataset.rollType) return false;
+	if (!dataset.rollType) {
+		mL(2, "metaHandleRolls", "ERROR: dataset does not contain a rollType", dataset);
+		return false;
+	}
 
 	const actor = metaSheet.actor;
 	const action = dataset.rollType;
@@ -40,7 +43,6 @@ export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 			await metanthropes.dice.metaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
 			mL(3, "metaHandleRolls", "Finished Rolling for StatRoll");
 			return true;
-			break;
 		case "Metapower":
 			mL(
 				3,
@@ -58,7 +60,6 @@ export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 			await metanthropes.dice.metaRoll(actor, action, stat, isCustomRoll, destinyCost, itemName);
 			mL(3, "metaHandleRolls", "Finished Rolling for Metapower");
 			return true;
-			break;
 		case "Possession":
 			mL(
 				3,
@@ -74,11 +75,9 @@ export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 			await metanthropes.dice.metaRoll(actor, action, stat, isCustomRoll, 0, itemName);
 			mL(3, "metaHandleRolls", "Finished Rolling for Possession");
 			return true;
-			break;
 		default:
 			mL(2, "metaHandleRolls", "ERROR: not defined rollType", dataset.rollType);
 			return false;
-			return;
 	}
 }
 /**

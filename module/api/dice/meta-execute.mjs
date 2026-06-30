@@ -35,6 +35,7 @@ export async function metaExecute({ event, actorUUID, action, itemName, multiAct
 	//? Checking if actor has Metapowers that affect the explosive dice
 	const explosiveDice = "x10"; //todo: placeholder for custom explosive dice
 	//? Find the first item ()that matches itemName
+	//todo we should work with the item uuid instead
 	const metaItemData = actor.items.find((item) => item.name === itemName);
 	const itemUUID = metaItemData.uuid;
 	if (!metaItemData) {
@@ -172,6 +173,7 @@ export async function metaExecute({ event, actorUUID, action, itemName, multiAct
 				flavorMessage = `Swings and misses with ${itemName}!<br><br>`;
 			} else if (attackType === "Projectile") {
 				flavorMessage = `Throws and misses with ${itemName}!<br><br>`;
+				//todo affect the quantity
 			} else if (attackType === "Firearm") {
 				flavorMessage = `Fires and misses with ${itemName}!<br><br>`;
 			} else if (attackType === "Explosive") {
