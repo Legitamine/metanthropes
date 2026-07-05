@@ -29,12 +29,16 @@ export async function metaHealingReRoll(event) {
 		ui.notifications.warn("Could not retrieve the message ID.");
 		return;
 	}
-	const actoruuid = button.dataset.actoruuid;
+	const actorUUID = button.dataset.actoruuid;
 	const destinyReRoll = button.dataset.destinyReRoll === "true" ? true : false;
-	const itemName = button.dataset.itemName === "null" ? null : button.dataset.itemName;
+	const itemUUID = button.dataset.itemuuid === "null" ? null : button.dataset.itemuuid;
+	let item = null;
+	if (itemUUID) item = await fromUuid(itemUUID);
+	const itemName = item?.name ?? null;
+	//const itemName = button.dataset.itemName === "null" ? null : button.dataset.itemName;
 	let reroll = button.dataset.reroll === "false" ? false : true;
 	let rerollCounter = parseInt(button.dataset.rerollCounter) ?? 0;
-	const actor = await fromUuid(actoruuid);
+	const actor = await fromUuid(actorUUID);
 	const targetedActors = button.dataset.targets ? button.dataset.targets.split(",") : ([] ?? null);
 	const healingDice = parseInt(button.dataset.healingDice) ?? 0;
 	const healingBase = parseInt(button.dataset.healingBase) ?? 0;
@@ -60,19 +64,19 @@ export async function metaHealingReRoll(event) {
 	//* Destiny Change
 	await actor.applyDestinyChange(-1);
 	//* Healing
-	const healingRoll = await metanthropes.dice.metaRolld10(
-		actor,
-		`Healing`,
-		true,
-		healingDice,
-		itemName,
-		healingBase,
-		false,
-		true,
-		firstMessage ? false : true,
-		0,
-		null,
-	);
+	const healingRoll = await metanthropes.dice.metaRolld10({
+		actorUUID: actorUUID,
+		what: `Healing`,
+		destinyReRoll: true,
+		dice: healingDice,
+		itemUUID: itemUUID,
+		baseNumber: healingBase,
+		isHalf: false,
+		anchor: true,
+		reroll: firstMessage ? false : true,
+		rerollCounter: 0,
+		messageId: null,
+	});
 	const healingRollResult = Number(healingRoll.dataset.total);
 	const healingMessage = `${healingRoll.outerHTML}<br>`;
 	const healingRollData = JSON.parse(healingRoll.dataset.rolls);
@@ -95,24 +99,24 @@ export async function metaHealingReRoll(event) {
 	if (actor.currentDestiny > 0) {
 		const healingReRollButton = `<div class="hide-button hidden">
 		<button class="metanthropes-secondary-chat-button damage roll-healing-reroll chat-button-anchor"
-		data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+		data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-itemuuid="${itemUUID}"
 		data-what="Healing" data-anchor="true" data-reroll="true" data-reroll-counter="${rerollCounter}" data-message-id="${messageId}"
 		data-destiny-re-roll="true" data-healing-dice="${healingDice}" data-healing-base="${healingBase}"
 		data-heal-selected-targets="${healSelectedTargets}"
 		>Spend @METAFA(hand-fingers-crossed) to Reroll @METAFA(heart-pulse) Healing
 		</button></div>`;
-		contentMessage += `<hr />`;
+		contentMessage += `<br>`;
 		contentMessage += healingReRollButton;
 		contentMessage += `<br>`;
 	}
-	contentMessage += `<div>${actor.name} has ${actor.currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.<br><br></div>`;
+	contentMessage += `<div class="hide-button hidden">${actor.name} has ${actor.currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.<br><br></div>`;
 	const enrichedContent = await foundry.applications.ux.TextEditor.enrichHTML(contentMessage, { async: true });
 	const enrichedFlavor = await foundry.applications.ux.TextEditor.enrichHTML(flavorMessage, { async: true });
+	const rollMode = game.settings.get("core", "rollMode");
 	let chatData = {
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		flavor: enrichedFlavor,
 		content: enrichedContent,
-		rollMode: game.settings.get("core", "rollMode"),
 		flags: { metanthropes: { actoruuid: actor.uuid } },
 	};
 	//* Send/Update chat message and handle DSN
@@ -129,6 +133,7 @@ export async function metaHealingReRoll(event) {
 		await chatMessage.update(chatData);
 	} else {
 		mL(3, "metaHealingReRoll", "No Reroll");
+		await metanthropes.applications.MetaChatMessage.applyMode(chatData, rollMode);
 		await metanthropes.applications.MetaChatMessage.create(chatData);
 	}
 	//* Work through targets to restore previous Life before applying new Healing

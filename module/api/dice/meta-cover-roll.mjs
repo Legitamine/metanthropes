@@ -4,22 +4,25 @@
  *
  * @export
  * @async
- * @param {*} actor
- * @param {*} coverType
- * @param {*} coverValue
- * @param {boolean} [messageId=false]
- * @param {boolean} [reroll=false]
- * @param {number} [rerollCounter=0]
+ * @param {object} options
+ * @property {string} actorUUID
+ * @property {string} coverType
+ * @property {number} coverValue
+ * @property {boolean} [messageId=false]
+ * @property {boolean} [reroll=false]
+ * @property {number} [rerollCounter=0]
  * @returns {*}
  */
-export async function metaCoverRoll(
-	actor,
+export async function metaCoverRoll({
+	actorUUID,
 	coverType,
 	coverValue,
 	messageId = false,
 	reroll = false,
 	rerollCounter = 0,
-) {
+}) {
+	const actor = await fromUuid(actorUUID);
+	if (!actor) return metanthropes.utils.metaLog(2, "metaCoverRoll", "Could not get Actor from UUID", actorUUID);
 	let coverMessage = null;
 	let coverTarget = null;
 	let startMessage = null;
@@ -54,13 +57,13 @@ export async function metaCoverRoll(
 		coverMessage += `It is a @METAFA(square-xmark, failure) Failure!<br><br>${actor.name} can't find Cover!`;
 		//? Button to re-roll Cover using destiny
 		const currentDestiny = Number(actor.system.Vital.Destiny.value);
-		coverMessage += `<hr />${actor.name} has ${currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.<br>`;
 		if (currentDestiny > 0) {
 			coverMessage += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button cover-reroll" 
 			data-actoruuid="${actor.uuid}" data-cover-value="${coverValue}" data-type="${coverType}"
 			data-reroll="true" data-reroll-counter="${rerollCounter}"
 			>Spend @METAFA(hand-fingers-crossed) Destiny to reroll</button><br></div><br>`;
 		}
+		coverMessage += `<br><div class="hide-button hidden">${actor.name} has ${currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.</div><br>`;
 	} else {
 		coverMessage += `It is a @METAFA(square, success) Success!<hr />${actor.name} found ${coverType} Cover!<br><br>`;
 	}
@@ -82,17 +85,18 @@ export async function metaCoverRoll(
 			flavor: enrichedMessage,
 			rolls: updatedRoll,
 			content: renderedRoll, //? controls clickable roll result in chat
-			rollMode: game.settings.get("core", "rollMode"),
+			//! not needed for updates rollMode: game.settings.get("core", "rollMode"),
 			flags: { metanthropes: { actoruuid: actor.uuid } },
 		});
 	} else {
 		//? We don't have a previous cover roll result, so create a chat message
-		coverRoll.toMessage({
+		const chatData = {
 			speaker: ChatMessage.getSpeaker({ actor: actor }),
 			flavor: enrichedMessage,
-			rollMode: game.settings.get("core", "rollMode"),
 			flags: { metanthropes: { actoruuid: actor.uuid } },
-		});
+		};
+		const rollMode = game.settings.get("core", "rollMode");
+		coverRoll.toMessage(chatData, { messageMode: rollMode });
 	}
 }
 
@@ -121,14 +125,14 @@ export async function metaCoverReRoll(event) {
 	}
 	const reroll = button.dataset.reroll === "true" ? true : false;
 	const rerollCounter = parseInt(button.dataset.rerollCounter);
-	const actoruuid = button.dataset.actoruuid;
-	const actor = await fromUuid(actoruuid);
+	const actorUUID = button.dataset.actoruuid;
+	const actor = await fromUuid(actorUUID);
 	const coverType = button.dataset.type;
 	const coverValue = parseInt(button.dataset.coverValue);
 	let currentDestiny = Number(actor.system.Vital.Destiny.value);
 	if (currentDestiny > 0) {
 		await actor.applyDestinyChange(-1);
-		metaCoverRoll(actor, coverType, coverValue, messageId, reroll, rerollCounter);
+		metaCoverRoll({ actorUUID, coverType, coverValue, messageId, reroll, rerollCounter });
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
 		metanthropes.utils.metaLog(3, "metaCoverReRoll", "Not enough Destiny to spend");

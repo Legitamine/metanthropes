@@ -1,41 +1,57 @@
 /**
  * metaRoll - Handles rolling d100 dice for Metanthropes
  *
- * This function checks various Core Conditions (e.g., unconsciousness, hunger, disease)
- * before proceeding with the roll. It then calls the metaEvaluate function to
- * calculate the result of the roll.
+ * This function checks various Core Conditions (e.g., unconsciousness, hunger, disease).
+ * Also allows for a Custom Roll where manual inputs for multi-Actions/bonus/penalty/reductions can be applied.
+ * Finally it calls the metaEvaluate function to calculate the result of the roll.
  *
- * @param {Object} actor - The actor making the roll. Expected to be an Actor object.
- * @param {String} action - The type of action being performed (e.g., "StatRoll", "Metapower", etc).
- * @param {String} stat - The stat being rolled against. Expected to be a string.
- * @param {Boolean} isCustomRoll - Whether the roll is custom or not. Expected to be a boolean.
- * @param {Number} destinyCost - The destiny cost of the action. Expected to be a positive number.
- * @param {String} itemName - The name of the Metapower, Possession or Combo being used. Expected to be a string.
- * @param {String} messageId - The message ID of the chat message for the reroll, if any. Expected to be a string.
- *
- * @returns {Promise<void>} A promise that resolves once the function completes its operations.
- *
- * @example
- * Rolling a simple stat
- * metaRoll(actor, "StatRoll", "Power");
+ * @export
+ * @async
+ * @param {object} options
+ * @property {string} actorUUID - The UUID of the Actor making the roll.
+ * @property {string} action - The type of action being rolled.
+ * @property {string} stat - The type of action being performed (e.g., "StatRoll", "Metapower", "Possession" etc).
+ * @property {null|string} [itemUUID=null] - The UUID of the Item involved in the roll.
+ * @property {boolean} [isCustomRoll=false] - Custom rolls show a dialog to manually add Bonus/Penalties/etc.
+ * @property {number} [destinyCost=0] - The destiny cost of the action. Expected to be a positive number.
+ * @property {null|string} [messageId=null] - The message ID of the chat message for the reroll, if any.
+ * @property {boolean} [reroll=false] - If true, it will update the chat message, instead of creating a new one.
+ * @property {number} [rerollCounter=0] - The number of total rerolls completed.
+ * @returns {Promise<void>} - .
  */
-export async function metaRoll(
-	actor,
+export async function metaRoll({
+	actorUUID,
 	action,
 	stat,
+	itemUUID = null,
 	isCustomRoll = false,
 	destinyCost = 0,
-	itemName = null,
 	messageId = null,
 	reroll = false,
 	rerollCounter = 0,
-) {
+}) {
 	const mL = metanthropes.utils.metaLog;
 	//? Initialize the actor's RollStat array before proceeding
+	const actor = await fromUuid(actorUUID);
 	await actor.getRollData();
+	const item = (await fromUuid(itemUUID)) ?? null;
+	const itemName = item?.name ?? null;
 	const statScore = actor.system.RollStats[stat];
-	mL(3, "metaRoll", "Engaged for", actor.type + ":", actor.name + "'s", action, "with", stat);
-	//* Go through a series of tests and checks before actually rolling the dice
+	mL(
+		3,
+		"metaRoll",
+		"Engaged for",
+		actor.type + ":",
+		actor.name + "'s",
+		action,
+		"with",
+		stat,
+		"ItemName",
+		itemName,
+		"itemUUID",
+		itemUUID,
+	);
+	//* Go through a series of tests and checks before actually rolling any dice
 	//? Check if we are ok to do the roll stat-wise
 	if (statScore <= 0) {
 		ui.notifications.error(
@@ -48,8 +64,8 @@ export async function metaRoll(
 		return;
 	}
 	//? Check for always active item activation
-	if (itemName) {
-		const actionSlot = actor.items.getName(itemName).system.Execution.ActionSlot.value;
+	if (item) {
+		const actionSlot = item.system.Execution.ActionSlot.value;
 		if (actionSlot === "Always Active") {
 			ui.notifications.info(
 				actor.name +
@@ -57,31 +73,6 @@ export async function metaRoll(
 					itemName +
 					_loc("METANTHROPES.UI.NOTIFICATIONS.META_ROLL.AlwaysActive"),
 			);
-			return;
-		}
-	}
-	//? Check for Hunger: We must beat the Hunger check before doing our action (Initiative is exempt)
-	const hungerLevel = actor.system.Characteristics.Mind.CoreConditions.Hunger;
-	hungerCheck: if (hungerLevel > 0 && action !== "Initiative") {
-		//? Check if actor has already overcome hunger
-		const hungerRollResult = (await actor.getFlag("metanthropes", "hungerRollResult")) || false;
-		if (hungerRollResult) {
-			//? If the flag exists, means we beat hunger check, so we clear it and resume running the rest of the checks
-			await actor.unsetFlag("metanthropes", "hungerRollResult");
-			mL(3, "metaRoll", "Hunger Check Passed, moving on");
-			//todo: perhaps I should minimize the sheet while the hunger check is happening?
-			break hungerCheck;
-		} else {
-			//? we need to do a hunger check, so we set the flag with the player intended action, so it will roll it without player interaction again, once we pass hunger check
-			await actor.setFlag("metanthropes", "MetaRollBeforeHungerCheck", {
-				action: action,
-				stat: stat,
-				isCustomRoll: isCustomRoll,
-				destinyCost: destinyCost,
-				itemName: itemName,
-			});
-			mL(3, "metaRoll", "Hunger Check Failed, Engaging Hunger Roll");
-			await metanthropes.dice.metaHungerRoll(actor, hungerLevel);
 			return;
 		}
 	}
@@ -99,18 +90,16 @@ export async function metaRoll(
 	const diseaseLevel = actor.system.Characteristics.Body.CoreConditions.Diseased;
 	if (diseaseLevel > 0) {
 		//? Set diseasePenalty according to the Disease level
-		if (diseasePenalty > -(diseaseLevel * 10)) {
-			diseasePenalty = -(diseaseLevel * 10);
-		}
+		if (diseasePenalty > -(diseaseLevel * 10)) diseasePenalty = -(diseaseLevel * 10);
 	}
 	//* Check for Reductions
-	//? Check for Reduction due to missing Perk Skill Levels
 	let perkReduction = 0;
-	if (itemName && action === "Possession") {
-		const requiredPerk = actor.items.getName(itemName).system.RequiredPerk.value;
-		mL(3, "metaRoll", "Required Perk for", itemName, "is", requiredPerk);
+	//? Check for Reduction due to missing Perk Skill Levels
+	if (item && action === "Possession") {
+		const requiredPerk = item.system.RequiredPerk.value;
+		mL(3, "metaRoll", "Required Perk for", item.name, "is", requiredPerk);
 		if (requiredPerk !== "None") {
-			const requiredPerkLevel = actor.items.getName(itemName).system.RequiredPerkLevel.value;
+			const requiredPerkLevel = item.system.RequiredPerkLevel.value;
 			const actorPerkLevel = actor.system.Perks.Skills[requiredPerk].value;
 			const levelDifference = requiredPerkLevel - actorPerkLevel;
 			if (levelDifference > 0) {
@@ -120,16 +109,23 @@ export async function metaRoll(
 		}
 	}
 	//? Check for Reduction due to Aiming
-	//* ready to call metaEvaluate, but first we check if we have custom options
+	//* Check if we have custom options (right-click)
 	let bonus = 0;
 	let penalty = 0;
 	let multiAction = 0;
 	let reduction = 0;
 	let aimingReduction = 0;
 	if (isCustomRoll) {
+		//? First check if the Actor already has custom roll params configured (probably from a Hunger check)
 		mL(3, "metaRoll", "Custom Roll Detected");
-		let { customMultiAction, customBonus, customPenalty, customReduction, customAimingReduction } =
-			await metaRollCustomDialog(actor, action, stat, statScore, itemName);
+		let customRollResult = actor.getFlag("metanthropes", "customRollResult") ?? false;
+		if (!customRollResult) {
+			customRollResult = await metaRollCustomDialog(actor, action, stat, statScore, itemName); //!todo
+			if (!customRollResult) return mL(3, "metaRoll", "Custom Roll Dialog canceled by user");
+			await actor.setFlag("metanthropes", "customRollResult", customRollResult);
+		}
+		const { customMultiAction, customBonus, customPenalty, customReduction, customAimingReduction } =
+			customRollResult;
 		//? Check to see if null or undefined values were returned and change to 0 instead
 		multiAction = customMultiAction || 0;
 		bonus = customBonus || 0;
@@ -138,97 +134,99 @@ export async function metaRoll(
 		aimingReduction = customAimingReduction || 0;
 		mL(3, "metaRoll", "Using Custom Roll Results:", multiAction, bonus, penalty, reduction, aimingReduction);
 		//? Check if Custom Penalty is smaller than Disease penalty (values are expected to be negatives)
-		//todo add a new function to compare values for bonus and penalty - this way we can do the disease and perk check the same way without caring about the order in which we do them
-		if (customPenalty < diseasePenalty) {
-			penalty = customPenalty;
-			mL(
-				3,
-				"metaRoll",
-				"Penalty from Disease is lower than Custom Roll Penalty, using the latter",
-				diseasePenalty,
-				customPenalty,
-			);
-		} else {
-			penalty = diseasePenalty;
-			mL(
-				3,
-				"metaRoll",
-				"Penalty from Disease is higher than Custom Roll Penalty, using the former",
-				diseasePenalty,
-				customPenalty,
-			);
-		}
+		penalty = Math.min(penalty, diseasePenalty);
 		mL(
 			3,
 			"metaRoll",
-			"Engaging metaEvaluate for:",
-			actor.name + "'s Custom",
-			action,
-			"with",
-			stat,
-			statScore,
-			"Multi-Action:",
-			multiAction,
-			"Perk Reduction:",
-			perkReduction,
-			"Aiming Reduction:",
-			aimingReduction,
-			"Reduction:",
-			reduction,
-			"Bonus:",
-			bonus,
-			"Penalty:",
+			"Penalty from Disease / Custom Roll Penalty / Penalty value used",
+			diseasePenalty,
+			customPenalty,
 			penalty,
-			"Pain:",
-			pain,
-			"Destiny Cost:",
-			destinyCost,
-			"Item Name:",
-			itemName,
-			"Message ID:",
-			messageId,
-		);
-		await metanthropes.dice.metaEvaluate(
-			actor,
-			action,
-			stat,
-			statScore,
-			multiAction,
-			perkReduction,
-			aimingReduction,
-			reduction,
-			bonus,
-			penalty,
-			pain,
-			destinyCost,
-			itemName,
-			messageId,
-			reroll,
-			rerollCounter,
 		);
 	} else {
 		penalty = diseasePenalty;
-		await metanthropes.dice.metaEvaluate(
-			actor,
-			action,
-			stat,
-			statScore,
-			multiAction,
-			perkReduction,
-			aimingReduction,
-			reduction,
-			bonus,
-			penalty,
-			pain,
-			destinyCost,
-			itemName,
-			messageId,
-			reroll,
-			rerollCounter,
-		);
 	}
+
+	//* Hunger Check
+	const hungerLevel = actor.system.Characteristics.Mind.CoreConditions.Hunger;
+	//? Check for Hunger: We must beat the Hunger check before doing our action (Initiative is exempt)
+	hungerCheck: if (hungerLevel > 0 && action !== "Initiative") {
+		//? Check if actor has already overcome hunger
+		const hungerRollResult = (await actor.getFlag("metanthropes", "hungerRollResult")) || false;
+		if (hungerRollResult) {
+			//? If the flag exists, means we beat hunger check, so we clear it and break hungerCheck to go to the calling metaEvaluate step
+			await actor.unsetFlag("metanthropes", "hungerRollResult");
+			mL(3, "metaRoll", "Hunger Check Passed, moving on");
+			//todo: perhaps I should minimize the sheet while the hunger check is happening?
+			break hungerCheck;
+		} else {
+			//? we need to do a hunger check, so we set the flag with the player intended action, so it will roll it without player interaction again, once we pass hunger check
+			await actor.setFlag("metanthropes", "MetaRollBeforeHungerCheck", {
+				action: action,
+				stat: stat,
+				isCustomRoll: isCustomRoll,
+				destinyCost: destinyCost,
+				itemUUID: itemUUID,
+			});
+			mL(3, "metaRoll", "Hunger Check required, Engaging Hunger Roll");
+			await metanthropes.dice.metaHungerRoll({ actorUUID: actorUUID, hungerLevel: hungerLevel });
+			return;
+		}
+	}
+
+	//* Calling metaEvaluate
+	mL(
+		3,
+		"metaRoll",
+		"Engaging metaEvaluate for:",
+		actor.name + "'s Custom",
+		action,
+		"with",
+		stat,
+		statScore,
+		"Multi-Action:",
+		multiAction,
+		"Perk Reduction:",
+		perkReduction,
+		"Aiming Reduction:",
+		aimingReduction,
+		"Reduction:",
+		reduction,
+		"Bonus:",
+		bonus,
+		"Penalty:",
+		penalty,
+		"Pain:",
+		pain,
+		"Destiny Cost:",
+		destinyCost,
+		"Item Name:",
+		itemName, //!todo
+		"Message ID:",
+		messageId,
+	);
+	await metanthropes.dice.metaEvaluate({
+		actorUUID,
+		action,
+		stat,
+		statScore,
+		multiAction,
+		perkReduction,
+		aimingReduction,
+		reduction,
+		bonus,
+		penalty,
+		pain,
+		destinyCost,
+		itemName,
+		messageId,
+		reroll,
+		rerollCounter,
+		itemUUID,
+	});
+
 	//* Post-Evaluate-roll actions
-	// intentionally left blank
+	await actor.unsetFlag("metanthropes", "customRollResult"); //? making sure we clear this
 	//? metaRoll Finished
 	mL(3, "metaRoll", "Finished");
 }
@@ -243,12 +241,14 @@ export async function metaRoll(
  * allowing for more complex roll configurations. It provides a dialog for the user to
  * select multi-actions, bonuses, penalties, etc. & then returns those values to metaRoll.
  *
- * @param {Object} actor - The actor making the roll.
+ * @export
+ * @async
+ * @param {object} actor - The actor making the roll. //todo actorUUID instead
  * @param {string} action - The type of action being performed (e.g., "StatRoll", "Metapower").
  * @param {string} stat - The stat being rolled against.
  * @param {number} statScore - The score of the stat being rolled.
- * @param {string} [itemName=null] - The name of the Metapower, Possession, or Combo being used.
- * @returns {Promise<Object>} A promise that resolves with roll modifiers: multiAction, bonus, customPenalty, customReduction, aimingReduction.
+ * @param {string} [itemName=null] - The name of the Metapower, Possession, or Combo being used. //todo itemUUID instead
+ * @returns {Promise<object>} A promise that resolves with roll modifiers: multiAction, bonus, customPenalty, customReduction, aimingReduction.
  */
 export async function metaRollCustomDialog(actor, action, stat, statScore, itemName = null) {
 	const mL = metanthropes.utils.metaLog;

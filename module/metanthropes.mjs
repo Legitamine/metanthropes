@@ -69,6 +69,7 @@ import { metaSortActions } from "./api/utils/sort-actions.mjs";
 import { metaRunMacro } from "./api/utils/run-macro.mjs";
 import { metaIsMetapowerEquipped, metaTransformStringForStorage, metaCheckSetting } from "./helpers/metahelpers.mjs";
 import { metaCreateFAIcon, metaCreateCustomIcon } from "./helpers/fa-enricher.mjs";
+import { metaLink } from "./helpers/link-enricher.mjs";
 import {
 	metaUpdateActorImages,
 	metaConvertPortraitToTokenImage,
@@ -160,6 +161,7 @@ globalThis.metanthropes = {
 		metaTransformStringForStorage,
 		metaIsMetapowerEquipped,
 		metaCreateFAIcon,
+		metaLink,
 		metaCreateCustomIcon,
 		metaUpdateActorImages,
 		metaUpdateTokenImages,

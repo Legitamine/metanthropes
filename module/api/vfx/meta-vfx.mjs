@@ -46,10 +46,10 @@ export async function metaVFX({
 	);
 	//? Grab the initiating actor's Token
 	const actor = await fromUuid(initiatingTokenUUID);
-	if (!actor) return mL(5, "metaVFX", "Could find Actor", actor, "from UUID", initiatingTokenUUID);
+	if (!actor) return mL(5, "metaVFX", "Could find Actor from initiatingTokenUUID", initiatingTokenUUID);
 	const actorToken = await actor.getActiveTokens(false, false)[0];
 	if (!actorToken) return mL(5, "metaVFX", "No Initiating Actor Token could be found for actor", actor);
-	mL(3, "metaVFX", "Initiating Actor: UUID/actor/actorToken", initiatingTokenUUID, actor, actorToken);
+	//mL(3, "metaVFX", "Initiating Actor: UUID/actor/actorToken", initiatingTokenUUID, actor, actorToken);
 	//? Crusible way of checking for DSN being active and await the animation to finish - assuming the animation is getting triggered from the message.id
 	//? Since we are not triggering via chat.id, we need to pass along the message.id so it can know to wait for it to finish?
 	//! if ( this.rolls.length && ("dice3d" in game) ) await game.dice3d.waitFor3DAnimationByMessageID(this.id);
@@ -301,10 +301,10 @@ export async function metaVFX({
 	});
 
 	//* Go thru each Token from the manuallySelectedTargets - future input from Targeting validation
-	for (const targetedActorUUID of JSON.parse(targetTokensUUIDs)) {
+	for (const targetedActorUUID of targetTokensUUIDs) {
 		const actor = await fromUuid(targetedActorUUID);
 		const targetedActor = await actor.getActiveTokens(false, false)[0]; //?would that work for target tokens too?
-		mL(3, "metaVFX", "TargetedActor UUID/actor/TargetedActor", targetedActorUUID, actor, targetedActor);
+		//mL(3, "metaVFX", "TargetedActor UUID/actor/TargetedActor", targetedActorUUID, actor, targetedActor);
 		let damageMessage = ``;
 		//todo can we change the font to the metanthropes font or roboto?
 		const textStyleOptions = { fill: damageColor, fontSize: Number(damageCount), fontWeight: "bold" };

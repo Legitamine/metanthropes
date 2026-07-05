@@ -9,37 +9,38 @@
  * todo need to review the structure in lieu of the new VFX & DSN support (Roll Orchestrator)
  * todo need to order the flow and account for who's able (supposed) to view the VFX and the dice rolls
  *
- * @param {Object} actor - The actor performing the roll. Expected to be an Actor object.
- * @param {string} what - The reason or purpose for the roll. Expected to be a string. (eg: "Damage")
- * @param {boolean} destinyReRoll - Determines if a re-roll using Destiny is allowed. Expected to be a boolean.
- * @param {number} dice - The number of d10 dice to roll. Expected to be a positive number.
- * @param {string} [itemName=null] - The name of the item associated with the roll, if any. Expected to be a string.
- * @param {number} [baseNumber=0] - A fixed number to add to the roll result, if any. Expected to be a positive number.
- * @param {boolean} [isHalf=false] - Determines if the roll result should be halved. Expected to be a boolean.
- * @param {boolean} [anchor=false] - Determines if the roll result should be prepared to be injected into a chat message. Expected to be a boolean. This should be reset to False for subsequent re rolls.
- * @param {boolean} [reroll=false] - Determines if the roll is a reroll. Expected to be a boolean.
- * @param {number} [rerollCounter=0] - The number of rerolls that have been performed. Expected to be a positive number.
- * @param {string} [messageId=null] - The message ID of the chat message for the reroll, if any. Expected to be a string.
- * @returns {Promise<...>}
+ * @param {object} metaRolld10Options
+ * @property {string} actorUUID - The UUID of the Actor performing the roll.
+ * @property {string} what - The reason or purpose for the roll. Example: "Damage"
+ * @property {boolean} destinyReRoll - Determines if a re-roll using Destiny is allowed.
+ * @property {number} dice - The number of d10 dice to roll. Expected to be a positive number.
+ * @property {null|string} [itemUUID=null] - The ItemUUID for the Item associated with the roll, if any.
+ * @property {number} [baseNumber=0] - A fixed number to add to the roll result, if any. Expected to be a positive number.
+ * @property {boolean} [isHalf=false] - Determines if the roll result should be halved.
+ * @property {boolean} [anchor=false] - Determines if the roll result should be prepared to be injected into a chat message.
+ * @property {boolean} [reroll=false] - Determines if the roll is a reroll.
+ * @property {number} [rerollCounter=0] - The number of rerolls that have been performed. Expected to be a positive number.
+ * @property {null|string} [messageId=null] - The message ID of the chat message for the reroll, if any.
+ * @returns {Promise<HTMLAnchorElement|ChatMessage|void>} - If anchor true it will return an Anchor element, if false will create a Chat Message.
  *
- * @example
- * Rolling an actor's Weapon Damage for 3 * d10:
- * metanthropes.dice.metaRolld10(actor, "Damage", true, 3, "Weapon Name");
  */
-export async function metaRolld10(
-	actor,
+export async function metaRolld10({
+	actorUUID,
 	what,
 	destinyReRoll,
 	dice,
-	itemName = null,
+	itemUUID = null,
 	baseNumber = 0,
 	isHalf = false,
 	anchor = false,
 	reroll = false,
 	rerollCounter = 0,
 	messageId = null,
-) {
+}) {
 	const mL = metanthropes.utils.metaLog;
+	const actor = await fromUuid(actorUUID);
+	const item = (await fromUuid(itemUUID)) ?? null;
+	const itemName = item?.name ?? null;
 	dice = typeof dice === "string" ? parseInt(dice) : dice;
 	baseNumber = typeof baseNumber === "string" ? parseInt(baseNumber) : baseNumber;
 	//? ensure reading the string to match a bool value
@@ -149,18 +150,17 @@ export async function metaRolld10(
 		}
 	}
 	//? Create the re-roll button for the chat, taking into account anchoring for re-rolls
-	const reRollButtonMessage = `<br>${actor.name} has ${actor.currentDestiny}
-	@METAFA(hand-fingers-crossed) Destiny remaining.<br>
-	<div class="hide-button hidden"><br><button class="metanthropes-secondary-chat-button rolld10-reroll"
-	data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+	const reRollButtonMessage = `<div class="hide-button hidden"><br><button class="metanthropes-secondary-chat-button rolld10-reroll"
+	data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-itemuuid="${itemUUID}"
 	data-what="${what}" data-destiny-re-roll="${destinyReRoll}"
 	data-dice="${dice}" data-base-number="${baseNumber}" data-is-half="${isHalf}"
 	data-anchor="${anchor}" data-message-id="${messageId}"
 	data-reroll="true" data-reroll-counter="${rerollCounter}"
-	>Spend @METAFA(hand-fingers-crossed) Destiny to reroll</button><br></div>`;
+	>Spend @METAFA(hand-fingers-crossed) Destiny to reroll</button></div>`;
 	if (destinyReRoll && actor.currentDestiny > 0) {
 		message += reRollButtonMessage;
 	}
+	message += `<div class="hide-button hidden"><br>${actor.name} has ${actor.currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.<br></div>`;
 	await actor.setFlag("metanthropes", "lastrolled", {
 		rolld10: rollTotal,
 		rolld10what: what,
@@ -179,7 +179,7 @@ export async function metaRolld10(
 			dataset: {
 				total: rollTotal,
 				actoruuid: actor.uuid,
-				item: itemName,
+				itemuuid: itemUUID,
 				what,
 				destinyReRoll,
 				dice,
@@ -199,16 +199,22 @@ export async function metaRolld10(
 		if (!reroll) {
 			//* Not a reroll, printing a new message
 			mL(3, "metaRolld10", "Not Anchored", "No Re-Roll", "Creating new chat message");
-			const updatedRoll = await rolld10.toJSON();
-			const renderedRoll = await rolld10.render();
-			rolld10.toMessage({
+			//const updatedRoll = await rolld10.toJSON();
+			//const renderedRoll = await rolld10.render();
+			const rollMode = game.settings.get("core", "rollMode");
+			const chatData = {
 				speaker: ChatMessage.getSpeaker({ actor: actor }),
 				flavor: enrichedMessage,
-				rolls: updatedRoll,
-				content: renderedRoll,
-				rollMode: game.settings.get("core", "rollMode"),
+				//rolls: updatedRoll,
+				//content: renderedRoll,
 				flags: { metanthropes: { actoruuid: actor.uuid } },
-			});
+			};
+			//rolld10.toMessage(chatData, { messageMode: rollMode });
+			await metanthropes.applications.MetaChatMessage.applyMode(chatData, rollMode);
+			if (game.dice3d) {
+				await game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
+			}
+			await metanthropes.applications.MetaChatMessage.create(chatData);
 		} else {
 			//* Rerolling, update the previous message
 			mL(3, "metaRolld10", "Not Anchored", "Re-Roll", "Updating chat message", messageId);
@@ -217,15 +223,15 @@ export async function metaRolld10(
 				mL(2, "metaRolld10", "Not Anchored", "Re-Roll", "Could not find the chat message to update", messageId);
 				return;
 			}
-			const renderedRoll = await rolld10.render();
+			//const renderedRoll = await rolld10.render();
 			//? Call Dice So Nice to show the roll
 			if (game.dice3d && dice > 0) {
 				await game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
 			}
 			chatMessage.update({
 				flavor: enrichedMessage,
-				content: renderedRoll,
-				rollMode: game.settings.get("core", "rollMode"),
+				//content: renderedRoll,
+				//! not needed rollMode: game.settings.get("core", "rollMode"),
 				flags: { metanthropes: { actoruuid: actor.uuid } },
 			});
 		}
@@ -263,17 +269,18 @@ export async function metaRolld10ReRoll(event) {
 		ui.notifications.warn("Could not retrieve the message ID.");
 		return;
 	}
-	const actoruuid = button.dataset.actoruuid;
+	const actorUUID = button.dataset.actoruuid;
 	const what = button.dataset.what;
 	const destinyReRoll = button.dataset.destinyReRoll === "true" ? true : false;
-	const itemName = button.dataset.itemName === "null" ? null : button.dataset.itemName;
+	const itemUUID = button.dataset.itemuuid === "null" ? null : button.dataset.itemuuid;
+	// const itemName = button.dataset.itemName === "null" ? null : button.dataset.itemName;
 	const dice = parseInt(button.dataset.dice) ?? 0;
 	const baseNumber = parseInt(button.dataset.baseNumber) ?? 0;
 	const isHalf = button.dataset.isHalf === "true" ? true : false;
 	const anchor = button.dataset.anchor === "true" ? true : false;
-	let reroll = button.dataset.reroll === "false" ? false : true;
-	let rerollCounter = parseInt(button.dataset.rerollCounter) ?? 0;
-	const actor = await fromUuid(actoruuid);
+	const reroll = button.dataset.reroll === "false" ? false : true;
+	const rerollCounter = parseInt(button.dataset.rerollCounter) ?? 0;
+	const actor = await fromUuid(actorUUID);
 	const targets = button.dataset.targets ? button.dataset.targets.split(",") : ([] ?? null);
 	//* Return conditions
 	//? Need to check if actor has enough Destiny to spend, because they might have already spent it on another secondary button
@@ -290,17 +297,17 @@ export async function metaRolld10ReRoll(event) {
 	await actor.applyDestinyChange(-1);
 	//* Call metaRolld10
 	mL(3, "metaRolld10ReRoll", "Finished, calling metaRolld10", reroll ? "Reroll" : "No reroll");
-	await metanthropes.dice.metaRolld10(
-		actor,
+	await metanthropes.dice.metaRolld10({
+		actorUUID,
 		what,
 		destinyReRoll,
 		dice,
-		itemName,
+		itemUUID,
 		baseNumber,
 		isHalf,
 		anchor,
 		reroll,
 		rerollCounter,
 		messageId,
-	);
+	});
 }

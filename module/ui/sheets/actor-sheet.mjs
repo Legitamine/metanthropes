@@ -76,7 +76,6 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		context.homebrewFeatures = metanthropes.utils.metaCheckSetting("homebrew", "metaHomebrew");
 		context.betaTesting = metanthropes.utils.metaCheckSetting("core", "metaBetaTesting");
 		context.advancedLogging = game.settings.get("metanthropes", "metaAdvancedLogging");
-		context.advancedBetaTesting = context.betaTesting && context.advancedLogging;
 		context.isNarrator = game.user.isGM;
 		context.secretNarratorNotes = await foundry.applications.ux.TextEditor.enrichHTML(
 			actorData.system["secret-notes-narrator"].value,
@@ -717,6 +716,13 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		}
 	}
 	async _onCoverRoll(event) {
+		event.preventDefault();
+		const element = event.currentTarget;
+		//? Disable the element for 3 seconds to prevent double-clicking
+		element.disabled = true;
+		setTimeout(() => {
+			element.disabled = false;
+		}, 3000);
 		metanthropes.dice.handleCoverRolls(event, this);
 	}
 	async _onChangePortrait(event) {
