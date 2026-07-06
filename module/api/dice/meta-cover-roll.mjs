@@ -52,20 +52,20 @@ export async function metaCoverRoll({
 		rerollCounter++;
 		if (rerollCounter > 1) startMessage += ` (@METAFA(xmark, null, xs)${rerollCounter})`;
 	}
-	coverMessage = `${startMessage} to find ${coverType} Cover, with ${coverValue}% and gets a result of ${coverRollResult} (needed ${coverTarget} or less).<br><br>`;
+	coverMessage = `${startMessage} to find ${coverType} Cover, with ${coverValue}% and gets a result of <b>${coverRollResult}</b> (needed ${coverTarget} or less).<br><br>`;
 	if (coverRollResult > coverTarget) {
-		coverMessage += `It is a @METAFA(square-xmark, failure) Failure!<br><br>${actor.name} can't find Cover!`;
+		coverMessage += `It is a @METAFA(square-xmark, failure) <b>Failure</b>!<hr/>${actor.name} can't find Cover!`;
 		//? Button to re-roll Cover using destiny
 		const currentDestiny = Number(actor.system.Vital.Destiny.value);
 		if (currentDestiny > 0) {
 			coverMessage += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button cover-reroll" 
 			data-actoruuid="${actor.uuid}" data-cover-value="${coverValue}" data-type="${coverType}"
 			data-reroll="true" data-reroll-counter="${rerollCounter}"
-			>Spend @METAFA(hand-fingers-crossed) Destiny to reroll</button><br></div><br>`;
+			>Spend @METAFA(hand-fingers-crossed) Destiny to reroll</button><br></div>`;
 		}
-		coverMessage += `<br><div class="hide-button hidden">${actor.name} has ${currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.</div><br>`;
+		coverMessage += `<div class="hide-button hidden">${actor.name} has ${currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.</div>`;
 	} else {
-		coverMessage += `It is a @METAFA(square, success) Success!<hr />${actor.name} found ${coverType} Cover!<br><br>`;
+		coverMessage += `It is a @METAFA(square, success) <b>Success</b>!<hr />${actor.name} found ${coverType} Cover!`;
 	}
 	//* Enrich the message
 	const enrichedMessage = await foundry.applications.ux.TextEditor.enrichHTML(coverMessage, { async: true });
@@ -76,16 +76,11 @@ export async function metaCoverRoll({
 			ui.notifications.warn("Could not find the chat message to update.");
 			return;
 		}
-		const updatedRoll = await coverRoll.toJSON();
-		const renderedRoll = await coverRoll.render();
 		if (game.dice3d) {
 			await game.dice3d.showForRoll(coverRoll, game.user, true, null, false, messageId);
 		}
 		chatMessage.update({
 			flavor: enrichedMessage,
-			rolls: updatedRoll,
-			content: renderedRoll, //? controls clickable roll result in chat
-			//! not needed for updates rollMode: game.settings.get("core", "rollMode"),
 			flags: { metanthropes: { actoruuid: actor.uuid } },
 		});
 	} else {
@@ -96,7 +91,11 @@ export async function metaCoverRoll({
 			flags: { metanthropes: { actoruuid: actor.uuid } },
 		};
 		const rollMode = game.settings.get("core", "rollMode");
-		coverRoll.toMessage(chatData, { messageMode: rollMode });
+		await metanthropes.applications.MetaChatMessage.applyMode(chatData, rollMode);
+		if (game.dice3d) {
+			await game.dice3d.showForRoll(coverRoll, game.user, true, null, false, messageId);
+		}
+		chatMessage = await metanthropes.applications.MetaChatMessage.create(chatData);
 	}
 }
 

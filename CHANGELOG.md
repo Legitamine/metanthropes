@@ -15,28 +15,27 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 ### Added:
 
 - Added support for Foundry VTT V14 Stable 7 (build 365) - TBC
-- Added a new text Enricher for linking documents inline with text. Simillar @METALINK(ItemUUID) will resolve to an inline clickable button that will open the Item Sheet, with the proper Item icon (Metapower/Possession) and display the Metapower Name - Level or Possession Category - Attack Type as a tooltip.
-  Also when targeted actors are part of the resolution of an activation, the targeted list(now always displays regadless of only damg/heal -- todo) and targeted actors are linked to that text
-  -defer TODO New Roll Text Enrichers: narrators can right click to send them to the chat, anyone who clicks it makes the roll with options pre-defined by the narrator.
-    - todo Roll Mode Icon in the chat message header perhaps? probably with the custom chatMessage engine
+- Added a new text Enricher for linking Metanthropes documents inline with text. Simillar to the built-in @UUID enricher, the new **@METALINK(UUID)** enricher, will resolve to an inline clickable button that will open the Document Sheet, with the proper Font Awesome icon (Actor/Metapower/Possession) and display additional information as a tooltip.
+- The new @METALINK(UUID) enricher is now used in Chat messages in reference to the Actors being targeted and/or the Items(Metapowers/Possessions) that are being used. Buttons from this new enricher are set so that Players may only click on links that they have ownership (they can still see the Tooltip information). Narrators can always see & use them.
 
 ### Changed:
 
-- When doing a Custom Roll (right click) while being affected by the Hunger condition, the Dialog for the Custom Roll now appears before the Hunger check, and the inputs are saved and used automatically, after you pass the Hunger condition check, making the whole process much more intuitive.
 - Conditions that have an end of turn effect during Combat (Unconscious, Asphyxiation, Fatigue) now have their messages localized. Also improved the formating of such Combat Chat Messages, to be easier to read if multiple Conditions apply to a character.
+- When doing a Custom Roll (right click) while being affected by the Hunger condition, the Dialog for the Custom Roll now appears before the Hunger check, and the inputs are saved and used automatically, after you pass the Hunger condition check, making the whole process much more intuitive.
+- A list of Targeted Actors (with the new enricher) will now always display in the Chat Message, if available.
+- Streamlined the appeareance of Chat Messages to take less space and hide redundant information, while becoming more uniform, accross all types of rolls. They will no longer display the default dice roll content element as part of the message.
+- Chat Messages will now hide the 'Actor has X Destiny remaining' part and only reveal it to those who can see & interact with the re-roll buttons. By default that is only Assigned Players & Narrators (GMs).
 - todo: Updated the code documentation for all API Dice functions.
-- Streamlined the appeareance of Chat Messages to take less space and hide redundant information. They will no longer display the default dice roll content element as part of the message. (todo cover/hunger)
-- Chat Messages will now hide the 'Actor has X Destiny remaining' part and only reveal it to those who can see & interact with the re-roll buttons. By default that is only the owner of the Actor & Narrators (GMs).
-- todo clean up of empty spaces in chat messages
 
 ### Fixed:
 
 - All Dice functions now properly respect the Roll Mode selected in the UI. Re-rolls that update an exising message, won't affect its visibility, even if the Roll Mode is changed between re-rolls.
-- todo: fix issue with vfxdata / function mL being passed with errors in netlog
+- Fixed an issue with the new Network Log feature, where it would try to stringify objects before sending, now instead it will omitt such objects from the Network Log.
+- Fixed Cover Rolls so that now they won't allow accidental double-clicks.
 
 ### Breaking:
 
-- The API for metanthropes.dice has changed significantly and these changes should be considered breaking if you have used the API in custom macros or scenarios. All API Dice functions now take an options-object for parameters. Also they now take Actor & Item UUIDs instead of objects for such properties.
+- The API for metanthropes.dice has changed significantly and these changes should be considered breaking if you have used the API in custom macros or scenarios. All API Dice functions now take an options-object for parameters & also take Actor & Item UUIDs instead of objects for such properties.
 
 ---
 

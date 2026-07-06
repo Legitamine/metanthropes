@@ -89,7 +89,7 @@ export async function metaHealingReRoll(event) {
 		rerollCounter++;
 		if (rerollCounter > 1) startMessage += ` (@METAFA(xmark, null)${rerollCounter})`;
 	}
-	flavorMessage = `${startMessage} ${itemName}'s @METAFA(heart-pulse) Healing`;
+	flavorMessage = `${startMessage} @METALINK(${itemUUID})'s @METAFA(heart-pulse) Healing`;
 	if (healSelectedTargets)
 		flavorMessage += ` to ${targetedActors.length} target${targetedActors.length > 1 ? "s" : ""}:<br>`;
 	else flavorMessage += `.<br>`;
@@ -97,6 +97,7 @@ export async function metaHealingReRoll(event) {
 	contentMessage += `${healingMessage}`;
 	contentMessage += `</div>`;
 	if (actor.currentDestiny > 0) {
+		contentMessage += `<div class="hide-button hidden"><hr/></div>`;
 		const healingReRollButton = `<div class="hide-button hidden">
 		<button class="metanthropes-secondary-chat-button damage roll-healing-reroll chat-button-anchor"
 		data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-itemuuid="${itemUUID}"
@@ -105,9 +106,8 @@ export async function metaHealingReRoll(event) {
 		data-heal-selected-targets="${healSelectedTargets}"
 		>Spend @METAFA(hand-fingers-crossed) to Reroll @METAFA(heart-pulse) Healing
 		</button></div>`;
-		contentMessage += `<br>`;
 		contentMessage += healingReRollButton;
-		contentMessage += `<br>`;
+		contentMessage += `<div class="hide-button hidden"><br></div>`;
 	}
 	contentMessage += `<div class="hide-button hidden">${actor.name} has ${actor.currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.<br><br></div>`;
 	const enrichedContent = await foundry.applications.ux.TextEditor.enrichHTML(contentMessage, { async: true });

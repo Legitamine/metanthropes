@@ -7,7 +7,7 @@
  ** usage: metanthropes.utils.metaLog(3, "module/phase", "name of the function", "description of the log", "variable1", variable1, "variable2", variable2);
  ** example: metaLog(3, "System", "_onSomeHook", "Should display the Actor Name", actor.name);
  *
- * @param {Number} logType
+ * @param {number} logType
  * @param  {...any} variables
  * @returns
  */
@@ -61,7 +61,7 @@ export function metaLog(logType = 0, ...variables) {
 			logType,
 			message: logStrings.join(""),
 			styles,
-			logObjects: JSON.stringify(logObjects),
+			logObjects: "[Objects omitted from Network Log]",
 		};
 		game.socket.emit("system.metanthropes", payload);
 	}

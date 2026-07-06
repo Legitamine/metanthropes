@@ -179,7 +179,7 @@ export async function metaDamageReRoll(event) {
 		rerollCounter++;
 		if (rerollCounter > 1) startMessage += ` (@METAFA(xmark, null)${rerollCounter})`;
 	}
-	flavorMessage = `${startMessage} ${itemName}'s @METAFA(burst) Damage`;
+	flavorMessage = `${startMessage} @METALINK(${itemUUID})'s @METAFA(burst) Damage`;
 	if (damageSelectedTargets)
 		flavorMessage += ` to ${targetedActors.length} target${targetedActors.length > 1 ? "s" : ""}:<br>`;
 	else flavorMessage += `.<br>`;
@@ -192,6 +192,7 @@ export async function metaDamageReRoll(event) {
 	if (psychicDamageRollResult > 0)
 		contentMessage += `<div class="meta-roll-inline-results">${damagePsychicMessage}</div>`;
 	if (actor.currentDestiny > 0) {
+		contentMessage += `<div class="hide-button hidden"><hr/></div>`;
 		const damageReRollButton = `<div class="hide-button hidden">
 		<button class="metanthropes-secondary-chat-button damage roll-damage-reroll chat-button-anchor"
 		data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
@@ -203,9 +204,8 @@ export async function metaDamageReRoll(event) {
 		data-damage-selected-targets="${damageSelectedTargets}" data-itemuuid="${itemUUID}"
 		>Spend @METAFA(hand-fingers-crossed) to Reroll @METAFA(burst) Damage
 		</button></div>`;
-		contentMessage += `<br>`;
 		contentMessage += damageReRollButton;
-		contentMessage += `<br>`;
+		contentMessage += `<div class="hide-button hidden"><br></div>`;
 	}
 	contentMessage += `<div class="hide-button hidden">${actor.name} has ${actor.currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.<br></div>`;
 	const enrichedContent = await foundry.applications.ux.TextEditor.enrichHTML(contentMessage, { async: true });

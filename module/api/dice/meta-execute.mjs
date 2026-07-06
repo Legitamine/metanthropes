@@ -585,16 +585,16 @@ export async function metaExecute({ event = null, actorUUID, itemUUID, action, m
 			) {
 				contentMessage += `Applying @METAFA(burst) Damage to @METAFA(bullseye) Target${
 					targetedActorNames.length > 1 ? "s" : ""
-				}: ${targetedActorLinks}<br><br>`;
+				}: ${targetedActorLinks}<br>`;
 			}
 			if (actionableTargets > 0 && healingMessage && duration.includes("Instantaneous")) {
 				contentMessage += `Applying @METAFA(heart-pulse) Healing to @METAFA(bullseye) Target${
 					targetedActorNames.length > 1 ? "s" : ""
-				}: ${targetedActorLinks}<br><br>`;
+				}: ${targetedActorLinks}<br>`;
 			}
 			//? Show selected Targets for non-Damage/Healing messages
 			if (actionableTargets > 0 && !duration.includes("Instantaneous")) {
-				contentMessage += `Selected Target${targetedActorNames.length > 1 ? "s" : ""}: ${targetedActorLinks}<br><br>`;
+				contentMessage += `Selected Target${targetedActorNames.length > 1 ? "s" : ""}: ${targetedActorLinks}<br>`;
 			}
 
 			if (damageCosmicMessage) {
@@ -623,39 +623,14 @@ export async function metaExecute({ event = null, actorUUID, itemUUID, action, m
 				contentMessage += `</div>`;
 			}
 		}
-		if (damageCosmicMessage || damageElementalMessage || damageMaterialMessage || damagePsychicMessage) {
-			if (duration.includes("Instantaneous")) damageSelectedTargets = true;
-			if (actor.currentDestiny > 0) {
-				const damageReRollButton = `<div class="hide-button hidden">
-				<button class="metanthropes-secondary-chat-button damage roll-damage-reroll chat-button-anchor"
-				data-targets="${targetedActorsUUIDs}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
-				data-what="Damage" data-anchor="true" data-reroll="false" data-reroll-counter="1"
-				data-message-id="null" data-destiny-re-roll="true" data-damage-selected-targets="${damageSelectedTargets}"
-				data-first-message="true" data-itemuuid="${itemUUID}"
-				${cosmicDamageRollParams} ${elementalDamageRollParams}
-				${materialDamageRollParams} ${psychicDamageRollParams}
-				>Spend @METAFA(hand-fingers-crossed) to Reroll @METAFA(burst) Damage
-				</button></div>`;
-				contentMessage += damageReRollButton;
-			}
+		if (
+			damageCosmicMessage ||
+			damageElementalMessage ||
+			damageMaterialMessage ||
+			damagePsychicMessage ||
+			healingMessage
+		)
 			contentMessage += `<hr />`;
-		}
-		if (healingMessage) {
-			if (duration.includes("Instantaneous")) healSelectedTargets = true;
-			if (actor.currentDestiny > 0) {
-				const healingRerollButton = `<div class="hide-button hidden">
-				<button class="metanthropes-secondary-chat-button healing roll-healing-reroll chat-button-anchor"
-				data-targets="${targetedActorsUUIDs}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
-				data-what="Healing" data-anchor="true" data-heal-selected-targets="${healSelectedTargets}"
-				data-reroll="false" data-reroll-counter="1" data-message-id="null"
-				data-destiny-re-roll="true" ${healingRollParams} data-itemuuid="${itemUUID}"
-				data-first-message="true"
-				>Spend @METAFA(hand-fingers-crossed) to Reroll @METAFA(heart-pulse) Healing
-				</button></div>`;
-				contentMessage += healingRerollButton;
-			}
-			contentMessage += `<hr />`;
-		}
 		if (specialMessage) {
 			contentMessage += specialMessage;
 			contentMessage += `<hr />`;
@@ -685,9 +660,41 @@ export async function metaExecute({ event = null, actorUUID, itemUUID, action, m
 		// dialog returns an update to the chat message with the new results ideally.
 		// ok vasika anti na pame sto chat, pame na to kanoume present se ena dialog prwta kai ekei na rwtame ean exoume mpei sto if
 		//? check if actor has enough destiny points to reroll
-
+		let destinyRerollButtonMessage = false;
+		if (damageCosmicMessage || damageElementalMessage || damageMaterialMessage || damagePsychicMessage) {
+			if (duration.includes("Instantaneous")) damageSelectedTargets = true;
+			if (actor.currentDestiny > 0) {
+				const damageReRollButton = `<div class="hide-button hidden">
+				<button class="metanthropes-secondary-chat-button damage roll-damage-reroll chat-button-anchor"
+				data-targets="${targetedActorsUUIDs}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+				data-what="Damage" data-anchor="true" data-reroll="false" data-reroll-counter="1"
+				data-message-id="null" data-destiny-re-roll="true" data-damage-selected-targets="${damageSelectedTargets}"
+				data-first-message="true" data-itemuuid="${itemUUID}"
+				${cosmicDamageRollParams} ${elementalDamageRollParams}
+				${materialDamageRollParams} ${psychicDamageRollParams}
+				>Spend @METAFA(hand-fingers-crossed) to Reroll @METAFA(burst) Damage
+				</button></div>`;
+				contentMessage += damageReRollButton;
+				destinyRerollButtonMessage = true;
+			}
+		}
+		if (healingMessage) {
+			if (duration.includes("Instantaneous")) healSelectedTargets = true;
+			if (actor.currentDestiny > 0) {
+				const healingRerollButton = `<div class="hide-button hidden">
+				<button class="metanthropes-secondary-chat-button healing roll-healing-reroll chat-button-anchor"
+				data-targets="${targetedActorsUUIDs}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+				data-what="Healing" data-anchor="true" data-heal-selected-targets="${healSelectedTargets}"
+				data-reroll="false" data-reroll-counter="1" data-message-id="null"
+				data-destiny-re-roll="true" ${healingRollParams} data-itemuuid="${itemUUID}"
+				data-first-message="true"
+				>Spend @METAFA(hand-fingers-crossed) to Reroll @METAFA(heart-pulse) Healing
+				</button></div>`;
+				contentMessage += healingRerollButton;
+				destinyRerollButtonMessage = true;
+			}
+		}
 		if (actor.currentDestiny > 0) {
-			let destinyRerollButtonMessage = false;
 			//? add destiny reroll buttons
 			if (actionSlotRerollButton) {
 				contentMessage += actionSlotRerollButton;
@@ -709,7 +716,7 @@ export async function metaExecute({ event = null, actorUUID, itemUUID, action, m
 				contentMessage += `<br>`;
 			}
 		}
-		contentMessage += `<div class="hide-button hidden"><br>${actor.name} has ${actor.currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.<br></div>`;
+		contentMessage += `<div class="hide-button hidden">${actor.name} has ${actor.currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.</div>`;
 	}
 
 	//* Post Execution Actions

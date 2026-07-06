@@ -123,34 +123,34 @@ export async function metaRolld10({
 	if (itemName) {
 		if (baseNumber > 0) {
 			if (isHalf) {
-				message = `${messageStart} ${itemName}'s ${what} with (${dice}d10)/2 + ${baseNumber} and gets a total of <span style="font-weight: bold;">${rollTotal}</span>.<br>`;
+				message = `${messageStart} @METALINK(${itemUUID})'s ${what} with (${dice}d10)/2 + ${baseNumber} and gets a total of <b>${rollTotal}</b>.<br>`;
 			} else {
-				message = `${messageStart} ${itemName}'s ${what} with ${dice}d10 + ${baseNumber} and gets a total of <span style="font-weight: bold;">${rollTotal}</span>.<br>`;
+				message = `${messageStart} @METALINK(${itemUUID})'s ${what} with ${dice}d10 + ${baseNumber} and gets a total of <b>${rollTotal}</b>.<br>`;
 			}
 		} else {
 			if (isHalf) {
-				message = `${messageStart} ${itemName}'s ${what} with (${dice}d10)/2 and gets a total of <span style="font-weight: bold;">${rollTotal}</span>.<br>`;
+				message = `${messageStart} @METALINK(${itemUUID})'s ${what} with (${dice}d10)/2 and gets a total of <b>${rollTotal}</b>.<br>`;
 			} else {
-				message = `${messageStart} ${itemName}'s ${what} with ${dice}d10 and gets a total of <span style="font-weight: bold;">${rollTotal}</span>.<br>`;
+				message = `${messageStart} @METALINK(${itemUUID})'s ${what} with ${dice}d10 and gets a total of <b>${rollTotal}</b>.<br>`;
 			}
 		}
 	} else {
 		if (baseNumber > 0) {
 			if (isHalf) {
-				message = `${messageStart} ${what} with (${dice}d10)/2 + ${baseNumber} and gets a total of <span style="font-weight: bold;">${rollTotal}</span>.<br>`;
+				message = `${messageStart} ${what} with (${dice}d10)/2 + ${baseNumber} and gets a total of <b>${rollTotal}</b>.<br>`;
 			} else {
-				message = `${messageStart} ${what} with ${dice}d10 + ${baseNumber} and gets a total of <span style="font-weight: bold;">${rollTotal}</span>.<br>`;
+				message = `${messageStart} ${what} with ${dice}d10 + ${baseNumber} and gets a total of <b>${rollTotal}</b>.<br>`;
 			}
 		} else {
 			if (isHalf) {
-				message = `${messageStart} ${what} with (${dice}d10)/2 and gets a total of <span style="font-weight: bold;">${rollTotal}</span>.<br>`;
+				message = `${messageStart} ${what} with (${dice}d10)/2 and gets a total of <b>${rollTotal}</b>.<br>`;
 			} else {
-				message = `${messageStart} ${what} with ${dice}d10 and gets a total of <span style="font-weight: bold;">${rollTotal}</span>.<br>`;
+				message = `${messageStart} ${what} with ${dice}d10 and gets a total of <b>${rollTotal}</b>.<br>`;
 			}
 		}
 	}
 	//? Create the re-roll button for the chat, taking into account anchoring for re-rolls
-	const reRollButtonMessage = `<div class="hide-button hidden"><br><button class="metanthropes-secondary-chat-button rolld10-reroll"
+	const reRollButtonMessage = `<div class="hide-button hidden"><hr/><button class="metanthropes-secondary-chat-button rolld10-reroll"
 	data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-itemuuid="${itemUUID}"
 	data-what="${what}" data-destiny-re-roll="${destinyReRoll}"
 	data-dice="${dice}" data-base-number="${baseNumber}" data-is-half="${isHalf}"
@@ -160,7 +160,7 @@ export async function metaRolld10({
 	if (destinyReRoll && actor.currentDestiny > 0) {
 		message += reRollButtonMessage;
 	}
-	message += `<div class="hide-button hidden"><br>${actor.name} has ${actor.currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.<br></div>`;
+	message += `<div class="hide-button hidden"><br>${actor.name} has ${actor.currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.</div>`;
 	await actor.setFlag("metanthropes", "lastrolled", {
 		rolld10: rollTotal,
 		rolld10what: what,
@@ -199,17 +199,12 @@ export async function metaRolld10({
 		if (!reroll) {
 			//* Not a reroll, printing a new message
 			mL(3, "metaRolld10", "Not Anchored", "No Re-Roll", "Creating new chat message");
-			//const updatedRoll = await rolld10.toJSON();
-			//const renderedRoll = await rolld10.render();
 			const rollMode = game.settings.get("core", "rollMode");
 			const chatData = {
 				speaker: ChatMessage.getSpeaker({ actor: actor }),
 				flavor: enrichedMessage,
-				//rolls: updatedRoll,
-				//content: renderedRoll,
 				flags: { metanthropes: { actoruuid: actor.uuid } },
 			};
-			//rolld10.toMessage(chatData, { messageMode: rollMode });
 			await metanthropes.applications.MetaChatMessage.applyMode(chatData, rollMode);
 			if (game.dice3d) {
 				await game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
@@ -223,15 +218,12 @@ export async function metaRolld10({
 				mL(2, "metaRolld10", "Not Anchored", "Re-Roll", "Could not find the chat message to update", messageId);
 				return;
 			}
-			//const renderedRoll = await rolld10.render();
 			//? Call Dice So Nice to show the roll
 			if (game.dice3d && dice > 0) {
 				await game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
 			}
 			chatMessage.update({
 				flavor: enrichedMessage,
-				//content: renderedRoll,
-				//! not needed rollMode: game.settings.get("core", "rollMode"),
 				flags: { metanthropes: { actoruuid: actor.uuid } },
 			});
 		}
@@ -273,7 +265,6 @@ export async function metaRolld10ReRoll(event) {
 	const what = button.dataset.what;
 	const destinyReRoll = button.dataset.destinyReRoll === "true" ? true : false;
 	const itemUUID = button.dataset.itemuuid === "null" ? null : button.dataset.itemuuid;
-	// const itemName = button.dataset.itemName === "null" ? null : button.dataset.itemName;
 	const dice = parseInt(button.dataset.dice) ?? 0;
 	const baseNumber = parseInt(button.dataset.baseNumber) ?? 0;
 	const isHalf = button.dataset.isHalf === "true" ? true : false;

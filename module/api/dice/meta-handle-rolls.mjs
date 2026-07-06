@@ -9,10 +9,10 @@
  *
  * @export
  * @async
- * @param {*} event 
- * @param {*} metaSheet 
- * @param {boolean} [isCustomRoll=false] 
- * @returns {unknown} 
+ * @param {*} event
+ * @param {*} metaSheet
+ * @param {boolean} [isCustomRoll=false]
+ * @returns {boolean}
  */
 export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 	const mL = metanthropes.utils.metaLog;
@@ -111,14 +111,13 @@ export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 
 /**
  * HandleCoverRolls - A utility function to handle cover rolls for the Metanthropes system.
- * 
+ *
  * This Function is called via a button or click event in the actor sheet, not called directly.
- * todo Disable elements properly
  * todo this sould all be handled on the actor sheet AND also be able to be called programmatically in a better way
  * todo This should be called directly at a later milestone when integrating with the Targeting & Aiming system
  * todo better params
  * todo review what is returned from the metaCoverRoll and adjust the flow
- * todo or simply merge with the above metaHandleRolls
+ * todo or simply merge with the above metaHandleRolls - no want for custom roll so no
  *
  * @export
  * @async
@@ -127,16 +126,17 @@ export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
  * @returns {*}
  */
 export async function handleCoverRolls(event, metaSheet) {
-	event.preventDefault();
+	// event.preventDefault(); //! review if I would actually want this?
 	const element = event.currentTarget;
 	//? Disable the element for 3 seconds to prevent double-clicking
-	element.disabled = true;
-	setTimeout(() => {
-		element.disabled = false;
-	}, 3000);
+	// element.disabled = true;
+	// setTimeout(() => {
+	// 	element.disabled = false;
+	// }, 3000);
 	const dataset = element.dataset;
 	const actor = metaSheet.actor;
 	const coverType = dataset.type;
 	const coverValue = parseInt(dataset.coverValue);
-	metanthropes.dice.metaCoverRoll({actorUUID: actor.uuid, coverType, coverValue});
+	await metanthropes.dice.metaCoverRoll({ actorUUID: actor.uuid, coverType, coverValue });
+	return true;
 }
