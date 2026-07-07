@@ -35,7 +35,6 @@ export async function metaDamageReRoll(event) {
 	let item = null;
 	if (itemUUID) item = await fromUuid(itemUUID);
 	const itemName = item?.name ?? null;
-	// const itemName = button.dataset.itemName === "null" ? null : button.dataset.itemName; //todo check the dataset created
 	let reroll = button.dataset.reroll === "false" ? false : true;
 	let rerollCounter = parseInt(button.dataset.rerollCounter) || 0;
 	const actor = await fromUuid(actorUUID);
@@ -73,7 +72,7 @@ export async function metaDamageReRoll(event) {
 	}
 	//? Need to ensure we have valid targets before reducing destiny
 	if (!targetedActors.length && damageSelectedTargets) {
-		ui.notifications.warn("You must select valid targets first");
+		ui.notifications.warn("You must select valid Targets first");
 		button.classList.remove("disabled");
 		return;
 	}
@@ -181,7 +180,7 @@ export async function metaDamageReRoll(event) {
 	}
 	flavorMessage = `${startMessage} @METALINK(${itemUUID})'s @METAFA(burst) Damage`;
 	if (damageSelectedTargets)
-		flavorMessage += ` to ${targetedActors.length} target${targetedActors.length > 1 ? "s" : ""}:<br>`;
+		flavorMessage += ` to ${targetedActors.length} @METAFA(bullseye) Target${targetedActors.length > 1 ? "s" : ""}:<br>`;
 	else flavorMessage += `.<br>`;
 	if (cosmicDamageRollResult > 0)
 		contentMessage += `<div class="meta-roll-inline-results">${damageCosmicMessage}</div>`;
@@ -195,7 +194,7 @@ export async function metaDamageReRoll(event) {
 		contentMessage += `<div class="hide-button hidden"><hr/></div>`;
 		const damageReRollButton = `<div class="hide-button hidden">
 		<button class="metanthropes-secondary-chat-button damage roll-damage-reroll chat-button-anchor"
-		data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+		data-targets="${targetedActors}" data-actoruuid="${actor.uuid}"
 		data-what="Damage" data-anchor="true" data-reroll="true" data-reroll-counter="${rerollCounter}" data-message-id="${messageId}"
 		data-destiny-re-roll="true" data-dice-cosmic="${damageDiceCosmic}" data-base-cosmic="${damageBaseCosmic}"
 		data-dice-elemental="${damageDiceElemental}" data-base-elemental="${damageBaseElemental}"

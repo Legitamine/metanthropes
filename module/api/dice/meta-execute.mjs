@@ -141,7 +141,7 @@ export async function metaExecute({ event = null, actorUUID, itemUUID, action, m
 	if (action === "Metapower") {
 		//? Check if activation was successfull
 		if (rollResult.Metapower <= 0) {
-			flavorMessage = `Fails to Activate ${itemName}!<br><br>`;
+			flavorMessage = `Fails to Activate @METALINK(${itemUUID})!<br><br>`;
 			executeRoll = false;
 		} else {
 			//? Activate Metapower
@@ -151,7 +151,7 @@ export async function metaExecute({ event = null, actorUUID, itemUUID, action, m
 			if (spendingHealing && betaTesting) {
 				//todo
 			}
-			flavorMessage = `Activates ${itemName}.<br><br>`;
+			flavorMessage = `Activates @METALINK(${itemUUID}).<br><br>`;
 			executeRoll = true;
 		}
 	} else if (action === "Possession") {
@@ -167,16 +167,16 @@ export async function metaExecute({ event = null, actorUUID, itemUUID, action, m
 		if (rollResult.Possession <= 0) {
 			executeRoll = false;
 			if (attackType === "Melee") {
-				flavorMessage = `Swings and misses with ${itemName}!<br><br>`;
+				flavorMessage = `Swings and misses with @METALINK(${itemUUID})!<br><br>`;
 			} else if (attackType === "Projectile") {
-				flavorMessage = `Throws and misses with ${itemName}!<br><br>`;
+				flavorMessage = `Throws and misses with @METALINK(${itemUUID})!<br><br>`;
 				//todo affect the quantity
 			} else if (attackType === "Firearm") {
-				flavorMessage = `Fires and misses with ${itemName}!<br><br>`;
+				flavorMessage = `Fires and misses with @METALINK(${itemUUID})!<br><br>`;
 			} else if (attackType === "Explosive") {
-				flavorMessage = `Fails to arm ${itemName}!<br><br>`;
+				flavorMessage = `Fails to arm @METALINK(${itemUUID})!<br><br>`;
 			} else {
-				flavorMessage = `Fails to use ${itemName}!<br><br>`;
+				flavorMessage = `Fails to use @METALINK(${itemUUID})!<br><br>`;
 			}
 		} else {
 			executeRoll = true;
@@ -184,7 +184,7 @@ export async function metaExecute({ event = null, actorUUID, itemUUID, action, m
 			mL(3, "metaExecute", "Using Possession:", itemName, "with Attack Type:", attackType);
 			if (attackType === "Melee") {
 				//todo: need to add size modifier to increase the base d10 dice pool for unarmed strikes only
-				flavorMessage = `Swings with ${itemName}.<br><br>`;
+				flavorMessage = `Swings with @METALINK(${itemUUID}).<br><br>`;
 				if (multiAction < 0) {
 					baseActorDamage = powerScore + multiAction;
 					damageBaseMaterial = baseActorDamage + damageBaseMaterial;
@@ -193,15 +193,15 @@ export async function metaExecute({ event = null, actorUUID, itemUUID, action, m
 					damageBaseMaterial = baseActorDamage + damageBaseMaterial;
 				}
 			} else if (attackType === "Projectile") {
-				flavorMessage = `Throws ${itemName}.<br><br>`;
+				flavorMessage = `Throws @METALINK(${itemUUID}).<br><br>`;
 				baseActorDamage = Math.ceil((powerScore + multiAction) / 2);
 				damageBaseMaterial = baseActorDamage + damageBaseMaterial;
 			} else if (attackType === "Firearm") {
-				flavorMessage = `Fires ${itemName}.<br><br>`;
+				flavorMessage = `Fires @METALINK(${itemUUID}).<br><br>`;
 			} else if (attackType === "Explosive") {
-				flavorMessage = `Arms ${itemName} successfully and throws it.<br><br>`;
+				flavorMessage = `Arms @METALINK(${itemUUID}) successfully and throws it.<br><br>`;
 			} else {
-				flavorMessage = `Uses ${itemName}.<br><br>`;
+				flavorMessage = `Uses @METALINK(${itemUUID}).<br><br>`;
 			}
 		}
 	} else {
@@ -245,7 +245,7 @@ export async function metaExecute({ event = null, actorUUID, itemUUID, action, m
 				actionSlotMessage += `Focused Action: <span class="meta-roll-inline-results-small">[[1d10${explosiveDice}[Cycles]]]</span> Cycles<br>`;
 				actionSlotRerollButton = `<div class="hide-button hidden">
 				<button class="metanthropes-secondary-chat-button action-slot rolld10-reroll" data-itemuuid="${itemUUID}"
-				data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${actionSlotDice}"
+				data-actoruuid="${actor.uuid}" data-dice="${actionSlotDice}"
 				data-what="Activation" data-destiny-re-roll="true" data-reroll="false" data-reroll-counter="1">
 				Spend @METAFA(hand-fingers-crossed) to reroll @METAFA(stopwatch) Activation</button>
 				</div>`;
@@ -255,7 +255,7 @@ export async function metaExecute({ event = null, actorUUID, itemUUID, action, m
 				actionSlotMessage += `Focused Action: <span class="meta-roll-inline-results-small">[[1d10${explosiveDice}[Hours]]]</span> Hours<br>`;
 				actionSlotRerollButton = `<div class="hide-button hidden">
 				<button class="metanthropes-secondary-chat-button action-slot rolld10-reroll" data-itemuuid="${itemUUID}"
-				data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${actionSlotDice}"
+				data-actoruuid="${actor.uuid}" data-dice="${actionSlotDice}"
 				data-what="Activation" data-destiny-re-roll="true" data-reroll="false" data-reroll-counter="1">
 				Spend @METAFA(hand-fingers-crossed) to reroll @METAFA(stopwatch) Activation</button>
 				</div>`;
@@ -277,7 +277,7 @@ export async function metaExecute({ event = null, actorUUID, itemUUID, action, m
 				targetsNumberDice = 1;
 				targetsRerollButton = `<div class="hide-button hidden">
 			<button class="metanthropes-secondary-chat-button targets rolld10-reroll" data-itemuuid="${itemUUID}"
-			data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${targetsNumberDice}"
+			data-actoruuid="${actor.uuid}" data-dice="${targetsNumberDice}"
 			data-what="Targets" data-is-half="true" data-destiny-re-roll="true" data-reroll="false"
 			data-reroll-counter="1">Spend @METAFA(hand-fingers-crossed) to reroll @METAFA(bullseye) Targets</button></div>`;
 			} else {
@@ -287,7 +287,7 @@ export async function metaExecute({ event = null, actorUUID, itemUUID, action, m
 				targetsMessage = `<span data-tooltip="METANTHROPES.COMMON.Targets">@METAFA(bullseye, null) -</span> ${targetsNumberDiceMessage}`;
 				targetsRerollButton = `<div class="hide-button hidden">
 			<button class="metanthropes-secondary-chat-button targets rolld10-reroll" data-itemuuid="${itemUUID}"
-			data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${targetsNumberDice}"
+			data-actoruuid="${actor.uuid}" data-dice="${targetsNumberDice}"
 			data-what="Targets" data-destiny-re-roll="true" data-reroll="false" data-reroll-counter="1">
 			Spend @METAFA(hand-fingers-crossed) to reroll @METAFA(bullseye) Targets</button>
 			</div>`;
@@ -316,7 +316,7 @@ export async function metaExecute({ event = null, actorUUID, itemUUID, action, m
 				`<br>`;
 			durationRerollButton = `<div class="hide-button hidden">
 			<button class="metanthropes-secondary-chat-button duration rolld10-reroll"
-			data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-dice="${durationDice}" data-itemuuid="${itemUUID}"
+			data-actoruuid="${actor.uuid}" data-dice="${durationDice}" data-itemuuid="${itemUUID}"
 			data-what="Duration" data-destiny-re-roll="true" data-reroll="false" data-reroll-counter="1">
 			Spend @METAFA(hand-fingers-crossed) to reroll @METAFA(hourglass-start) Duration</button>
 			</div>`;
@@ -424,7 +424,7 @@ export async function metaExecute({ event = null, actorUUID, itemUUID, action, m
 				specialMessage = `${specialName}: [[${specialDice}d10${explosiveDice}+${specialBase}]]<br>`;
 				specialRerollButton = `<div class="hide-button hidden"><br>
 			<button class="metanthropes-secondary-chat-button special rolld10-reroll"
-			data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-what="${specialName}" data-itemuuid="${itemUUID}"
+			data-actoruuid="${actor.uuid}" data-what="${specialName}" data-itemuuid="${itemUUID}"
 			data-dice="${specialDice}" data-destiny-re-roll="true" data-base-number="${specialBase}"
 			data-reroll="false" data-reroll-counter="1">
 			Spend @METAFA(hand-fingers-crossed) to reroll ${specialName}</button>
@@ -583,18 +583,18 @@ export async function metaExecute({ event = null, actorUUID, itemUUID, action, m
 				duration.includes("Instantaneous") &&
 				(damageCosmicMessage || damageElementalMessage || damageMaterialMessage || damagePsychicMessage)
 			) {
-				contentMessage += `Applying @METAFA(burst) Damage to @METAFA(bullseye) Target${
+				contentMessage += `Applying @METAFA(burst) Damage to ${targetedActorNames.length} @METAFA(bullseye) Target${
 					targetedActorNames.length > 1 ? "s" : ""
 				}: ${targetedActorLinks}<br>`;
 			}
 			if (actionableTargets > 0 && healingMessage && duration.includes("Instantaneous")) {
-				contentMessage += `Applying @METAFA(heart-pulse) Healing to @METAFA(bullseye) Target${
+				contentMessage += `Applying @METAFA(heart-pulse) Healing to ${targetedActorNames.length} @METAFA(bullseye) Target${
 					targetedActorNames.length > 1 ? "s" : ""
 				}: ${targetedActorLinks}<br>`;
 			}
 			//? Show selected Targets for non-Damage/Healing messages
 			if (actionableTargets > 0 && !duration.includes("Instantaneous")) {
-				contentMessage += `Selected Target${targetedActorNames.length > 1 ? "s" : ""}: ${targetedActorLinks}<br>`;
+				contentMessage += `Selected ${targetedActorNames.length} @METAFA(bullseye) Target${targetedActorNames.length > 1 ? "s" : ""}: ${targetedActorLinks}<br>`;
 			}
 
 			if (damageCosmicMessage) {
@@ -666,7 +666,7 @@ export async function metaExecute({ event = null, actorUUID, itemUUID, action, m
 			if (actor.currentDestiny > 0) {
 				const damageReRollButton = `<div class="hide-button hidden">
 				<button class="metanthropes-secondary-chat-button damage roll-damage-reroll chat-button-anchor"
-				data-targets="${targetedActorsUUIDs}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+				data-targets="${targetedActorsUUIDs}" data-actoruuid="${actor.uuid}"
 				data-what="Damage" data-anchor="true" data-reroll="false" data-reroll-counter="1"
 				data-message-id="null" data-destiny-re-roll="true" data-damage-selected-targets="${damageSelectedTargets}"
 				data-first-message="true" data-itemuuid="${itemUUID}"
@@ -683,7 +683,7 @@ export async function metaExecute({ event = null, actorUUID, itemUUID, action, m
 			if (actor.currentDestiny > 0) {
 				const healingRerollButton = `<div class="hide-button hidden">
 				<button class="metanthropes-secondary-chat-button healing roll-healing-reroll chat-button-anchor"
-				data-targets="${targetedActorsUUIDs}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}"
+				data-targets="${targetedActorsUUIDs}" data-actoruuid="${actor.uuid}"
 				data-what="Healing" data-anchor="true" data-heal-selected-targets="${healSelectedTargets}"
 				data-reroll="false" data-reroll-counter="1" data-message-id="null"
 				data-destiny-re-roll="true" ${healingRollParams} data-itemuuid="${itemUUID}"
@@ -748,16 +748,16 @@ export async function metaExecute({ event = null, actorUUID, itemUUID, action, m
 	}
 
 	//* Compile Chat Data
+	//? Enrich flavorMessage
+	const enrichedFlavorMessage = await foundry.applications.ux.TextEditor.enrichHTML(flavorMessage, { async: true });
 	let chatData = {
 		//? user: game.user.id, //!why do we have this here, is it even valid?
-		flavor: flavorMessage,
+		flavor: enrichedFlavorMessage,
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		content: contentMessage,
-		//? is this now redundant here? rollMode: game.settings.get("core", "rollMode"),
 		flags: { metanthropes: { actoruuid: actor.uuid } },
 	};
-
-	//* Set Visibility
+	//? Set Visibility
 	const rollMode = game.settings.get("core", "rollMode");
 	await metanthropes.applications.MetaChatMessage.applyMode(chatData, rollMode);
 	//* Send Chat Message

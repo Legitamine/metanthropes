@@ -60,6 +60,9 @@ import { metaApplyHealing } from "./api/logic/meta-apply-healing.mjs";
 import { metaAssignActorToPlayer } from "./api/logic/assign-actor-to-player.mjs";
 import { metaApplyActorUpdates } from "./api/logic/apply-actor-updates.mjs";
 import { metaHandleSocketEvents } from "./api/logic/handle-socket-events.mjs";
+//* Macros
+import { editActorDetails } from "./api/macros/edit-actor-details.mjs";
+import { editActorStats } from "./api/macros/edit-actor-stats.mjs";
 //* Utilities
 import { prepareActiveEffectCategories, onManageActiveEffect } from "./api/utils/active-effect-tools.mjs";
 import { metaExtractNumberOfDice } from "./api/utils/dice-tools.mjs";
@@ -136,6 +139,10 @@ globalThis.metanthropes = {
 		metaAssignActorToPlayer,
 		metaApplyActorUpdates,
 		metaHandleSocketEvents,
+	},
+	macros: {
+		editActorDetails,
+		editActorStats,
 	},
 	metapowers: {
 		metaExecute,

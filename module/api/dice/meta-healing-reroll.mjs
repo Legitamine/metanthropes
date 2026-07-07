@@ -57,7 +57,7 @@ export async function metaHealingReRoll(event) {
 	}
 	//? Need to ensure we have valid targets before reducing destiny
 	if (!targetedActors.length && healSelectedTargets) {
-		ui.notifications.warn("You must select valid targets first");
+		ui.notifications.warn("You must select valid Targets first");
 		button.classList.remove("disabled");
 		return;
 	}
@@ -91,7 +91,7 @@ export async function metaHealingReRoll(event) {
 	}
 	flavorMessage = `${startMessage} @METALINK(${itemUUID})'s @METAFA(heart-pulse) Healing`;
 	if (healSelectedTargets)
-		flavorMessage += ` to ${targetedActors.length} target${targetedActors.length > 1 ? "s" : ""}:<br>`;
+		flavorMessage += ` to ${targetedActors.length} @METAFA(bullseye) Target${targetedActors.length > 1 ? "s" : ""}:<br>`;
 	else flavorMessage += `.<br>`;
 	contentMessage += `<div class="meta-roll-inline-results">`;
 	contentMessage += `${healingMessage}`;
@@ -100,7 +100,7 @@ export async function metaHealingReRoll(event) {
 		contentMessage += `<div class="hide-button hidden"><hr/></div>`;
 		const healingReRollButton = `<div class="hide-button hidden">
 		<button class="metanthropes-secondary-chat-button damage roll-healing-reroll chat-button-anchor"
-		data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-itemuuid="${itemUUID}"
+		data-targets="${targetedActors}" data-actoruuid="${actor.uuid}" data-itemuuid="${itemUUID}"
 		data-what="Healing" data-anchor="true" data-reroll="true" data-reroll-counter="${rerollCounter}" data-message-id="${messageId}"
 		data-destiny-re-roll="true" data-healing-dice="${healingDice}" data-healing-base="${healingBase}"
 		data-heal-selected-targets="${healSelectedTargets}"

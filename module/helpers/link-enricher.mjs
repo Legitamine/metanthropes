@@ -10,7 +10,6 @@
  */
 export async function metaLink(UUID) {
 	const doc = await fromUuid(UUID);
-	//todo test warning
 	if (!doc) return ui.notifications.warn(_loc("METANTHROPES.UI.NOTIFICATIONS.METALINK.Error") + UUID);
 	let icon = null;
 	let tooltip = ``;

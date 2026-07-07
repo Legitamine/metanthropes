@@ -16,16 +16,7 @@
  */
 export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 	const mL = metanthropes.utils.metaLog;
-	// event.preventDefault();
 	const element = event.currentTarget;
-	//? Disable the element for 3 seconds to prevent double-clicking
-	//! Is this required since I disable the buttons now? Does this affect stat rolls? (I don't think so)
-	//todo Investigate if this is still required
-	//todo implement a better method
-	// element.disabled = true;
-	// setTimeout(() => {
-	// 	element.disabled = false;
-	// }, 3000);
 	const dataset = element.dataset;
 	mL(3, "metaHandleRolls", "Engaged via right-click:", isCustomRoll);
 	//? Handle all types of rolls here based on the rollType (data-roll-type) - return if it's not a rollType
@@ -33,7 +24,6 @@ export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
 		mL(2, "metaHandleRolls", "ERROR: dataset does not contain a rollType", dataset);
 		return false;
 	}
-
 	const actor = metaSheet.actor;
 	const action = dataset.rollType;
 	const stat = dataset.stat;
@@ -126,13 +116,7 @@ export async function metaHandleRolls(event, metaSheet, isCustomRoll = false) {
  * @returns {*}
  */
 export async function handleCoverRolls(event, metaSheet) {
-	// event.preventDefault(); //! review if I would actually want this?
 	const element = event.currentTarget;
-	//? Disable the element for 3 seconds to prevent double-clicking
-	// element.disabled = true;
-	// setTimeout(() => {
-	// 	element.disabled = false;
-	// }, 3000);
 	const dataset = element.dataset;
 	const actor = metaSheet.actor;
 	const coverType = dataset.type;

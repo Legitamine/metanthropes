@@ -15,27 +15,28 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 ### Added:
 
 - Added support for Foundry VTT V14 Stable 7 (build 365) - TBC
-- Added a new text Enricher for linking Metanthropes documents inline with text. Simillar to the built-in @UUID enricher, the new **@METALINK(UUID)** enricher, will resolve to an inline clickable button that will open the Document Sheet, with the proper Font Awesome icon (Actor/Metapower/Possession) and display additional information as a tooltip.
-- The new @METALINK(UUID) enricher is now used in Chat messages in reference to the Actors being targeted and/or the Items(Metapowers/Possessions) that are being used. Buttons from this new enricher are set so that Players may only click on links that they have ownership (they can still see the Tooltip information). Narrators can always see & use them.
+- Added support for the upcoming Metanthropes: Anthologies - AETHER Premium Module.
+- Added a new text Enricher for linking Metanthropes documents inline with text. Simillar to the built-in @UUID enricher, the new **@METALINK(UUID)** enricher, will resolve to an inline clickable button that will open the Document Sheet and display additional information as a tooltip.
+- The new @METALINK(UUID) enricher is now used in all Chat messages in reference to the Actors being Targeted and/or the Items(Metapowers/Possessions) that are being used. Buttons from this new enricher are set so that Players may only click on links that they have ownership (they can still see the Tooltip information). Narrators can always see & use them.
 
 ### Changed:
 
 - Conditions that have an end of turn effect during Combat (Unconscious, Asphyxiation, Fatigue) now have their messages localized. Also improved the formating of such Combat Chat Messages, to be easier to read if multiple Conditions apply to a character.
 - When doing a Custom Roll (right click) while being affected by the Hunger condition, the Dialog for the Custom Roll now appears before the Hunger check, and the inputs are saved and used automatically, after you pass the Hunger condition check, making the whole process much more intuitive.
-- A list of Targeted Actors (with the new enricher) will now always display in the Chat Message, if available.
+- A list and count of Targeted Actors (with the new enricher) will now always display in the activation Chat Message, if applicable. Re-roll messages will only reffer to the count for brevity.
 - Streamlined the appeareance of Chat Messages to take less space and hide redundant information, while becoming more uniform, accross all types of rolls. They will no longer display the default dice roll content element as part of the message.
 - Chat Messages will now hide the 'Actor has X Destiny remaining' part and only reveal it to those who can see & interact with the re-roll buttons. By default that is only Assigned Players & Narrators (GMs).
-- todo: Updated the code documentation for all API Dice functions.
 
 ### Fixed:
 
 - All Dice functions now properly respect the Roll Mode selected in the UI. Re-rolls that update an exising message, won't affect its visibility, even if the Roll Mode is changed between re-rolls.
-- Fixed an issue with the new Network Log feature, where it would try to stringify objects before sending, now instead it will omitt such objects from the Network Log.
+- Fixed an issue with the new Network Log feature, where it would try to stringify objects before sending, now instead it will omit such objects from the Network Log.
 - Fixed Cover Rolls so that now they won't allow accidental double-clicks.
+- Fixed removing the old Audio Visual tab from Metapowers, as it was deprecated in the previous release and somehow got away.
 
 ### Breaking:
 
-- The API for metanthropes.dice has changed significantly and these changes should be considered breaking if you have used the API in custom macros or scenarios. All API Dice functions now take an options-object for parameters & also take Actor & Item UUIDs instead of objects for such properties.
+- The API for metanthropes.dice has changed significantly and these changes should be considered breaking if you have used the dice API in custom macros or scenarios. All API Dice functions now take an options-object for parameters & also take Actor & Item UUIDs instead of objects for such properties.
 
 ---
 

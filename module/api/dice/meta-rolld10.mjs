@@ -151,7 +151,7 @@ export async function metaRolld10({
 	}
 	//? Create the re-roll button for the chat, taking into account anchoring for re-rolls
 	const reRollButtonMessage = `<div class="hide-button hidden"><hr/><button class="metanthropes-secondary-chat-button rolld10-reroll"
-	data-actoruuid="${actor.uuid}" data-item-name="${itemName}" data-itemuuid="${itemUUID}"
+	data-actoruuid="${actor.uuid}" data-itemuuid="${itemUUID}"
 	data-what="${what}" data-destiny-re-roll="${destinyReRoll}"
 	data-dice="${dice}" data-base-number="${baseNumber}" data-is-half="${isHalf}"
 	data-anchor="${anchor}" data-message-id="${messageId}"
