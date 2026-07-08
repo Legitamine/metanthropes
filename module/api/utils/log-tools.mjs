@@ -1,5 +1,6 @@
 /**
- ** metaLog controls how console logging happens.
+ * metaLog controls how console logging happens.
+ *
  ** It is accessible via metanthropes.utils.metaLog()
  ** metaLog 0 (console.log), 1 (console.warn), 2 (console.error) show up in the console by default.
  ** metaLog 3 (console.log), 4 (console.warn), 5 (console.error) show up in the console if the Advanced Logging setting is enabled in the system settings.
@@ -53,15 +54,23 @@ export function metaLog(logType = 0, ...variables) {
 		}
 	});
 	logFunction(logStrings.join(""), ...styles, ...logObjects);
-	//? Add support for Network Logging - note it needs to check for game.ready or it won't work, due to using metaLog during the init.
+	//! Testing required!
+	//? Add support for Network Logging - note it needs to check for game.ready or it won't work, due to the API being unavailable.
 	if (game.ready && metaNetworkLogging && !game.user.isActiveGM) {
+		let netLogObjects;
+		try {
+			netLogObjects = JSON.stringify(logObjects);
+		} catch (error) {
+			netLogObjects = "[Objects omitted from Network Log]"
+		} finally {
+		}
 		const payload = {
 			action: "metaNetLog",
 			playerName: game.user.name,
 			logType,
 			message: logStrings.join(""),
 			styles,
-			logObjects: "[Objects omitted from Network Log]",
+			logObjects: netLogObjects, //todo need to have a try stringify, text if it fails here - then re-enable JSON.parse on the receiving end.
 		};
 		game.socket.emit("system.metanthropes", payload);
 	}

@@ -1,4 +1,16 @@
+/**
+ * Handles Metanthropes Socket Events
+ *
+ * Execution is based on the payload.action defined
+ *
+ * @export
+ * @async
+ * @param {object} payload
+ * @returns {*}
+ */
 export async function metaHandleSocketEvents(payload) {
+	if (!game.ready) return; //? Required for the Network Logging, might as well have it here.
+
 	//* Things that happen for everyone
 	if (payload.action === "metaPlayVFX") {
 		const vfxData = payload.vfxData;
@@ -9,10 +21,12 @@ export async function metaHandleSocketEvents(payload) {
 			metanthropes.utils.metaLog(5, "metaHandleSocketEvents", "VFX Failed with error", error);
 		}
 	}
+
 	//* Things that should only happen on the Active GM's client
 	if (!game.user.isActiveGM) return;
 	// metanthropes.utils.metaLog(3, "metaHandleSocketEvents", "Engaged for payload:", payload);
 	if (payload.action === "metaNetLog") {
+		let netLogObjects = null;
 		let logFunction = console.log;
 		switch (payload.logType) {
 			case 1:
@@ -24,7 +38,11 @@ export async function metaHandleSocketEvents(payload) {
 				logFunction = console.error;
 				break;
 		}
-		const netLogObjects = JSON.parse(payload.logObjects);
+		try {
+			netLogObjects = JSON.parse(payload.logObjects);
+		} catch (error) {
+			netLogObjects = payload.logObjects;
+		}
 		const networkMessage = payload.message.replace(
 			/^%cMetanthropes/,
 			`%cMetanthropes NetLog | ${payload.playerName}`,

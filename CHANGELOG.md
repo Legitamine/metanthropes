@@ -25,7 +25,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 - When doing a Custom Roll (right click) while being affected by the Hunger condition, the Dialog for the Custom Roll now appears before the Hunger check, and the inputs are saved and used automatically, after you pass the Hunger condition check, making the whole process much more intuitive.
 - A list and count of Targeted Actors (with the new enricher) will now always display in the activation Chat Message, if applicable. Re-roll messages will only reffer to the count for brevity.
 - Streamlined the appeareance of Chat Messages to take less space and hide redundant information, while becoming more uniform, accross all types of rolls. They will no longer display the default dice roll content element as part of the message.
-- Chat Messages will now hide the 'Actor has X Destiny remaining' part and only reveal it to those who can see & interact with the re-roll buttons. By default that is only Assigned Players & Narrators (GMs).
+- Chat Messages will now hide the 'Actor has X Destiny remaining' part and only reveal it to those who can see & interact with the re-roll buttons and only when Destiny Re-Roll is allowed. By default that is only Assigned Players & Narrators (GMs).
 
 ### Fixed:
 
