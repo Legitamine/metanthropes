@@ -35,6 +35,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 - Fixed an issue with the new Network Log feature, so it doesn't send over large objects.
 - Fixed Cover Rolls so that now they won't allow accidental double-clicks.
 - The `End of Scene` Macro now doesn't award any extra Destiny to Actors with the `Luck Bending` Metapower, if the award Destiny is set to 0.
+- Fixed the `Edit Actor Details` Macro to work with non-humanoid Actor Types.
 - [Core] TODO Fixed the `End of Session` Macro to link to the Narrator Journal instead of an external website link for more information on awarding EXP.
 - [Homebrew] Fixed removing the old Audio/Visual tab from Metapowers, as it was deprecated in the previous release and somehow got away.
 
