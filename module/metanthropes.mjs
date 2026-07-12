@@ -63,6 +63,8 @@ import { metaHandleSocketEvents } from "./api/logic/handle-socket-events.mjs";
 //* Macros
 import { editActorDetails } from "./api/macros/edit-actor-details.mjs";
 import { editActorStats } from "./api/macros/edit-actor-stats.mjs";
+import { endOfScene } from "./api/macros/end-of-scene.mjs";
+import { playCutscene } from "./api/macros/play-cutscene.mjs";
 //* Utilities
 import { prepareActiveEffectCategories, onManageActiveEffect } from "./api/utils/active-effect-tools.mjs";
 import { metaExtractNumberOfDice } from "./api/utils/dice-tools.mjs";
@@ -143,6 +145,8 @@ globalThis.metanthropes = {
 	macros: {
 		editActorDetails,
 		editActorStats,
+		endOfScene,
+		playCutscene,
 	},
 	metapowers: {
 		metaExecute,

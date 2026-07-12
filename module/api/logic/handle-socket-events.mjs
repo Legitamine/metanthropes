@@ -9,9 +9,10 @@
  * @returns {*}
  */
 export async function metaHandleSocketEvents(payload) {
+	//* Things that happen for everyone
 	if (!game.ready) return; //? Required for the Network Logging, might as well have it here.
 
-	//* Things that happen for everyone
+	//* Play VFX * EXPERIMENTAL
 	if (payload.action === "metaPlayVFX") {
 		const vfxData = payload.vfxData;
 		metanthropes.utils.metaLog(3, "metaHandleSocketEvents", "Triggering VFX with vfxData", vfxData);
@@ -20,11 +21,41 @@ export async function metaHandleSocketEvents(payload) {
 		} catch (error) {
 			metanthropes.utils.metaLog(5, "metaHandleSocketEvents", "VFX Failed with error", error);
 		}
+		return;
+	}
+
+	//* Cutscene playback
+	if (payload.action === "preloadCutscene") {
+		try {
+			if (payload.requesterID === game.user.id) return; //? so the GM client returns early
+			const cutscene = await fromUuid(payload.cutsceneUUID);
+			if (!cutscene) throw new Error(`Cutscene scene not found from UUID: ${payload.cutsceneUUID}`);
+			await foundry.canvas.TextureLoader.loadSceneTextures(cutscene);
+			game.socket.emit("system.metanthropes", {
+				action: "preloadCutsceneResult",
+				requestID: payload.requestID,
+				requesterID: payload.requesterID,
+				userID: game.user.id,
+				result: true,
+			});
+		} catch (error) {
+			game.socket.emit("system.metanthropes", {
+				action: "preloadCutsceneResult",
+				requestID: payload.requestID,
+				requesterID: payload.requesterID,
+				userID: game.user.id,
+				result: false,
+				error: error?.message ?? String(error),
+			});
+		}
+		return;
 	}
 
 	//* Things that should only happen on the Active GM's client
 	if (!game.user.isActiveGM) return;
 	// metanthropes.utils.metaLog(3, "metaHandleSocketEvents", "Engaged for payload:", payload);
+
+	//* Network Logging
 	if (payload.action === "metaNetLog") {
 		let netLogObjects = null;
 		let logFunction = console.log;
@@ -48,7 +79,10 @@ export async function metaHandleSocketEvents(payload) {
 			`%cMetanthropes NetLog | ${payload.playerName}`,
 		);
 		logFunction(networkMessage, ...payload.styles, ...netLogObjects);
+		return;
 	}
+
+	//* Apply Actor Updates
 	if (payload.action === "metaApplyActorUpdate") {
 		try {
 			const actor = await fromUuid(payload.actorUUID);
@@ -73,5 +107,7 @@ export async function metaHandleSocketEvents(payload) {
 			};
 			game.socket.emit("system.metanthropes", reply);
 		}
+		return;
 	}
+
 }
