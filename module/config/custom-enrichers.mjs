@@ -16,6 +16,14 @@ export function metaRegisterCustomEnrichers() {
 			},
 			replaceParent: false,
 		},
+		{
+			pattern: /@METALINK\(\s*["']?([^)"']+)["']?\s*\)/g,
+			enricher: async (match, options) => {
+				const param = match[1].trim();
+				const result = await metanthropes.utils.metaLink(param);
+				return result;
+			},
+		},
 	];
 	CONFIG.TextEditor.enrichers.push(...metaCustomEnrichers);
 }

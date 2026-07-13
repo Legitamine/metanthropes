@@ -4,22 +4,20 @@
 			<img class="metapower-img" src="{{item.img}}" data-edit="img" data-tooltip="{{item.name}}"
 				style="border:none" />
 		{{else}}
-			<img class="metapower-img" src="{{item.img}}" data-tooltip="{{item.name}}"
-				style="border:none" />
+			<img class="metapower-img" src="{{item.img}}" data-tooltip="{{item.name}}" style="border:none" />
 		{{/if}}
 		<div class="header-fields">
 			<h1 class="charname">
 				{{#if isNarrator}}
-					<input name="name" type="text" value="{{item.name}}"
-						placeholder="Metapower Name" />
+					<input name="name" type="text" value="{{item.name}}" placeholder="Metapower Name" />
 				{{else}}
 					{{{item.name}}}
 				{{/if}}
 			</h1>
 			<div class="grid grid-2col">
 				<div class="resource">
-					<label class="resource-label"
-						data-tooltip="Which Stat is rolled when Activating this Metapower"><i class="fa-solid fa-dice-d10"></i>
+					<label class="resource-label" data-tooltip="Which Stat is rolled when Activating this Metapower"><i
+							class="fa-solid fa-dice-d10"></i>
 						Stat:</label>
 					{{#if isNarrator}}
 						<select name="system.Execution.StatRolled.value">
@@ -31,16 +29,14 @@
 							{{/each}}
 						</select>
 						<span class="item-statroll style-mp-rolls" data-roll-type="Metapower"
-							data-item-name="{{item.name}}"
-							data-stat="{{item.system.Execution.StatRolled.value}}"
+							data-item-name="{{item.name}}" data-stat="{{item.system.Execution.StatRolled.value}}"
 							data-destiny-cost="{{item.system.DestinyCost.value}}">
 							{{item.system.Execution.StatRolled.value}}:
 							{{lookup item.actor.system.RollStats item.system.Execution.StatRolled.value}}
 						</span>
 					{{else}}
 						<span class="item-statroll style-mp-rolls" data-roll-type="Metapower"
-							data-item-name="{{item.name}}"
-							data-stat="{{item.system.Execution.StatRolled.value}}"
+							data-item-name="{{item.name}}" data-stat="{{item.system.Execution.StatRolled.value}}"
 							data-destiny-cost="{{item.system.DestinyCost.value}}">
 							{{item.system.Execution.StatRolled.value}}:
 							{{lookup item.actor.system.RollStats item.system.Execution.StatRolled.value}}
@@ -49,7 +45,8 @@
 				</div>
 				<div class="resource">
 					<label class="resource-label"
-						data-tooltip="Each Classification includes Metapowers which have a similar role and utilize capabilities and functions in a similar manner"><i class="fa-solid fa-people-group"></i>
+						data-tooltip="Each Classification includes Metapowers which have a similar role and utilize capabilities and functions in a similar manner"><i
+							class="fa-solid fa-people-group"></i>
 						Classification:</label>
 					{{#if isNarrator}}
 						<select name="system.Classification.value">
@@ -65,18 +62,21 @@
 					{{/if}}
 				</div>
 				<div class="resource">
-					<label class="resource-label" data-tooltip="The Name of the <i class='fa-kit fa-metanthropes'></i> Metapower"><i class="fa-kit fa-metanthropes"></i>
+					<label class="resource-label"
+						data-tooltip="The Name of the <i class='fa-kit fa-metanthropes'></i> Metapower"><i
+							class="fa-kit fa-metanthropes"></i>
 						Metapower:</label>
 					{{#if isNarrator}}
-						<input type="text" name="system.MetapowerName.value"
-							value="{{system.MetapowerName.value}}" data-dtype="String" />
+						<input type="text" name="system.MetapowerName.value" value="{{system.MetapowerName.value}}"
+							data-dtype="String" />
 					{{else}}
 						{{system.MetapowerName.value}}
 					{{/if}}
 				</div>
 				<div class="resource">
 					<label class="resource-label"
-						data-tooltip="Energy Type dictates the Damage and other properties of an effect"><i class="fa-solid fa-sparkles"></i>
+						data-tooltip="Energy Type dictates the Damage and other properties of an effect"><i
+							class="fa-solid fa-sparkles"></i>
 						Energy
 						Type:</label>
 					{{#if isNarrator}}
@@ -93,13 +93,13 @@
 					{{/if}}
 				</div>
 				<div class="resource">
-					<label class="resource-label" data-tooltip="The Level of the Metapower"><i class="fa-solid fa-layer-group"></i>
+					<label class="resource-label" data-tooltip="The Level of the Metapower"><i
+							class="fa-solid fa-layer-group"></i>
 						Level:</label>
 					{{#if isNarrator}}
 						<select name="system.Level.value">
 							{{#each system.Level.options as |option|}}
-								<option value="{{option}}"
-									{{#if (eq option ../system.Level.value)}}selected{{/if}}>
+								<option value="{{option}}" {{#if (eq option ../system.Level.value)}}selected{{/if}}>
 									{{option}}
 								</option>
 							{{/each}}
@@ -109,12 +109,12 @@
 					{{/if}}
 				</div>
 				<div class="resource">
-					<label class="resource-label"
-						data-tooltip="The Destiny Cost to Activate this Metapower"><i class="fa-solid fa-hand-fingers-crossed"></i> Destiny
+					<label class="resource-label" data-tooltip="The Destiny Cost to Activate this Metapower"><i
+							class="fa-solid fa-hand-fingers-crossed"></i> Destiny
 						Cost:</label>
 					{{#if isNarrator}}
-						<input type="number" name="system.DestinyCost.value"
-							value="{{system.DestinyCost.value}}" data-dtype="Number" />
+						<input type="number" name="system.DestinyCost.value" value="{{system.DestinyCost.value}}"
+							data-dtype="Number" />
 					{{else}}
 						{{system.DestinyCost.value}}
 					{{/if}}
@@ -128,12 +128,14 @@
 			<button data-tab="description">Description</button>
 			<button data-tab="execution">Activation</button>
 			<button data-tab="effects">Effects</button>
-			{{#if isNarrator}}
-				{{#if betaTesting}}
-					<button data-tab="results">Results</button>
-					<button data-tab="audio-visual">Audio/Visual</button>
-				{{/if}}
-			{{/if}}
+			{{!-- {{#if isNarrator}} --}}
+				{{!-- {{#if betaTesting}} --}}
+					{{!-- Deprecated old Results tab --}}
+					{{!-- <button data-tab="results">Results</button> --}}
+					{{!-- Deprecated old AV tab --}}
+					{{!-- <button data-tab="audio-visual">Audio/Visual</button> --}}
+				{{!-- {{/if}} --}}
+			{{!-- {{/if}} --}}
 		</nav>
 	</div>
 	{{!-- Sheet Body --}}
@@ -145,8 +147,8 @@
 		{{!-- Effects Tab --}}
 		{{> "systems/metanthropes/templates/helpers/item-effects.hbs"}}
 		{{!-- Results Tab --}}
-		{{> "systems/metanthropes/templates/helpers/item-results.hbs"}}
+		{{!-- {{> "systems/metanthropes/templates/helpers/item-results.hbs"}} --}}
 		{{!-- Audio/Visual Tab --}}
-		{{> "systems/metanthropes/templates/helpers/item-audio-visual.hbs"}}
+		{{!-- {{> "systems/metanthropes/templates/helpers/item-audio-visual.hbs"}} --}}
 	</section>
 </form>

@@ -12,7 +12,9 @@
  * @param {number} [rerollCounter=0]
  * @returns {*}
  */
-export async function metaHungerRoll(actor, hungerLevel, messageId = false, reroll = false, rerollCounter = 0) {
+export async function metaHungerRoll({ actorUUID, hungerLevel, messageId = false, reroll = false, rerollCounter = 0 }) {
+	const actor = await fromUuid(actorUUID);
+	if (!actor) return metanthropes.utils.metaLog(5, "metaHungerRoll", "Could not get Actor from UUID:", actorUUID);
 	let hungerTarget = 0;
 	let hungerMessage = null;
 	let startMessage = null;
@@ -41,44 +43,47 @@ export async function metaHungerRoll(actor, hungerLevel, messageId = false, rero
 		rerollCounter++;
 		if (rerollCounter > 1) startMessage += ` (@METAFA(xmark, null, xs)${rerollCounter})`;
 	}
-	hungerMessage = `${startMessage} to beat Hunger @METAFA(skull) Condition Level ${hungerLevel} and gets a result of ${hungerRollResult} (needed ${hungerTarget} or less).<br><br>`;
+	hungerMessage = `${startMessage} to beat Hunger @METAFA(skull) Condition Level ${hungerLevel} and gets a result of <b>${hungerRollResult}</b> (needed ${hungerTarget} or less).<br><br>`;
+	let messageAction = null;
+	switch (metaRollBeforeHungerCheck.action) {
+		case "StatRoll":
+			messageAction = `roll for ${metaRollBeforeHungerCheck.stat}`;
+			break;
+		case "Metapower":
+			const mp = await fromUuid(metaRollBeforeHungerCheck.itemUUID);
+			messageAction = `activate @METALINK(${metaRollBeforeHungerCheck.itemUUID})`;
+			break;
+		case "Possession":
+			const pos = await fromUuid(metaRollBeforeHungerCheck.itemUUID);
+			messageAction = `use @METALINK(${metaRollBeforeHungerCheck.itemUUID})`;
+			break;
+		default:
+			metanthropes.utils.metaLog(
+				2,
+				"metaHungerRoll",
+				"Error: Action not valid for Hunger Check:",
+				metaRollBeforeHungerCheck.action,
+			);
+			return;
+	}
+
 	if (hungerRollResult > hungerTarget) {
 		//* We failed the Hunger check
-		hungerMessage += `It is a @METAFA(square-xmark, failure) Failure!<br><br>${actor.name} is too hungry and can't act!`;
+		hungerMessage += `It is a @METAFA(square-xmark, failure) <b>Failure</b>!<hr />${actor.name} is too hungry and can't ${messageAction}!`;
 		//? Button to re-roll Hunger using destiny
 		const currentDestiny = Number(actor.system.Vital.Destiny.value);
-		hungerMessage += `<hr />${actor.name} has ${currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.<br>`;
 		if (currentDestiny > 0) {
 			hungerMessage += `<div class="hide-button hidden"><br><button class="metanthropes-main-chat-button hunger-reroll" 
 			data-actoruuid="${actor.uuid}" data-hunger-level="${hungerLevel}" data-reroll="true" data-reroll-counter="${rerollCounter}"
 			>Spend @METAFA(hand-fingers-crossed) Destiny to reroll</button><br></div>`;
 		}
+		hungerMessage += `<div class="hide-button hidden">${actor.name} has ${currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.<br>`;
 	} else {
 		//* We passed the Hunger Check
 		await actor.setFlag("metanthropes", "hungerRollResult", true);
 		if (!metaRollBeforeHungerCheck)
 			return ui.notifications.error(`Could not find intended action after passing Hunger check`);
-		let messageAction = null;
-		switch (metaRollBeforeHungerCheck.action) {
-			case "StatRoll":
-				messageAction = `roll for ${metaRollBeforeHungerCheck.stat}`;
-				break;
-			case "Metapower":
-				messageAction = `activate @METAICON(metanthropes) ${metaRollBeforeHungerCheck.itemName}`;
-				break;
-			case "Possession":
-				messageAction = `use @METAFA(backpack) ${metaRollBeforeHungerCheck.itemName}`;
-				break;
-			default:
-				metanthropes.utils.metaLog(
-					2,
-					"metaHungerRoll",
-					"Error: Action not valid for Hunger Check:",
-					metaRollBeforeHungerCheck.action,
-				);
-				return;
-		}
-		hungerMessage += `It is a @METAFA(square, success) Success!<hr />${actor.name} has overcome Hunger!<br><br>Proceeding to ${messageAction}.<br><br>`;
+		hungerMessage += `It is a @METAFA(square, success) <b>Success</b>!<hr />${actor.name} has overcome Hunger!<br><br>Proceeding to ${messageAction}.<br>`;
 		hungerCheckResult = true;
 		await actor.unsetFlag("metanthropes", "MetaRollBeforeHungerCheck");
 	}
@@ -91,26 +96,30 @@ export async function metaHungerRoll(actor, hungerLevel, messageId = false, rero
 			ui.notifications.warn("Could not find the chat message to update.");
 			return;
 		}
-		const updatedRoll = await hungerRoll.toJSON();
-		const renderedRoll = await hungerRoll.render();
 		if (game.dice3d) {
 			await game.dice3d.showForRoll(hungerRoll, game.user, true, null, false, messageId);
 		}
-		await chatMessage.update({
-			flavor: enrichedMessage,
-			rolls: updatedRoll,
-			content: renderedRoll, //? controls clickable roll result in chat
-			rollMode: game.settings.get("core", "rollMode"),
-			flags: { metanthropes: { actoruuid: actor.uuid } },
-		});
+		await chatMessage.update(
+			{
+				flavor: enrichedMessage,
+				flags: { metanthropes: { actoruuid: actor.uuid } },
+			},
+			{ notify: true },
+		);
+		ui.chat.notify(chatMessage, { newMessage: true });
 	} else {
 		//? We don't have a previous hunger roll result, so create a chat message
-		await hungerRoll.toMessage({
+		const chatData = {
 			speaker: ChatMessage.getSpeaker({ actor: actor }),
 			flavor: enrichedMessage,
-			rollMode: game.settings.get("core", "rollMode"),
 			flags: { metanthropes: { actoruuid: actor.uuid } },
-		});
+		};
+		const rollMode = game.settings.get("core", "messageMode");
+		await metanthropes.applications.MetaChatMessage.applyMode(chatData, rollMode);
+		if (game.dice3d) {
+			await game.dice3d.showForRoll(hungerRoll, game.user, true, null, false, messageId);
+		}
+		await metanthropes.applications.MetaChatMessage.create(chatData);
 	}
 	if (hungerCheckResult) {
 		metanthropes.utils.metaLog(
@@ -122,16 +131,17 @@ export async function metaHungerRoll(actor, hungerLevel, messageId = false, rero
 			metaRollBeforeHungerCheck.stat,
 			metaRollBeforeHungerCheck.isCustomRoll,
 			metaRollBeforeHungerCheck.destinyCost,
-			metaRollBeforeHungerCheck.itemName,
+			metaRollBeforeHungerCheck.itemUUID,
 		);
-		metanthropes.dice.metaRoll(
-			actor,
-			metaRollBeforeHungerCheck.action,
-			metaRollBeforeHungerCheck.stat,
-			metaRollBeforeHungerCheck.isCustomRoll,
-			metaRollBeforeHungerCheck.destinyCost,
-			metaRollBeforeHungerCheck.itemName,
-		);
+		const item = (await fromUuid(metaRollBeforeHungerCheck.itemUUID)) ?? null;
+		metanthropes.dice.metaRoll({
+			actorUUID: actor.uuid,
+			action: metaRollBeforeHungerCheck.action,
+			stat: metaRollBeforeHungerCheck.stat,
+			isCustomRoll: metaRollBeforeHungerCheck.isCustomRoll,
+			destinyCost: metaRollBeforeHungerCheck.destinyCost,
+			itemUUID: item?.uuid ?? null,
+		});
 	}
 }
 
@@ -160,13 +170,13 @@ export async function metaHungerReRoll(event) {
 	}
 	const reroll = button.dataset.reroll === "true" ? true : false;
 	const rerollCounter = parseInt(button.dataset.rerollCounter);
-	const actoruuid = button.dataset.actoruuid;
+	const actorUUID = button.dataset.actoruuid;
 	const hungerLevel = parseInt(button.dataset.hungerLevel);
-	const actor = await fromUuid(actoruuid);
+	const actor = await fromUuid(actorUUID);
 	let currentDestiny = Number(actor.system.Vital.Destiny.value);
 	if (currentDestiny > 0) {
 		await actor.applyDestinyChange(-1);
-		metaHungerRoll(actor, hungerLevel, messageId, reroll, rerollCounter);
+		metaHungerRoll({ actorUUID, hungerLevel, messageId, reroll, rerollCounter });
 	} else {
 		ui.notifications.warn(actor.name + " does not have enough Destiny to spend for reroll!");
 		metanthropes.utils.metaLog(3, "metaHungerReRoll", "Not enough Destiny to spend");

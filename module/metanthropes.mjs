@@ -44,7 +44,9 @@ import { metaPlaySoundEffect } from "./api/audio/play-sound-effect.mjs";
 import { metaVFX } from "./api/vfx/meta-vfx.mjs";
 //* Dice Rollers
 import { metaEvaluate, metaEvaluateReRoll } from "./api/dice/meta-evaluate.mjs";
-import { metaRolld10, metaRolld10ReRoll, metaDamageReRoll, metaHealingReRoll } from "./api/dice/meta-rolld10.mjs";
+import { metaRolld10, metaRolld10ReRoll } from "./api/dice/meta-rolld10.mjs";
+import { metaDamageReRoll } from "./api/dice/meta-damage-reroll.mjs";
+import { metaHealingReRoll } from "./api/dice/meta-healing-reroll.mjs";
 import { metaHungerRoll, metaHungerReRoll } from "./api/dice/meta-hunger-roll.mjs";
 import { metaCoverRoll, metaCoverReRoll } from "./api/dice/meta-cover-roll.mjs";
 import { handleCoverRolls, metaHandleRolls } from "./api/dice/meta-handle-rolls.mjs";
@@ -58,6 +60,11 @@ import { metaApplyHealing } from "./api/logic/meta-apply-healing.mjs";
 import { metaAssignActorToPlayer } from "./api/logic/assign-actor-to-player.mjs";
 import { metaApplyActorUpdates } from "./api/logic/apply-actor-updates.mjs";
 import { metaHandleSocketEvents } from "./api/logic/handle-socket-events.mjs";
+//* Macros
+import { editActorDetails } from "./api/macros/edit-actor-details.mjs";
+import { editActorStats } from "./api/macros/edit-actor-stats.mjs";
+import { endOfScene } from "./api/macros/end-of-scene.mjs";
+import { playCutscene } from "./api/macros/play-cutscene.mjs";
 //* Utilities
 import { prepareActiveEffectCategories, onManageActiveEffect } from "./api/utils/active-effect-tools.mjs";
 import { metaExtractNumberOfDice } from "./api/utils/dice-tools.mjs";
@@ -67,6 +74,7 @@ import { metaSortActions } from "./api/utils/sort-actions.mjs";
 import { metaRunMacro } from "./api/utils/run-macro.mjs";
 import { metaIsMetapowerEquipped, metaTransformStringForStorage, metaCheckSetting } from "./helpers/metahelpers.mjs";
 import { metaCreateFAIcon, metaCreateCustomIcon } from "./helpers/fa-enricher.mjs";
+import { metaLink } from "./helpers/link-enricher.mjs";
 import {
 	metaUpdateActorImages,
 	metaConvertPortraitToTokenImage,
@@ -134,6 +142,12 @@ globalThis.metanthropes = {
 		metaApplyActorUpdates,
 		metaHandleSocketEvents,
 	},
+	macros: {
+		editActorDetails,
+		editActorStats,
+		endOfScene,
+		playCutscene,
+	},
 	metapowers: {
 		metaExecute,
 	},
@@ -158,6 +172,7 @@ globalThis.metanthropes = {
 		metaTransformStringForStorage,
 		metaIsMetapowerEquipped,
 		metaCreateFAIcon,
+		metaLink,
 		metaCreateCustomIcon,
 		metaUpdateActorImages,
 		metaUpdateTokenImages,

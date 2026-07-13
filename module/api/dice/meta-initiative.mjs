@@ -8,15 +8,16 @@
  * todo: I need to figure out a way to kick combatants off the active encounter if it's their turn to play or to roll for initiative and are unconscious
  * The function works for both linked and unlinked actors.
  *
- * @param {Object} combatant - The combatant making the initiative roll.
- * @param {string} [messageId=null] - The message ID of the chat message for the reroll, if any.
- *
- * @returns {Promise<void>} A promise that resolves once the function completes its operations.
- *
- * @example
- * metaInitiative(combatant);
+ * @export
+ * @async
+ * @param {*} options
+ * @property {object} combatant - the combatant object //todo should work without objects and get actor uuid instead?
+ * @param {string|null} [messageId=null]
+ * @param {boolean} reroll
+ * @param {number} rerollCounter
+ * @returns {Promise<void>}
  */
-export async function metaInitiative(combatant, messageId = null, reroll, rerollCounter) {
+export async function metaInitiative({ combatant, messageId = null, reroll, rerollCounter }) {
 	metanthropes.utils.metaLog(3, "metaInitiative", "Engaged for combatant:", combatant.name);
 	//? Check to see if this is a linked actor
 	let actor = null;
@@ -70,9 +71,17 @@ export async function metaInitiative(combatant, messageId = null, reroll, reroll
 			"with",
 			initiativeStatRolled,
 			"Message ID:",
-			messageId
+			messageId,
 		);
-		await metanthropes.dice.metaRoll(actor, action, initiativeStatRolled, false, 0, null, messageId, reroll, rerollCounter);
+		await metanthropes.dice.metaRoll({
+			actorUUID: actor.uuid,
+			action,
+			stat: initiativeStatRolled,
+			isCustomRoll: false,
+			messageId,
+			reroll,
+			rerollCounter,
+		});
 		initiativeResult = await actor.getFlag("metanthropes", "lastrolled").Initiative;
 	} else {
 		//* Logic for Duplicates & Animated
@@ -97,7 +106,7 @@ export async function metaInitiative(combatant, messageId = null, reroll, reroll
 		actor.name + "'s Initiative with",
 		initiativeStatRolled,
 		"was:",
-		initiativeResult
+		initiativeResult,
 	);
 }
 
@@ -135,9 +144,9 @@ export async function metaInitiativeReRoll(event) {
 	const reroll = button.dataset.reroll;
 	const rerollCounter = button.dataset.rerollCounter;
 	const actor = await fromUuid(actorUUID);
-	const combatant = game.combat.getCombatantByActor(actor);
+	const combatant = game.combat.getCombatantsByActor(actor)[0]; //! a linked actor placed more than once in combat, would have multiple results in that array, we're only dealing with the first. Could that cause any unforseen events?
 	metanthropes.utils.metaLog(3, "metaInitiativeReRoll", "Engaged for combatant:", combatant.name);
-	actor.applyDestinyChange(-1);
+	await actor.applyDestinyChange(-1);
 	metanthropes.utils.metaLog(3, "metaInitiativeReRoll", "Engaging metaInitiative for:", actor.name);
-	await metaInitiative(combatant, messageId, reroll, rerollCounter);
+	await metaInitiative({ combatant, messageId, reroll, rerollCounter });
 }
