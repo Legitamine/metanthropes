@@ -355,7 +355,7 @@ export async function metaEvaluate({
 		mL(3, "metaEvalute", "Not a re-roll");
 		//* This is a new roll, creating chat message
 		//? Printing the results to chat, allowing Dice So Nice to do it's thing.
-		const rollMode = game.settings.get("core", "rollMode");
+		const rollMode = game.settings.get("core", "messageMode");
 		const chatData = {
 			speaker: ChatMessage.getSpeaker({
 				actor: actor,
@@ -380,10 +380,14 @@ export async function metaEvaluate({
 		if (game.dice3d) {
 			await game.dice3d.showForRoll(roll, game.user, true, null, false, messageId);
 		}
-		await chatMessage.update({
-			flavor: enrichedMessage,
-			flags: { metanthropes: { actoruuid: actor.uuid } },
-		});
+		await chatMessage.update(
+			{
+				flavor: enrichedMessage,
+				flags: { metanthropes: { actoruuid: actor.uuid } },
+			},
+			{ notify: true },
+		);
+		ui.chat.notify(chatMessage, { newMessage: true });
 	}
 	mL(
 		3,

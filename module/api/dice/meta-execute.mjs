@@ -758,7 +758,7 @@ export async function metaExecute({ event = null, actorUUID, itemUUID, action, m
 		flags: { metanthropes: { actoruuid: actor.uuid } },
 	};
 	//? Set Visibility
-	const rollMode = game.settings.get("core", "rollMode");
+	const rollMode = game.settings.get("core", "messageMode");
 	await metanthropes.applications.MetaChatMessage.applyMode(chatData, rollMode);
 	//* Send Chat Message
 	await metanthropes.applications.MetaChatMessage.create(chatData);

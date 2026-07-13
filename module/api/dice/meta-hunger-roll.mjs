@@ -99,10 +99,14 @@ export async function metaHungerRoll({ actorUUID, hungerLevel, messageId = false
 		if (game.dice3d) {
 			await game.dice3d.showForRoll(hungerRoll, game.user, true, null, false, messageId);
 		}
-		await chatMessage.update({
-			flavor: enrichedMessage,
-			flags: { metanthropes: { actoruuid: actor.uuid } },
-		});
+		await chatMessage.update(
+			{
+				flavor: enrichedMessage,
+				flags: { metanthropes: { actoruuid: actor.uuid } },
+			},
+			{ notify: true },
+		);
+		ui.chat.notify(chatMessage, { newMessage: true });
 	} else {
 		//? We don't have a previous hunger roll result, so create a chat message
 		const chatData = {
@@ -110,7 +114,7 @@ export async function metaHungerRoll({ actorUUID, hungerLevel, messageId = false
 			flavor: enrichedMessage,
 			flags: { metanthropes: { actoruuid: actor.uuid } },
 		};
-		const rollMode = game.settings.get("core", "rollMode");
+		const rollMode = game.settings.get("core", "messageMode");
 		await metanthropes.applications.MetaChatMessage.applyMode(chatData, rollMode);
 		if (game.dice3d) {
 			await game.dice3d.showForRoll(hungerRoll, game.user, true, null, false, messageId);

@@ -112,7 +112,7 @@ export async function metaHealingReRoll(event) {
 	contentMessage += `<div class="hide-button hidden">${actor.name} has ${actor.currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.<br><br></div>`;
 	const enrichedContent = await foundry.applications.ux.TextEditor.enrichHTML(contentMessage, { async: true });
 	const enrichedFlavor = await foundry.applications.ux.TextEditor.enrichHTML(flavorMessage, { async: true });
-	const rollMode = game.settings.get("core", "rollMode");
+	const rollMode = game.settings.get("core", "messageMode");
 	let chatData = {
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		flavor: enrichedFlavor,
@@ -130,7 +130,8 @@ export async function metaHealingReRoll(event) {
 		if (game.dice3d) {
 			await game.dice3d.showForRoll(healingDSNRoll, game.user, true, null, false, messageId);
 		}
-		await chatMessage.update(chatData);
+		await chatMessage.update(chatData, { notify: true });
+		ui.chat.notify(chatMessage, { newMessage: true });
 	} else {
 		mL(3, "metaHealingReRoll", "No Reroll");
 		await metanthropes.applications.MetaChatMessage.applyMode(chatData, rollMode);

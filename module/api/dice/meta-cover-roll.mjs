@@ -79,10 +79,14 @@ export async function metaCoverRoll({
 		if (game.dice3d) {
 			await game.dice3d.showForRoll(coverRoll, game.user, true, null, false, messageId);
 		}
-		chatMessage.update({
-			flavor: enrichedMessage,
-			flags: { metanthropes: { actoruuid: actor.uuid } },
-		});
+		chatMessage.update(
+			{
+				flavor: enrichedMessage,
+				flags: { metanthropes: { actoruuid: actor.uuid } },
+			},
+			{ notify: true },
+		);
+		ui.chat.notify(chatMessage, { newMessage: true });
 	} else {
 		//? We don't have a previous cover roll result, so create a chat message
 		const chatData = {
@@ -90,7 +94,7 @@ export async function metaCoverRoll({
 			flavor: enrichedMessage,
 			flags: { metanthropes: { actoruuid: actor.uuid } },
 		};
-		const rollMode = game.settings.get("core", "rollMode");
+		const rollMode = game.settings.get("core", "messageMode");
 		await metanthropes.applications.MetaChatMessage.applyMode(chatData, rollMode);
 		if (game.dice3d) {
 			await game.dice3d.showForRoll(coverRoll, game.user, true, null, false, messageId);

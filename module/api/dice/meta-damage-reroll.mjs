@@ -213,7 +213,6 @@ export async function metaDamageReRoll(event) {
 		speaker: ChatMessage.getSpeaker({ actor: actor }),
 		flavor: enrichedFlavor,
 		content: enrichedContent,
-		//! redundant rollMode: game.settings.get("core", "rollMode"),
 		flags: { metanthropes: { actoruuid: actor.uuid } },
 	};
 	//* Send/Update Chat message and trigger DSN
@@ -228,10 +227,11 @@ export async function metaDamageReRoll(event) {
 		if (game.dice3d) {
 			for (const roll of dsnRolls) await game.dice3d.showForRoll(roll, game.user, true, null, false, messageId);
 		}
-		await chatMessage.update(chatData);
+		await chatMessage.update(chatData, { notify: true });
+		ui.chat.notify(chatMessage, { newMessage: true });
 	} else {
 		mL(3, "metaDamageReRoll", "No Reroll");
-		const rollMode = game.settings.get("core", "rollMode");
+		const rollMode = game.settings.get("core", "messageMode");
 		await metanthropes.applications.MetaChatMessage.applyMode(chatData, rollMode);
 		await metanthropes.applications.MetaChatMessage.create(chatData);
 	}

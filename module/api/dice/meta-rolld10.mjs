@@ -160,7 +160,8 @@ export async function metaRolld10({
 	if (destinyReRoll && actor.currentDestiny > 0) {
 		message += reRollButtonMessage;
 	}
-	if (destinyReRoll) message += `<div class="hide-button hidden"><br>${actor.name} has ${actor.currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.</div>`;
+	if (destinyReRoll)
+		message += `<div class="hide-button hidden"><br>${actor.name} has ${actor.currentDestiny} @METAFA(hand-fingers-crossed) Destiny remaining.</div>`;
 	await actor.setFlag("metanthropes", "lastrolled", {
 		rolld10: rollTotal,
 		rolld10what: what,
@@ -199,7 +200,7 @@ export async function metaRolld10({
 		if (!reroll) {
 			//* Not a reroll, printing a new message
 			mL(3, "metaRolld10", "Not Anchored", "No Re-Roll", "Creating new chat message");
-			const rollMode = game.settings.get("core", "rollMode");
+			const rollMode = game.settings.get("core", "messageMode");
 			const chatData = {
 				speaker: ChatMessage.getSpeaker({ actor: actor }),
 				flavor: enrichedMessage,
@@ -222,10 +223,14 @@ export async function metaRolld10({
 			if (game.dice3d && dice > 0) {
 				await game.dice3d.showForRoll(rolld10, game.user, true, null, false, messageId);
 			}
-			chatMessage.update({
-				flavor: enrichedMessage,
-				flags: { metanthropes: { actoruuid: actor.uuid } },
-			});
+			chatMessage.update(
+				{
+					flavor: enrichedMessage,
+					flags: { metanthropes: { actoruuid: actor.uuid } },
+				},
+				{ notify: true },
+			);
+			ui.chat.notify(chatMessage, { newMessage: true });
 		}
 		mL(3, "metaRolld10", "Finished for:", actor.name + "'s", what);
 	}

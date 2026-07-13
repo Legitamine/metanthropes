@@ -31,7 +31,8 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ### Fixed:
 
-- All Dice functions now properly respect the Roll Mode selected in the UI. Re-rolls that update an exising message, won't affect its visibility, even if the Roll Mode is changed between re-rolls.
+- All Dice functions now properly respect the Message Mode selected in the UI, deprecating the older Roll Mode method. Re-rolls that update an exising message, won't affect its visibility, even if the Message Mode is changed between re-rolls.
+- Re-Rolling a result will now properly trigger the new Chat Message Notification indicator, when the Chat Message is updated.
 - Fixed an issue with the new Network Log feature, so it doesn't send over large objects.
 - Fixed Cover Rolls so that now they won't allow accidental double-clicks.
 - The `End of Scene` Macro now doesn't award any extra Destiny to Actors with the `Luck Bending` Metapower, if the award Destiny is set to 0.
