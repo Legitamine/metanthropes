@@ -1,10 +1,6 @@
 # Latest Changes
 
-These are the latest changes for the Metanthropes™ System for Foundry VTT.
-
-Included in these notes, is also the changelog for all the Metanthropes™ Premium Modules for Foundry VTT, as well as officially supported 3rd-party Modules, labeled as [Module Name].
-
-The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
+These are the latest changes for the Metanthropes™ System & Premium Modules for Foundry VTT.
 
 ---
 
@@ -18,7 +14,7 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 - [Aether] Added support for the upcoming Metanthropes: Anthologies - AETHER Premium Module.
 - Added a new text Enricher for linking Metanthropes documents inline with text. Simillar to the built-in @UUID enricher, the new **`@METALINK(UUID)`** enricher, will resolve to an inline clickable button that will open the Document Sheet and display additional information as a tooltip. Additional functionality, for Journal and other Document Types, will be added in future updates.
 - The new `@METALINK(UUID)` enricher is now used in all Chat messages in reference to the Actors being Targeted and/or the Items(Metapowers/Possessions) that are being used. Buttons created from this new enricher are set so that Players may only click on links that they have ownership (they can still see the Tooltip information), while Narrators can always see & use them.
-- Added a new `Play Cutscene Macro`, available under the new `metanthropes.macros.playCutscene({ cutsceneUUID, cutsceneDurationInSec })` API. This new Macro triggers a playback of a Cutscene for all connected Clients to ensure synchronous playback and return to the previously active Scene once it concludes. See this blog? on how to use - link to blog? quick video with how-to [] use it for your own Cutscenes.
+- TODO Added a new `Play Cutscene Macro`, available under the new `metanthropes.macros.playCutscene({ cutsceneUUID, cutsceneDurationInSec })` API. This new Macro triggers a synchronous playback of a Cutscene for all connected Clients and returns to the previously active Scene once the duration expires. See this blog? on how to use - link to blog? quick video with how-to [] use it for your own Cutscenes.
 
 ### Changed:
 
@@ -394,6 +390,10 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 - Foundry VTT Version 11 is no longer supported.
 
 ---
+
+## Notes
+
+The format of this changelog is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## ChangeLog Archives
 
