@@ -1,10 +1,6 @@
 # Latest Changes
 
-These are the latest changes for the Metanthropes™ System for Foundry VTT.
-
-Included in these notes, is also the changelog for all the Metanthropes™ Premium Modules for Foundry VTT, as well as officially supported 3rd-party Modules, labeled as [Module Name].
-
-The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
+These are the latest changes for the Metanthropes™ System & Premium Modules for Foundry VTT.
 
 ---
 
@@ -394,6 +390,10 @@ The format is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 - Foundry VTT Version 11 is no longer supported.
 
 ---
+
+## Notes
+
+The format of this changelog is based on [Keep a Changelog.](https://keepachangelog.com/en/1.1.0/)
 
 ## ChangeLog Archives
 
