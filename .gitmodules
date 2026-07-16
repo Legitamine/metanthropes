@@ -1,0 +1,3 @@
+[submodule "src/repo-tools"]
+	path = src/repo-tools
+	url = https://git.gay/bofhgr/repository-utilities.git
