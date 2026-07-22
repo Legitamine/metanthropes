@@ -14,32 +14,33 @@ These are the latest changes for the Metanthropes™ System & Premium Modules fo
 - [Aether] Added support for the upcoming Metanthropes: Anthologies - AETHER Premium Module.
 - Added a new text Enricher for linking Metanthropes documents inline with text. Simillar to the built-in @UUID enricher, the new **`@METALINK(UUID)`** enricher, will resolve to an inline clickable button that will open the Document Sheet and display additional information as a tooltip. Additional functionality, for Journal and other Document Types, will be added in future updates.
 - The new `@METALINK(UUID)` enricher is now used in all Chat messages in reference to the Actors being Targeted and/or the Items(Metapowers/Possessions) that are being used. Buttons created from this new enricher are set so that Players may only click on links that they have ownership (they can still see the Tooltip information), while Narrators can always see & use them.
-- Added a new `Play Cutscene Macro`, available under the new `metanthropes.macros.playCutscene({ cutsceneUUID, cutsceneDurationInSeconds })` API. This new Macro triggers a synchronous playback of a Cutscene for all connected Clients and returns to the previously active Scene once the duration expires. See [this issue on GitHub](https://github.com/Legitamine/metanthropes/issues/500) on how to use this macro for your own Cutscenes.
+- Added a new `Play Cutscene Macro`, usable with this syntax: `metanthropes.macros.playCutscene({ cutsceneUUID: "UUID", cutsceneDurationInSeconds: 30 })`. This new Macro triggers a synchronous playback of a Cutscene for all connected Clients and returns to the previously active Scene once the duration expires. See [this issue on GitHub](https://github.com/Legitamine/metanthropes/issues/500) on how to use this macro for your own custom Cutscenes.
 
 ### Changed:
 
 - Conditions that have an end of turn effect during Combat (Unconscious, Asphyxiation, Fatigue) now have their messages localized. Also improved the formating of such Combat Chat Messages, to be easier to read if multiple Conditions apply to a character.
 - When doing a Custom Roll (right click) while being affected by the `Hunger` condition, the Dialog for the Custom Roll now appears before the Hunger check, and the inputs are saved and used automatically, after you pass the Hunger condition check, making the whole process much more intuitive.
 - A list and count of Targeted Actors (easily clickable with the new enricher) will now always display in the activation Chat Message, if applicable. Re-roll messages will only reffer to the Target count for brevity.
-- Streamlined the appeareance of Chat Messages to take less space and hide redundant information, while becoming more uniform, accross all types of rolls. They will no longer display the default dice roll content element as part of the message. They will now hide the `Actor has X Destiny remaining` part and only reveal it to those who can see & interact with the Destiny Re-roll buttons and only when Destiny Re-Roll is allowed. By default that is only Assigned Players & Narrators (GMs).
+- Streamlined the appeareance of Chat Messages to take less space and hide redundant information, while becoming more uniform, accross all types of rolls. They will no longer display the default dice roll expandable content element as part of the message. They will now also hide the `Actor has X Destiny remaining` part and only reveal it to those who can see & interact with the Destiny Re-roll buttons and only when Destiny Re-Roll is allowed. By default that is only Assigned Players & Narrators (GMs).
 - First pass on overhauling the Macros. From now on, instead of Macros having script code within, their code now resides under the new `metanthropes.macros` API, allowing for future iterrations without the need to replace the Macro itself.
 
 ### Fixed:
 
 - All Dice functions now properly respect the Message Mode selected in the UI, deprecating the older Roll Mode method. Re-rolls that update an exising message, won't affect its visibility, even if the Message Mode is changed between re-rolls.
 - Re-Rolling a result will now properly trigger the new Chat Message Notification indicator, when the Chat Message is updated.
-- Fixed an issue with the new Network Log feature, so it doesn't try to send over large objects.
 - Fixed Cover Rolls so that now they won't allow accidental double-clicks.
 - The `End of Scene` Macro now doesn't award any extra Destiny to Actors with the `Luck Bending` Metapower, if the award Destiny is set to 0.
 - Fixed the `Edit Actor Details` Macro to work with non-humanoid Actor Types.
-- [Core] Fixed the `End of Session` Macro to link to the Narrator Journal instead of an external website link for more information on awarding EXP.
+- Macros have localized warning UI messages and properly require Active GM sparingly.
+- Fixed an issue with the Pause application not setting the correct state across all connected clients. The Active GM will now properly broadcast the desired setting during World load, according to their prefference, configurable in the Game Settings.
+- Fixed an issue with the new Network Log feature, so it doesn't try to send over large objects.
+- [Core] Fixed the `End of Session` Macro to link to the Narrator Journal content, instead of an external website link for more information on awarding EXP.
 - [Homebrew] Fixed removing the old Audio/Visual tab from Metapowers, as it was deprecated in the previous release and somehow got away.
-- TODO Macros handle Active GM / is GM properly
 
 ### Breaking:
 
-- The API for `metanthropes.dice` has changed significantly and these changes should be considered breaking if you have used the dice API in custom Macros. All API Dice functions now take an options-object for parameters & also take Actor & Item UUIDs instead of objects for such properties.
-- TODO INTRO All Macros are now consolidated under the new `metanthropes.macros` API. Old Macros are obsolete and should no longer be used. Import the updated Macros from their respective Compendiums.
+- The API for `metanthropes.dice` has changed significantly and these changes should be considered breaking if you have used the dice API in custom Macros and/or content. All API Dice functions now take an options-object for parameters & also take Actor & Item UUIDs instead of objects for such properties.
+- Macros are now consolidated under the new `metanthropes.macros` API. Old Macros are considered obsolete and should no longer be used. Import the updated Macros from their respective Compendiums.
 
 ---
 

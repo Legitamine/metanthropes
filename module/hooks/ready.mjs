@@ -59,8 +59,10 @@ Hooks.once("ready", async function () {
 		game.settings.get("core", "adventureImports")[
 			"Compendium.metanthropes-anthologies-astral.astral-installation.Adventure.HYfQqjFGavUf1CER"
 		] ?? false;
-	//todo update with actual once released
-	const aether = false;
+	const aether =
+		game.settings.get("core", "adventureImports")[
+			"Compendium.metanthropes-anthologies-aether.aether-installation.Adventure.vkoV90vdp0B6tjuR"
+		] ?? false;
 	const quickstarted = Boolean(intro || nether || astral || aether);
 	if (game.settings.get("metanthropes", "metaInstall")) {
 		if (!quickstarted) {
@@ -73,7 +75,7 @@ Hooks.once("ready", async function () {
 	//* Un-pause the World
 	if (game.settings.get("metanthropes", "metaPause")) {
 		mL(0, "System", "Getting Ready", "Un-pausing the World after initialization");
-		game.togglePause(false);
+		game.togglePause(false, { broadcast: true });
 	}
 
 	//* Finished Loading Metanthropes System
