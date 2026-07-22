@@ -4,6 +4,8 @@
  * Coordinates and synchronizes playback of a cinematic Cutscene.
  * Uses a Socket call to synchronize playback after all Clients have preloaded the Scene.
  * Returns to the previously active Scene after playback is finished.
+ * todo log players ready --> self log, 0
+ * todo show all players the loading bar
  *
  * @export
  * @async
@@ -21,7 +23,7 @@ export async function playCutscene({
 	buffer = 1000, //? 1 sec
 }) {
 	if (!game.user.isActiveGM) {
-		return ui.notifications.warn("You must be a Narrator to use this macro.");
+		return ui.notifications.warn(_loc("METANTHROPES.UI.NOTIFICATIONS.noActiveGM"));
 	}
 	const cutscene = await fromUuid(cutsceneUUID);
 	if (!cutscene) return ui.notifications.error(`Could not find Cutscene with UUID: ${cutsceneUUID}`);

@@ -1,7 +1,7 @@
 //*Narrator's Toolbox - End of Scene*//
 export async function endOfScene() {
 	if (!game.user.isGM) {
-		return ui.notifications.warn("You must be a Narrator to use this Macro.");
+		return ui.notifications.warn(_loc("METANTHROPES.UI.NOTIFICATIONS.noGM"));
 	}
 	let actors = game.actors.contents.filter((a) => a.type === "Protagonist");
 	//todo: instead of just checking for our Premade characters that come with 'The Composer' we should also exclude null values? or even better only actors that are controlled by active players instead?

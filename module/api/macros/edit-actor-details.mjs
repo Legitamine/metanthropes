@@ -8,7 +8,7 @@
  */
 export async function editActorDetails(actorType) {
 	if (!game.user.isGM) {
-		ui.notifications.warn("You must be a Narrator to use this macro.");
+		ui.notifications.warn(_loc("METANTHROPES.UI.NOTIFICATIONS.noGM"));
 		return;
 	}
 	let actors = game.actors.contents.filter((a) => a.type === actorType);
@@ -129,6 +129,7 @@ export async function editActorDetails(actorType) {
 									"system.Vital.Life.value": life,
 								};
 							await actor.update(updateData);
+							metanthropes.utils.metaLog(0, "editActorDetails", "UpdateData", updateData);
 						}
 					},
 				},

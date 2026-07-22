@@ -38,6 +38,7 @@ export async function metaHandleSocketEvents(payload) {
 				userID: game.user.id,
 				result: true,
 			});
+			metanthropes.utils.metaLog(0, "Cutscene Loading Complete");
 		} catch (error) {
 			game.socket.emit("system.metanthropes", {
 				action: "preloadCutsceneResult",
@@ -47,7 +48,17 @@ export async function metaHandleSocketEvents(payload) {
 				result: false,
 				error: error?.message ?? String(error),
 			});
+			metanthropes.utils.metaLog(1, "Cutscene Loading Encountered an Error", error?.message ?? String(error));
 		}
+		return;
+	}
+
+	//* Switch Scene Background
+	if (payload.action === "refreshSceneBackground") {
+		const currentScene = canvas.scene;
+		if (!currentScene) return;
+		if (!payload.sceneUUIDs.includes(currentScene.uuid)) return;
+		await canvas.draw(currentScene);
 		return;
 	}
 
@@ -109,5 +120,4 @@ export async function metaHandleSocketEvents(payload) {
 		}
 		return;
 	}
-
 }
