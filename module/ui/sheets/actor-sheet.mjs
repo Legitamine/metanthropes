@@ -76,7 +76,6 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		context.homebrewFeatures = metanthropes.utils.metaCheckSetting("homebrew", "metaHomebrew");
 		context.betaTesting = metanthropes.utils.metaCheckSetting("core", "metaBetaTesting");
 		context.advancedLogging = game.settings.get("metanthropes", "metaAdvancedLogging");
-		context.advancedBetaTesting = context.betaTesting && context.advancedLogging;
 		context.isNarrator = game.user.isGM;
 		context.secretNarratorNotes = await foundry.applications.ux.TextEditor.enrichHTML(
 			actorData.system["secret-notes-narrator"].value,
@@ -616,6 +615,24 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 			document.body.classList.remove("metanthropes-roll-wait");
 		}
 	}
+	//* Cover Rolls
+	async _onCoverRoll(event) {
+		event.preventDefault();
+		if (this._rolling) return;
+		this._rolling = true;
+		const element = event.currentTarget;
+		element.classList.add("is-rolling");
+		document.body.classList.add("metanthropes-roll-wait");
+		try {
+			await metanthropes.dice.handleCoverRolls(event, this);
+		} catch (error) {
+			metanthropes.utils.metaLog(5, "ActorSheet _onCoverRoll", "Roll Failed", error);
+		} finally {
+			this._rolling = false;
+			element.classList.remove("is-rolling");
+			document.body.classList.remove("metanthropes-roll-wait");
+		}
+	}
 	//* Handle Right-Click Rolls
 	async _onCustomRoll(event) {
 		await metanthropes.dice.metaHandleRolls(event, this, true);
@@ -716,9 +733,7 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 			metaProgressionActor.setFlag("metanthropes", "Progression", { isProgressing: false });
 		}
 	}
-	async _onCoverRoll(event) {
-		metanthropes.dice.handleCoverRolls(event, this);
-	}
+	//* Change Portait
 	async _onChangePortrait(event) {
 		event.preventDefault();
 		await metanthropes.utils.metaUpdateActorImages({ actorUUID: this.actor.uuid });

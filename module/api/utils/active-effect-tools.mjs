@@ -6,6 +6,7 @@
  * @param {Actor|Item} owner      The owning document which manages this effect
  *
  */
+//todo! this doesnt seem to be used!
 export function onManageActiveEffect(event, owner) {
 	event.preventDefault();
 	const a = event.currentTarget;
@@ -51,8 +52,8 @@ export function prepareActiveEffectCategories(effects) {
 	//? Define effect header categories
 	const categories = {
 		temporary: {
-			type: "temporary",
-			label: "Active Effects",
+			type: "temporary", //todo temporary einai defined kapoy?
+			label: "Temporary Effects",
 			effects: [],
 		},
 		permanent: {
@@ -74,9 +75,17 @@ export function prepareActiveEffectCategories(effects) {
 		else categories.permanent.effects.push(e);
 	}
 
-	//? Sort each category
-	for (const c of Object.values(categories)) {
-		c.effects.sort((a, b) => (a.sort || 0) - (b.sort || 0));
+	//? Sort each category, first by the sort value (so higher sort values are always first)
+	//? then sort each alphabetically.
+	//todo review
+	for (const category of Object.values(categories)) {
+		category.effects.sort(
+			(a, b) =>
+				(b.sort ?? 0) - (a.sort ?? 0) ||
+				(a.name ?? "").localeCompare(b.name ?? "", undefined, {
+					sensitivity: "base",
+				}),
+		);
 	}
 
 	return categories;

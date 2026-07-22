@@ -6,6 +6,7 @@ gsap.registerPlugin(TextPlugin, Dragger);
 
 Hooks.on("renderChatMessageHTML", async (message, html) => {
 	const mL = metanthropes.utils.metaLog;
+
 	//* Chat Button Handling
 	//? Get the actor from the message - all our messages have the actoruuid flag set, so if it's not our message, return.
 	const actorUUID = await message.getFlag("metanthropes", "actoruuid");
@@ -13,95 +14,108 @@ Hooks.on("renderChatMessageHTML", async (message, html) => {
 	const actor = await fromUuid(actorUUID);
 	if (!actor) return;
 	const metaowner = actor.system?.metaowner?.value || null;
+
 	//* Proceed only if the current user is the owner of the actor, or a GM
-	if (game.user.name === metaowner || game.user.isGM) {
-		//* Unhide the buttons
-		html.querySelectorAll(".hide-button").forEach((btn) => btn.classList.remove("hidden"));
-		html.addEventListener("click", (event) => {
-			const button = event.target;
-			//? Return if button is not a button element
-			if (
-				!(
-					button.classList.contains("metanthropes-main-chat-button") ||
-					button.classList.contains("metanthropes-secondary-chat-button")
-				)
-			) {
-				return;
-			}
-			if (button.classList.contains("metaeval-reroll")) {
-				gsap.to("button.metaeval-reroll", {
-					duration: 3,
-					text: "Re-Rolling...",
-					ease: "none",
-				});
-				metanthropes.dice.metaEvaluateReRoll(event);
-			} else if (button.classList.contains("metainitiative-reroll")) {
-				gsap.to("button.metainitiative-reroll", {
-					duration: 3,
-					text: "Re-Rolling Initiative...",
-					ease: "none",
-				});
-				metanthropes.dice.metaInitiativeReRoll(event);
-			} else if (button.classList.contains("metapower-activate")) {
-				gsap.to("button.metapower-activate", {
-					duration: 3,
-					text: "Activating Metapower...",
-					ease: "none",
-				});
-				metanthropes.metapowers.metaExecute({ event: event });
-			} else if (button.classList.contains("possession-use")) {
-				gsap.to("button.possession-use", {
-					duration: 3,
-					text: "Using Possession...",
-					ease: "none",
-				});
-				metanthropes.possessions.metaExecute({ event: event });
-			} else if (button.classList.contains("hunger-reroll")) {
-				gsap.to("button.hunger-reroll", {
-					duration: 3,
-					text: "Re-Rolling Hunger...",
-					ease: "none",
-				});
-				metanthropes.dice.metaHungerReRoll(event);
-			} else if (button.classList.contains("cover-reroll")) {
-				gsap.to("button.cover-reroll", {
-					duration: 3,
-					text: "Re-Rolling Cover...",
-					ease: "none",
-				});
-				metanthropes.dice.metaCoverReRoll(event);
-			} else if (button.classList.contains("roll-damage-reroll")) {
-				button.classList.add("disabled");
-				gsap.to("button.roll-damage-reroll", {
-					duration: 3,
-					text: "Re-Rolling Damage...",
-					ease: "none",
-				});
-				metanthropes.dice.metaDamageReRoll(event);
-			} else if (button.classList.contains("roll-healing-reroll")) {
-				button.classList.add("disabled");
-				gsap.to("button.roll-healing-reroll", {
-					duration: 3,
-					text: "Re-Rolling Healing...",
-					ease: "none",
-				});
-				metanthropes.dice.metaHealingReRoll(event);
-			} else if (button.classList.contains("rolld10-reroll")) {
-				//? Disable secondary buttons
-				button.classList.add("disabled");
-				gsap.to("button.rolld10-reroll", {
-					duration: 3,
-					text: "Re-Rolling...",
-					ease: "none",
-				});
-				metanthropes.dice.metaRolld10ReRoll(event);
-			} else {
-				metanthropes.utils.metaLog(5, "renderChatMessageHTML", "not an actionable event", button, event);
-			}
-			//? Disable main buttons
-			html.querySelectorAll(".metanthropes-main-chat-button").forEach((btn) => {
-				btn.classList.add("disabled");
+	if (game.user.name !== metaowner && !game.user.isGM) return;
+	// if (game.user.name === metaowner || game.user.isGM) {
+
+	//* Unhide the buttons
+	html.querySelectorAll(".hide-button").forEach((btn) => btn.classList.remove("hidden"));
+
+	//* Event listeners
+	html.addEventListener("click", async (event) => {
+		const button = event.target;
+		//? Return if button is not a Metanthropes button element
+		if (
+			!(
+				button.classList.contains("metanthropes-main-chat-button") ||
+				button.classList.contains("metanthropes-secondary-chat-button") ||
+				button.classList.contains("meta-link")
+			)
+		) {
+			return;
+		}
+
+		//* GSAP button animation
+		const animateButton = (text) => {
+			gsap.to(button, {
+				duration: 3,
+				text,
+				ease: "none",
 			});
+		};
+
+		//* Buttons we work with
+		const approvedButtons = [
+			"metaeval-reroll",
+			"metainitiative-reroll",
+			"metapower-activate",
+			"possession-use",
+			"hunger-reroll",
+			"cover-reroll",
+			"roll-damage-reroll",
+			"roll-healing-reroll",
+			"rolld10-reroll",
+			"meta-link",
+		];
+		const clickedButton = approvedButtons.find((ab) => button.classList.contains(ab));
+
+		//* action based on button class
+		switch (clickedButton) {
+			case "metaeval-reroll":
+				animateButton("Re-Rolling...");
+				metanthropes.dice.metaEvaluateReRoll(event);
+				break;
+			case "metainitiative-reroll":
+				animateButton("Re-Rolling Initiative...");
+				metanthropes.dice.metaInitiativeReRoll(event);
+				break;
+			case "metapower-activate":
+				animateButton("Activating Metapower...");
+				metanthropes.metapowers.metaExecute({ event });
+				break;
+			case "possession-use":
+				animateButton("Using Possession...");
+				metanthropes.possessions.metaExecute({ event });
+				break;
+			case "hunger-reroll":
+				animateButton("Re-Rolling Hunger...");
+				metanthropes.dice.metaHungerReRoll(event);
+				break;
+			case "cover-reroll":
+				animateButton("Re-Rolling Cover...");
+				metanthropes.dice.metaCoverReRoll(event);
+				break;
+			case "roll-damage-reroll":
+				button.classList.add("disabled");
+				animateButton("Re-Rolling Damage...");
+				metanthropes.dice.metaDamageReRoll(event);
+				break;
+			case "roll-healing-reroll":
+				button.classList.add("disabled");
+				animateButton("Re-Rolling Healing...");
+				metanthropes.dice.metaHealingReRoll(event);
+				break;
+			case "rolld10-reroll":
+				button.classList.add("disabled");
+				animateButton("Re-Rolling...");
+				metanthropes.dice.metaRolld10ReRoll(event);
+				break;
+			case "meta-link":
+				//todo review who should be able to open the sheet vs who actually can.
+				const doc = await fromUuid(button.dataset.uuid); //? sync instead?
+				if (!doc) return mL(2, "renderChatMessageHTML", "metaLink", "No doc from UUID", button.dataset.uuid);
+				if (doc?.sheet) return doc.sheet.render(true);
+				//? return instead of a break here allows us to skip disabling the other buttons.
+				else return mL(1, "renderChatMessageHTML", "metaLink", "Doc doesn't have a sheet", doc);
+			default:
+				mL(5, "renderChatMessageHTML", "not an actionable event", button, event);
+				break;
+		}
+
+		//* Disable main buttons
+		html.querySelectorAll(".metanthropes-main-chat-button").forEach((btn) => {
+			btn.classList.add("disabled");
 		});
-	}
+	});
 });
