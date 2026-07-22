@@ -4,6 +4,8 @@
  * Coordinates and synchronizes playback of a cinematic Cutscene.
  * Uses a Socket call to synchronize playback after all Clients have preloaded the Scene.
  * Returns to the previously active Scene after playback is finished.
+ * todo log players ready --> self log, 0
+ * todo show all players the loading bar
  *
  * @export
  * @async

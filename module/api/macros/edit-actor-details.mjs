@@ -129,6 +129,7 @@ export async function editActorDetails(actorType) {
 									"system.Vital.Life.value": life,
 								};
 							await actor.update(updateData);
+							metanthropes.utils.metaLog(0, "editActorDetails", "UpdateData", updateData);
 						}
 					},
 				},

@@ -57,6 +57,7 @@ export async function metaVFX({
 	//todo we need to come up with something similar
 	//! if ( !this.token?.parent.isView ) return;
 	//* Custom Damage Color additive hex combinations
+	//! todo this additive text is redundant, should be deprecated
 	//todo poc - is there a better util ready somewhere else?
 	function hexToRgb(hex) {
 		const clean = hex.replace("#", "");
