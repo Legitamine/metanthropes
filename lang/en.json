@@ -65,6 +65,8 @@
 		},
 		"UI": {
 			"NOTIFICATIONS": {
+				"noGM": "You must be a Narrator (Gamemaster) to use this.",
+				"noActiveGM": "You must be the Active Narrator (Gamemaster) to use this.",
 				"META_ROLL": {
 					"CannotRoll": "Can't Roll ",
 					"ZeroStatScore": " with a Score of 0!",

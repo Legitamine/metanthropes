@@ -23,7 +23,7 @@ export async function playCutscene({
 	buffer = 1000, //? 1 sec
 }) {
 	if (!game.user.isActiveGM) {
-		return ui.notifications.warn("You must be a Narrator to use this macro.");
+		return ui.notifications.warn(_loc("METANTHROPES.UI.NOTIFICATIONS.noActiveGM"));
 	}
 	const cutscene = await fromUuid(cutsceneUUID);
 	if (!cutscene) return ui.notifications.error(`Could not find Cutscene with UUID: ${cutsceneUUID}`);
