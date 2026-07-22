@@ -22,7 +22,7 @@ export async function metaFinalizePremadeActor(actor) {
 		// metanthropes.utils.metaLog(2, "Finalize Premade Protagonist", "Error at NewActorFinish:", error);
 		// throw error;
 		// });
-		await metanthropes.dice.metaRolld10(actor, "Destiny", false, 1);
+		await metanthropes.dice.metaRolld10({actorUUID: actor.uuid, what: "Destiny", destinyReRoll: false, dice: 1});
 		const newDestiny = await actor.getFlag("metanthropes", "lastrolled").rolld10;
 		await actor.update({
 			"system.Vital.Destiny.value": Number(newDestiny),

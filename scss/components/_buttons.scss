@@ -69,11 +69,44 @@ button::before {
 	display: flex;
 	text-rendering: auto;
 	-webkit-font-smoothing: antialiased;
-	// Centering tricks
+	//? Centering tricks
 	justify-self: center;
 	align-self: center;
 	justify-items: center;
 	align-items: center;
 	justify-content: center;
 	align-content: center;
+}
+
+//* meta-link Inline Buttons
+button.meta-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.25em;
+	width: auto;
+	min-height: 0;
+	height: inherit;
+	margin: 0em;
+	padding: 0em;
+	border: none;
+	background: transparent;
+	color: inherit;
+	opacity: 1;
+	font: inherit;
+	line-height: inherit;
+	vertical-align: baseline;
+	text-shadow: none;
+	cursor: pointer;
+}
+
+button.meta-link:hover,
+button.meta-link:focus {
+	background: transparent;
+	border: none;
+	color: var(--metanthropes-color-highlight);
+	text-shadow: var(--metanthropes-color-text-shadow);
+}
+
+button.meta-link i {
+	line-height: inherit;
 }

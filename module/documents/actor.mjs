@@ -289,8 +289,10 @@ export class MetanthropesActor extends Actor {
 	}
 
 	/**
-	 * applyDamage - Apply Damage to the Actor
-	 * each parameter below is expected to be a positive number
+	 * applyDamage - Apply Damage to the Actor.
+	 * Damage parameters below are expected to be a positive number.
+	 * Takes into account the resistances of the Actor.
+	 * todo should also take care of immunities.
 	 *
 	 * @async
 	 * @param {number} [cosmic=0]
@@ -396,6 +398,7 @@ export class MetanthropesActor extends Actor {
 
 	/**
 	 * applyDestinyChange - Apply Destiny Change to the Actor
+	 * Negative values will substract Destiny, possitive values will increase Destiny.
 	 *
 	 * @async
 	 * @param {number} destiny
@@ -415,6 +418,7 @@ export class MetanthropesActor extends Actor {
 		await this.update({ ...updateData });
 		metanthropes.utils.metaLog(3, "Actor.applyDestinyChange", this.name, "Destiny changed by:", destiny);
 	}
+	
 	//* Getters
 	get hasCharacteristics() {
 		return Boolean(this.system.Characteristics);

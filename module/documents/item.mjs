@@ -9,6 +9,8 @@ import { metaTransformStringForStorage } from "../helpers/metahelpers.mjs";
 export class MetanthropesItem extends Item {
 	/** @override */
 	async _preCreate(data, options, user) {
+		//todo need to review - ideally on the actor I should see the item effects and the item as the source
+		//todo vevaia edw einai to item, opote na kanw review to antistoixo spot sto actor & actor sheet
 		//? Built-in Foundry check for Active Effect Legacy Transferral
 		if (this.parent instanceof Actor && !CONFIG.ActiveEffect.legacyTransferral) {
 			for (const effect of this.effects) {
@@ -93,15 +95,17 @@ export class MetanthropesItem extends Item {
 	 */
 	//! If I understand this correct - returing the actorData will also inlcude this rollData that includes a copy of the system - why do I need that?
 	//! Make sure I review the item-sheet as well to optimize this where needed!!
-	getRollData() {
-		//! Is this being used?
-		//? If present, return the actor's roll data.
-		metanthropes.utils.metaLog(5, "MetaItem getRollData", "Engaged - !!! THIS SHOULD NOT HAPPEN !!!");
-		if (!this.actor) return null;
-		const rollData = this.actor.getRollData();
-		//? Grab the item's system data as well.
-		rollData.item = foundry.utils.deepClone(this.system);
-		metanthropes.utils.metaLog(5, "MetaItem getRollData", "rollData:", rollData);
-		return rollData;
-	}
+	//todo review why this was triggered - is it because of what I do in active-effect-tools? 
+	//todo search for item.getRollData () or < just roll data
+	// getRollData() {
+	// 	//! Is this being used?
+	// 	//? If present, return the actor's roll data.
+	// 	metanthropes.utils.metaLog(5, "MetaItem getRollData", "Engaged - !!! THIS SHOULD NOT HAPPEN !!!");
+	// 	if (!this.actor) return null;
+	// 	const rollData = this.actor.getRollData();
+	// 	//? Grab the item's system data as well.
+	// 	rollData.item = foundry.utils.deepClone(this.system);
+	// 	metanthropes.utils.metaLog(5, "MetaItem getRollData", "rollData:", rollData);
+	// 	return rollData;
+	// }
 }

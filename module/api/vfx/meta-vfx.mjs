@@ -46,7 +46,7 @@ export async function metaVFX({
 	);
 	//? Grab the initiating actor's Token
 	const actor = await fromUuid(initiatingTokenUUID);
-	if (!actor) return mL(5, "metaVFX", "Could find Actor", actor, "from UUID", initiatingTokenUUID);
+	if (!actor) return mL(5, "metaVFX", "Could find Actor from initiatingTokenUUID", initiatingTokenUUID);
 	const actorToken = await actor.getActiveTokens(false, false)[0];
 	if (!actorToken) return mL(5, "metaVFX", "No Initiating Actor Token could be found for actor", actor);
 	mL(3, "metaVFX", "Initiating Actor: UUID/actor/actorToken", initiatingTokenUUID, actor, actorToken);
@@ -57,6 +57,7 @@ export async function metaVFX({
 	//todo we need to come up with something similar
 	//! if ( !this.token?.parent.isView ) return;
 	//* Custom Damage Color additive hex combinations
+	//! todo this additive text is redundant, should be deprecated
 	//todo poc - is there a better util ready somewhere else?
 	function hexToRgb(hex) {
 		const clean = hex.replace("#", "");
@@ -301,7 +302,7 @@ export async function metaVFX({
 	});
 
 	//* Go thru each Token from the manuallySelectedTargets - future input from Targeting validation
-	for (const targetedActorUUID of JSON.parse(targetTokensUUIDs)) {
+	for (const targetedActorUUID of targetTokensUUIDs) {
 		const actor = await fromUuid(targetedActorUUID);
 		const targetedActor = await actor.getActiveTokens(false, false)[0]; //?would that work for target tokens too?
 		mL(3, "metaVFX", "TargetedActor UUID/actor/TargetedActor", targetedActorUUID, actor, targetedActor);

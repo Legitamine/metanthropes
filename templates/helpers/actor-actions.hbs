@@ -36,7 +36,7 @@
 						<div class="item-image">
 							{{#if (eq item.type "Metapower")}}
 								<img class="style-mp-rolls" data-roll-type="Metapower" data-item-name="{{item.name}}"
-									data-stat="{{item.system.Execution.StatRolled.value}}"
+									data-stat="{{item.system.Execution.StatRolled.value}}" data-item-id="{{item._id}}"
 									data-destiny-cost="{{item.system.DestinyCost.value}}" src="{{item.img}}"
 									data-tooltip='Click to Activate, {{item.system.Execution.ActionSlot.value}}<br><br>{{item.system.MetapowerName.value}} <i class="fa-solid fa-layer-group"></i>{{item.system.Level.value}} : {{item.name}}
 								{{#if isFocusedAction}}<br><i class="fa-solid fa-stopwatch"></i>: {{item.system.Execution.ActionSlot.value}}{{/if}}
@@ -51,7 +51,7 @@
 							{{#if (eq item.type "Possession")}}
 								<img class="style-pos-rolls" data-roll-type="Possession"
 									data-stat="{{item.system.Execution.StatRolled.value}}"
-									data-item-name="{{item.name}}" src="{{item.img}}"
+									data-item-name="{{item.name}}" data-item-id="{{item._id}}" src="{{item.img}}"
 									data-tooltip='Click to Use, {{item.system.Execution.ActionSlot.value}}<br><br>{{item.name}}
 								{{#if isFocusedAction}}<br><i class="fa-solid fa-stopwatch"></i>: {{item.system.Execution.ActionSlot.value}}{{/if}}
 								<br><br>Right-Click for Custom Roll

@@ -407,7 +407,8 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 			await roll.toMessage({
 				speaker: ChatMessage.getSpeaker({ actor: this.actor }),
 				flavor: label,
-				rollMode: game.settings.get("core", "rollMode"),
+				//todo in case it's used need to update to the correct rollMode usage
+				//! rollMode: game.settings.get("core", "rollMode"),
 			});
 			return roll;
 		}

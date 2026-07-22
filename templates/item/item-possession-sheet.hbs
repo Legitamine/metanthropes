@@ -127,13 +127,14 @@
 
 			<button data-tab="execution">Usage</button>
 			<button data-tab="effects">Effects</button>
-			{{#if isNarrator}}
-				{{#if betaTesting}}
+			{{!-- {{#if isNarrator}} --}}
+				{{!-- deprecated Results Tab --}}
+				{{!-- {{#if betaTesting}}
 					<button class="item style-cs-labels" data-tab="results">Results</button>
-				{{/if}}
+				{{/if}} --}}
 				{{!-- deprecated Audio/Visual Tab --}}
 				{{!-- <button data-tab="audio-visual">Audio/Visual</button> --}}
-			{{/if}}
+			{{!-- {{/if}} --}}
 		</nav>
 	</div>
 	{{!-- Sheet Body --}}
@@ -155,8 +156,8 @@
 		{{!-- Effects Tab --}}
 		{{> "systems/metanthropes/templates/helpers/item-effects.hbs"}}
 		{{!-- Results Tab --}}
-		{{> "systems/metanthropes/templates/helpers/item-results.hbs"}}
+		{{!-- {{> "systems/metanthropes/templates/helpers/item-results.hbs"}} --}}
 		{{!-- Audio/Visual Tab --}}
-		{{> "systems/metanthropes/templates/helpers/item-audio-visual.hbs"}}
+		{{!-- {{> "systems/metanthropes/templates/helpers/item-audio-visual.hbs"}} --}}
 	</section>
 </form>
