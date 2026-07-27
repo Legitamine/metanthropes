@@ -523,7 +523,7 @@
 	},
 	"TYPES": {
 		"Actor": {
-			"MetanthropesActorV2": "Metanthropes Actor",
+			"metaActor": "New Actor",
 			"Protagonist": "Protagonist",
 			"Metanthrope": "Metanthrope",
 			"Human": "Human",
@@ -539,8 +539,8 @@
 		"Item": {
 			"Metapower": "Metapower",
 			"Possession": "Possession",
-			"species": "Species",
-			"template": "Template"
+			"metaSpecies": "Species",
+			"metaTemplate": "Template"
 		}
 	}
 }

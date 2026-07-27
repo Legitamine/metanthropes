@@ -1,112 +1,28 @@
-const { HTMLField, SchemaField, NumberField, StringField, BooleanField, ArrayField } = foundry.data.fields;
-const standardScore = { required: true, nullable: false, integer: true, min: 0, initial: 0 }; //? Used in most cases
-const levelScore = { required: true, nullable: false, integer: true, min: 0, initial: 0, max: 5 }; //? Used where we have Levels
-const physicalScore = { required: true, nullable: false, integer: true, min: 0, initial: 10, max: 20 }; //? Used for Speed, Size, Weight
-const initialDiceNumber = { required: true, nullable: false, integer: true, min: 1, initial: 1 };
-
-export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel {
+/**
+ * MetaActor Class
+ * One Actor to Rule them All and in the System bind them
+ *
+ * @export
+ * @class MetaActor
+ * @typedef {MetaActor}
+ * @extends {foundry.abstract.TypeDataModel}
+ */
+export default class MetaActor extends foundry.abstract.TypeDataModel {
 	static LOCALIZATION_PREFIXES = ["METANTHROPES.ACTOR"];
 	static defineSchema() {
 		const { CHARS, STATS, BUFFS, CONDITIONS, CORECONDITIONS, TABLES } = metanthropes.system;
 		return {
-			resources: new SchemaField({
-				life: new SchemaField({
-					current: new NumberField({ ...standardScore }),
-				}),
-				movement: new SchemaField({
-					current: new NumberField({ ...standardScore }),
-				}),
-			}),
-			actions: new SchemaField({
-				main: new SchemaField({
-					current: new NumberField({ ...standardScore }),
-				}),
-				extra: new SchemaField({
-					current: new NumberField({ ...standardScore }),
-				}),
-				reaction: new SchemaField({
-					current: new NumberField({ ...standardScore }),
-				}),
-			}),
-			exp: new SchemaField({
-				progressionLog: new ArrayField(
-					new SchemaField({
-						something: new NumberField(),
-					}),
-				), //?this keeps the progression order
-				total: new NumberField({ ...standardScore }),
-				spent: new NumberField({ ...standardScore }),
-			}),
-			physical: new SchemaField({
-				description: new SchemaField({
-					player: new HTMLField(),
-					//todo species defined
-				}),
-				speed: new NumberField({ ...physicalScore }),
-				weight: new NumberField({ ...physicalScore }),
-				size: new NumberField({ ...physicalScore }),
-				resistances: new SchemaField(
-					Object.fromEntries(
-						Object.keys(TABLES.ENERGY).map((energyKey) => [
-							energyKey,
-							new NumberField({ ...standardScore }),
-						]),
-					),
-				),
-				immunities: new SchemaField(
-					Object.fromEntries(Object.keys(TABLES.ENERGY).map((energyKey) => [energyKey, new BooleanField()])),
-				),
-				shift: new SchemaField({}),
-				hitbox: new SchemaField({}), //? From Species
-				origin: new SchemaField({}), //? From Species
-			}),
-			chars: new SchemaField(
-				Object.fromEntries(
-					Object.keys(CHARS).map((charKey) => [
-						charKey,
-						new SchemaField({
-							current: new NumberField({ ...standardScore }),
-							initial: new NumberField({ ...standardScore }),
-							initialChoice: new NumberField({ ...standardScore }),
-							progressed: new NumberField({ ...levelScore }),
-							progressionLog: new ArrayField(
-								new SchemaField({
-									char: new StringField(),
-								}),
-							),
-						}),
-					]),
-				),
-			),
-			stats: new SchemaField(
-				Object.fromEntries(
-					Object.keys(STATS).map((statKey) => [
-						statKey,
-						new SchemaField({
-							current: new NumberField({ ...standardScore }),
-							initial: new NumberField({ ...standardScore }),
-							initialDice: new NumberField({ ...initialDiceNumber }),
-							progressed: new NumberField({ ...levelScore }),
-							progressionLog: new ArrayField(
-								new SchemaField({
-									stat: new StringField(),
-								}),
-							),
-						}),
-					]),
-				),
-			),
-			buffs: new SchemaField(
-				Object.fromEntries(Object.keys(BUFFS).map((buffKey) => [buffKey, new NumberField({ ...levelScore })])),
-			),
-			conditions: new SchemaField(
-				Object.fromEntries(
-					Object.keys(CONDITIONS).map((conditionKey) => [conditionKey, new NumberField({ ...levelScore })]),
-				),
-			),
-			coreConditions: new SchemaField({}),
-			perks: new SchemaField({}),
-			notes: new SchemaField({}),
+			resources: defineResources(),
+			actions: defineActions(),
+			exp: defineEXP(),
+			physical: definePhysical(TABLES),
+			chars: defineChars(CHARS),
+			stats: defineStats(STATS),
+			buffs: defineBuffs(BUFFS),
+			conditions: defineConditions(CONDITIONS),
+			coreConditions: defineCoreConditions(CORECONDITIONS),
+			perks: definePerks(),
+			notes: defineNotes(),
 		};
 	}
 
@@ -119,7 +35,9 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 		//const { speed, weight, size } = this.physical;
 		const physical = this.physical;
 		const items = this.parent.items;
-		const dominantSpecies = items.documentsByType.species[0]; //! Ayto kanw gia to hitbox
+		const dominantSpecies = items.documentsByType?.metaSpecies?.[0] ?? false; //! Ayto kanw gia ta dominant traits?
+		if (!dominantSpecies) return;
+		//todo na kanw return edw ean den exei akoma species?
 		const templates = items.documentsByType.template;
 		metanthropes.utils.metaLog(4, "Actor DM Base", physical);
 		//* Life
@@ -164,7 +82,7 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 		}
 	}
 
-	//* Derived values after Active Effects haven applied | Current: Base + Buffs - Conditions
+	//* Derived values after Active Effects applied | Current: Base + Buffs - Conditions
 	prepareDerivedData() {
 		super.prepareDerivedData();
 
@@ -177,7 +95,9 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 		const conditions = this.conditions;
 
 		const items = this.parent.items;
-		const dominantSpecies = items.documentsByType.species[0];
+		//const dominantSpecies = items.documentsByType.species[0]; //original
+		const dominantSpecies = items.documentsByType?.metaSpecies?.[0] ?? false;
+		if (!dominantSpecies) return;
 		metanthropes.utils.metaLog(4, "Actor DM Derived", dominantSpecies);
 		const templates = items.documentsByType.template;
 
@@ -233,4 +153,157 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 				conditions[statKey];
 		}
 	}
+}
+
+//* Schema Components
+const { HTMLField, SchemaField, NumberField, StringField, BooleanField, ArrayField } = foundry.data.fields;
+const standardScore = { required: true, nullable: false, integer: true, min: 0, initial: 1 }; //? Used in most cases
+const levelScore = { required: true, nullable: false, integer: true, min: 0, initial: 0, max: 5 }; //? Used where we have Levels
+const physicalScore = { required: true, nullable: false, integer: true, min: 0, initial: 10, max: 20 }; //? Used for Speed, Size, Weight
+const initialDiceNumber = { required: true, nullable: false, integer: true, min: 1, initial: 1 };
+
+//* * Resources
+function defineResources() {
+	return new SchemaField({
+		life: new SchemaField({
+			current: new NumberField({ ...standardScore }),
+		}),
+		movement: new SchemaField({
+			current: new NumberField({ ...standardScore }),
+		}),
+	});
+}
+
+//* * Actions
+function defineActions() {
+	return new SchemaField({
+		main: new SchemaField({
+			current: new NumberField({ ...standardScore }),
+		}),
+		extra: new SchemaField({
+			current: new NumberField({ ...standardScore }),
+		}),
+		reaction: new SchemaField({
+			current: new NumberField({ ...standardScore }),
+		}),
+	});
+}
+
+//* * EXP
+function defineEXP() {
+	return new SchemaField({
+		progressionLog: new ArrayField(
+			new SchemaField({
+				something: new NumberField(),
+			}),
+		), //?this keeps the progression order
+		total: new NumberField({ ...standardScore }),
+		spent: new NumberField({ ...standardScore }),
+	});
+}
+
+//* * Physical
+function definePhysical(TABLES) {
+	return new SchemaField({
+		description: new SchemaField({
+			player: new HTMLField(),
+			//todo species defined
+		}),
+		speed: new NumberField({ ...physicalScore }),
+		weight: new NumberField({ ...physicalScore }),
+		size: new NumberField({ ...physicalScore }),
+		resistances: new SchemaField(
+			Object.fromEntries(
+				Object.keys(TABLES.ENERGY).map((energyKey) => [energyKey, new NumberField({ ...standardScore })]),
+			),
+		),
+		immunities: new SchemaField(
+			Object.fromEntries(Object.keys(TABLES.ENERGY).map((energyKey) => [energyKey, new BooleanField()])),
+		),
+		shift: new SchemaField({}),
+		hitbox: new SchemaField({}), //? From Species
+		origin: new SchemaField({}), //? From Species
+	});
+}
+
+//* * Chars
+function defineChars(CHARS) {
+	return new SchemaField(
+		Object.fromEntries(
+			Object.keys(CHARS).map((charKey) => [
+				charKey,
+				new SchemaField({
+					current: new NumberField({ ...standardScore }),
+					initial: new NumberField({ ...standardScore }),
+					initialChoice: new NumberField({ ...standardScore }),
+					progressed: new NumberField({ ...levelScore }),
+					progressionLog: new ArrayField(
+						new SchemaField({
+							char: new StringField(),
+						}),
+					),
+				}),
+			]),
+		),
+	);
+}
+
+//* * Stats
+function defineStats(STATS) {
+	return new SchemaField(
+		Object.fromEntries(
+			Object.keys(STATS).map((statKey) => [
+				statKey,
+				new SchemaField({
+					current: new NumberField({ ...standardScore }),
+					initial: new NumberField({ ...standardScore }),
+					initialDice: new NumberField({ ...initialDiceNumber }),
+					progressed: new NumberField({ ...levelScore }),
+					progressionLog: new ArrayField(
+						new SchemaField({
+							stat: new StringField(),
+						}),
+					),
+				}),
+			]),
+		),
+	);
+}
+
+//* * Buffs
+function defineBuffs(BUFFS) {
+	return new SchemaField(
+		Object.fromEntries(Object.keys(BUFFS).map((buffKey) => [buffKey, new NumberField({ ...levelScore })])),
+	);
+}
+
+//* * Conditions
+function defineConditions(CONDITIONS) {
+	return new SchemaField(
+		Object.fromEntries(
+			Object.keys(CONDITIONS).map((conditionKey) => [conditionKey, new NumberField({ ...levelScore })]),
+		),
+	);
+}
+
+//* * Core Conditions
+function defineCoreConditions(CORECONDITIONS) {
+	return new SchemaField(
+		Object.fromEntries(
+			Object.keys(CORECONDITIONS).map((coreConditionKey) => [
+				coreConditionKey,
+				new NumberField({ ...levelScore }),
+			]),
+		),
+	);
+}
+
+//* * Perks
+function definePerks() {
+	return new SchemaField({});
+}
+
+//* * Notes
+function defineNotes() {
+	return new SchemaField({});
 }

@@ -1,25 +1,33 @@
 import MetanthropesItemBase from "./item.mjs";
 const { HTMLField, SchemaField, NumberField, StringField, ArrayField } = foundry.data.fields;
 const scoreNumber = { required: true, nullable: false, integer: true, min: 0, initial: 0, max: 5 };
+const choiceNumber = { required: true, nullable: false, integer: true, min: 1, initial: 1, max: 100 };
 const standardNumber = { required: true, nullable: false, integer: true, min: 0, initial: 1 };
 //todo we don't want more than applied to the actor
 //! perhaps a hybrid is a way to have more than a single species
 //! but with some caveats: so choices/initialDice come from the first one you enter
 //! but other properties can come from additional species you get, like immunities or addtional life?
 /**
- * Species is the basic class for an actor, and defines among many things:
- ** Initial choice for CHARS & dice for STATS during rolling a new Actor
- ** The Hitbox for the Actor
- ** The place of origin for the Actor
- ** Assigns Target types for the Actor
- ** Controls if the Actor can have Destiny and other optional features
+ * Species
+ * What is defined | How multiple Species interact
+ * * The Hitbox for the Actor | species[0] should hold the hitbox link to rollable table
+ * * Initial choice for CHARS (Pri/Sec/Ter) | upgrades min=1
+ * * Initial Life | upgrade from all species.life.initial
+ * * The place of origin for the Actor | like species[0]
+ * * Auto-calculates min EXP required, gives ammount as total EXP required to Actor once applied
+ * 			Template should work the same, Build can spend these exp once applied
+ * * Base size/weight/speed | upgrade if >=10, downgrade if <10
+ * * Can Require Templates | Adds to required Templates
+ * * Defines the initial #Actions | Upgrade
+ * * Assigns Target types for the Actor | Adds
+ * * if Destiny (starting) | Adds if you didn't have Destiny - do you get additional?
  *
  * @export
  * @class MetanthropesSpecies
- * @typedef {MetanthropesSpecies}
+ * @typedef {MetaSpecies}
  * @extends {MetanthropesItemBase}
  */
-export default class MetanthropesSpecies extends MetanthropesItemBase {
+export default class MetaSpecies extends MetanthropesItemBase {
 	static LOCALIZATION_PREFIXES = [...super.LOCALIZATION_PREFIXES, "METANTHROPES.ITEM.SPECIES"];
 
 	static defineSchema() {
@@ -27,28 +35,19 @@ export default class MetanthropesSpecies extends MetanthropesItemBase {
 			resources: new SchemaField({
 				life: new SchemaField({
 					initial: new NumberField({ ...standardNumber }),
+					//todo progression boolean
 					progressionStep: new NumberField({ ...standardNumber }), //cannot be zero?
 					progressionGain: new NumberField({ ...standardNumber }),
 				}),
 			}),
 			//todo den thelw ayto akrivws, thelw 3 values gia ta choices
-			//! kanoune choose ola ta species the same way?
-			chars: new SchemaField(
-				Object.keys(metanthropes.system.CHARS).reduce((obj, charKey) => {
-					obj[charKey] = new SchemaField({
-						initial: new NumberField({ ...standardNumber }),
-					});
-					return obj;
-				}, {}),
-			),
-			stats: new SchemaField(
-				Object.keys(metanthropes.system.STATS).reduce((obj, statKey) => {
-					obj[statKey] = new SchemaField({
-						initial: new NumberField({ ...standardNumber }),
-					});
-					return obj;
-				}, {}),
-			),
+			//! kanoune choose ola ta species the same way? => yes
+			//todo ara ayto edw paei kapoy sto base calculation, afou exw ta totals apo ta species, templates
+			chars: new SchemaField({
+				primary: new NumberField({ ...choiceNumber }),
+				secondary: new NumberField({ ...choiceNumber }),
+				tertiary: new NumberField({ ...choiceNumber }),
+			}),
 		};
 		const s = super.defineSchema(); //? Schema
 
@@ -72,5 +71,12 @@ export default class MetanthropesSpecies extends MetanthropesItemBase {
 		s.minorType = new f.StringField(); // Humanoid, Spirit, Anima, Animal, Incarnation etc <- or is that the name?
 
 		return s;
+	}
+
+	prepareBaseData() {
+		super.prepareBaseData();
+	}
+	prepareDerivedData() {
+		super.prepareDerivedData();
 	}
 }

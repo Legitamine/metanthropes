@@ -78,7 +78,11 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 		switch (
 			this.document.type //!species
 		) {
-			case "MetanthropesActorV2":
+			case "metaActor":
+				options.parts.push("actions", "perks", "metapowers", "possessions", "effects", "notes");
+				break;
+			//todo DM Migration
+			case "metanthropes-homebrew.metaActor":
 				options.parts.push("actions", "perks", "metapowers", "possessions", "effects", "notes");
 				break;
 		}

@@ -2,9 +2,9 @@ import { settings } from "../config/settings.mjs";
 
 Hooks.once("init", async function () {
 	console.log(metanthropes.system.ASCII);
-
 	//* Configure System
 	globalThis.SYSTEM = metanthropes.system;
+	//! do I actualy use the SYSTEM somewhere? I'd rather not put it out there if it's not used by us.
 
 	//* Register Fonts
 	CONFIG.fontDefinitions = {
@@ -21,20 +21,21 @@ Hooks.once("init", async function () {
 
 	//* Register System Settings
 	await metanthropes.utils.metaRegisterGameSettings(settings);
-	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting"))
-		metanthropes.utils.metaLog(1, "System", "Initializing", "Alpha Testing Enabled");
+	const alphaTestingEnabled = metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting") ?? false;
+	if (alphaTestingEnabled) metanthropes.utils.metaLog(1, "System", "Initializing", "Alpha Testing Enabled");
 	if (metanthropes.utils.metaCheckSetting("core", "metaBetaTesting"))
 		metanthropes.utils.metaLog(1, "System", "Initializing", "Beta Testing Enabled");
 
 	//* Register Data Models
-	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
+	if (alphaTestingEnabled) {
 		CONFIG.Actor.dataModels = {
-			MetanthropesActorV2: metanthropes.models.MetanthropesActorV2,
+			metaActor: metanthropes.models.MetaActor,
+			"metanthropes-homebrew.metaActor": metanthropes.models.MetaActor, //todo DM Migration
 		};
-
 		CONFIG.Item.dataModels = {
-			species: metanthropes.models.species,
-			template: metanthropes.models.template,
+			metaSpecies: metanthropes.models.MetaSpecies,
+			metaTemplate: metanthropes.models.MetaTemplate,
+			metaBuild: metanthropes.models.MetaBuild,
 		};
 	}
 
@@ -67,13 +68,13 @@ Hooks.once("init", async function () {
 		},
 	);
 
-	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
+	if (alphaTestingEnabled) {
 		foundry.documents.collections.Actors.registerSheet(
 			"metanthropes",
 			metanthropes.applications.MetanthropesActorSheetV2,
 			{
 				makeDefault: true,
-				types: ["MetanthropesActorV2"],
+				types: ["metaActor", "metanthropes-homebrew.metaActor"], //todo DM Migration
 				label: "METANTHROPES.SHEET.ACTORV2.LABEL",
 			},
 		);
@@ -83,13 +84,20 @@ Hooks.once("init", async function () {
 		label: "METANTHROPES.SHEET.ITEM.LABEL",
 	});
 
-	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
+	if (alphaTestingEnabled) {
 		foundry.documents.collections.Items.registerSheet(
 			"metanthropes",
 			metanthropes.applications.MetanthropesItemSheetV2,
 			{
 				makeDefault: true,
-				types: ["species", "template"],
+				types: [
+					"metaSpecies",
+					"metaTemplate",
+					"metaBuild",
+					"metanthropes-homebrew.metaSpecies",
+					"metanthropes-homebrew.metaTemplate",
+					"metanthropes-homebrew.metaBuild",
+				], //todo DM migration
 				label: "METANTHROPES.SHEET.ITEMV2.LABEL",
 			},
 		);
@@ -133,7 +141,7 @@ Hooks.once("init", async function () {
 
 	//* V14 VFX
 	//! EXPERIMENTAL
-	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
+	if (alphaTestingEnabled) {
 		metanthropes.utils.metaLog(1, "System", "Initializing", "Enabling Experimental VFX Engine");
 		CONFIG.Canvas.vfx.enabled = true;
 	}

@@ -5,17 +5,34 @@ const standardNumber = { required: true, nullable: false, integer: true, min: 0,
 //todo we don't want the same template applied twice on an actor
 
 /**
- * Templates are optional and provide an Actor with a combination of:
- ** Augmented CHARS and STATS that add to the Base values
- ** Access to special game mechanics (...)
- ** Additional Resistances, Immunities and Special abilities
- *
+ * Templates are optional and provide an Actor with aditional mechanics
+ * * Auto-calculated EXP 'costs' are added to the Actor's total EXP
+ * * Augmented/Reduced CHARS that add to the Base values
+ * * Can require a specific Species, or required by a Species (Metatherion requires Metapowered)
+ * * Can require another Template or be required by another Template (Revenant requires Animatated)
+ * * Gives access to special abilities
+ * 	thru Active Effects (always active passive abilities)
+ *  Additional Resistances, Immunities and Special abilities via AEE or directly?
+ * 	Special/Actions
+ *  Strikes
+ * * Can add special game mechanics or information we'd need later (like owner/origin of animated)
+ * * Cannot affect physical properties
+ * * Can add/remove Target Types
+ * * Can add initial Life
+ * * Can add Destiny or require Destiny Cost !Once
+ * * Can Adds/Removes Available Actions (or action types like perks or other abilities)
+ * * Can add Progression (+ initial Life per EXP total)
+ * * Examples
+ * swarm template (count = inverse size calculation)
+ * animated template (by who) mpainei k se trees k 'revived'
+ * revenant also allows use of perks/metapowers
+ * protagonist (save vs death - triggered or via AEE?)
  * @export
  * @class MetanthropesTemplate
- * @typedef {MetanthropesTemplate}
+ * @typedef {MetaTemplate}
  * @extends {MetanthropesItemBase}
  */
-export default class MetanthropesTemplate extends MetanthropesItemBase {
+export default class MetaTemplate extends MetanthropesItemBase {
 	static LOCALIZATION_PREFIXES = [...super.LOCALIZATION_PREFIXES, "METANTHROPES.ITEM.TEMPLATE"];
 
 	static defineSchema() {
@@ -66,5 +83,11 @@ export default class MetanthropesTemplate extends MetanthropesItemBase {
 		s.minorType = new f.StringField(); // Humanoid, Spirit, Anima, Animal, Incarnation etc <- or is that the name?
 
 		return s;
+	}
+	prepareBaseData() {
+		super.prepareBaseData();
+	}
+	prepareDerivedData() {
+		super.prepareDerivedData();
 	}
 }
