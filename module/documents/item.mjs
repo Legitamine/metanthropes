@@ -11,10 +11,11 @@ export class MetanthropesItem extends Item {
 	async _preCreate(data, options, user) {
 		//todo need to review - ideally on the actor I should see the item effects and the item as the source
 		//todo vevaia edw einai to item, opote na kanw review to antistoixo spot sto actor & actor sheet
+		//! review if/how this is possible for V14
 		//? Built-in Foundry check for Active Effect Legacy Transferral
 		if (this.parent instanceof Actor && !CONFIG.ActiveEffect.legacyTransferral) {
 			for (const effect of this.effects) {
-				if (effect.transfer) effect.updateSource(ActiveEffect.implementation.getInitialDuration());
+				if (effect.transfer) effect.updateSource(ActiveEffect.implementation.getEffectStart());
 			}
 		}
 		//? Confirm the Actor can have this type of Item

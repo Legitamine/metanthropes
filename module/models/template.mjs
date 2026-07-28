@@ -5,7 +5,7 @@ const standardNumber = { required: true, nullable: false, integer: true, min: 0,
 //todo we don't want the same template applied twice on an actor
 
 /**
- * Templates are optional and provide an Actor with aditional mechanics
+ * Templates provide an Actor with additional game mechanics
  * * Auto-calculated EXP 'costs' are added to the Actor's total EXP
  * * Augmented/Reduced CHARS that add to the Base values
  * * Can require a specific Species, or required by a Species (Metatherion requires Metapowered)
@@ -28,7 +28,7 @@ const standardNumber = { required: true, nullable: false, integer: true, min: 0,
  * revenant also allows use of perks/metapowers
  * protagonist (save vs death - triggered or via AEE?)
  * @export
- * @class MetanthropesTemplate
+ * @class MetaTemplate
  * @typedef {MetaTemplate}
  * @extends {MetanthropesItemBase}
  */

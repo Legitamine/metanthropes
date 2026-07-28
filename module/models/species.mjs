@@ -3,13 +3,14 @@ const { HTMLField, SchemaField, NumberField, StringField, ArrayField } = foundry
 const scoreNumber = { required: true, nullable: false, integer: true, min: 0, initial: 0, max: 5 };
 const choiceNumber = { required: true, nullable: false, integer: true, min: 1, initial: 1, max: 100 };
 const standardNumber = { required: true, nullable: false, integer: true, min: 0, initial: 1 };
-//todo we don't want more than applied to the actor
-//! perhaps a hybrid is a way to have more than a single species
-//! but with some caveats: so choices/initialDice come from the first one you enter
-//! but other properties can come from additional species you get, like immunities or addtional life?
+
 /**
  * Species
+ * 
  * What is defined | How multiple Species interact
+ * upgrade denotes that we keep the best value
+ * downgrade denotes that we keep the worst value
+ * add denotes that we add the value to the existing
  * * The Hitbox for the Actor | species[0] should hold the hitbox link to rollable table
  * * Initial choice for CHARS (Pri/Sec/Ter) | upgrades min=1
  * * Initial Life | upgrade from all species.life.initial
@@ -17,13 +18,13 @@ const standardNumber = { required: true, nullable: false, integer: true, min: 0,
  * * Auto-calculates min EXP required, gives ammount as total EXP required to Actor once applied
  * 			Template should work the same, Build can spend these exp once applied
  * * Base size/weight/speed | upgrade if >=10, downgrade if <10
- * * Can Require Templates | Adds to required Templates
+ * * Can forbid certain Templates | Adds to forbidden list
  * * Defines the initial #Actions | Upgrade
  * * Assigns Target types for the Actor | Adds
- * * if Destiny (starting) | Adds if you didn't have Destiny - do you get additional?
+ * * Controls if it can have Destiny (defines starting amount) | Adds if you didn't have Destiny / or Add to your current Destiny
  *
  * @export
- * @class MetanthropesSpecies
+ * @class MetaSpecies
  * @typedef {MetaSpecies}
  * @extends {MetanthropesItemBase}
  */

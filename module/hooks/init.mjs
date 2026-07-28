@@ -3,7 +3,7 @@ import { settings } from "../config/settings.mjs";
 Hooks.once("init", async function () {
 	console.log(metanthropes.system.ASCII);
 	//* Configure System
-	globalThis.SYSTEM = metanthropes.system;
+	//globalThis.SYSTEM = metanthropes.system;
 	//! do I actualy use the SYSTEM somewhere? I'd rather not put it out there if it's not used by us.
 
 	//* Register Fonts
@@ -47,23 +47,24 @@ Hooks.once("init", async function () {
 	//? missing MetaChatMessage === didn't register mine as the default so it falls back to the default
 
 	//* Register Application Sheets
+	const actorV1Types = [
+		"Protagonist",
+		"Metanthrope",
+		"Human",
+		"Animal",
+		"Artificial",
+		"Extradimensional",
+		"Extraterrestrial",
+		"Animated-Cadaver",
+		"Animated-Plant",
+		"MetaTherion",
+	];
 	foundry.documents.collections.Actors.registerSheet(
 		"metanthropes",
 		metanthropes.applications.MetanthropesActorSheet,
 		{
 			makeDefault: true,
-			types: [
-				"Protagonist",
-				"Metanthrope",
-				"Human",
-				"Animal",
-				"Artificial",
-				"Extradimensional",
-				"Extraterrestrial",
-				"Animated-Cadaver",
-				"Animated-Plant",
-				"MetaTherion",
-			],
+			types: actorV1Types,
 			label: "METANTHROPES.SHEET.ACTOR.LABEL",
 		},
 	);
@@ -85,19 +86,20 @@ Hooks.once("init", async function () {
 	});
 
 	if (alphaTestingEnabled) {
+		const itemV2Types = [
+			"metaSpecies",
+			"metaTemplate",
+			"metaBuild",
+			"metanthropes-homebrew.metaSpecies",
+			"metanthropes-homebrew.metaTemplate",
+			"metanthropes-homebrew.metaBuild",
+		];
 		foundry.documents.collections.Items.registerSheet(
 			"metanthropes",
 			metanthropes.applications.MetanthropesItemSheetV2,
 			{
 				makeDefault: true,
-				types: [
-					"metaSpecies",
-					"metaTemplate",
-					"metaBuild",
-					"metanthropes-homebrew.metaSpecies",
-					"metanthropes-homebrew.metaTemplate",
-					"metanthropes-homebrew.metaBuild",
-				], //todo DM migration
+				types: itemV2Types, //todo DM migration
 				label: "METANTHROPES.SHEET.ITEMV2.LABEL",
 			},
 		);
