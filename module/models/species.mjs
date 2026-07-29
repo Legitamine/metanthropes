@@ -3,23 +3,22 @@ const { HTMLField, SchemaField, NumberField, StringField, ArrayField } = foundry
 const scoreNumber = { required: true, nullable: false, integer: true, min: 0, initial: 0, max: 5 };
 const choiceNumber = { required: true, nullable: false, integer: true, min: 1, initial: 1, max: 100 };
 const standardNumber = { required: true, nullable: false, integer: true, min: 0, initial: 1 };
-
 /**
  * Species
- * 
+ *
  * What is defined | How multiple Species interact
  * upgrade denotes that we keep the best value
  * downgrade denotes that we keep the worst value
  * add denotes that we add the value to the existing
+ * * Initial Life | upgrade from all species.life.initial - done
+ * * Defines the initial #Actions | Upgrade
  * * The Hitbox for the Actor | species[0] should hold the hitbox link to rollable table
  * * Initial choice for CHARS (Pri/Sec/Ter) | upgrades min=1
- * * Initial Life | upgrade from all species.life.initial
  * * The place of origin for the Actor | like species[0]
  * * Auto-calculates min EXP required, gives ammount as total EXP required to Actor once applied
  * 			Template should work the same, Build can spend these exp once applied
  * * Base size/weight/speed | upgrade if >=10, downgrade if <10
  * * Can forbid certain Templates | Adds to forbidden list
- * * Defines the initial #Actions | Upgrade
  * * Assigns Target types for the Actor | Adds
  * * Controls if it can have Destiny (defines starting amount) | Adds if you didn't have Destiny / or Add to your current Destiny
  *
@@ -37,9 +36,14 @@ export default class MetaSpecies extends MetanthropesItemBase {
 				life: new SchemaField({
 					initial: new NumberField({ ...standardNumber }),
 					//todo progression boolean
-					progressionStep: new NumberField({ ...standardNumber }), //cannot be zero?
+					progressionStep: new NumberField({ ...standardNumber }),
 					progressionGain: new NumberField({ ...standardNumber }),
 				}),
+			}),
+			actions: new SchemaField({
+				main: new NumberField({ ...standardNumber }),
+				extra: new NumberField({ ...standardNumber }),
+				reaction: new NumberField({ ...standardNumber }),
 			}),
 			//todo den thelw ayto akrivws, thelw 3 values gia ta choices
 			//! kanoune choose ola ta species the same way? => yes

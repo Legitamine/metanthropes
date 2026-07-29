@@ -1,6 +1,6 @@
 /**
  * MetaActor Class
- * One Actor to Rule them All and in the System bind them
+ * One Actor to Rule them All and in the System Bind them.
  *
  * @export
  * @class MetaActor
@@ -26,41 +26,79 @@ export default class MetaActor extends foundry.abstract.TypeDataModel {
 		};
 	}
 
-	//* Base = Initial (from Species/Archetypes) + Progressed = einai ta stuff poy theloume gia progression!
+	//* Base = Initial (from Species & Templates) + Progressed (from EXP total)
 	prepareBaseData() {
 		super.prepareBaseData();
+		const mL = metanthropes.utils.metaLog;
+		//const dominantSpecies = items.documentsByType.species[0]; //original
+		const items = this.parent.items;
+		const dominantSpecies = items.documentsByType?.metaSpecies?.[0] ?? false; //? are the extra ?s needed here?
+		if (!dominantSpecies) return mL(1, "Actor Data Model", "Actor doesn't have a Species assigned yet");
+		const species = items.documentsByType.metaSpecies;
+		const templates = items.documentsByType.metaTemplate;
 		const { CHARS, STATS } = metanthropes.system;
 		const { life } = this.resources;
 		const { main, extra, reaction } = this.actions;
 		//const { speed, weight, size } = this.physical;
 		const physical = this.physical;
-		const items = this.parent.items;
-		const dominantSpecies = items.documentsByType?.metaSpecies?.[0] ?? false; //! Ayto kanw gia ta dominant traits?
-		if (!dominantSpecies) return;
-		//todo na kanw return edw ean den exei akoma species?
-		const templates = items.documentsByType.template;
-		metanthropes.utils.metaLog(4, "Actor DM Base", physical);
+
 		//* Life
-		const progressionStep = dominantSpecies?.system?.resources?.life?.progressionStep ?? 0;
-		const progressionGain = dominantSpecies?.system?.resources?.life?.progressionGain ?? 0;
-		let lifeInitial = dominantSpecies?.system?.resources?.life?.initial ?? 0;
-		for (const item of templates) lifeInitial += item?.system?.resources?.life?.initial ?? 0; //! Ayto kanw gia ola ta ypoloipa initial stats
-		//! doing this so it won't show Life NaN/NaN until a species is added to the actor, is there a better way?
-		if (progressionStep > 0) {
-			life.progressed = Math.floor(this.exp.total / progressionStep) * progressionGain; //? Extra gain Life for each step EXP Total
-		} else {
-			life.progressed = 0;
-		}
-		life.base = lifeInitial + life.progressed;
+		//? Keep the highest initial Life from all Species
+		const speciesInitialLife = Math.max(
+			0,
+			...species.map((eachSpecies) => eachSpecies.system.resources.life.initial ?? 0),
+		);
+		//? Cummulative add the initial Life gained from each Template
+		const templatesInitialLife = templates.reduce(
+			//todo why we have no intellisense here for .reduce or .map? etc, while we do for Math.max?
+			(total, template) => total + (template.system.resources.life.initial ?? 0),
+			0,
+		);
+		//? Initial Life from Species & Templates
+		life.initial = speciesInitialLife + templatesInitialLife;
+		//? Cummulative add the progressed Life gained from each Species
+		const progressedLife = species.reduce((total, eachSpecies) => {
+			//? alternative to: for (const eachSpecies of species) {...}, with let progressedLife, and  progressedLife += before continue
+			const progressionStep = eachSpecies.system.resources.life.progressionStep ?? 0;
+			const progressionGain = eachSpecies.system.resources.life.progressionGain ?? 0;
+			if (progressionStep <= 0) return total;
+			return total + Math.floor(this.exp.total / progressionStep) * progressionGain; //todo review once EXP is done
+		});
+		//? Base Life = Initial + Progressed
+		life.base = life.initial + progressedLife;
 
 		//* Actions
-		main.base = 0;
-		extra.base = 0;
-		reaction.base = 0;
+		//? Keep the highest initial value for each action from all Species
+		const speciesMain = Math.max(0, ...species.map((eachSpecies) => eachSpecies.system.actions.main ?? 0));
+		const speciesExtra = Math.max(0, ...species.map((eachSpecies) => eachSpecies.system.actions.extra ?? 0));
+		const speciesReaction = Math.max(0, ...species.map((eachSpecies) => eachSpecies.system.actions.reaction ?? 0));
+		//? Cummulative Add the values for each action from Templates (they can be negative)
+		const templatesMain = templates.reduce(
+			(total, eachTemplate) => total + (eachTemplate.system.actions.main ?? 0),
+			0,
+		);
+		const templatesExtra = templates.reduce(
+			(total, eachTemplate) => total + (eachTemplate.system.actions.extra ?? 0),
+			0,
+		);
+		const templatesReaction = templates.reduce(
+			(total, eachTemplate) => total + (eachTemplate.system.actions.reaction ?? 0),
+			0,
+		);
+		//? Ensure the initial value won't be negative (min:0) for any action
+		main.initial = Math.max(0, speciesMain + templatesMain);
+		extra.initial = Math.max(0, speciesExtra + templatesExtra);
+		reaction.initial = Math.max(0, speciesReaction + templatesReaction);
+		//todo placeholder for any actions from progression, currently not planned
+		main.base = main.initial;
+		extra.base = extra.initial;
+		reaction.base = reaction.initial;
+		//todo review how the actor's initial DM should look like now we have a better understanding
+		//todo where do I keep the current values?? probably in derived after being affected by AE, spending them during combat etc
 
 		//* EXP
 		this.exp.stored = this.exp.total - this.exp.spent;
-		if (this.exp.stored < 0) metanthropes.utils.metaLog(2, "Actor DM Base", this.name, "Stored EXP is Negative!");
+		if (this.exp.stored < 0) mL(2, "Actor DM Base", this.name, "Stored EXP is Negative!");
 
 		//* Chars
 		for (const charKey of Object.keys(CHARS)) {
@@ -85,7 +123,9 @@ export default class MetaActor extends foundry.abstract.TypeDataModel {
 	//* Derived values after Active Effects applied | Current: Base + Buffs - Conditions
 	prepareDerivedData() {
 		super.prepareDerivedData();
-
+		const mL = metanthropes.utils.metaLog;
+		const dominantSpecies = items.documentsByType?.metaSpecies?.[0] ?? false;
+		if (!dominantSpecies) return mL(1, "Actor Data Model", "Actor doesn't have a Species assigned yet");
 		const { CHARS, STATS, TABLES } = metanthropes.system;
 		const { life, movement } = this.resources;
 		const { main, extra, reaction } = this.actions;
@@ -95,10 +135,7 @@ export default class MetaActor extends foundry.abstract.TypeDataModel {
 		const conditions = this.conditions;
 
 		const items = this.parent.items;
-		//const dominantSpecies = items.documentsByType.species[0]; //original
-		const dominantSpecies = items.documentsByType?.metaSpecies?.[0] ?? false;
-		if (!dominantSpecies) return;
-		metanthropes.utils.metaLog(4, "Actor DM Derived", dominantSpecies);
+
 		const templates = items.documentsByType.template;
 
 		//* Dominant Species (the first Species applied to the Actor)
@@ -111,6 +148,7 @@ export default class MetaActor extends foundry.abstract.TypeDataModel {
 
 		//* Life
 		//todo: how to handle Duplicates? see _prepareDerivedVitalData(actorData) in old actor
+		//todo: Ordering - Life calcs should go after the physical.size calcs in this file, right?
 		life.max = life.base + this.stats.endurance.current + TABLES.SIZE[physical.size].life; // + metaConstitution + substanceImitation + controlDensityTemp
 		life.current = Math.min(life.current, life.max);
 		life.value = life.current; //? Life as a resource bar

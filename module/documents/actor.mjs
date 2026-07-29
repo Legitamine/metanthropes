@@ -177,7 +177,6 @@ export class MetanthropesActor extends Actor {
 		//* Data modifications in this step occur before processing embedded
 		//* documents or derived data.
 		const actorData = this;
-		console.log(actorData);
 		if (actorData.type === "metanthropes-homebrew.metaActor") return; //todo DM migration
 		//? Setting Humans to have starting life of 50 instead of 100
 		if (this.type === "Human") {

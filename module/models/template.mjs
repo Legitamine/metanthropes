@@ -2,10 +2,13 @@ import MetanthropesItemBase from "./item.mjs";
 const { HTMLField, SchemaField, NumberField, StringField, ArrayField } = foundry.data.fields;
 const scoreNumber = { required: true, nullable: false, integer: true, min: 0, initial: 0, max: 5 };
 const standardNumber = { required: true, nullable: false, integer: true, min: 0, initial: 2 };
+const actionNumber = { required: true, nullable: false, integer: true, initial: 0 }; //todo do we need sensbile limits for min/max here?
 //todo we don't want the same template applied twice on an actor
 
 /**
  * Templates provide an Actor with additional game mechanics
+ * * Can add initial Life - done
+ * * Can Adds/Removes Available Actions (or action types like perks or other abilities)
  * * Auto-calculated EXP 'costs' are added to the Actor's total EXP
  * * Augmented/Reduced CHARS that add to the Base values
  * * Can require a specific Species, or required by a Species (Metatherion requires Metapowered)
@@ -18,9 +21,7 @@ const standardNumber = { required: true, nullable: false, integer: true, min: 0,
  * * Can add special game mechanics or information we'd need later (like owner/origin of animated)
  * * Cannot affect physical properties
  * * Can add/remove Target Types
- * * Can add initial Life
  * * Can add Destiny or require Destiny Cost !Once
- * * Can Adds/Removes Available Actions (or action types like perks or other abilities)
  * * Can add Progression (+ initial Life per EXP total)
  * * Examples
  * swarm template (count = inverse size calculation)
@@ -34,13 +35,17 @@ const standardNumber = { required: true, nullable: false, integer: true, min: 0,
  */
 export default class MetaTemplate extends MetanthropesItemBase {
 	static LOCALIZATION_PREFIXES = [...super.LOCALIZATION_PREFIXES, "METANTHROPES.ITEM.TEMPLATE"];
-
 	static defineSchema() {
 		return {
 			resources: new SchemaField({
 				life: new SchemaField({
 					initial: new NumberField({ ...standardNumber }),
 				}),
+			}),
+			actions: new SchemaField({
+				main: new NumberField({ ...actionNumber }),
+				extra: new NumberField({ ...actionNumber }),
+				reaction: new NumberField({ ...actionNumber }),
 			}),
 			//todo den thelw ayto akrivws, thelw 3 values gia ta choices
 			//! kanoune choose ola ta species the same way?

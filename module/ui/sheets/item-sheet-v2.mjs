@@ -246,7 +246,7 @@ export class MetanthropesItemSheetV2 extends api.HandlebarsApplicationMixin(shee
 	static async _createEffect(event, target) {
 		// Retrieve the configured document class for ActiveEffect
 		const aeCls = getDocumentClass("ActiveEffect");
-		console.log(aeCls);
+		//console.log(aeCls);
 		// Prepare the document creation data by initializing it a default name.
 		//!! As of v12, you can define custom Active Effect subtypes just like Item subtypes if you want
 		const effectData = {
