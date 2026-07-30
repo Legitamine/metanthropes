@@ -72,7 +72,12 @@ import { metaMigration } from "./api/utils/migration.mjs";
 import { metaLog, metaLogDocument } from "./api/utils/log-tools.mjs";
 import { metaSortActions } from "./api/utils/sort-actions.mjs";
 import { metaRunMacro } from "./api/utils/run-macro.mjs";
-import { metaIsMetapowerEquipped, metaTransformStringForStorage, metaCheckSetting } from "./helpers/metahelpers.mjs";
+import {
+	metaIsMetapowerEquipped,
+	metaTransformStringForStorage,
+	metaCheckSetting,
+	metaIsItemEquipped,
+} from "./helpers/metahelpers.mjs";
 import { metaCreateFAIcon, metaCreateCustomIcon } from "./helpers/fa-enricher.mjs";
 import { metaLink } from "./helpers/link-enricher.mjs";
 import {
@@ -178,6 +183,7 @@ globalThis.metanthropes = {
 		metaUpdateTokenImages,
 		metaConvertPortraitToTokenImage,
 		metaCheckSetting,
+		metaIsItemEquipped,
 	},
 	registry: {
 		artwork: {

@@ -124,8 +124,11 @@ export default class MetaActor extends foundry.abstract.TypeDataModel {
 	prepareDerivedData() {
 		super.prepareDerivedData();
 		const mL = metanthropes.utils.metaLog;
+		const items = this.parent.items;
 		const dominantSpecies = items.documentsByType?.metaSpecies?.[0] ?? false;
 		if (!dominantSpecies) return mL(1, "Actor Data Model", "Actor doesn't have a Species assigned yet");
+		const templates = items.documentsByType?.template ?? false;
+
 		const { CHARS, STATS, TABLES } = metanthropes.system;
 		const { life, movement } = this.resources;
 		const { main, extra, reaction } = this.actions;
@@ -134,9 +137,20 @@ export default class MetaActor extends foundry.abstract.TypeDataModel {
 		const buffs = this.buffs;
 		const conditions = this.conditions;
 
-		const items = this.parent.items;
+		//* Life
+		//todo: how to handle Duplicates? see _prepareDerivedVitalData(actorData) in old actor
+		//todo: Ordering - Life calcs should go after the physical.size calcs in this file, right?
+		life.max = life.base + this.stats.endurance.current + TABLES.SIZE[physical.size].life; // + metaConstitution + substanceImitation + controlDensityTemp
+		life.current = Math.min(life.current, life.max);
+		life.value = life.current; //? Life as a resource bar
 
-		const templates = items.documentsByType.template;
+		//* Actions
+		main.max = main.base; //+ metapower -- does species limit the max?
+		extra.max = extra.base;
+		reaction.max = reaction.base;
+		//derived actions, define max math.min
+		//focused action: haven't moved or spent any action. Once 'used' they have no other action available for that turn.
+		//should we keep a flag or rather have the value set here?
 
 		//* Dominant Species (the first Species applied to the Actor)
 		//todo CHARS, STATS, SPEED, WEIGHT, SIZE exoune BUFF/CONDITION
@@ -145,13 +159,6 @@ export default class MetaActor extends foundry.abstract.TypeDataModel {
 		physical.speed = 10 + buffs.speed - conditions.speed;
 		physical.size = 10 + buffs.size - conditions.size;
 		physical.weight = 10 + buffs.weight - conditions.weight;
-
-		//* Life
-		//todo: how to handle Duplicates? see _prepareDerivedVitalData(actorData) in old actor
-		//todo: Ordering - Life calcs should go after the physical.size calcs in this file, right?
-		life.max = life.base + this.stats.endurance.current + TABLES.SIZE[physical.size].life; // + metaConstitution + substanceImitation + controlDensityTemp
-		life.current = Math.min(life.current, life.max);
-		life.value = life.current; //? Life as a resource bar
 
 		//* Movement
 		movement.max = Math.ceil(
@@ -165,12 +172,6 @@ export default class MetaActor extends foundry.abstract.TypeDataModel {
 		movement.sprint = movement.max * 5;
 		movement.current = Math.min(movement.current, movement.max);
 		movement.value = movement.current; //? Movement as resource bar
-
-		//* Actions
-		main.max = main.base; //+ metapower -- does species limit the max?
-		extra.max = extra.base;
-		reaction.max = reaction.base;
-		//derived actions, define max math.min
 
 		//* Chars
 		//todo we want to keep the ifCharGoesToZero value vs defined min=0, leave it undefined?
