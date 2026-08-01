@@ -1,3 +1,61 @@
 <section class="tab effects scrollable {{tab.cssClass}}" data-group="primary" data-tab="effects">
-	Effects
+	<ol class="items-list effects-list">
+		{{#each effects as |section|}}
+			<li class="effects-category" data-effect-type="{{section.type}}">
+				<div class="items-header flexrow">
+					<h4 class="item-name effect-name flexrow">
+						{{localize section.label}}
+					</h4>
+					<div class="effect-source">Source</div>
+					<div class="effect-duration">Duration</div>
+					{{#if ../isNarrator}}
+						<div class="item-controls effect-controls flexrow">
+							<a class="effect-control" data-action="effectCreate"
+								data-tooltip="METANTHROPES.ACTOR.SHEET.AE.addEffect">
+								<i class="fas fa-plus"></i>
+								{{localize "METANTHROPES.ACTOR.SHEET.AE.add"}}
+							</a>
+						</div>
+					{{/if}}
+				</div>
+				<ol class="item-list">
+					{{#each section.effects as |effect|}}
+						<li class="item effect flexrow" data-effectuuid="{{effect.uuid}}">
+							<div class="item-name effect-name flexrow">
+								<img class="item-image" src="{{effect.img}}" alt="{{effect.name}}" />
+								<h4>
+									<a class="effect-control effect-edit style-view-properties" data-action="edit"
+										data-tooltip="Click to open {{effect.name}}" data-effectuuid="{{effect.uuid}}">
+										{{effect.name}}
+									</a>
+								</h4>
+							</div>
+							<div class="effect-source">
+								{{effect.sourceName}}
+							</div>
+							<div class="effect-duration">
+								{{effect.duration.label}}
+							</div>
+							{{#if ../../isNarrator}}
+								<div class="item-controls effect-controls flexrow">
+									<a class="effect-control" data-action="toggle" data-effectuuid="{{effect.uuid}}"
+										data-tooltip="METANTHROPES.ACTOR.SHEET.AE.toggleEffect"><i
+											class="fas {{#if effect.disabled}}fa-check{{else}}fa-times{{/if}}"></i>
+									</a>
+									<a class="effect-control" data-action="refresh" data-effectuuid="{{effect.uuid}}"
+										data-tooltip="METANTHROPES.ACTOR.SHEET.AE.resetEffect"><i
+											class="fas fa-refresh"></i>
+									</a>
+									<a class="effect-control" data-action="delete" data-effectuuid="{{effect.uuid}}"
+										data-tooltip="METANTHROPES.ACTOR.SHEET.AE.removeEffect"><i
+											class="fa-solid fa-trash"></i>
+									</a>
+								</div>
+							{{/if}}
+						</li>
+					{{/each}}
+				</ol>
+			</li>
+		{{/each}}
+	</ol>
 </section>

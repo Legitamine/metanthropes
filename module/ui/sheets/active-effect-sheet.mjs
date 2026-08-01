@@ -1,189 +1,38 @@
 /**
- *
  * Metanthropes Active Effect Sheet
- * ! Extends the DocumentSheet instead of overriding the ActiveEffectConfig class
- * todo missing the new active effect from status effect feature
- * !!v14 revert to using the default ActiveEffect Sheet for now
- * Based off ActiveEffectConfig from the core Foundry VTT system
+ * 
+ * * We are currently (only) overriding the first tab (details)
+ * * show Description's enriched text to Players and editor to Narrators
  *
- * @extends {DocumentSheet}
- *
+ * @export
+ * @class MetanthropesActiveEffectSheetV2
+ * @typedef {MetanthropesActiveEffectSheetV2}
+ * @extends {foundry.applications.sheets.ActiveEffectConfig}
  */
-// export class MetanthropesActiveEffectSheet extends DocumentSheet {
-// 	/** @override */
-// 	static get defaultOptions() {
-// 		return foundry.utils.mergeObject(super.defaultOptions, {
-// 			classes: ["sheet", "active-effect-sheet"],
-// 			template: "systems/metanthropes/templates/metanthropes/active-effect-config.html",
-// 			width: 600,
-// 			height: "auto",
-// 			sheetConfig: false,
-// 			sumbitOnChange: true,
-// 			tabs: [{ navSelector: ".tabs", contentSelector: "form", initial: "details" }],
-// 		});
-// 	}
+export class MetanthropesActiveEffectSheetV2 extends foundry.applications.sheets.ActiveEffectConfig {
+	static PARTS = {
+		...super.PARTS,
+		details: {
+			...super.PARTS.details,
+			template: "systems/metanthropes/templates/apps/sheets/active-effect-details.hbs",
+		},
+	};
+	async _preparePartContext(partId, context) {
+		context = await super._preparePartContext(partId, context);
 
-// 	/* ----------------------------------------- */
+		if (partId === "details") {
+			context.isNarrator = game.user.isGM;
+			context.enrichedDescription = await foundry.applications.ux.TextEditor.enrichHTML(
+				context.source.description ?? "",
+				{
+					relativeTo: this.document,
+					secrets: this.isEditable,
+					rollData: this.document.parent?.getRollData?.() ?? {}, //?do we want it in the effect?
+				},
+				{ async: true }, //? not required in v14? enrich already returns a promise?
+			);
+		}
 
-// 	/** @override */
-// 	async getData(options = {}) {
-// 		metanthropes.utils.metaLog(3, "Metanthropes | Active Effect Sheet | getData, this", this);
-// 		const context = await super.getData(options);
-// 		const metaFlags = this.object.flags.metanthropes;
-// 		context.descriptionHTML = await TextEditor.enrichHTML(this.object.description, {
-// 			async: true,
-// 			secrets: this.object.isOwner,
-// 		});
-// 		const labels = {
-// 			transfer: {
-// 				name: _loc(`EFFECT.Transfer`),
-// 				hint: _loc(`EFFECT.TransferHint`),
-// 			},
-// 		};
-// 		const metaEffectTypeOptions = ["Buff", "Condition"];
-// 		const metaEffectApplicationOptions = [
-// 			"Body",
-// 			"Mind",
-// 			"Soul",
-// 			"Movement",
-// 			"Action",
-// 			"Cover",
-// 			"Detection",
-// 			"Immunity",
-// 			"Resistance",
-// 			"Shift",
-// 		];
-// 		const predefinedKeys = [
-// 			{
-// 				key: "system.physical.resistances.cosmic.initial",
-// 				mode: CONST.ACTIVE_EFFECT_MODES.UPGRADE,
-// 				label: "Cosmic Resistance",
-// 			},
-// 			{
-// 				key: "system.physical.resistances.elemental.initial",
-// 				mode: CONST.ACTIVE_EFFECT_MODES.UPGRADE,
-// 				label: "Elemental Resistance",
-// 			},
-// 			{
-// 				key: "system.physical.resistances.material.initial",
-// 				mode: CONST.ACTIVE_EFFECT_MODES.UPGRADE,
-// 				label: "Material Resistance",
-// 			},
-// 			{
-// 				key: "system.physical.resistances.psychic.initial",
-// 				mode: CONST.ACTIVE_EFFECT_MODES.UPGRADE,
-// 				label: "Psychic Resistance",
-// 			},
-// 			{
-// 				key: "system.physical.speed.Buffs.accelerated.value",
-// 				mode: CONST.ACTIVE_EFFECT_MODES.UPGRADE,
-// 				label: "Accelerated",
-// 			},
-// 			{
-// 				key: "system.physical.speed.Conditions.slowed.value",
-// 				mode: CONST.ACTIVE_EFFECT_MODES.UPGRADE,
-// 				label: "Slowed",
-// 			},
-// 		];
-// 		const data = {
-// 			labels,
-// 			effect: this.object, // Backwards compatibility
-// 			data: this.object,
-// 			metaEffectType: metaFlags.metaEffectType,
-// 			metaEffectApplication: metaFlags.metaEffectApplication,
-// 			metaCycle: metaFlags.metaCycle,
-// 			metaStartCycle: metaFlags.metaStartCycle,
-// 			isActorEffect: this.object.parent.documentName === "Actor",
-// 			isItemEffect: this.object.parent.documentName === "Item",
-// 			isNarrator: game.user.isGM,
-// 			submitText: "EFFECT.Submit",
-// 			modes: Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((obj, e) => {
-// 				obj[e[1]] = _loc(`EFFECT.MODE_${e[0]}`);
-// 				return obj;
-// 			}, {}),
-// 			predefinedKeys: predefinedKeys,
-// 			metaEffectTypeOptions: metaEffectTypeOptions,
-// 			metaEffectApplicationOptions: metaEffectApplicationOptions,
-// 		};
-// 		metanthropes.utils.metaLog(3, "Metanthropes | Active Effect Sheet | getData, context, data", context, data);
-// 		return foundry.utils.mergeObject(context, data);
-// 	}
-
-// 	/* ----------------------------------------- */
-
-// 	/** @override */
-// 	activateListeners(html) {
-// 		super.activateListeners(html);
-// 		html.find(".effect-control").click(this._onEffectControl.bind(this));
-// 		//? Listener for predefined key/mode dropdown changes
-// 		html.find(".predefined-key-mode").on("change", (event) => {
-// 			const selected = event.target.value;
-// 			const li = $(event.currentTarget).closest("li.effect-change");
-// 			const index = li.data("index");
-// 			//? Update the key and mode fields based on the selected predefined combination
-// 			if (selected !== "custom") {
-// 				const [key, mode] = selected.split("|");
-// 				li.find(`input[name='changes.${index}.key']`).val(key).trigger("change");
-// 				li.find(`select[name='changes.${index}.mode']`).val(mode).trigger("change");
-// 			} else {
-// 				//? Reset to custom values
-// 				li.find(`input[name='changes.${index}.key']`).val("").trigger("change");
-// 				li.find(`select[name='changes.${index}.mode']`).val(CONST.ACTIVE_EFFECT_MODES.ADD).trigger("change");
-// 			}
-// 		});
-// 	}
-
-// 	/* ----------------------------------------- */
-
-// 	/**
-// 	 * Provide centralized handling of mouse clicks on control buttons.
-// 	 * Delegate responsibility out to action-specific handlers depending on the button action.
-// 	 * @param {MouseEvent} event      The originating click event
-// 	 * @private
-// 	 */
-// 	_onEffectControl(event) {
-// 		event.preventDefault();
-// 		const button = event.currentTarget;
-// 		switch (button.dataset.action) {
-// 			case "add":
-// 				return this._addEffectChange();
-// 			case "delete":
-// 				button.closest(".effect-change").remove();
-// 				return this.submit({ preventClose: true }).then(() => this.render());
-// 		}
-// 	}
-
-// 	/* ----------------------------------------- */
-
-// 	/**
-// 	 * Handle adding a new change to the changes array.
-// 	 * @private
-// 	 */
-// 	async _addEffectChange() {
-// 		const idx = this.document.changes.length;
-// 		return this.submit({
-// 			preventClose: true,
-// 			updateData: {
-// 				[`changes.${idx}`]: {
-// 					predefinedKeyMode: "custom",
-// 					key: "",
-// 					mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-// 					value: "",
-// 				},
-// 			},
-// 		});
-// 	}
-
-// 	/* ----------------------------------------- */
-
-// 	/** @inheritdoc */
-// 	_getSubmitData(updateData = {}) {
-// 		const fd = new FormDataExtended(this.form, { editors: this.editors });
-// 		let data = foundry.utils.expandObject(fd.object);
-// 		metanthropes.utils.metaLog(3, "Metanthropes | Active Effect Sheet | _getSubmitData, data, updateData", fd, data, updateData);
-// 		if (updateData) foundry.utils.mergeObject(data, updateData);
-// 		data.changes = Array.from(Object.values(data.changes || {}));
-// 		return data;
-// 	}
-// }
-export class MetanthropesActiveEffectSheetV2 extends foundry.applications.sheets.ActiveEffectConfig {}
+		return context;
+	}
+}

@@ -20,6 +20,10 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 			deleteDoc: this._deleteDoc,
 			toggleEffect: this._toggleEffect,
 			roll: this._onRoll,
+			effectCreate: this._onManageActiveEffect,
+			//todo effectEdit: onManageActiveEffect,
+			//todo effectToggle: onManageActiveEffect,
+			//todo effectDelete: onManageActiveEffect,
 		},
 		// Custom property that's merged into `this.options`
 		dragDrop: [{ dragSelector: "[data-drag]", dropSelector: null }],
@@ -134,12 +138,8 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 				break;
 			case "effects":
 				context.tab = context.tabs[partId];
-				// Prepare active effects
-				// context.effects = prepareActiveEffectCategories(
-				// 	// A generator that returns all effects stored on the actor
-				// 	// as well as any items
-				// 	this.actor.allApplicableEffects(),
-				// );
+				//? Categorize Active Effects
+				context.effects = metanthropes.utils.prepareActiveEffectCategories(this.actor.allApplicableEffects());
 				break;
 			case "notes":
 				context.tab = context.tabs[partId];
@@ -753,5 +753,9 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 				input.disabled = true;
 			}
 		}
+	}
+
+	async _onManageActiveEffect() {
+		//todo figure out how to have compatibility with v1 or not?
 	}
 }

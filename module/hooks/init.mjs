@@ -44,7 +44,10 @@ Hooks.once("init", async function () {
 	CONFIG.Item.documentClass = metanthropes.documents.MetanthropesItem;
 	CONFIG.ActiveEffect.documentClass = metanthropes.documents.MetanthropesActiveEffect;
 	CONFIG.Combat.documentClass = metanthropes.documents.MetanthropesCombat;
-	//? missing MetaChatMessage === didn't register mine as the default so it falls back to the default
+	//todo missing MetaChatMessage === didn't register mine as the default so it falls back to the default
+
+	//* Active Effect Expiration
+	CONFIG.ActiveEffect.expiryAction = "update"; //? setting this to "delete" will remove the AE
 
 	//* Register Application Sheets
 	const actorV1Types = [

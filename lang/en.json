@@ -365,6 +365,13 @@
 					"Possessions": "Possessions",
 					"Effects": "Effects",
 					"Notes": "Notes"
+				},
+				"AE": {
+					"add": " Add",
+					"addEffect": "Add Effect",
+					"toggleEffect": "Toggle Effect",
+					"removeEffect": "Remove Effect",
+					"resetEffect": "Refresh Duration"
 				}
 			},
 			"NOTIFICATIONS": {

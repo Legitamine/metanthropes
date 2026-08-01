@@ -66,7 +66,7 @@ import { editActorStats } from "./api/macros/edit-actor-stats.mjs";
 import { endOfScene } from "./api/macros/end-of-scene.mjs";
 import { playCutscene } from "./api/macros/play-cutscene.mjs";
 //* Utilities
-import { prepareActiveEffectCategories, onManageActiveEffect } from "./api/utils/active-effect-tools.mjs";
+import { prepareActiveEffectCategories, onManageActiveEffect, manageActiveEffect } from "./api/utils/active-effect-tools.mjs";
 import { metaExtractNumberOfDice } from "./api/utils/dice-tools.mjs";
 import { metaMigration } from "./api/utils/migration.mjs";
 import { metaLog, metaLogDocument } from "./api/utils/log-tools.mjs";
@@ -171,6 +171,7 @@ globalThis.metanthropes = {
 		metaRegisterCustomEnrichers,
 		onManageActiveEffect,
 		prepareActiveEffectCategories,
+		manageActiveEffect,
 		preloadHandlebarsTemplates,
 		metaSortActions,
 		metaRunMacro,
