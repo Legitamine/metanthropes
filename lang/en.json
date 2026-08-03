@@ -75,6 +75,9 @@
 				},
 				"METALINK": {
 					"Error": "Can't find a valid Document from UUID: "
+				},
+				"ACTOR-SHEET": {
+					"duplicateItem": "You can't add this Item more than once to an Actor"
 				}
 			},
 			"APPS": {
@@ -359,6 +362,14 @@
 			},
 			"SHEET": {
 				"TABS": {
+					"TOOLTIPS": {
+						"Actions": "Actions are...",
+						"Perks": "Perks are...",
+						"Metapowers": "Metapowers are...",
+						"Possessions": "Possessions are...",
+						"Effects": "Effects are...",
+						"Notes": "Notes are..."
+					},
 					"Actions": "Actions",
 					"Perks": "Perks",
 					"Metapowers": "Metapowers",
@@ -371,7 +382,7 @@
 					"addEffect": "Add Effect",
 					"toggleEffect": "Toggle Effect",
 					"removeEffect": "Remove Effect",
-					"resetEffect": "Refresh Duration"
+					"refreshEffect": "Refresh Duration"
 				}
 			},
 			"NOTIFICATIONS": {

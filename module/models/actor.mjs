@@ -15,7 +15,7 @@ export default class MetaActor extends foundry.abstract.TypeDataModel {
 			resources: defineResources(),
 			actions: defineActions(),
 			exp: defineEXP(),
-			physical: definePhysical(TABLES),
+			physical: definePhysical(TABLES), //todo this could* be broken down directly under system. instead
 			chars: defineChars(CHARS),
 			stats: defineStats(STATS),
 			buffs: defineBuffs(BUFFS),
@@ -32,10 +32,12 @@ export default class MetaActor extends foundry.abstract.TypeDataModel {
 		const mL = metanthropes.utils.metaLog;
 		//const dominantSpecies = items.documentsByType.species[0]; //original
 		const items = this.parent.items;
-		const dominantSpecies = items.documentsByType?.metaSpecies?.[0] ?? false; //? are the extra ?s needed here?
-		if (!dominantSpecies) return mL(1, "Actor Data Model", "Actor doesn't have a Species assigned yet");
-		const species = items.documentsByType.metaSpecies;
-		const templates = items.documentsByType.metaTemplate;
+		//todo DM Migration
+		const dominantSpecies = items.documentsByType?.["metanthropes-homebrew.metaSpecies"]?.[0] ?? false; //? are the extra ?s needed here?
+		if (!dominantSpecies)
+			return mL(1, "Actor Data Model", "prepareBaseData", "Actor doesn't have a Species assigned yet");
+		const species = items.documentsByType?.["metanthropes-homebrew.metaSpecies"] ?? false;
+		const templates = items.documentsByType?.["metanthropes-homebrew.metaTemplate"] ?? false;
 		const { CHARS, STATS } = metanthropes.system;
 		const { life } = this.resources;
 		const { main, extra, reaction } = this.actions;
@@ -46,12 +48,12 @@ export default class MetaActor extends foundry.abstract.TypeDataModel {
 		//? Keep the highest initial Life from all Species
 		const speciesInitialLife = Math.max(
 			0,
-			...species.map((eachSpecies) => eachSpecies.system.resources.life.initial ?? 0),
+			...species.map((eachSpecies) => eachSpecies?.system?.resources?.life?.initial ?? 0),
 		);
 		//? Cummulative add the initial Life gained from each Template
+		//todo why we have no intellisense here for .reduce or .map? etc, while we do for Math.max?
 		const templatesInitialLife = templates.reduce(
-			//todo why we have no intellisense here for .reduce or .map? etc, while we do for Math.max?
-			(total, template) => total + (template.system.resources.life.initial ?? 0),
+			(total, template) => total + (template?.system?.resources?.life?.initial ?? 0),
 			0,
 		);
 		//? Initial Life from Species & Templates
@@ -63,7 +65,7 @@ export default class MetaActor extends foundry.abstract.TypeDataModel {
 			const progressionGain = eachSpecies.system.resources.life.progressionGain ?? 0;
 			if (progressionStep <= 0) return total;
 			return total + Math.floor(this.exp.total / progressionStep) * progressionGain; //todo review once EXP is done
-		});
+		}, 0);
 		//? Base Life = Initial + Progressed
 		life.base = life.initial + progressedLife;
 
@@ -112,7 +114,7 @@ export default class MetaActor extends foundry.abstract.TypeDataModel {
 			let statTemplate = 0;
 			for (const item of templates) statTemplate += item?.system?.stats[statKey]?.initial ?? 0;
 			this.stats[statKey].base =
-				this.chars[statData.associatedChar].base + //ayto na paei derived instead kai na vazw to current
+				this.chars[statData.associatedChar].base + //todo ayto na paei derived instead kai na vazw to current
 				this.stats[statKey].initial +
 				statTemplate + //!potential hole here if negative ammount from archetype > base that turns it into negative?
 				this.stats[statKey].progressed * 5;
@@ -125,10 +127,12 @@ export default class MetaActor extends foundry.abstract.TypeDataModel {
 		super.prepareDerivedData();
 		const mL = metanthropes.utils.metaLog;
 		const items = this.parent.items;
-		const dominantSpecies = items.documentsByType?.metaSpecies?.[0] ?? false;
-		if (!dominantSpecies) return mL(1, "Actor Data Model", "Actor doesn't have a Species assigned yet");
-		const templates = items.documentsByType?.template ?? false;
-
+		//todo DM Migration
+		const dominantSpecies = items.documentsByType?.["metanthropes-homebrew.metaSpecies"]?.[0] ?? false; //? are the extra ?s needed here?
+		if (!dominantSpecies)
+			return mL(1, "Actor Data Model", "prepareDerivedData", "Actor doesn't have a Species assigned yet");
+		//		const dominantSpecies = items.documentsByType?.metaSpecies?.[0] ?? false;
+		const templates = items.documentsByType?.["metanthropes-homebrew.metaTemplate"] ?? false;
 		const { CHARS, STATS, TABLES } = metanthropes.system;
 		const { life, movement } = this.resources;
 		const { main, extra, reaction } = this.actions;
@@ -136,6 +140,14 @@ export default class MetaActor extends foundry.abstract.TypeDataModel {
 		const physical = this.physical;
 		const buffs = this.buffs;
 		const conditions = this.conditions;
+
+		//* Dominant Species (the first Species applied to the Actor)
+		//todo CHARS, STATS, SPEED, WEIGHT, SIZE exoune BUFF/CONDITION
+		//todo gia na vrw to current = base?/initial? + BUFF *5 - CONDITION *5
+		//* SPEED, SIZE, WEIGHT
+		physical.speed = 10 + buffs.speed - conditions.speed;
+		physical.size = 10 + buffs.size - conditions.size;
+		physical.weight = 10 + buffs.weight - conditions.weight;
 
 		//* Life
 		//todo: how to handle Duplicates? see _prepareDerivedVitalData(actorData) in old actor
@@ -151,14 +163,6 @@ export default class MetaActor extends foundry.abstract.TypeDataModel {
 		//derived actions, define max math.min
 		//focused action: haven't moved or spent any action. Once 'used' they have no other action available for that turn.
 		//should we keep a flag or rather have the value set here?
-
-		//* Dominant Species (the first Species applied to the Actor)
-		//todo CHARS, STATS, SPEED, WEIGHT, SIZE exoune BUFF/CONDITION
-		//todo gia na vrw to current = base?/initial? + BUFF *5 - CONDITION *5
-		//* SPEED, SIZE, WEIGHT
-		physical.speed = 10 + buffs.speed - conditions.speed;
-		physical.size = 10 + buffs.size - conditions.size;
-		physical.weight = 10 + buffs.weight - conditions.weight;
 
 		//* Movement
 		movement.max = Math.ceil(
@@ -296,7 +300,7 @@ function defineStats(STATS) {
 				new SchemaField({
 					current: new NumberField({ ...standardScore }),
 					initial: new NumberField({ ...standardScore }),
-					initialDice: new NumberField({ ...initialDiceNumber }),
+					initialDice: new NumberField({ ...initialDiceNumber }), //this will always be 3-2-1 for pri/sec/ter
 					progressed: new NumberField({ ...levelScore }),
 					progressionLog: new ArrayField(
 						new SchemaField({

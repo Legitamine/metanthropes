@@ -14,16 +14,18 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 			height: 935,
 		},
 		actions: {
+			//!calls functions with (event, target) while this refers to the sheet
 			onEditImage: this._onEditImage,
 			viewDoc: this._viewDoc,
 			createDoc: this._createDoc,
 			deleteDoc: this._deleteDoc,
 			toggleEffect: this._toggleEffect,
 			roll: this._onRoll,
-			effectCreate: this._onManageActiveEffect,
-			//todo effectEdit: onManageActiveEffect,
-			//todo effectToggle: onManageActiveEffect,
-			//todo effectDelete: onManageActiveEffect,
+			effectCreate: this.#onClickActiveEffect,
+			effectEdit: this.#onClickActiveEffect,
+			effectToggle: this.#onClickActiveEffect,
+			effectRefresh: this.#onClickActiveEffect,
+			effectDelete: this.#onClickActiveEffect,
 		},
 		// Custom property that's merged into `this.options`
 		dragDrop: [{ dragSelector: "[data-drag]", dropSelector: null }],
@@ -38,38 +40,189 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 	/** @override */
 	static PARTS = {
 		header: {
-			template: "systems/metanthropes/templates/apps/sheets/actor-header.hbs",
+			template: "systems/metanthropes/templates/apps/sheets/actor/header.hbs",
 		},
 		tabs: {
+			template: "systems/metanthropes/templates/apps/sheets/actor/tabs.hbs",
 			//template: "systems/metanthropes/templates/apps/sheets/actor-tabs.hbs",
 			// Foundry-provided generic template
-			template: "templates/generic/tab-navigation.hbs",
+			//template: "templates/generic/tab-navigation.hbs",
 		},
 		actions: {
-			template: "systems/metanthropes/templates/apps/sheets/actor-actions.hbs",
+			template: "systems/metanthropes/templates/apps/sheets/actor/actions.hbs",
+			tooltip: "test", //todo
 			scrollable: [""],
 		},
 		perks: {
-			template: "systems/metanthropes/templates/apps/sheets/actor-perks.hbs",
+			template: "systems/metanthropes/templates/apps/sheets/actor/perks.hbs",
 			scrollable: [""],
 		},
 		metapowers: {
-			template: "systems/metanthropes/templates/apps/sheets/actor-metapowers.hbs",
+			template: "systems/metanthropes/templates/apps/sheets/actor/metapowers.hbs",
 			scrollable: [""],
 		},
 		possessions: {
-			template: "systems/metanthropes/templates/apps/sheets/actor-possessions.hbs",
+			template: "systems/metanthropes/templates/apps/sheets/actor/possessions.hbs",
 			scrollable: [""],
 		},
 		effects: {
-			template: "systems/metanthropes/templates/apps/sheets/actor-effects.hbs",
+			template: "systems/metanthropes/templates/apps/sheets/actor/effects.hbs",
 			scrollable: [""],
 		},
 		notes: {
-			template: "systems/metanthropes/templates/apps/sheets/actor-notes.hbs",
+			template: "systems/metanthropes/templates/apps/sheets/actor/notes.hbs",
 			scrollable: [""],
 		},
 	};
+
+	/**************
+	 *
+	 *   ACTIONS
+	 *
+	 **************/
+
+	/**
+	 * Renders an embedded document's sheet
+	 *
+	 * @this MetanthropesActorSheetV2
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @protected
+	 */
+	static async _viewDoc(event, target) {
+		const doc = this._getEmbeddedDocument(target);
+		doc.sheet.render(true);
+	}
+
+	/**
+	 * Handles item deletion
+	 *
+	 * @this MetanthropesActorSheetV2
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @protected
+	 */
+	static async _deleteDoc(event, target) {
+		const doc = this._getEmbeddedDocument(target);
+		await doc.delete();
+	}
+
+	/**
+	 * Handle creating a new Owned Item or ActiveEffect for the actor using initial data defined in the HTML dataset
+	 *
+	 * @this MetanthropesActorSheetV2
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @private
+	 */
+	static async _createDoc(event, target) {
+		// Retrieve the configured document class for Item or ActiveEffect
+		const docCls = getDocumentClass(target.dataset.documentClass);
+		// Prepare the document creation data by initializing it a default name.
+		const docData = {
+			name: docCls.defaultName({
+				// defaultName handles an undefined type gracefully
+				type: target.dataset.type,
+				parent: this.actor,
+			}),
+		};
+		// Loop through the dataset and add it to our docData
+		for (const [dataKey, value] of Object.entries(target.dataset)) {
+			// These data attributes are reserved for the action handling
+			if (["action", "documentClass"].includes(dataKey)) continue;
+			// Nested properties require dot notation in the HTML, e.g. anything with `system`
+			// An example exists in spells.hbs, with `data-system.spell-level`
+			// which turns into the dataKey 'system.spellLevel'
+			foundry.utils.setProperty(docData, dataKey, value);
+		}
+
+		// Finally, create the embedded document!
+		await docCls.create(docData, { parent: this.actor });
+	}
+
+	/**
+	 * Determines effect parent to pass to helper
+	 *
+	 * @this MetanthropesActorSheetV2
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @private
+	 */
+	static async _toggleEffect(event, target) {
+		const effect = this._getEmbeddedDocument(target);
+		await effect.update({ disabled: !effect.disabled });
+	}
+
+	/**
+	 * Handle clickable rolls.
+	 *
+	 * @this MetanthropesActorSheetV2
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @protected
+	 */
+	static async _onRoll(event, target) {
+		event.preventDefault();
+		const dataset = target.dataset;
+
+		// Handle item rolls.
+		switch (dataset.rollType) {
+			case "item":
+				const item = this._getEmbeddedDocument(target);
+				if (item) return item.roll();
+		}
+
+		// Handle rolls that supply the formula directly.
+		if (dataset.roll) {
+			let label = dataset.label ? `[ability] ${dataset.label}` : "";
+			let roll = new Roll(dataset.roll, this.actor.getRollData());
+			await roll.toMessage({
+				speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+				flavor: label,
+				//todo in case it's used need to update to the correct rollMode usage
+				//! rollMode: game.settings.get("core", "rollMode"),
+			});
+			return roll;
+		}
+	}
+
+	/**
+	 * Manages Click events for Active Effects
+	 *
+	 * @this MetanthropesActorSheetV2
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 */
+	static async #onClickActiveEffect(event, target) {
+		metanthropes.utils.metaLog(1, "Actor V2", "#onClickActiveEffect", event, target);
+		await metanthropes.utils.onManageActiveEffect(event, target);
+	}
+
+	/**
+	 * Handle changing a Document's image.
+	 *
+	 * @this MetanthropesActorSheetV2
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise}
+	 * @protected
+	 */
+	static async _onEditImage(event, target) {
+		const attr = target.dataset.edit;
+		const current = foundry.utils.getProperty(this.document, attr);
+		const { img } = this.document.constructor.getDefaultArtwork?.(this.document.toObject()) ?? {};
+		const fp = new FilePicker({
+			current,
+			type: "image",
+			redirectToRoot: img ? [img] : [],
+			callback: (path) => {
+				this.document.update({ [attr]: path });
+			},
+			top: this.position.top + 40,
+			left: this.position.left + 10,
+		});
+		return fp.browse();
+	}
 
 	/** @override */
 	_configureRenderOptions(options) {
@@ -94,7 +247,19 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 
 	/** @override */
 	async _prepareContext(options) {
+		metanthropes.utils.metaLog(1, "ActorSheet V2", "_prepareContext", this);
 		const context = {
+			//todo fix across the below, search for metaSpecies and adjust - DM Migration
+			species:
+				(this.actor.items.documentsByType?.["metanthropes-homebrew.metaSpecies"] ?? [])
+					.map((species) => species.name)
+					.join(", ") || "No Species",
+			templates:
+				(this.actor.items.documentsByType?.["metanthropes-homebrew.metaTemplate"] ?? [])
+					.map((template) => template.name)
+					.join(", ") || "No Template",
+			resources: this.actor.system.resources,
+			effects: Array.from(this.actor.allApplicableEffects()), //? new in V14
 			isNarrator: game.user.isGM,
 			// Validates both permissions and compendium status
 			isEditable: this.isEditable,
@@ -139,7 +304,9 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 			case "effects":
 				context.tab = context.tabs[partId];
 				//? Categorize Active Effects
-				context.effects = metanthropes.utils.prepareActiveEffectCategories(this.actor.allApplicableEffects());
+				context.effects = await metanthropes.utils.prepareActiveEffectCategories(
+					this.actor.allApplicableEffects(),
+				);
 				break;
 			case "notes":
 				context.tab = context.tabs[partId];
@@ -179,6 +346,7 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 				icon: "",
 				// Run through localization
 				label: "METANTHROPES.ACTOR.SHEET.TABS.",
+				tooltip: "METANTHROPES.ACTOR.SHEET.TABS.TOOLTIPS.",
 			};
 			switch (partId) {
 				case "header":
@@ -187,26 +355,38 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 				case "actions":
 					tab.id = "actions";
 					tab.label += "Actions";
+					tab.tooltip += "Actions";
+					tab.icon = "fas fa-stopwatch";
 					break;
 				case "perks":
 					tab.id = "perks";
 					tab.label += "Perks";
+					tab.tooltip += "Perks";
+					tab.icon = "fas fa-books";
 					break;
 				case "metapowers":
 					tab.id = "metapowers";
 					tab.label += "Metapowers";
+					tab.tooltip += "Metapowers";
+					tab.icon = "fak fa-metanthropes";
 					break;
 				case "possessions":
 					tab.id = "possessions";
 					tab.label += "Possessions";
+					tab.tooltip += "Possessions";
+					tab.icon = "fas fa-backpack";
 					break;
 				case "effects":
 					tab.id = "effects";
 					tab.label += "Effects";
+					tab.tooltip += "Effects";
+					tab.icon = "fas fa-person-rays";
 					break;
 				case "notes":
 					tab.id = "notes";
 					tab.label += "Notes";
+					tab.tooltip += "Notes";
+					tab.icon = "fas fa-id-card";
 					break;
 			}
 			if (this.tabGroups[tabGroup] === tab.id) tab.cssClass = "active";
@@ -279,143 +459,6 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 		// You may want to add other special handling here
 		// Foundry comes with a large number of utility classes, e.g. SearchFilter
 		// That you may want to implement yourself.
-	}
-
-	/**************
-	 *
-	 *   ACTIONS
-	 *
-	 **************/
-
-	/**
-	 * Handle changing a Document's image.
-	 *
-	 * @this MetanthropesActorSheet
-	 * @param {PointerEvent} event   The originating click event
-	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
-	 * @returns {Promise}
-	 * @protected
-	 */
-	static async _onEditImage(event, target) {
-		const attr = target.dataset.edit;
-		const current = foundry.utils.getProperty(this.document, attr);
-		const { img } = this.document.constructor.getDefaultArtwork?.(this.document.toObject()) ?? {};
-		const fp = new FilePicker({
-			current,
-			type: "image",
-			redirectToRoot: img ? [img] : [],
-			callback: (path) => {
-				this.document.update({ [attr]: path });
-			},
-			top: this.position.top + 40,
-			left: this.position.left + 10,
-		});
-		return fp.browse();
-	}
-
-	/**
-	 * Renders an embedded document's sheet
-	 *
-	 * @this MetanthropesActorSheet
-	 * @param {PointerEvent} event   The originating click event
-	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
-	 * @protected
-	 */
-	static async _viewDoc(event, target) {
-		const doc = this._getEmbeddedDocument(target);
-		doc.sheet.render(true);
-	}
-
-	/**
-	 * Handles item deletion
-	 *
-	 * @this MetanthropesActorSheet
-	 * @param {PointerEvent} event   The originating click event
-	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
-	 * @protected
-	 */
-	static async _deleteDoc(event, target) {
-		const doc = this._getEmbeddedDocument(target);
-		await doc.delete();
-	}
-
-	/**
-	 * Handle creating a new Owned Item or ActiveEffect for the actor using initial data defined in the HTML dataset
-	 *
-	 * @this MetanthropesActorSheet
-	 * @param {PointerEvent} event   The originating click event
-	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
-	 * @private
-	 */
-	static async _createDoc(event, target) {
-		// Retrieve the configured document class for Item or ActiveEffect
-		const docCls = getDocumentClass(target.dataset.documentClass);
-		// Prepare the document creation data by initializing it a default name.
-		const docData = {
-			name: docCls.defaultName({
-				// defaultName handles an undefined type gracefully
-				type: target.dataset.type,
-				parent: this.actor,
-			}),
-		};
-		// Loop through the dataset and add it to our docData
-		for (const [dataKey, value] of Object.entries(target.dataset)) {
-			// These data attributes are reserved for the action handling
-			if (["action", "documentClass"].includes(dataKey)) continue;
-			// Nested properties require dot notation in the HTML, e.g. anything with `system`
-			// An example exists in spells.hbs, with `data-system.spell-level`
-			// which turns into the dataKey 'system.spellLevel'
-			foundry.utils.setProperty(docData, dataKey, value);
-		}
-
-		// Finally, create the embedded document!
-		await docCls.create(docData, { parent: this.actor });
-	}
-
-	/**
-	 * Determines effect parent to pass to helper
-	 *
-	 * @this MetanthropesActorSheet
-	 * @param {PointerEvent} event   The originating click event
-	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
-	 * @private
-	 */
-	static async _toggleEffect(event, target) {
-		const effect = this._getEmbeddedDocument(target);
-		await effect.update({ disabled: !effect.disabled });
-	}
-
-	/**
-	 * Handle clickable rolls.
-	 *
-	 * @this MetanthropesActorSheet
-	 * @param {PointerEvent} event   The originating click event
-	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
-	 * @protected
-	 */
-	static async _onRoll(event, target) {
-		event.preventDefault();
-		const dataset = target.dataset;
-
-		// Handle item rolls.
-		switch (dataset.rollType) {
-			case "item":
-				const item = this._getEmbeddedDocument(target);
-				if (item) return item.roll();
-		}
-
-		// Handle rolls that supply the formula directly.
-		if (dataset.roll) {
-			let label = dataset.label ? `[ability] ${dataset.label}` : "";
-			let roll = new Roll(dataset.roll, this.actor.getRollData());
-			await roll.toMessage({
-				speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-				flavor: label,
-				//todo in case it's used need to update to the correct rollMode usage
-				//! rollMode: game.settings.get("core", "rollMode"),
-			});
-			return roll;
-		}
 	}
 
 	/** Helper Functions */
@@ -753,9 +796,5 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 				input.disabled = true;
 			}
 		}
-	}
-
-	async _onManageActiveEffect() {
-		//todo figure out how to have compatibility with v1 or not?
 	}
 }

@@ -74,7 +74,7 @@ export class MetanthropesItem extends Item {
 			(this.type === "metanthropes-homebrew.metaTemplate" ||
 				this.type === "metanthropes-homebrew.metaSpecies" ||
 				this.type === "metanthropes-homebrew.metaBuild") &&
-			await metanthropes.utils.metaIsItemEquipped(this.parent?.uuid, this.name)
+			((await metanthropes.utils.metaIsItemEquipped(this.parent?.uuid, this.name)) ?? false)
 		) {
 			metanthropes.utils.metaLog(
 				2,
@@ -84,6 +84,7 @@ export class MetanthropesItem extends Item {
 				this.type,
 				this.name,
 			);
+			ui.notifications.warn(_loc("METANTHROPES.UI.NOTIFICATIONS.ACTOR-SHEET.duplicateItem"));
 			return false;
 		}
 		return super._preCreate(data, options, user);

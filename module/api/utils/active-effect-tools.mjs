@@ -3,16 +3,21 @@
  *
  * @export
  * @async
- * @param {MouseEvent} event 
- * @param {*} target 
- * @returns {*} 
+ * @param {MouseEvent} event
+ * @param {*} target
+ * @returns {*}
  */
 export async function onManageActiveEffect(event, target) {
+	event.preventDefault();
+	const control = target ?? event.currentTarget;
+	//const data = event.target.dataset;
+	const data = control.dataset;
+	metanthropes.utils.metaLog(1, "onManageActiveEffect", event, target);
 	await manageActiveEffect({
-		actorUUID: this.actor.uuid,
-		action: target.dataset.action,
-		effectUUID: target.closest("[data-effect-uuid]")?.dataset.effectuuid,
-		effectType: target.closest("[data-effect-type]")?.dataset.effectType,
+		actorUUID: data.actoruuid,
+		action: data.action,
+		effectUUID: data.effectuuid,
+		effectType: data.effectType,
 	});
 }
 
@@ -21,17 +26,18 @@ export async function onManageActiveEffect(event, target) {
  *
  * @export
  * @async
- * @param {{ actorUUID: string; action: string; effectUUID: string; effectType: string; }} param0 
- * @param {*} param0.actorUUID 
- * @param {*} param0.action 
- * @param {*} param0.effectUUID 
- * @param {*} param0.effectType 
- * @returns {unknown} 
+ * @param {{ actorUUID: string; action: string; effectUUID: string; effectType: string; }} param0
+ * @param {*} param0.actorUUID
+ * @param {*} param0.action
+ * @param {*} param0.effectUUID
+ * @param {*} param0.effectType
+ * @returns {unknown}
  */
 export async function manageActiveEffect({ actorUUID, action, effectUUID, effectType }) {
 	const actor = await fromUuid(actorUUID);
 	if (!actor) return metanthropes.utils.metaLog(2, "manageActiveEffect", "Could not find actor from UUID", actorUUID);
-	if (action === "create") {
+	//? Handle creation separately from other actions
+	if (action === "effectCreate") {
 		const effectData = {
 			name: "New Effect",
 			img: "systems/metanthropes/assets/logos/metanthropes-logo.webp",
@@ -45,20 +51,33 @@ export async function manageActiveEffect({ actorUUID, action, effectUUID, effect
 		}
 		return foundry.documents.ActiveEffect.implementation.createDocuments([effectData], { parent: actor });
 	}
+	//? Other actions require to have the correct effect
 	const effect = effectUUID ? await fromUuid(effectUUID) : null;
 	if (!effect)
 		return metanthropes.utils.metaLog(2, "manageActiveEffect", "Could not find effect from UUID", effectUUID);
 	switch (action) {
-		case "edit":
+		case "effectEdit":
 			return effect.sheet.render({ force: true });
-		case "toggle":
+		case "effectToggle":
 			return effect.update({ disabled: !effect.disabled });
-		case "refresh":
-			return effect.update({ "duration.expired": false });
-		case "delete":
+		case "effectRefresh":
+			return effect.update({
+				start: effect.constructor.getEffectStart(),
+				"duration.expired": false,
+			});
+		case "effectDelete":
 			return effect.delete();
 		default:
-			return metanthropes.utils.metaLog(2, "manageActiveEffect", "Not a valid Action", action);
+			return metanthropes.utils.metaLog(
+				2,
+				"manageActiveEffect",
+				"Not a valid Action",
+				action,
+				"for",
+				effectType,
+				"Active Effect UUID",
+				effectUUID,
+			);
 	}
 }
 
@@ -67,7 +86,7 @@ export async function manageActiveEffect({ actorUUID, action, effectUUID, effect
  *
  * @export
  * @param {array} effects - An array of Active Effects to categorize
- * @returns {*} 
+ * @returns {*}
  */
 export function prepareActiveEffectCategories(effects) {
 	//? Define effect header categories

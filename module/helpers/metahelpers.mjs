@@ -8,7 +8,7 @@
  * @returns {boolean}
  *
  * Note that this checks for the MetapowerName property, not the name of the individual metapower level ability
- *
+ * todo refactor for actoruuid or deprecate in favor of metaIsItemEquipped instead
  */
 export async function metaIsMetapowerEquipped(actor, metapower) {
 	const equippedItems = actor.items;
@@ -52,6 +52,7 @@ export function metaTransformStringForStorage(string) {
  */
 export async function metaIsItemEquipped(actorUUID, itemName) {
 	const actor = await fromUuid(actorUUID);
+	if (!actor) return false;
 	const equippedItems = actor.items;
 	const isEquipped = equippedItems.some((item) => item.name === itemName);
 	return isEquipped;

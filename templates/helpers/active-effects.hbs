@@ -1,3 +1,4 @@
+{{log "APP V1 controls" this}}
 <ol class="items-list effects-list">
 	{{#each effects as |section|}}
 		<li class="effects-category" data-effect-type="{{section.type}}">
@@ -9,7 +10,7 @@
 				<div class="effect-duration">Duration</div>
 				{{#if ../isNarrator}}
 					<div class="item-controls effect-controls flexrow">
-						<a class="effect-control" data-action="create"
+						<a class="effect-control" data-action="effectCreate"
 							data-tooltip="METANTHROPES.ACTOR.SHEET.AE.addEffect">
 							<i class="fas fa-plus"></i>
 							{{localize "METANTHROPES.ACTOR.SHEET.AE.add"}}
@@ -23,8 +24,9 @@
 						<div class="item-name effect-name flexrow">
 							<img class="item-image" src="{{effect.img}}" alt="{{effect.name}}" />
 							<h4>
-								<a class="effect-control effect-edit style-view-properties" data-action="edit"
-									data-tooltip="Click to open {{effect.name}}" data-effectuuid="{{effect.uuid}}">
+								<a class="effect-control effect-edit style-view-properties" data-action="effectEdit"
+									data-actoruuid="{{actor.uuid}}" data-tooltip="Click to open {{effect.name}}"
+									data-effectuuid="{{effect.uuid}}">
 									{{effect.name}}
 								</a>
 							</h4>
@@ -37,15 +39,18 @@
 						</div>
 						{{#if ../../isNarrator}}
 							<div class="item-controls effect-controls flexrow">
-								<a class="effect-control" data-action="toggle" data-effectuuid="{{effect.uuid}}"
+								<a class="effect-control" data-action="effectToggle" data-effectuuid="{{effect.uuid}}"
+									data-actoruuid="{{actor.uuid}}"
 									data-tooltip="METANTHROPES.ACTOR.SHEET.AE.toggleEffect"><i
 										class="fas {{#if effect.disabled}}fa-check{{else}}fa-times{{/if}}"></i>
 								</a>
-								<a class="effect-control" data-action="refresh" data-effectuuid="{{effect.uuid}}"
+								<a class="effect-control" data-action="effectRefresh" data-effectuuid="{{effect.uuid}}"
+									data-actoruuid="{{actor.uuid}}"
 									data-tooltip="METANTHROPES.ACTOR.SHEET.AE.resetEffect"><i
-										class="fas fa-refresh"></i>
+										class="fas {{#if effect.duration.expired}}fa-refresh{{else}}fa-hourglass{{/if}}"></i>
 								</a>
-								<a class="effect-control" data-action="delete" data-effectuuid="{{effect.uuid}}"
+								<a class="effect-control" data-action="effectDelete" data-effectuuid="{{effect.uuid}}"
+									data-actoruuid="{{actor.uuid}}"
 									data-tooltip="METANTHROPES.ACTOR.SHEET.AE.removeEffect"><i
 										class="fa-solid fa-trash"></i>
 								</a>

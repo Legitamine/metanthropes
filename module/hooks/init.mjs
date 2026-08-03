@@ -34,8 +34,11 @@ Hooks.once("init", async function () {
 		};
 		CONFIG.Item.dataModels = {
 			metaSpecies: metanthropes.models.MetaSpecies,
+			"metanthropes-homebrew.metaSpecies": metanthropes.models.MetaSpecies, //todo DM Migration
 			metaTemplate: metanthropes.models.MetaTemplate,
+			"metanthropes-homebrew.metaTemplate": metanthropes.models.MetaTemplate, //todo DM Migration
 			metaBuild: metanthropes.models.MetaBuild,
+			"metanthropes-homebrew.metaBuild": metanthropes.models.MetaBuild, //todo DM Migration
 		};
 	}
 
