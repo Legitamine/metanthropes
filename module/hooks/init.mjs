@@ -49,9 +49,6 @@ Hooks.once("init", async function () {
 	CONFIG.Combat.documentClass = metanthropes.documents.MetanthropesCombat;
 	//todo missing MetaChatMessage === didn't register mine as the default so it falls back to the default
 
-	//* Active Effect Expiration
-	CONFIG.ActiveEffect.expiryAction = "update"; //? setting this to "delete" will remove the AE
-
 	//* Register Application Sheets
 	const actorV1Types = [
 		"Protagonist",
@@ -102,7 +99,7 @@ Hooks.once("init", async function () {
 		];
 		foundry.documents.collections.Items.registerSheet(
 			"metanthropes",
-			metanthropes.applications.MetanthropesItemSheetV2,
+			metanthropes.applications.MetanthropesSpeciesSheetV2,
 			{
 				makeDefault: true,
 				types: itemV2Types, //todo DM migration
@@ -134,6 +131,12 @@ Hooks.once("init", async function () {
 		formula: "1d100 + @RollStats.Reflexes",
 		decimals: 2,
 	};
+
+	//* Active Effect Expiration
+	CONFIG.ActiveEffect.expiryAction = "update"; //? setting this to "delete" will remove the AE
+
+	//* Register Movement Types
+	CONFIG.Token.movement.actions = metanthropes.system.TABLES.MOVEMENTS;
 
 	//* Round Duration (in seconds)
 	CONFIG.time.roundTime = 30;

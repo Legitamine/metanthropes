@@ -42,6 +42,8 @@
 			"Effects": "Effects",
 			"Metapower": "Metapower",
 			"Metapowers": "Metapowers",
+			"Movement": "Movement",
+			"MovementUnits": "meters / Turn",
 			"Target": "Target",
 			"Targets": "Targets",
 			"Duration": "Duration",
@@ -50,7 +52,18 @@
 			"Cosmic": "Cosmic",
 			"Elemental": "Elemental",
 			"Material": "Material",
-			"Psychic": "Psychic"
+			"Psychic": "Psychic",
+			"SaveToUpdate": "Save below to update",
+			"Preview": "Preview",
+			"Editor": "Editor"
+		},
+		"TARGETS": {
+			"Extradimensional": "Extradimensional",
+			"Extraterrestrial": "Extraterrestrial",
+			"Metatherion": "Metatherion",
+			"Artificial": "Artificial",
+			"Animal": "Animal",
+			"Plant": "Plant"
 		},
 		"LOGIC": {
 			"METAEXECUTE": {
@@ -422,12 +435,14 @@
 			}
 		},
 		"ACTIVATIONS": {
+			"2BEDeprecated": "TBD",
 			"alwaysActive": {
 				"label": "Always Active",
 				"hint": "Always Active Hint"
 			}
 		},
 		"MOVEMENT": {
+			"2BEDeprecated": "TBD",
 			"LABEL": "Movement",
 			"HINT": "blah",
 			"SPEED": {
@@ -482,6 +497,7 @@
 			}
 		},
 		"AE": {
+			"2BEDeprecated": "TBD",
 			"phases": {
 				"initial": "Initial Phase",
 				"final": "Final Phase"
@@ -490,11 +506,59 @@
 			"none": "None"
 		},
 		"TABLES": {
+			"ACTIVATIONS": {
+				"alwaysActiveLabel": "Always Active",
+				"alwaysActiveHint": "Always Active Hint",
+				"reactionLabel": "Reaction",
+				"reactionHint": "Reaction Hint",
+				"movementLabel": "Movement",
+				"movementHint": "Movement Hint",
+				"extraLabel": "Extra Action",
+				"extraHint": "Extra Action Hint",
+				"mainLabel": "Main Action",
+				"mainHint": "Main Action Hint",
+				"fullTurnLabel": "Focused Action: Full Turn",
+				"fullTurnHint": "Focused Action Hint",
+				"twoRoundsLabel": "Focused Action: Two Rounds",
+				"twoRoundsHint": "Focused Action Hint",
+				"d10RoundsLabel": "Focused Action: 1d10 Rounds",
+				"d10RoundsHint": "Focused Action Hint",
+				"hourLabel": "Focused Action: Hour",
+				"hourHint": "Focused Action Hint",
+				"d10HoursLabel": "Focused Action: 1d10 Hours",
+				"d10HoursHint": "Focused Action Hint"
+			},
+			"AREAS": {
+				"self": "Self",
+				"hex": "Hexagon",
+				"room": "Room",
+				"building": "Building",
+				"square": "Square",
+				"block": "Block",
+				"hood": "Neighborhood",
+				"district": "District",
+				"town": "Town",
+				"city": "City",
+				"region": "Region",
+				"state": "State",
+				"country": "Country",
+				"zone": "Zone",
+				"continent": "Continent",
+				"hemisphere": "Hemisphere",
+				"planet": "Planet"
+			},
+			"MOVEMENT_TYPES": {
+				"wallWalk": "Wall Walk",
+				"photoPortation": "Photo-portation"
+			},
 			"SPEED": {
 				"0": {
 					"average": "average example",
 					"example": "example average"
 				}
+			},
+			"TARGETS": {
+				"human": "Human"
 			}
 		},
 		"BUFFS": {

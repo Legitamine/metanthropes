@@ -1,0 +1,65 @@
+<section class="tab {{tabs.physical.cssClass}} scrollable" data-group="primary" data-tab="physical">
+	<fieldset>
+		<legend>Physical</legend>
+		{{formGroup
+			speciesFields.hitbox
+			value=system.physical.hitbox
+			name="system.physical.hitbox"
+			label="Hitbox Roll Table"
+			rootId=rootId
+			disabled=(not isNarrator)
+		}}
+
+		{{formGroup
+			speciesFields.speed
+			value=system.physical.speed
+			name="system.physical.speed"
+			label="Speed"
+			rootId=rootId
+			disabled=(not isNarrator)
+		}}
+
+		{{formGroup
+			speciesFields.weight
+			value=system.physical.weight
+			name="system.physical.weight"
+			label="Weight"
+			rootId=rootId
+			disabled=(not isNarrator)
+		}}
+
+		{{formGroup
+			speciesFields.size
+			value=system.physical.size
+			name="system.physical.size"
+			label="Size"
+			rootId=rootId
+			disabled=(not isNarrator)
+		}}
+
+		<div><span><strong>{{localize "METANTHROPES.COMMON.Movement"}}:</strong> {{system.physical.maxMovement}} {{localize "METANTHROPES.COMMON.MovementUnits"}} ({{localize "METANTHROPES.COMMON.SaveToUpdate"}})</span>
+		</div>
+{{!-- widget:  --}}
+		{{!-- hint: "test" --}}
+		{{formGroup
+			speciesFields.allowedMovementTypes
+			value=system.physical.allowedMovementTypes
+			name="system.physical.allowedMovementTypes"
+			label="Allowed Movement Types"
+			rootId=rootId
+			type="checkboxes"
+			localize=true
+			disabled=(not isNarrator)
+		}}
+	</fieldset>
+	<fieldset>
+		<legend>Physical Description</legend>
+		{{#if isNarrator}}
+			{{formGroup speciesFields.physicalDescription label="METANTHROPES.COMMON.Editor" localize=true value=system.physical.description rootId=rootId}}
+			<span><strong>{{localize "METANTHROPES.COMMON.Preview"}}</strong> ({{localize "METANTHROPES.COMMON.SaveToUpdate"}})</span>
+			{{editor enrichedPhysicalDescription target="system.physical.description" button=false editable=false}}
+		{{else}}
+			{{{enrichedPhysicalDescription}}}
+		{{/if}}
+	</fieldset>
+</section>

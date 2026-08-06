@@ -1,0 +1,16 @@
+<footer class="form-footer flexrow">
+	<hr />
+	<div class="form-footer flexrow">
+	Exp Total: 
+	</div>
+	<div class="species-footer">
+		<button type="submit" {{disabled (not isNarrator)}}>
+			<i class="fa-solid fa-floppy-disk"></i>
+			<span>Save</span>
+		</button>
+		<button type="button" data-action="saveAndClose" {{disabled (not isNarrator)}}>
+			<i class="fa-solid fa-check"></i>
+			<span>Save &amp; Close</span>
+		</button>
+	</div>
+</footer>

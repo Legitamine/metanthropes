@@ -15,17 +15,18 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 		},
 		actions: {
 			//!calls functions with (event, target) while this refers to the sheet
-			onEditImage: this._onEditImage,
-			viewDoc: this._viewDoc,
-			createDoc: this._createDoc,
-			deleteDoc: this._deleteDoc,
-			toggleEffect: this._toggleEffect,
-			roll: this._onRoll,
-			effectCreate: this.#onClickActiveEffect,
-			effectEdit: this.#onClickActiveEffect,
-			effectToggle: this.#onClickActiveEffect,
-			effectRefresh: this.#onClickActiveEffect,
-			effectDelete: this.#onClickActiveEffect,
+			onEditImage: MetanthropesActorSheetV2._onEditImage,
+			viewDoc: MetanthropesActorSheetV2._viewDoc,
+			createDoc: MetanthropesActorSheetV2._createDoc,
+			deleteDoc: MetanthropesActorSheetV2._deleteDoc,
+			toggleEffect: MetanthropesActorSheetV2._toggleEffect,
+			roll: MetanthropesActorSheetV2._onRoll,
+			effectCreate: MetanthropesActorSheetV2.#onClickActiveEffect,
+			effectEdit: MetanthropesActorSheetV2.#onClickActiveEffect,
+			effectToggle: MetanthropesActorSheetV2.#onClickActiveEffect,
+			effectRefresh: MetanthropesActorSheetV2.#onClickActiveEffect,
+			effectDelete: MetanthropesActorSheetV2.#onClickActiveEffect,
+			toggleTheme: MetanthropesActorSheetV2.#onToggleTheme,
 		},
 		// Custom property that's merged into `this.options`
 		dragDrop: [{ dragSelector: "[data-drag]", dropSelector: null }],
@@ -34,6 +35,13 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 		},
 		window: {
 			resizable: true,
+			controls: [
+				{
+					icon: "fak fa-metanthropes",
+					label: "Toggle Theme",
+					action: "toggleTheme",
+				},
+			],
 		},
 	};
 
@@ -50,7 +58,6 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 		},
 		actions: {
 			template: "systems/metanthropes/templates/apps/sheets/actor/actions.hbs",
-			tooltip: "test", //todo
 			scrollable: [""],
 		},
 		perks: {
@@ -80,6 +87,19 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 	 *   ACTIONS
 	 *
 	 **************/
+
+	/**
+	 * Toggles the FVTT Theme between Light/Dark
+	 *
+	 * @static
+	 * @async
+	 * @param {*} event
+	 * @param {*} target
+	 * @returns {*}
+	 */
+	static async #onToggleTheme(event, target) {
+		await metanthropes.utils.toggleTheme();
+	}
 
 	/**
 	 * Renders an embedded document's sheet
@@ -233,6 +253,7 @@ export class MetanthropesActorSheetV2 extends api.HandlebarsApplicationMixin(she
 		if (this.document.limited) return;
 		// Control which parts show based on document subtype
 		switch (
+			//todo species defines if it can have metapowers, possessions, perks etc
 			this.document.type //!species
 		) {
 			case "metaActor":

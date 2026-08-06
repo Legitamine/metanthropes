@@ -1,0 +1,70 @@
+<section class="tab {{tabs.options.cssClass}} scrollable" data-group="primary" data-tab="options">
+	<fieldset>
+		<legend>Options</legend>
+
+		{{formGroup
+			speciesFields.allowLifeProgression
+			value=system.options.allowLifeProgression
+			name="system.options.allowLifeProgression"
+			label="Allow Life Progression"
+			rootId=rootId
+			disabled=(not isNarrator)
+		}}
+
+		{{formGroup
+			speciesFields.allowDestiny
+			value=system.options.allowDestiny
+			name="system.options.allowDestiny"
+			label="Allow Destiny"
+			rootId=rootId
+			disabled=(not isNarrator)
+		}}
+
+		{{formGroup
+			speciesFields.allowPerks
+			value=system.options.allowPerks
+			name="system.options.allowPerks"
+			label="Allow Perks"
+			rootId=rootId
+			disabled=(not isNarrator)
+		}}
+
+		{{formGroup
+			speciesFields.allowPossessions
+			value=system.options.allowPossessions
+			name="system.options.allowPossessions"
+			label="Allow Possessions"
+			rootId=rootId
+			disabled=(not isNarrator)
+		}}
+
+		{{formGroup
+			speciesFields.allowMetapowers
+			value=system.options.allowMetapowers
+			name="system.options.allowMetapowers"
+			label="Allow Metapowers"
+			rootId=rootId
+			disabled=(not isNarrator)
+		}}
+
+		{{formGroup
+			speciesFields.targetTypes
+			value=system.options.targetTypes
+			name="system.options.targetTypes"
+			label="Target Types"
+			rootId=rootId
+			type="checkboxes"
+			localize=true
+			disabled=(not isNarrator)
+		}}
+
+		{{formGroup
+			speciesFields.forbidTemplates
+			value=system.options.forbidTemplates
+			name="system.options.forbidTemplates"
+			label="Forbidden Template"
+			rootId=rootId
+			disabled=(not isNarrator)
+		}}
+	</fieldset>
+</section>

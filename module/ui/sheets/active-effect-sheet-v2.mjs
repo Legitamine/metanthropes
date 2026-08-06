@@ -2,7 +2,7 @@
  * Metanthropes Active Effect Sheet
  * 
  * * We are currently (only) overriding the first tab (details)
- * * show Description's enriched text to Players and editor to Narrators
+ * * show Description's enriched text to Players and editor & preview to Narrators
  *
  * @export
  * @class MetanthropesActiveEffectSheetV2
@@ -19,9 +19,8 @@ export class MetanthropesActiveEffectSheetV2 extends foundry.applications.sheets
 	};
 	async _preparePartContext(partId, context) {
 		context = await super._preparePartContext(partId, context);
-
+		context.isNarrator = game.user.isGM;
 		if (partId === "details") {
-			context.isNarrator = game.user.isGM;
 			context.enrichedDescription = await foundry.applications.ux.TextEditor.enrichHTML(
 				context.source.description ?? "",
 				{
@@ -32,7 +31,6 @@ export class MetanthropesActiveEffectSheetV2 extends foundry.applications.sheets
 				{ async: true }, //? not required in v14? enrich already returns a promise?
 			);
 		}
-
 		return context;
 	}
 }

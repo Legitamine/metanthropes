@@ -1,16 +1,19 @@
 <section class="tab scrollable{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
-	{{formGroup fields.tint value=source.tint rootId=rootId placeholder="#ffffff"}}
+	{{formGroup fields.tint value=source.tint rootId=rootId placeholder="#ffffff" disabled=(not isNarrator)}}
 	{{#if isNarrator}}
 		{{formGroup fields.description value=source.description rootId=rootId}}
+		<span><strong>Effect Description Preview</strong> (Save to update)</span>
+		{{editor enrichedDescription target="description" button=false editable=false}}
 	{{else}}
-		{{editor enrichedDescription target="description" button=isNarrator editable=isNarrator}}
+		<strong>Effect Description</strong>
+		{{{enrichedDescription}}}
 	{{/if}}
-	{{formGroup fields.disabled value=source.disabled rootId=rootId}}
+	{{formGroup fields.disabled value=source.disabled rootId=rootId disabled=(not isNarrator)}}
 	{{#if isActorEffect}}
-		{{formGroup fields.origin value=source.origin rootId=rootId disabled=true}}
+		{{formGroup fields.origin value=source.origin rootId=rootId disabled=(not isNarrator)}}
 	{{else if isItemEffect}}
-		{{formGroup fields.transfer value=source.transfer rootId=rootId}}
+		{{formGroup fields.transfer value=source.transfer rootId=rootId disabled=(not isNarrator)}}
 	{{/if}}
-	{{formGroup fields.statuses value=source.statuses options=statuses sort=true rootId=rootId classes="statuses"}}
-	{{formGroup fields.showIcon value=source.showIcon options=showIconOptions rootId=rootId}}
+	{{formGroup fields.statuses value=source.statuses options=statuses sort=true rootId=rootId classes="statuses" disabled=(not isNarrator)}}
+	{{formGroup fields.showIcon value=source.showIcon options=showIconOptions rootId=rootId disabled=(not isNarrator)}}
 </section>

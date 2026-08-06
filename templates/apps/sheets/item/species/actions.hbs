@@ -1,0 +1,32 @@
+<section class="tab {{tabs.actions.cssClass}} scrollable" data-group="primary" data-tab="actions">
+	<fieldset>
+		<legend>Actions</legend>
+
+		{{formGroup
+			speciesFields.actionMain
+			value=system.actions.main
+			name="system.actions.main"
+			label="Main Actions"
+			rootId=rootId
+			disabled=(not isNarrator)
+		}}
+
+		{{formGroup
+			speciesFields.actionExtra
+			value=system.actions.extra
+			name="system.actions.extra"
+			label="Extra Actions"
+			rootId=rootId
+			disabled=(not isNarrator)
+		}}
+
+		{{formGroup
+			speciesFields.actionReaction
+			value=system.actions.reaction
+			name="system.actions.reaction"
+			label="Reactions"
+			rootId=rootId
+			disabled=(not isNarrator)
+		}}
+	</fieldset>
+</section>

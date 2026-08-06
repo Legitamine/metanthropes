@@ -28,6 +28,7 @@ const actionNumber = { required: true, nullable: false, integer: true, initial: 
  * animated template (by who) mpainei k se trees k 'revived'
  * revenant also allows use of perks/metapowers
  * protagonist (save vs death - triggered or via AEE?)
+ * metapowered: vs species?
  * @export
  * @class MetaTemplate
  * @typedef {MetaTemplate}
