@@ -1,44 +1,26 @@
-const { HandlebarsApplicationMixin } = foundry.applications.api;
-const { ItemSheetV2 } = foundry.applications.sheets;
-import gsap from "/scripts/greensock/esm/all.js";
+import { MetanthropesSheetV2 } from "./sheet-v2.mjs";
 /**
  * ApplicationV2 sheet for metaSpecies Items.
  *
  * @export
  * @class MetanthropesSpeciesSheetV2
  * @typedef {MetanthropesSpeciesSheetV2}
- * @extends {HandlebarsApplicationMixin(ItemSheetV2)}
+ * @extends {MetanthropesSheetV2}
  */
-export class MetanthropesSpeciesSheetV2 extends HandlebarsApplicationMixin(ItemSheetV2) {
+export class MetanthropesSpeciesSheetV2 extends MetanthropesSheetV2 {
 	static DEFAULT_OPTIONS = {
-		classes: ["metanthropes", "species-sheet"],
-		tag: "form",
-		position: {
-			width: 650,
-			height: "auto",
-		},
-		form: {
-			closeOnSubmit: false,
-			submitOnChange: false,
-			submitOnClose: false,
-		},
-		actions: {
-			saveAndClose: MetanthropesSpeciesSheetV2.#onSaveAndClose, //? can do this instead of this.
-		},
+		classes: ["species-sheet"],
+		position: {},
+		form: {},
+		actions: {},
 		window: {
-			resizable: false,
-			//? break down for content only tabs
-			contentClasses: ["standard-form", "species-sheet-content"],
+			contentClasses: ["species-sheet-content"],
 		},
 	};
 
 	static PARTS = {
-		header: {
-			template: "systems/metanthropes/templates/apps/sheets/item/species/header.hbs",
-		},
-		tabs: {
-			template: "templates/generic/tab-navigation.hbs",
-		},
+		header: super.PARTS.header,
+		tabs: super.PARTS.tabs,
 		summary: {
 			template: "systems/metanthropes/templates/apps/sheets/item/species/summary.hbs",
 		},
@@ -60,9 +42,7 @@ export class MetanthropesSpeciesSheetV2 extends HandlebarsApplicationMixin(ItemS
 		defenses: {
 			template: "systems/metanthropes/templates/apps/sheets/item/species/defenses.hbs",
 		},
-		footer: {
-			template: "systems/metanthropes/templates/apps/sheets/item/species/footer.hbs",
-		},
+		footer: super.PARTS.footer,
 	};
 
 	static TABS = {
@@ -109,16 +89,6 @@ export class MetanthropesSpeciesSheetV2 extends HandlebarsApplicationMixin(ItemS
 	};
 
 	/**
-	 * Save & Close the app
-	 *
-	 * @static
-	 */
-	static async #onSaveAndClose(event, target) {
-		await this.submit();
-		await this.close();
-	}
-
-	/**
 	 * Prepare rendering context.
 	 *
 	 * @param {ApplicationRenderOptions} options
@@ -127,7 +97,6 @@ export class MetanthropesSpeciesSheetV2 extends HandlebarsApplicationMixin(ItemS
 	 */
 	async _prepareContext(options) {
 		const context = await super._prepareContext(options);
-		context.isNarrator = game.user.isGM;
 		context.energyTypes = metanthropes.system.TABLES.ENERGY;
 		context.immunityTypes = metanthropes.system.TABLES.IMMUNITIES;
 		const system = this.item.system;
@@ -186,73 +155,5 @@ export class MetanthropesSpeciesSheetV2 extends HandlebarsApplicationMixin(ItemS
 			cover: getField("defenses.cover"),
 		};
 		return context;
-	}
-
-	/**
-	 * Change Sheet Tabs with an animation
-	 *
-	 * @param {*} tab
-	 * @param {*} group
-	 * @param {{}} [options={}]
-	 */
-	changeTab(tab, group, options = {}) {
-		const changeOptions = {
-			...options,
-			updatePosition: options.updatePosition ?? true,
-		};
-		//* GSAP animation
-		//? Clean up previous animations still in progress
-		this._tabAnimation?.kill();
-		this._tabAnimation = null;
-		//? Skip the animation if photosensitiveMode is enabled
-		if (game.settings.get("core", "photosensitiveMode")) {
-			this._tabAnimation?.kill();
-			this._tabAnimation = null;
-			return super.changeTab(tab, group, changeOptions);
-		}
-		const previousTab = this.tabGroups[group];
-		const clearProps = { clearProps: "opacity,visibility,transform,overflow" };
-		const panels = [...this.element.querySelectorAll(".tab")].filter((panel) => panel.dataset.group === group);
-		const previousPanel = panels.find((panel) => panel.dataset.tab === previousTab);
-		const nextPanel = panels.find((panel) => panel.dataset.tab === tab);
-		gsap.set(panels, clearProps);
-		//? Fallback if panels break or clicking on the same tab
-		if (!previousPanel || !nextPanel || previousPanel === nextPanel) {
-			return super.changeTab(tab, group, changeOptions);
-		}
-		//? Animation states
-		const collapsed = {
-			autoAlpha: 0,
-			scaleY: 0,
-			y: -40,
-			transformOrigin: "top center",
-			overflow: "hidden",
-		};
-		const expanded = {
-			autoAlpha: 1,
-			scaleY: 1,
-			y: 0,
-			duration: 0.33,
-			ease: "power2.out",
-		};
-		//? Timeline
-		this._tabAnimation = gsap.timeline({
-			onComplete: () => {
-				this._tabAnimation = null;
-			},
-		});
-		//? Animation
-		this._tabAnimation
-			.to(previousPanel, {
-				...collapsed,
-				duration: 0.33,
-				ease: "power2.in",
-			})
-			.set(previousPanel, clearProps)
-			.call(() => {
-				super.changeTab(tab, group, changeOptions);
-			})
-			.set(nextPanel, collapsed)
-			.to(nextPanel, expanded);
 	}
 }

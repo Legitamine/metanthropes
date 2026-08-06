@@ -1,0 +1,14 @@
+<header class="sheet-header flexrow">
+	<img class="item-image" src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}"
+		{{#if isNarrator}}data-edit="img" {{/if}} draggable="false">
+	<h3>
+		{{formGroup
+		fields.name
+		value=source.name
+		name="name"
+		label=docTypeName
+		rootId=rootId
+		disabled=(not isNarrator)
+	}}
+	</h3>
+</header>

@@ -35,6 +35,7 @@ import { MetanthropesPause } from "./ui/apps/meta-pause.mjs";
 import { MetanthropesActorSheet } from "./ui/sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./ui/sheets/item-sheet.mjs";
 import { MetanthropesActiveEffectSheetV2 } from "./ui/sheets/active-effect-sheet-v2.mjs";
+import { MetanthropesSheetV2 } from "./ui/sheets/sheet-v2.mjs";
 // //* AppV2 Sheets
 import { MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
 import { MetanthropesItemSheetV2 } from "./ui/sheets/item-sheet-v2.mjs";
@@ -118,6 +119,7 @@ globalThis.metanthropes = {
 		MetanthropesActorSheetV2,
 		MetanthropesItemSheetV2,
 		MetanthropesSpeciesSheetV2,
+		MetanthropesSheetV2, //used as import instead
 		MetaDialog,
 		MetaChatMessage,
 		MetanthropesPause,
