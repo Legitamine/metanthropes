@@ -1,3 +1,4 @@
+//todo targeting: have a special field that requires an 'english' word (single word) to be used for the targeting of the species itself?
 /**
  * Species
  *
@@ -24,16 +25,16 @@
  */
 export default class MetaSpecies extends foundry.abstract.TypeDataModel {
 	static LOCALIZATION_PREFIXES = [...super.LOCALIZATION_PREFIXES, "METANTHROPES.ITEM.SPECIES"];
-
 	static defineSchema() {
+		const { TABLES } = metanthropes.system;
 		return {
-			summary: defineSummary(),
-			options: defineOptions(),
+			summary: defineSummary(TABLES),
+			options: defineOptions(TABLES),
 			resources: defineResources(),
 			actions: defineActions(),
 			chars: defineChars(),
-			physical: definePhysical(),
-			defenses: defineDefenses(),
+			physical: definePhysical(TABLES),
+			defenses: defineDefenses(TABLES),
 			//todo abilities: review structure of what an ability is
 			//todo define how species get abilities & what type of abilities are allowed
 			//something between a Strike & Possession
@@ -81,20 +82,20 @@ const physicalScore = { ...score, initial: 10, max: 20 };
 const resistance = { ...number, min: 0, step: 5, initial: 0, max: 100 };
 
 //* * Summary (Origin)
-function defineSummary() {
+function defineSummary(TABLES) {
 	return new SchemaField({
 		description: new HTMLField(),
 		origin: new StringField({ initial: "Place of Origin" }),
 		dimension: new StringField({
 			...required,
 			initial: "material",
-			choices: metanthropes.system.TABLES.DIMENSIONS,
+			choices: TABLES.DIMENSIONS,
 		}),
 	});
 }
 
 //* * Actor Options
-function defineOptions() {
+function defineOptions(TABLES) {
 	return new SchemaField({
 		allowLifeProgression: new BooleanField({ required: true }),
 		allowDestiny: new BooleanField({ required: true }),
@@ -104,7 +105,7 @@ function defineOptions() {
 		targetTypes: new SetField( //todo I want it to include it's own name (?) to the targets?
 			new StringField({
 				...required,
-				choices: metanthropes.system.TABLES.TARGETS,
+				choices: TABLES.TARGETS,
 			}),
 			{ required: true, nullable: false, initial: [] },
 		),
@@ -149,7 +150,7 @@ function defineChars() {
 }
 
 //* * Physical
-function definePhysical() {
+function definePhysical(TABLES) {
 	return new SchemaField({
 		description: new HTMLField(),
 		hitbox: new DocumentUUIDField({
@@ -164,7 +165,7 @@ function definePhysical() {
 		allowedMovementTypes: new SetField(
 			new StringField({
 				...required,
-				choices: metanthropes.system.TABLES.MOVEMENTS,
+				choices: TABLES.MOVEMENTS,
 			}),
 			{ ...required, initial: ["climb", "crawl", "swim", "walk"] },
 		),
@@ -172,32 +173,28 @@ function definePhysical() {
 }
 
 //* * Defenses
-function defineDefenses() {
+function defineDefenses(TABLES) {
 	return new SchemaField({
-		resistances: defineResistances(),
-		immunities: defineImmunities(),
-		cover: defineCover(),
+		resistances: defineResistances(TABLES),
+		immunities: defineImmunities(TABLES),
+		cover: defineCover(TABLES),
 	});
 }
 
 //* * * Resistances
-function defineResistances() {
+function defineResistances(TABLES) {
 	return new SchemaField(
 		Object.fromEntries(
-			Object.keys(metanthropes.system.TABLES.ENERGY).map((energyKey) => [
-				energyKey,
-				new NumberField({ ...resistance }),
-			]),
+			Object.keys(TABLES.ENERGY).map((energyKey) => [energyKey, new NumberField({ ...resistance })]),
 		),
 	);
 }
 
 //* * * Immunities
-function defineImmunities() {
-	const IMMUNITIES = metanthropes.system.TABLES.IMMUNITIES;
+function defineImmunities(TABLES) {
 	return new SchemaField(
 		Object.fromEntries(
-			Object.entries(IMMUNITIES).map(([immunityKey, immunity]) => {
+			Object.entries(TABLES.IMMUNITIES).map(([immunityKey, immunity]) => {
 				return [immunityKey, immunity.score ? new NumberField({ ...score }) : new BooleanField()];
 			}),
 		),
@@ -205,18 +202,13 @@ function defineImmunities() {
 }
 
 //* * * Cover
-function defineCover() {
+function defineCover(TABLES) {
 	const cover = {
 		...number,
 		initial: 0,
-		choices: metanthropes.system.TABLES.COVER,
+		choices: TABLES.COVER,
 	};
 	return new SchemaField(
-		Object.fromEntries(
-			Object.keys(metanthropes.system.TABLES.ENERGY).map((energyKey) => [
-				energyKey,
-				new NumberField({ ...cover }),
-			]),
-		),
+		Object.fromEntries(Object.keys(TABLES.ENERGY).map((energyKey) => [energyKey, new NumberField({ ...cover })])),
 	);
 }

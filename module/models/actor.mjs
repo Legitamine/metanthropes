@@ -1,3 +1,7 @@
+//todo: Do I need the schema defined in the actor to overlap the values from the species as initia? or can I simply refer to them when/as needed?
+//todo followup: can I have actor.system.something that points to the value from the species? like hitbox
+//if so I need to think about how I am going to be using everything so I can refer to them the most efficient way <- start here
+
 /**
  * MetaActor Class
  * One Actor to Rule them All and in the System Bind them.
@@ -21,6 +25,7 @@ export default class MetaActor extends foundry.abstract.TypeDataModel {
 			buffs: defineBuffs(BUFFS),
 			conditions: defineConditions(CONDITIONS),
 			coreConditions: defineCoreConditions(CORECONDITIONS),
+			defenses: defineDefenses(TABLES),
 			perks: definePerks(),
 			notes: defineNotes(),
 		};
@@ -199,20 +204,36 @@ export default class MetaActor extends foundry.abstract.TypeDataModel {
 }
 
 //* Schema Components
-const { HTMLField, SchemaField, NumberField, StringField, BooleanField, ArrayField } = foundry.data.fields;
+const { HTMLField, SchemaField, NumberField, StringField, ArrayField, SetField, DocumentUUIDField, BooleanField } =
+	foundry.data.fields;
+const required = { required: true, nullable: false, blank: false };
+const number = { ...required, integer: true };
+const choice = { ...number, min: 5, step: 5 };
+const score = { ...number, min: 0, initial: 0, max: 5 }; //this is more like a level than a score
+const action = { ...number, min: 0, initial: 1, max: 2 };
+const initialLife = { ...number, min: 50, initial: 50, step: 25, max: 500 };
+const progressionStep = { ...number, min: 1000, initial: 5000, step: 1000, max: 10000 }; //todo thelw initial edw?
+const progressionGain = { ...number, min: 5, initial: 50, step: 5, max: 50 }; //todo thelw initial edw?
+const destiny = { ...number, min: 1, initial: 2, max: 10 };
+const primary = { ...choice, max: 75, initial: 25 };
+const secondary = { ...choice, max: 50, initial: 15 };
+const tertiary = { ...choice, max: 25, initial: 5 };
+const physicalScore = { ...score, initial: 10, max: 20 }; //antistoixa ayto einai Level
+const resistance = { ...number, min: 0, step: 5, initial: 0, max: 100 }; //!ston actor theloume na orisoume max values edw?
+
 const standardScore = { required: true, nullable: false, integer: true, min: 0, initial: 1 }; //? Used in most cases
 const levelScore = { required: true, nullable: false, integer: true, min: 0, initial: 0, max: 5 }; //? Used where we have Levels
-const physicalScore = { required: true, nullable: false, integer: true, min: 0, initial: 10, max: 20 }; //? Used for Speed, Size, Weight
 const initialDiceNumber = { required: true, nullable: false, integer: true, min: 1, initial: 1 };
 
 //* * Resources
 function defineResources() {
 	return new SchemaField({
 		life: new SchemaField({
+			initial: new NumberField({ ...initialLife }), //todo do we need the initials on the actor? we get them from the species etc, so prob no
 			current: new NumberField({ ...standardScore }),
 		}),
 		movement: new SchemaField({
-			current: new NumberField({ ...standardScore }),
+			current: new NumberField({ ...standardScore }),//todo momvement under resources? / actions? /physical?
 		}),
 	});
 }
@@ -243,6 +264,47 @@ function defineEXP() {
 		total: new NumberField({ ...standardScore }),
 		spent: new NumberField({ ...standardScore }),
 	});
+}
+
+//* * Defenses //todo do we want here the same way as in the species?
+function defineDefenses(TABLES) {
+	return new SchemaField({
+		resistances: defineResistances(TABLES),
+		immunities: defineImmunities(TABLES),
+		cover: defineCover(TABLES),
+	});
+}
+
+//* * * Resistances
+function defineResistances(TABLES) {
+	return new SchemaField(
+		Object.fromEntries(
+			Object.keys(TABLES.ENERGY).map((energyKey) => [energyKey, new NumberField({ ...resistance })]),
+		),
+	);
+}
+
+//* * * Immunities
+function defineImmunities(TABLES) {
+	return new SchemaField(
+		Object.fromEntries(
+			Object.entries(TABLES.IMMUNITIES).map(([immunityKey, immunity]) => {
+				return [immunityKey, immunity.score ? new NumberField({ ...score }) : new BooleanField()];
+			}),
+		),
+	);
+}
+
+//* * * Cover
+function defineCover(TABLES) {
+	const cover = {
+		...number,
+		initial: 0,
+		choices: TABLES.COVER,
+	};
+	return new SchemaField(
+		Object.fromEntries(Object.keys(TABLES.ENERGY).map((energyKey) => [energyKey, new NumberField({ ...cover })])),
+	);
 }
 
 //* * Physical
