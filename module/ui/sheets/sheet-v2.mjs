@@ -24,6 +24,7 @@ export class MetanthropesSheetV2 extends HandlebarsApplicationMixin(ItemSheetV2)
 		},
 		actions: {
 			saveAndClose: MetanthropesSheetV2.#onSaveAndClose,
+			editImage: MetanthropesSheetV2.#onEditImage,
 		},
 		window: {
 			resizable: false,
@@ -54,12 +55,37 @@ export class MetanthropesSheetV2 extends HandlebarsApplicationMixin(ItemSheetV2)
 		await this.close();
 	}
 
+	/**
+	 * Handle changing a Document's image.
+	 *
+	 * @this MetanthropesSheetV2
+	 * @param {PointerEvent} event   The originating click event
+	 * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
+	 * @returns {Promise}
+	 * @protected
+	 */
+	static async #onEditImage(event, target) {
+		const attr = target.dataset.edit;
+		const current = foundry.utils.getProperty(this.document, attr);
+		const { img } = this.document.constructor.getDefaultArtwork?.(this.document.toObject()) ?? {};
+		const fp = new FilePicker({
+			current,
+			type: "image",
+			redirectToRoot: img ? [img] : [],
+			callback: (path) => {
+				this.document.update({ [attr]: path });
+			},
+			top: this.position.top + 40,
+			left: this.position.left + 10,
+		});
+		return fp.browse();
+	}
+
 	async _prepareContext(options) {
 		const context = await super._prepareContext(options);
 		context.isNarrator = game.user.isGM;
 		const docLabel = "TYPES." + this.document.documentName + "." + this.document.type;
 		context.docTypeName = _loc(docLabel);
-		console.log(docLabel);
 		return context;
 	}
 
@@ -101,7 +127,6 @@ export class MetanthropesSheetV2 extends HandlebarsApplicationMixin(ItemSheetV2)
 			scaleY: 0,
 			y: -40,
 			transformOrigin: "top center",
-			//overflow: "hidden",
 		};
 		const expanded = {
 			autoAlpha: 1,
