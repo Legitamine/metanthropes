@@ -13,9 +13,6 @@ These are the latest changes for the Metanthropes™ System & Premium Modules fo
 - Added support for Foundry VTT V14 Stable 9 (build 367).
 - Added a new Feedback Form, available under the Game Settings sidebar menu. We love to hear your feedback and help us shape the game, now it's even easier to submit your thoughts to us!
 
-### Changes:
-
-
 ---
 
 # Early Access Releases
