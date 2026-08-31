@@ -6,6 +6,20 @@ These are the latest changes for the Metanthropes™ System & Premium Modules fo
 
 # Early Access Releases
 
+## Early Access v0.14.235 [2026-08-31]
+
+### Added:
+
+- Added support for Foundry VTT V14 Stable 9 (build 367).
+- Added a new Feedback Form, available under the Game Settings sidebar menu. We love to hear your feedback and help us shape the game, now it's even easier to submit your thoughts to us!
+
+### Changes:
+
+
+---
+
+# Early Access Releases
+
 ## Early Access v0.14.230 [2026-07-22]
 
 ### Added:

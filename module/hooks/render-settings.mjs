@@ -10,21 +10,21 @@ Hooks.on("renderSettings", (_app, html) => {
 
 	section.innerHTML = `
 		<h3 class="divider">Metanthropes</h3>
-		<button type="button" data-url="https://metanthropes.com/?utm_source=FVTT&utm_medium=${fvttver}&utm_campaign=${metaver}&utm_content=website_button"
-		data-tooltip="METANTHROPES.UI.SIDEBAR.SETTINGS.WebsiteTooltip">
-			<i class="fa-kit fa-metanthropes"></i>
-			${website}
+		<button type="button" data-url="https://us15.list-manage.com/survey?u=78727f5b63b6656983fd684ab&id=ba6044b7b3&attribution=false" data-tooltip="METANTHROPES.UI.SIDEBAR.SETTINGS.FeedbackTooltip">
+			<i class="fa-solid fa-clipboard-list"></i>
+			${feedback}
 		</button>
 		<button type="button" data-url="https://github.com/Legitamine/metanthropes/blob/main/CHANGELOG.md"
 		data-tooltip="METANTHROPES.UI.SIDEBAR.SETTINGS.ChangesTooltip">
 			<i class="fa-solid fa-scroll"></i>
 			${changes}
 		</button>
-		<button type="button" data-tooltip="METANTHROPES.UI.SIDEBAR.SETTINGS.FeedbackTooltip">
-			<i class="fa-solid fa-clipboard-list"></i>
-			${feedback}
+		<button type="button" data-url="https://metanthropes.com/?utm_source=FVTT&utm_medium=${fvttver}&utm_campaign=${metaver}&utm_content=website_button"
+		data-tooltip="METANTHROPES.UI.SIDEBAR.SETTINGS.WebsiteTooltip">
+			<i class="fa-kit fa-metanthropes"></i>
+			${website}
 		</button>
-	`; 
+	`;
 
 	const firstSection = html.querySelector("section");
 	if (firstSection) firstSection.insertAdjacentElement("afterEnd", section);
