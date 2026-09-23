@@ -11,10 +11,11 @@ export class MetanthropesItem extends Item {
 	async _preCreate(data, options, user) {
 		//todo need to review - ideally on the actor I should see the item effects and the item as the source
 		//todo vevaia edw einai to item, opote na kanw review to antistoixo spot sto actor & actor sheet
+		//! review if/how this is possible for V14
 		//? Built-in Foundry check for Active Effect Legacy Transferral
 		if (this.parent instanceof Actor && !CONFIG.ActiveEffect.legacyTransferral) {
 			for (const effect of this.effects) {
-				if (effect.transfer) effect.updateSource(ActiveEffect.implementation.getInitialDuration());
+				if (effect.transfer) effect.updateSource(ActiveEffect.implementation.getEffectStart());
 			}
 		}
 		//? Confirm the Actor can have this type of Item
@@ -31,7 +32,7 @@ export class MetanthropesItem extends Item {
 				"was added to actor:",
 				this.actor.type,
 				this.actor.name,
-				"aborting adding the Metapower to the Actor"
+				"aborting adding the Metapower to the Actor",
 			);
 			return false;
 		}
@@ -44,7 +45,7 @@ export class MetanthropesItem extends Item {
 				"was added to actor:",
 				this.actor.type,
 				this.actor.name,
-				"aborting adding the Possession to the Actor"
+				"aborting adding the Possession to the Actor",
 			);
 			return false;
 		}
@@ -64,8 +65,26 @@ export class MetanthropesItem extends Item {
 				"was added to actor:",
 				this.actor.type,
 				this.actor.name,
-				"aborting adding the Possession to the Actor"
+				"aborting adding the Possession to the Actor",
 			);
+			return false;
+		}
+		if (
+			//todo update after DM migration
+			(this.type === "metanthropes-homebrew.metaTemplate" ||
+				this.type === "metanthropes-homebrew.metaSpecies" ||
+				this.type === "metanthropes-homebrew.metaBuild") &&
+			((await metanthropes.utils.metaIsItemEquipped(this.parent?.uuid, this.name)) ?? false)
+		) {
+			metanthropes.utils.metaLog(
+				2,
+				"MetanthropesItem",
+				"_preCreate",
+				"You can't add this Item more than once to an Actor",
+				this.type,
+				this.name,
+			);
+			ui.notifications.warn(_loc("METANTHROPES.UI.NOTIFICATIONS.ACTOR-SHEET.duplicateItem"));
 			return false;
 		}
 		return super._preCreate(data, options, user);
@@ -83,10 +102,10 @@ export class MetanthropesItem extends Item {
 	}
 	get effectDescription() {
 		const isOwner = this.parent.isOwner;
-		const description = foundry.applications.ux.TextEditor.enrichHTML(
-			this.system.Effects.EffectDescription.value,
-			{ async: false, secrets: isOwner }
-		);
+		const description = foundry.applications.ux.TextEditor.enrichHTML(this.system.Effects.EffectDescription.value, {
+			async: false,
+			secrets: isOwner,
+		});
 		return description;
 	}
 	/**
@@ -95,7 +114,7 @@ export class MetanthropesItem extends Item {
 	 */
 	//! If I understand this correct - returing the actorData will also inlcude this rollData that includes a copy of the system - why do I need that?
 	//! Make sure I review the item-sheet as well to optimize this where needed!!
-	//todo review why this was triggered - is it because of what I do in active-effect-tools? 
+	//todo review why this was triggered - is it because of what I do in active-effect-tools?
 	//todo search for item.getRollData () or < just roll data
 	// getRollData() {
 	// 	//! Is this being used?

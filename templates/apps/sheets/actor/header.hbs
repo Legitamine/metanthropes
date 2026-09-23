@@ -1,7 +1,10 @@
-<header> Header
-	<section> First Half
-		{{log this}}
+<header>Name: {{actor.name}} Species: {{species}} - Templates: {{templates}}
+	<section class="flexrow">
 		<img>
+		<div>
+			Life:
+			in-{{resources.life.initial}}/cur-{{resources.life.current}}/bas-{{resources.life.base}}/max-{{resources.life.max}}
+		</div>
 		<div>
 			Player
 		</div>
@@ -9,18 +12,18 @@
 			Exp
 		</div>
 	</section>
-	<section> Second Half
+	<section class="flexrow">
 		{{#each system.chars}}
-			<div data-tooltip="{{lookup (lookup @root.charsFields @key) "hint"}}">
-				{{lookup (lookup @root.charsFields @key) "label"}}
+			<div class="flexrow" data-tooltip="{{lookup (lookup @root.charsFields @key) "hint"}}">
+				{{lookup (lookup @root.charsFields @key) "label"}} {{this.current}}
 				{{#each ../system.stats}}
 					{{#if (eq (lookup (lookup @root.statsConst @key) "associatedChar") @../key)}}
 						<div data-tooltip="{{lookup (lookup @root.statsFields @key) "hint"}}">
 							{{lookup (lookup @root.statsFields @key) "label"}}
-							<div
+							<h3
 								data-tooltip="{{lookup (lookup (lookup (lookup @root.statsFields @key) "fields") "current") "hint"}}">
 								{{this.current}}
-							</div>
+							</h3>
 						</div>
 					{{/if}}
 				{{/each}}

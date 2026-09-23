@@ -42,6 +42,8 @@
 			"Effects": "Effects",
 			"Metapower": "Metapower",
 			"Metapowers": "Metapowers",
+			"Movement": "Movement",
+			"MovementUnits": "meters / Turn",
 			"Target": "Target",
 			"Targets": "Targets",
 			"Duration": "Duration",
@@ -50,7 +52,18 @@
 			"Cosmic": "Cosmic",
 			"Elemental": "Elemental",
 			"Material": "Material",
-			"Psychic": "Psychic"
+			"Psychic": "Psychic",
+			"SaveToUpdate": "Save below to update",
+			"Preview": "Preview",
+			"Editor": "Editor"
+		},
+		"TARGETS": {
+			"Extradimensional": "Extradimensional",
+			"Extraterrestrial": "Extraterrestrial",
+			"Metatherion": "Metatherion",
+			"Artificial": "Artificial",
+			"Animal": "Animal",
+			"Plant": "Plant"
 		},
 		"LOGIC": {
 			"METAEXECUTE": {
@@ -75,6 +88,9 @@
 				},
 				"METALINK": {
 					"Error": "Can't find a valid Document from UUID: "
+				},
+				"ACTOR-SHEET": {
+					"duplicateItem": "You can't add this Item more than once to an Actor"
 				}
 			},
 			"APPS": {
@@ -359,12 +375,27 @@
 			},
 			"SHEET": {
 				"TABS": {
+					"TOOLTIPS": {
+						"Actions": "Actions are...",
+						"Perks": "Perks are...",
+						"Metapowers": "Metapowers are...",
+						"Possessions": "Possessions are...",
+						"Effects": "Effects are...",
+						"Notes": "Notes are..."
+					},
 					"Actions": "Actions",
 					"Perks": "Perks",
 					"Metapowers": "Metapowers",
 					"Possessions": "Possessions",
 					"Effects": "Effects",
 					"Notes": "Notes"
+				},
+				"AE": {
+					"add": " Add",
+					"addEffect": "Add Effect",
+					"toggleEffect": "Toggle Effect",
+					"removeEffect": "Remove Effect",
+					"refreshEffect": "Refresh Duration"
 				}
 			},
 			"NOTIFICATIONS": {
@@ -404,12 +435,14 @@
 			}
 		},
 		"ACTIVATIONS": {
+			"2BEDeprecated": "TBD",
 			"alwaysActive": {
 				"label": "Always Active",
 				"hint": "Always Active Hint"
 			}
 		},
 		"MOVEMENT": {
+			"2BEDeprecated": "TBD",
 			"LABEL": "Movement",
 			"HINT": "blah",
 			"SPEED": {
@@ -464,6 +497,7 @@
 			}
 		},
 		"AE": {
+			"2BEDeprecated": "TBD",
 			"phases": {
 				"initial": "Initial Phase",
 				"final": "Final Phase"
@@ -472,11 +506,59 @@
 			"none": "None"
 		},
 		"TABLES": {
+			"ACTIVATIONS": {
+				"alwaysActiveLabel": "Always Active",
+				"alwaysActiveHint": "Always Active Hint",
+				"reactionLabel": "Reaction",
+				"reactionHint": "Reaction Hint",
+				"movementLabel": "Movement",
+				"movementHint": "Movement Hint",
+				"extraLabel": "Extra Action",
+				"extraHint": "Extra Action Hint",
+				"mainLabel": "Main Action",
+				"mainHint": "Main Action Hint",
+				"fullTurnLabel": "Focused Action: Full Turn",
+				"fullTurnHint": "Focused Action Hint",
+				"twoRoundsLabel": "Focused Action: Two Rounds",
+				"twoRoundsHint": "Focused Action Hint",
+				"d10RoundsLabel": "Focused Action: 1d10 Rounds",
+				"d10RoundsHint": "Focused Action Hint",
+				"hourLabel": "Focused Action: Hour",
+				"hourHint": "Focused Action Hint",
+				"d10HoursLabel": "Focused Action: 1d10 Hours",
+				"d10HoursHint": "Focused Action Hint"
+			},
+			"AREAS": {
+				"self": "Self",
+				"hex": "Hexagon",
+				"room": "Room",
+				"building": "Building",
+				"square": "Square",
+				"block": "Block",
+				"hood": "Neighborhood",
+				"district": "District",
+				"town": "Town",
+				"city": "City",
+				"region": "Region",
+				"state": "State",
+				"country": "Country",
+				"zone": "Zone",
+				"continent": "Continent",
+				"hemisphere": "Hemisphere",
+				"planet": "Planet"
+			},
+			"MOVEMENT_TYPES": {
+				"wallWalk": "Wall Walk",
+				"photoPortation": "Photo-portation"
+			},
 			"SPEED": {
 				"0": {
 					"average": "average example",
 					"example": "example average"
 				}
+			},
+			"TARGETS": {
+				"human": "Human"
 			}
 		},
 		"BUFFS": {
@@ -523,7 +605,7 @@
 	},
 	"TYPES": {
 		"Actor": {
-			"MetanthropesActorV2": "Metanthropes Actor",
+			"metaActor": "New Actor",
 			"Protagonist": "Protagonist",
 			"Metanthrope": "Metanthrope",
 			"Human": "Human",
@@ -539,8 +621,8 @@
 		"Item": {
 			"Metapower": "Metapower",
 			"Possession": "Possession",
-			"species": "Species",
-			"template": "Template"
+			"metaSpecies": "Species",
+			"metaTemplate": "Template"
 		}
 	}
 }

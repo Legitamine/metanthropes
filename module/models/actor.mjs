@@ -1,148 +1,111 @@
-const { HTMLField, SchemaField, NumberField, StringField, BooleanField, ArrayField } = foundry.data.fields;
-const standardScore = { required: true, nullable: false, integer: true, min: 0, initial: 0 }; //? Used in most cases
-const levelScore = { required: true, nullable: false, integer: true, min: 0, initial: 0, max: 5 }; //? Used where we have Levels
-const physicalScore = { required: true, nullable: false, integer: true, min: 0, initial: 10, max: 20 }; //? Used for Speed, Size, Weight
-const initialDiceNumber = { required: true, nullable: false, integer: true, min: 1, initial: 1 };
+//todo: Do I need the schema defined in the actor to overlap the values from the species as initia? or can I simply refer to them when/as needed?
+//todo followup: can I have actor.system.something that points to the value from the species? like hitbox
+//if so I need to think about how I am going to be using everything so I can refer to them the most efficient way <- start here
 
-export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel {
+/**
+ * MetaActor Class
+ * One Actor to Rule them All and in the System Bind them.
+ *
+ * @export
+ * @class MetaActor
+ * @typedef {MetaActor}
+ * @extends {foundry.abstract.TypeDataModel}
+ */
+export default class MetaActor extends foundry.abstract.TypeDataModel {
 	static LOCALIZATION_PREFIXES = ["METANTHROPES.ACTOR"];
 	static defineSchema() {
 		const { CHARS, STATS, BUFFS, CONDITIONS, CORECONDITIONS, TABLES } = metanthropes.system;
 		return {
-			resources: new SchemaField({
-				life: new SchemaField({
-					current: new NumberField({ ...standardScore }),
-				}),
-				movement: new SchemaField({
-					current: new NumberField({ ...standardScore }),
-				}),
-			}),
-			actions: new SchemaField({
-				main: new SchemaField({
-					current: new NumberField({ ...standardScore }),
-				}),
-				extra: new SchemaField({
-					current: new NumberField({ ...standardScore }),
-				}),
-				reaction: new SchemaField({
-					current: new NumberField({ ...standardScore }),
-				}),
-			}),
-			exp: new SchemaField({
-				progressionLog: new ArrayField(
-					new SchemaField({
-						something: new NumberField(),
-					}),
-				), //?this keeps the progression order
-				total: new NumberField({ ...standardScore }),
-				spent: new NumberField({ ...standardScore }),
-			}),
-			physical: new SchemaField({
-				description: new SchemaField({
-					player: new HTMLField(),
-					//todo species defined
-				}),
-				speed: new NumberField({ ...physicalScore }),
-				weight: new NumberField({ ...physicalScore }),
-				size: new NumberField({ ...physicalScore }),
-				resistances: new SchemaField(
-					Object.fromEntries(
-						Object.keys(TABLES.ENERGY).map((energyKey) => [
-							energyKey,
-							new NumberField({ ...standardScore }),
-						]),
-					),
-				),
-				immunities: new SchemaField(
-					Object.fromEntries(Object.keys(TABLES.ENERGY).map((energyKey) => [energyKey, new BooleanField()])),
-				),
-				shift: new SchemaField({}),
-				hitbox: new SchemaField({}), //? From Species
-				origin: new SchemaField({}), //? From Species
-			}),
-			chars: new SchemaField(
-				Object.fromEntries(
-					Object.keys(CHARS).map((charKey) => [
-						charKey,
-						new SchemaField({
-							current: new NumberField({ ...standardScore }),
-							initial: new NumberField({ ...standardScore }),
-							initialChoice: new NumberField({ ...standardScore }),
-							progressed: new NumberField({ ...levelScore }),
-							progressionLog: new ArrayField(
-								new SchemaField({
-									char: new StringField(),
-								}),
-							),
-						}),
-					]),
-				),
-			),
-			stats: new SchemaField(
-				Object.fromEntries(
-					Object.keys(STATS).map((statKey) => [
-						statKey,
-						new SchemaField({
-							current: new NumberField({ ...standardScore }),
-							initial: new NumberField({ ...standardScore }),
-							initialDice: new NumberField({ ...initialDiceNumber }),
-							progressed: new NumberField({ ...levelScore }),
-							progressionLog: new ArrayField(
-								new SchemaField({
-									stat: new StringField(),
-								}),
-							),
-						}),
-					]),
-				),
-			),
-			buffs: new SchemaField(
-				Object.fromEntries(Object.keys(BUFFS).map((buffKey) => [buffKey, new NumberField({ ...levelScore })])),
-			),
-			conditions: new SchemaField(
-				Object.fromEntries(
-					Object.keys(CONDITIONS).map((conditionKey) => [conditionKey, new NumberField({ ...levelScore })]),
-				),
-			),
-			coreConditions: new SchemaField({}),
-			perks: new SchemaField({}),
-			notes: new SchemaField({}),
+			resources: defineResources(),
+			actions: defineActions(),
+			exp: defineEXP(),
+			physical: definePhysical(TABLES), //todo this could* be broken down directly under system. instead
+			chars: defineChars(CHARS),
+			stats: defineStats(STATS),
+			buffs: defineBuffs(BUFFS),
+			conditions: defineConditions(CONDITIONS),
+			coreConditions: defineCoreConditions(CORECONDITIONS),
+			defenses: defineDefenses(TABLES),
+			perks: definePerks(),
+			notes: defineNotes(),
 		};
 	}
 
-	//* Base = Initial (from Species/Archetypes) + Progressed = einai ta stuff poy theloume gia progression!
+	//* Base = Initial (from Species & Templates) + Progressed (from EXP total)
 	prepareBaseData() {
 		super.prepareBaseData();
+		const mL = metanthropes.utils.metaLog;
+		//const dominantSpecies = items.documentsByType.species[0]; //original
+		const items = this.parent.items;
+		//todo DM Migration
+		const dominantSpecies = items.documentsByType?.["metanthropes-homebrew.metaSpecies"]?.[0] ?? false; //? are the extra ?s needed here?
+		if (!dominantSpecies)
+			return mL(1, "Actor Data Model", "prepareBaseData", "Actor doesn't have a Species assigned yet");
+		const species = items.documentsByType?.["metanthropes-homebrew.metaSpecies"] ?? false;
+		const templates = items.documentsByType?.["metanthropes-homebrew.metaTemplate"] ?? false;
 		const { CHARS, STATS } = metanthropes.system;
 		const { life } = this.resources;
 		const { main, extra, reaction } = this.actions;
 		//const { speed, weight, size } = this.physical;
 		const physical = this.physical;
-		const items = this.parent.items;
-		const dominantSpecies = items.documentsByType.species[0]; //! Ayto kanw gia to hitbox
-		const templates = items.documentsByType.template;
-		metanthropes.utils.metaLog(4, "Actor DM Base", physical);
+
 		//* Life
-		const progressionStep = dominantSpecies?.system?.resources?.life?.progressionStep ?? 0;
-		const progressionGain = dominantSpecies?.system?.resources?.life?.progressionGain ?? 0;
-		let lifeInitial = dominantSpecies?.system?.resources?.life?.initial ?? 0;
-		for (const item of templates) lifeInitial += item?.system?.resources?.life?.initial ?? 0; //! Ayto kanw gia ola ta ypoloipa initial stats
-		//! doing this so it won't show Life NaN/NaN until a species is added to the actor, is there a better way?
-		if (progressionStep > 0) {
-			life.progressed = Math.floor(this.exp.total / progressionStep) * progressionGain; //? Extra gain Life for each step EXP Total
-		} else {
-			life.progressed = 0;
-		}
-		life.base = lifeInitial + life.progressed;
+		//? Keep the highest initial Life from all Species
+		const speciesInitialLife = Math.max(
+			0,
+			...species.map((eachSpecies) => eachSpecies?.system?.resources?.life?.initial ?? 0),
+		);
+		//? Cummulative add the initial Life gained from each Template
+		//todo why we have no intellisense here for .reduce or .map? etc, while we do for Math.max?
+		const templatesInitialLife = templates.reduce(
+			(total, template) => total + (template?.system?.resources?.life?.initial ?? 0),
+			0,
+		);
+		//? Initial Life from Species & Templates
+		life.initial = speciesInitialLife + templatesInitialLife;
+		//? Cummulative add the progressed Life gained from each Species
+		const progressedLife = species.reduce((total, eachSpecies) => {
+			//? alternative to: for (const eachSpecies of species) {...}, with let progressedLife, and  progressedLife += before continue
+			const progressionStep = eachSpecies.system.resources.life.progressionStep ?? 0;
+			const progressionGain = eachSpecies.system.resources.life.progressionGain ?? 0;
+			if (progressionStep <= 0) return total;
+			return total + Math.floor(this.exp.total / progressionStep) * progressionGain; //todo review once EXP is done
+		}, 0);
+		//? Base Life = Initial + Progressed
+		life.base = life.initial + progressedLife;
 
 		//* Actions
-		main.base = 0;
-		extra.base = 0;
-		reaction.base = 0;
+		//? Keep the highest initial value for each action from all Species
+		const speciesMain = Math.max(0, ...species.map((eachSpecies) => eachSpecies.system.actions.main ?? 0));
+		const speciesExtra = Math.max(0, ...species.map((eachSpecies) => eachSpecies.system.actions.extra ?? 0));
+		const speciesReaction = Math.max(0, ...species.map((eachSpecies) => eachSpecies.system.actions.reaction ?? 0));
+		//? Cummulative Add the values for each action from Templates (they can be negative)
+		const templatesMain = templates.reduce(
+			(total, eachTemplate) => total + (eachTemplate.system.actions.main ?? 0),
+			0,
+		);
+		const templatesExtra = templates.reduce(
+			(total, eachTemplate) => total + (eachTemplate.system.actions.extra ?? 0),
+			0,
+		);
+		const templatesReaction = templates.reduce(
+			(total, eachTemplate) => total + (eachTemplate.system.actions.reaction ?? 0),
+			0,
+		);
+		//? Ensure the initial value won't be negative (min:0) for any action
+		main.initial = Math.max(0, speciesMain + templatesMain);
+		extra.initial = Math.max(0, speciesExtra + templatesExtra);
+		reaction.initial = Math.max(0, speciesReaction + templatesReaction);
+		//todo placeholder for any actions from progression, currently not planned
+		main.base = main.initial;
+		extra.base = extra.initial;
+		reaction.base = reaction.initial;
+		//todo review how the actor's initial DM should look like now we have a better understanding
+		//todo where do I keep the current values?? probably in derived after being affected by AE, spending them during combat etc
 
 		//* EXP
 		this.exp.stored = this.exp.total - this.exp.spent;
-		if (this.exp.stored < 0) metanthropes.utils.metaLog(2, "Actor DM Base", this.name, "Stored EXP is Negative!");
+		if (this.exp.stored < 0) mL(2, "Actor DM Base", this.name, "Stored EXP is Negative!");
 
 		//* Chars
 		for (const charKey of Object.keys(CHARS)) {
@@ -156,7 +119,7 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 			let statTemplate = 0;
 			for (const item of templates) statTemplate += item?.system?.stats[statKey]?.initial ?? 0;
 			this.stats[statKey].base =
-				this.chars[statData.associatedChar].base + //ayto na paei derived instead kai na vazw to current
+				this.chars[statData.associatedChar].base + //todo ayto na paei derived instead kai na vazw to current
 				this.stats[statKey].initial +
 				statTemplate + //!potential hole here if negative ammount from archetype > base that turns it into negative?
 				this.stats[statKey].progressed * 5;
@@ -164,10 +127,17 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 		}
 	}
 
-	//* Derived values after Active Effects haven applied | Current: Base + Buffs - Conditions
+	//* Derived values after Active Effects applied | Current: Base + Buffs - Conditions
 	prepareDerivedData() {
 		super.prepareDerivedData();
-
+		const mL = metanthropes.utils.metaLog;
+		const items = this.parent.items;
+		//todo DM Migration
+		const dominantSpecies = items.documentsByType?.["metanthropes-homebrew.metaSpecies"]?.[0] ?? false; //? are the extra ?s needed here?
+		if (!dominantSpecies)
+			return mL(1, "Actor Data Model", "prepareDerivedData", "Actor doesn't have a Species assigned yet");
+		//		const dominantSpecies = items.documentsByType?.metaSpecies?.[0] ?? false;
+		const templates = items.documentsByType?.["metanthropes-homebrew.metaTemplate"] ?? false;
 		const { CHARS, STATS, TABLES } = metanthropes.system;
 		const { life, movement } = this.resources;
 		const { main, extra, reaction } = this.actions;
@@ -175,11 +145,6 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 		const physical = this.physical;
 		const buffs = this.buffs;
 		const conditions = this.conditions;
-
-		const items = this.parent.items;
-		const dominantSpecies = items.documentsByType.species[0];
-		metanthropes.utils.metaLog(4, "Actor DM Derived", dominantSpecies);
-		const templates = items.documentsByType.template;
 
 		//* Dominant Species (the first Species applied to the Actor)
 		//todo CHARS, STATS, SPEED, WEIGHT, SIZE exoune BUFF/CONDITION
@@ -191,9 +156,18 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 
 		//* Life
 		//todo: how to handle Duplicates? see _prepareDerivedVitalData(actorData) in old actor
+		//todo: Ordering - Life calcs should go after the physical.size calcs in this file, right?
 		life.max = life.base + this.stats.endurance.current + TABLES.SIZE[physical.size].life; // + metaConstitution + substanceImitation + controlDensityTemp
 		life.current = Math.min(life.current, life.max);
 		life.value = life.current; //? Life as a resource bar
+
+		//* Actions
+		main.max = main.base; //+ metapower -- does species limit the max?
+		extra.max = extra.base;
+		reaction.max = reaction.base;
+		//derived actions, define max math.min
+		//focused action: haven't moved or spent any action. Once 'used' they have no other action available for that turn.
+		//should we keep a flag or rather have the value set here?
 
 		//* Movement
 		movement.max = Math.ceil(
@@ -207,12 +181,6 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 		movement.sprint = movement.max * 5;
 		movement.current = Math.min(movement.current, movement.max);
 		movement.value = movement.current; //? Movement as resource bar
-
-		//* Actions
-		main.max = main.base; //+ metapower -- does species limit the max?
-		extra.max = extra.base;
-		reaction.max = reaction.base;
-		//derived actions, define max math.min
 
 		//* Chars
 		//todo we want to keep the ifCharGoesToZero value vs defined min=0, leave it undefined?
@@ -233,4 +201,214 @@ export default class MetanthropesActorV2 extends foundry.abstract.TypeDataModel 
 				conditions[statKey];
 		}
 	}
+}
+
+//* Schema Components
+const { HTMLField, SchemaField, NumberField, StringField, ArrayField, SetField, DocumentUUIDField, BooleanField } =
+	foundry.data.fields;
+const required = { required: true, nullable: false, blank: false };
+const number = { ...required, integer: true };
+const choice = { ...number, min: 5, step: 5 };
+const score = { ...number, min: 0, initial: 0, max: 5 }; //this is more like a level than a score
+const action = { ...number, min: 0, initial: 1, max: 2 };
+const initialLife = { ...number, min: 50, initial: 50, step: 25, max: 500 };
+const progressionStep = { ...number, min: 1000, initial: 5000, step: 1000, max: 10000 }; //todo thelw initial edw?
+const progressionGain = { ...number, min: 5, initial: 50, step: 5, max: 50 }; //todo thelw initial edw?
+const destiny = { ...number, min: 1, initial: 2, max: 10 };
+const primary = { ...choice, max: 75, initial: 25 };
+const secondary = { ...choice, max: 50, initial: 15 };
+const tertiary = { ...choice, max: 25, initial: 5 };
+const physicalScore = { ...score, initial: 10, max: 20 }; //antistoixa ayto einai Level
+const resistance = { ...number, min: 0, step: 5, initial: 0, max: 100 }; //!ston actor theloume na orisoume max values edw?
+
+const standardScore = { required: true, nullable: false, integer: true, min: 0, initial: 1 }; //? Used in most cases
+const levelScore = { required: true, nullable: false, integer: true, min: 0, initial: 0, max: 5 }; //? Used where we have Levels
+const initialDiceNumber = { required: true, nullable: false, integer: true, min: 1, initial: 1 };
+
+//* * Resources
+function defineResources() {
+	return new SchemaField({
+		life: new SchemaField({
+			initial: new NumberField({ ...initialLife }), //todo do we need the initials on the actor? we get them from the species etc, so prob no
+			current: new NumberField({ ...standardScore }),
+		}),
+		movement: new SchemaField({
+			current: new NumberField({ ...standardScore }),//todo momvement under resources? / actions? /physical?
+		}),
+	});
+}
+
+//* * Actions
+function defineActions() {
+	return new SchemaField({
+		main: new SchemaField({
+			current: new NumberField({ ...standardScore }),
+		}),
+		extra: new SchemaField({
+			current: new NumberField({ ...standardScore }),
+		}),
+		reaction: new SchemaField({
+			current: new NumberField({ ...standardScore }),
+		}),
+	});
+}
+
+//* * EXP
+function defineEXP() {
+	return new SchemaField({
+		progressionLog: new ArrayField(
+			new SchemaField({
+				something: new NumberField(),
+			}),
+		), //?this keeps the progression order
+		total: new NumberField({ ...standardScore }),
+		spent: new NumberField({ ...standardScore }),
+	});
+}
+
+//* * Defenses //todo do we want here the same way as in the species?
+function defineDefenses(TABLES) {
+	return new SchemaField({
+		resistances: defineResistances(TABLES),
+		immunities: defineImmunities(TABLES),
+		cover: defineCover(TABLES),
+	});
+}
+
+//* * * Resistances
+function defineResistances(TABLES) {
+	return new SchemaField(
+		Object.fromEntries(
+			Object.keys(TABLES.ENERGY).map((energyKey) => [energyKey, new NumberField({ ...resistance })]),
+		),
+	);
+}
+
+//* * * Immunities
+function defineImmunities(TABLES) {
+	return new SchemaField(
+		Object.fromEntries(
+			Object.entries(TABLES.IMMUNITIES).map(([immunityKey, immunity]) => {
+				return [immunityKey, immunity.score ? new NumberField({ ...score }) : new BooleanField()];
+			}),
+		),
+	);
+}
+
+//* * * Cover
+function defineCover(TABLES) {
+	const cover = {
+		...number,
+		initial: 0,
+		choices: TABLES.COVER,
+	};
+	return new SchemaField(
+		Object.fromEntries(Object.keys(TABLES.ENERGY).map((energyKey) => [energyKey, new NumberField({ ...cover })])),
+	);
+}
+
+//* * Physical
+function definePhysical(TABLES) {
+	return new SchemaField({
+		description: new SchemaField({
+			player: new HTMLField(),
+			//todo species defined
+		}),
+		speed: new NumberField({ ...physicalScore }),
+		weight: new NumberField({ ...physicalScore }),
+		size: new NumberField({ ...physicalScore }),
+		resistances: new SchemaField(
+			Object.fromEntries(
+				Object.keys(TABLES.ENERGY).map((energyKey) => [energyKey, new NumberField({ ...standardScore })]),
+			),
+		),
+		immunities: new SchemaField(
+			Object.fromEntries(Object.keys(TABLES.ENERGY).map((energyKey) => [energyKey, new BooleanField()])),
+		),
+		shift: new SchemaField({}),
+		hitbox: new SchemaField({}), //? From Species
+		origin: new SchemaField({}), //? From Species
+	});
+}
+
+//* * Chars
+function defineChars(CHARS) {
+	return new SchemaField(
+		Object.fromEntries(
+			Object.keys(CHARS).map((charKey) => [
+				charKey,
+				new SchemaField({
+					current: new NumberField({ ...standardScore }),
+					initial: new NumberField({ ...standardScore }),
+					initialChoice: new NumberField({ ...standardScore }),
+					progressed: new NumberField({ ...levelScore }),
+					progressionLog: new ArrayField(
+						new SchemaField({
+							char: new StringField(),
+						}),
+					),
+				}),
+			]),
+		),
+	);
+}
+
+//* * Stats
+function defineStats(STATS) {
+	return new SchemaField(
+		Object.fromEntries(
+			Object.keys(STATS).map((statKey) => [
+				statKey,
+				new SchemaField({
+					current: new NumberField({ ...standardScore }),
+					initial: new NumberField({ ...standardScore }),
+					initialDice: new NumberField({ ...initialDiceNumber }), //this will always be 3-2-1 for pri/sec/ter
+					progressed: new NumberField({ ...levelScore }),
+					progressionLog: new ArrayField(
+						new SchemaField({
+							stat: new StringField(),
+						}),
+					),
+				}),
+			]),
+		),
+	);
+}
+
+//* * Buffs
+function defineBuffs(BUFFS) {
+	return new SchemaField(
+		Object.fromEntries(Object.keys(BUFFS).map((buffKey) => [buffKey, new NumberField({ ...levelScore })])),
+	);
+}
+
+//* * Conditions
+function defineConditions(CONDITIONS) {
+	return new SchemaField(
+		Object.fromEntries(
+			Object.keys(CONDITIONS).map((conditionKey) => [conditionKey, new NumberField({ ...levelScore })]),
+		),
+	);
+}
+
+//* * Core Conditions
+function defineCoreConditions(CORECONDITIONS) {
+	return new SchemaField(
+		Object.fromEntries(
+			Object.keys(CORECONDITIONS).map((coreConditionKey) => [
+				coreConditionKey,
+				new NumberField({ ...levelScore }),
+			]),
+		),
+	);
+}
+
+//* * Perks
+function definePerks() {
+	return new SchemaField({});
+}
+
+//* * Notes
+function defineNotes() {
+	return new SchemaField({});
 }

@@ -1,0 +1,53 @@
+<section class="tab {{tabs.resources.cssClass}} scrollable" data-group="primary" data-tab="resources">
+	<fieldset>
+		<legend>Life</legend>
+		{{formGroup
+			speciesFields.lifeInitial
+			value=system.resources.life.initial
+			name="system.resources.life.initial"
+			label="Initial Life"
+			rootId=rootId
+			disabled=(not isNarrator)
+		}}
+		{{#if system.options.allowLifeProgression}}
+			{{formGroup
+			speciesFields.lifeProgressionStep
+			value=system.resources.life.progressionStep
+			name="system.resources.life.progressionStep"
+			label="Progression Step"
+			rootId=rootId
+			disabled=(not isNarrator)
+			}}
+			{{formGroup
+			speciesFields.lifeProgressionGain
+			value=system.resources.life.progressionGain
+			name="system.resources.life.progressionGain"
+			label="Progression Gain"
+			rootId=rootId
+			disabled=(not isNarrator)
+			}}
+		{{/if}}
+	</fieldset>
+
+	{{#if system.options.allowDestiny}}
+		<fieldset>
+			<legend>Destiny</legend>
+			{{formGroup
+				speciesFields.destinyInitialBase
+				value=system.resources.destiny.initialBase
+				name="system.resources.destiny.initialBase"
+				label="Initial Destiny Base"
+				rootId=rootId
+				disabled=(not isNarrator)
+			}}
+			{{formGroup
+				speciesFields.destinyInitialDice
+				value=system.resources.destiny.initialDice
+				name="system.resources.destiny.initialDice"
+				label="Initial Destiny Dice"
+				rootId=rootId
+				disabled=(not isNarrator)
+			}}
+		</fieldset>
+	{{/if}}
+</section>

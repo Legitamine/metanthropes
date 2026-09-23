@@ -2,9 +2,9 @@ import { settings } from "../config/settings.mjs";
 
 Hooks.once("init", async function () {
 	console.log(metanthropes.system.ASCII);
-
 	//* Configure System
-	globalThis.SYSTEM = metanthropes.system;
+	//globalThis.SYSTEM = metanthropes.system;
+	//! do I actualy use the SYSTEM somewhere? I'd rather not put it out there if it's not used by us.
 
 	//* Register Fonts
 	CONFIG.fontDefinitions = {
@@ -21,20 +21,24 @@ Hooks.once("init", async function () {
 
 	//* Register System Settings
 	await metanthropes.utils.metaRegisterGameSettings(settings);
-	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting"))
-		metanthropes.utils.metaLog(1, "System", "Initializing", "Alpha Testing Enabled");
+	const alphaTestingEnabled = metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting") ?? false;
+	if (alphaTestingEnabled) metanthropes.utils.metaLog(1, "System", "Initializing", "Alpha Testing Enabled");
 	if (metanthropes.utils.metaCheckSetting("core", "metaBetaTesting"))
 		metanthropes.utils.metaLog(1, "System", "Initializing", "Beta Testing Enabled");
 
 	//* Register Data Models
-	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
+	if (alphaTestingEnabled) {
 		CONFIG.Actor.dataModels = {
-			MetanthropesActorV2: metanthropes.models.MetanthropesActorV2,
+			metaActor: metanthropes.models.MetaActor,
+			"metanthropes-homebrew.metaActor": metanthropes.models.MetaActor, //todo DM Migration
 		};
-
 		CONFIG.Item.dataModels = {
-			species: metanthropes.models.species,
-			template: metanthropes.models.template,
+			metaSpecies: metanthropes.models.MetaSpecies,
+			"metanthropes-homebrew.metaSpecies": metanthropes.models.MetaSpecies, //todo DM Migration
+			metaTemplate: metanthropes.models.MetaTemplate,
+			"metanthropes-homebrew.metaTemplate": metanthropes.models.MetaTemplate, //todo DM Migration
+			metaBuild: metanthropes.models.MetaBuild,
+			"metanthropes-homebrew.metaBuild": metanthropes.models.MetaBuild, //todo DM Migration
 		};
 	}
 
@@ -43,37 +47,38 @@ Hooks.once("init", async function () {
 	CONFIG.Item.documentClass = metanthropes.documents.MetanthropesItem;
 	CONFIG.ActiveEffect.documentClass = metanthropes.documents.MetanthropesActiveEffect;
 	CONFIG.Combat.documentClass = metanthropes.documents.MetanthropesCombat;
-	//? missing MetaChatMessage === didn't register mine as the default so it falls back to the default
+	//todo missing MetaChatMessage === didn't register mine as the default so it falls back to the default
 
 	//* Register Application Sheets
+	const actorV1Types = [
+		"Protagonist",
+		"Metanthrope",
+		"Human",
+		"Animal",
+		"Artificial",
+		"Extradimensional",
+		"Extraterrestrial",
+		"Animated-Cadaver",
+		"Animated-Plant",
+		"MetaTherion",
+	];
 	foundry.documents.collections.Actors.registerSheet(
 		"metanthropes",
 		metanthropes.applications.MetanthropesActorSheet,
 		{
 			makeDefault: true,
-			types: [
-				"Protagonist",
-				"Metanthrope",
-				"Human",
-				"Animal",
-				"Artificial",
-				"Extradimensional",
-				"Extraterrestrial",
-				"Animated-Cadaver",
-				"Animated-Plant",
-				"MetaTherion",
-			],
+			types: actorV1Types,
 			label: "METANTHROPES.SHEET.ACTOR.LABEL",
 		},
 	);
 
-	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
+	if (alphaTestingEnabled) {
 		foundry.documents.collections.Actors.registerSheet(
 			"metanthropes",
 			metanthropes.applications.MetanthropesActorSheetV2,
 			{
 				makeDefault: true,
-				types: ["MetanthropesActorV2"],
+				types: ["metaActor", "metanthropes-homebrew.metaActor"], //todo DM Migration
 				label: "METANTHROPES.SHEET.ACTORV2.LABEL",
 			},
 		);
@@ -83,13 +88,21 @@ Hooks.once("init", async function () {
 		label: "METANTHROPES.SHEET.ITEM.LABEL",
 	});
 
-	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
+	if (alphaTestingEnabled) {
+		const itemV2Types = [
+			"metaSpecies",
+			"metaTemplate",
+			"metaBuild",
+			"metanthropes-homebrew.metaSpecies",
+			"metanthropes-homebrew.metaTemplate",
+			"metanthropes-homebrew.metaBuild",
+		];
 		foundry.documents.collections.Items.registerSheet(
 			"metanthropes",
-			metanthropes.applications.MetanthropesItemSheetV2,
+			metanthropes.applications.MetanthropesSpeciesSheetV2,
 			{
 				makeDefault: true,
-				types: ["species", "template"],
+				types: itemV2Types, //todo DM migration
 				label: "METANTHROPES.SHEET.ITEMV2.LABEL",
 			},
 		);
@@ -119,6 +132,12 @@ Hooks.once("init", async function () {
 		decimals: 2,
 	};
 
+	//* Active Effect Expiration
+	CONFIG.ActiveEffect.expiryAction = "update"; //? setting this to "delete" will remove the AE
+
+	//* Register Movement Types
+	CONFIG.Token.movement.actions = metanthropes.system.TABLES.MOVEMENTS;
+
 	//* Round Duration (in seconds)
 	CONFIG.time.roundTime = 30;
 
@@ -133,7 +152,7 @@ Hooks.once("init", async function () {
 
 	//* V14 VFX
 	//! EXPERIMENTAL
-	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
+	if (alphaTestingEnabled) {
 		metanthropes.utils.metaLog(1, "System", "Initializing", "Enabling Experimental VFX Engine");
 		CONFIG.Canvas.vfx.enabled = true;
 	}

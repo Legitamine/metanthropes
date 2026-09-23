@@ -30,7 +30,7 @@
 						</select>
 						<span class="item-statroll style-pos-rolls" data-roll-type="Possession"
 							data-item-name="{{item.name}}" data-stat="{{item.system.Execution.StatRolled.value}}"
-							data-required-perk="{{item.system.RequiredPerk.value}}"
+							data-required-perk="{{item.system.RequiredPerk.value}}" data-item-id="{{item._id}}"
 							data-required-perk-level="{{item.system.RequiredPerkLevel.value}}">
 							{{item.system.Execution.StatRolled.value}}:
 							{{lookup item.actor.system.RollStats item.system.Execution.StatRolled.value}}
@@ -38,7 +38,7 @@
 					{{else}}
 						<span class="item-statroll style-pos-rolls" data-roll-type="Possession"
 							data-item-name="{{item.name}}" data-stat="{{item.system.Execution.StatRolled.value}}"
-							data-required-perk="{{item.system.RequiredPerk.value}}"
+							data-required-perk="{{item.system.RequiredPerk.value}}" data-item-id="{{item._id}}"
 							data-required-perk-level="{{item.system.RequiredPerkLevel.value}}">
 							{{item.system.Execution.StatRolled.value}}:
 							{{lookup item.actor.system.RollStats item.system.Execution.StatRolled.value}}

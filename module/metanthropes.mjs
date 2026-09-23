@@ -1,17 +1,17 @@
 /**
- * Metanthropes - Official System for Foundry VTT
+ * Metanthropes™ - Official System for Foundry VTT
  * Author: The Orchestrator (qp)
  * Discord: qp#8888 ; q_._p
  *
  * If you would like to contribute to this project, please feel free to reach out to me via Discord.
  * Formal contribution will be part of v1.0, however your feedback is most welcome at this early stage.
  *
- * Throughtout this project, I use the following syntax for comments:
+ * Throughtout this project, I use the following notation for comments:
  ** //* Section headers & high level overview of the intended functionality.
  ** //? Sub-sections and for elaborating my intent for better readability & notes.
  ** //! Things that must be addressed in the next refactoring pass.
  ** //todo Things that should be addressed in a future pass.
- *** // comments without any special syntax are used for quick clarification of specific options.
+ *** // comments without any special notation are used for quick clarification of specific options.
  *
  * To get automatic coloring for comments in VSCode, you can use this extension:
  * aaron-bond.better-comments
@@ -34,10 +34,12 @@ import { MetanthropesPause } from "./ui/apps/meta-pause.mjs";
 //* Sheets
 import { MetanthropesActorSheet } from "./ui/sheets/actor-sheet.mjs";
 import { MetanthropesItemSheet } from "./ui/sheets/item-sheet.mjs";
-import { MetanthropesActiveEffectSheetV2 } from "./ui/sheets/active-effect-sheet.mjs";
+import { MetanthropesActiveEffectSheetV2 } from "./ui/sheets/active-effect-sheet-v2.mjs";
+import { MetanthropesSheetV2 } from "./ui/sheets/sheet-v2.mjs";
 // //* AppV2 Sheets
 import { MetanthropesActorSheetV2 } from "./ui/sheets/actor-sheet-v2.mjs";
 import { MetanthropesItemSheetV2 } from "./ui/sheets/item-sheet-v2.mjs";
+import { MetanthropesSpeciesSheetV2 } from "./ui/sheets/species-sheet-v2.mjs";
 //* Audio
 import { metaPlaySoundEffect } from "./api/audio/play-sound-effect.mjs";
 //* VFX
@@ -65,14 +67,24 @@ import { editActorDetails } from "./api/macros/edit-actor-details.mjs";
 import { editActorStats } from "./api/macros/edit-actor-stats.mjs";
 import { endOfScene } from "./api/macros/end-of-scene.mjs";
 import { playCutscene } from "./api/macros/play-cutscene.mjs";
+import { toggleTheme } from "./api/macros/toggle-theme.mjs";
 //* Utilities
-import { prepareActiveEffectCategories, onManageActiveEffect } from "./api/utils/active-effect-tools.mjs";
+import {
+	prepareActiveEffectCategories,
+	onManageActiveEffect,
+	manageActiveEffect,
+} from "./api/utils/active-effect-tools.mjs";
 import { metaExtractNumberOfDice } from "./api/utils/dice-tools.mjs";
 import { metaMigration } from "./api/utils/migration.mjs";
 import { metaLog, metaLogDocument } from "./api/utils/log-tools.mjs";
 import { metaSortActions } from "./api/utils/sort-actions.mjs";
 import { metaRunMacro } from "./api/utils/run-macro.mjs";
-import { metaIsMetapowerEquipped, metaTransformStringForStorage, metaCheckSetting } from "./helpers/metahelpers.mjs";
+import {
+	metaIsMetapowerEquipped,
+	metaTransformStringForStorage,
+	metaCheckSetting,
+	metaIsItemEquipped,
+} from "./helpers/metahelpers.mjs";
 import { metaCreateFAIcon, metaCreateCustomIcon } from "./helpers/fa-enricher.mjs";
 import { metaLink } from "./helpers/link-enricher.mjs";
 import {
@@ -106,6 +118,8 @@ globalThis.metanthropes = {
 		MetanthropesActiveEffectSheetV2,
 		MetanthropesActorSheetV2,
 		MetanthropesItemSheetV2,
+		MetanthropesSpeciesSheetV2,
+		MetanthropesSheetV2, //used as import instead
 		MetaDialog,
 		MetaChatMessage,
 		MetanthropesPause,
@@ -166,6 +180,7 @@ globalThis.metanthropes = {
 		metaRegisterCustomEnrichers,
 		onManageActiveEffect,
 		prepareActiveEffectCategories,
+		manageActiveEffect,
 		preloadHandlebarsTemplates,
 		metaSortActions,
 		metaRunMacro,
@@ -178,6 +193,8 @@ globalThis.metanthropes = {
 		metaUpdateTokenImages,
 		metaConvertPortraitToTokenImage,
 		metaCheckSetting,
+		metaIsItemEquipped,
+		toggleTheme,
 	},
 	registry: {
 		artwork: {

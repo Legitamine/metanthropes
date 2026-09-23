@@ -79,7 +79,7 @@ export class MetanthropesItemSheetV2 extends api.HandlebarsApplicationMixin(shee
 			tabs: this._getTabs(options.parts),
 			// Necessary for formInput and formFields helpers
 			fields: this.document.schema.fields,
-			systemFields: this.document.system.schema.fields,
+			//!broken atm systemFields: this.document.system.schema.fields,
 		};
 
 		return context;
@@ -98,7 +98,7 @@ export class MetanthropesItemSheetV2 extends api.HandlebarsApplicationMixin(shee
 				context.tab = context.tabs[partId];
 				// Enrich description info for display
 				// Enrichment turns text like `[[/r 1d20]]` into buttons
-				context.enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, {
+				context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.item.system.description, {
 					// Whether to show secret blocks in the finished html
 					secrets: this.document.isOwner,
 					// Data to fill in for inline rolls
@@ -246,7 +246,7 @@ export class MetanthropesItemSheetV2 extends api.HandlebarsApplicationMixin(shee
 	static async _createEffect(event, target) {
 		// Retrieve the configured document class for ActiveEffect
 		const aeCls = getDocumentClass("ActiveEffect");
-		console.log(aeCls);
+		//console.log(aeCls);
 		// Prepare the document creation data by initializing it a default name.
 		//!! As of v12, you can define custom Active Effect subtypes just like Item subtypes if you want
 		const effectData = {
