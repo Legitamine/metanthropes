@@ -4,12 +4,15 @@
 	"description": "Development tools for Metanthropes System for Foundry VTT",
 	"scripts": {
 		"build": "sass --watch scss/metanthropes.scss styles/metanthropes.css",
+		"packs:pack": "node src/dev-tools/compendium-handler.mjs pack",
+		"packs:unpack": "node src/dev-tools/compendium-handler.mjs unpack",
 		"createSymlinks": "node ./src/dev-tools/create-symlinks.mjs",
 		"update": "npm run createSymlinks",
 		"postinstall": "npm run createSymlinks"
 	},
 	"devDependencies": {
-		"sass": "^1.69.5",
-		"js-yaml": "^4.1.1"
+		"@foundryvtt/foundryvtt-cli": "^3.0.4",
+		"js-yaml": "^4.1.1",
+		"sass": "^1.69.5"
 	}
 }
