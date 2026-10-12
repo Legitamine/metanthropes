@@ -1,3 +1,5 @@
+import config from "./config/data.mjs";
+
 /**
  * Metanthropes - Official System for Foundry VTT
  * Author: The Orchestrator (qp)
@@ -94,6 +96,7 @@ metaRegisterHandlebarHelpers();
 
 //* Metanthropes API
 globalThis.metanthropes = {
+  config,
 	documents: {
 		MetanthropesActor,
 		MetanthropesItem,
