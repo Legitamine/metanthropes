@@ -127,9 +127,9 @@
 		img {
 			display: block;
 			width: 100%;
-			max-width: 420px;
+			max-width: 620px;
 			height: auto;
-			//aspect-ratio: 1/1;
+			aspect-ratio: 1/1;
 			object-fit: contain;
 			flex: 0 0 auto;
 			//transform: translateY(50px);
@@ -146,11 +146,12 @@
 		}
 
 		&:hover {
-			transform: scale(1.5);
-			//background-color: unset;
 			//transform: transition 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+			//transform: translateY(400px);
+			transform: scale(2);
+			//background-color: unset;
 			z-index: +1;
-			aspect-ratio: auto;
+			//aspect-ratio: 9/16;
 		}
 
 		&.selected {
