@@ -1,6 +1,14 @@
-export interface StatsConfig {
+export interface CharacteristicConfig {
+  label: string;
+  buff: string;
+  condition: string;
+}
+
+export interface StatConfig {
   label: string;
   characteristic: "body" | "mind" | "soul";
+  buff: string;
+  condition: string;
 }
 
 export interface ClassificationConfig {
@@ -10,4 +18,8 @@ export interface ClassificationConfig {
 export interface MetapowerConfig {
   label: string;
   group: string;
+}
+
+export interface EnergyTypeConfig {
+  label: string;
 }

@@ -81,7 +81,7 @@ export default class ConfigObject extends Object {
    * @returns {Record<string, { label: string; group?: string }>|null}
    */
   toChoices(transformer) {
-    const options = [];
+    const options = {};
     transformer = typeof transformer === "function" ? transformer : () => {};
 
     for (const [value, { label, group }] of this) {

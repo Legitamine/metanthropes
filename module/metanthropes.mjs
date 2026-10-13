@@ -1,4 +1,5 @@
 import config from "./config/data.mjs";
+import * as data from "./data/_module.mjs";
 
 /**
  * Metanthropes - Official System for Foundry VTT
@@ -97,6 +98,7 @@ metaRegisterHandlebarHelpers();
 //* Metanthropes API
 globalThis.metanthropes = {
   config,
+  data,
 	documents: {
 		MetanthropesActor,
 		MetanthropesItem,
@@ -198,3 +200,10 @@ import "./hooks/supported-modules.mjs";
 import "./hooks/render-settings.mjs";
 import "./hooks/other.mjs";
 import "./hooks/ready.mjs";
+
+/* -------------------------------------------------- */
+
+Hooks.once("init", () => {
+  CONFIG.Item.dataModels.ability = data.items.AbilityData;
+  CONFIG.Item.dataModels.metapower = data.items.MetapowerData;
+});

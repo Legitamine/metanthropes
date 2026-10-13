@@ -232,5 +232,15 @@
 		"distance": 2,
 		"units": "m",
 		"diagonals": 0
-	}
+	},
+  "documentTypes": {
+    "Item": {
+      "ability": {
+        "htmlFields": ["description.value"]
+      },
+      "metapower": {
+        "htmlFields": ["description.value"]
+      }
+    }
+  }
 }
