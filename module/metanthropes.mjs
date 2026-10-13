@@ -1,4 +1,5 @@
 import config from "./config/data.mjs";
+import * as data from "./data/_module.mjs";
 
 /**
  * Metanthropes - Official System for Foundry VTT
@@ -97,6 +98,7 @@ metaRegisterHandlebarHelpers();
 //* Metanthropes API
 globalThis.metanthropes = {
   config,
+  data,
 	documents: {
 		MetanthropesActor,
 		MetanthropesItem,

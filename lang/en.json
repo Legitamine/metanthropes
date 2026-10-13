@@ -372,6 +372,47 @@
 			}
 		},
 		"ITEM": {
+      "FIELDS": {},
+      "ABILITY": {
+        "FIELDS": {
+          "activation": {
+            "cost": {
+              "label": "Destiny Cost",
+              "hint": "The Destiny Cost to activate this metapower."
+            }
+          },
+          "category": {
+            "level": {
+              "label": "Level",
+              "hint": "The level of the metapower."
+            },
+            "metapower": {
+              "label": "Metapower",
+              "hint": "The name of the metapower."
+            }
+          }
+        }
+      },
+      "METAPOWER": {
+        "FIELDS": {
+          "activation": {
+            "stat": {
+              "label": "Stat",
+              "hint": "Which Stat is rolled when activating this metapower."
+            }
+          },
+          "category": {
+            "classification": {
+              "label": "Classification",
+              "hint": "Each classification includes metapowers which have a similar role and utilize capabilities and function in a similar manner."
+            },
+            "energy": {
+              "label": "Energy Type",
+              "hint": "Energy type dictates the damage and other properties of an effect."
+            }
+          }
+        }
+      },
 			"SPECIES": {
 				"FIELDS": {
 					"resources": {
@@ -523,24 +564,26 @@
 	},
 	"TYPES": {
 		"Actor": {
-			"MetanthropesActorV2": "Metanthropes Actor",
-			"Protagonist": "Protagonist",
-			"Metanthrope": "Metanthrope",
-			"Human": "Human",
-			"Vehicle": "Vehicle",
-			"Animal": "Animal",
-			"Artificial": "Artificial",
-			"Extradimensional": "Extradimensional",
-			"Extraterrestrial": "Extraterrestrial",
-			"Animated-Cadaver": "Animated-Cadaver",
-			"Animated-Plant": "Animated-Plant",
-			"MetaTherion": "MetaTherion"
+			"MetanthropesActorV2": "_Metanthropes Actor",
+			"Protagonist": "_Protagonist",
+			"Metanthrope": "_Metanthrope",
+			"Human": "_Human",
+			"Vehicle": "_Vehicle",
+			"Animal": "_Animal",
+			"Artificial": "_Artificial",
+			"Extradimensional": "_Extradimensional",
+			"Extraterrestrial": "_Extraterrestrial",
+			"Animated-Cadaver": "_Animated-Cadaver",
+			"Animated-Plant": "_Animated-Plant",
+			"MetaTherion": "_MetaTherion"
 		},
 		"Item": {
-			"Metapower": "Metapower",
-			"Possession": "Possession",
-			"species": "Species",
-			"template": "Template"
+      "ability": "Metapower Ability",
+      "metapower": "Metapower",
+			"Metapower": "_Metapower",
+			"Possession": "_Possession",
+			"species": "_Species",
+			"template": "_Template"
 		}
 	}
 }
