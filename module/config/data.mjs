@@ -44,47 +44,47 @@ config.stats = new ConfigObject({
     condition: "muscleInjury"
   },
   reflexes: {
-		label: "METANTHROPES.STATS.reflexes",
-		characteristic: "body",
+    label: "METANTHROPES.STATS.reflexes",
+    characteristic: "body",
     buff: "hastened",
     condition: "skinInjury",
-	},
-	creativity: {
-		label: "METANTHROPES.STATS.creativity",
-		characteristic: "mind",
+  },
+  creativity: {
+    label: "METANTHROPES.STATS.creativity",
+    characteristic: "mind",
     buff: "inspired",
     condition: "wobbly",
-	},
-	manipulation: {
-		label: "METANTHROPES.STATS.manipulation",
-		characteristic: "mind",
+  },
+  manipulation: {
+    label: "METANTHROPES.STATS.manipulation",
+    characteristic: "mind",
     buff: "articulated",
     condition: "confused",
-	},
-	perception: {
-		label: "METANTHROPES.STATS.perception",
-		characteristic: "mind",
+  },
+  perception: {
+    label: "METANTHROPES.STATS.perception",
+    characteristic: "mind",
     buff: "alerted",
     condition: "disoriented",
-	},
-	awareness: {
-		label: "METANTHROPES.STATS.awareness",
-		characteristic: "soul",
+  },
+  awareness: {
+    label: "METANTHROPES.STATS.awareness",
+    characteristic: "soul",
     buff: "focused",
     condition: "bewildered",
-	},
-	willpower: {
-		label: "METANTHROPES.STATS.willpower",
-		characteristic: "soul",
+  },
+  willpower: {
+    label: "METANTHROPES.STATS.willpower",
+    characteristic: "soul",
     buff: "determined",
     condition: "terrorized",
-	},
-	consciousness: {
-		label: "METANTHROPES.STATS.consciousness",
-		characteristic: "soul",
+  },
+  consciousness: {
+    label: "METANTHROPES.STATS.consciousness",
+    characteristic: "soul",
     buff: "awakened",
     condition: "demented",
-	},
+  },
 });
 
 /* -------------------------------------------------- */
