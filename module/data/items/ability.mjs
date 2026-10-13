@@ -13,7 +13,7 @@ export default class AbilityData extends foundry.abstract.TypeDataModel {
       }),
       category: new SchemaField({
         level: new NumberField({ integer: true, min: 1, initial: 1, nullable: false }),
-        metapower: new StringField({ required: true, choices: () => metanthropes.config.metapowers.toChoices(), blank: true }),
+        metapower: new StringField({ required: true, blank: true }),
       }),
       description: new SchemaField({
         value: new HTMLField(),

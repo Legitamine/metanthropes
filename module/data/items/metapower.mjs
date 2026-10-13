@@ -9,11 +9,23 @@ export default class MetapowerData extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     return {
       activation: new SchemaField({
-        stat: new StringField({ required: true, choices: () => metanthropes.config.stats.toChoices(), initial: "awareness" }),
+        stat: new StringField({
+          required: true,
+          choices: () => metanthropes.config.stats.toChoices(),
+          initial: "awareness",
+        }),
       }),
       category: new SchemaField({
-        classification: new StringField({ required: true, choices: () => metanthropes.config.classifications.toChoices(), initial: "aegis" }),
-        energy: new StringField({ required: true, choices: () => metanthropes.config.energyTypes.toChoices(), initial: "cosmic" }),
+        classification: new StringField({
+          required: true,
+          choices: () => metanthropes.config.classifications.toChoices(),
+          initial: "aegis",
+        }),
+        energy: new StringField({
+          required: true,
+          choices: () => metanthropes.config.energyTypes.toChoices(),
+          initial: "cosmic",
+        }),
       }),
       description: new SchemaField({
         value: new HTMLField(),
