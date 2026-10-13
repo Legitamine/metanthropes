@@ -4,10 +4,12 @@ export default class MetapowersRegistry {
    * @type {string[]}
    */
   static COMPENDIUM_FIELDS = [
-    // TODO: These property paths are merely placeholders and subject to change.
-    "system.classification.level",
-    "system.classification.metapower",
-    "system.classification.value",
+    // Ability fields
+    "system.category.level",
+    "system.category.metapower",
+    // Metapower fields
+    "system.category.classification",
+    "system.identifier",
   ];
 
   /* -------------------------------------------------- */
