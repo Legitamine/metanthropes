@@ -21,7 +21,7 @@
  * }
  *
  */
-export async function metaRegisterGameSettings(settings) {
+export function metaRegisterGameSettings(settings) {
 	settings.forEach((setting) => {
 		game.settings.register(setting.module, setting.key, {
 			name: setting.name,

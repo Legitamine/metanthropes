@@ -1,6 +1,6 @@
 import { settings } from "../config/settings.mjs";
 
-Hooks.once("init", async function () {
+Hooks.once("init", function () {
 	console.log(metanthropes.system.ASCII);
 
 	//* Configure System
@@ -20,7 +20,7 @@ Hooks.once("init", async function () {
 	};
 
 	//* Register System Settings
-	await metanthropes.utils.metaRegisterGameSettings(settings);
+	metanthropes.utils.metaRegisterGameSettings(settings);
 	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting"))
 		metanthropes.utils.metaLog(1, "System", "Initializing", "Alpha Testing Enabled");
 	if (metanthropes.utils.metaCheckSetting("core", "metaBetaTesting"))
@@ -44,6 +44,9 @@ Hooks.once("init", async function () {
 	CONFIG.ActiveEffect.documentClass = metanthropes.documents.MetanthropesActiveEffect;
 	CONFIG.Combat.documentClass = metanthropes.documents.MetanthropesCombat;
 	//? missing MetaChatMessage === didn't register mine as the default so it falls back to the default
+
+  CONFIG.Item.dataModels.ability = metanthropes.data.items.AbilityData;
+  CONFIG.Item.dataModels.metapower = metanthropes.data.items.MetapowerData;
 
 	//* Register Application Sheets
 	foundry.documents.collections.Actors.registerSheet(
@@ -147,5 +150,5 @@ Hooks.once("init", async function () {
 	metanthropes.utils.metaLog(0, "System", "Initialized");
 
 	//* Preload Handlebars templates.
-	return metanthropes.utils.preloadHandlebarsTemplates();
+	metanthropes.utils.preloadHandlebarsTemplates();
 });

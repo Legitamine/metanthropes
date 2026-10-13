@@ -200,10 +200,3 @@ import "./hooks/supported-modules.mjs";
 import "./hooks/render-settings.mjs";
 import "./hooks/other.mjs";
 import "./hooks/ready.mjs";
-
-/* -------------------------------------------------- */
-
-Hooks.once("init", () => {
-  CONFIG.Item.dataModels.ability = data.items.AbilityData;
-  CONFIG.Item.dataModels.metapower = data.items.MetapowerData;
-});
