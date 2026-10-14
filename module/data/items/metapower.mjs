@@ -30,6 +30,7 @@ export default class MetapowerData extends foundry.abstract.TypeDataModel {
       description: new SchemaField({
         value: new HTMLField(),
       }),
+      identifier: new metanthropes.data.fields.IdentifierField({ blank: false }),
     };
   }
 
