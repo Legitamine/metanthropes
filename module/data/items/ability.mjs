@@ -18,6 +18,7 @@ export default class AbilityData extends foundry.abstract.TypeDataModel {
       description: new SchemaField({
         value: new HTMLField(),
       }),
+      effects: new metanthropes.data.fields.MetapowerEffectsField(),
     };
   }
 
