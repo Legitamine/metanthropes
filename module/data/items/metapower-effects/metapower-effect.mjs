@@ -1,4 +1,4 @@
-const { BooleanField, NumberField, SchemaField, StringField } = foundry.data.fields;
+const { StringField } = foundry.data.fields;
 
 /**
  * A metapower effect defines an effect of using a metapower ability.
