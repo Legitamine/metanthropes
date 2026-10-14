@@ -24,9 +24,13 @@ export async function metaIsMetapowerEquipped(actor, metapower) {
  * @returns {boolean}
  */
 export function metaCheckSetting(module, setting) {
-	const active = game.modules.get(`metanthropes-${module}`)?.active ?? false;
-	if (!active) return false;
-	return game.settings.get(`metanthropes-${module}`, setting) ?? false;
+  try {
+    const active = game.modules.get(`metanthropes-${module}`)?.active ?? false;
+    if (!active) return false;
+    return game.settings.get(`metanthropes-${module}`, setting) ?? false;
+  } catch(err) {
+    return false;
+  }
 }
 
 /**
