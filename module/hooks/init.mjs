@@ -48,6 +48,8 @@ Hooks.once("init", function () {
   CONFIG.Item.dataModels.ability = metanthropes.data.items.AbilityData;
   CONFIG.Item.dataModels.metapower = metanthropes.data.items.MetapowerData;
 
+  CONFIG.Item.compendiumIndexFields.push(...metanthropes.registry.metapowers.COMPENDIUM_FIELDS);
+
 	//* Register Application Sheets
 	foundry.documents.collections.Actors.registerSheet(
 		"metanthropes",

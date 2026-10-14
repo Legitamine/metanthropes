@@ -1,4 +1,6 @@
 Hooks.once("ready", async function () {
+  metanthropes.registry.metapowers.populateRegistry();
+
 	//* For all Clients
 	const mL = metanthropes.utils.metaLog;
 	//* Welcome Journal

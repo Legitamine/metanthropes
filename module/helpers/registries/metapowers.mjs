@@ -166,13 +166,3 @@ export default class MetapowersRegistry {
     return uuids;
   }
 }
-
-/* -------------------------------------------------- */
-
-Hooks.once("init", () => {
-  CONFIG.Item.compendiumIndexFields.push(...MetapowersRegistry.COMPENDIUM_FIELDS);
-});
-
-Hooks.once("ready", () => {
-  MetapowersRegistry.populateRegistry();
-});
