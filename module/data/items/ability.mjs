@@ -1,4 +1,4 @@
-const { HTMLField, NumberField, SchemaField, StringField } = foundry.data.fields;
+const { HTMLField, NumberField, SchemaField } = foundry.data.fields;
 
 /**
  * Data model for abilities of metapowers.
@@ -13,7 +13,7 @@ export default class AbilityData extends foundry.abstract.TypeDataModel {
       }),
       category: new SchemaField({
         level: new NumberField({ integer: true, min: 1, initial: 1, nullable: false }),
-        metapower: new StringField({ required: true, blank: true }),
+        metapower: new metanthropes.data.fields.IdentifierField(),
       }),
       description: new SchemaField({
         value: new HTMLField(),

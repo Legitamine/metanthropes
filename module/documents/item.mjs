@@ -7,6 +7,17 @@ import { metaTransformStringForStorage } from "../helpers/metahelpers.mjs";
  *
  */
 export class MetanthropesItem extends Item {
+  /**
+   * Identifier of this item.
+   * @type {string|null}
+   */
+  get identifier() {
+    if (this.system.identifier) return this.system.identifier;
+    return this.system.schema.has("identifier") ? metanthropes.utils.createDefaultIdentifier(this.name) : null;
+  }
+
+  /* -------------------------------------------------- */
+
 	/** @override */
 	async _preCreate(data, options, user) {
 		//todo need to review - ideally on the actor I should see the item effects and the item as the source
@@ -95,7 +106,7 @@ export class MetanthropesItem extends Item {
 	 */
 	//! If I understand this correct - returing the actorData will also inlcude this rollData that includes a copy of the system - why do I need that?
 	//! Make sure I review the item-sheet as well to optimize this where needed!!
-	//todo review why this was triggered - is it because of what I do in active-effect-tools? 
+	//todo review why this was triggered - is it because of what I do in active-effect-tools?
 	//todo search for item.getRollData () or < just roll data
 	// getRollData() {
 	// 	//! Is this being used?

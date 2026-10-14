@@ -27,5 +27,6 @@ declare module "./metapower.mjs" {
     description: {
       value: string;
     }
+    identifier: string;
   }
 }

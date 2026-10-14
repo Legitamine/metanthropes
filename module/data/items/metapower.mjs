@@ -30,6 +30,7 @@ export default class MetapowerData extends foundry.abstract.TypeDataModel {
       description: new SchemaField({
         value: new HTMLField(),
       }),
+      identifier: new metanthropes.data.fields.IdentifierField(),
     };
   }
 
@@ -37,4 +38,17 @@ export default class MetapowerData extends foundry.abstract.TypeDataModel {
 
   /** @inheritdoc */
   static LOCALIZATION_PREFIXES = ["METANTHROPES.ITEM", "METANTHROPES.ITEM.METAPOWER"];
+
+  /* -------------------------------------------------- */
+
+  /** @inheritdoc */
+  async _preCreate(data, options, user) {
+    if ((await super._preCreate(data, options, user)) === false) return false;
+
+    if (!this.identifier) {
+      this.parent.updateSource({ "system.identifier": metanthropes.utils.createDefaultIdentifier(this.parent.name) });
+    }
+
+    // TODO: Disallow item creation if the parent actor already has a Metapower item with this same identifier?
+  }
 }

@@ -1,5 +1,6 @@
 import config from "./config/data.mjs";
 import * as data from "./data/_module.mjs";
+import * as utils from "./api/utils/_module.mjs";
 
 /**
  * Metanthropes - Official System for Foundry VTT
@@ -162,6 +163,7 @@ globalThis.metanthropes = {
 	},
 	system: SYSTEM,
 	utils: {
+    ...utils,
 		metaLog,
 		metaLogDocument,
 		metaMigration,

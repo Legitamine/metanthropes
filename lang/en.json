@@ -1,5 +1,8 @@
 {
 	"METANTHROPES": {
+    "DATA": {
+      "identifierError": "Invalid identifier."
+    },
 		"MODULES": {
 			"System": "System",
 			"Core": "Metanthropes: Core",
