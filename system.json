@@ -234,6 +234,11 @@
 		"diagonals": 0
 	},
   "documentTypes": {
+    "ChatMessage": {
+      "resolution": {
+        "gmOnlyFields": ["resolved"]
+      }
+    },
     "Item": {
       "ability": {
         "htmlFields": ["description.value"]

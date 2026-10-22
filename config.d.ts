@@ -1,4 +1,5 @@
 import "./module/data/items/_types.d.ts";
+import "./module/data/messages/_types.d.ts";
 import "./module/data/items/metapower-effects/_types.d.ts";
 
 import "@client/global.mjs";
