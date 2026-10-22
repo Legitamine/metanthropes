@@ -6,9 +6,9 @@ export default class MetanthropesRegionDocument extends foundry.documents.Region
   /**
    * Create an aura attached to and surrounding a token.
    * @param {foundry.documents.TokenDocument} token
-   * @returns {Promise<MetanthropesRegionDocument>}
+   * @returns {Promise<MetanthropesRegionDocument> | object}
    */
-  static async createAura(token, { radius = 1 } = {}) {
+  static createAura(token, { radius = 1, create = true } = {}) {
     /** @type {foundry.documents.Scene} */
     const scene = token.parent;
 
@@ -28,6 +28,7 @@ export default class MetanthropesRegionDocument extends foundry.documents.Region
       highlightMode: "coverage",
     };
 
-    return this.create(regionData, { parent: scene });
+    if (create) return this.create(regionData, { parent: scene });
+    return regionData;
   }
 }
