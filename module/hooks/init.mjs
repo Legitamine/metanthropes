@@ -46,6 +46,7 @@ Hooks.once("init", function () {
   CONFIG.Region.documentClass = metanthropes.documents.MetanthropesRegionDocument;
 	//? missing MetaChatMessage === didn't register mine as the default so it falls back to the default
 
+  CONFIG.Actor.dataModels.character = metanthropes.data.actors.CharacterData;
   CONFIG.Item.dataModels.ability = metanthropes.data.items.AbilityData;
   CONFIG.Item.dataModels.metapower = metanthropes.data.items.MetapowerData;
 

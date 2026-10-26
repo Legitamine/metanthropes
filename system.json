@@ -234,6 +234,9 @@
 		"diagonals": 0
 	},
   "documentTypes": {
+    "Actor": {
+      "character": {}
+    },
     "Item": {
       "ability": {
         "htmlFields": ["description.value"]
