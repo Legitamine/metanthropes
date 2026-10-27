@@ -23,3 +23,8 @@ export interface MetapowerConfig {
 export interface EnergyTypeConfig {
   label: string;
 }
+
+export interface PerkConfig {
+  label: string;
+  type: "knowledge" | "skill";
+}

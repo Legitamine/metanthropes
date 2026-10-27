@@ -174,6 +174,8 @@ export default class MetanthropesActor extends Actor {
 	/** @override */
 	prepareBaseData() {
 		super.prepareBaseData();
+    if (this.type === "character") return;
+
 		//* Data modifications in this step occur before processing embedded
 		//* documents or derived data.
 		const actorData = this;
@@ -228,6 +230,7 @@ export default class MetanthropesActor extends Actor {
 	/** @override */
 	prepareDerivedData() {
 		super.prepareDerivedData();
+    if (this.type === "character") return;
 		//* Augment the basic actor data with additional dynamic data. Typically,
 		//* you'll want to handle most of your calculated/derived data in this step.
 		//* Data calculated in this step should generally not exist in template.json
@@ -273,7 +276,15 @@ export default class MetanthropesActor extends Actor {
 
 	/** @override */
 	getRollData() {
-		if (this.type === "Vehicle") return;
+		if (this.type === "Vehicle") return {};
+
+    if (this.type === "character") {
+      const rollData = { ...this.system };
+      rollData.flags = this.flags;
+      rollData.name = this.name;
+      return rollData;
+    }
+
 		const data = super.getRollData();
 		if (!data.Characteristics) {
 			metanthropes.utils.metaLog(2, "MetanthropesActor", "getRollData", this.name, "has no Characteristics!");
