@@ -88,6 +88,7 @@ import { metaRegisterCustomEnrichers } from "./config/custom-enrichers.mjs";
 import { metaRegisterHandlebarHelpers } from "./config/handlebar-helpers.mjs";
 //* Handlebar Templates
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
+import MetapowersRegistry from "./helpers/registries/metapowers.mjs";
 
 //* Register Handlebars Helpers
 metaRegisterHandlebarHelpers();
@@ -181,6 +182,7 @@ globalThis.metanthropes = {
 		artwork: {
 			System: "systems/metanthropes/assets/artwork",
 		},
+    metapowers: MetapowersRegistry,
 	},
 };
 
