@@ -4,7 +4,7 @@
  * @extends {ActiveEffect}
  *
  */
-export class MetanthropesActiveEffect extends ActiveEffect {
+export default class MetanthropesActiveEffect extends ActiveEffect {
 	/** @override */
 	/**
 	 * Compute derived data related to active effect duration.

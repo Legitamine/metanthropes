@@ -5,7 +5,7 @@
  * @extends {Combat}
  *
  */
-export class MetanthropesCombat extends Combat {
+export default class MetanthropesCombat extends Combat {
 	/** @override */
 	prepareDerivedData() {
 		super.prepareDerivedData();

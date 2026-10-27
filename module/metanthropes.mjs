@@ -1,5 +1,6 @@
 import config from "./config/data.mjs";
 import * as data from "./data/_module.mjs";
+import * as documents from "./documents/_module.mjs";
 import * as utils from "./api/utils/_module.mjs";
 
 /**
@@ -26,11 +27,6 @@ import * as utils from "./api/utils/_module.mjs";
 import { SYSTEM } from "./config/system.mjs";
 // //* Data Models
 import * as models from "./models/_data-models.mjs";
-//* Documents
-import { MetanthropesActor } from "./documents/actor.mjs";
-import { MetanthropesItem } from "./documents/item.mjs";
-import { MetanthropesActiveEffect } from "./documents/active-effect.mjs";
-import { MetanthropesCombat } from "./documents/combat.mjs";
 //* Apps
 import { MetaDialog, MetaChatMessage } from "./metaclasses/metaclasses.mjs";
 import { MetaImagePicker } from "./ui/apps/meta-image-picker.mjs";
@@ -100,13 +96,8 @@ metaRegisterHandlebarHelpers();
 globalThis.metanthropes = {
   config,
   data,
-	documents: {
-		MetanthropesActor,
-		MetanthropesItem,
-		MetanthropesActiveEffect,
-		MetanthropesCombat,
-	},
-	applications: {
+	documents,
+  applications: {
 		MetanthropesActorSheet,
 		MetanthropesItemSheet,
 		MetanthropesActiveEffectSheetV2,

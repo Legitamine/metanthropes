@@ -6,7 +6,7 @@ import { metaTransformStringForStorage } from "../helpers/metahelpers.mjs";
  * @extends {Item}
  *
  */
-export class MetanthropesItem extends Item {
+export default class MetanthropesItem extends Item {
   /**
    * Identifier of this item.
    * @type {string|null}

@@ -4,7 +4,7 @@
  * @extends {Actor}
  *
  */
-export class MetanthropesActor extends Actor {
+export default class MetanthropesActor extends Actor {
 	/** @override */
 	//* Setting default Token configuration for all actors
 	async _preCreate(data, options, user) {
@@ -418,7 +418,7 @@ export class MetanthropesActor extends Actor {
 		await this.update({ ...updateData });
 		metanthropes.utils.metaLog(3, "Actor.applyDestinyChange", this.name, "Destiny changed by:", destiny);
 	}
-	
+
 	//* Getters
 	get hasCharacteristics() {
 		return Boolean(this.system.Characteristics);
