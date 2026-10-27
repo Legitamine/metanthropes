@@ -41,6 +41,7 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
     for (const [k, v] of metanthropes.config.energyTypes) {
       defenses[k] = new SchemaField({
         cover: new NumberField({ initial: 0, nullable: false, choices: [0, 10, 25, 50, 75, 90] }),
+        immunity: new NumberField({ placeholder: "0", min: 0, nullable: true, initial: null, integer: true}),
         resistance: new NumberField({ placeholder: "0", min: 0, nullable: true, initial: null, integer: true}),
       });
     }
@@ -50,9 +51,7 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
         characteristics: new SchemaField(characteristics),
         stats: new SchemaField(stats),
       }),
-      defenses: new SchemaField({
-        energy: new SchemaField(defenses),
-      }),
+      defenses: new SchemaField(defenses),
       resources: new SchemaField({
         destiny: new SchemaField({
           value: new NumberField({ integer: true, min: 0, initial: null, nullable: true, placeholder: "0" }),
