@@ -44,6 +44,7 @@ Hooks.once("init", function () {
 	CONFIG.ActiveEffect.documentClass = metanthropes.documents.MetanthropesActiveEffect;
 	CONFIG.Combat.documentClass = metanthropes.documents.MetanthropesCombat;
   CONFIG.Region.documentClass = metanthropes.documents.MetanthropesRegionDocument;
+  CONFIG.ChatMessage.dataModels.resolution = metanthropes.data.messages.ResolutionData;
 	//? missing MetaChatMessage === didn't register mine as the default so it falls back to the default
 
   CONFIG.Item.dataModels.ability = metanthropes.data.items.AbilityData;
