@@ -1,3 +1,4 @@
+import "./module/data/actors/_types.d.ts";
 import "./module/data/items/_types.d.ts";
 import "./module/data/items/metapower-effects/_types.d.ts";
 

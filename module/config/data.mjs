@@ -1,7 +1,7 @@
 import ConfigObject from "./config-object.mjs";
 
 /**
- * @import { CharacteristicConfig, StatConfig, ClassificationConfig, MetapowerConfig, EnergyTypeConfig } from "./_types.d.ts";
+ * @import { CharacteristicConfig, StatConfig, ClassificationConfig, MetapowerConfig, EnergyTypeConfig, PerkConfig } from "./_types.d.ts";
  */
 
 const config = {};
@@ -143,6 +143,52 @@ config.energyTypes = new ConfigObject({
   },
   psychic: {
     label: "METANTHROPES.ENERGY.psychic",
+  },
+});
+
+/* -------------------------------------------------- */
+
+/** @type {ConfigObject & Record<string, PerkConfig>} */
+config.perks = new ConfigObject({
+  academics: {
+    label: "METANTHROPES.PERK.academics",
+    type: "knowledge",
+  },
+  engineering: {
+    label: "METANTHROPES.PERK.engineering",
+    type: "knowledge",
+  },
+  lore: {
+    label: "METANTHROPES.PERK.lore",
+    type: "knowledge",
+  },
+  medicine: {
+    label: "METANTHROPES.PERK.medicine",
+    type: "knowledge",
+  },
+  science: {
+    label: "METANTHROPES.PERK.science",
+    type: "knowledge",
+  },
+  artistry: {
+    label: "METANTHROPES.PERK.artistry",
+    type: "skill",
+  },
+  athletics: {
+    label: "METANTHROPES.PERK.athletics",
+    type: "skill",
+  },
+  expertise: {
+    label: "METANTHROPES.PERK.expertise",
+    type: "skill",
+  },
+  operation: {
+    label: "METANTHROPES.PERK.operation",
+    type: "skill",
+  },
+  weapons: {
+    label: "METANTHROPES.PERK.weapons",
+    type: "skill",
   },
 });
 

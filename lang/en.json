@@ -563,7 +563,19 @@
 					"Description": "A description for this particular material."
 				}
 			}
-		}
+		},
+    "PERK": {
+      "academics": "Academics",
+      "artistry": "Artistry",
+      "athletics": "Athletics",
+      "engineering": "Engineering",
+      "expertise": "Expertise",
+      "lore": "Lore",
+      "medicine": "Medicine",
+      "operation": "Operation",
+      "science": "Science",
+      "weapons": "Weapons"
+    }
 	},
 	"TYPES": {
 		"Actor": {
