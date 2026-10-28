@@ -1,0 +1,32 @@
+<section class="tab {{tabs.characteristics.cssClass}} scrollable" data-group="primary" data-tab="chars">
+	<fieldset>
+		<legend>Characteristic Choices</legend>
+
+		{{formGroup
+			speciesFields.charPrimary
+			value=system.chars.primary
+			name="system.chars.primary"
+			label="Primary Choice"
+			rootId=rootId
+			disabled=(not isNarrator)
+		}}
+
+		{{formGroup
+			speciesFields.charSecondary
+			value=system.chars.secondary
+			name="system.chars.secondary"
+			label="Secondary Choice"
+			rootId=rootId
+			disabled=(not isNarrator)
+		}}
+
+		{{formGroup
+			speciesFields.charTertiary
+			value=system.chars.tertiary
+			name="system.chars.tertiary"
+			label="Tertiary Choice"
+			rootId=rootId
+			disabled=(not isNarrator)
+		}}
+	</fieldset>
+</section>

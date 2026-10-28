@@ -1,76 +1,214 @@
-import MetanthropesItemBase from "./item.mjs";
-const { HTMLField, SchemaField, NumberField, StringField, ArrayField } = foundry.data.fields;
-const scoreNumber = { required: true, nullable: false, integer: true, min: 0, initial: 0, max: 5 };
-const standardNumber = { required: true, nullable: false, integer: true, min: 0, initial: 1 };
-//todo we don't want more than applied to the actor
-//! perhaps a hybrid is a way to have more than a single species
-//! but with some caveats: so choices/initialDice come from the first one you enter
-//! but other properties can come from additional species you get, like immunities or addtional life?
+//todo targeting: have a special field that requires an 'english' word (single word) to be used for the targeting of the species itself?
 /**
- * Species is the basic class for an actor, and defines among many things:
- ** Initial choice for CHARS & dice for STATS during rolling a new Actor
- ** The Hitbox for the Actor
- ** The place of origin for the Actor
- ** Assigns Target types for the Actor
- ** Controls if the Actor can have Destiny and other optional features
+ * Species
+ *
+ * What is defined | How multiple Species interact
+ * upgrade denotes that we keep the best value
+ * downgrade denotes that we keep the worst value
+ * add denotes that we add the value to the existing
+ * * Initial Life | upgrade from all species.life.initial - done
+ * * Defines the initial #Actions | Upgrade
+ * * The Hitbox for the Actor | species[0] should hold the hitbox link to rollable table
+ * * Initial choice for CHARS (Pri/Sec/Ter) | upgrades min=1
+ * * The place of origin for the Actor | like species[0] //todo summary page
+ * * Base size/weight/speed | upgrade if >=10, downgrade if <10
+ * * Can forbid certain Templates | Adds to forbidden list //todo should have allowed/restricted list instead of bool options?
+ * * Assigns Target types for the Actor | Adds
+ * * Controls if it can have Destiny (defines starting amount) | Adds if you didn't have Destiny / or Add to your current Destiny
+ * * Auto-calculates min EXP required, gives ammount as total EXP required to Actor once applied
+ * 			Template should work the same, Build can spend these exp once applied
  *
  * @export
- * @class MetanthropesSpecies
- * @typedef {MetanthropesSpecies}
- * @extends {MetanthropesItemBase}
+ * @class MetaSpecies
+ * @typedef {MetaSpecies}
+ * @extends {foundry.abstract.TypeDataModel}
  */
-export default class MetanthropesSpecies extends MetanthropesItemBase {
+export default class MetaSpecies extends foundry.abstract.TypeDataModel {
 	static LOCALIZATION_PREFIXES = [...super.LOCALIZATION_PREFIXES, "METANTHROPES.ITEM.SPECIES"];
-
 	static defineSchema() {
+		const { TABLES } = metanthropes.system;
 		return {
-			resources: new SchemaField({
-				life: new SchemaField({
-					initial: new NumberField({ ...standardNumber }),
-					progressionStep: new NumberField({ ...standardNumber }), //cannot be zero?
-					progressionGain: new NumberField({ ...standardNumber }),
-				}),
-			}),
-			//todo den thelw ayto akrivws, thelw 3 values gia ta choices
-			//! kanoune choose ola ta species the same way?
-			chars: new SchemaField(
-				Object.keys(metanthropes.system.CHARS).reduce((obj, charKey) => {
-					obj[charKey] = new SchemaField({
-						initial: new NumberField({ ...standardNumber }),
-					});
-					return obj;
-				}, {}),
-			),
-			stats: new SchemaField(
-				Object.keys(metanthropes.system.STATS).reduce((obj, statKey) => {
-					obj[statKey] = new SchemaField({
-						initial: new NumberField({ ...standardNumber }),
-					});
-					return obj;
-				}, {}),
-			),
+			summary: defineSummary(TABLES),
+			options: defineOptions(TABLES),
+			resources: defineResources(),
+			actions: defineActions(),
+			chars: defineChars(),
+			physical: definePhysical(TABLES),
+			defenses: defineDefenses(TABLES),
+			//todo abilities: review structure of what an ability is
+			//todo define how species get abilities & what type of abilities are allowed
+			//something between a Strike & Possession
+			//If !possession !metapower => Ability
+			//so Strikes = Abilities
+			// Metapowered Strikes = Abilities
+			//Athletic stuff = Abilitites
+			//Evade /+ parry(+power) ability
+			//Medicine = Abilities
+			//Crafting = Ability (recipies)
+			//Species = tailswipe, breath, etc => Special abilities
 		};
-		const s = super.defineSchema(); //? Schema
-
-		const requiredString = { required: true, nullable: false };
-		const nonRequiredString = { required: false, nullable: true, initial: null };
-
-		s.origin = new f.StringField({
-			...requiredString,
-			initial: "Origin",
-		});
-		s.hitbox = new f.StringField({
-			//todo make it a category with choices instead
-			...requiredString,
-			initial: "Hitbox", // needs to be an object type instead? ! we can't have an item within an item (right?)
-		});
-		s.gender = new f.StringField({ ...nonRequiredString }); // combine with pronoun below?
-		s.genderPronoun = new f.StringField({ ...nonRequiredString });
-		//todo need to think around target types, targeting and creating a
-		s.metaType = new f.StringField(); // Metapowered or Non-Metapowered - this is not here
-		s.majorType = new f.StringField(); // Organism, Artificial, ET, ED
-		s.minorType = new f.StringField(); // Humanoid, Spirit, Anima, Animal, Incarnation etc <- or is that the name?
-
-		return s;
 	}
+
+	prepareBaseData() {
+		super.prepareBaseData();
+		//* Movement
+		this.physical.maxMovement = Math.ceil(
+			metanthropes.system.TABLES.SPEED[this.physical.speed].movement *
+				metanthropes.system.TABLES.SIZE[this.physical.size].movement *
+				metanthropes.system.TABLES.WEIGHT[this.physical.weight].movement,
+		);
+	}
+	prepareDerivedData() {
+		super.prepareDerivedData();
+	}
+}
+
+//* Schema Components
+const { HTMLField, SchemaField, NumberField, StringField, SetField, DocumentUUIDField, BooleanField } =
+	foundry.data.fields;
+const required = { required: true, nullable: false, blank: false };
+const number = { ...required, integer: true };
+const choice = { ...number, min: 5, step: 5 };
+const score = { ...number, min: 0, initial: 0, max: 5 };
+const action = { ...number, min: 0, initial: 1, max: 2 };
+const initialLife = { ...number, min: 50, initial: 50, step: 25, max: 500 };
+const progressionStep = { ...number, min: 1000, initial: 5000, step: 1000, max: 10000 }; //todo thelw initial edw?
+const progressionGain = { ...number, min: 5, initial: 50, step: 5, max: 50 }; //todo thelw initial edw?
+const destiny = { ...number, min: 1, initial: 2, max: 10 };
+const primary = { ...choice, max: 75, initial: 25 };
+const secondary = { ...choice, max: 50, initial: 15 };
+const tertiary = { ...choice, max: 25, initial: 5 };
+const physicalScore = { ...score, initial: 10, max: 20 };
+const resistance = { ...number, min: 0, step: 5, initial: 0, max: 100 };
+
+//* * Summary (Origin)
+function defineSummary(TABLES) {
+	return new SchemaField({
+		description: new HTMLField(),
+		origin: new StringField({ initial: "Place of Origin" }),
+		dimension: new StringField({
+			...required,
+			initial: "material",
+			choices: TABLES.DIMENSIONS,
+		}),
+	});
+}
+
+//* * Actor Options
+function defineOptions(TABLES) {
+	return new SchemaField({
+		allowLifeProgression: new BooleanField({ required: true }),
+		allowDestiny: new BooleanField({ required: true }),
+		allowPerks: new BooleanField({ required: true }),
+		allowPossessions: new BooleanField({ required: true }),
+		allowMetapowers: new BooleanField({ required: true }),
+		targetTypes: new SetField( //todo I want it to include it's own name (?) to the targets?
+			new StringField({
+				...required,
+				choices: TABLES.TARGETS,
+			}),
+			{ required: true, nullable: false, initial: [] },
+		),
+		forbidTemplates: new DocumentUUIDField({ required: false, placeholder: "Template Document UUID" }),
+	});
+}
+
+//* * Resources
+function defineResources() {
+	return new SchemaField({
+		life: new SchemaField({
+			initial: new NumberField({ ...initialLife }),
+			progressionStep: new NumberField({ ...progressionStep }),
+			progressionGain: new NumberField({ ...progressionGain }),
+		}),
+		destiny: new SchemaField({
+			initialBase: new NumberField({ ...destiny }),
+			initialDice: new NumberField({ ...destiny }),
+		}),
+	});
+}
+
+//* * Actions
+function defineActions() {
+	//todo zombies den exoune focused, ara allowFocused theloume kapoy (isws template?)
+	//todo if(kapoio action = 0 || current < max && !maxMovement) den mporeis na kaneis Focused
+	return new SchemaField({
+		//todo warning oti kanei OP, extra exp cost
+		main: new NumberField({ ...action }),
+		extra: new NumberField({ ...action }),
+		reaction: new NumberField({ ...action }),
+	});
+}
+
+//* * Characteristics
+function defineChars() {
+	return new SchemaField({
+		primary: new NumberField({ ...primary }),
+		secondary: new NumberField({ ...secondary }),
+		tertiary: new NumberField({ ...tertiary }),
+	});
+}
+
+//* * Physical
+function definePhysical(TABLES) {
+	return new SchemaField({
+		description: new HTMLField(),
+		hitbox: new DocumentUUIDField({
+			//? Humanoid Hit Location table by default
+			...required,
+			placeholder: "Rollable Table Document UUID",
+			initial: "Compendium.metanthropes.hit-location.RollTable.cmCma7xrAcjgVrjL",
+		}),
+		speed: new NumberField({ ...physicalScore }),
+		weight: new NumberField({ ...physicalScore }),
+		size: new NumberField({ ...physicalScore }),
+		allowedMovementTypes: new SetField(
+			new StringField({
+				...required,
+				choices: TABLES.MOVEMENTS,
+			}),
+			{ ...required, initial: ["climb", "crawl", "swim", "walk"] },
+		),
+	});
+}
+
+//* * Defenses
+function defineDefenses(TABLES) {
+	return new SchemaField({
+		resistances: defineResistances(TABLES),
+		immunities: defineImmunities(TABLES),
+		cover: defineCover(TABLES),
+	});
+}
+
+//* * * Resistances
+function defineResistances(TABLES) {
+	return new SchemaField(
+		Object.fromEntries(
+			Object.keys(TABLES.ENERGY).map((energyKey) => [energyKey, new NumberField({ ...resistance })]),
+		),
+	);
+}
+
+//* * * Immunities
+function defineImmunities(TABLES) {
+	return new SchemaField(
+		Object.fromEntries(
+			Object.entries(TABLES.IMMUNITIES).map(([immunityKey, immunity]) => {
+				return [immunityKey, immunity.score ? new NumberField({ ...score }) : new BooleanField()];
+			}),
+		),
+	);
+}
+
+//* * * Cover
+function defineCover(TABLES) {
+	const cover = {
+		...number,
+		initial: 0,
+		choices: TABLES.COVER,
+	};
+	return new SchemaField(
+		Object.fromEntries(Object.keys(TABLES.ENERGY).map((energyKey) => [energyKey, new NumberField({ ...cover })])),
+	);
 }

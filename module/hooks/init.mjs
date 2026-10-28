@@ -2,9 +2,9 @@ import { settings } from "../config/settings.mjs";
 
 Hooks.once("init", function () {
 	console.log(metanthropes.system.ASCII);
-
 	//* Configure System
-	globalThis.SYSTEM = metanthropes.system;
+	//globalThis.SYSTEM = metanthropes.system;
+	//! do I actualy use the SYSTEM somewhere? I'd rather not put it out there if it's not used by us.
 
 	//* Register Fonts
 	CONFIG.fontDefinitions = {
@@ -20,67 +20,72 @@ Hooks.once("init", function () {
 	};
 
 	//* Register System Settings
-	metanthropes.utils.metaRegisterGameSettings(settings);
-	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting"))
-		metanthropes.utils.metaLog(1, "System", "Initializing", "Alpha Testing Enabled");
-	if (metanthropes.utils.metaCheckSetting("core", "metaBetaTesting"))
-		metanthropes.utils.metaLog(1, "System", "Initializing", "Beta Testing Enabled");
+	metanthropes.utils.metaRegisterGameSettings(settings); //todo review sync change impact
+	const alphaTestingEnabled = metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting") ?? false;
+	const betaTestingEnabled = metanthropes.utils.metaCheckSetting("core", "metaBetaTesting") ?? false;
+	if (alphaTestingEnabled) metanthropes.utils.metaLog(1, "System", "Initializing", "Alpha Testing Enabled");
+	if (betaTestingEnabled) metanthropes.utils.metaLog(1, "System", "Initializing", "Beta Testing Enabled");
 
 	//* Register Data Models
-	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
+	if (alphaTestingEnabled) {
 		CONFIG.Actor.dataModels = {
-			MetanthropesActorV2: metanthropes.models.MetanthropesActorV2,
+			metaActor: metanthropes.models.MetaActor,
+			"metanthropes-homebrew.metaActor": metanthropes.models.MetaActor, //todo DM Migration
 		};
-
 		CONFIG.Item.dataModels = {
-			species: metanthropes.models.species,
-			template: metanthropes.models.template,
+			metaSpecies: metanthropes.models.MetaSpecies,
+			"metanthropes-homebrew.metaSpecies": metanthropes.models.MetaSpecies, //todo DM Migration
+			metaTemplate: metanthropes.models.MetaTemplate,
+			"metanthropes-homebrew.metaTemplate": metanthropes.models.MetaTemplate, //todo DM Migration
+			metaBuild: metanthropes.models.MetaBuild,
+			"metanthropes-homebrew.metaBuild": metanthropes.models.MetaBuild, //todo DM Migration
 		};
 	}
 
 	//* Register Document Classes
-	CONFIG.Actor.documentClass = metanthropes.documents.MetanthropesActor;
-	CONFIG.Item.documentClass = metanthropes.documents.MetanthropesItem;
+	//todo MetaChatMessage
+	CONFIG.Actor.documentClass = metanthropes.documents.MetanthropesActor; //todo DM migration deprecate v1
+	CONFIG.Item.documentClass = metanthropes.documents.MetanthropesItem; //todo DM migration deprecate v1
 	CONFIG.ActiveEffect.documentClass = metanthropes.documents.MetanthropesActiveEffect;
 	CONFIG.Combat.documentClass = metanthropes.documents.MetanthropesCombat;
   CONFIG.Region.documentClass = metanthropes.documents.MetanthropesRegionDocument;
-	//? missing MetaChatMessage === didn't register mine as the default so it falls back to the default
 
-  CONFIG.Actor.dataModels.character = metanthropes.data.actors.CharacterData;
+  CONFIG.Actor.dataModels.character = metanthropes.data.actors.CharacterData; //todo probably doesn't work with both
   CONFIG.Item.dataModels.ability = metanthropes.data.items.AbilityData;
   CONFIG.Item.dataModels.metapower = metanthropes.data.items.MetapowerData;
 
   CONFIG.Item.compendiumIndexFields.push(...metanthropes.registry.metapowers.COMPENDIUM_FIELDS);
 
 	//* Register Application Sheets
+	const actorV1Types = [
+		"Protagonist",
+		"Metanthrope",
+		"Human",
+		"Animal",
+		"Artificial",
+		"Extradimensional",
+		"Extraterrestrial",
+		"Animated-Cadaver",
+		"Animated-Plant",
+		"MetaTherion",
+	];
 	foundry.documents.collections.Actors.registerSheet(
 		"metanthropes",
 		metanthropes.applications.MetanthropesActorSheet,
 		{
 			makeDefault: true,
-			types: [
-				"Protagonist",
-				"Metanthrope",
-				"Human",
-				"Animal",
-				"Artificial",
-				"Extradimensional",
-				"Extraterrestrial",
-				"Animated-Cadaver",
-				"Animated-Plant",
-				"MetaTherion",
-			],
+			types: actorV1Types,
 			label: "METANTHROPES.SHEET.ACTOR.LABEL",
 		},
 	);
 
-	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
+	if (alphaTestingEnabled) {
 		foundry.documents.collections.Actors.registerSheet(
 			"metanthropes",
 			metanthropes.applications.MetanthropesActorSheetV2,
 			{
 				makeDefault: true,
-				types: ["MetanthropesActorV2"],
+				types: ["metaActor", "metanthropes-homebrew.metaActor"], //todo DM Migration
 				label: "METANTHROPES.SHEET.ACTORV2.LABEL",
 			},
 		);
@@ -90,13 +95,21 @@ Hooks.once("init", function () {
 		label: "METANTHROPES.SHEET.ITEM.LABEL",
 	});
 
-	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
+	if (alphaTestingEnabled) {
+		const itemV2Types = [
+			"metaSpecies",
+			"metaTemplate",
+			"metaBuild",
+			"metanthropes-homebrew.metaSpecies",
+			"metanthropes-homebrew.metaTemplate",
+			"metanthropes-homebrew.metaBuild",
+		];
 		foundry.documents.collections.Items.registerSheet(
 			"metanthropes",
-			metanthropes.applications.MetanthropesItemSheetV2,
+			metanthropes.applications.MetanthropesSpeciesSheetV2,
 			{
 				makeDefault: true,
-				types: ["species", "template"],
+				types: itemV2Types, //todo DM migration
 				label: "METANTHROPES.SHEET.ITEMV2.LABEL",
 			},
 		);
@@ -126,6 +139,12 @@ Hooks.once("init", function () {
 		decimals: 2,
 	};
 
+	//* Active Effect Expiration
+	CONFIG.ActiveEffect.expiryAction = "update"; //? setting this to "delete" will remove the AE
+
+	//* Register Movement Types
+	CONFIG.Token.movement.actions = metanthropes.system.TABLES.MOVEMENTS;
+
 	//* Round Duration (in seconds)
 	CONFIG.time.roundTime = 30;
 
@@ -140,7 +159,7 @@ Hooks.once("init", function () {
 
 	//* V14 VFX
 	//! EXPERIMENTAL
-	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
+	if (alphaTestingEnabled) {
 		metanthropes.utils.metaLog(1, "System", "Initializing", "Enabling Experimental VFX Engine");
 		CONFIG.Canvas.vfx.enabled = true;
 	}

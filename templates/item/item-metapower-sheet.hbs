@@ -29,14 +29,14 @@
 							{{/each}}
 						</select>
 						<span class="item-statroll style-mp-rolls" data-roll-type="Metapower"
-							data-item-name="{{item.name}}" data-stat="{{item.system.Execution.StatRolled.value}}"
+							data-item-name="{{item.name}}" data-stat="{{item.system.Execution.StatRolled.value}}" data-item-id="{{item._id}}"
 							data-destiny-cost="{{item.system.DestinyCost.value}}">
 							{{item.system.Execution.StatRolled.value}}:
 							{{lookup item.actor.system.RollStats item.system.Execution.StatRolled.value}}
 						</span>
 					{{else}}
 						<span class="item-statroll style-mp-rolls" data-roll-type="Metapower"
-							data-item-name="{{item.name}}" data-stat="{{item.system.Execution.StatRolled.value}}"
+							data-item-name="{{item.name}}" data-stat="{{item.system.Execution.StatRolled.value}}" data-item-id="{{item._id}}"
 							data-destiny-cost="{{item.system.DestinyCost.value}}">
 							{{item.system.Execution.StatRolled.value}}:
 							{{lookup item.actor.system.RollStats item.system.Execution.StatRolled.value}}

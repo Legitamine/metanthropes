@@ -1,0 +1,44 @@
+<section class="tab {{tabs.summary.cssClass}} scrollable" data-group="primary" data-tab="summary">
+	<fieldset>
+		<legend>Species Origin</legend>
+		{{formGroup
+			speciesFields.origin
+			value=system.summary.origin
+			name="system.summary.origin"
+			label="Origin"
+			rootId=rootId
+			disabled=(not isNarrator)
+		}}
+		{{formGroup
+			speciesFields.dimension
+			value=system.summary.dimension
+			name="system.summary.dimension"
+			label="Native Dimension"
+			rootId=rootId
+			disabled=(not isNarrator)
+		}}
+	</fieldset>
+	<fieldset>
+		<legend>Species Description</legend>
+		{{#if isNarrator}}
+			{{formGroup
+				speciesFields.summaryDescription
+				label="METANTHROPES.COMMON.Editor"
+				localize=true
+				value=system.summary.description
+				rootId=rootId
+				}}
+			<span><strong>
+					{{localize "METANTHROPES.COMMON.Preview"}}</strong>
+				({{localize "METANTHROPES.COMMON.SaveToUpdate"}})</span>
+			{{editor enrichedSummaryDescription target="summary.description" button=false editable=false}}
+		{{else}}
+			{{{enrichedSummaryDescription}}}
+		{{/if}}
+		{{!-- {{editor
+		enrichedSummaryDescription
+		target="system.summary.description"
+		button=isNarrator
+		editable=isNarrator
+		}} --}}
+</section>

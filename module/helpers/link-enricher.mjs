@@ -1,7 +1,8 @@
 /**
  * Custom enricher, similar to built-in `@UUID`, to display a more subtle, inline link to an Item or Actor with the appropriate icon.
- ** Usage: `@METALINK(UUID)`
- * todo add support for other types like macros or scenes, rolltables ...?
+ * 
+ * * Usage: `@METALINK(UUID)`
+ * todo add support for other types like journals, macros, scenes, rolltables ...?
  *
  * @export
  * @async

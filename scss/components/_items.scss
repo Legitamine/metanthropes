@@ -67,7 +67,7 @@
 	// Control Buttons
 	.item-controls {
 		display: flex;
-		flex: 0 0 80px;
+		flex: 0 0 90px;
 		justify-content: center;
 		a {
 			font-size: 14px;
@@ -130,4 +130,71 @@
 
 .item-form {
 	font-family: $font-primary;
+}
+
+//* New AppV2 below
+
+//* Sheet
+.metanthropes.sheet {
+	//? Prevent the application from becoming unusably narrow when resized.
+	min-width: 420px;
+	min-height: 300px;
+	.sheet-header {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: 0px;
+		.item-image {
+			flex: 0 0 5rem;
+			width: 5rem;
+			height: 5rem;
+			object-fit: cover;
+			&[data-edit] {
+				cursor: pointer;
+			}
+		}
+	}
+	.tabs {
+		flex: 0 0 auto;
+	}
+	.tab {
+		flex: 1 1 auto;
+		min-height: 0;
+		transform-origin: center top;
+	}
+	.form-footer {
+		flex: 0 0 auto;
+		hr {
+			margin: 0;
+		}
+		.sheet-footer {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			flex: 0 0 auto;
+			width: 100%;
+			gap: 0.5rem;
+			button {
+				width: 100%;
+				white-space: nowrap;
+			}
+		}
+	}
+}
+
+//* Species
+.metanthropes.species-sheet {
+	.species-sheet-content {
+		display: flex;
+		flex-direction: column;
+		min-height: 0;
+		overflow: hidden;
+		gap: 0.5rem;
+	}
+	fieldset {
+		min-width: 0;
+		margin: 0 0 0.5rem;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
 }

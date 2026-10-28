@@ -1,16 +1,16 @@
 /**
- * metaLog controls how console logging happens.
+ * metaLog allows our console messages to stand out. Advanced & Network Logging options available (enable via Game Settings) to show more verbose console logs (with different colors to stand out) and to replay all Clients console logs to the Active GM console.
  *
- ** It is accessible via metanthropes.utils.metaLog()
- ** metaLog 0 (console.log), 1 (console.warn), 2 (console.error) show up in the console by default.
- ** metaLog 3 (console.log), 4 (console.warn), 5 (console.error) show up in the console if the Advanced Logging setting is enabled in the system settings.
- ** Advanced logging is disabled by default and is designed to be used for troubleshooting and debugging.
- ** usage: metanthropes.utils.metaLog(3, "module/phase", "name of the function", "description of the log", "variable1", variable1, "variable2", variable2);
- ** example: metaLog(3, "System", "_onSomeHook", "Should display the Actor Name", actor.name);
+ * * It is accessible via metanthropes.utils.metaLog(logType, ...variables)
+ * * logType 0 (console.log), 1 (console.warn), 2 (console.error) show up in the console by default.
+ * * logType 3 (console.log), 4 (console.warn), 5 (console.error) show up in the console only with Advanced Logging enabled and show in different colors.
  *
- * @param {number} logType
- * @param  {...any} variables
- * @returns
+ * @export
+ * @param {number} [logType=0]
+ * @param {...{}} variables
+ * @example
+ * Typical Metanthropes System & Module usage: metanthropes.utils.metaLog(3, "module/phase", "name of the function", "some notation or comment", "variable1", variable1, "variable2", variable2);
+ * Usage example: metanthropes.utils.metaLog(3, "System", "_onSomeHook", "Should display the Actor Name", actor.name);
  */
 export function metaLog(logType = 0, ...variables) {
 	const metaAdvancedLogging = game.settings.get("metanthropes", "metaAdvancedLogging");
@@ -54,15 +54,13 @@ export function metaLog(logType = 0, ...variables) {
 		}
 	});
 	logFunction(logStrings.join(""), ...styles, ...logObjects);
-	//! Testing required!
-	//? Add support for Network Logging - note it needs to check for game.ready or it won't work, due to the API being unavailable.
+	//? Add support for Network Logging - note it needs to check for game.ready or it won't work, due to the API being unavailable during init.
 	if (game.ready && metaNetworkLogging && !game.user.isActiveGM) {
 		let netLogObjects;
 		try {
 			netLogObjects = JSON.stringify(logObjects);
 		} catch (error) {
-			netLogObjects = "[Objects omitted from Network Log]"
-		} finally {
+			netLogObjects = "[Objects omitted from Network Log]";
 		}
 		const payload = {
 			action: "metaNetLog",
@@ -70,19 +68,21 @@ export function metaLog(logType = 0, ...variables) {
 			logType,
 			message: logStrings.join(""),
 			styles,
-			logObjects: netLogObjects, //todo need to have a try stringify, text if it fails here - then re-enable JSON.parse on the receiving end.
+			logObjects: netLogObjects,
 		};
 		game.socket.emit("system.metanthropes", payload);
 	}
 }
 
 /**
- ** Helper function to print the currently open Document & App to the console.
- ** Initial version kindly provided by TyphonJS(Michael) from the FoundryVTT Discord.
- ** Inspired by a similar functionality from [DevMode](https://foundryvtt.com/packages/_dev-mode).
- ** See [ApplicationHeaderControlsEntry on the FVTT API](https://foundryvtt.com/api/v13/interfaces/foundry.applications.types.ApplicationHeaderControlsEntry.html) for more info on how to properly configure this.
- ** Also see [this issue from FVTT](https://github.com/foundryvtt/foundryvtt/issues/11668).
+ * metaLogDocument prints the currently open App & Document to the console.
  *
+ * * Inspired by a similar functionality from [DevMode](https://foundryvtt.com/packages/_dev-mode).
+ * * Initial version kindly provided by TyphonJS(Michael) from the FoundryVTT Discord.
+ * * See [ApplicationHeaderControlsEntry on the FVTT API](https://foundryvtt.com/api/v13/interfaces/foundry.applications.types.ApplicationHeaderControlsEntry.html) for more info on how to properly configure this.
+ * * Also see [this issue from FVTT](https://github.com/foundryvtt/foundryvtt/issues/11668).
+ *
+ * @export
  * @param {*} app
  * @param {*} buttons
  */
@@ -92,7 +92,7 @@ export function metaLogDocument(app, buttons) {
 		action: "logDocument",
 		icon: "fas fa-terminal",
 		label: "METANTHROPES.COMMON.Logging",
-		title: "METANTHROPES.COMMON.Logging", //todo is there a way to display a tooltip instead of a label?
+		//title: "METANTHROPES.COMMON.Logging", //todo is there a way to display a tooltip instead of a label?
 		class: "meta-log", //? seems to work? not part of ApplicationHeaderControlsEntry interface
 		onclick: async () => {
 			const uuid = app?.object?.uuid;
@@ -106,13 +106,21 @@ export function metaLogDocument(app, buttons) {
 	});
 }
 
+/**
+ * metaLogDocumentV2 prints the currently open App & Document to the console.
+ *
+ * * Similar functionality to metaLogDocument, but for V2 Apps
+ * @export
+ * @param {*} app
+ * @param {*} buttons
+ */
 export function metaLogDocumentV2(app, buttons) {
 	if (!game.settings.get("metanthropes", "metaAdvancedLogging")) return;
 	buttons.unshift({
 		action: "logDocument",
 		icon: "fas fa-terminal",
 		label: "METANTHROPES.COMMON.Logging",
-		title: "METANTHROPES.COMMON.Logging", //todo is there a way to display a tooltip instead of a label?
+		//title: "METANTHROPES.COMMON.Logging", //todo is there a way to display a tooltip instead of (or in addition to) a label?
 		class: "meta-log", //? seems to work? not part of ApplicationHeaderControlsEntry interface
 		onClick: async () => {
 			const doc = app?.document;
