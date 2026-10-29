@@ -39,14 +39,20 @@ export class MetanthropesItemSheet extends foundry.appv1.sheets.ItemSheet {
 	}
 	/** @override */
 	async getData(options = {}) {
-		//! In the item getData we currently collect and store in .rollData the actor's roll data.
-		//! However it's never used from there - right??
 		//? Retrieve base data structure.
 		const context = await super.getData(options);
+		//? New Types early return
+		const exceptions = ["metaSpecies", "metaTemplate", "metaBuild"]; //todo DM Migration
 		//? Use a safe clone of the item data for further operations.
 		//! this is not the same as in actor??
 		const itemData = context.item;
-		if (itemData.type === "metaSpecies" || itemData.type === "metaTemplate" || itemData.type === "metaBuild") return;
+		if (itemData.type.includes(exceptions)) {
+			metanthropes.utils.metaLog(1, "Alpha Testing - Item Sheet", this);
+			return;
+		}
+		//todo clarify usage of getData
+		//! In the item getData we currently collect and store in .rollData the actor's roll data.
+		//! However it's never used from there - right??
 		//! We don't use the rollData so no need for this to exist
 		//	// ? Retrieve the roll data for TinyMCE editors.
 		//	context.rollData = {};

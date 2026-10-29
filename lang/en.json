@@ -1,8 +1,8 @@
 {
 	"METANTHROPES": {
-    "DATA": {
-      "identifierError": "Invalid identifier."
-    },
+		"DATA": {
+			"identifierError": "Invalid identifier."
+		},
 		"MODULES": {
 			"System": "System",
 			"Core": "Metanthropes: Core",
@@ -406,47 +406,47 @@
 			}
 		},
 		"ITEM": {
-      "FIELDS": {},
-      "ABILITY": {
-        "FIELDS": {
-          "activation": {
-            "cost": {
-              "label": "Destiny Cost",
-              "hint": "The Destiny Cost to activate this metapower."
-            }
-          },
-          "category": {
-            "level": {
-              "label": "Level",
-              "hint": "The level of the metapower."
-            },
-            "metapower": {
-              "label": "Metapower",
-              "hint": "The name of the metapower."
-            }
-          }
-        }
-      },
-      "METAPOWER": {
-        "FIELDS": {
-          "activation": {
-            "stat": {
-              "label": "Stat",
-              "hint": "Which Stat is rolled when activating this metapower."
-            }
-          },
-          "category": {
-            "classification": {
-              "label": "Classification",
-              "hint": "Each classification includes metapowers which have a similar role and utilize capabilities and function in a similar manner."
-            },
-            "energy": {
-              "label": "Energy Type",
-              "hint": "Energy type dictates the damage and other properties of an effect."
-            }
-          }
-        }
-      },
+			"FIELDS": {},
+			"ABILITY": {
+				"FIELDS": {
+					"activation": {
+						"cost": {
+							"label": "Destiny Cost",
+							"hint": "The Destiny Cost to activate this metapower."
+						}
+					},
+					"category": {
+						"level": {
+							"label": "Level",
+							"hint": "The level of the metapower."
+						},
+						"metapower": {
+							"label": "Metapower",
+							"hint": "The name of the metapower."
+						}
+					}
+				}
+			},
+			"METAPOWER": {
+				"FIELDS": {
+					"activation": {
+						"stat": {
+							"label": "Stat",
+							"hint": "Which Stat is rolled when activating this metapower."
+						}
+					},
+					"category": {
+						"classification": {
+							"label": "Classification",
+							"hint": "Each classification includes metapowers which have a similar role and utilize capabilities and function in a similar manner."
+						},
+						"energy": {
+							"label": "Energy Type",
+							"hint": "Energy type dictates the damage and other properties of an effect."
+						}
+					}
+				}
+			},
 			"SPECIES": {
 				"FIELDS": {
 					"resources": {
@@ -646,18 +646,18 @@
 				}
 			}
 		},
-    "PERK": {
-      "academics": "Academics",
-      "artistry": "Artistry",
-      "athletics": "Athletics",
-      "engineering": "Engineering",
-      "expertise": "Expertise",
-      "lore": "Lore",
-      "medicine": "Medicine",
-      "operation": "Operation",
-      "science": "Science",
-      "weapons": "Weapons"
-    }
+		"PERK": {
+			"academics": "Academics",
+			"artistry": "Artistry",
+			"athletics": "Athletics",
+			"engineering": "Engineering",
+			"expertise": "Expertise",
+			"lore": "Lore",
+			"medicine": "Medicine",
+			"operation": "Operation",
+			"science": "Science",
+			"weapons": "Weapons"
+		}
 	},
 	"TYPES": {
 		"Actor": {
@@ -675,8 +675,8 @@
 			"MetaTherion": "_MetaTherion"
 		},
 		"Item": {
-      "ability": "Metapower Ability",
-      "metapower": "Metapower",
+			"ability": "Metapower Ability",
+			"metapower": "Metapower",
 			"Metapower": "_Metapower",
 			"Possession": "_Possession",
 			"metaSpecies": "_Species",

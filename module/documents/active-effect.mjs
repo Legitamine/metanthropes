@@ -5,4 +5,4 @@
  * @extends {ActiveEffect}
  *
  */
-export class MetanthropesActiveEffect extends ActiveEffect {}
+export default class MetanthropesActiveEffect extends ActiveEffect {}
