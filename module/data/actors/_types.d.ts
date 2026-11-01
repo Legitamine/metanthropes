@@ -15,14 +15,20 @@ interface Perk {
   value: 0 | 1 | 2 | 3 | 4 | 5;
 }
 
+interface PhysicalAttribute {
+  value: number;
+  statuses: number;
+  modifier: number;
+}
+
 declare module "./character.mjs" {
   export default interface CharacterData {
     attributes: {
       characteristics: Record<"body" | "mind" | "soul", Attribute>;
       stats: Record<string, Attribute>;
-      speed: { value: number };
-      weight: { value: number };
-      size: { value: number };
+      speed: PhysicalAttribute;
+      weight: PhysicalAttribute;
+      size: PhysicalAttribute;
     }
     defenses: Record<"cosmic" | "elemental" | "material" | "psychic", Defense>;
     details: {

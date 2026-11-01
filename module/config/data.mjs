@@ -244,9 +244,9 @@ config.statuses = new ConfigObject({
 /* -------------------------------------------------- */
 
 /**
- * Movement related values.
+ * Speed related values.
  */
-config.movement = {
+config.speed = {
   modifiers: {
     0: 0,
     1: 0,
