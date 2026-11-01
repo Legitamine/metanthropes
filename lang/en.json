@@ -566,14 +566,14 @@
 		},
     "PERK": {
       "academics": "Academics",
-      "artistry": "Artistry",
       "athletics": "Athletics",
+      "crafting": "Crafting",
       "engineering": "Engineering",
-      "expertise": "Expertise",
+      "gadgets": "Gadgets",
       "lore": "Lore",
       "medicine": "Medicine",
-      "operation": "Operation",
       "science": "Science",
+      "vehicles": "Vehicles",
       "weapons": "Weapons"
     }
 	},
