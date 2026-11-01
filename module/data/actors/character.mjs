@@ -179,15 +179,18 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
   #preparePhysical() {
     const s = this.attributes.speed;
     s.statuses = this.statuses.accelerated - this.statuses.slowed;
-    s.modifier = metanthropes.config.speed.modifiers[s.value + s.statuses];
+    s.total = Math.clamp(s.value + s.statuses, 0, 20);
+    s.modifier = metanthropes.config.speed.modifiers[s.total];
 
     const w = this.attributes.weight;
     w.statuses = this.statuses.encumbered - this.statuses.lightened;
-    w.modifier = metanthropes.config.weight.modifiers[w.value + w.statuses];
+    w.total = Math.clamp(w.value + w.statuses, 0, 20);
+    w.modifier = metanthropes.config.weight.modifiers[w.total];
 
     const z = this.attributes.size;
     z.statuses = this.statuses.enlarged - this.statuses.shrunken;
-    z.modifier = metanthropes.config.size.modifiers[z.value + z.statuses]
+    z.total = Math.clamp(z.value + z.statuses, 0, 20);
+    z.modifier = metanthropes.config.size.modifiers[z.total]
 
     this.attributes.movement = Math.ceil(s.modifier * w.modifier * z.modifier);
   }

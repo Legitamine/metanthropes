@@ -16,9 +16,14 @@ interface Perk {
 }
 
 interface PhysicalAttribute {
+  /** Base value. */
   value: number;
+  /** Delta from statuses. */
   statuses: number;
+  /** Modifier read from the config. */
   modifier: number;
+  /** Total attribute (value + modifier), clamped between 0 and 20. */
+  total: number;
 }
 
 declare module "./character.mjs" {
