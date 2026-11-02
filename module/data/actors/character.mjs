@@ -24,20 +24,12 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
       });
     };
 
-    const statusFields = v => {
-      statuses[v.buff] = new NumberField({ integer: true, nullable: true, initial: null, min: 0, persisted: false });
-      statuses[v.condition] = new NumberField({ integer: true, nullable: true, initial: null, min: 0, persisted: false });
-    };
-
-    for (const [k, v] of metanthropes.config.stats) {
-      statusFields(v);
-      stats[k] = statField();
+    for (const k of metanthropes.config.statuses.keys()) {
+      statuses[k] = new NumberField({ integer: true, nullable: true, initial: null, min: 0, persisted: false });
     }
 
-    for (const [k, v] of metanthropes.config.characteristics) {
-      statusFields(v);
-      characteristics[k] = statField();
-    }
+    for (const k of metanthropes.config.stats.keys()) stats[k] = statField();
+    for (const k of metanthropes.config.characteristics.keys()) characteristics[k] = statField();
 
     for (const [k, v] of metanthropes.config.energyTypes) {
       defenses[k] = new SchemaField({
@@ -49,7 +41,8 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
 
     for (const [k, v] of metanthropes.config.perks) {
       perks[k] = new SchemaField({
-        value: new NumberField({ initial: 0, nullable: false, placeholder: "0", min: 0, integer: true }),
+        // Max 5, can be increased to 10 with a supplement.
+        value: new NumberField({ initial: 0, nullable: false, min: 0, integer: true }),
       });
     }
 
@@ -57,6 +50,15 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
       attributes: new SchemaField({
         characteristics: new SchemaField(characteristics),
         stats: new SchemaField(stats),
+        speed: new SchemaField({
+          value: new NumberField({ initial: 10, integer: true, nullable: false, min: 0 }),
+        }),
+        weight: new SchemaField({
+          value: new NumberField({ initial: 10, integer: true, nullable: false, min: 0 }),
+        }),
+        size: new SchemaField({
+          value: new NumberField({ initial: 10, integer: true, nullable: false, min: 0 }),
+        }),
       }),
       defenses: new SchemaField(defenses),
       details: new SchemaField({
@@ -94,8 +96,11 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
     super.prepareDerivedData();
 
     this.#prepareAttributes();
-    this.#prepareResources();
     this.#preparePerks();
+    this.#preparePhysical();
+
+    // Life is prepared after physical, as Size may influence it.
+    this.#prepareResources();
   }
 
   /* -------------------------------------------------- */
@@ -120,6 +125,67 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
   /* -------------------------------------------------- */
 
   /**
+   * Prepare knowledges and skills.
+   */
+  #preparePerks() {
+    const types = {
+      knowledge: {},
+      skill: {},
+      expertise: {},
+    };
+
+    for (const [k, v] of metanthropes.config.perks) {
+      this.perks[k].type = v.type;
+      types[v.type][k] = this.perks[k];
+    }
+
+    Object.defineProperties(this.perks, {
+      knowledges: {
+        get() {
+          return types.knowledge;
+        },
+      },
+      skills: {
+        get() {
+          return types.skill;
+        },
+      },
+      expertises: {
+        get() {
+          return types.expertise;
+        },
+      },
+    });
+  }
+
+  /* -------------------------------------------------- */
+
+  /**
+   * Prepare speed, weight, size, and movement.
+   */
+  #preparePhysical() {
+    const s = this.attributes.speed;
+    s.statuses = this.statuses.accelerated - this.statuses.slowed;
+    s.total = Math.clamp(s.value + s.statuses, 0, 20);
+    s.modifier = metanthropes.config.speed.modifiers[s.total];
+
+    const w = this.attributes.weight;
+    w.statuses = this.statuses.encumbered - this.statuses.lightened;
+    w.total = Math.clamp(w.value + w.statuses, 0, 20);
+    w.modifier = metanthropes.config.weight.modifiers[w.total];
+
+    const z = this.attributes.size;
+    z.statuses = this.statuses.enlarged - this.statuses.shrunken;
+    z.total = Math.clamp(z.value + z.statuses, 0, 20);
+    z.modifier = metanthropes.config.size.modifiers[z.total]
+
+    const movementBonus = metanthropes.config.size.movementBonus[z.total] ?? 0;
+    this.attributes.movement = Math.ceil(s.modifier * w.modifier * z.modifier) + movementBonus;
+  }
+
+  /* -------------------------------------------------- */
+
+  /**
    * Prepare health and destiny.
    */
   #prepareResources() {
@@ -129,19 +195,10 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
     d.pct = (d.value / d.max * 100) || 0;
 
     const h = this.resources.life;
+    const lifeBonus = metanthropes.config.size.lifeBonus[this.attributes.size.total] ?? 0;
+    h.max += lifeBonus;
     h.value = Math.min(h.value, h.max);
     h.spent = h.max - h.value;
     h.pct = (h.value / h.max * 100) || 0;
-  }
-
-  /* -------------------------------------------------- */
-
-  /**
-   * Prepare knowledges and skills.
-   */
-  #preparePerks() {
-    for (const [k, v] of metanthropes.config.perks) {
-      this.perks[k].type = v.type;
-    }
   }
 }

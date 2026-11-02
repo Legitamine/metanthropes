@@ -1,3 +1,8 @@
+/**
+ * @import AbilityData from "../ability.mjs";
+ * @import MetanthropesItem from "../../../documents/item.mjs";
+ */
+
 const { StringField } = foundry.data.fields;
 
 /**
@@ -48,5 +53,37 @@ export default class MetapowerEffect extends foundry.abstract.DataModel {
         validationError: `must be equal to '${this.TYPE}'`,
       }),
     };
+  }
+
+  /* -------------------------------------------------- */
+
+  /**
+   * The metapower ability.
+   * @type {MetanthropesItem & { system: AbilityData }}
+   */
+  get item() {
+    return this.getNearestDocument();
+  }
+
+  /* -------------------------------------------------- */
+
+  /**
+   * Scale up this effect.
+   * @param {number} [steps=1]    Number of steps to scale up.
+   * @returns {object}            An update payload to apply to a clone of this effect's item.
+   */
+  _upscale(steps=1) {
+    throw new Error("Subclasses of MetapowerEffect must extend _upscale.");
+  }
+
+  /* -------------------------------------------------- */
+
+  /**
+   * Get the cost of upscaling this effect.
+   * @param {number} [steps=0]    Number of steps to scale up.
+   * @returns {number}
+   */
+  getUpscaleCost(steps=0) {
+    return 0;
   }
 }

@@ -646,18 +646,18 @@
 				}
 			}
 		},
-		"PERK": {
-			"academics": "Academics",
-			"artistry": "Artistry",
-			"athletics": "Athletics",
-			"engineering": "Engineering",
-			"expertise": "Expertise",
-			"lore": "Lore",
-			"medicine": "Medicine",
-			"operation": "Operation",
-			"science": "Science",
-			"weapons": "Weapons"
-		}
+    "PERK": {
+      "academics": "Academics",
+      "athletics": "Athletics",
+      "crafting": "Crafting",
+      "engineering": "Engineering",
+      "gadgets": "Gadgets",
+      "lore": "Lore",
+      "medicine": "Medicine",
+      "science": "Science",
+      "vehicles": "Vehicles",
+      "weapons": "Weapons"
+    }
 	},
 	"TYPES": {
 		"Actor": {

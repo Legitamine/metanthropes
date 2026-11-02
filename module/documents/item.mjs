@@ -1,12 +1,9 @@
 import { metaTransformStringForStorage } from "../helpers/metahelpers.mjs";
 
 /**
- * Extend the basic Item with some very simple modifications.
- *
- * @extends {Item}
- *
+ * Extend the Item document class.
  */
-export default class MetanthropesItem extends Item {
+export default class MetanthropesItem extends foundry.documents.Item {
   /**
    * Identifier of this item.
    * @type {string|null}
