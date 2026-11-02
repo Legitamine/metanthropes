@@ -11,7 +11,19 @@ interface Defense {
 }
 
 interface Perk {
+  /** Perk value. */
+  value: 0 | 1 | 2 | 3 | 4 | 5;
+}
+
+interface PhysicalAttribute {
+  /** Base value. */
   value: number;
+  /** Delta from statuses. */
+  statuses: number;
+  /** Modifier read from the config. */
+  modifier: number;
+  /** Total attribute (value + modifier), clamped between 0 and 20. */
+  total: number;
 }
 
 declare module "./character.mjs" {
@@ -19,6 +31,9 @@ declare module "./character.mjs" {
     attributes: {
       characteristics: Record<"body" | "mind" | "soul", Attribute>;
       stats: Record<string, Attribute>;
+      speed: PhysicalAttribute;
+      weight: PhysicalAttribute;
+      size: PhysicalAttribute;
     }
     defenses: Record<"cosmic" | "elemental" | "material" | "psychic", Defense>;
     details: {
