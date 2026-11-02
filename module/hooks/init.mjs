@@ -2,6 +2,12 @@ import { settings } from "../config/settings.mjs";
 
 Hooks.once("init", function () {
 	console.log(metanthropes.system.ASCII);
+	
+	//* Register System Settings
+	metanthropes.utils.metaRegisterGameSettings(settings); //todo review sync change impact
+	metanthropes.utils.metaLog(0, "System", "Initializing", "Game Settings Registered");
+	//* Call Modules to Register their Settings
+	Hooks.callAll("metanthropes-init");
 
 	//* Register Fonts
 	CONFIG.fontDefinitions = {
@@ -16,32 +22,35 @@ Hooks.once("init", function () {
 		},
 	};
 
-	//* Register System Settings
-	metanthropes.utils.metaRegisterGameSettings(settings); //todo review sync change impact
+	//* Alpha & Beta Testing
 	const alphaTestingEnabled = metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting") ?? false;
 	const betaTestingEnabled = metanthropes.utils.metaCheckSetting("core", "metaBetaTesting") ?? false;
 	if (alphaTestingEnabled) metanthropes.utils.metaLog(1, "System", "Initializing", "Alpha Testing Enabled");
 	if (betaTestingEnabled) metanthropes.utils.metaLog(1, "System", "Initializing", "Beta Testing Enabled");
 
 	//* Register Data Models
+	//todo DM Migration
+	//? during Early Access, access to the new data models is reserved for Homebrew owners with Alpha Testing enabled
 	if (alphaTestingEnabled) {
 		CONFIG.Actor.dataModels = {
 			metaActor: metanthropes.models.MetaActor,
-			"metanthropes-homebrew.metaActor": metanthropes.models.MetaActor, //todo DM Migration
+			"metanthropes-homebrew.metaActor": metanthropes.models.MetaActor,
+			character: metanthropes.data.actors.CharacterData,
+			"metanthropes-homebrew.character": metanthropes.data.actors.CharacterData,
 		};
 		CONFIG.Item.dataModels = {
 			metaSpecies: metanthropes.models.MetaSpecies,
-			"metanthropes-homebrew.metaSpecies": metanthropes.models.MetaSpecies, //todo DM Migration
+			"metanthropes-homebrew.metaSpecies": metanthropes.models.MetaSpecies,
 			metaTemplate: metanthropes.models.MetaTemplate,
-			"metanthropes-homebrew.metaTemplate": metanthropes.models.MetaTemplate, //todo DM Migration
+			"metanthropes-homebrew.metaTemplate": metanthropes.models.MetaTemplate,
 			metaBuild: metanthropes.models.MetaBuild,
-			"metanthropes-homebrew.metaBuild": metanthropes.models.MetaBuild, //todo DM Migration
+			"metanthropes-homebrew.metaBuild": metanthropes.models.MetaBuild, 
+			ability: metanthropes.data.items.AbilityData,
+			"metanthropes-homebrew.ability": metanthropes.data.items.AbilityData,
+			metapower: metanthropes.data.items.MetapowerData,
+			"metanthropes-homebrew.metapower": metanthropes.data.items.MetapowerData,
 		};
 	}
-	//todo DM Migration add to alpha testing
-	CONFIG.Actor.dataModels.character = metanthropes.data.actors.CharacterData; //todo! probably doesn't work with both
-	CONFIG.Item.dataModels.ability = metanthropes.data.items.AbilityData;
-	CONFIG.Item.dataModels.metapower = metanthropes.data.items.MetapowerData;
 
 	//* Register Document Classes
 	CONFIG.Actor.documentClass = metanthropes.documents.MetanthropesActor; //todo DM migration deprecate v1
@@ -85,25 +94,37 @@ Hooks.once("init", function () {
 	//? AppV2 - Alpha Testing
 	//? Actor Sheet V2
 	if (alphaTestingEnabled) {
+		const actorV2Types = [
+			//todo DM Migration
+			"metaActor",
+			"character",
+			"metanthropes-homebrew.metaActor",
+			"metanthropes-homebrew.character",
+		];
 		foundry.documents.collections.Actors.registerSheet(
 			"metanthropes",
 			metanthropes.applications.MetanthropesActorSheetV2,
 			{
 				makeDefault: true,
-				types: ["metaActor", "metanthropes-homebrew.metaActor"], //todo DM Migration
+				types: actorV2Types,
 				label: "METANTHROPES.SHEET.ACTORV2.LABEL",
 			},
 		);
 	}
 	//? Item Sheet V2
 	if (alphaTestingEnabled) {
-		const itemV2Types = [ //todo DM Migration
-			"metaSpecies", 
+		const itemV2Types = [
+			//todo DM Migration
+			"metaSpecies",
 			"metaTemplate",
 			"metaBuild",
 			"metanthropes-homebrew.metaSpecies",
 			"metanthropes-homebrew.metaTemplate",
 			"metanthropes-homebrew.metaBuild",
+			"ability",
+			"metapower",
+			"metanthropes-homebrew.ability",
+			"metanthropes-homebrew.metapower"
 		];
 		foundry.documents.collections.Items.registerSheet(
 			"metanthropes",
@@ -164,7 +185,7 @@ Hooks.once("init", function () {
 	//* V14 VFX
 	//! EXPERIMENTAL
 	if (alphaTestingEnabled) {
-		metanthropes.utils.metaLog(1, "System", "Initializing", "Enabling Experimental VFX Engine");
+		metanthropes.utils.metaLog(1, "System", "Initializing", "Experimental VFX Engine Enabled");
 		CONFIG.Canvas.vfx.enabled = true;
 	}
 
@@ -172,7 +193,7 @@ Hooks.once("init", function () {
 	game.socket.on("system.metanthropes", async (payload) => {
 		metanthropes.logic.metaHandleSocketEvents(payload);
 	});
-	metanthropes.utils.metaLog(1, "System", "Initializing", "Metanthropes Socket Listener Ready");
+	metanthropes.utils.metaLog(0, "System", "Initializing", "Metanthropes Socket Listener Ready");
 
 	//* Finished Initializing the Metanthropes System
 	metanthropes.utils.metaLog(0, "System", "Initialized");
