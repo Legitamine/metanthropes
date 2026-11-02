@@ -96,9 +96,11 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
     super.prepareDerivedData();
 
     this.#prepareAttributes();
-    this.#prepareResources();
     this.#preparePerks();
     this.#preparePhysical();
+
+    // Life is prepared after physical, as Size may influence it.
+    this.#prepareResources();
   }
 
   /* -------------------------------------------------- */
@@ -118,23 +120,6 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
       s[key].buffs = this.statuses[buff] + c[characteristic].buffs;
       s[key].debuffs = this.statuses[condition] + c[characteristic].debuffs;
     }
-  }
-
-  /* -------------------------------------------------- */
-
-  /**
-   * Prepare health and destiny.
-   */
-  #prepareResources() {
-    const d = this.resources.destiny;
-    d.value = Math.min(d.value, d.max) || null;
-    d.spent = d.max - d.value;
-    d.pct = (d.value / d.max * 100) || 0;
-
-    const h = this.resources.life;
-    h.value = Math.min(h.value, h.max);
-    h.spent = h.max - h.value;
-    h.pct = (h.value / h.max * 100) || 0;
   }
 
   /* -------------------------------------------------- */
@@ -173,6 +158,8 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
     });
   }
 
+  /* -------------------------------------------------- */
+
   /**
    * Prepare speed, weight, size, and movement.
    */
@@ -192,6 +179,26 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
     z.total = Math.clamp(z.value + z.statuses, 0, 20);
     z.modifier = metanthropes.config.size.modifiers[z.total]
 
-    this.attributes.movement = Math.ceil(s.modifier * w.modifier * z.modifier);
+    const movementBonus = metanthropes.config.size.movementBonus[z.total] ?? 0;
+    this.attributes.movement = Math.ceil(s.modifier * w.modifier * z.modifier) + movementBonus;
+  }
+
+  /* -------------------------------------------------- */
+
+  /**
+   * Prepare health and destiny.
+   */
+  #prepareResources() {
+    const d = this.resources.destiny;
+    d.value = Math.min(d.value, d.max) || null;
+    d.spent = d.max - d.value;
+    d.pct = (d.value / d.max * 100) || 0;
+
+    const h = this.resources.life;
+    const lifeBonus = metanthropes.config.size.lifeBonus[this.attributes.size.total] ?? 0;
+    h.max += lifeBonus;
+    h.value = Math.min(h.value, h.max);
+    h.spent = h.max - h.value;
+    h.pct = (h.value / h.max * 100) || 0;
   }
 }
