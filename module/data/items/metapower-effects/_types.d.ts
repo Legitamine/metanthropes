@@ -1,7 +1,7 @@
 export {};
 
-interface ScalingData {
-  /** Is scaling allowed? */
+interface SpendingData {
+  /** Is spending allowed? */
   enabled: boolean;
   /** The cost to scale up the effect by one. */
   cost: number;
@@ -24,7 +24,7 @@ declare module "./damage.mjs" {
       number: number;
       /** Additional bonus added on top of the roll. */
       base: number | null;
-      scaling: ScalingData;
+      spending: SpendingData;
     }
   }
 }
@@ -37,7 +37,7 @@ declare module "./healing.mjs" {
       number: number;
       /** Additional bonus added on top of the roll. */
       base: number | null;
-      scaling: ScalingData;
+      spending: SpendingData;
     }
   }
 }
@@ -49,8 +49,8 @@ declare module "./status.mjs" {
       /** The key for the buff or condition. */
       id: string;
       /** The level of the buff or condition. */
-      strength: number;
-      scaling: ScalingData;
+      level: number;
+      spending: SpendingData;
     }
   }
 }

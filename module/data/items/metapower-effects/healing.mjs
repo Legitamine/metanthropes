@@ -18,7 +18,7 @@ export default class HealingEffect extends MetapowerEffect {
       healing: new SchemaField({
         number: new NumberField({ nullable: false, min: 1, initial: 1, integer: true }),
         base: new NumberField({ nullable: true, min: 0, integer: true, initial: null, placeholder: "0" }),
-        scaling: new SchemaField({
+        spending: new SchemaField({
           enabled: new BooleanField(),
           cost: new NumberField({ initial: 1, nullable: false, integer: true, min: 1 }),
           step: new NumberField({ initial: 1, nullable: false, integer: true, min: 1 }),
@@ -31,15 +31,15 @@ export default class HealingEffect extends MetapowerEffect {
 
   /** @inheritdoc */
   _upscale(steps=1) {
-    if (!this.healing.scaling.enabled) return {};
-    return { "healing.number": this.healing.number + this.healing.scaling.step * steps };
+    if (!this.healing.spending.enabled) return {};
+    return { "healing.number": this.healing.number + this.healing.spending.step * steps };
   }
 
   /* -------------------------------------------------- */
 
   /** @inheritdoc */
   getUpscaleCost(steps=0) {
-    if (!steps || !this.healing.scaling.enabled) return 0;
-    return steps * this.healing.scaling.cost;
+    if (!steps || !this.healing.spending.enabled) return 0;
+    return steps * this.healing.spending.cost;
   }
 }
