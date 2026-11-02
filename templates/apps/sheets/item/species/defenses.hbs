@@ -1,0 +1,43 @@
+<section class="tab {{tabs.defenses.cssClass}} scrollable" data-group="primary" data-tab="defenses">
+	<fieldset>
+		<legend>Resistances</legend>
+		{{#each speciesFields.resistances.fields as |resistanceField energyKey|}}
+			{{formGroup
+			resistanceField
+			value=(lookup @root.system.defenses.resistances energyKey)
+			name=(concat "system.defenses.resistances." energyKey)
+			label=(lookup (lookup @root.energyTypes energyKey) "label")
+			rootId=@root.rootId
+			disabled=(not @root.isNarrator)
+		}}
+		{{/each}}
+	</fieldset>
+
+	<fieldset>
+		<legend>Immunities</legend>
+		{{#each speciesFields.immunities.fields as |immunityField immunityKey|}}
+			{{formGroup
+			immunityField
+			value=(lookup @root.system.defenses.immunities immunityKey)
+			name=(concat "system.defenses.immunities." immunityKey)
+			label=(lookup (lookup @root.immunityTypes immunityKey) "label")
+			rootId=@root.rootId
+			disabled=(not @root.isNarrator)
+		}}
+		{{/each}}
+	</fieldset>
+
+	<fieldset>
+		<legend>Cover</legend>
+		{{#each speciesFields.cover.fields as |coverField energyKey|}}
+			{{formGroup
+			coverField
+			value=(lookup @root.system.defenses.cover energyKey)
+			name=(concat "system.defenses.cover." energyKey)
+			label=(lookup (lookup @root.energyTypes energyKey) "label")
+			rootId=@root.rootId
+			disabled=(not @root.isNarrator)
+		}}
+		{{/each}}
+	</fieldset>
+</section>

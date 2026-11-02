@@ -81,8 +81,12 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 			actorData.system["secret-notes-narrator"].value,
 			{ async: true, secrets: context.isNarrator },
 		);
-		//? Add the actor's active effects to the context for easier access.
-		if (context.betaTesting) context.effects = metanthropes.utils.prepareActiveEffectCategories(this.actor.effects);
+		//? Add the actor's and all item's (transferable) Active Effects to the context for easier access.
+		if (context.betaTesting) {
+			const effects = Array.from(this.actor.allApplicableEffects()); //? new in V14
+			context.effects = metanthropes.utils.prepareActiveEffectCategories(effects);
+		}
+		//todo edw kanw pali to prepare(for each item on the actor? grab the item.effects?)
 		//? Calculate the actor's XP Spent
 		//!context.xpSpent = Number(actorData.system.Vital.Experience.Spent + actorData.system.Vital.Experience.Manual);
 		//? Flag if actor is affected by Disease
@@ -235,7 +239,17 @@ export class MetanthropesActorSheet extends foundry.appv1.sheets.ActorSheet {
 		});
 		//? Active Effect management
 		if (metanthropes.utils.metaCheckSetting("core", "metaBetaTesting"))
-			html.find(".effect-control").click((ev) => metanthropes.utils.onManageActiveEffect(ev, this.actor));
+			html.find(".effect-control").on("click", async (event) => {
+				event.preventDefault();
+				const target = event.currentTarget;
+				//? this will 'detect' the correct effectType that is clicked and pass it along to the manageActiveEffect
+				await metanthropes.utils.manageActiveEffect({
+					actorUUID: this.actor.uuid,
+					action: target.dataset.action,
+					effectUUID: target.closest("[data-effectuuid]")?.dataset.effectuuid ?? null,
+					effectType: target.closest("[data-effect-type]")?.dataset.effectType ?? null,
+				});
+			});
 		//? Roll Stat
 		html.find(".style-cs-rolls").click(this._onRoll.bind(this));
 		html.find(".style-cs-rolls").on("contextmenu", this._onCustomRoll.bind(this));

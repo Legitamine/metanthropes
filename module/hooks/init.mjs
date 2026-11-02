@@ -2,9 +2,12 @@ import { settings } from "../config/settings.mjs";
 
 Hooks.once("init", function () {
 	console.log(metanthropes.system.ASCII);
-
-	//* Configure System
-	globalThis.SYSTEM = metanthropes.system;
+	
+	//* Register System Settings
+	metanthropes.utils.metaRegisterGameSettings(settings); //todo review sync change impact
+	metanthropes.utils.metaLog(0, "System", "Initializing", "Game Settings Registered");
+	//* Call Modules to Register their Settings
+	Hooks.callAll("metanthropes-init");
 
 	//* Register Fonts
 	CONFIG.fontDefinitions = {
@@ -19,89 +22,121 @@ Hooks.once("init", function () {
 		},
 	};
 
-	//* Register System Settings
-	metanthropes.utils.metaRegisterGameSettings(settings);
-	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting"))
-		metanthropes.utils.metaLog(1, "System", "Initializing", "Alpha Testing Enabled");
-	if (metanthropes.utils.metaCheckSetting("core", "metaBetaTesting"))
-		metanthropes.utils.metaLog(1, "System", "Initializing", "Beta Testing Enabled");
+	//* Alpha & Beta Testing
+	const alphaTestingEnabled = metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting") ?? false;
+	const betaTestingEnabled = metanthropes.utils.metaCheckSetting("core", "metaBetaTesting") ?? false;
+	if (alphaTestingEnabled) metanthropes.utils.metaLog(1, "System", "Initializing", "Alpha Testing Enabled");
+	if (betaTestingEnabled) metanthropes.utils.metaLog(1, "System", "Initializing", "Beta Testing Enabled");
 
 	//* Register Data Models
-	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
+	//todo DM Migration
+	//? during Early Access, access to the new data models is reserved for Homebrew owners with Alpha Testing enabled
+	if (alphaTestingEnabled) {
 		CONFIG.Actor.dataModels = {
-			MetanthropesActorV2: metanthropes.models.MetanthropesActorV2,
+			metaActor: metanthropes.models.MetaActor,
+			"metanthropes-homebrew.metaActor": metanthropes.models.MetaActor,
+			character: metanthropes.data.actors.CharacterData,
+			"metanthropes-homebrew.character": metanthropes.data.actors.CharacterData,
 		};
-
 		CONFIG.Item.dataModels = {
-			species: metanthropes.models.species,
-			template: metanthropes.models.template,
+			metaSpecies: metanthropes.models.MetaSpecies,
+			"metanthropes-homebrew.metaSpecies": metanthropes.models.MetaSpecies,
+			metaTemplate: metanthropes.models.MetaTemplate,
+			"metanthropes-homebrew.metaTemplate": metanthropes.models.MetaTemplate,
+			metaBuild: metanthropes.models.MetaBuild,
+			"metanthropes-homebrew.metaBuild": metanthropes.models.MetaBuild, 
+			ability: metanthropes.data.items.AbilityData,
+			"metanthropes-homebrew.ability": metanthropes.data.items.AbilityData,
+			metapower: metanthropes.data.items.MetapowerData,
+			"metanthropes-homebrew.metapower": metanthropes.data.items.MetapowerData,
 		};
 	}
 
 	//* Register Document Classes
-	CONFIG.Actor.documentClass = metanthropes.documents.MetanthropesActor;
-	CONFIG.Item.documentClass = metanthropes.documents.MetanthropesItem;
+	CONFIG.Actor.documentClass = metanthropes.documents.MetanthropesActor; //todo DM migration deprecate v1
+	CONFIG.Item.documentClass = metanthropes.documents.MetanthropesItem; //todo DM migration deprecate v1
 	CONFIG.ActiveEffect.documentClass = metanthropes.documents.MetanthropesActiveEffect;
 	CONFIG.Combat.documentClass = metanthropes.documents.MetanthropesCombat;
-  CONFIG.Region.documentClass = metanthropes.documents.MetanthropesRegionDocument;
-	//? missing MetaChatMessage === didn't register mine as the default so it falls back to the default
+	CONFIG.Region.documentClass = metanthropes.documents.MetanthropesRegionDocument;
 
-  CONFIG.Actor.dataModels.character = metanthropes.data.actors.CharacterData;
-  CONFIG.Item.dataModels.ability = metanthropes.data.items.AbilityData;
-  CONFIG.Item.dataModels.metapower = metanthropes.data.items.MetapowerData;
-
-  CONFIG.Item.compendiumIndexFields.push(...metanthropes.registry.metapowers.COMPENDIUM_FIELDS);
+	//* Register Metapowers Compendium
+	CONFIG.Item.compendiumIndexFields.push(...metanthropes.registry.metapowers.COMPENDIUM_FIELDS);
 
 	//* Register Application Sheets
+	//? AppV1 - To be deprecated
+	const actorV1Types = [
+		"Protagonist",
+		"Metanthrope",
+		"Human",
+		"Animal",
+		"Artificial",
+		"Extradimensional",
+		"Extraterrestrial",
+		"Animated-Cadaver",
+		"Animated-Plant",
+		"MetaTherion",
+	];
+	//? AppV1 - Actors
 	foundry.documents.collections.Actors.registerSheet(
 		"metanthropes",
 		metanthropes.applications.MetanthropesActorSheet,
 		{
 			makeDefault: true,
-			types: [
-				"Protagonist",
-				"Metanthrope",
-				"Human",
-				"Animal",
-				"Artificial",
-				"Extradimensional",
-				"Extraterrestrial",
-				"Animated-Cadaver",
-				"Animated-Plant",
-				"MetaTherion",
-			],
+			types: actorV1Types,
 			label: "METANTHROPES.SHEET.ACTOR.LABEL",
 		},
 	);
-
-	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
+	//? AppV1 - Items
+	foundry.documents.collections.Items.registerSheet("metanthropes", metanthropes.applications.MetanthropesItemSheet, {
+		makeDefault: true,
+		label: "METANTHROPES.SHEET.ITEM.LABEL",
+	});
+	//? AppV2 - Alpha Testing
+	//? Actor Sheet V2
+	if (alphaTestingEnabled) {
+		const actorV2Types = [
+			//todo DM Migration
+			"metaActor",
+			"character",
+			"metanthropes-homebrew.metaActor",
+			"metanthropes-homebrew.character",
+		];
 		foundry.documents.collections.Actors.registerSheet(
 			"metanthropes",
 			metanthropes.applications.MetanthropesActorSheetV2,
 			{
 				makeDefault: true,
-				types: ["MetanthropesActorV2"],
+				types: actorV2Types,
 				label: "METANTHROPES.SHEET.ACTORV2.LABEL",
 			},
 		);
 	}
-	foundry.documents.collections.Items.registerSheet("metanthropes", metanthropes.applications.MetanthropesItemSheet, {
-		makeDefault: true,
-		label: "METANTHROPES.SHEET.ITEM.LABEL",
-	});
-
-	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
+	//? Item Sheet V2
+	if (alphaTestingEnabled) {
+		const itemV2Types = [
+			//todo DM Migration
+			"metaSpecies",
+			"metaTemplate",
+			"metaBuild",
+			"metanthropes-homebrew.metaSpecies",
+			"metanthropes-homebrew.metaTemplate",
+			"metanthropes-homebrew.metaBuild",
+			"ability",
+			"metapower",
+			"metanthropes-homebrew.ability",
+			"metanthropes-homebrew.metapower"
+		];
 		foundry.documents.collections.Items.registerSheet(
 			"metanthropes",
-			metanthropes.applications.MetanthropesItemSheetV2,
+			metanthropes.applications.MetanthropesSpeciesSheetV2,
 			{
 				makeDefault: true,
-				types: ["species", "template"],
+				types: itemV2Types, //todo DM migration
 				label: "METANTHROPES.SHEET.ITEMV2.LABEL",
 			},
 		);
 	}
-
+	//? Active Effect V2
 	foundry.applications.apps.DocumentSheetConfig.registerSheet(
 		ActiveEffect,
 		"metanthropes",
@@ -111,7 +146,7 @@ Hooks.once("init", function () {
 			label: "METANTHROPES.SHEET.AE.LABEL",
 		},
 	);
-
+	//? Adventure Sheet - forcing AppV2
 	foundry.applications.apps.DocumentSheetConfig.registerSheet(
 		Adventure,
 		"metanthropes",
@@ -126,6 +161,12 @@ Hooks.once("init", function () {
 		decimals: 2,
 	};
 
+	//* Active Effect Expiration
+	CONFIG.ActiveEffect.expiryAction = "update"; //? setting this to "delete" will remove the AE
+
+	//* Register Movement Types
+	CONFIG.Token.movement.actions = metanthropes.system.TABLES.MOVEMENTS;
+
 	//* Round Duration (in seconds)
 	CONFIG.time.roundTime = 30;
 
@@ -138,10 +179,13 @@ Hooks.once("init", function () {
 	//* Register Custom Text Enrichers
 	metanthropes.utils.metaRegisterCustomEnrichers();
 
+	//* Preload Handlebars templates.
+	metanthropes.utils.preloadHandlebarsTemplates();
+
 	//* V14 VFX
 	//! EXPERIMENTAL
-	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
-		metanthropes.utils.metaLog(1, "System", "Initializing", "Enabling Experimental VFX Engine");
+	if (alphaTestingEnabled) {
+		metanthropes.utils.metaLog(1, "System", "Initializing", "Experimental VFX Engine Enabled");
 		CONFIG.Canvas.vfx.enabled = true;
 	}
 
@@ -149,10 +193,8 @@ Hooks.once("init", function () {
 	game.socket.on("system.metanthropes", async (payload) => {
 		metanthropes.logic.metaHandleSocketEvents(payload);
 	});
+	metanthropes.utils.metaLog(0, "System", "Initializing", "Metanthropes Socket Listener Ready");
 
 	//* Finished Initializing the Metanthropes System
 	metanthropes.utils.metaLog(0, "System", "Initialized");
-
-	//* Preload Handlebars templates.
-	metanthropes.utils.preloadHandlebarsTemplates();
 });

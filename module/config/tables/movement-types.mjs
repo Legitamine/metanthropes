@@ -1,0 +1,35 @@
+export const MOVEMENTS = {
+	...CONFIG.Token.movement.actions,
+	wallWalk: {
+		//? valid param examples below
+		label: "METANTHROPES.TABLES.MOVEMENT_TYPES.wallWalk",
+		icon: "fa-solid fa-person-from-portal",
+		img: "icons/svg/teleport.svg",
+		order: 9,
+		teleport: false,
+		measure: true,
+		walls: "move",
+		visualize: true,
+		costMultiplier: 0,
+		deriveTerrainDifficulty: ({ walk, fly }) => Math.max(walk, fly),
+		speedMultiplier: 0.5,
+		terrainAction: "walk",
+		canSelect: true,
+	},
+	photoPortation: {
+		//? valid param examples below
+		label: "METANTHROPES.TABLES.MOVEMENT_TYPES.photoPortation",
+		icon: "fa-solid fa-person-from-portal",
+		img: "icons/svg/teleport.svg",
+		order: 10,
+		teleport: true,
+		measure: true,
+		walls: "move",
+		visualize: true,
+		costMultiplier: 0,
+		deriveTerrainDifficulty: ({ walk, fly }) => Math.max(walk, fly),
+		speedMultiplier: 0.5,
+		terrainAction: "walk",
+		canSelect: true,
+	},
+};

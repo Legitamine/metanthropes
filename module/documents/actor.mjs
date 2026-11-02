@@ -179,7 +179,7 @@ export default class MetanthropesActor extends Actor {
 		//* Data modifications in this step occur before processing embedded
 		//* documents or derived data.
 		const actorData = this;
-		if (actorData.type === "MetanthropesActorV2") return;
+		if (actorData.type === "metanthropes-homebrew.metaActor") return; //todo DM migration
 		//? Setting Humans to have starting life of 50 instead of 100
 		if (this.type === "Human") {
 			this.system.Vital.Life.Initial = 50;
@@ -240,7 +240,7 @@ export default class MetanthropesActor extends Actor {
 		//* This function is called after prepareBaseData() and prepareEmbeddedDocuments().
 		//! Note that if any values are to be affected by an Active Effect, then they should be calculated in the BaseData step, not here, otherwise they will be overwritten here
 		const actorData = this;
-		if (actorData.type === "MetanthropesActorV2") return;
+		if (actorData.type === "metanthropes-homebrew.metaActor") return; //todo DM Migration
 		this._prepareDerivedCharacteristicsData(actorData);
 		if (actorData.name.includes("Duplicate")) {
 			this._prepareDerivedDuplicateData(actorData);
@@ -276,7 +276,7 @@ export default class MetanthropesActor extends Actor {
 
 	/** @override */
 	getRollData() {
-		if (this.type === "Vehicle") return {};
+		if (this.type === "Vehicle"|| this.type === "metaActor" || this.type === "metanthropes-homebrew.metaActor") return {}; //todo DM migration
 
     if (this.type === "character") {
       const rollData = { ...this.system };
@@ -429,6 +429,7 @@ export default class MetanthropesActor extends Actor {
 		await this.update({ ...updateData });
 		metanthropes.utils.metaLog(3, "Actor.applyDestinyChange", this.name, "Destiny changed by:", destiny);
 	}
+
 
 	//* Getters
 	get hasCharacteristics() {
