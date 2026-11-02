@@ -1,4 +1,14 @@
+import Collection from "@common/utils/collection.mjs";
+import MetapowerEffect from "./metapower-effects/metapower-effect.mjs";
+
 export {};
+
+/**
+ * Scaling data for a metapower ability; a mapping of the metapower effects to the scaling steps applied.
+ */
+export interface Scaling {
+  [effectId: string]: number;
+}
 
 declare module "./ability.mjs" {
   export default interface AbilityData {
@@ -12,6 +22,7 @@ declare module "./ability.mjs" {
     description: {
       value: string;
     }
+    effects: Collection<string, MetapowerEffect>;
   }
 }
 
