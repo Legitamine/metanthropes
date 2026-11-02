@@ -237,6 +237,11 @@
     "Actor": {
       "character": {}
     },
+    "ChatMessage": {
+      "resolution": {
+        "gmOnlyFields": ["resolved"]
+      }
+    },
     "Item": {
       "ability": {
         "htmlFields": ["description.value"]

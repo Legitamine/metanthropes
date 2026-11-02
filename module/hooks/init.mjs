@@ -2,7 +2,7 @@ import { settings } from "../config/settings.mjs";
 
 Hooks.once("init", function () {
 	console.log(metanthropes.system.ASCII);
-	
+
 	//* Register System Settings
 	metanthropes.utils.metaRegisterGameSettings(settings); //todo review sync change impact
 	metanthropes.utils.metaLog(0, "System", "Initializing", "Game Settings Registered");
@@ -44,7 +44,7 @@ Hooks.once("init", function () {
 			metaTemplate: metanthropes.models.MetaTemplate,
 			"metanthropes-homebrew.metaTemplate": metanthropes.models.MetaTemplate,
 			metaBuild: metanthropes.models.MetaBuild,
-			"metanthropes-homebrew.metaBuild": metanthropes.models.MetaBuild, 
+			"metanthropes-homebrew.metaBuild": metanthropes.models.MetaBuild,
 			ability: metanthropes.data.items.AbilityData,
 			"metanthropes-homebrew.ability": metanthropes.data.items.AbilityData,
 			metapower: metanthropes.data.items.MetapowerData,
@@ -58,6 +58,7 @@ Hooks.once("init", function () {
 	CONFIG.ActiveEffect.documentClass = metanthropes.documents.MetanthropesActiveEffect;
 	CONFIG.Combat.documentClass = metanthropes.documents.MetanthropesCombat;
 	CONFIG.Region.documentClass = metanthropes.documents.MetanthropesRegionDocument;
+  CONFIG.ChatMessage.dataModels.resolution = metanthropes.data.messages.ResolutionData;
 
 	//* Register Metapowers Compendium
 	CONFIG.Item.compendiumIndexFields.push(...metanthropes.registry.metapowers.COMPENDIUM_FIELDS);
