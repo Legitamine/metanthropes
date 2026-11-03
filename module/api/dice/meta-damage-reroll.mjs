@@ -241,10 +241,12 @@ export async function metaDamageReRoll(event) {
 		await Promise.all(resolvedActors.map((actor) => actor.undoLastLifeChange()));
 		await metanthropes.logic.metaApplyDamage(
 			targetedActors,
-			cosmicDamageRollResult,
-			elementalDamageRollResult,
-			materialDamageRollResult,
-			psychicDamageRollResult,
+      [
+        { type: "cosmic", value: cosmicDamageRollResult },
+        { type: "elemental", value: elementalDamageRollResult },
+        { type: "material", value: materialDamageRollResult },
+        { type: "psychic", value: psychicDamageRollResult },
+      ],
 		);
 	}
 	mL(
