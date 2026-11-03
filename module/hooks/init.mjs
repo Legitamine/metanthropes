@@ -1,7 +1,15 @@
 import { settings } from "../config/settings.mjs";
 
-Hooks.once("init", async function () {
+Hooks.once("init", function () {
 	console.log(metanthropes.system.ASCII);
+
+	//* Register System Settings
+	metanthropes.utils.metaRegisterGameSettings(settings);
+	Hooks.callAll("metanthropes-init");
+	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting"))
+		metanthropes.utils.metaLog(1, "System", "Initializing", "Alpha Testing Enabled");
+	if (metanthropes.utils.metaCheckSetting("core", "metaBetaTesting"))
+		metanthropes.utils.metaLog(1, "System", "Initializing", "Beta Testing Enabled");
 
 	//* Configure System
 	globalThis.SYSTEM = metanthropes.system;
@@ -18,13 +26,6 @@ Hooks.once("init", async function () {
 			fonts: [{ urls: ["systems/metanthropes/assets/fonts/roboto.ttf"] }],
 		},
 	};
-
-	//* Register System Settings
-	await metanthropes.utils.metaRegisterGameSettings(settings);
-	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting"))
-		metanthropes.utils.metaLog(1, "System", "Initializing", "Alpha Testing Enabled");
-	if (metanthropes.utils.metaCheckSetting("core", "metaBetaTesting"))
-		metanthropes.utils.metaLog(1, "System", "Initializing", "Beta Testing Enabled");
 
 	//* Register Data Models
 	if (metanthropes.utils.metaCheckSetting("homebrew", "metaAlphaTesting")) {
