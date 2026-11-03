@@ -12,14 +12,17 @@ export interface ResolutionApplicationConfig {
   operations: DatabaseWriteOperation[];
 }
 
+export type ResolutionTargetMap = Map<string, foundry.abstract.Document | null>;
+
 /* -------------------------------------------------- */
 
 declare module "./resolution.mjs" {
   export default interface ResolutionData {
-    parent: foundry.documents.ChatMessage
+    parent: foundry.documents.ChatMessage;
     resolution: {
-      targets: { uuid: string }[];
+      autoresolve: boolean;
+      resolved: boolean;
+      resolvers: object[];
     }
-    resolved: boolean;
   }
 }
