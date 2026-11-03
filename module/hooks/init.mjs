@@ -2,10 +2,11 @@ import { settings } from "../config/settings.mjs";
 
 Hooks.once("init", function () {
 	console.log(metanthropes.system.ASCII);
-	
+
 	//* Register System Settings
-	metanthropes.utils.metaRegisterGameSettings(settings); //todo review sync change impact
+	metanthropes.utils.metaRegisterGameSettings(settings);
 	metanthropes.utils.metaLog(0, "System", "Initializing", "Game Settings Registered");
+
 	//* Call Modules to Register their Settings
 	Hooks.callAll("metanthropes-init");
 
@@ -44,7 +45,7 @@ Hooks.once("init", function () {
 			metaTemplate: metanthropes.models.MetaTemplate,
 			"metanthropes-homebrew.metaTemplate": metanthropes.models.MetaTemplate,
 			metaBuild: metanthropes.models.MetaBuild,
-			"metanthropes-homebrew.metaBuild": metanthropes.models.MetaBuild, 
+			"metanthropes-homebrew.metaBuild": metanthropes.models.MetaBuild,
 			ability: metanthropes.data.items.AbilityData,
 			"metanthropes-homebrew.ability": metanthropes.data.items.AbilityData,
 			metapower: metanthropes.data.items.MetapowerData,
@@ -124,7 +125,7 @@ Hooks.once("init", function () {
 			"ability",
 			"metapower",
 			"metanthropes-homebrew.ability",
-			"metanthropes-homebrew.metapower"
+			"metanthropes-homebrew.metapower",
 		];
 		foundry.documents.collections.Items.registerSheet(
 			"metanthropes",
