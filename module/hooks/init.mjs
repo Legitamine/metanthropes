@@ -64,6 +64,10 @@ Hooks.once("init", function () {
 	CONFIG.Region.documentClass = metanthropes.documents.MetanthropesRegionDocument;
   CONFIG.ChatMessage.dataModels.resolution = metanthropes.data.messages.ResolutionData;
 
+  CONFIG.Actor.dataModels.character = metanthropes.data.actors.CharacterData;
+  CONFIG.Item.dataModels.ability = metanthropes.data.items.AbilityData;
+  CONFIG.Item.dataModels.metapower = metanthropes.data.items.MetapowerData;
+
 	//* Register Metapowers Compendium
 	CONFIG.Item.compendiumIndexFields.push(...metanthropes.registry.metapowers.COMPENDIUM_FIELDS);
 
