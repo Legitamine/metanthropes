@@ -799,10 +799,12 @@ export async function metaExecute({ event = null, actorUUID, itemUUID, action, m
 		mL(3, "metaExecute", "Applying Damage");
 		await metanthropes.logic.metaApplyDamage(
 			targetedActorsUUIDs,
-			cosmicDamageRollResult,
-			elementalDamageRollResult,
-			materialDamageRollResult,
-			psychicDamageRollResult,
+      [
+        { type: "cosmic", value: cosmicDamageRollResult },
+        { type: "elemental", value: elementalDamageRollResult },
+        { type: "material", value: materialDamageRollResult },
+        { type: "psychic", value: psychicDamageRollResult },
+      ],
 		);
 	}
 

@@ -1,4 +1,5 @@
 import { settings } from "../config/settings.mjs";
+import registerQueries from "../helpers/register-queries.mjs";
 
 Hooks.once("init", function () {
 	console.log(metanthropes.system.ASCII);
@@ -8,6 +9,9 @@ Hooks.once("init", function () {
 	metanthropes.utils.metaLog(0, "System", "Initializing", "Game Settings Registered");
 	//* Call Modules to Register their Settings
 	Hooks.callAll("metanthropes-init");
+
+  // Register queries.
+  registerQueries();
 
 	//* Register Fonts
 	CONFIG.fontDefinitions = {

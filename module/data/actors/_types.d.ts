@@ -1,4 +1,17 @@
+import MetanthropesActor from "../../documents/actor.mjs";
+
 export {};
+
+export interface DamageConfig {
+  type: "cosmic" | "elemental" | "material" | "psychic";
+  value: number;
+  options?: {
+    /** Is resistance ignored? Default false. */
+    ignoreResistance?: boolean;
+    /** Is immunity ignored? Default false. */
+    ignoreImmunity?: boolean;
+  };
+}
 
 interface Attribute {
   value: number;
@@ -28,6 +41,7 @@ interface PhysicalAttribute {
 
 declare module "./character.mjs" {
   export default interface CharacterData {
+    parent: MetanthropesActor;
     attributes: {
       characteristics: Record<"body" | "mind" | "soul", Attribute>;
       stats: Record<string, Attribute>;

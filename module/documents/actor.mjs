@@ -1,10 +1,11 @@
 /**
- * The base Actor definition which defines common behavior of actors within the Metanthropes system.
- *
- * @extends {Actor}
- *
+ * @import { DamageConfig } from "../data/actors/_types.d.ts";
  */
-export default class MetanthropesActor extends Actor {
+
+/**
+ * The base Actor definition which defines common behavior of actors within the Metanthropes system.
+ */
+export default class MetanthropesActor extends foundry.documents.Actor {
 	/** @override */
 	//* Setting default Token configuration for all actors
 	async _preCreate(data, options, user) {
@@ -300,54 +301,12 @@ export default class MetanthropesActor extends Actor {
 	}
 
 	/**
-	 * applyDamage - Apply Damage to the Actor.
-	 * Damage parameters below are expected to be a positive number.
-	 * Takes into account the resistances of the Actor.
-	 * todo should also take care of immunities.
-	 *
-	 * @async
-	 * @param {number} [cosmic=0]
-	 * @param {number} [elemental=0]
-	 * @param {number} [material=0]
-	 * @param {number} [psychic=0]
-	 * @returns {*}
+	 * Apply damage to this actor.
+	 * @param {DamageConfig[]} damages
+	 * @returns {Promise<MetanthropesActor>}
 	 */
-	async applyDamage(cosmic = 0, elemental = 0, material = 0, psychic = 0) {
-		const currentLife = this.currentLife;
-		const cosmicResistance = Number(this.system.physical.resistances.cosmic.initial);
-		const elementalResistance = Number(this.system.physical.resistances.elemental.initial);
-		const materialResistance = Number(this.system.physical.resistances.material.initial);
-		const psychicResistance = Number(this.system.physical.resistances.psychic.initial);
-		const cosmicDamage = Number(cosmic) - cosmicResistance;
-		const elementalDamage = Number(elemental) - elementalResistance;
-		const materialDamage = Number(material) - materialResistance;
-		const psychicDamage = Number(psychic) - psychicResistance;
-		const totalDamage =
-			(cosmicDamage > 0 ? cosmicDamage : 0) +
-			(elementalDamage > 0 ? elementalDamage : 0) +
-			(materialDamage > 0 ? materialDamage : 0) +
-			(psychicDamage > 0 ? psychicDamage : 0);
-		const newLife = currentLife - totalDamage;
-		let updateData = {};
-		updateData["flags.metanthropes.previousLife"] = currentLife;
-		if (newLife < 0) {
-			updateData["system.Vital.Life.value"] = 0;
-		} else {
-			updateData["system.Vital.Life.value"] = Number(newLife);
-		}
-		metanthropes.utils.metaLog(0, "Actor", this.name, "Applying Damage");
-		metanthropes.utils.metaLog(
-			3,
-			"Actor.applyDamage",
-			"Applying Damage to",
-			this.name,
-			"going from",
-			currentLife,
-			"to",
-			newLife,
-			"Life",
-		);
-		await metanthropes.logic.metaApplyActorUpdates(this.uuid, { ...updateData });
+	async applyDamage(damages) {
+    return this.system.applyDamage(damages);
 	}
 
 	/**

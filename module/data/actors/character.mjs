@@ -1,3 +1,9 @@
+/**
+ * @import { DamageConfig } from "./_types.d.ts";
+ * @import { DatabaseWriteOperation } from "@common/abstract/_types.mjs";
+ * @import MetanthropesActor from "../../documents/actor.mjs";
+ */
+
 const { NumberField, SchemaField, StringField } = foundry.data.fields;
 
 /**
@@ -200,5 +206,105 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
     h.value = Math.min(h.value, h.max);
     h.spent = h.max - h.value;
     h.pct = (h.value / h.max * 100) || 0;
+  }
+
+  /* -------------------------------------------------- */
+  /*   Change handlers                                  */
+  /* -------------------------------------------------- */
+
+  /**
+   * Create an operation for spending or restoring destiny.
+   * @param {number} value    The amount to spend or restore. Use a negative amount to restore.
+   * @returns {DatabaseWriteOperation}
+   */
+  _applyDestinyOperation(value) {
+    const actor = this.parent;
+    const d = actor.system.resources.destiny;
+
+    const { parent, documentName, pack } = actor;
+    return {
+      action: "update",
+      parent, documentName, pack,
+      updates: [{ _id: actor.id, "system.resources.destiny.value": d.value - value }],
+    };
+  }
+
+  /* -------------------------------------------------- */
+
+  /**
+   * Consume or restore destiny.
+   * @param {number} value    The amount to spend or restore. Use a negative amount to restore.
+   * @returns {Promise<MetanthropesActor>}
+   */
+  async applyDestiny(value) {
+    const operation = this._applyDestinyOperation(value);
+    await foundry.documents.modifyBatch([operation]);
+    return this.parent;
+  }
+
+  /* -------------------------------------------------- */
+
+  /**
+   * Calculate the damage this actor would take.
+   * TODO: take immunities into account.
+   * @param {DamageConfig[]} damages
+   * @returns {number}
+   */
+  calculateDamage(damages) {
+    damages = foundry.utils.deepClone(damages);
+    const actor = this.parent;
+
+    /** @param {DamageConfig} damage */
+    const apply = damage => {
+      const resistance = damage.options.ignoreResistance
+        ? 0
+        : actor.system.defenses[damage.type].resistance;
+      damage.value = Math.max(0, damage.value - resistance);
+    };
+
+    let total = 0;
+    for (const damage of damages) {
+      apply(damage);
+      total += damage.value;
+    }
+
+    return total;
+  }
+
+  /* -------------------------------------------------- */
+
+  /**
+   * Create an operation for applying damage to this actor.
+   * @param {DamageConfig[]} damages
+   * @returns {DatabaseWriteOperation}
+   */
+  _applyDamageOperation(damages) {
+    const total = this.calculateDamage(damages);
+    const actor = this.parent;
+    const life = actor.system.resources.life;
+
+    const { parent, documentName, pack } = actor;
+    return {
+      action: "update",
+      documentName, parent, pack,
+      updates: [{
+        _id: actor.id,
+        "system.resources.life.value": life.value - total,
+        "flags.metanthropes.previousLife": life.value,
+      }],
+    };
+  }
+
+  /* -------------------------------------------------- */
+
+  /**
+   * Apply damage to this actor.
+   * @param {DamageConfig[]} damages
+   * @returns {Promise<MetanthropesActor>}
+   */
+  async applyDamage(damages) {
+    const operation = this._applyDamageOperation(damages);
+    await foundry.documents.modifyBatch([operation]);
+    return this.parent;
   }
 }
