@@ -8,8 +8,6 @@ export interface DamageConfig {
   options?: {
     /** Is resistance ignored? Default false. */
     ignoreResistance?: boolean;
-    /** Is immunity ignored? Default false. */
-    ignoreImmunity?: boolean;
   };
 }
 

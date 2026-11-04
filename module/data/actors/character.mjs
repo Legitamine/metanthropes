@@ -118,13 +118,18 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
     const { characteristics: c, stats: s } = this.attributes;
 
     for (const [key, { buff, condition }] of metanthropes.config.characteristics) {
-      c[key].buffs = this.statuses[buff];
-      c[key].debuffs = this.statuses[condition];
+      const b = c[key].buffs = this.statuses[buff];
+      const d = c[key].debuffs = this.statuses[condition];
+      const modifier = (b - d) * 5 / 100;
+      c[key].value = c[key].value * (1 + modifier);
     }
 
     for (const [key, { buff, condition, characteristic }] of metanthropes.config.stats) {
-      s[key].buffs = this.statuses[buff] + c[characteristic].buffs;
-      s[key].debuffs = this.statuses[condition] + c[characteristic].debuffs;
+      const char = s[key].characteristic = c[characteristic];
+      const mb = s[key].buffs = this.statuses[buff] + char.buffs;
+      const md = s[key].debuffs = this.statuses[condition] + char.debuffs;
+      const modifier = (mb - md) * 5 / 100;
+      s[key].value = s[key].value * (1 + modifier);
     }
   }
 
@@ -246,17 +251,18 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
 
   /**
    * Calculate the damage this actor would take.
-   * TODO: take immunities into account.
    * @param {DamageConfig[]} damages
+   * @param {object} [options={}]
+   * @param {boolean} [options.ignoreResistance=false]    Ignore all resistances?
    * @returns {number}
    */
-  calculateDamage(damages) {
+  calculateDamage(damages, options = {}) {
     damages = foundry.utils.deepClone(damages);
     const actor = this.parent;
 
     /** @param {DamageConfig} damage */
     const apply = damage => {
-      const resistance = damage.options.ignoreResistance
+      const resistance = options.ignoreResistance || damage.options.ignoreResistance
         ? 0
         : actor.system.defenses[damage.type].resistance;
       damage.value = Math.max(0, damage.value - resistance);
