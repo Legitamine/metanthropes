@@ -1,5 +1,6 @@
 import config from "./config/data.mjs";
 import * as data from "./data/_module.mjs";
+import * as dice from "./dice/_module.mjs";
 import * as documents from "./documents/_module.mjs";
 import * as utils from "./api/utils/_module.mjs";
 
@@ -124,6 +125,7 @@ globalThis.metanthropes = {
 		MetaImagePicker,
 	},
 	dice: {
+    ...dice,
 		metaRoll,
 		metaEvaluate,
 		metaEvaluateReRoll,
