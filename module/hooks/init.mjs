@@ -13,6 +13,8 @@ Hooks.once("init", function () {
   // Register queries.
   registerQueries();
 
+  CONFIG.Dice.rolls.push(metanthropes.dice.AbilityRoll);
+
 	//* Register Fonts
 	CONFIG.fontDefinitions = {
 		...CONFIG.fontDefinitions,
