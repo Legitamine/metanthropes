@@ -1,3 +1,10 @@
+/**
+ * @import { MetapowerRegistryData, MetapowerAbilityRegistryData } from "./_types.d.ts";
+ */
+
+/**
+ * Registry class for storing references and data of metapowers and metapower abilities.
+ */
 export default class MetapowersRegistry {
   /**
    * Additional fields to index in compendiums for items.
@@ -9,6 +16,7 @@ export default class MetapowersRegistry {
     "system.category.metapower",
     // Metapower fields
     "system.category.classification",
+    "system.category.energy",
     "system.identifier",
   ];
 
@@ -22,14 +30,14 @@ export default class MetapowersRegistry {
 
   /* -------------------------------------------------- */
 
-  /** @type {Map<string, { abilities: { level: number; uuid: string }[]; classification: string; uuid: string }>} */
+  /** @type {Map<string, { MetapowerRegistryData & { abilities: MetapowerAbilityRegistryData[] } }>} */
   static #registry = new Map();
 
   /* -------------------------------------------------- */
 
   /**
    * Temporary cache of abilities before finalizing registry.
-   * @type {object[] | void}
+   * @type {MetapowerAbilityRegistryData[]}
    */
   static _cache;
 
@@ -60,28 +68,36 @@ export default class MetapowersRegistry {
   /**
    * Iterate over the index of a pack.
    * @param {CompendiumCollection} pack
-   * @yields {
-   *  { level: number; metapower: string; type: "ability"; uuid: string }
-   *  | { identifier: string; classification: string; type: "metapower"; uuid: string }
-   * }
+   * @yields { MetapowerAbilityRegistryData | MetapowerRegistryData }
    */
   static * iteratePack(pack) {
     for (const item of pack.index) {
-      const { level, metapower, classification } = item.system?.category ?? {};
+      const { level, metapower, classification, energy } = item.system?.category ?? {};
 
 
       if (item.type === "ability") {
         if (!level || level > 5) continue;
         if (!metapower) continue;
 
-        yield { level, metapower, type: item.type, uuid: item.uuid };
+        yield {
+          type: item.type,
+          level: level,
+          metapower: metapower,
+          uuid: item.uuid,
+        };
       }
 
       if (item.type === "metapower") {
         const identifier = item.system.identifier || metanthropes.utils.createDefaultIdentifier(item.name);
-        if (!identifier || !classification) continue;
+        if (!identifier || !classification || !energy) continue;
 
-        yield { identifier, classification, type: item.type, uuid: item.uuid };
+        yield {
+          type: item.type,
+          classification: classification,
+          energy: energy,
+          identifier: identifier,
+          uuid: item.uuid,
+        };
       }
     }
   }
@@ -90,25 +106,25 @@ export default class MetapowersRegistry {
 
   /**
    * Register a metapower item.
-   * @param {{ identifier: string; classification: string; type: "metapower"; uuid: string }}
+   * @param {MetapowerRegistryData} data
    */
-  static #registerMetapower({ identifier, classification, type, uuid }) {
+  static #registerMetapower(data) {
     const r = MetapowersRegistry.#registry;
-    if (r.has(identifier)) {
-      console.warn(`Metapower with identifier '${identifier}' has already been registered.`);
+    if (r.has(data.identifier)) {
+      console.warn(`Metapower with identifier '${data.identifier}' has already been registered.`);
       return;
     }
-    r.set(identifier, { abilities: [], classification, uuid });
+    r.set(data.identifier, { ...data, abilities: [] });
   }
 
   /* -------------------------------------------------- */
 
   /**
    * Store an ability to be registered after all metapowers are registered.
-   * @param {{ level: number; metapower: string; type: "ability"; uuid: string }}
+   * @param {MetapowerAbilityRegistryData} data
    */
-  static #registerAbility({ level, metapower, type, uuid }) {
-    MetapowersRegistry._cache.push({ level, metapower, type, uuid });
+  static #registerAbility(data) {
+    MetapowersRegistry._cache.push({ ...data });
   }
 
   /* -------------------------------------------------- */
@@ -118,12 +134,12 @@ export default class MetapowersRegistry {
    */
   static #finalizeAbilityRegistry() {
     const r = MetapowersRegistry.#registry;
-    for (const { level, metapower, type, uuid } of MetapowersRegistry._cache) {
-      if (!r.has(metapower)) {
-        console.warn(`No metapower registered with identifier '${metapower}'.`);
+    for (const data of MetapowersRegistry._cache) {
+      if (!r.has(data.metapower)) {
+        console.warn(`No metapower registered with identifier '${data.metapower}'.`);
         continue;
       }
-      r.get(metapower).abilities.push({ level, uuid });
+      r.get(data.metapower).abilities.push({ ...data });
     }
   }
 
@@ -131,13 +147,16 @@ export default class MetapowersRegistry {
 
   /**
    * Get metapower abilities of a specific classification, metapower, and level.
-   * @param {{ metapower?: string; classification?: string; level?: number }} [query]
+   * @param {{ metapower?: string; classification?: string; level?: number | number[] }} [query]
    * @returns {Set<string>}
    */
   static getAbilities(query={}) {
     const matchMetapower = m => !query.metapower || (m === query.metapower);
     const matchClassification = c => !query.classification || (c === query.classification);
-    const matchLevel = l => !Number.isFinite(query.level) || (l === query.level);
+    const matchLevel = l => {
+      if (Array.isArray(query.level) && query.level.length) return query.level.includes(l);
+      return !Number.isFinite(query.level) || (l === query.level);
+    };
 
     const uuids = new Set();
     for (const [m, data] of MetapowersRegistry.#registry.entries()) {
@@ -164,5 +183,18 @@ export default class MetapowersRegistry {
       if (matchClassification(data.classification)) uuids.add(data.uuid);
     }
     return uuids;
+  }
+
+  /* -------------------------------------------------- */
+
+  /**
+   * Look up data for a metapower by identifier.
+   * @param {string} identifier
+   * @returns {MetapowerRegistryData & { abilities: MetapowerAbilityRegistryData[] } | null}
+   */
+  static lookupMetapower(identifier) {
+    const data = this.#registry.get(identifier);
+    if (data) return foundry.utils.deepClone(data);
+    return null;
   }
 }

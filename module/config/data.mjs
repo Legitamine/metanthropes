@@ -92,36 +92,52 @@ config.stats = new ConfigObject({
 /** @type {ConfigObject & Record<string, ClassificationConfig>} */
 config.classifications = new ConfigObject({
   aegis: {
-    label: "METANTHROPES.CLASSIFICATIONS.aegis"
+    label: "METANTHROPES.CLASSIFICATIONS.aegis",
   },
   animator: {
-    label: "METANTHROPES.CLASSIFICATIONS.animator"
+    label: "METANTHROPES.CLASSIFICATIONS.animator",
   },
   arbiter: {
-    label: "METANTHROPES.CLASSIFICATIONS.arbiter"
+    label: "METANTHROPES.CLASSIFICATIONS.arbiter",
   },
   clairvoyant: {
-    label: "METANTHROPES.CLASSIFICATIONS.clairvoyant"
+    label: "METANTHROPES.CLASSIFICATIONS.clairvoyant",
   },
   controller: {
-    label: "METANTHROPES.CLASSIFICATIONS.controller"
+    label: "METANTHROPES.CLASSIFICATIONS.controller",
   },
   cosmonaut: {
-    label: "METANTHROPES.CLASSIFICATIONS.cosmonaut"
+    label: "METANTHROPES.CLASSIFICATIONS.cosmonaut",
   },
   hammer: {
-    label: "METANTHROPES.CLASSIFICATIONS.hammer"
+    label: "METANTHROPES.CLASSIFICATIONS.hammer",
   },
   kineticist: {
-    label: "METANTHROPES.CLASSIFICATIONS.kineticist"
+    label: "METANTHROPES.CLASSIFICATIONS.kineticist",
   },
   manipulator: {
-    label: "METANTHROPES.CLASSIFICATIONS.manipulator"
+    label: "METANTHROPES.CLASSIFICATIONS.manipulator",
   },
   utilitarian: {
-    label: "METANTHROPES.CLASSIFICATIONS.utilitarian"
-  }
+    label: "METANTHROPES.CLASSIFICATIONS.utilitarian",
+  },
 });
+
+/**
+ * The classification wheel orders metapower classifications next to their synerginistic neighbors.
+ * @type {string[]}
+ */
+config.classificationWheel = [
+  "aegis",
+  "hammer",
+  "kineticist",
+  "cosmonaut",
+  "clairvoyant",
+  "arbiter",
+  "manipulator",
+  "animator",
+  "controller",
+];
 
 /* -------------------------------------------------- */
 

@@ -11,7 +11,31 @@ export interface DamageConfig {
   };
 }
 
-interface Attribute {
+interface Characteristic {
+  /** The base value. This is modified during data prep. */
+  base: number;
+  /** Number of buffs applied. */
+  buffs: number;
+  /** Number of debuffs applied. */
+  debuffs: number;
+  /** How many times has this been progressed? */
+  progressions: number;
+  /** The final value after buffs, debuffs, and progression are applied. */
+  value: number;
+}
+
+interface Stat {
+  /** The base value. This is modified during data prep. */
+  base: number;
+  /** Number of buffs applied. */
+  buffs: number;
+  /** Number of debuffs applied. */
+  debuffs: number;
+  /** The characteristic this stat uses. */
+  characteristic: "body" | "mind" | "soul";
+  /** How many times has this been progressed? */
+  progressions: number;
+  /** The final value after buffs, debuffs, and progression are applied. */
   value: number;
 }
 
@@ -41,33 +65,44 @@ declare module "./character.mjs" {
   export default interface CharacterData {
     parent: MetanthropesActor;
     attributes: {
-      characteristics: Record<"body" | "mind" | "soul", Attribute>;
-      stats: Record<string, Attribute>;
+      characteristics: Record<"body" | "mind" | "soul", Characteristic>;
+      stats: Record<string, Stat>;
       speed: PhysicalAttribute;
       weight: PhysicalAttribute;
       size: PhysicalAttribute;
-    }
+    };
     defenses: Record<"cosmic" | "elemental" | "material" | "psychic", Defense>;
     details: {
       age: number;
       /** Place of birth. */
       birth: string;
       gender: string;
-      height: { value: number; units: "cm" | "ft" }
-      weight: { value: number; units: "kg" | "lb" }
-    }
+      height: {
+        value: number;
+        units: "cm" | "ft";
+      };
+      weight: {
+        value: number;
+        units: "kg" | "lb";
+      };
+    };
+    metapowers: {
+      /** The character's prime metapower classification. */
+      prime: string;
+      levels: Record<string, number>;
+    };
     /** Knowledges and skills. */
     perks: Record<string, Perk>;
     resources: {
       destiny: {
         value: number | null;
         max: number;
-      }
+      };
       life: {
         value: number;
         max: number;
-      }
-    }
+      };
+    };
     /** The level of a status (buff or condition) the actor is affected by. */
     statuses: Record<string, number | null>;
   }
