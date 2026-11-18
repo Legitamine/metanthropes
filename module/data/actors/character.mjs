@@ -138,8 +138,8 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
     for (const [key, { buff, condition }] of metanthropes.config.characteristics) {
       const char = this.attributes.characteristics[key];
       char.buffs = this.statuses[buff];
-      char.debuffs = this.statuses[condition];
-      char.value = char.base + char.progressions * 5 + (char.buffs - char.debuffs) * 5;
+      char.conditions = this.statuses[condition];
+      char.value = char.base + char.progressions * 5 + (char.buffs - char.conditions) * 5;
       char.value = Math.max(0, char.value);
     }
 
@@ -148,8 +148,8 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
       stat.characteristic = metanthropes.config.stats[key].characteristic;
       const char = this.attributes.characteristics[stat.characteristic];
       stat.buffs = this.statuses[buff] + char.buffs;
-      stat.debuffs = this.statuses[condition] + char.debuffs;
-      stat.value = stat.base + stat.progressions * 5 + (stat.buffs - stat.debuffs) * 5;
+      stat.conditions = this.statuses[condition] + char.conditions;
+      stat.value = stat.base + stat.progressions * 5 + (stat.buffs - stat.conditions) * 5;
       stat.value = Math.max(0, stat.value);
     }
   }

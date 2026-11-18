@@ -17,10 +17,10 @@ interface Characteristic {
   /** Level of the relevant applied buff. */
   buffs: number;
   /** Level of the relevant applied condition. */
-  debuffs: number;
+  conditions: number;
   /** How many times has this been progressed? */
   progressions: number;
-  /** The final value after buffs, debuffs, and progression are applied. */
+  /** The final value after buffs, conditions, and progression are applied. */
   value: number;
 }
 
@@ -30,12 +30,12 @@ interface Stat {
   /** Level of the relevant applied buff. */
   buffs: number;
   /** Level of the relevant applied condition. */
-  debuffs: number;
+  conditions: number;
   /** The characteristic this stat uses. */
   characteristic: "body" | "mind" | "soul";
   /** How many times has this been progressed? */
   progressions: number;
-  /** The final value after buffs, debuffs, and progression are applied. */
+  /** The final value after buffs, conditions, and progression are applied. */
   value: number;
 }
 
