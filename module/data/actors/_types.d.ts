@@ -12,30 +12,30 @@ export interface DamageConfig {
 }
 
 interface Characteristic {
-  /** The base value. This is modified during data prep. */
+  /** The base value.. */
   base: number;
-  /** Number of buffs applied. */
+  /** Level of the relevant applied buff. */
   buffs: number;
-  /** Number of debuffs applied. */
-  debuffs: number;
+  /** Level of the relevant applied condition. */
+  conditions: number;
   /** How many times has this been progressed? */
   progressions: number;
-  /** The final value after buffs, debuffs, and progression are applied. */
+  /** The final value after buffs, conditions, and progression are applied. */
   value: number;
 }
 
 interface Stat {
-  /** The base value. This is modified during data prep. */
+  /** The base value.. */
   base: number;
-  /** Number of buffs applied. */
+  /** Level of the relevant applied buff. */
   buffs: number;
-  /** Number of debuffs applied. */
-  debuffs: number;
+  /** Level of the relevant applied condition. */
+  conditions: number;
   /** The characteristic this stat uses. */
   characteristic: "body" | "mind" | "soul";
   /** How many times has this been progressed? */
   progressions: number;
-  /** The final value after buffs, debuffs, and progression are applied. */
+  /** The final value after buffs, conditions, and progression are applied. */
   value: number;
 }
 
@@ -52,13 +52,13 @@ interface Perk {
 
 interface PhysicalAttribute {
   /** Base value. */
-  value: number;
+  base: number;
   /** Delta from statuses. */
   statuses: number;
   /** Modifier read from the config. */
   modifier: number;
   /** Total attribute (value + modifier), clamped between 0 and 20. */
-  total: number;
+  value: number;
 }
 
 declare module "./character.mjs" {
