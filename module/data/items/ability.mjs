@@ -1,5 +1,6 @@
 /**
- * @import { Scaling } from "./_types.d.ts";
+ * @import { Scaling, AbilityUsageConfig, AbilityDialogConfig, AbilityMessageConfig } from "./_types.d.ts";
+ * @import AbilityRoll from "../../dice/ability-roll.mjs";
  */
 
 const { HTMLField, NumberField, SchemaField } = foundry.data.fields;
@@ -54,9 +55,9 @@ export default class AbilityData extends foundry.abstract.TypeDataModel {
     const metapower = item.collection.documentsByType.metapower.find(m => m.system.identifier === this.category.metapower);
     if (!metapower) return;
 
-    this.activation.stat = metapower.activation.stat;
-    this.category.energy = metapower.category.energy;
-    this.category.classification = metapower.category.classification;
+    this.activation.stat = metapower.system.activation.stat;
+    this.category.energy = metapower.system.category.energy;
+    this.category.classification = metapower.system.category.classification;
   }
 
   /* -------------------------------------------------- */
@@ -89,5 +90,60 @@ export default class AbilityData extends foundry.abstract.TypeDataModel {
       cost += effect.getUpscaleCost(steps);
     }
     return cost;
+  }
+
+  /* -------------------------------------------------- */
+
+  /**
+   * Use this metapower ability.
+   * @param {AbilityUsageConfig} [usage]
+   * @param {AbilityDialogConfig} [dialog]
+   * @param {AbilityMessageConfig} [message]
+   * @returns {Promise<AbilityRoll | null>}
+   */
+  async use(usage={}, dialog={}, message={}) {
+    const stat = this.activation.stat;
+    if (!stat) {
+      throw new Error(`Item '${this.parent.uuid}' does not have a derived stat for activation.`);
+    }
+
+    usage = foundry.utils.mergeObject({ scaling: {}, bonus: 0 }, usage);
+    dialog = foundry.utils.mergeObject({ configure: true }, dialog);
+    message = foundry.utils.mergeObject({ create: true }, message);
+
+    const item = this.upscale(usage.scaling);
+    const roll = metanthropes.dice.AbilityRoll.build(item, { bonus: usage.bonus });
+
+    if (dialog.configure) {
+      const Class = metanthropes.dice.AbilityRoll.configurationClass;
+      const { promise, resolve } = Promise.withResolvers();
+      const application = new Class({
+        resolve, item,
+        configs: { usage, dialog, message },
+      });
+      await application.render({ force: true });
+      const resolved = await promise;
+      if (!resolved) return null;
+    }
+
+    if (!roll._evaluated) await roll.evaluate({ allowInteractive: false });
+
+    const ChatMessage = getDocumentClass("ChatMessage");
+    const messageData = {
+      type: "resolution",
+      speaker: ChatMessage.getSpeaker({ actor: item.actor }),
+      rolls: [roll],
+      system: {
+        autoresolve: true,
+        resolved: false,
+        resolvers: [],
+      },
+    };
+    ChatMessage.applyMode(messageData);
+    // TODO: add data for content, item data, resolvers, roll(s).
+
+    if (message.create) ChatMessage.create(messageData);
+
+    return roll;
   }
 }
