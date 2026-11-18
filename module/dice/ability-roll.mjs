@@ -23,6 +23,16 @@ export default class AbilityRoll extends foundry.dice.Roll {
   /* -------------------------------------------------- */
 
   /**
+   * The application class responsible for configuring this roll.
+   * @type {typeof foundry.applications.api.Application}
+   */
+  static get configurationClass() {
+    return metanthropes.applications.apps.actors.AbilityUsageConfigurator;
+  }
+
+  /* -------------------------------------------------- */
+
+  /**
    * Factory method.
    * @param {MetanthropesItem} item
    * @param {object} [options]
@@ -32,7 +42,7 @@ export default class AbilityRoll extends foundry.dice.Roll {
   static build(item, { bonus=0 }={}) {
     const data = item.getRollData();
     const stat = item.system.activation.stat;
-    const target = item.actor.system.attributes.stats[options.stat].value;
+    const target = item.actor.system.attributes.stats[stat].value;
     const options = { stat, target, bonus };
 
     const roll = new this(null, data, options);

@@ -1,4 +1,5 @@
 import config from "./config/data.mjs";
+import * as applications from "./applications/_module.mjs";
 import * as data from "./data/_module.mjs";
 import * as dice from "./dice/_module.mjs";
 import * as documents from "./documents/_module.mjs";
@@ -112,6 +113,7 @@ globalThis.metanthropes = {
   data,
 	documents,
   applications: {
+    ...applications,
 		MetanthropesActorSheet,
 		MetanthropesItemSheet,
 		MetanthropesActiveEffectSheetV2,
