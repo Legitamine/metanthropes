@@ -4,7 +4,7 @@
  * @import MetanthropesActor from "../../documents/actor.mjs";
  */
 
-const { NumberField, SchemaField, StringField } = foundry.data.fields;
+const { NumberField, SchemaField, StringField, TypedObjectField } = foundry.data.fields;
 
 /**
  * Character data.
@@ -24,9 +24,17 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
     const stats = {};
     const statuses = {};
 
+    const charField = () => {
+      return new SchemaField({
+        base: new NumberField({ nullable: false, initial: 10, choices: [10, 20, 30] }),
+        progressions: new NumberField({ nullable: false, initial: 0, choices: [0, 1, 2, 3, 4, 5] }),
+      });
+    };
+
     const statField = () => {
       return new SchemaField({
-        value: new NumberField({ nullable: false, initial: 0, integer: true, min: 0 }),
+        base: new NumberField({ nullable: false, initial: 0, integer: true, min: 0 }),
+        progressions: new NumberField({ nullable: false, initial: 0, choices: [0, 1, 2, 3, 4, 5] }),
       });
     };
 
@@ -34,8 +42,8 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
       statuses[k] = new NumberField({ integer: true, nullable: true, initial: null, min: 0, persisted: false });
     }
 
+    for (const k of metanthropes.config.characteristics.keys()) characteristics[k] = charField();
     for (const k of metanthropes.config.stats.keys()) stats[k] = statField();
-    for (const k of metanthropes.config.characteristics.keys()) characteristics[k] = statField();
 
     for (const [k, v] of metanthropes.config.energyTypes) {
       defenses[k] = new SchemaField({
@@ -80,6 +88,17 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
           units: new StringField({ required: true, initial: "kg", choices: ["kg", "lb"] }),
         }),
       }),
+      metapowers: new SchemaField({
+        prime: new StringField({
+          required: true,
+          initial: "aegis",
+          choices: () => metanthropes.config.classifications.toChoices(),
+        }),
+        levels: new TypedObjectField(
+          new NumberField({ nullable: false, initial: 1, min: 1, integer: true }),
+          { validateKey: key => metanthropes.config.classifications.keys().includes(key) },
+        ),
+      }),
       perks: new SchemaField(perks),
       resources: new SchemaField({
         destiny: new SchemaField({
@@ -92,6 +111,7 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
         }),
       }),
       statuses: new SchemaField(statuses),
+      // _progression: [],
     };
   }
 
@@ -115,21 +135,20 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
    * Prepare stats and characteristics.
    */
   #prepareAttributes() {
-    const { characteristics: c, stats: s } = this.attributes;
-
     for (const [key, { buff, condition }] of metanthropes.config.characteristics) {
-      const b = c[key].buffs = this.statuses[buff];
-      const d = c[key].debuffs = this.statuses[condition];
-      const modifier = (b - d) * 5 / 100;
-      c[key].value = c[key].value * (1 + modifier);
+      const char = this.attributes.characteristics[key];
+      char.buffs = this.statuses[buff];
+      char.debuffs = this.statuses[condition];
+      char.value = char.base + char.progressions * 5 + (char.buffs - char.debuffs) * 5;
     }
 
-    for (const [key, { buff, condition, characteristic }] of metanthropes.config.stats) {
-      const char = s[key].characteristic = c[characteristic];
-      const mb = s[key].buffs = this.statuses[buff] + char.buffs;
-      const md = s[key].debuffs = this.statuses[condition] + char.debuffs;
-      const modifier = (mb - md) * 5 / 100;
-      s[key].value = s[key].value * (1 + modifier);
+    for (const [key, { buff, condition }] of metanthropes.config.stats) {
+      const stat = this.attributes.stats[key];
+      stat.characteristic = metanthropes.config.stats[key].characteristic;
+      const char = this.attributes.characteristics[stat.characteristic];
+      stat.buffs = this.statuses[buff] + char.buffs;
+      stat.debuffs = this.statuses[condition] + char.debuffs;
+      stat.value = stat.base + stat.progressions * 5 + (stat.buffs - stat.debuffs) * 5;
     }
   }
 
@@ -312,5 +331,116 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
     const operation = this._applyDamageOperation(damages);
     await foundry.documents.modifyBatch([operation]);
     return this.parent;
+  }
+
+  /* -------------------------------------------------- */
+  /*  Progression & Metapowers                          */
+  /* -------------------------------------------------- */
+
+  /**
+   * Get the XP cost to increase a characteristic, stat, or perk.
+   * @param {string} attribute
+   * @returns {number}
+   */
+  getAttributeXPCost(attribute) {
+    if (this.attributes.characteristics[attribute]) {
+      return this._source.attributes.characteristics[attribute].base * 10;
+    }
+
+    if (this.attributes.stats[attribute]) {
+      return this._source.attributes.stats[attribute].base * 3;
+    }
+
+    if (this.perks[attribute]) {
+      return 100;
+    }
+
+    throw new Error(`Attribute '${attribute}' is not a characteristic, stat, or perk.`);
+  }
+
+  /* -------------------------------------------------- */
+
+  /**
+   * Get the XP cost to increase a metapower level.
+   * @param {string} metapower    The identifier of the metapower.
+   * @returns {number | null}
+   */
+  getMetapowerEXPCost(metapower) {
+    const data = metanthropes.registry.metapowers.lookupMetapower(metapower);
+    if (!data) return null;
+
+    const prime = this.getPrimeMetapower();
+
+    const isSynergizing = c => {
+      if (c === prime.classification) return true;
+      const wheel = metanthropes.config.classificationWheel;
+      const index = wheel.indexOf(prime.classification);
+
+      const next = wheel[index + 1] ?? wheel[0];
+      const previous = wheel[index - 1] ?? wheel.at(-1);
+      return [next, previous].includes(c);
+    };
+
+    const synergy = isSynergizing(data.classification);
+    const isUtil = data.classification === "utilitarian";
+    const tier = (isUtil ? 3 : synergy ? 1 : 5) + Number(prime.energy !== data.energy);
+    const level = this.getCurrentMetapowerLevel(metapower);
+
+    const table = [
+      Array.fromRange(6).map(n => 1000 + 5 * n),
+      Array.fromRange(6).map(n => 200 + 10 * n),
+      Array.fromRange(6).map(n => 600 + 30 * n),
+      Array.fromRange(6).map(n => 1200 + 60 * n),
+      Array.fromRange(6).map(n => 2000 + 100 * n),
+    ];
+
+    return table[level][tier];
+  }
+
+  /* -------------------------------------------------- */
+
+  /**
+   * Get the current metapower level.
+   * @param {string} metapower    The identifier of a metapower
+   * @returns {number}
+   */
+  getCurrentMetapowerLevel(metapower) {
+    const isPrime = metapower === this.metapowers.prime;
+    return Math.max(this.metapowers.levels[metapower] ?? 0, Number(isPrime));
+  }
+
+  /* -------------------------------------------------- */
+
+  /**
+   * Get data on the prime metapower of this character.
+   * @returns {{ classification: string; energy: string } | null}
+   */
+  getPrimeMetapower() {
+    const lookup = metanthropes.registry.metapowers.lookupMetapower(this.metapowers.prime);
+    if (!lookup) return null;
+
+    return {
+      classification: lookup.classification,
+      energy: lookup.energy,
+    };
+  }
+
+  /* -------------------------------------------------- */
+
+  /**
+   * Get uuids of learned metapower abilities.
+   * @yields {string}
+   */
+  * getLearnedMetapowerAbilities() {
+    const keys = new Set(Object.keys(this.metapowers.levels)).add(this.metapowers.prime);
+    const range = Array.fromRange(this.getCurrentMetapowerLevel(this.metapowers.prime), 1);
+
+    for (const key of keys) {
+      const abilities = metanthropes.registry.metapowers.getAbilities({
+        metapower: key,
+        level: range,
+      });
+      for (const uuid of abilities) yield uuid;
+    }
   }
 }
