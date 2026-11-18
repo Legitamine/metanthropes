@@ -65,13 +65,13 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
         characteristics: new SchemaField(characteristics),
         stats: new SchemaField(stats),
         speed: new SchemaField({
-          value: new NumberField({ initial: 10, integer: true, nullable: false, min: 0 }),
+          base: new NumberField({ initial: 10, integer: true, nullable: false, min: 0 }),
         }),
         weight: new SchemaField({
-          value: new NumberField({ initial: 10, integer: true, nullable: false, min: 0 }),
+          base: new NumberField({ initial: 10, integer: true, nullable: false, min: 0 }),
         }),
         size: new SchemaField({
-          value: new NumberField({ initial: 10, integer: true, nullable: false, min: 0 }),
+          base: new NumberField({ initial: 10, integer: true, nullable: false, min: 0 }),
         }),
       }),
       defenses: new SchemaField(defenses),
@@ -140,6 +140,7 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
       char.buffs = this.statuses[buff];
       char.debuffs = this.statuses[condition];
       char.value = char.base + char.progressions * 5 + (char.buffs - char.debuffs) * 5;
+      char.value = Math.max(0, char.value);
     }
 
     for (const [key, { buff, condition }] of metanthropes.config.stats) {
@@ -149,6 +150,7 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
       stat.buffs = this.statuses[buff] + char.buffs;
       stat.debuffs = this.statuses[condition] + char.debuffs;
       stat.value = stat.base + stat.progressions * 5 + (stat.buffs - stat.debuffs) * 5;
+      stat.value = Math.max(0, stat.value);
     }
   }
 
@@ -196,20 +198,20 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
   #preparePhysical() {
     const s = this.attributes.speed;
     s.statuses = this.statuses.accelerated - this.statuses.slowed;
-    s.total = Math.clamp(s.value + s.statuses, 0, 20);
-    s.modifier = metanthropes.config.speed.modifiers[s.total];
+    s.value = Math.clamp(s.base + s.statuses, 0, 20);
+    s.modifier = metanthropes.config.speed.modifiers[s.value];
 
     const w = this.attributes.weight;
     w.statuses = this.statuses.encumbered - this.statuses.lightened;
-    w.total = Math.clamp(w.value + w.statuses, 0, 20);
-    w.modifier = metanthropes.config.weight.modifiers[w.total];
+    w.value = Math.clamp(w.base + w.statuses, 0, 20);
+    w.modifier = metanthropes.config.weight.modifiers[w.value];
 
     const z = this.attributes.size;
     z.statuses = this.statuses.enlarged - this.statuses.shrunken;
-    z.total = Math.clamp(z.value + z.statuses, 0, 20);
-    z.modifier = metanthropes.config.size.modifiers[z.total]
+    z.value = Math.clamp(z.base + z.statuses, 0, 20);
+    z.modifier = metanthropes.config.size.modifiers[z.value]
 
-    const movementBonus = metanthropes.config.size.movementBonus[z.total] ?? 0;
+    const movementBonus = metanthropes.config.size.movementBonus[z.value] ?? 0;
     this.attributes.movement = Math.ceil(s.modifier * w.modifier * z.modifier) + movementBonus;
   }
 
